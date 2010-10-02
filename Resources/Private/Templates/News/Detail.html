@@ -1,0 +1,30 @@
+
+<f:if condition="{news}">
+	<f:then>
+		<h2>{news.title}</h2>
+		<div style="background: #eee">
+			<f:format.html>{news.teaser}</f:format.html>
+		</div>
+		<div>
+			<f:format.html>{news.bodytext}</f:format.html>
+		</div>
+
+		<f:if condition="{news.related}">
+			<f:then>
+				<f:for each="{news.related}" as="related">
+					{related.title} <small>(uid: {related.uid})</small><br />
+				</f:for>
+			</f:then>
+			 <f:else>
+				no related news
+			 </f:else>
+		</f:if>
+
+		<f:render partial="Detail/MediaContainer" arguments="{media: media, settings:settings}"/>
+	</f:then>
+	<f:else>
+		ERROR: no news id given.
+	</f:else>
+
+
+</f:if>

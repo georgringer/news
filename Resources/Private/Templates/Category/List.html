@@ -1,0 +1,23 @@
+category list
+<hr />
+
+<f:if condition="{categories}">
+	<f:for each="{categories}" as="category">
+
+		<ul>
+
+
+			<li>
+				{category.title}
+				<f:link.action pageUid="306" arguments="{category:category.uid}" controller="News">
+					link
+				</f:link.action>
+				<f:render partial="Category/CategoryItem" arguments="{category:category.sub}" />
+
+			</li>
+		</ul>
+
+
+		
+	</f:for>
+</f:if>

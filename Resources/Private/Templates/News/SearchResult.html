@@ -1,0 +1,26 @@
+searchresult! :D
+
+		gesucht nach: {searchString}! <br />
+<f:flashMessages />
+	<f:if condition="{news}">
+		<f:then>
+			<div>
+				<f:translate key="SearchResult" arguments="{1:'{f:count(subject:\'{news}\')}' , 2:'{searchString}'}" htmlEscape="TRUE" />
+			</div>
+
+			<table border="1">
+			<f:render partial="List/ItemHeader" />
+
+			<f:for each="{news}" as="newsItem">
+				<f:cycle values="{0: 'odd', 1: 'even'}" as="className">
+					<f:render partial="List/item" arguments="{newsItem: newsItem, settings:settings, className:className}"/>
+				</f:cycle>
+			</f:for>
+		</table>
+
+
+		</f:then>
+		<f:else>
+			no news found
+		</f:else>
+	</f:if>		

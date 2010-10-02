@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'news2'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_news2_domain_model_category">Category</label>
+			<label index="tx_news2_domain_model_category.title">Title</label>
+			<label index="tx_news2_domain_model_category.description">Description</label>
+			<label index="tx_news2_domain_model_category.image">Image</label>
+			<label index="tx_news2_domain_model_category.parentcategory">Parent ID</label>
+			<label index="tx_news2_domain_model_category.single_pid">Single-view page for news from this category</label>
+			<label index="tx_news2_domain_model_news">News</label>
+			<label index="tx_news2_domain_model_news.title">Title</label>
+			<label index="tx_news2_domain_model_news.teaser">Teaser</label>
+			<label index="tx_news2_domain_model_news.bodytext">Text</label>
+			<label index="tx_news2_domain_model_news.datetime">Date &amp; Time</label>
+			<label index="tx_news2_domain_model_news.archive">Archive</label>
+			<label index="tx_news2_domain_model_news.author">Author</label>
+			<label index="tx_news2_domain_model_news.category">Category</label>
+			<label index="tx_news2_domain_model_news.related">Related News</label>
+			<label index="tx_news2_domain_model_news.type.I.0">News</label>
+			<label index="tx_news2_domain_model_news.type.I.1">Internal Page</label>
+			<label index="tx_news2_domain_model_news.type.I.2">External Page</label>
+			<label index="tx_news2_domain_model_news.type">Type</label>
+			<label index="tx_news2_domain_model_news.keywords">Keywords</label>
+			<label index="tx_news2_domain_model_news.media">Media Element</label>
+			<label index="tx_news2_domain_model_media">Media Element</label>
+			<label index="tx_news2_domain_model_media.title">Title</label>
+			<label index="tx_news2_domain_model_media.media">Media Element</label>
+			<label index="tx_news2_domain_model_media.type.I.0">Image</label>
+			<label index="tx_news2_domain_model_media.type.I.1">Video</label>
+			<label index="tx_news2_domain_model_media.type.I.2">HTML</label>
+			<label index="tx_news2_domain_model_media.type">Type</label>
+			<label index="tx_news2_domain_model_media.html">HTML</label>
+			<label index="tx_news2_domain_model_media.video">Video URL</label>
+			<label index="tx_news2_domain_model_news.internalurl">Internal URL</label>
+			<label index="tx_news2_domain_model_news.externalurl">External URL</label>
+		</languageKey>
+	</data>
+</T3locallang>

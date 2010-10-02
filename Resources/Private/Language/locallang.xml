@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'news2'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<!-- Commmon -->
+			<label index="pi1_title">News v2 reloaded</label>
+			<label index="pi1_plus_wiz_description">Overworked news system</label>
+			<label index="flexforms_tab.settings">Settings</label>
+			<label index="flexforms_tab.additional">Additional</label>
+			<label index="flexforms_tab.template">Template</label>
+
+			<label index="flexforms_general.mode">What to display</label>
+			<label index="flexforms_general.mode.news_list">List view</label>
+			<label index="flexforms_general.mode.news_latest">Latest view</label>
+			<label index="flexforms_general.mode.news_detail">Detail view</label>
+			<label index="flexforms_general.mode.news_search">Search form</label>
+			<label index="flexforms_general.mode.news_searchResult">Search result</label>
+			<label index="flexforms_general.mode.category_list">Category Menu</label>
+			<label index="flexforms_general.mode.news_archivemenu">Archive Menu</label>
+			<label index="flexforms_general.mode.not_configured">No view yet configured</label>
+			<label index="flexforms_general.archive">Archive</label>
+			<label index="flexforms_general.archive.active">Only active (non archived)</label>
+			<label index="flexforms_general.archive.archived">Archived</label>
+			<label index="flexforms_general.orderBy">Sort by</label>
+			<label index="flexforms_general.orderBy.tstamp">Last edited</label>
+			<label index="flexforms_general.orderBy.crdate">Created</label>
+			<label index="flexforms_general.orderBy.datetime">Given date/time</label>
+			<label index="flexforms_general.orderBy.title">Title</label>
+			<label index="flexforms_general.orderAscDesc">Sort direction</label>
+			<label index="flexforms_general.orderAscDesc.asc">Ascending</label>
+			<label index="flexforms_general.orderAscDesc.desc">Descending</label>
+			<label index="flexforms_general.category">Category selection</label>
+			<label index="flexforms_general.categoryMode">Category mode</label>
+			<label index="flexforms_general.categoryMode.all">Don't care, show all</label>
+			<label index="flexforms_general.categoryMode.or">Show items with selected categories (OR)</label>
+			<label index="flexforms_general.categoryMode.and">Show items with selected categories (AND)</label>
+			<label index="flexforms_general.categoryMode.notand">Do NOT show items with selected categories (AND)</label>
+			<label index="flexforms_general.categoryMode.notor">Do NOT show items with selected categories (OR)</label>
+
+			<label index="flexforms_template.imageMaxWidth">Max width for images in news records</label>
+			<label index="flexforms_template.imageMaxHeight">Max height for images in news records</label>
+			<label index="flexforms_template.cropLength">stdWrap.crop for the teaser</label>
+			<label index="flexforms_template.firstMediaIsPreview">First media element in single view</label>
+			<label index="flexforms_template.templateSwitch">Template Switch</label>
+			
+			<label index="flexforms_additional.templateSwitch.1">1</label>
+			<label index="flexforms_additional.templateSwitch.2">2</label>
+			<label index="flexforms_additional.pidDetail">PageId for single news display</label>
+			<label index="flexforms_additional.pidBack">PageId to return to</label>
+			<label index="flexforms_additional.limit">Max records displayed</label>
+			<label index="flexforms_additional.offset">Start with news item #</label>
+
+
+			<label index="SearchResult">There are %1$s results for "%2$s".</label>
+		</languageKey>
+
+		<languageKey index="de" type="array">
+
+			<label index="SearchResult">%1$s Treffer für die Suche nach "%2$s".</label>
+		</languageKey>
+	</data>
+</T3locallang>

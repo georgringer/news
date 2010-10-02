@@ -1,0 +1,11 @@
+<f:for each="{category}" as="cat">
+	<f:if condition="{cat}">
+		<ul>
+			<li>
+				{cat.title}
+				<f:render partial="Category/CategoryItem" arguments="{category:cat.sub}" />
+			</li>
+		</ul>
+	</f:if>
+
+</f:for>

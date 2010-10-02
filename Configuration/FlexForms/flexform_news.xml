@@ -1,0 +1,372 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+
+	<sheets>
+		<!--
+			################################
+			  SHEET General Settings
+			################################
+		-->
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_tab.settings</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<!-- View -->
+					<switchableControllerActions>
+						<TCEforms>
+						<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode</label>
+						<config>
+							<type>select</type>
+							<items>
+								<numIndex index="0" type="array">
+									<numIndex index="0"></numIndex>
+									<numIndex index="1"></numIndex>
+								</numIndex>
+								<numIndex index="1">
+									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_list</numIndex>
+									<numIndex index="1">News->list;News->detail</numIndex>
+								</numIndex>
+								<numIndex index="2">
+									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_latest</numIndex>
+									<numIndex index="1">News->latest;News->detail</numIndex>
+								</numIndex>
+								<numIndex index="3">
+									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_detail</numIndex>
+									<numIndex index="1">News->detail</numIndex>
+								</numIndex>
+								<numIndex index="4">
+									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_search</numIndex>
+									<numIndex index="1">News->search</numIndex>
+								</numIndex>
+								<numIndex index="5">
+									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_searchResult</numIndex>
+									<numIndex index="1">News->searchResult</numIndex>
+								</numIndex>
+								<numIndex index="6">
+									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.category_list</numIndex>
+									<numIndex index="1">Category->list</numIndex>
+								</numIndex>
+								<numIndex index="7">
+									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_archivemenu</numIndex>
+									<numIndex index="1">News->archiveMenu</numIndex>
+								</numIndex>
+
+
+							</items>
+						</config>
+						</TCEforms>
+					</switchableControllerActions>
+
+					<!-- order -->
+					<settings.orderBy>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.orderBy</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0"></numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.orderBy.tstamp</numIndex>
+										<numIndex index="1">tstamp</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.orderBy.datetime</numIndex>
+										<numIndex index="1">datetime</numIndex>
+									</numIndex>
+									<numIndex index="3">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.orderBy.crdate</numIndex>
+										<numIndex index="1">crdate</numIndex>
+									</numIndex>
+									<numIndex index="4">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.orderBy.title</numIndex>
+										<numIndex index="1">title</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.orderBy>
+
+					<!-- Archive -->
+					<settings.orderAscDesc>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.orderAscDesc</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0"></numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.orderAscDesc.asc</numIndex>
+										<numIndex index="1">asc</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.orderAscDesc.desc</numIndex>
+										<numIndex index="1">desc</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.orderAscDesc>
+
+					<!-- Category -->
+					<settings.category>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.category</label>
+							<config>
+<!--								<type>group</type>
+								<internal_type>db</internal_type>
+								<prepend_tname>0</prepend_tname>
+								<show_thumbs>1</show_thumbs>
+								<allowed>tx_news_domain_model_category</allowed>
+								<size>5</size>
+								<maxitems>100</maxitems>-->
+								<type>select</type>
+								<foreign_table>tx_news2_domain_model_category</foreign_table>
+								<foreign_table_where>ORDER BY tx_news2_domain_model_category.uid</foreign_table_where>
+								<size>5</size>
+								<minitems>0</minitems>
+								<maxitems>10</maxitems>
+							</config>
+						</TCEforms>
+					</settings.category>
+
+					<!-- Category Mode -->
+					<settings.categoryMode>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.categoryMode</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.categoryMode.all</numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.categoryMode.or</numIndex>
+										<numIndex index="1">or</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.categoryMode.and</numIndex>
+										<numIndex index="1">and</numIndex>
+									</numIndex>
+									<numIndex index="3">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.categoryMode.notor</numIndex>
+										<numIndex index="1">notor</numIndex>
+									</numIndex>
+									<numIndex index="4">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.categoryMode.notand</numIndex>
+										<numIndex index="1">notand</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.categoryMode>
+
+					<!-- Archive -->
+					<settings.archive>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.archive</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0"></numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.archive.active</numIndex>
+										<numIndex index="1">active</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.archive.archived</numIndex>
+										<numIndex index="1">archived</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.archive>
+					
+				</el>
+			</ROOT>
+		</sDEF>
+
+		<!--
+			################################
+			  SHEET Template
+			################################
+		-->
+		<template>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_tab.template</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+
+					<!-- Image Width -->
+					<settings.imageMaxWidth>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_template.imageMaxWidth</label>
+							<config>
+								<type>input</type>
+								<size>5</size>
+								<checkbox></checkbox>
+								<eval>num</eval>
+							</config>
+						</TCEforms>
+					</settings.imageMaxWidth>
+
+					<!-- Image Height -->
+					<settings.imageMaxHeight>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_template.imageMaxHeight</label>
+							<config>
+								<type>input</type>
+								<size>5</size>
+								<checkbox></checkbox>
+								<eval>num</eval>
+							</config>
+						</TCEforms>
+					</settings.imageMaxHeight>
+
+					<!-- crop length Teaser -->
+					<settings.cropLength>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_template.cropLength</label>
+							<config>
+								<type>input</type>
+								<size>10</size>
+								<checkbox></checkbox>
+							</config>
+						</TCEforms>
+					</settings.cropLength>
+
+					<!-- firstMediaIsPreview -->
+					<settings.firstMediaIsPreview>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_template.firstMediaIsPreview</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.firstMediaIsPreview>
+
+
+					<!-- Template Switch -->
+					<settings.templateSwitch>
+						<TCEforms>
+						<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_template.templateSwitch</label>
+							<config>
+								<type>input</type>
+								<size>15</size>
+							</config>
+						</TCEforms>
+					</settings.templateSwitch>
+				</el>
+			</ROOT>
+		</template>
+
+		<!--
+			################################
+			  SHEET Additional
+			################################
+		-->
+		<additional>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_tab.additional</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+
+
+					<!-- PID Single Page -->
+					<settings.pidDetail>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_additional.pidDetail</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+										<maxItemsInResultList>20</maxItemsInResultList>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.pidDetail>
+
+					<!-- PID Back -->
+					<settings.pidBack>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_additional.pidBack</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+										<maxItemsInResultList>20</maxItemsInResultList>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.pidBack>
+
+					<!-- Limit Start -->
+					<settings.limit>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_additional.limit</label>
+							<config>
+								<type>input</type>
+								<size>5</size>
+								<checkbox></checkbox>
+								<eval>num</eval>
+							</config>
+						</TCEforms>
+					</settings.limit>
+
+					<!-- Offset -->
+					<settings.offset>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_additional.offset</label>
+							<config>
+								<type>input</type>
+								<size>5</size>
+								<checkbox></checkbox>
+								<eval>num</eval>
+							</config>
+						</TCEforms>
+					</settings.offset>
+
+
+				</el>
+			</ROOT>
+		</additional>
+
+
+
+
+	</sheets>
+</T3DataStructure>

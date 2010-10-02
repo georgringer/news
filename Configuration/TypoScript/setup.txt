@@ -1,0 +1,53 @@
+
+# ==============================================
+# FE-Plugin configuration for EXT:news2
+# ==============================================
+
+plugin.tx_news2 {
+	view {
+		templateRootPath = {$plugin.tx_news2.view.templateRootPath}
+		partialRootPath = {$plugin.tx_news2.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_news2.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_news2.persistence.storagePid}
+	}
+	# Modify the translation
+	_LOCAL_LANG {
+		default {
+			# read_more = more >>
+		}
+	}
+
+	# ====================================
+	# Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
+	# ====================================
+	settings {
+		orderBy = datetime
+		orderAscDesc = desc
+
+		# --------------
+		#  Search
+		# --------------
+		search {
+			fields = teaser,title,bodytext
+		}
+
+		# --------------
+		#  Latest
+		# --------------
+		latest {
+			timeLimit = -10 days
+		}
+
+		# --------------
+		#  List
+		# --------------
+		list {
+
+		}
+
+
+	}
+
+}

@@ -1,0 +1,32 @@
+category list
+<hr />
+
+<f:if condition="{categories}">
+	<f:then>
+		<table border="1">
+			<tr>
+				<th>uid</th>
+				<th>title</th>
+				<th>parent cat</th>
+			</tr>
+
+
+			<f:for each="{categories}" as="category">
+				<tr>
+					<td>{category.uid}</td>
+					<td>{category.title}</td>
+					<td>1: {category.parentcategory.title} -
+
+					<f:if condition="{category.parentcategory.parentcategory}">
+						parent-parent:  {category.parentcategory.parentcategory.title}
+					</f:if>
+
+					</td>
+				</tr>
+			</f:for>
+		</table>
+	</f:then>
+	<f:else>
+		no cat found
+	</f:else>
+</f:if>
