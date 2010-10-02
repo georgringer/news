@@ -35,7 +35,7 @@ class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_Extbase_P
 	 * @param  integer $parentId parent category id
 	 * @return array
 	 */
-	public function getRecursiveCategories($parentId) {
+	public function getRecursiveCategories($parentId, $level=0) {
 		$out = array();
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*', #uid,title,parentcategory
@@ -46,7 +46,9 @@ class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_Extbase_P
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$out[$row['uid']] = $row;
 
-			$out[$row['uid']]['sub'] = $this->getRecursiveCategories($row['uid']);
+			if ($level <=1) {
+				#$out[$row['uid']]['sub'] = $this->getRecursiveCategories($row['uid'], $level++);
+			}
 		}
 
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);

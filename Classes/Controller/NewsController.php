@@ -49,7 +49,13 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$this->newsRepository->setLimit($this->settings['limit']);
 		$this->newsRepository->setOffset($this->settings['offset']);
 		$this->newsRepository->setSearchFields($this->settings['search']['fields']);
-		$this->newsRepository->setAdditionalCategories($this->request->getArgument('category'));
+
+
+		$requests = $this->request->getArguments();
+		if (!empty($requests) && isset($requests['category'])) {
+			$this->newsRepository->setAdditionalCategories($requests['category']);
+		}
+
 	}
 
 

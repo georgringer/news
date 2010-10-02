@@ -33,8 +33,8 @@ $TCA['tx_news2_domain_model_category'] = array(
 			'endtime' => 'endtime',
 			'fe_group' => 'fe_group',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'Configuration/Tca/tca.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'Resources/Public/Icons/icon_tx_news2_domain_model_category.gif',
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tca.php',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_category.gif',
 		'treeParentField' => 'parentcategory',
 	),
 );
@@ -56,8 +56,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'type' => 'type',
 		'typeicon_column' => 'type',
 		'typeicons' => array (
-			'1' => t3lib_extMgm::extRelPath($_EXTKEY).'Resources/Public/Icons/icon_tx_news2_domain_model_news_article.gif',
-			'2' => t3lib_extMgm::extRelPath($_EXTKEY).'Resources/Public/Icons/icon_tx_news2_domain_model_news_external.gif',
+			'1' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_news_article.gif',
+			'2' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_news_external.gif',
 		),
 		'dividers2tabs' => TRUE,
 		'useColumnsForDefaultValues' => 'type',
@@ -72,8 +72,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'endtime' => 'endtime',
 			'fe_group' => 'fe_group',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'Configuration/Tca/tca.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'Resources/Public/Icons/icon_tx_news2_domain_model_news.gif',
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tca.php',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_news.gif',
 	),
 );
 
@@ -83,6 +83,8 @@ $TCA['tx_news2_domain_model_media'] = array(
 	'ctrl' => array(
 		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media',
 		'label'     => 'title',
+		'label_alt' => 'type',
+		'label_alt_force' => 1,
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -94,8 +96,8 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'Configuration/Tca/tca.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY).'Resources/Public/Icons/icon_tx_news2_domain_model_media.gif',
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tca.php',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_media.gif',
 	),
 );
 
