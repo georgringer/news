@@ -52,7 +52,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 
 		$requests = $this->request->getArguments();
-		if (!empty($requests) && isset($requests['category'])) {
+		if (isset($requests['category']) && $this->accessCheck('allowCategoryRestrictionFromGetParams')) {
 			$this->newsRepository->setAdditionalCategories($requests['category']);
 		}
 
@@ -205,6 +205,24 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	protected function localize($key, array $arguments=NULL) {
 		return Tx_Extbase_Utility_Localization::translate($key, 'news2', $arguments);
+	}
+
+	/**
+	 * Check access which can be set for each action by using <action>.<setting> = 1
+	 *
+	 * @param  string $setting name of the setting
+	 * @return bool
+	 */
+	protected function accessCheck($setting) {
+		$access = FALSE;
+			// remove the Action from the method: listAction > list
+		$actionName = str_replace('Action', '', $this->actionMethodName);
+
+		if ($this->settings[$actionName][$setting] == 1) {
+			$access = TRUE;
+		}
+
+		return $access;
 	}
 }
 

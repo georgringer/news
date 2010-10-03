@@ -37,6 +37,7 @@ plugin.tx_news2 {
 		#  Latest
 		# --------------
 		latest {
+			allowCategoryRestrictionFromGetParams = 1
 			timeLimit = -10 days
 		}
 
@@ -44,6 +45,7 @@ plugin.tx_news2 {
 		#  List
 		# --------------
 		list {
+			allowCategoryRestrictionFromGetParams = 1
 
 		}
 

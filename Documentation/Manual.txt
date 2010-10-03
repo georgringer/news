@@ -1,0 +1,20 @@
+
+
+x) TypoScript Documentation
+
+
+for every Action available:
+	- allowCategoryRestrictionFromGetParams | boolean
+		Allow category restriction from get params (&tx_news2_pi1[category]=1)
+
+	-
+
+latest
+	- timeLimit | string / integer
+		Set the time limit within news are shown. This can either be an integer (e.g 86400 for one day) or use
+		a string to describe the time (e.g: "-2days", "-1 month 10days")
+
+search
+	- fields | comma separated list
+	 	Set the fields which are used for the search
+

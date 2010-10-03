@@ -123,17 +123,15 @@
 						<TCEforms>
 							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.category</label>
 							<config>
-<!--								<type>group</type>
-								<internal_type>db</internal_type>
-								<prepend_tname>0</prepend_tname>
-								<show_thumbs>1</show_thumbs>
-								<allowed>tx_news_domain_model_category</allowed>
-								<size>5</size>
-								<maxitems>100</maxitems>-->
 								<type>select</type>
+								<form_type>user</form_type>
+								<userFunc>tx_news2_treeview->displayCategoryTree</userFunc>
+								<treeView>1</treeView>
+								<treeName>newscattree</treeName>
 								<foreign_table>tx_news2_domain_model_category</foreign_table>
-								<foreign_table_where>ORDER BY tx_news2_domain_model_category.uid</foreign_table_where>
+								<foreign_table_where> AND tx_news2_domain_model_category.uid > 0</foreign_table_where>
 								<size>5</size>
+								<autoSizeMax>10</autoSizeMax>
 								<minitems>0</minitems>
 								<maxitems>10</maxitems>
 							</config>
