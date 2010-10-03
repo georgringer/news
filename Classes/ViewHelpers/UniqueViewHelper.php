@@ -27,44 +27,37 @@
  * @version $Id$
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_Extbase_Persistence_Repository {
 
-	protected $fetchedCategories = array();
+class Tx_News2_ViewHelpers_UniqueViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
 
 	/**
-	 * Recursive function to create category menu
-	 * 
-	 * @param  integer $parentId parent category id
-	 * @return array
+	 * @param  integer $newsUid news uid
+	 * @param string $view view
+	 * @return string
 	 */
-	public function getRecursiveCategories($parentId, $level=0) {
-		$out = array();
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-			'*', #uid,title,parentcategory
-			'tx_news2_domain_model_category',
-			'sys_language_uid = 0 AND deleted=0 AND hidden=0 AND parentcategory=' . $parentId
-		);
-
-		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-			$uid = $row['uid'];
-			if (!isset($this->fetchedCategories[$uid])) {
-				$this->fetchedCategories[$uid] = 1;
-				$out[$uid] = $row;
-
-				if ($level <=1) {
-					#$out[$uid]['sub'] = $this->getRecursiveCategories($uid, $level++);
-				}
+	public function render($newsUid, $view) {
+		$show = TRUE;
+		if (!is_array($GLOBALS['TSFE']->displayedNews2)) {
+				$GLOBALS['TSFE']->displayedNews2 = array();
+		} else {
+			if (isset($GLOBALS['TSFE']->displayedNews2[$newsUid])) {
+				$show = FALSE;
 			}
-
 		}
 
-		$GLOBALS['TYPO3_DB']->sql_free_result($res);
+		if ($view == 'list' || $view =='latest') {
+			$GLOBALS['TSFE']->displayedNews2[$newsUid] = 1;
+		}
 
-		return $out;
+		// @todo: something not yet ok. same records alsways shown
+		if (!$show && ($view == 'list' || $view =='latest')) {
+			return $this->renderChildren();
+			return '<tr><td colspan="6">not rendered, uid = ' . $newsUid . '</td><tr>';
+		} else {
+			return $this->renderChildren();
+		}
+
 
 	}
-
 }
-
-
-?>

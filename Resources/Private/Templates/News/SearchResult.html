@@ -13,7 +13,7 @@ searchresult! :D
 
 			<f:for each="{news}" as="newsItem">
 				<f:cycle values="{0: 'odd', 1: 'even'}" as="className">
-					<f:render partial="List/item" arguments="{newsItem: newsItem, settings:settings, className:className}"/>
+					<f:render partial="List/item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'searchresult'}"/>
 				</f:cycle>
 			</f:for>
 		</table>

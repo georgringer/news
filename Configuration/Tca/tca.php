@@ -430,8 +430,18 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_news.internalurl',
 			'config' => array(
-				'type' => 'input',
-				'size' => 50,
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'pages',
+				'size' => 1,
+				'maxitems' => 1,
+				'minitems' => 0,
+				'show_thumbs' => 1,
+				'wizards' => array(
+      				'suggest' => array(
+        				'type' => 'suggest',
+					),
+				),
 			)
 		),
 		'externalurl' => array(

@@ -56,6 +56,8 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 			$this->newsRepository->setAdditionalCategories($requests['category']);
 		}
 
+		t3lib_div::print_array($this->settings);
+
 	}
 
 
@@ -88,24 +90,11 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 *
 	 * @param string $searchString
 	 */
-	public function searchAction($seachString = NULL) {
+	public function searchAction($searchString = NULL) {
 		$this->view->assign('searchString', $searchString);
-//
-//		if($searchString !== NULL && trim($searchString !== '')) {
-//			$newsRecords = $this->newsRepository->findByString($searchString, $this->settings['search']['fields']);
-//			if(sizeof($newsRecords) === 0) {
-//				$this->flashMessages->add(('NoSearchResult'));
-//			} else {
-//				$this->view->assign('newsRecords', $newsRecords);
-//			}
-//		} else {
-//
-//			echo 'no';
-////			$this->flashMessages->add(('Please Enter A ProductNumber Or Title'));
-//		}
 	}
+
 	/**
-	 *
 	 * Search for news
 	 *
 	 * @param string $searchString

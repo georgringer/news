@@ -1,39 +1,43 @@
-<tr class="db_list_normal item{className}">
-	<td>{newsItem.uid}</td>
-	<td>{newsItem.title}</td>
-	<td>
-		datetime: <f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
-			<br />
-		archive: <f:format.date format="d.m.Y">{newsItem.archive}</f:format.date>
-	</td>
-	<td>
-		<f:for each="{newsItem.category}" as="category">
-			{category.title} <br />
-		</f:for>
-	</td>
-	<td>
-		<f:if condition="{newsItem.related}">
-			<f:then>
-				<f:for each="{newsItem.related}" as="related">
-					{related.title} <small>(uid: {related.uid})</small><br />
-				</f:for>
-			</f:then>
-			 <f:else>
-				no related news
-			 </f:else>
-		</f:if>
-	</td>
-	<td>
+{namespace n=Tx_News2_ViewHelpers}
 
-		<f:if condition="{newsItem.type} == 0">
-			normal news: <f:link.action pageUid="{settings.pidDetail}" action="detail" arguments="{news: newsItem}">link</f:link.action>
-		</f:if>
-		<f:if condition="{newsItem.type} == 1">
-			internal link:  <f:link.page pageUid="{newsItem.internalurl}">link</f:link.page>
-		</f:if>
-		<f:if condition="{newsItem.type} == 2">
-			external link:  <f:link.external uri="{newsItem.externalurl}">link</f:link.external>
-		</f:if>
+<n:Unique newsUid="{newsItem.uid}" view="{view}">
+	<tr class="db_list_normal item{className}">
+		<td>{newsItem.uid}</td>
+		<td>{newsItem.title}</td>
+		<td>
+			datetime: <f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
+				<br />
+			archive: <f:format.date format="d.m.Y">{newsItem.archive}</f:format.date>
+		</td>
+		<td>
+			<f:for each="{newsItem.category}" as="category">
+				{category.title} <br />
+			</f:for>
+		</td>
+		<td>
+			<f:if condition="{newsItem.related}">
+				<f:then>
+					<f:for each="{newsItem.related}" as="related">
+						{related.title} <small>(uid: {related.uid})</small><br />
+					</f:for>
+				</f:then>
+				 <f:else>
+					no related news
+				 </f:else>
+			</f:if>
+		</td>
+		<td>
 
-	</td>
-</tr>
+			<f:if condition="{newsItem.type} == 0">
+				normal news: <f:link.action pageUid="{settings.pidDetail}" action="detail" arguments="{news: newsItem}">link</f:link.action>
+			</f:if>
+			<f:if condition="{newsItem.type} == 1">
+				internal link:  <f:link.page pageUid="{newsItem.internalurl}">link</f:link.page>
+			</f:if>
+			<f:if condition="{newsItem.type} == 2">
+				external link:  <f:link.external uri="{newsItem.externalurl}">link</f:link.external>
+			</f:if>
+
+		</td>
+	</tr>
+</n:Unique>

@@ -2,6 +2,39 @@
 
 x) TypoScript Documentation
 
+General (inside settings):
+	- orderBy | string
+		Order field.
+		Hint: using TypoScript you can use also more than one field, e.g. "title desc, tstamp asc"
+	- orderAscDesc | string
+		either "asc" or "desc"
+	- category | comma separated list
+		List of categories
+	- categoryMode | string
+		One of the following: or, and, notor, notand
+	- archive | string
+		Either active or archived or empty for no selection
+	- imageMaxWidth | integer
+		Max width of images
+	- imageMaxHeight | integer
+		Max height of images
+	- cropLength | integer
+		Crop length
+	- firstMediaIsPreview | 1/0
+		If used, first media element is shown in list/lates/... and NOT in single view
+	- templateSwitch | string
+		Set Template partials, like "1|3|5" which will generate in news_1 the 1st record, in news_2 the following 3 and
+		in news_3 all other news items
+	- pidDetail | integer
+		UID of the single view page. Setting is also used for the result page of search form!
+	- pidBack | integer
+		UID of the page to link back
+	- limit | integer
+		Amount of news shown
+	- offset | integer
+		Show news with a offset
+
+
 
 for every Action available:
 	- allowCategoryRestrictionFromGetParams | boolean
@@ -16,5 +49,6 @@ latest
 
 search
 	- fields | comma separated list
-	 	Set the fields which are used for the search
+	 	Set the fields which are used for the search. To include fields from the category use e.g. "category.title",
+	 	to include fields from the media elements, use "media.html" or "media.title"
 
