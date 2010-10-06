@@ -8,6 +8,8 @@ General (inside settings):
 		Hint: using TypoScript you can use also more than one field, e.g. "title desc, tstamp asc"
 	- orderAscDesc | string
 		either "asc" or "desc"
+	- orderByRespectTopNews | boolean
+		If set, the news are first ordered using "istopnews DESC" and then the normal ordering
 	- category | comma separated list
 		List of categories
 	- categoryMode | string

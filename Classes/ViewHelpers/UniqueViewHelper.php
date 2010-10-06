@@ -50,7 +50,7 @@ class Tx_News2_ViewHelpers_UniqueViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 			$GLOBALS['TSFE']->displayedNews2[$newsUid] = 1;
 		}
 
-		// @todo: something not yet ok. same records alsways shown
+		// @todo: something not yet ok. same records always shown
 		if (!$show && ($view == 'list' || $view =='latest')) {
 			return $this->renderChildren();
 			return '<tr><td colspan="6">not rendered, uid = ' . $newsUid . '</td><tr>';

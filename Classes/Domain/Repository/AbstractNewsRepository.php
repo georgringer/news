@@ -30,6 +30,7 @@
 class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persistence_Repository {
 
 	protected $order;
+	protected $orderRespectTopNews;
 	protected $categorySetting;
 	protected $categories;
 	protected $additionalCategories;
@@ -39,6 +40,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	protected $searchFields;
 	protected $limit = NULL;
 	protected $offset = NULL;
+	protected $constraints = array();
 
 	/**
 	 * Set the order like title desc, tstamp asc
@@ -47,6 +49,10 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	 */
 	public function setOrder($order) {
 	 $this->order = $order;
+	}
+
+	public function setOrderRespectTopNews($respectTopNews) {
+		$this->orderRespectTopNews = $respectTopNews;
 	}
 
 	/**
@@ -70,7 +76,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	/**
 	 * Additional Categories
 	 *
-	 * @param  $categories comma separated list
+	 * @param  $categories string comma separated list
 	 */
 	public function setAdditionalCategories($categories) {
 		$this->additionalCategories = t3lib_div::intExplode(',', $categories, TRUE);
@@ -134,7 +140,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	/**
 	 * Search fields
 	 *
-	 * @param  string $searchFields comma seperated list of fields to search in
+	 * @param  string $searchFields comma separated list of fields to search in
 	 */
 	public function setSearchFields($searchFields) {
 		$this->searchFields = t3lib_div::trimExplode(',', $searchFields, TRUE);
@@ -303,9 +309,15 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
 	 */
 	protected function setFinalOrdering(Tx_Extbase_Persistence_QueryInterface $query) {
+		$finalOrdering = array();
+
+			// set order by top news first
+		if ($this->orderRespectTopNews) {
+			$finalOrdering['istopnews'] = Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING;
+		}
+
 		$orderList = t3lib_div::trimExplode(',', $this->order, TRUE);
 		if (!empty($orderList)) {
-			$finalOrdering = array();
 
 				// go through every order statement
 			foreach($orderList as $orderEntry) {
@@ -314,17 +326,16 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 
 					// count == 1 means that no direction is given
 				if ($count == 1) {
-					$finalOrdering[$simpleOrderStatement[0]] =Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
+					$finalOrdering[$simpleOrderStatement[0]] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
 					// count == 2 means that field + direction is given
 				} elseif($count == 2) {
 					$finalOrdering[$simpleOrderStatement[0]] = (strtolower(($simpleOrderStatement[1]) == 'desc')) ? Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING : Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
 				}
 			}
+		}
 
-			if (!empty($finalOrdering)) {
-				$query->setOrderings($finalOrdering);
-			}
-
+		if (!empty($finalOrdering)) {
+			$query->setOrderings($finalOrdering);
 		}
 	}
 

@@ -180,7 +180,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,category,related,type,keywords,media,internalurl,externalurl'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,category,related,type,keywords,media,internalurl,externalurl,istopnews'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -453,6 +453,14 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'size' => 50,
 			)
 		),
+		'istopnews' => array(
+			'exclude' => 1,
+			'label'   => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_news.istopnews',
+			'config'  => array(
+				'type'    => 'check',
+				'default' => 0
+			)
+		),
 	),
 	'types' => array(
 			// default news
@@ -490,7 +498,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'canNotCollapse' => TRUE
 		),
 		'3' => array(
-			'showitem' => 'type,author',
+			'showitem' => 'type,istopnews,author',
 			'canNotCollapse' => TRUE
 		),
 	)

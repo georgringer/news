@@ -38,6 +38,7 @@
 			<label index="tx_news2_domain_model_media.video">Video URL</label>
 			<label index="tx_news2_domain_model_news.internalurl">Internal URL</label>
 			<label index="tx_news2_domain_model_news.externalurl">External URL</label>
+			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
 		</languageKey>
 	</data>
 </T3locallang>

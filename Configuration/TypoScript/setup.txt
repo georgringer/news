@@ -25,6 +25,7 @@ plugin.tx_news2 {
 	settings {
 		orderBy = datetime
 		orderAscDesc = desc
+		orderByRespectTopNews = 0
 
 		# --------------
 		#  Search

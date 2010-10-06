@@ -70,6 +70,11 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 */
 	protected $externalurl;
 
+	/**
+	 * @var boolean
+	 */
+	protected $istopnews;
+
 	public function getTitle() {
 	 return $this->title;
 	}
@@ -214,9 +219,16 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 $this->externalurl = $externalurl;
 	}
 
+	public function getIstopnews() {
+		return $this->istopnews;
+	}
+
+	public function setIstopnews($istopnews) {
+		$this->istopnews = $istopnews;
+	}
+
 
 
 }
-
 
 ?>

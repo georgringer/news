@@ -89,6 +89,7 @@ CREATE TABLE tx_news2_domain_model_news (
 	media text,
 	internalurl text,
 	externalurl text,
+	istopnews int(11) DEFAULT '0' NOT NULL,
 	
 	PRIMARY KEY (uid),
 	KEY parent (pid)

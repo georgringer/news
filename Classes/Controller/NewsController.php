@@ -46,6 +46,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$this->newsRepository->setCategorySettings($this->settings['categoryMode']);
 		$this->newsRepository->setArchiveSettings($this->settings['archive']);
 		$this->newsRepository->setOrder($this->settings['orderBy'] . ' ' . $this->settings['orderAscDesc']);
+		$this->newsRepository->setOrderRespectTopNews($this->settings['orderByRespectTopNews']);
 		$this->newsRepository->setLimit($this->settings['limit']);
 		$this->newsRepository->setOffset($this->settings['offset']);
 		$this->newsRepository->setSearchFields($this->settings['search']['fields']);
