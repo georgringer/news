@@ -53,6 +53,7 @@
 			<label index="flexforms_additional.pidBack">PageId to return to</label>
 			<label index="flexforms_additional.limit">Max records displayed</label>
 			<label index="flexforms_additional.offset">Start with news item #</label>
+			<label index="flexforms_additional.orderByRespectTopNews">Respect "Top news" settings</label>
 
 
 			<label index="SearchResult">There are %1$s results for "%2$s".</label>

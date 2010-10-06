@@ -358,6 +358,16 @@
 						</TCEforms>
 					</settings.offset>
 
+					<!-- orderByRespectTopNews -->
+					<settings.orderByRespectTopNews>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_additional.orderByRespectTopNews</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.orderByRespectTopNews>
+
 
 				</el>
 			</ROOT>
