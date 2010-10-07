@@ -7,3 +7,4 @@
 7) Unit Tests (?)
 8) Manual
 9) Restrictions as array > Nikolas?
+10) replace firstmediaaspreview with showinpreview

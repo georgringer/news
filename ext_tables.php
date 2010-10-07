@@ -3,6 +3,9 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
+	// extension manager configuration
+$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
+
 	// alternative labels for news & category records
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.user_tx_news2_labelFunc.php');
 	// category tree
@@ -83,7 +86,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 	'ctrl' => array(
 		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media',
 		'label'     => 'title',
-		'label_alt' => 'type',
+		'label_alt' => 'type, showinpreview',
 		'label_alt_force' => 1,
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
@@ -131,4 +134,22 @@ if (TYPO3_MODE == 'BE') {
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses'][$pluginSignature . '_wizicon'] =
 		t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_' . $_EXTKEY . '_wizicon.php';
 }
+
+/***************
+ * Show news table in page module
+ */
+if (!empty($configurationArray['pageModuleFieldsNews'])) {
+	$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news2_domain_model_news'][0] = array(
+		'fList' => htmlspecialchars($configurationArray['pageModuleFieldsNews']),
+		'icon' => TRUE
+	);
+}
+
+if (!empty($configurationArray['pageModuleFieldsCategory'])) {
+	$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news2_domain_model_category'][0] = array(
+		'fList' => htmlspecialchars($configurationArray['pageModuleFieldsCategory']),
+		'icon' => TRUE
+	);
+}
+
 ?>

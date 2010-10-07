@@ -1,0 +1,6 @@
+  # cat=basic/enable/100; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.pageModuleFieldsNews
+pageModuleFieldsNews = title,author,teaser,datetime,archive,category
+
+  # cat=basic/enable/101; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.pageModuleFieldsCategory
+pageModuleFieldsCategory = title,description
+

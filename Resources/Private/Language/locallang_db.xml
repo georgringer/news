@@ -27,6 +27,9 @@
 			<label index="tx_news2_domain_model_news.type">Type</label>
 			<label index="tx_news2_domain_model_news.keywords">Keywords</label>
 			<label index="tx_news2_domain_model_news.media">Media Element</label>
+			<label index="tx_news2_domain_model_news.internalurl">Internal URL</label>
+			<label index="tx_news2_domain_model_news.externalurl">External URL</label>
+			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
 			<label index="tx_news2_domain_model_media">Media Element</label>
 			<label index="tx_news2_domain_model_media.title">Title</label>
 			<label index="tx_news2_domain_model_media.media">Media Element</label>
@@ -36,9 +39,8 @@
 			<label index="tx_news2_domain_model_media.type">Type</label>
 			<label index="tx_news2_domain_model_media.html">HTML</label>
 			<label index="tx_news2_domain_model_media.video">Video URL</label>
-			<label index="tx_news2_domain_model_news.internalurl">Internal URL</label>
-			<label index="tx_news2_domain_model_news.externalurl">External URL</label>
-			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
+			<label index="tx_news2_domain_model_media.showinpreview">Show in preview views</label>
+
 		</languageKey>
 	</data>
 </T3locallang>

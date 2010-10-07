@@ -249,17 +249,6 @@
 						</TCEforms>
 					</settings.cropLength>
 
-					<!-- firstMediaIsPreview -->
-					<settings.firstMediaIsPreview>
-						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_template.firstMediaIsPreview</label>
-							<config>
-								<type>check</type>
-							</config>
-						</TCEforms>
-					</settings.firstMediaIsPreview>
-
-
 					<!-- Template Switch -->
 					<settings.templateSwitch>
 						<TCEforms>

@@ -44,7 +44,6 @@
 			<label index="flexforms_template.imageMaxWidth">Max width for images in news records</label>
 			<label index="flexforms_template.imageMaxHeight">Max height for images in news records</label>
 			<label index="flexforms_template.cropLength">stdWrap.crop for the teaser</label>
-			<label index="flexforms_template.firstMediaIsPreview">First media element in single view</label>
 			<label index="flexforms_template.templateSwitch">Template Switch</label>
 			
 			<label index="flexforms_additional.templateSwitch.1">1</label>
@@ -57,6 +56,10 @@
 
 
 			<label index="SearchResult">There are %1$s results for "%2$s".</label>
+
+			<!-- Extension Manager Configuration -->
+			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module.</label>
+			<label index="extmng.pageModuleFieldsCategory">Category fields shown in page module:Set the fields which should be shown in the page module.</label>
 		</languageKey>
 
 		<languageKey index="de" type="array">

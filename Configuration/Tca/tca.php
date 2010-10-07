@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 $TCA['tx_news2_domain_model_category'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_category']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,description,image,parentcategory,single_pid'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,description,image,parentcategory,single_pid,'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_category']['feInterface'],
 	'columns' => array(
@@ -509,7 +509,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 $TCA['tx_news2_domain_model_media'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_media']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'hidden,title,media,type,html,video'
+		'showRecordFieldList' => 'hidden,title,media,type,html,video,showInPreview'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_media']['feInterface'],
 	'columns' => array(
@@ -528,6 +528,14 @@ $TCA['tx_news2_domain_model_media'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
+			)
+		),
+		'showInPreview' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media.showinpreview',
+			'config'  => array(
+				'type'    => 'check',
+				'default' => 0
 			)
 		),
 		'media' => array(
@@ -591,7 +599,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 	),
 	'palettes' => array(
 		'1' => array(
-			'showitem' => 'type,hidden',
+			'showitem' => 'type, showInPreview, hidden',
 			'canNotCollapse' => TRUE
 		)
 	)

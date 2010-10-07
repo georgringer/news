@@ -27,6 +27,11 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	protected $video;
 
+	/**
+	 * @var boolean;
+	 */
+	protected $showinpreview;
+
 	public function getTitle() {
 	 return $this->title;
 	}
@@ -67,6 +72,13 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	 $this->video = $video;
 	}
 
+	public function getShowinpreview() {
+		return $this->showinpreview;
+	}
+
+	public function setShowinpreview($showinpreview) {
+		$this->showinpreview = $showinpreview;
+	}
 
 
 
