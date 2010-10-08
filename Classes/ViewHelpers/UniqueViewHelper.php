@@ -34,9 +34,10 @@ class Tx_News2_ViewHelpers_UniqueViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 	/**
 	 * @param  integer $newsUid news uid
 	 * @param string $view view
+	 * @param boolean $debug if TRUE, additonal message is returned
 	 * @return string
 	 */
-	public function render($newsUid, $view) {
+	public function render($newsUid, $view, $debug=FALSE) {
 		$show = TRUE;
 		if (!is_array($GLOBALS['TSFE']->displayedNews2)) {
 				$GLOBALS['TSFE']->displayedNews2 = array();
@@ -50,10 +51,13 @@ class Tx_News2_ViewHelpers_UniqueViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 			$GLOBALS['TSFE']->displayedNews2[$newsUid] = 1;
 		}
 
-		// @todo: something not yet ok. same records always shown
 		if (!$show && ($view == 'list' || $view =='latest')) {
-			return $this->renderChildren();
-			return '<tr><td colspan="6">not rendered, uid = ' . $newsUid . '</td><tr>';
+			if ($debug) {
+				return '<tr><td colspan="6">not rendered, uid = ' . $newsUid . '</td><tr>';
+			} else {
+				return '';
+			}
+			
 		} else {
 			return $this->renderChildren();
 		}
