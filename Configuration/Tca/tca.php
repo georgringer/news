@@ -412,7 +412,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'media' => array(
 			'exclude' => 0,
 			'label' => $ll . 'tx_news2_domain_model_news.media',
-			'l10n_mode' => 'mergeIfNotBlank',
+			
 			'config' => array(
 				'type' => 'inline',
 				'foreign_table' => 'tx_news2_domain_model_media',
@@ -422,8 +422,15 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'appearance' => array(
 					'collapseAll' => 1,
 					'expandSingle' => 1,
-					'levelLinksPosition' => 'both',
-					'useSortable' => 1
+					'levelLinksPosition' => 'bottom',
+					'useSortable' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showRemovedLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'showSynchronizationLink' => 1,
+					'enabledControls' => array(
+						'info' => FALSE,
+					)
 				)
 			)
 		),
@@ -513,10 +520,41 @@ $TCA['tx_news2_domain_model_news'] = array(
 $TCA['tx_news2_domain_model_media'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_media']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'hidden,title,media,type,html,video,showInPreview'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,html,video,showInPreview'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_media']['feInterface'],
 	'columns' => array(
+		'sys_language_uid' => array(
+			'exclude' => 1,
+			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+			'config' => array(
+				'type'                => 'select',
+				'foreign_table'       => 'sys_language',
+				'foreign_table_where' => 'ORDER BY sys_language.title',
+				'items' => array(
+					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
+					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0)
+				)
+			)
+		),
+		'l10n_parent' => array(
+			'displayCond' => 'FIELD:sys_language_uid:>:0',
+			'exclude'     => 1,
+			'label'       => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+			'config'      => array(
+				'type'  => 'select',
+				'items' => array(
+					array('', 0),
+				),
+				'foreign_table'       => 'tx_news2_domain_model_news',
+				'foreign_table_where' => 'AND tx_news2_domain_model_news.pid=###CURRENT_PID### AND tx_news2_domain_model_news.sys_language_uid IN (-1,0)',
+			)
+		),
+		'l10n_diffsource' => array(
+			'config' => array(
+				'type' => 'passthrough'
+			)
+		),
 		'hidden' => array(
 			'exclude' => 1,
 			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
@@ -603,7 +641,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 	),
 	'palettes' => array(
 		'1' => array(
-			'showitem' => 'type, showInPreview, hidden',
+			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,type, showInPreview, hidden',
 			'canNotCollapse' => TRUE
 		)
 	)

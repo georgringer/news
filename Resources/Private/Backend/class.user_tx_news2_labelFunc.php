@@ -31,12 +31,11 @@
  * @subpackage	tx_news2
  */
 class user_tx_news2_labelFunc {
-	public function getUserLabelNews(array $params) {
 
+	public function getUserLabelNews(array $params) {
 		$categoryTitles = $this->getCategories($params['row']['uid'], $params['row']['category']);
 
 		$params['title'] = $params['row']['title'] . ', cat: ' . $categoryTitles;
-
 	}
 
 
@@ -61,6 +60,26 @@ class user_tx_news2_labelFunc {
 		}
 
 		$params['title'] = $params['row']['title'] . $parentCategory;
+	}
+
+	/**
+	 * Render different label for media elements
+	 * 
+	 * @param array $params configuration
+	 */
+	public function getUserLabelMedia(array $params) {
+
+			// Type
+		$newTitle = $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media.type.I.' . $params['row']['type']);
+		$newTitle = ' (' . $newTitle . ')';
+
+			// Preview
+		if ($params['row']['showinpreview']) {
+			$newTitle .= ' ' . $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media.show');
+		}
+		
+
+		$params['title'] = $params['row']['title'] . $newTitle;
 	}
 
 
