@@ -114,7 +114,7 @@ CREATE TABLE tx_news2_domain_model_media (
 	type int(11) DEFAULT '0' NOT NULL,
 	html text,
 	video tinytext,
-	showInPreview tinyint(4) DEFAULT '0' NOT NULL,
+	showinpreview tinyint(4) DEFAULT '0' NOT NULL,
 	
 	PRIMARY KEY (uid),
 	KEY parent (pid)
