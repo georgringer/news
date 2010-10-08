@@ -6,12 +6,22 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="tx_news2_domain_model_category.tabs.catAndRels">Categories &amp; Relations</label>
+			<label index="tx_news2_domain_model_category.tabs.access">Access</label>
+			<label index="tx_news2_domain_model_category.tabs.extended">Extended</label>
 			<label index="tx_news2_domain_model_category">Category</label>
 			<label index="tx_news2_domain_model_category.title">Title</label>
 			<label index="tx_news2_domain_model_category.description">Description</label>
 			<label index="tx_news2_domain_model_category.image">Image</label>
 			<label index="tx_news2_domain_model_category.parentcategory">Parent ID</label>
 			<label index="tx_news2_domain_model_category.single_pid">Single-view page for news from this category</label>
+
+			<label index="tx_news2_domain_model_news.tabs.content">Main Content</label>
+			<label index="tx_news2_domain_model_news.tabs.additional">Additional information</label>
+			<label index="tx_news2_domain_model_news.tabs.media">Media</label>
+			<label index="tx_news2_domain_model_news.tabs.extended">Extended</label>
+
+			
 			<label index="tx_news2_domain_model_news">News</label>
 			<label index="tx_news2_domain_model_news.title">Title</label>
 			<label index="tx_news2_domain_model_news.teaser">Teaser</label>
