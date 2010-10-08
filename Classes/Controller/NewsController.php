@@ -57,7 +57,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 			$this->newsRepository->setAdditionalCategories($requests['category']);
 		}
 
-		t3lib_div::print_array($this->settings);
+//		t3lib_div::print_array($this->settings);
 
 	}
 

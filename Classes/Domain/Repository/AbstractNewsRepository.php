@@ -344,12 +344,13 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	/**
 	 * Remove empty entries from constraint list
 	 */
-	public function checkConstraintArray() {
-		foreach($this->constraints as $key => $constraint) {
+	public function checkConstraintArray(array $constraints) {
+		foreach($constraints as $key => $constraint) {
 			if ($constraint === NULL || empty($constraint)) {
-				unset($this->constraints[$key]);
+				unset($constraints[$key]);
 			}
 		}
+		return $constraints;
 
 	}	
 }

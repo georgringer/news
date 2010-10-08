@@ -30,22 +30,17 @@
 class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Repository_AbstractNewsRepository {
 
 	/**
-	 * @var array Constraints
-	 */
-	protected $constraints = array();
-
-
-	/**
 	 * List entries
 	 */
 	public function findList() {
 		$query = $this->createQuery();
 
-		$this->constraints[] = $this->getArchiveRestriction($query);
-		$this->constraints[] = $this->getCategoryRestriction($query);
-		$this->constraints[] = $this->getAdditionalCategoryRestriction($query);
+		$constraints = array();
+		$constraints[] = $this->getArchiveRestriction($query);
+		$constraints[] = $this->getCategoryRestriction($query);
+		$constraints[] = $this->getAdditionalCategoryRestriction($query);
 
-		return $this->executeQuery($query);
+		return $this->executeQuery($query, $constraints);
 	}
 
 	/**
@@ -54,11 +49,12 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	public function findLatest() {
 		$query = $this->createQuery();
 
-		$this->constraints[] = $this->getArchiveRestriction($query);
-		$this->constraints[] = $this->getCategoryRestriction($query);
-		$this->constraints[] = $this->getLatestTimeLimitRestriction($query);
+		$constraints = array();
+		$constraints[] = $this->getArchiveRestriction($query);
+		$constraints[] = $this->getCategoryRestriction($query);
+		$constraints[] = $this->getLatestTimeLimitRestriction($query);
 
-		return $this->executeQuery($query);
+		return $this->executeQuery($query, $constraints);
 	}
 
     /**
@@ -68,11 +64,12 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	public function findBySearch($searchString) {
 		$query = $this->createQuery();
 
-		$this->constraints[] = $this->getArchiveRestriction($query);
-		$this->constraints[] = $this->getCategoryRestriction($query);
-		$this->constraints[] = $this->getSearchConstraint($query, $searchString);
+		$constraints = array();
+		$constraints[] = $this->getArchiveRestriction($query);
+		$constraints[] = $this->getCategoryRestriction($query);
+		$constraints[] = $this->getSearchConstraint($query, $searchString);
 
-		return $this->executeQuery($query);
+		return $this->executeQuery($query, $constraints);
 	}
 
 
@@ -80,14 +77,15 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	 * Add the constraints to the query and add Ordering, Limit + Offset
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @param array $constraints
 	 * @return array<Tx_News2_Domain_Model_News>
 	 */
-	public function executeQuery(Tx_Extbase_Persistence_QueryInterface $query) {
-		$this->checkConstraintArray();
+	public function executeQuery(Tx_Extbase_Persistence_QueryInterface $query, array $constraints) {
+		$constraints = $this->checkConstraintArray($constraints);
 
-		if(!empty($this->constraints)) {
+		if(!empty($constraints)) {
         	$query->matching(
-				$query->logicalAnd($this->constraints)
+				$query->logicalAnd($constraints)
 			);
 		}
 

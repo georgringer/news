@@ -1,4 +1,4 @@
-#
+Kühnengruß#
 # Table structure for table 'tx_news_domain_model_category'
 #
 CREATE TABLE tx_news2_domain_model_category (
