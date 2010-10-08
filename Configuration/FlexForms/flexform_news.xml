@@ -23,10 +23,6 @@
 						<config>
 							<type>select</type>
 							<items>
-								<numIndex index="0" type="array">
-									<numIndex index="0"></numIndex>
-									<numIndex index="1"></numIndex>
-								</numIndex>
 								<numIndex index="1">
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_list</numIndex>
 									<numIndex index="1">News->list;News->detail</numIndex>

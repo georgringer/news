@@ -40,7 +40,6 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	protected $searchFields;
 	protected $limit = NULL;
 	protected $offset = NULL;
-	protected $constraints = array();
 
 	/**
 	 * Set the order like title desc, tstamp asc
@@ -343,6 +342,9 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 
 	/**
 	 * Remove empty entries from constraint list
+	 *
+	 * @param array $constraints
+	 * @return array $constraints
 	 */
 	public function checkConstraintArray(array $constraints) {
 		foreach($constraints as $key => $constraint) {
