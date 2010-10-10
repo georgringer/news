@@ -573,7 +573,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'size' => 30,
 			)
 		),
-		'showInPreview' => array(
+		'showinpreview' => array(
 			'exclude' => 1,
 			'label' => $ll . 'tx_news2_domain_model_media.showinpreview',
 			'config'  => array(
@@ -642,7 +642,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 	),
 	'palettes' => array(
 		'1' => array(
-			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,type, showInPreview, hidden',
+			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,type, showinpreview, hidden',
 			'canNotCollapse' => TRUE
 		)
 	)

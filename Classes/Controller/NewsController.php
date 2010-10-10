@@ -206,9 +206,9 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 			// ordering
 		if (isset($requests['order']) && $this->accessCheck('allowOrderFromGetParams')) {
-			$order = $requests['category'];
-			if (isset($requests['orderBy'])) {
-				$order .= ' ' . $requests['orderBy'];
+			$order = $requests['order'];
+			if (isset($requests['orderDirection'])) {
+				$order .= ' ' . $requests['orderDirection'];
 			}
 
 			$this->newsRepository->setOrder($order);

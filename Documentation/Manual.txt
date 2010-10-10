@@ -43,7 +43,7 @@ for every Action available:
 		Allow category restriction from get params (&tx_news2_pi1[category]=1)
 
 	- allowOrderFromGetParams | boolean
-		Allow sorting by get params (&tx_news2_pi1[order]=title and direction by &tx_news2_pi1[orderBy]=asc)
+		Allow sorting by get params (&tx_news2_pi1[order]=title and direction by &tx_news2_pi1[orderDirection]=asc)
 
 latest
 	- timeLimit | string / integer

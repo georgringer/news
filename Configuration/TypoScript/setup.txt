@@ -47,6 +47,7 @@ plugin.tx_news2 {
 		# --------------
 		list {
 			allowCategoryRestrictionFromGetParams = 1
+			allowOrderFromGetParams = 1
 
 		}
 
