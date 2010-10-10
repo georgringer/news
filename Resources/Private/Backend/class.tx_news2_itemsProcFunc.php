@@ -39,14 +39,18 @@ class tx_news2_itemsProcFunc {
 	 * @param t3lib_TCEforms $parentObject
 	 */
 	public function user_MediaType(array &$config, t3lib_TCEforms $parentObject) {
+			// if dam is loaded
 		if (t3lib_extMgm::isLoaded('dam')) {
 			$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+
+				// additional entry
 			$damEntry = array(
 				$GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.type.I.3'),
 				'3',
-				t3lib_extMgm::extRelPath('news2').'Resources/Public/Icons/selicon_tx_news2_domain_model_media_type_html.png'
+				t3lib_extMgm::extRelPath('news2').'Resources/Public/Icons/media_type_dam.gif'
 			);
-	
+
+				// add entry to type list
 			array_push($config['items'], $damEntry);
 		}
 

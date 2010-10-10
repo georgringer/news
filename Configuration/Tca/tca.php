@@ -394,7 +394,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 					array($ll . 'tx_news2_domain_model_news.type.I.0', 0, t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_0.gif'),
 					array($ll . 'tx_news2_domain_model_news.type.I.1', '1', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_1.gif'),
 					array($ll . 'tx_news2_domain_model_news.type.I.2', '2', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_2.gif'),
-					array('LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_news.type.I.3', '3', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_dam.gif'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -605,9 +604,9 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'type' => 'select',
 				'itemsProcFunc' => 'tx_news2_itemsProcFunc->user_MediaType',
 				'items' => array(
-					array($ll . 'tx_news2_domain_model_media.type.I.0', 0, t3lib_extMgm::extRelPath('news2').'Resources/Public/Icons/selicon_tx_news2_domain_model_media_type_image.png'),
-					array($ll . 'tx_news2_domain_model_media.type.I.1', '1', t3lib_extMgm::extRelPath('news2').'Resources/Public/Icons/selicon_tx_news2_domain_model_media_type_movie.png'),
-					array($ll . 'tx_news2_domain_model_media.type.I.2', '2', t3lib_extMgm::extRelPath('news2').'Resources/Public/Icons/selicon_tx_news2_domain_model_media_type_html.png'),
+					array($ll . 'tx_news2_domain_model_media.type.I.0', '0', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_image.png'),
+					array($ll . 'tx_news2_domain_model_media.type.I.1', '1', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_movie.png'),
+					array($ll . 'tx_news2_domain_model_media.type.I.2', '2', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_html.png'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -632,18 +631,48 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'size' => 30,
 			)
 		),
+		'dam' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' =>  $ll . 'tx_news2_domain_model_media.media',
+			'config' => array(
+				'form_type' => 'user',
+				'userFunc' => 'EXT:dam/lib/class.tx_dam_tcefunc.php:&tx_dam_tceFunc->getSingleField_typeMedia',
+
+				'userProcessClass' => 'EXT:mmforeign/class.tx_mmforeign_tce.php:tx_mmforeign_tce',
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'tx_dam',
+				'prepend_tname' => 1,
+				'MM' => 'tx_dam_mm_ref',
+				'MM_opposite_field' => 'file_usage',
+				'MM_match_fields' => array('ident' => 'tx_news2_media'),
+
+				'allowed_types' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+
+				'max_size' => '1',
+				'show_thumbs' => 1,
+				'size' => 1,
+				'maxitems' => 200,
+				'minitems' => 0,
+				'autoSizeMax' => 30,
+			)
+		)
 	),
 	'types' => array(
 			// image
-		0 => array('showitem' => 'title;;1;;,media'),
+		0 => array('showitem' => 'title;;1;;, media'),
 			// video
-		'1' => array('showitem' => 'title;;1;;,video'),
-			// html
-		'2' => array('showitem' => 'title;;1;;,html')
+		'1' => array('showitem' => 'title;;1;;, video'),
+			// HTML
+		'2' => array('showitem' => 'title;;1;;, html'),
+			// DAM
+		'3' => array('showitem' => 'title;;1;;, dam')
 	),
 	'palettes' => array(
 		'1' => array(
-			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,type, showinpreview, hidden',
+			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, type, --linebreak--,
+							showinpreview, hidden',
 			'canNotCollapse' => TRUE
 		)
 	)
