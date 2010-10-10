@@ -46,6 +46,7 @@
 			<label index="tx_news2_domain_model_media.type.I.0">Image</label>
 			<label index="tx_news2_domain_model_media.type.I.1">Video</label>
 			<label index="tx_news2_domain_model_media.type.I.2">HTML</label>
+			<label index="tx_news2_domain_model_media.type.I.2">DAM record</label>
 			<label index="tx_news2_domain_model_media.type">Type</label>
 			<label index="tx_news2_domain_model_media.html">HTML</label>
 			<label index="tx_news2_domain_model_media.video">Video URL</label>

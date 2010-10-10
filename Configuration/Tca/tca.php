@@ -394,6 +394,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					array($ll . 'tx_news2_domain_model_news.type.I.0', 0, t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_0.gif'),
 					array($ll . 'tx_news2_domain_model_news.type.I.1', '1', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_1.gif'),
 					array($ll . 'tx_news2_domain_model_news.type.I.2', '2', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_2.gif'),
+					array('LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_news.type.I.3', '3', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_dam.gif'),
 				),
 				'size' => 1,
 				'maxitems' => 1,

@@ -52,11 +52,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$this->newsRepository->setSearchFields($this->settings['search']['fields']);
 
 
-		$requests = $this->request->getArguments();
-		if (isset($requests['category']) && $this->accessCheck('allowCategoryRestrictionFromGetParams')) {
-			$this->newsRepository->setAdditionalCategories($requests['category']);
-		}
-
+		$this->requestOverrule();
 //		t3lib_div::print_array($this->settings);
 
 	}
@@ -195,6 +191,30 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	protected function localize($key, array $arguments=NULL) {
 		return Tx_Extbase_Utility_Localization::translate($key, 'news2', $arguments);
+	}
+
+	/**
+	 * Allow overruling of settings by get request
+	 */
+	protected function requestOverrule() {
+		$requests = $this->request->getArguments();
+
+			// category restriction
+		if (isset($requests['category']) && $this->accessCheck('allowCategoryRestrictionFromGetParams')) {
+			$this->newsRepository->setAdditionalCategories($requests['category']);
+		}
+
+			// ordering
+		if (isset($requests['order']) && $this->accessCheck('allowOrderFromGetParams')) {
+			$order = $requests['category'];
+			if (isset($requests['orderBy'])) {
+				$order .= ' ' . $requests['orderBy'];
+			}
+
+			$this->newsRepository->setOrder($order);
+
+		}
+		
 	}
 
 	/**

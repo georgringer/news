@@ -8,3 +8,4 @@
 8) Manual
 9) Restrictions as array > Nikolas?
 10) replace firstmediaaspreview with showinpreview
+11) DAM implementation + remove selection if not used. see rgslideshow for example
