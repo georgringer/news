@@ -156,4 +156,9 @@ if (!empty($configurationArray['pageModuleFieldsCategory'])) {
 	);
 }
 
+
+// adds processing for extra "codes" that have been added to the "what to display" selector in the content element by other extensions
+t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_' . $_EXTKEY . '_itemsProcFunc.php');
+
+
 ?>

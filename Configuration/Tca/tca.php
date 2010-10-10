@@ -603,6 +603,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 			'label' => $ll . 'tx_news2_domain_model_media.type',
 			'config' => array(
 				'type' => 'select',
+				'itemsProcFunc' => 'tx_news2_itemsProcFunc->user_MediaType',
 				'items' => array(
 					array($ll . 'tx_news2_domain_model_media.type.I.0', 0, t3lib_extMgm::extRelPath('news2').'Resources/Public/Icons/selicon_tx_news2_domain_model_media_type_image.png'),
 					array($ll . 'tx_news2_domain_model_media.type.I.1', '1', t3lib_extMgm::extRelPath('news2').'Resources/Public/Icons/selicon_tx_news2_domain_model_media_type_movie.png'),
