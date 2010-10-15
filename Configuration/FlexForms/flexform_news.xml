@@ -13,6 +13,7 @@
 			<ROOT>
 				<TCEforms>
 					<sheetTitle>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_tab.settings</sheetTitle>
+					<cshFile>LLL:EXT:news2/Resources/Private/Language/locallang_csh_flexforms.xml</cshFile>
 				</TCEforms>
 				<type>array</type>
 				<el>

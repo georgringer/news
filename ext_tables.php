@@ -12,6 +12,10 @@ t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Back
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_news2_treeView.php');
 	// Add additional media types like DAM
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_' . $_EXTKEY . '_itemsProcFunc.php');
+	// CSH - context sensitive help
+t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_news','EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_news.xml');
+t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_category','EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_category.xml');
+t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_media','EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_media.xml');
 
 
 t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_category');

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>CSH for table tx_news2_domain_model_category</description>
+        <type>CSH</type>
+        <csh_table>tx_news2_domain_model_category</csh_table>
+        <fileId>EXT:news2/locallang_csh_category.xml</fileId>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+<!--			Example
+			<label index="switchableControllerActions.alttitle">alternative title</label>
+			<label index="switchableControllerActions.description">description</label>
+			<label index="switchableControllerActions.details">details</label>
+			<label index="switchableControllerActions.syntax">syntax</label>
+			<label index="switchableControllerActions.image_descr">image caption</label>
+			<label index="switchableControllerActions.image">EXT:news2/Resources/Public/Icons/icon_tx_news2_domain_model_category.gif</label>
+			<label index="switchableControllerActions.seeAlso">pages:starttime</label>-->
+
+
+			<label index="switchableControllerActions.description">Set the view you want to display</label>
+			<label index="switchableControllerActions.details">List view shows all news records. Latest uses a time restriction, the rest should be understandable</label>
+
+
+		</languageKey>
+	</data>
+</T3locallang>

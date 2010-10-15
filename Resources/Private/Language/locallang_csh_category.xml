@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>CSH for table tx_news2_domain_model_category</description>
+        <type>CSH</type>
+        <csh_table>tx_news2_domain_model_category</csh_table>
+        <fileId>EXT:news2/locallang_csh_category.xml</fileId>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".description">News record</label>
+            <label index=".details">Versatile news system.</label>
+            <label index="_.seeAlso">See also the website http://www.news2.com/</label>
+            <label index="title.description">News title</label>
+            <label index="title.details">Required as it is also used to build the URL to the news record.</label>
+           
+		</languageKey>
+	</data>
+</T3locallang>
