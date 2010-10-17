@@ -4,3 +4,5 @@ pageModuleFieldsNews = title,author,teaser,datetime,archive,category
   # cat=basic/enable/101; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.pageModuleFieldsCategory
 pageModuleFieldsCategory = title,description
 
+  # cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.hideMediaTable
+hideMediaTable = 1

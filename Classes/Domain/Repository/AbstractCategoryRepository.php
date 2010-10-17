@@ -51,8 +51,8 @@ class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_Extbase_P
 				$this->fetchedCategories[$uid] = 1;
 				$out[$uid] = $row;
 
-				if ($level <=1) {
-					#$out[$uid]['sub'] = $this->getRecursiveCategories($uid, $level++);
+				if ($level <=2) {
+					$out[$uid]['sub'] = $this->getRecursiveCategories($uid, $level++);
 				}
 			}
 

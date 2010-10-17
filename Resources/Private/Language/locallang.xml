@@ -60,6 +60,7 @@
 			<!-- Extension Manager Configuration -->
 			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module.</label>
 			<label index="extmng.pageModuleFieldsCategory">Category fields shown in page module:Set the fields which should be shown in the page module.</label>
+			<label index="extmng.hideMediaTable">Hide Media records:As the media elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
 		</languageKey>
 
 		<languageKey index="de" type="array">
