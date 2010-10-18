@@ -42,7 +42,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 			'endtime' => 'endtime',
 			'fe_group' => 'fe_group',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tca.php',
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/category.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_category.gif',
 		'treeParentField' => 'parentcategory',
 	),
@@ -81,7 +81,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'endtime' => 'endtime',
 			'fe_group' => 'fe_group',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tca.php',
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/news.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_news.gif',
 	),
 );
@@ -109,7 +109,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tca.php',
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/media.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_media.gif',
 		'hideTable'			=> (boolean)$configurationArray['hideMediaTable']
 	),
