@@ -1,4 +1,8 @@
-Kühnengruß#
+#
+# @version $Id$
+#
+
+#
 # Table structure for table 'tx_news_domain_model_category'
 #
 CREATE TABLE tx_news2_domain_model_category (
@@ -117,6 +121,7 @@ CREATE TABLE tx_news2_domain_model_media (
 	type int(11) DEFAULT '0' NOT NULL,
 	html text,
 	video tinytext,
+	dam int(11) DEFAULT '0' NOT NULL,
 	showinpreview tinyint(4) DEFAULT '0' NOT NULL,
 	
 	PRIMARY KEY (uid),
