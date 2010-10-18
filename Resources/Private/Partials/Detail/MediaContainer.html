@@ -11,6 +11,9 @@
 			<f:if condition="{mediaElement.type} == 2">
 				<f:render partial="Detail/MediaHtml" arguments="{mediaElement: mediaElement}"/>
 			</f:if>
+			<f:if condition="{mediaElement.type} == 3">
+				<f:render partial="Detail/MediaDam" arguments="{mediaElement: mediaElement}"/>
+			</f:if>
 		</f:for>
 	</div>
 </f:if>

@@ -137,6 +137,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'internal_type' => 'db',
 				'allowed' => 'tx_dam',
 				'prepend_tname' => 1,
+				'foreign_table'       => 'tx_dam',
 				'MM' => 'tx_dam_mm_ref',
 				'MM_opposite_field' => 'file_usage',
 				'MM_match_fields' => array('ident' => 'tx_news2_media'),

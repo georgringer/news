@@ -57,6 +57,11 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	protected $video;
 
 	/**
+	 * @var Tx_ExtbaseDam_Domain_Model_Dam Location
+	 */
+	protected $dam;	
+
+	/**
 	 * @var boolean;
 	 */
 	protected $showinpreview;
@@ -99,6 +104,14 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 
 	public function setVideo($video) {
 	 $this->video = $video;
+	}
+
+	public function getDam() {
+		return Tx_ExtbaseDam_Utility_Dam::getOne('tx_news2_domain_model_media', $this->uid, 'tx_news2_media');
+	}
+
+	public function setDam($dam) {
+		return $this->dam = $dam;
 	}
 
 	public function getShowinpreview() {
