@@ -3,6 +3,7 @@
 *  Copyright notice
 *
 *  (c) 2006 Chi Hoang (chibo@gmx.de)
+*  (c) 2010 Georg Ringer <typo3@ringerge.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,18 +23,15 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(PATH_t3lib . 'class.t3lib_treeview.php');
-
 /**
- * Extends class t3lib_treeview to chnage function wrapTitle().
+ * Render a tree of news categories in the Backend
  *
- * @category    Library
- * @package     TYPO3
- * @subpackage  tx_news2
- * @author      Georg Ringer (just2b) <http://www.ringer.it>
- * @license     http://www.gnu.org/copyleft/gpl.html
- * @version     SVN: $Id$
+ * @package TYPO3
+ * @subpackage tx_news2
+ * @version $Id$
  */
+
+require_once(PATH_t3lib . 'class.t3lib_treeview.php');
 class tx_news2_tceFunc_selectTreeView extends t3lib_treeview {
 
 	var $TCEforms_itemFormElName='';

@@ -23,9 +23,11 @@
 ***************************************************************/
 
 /**
+ * Controller of news categories
  *
+ * @package TYPO3
+ * @subpackage tx_news2
  * @version $Id$
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class Tx_News2_Controller_CategoryController extends Tx_Extbase_MVC_Controller_ActionController {
 

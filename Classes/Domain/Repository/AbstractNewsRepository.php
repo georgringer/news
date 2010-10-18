@@ -23,9 +23,11 @@
 ***************************************************************/
 
 /**
+ * Abstract news repository holding every fancy stuff
  *
+ * @package TYPO3
+ * @subpackage tx_news2
  * @version $Id$
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persistence_Repository {
 

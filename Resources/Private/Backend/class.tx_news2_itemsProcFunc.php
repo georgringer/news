@@ -22,13 +22,12 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-
 /**
- * Userfunc to get alternative label
+ * Userfunc to render alternative label for media elements
  *
- * @author	Georg Ringer <typo3@ringerge.org>
- * @package	TYPO3
- * @subpackage	tx_news2
+ * @package TYPO3
+ * @subpackage tx_news2
+ * @version $Id$
  */
 class tx_news2_itemsProcFunc {
 

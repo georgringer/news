@@ -23,9 +23,11 @@
 ***************************************************************/
 
 /**
+ * Category Model
  *
+ * @package TYPO3
+ * @subpackage tx_news2
  * @version $Id$
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
 class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEntity {
 

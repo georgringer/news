@@ -23,11 +23,11 @@
 ***************************************************************/
 
 /**
- * Class that adds the wizard icon.
+ * Add news2 extension to the wizard in page module
  *
- * @author	Georg Ringer <typo3@ringerge.org>
- * @package	TYPO3
- * @subpackage	tx_news2
+ * @package TYPO3
+ * @subpackage tx_news2
+ * @version $Id$
  */
 class news2_pi1_wizicon {
 	var $extKey = 'news2';

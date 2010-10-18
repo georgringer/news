@@ -23,11 +23,12 @@
 ***************************************************************/
 
 /**
+ * ViewHelper to render news elements only once on a page
  *
+ * @package TYPO3
+ * @subpackage tx_news2
  * @version $Id$
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  */
-
 class Tx_News2_ViewHelpers_UniqueViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 

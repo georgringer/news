@@ -22,13 +22,12 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-
 /**
  * Hook to display verbose information about pi1 plugin in Web>Page module
  *
- * @author	Georg Ringer <typo3@ringerge.org>
- * @package	TYPO3
- * @subpackage	tx_news2
+ * @package TYPO3
+ * @subpackage tx_news2
+ * @version $Id$
  */
 class tx_news2_cms_layout {
 	/**

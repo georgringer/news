@@ -55,3 +55,16 @@ plugin.tx_news2 {
 	}
 
 }
+
+/*
+module.tx_news2 {
+	settings < plugin.tx_news2.settings
+	persistence < plugin.tx_news2.persistence
+	view < plugin.tx_news2.view
+	view {
+#		templateRootPath = {$module.tx_news2.view.templateRootPath}
+#		partialRootPath = {$module.tx_news2.view.partialRootPath}
+#		layoutRootPath = {$module.tx_news2.view.layoutRootPath}
+	}
+}
+*/
