@@ -1,0 +1,199 @@
+/*------------------------------------------*/
+/* =1 Reset Style Sheet by Richard Clark	*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,dialog,figure,footer,header,hgroup,menu,nav,section,menu,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}body{line-height:1;}article,aside,dialog,figure,footer,header,hgroup,nav,section{display:block;}nav ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}a{margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;background:transparent;}ins{background-color:#ff9;color:#000;text-decoration:none;}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold;}del{text-decoration: line-through;}abbr[title],dfn[title]{border-bottom:1px dotted #000;cursor:help;}table{border-collapse:collapse;border-spacing:0;}hr{display:block;height:0;border:0;margin:0;padding:0;}input,select{vertical-align:middle;}
+
+
+
+/*------------------------------------------*/
+/* =2 global styles							*/
+
+html {
+    height: 100%;
+}
+
+body {
+	font-size: 1em;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    line-height: 1.5em;
+    color: #000;
+	background: #f9f9f9;
+	background: #fff -moz-linear-gradient(-90deg, #f9f9f9, #fff);
+    height: 100%;
+}
+
+
+
+
+a { color: #F18F0B; }
+a:link, a:visited { text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus {
+	background: #F18F0B;
+	color: #fff;
+	text-decoration: none;
+}
+.logo:focus {
+	background: none;
+	border-bottom: 3px solid #F18F0B;
+}
+
+ul {
+	list-style-type: none;
+}
+ul li li { padding-left: 20px; }
+ul li li li { padding-left: 35px; }
+
+
+.pagetitle {
+	font-size: 1.6em;
+	font-weight: normal;
+	margin-bottom: 30px;
+	color: #000;
+}
+h1 {
+	margin-bottom: 10px;
+	color: #66A552;
+	font-weight: normal;
+	letter-spacing: 1px;
+}
+h2 {
+	padding: 1px 10px;
+	margin-bottom: 15px;
+	background: #777;
+	text-transform: uppercase;
+	color: #fff;
+	letter-spacing: 1px;
+}
+
+
+
+/*------------------------------------------*/
+/* =3 global classes						*/
+
+.hidden {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+	overflow: hidden;
+}
+.clear {
+	clear: both;
+	height: 0;
+}
+
+
+/*------------------------------------------*/
+/* =4 nav styles							*/
+
+.nav ul {
+    float: left;
+    display: inline;
+	margin: 0;
+} 
+.nav li {
+    float: left;
+    list-style: none;
+	line-height: 1em; 
+}
+.nav a {
+    float: left;
+    display: block;
+	line-height: 1em;
+}
+.nav:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* main nav */
+#main-nav {
+	margin-top: 15px;
+	background: #f9f9f9;
+	border: 1px solid #eee;
+}
+#main-nav li {
+	padding: 15px 18px;
+	border-right: 1px solid #eee;
+}
+
+
+
+/*------------------------------------------*/
+/* =5 layout								*/
+
+#logo-1 { float: left; }
+#logo-2 { float: right; }
+#logo-3 { float: right; }
+
+#page {
+	width: 988px;
+	border: 1px solid #eee;
+	margin: 30px auto;
+	background: #fff;
+	-moz-box-shadow: 4px 4px 10px #eee, -4px -4px 10px #eee; 
+}
+.inner {
+	width: 948px;
+	margin: 0 auto;
+}
+#header {
+	padding: 25px 0 40px 0;
+}
+
+#content .csc-default {
+	padding-top: 18px;
+	padding-bottom: 18px;
+	border-top: 1px dashed #ccc;
+}
+#content .csc-default:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#footer {
+	font-size: 0.8em;
+	margin-top: 40px;
+}
+#footer .inner {
+	background: #f9f9f9;
+	margin-bottom: 15px;
+	border: 1px solid #eee;
+}
+#footnote {
+	float: left;
+	line-height: 1em;
+	padding: 12px 18px;
+}
+#footer-nav {
+	float: right;
+}
+#footer-nav li {
+	padding: 12px 18px;
+	border-left: 1px solid #eee;
+}
+
+
+.news2 { margin-bottom: 30px; }
+.column-1 {
+	float: left;
+	width: 570px;
+	margin-right: 38px;
+}
+.column-2 {
+	float: left;
+	width: 340px;
+}
+.column-3 {
+	clear: both;
+	float: left;
+	width: 100%;
+}

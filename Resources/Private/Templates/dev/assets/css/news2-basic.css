@@ -1,0 +1,228 @@
+
+/**************************************/
+/* default styles for news2 extension */
+/**************************************/
+
+
+/* global styles */
+.news2 {
+	font-size: 12px;
+	font-family: Arial, sans-serif;
+}
+.news2 .hidden {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+	overflow: hidden;	
+}
+.news2 .clear { clear: both; }
+
+.news2 .nav ul {
+    float: left;
+    display: inline;
+	margin: 0;
+} 
+.news2 .nav li {
+    float: left;
+    list-style: none;
+	line-height: 1em; 
+}
+.news2 .nav a {
+    float: left;
+    display: block;
+	line-height: 1em;
+}
+.news2 .nav:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.news2 .nav { zoom: 1; }
+
+
+
+/* list + search + latest view */
+.news2 .article {
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+.news2 .article:last-child {
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+.news2 .article:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;	
+}
+.news2 .article { zoom: 1; }
+
+
+.news2 .article .news2-img-wrap {
+	float: left;
+	width: 128px;
+	margin: 3px 12px 5px 0;
+	background: #fff;
+	
+}
+.news2 .article .news2-img-wrap a {
+	display: block;
+	float: left;
+	padding: 4px;
+	border: 1px solid #ddd;
+	background: #fff;
+}
+
+.news2 .article .news2-img-wrap img {
+	float:left;
+	width: 100% !important;
+	height: auto;
+}
+
+.news2 .article h3 {
+	font-size: 1.25em;
+	margin-bottom: 0px;
+}
+.news2 .article .teaser-text {
+	margin: 0 0 10px 0;
+}
+
+.news2 .footer {
+	clear: both;
+	padding: 10px 0 0 0;
+	border-top: 1px solid #eee;
+	margin-top: 15px;
+	color: #888;
+}
+.news2 .footer p {
+	line-height: 1em;
+}
+.news2 .footer span {
+	display: inline-block;
+	padding-right: 8px;
+	margin-right: 8px;
+	border-right: 1px solid #ddd;
+}
+.news2 .footer span:last-child {
+	border-right: 0;
+}
+.news2 .footer .news2-category a {
+	text-transform: uppercase;
+	color: #888;
+}
+
+
+/* category menu view */
+.news2-category-view ul li {
+	padding: 5px 8px;
+}
+.news2-category-view ul li li {
+	padding: 2px 8px 2px 12px;
+
+}
+.news2-category-view > ul > li:nth-child(even) {
+	background: #f9f9f9;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+.news2-category-view .category-desc {
+	padding-left: 10px;
+	margin-left: 10px;
+	border-left: 1px solid #ddd;
+	color: #888;
+}
+
+
+/* search view */
+.news2-whatis {
+	margin: 15px 0;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #eee;
+}
+.news2-browsebox {
+	margin: 15px 0;
+	padding-top: 10px;
+	border-top: 1px solid #eee;
+}
+
+.news2-browsebox ul li { margin: 0 5px; }
+.news2-browsebox ul .prev {
+	margin-right: 20px;
+	margin-left: 0;
+}
+.news2-browsebox ul .current-page a { font-weight: bold; }
+.news2-browsebox ul .next {
+	margin-left: 20px;
+	margin-right: 0;
+}
+
+
+/* single view */
+.news2-single .footer {
+	margin-bottom: 20px;
+	margin-top: 5px;
+	padding: 10px 0 0 0;
+	border-bottom: 0;
+	border-top: 1px solid #eee;
+}
+.news2-single .article .news2-img-wrap {
+	float: right;
+	width: 282px;
+	margin: 0 0 0 25px;
+}
+.news2-single .teaser-text {
+	font-size: 15px;
+	color: #888;
+}
+.news2-text-wrap {
+	margin-bottom: 10px;
+}
+.news2-single .article .news2-img-wrap img { float: none; }
+.news2-img-caption { color: #888; }
+
+
+/* related news + files */
+.news2-related-wrap {
+	display: table;
+	margin-top: 20px;
+	width: 100%;
+}
+.news2-related {
+	width: 50%;
+	padding: 15px;
+	border: 1px solid #eee;
+	display: table-cell;
+}
+.news2-related ul li {
+	line-height: 1em;
+	margin-bottom: 12px;
+}
+.news2-related h4 {
+	margin-bottom: 10px;
+}
+.news2-related ul li span {
+	border-right:1px solid #DDDDDD;
+	display:inline-block;
+	margin-right:8px;
+	padding-right:8px;
+	color: #888;
+}
+.news2-related ul li span:last-child {
+	border-right: 0;
+	padding-right: 0;
+}
+.news2-related-files .news2-related-files-link a {
+	background-image: url(../img/background/file-icon-sprites.gif);
+	background-repeat: no-repeat;
+	padding: 6px 0 6px 38px;
+}
+.news2-related-files ul li { margin-bottom: 20px; }
+.news2-related-files .news2-related-files-link .jpg { background-position: 0 0; }
+
