@@ -334,7 +334,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 				}
 			}
 		}
-t3lib_div::print_array($finalOrdering);
+
 		if (!empty($finalOrdering)) {
 			$query->setOrderings($finalOrdering);
 		}

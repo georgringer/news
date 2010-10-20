@@ -166,6 +166,14 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 return $this->category;
 	}
 
+	public function getFirstCategory() {
+		$categories = $this->getCategory();
+		$categories->rewind();
+		return $categories->current();
+
+
+	}
+
 	public function setCategory($category) {
 	 $this->category = $category;
 	}
