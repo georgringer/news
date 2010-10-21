@@ -8,3 +8,6 @@ pageModuleFieldsCategory = title,description
 
  	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.hideMediaTable
 hideMediaTable = 1
+
+ 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.enableDam
+enableDam = 0

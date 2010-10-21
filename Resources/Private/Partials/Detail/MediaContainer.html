@@ -1,9 +1,8 @@
 <f:if condition="{media}">
-	<div style="padding:10px;margin:10px;background:lightgreen;">
+	<div class="news2-img-wrap">
 		<f:for each="{media}" as="mediaElement">
 			<f:if condition="{mediaElement.type} == 0">
 				<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement}"/>
-			
 			</f:if>
 			<f:if condition="{mediaElement.type} == 1">
 				<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}"/>

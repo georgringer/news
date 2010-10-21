@@ -5,7 +5,7 @@
 		<div class="news2 news2-list-view">
 			<f:for each="{news}" as="newsItem">
 				<f:cycle values="{0: 'odd', 1: 'even'}" as="className">
-					<f:render partial="List/item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+					<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
 				</f:cycle>
 			</f:for>
 		</div>

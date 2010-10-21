@@ -1,26 +1,100 @@
 
-<f:if condition="{news}">
+<f:if condition="{newsItem}">
 	<f:then>
-		<h2>{news.title}</h2>
-		<div style="background: #eee">
-			<f:format.html>{news.teaser}</f:format.html>
-		</div>
-		<div>
-			<f:format.html>{news.bodytext}</f:format.html>
-		</div>
 
-		<f:if condition="{news.related}">
-			<f:then>
-				<f:for each="{news.related}" as="related">
-					{related.title} <small>(uid: {related.uid})</small><br />
-				</f:for>
-			</f:then>
-			 <f:else>
-				no related news
-			 </f:else>
+
+<div class="news2 news2-single">
+	<div class="article">
+		<div class="header">
+			<h3>{newsItem.title}</h3>
+		</div>
+		<div class="footer" role="contentinfo">
+			<p>
+				<span class="news2-list-date"><f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date></span>
+				<span class="hidden">. </span>
+				<span class="news2-list-category"><a href="#">News category</a></span>
+				
+				<f:if condition="{newsItem.author}">
+					<span class="hidden">. </span>
+					<span class="news2-list-author">
+						<f:translate key="author" arguments="{0:newsItem.author}"/>
+					</span>
+				</f:if>
+			</p>
+		</div>
+		<p class="teaser-text">
+			{newsItem.teaser}
+		</p>
+		<f:render partial="Detail/MediaContainer" arguments="{media: media, settings:settings}"/>
+		
+		<div class="news2-text-wrap">
+			<f:format.html>{newsItem.bodytext}</f:format.html>
+		</div>
+		<f:if condition="{settings.pidBack}">
+			<div class="news2-backlink-wrap">
+				<f:link.page pageUid="{settings.pidBack}">
+					<f:translate key="back-link" />
+				</f:link.page>
+			</div>
 		</f:if>
 
-		<f:render partial="Detail/MediaContainer" arguments="{media: media, settings:settings}"/>
+		
+		<div class="news2-related-wrap">
+			<f:if condition="{newsItem.related}">
+				<div class="news2-related news2-related-news">
+					<h4><f:translate key="related-news" /></h4>
+					<ul>
+						<f:for each="{newsItem.related}" as="related">
+							<li>
+								<span class="news2-related-news-date"><f:format.date format="d.m.Y">{related.datetime}</f:format.date></span>
+								<span class="hidden">. </span>
+								<span class="news2-related-news-link">
+									<f:link.action pageUid="{settings.pidDetail}" action="detail" arguments="{news: related}">
+										{related.title}
+									</f:link.action>
+								</span>
+							</li>
+							 
+						</f:for>
+					</ul>
+				</div>
+			</f:if>
+			<div class="news2-related news2-related-files">
+				<h4>Related Files</h4>
+				<ul>
+					<li><span class="news2-related-files-link"><a class="jpg" href="#">Lorem_ipsum.jpg</a></span><span class="hidden">. </span><span class="news2-related-files-size">853 K</span></li>
+					<li><span class="news2-related-files-link"><a class="jpg" href="#">Lorem_ipsum.jpg</a></span><span class="hidden">. </span><span class="news2-related-files-size">853 K</span></li>
+					<li><span class="news2-related-files-link"><a class="jpg" href="#">Lorem_ipsum.jpg</a></span><span class="hidden">. </span><span class="news2-related-files-size">853 K</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
 	</f:then>
 	<f:else>
 		ERROR: no news id given.

@@ -1,7 +1,12 @@
-<strong>{mediaElement.title}</strong>
+
 <object width="480" height="385">
 	<param name="movie" value="{mediaElement.video}"></param>
 	<param name="allowFullScreen" value="true"></param>
 	<param name="allowscriptaccess" value="always"></param>
 	<embed src="{mediaElement.video}" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed>
 </object>
+<f:if condition="{mediaElement.title}">
+	<p class="news2-img-caption">
+		{mediaElement.title}
+	</p>
+</f:if>

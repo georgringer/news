@@ -1,4 +1,8 @@
 <div>
-	<strong>{mediaElement.title}</strong>
 	<f:format.html>{mediaElement.html}</f:format.html>
 </div>
+<f:if condition="{mediaElement.title}">
+	<p class="news2-img-caption">
+		{mediaElement.title}
+	</p>
+</f:if>

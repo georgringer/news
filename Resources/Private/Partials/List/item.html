@@ -9,18 +9,38 @@
 			<a href="#"><img src="fileadmin/template/assets/dummys/teaser-4.jpg" width="282" height="188" alt="beschreibender Alternativtext" /></a>
 		</div>
 		<p class="teaser-text">
-			<f:format.html>{newsItem.teaser}</f:format.html>
-			<a class="news2-more-link" href="#">read more</a>
+			
+			<f:if condition="{newsItem.teaser}">
+				<f:then>
+					<f:format.html>
+						<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop>
+					</f:format.html>
+				</f:then>
+				<f:else>
+					<f:format.html>
+						<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop>
+					</f:format.html>
+				</f:else>
+			</f:if>
+
+			<f:render partial="List/LinkToDetail" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+			
 		</p>
 		<div class="footer" role="contentinfo">
 			<p>
 				<span class="news2-list-date"><f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date></span>
-				<span class="hidden">. </span>
-				<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
+
+				<f:if condition="{newsItem.firstCategory}">
+					<span class="hidden">. </span>
+					<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
+				</f:if>
+
 
 				<f:if condition="{newsItem.author}">
 					<span class="hidden">. </span>
-					created by <span class="news2-list-author">{newsItem.author}</span>
+					<span class="news2-list-author">
+						<f:translate key="author" arguments="{0:newsItem.author}"/>
+					</span>
 				</f:if>
 
 			</p>
