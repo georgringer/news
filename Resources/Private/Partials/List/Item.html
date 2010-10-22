@@ -1,0 +1,66 @@
+{namespace n=Tx_News2_ViewHelpers}
+
+<n:Unique newsUid="{newsItem.uid}" view="{view}">
+	<div class="article">
+		<!-- header -->
+		<div class="header">
+			<h3>{newsItem.title}</h3>
+		</div>
+
+		<!-- media preview element -->
+		<div class="news2-img-wrap">
+			<f:if condition="{newsItem.mediaPreviews}">
+				<f:then>
+					<f:render partial="List/MediaPreview" arguments="{mediaElement: newsItem.mediaPreviews.0, settings:settings}" />
+				</f:then>
+				<f:else>
+					<f:render partial="Media/MediaPreviewNotAvailable" arguments="{settings:settings}" />
+				</f:else>
+			</f:if>
+		</div>
+
+		<!-- teaser text -->
+		<p class="teaser-text">
+			
+			<f:if condition="{newsItem.teaser}">
+				<f:then>
+					<f:format.html>
+						<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop>
+					</f:format.html>
+				</f:then>
+				<f:else>
+					<f:format.html>
+						<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop>
+					</f:format.html>
+				</f:else>
+			</f:if>
+
+			<f:render partial="List/LinkToDetail" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+		</p>
+
+		<!-- footer information -->
+		<div class="footer" role="contentinfo">
+			<p>
+				<!-- date -->
+				<span class="news2-list-date">
+					<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
+				</span>
+
+				<!-- first category -->
+				<f:if condition="{newsItem.firstCategory}">
+					<span class="hidden">. </span>
+					<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
+				</f:if>
+
+				<!-- author -->
+				<f:if condition="{newsItem.author}">
+					<span class="hidden">. </span>
+					<span class="news2-list-author">
+						<f:translate key="author" arguments="{0:newsItem.author}"/>
+					</span>
+				</f:if>
+			</p>
+		</div>
+	</div>
+	
+</n:Unique>
