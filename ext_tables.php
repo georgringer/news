@@ -119,6 +119,34 @@ $TCA['tx_news2_domain_model_media'] = array(
 	),
 );
 
+t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_media');
+
+$TCA['tx_news2_domain_model_file'] = array(
+	'ctrl' => array(
+		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_file',
+		'label'     => 'title',
+		'label_alt' => 'file',
+		'label_alt_force' => 1,
+		'tstamp'    => 'tstamp',
+		'crdate'    => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'type' => 'type',
+		'languageField'            => 'sys_language_uid',
+		'transOrigPointerField'    => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'dividers2tabs' => TRUE,
+		'default_sortby' => 'ORDER BY sorting',
+		'sortby' => 'sorting',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+		),
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/file.php',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_file.gif',
+		'hideTable'			=> (boolean)$configurationArray['hideFileTable']
+	),
+);
+
 /***************
  * Plugin
  */

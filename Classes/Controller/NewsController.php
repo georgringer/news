@@ -123,7 +123,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$this->renderTitle($news->getTitle());
 		$this->view->assign('newsItem', $news);
 
-		$this->view->assign('media', $news->getMedia((boolean)$this->settings['firstMediaIsPreview']));
 	}
 
 	/***************************************************************************

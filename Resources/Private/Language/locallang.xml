@@ -66,6 +66,7 @@
 			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module.</label>
 			<label index="extmng.pageModuleFieldsCategory">Category fields shown in page module:Set the fields which should be shown in the page module.</label>
 			<label index="extmng.hideMediaTable">Hide Media records:As the media elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
+			<label index="extmng.hideFileTable">Hide File records:As the file elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
 			<label index="extmng.enableDam">Enable DAM:Enable DAM if you want to use it</label>
 		</languageKey>
 

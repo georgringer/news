@@ -28,10 +28,10 @@
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_list</numIndex>
 									<numIndex index="1">News->list;News->detail</numIndex>
 								</numIndex>
-								<numIndex index="2">
+<!--								<numIndex index="2">
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_latest</numIndex>
 									<numIndex index="1">News->latest;News->detail</numIndex>
-								</numIndex>
+								</numIndex>-->
 								<numIndex index="3">
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.mode.news_detail</numIndex>
 									<numIndex index="1">News->detail</numIndex>
@@ -190,6 +190,17 @@
 							</config>
 						</TCEforms>
 					</settings.archive>
+
+					<!-- Time limit -->
+					<settings.timeLimit>
+						<TCEforms>
+						<label>LLL:EXT:news2/Resources/Private/Language/locallang.xml:flexforms_general.timeLimit</label>
+							<config>
+								<type>input</type>
+								<size>15</size>
+							</config>
+						</TCEforms>
+					</settings.timeLimit>
 					
 				</el>
 			</ROOT>

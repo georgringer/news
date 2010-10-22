@@ -210,6 +210,26 @@ $TCA['tx_news2_domain_model_news'] = array(
 				),
 			)
 		),
+		'related_files' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news2_domain_model_news.related_files',
+			'config' => array(
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'tx_news2_domain_model_file',
+				'foreign_table' => 'tx_news2_domain_model_files',
+				'size' => 5,
+				'minitems' => 0,
+				'maxitems' => 10,
+				'MM' => 'tx_news2_domain_model_news_file_mm',
+				'wizards' => array(
+      				'suggest' => array(
+        				'type' => 'suggest',
+					),
+				),
+			)
+		),
 		'type' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',

@@ -1,5 +1,8 @@
 {namespace n=Tx_News2_ViewHelpers}
-
+<!--
+	=====================
+		List/Item.html
+-->
 <n:Unique newsUid="{newsItem.uid}" view="{view}">
 	<div class="article">
 		<!-- header -->
@@ -11,7 +14,7 @@
 		<div class="news2-img-wrap">
 			<f:if condition="{newsItem.mediaPreviews}">
 				<f:then>
-					<f:render partial="List/MediaPreview" arguments="{mediaElement: newsItem.mediaPreviews.0, settings:settings}" />
+					<f:render partial="Media/MediaPreview" arguments="{mediaElement: newsItem.mediaPreviews.0, settings:settings}" />
 				</f:then>
 				<f:else>
 					<f:render partial="Media/MediaPreviewNotAvailable" arguments="{settings:settings}" />
@@ -20,7 +23,7 @@
 		</div>
 
 		<!-- teaser text -->
-		<p class="teaser-text">
+		<div class="teaser-text">
 			
 			<f:if condition="{newsItem.teaser}">
 				<f:then>
@@ -36,7 +39,7 @@
 			</f:if>
 
 			<f:render partial="List/LinkToDetail" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
-		</p>
+		</div>
 
 		<!-- footer information -->
 		<div class="footer" role="contentinfo">

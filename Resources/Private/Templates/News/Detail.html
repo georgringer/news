@@ -10,10 +10,19 @@
 		</div>
 		<div class="footer" role="contentinfo">
 			<p>
-				<span class="news2-list-date"><f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date></span>
-				<span class="hidden">. </span>
-				<span class="news2-list-category"><a href="#">News category</a></span>
+
+				<!-- date -->
+				<span class="news2-list-date">
+					<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
+				</span>
 				
+				<!-- first category -->
+				<f:if condition="{newsItem.firstCategory}">
+					<span class="hidden">. </span>
+					<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
+				</f:if>
+
+				<!-- author -->
 				<f:if condition="{newsItem.author}">
 					<span class="hidden">. </span>
 					<span class="news2-list-author">
@@ -22,10 +31,10 @@
 				</f:if>
 			</p>
 		</div>
-		<p class="teaser-text">
+		<div class="teaser-text">
 			{newsItem.teaser}
-		</p>
-		<f:render partial="Detail/MediaContainer" arguments="{media: media, settings:settings}"/>
+		</div>
+		<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}"/>
 		
 		<div class="news2-text-wrap">
 			<f:format.html>{newsItem.bodytext}</f:format.html>

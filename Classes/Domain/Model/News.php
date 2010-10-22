@@ -213,10 +213,9 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Load Media elements
 	 *
-	 * @param boolean $removeFirstElement remove first element
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
-	public function getMedia($removeFirstElement = FALSE) {
+	public function getMedia() {
 		if ($this->media instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->media->_loadRealInstance();
 		}
@@ -234,6 +233,23 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 			return $newElements;
 		}
 		return $this->media;
+	}
+
+	public function getMediaPreviews() {
+		$mediaElements = $this->media;
+
+		$previewCollection = array();
+		foreach($mediaElements as $mediaElement) {
+			if ($mediaElement->getShowinpreview()) {
+				$previewCollection[] = $mediaElement;
+			} 
+		}
+
+		if (count($previewCollection) > 0) {
+			return $previewCollection;
+		} else {
+			return NULL;
+		}
 	}
 
 	public function setMedia($media) {

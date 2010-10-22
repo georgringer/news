@@ -1,11 +1,20 @@
 1) Translations from tt_news
 2) Icons
-3) HTML-Template / CSS => done by Philipp Bergsmann
-4) TCA cleanup?
-5) No double showing of news in FE
+
+
+
 6) Check Translations / overlays
 7) Unit Tests (?)
 8) Manual
 9) Restrictions as array > Nikolas?
+12) Links from list image to detail?
+13) Restructure partials > Media/...
+
+
+done
+============
+3) HTML-Template / CSS => done by Philipp Bergsmann
+4) TCA cleanup?
+5) No double showing of news in FE
 10) replace firstmediaaspreview with showinpreview
 11) DAM implementation + remove selection if not used. see rgslideshow for example

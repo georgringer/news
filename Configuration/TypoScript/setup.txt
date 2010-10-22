@@ -50,6 +50,13 @@ plugin.tx_news2 {
 			allowCategoryRestrictionFromGetParams = 1
 			allowOrderFromGetParams = 1
 
+			media {
+				image {
+					maxW = 140
+					maxH = 140
+				}
+			}
+
 		}
 
 
