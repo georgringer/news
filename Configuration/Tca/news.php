@@ -8,7 +8,7 @@ $ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,category,related,type,keywords,media,internalurl,externalurl,istopnews'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -215,19 +215,27 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news2_domain_model_news.related_files',
 			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'db',
+				'type' => 'inline',
+//				'internal_type' => 'db',
 				'allowed' => 'tx_news2_domain_model_file',
-				'foreign_table' => 'tx_news2_domain_model_files',
+				'foreign_table' => 'tx_news2_domain_model_file',
 				'size' => 5,
 				'minitems' => 0,
 				'maxitems' => 10,
-				'MM' => 'tx_news2_domain_model_news_file_mm',
-				'wizards' => array(
-      				'suggest' => array(
-        				'type' => 'suggest',
-					),
-				),
+//				'MM' => 'tx_news2_domain_model_news_file_mm',
+				'appearance' => array(
+					'collapseAll' => 1,
+					'expandSingle' => 1,
+					'levelLinksPosition' => 'bottom',
+					'useSortable' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showRemovedLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'showSynchronizationLink' => 1,
+					'enabledControls' => array(
+						'info' => FALSE,
+					)
+				)
 			)
 		),
 		'type' => array(
@@ -325,7 +333,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.content,
 					bodytext;;;richtext[]:rte_transform[mode=ts],
 				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.additional,category, related, keywords,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,related_files,media,,
 				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.extended,'
 		),
 			// internal url

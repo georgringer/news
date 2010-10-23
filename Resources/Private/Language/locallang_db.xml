@@ -40,6 +40,7 @@
 			<label index="tx_news2_domain_model_news.internalurl">Internal URL</label>
 			<label index="tx_news2_domain_model_news.externalurl">External URL</label>
 			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
+			<label index="tx_news2_domain_model_news.related_files">Related files</label>
 			<label index="tx_news2_domain_model_media">Media Element</label>
 			<label index="tx_news2_domain_model_media.title">Title</label>
 			<label index="tx_news2_domain_model_media.media">Media Element</label>
