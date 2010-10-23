@@ -74,6 +74,12 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $related;
 
 	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_File>
+	 * @lazy
+	 */
+	protected $relatedFiles;
+
+	/**
 	 * @var integer
 	 */
 	protected $type;
@@ -192,6 +198,15 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	public function setRelated($related) {
 	 $this->related = $related;
 	}
+	
+	public function getRelatedFiles() {
+	 return $this->relatedFiles;
+	}
+
+	public function setRelatedFiles($relatedFiles) {
+	 $this->relatedFiles = $relatedFiles;
+	}
+
 
 	public function getType() {
 	 return $this->type;

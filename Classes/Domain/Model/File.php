@@ -31,6 +31,32 @@
  */
 class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractDomainObject {
 
+	/**
+	 * @var string
+	 */
+	protected $title;
+
+	/**
+	 * @var string
+	 */
+	protected $file;
+
+	public function getTitle() {
+	 return $this->title;
+	}
+
+	public function setTitle($title) {
+	 $this->title = $title;
+	}
+
+	public function getFile() {
+	 return $this->file;
+	}
+
+	public function setFile($file) {
+	 $this->file = $file;
+	}
+
 
 
 }

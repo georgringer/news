@@ -52,7 +52,9 @@
 			<label index="tx_news2_domain_model_media.video">Video URL</label>
 			<label index="tx_news2_domain_model_media.show">Show</label>
 			<label index="tx_news2_domain_model_media.showinpreview">Show in preview views</label>
-
+			<label index="tx_news2_domain_model_file">File Element</label>
+			<label index="tx_news2_domain_model_file.title">Title</label>
+			<label index="tx_news2_domain_model_file.file">File</label>
 		</languageKey>
 	</data>
 </T3locallang>
