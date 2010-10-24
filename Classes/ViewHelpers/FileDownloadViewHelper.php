@@ -23,43 +23,44 @@
 ***************************************************************/
 
 /**
- * File model
+ * ViewHelper to download a file
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_News2_ViewHelpers_FileDownloadViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
 
 	/**
-	 * @var string
+	 * Download a file
+	 * 
+	 * @param string $file
+	 * @param string $path
+	 * @return string
 	 */
-	protected $title;
+	public function render($file, $path) {
 
-	/**
-	 * @var string
-	 */
-	protected $file;
+		$cObj = t3lib_div::makeInstance('tslib_cObj');
 
-	public function getTitle() {
-	 return $this->title;
+		$filePath = $path . $file;
+		if (!is_file($filePath)) {
+			// @todo: better exceptions
+			throw new Exception('Given file is not a valid file: ' . htmlspecialchars($filePath));
+		}
+
+		$fileInformation = pathinfo($filePath);
+
+		$class = 'basic-class ' . $fileInformation['extension'];
+
+
+
+
+
+		$value = $this->renderChildren();
+
+		$value = '<a class="' . $class . '">' . $value . '</a>';
+
+		return $value;
 	}
-
-	public function setTitle($title) {
-	 $this->title = $title;
-	}
-
-	public function getFile() {
-	 return $this->file;
-	}
-
-	public function setFile($file) {
-	 $this->file = $file;
-	}
-
-
-
 }
-
-
-?>

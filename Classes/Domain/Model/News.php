@@ -200,7 +200,10 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	}
 	
 	public function getRelatedFiles() {
-	 return $this->relatedFiles;
+		if ($this->relatedFiles instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->relatedFiles->_loadRealInstance();
+		}
+		return $this->relatedFiles;
 	}
 
 	public function setRelatedFiles($relatedFiles) {

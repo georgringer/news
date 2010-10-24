@@ -1,3 +1,4 @@
+{namespace n=Tx_News2_ViewHelpers}
 
 <f:if condition="{newsItem}">
 	<f:then>
@@ -39,6 +40,8 @@
 		<div class="news2-text-wrap">
 			<f:format.html>{newsItem.bodytext}</f:format.html>
 		</div>
+
+		<!-- Link Back -->
 		<f:if condition="{settings.pidBack}">
 			<div class="news2-backlink-wrap">
 				<f:link.page pageUid="{settings.pidBack}">
@@ -49,6 +52,8 @@
 
 		
 		<div class="news2-related-wrap">
+
+			<!-- Related news records -->
 			<f:if condition="{newsItem.related}">
 				<div class="news2-related news2-related-news">
 					<h4><f:translate key="related-news" /></h4>
@@ -68,14 +73,28 @@
 					</ul>
 				</div>
 			</f:if>
-			<div class="news2-related news2-related-files">
-				<h4>Related Files</h4>
-				<ul>
-					<li><span class="news2-related-files-link"><a class="jpg" href="#">Lorem_ipsum.jpg</a></span><span class="hidden">. </span><span class="news2-related-files-size">853 K</span></li>
-					<li><span class="news2-related-files-link"><a class="jpg" href="#">Lorem_ipsum.jpg</a></span><span class="hidden">. </span><span class="news2-related-files-size">853 K</span></li>
-					<li><span class="news2-related-files-link"><a class="jpg" href="#">Lorem_ipsum.jpg</a></span><span class="hidden">. </span><span class="news2-related-files-size">853 K</span></li>
-				</ul>
-			</div>
+
+			<!-- Related files -->
+			<f:if condition="{newsItem.relatedFiles}">
+				<div class="news2-related news2-related-files">
+					<h4><f:translate key="related-files" /></h4>
+					<ul>
+						<f:for each="{newsItem.relatedFiles}" as="relatedFile">
+							<li>
+								<span class="news2-related-files-link">
+									<n:fileDownload file="{relatedFile.file}" path="uploads/tx_news/" >
+										{relatedFile.title}
+									</n:fileDownload>
+								</span>
+								<span class="hidden">. </span>
+								<span class="news2-related-files-size">
+									<n:fileSize file="{relatedFile.file}" path="uploads/tx_news/" />
+								</span>
+							</li>
+						</f:for>
+					</ul>
+				</div>
+			</f:if>
 		</div>
 	</div>
 	</div>

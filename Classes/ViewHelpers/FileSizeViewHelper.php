@@ -23,43 +23,36 @@
 ***************************************************************/
 
 /**
- * File model
+ * ViewHelper to render the filesize
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_News2_ViewHelpers_FileSizeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
 
 	/**
-	 * @var string
+	 * Renders the size of a file using t3lib_div::formatSize
+	 * 
+	 * @param string $file
+	 * @param string $path
+	 * @param string $format
+	 * @return string
 	 */
-	protected $title;
+	public function render($file, $path, $format = '') {
 
-	/**
-	 * @var string
-	 */
-	protected $file;
+		$cObj = t3lib_div::makeInstance('tslib_cObj');
 
-	public function getTitle() {
-	 return $this->title;
+		$filePath = $path . $file;
+		if (!is_file($filePath)) {
+			// @todo: better exceptions
+			throw new Exception('Given file is not a valid file: ' . htmlspecialchars($filePath));
+		}
+
+		$fileSize = t3lib_div::formatSize(filesize($filePath), $format);
+
+
+		return $fileSize;
 	}
-
-	public function setTitle($title) {
-	 $this->title = $title;
-	}
-
-	public function getFile() {
-	 return $this->file;
-	}
-
-	public function setFile($file) {
-	 $this->file = $file;
-	}
-
-
-
 }
-
-
-?>
