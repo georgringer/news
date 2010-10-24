@@ -1,9 +1,5 @@
 {namespace n=Tx_News2_ViewHelpers}
 
-<f:if condition="{newsItem}">
-	<f:then>
-
-
 <div class="news2 news2-single">
 	<div class="article">
 		<div class="header">
@@ -32,11 +28,16 @@
 				</f:if>
 			</p>
 		</div>
+
+		<!-- teaser -->
 		<div class="teaser-text">
 			{newsItem.teaser}
 		</div>
+
+		<!-- media files -->
 		<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}"/>
-		
+
+		<!-- main text -->
 		<div class="news2-text-wrap">
 			<f:format.html>{newsItem.bodytext}</f:format.html>
 		</div>
@@ -50,7 +51,7 @@
 			</div>
 		</f:if>
 
-		
+		<!-- related things -->
 		<div class="news2-related-wrap">
 
 			<!-- Related news records -->
@@ -97,36 +98,4 @@
 			</f:if>
 		</div>
 	</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-	</f:then>
-	<f:else>
-		ERROR: no news id given.
-	</f:else>
-
-
-</f:if>
+</div>
