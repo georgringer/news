@@ -37,30 +37,41 @@ class Tx_News2_ViewHelpers_FileDownloadViewHelper extends Tx_Fluid_Core_ViewHelp
 	 * 
 	 * @param string $file
 	 * @param string $path
+	 * @param array $configuration
 	 * @return string
 	 */
-	public function render($file, $path) {
-
-		$cObj = t3lib_div::makeInstance('tslib_cObj');
-
+	public function render($file, $path = '', array $configuration = array()) {
 		$filePath = $path . $file;
 		if (!is_file($filePath)) {
 			// @todo: better exceptions
 			throw new Exception('Given file is not a valid file: ' . htmlspecialchars($filePath));
 		}
 
+		$cObj = t3lib_div::makeInstance('tslib_cObj');
+
 		$fileInformation = pathinfo($filePath);
 
-		$class = 'basic-class ' . $fileInformation['extension'];
 
+			// set a basic configuration for cObj->filelink
+		$tsConfiguration = array(
+			'path' => $path,
+			'ATagParams' => 'class="basic-class ' . $fileInformation['extension'] . '"',
+			'labelStdWrap.' => array(
+				'cObject' => 'TEXT',
+				'cObject.' => array(
+					'value' => $this->renderChildren()
+				)
+			),
+			'target' => '_blank',
+			'jumpurl' => 1
+		);
 
+			// merge default configuration with optional configuration
+		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration, $configuration);
 
+			// generate file
+		$file = $cObj->filelink($file, $tsConfiguration);
 
-
-		$value = $this->renderChildren();
-
-		$value = '<a class="' . $class . '">' . $value . '</a>';
-
-		return $value;
+		return $file;
 	}
 }
