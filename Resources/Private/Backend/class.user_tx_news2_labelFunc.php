@@ -128,4 +128,8 @@ class user_tx_news2_labelFunc {
 
 }
 
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Resources/Private/Backend/class.user_tx_news2_labelfunc.php']) {
+	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Resources/Private/Backend/class.user_tx_news2_labelfunc.php']);
+}
+
 ?>

@@ -92,7 +92,10 @@ class tx_news2_itemsProcFunc {
 		return $html;
 	}
 
+}
 
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Resources/Private/Backend/class.tx_news2_itemsProcFunc.php']) {
+	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Resources/Private/Backend/class.tx_news2_itemsProcFunc.php']);
 }
 
 ?>
