@@ -197,7 +197,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'treeName' => 'newscategorytree',
 				'MM' => 'tx_news2_domain_model_news_category_mm',
 				'foreign_table' => 'tx_news2_domain_model_category',
-				'foreign_table_where' => ' AND tx_news2_domain_model_category.sys_language_uid = 0',
+				'foreign_table_where' => ' AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0)',
 				'size' => 5,
 				'autoSizeMax' => 10,
 				'minitems' => 0,
