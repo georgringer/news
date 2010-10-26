@@ -45,21 +45,40 @@ class user_tx_news2_labelFunc {
 	 * @param array $params
 	 */
 	public function getUserLabelCategory(array $params) {
-		$parentCategory = '';
-		
-		if ($params['row']['parent_id'] > 0) {
-			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'title',
-				'tx_news_domain_model_category',
-				'deleted=0 AND uid=' . (int)$params['row']['parent_id']
+//		$parentCategory = '';
+//
+//		if ($params['row']['parent_id'] > 0) {
+//			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+//				'title',
+//				'tx_news_domain_model_category',
+//				'deleted=0 AND uid=' . (int)$params['row']['parent_id']
+//			);
+//
+//			$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+//			$parentCategory = ', ' . $row['title'];
+//			$GLOBALS['TYPO3_DB']->sql_free_result($res);
+//		}
+//
+//		$params['title'] = $params['row']['title'] . $parentCategory;
+
+			// new version shows translation of language set in user settings
+		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['news2overlay'];
+
+			// no overlay if language of category is not base or no language yet selected
+		if ($overlayLanguage == 0 && $params['row']['sys_language_uid'] > 0) {
+			$params['title'] = $params['row']['title'];
+		} else {
+			$overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+				'*',
+				'tx_news2_domain_model_category',
+				'deleted=0 AND sys_language_uid=' . $overlayLanguage . ' AND l10n_parent=' . $params['row']['uid']
 			);
-
-			$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
-			$parentCategory = ', ' . $row['title'];
-			$GLOBALS['TYPO3_DB']->sql_free_result($res);
+			if (isset($overlayRecord[0]['title'])) {
+				$params['title'] = $overlayRecord[0]['title'] . ' (' . $params['row']['title'] . ')';
+			} else {
+				$params['title'] = $params['row']['title'];
+			}
 		}
-
-		$params['title'] = $params['row']['title'] . $parentCategory;
 	}
 
 	/**

@@ -28,7 +28,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 	'ctrl' => array(
 		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_category',
 		'label'     => 'title',
-		'label_alt' => 'parentcategory',
+		'label_alt' => 'parentcategory,sys_language_uid',
 		'label_alt_force' => 1,
 		'label_userFunc' => 'user_tx_news2_labelFunc->getUserLabelCategory',
 		'tstamp'    => 'tstamp',
@@ -194,5 +194,15 @@ if (!empty($configurationArray['pageModuleFieldsCategory'])) {
 		'icon' => TRUE
 	);
 }
+
+
+	// extend user settings
+$GLOBALS['TYPO3_USER_SETTINGS']['columns']['news2overlay'] = array(
+	'label'			=> 'LLL:EXT:news2/Resources/Private/Language/locallang.xml:usersettings.overlay',
+	'type'			=> 'select',
+	'itemsProcFunc'	=> 'tx_news2_itemsProcFunc->user_categoryOverlay',
+);
+$GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
+	--div--;LLL:EXT:news2/Resources/Private/Language/locallang.xml:usersettings.tab,news2overlay';
 
 ?>

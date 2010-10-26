@@ -135,7 +135,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 		),
 		'parentcategory' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
+			'l10n_mode' => 'exclude',
 			'label' => $ll . 'tx_news2_domain_model_category.parentcategory',
 			'config' => array(
 				'type' => 'select',
@@ -144,7 +144,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 				'treeView' => 1,
 				'treeName' => 'newscategorytree',
 				'foreign_table' => 'tx_news2_domain_model_category',
-				'foreign_table_where' => ' AND tx_news2_domain_model_category.uid > 0',
+				'foreign_table_where' => ' AND tx_news2_domain_model_category.sys_language_uid = 0',
 				'size' => 5,
 				'autoSizeMax' => 10,
 				'minitems' => 0,

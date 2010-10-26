@@ -53,9 +53,43 @@ class tx_news2_itemsProcFunc {
 			array_push($config['items'], $damEntry);
 		}
 
+	}
 
+	/**
+	 * Generate a select box of languages to choose an overlay
+	 * 
+	 * @param array $config
+	 * @param SC_mod_user_setup_index $parentObject
+	 * @return string select box
+	 */
+	public function user_categoryOverlay(array $config, SC_mod_user_setup_index $parentObject) {
+		$html = '';
 
+		$orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ? $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] : $GLOBALS['TYPO3_DB']->stripOrderBy($GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']);
+		$languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			'*',
+			'sys_language',
+			'1=1 ' . t3lib_BEfunc::deleteClause('sys_language'),
+			'',
+			$orderBy
+		);
 
+			// if any language is available
+		if (count($languages) > 0) {
+			$html = '<select name="data[news2overlay]">
+						<option value="0">' . $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.default_value', TRUE) . '</option>';
+
+			foreach($languages as $language) {
+				$selected = ($GLOBALS['BE_USER']->uc['news2overlay'] == $language['uid']) ? ' selected="selected" ' : '';
+				$html .= '<option ' . $selected . 'value="' . $language['uid'] . '">' . htmlspecialchars($language['title']) . '</option>';
+			}
+
+			$html .= '</select>';
+		} else {
+			$html .= $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang.xml:usersettings.no-languages-available', TRUE);
+		}
+
+		return $html;
 	}
 
 

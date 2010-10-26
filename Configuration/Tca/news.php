@@ -175,19 +175,33 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news2_domain_model_news.category',
 			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'db',
-				'allowed' => 'tx_news2_domain_model_category',
-				'size' => 5,
-				'minitems' => 0,
-				'maxitems' => 10,
+
+//				'type' => 'group',
+//				'internal_type' => 'db',
+//				'allowed' => 'tx_news2_domain_model_category',
+//				'size' => 5,
+//				'minitems' => 0,
+//				'maxitems' => 10,
+//				'MM' => 'tx_news2_domain_model_news_category_mm',
+//				'foreign_table' => 'tx_news2_domain_model_category',
+//				'wizards' => array(
+//      				'suggest' => array(
+//        				'type' => 'suggest',
+//					),
+//				),
+
+				'type' => 'select',
+				'form_type' => 'user',
+				'userFunc' => 'tx_news2_treeview->displayCategoryTree',
+				'treeView' => 1,
+				'treeName' => 'newscategorytree',
 				'MM' => 'tx_news2_domain_model_news_category_mm',
 				'foreign_table' => 'tx_news2_domain_model_category',
-				'wizards' => array(
-      				'suggest' => array(
-        				'type' => 'suggest',
-					),
-				),
+				'foreign_table_where' => ' AND tx_news2_domain_model_category.sys_language_uid = 0',
+				'size' => 5,
+				'autoSizeMax' => 10,
+				'minitems' => 0,
+				'maxitems' => 10,
 			)
 		),
 		'related' => array(

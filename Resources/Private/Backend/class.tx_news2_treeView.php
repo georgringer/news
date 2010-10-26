@@ -45,6 +45,23 @@ class tx_news2_tceFunc_selectTreeView extends t3lib_treeview {
 	 * @return	string		the wrapped title
 	 */
 	 function wrapTitle( $title, $v )	{
+				// new version shows translation of language set in user settings
+		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['news2overlay'];
+
+			// no overlay if language of category is not base or no language yet selected
+		if ($overlayLanguage != 0 && $v['sys_language_uid'] == 0) {
+			$overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+				'*',
+				'tx_news2_domain_model_category',
+				'deleted=0 AND sys_language_uid=' . $overlayLanguage . ' AND l10n_parent=' . $v['uid']
+			);
+			if (isset($overlayRecord[0]['title'])) {
+				$title = $overlayRecord[0]['title'] . ' (' . $title . ')';
+			}
+		}
+
+
+
 		if( $v['uid'] > 0 ) {
 			if( in_array( $v['uid'], $this->TCEforms_nonSelectableItemsArray ) ) {
 				return '<a href="#" title="' . $v['description'] . '"><span style="color:#999;cursor:default;">' . $title . '</span></a>';
@@ -166,10 +183,13 @@ class tx_news2_treeview {
 				$treeViewObj = t3lib_div::makeInstance('tx_news2_tceFunc_selectTreeView');
 			}
 
+				// additional where
+			$additionalWhere = $config['foreign_table_where'];
+
 			$treeViewObj->table = $config['foreign_table'];
-			$treeViewObj->init($SPaddWhere);
+			$treeViewObj->init($additionalWhere);
 			$treeViewObj->backPath = $this->pObj->backPath;
-			$treeViewObj->parentField = 'parentcategory';
+			$treeViewObj->parentField = $TCA[$config['foreign_table']]['ctrl']['treeParentField'];
 			$treeViewObj->expandAll = 0;
 			$treeViewObj->expandFirst = 1;
 			$treeViewObj->fieldArray = array('uid','title'); // those fields will be filled to the array $treeViewObj->tree

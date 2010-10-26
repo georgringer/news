@@ -9,6 +9,9 @@
 9) Restrictions as array > Nikolas?
 12) Links from list image to detail?
 13) Restructure partials > Media/...
+14) Tagcloud
+15) Archivmenu: nach Jahr/Monat: performance???
+16) category overlay: how ^^ > switch to "transOrigPointerTable" > pending patch 15557 by Holzinger
 
 
 done
