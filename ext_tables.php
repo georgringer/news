@@ -11,7 +11,7 @@ if (!defined('TYPO3_MODE')) {
 $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
 
 	// alternative labels for news & category records
-t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.user_tx_news2_labelFunc.php');
+t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_news2_labelFunc.php');
 	// category tree
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_news2_treeView.php');
 	// Add additional media types like DAM
@@ -30,7 +30,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 		'label'     => 'title',
 		'label_alt' => 'parentcategory,sys_language_uid',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'user_tx_news2_labelFunc->getUserLabelCategory',
+		'label_userFunc' => 'tx_news2_labelFunc->getUserLabelCategory',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -62,7 +62,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'label'     => 'title',
 		'label_alt' => 'category',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'user_tx_news2_labelFunc->getUserLabelNews',
+		'label_userFunc' => 'tx_news2_labelFunc->getUserLabelNews',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -98,7 +98,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'label'     => 'title',
 		'label_alt' => 'type, showinpreview',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'user_tx_news2_labelFunc->getUserLabelMedia',
+		'label_userFunc' => 'tx_news2_labelFunc->getUserLabelMedia',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
