@@ -42,6 +42,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	protected $searchFields;
 	protected $limit = NULL;
 	protected $offset = NULL;
+	protected $topNewsSetting;
 
 	/**
 	 * Set the order like title desc, tstamp asc
@@ -112,6 +113,15 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	 */
 	public function setArchiveSettings($settings) {
 		$this->archiveSetting = $settings;
+	}
+
+	/**
+	 * Top News settings
+	 *
+	 * @param integer $settings
+	 */
+	public function setTopNewsRestriction($settings) {
+		$this->topNewsSetting = $settings;
 	}
 
 	/**
@@ -256,6 +266,30 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 		}
 
 		return $constraint;
+	}
+
+	/**
+	 * Get the top news constraint
+	 *
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @return
+	 */
+	protected function getTopNewsConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
+        $constraint = NULL;
+
+			// top news
+		if ($this->topNewsSetting == 1) {
+			$constraint = $query->equals(
+				'istopnews', 1
+			);
+			// no top news
+		} elseif ($this->topNewsSetting == 2) {
+			$constraint = $query->greaterThanOrEqual(
+				'istopnews', 0
+			);
+		}
+
+        return $constraint;
 	}
 
 	/**

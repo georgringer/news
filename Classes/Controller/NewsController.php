@@ -46,6 +46,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 		$this->newsRepository->setCategories($this->settings['category']);
 		$this->newsRepository->setCategorySettings($this->settings['categoryMode']);
+		$this->newsRepository->setTopNewsRestriction($this->settings['topNews']);
 		$this->newsRepository->setArchiveSettings($this->settings['archive']);
 		$this->newsRepository->setOrder($this->settings['orderBy'] . ' ' . $this->settings['orderAscDesc']);
 		$this->newsRepository->setOrderRespectTopNews($this->settings['orderByRespectTopNews']);
@@ -68,18 +69,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	public function listAction() {
 		$newsRecords = $this->newsRepository->findList();
 
-		$this->splitNewsRecordsInPartials($newsRecords);
-	}
-
-	/**
-	 * Output a latest view of news
-	 *
-	 * return Tx_News2_Domain_Repository_NewsRepository news
-	 */
-	public function latestAction() {
-		$this->newsRepository->setLatestTimeLimit($this->settings['latest']['timeLimit']);
-
-		$newsRecords = $this->newsRepository->findLatest();
 		$this->splitNewsRecordsInPartials($newsRecords);
 	}
 

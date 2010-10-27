@@ -41,20 +41,8 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		$constraints[] = $this->getArchiveRestriction($query);
 		$constraints[] = $this->getCategoryRestriction($query);
 		$constraints[] = $this->getAdditionalCategoryRestriction($query);
-
-		return $this->executeQuery($query, $constraints);
-	}
-
-	/**
-	 * Latest entries
-	 */
-	public function findLatest() {
-		$query = $this->createQuery();
-
-		$constraints = array();
-		$constraints[] = $this->getArchiveRestriction($query);
-		$constraints[] = $this->getCategoryRestriction($query);
 		$constraints[] = $this->getLatestTimeLimitRestriction($query);
+		$constraints[] = $this->getTopNewsConstraint($query);
 
 		return $this->executeQuery($query, $constraints);
 	}
@@ -70,6 +58,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		$constraints[] = $this->getArchiveRestriction($query);
 		$constraints[] = $this->getCategoryRestriction($query);
 		$constraints[] = $this->getSearchConstraint($query, $searchString);
+		$constraints[] = $this->getTopNewsConstraint($query);
 
 		return $this->executeQuery($query, $constraints);
 	}

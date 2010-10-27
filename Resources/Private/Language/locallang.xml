@@ -40,6 +40,10 @@
 			<label index="flexforms_general.categoryMode.and">Show items with selected categories (AND)</label>
 			<label index="flexforms_general.categoryMode.notand">Do NOT show items with selected categories (AND)</label>
 			<label index="flexforms_general.categoryMode.notor">Do NOT show items with selected categories (OR)</label>
+			<label index="flexforms_general.timeLimit">Time limit</label>
+			<label index="flexforms_general.topNews">Top News</label>
+			<label index="flexforms_general.topNews.1">only Top News records</label>
+			<label index="flexforms_general.topNews.2">except Top News records</label>
 
 			<label index="flexforms_template.imageMaxWidth">Max width for images in news records</label>
 			<label index="flexforms_template.imageMaxHeight">Max height for images in news records</label>
@@ -52,7 +56,7 @@
 			<label index="flexforms_additional.pidBack">PageId to return to</label>
 			<label index="flexforms_additional.limit">Max records displayed</label>
 			<label index="flexforms_additional.offset">Start with news item #</label>
-			<label index="flexforms_additional.orderByRespectTopNews">Respect "Top news" settings</label>
+			<label index="flexforms_additional.orderByRespectTopNews">Sort "Top news" before</label>
 
 
 			<label index="SearchResult">There are %1$s results for "%2$s".</label>

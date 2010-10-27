@@ -1,8 +1,9 @@
 <?php
 
 /**
-* @author Georg Ringer <georg.ringer@cyberhouse.at>
-*/
+ * @version $Id:$
+ * @author Georg Ringer <georg.ringer@cyberhouse.at>
+ */
 
 // starting a nice documentation
 
