@@ -145,7 +145,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'max'      => 20,
 				'eval'     => 'date,required',
 				'checkbox' => 0,
-				'default'  => 0
+				'default'  => mktime(date('H'), date('i'), 0, date('m'), date('d'), date('Y'))
 			)
 		),
 		'archive' => array(
@@ -260,8 +260,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'type' => 'select',
 				'items' => array(
 					array($ll . 'tx_news2_domain_model_news.type.I.0', 0, t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_0.gif'),
-					array($ll . 'tx_news2_domain_model_news.type.I.1', '1', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_1.gif'),
-					array($ll . 'tx_news2_domain_model_news.type.I.2', '2', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_2.gif'),
+					array($ll . 'tx_news2_domain_model_news.type.I.1', 1, t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_1.gif'),
+					array($ll . 'tx_news2_domain_model_news.type.I.2', 2, t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_2.gif'),
 				),
 				'size' => 1,
 				'maxitems' => 1,

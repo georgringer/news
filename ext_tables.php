@@ -203,6 +203,6 @@ $GLOBALS['TYPO3_USER_SETTINGS']['columns']['news2overlay'] = array(
 	'itemsProcFunc'	=> 'tx_news2_itemsProcFunc->user_categoryOverlay',
 );
 $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
-	--div--;LLL:EXT:news2/Resources/Private/Language/locallang.xml:usersettings.tab,news2overlay';
+	--div--;LLL:EXT:news2/Resources/Private/Language/locallang.xml:pi1_title,news2overlay';
 
 ?>

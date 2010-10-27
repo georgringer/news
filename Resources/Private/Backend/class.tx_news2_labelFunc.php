@@ -35,7 +35,12 @@ class tx_news2_labelFunc {
 	public function getUserLabelNews(array $params) {
 		$categoryTitles = $this->getCategories($params['row']['uid'], $params['row']['category']);
 
-		$params['title'] = $params['row']['title'] . ', cat: ' . $categoryTitles;
+		$params['title'] = $params['row']['title'];
+
+		if ($categoryTitles) {
+			$params['title'] .= ', cat: ' . $categoryTitles;
+		}
+
 	}
 
 
@@ -64,8 +69,11 @@ class tx_news2_labelFunc {
 			// new version shows translation of language set in user settings
 		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['news2overlay'];
 
+			// in list view: show normal label
+		$listView = t3lib_div::isFirstPartOfStr(t3lib_div::getIndpEnv('REQUEST_URI'), '/typo3/sysext/list/mod1/db_list.php');
+
 			// no overlay if language of category is not base or no language yet selected
-		if ($overlayLanguage == 0 && $params['row']['sys_language_uid'] > 0) {
+		if ($listView || ($overlayLanguage == 0 && $params['row']['sys_language_uid'] > 0)) {
 			$params['title'] = $params['row']['title'];
 		} else {
 			$overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
@@ -97,11 +105,17 @@ class tx_news2_labelFunc {
 			$newTitle .= ' ' . $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media.show');
 		}
 		
-
 		$params['title'] = $params['row']['title'] . $newTitle;
 	}
 
 
+	/**
+	 * Get news categories based on the news id
+	 * 
+	 * @param integer $newsUid
+	 * @param integer $catMM
+	 * @return string list of categories
+	 */
 	private function getCategories($newsUid, $catMM) {
 		if ($catMM == 0) {
 			return 'no cat';
@@ -118,12 +132,9 @@ class tx_news2_labelFunc {
 		while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$catTitles[] = $row['title'];
 		}
+		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 
 		return implode(', ', $catTitles);
-
-//		$records =
-
-		return 'asiasp';
 	}
 
 }
