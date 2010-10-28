@@ -24,7 +24,6 @@
 
 /**
  * ViewHelper to render links from news records to detail view or page
- * Not ready
  *
  * @package TYPO3
  * @subpackage tx_news2
@@ -41,17 +40,25 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 	 * @param string $class
 	 * @return string url
 	 */
-	public function render(Tx_News2_Domain_Model_News $newsItem, array $settings=array(), $renderTypeClass = FALSE, $class = '') {
+	public function render(Tx_News2_Domain_Model_News $newsItem, array $settings=array(), $renderTypeClass = TRUE, $class = '') {
 		$url = '';
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 		$linkConfiguration = array();
 
-//		t3lib_div::print_array($settings);
+		if ($renderTypeClass && !empty($class)) {
+			$linkConfiguration['ATagParams'] = 'class="list-item ' . $class . '"';
+		} elseif(!empty($class)) {
+			$linkConfiguration['ATagParams'] = 'class="' . $class . '"';
+		}
+
 		
 		$newsType = $newsItem->getType();
 
 		if ($newsType == 0) {
-			$url = '0 news';
+			$pageId = ((int)($settings['pidDetail']) > 0) ? (int)($settings['pidDetail']) : $GLOBALS['TSFE']->id;
+			$linkConfiguration['parameter'] = $pageId;
+			$linkConfiguration['additionalParams'] = '&tx_news2_pi1[controller]=News&tx_news2_pi1[action]=detail&tx_news2_pi1[news]=' . $newsItem->getUid();
+			$linkConfiguration['useCacheHash'] = 1;
 		} elseif($newsType == 1) {
 			$linkConfiguration['parameter'] = $newsItem->getInternalurl();
 		} elseif($newsType == 2) {
@@ -62,7 +69,5 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 			
 
 		return $cObj->typolink($this->renderChildren(), $linkConfiguration);
-
-
 	}
 }
