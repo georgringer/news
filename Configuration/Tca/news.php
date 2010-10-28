@@ -14,7 +14,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 	'columns' => array(
 		'sys_language_uid' => array(
 			'exclude' => 1,
-			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+			'label'  => 'LLL:EXT:cms/locallang_ttc.xml:sys_language_uid_formlabel',
 			'config' => array(
 				'type'                => 'select',
 				'foreign_table'       => 'sys_language',
@@ -54,7 +54,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'starttime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
+			'label'   => 'LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel',
 			'config'  => array(
 				'type'     => 'input',
 				'size'     => 8,
@@ -67,7 +67,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'endtime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
+			'label'   => 'LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel',
 			'config'  => array(
 				'type'     => 'input',
 				'size'     => 8,
@@ -97,7 +97,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		),
 		'title' => array(
 			'exclude' => 0,
-			'label' => $ll . 'tx_news2_domain_model_news.title',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xml:header_formlabel',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -117,7 +117,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'bodytext' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.bodytext',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xml:bodytext_formlabel',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 30,
@@ -164,7 +164,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'author' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.author',
+			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.author_formlabel',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -227,7 +227,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'related_files' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.related_files',
+			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.palettes.media',
 			'config' => array(
 				'type' => 'inline',
 //				'internal_type' => 'db',
@@ -255,13 +255,14 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'type' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.type',
+//			'label' => $ll . 'tx_news2_domain_model_news.type',
+			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.doktype_formlabel',
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
-					array($ll . 'tx_news2_domain_model_news.type.I.0', 0, t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_0.gif'),
-					array($ll . 'tx_news2_domain_model_news.type.I.1', 1, t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_1.gif'),
-					array($ll . 'tx_news2_domain_model_news.type.I.2', 2, t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/selicon_tx_news2_domain_model_news_type_2.gif'),
+					array($ll . 'tx_news2_domain_model_news.type.I.0', 0),
+					array($ll . 'tx_news2_domain_model_news.type.I.1', 1),
+					array($ll . 'tx_news2_domain_model_news.type.I.2', 2),
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -270,7 +271,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'keywords' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.keywords',
+			'label' => $TCA['pages']['columns']['keywords']['label'],
 			'config' => array(
 				'type' => 'text',
 				'cols' => 30,
@@ -305,7 +306,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'internalurl' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.internalurl',
+			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.palettes.links',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'db',
@@ -324,7 +325,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'externalurl' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.externalurl',
+			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.doktype.I.8',
 			'config' => array(
 				'type' => 'input',
 				'size' => 50,
@@ -342,44 +343,62 @@ $TCA['tx_news2_domain_model_news'] = array(
 	'types' => array(
 			// default news
 		'0' => array(
-			'showitem' =>
-				'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;3,;;;;2-2-2, teaser;;;;3-3-3,datetime;;2,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.content,
-					bodytext;;;richtext[]:rte_transform[mode=ts],
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.additional,category, related, keywords,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,related_files,media,,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.extended,'
+			'showitem' => 'l10n_parent, l10n_diffsource,
+					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,bodytext;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css],
+
+				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
+
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,related_files,media,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// internal url
 		'1' => array(
-			'showitem' =>
-				'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;3,;;;;2-2-2, teaser;;;;3-3-3,datetime;;2,internalurl,
-				--div--;Additional information,category, related, keywords,
-				--div--;Media,media,
-				--div--;Extended,'
-		),
+			'showitem' => 'l10n_parent, l10n_diffsource,
+					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,internalurl,
 
+				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
+
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,related_files,media,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
+		),
 			// external url
-		'2' => array(
-			'showitem' =>
-				'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title;;3,;;;;2-2-2, teaser;;;;3-3-3,datetime;;2,externalurl,
-				--div--;Additional information,category, related, keywords,
-				--div--;Media,media'
-		)
+		'2' => array( 
+			'showitem' => 'l10n_parent, l10n_diffsource,
+					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,externalurl,
+
+				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
+
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,related_files,media,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
+		),
 	),
 	'palettes' => array(
 		'1' => array(
-			'showitem' => 'starttime, endtime, fe_group',
+			'showitem' => ', endtime, fe_group',
 			'canNotCollapse' => TRUE
 		),
 		'2' => array(
-			'showitem' => 'archive',
+			'showitem' => 'datetime,archive',
 			'canNotCollapse' => TRUE
 		),
 		'3' => array(
-			'showitem' => 'type,istopnews,author',
-			'canNotCollapse' => TRUE
+			'showitem' => 'istopnews, type, sys_language_uid, hidden',
+//			'canNotCollapse' => TRUE
 		),
+		'access' => array(
+			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel, --linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel',
+			'canNotCollapse' => 1,
+		),
+
+
+
+//		author
 	)
 );
 
