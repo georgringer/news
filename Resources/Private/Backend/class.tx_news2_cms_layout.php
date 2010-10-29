@@ -108,6 +108,9 @@ class tx_news2_cms_layout {
 	 * @return string
 	 */
 	private function getArchiveSettings($data) {
+		if (!is_array($data))
+			return '';
+
 		$content = '';
 		$archive = $data['data']['sDEF']['lDEF']['settings.archive']['vDEF'];
 
@@ -131,6 +134,9 @@ class tx_news2_cms_layout {
 	 * @return string
 	 */
 	private function getCategorySettings($data) {
+		if (!is_array($data))
+			return '';
+
 		$content = $categoryMode = '';
 		$categoriesOut = array();
 
