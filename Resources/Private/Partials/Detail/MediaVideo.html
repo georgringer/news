@@ -1,6 +1,8 @@
 {namespace n=Tx_News2_ViewHelpers}
 
-<n:video url="{mediaElement.video}" caption="{mediaElement.title}" width="250" height="300" />
+<div class="mediaelement mediaelement-video">
+	<n:video url="{mediaElement.video}" caption="{mediaElement.title}" width="272" height="300" />
+</div>
 
 <f:if condition="{mediaElement.title}">
 	<p class="news2-img-caption">

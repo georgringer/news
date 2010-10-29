@@ -1,5 +1,10 @@
 {namespace n=Tx_News2_ViewHelpers}
 
+<!--
+	=====================
+		News/Detail.html
+-->
+
 <div class="news2 news2-single">
 	<div class="article">
 		<div class="header">
@@ -63,11 +68,9 @@
 							<li>
 								<span class="news2-related-news-date"><f:format.date format="d.m.Y">{related.datetime}</f:format.date></span>
 								<span class="hidden">. </span>
-								<span class="news2-related-news-link">
-									<f:link.action pageUid="{settings.pidDetail}" action="detail" arguments="{news: related}">
-										{related.title}
-									</f:link.action>
-								</span>
+								<n:link newsItem="{related}" settings="{settings}" class="news2-related-news-link">
+									{related.title}
+								</n:link>
 							</li>
 							 
 						</f:for>

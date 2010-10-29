@@ -1,5 +1,12 @@
-<div>
-	<strong>{mediaElement.dam.title}</strong>
+{namespace n=Tx_News2_ViewHelpers}
 
-	<f:image src="{mediaElement.dam.filePath}{mediaElement.dam.fileName}" alt="{mediaElement.dam.title}" title="{mediaElement.dam.title}" maxWidth="120" />
+<div class="mediaelement mediaelement-dam">
+	<a rel="lightbox[myImageSet]" title="{mediaElement.dam.title}" href="{n:imageSrc(src:'{mediaElement.dam.filePath}{mediaElement.dam.fileName}' maxWidth:'800')}">
+		<f:image src="{mediaElement.dam.filePath}{mediaElement.dam.fileName}" alt="{mediaElement.dam.title}" title="{mediaElement.dam.title}" maxWidth="120" />
+	</a>
 </div>
+<f:if condition="{mediaElement.dam.title}">
+	<p class="news2-img-caption">
+		{mediaElement.dam.title}
+	</p>
+</f:if>

@@ -380,7 +380,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 	),
 	'palettes' => array(
 		'1' => array(
-			'showitem' => ', endtime, fe_group',
+			'showitem' => 'endtime, fe_group',
 			'canNotCollapse' => TRUE
 		),
 		'2' => array(
