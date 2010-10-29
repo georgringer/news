@@ -28,13 +28,18 @@ plugin.tx_news2 {
 		orderByRespectTopNews = 0
 		cropLength = 100
 
+		# --------------
+		#  Related Files
+		# --------------
 		relatedFiles {
+			# File Download
 			download {
 				target = _blank
 				jumpurl = 1
-				cObject = TEXT
-				#cObject.value = overwritten from viewHelper
-				
+				labelStdWrap {
+					cObject = TEXT
+					#cObject.value = overwritten from viewHelper
+				}
 			}
 		}
 

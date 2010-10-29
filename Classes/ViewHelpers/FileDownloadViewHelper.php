@@ -65,18 +65,11 @@ class Tx_News2_ViewHelpers_FileDownloadViewHelper extends Tx_Fluid_Core_ViewHelp
 
 		);
 
-//		t3lib_div::print_array($configuration);
+
 		$configuration = $this->convertExtbaseToClassicTS($configuration);
 
-//		t3lib_div::print_array($configuration);
-//
 			// merge default configuration with optional configuration
 		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration,$configuration);
-//		$test = t3lib_div::array_merge_recursive_overrule($tsConfiguration, $configuration);
-//echo 'yy<hr />xx';
-//		t3lib_div::print_array($tsConfiguration);
-//		echo 'yy<hr />xx';
-		t3lib_div::print_array($tsConfiguration);
 
 			// generate file
 		$file = $cObj->filelink($file, $tsConfiguration);
@@ -84,23 +77,32 @@ class Tx_News2_ViewHelpers_FileDownloadViewHelper extends Tx_Fluid_Core_ViewHelp
 		return $file;
 	}
 
-	public function convertExtbaseToClassicTS($extBaseTS) {
+
+	/**
+	 * Modify TS to fit cObjs
+	 * 
+	 * @todo really needed? check convertExtbaseToClassicTS in extbase_utility
+	 * @param array $extBaseTS
+	 * @return array convertes TS
+	 */
+	public function convertExtbaseToClassicTS(array $extBaseTS) {
 		$classicTS = array();
 		if(is_array($extBaseTS)) {
 			foreach($extBaseTS as $key => $value) {
 				if(is_array($value)) {
-					if(isset($value['_typoscriptNodeValue'])){
-						$classicTS[$key] = $value['_typoscriptNodeValue'];
-						unset($value['_typoscriptNodeValue']);
-						echo 'x';
-					}
-
-					foreach($value as $k1 => $v1) {
-						if ($k1 == '_typoScriptNodeValue') {
-							$classicTS[$key] = $v1;
-							
-						}
-					}
+//					if(isset($value['_typoscriptNodeValue'])){
+////						$classicTS[$key] = $value['_typoscriptNodeValue'];
+////						unset($value['_typoscriptNodeValue']);
+//						echo 'x';
+//					}
+ 
+//					foreach($value as $k1 => $v1) {
+//						echo $k1;
+//						if ($k1 == '_typoScriptNodeValue') {
+//							$value[$key] = $v1 . 'xxxxxxxxxxxxxxxxxxxxx';
+//
+//						}
+//					}
 
 					$classicTS[$key.'.'] = $this->convertExtbaseToClassicTS($value);
 				} else{
