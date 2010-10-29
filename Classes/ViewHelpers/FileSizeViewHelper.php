@@ -41,17 +41,13 @@ class Tx_News2_ViewHelpers_FileSizeViewHelper extends Tx_Fluid_Core_ViewHelper_A
 	 * @return string
 	 */
 	public function render($file, $path, $format = '') {
-
-		$cObj = t3lib_div::makeInstance('tslib_cObj');
-
 		$filePath = $path . $file;
 		if (!is_file($filePath)) {
-			// @todo: better exceptions
+				// @todo: better exceptions
 			throw new Exception('Given file is not a valid file: ' . htmlspecialchars($filePath));
 		}
 
 		$fileSize = t3lib_div::formatSize(filesize($filePath), $format);
-
 
 		return $fileSize;
 	}

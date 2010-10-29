@@ -23,6 +23,11 @@ plugin.tx_news2 {
 	# Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
 	# ====================================
 	settings {
+
+		---------------------------------------
+		| General configuration
+		---------------------------------------
+
 		orderBy = datetime
 		orderAscDesc = desc
 		orderByRespectTopNews = 0
@@ -32,16 +37,24 @@ plugin.tx_news2 {
 		#  Related Files
 		# --------------
 		relatedFiles {
+			# File size
+			fileSizeLabels = | K| M| G
+
 			# File Download
 			download {
 				target = _blank
 				jumpurl = 1
+				#jumpurl.secure = 1
 				labelStdWrap {
 					cObject = TEXT
 					#cObject.value = overwritten from viewHelper
 				}
 			}
 		}
+
+		---------------------------------------
+		| View related configuration
+		---------------------------------------
 
 		# --------------
 		#  Search
@@ -78,16 +91,3 @@ plugin.tx_news2 {
 	}
 
 }
-
-/*
-module.tx_news2 {
-	settings < plugin.tx_news2.settings
-	persistence < plugin.tx_news2.persistence
-	view < plugin.tx_news2.view
-	view {
-#		templateRootPath = {$module.tx_news2.view.templateRootPath}
-#		partialRootPath = {$module.tx_news2.view.partialRootPath}
-#		layoutRootPath = {$module.tx_news2.view.layoutRootPath}
-	}
-}
-*/
