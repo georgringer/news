@@ -7,29 +7,34 @@
 	<div class="article">
 		<!-- header -->
 		<div class="header">
-			<h3>{newsItem.title}</h3>
+			<h3>
+				<n:link newsItem="{newsItem}" settings="{settings}">
+					{newsItem.title}
+				</n:link>
+			</h3>
 		</div>
 
 		<!-- media preview element -->
 		<div class="news2-img-wrap">
-			<f:if condition="{newsItem.mediaPreviews}">
-				<f:then>
-					<f:render partial="Media/MediaPreview" arguments="{mediaElement: newsItem.mediaPreviews.0, settings:settings}" />
-				</f:then>
-				<f:else>
-					<f:render partial="Media/MediaPreviewNotAvailable" arguments="{settings:settings}" />
-				</f:else>
-			</f:if>
+			<n:link newsItem="{newsItem}" settings="{settings}">
+				<f:if condition="{newsItem.mediaPreviews}">
+					<f:then>
+						<f:render partial="Media/MediaPreview" arguments="{mediaElement: newsItem.mediaPreviews.0, settings:settings}" />
+					</f:then>
+					<f:else>
+						<f:render partial="Media/MediaPreviewNotAvailable" arguments="{settings:settings}" />
+					</f:else>
+				</f:if>
+			</n:link>
 		</div>
 
 		<!-- teaser text -->
-		<div class="teaser-text">
-			
+		<div class="teaser-text">	
 			<f:if condition="{newsItem.teaser}">
 				<f:then>
-					<f:format.html>
+					<n:format.striptags>
 						<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop>
-					</f:format.html>
+					</n:format.striptags>
 				</f:then>
 				<f:else>
 					<f:format.html>
@@ -37,8 +42,6 @@
 					</f:format.html>
 				</f:else>
 			</f:if>
-
-			<f:render partial="List/LinkToDetail" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
 		</div>
 
 		<!-- footer information -->
