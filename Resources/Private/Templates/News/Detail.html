@@ -83,7 +83,7 @@
 						<f:for each="{newsItem.relatedFiles}" as="relatedFile">
 							<li>
 								<span class="news2-related-files-link">
-									<n:fileDownload file="{relatedFile.file}" path="uploads/tx_news/" >
+									<n:fileDownload file="{relatedFile.file}" path="uploads/tx_news/" configuration="{settings.relatedFiles.download}">
 										{relatedFile.title}
 									</n:fileDownload>
 								</span>

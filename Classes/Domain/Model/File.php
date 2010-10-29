@@ -29,7 +29,7 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueObject {
 
 	/**
 	 * @var string
@@ -45,17 +45,10 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractEntity 
 	 return $this->title;
 	}
 
-	public function setTitle($title) {
-	 $this->title = $title;
-	}
-
 	public function getFile() {
 	 return $this->file;
 	}
 
-	public function setFile($file) {
-	 $this->file = $file;
-	}
 
 
 
