@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Georg Ringer <georg.ringer@cyberhouse.at>
+ * @author Georg Ringer <typo3@ringerge.org>
  */
 
 class Tx_News2_Domain_Model_NewsTest extends Tx_Extbase_BaseTestCase {
@@ -8,7 +8,7 @@ class Tx_News2_Domain_Model_NewsTest extends Tx_Extbase_BaseTestCase {
 	/**
 	 * @test
 	 */
-	public function titleCanbeSet() {
+	public function titleCanBeSet() {
 		$title = 'News title';
 		$newsItem = new Tx_News2_Domain_Model_News();
 		$newsItem->setTitle($title);
