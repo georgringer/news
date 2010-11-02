@@ -130,10 +130,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	 * @param  integer $limit
 	 */
 	public function setLimit($limit) {
-		$limit = (int)$limit;
-		if ($limit > 0) {
-			$this->limit = $limit;
-		}
+		$this->limit = (int)$limit;
 	}
 
 	/**
@@ -142,10 +139,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	 * @param  integer $offset
 	 */
 	public function setOffset($offset) {
-		$offset = (int)$offset;
-		if ($offset > 0) {
-			$this->offset = $offset;
-		}
+		$this->offset = (int)$offset;
 	}
 
 	/**
@@ -322,6 +316,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	 * @param Tx_Extbase_Persistence_Query $query
 	 */
 	protected function setLimitRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
+
 		if ($this->limit != NULL) {
 			$query->setLimit($this->limit);
 		}
