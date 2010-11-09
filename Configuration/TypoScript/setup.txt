@@ -87,6 +87,12 @@ plugin.tx_news2 {
 
 		}
 
+		# --------------
+		#  List
+		# --------------
+		detail {
+			titleInMetaTags = 1
+		}
 
 	}
 

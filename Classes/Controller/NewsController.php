@@ -109,9 +109,11 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @param Tx_News2_Domain_Model_News $news
 	 */
 	public function detailAction(Tx_News2_Domain_Model_News $news) {
-		$this->renderTitle($news->getTitle());
 		$this->view->assign('newsItem', $news);
 
+		if ($this->settings['detail']['titleInMetaTags'] == 1) {
+			$this->renderTitle($news->getTitle());
+		}
 	}
 
 	/***************************************************************************
@@ -124,9 +126,9 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @param array $newsRecords news records
 	 */
 	private function splitNewsRecordsInPartials(array $newsRecords) {
-
 		$templateSwitch = t3lib_div::intExplode('|', $this->settings['templateSwitch'], TRUE);
 
+			// no template switch used
 		if (count($templateSwitch) == 0) {
 			$this->view->assign('news', $newsRecords);
 		} else {
@@ -179,7 +181,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @param array $arguments
 	 * @return string
 	 */
-	protected function localize($key, array $arguments=NULL) {
+	protected function localize($key, array $arguments = NULL) {
 		return Tx_Extbase_Utility_Localization::translate($key, 'news2', $arguments);
 	}
 
