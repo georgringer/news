@@ -43,6 +43,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	protected $limit = NULL;
 	protected $offset = NULL;
 	protected $topNewsSetting;
+	protected $storagePage;
 
 	/**
 	 * Set the order like title desc, tstamp asc
@@ -140,6 +141,10 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	 */
 	public function setOffset($offset) {
 		$this->offset = (int)$offset;
+	}
+
+	public function setStoragePage($setting, $recursive=1) {
+		$this->storagePage = $setting;
 	}
 
 	/**
@@ -367,6 +372,27 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 		if (!empty($finalOrdering)) {
 			$query->setOrderings($finalOrdering);
 		}
+	}
+
+	public function setStoragePageRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
+		$constraint = NULL;
+		
+		if ($this->storagePage == 0) {
+			$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		} else {
+			$query->getQuerySettings()->setRespectStoragePage(FALSE);
+			$pidList = t3lib_div::intExplode(',', $this->storagePage, TRUE);
+
+			$constraintItems = array();
+
+			foreach($pidList as $pid) {
+				$constraintItems[] = $query->equals('pid', $pid);
+			}
+			$constraint = $query->logicalOr($constraintItems);
+		}
+
+		
+        return $constraint;
 	}
 
 

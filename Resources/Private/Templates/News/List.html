@@ -1,12 +1,16 @@
+
+
 <f:if condition="{news}">
 	<f:then>
-		<div class="news2 news2-list-view">
+		<table border="1">
+			<f:render partial="List/ItemHeader" />
+
 			<f:for each="{news}" as="newsItem">
 				<f:cycle values="{0: 'odd', 1: 'even'}" as="className">
-					<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+					<f:render partial="List/item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
 				</f:cycle>
 			</f:for>
-		</div>
+		</table>
 	</f:then>
 	<f:else>
 		<f:render partial="List/noNewsFound" arguments="{settings:settings}"/>
