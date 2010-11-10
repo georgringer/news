@@ -53,7 +53,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$this->newsRepository->setLimit($this->settings['limit']);
 		$this->newsRepository->setOffset($this->settings['offset']);
 		$this->newsRepository->setSearchFields($this->settings['search']['fields']);
-		$this->newsRepository->setStoragePage($this->settings['startingpoint'], $this->settings['startingpoint']['recursive']);
+		$this->newsRepository->setStoragePage($this->recursivePidList($this->settings['startingpoint'], $this->settings['startingpoint']['recursive']));
 
 
 		$this->requestOverrule();
@@ -226,6 +226,32 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		}
 
 		return $access;
+	}
+
+	protected function recursivePidList($pidlist = '', $recursive = 0) {
+		if ($recursive == 0) {
+			return $pidList;
+		}
+
+		$local_cObj = t3lib_div::makeInstance('tslib_cObj');
+
+		$recursive = t3lib_div::intInRange($recursive, 0);
+
+		$pid_list_arr = array_unique(t3lib_div::trimExplode(',', $pidlist, 1));
+		$pid_list     = array();
+
+		foreach($pid_list_arr as $val) {
+			$val = t3lib_div::intInRange($val, 0);
+			if ($val) {
+				$_list = $local_cObj->getTreeList(-1 * $val, $recursive);
+				if ($_list) {
+					$pid_list[] = $_list;
+				}
+			}
+		}
+
+		$extendedPidList = implode(',', $pid_list);
+		return $extendedPidList;
 	}
 }
 

@@ -143,8 +143,8 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 		$this->offset = (int)$offset;
 	}
 
-	public function setStoragePage($setting, $recursive=1) {
-		$this->storagePage = $setting;
+	public function setStoragePage($pidlist) {
+		$this->storagePage = $pidlist;
 	}
 
 	/**
@@ -374,23 +374,20 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 		}
 	}
 
+	/**
+	 * Storagepage restriction
+	 * 
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 */
 	public function setStoragePageRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
 		$constraint = NULL;
+
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 		
-		if ($this->storagePage == 0) {
-			$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		} else {
-			$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		if ($this->storagePage != 0) {
 			$pidList = t3lib_div::intExplode(',', $this->storagePage, TRUE);
-
-			$constraintItems = array();
-
-			foreach($pidList as $pid) {
-				$constraintItems[] = $query->equals('pid', $pid);
-			}
-			$constraint = $query->logicalOr($constraintItems);
+			$constraint = $query->in('pid', $pidList);
 		}
-
 		
         return $constraint;
 	}
