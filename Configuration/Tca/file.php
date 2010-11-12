@@ -65,7 +65,7 @@ $TCA['tx_news2_domain_model_file'] = array(
 				'size' => 30,
 			)
 		),
-		
+
 		'file' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
