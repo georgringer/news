@@ -175,13 +175,18 @@ $TCA['tx_news2_domain_model_category'] = array(
 			'showitem' =>
 				'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, title;;;;2-2-2, parentcategory, ;;;;3-3-3,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,
-				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access, hidden,starttime,endtime,fe_group,
+				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access, 
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,
 '
 		)
 	),
 	'palettes' => array(
-//		'1' => array('showitem' => '')
+		'access' => array(
+			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel, 
+					--linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel',
+			'canNotCollapse' => TRUE,
+		),
 	)
 );
 
