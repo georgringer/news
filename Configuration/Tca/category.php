@@ -174,9 +174,9 @@ $TCA['tx_news2_domain_model_category'] = array(
 		0 => array(
 			'showitem' =>
 				'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, title;;;;2-2-2, parentcategory, ;;;;3-3-3,
-				--div--;' . $ll . 'tx_news2_domain_model_category.tabs.catAndRels, image, description;;;;3-3-3,single_pid;;;;3-3-3,
-				--div--;' . $ll . 'tx_news2_domain_model_category.tabs.access, hidden,starttime,endtime,fe_group,
-				--div--;' . $ll . 'tx_news2_domain_model_category.tabs.extended,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,
+				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access, hidden,starttime,endtime,fe_group,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,
 '
 		)
 	),

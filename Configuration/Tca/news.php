@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 $ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 
 	// extension manager configuration
-$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
+$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news2']);
 
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
@@ -176,7 +176,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'category' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.category',
+			'label' => 'aaa',
 			'config' => array(
 
 //				'type' => 'group',
@@ -402,6 +402,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 
 	// implement TCA tree
 if ($configurationArray['tcaTree']) {
+	$TCA['tx_news2_domain_model_news']['columns']['category']['label'] = 'fo';
 	$TCA['tx_news2_domain_model_news']['columns']['category']['config'] = array(
 		'renderMode' => 'tree',
 		'treeConfig' => array(
@@ -412,8 +413,9 @@ if ($configurationArray['tcaTree']) {
 			),
 		),
 		'type' => 'select',
+		'MM' => 'tx_news2_domain_model_news_category_mm',
 		'foreign_table' => 'tx_news2_domain_model_category',
-		'foreign_table_where' => ' AND tx_news2_domain_model_category.sys_language_uid = 0',
+		'foreign_table_where' => ' AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0)',
 		'size' => 10,
 		'autoSizeMax' => 20,
 		'minitems' => 0,
