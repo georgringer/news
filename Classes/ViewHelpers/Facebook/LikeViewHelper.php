@@ -25,6 +25,17 @@
 /**
  * ViewHelper to add a like button
  * Details: http://developers.facebook.com/docs/reference/plugins/like
+ * 
+ * Examples
+ * ==============
+ * 
+ * <n:facebook.like />
+ * Result: Facebook widget to share the current URL
+ * 
+ * <n:facebook.like url="http://www.typo3.org" width="300" font="arial" />
+ * Result: Facebook widget to share www.typo3.org within a plugin styled with 
+ * width 300 and arial as font
+ * 
  *
  * @package TYPO3
  * @subpackage tx_news2
@@ -52,6 +63,7 @@ class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHel
 		$layout = (!empty($this->arguments['layout'])) ? $this->arguments['layout'] : 'standard';
 		$font = (!empty($this->arguments['font'])) ? $this->arguments['font'] : 'verdana';
 
+			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
 			if (empty($this->arguments['javaScript'])) {
 				$code = '<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>';
@@ -59,6 +71,7 @@ class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHel
 				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
 			}
 		}
+		
 		$code .= '<fb:like layout="' . $layout . '" href="' . rawurlencode($url) . '" width="' . (int)$width . '" font="' . $font . '"></fb:like>';
 
 		return $code;

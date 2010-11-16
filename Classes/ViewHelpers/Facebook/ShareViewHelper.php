@@ -26,8 +26,13 @@
  * ViewHelper to share content
  * Details: http://developers.facebook.com/docs/reference/plugins/like
  *
- * Usage:
+ * Examples
+ * ==============
  * <n:facebook.share text="Teilen" />
+ * Result: Facebook widget to share current URL with the text "Teilen"
+ *
+ * <n:facebook.share text="Share it with your friends" url="http://www.typo3.org" />
+ * Result: Facebook widget to share www.typo3.org with the text "Share with your friends"
  *
  * @package TYPO3
  * @subpackage tx_news2
@@ -47,7 +52,7 @@ class Tx_News2_ViewHelpers_Facebook_ShareViewHelper extends Tx_Fluid_Core_ViewHe
 
 	public function render() {
 		$url = (!empty($this->arguments['layout'])) ? $this->arguments['layout'] : t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
-		
+
 		$code = '<a name="fb_share" type="button_count" share_url="' . rawurlencode($url) . '" href="http://www.facebook.com/sharer.php">' . htmlspecialchars($this->arguments['text']) . '</a>
 					<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>';
 
