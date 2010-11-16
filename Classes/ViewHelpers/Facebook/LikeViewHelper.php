@@ -42,16 +42,24 @@ class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHel
 		$this->registerTagAttribute('layout', 'string', 'Either: standard, button_count or box_count');
 		$this->registerTagAttribute('width', 'integer', 'With of widget, default 450');
 		$this->registerTagAttribute('font', 'string', 'Font, options are: arial, lucidia grande, segoe ui, tahoma, trebuchet ms, verdana');
+		$this->registerTagAttribute('javaScript', 'string', 'JS URL. If not set, default is used, if set to -1 no Js is loaded');
 	}
 
 	public function render() {
+		$code = '';
 		$url = (!empty($this->arguments['layout'])) ? $this->arguments['layout'] : t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
 		$width = ((int)$this->arguments['width']) ? $this->arguments['width'] : 450;
 		$layout = (!empty($this->arguments['layout'])) ? $this->arguments['layout'] : 'standard';
 		$font = (!empty($this->arguments['font'])) ? $this->arguments['font'] : 'verdana';
 
-		$code = '<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-					<fb:like layout="' . $layout . '" href="' . rawurlencode($url) . '" width="' . (int)$width . '" font="' . $font . '"></fb:like>';
+		if ($this->arguments['javaScript'] != '-1') {
+			if (empty($this->arguments['javaScript'])) {
+				$code = '<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>';
+			} else {
+				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
+			}
+		}
+		$code .= '<fb:like layout="' . $layout . '" href="' . rawurlencode($url) . '" width="' . (int)$width . '" font="' . $font . '"></fb:like>';
 
 		return $code;
 	}
