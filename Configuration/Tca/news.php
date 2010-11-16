@@ -5,6 +5,9 @@ if (!defined('TYPO3_MODE')) {
 
 $ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 
+	// extension manager configuration
+$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
+
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
@@ -230,7 +233,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.palettes.media',
 			'config' => array(
 				'type' => 'inline',
-//				'internal_type' => 'db',
 				'allowed' => 'tx_news2_domain_model_file',
 				'foreign_table' => 'tx_news2_domain_model_file',
 				'size' => 5,
@@ -255,7 +257,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'type' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-//			'label' => $ll . 'tx_news2_domain_model_news.type',
 			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.doktype_formlabel',
 			'config' => array(
 				'type' => 'select',
@@ -384,18 +385,40 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'canNotCollapse' => TRUE
 		),
 		'2' => array(
-			'showitem' => 'datetime,archive',
+			'showitem' => 'datetime, archive',
 			'canNotCollapse' => TRUE
 		),
 		'3' => array(
 			'showitem' => 'istopnews, type, sys_language_uid, hidden',
-//			'canNotCollapse' => TRUE
+			'canNotCollapse' => FALSE
 		),
 		'access' => array(
-			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel, --linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel',
-			'canNotCollapse' => 1,
+			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel, 
+					--linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel',
+			'canNotCollapse' => TRUE,
 		),
 	)
 );
+
+	// implement TCA tree
+if ($configurationArray['tcaTree']) {
+	$TCA['tx_news2_domain_model_news']['columns']['category']['config'] = array(
+		'renderMode' => 'tree',
+		'treeConfig' => array(
+			'parentField' => 'parentcategory',
+			'appearance' => array(
+				'expandAll' => TRUE,
+				'showHeader' => TRUE,
+			),
+		),
+		'type' => 'select',
+		'foreign_table' => 'tx_news2_domain_model_category',
+		'foreign_table_where' => ' AND tx_news2_domain_model_category.sys_language_uid = 0',
+		'size' => 10,
+		'autoSizeMax' => 20,
+		'minitems' => 0,
+		'maxitems' => 10,
+	);
+}
 
 ?>

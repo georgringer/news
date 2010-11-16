@@ -7,6 +7,10 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
+	// extension manager configuration
+$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news2']);
+
+
 $ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 
 $TCA['tx_news2_domain_model_category'] = array(
@@ -180,5 +184,26 @@ $TCA['tx_news2_domain_model_category'] = array(
 //		'1' => array('showitem' => '')
 	)
 );
+
+	// implement TCA tree
+if ($configurationArray['tcaTree']) {
+	$TCA['tx_news2_domain_model_category']['columns']['parentcategory']['config'] = array(
+		'renderMode' => 'tree',
+		'treeConfig' => array(
+			'parentField' => 'parentcategory',
+			'appearance' => array(
+				'expandAll' => TRUE,
+				'showHeader' => TRUE,
+			),
+		),
+		'type' => 'select',
+		'foreign_table' => 'tx_news2_domain_model_category',
+		'foreign_table_where' => ' AND tx_news2_domain_model_category.sys_language_uid = 0',
+		'size' => 5,
+		'autoSizeMax' => 10,
+		'minitems' => 0,
+		'maxitems' => 1,
+	);
+}
 
 ?>

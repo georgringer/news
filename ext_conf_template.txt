@@ -14,3 +14,6 @@ hideFileTable = 1
 
  	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.enableDam
 enableDam = 0
+
+ 	# cat=basic/enable/103; type=boolean; label=Enable TcaTree:Feature since 4-5
+tcaTree = 1
