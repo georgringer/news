@@ -126,7 +126,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * 
 	 * @param array $newsRecords news records
 	 */
-	private function splitNewsRecordsInPartials(array $newsRecords) {
+	private function splitNewsRecordsInPartials($newsRecords) {
 		$templateSwitch = t3lib_div::intExplode('|', $this->settings['templateSwitch'], TRUE);
 
 			// no template switch used
