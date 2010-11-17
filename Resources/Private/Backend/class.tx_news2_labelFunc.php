@@ -32,6 +32,11 @@
  */
 class tx_news2_labelFunc {
 
+	/**
+	 * Labels of a news record
+	 * 
+	 * @param array $params 
+	 */
 	public function getUserLabelNews(array $params) {
 		$categoryTitles = $this->getCategories($params['row']['uid'], $params['row']['category']);
 
@@ -118,7 +123,7 @@ class tx_news2_labelFunc {
 	 */
 	private function getCategories($newsUid, $catMM) {
 		if ($catMM == 0) {
-			return 'no cat';
+			return '';
 		}
 
 		$catTitles = array();

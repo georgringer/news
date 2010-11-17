@@ -37,15 +37,21 @@ plugin.tx_news2 {
 		# --------------
 		#  Latest
 		# --------------
-		latest {
-			allowCategoryRestrictionFromGetParams = 1
-			timeLimit = -10 days
-		}
+		# @todo not used anymore, settings needed? 
+		#latest {
+		#	allowCategoryRestrictionFromGetParams = 1
+		#	timeLimit = -10 days
+		#}
 
 		# --------------
 		#  List
 		# --------------
 		list {
+			paginate {
+				itemsPerPage = 1
+				insertAbove = TRUE
+				insertBelow = TRUE
+			}
 			allowCategoryRestrictionFromGetParams = 1
 			allowOrderFromGetParams = 1
 
