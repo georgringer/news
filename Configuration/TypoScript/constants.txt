@@ -7,8 +7,4 @@ plugin.tx_news2 {
 		 # cat=plugin.tx_news2/file; type=string; label=Path to template layouts (FE)
 		layoutRootPath = EXT:news2/Resources/Private/Layouts/
 	}
-	persistence {
-		 # cat=plugin.tx_news2//a; type=int+; label=Default storage PID
-		storagePid =
-	}
 }

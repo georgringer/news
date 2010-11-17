@@ -9,9 +9,6 @@ plugin.tx_news2 {
 		partialRootPath = {$plugin.tx_news2.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_news2.view.layoutRootPath}
 	}
-	persistence {
-		storagePid = {$plugin.tx_news2.persistence.storagePid}
-	}
 	# Modify the translation
 	_LOCAL_LANG {
 		default {
@@ -37,7 +34,7 @@ plugin.tx_news2 {
 		# --------------
 		#  Latest
 		# --------------
-		# @todo not used anymore, settings needed? 
+		# @todo not used anymore, settings needed?
 		#latest {
 		#	allowCategoryRestrictionFromGetParams = 1
 		#	timeLimit = -10 days
@@ -47,6 +44,8 @@ plugin.tx_news2 {
 		#  List
 		# --------------
 		list {
+
+			# Paginate configuration.
 			paginate {
 				itemsPerPage = 1
 				insertAbove = TRUE
