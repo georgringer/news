@@ -205,4 +205,27 @@ $GLOBALS['TYPO3_USER_SETTINGS']['columns']['news2overlay'] = array(
 $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 	--div--;LLL:EXT:news2/Resources/Private/Language/locallang.xml:pi1_title,news2overlay';
 
+
+
+/* ==============================================================================
+ 	Register BE-Modules
+ ============================================================================== */
+
+if (TYPO3_MODE == 'BE') {
+	Tx_Extbase_Utility_Extension::registerModule(
+		$_EXTKEY,
+		'web',
+		'tx_news2_m1',
+		'',
+		array(
+			'Import' => 'index,import',
+		),
+		array(
+			'access' => 'user,group',
+			'icon'   => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/tt_news_article.gif',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
+		)
+	);
+}
+
 ?>
