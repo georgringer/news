@@ -78,7 +78,7 @@ class tx_news2_labelFunc {
 		$listView = t3lib_div::isFirstPartOfStr(t3lib_div::getIndpEnv('REQUEST_URI'), '/typo3/sysext/list/mod1/db_list.php');
 
 			// no overlay if language of category is not base or no language yet selected
-		if ($listView || ($overlayLanguage == 0 && $params['row']['sys_language_uid'] > 0)) {
+		if ((int)$params['row']['uid'] == 0 || $listView || ($overlayLanguage == 0 && $params['row']['sys_language_uid'] > 0)) {
 			$params['title'] = $params['row']['title'];
 		} else {
 			$overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
