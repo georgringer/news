@@ -11,7 +11,7 @@ $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'crdate,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files'
+		'showRecordFieldList' => 'crdate,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -198,26 +198,20 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'size' => 30,
 			)
 		),
+		'author_email' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.author_email_formlabel',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+			)
+		),
 		'category' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'aaa',
 			'config' => array(
-
-//				'type' => 'group',
-//				'internal_type' => 'db',
-//				'allowed' => 'tx_news2_domain_model_category',
-//				'size' => 5,
-//				'minitems' => 0,
-//				'maxitems' => 10,
-//				'MM' => 'tx_news2_domain_model_news_category_mm',
-//				'foreign_table' => 'tx_news2_domain_model_category',
-//				'wizards' => array(
-//      				'suggest' => array(
-//        				'type' => 'suggest',
-//					),
-//				),
-
 				'type' => 'select',
 				'form_type' => 'user',
 				'userFunc' => 'tx_news2_treeview->displayCategoryTree',
@@ -365,6 +359,14 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'default' => 0
 			)
 		),
+		'editlock' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:lang/locallang_tca.xml:editlock',
+			'config' => array(
+				'type' => 'check'
+			)
+		),
 	),
 	'types' => array(
 			// default news
@@ -410,7 +412,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'canNotCollapse' => TRUE
 		),
 		'2' => array(
-			'showitem' => 'datetime, archive',
+			'showitem' => 'author_email,datetime, archive',
 			'canNotCollapse' => TRUE
 		),
 		'3' => array(
@@ -419,7 +421,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 		),
 		'access' => array(
 			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel, 
-					--linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel',
+					--linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel,
+					--linebreak--,editlock,',
 			'canNotCollapse' => TRUE,
 		),
 	)

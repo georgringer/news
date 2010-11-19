@@ -67,6 +67,11 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $author;
 
 	/**
+	 * @var string
+	 */
+	protected $authorEmail;
+	
+	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
 	 * @lazy
 	 */
@@ -166,6 +171,16 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 $this->author = $author;
 	}
 
+	public function getAuthorEmail() {
+		return $this->authorEmail;
+	}
+
+	public function setAuthorEmail($authorEmail) {
+		$this->authorEmail = $authorEmail;
+	}
+
+	
+	
 	/**
 	 *
 	 * * @return Tx_News2_Domain_Model_Category

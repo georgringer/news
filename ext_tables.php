@@ -66,6 +66,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
+		'editlock' => 'editlock',
 		'type' => 'type',
 		'typeicon_column' => 'type',
 		'typeicons' => array (

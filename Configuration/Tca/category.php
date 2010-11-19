@@ -16,7 +16,7 @@ $ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 $TCA['tx_news2_domain_model_category'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_category']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,description,image,parentcategory,single_pid,'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,description,image,parentcategory,single_pid,shortcut,'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_category']['feInterface'],
 	'columns' => array(
@@ -180,12 +180,26 @@ $TCA['tx_news2_domain_model_category'] = array(
 				'show_thumbs' => 1
 			)
 		),
+		'shortcut' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news2_domain_model_category.shortcut',
+			'config' => array(
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'pages',
+				'size' => 1,
+				'maxitems' => 1,
+				'minitems' => 0,
+				'show_thumbs' => 1
+			)
+		),
 	),
 	'types' => array(
 		0 => array(
 			'showitem' =>
 				'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, title;;;;2-2-2, parentcategory, ;;;;3-3-3,
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,shortcut,
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access, 
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,

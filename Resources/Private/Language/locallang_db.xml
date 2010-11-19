@@ -12,6 +12,7 @@
 			<label index="tx_news2_domain_model_category.image">Image</label>
 			<label index="tx_news2_domain_model_category.parentcategory">Parent ID</label>
 			<label index="tx_news2_domain_model_category.single_pid">Single-view page for news from this category</label>
+			<label index="tx_news2_domain_model_category.shortcut">News category shortcut</label>
 
 			<label index="tx_news2_domain_model_news.tabs.media">Media</label>
 			

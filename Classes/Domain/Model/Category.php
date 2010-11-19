@@ -51,6 +51,11 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * @var string
 	 */
 	protected $image;
+	
+	/**
+	 * @var integer
+	 */	
+	protected $shortcut;
 
 	public function getTitle() {
 	 return $this->title;
@@ -89,6 +94,14 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 
 	public function setParentcategory($category) {
 	 $this->parentcategory = $category;
+	}
+
+	public function getShortcut() {
+		return $this->shortcut;
+	}
+
+	public function setShortcut($shortcut) {
+		$this->shortcut = $shortcut;
 	}
 
 
