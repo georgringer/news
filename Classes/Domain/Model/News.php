@@ -32,6 +32,11 @@
 class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
+	 * @var DateTime
+	 */	
+	protected $crdate;
+
+	/**
 	 * @var string
 	 */
 	protected $title;
@@ -296,6 +301,10 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 
 	public function setIstopnews($istopnews) {
 		$this->istopnews = $istopnews;
+	}
+
+	public function getCrdate() {
+		return $this->crdate;
 	}
 
 
