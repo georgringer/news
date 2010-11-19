@@ -30,41 +30,52 @@
  * @version $Id$
  */
 class Tx_News2_Controller_ImportController extends Tx_Extbase_MVC_Controller_ActionController {
-
+	var $currentPageId = NULL;
+	
 	public function indexAction() {
-		$check = $this->checkForInstalledTtnews();
-
-		$this->view->assign('check', $check);
-		if ($check) {
-				// proceed
+		$recordCount = 0;
+		
+		try {
+			$recordCount = $this->getRecordCount('tt_news');
+		} catch (Exception $e) {
+			$this->flashMessages->add($e->getMessage());
 		}
+
+		$this->view->assign('recordCount', $recordCount);	
 	}
 	
-	
 	/**
-	 * Check if tt_news is installed and if there are records for current page
-	 * @return boolean 
+	 * Get count of records
+	 * @param string $table tablename
+	 * @return integer record count 
 	 */
-	private function checkForInstalledTtnews() {
-		$proceedWithImport = TRUE;
-		if (!t3lib_extMgm::isLoaded('tt_news')) {
-			$this->flashMessages->add('tt_news is not installed.');
-			
-			$proceedWithImport = FALSE;
-		} else {
-			$recordCount = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows(
-				'uid',
-				'tt_news',
-				'deleted=0 AND pid=' . $this->id
-			);
+	private function getRecordCount($table = 'tt_news') {
+		$recordCount = 0;
 		
-			if ($recordCount == 0) {
-				$this->flashMessages->add('no records found for this page.');
-				$proceedWithImport = FALSE;
-			}
+		$this->currentPageId = (int)t3lib_div::_GET('id');
+		
+			// check if there is a page id
+		if ($this->currentPageId === 0) {	
+			throw new Exception('no id');
+		} 
+		
+			// check if tt_news is even installed
+		if (!t3lib_extMgm::isLoaded('tt_news')) {
+			throw new Exception('tt_news is not installed');
 		}
 		
-		return $proceedWithImport;
+			// get record count
+		$recordCount = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows(
+			'uid',
+			$table,
+			'deleted=0 AND pid=' . $this->currentPageId
+		);
+
+		if ($recordCount == 0) {
+			throw new Exception('no records found for this page.');
+		}
+		
+		return $recordCount;
 	}
 	
 }
