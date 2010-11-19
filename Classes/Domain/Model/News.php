@@ -23,18 +23,59 @@
 ***************************************************************/
 
 /**
- * News model
- *
- * @package TYPO3
- * @subpackage tx_news2
- * @version $Id$
- */
+* News model
+*
+* @package TYPO3
+* @subpackage tx_news2
+* @version $Id$
+*/
 class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
+	 * @var integer
+	 */
+	protected $pid;
+	
+	/**
 	 * @var DateTime
-	 */	
+	 */
 	protected $crdate;
+
+	/**
+	 * @var DateTime
+	 */
+	protected $tstamp;
+
+	/**
+	 * @var DateTime
+	 */
+	protected $starttime;
+	
+	/**
+	 * @var DateTime
+	 */
+	protected $endtime;
+
+	/**
+	 * @todo keep it as string as it should be only used during imports
+	 * @var string
+	 */
+	protected $feGroup;	
+	
+	/**
+	 * @var boolean
+	 */
+	protected $hidden;	
+
+	/**
+	 * @var boolean
+	 */
+	protected $deleted;
+	
+	/**
+	 * @var integer
+	 */
+	protected $cruserId;
 
 	/**
 	 * @var string
@@ -70,7 +111,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @var string
 	 */
 	protected $authorEmail;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
 	 * @lazy
@@ -120,55 +161,57 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 */
 	protected $istopnews;
 
+	/**
+	 * @var integer
+	 */
+	protected $editlock;
+
 	public function getTitle() {
-	 return $this->title;
+		return $this->title;
 	}
 
 	public function setTitle($title) {
-	 $this->title = $title;
+		$this->title = $title;
 	}
 
 	public function getTeaser() {
-	 return $this->teaser;
+		return $this->teaser;
 	}
 
 	public function setTeaser($teaser) {
-	 $this->teaser = $teaser;
+		$this->teaser = $teaser;
 	}
 
 	public function getBodytext() {
-	 return $this->bodytext;
+		return $this->bodytext;
 	}
 
 	public function setBodytext($bodytext) {
-	 $this->bodytext = $bodytext;
+		$this->bodytext = $bodytext;
 	}
 
-	/**
-	 * @return DateTime
-	 */
 	public function getDatetime() {
-	 return $this->datetime;
+		return $this->datetime;
 	}
 
 	public function setDatetime($datetime) {
-	 $this->datetime = $datetime;
+		$this->datetime = $datetime;
 	}
 
 	public function getArchive() {
-	 return $this->archive;
+		return $this->archive;
 	}
 
 	public function setArchive($archive) {
-	 $this->archive = $archive;
+		$this->archive = $archive;
 	}
 
 	public function getAuthor() {
-	 return $this->author;
+		return $this->author;
 	}
 
 	public function setAuthor($author) {
-	 $this->author = $author;
+		$this->author = $author;
 	}
 
 	public function getAuthorEmail() {
@@ -179,8 +222,6 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		$this->authorEmail = $authorEmail;
 	}
 
-	
-	
 	/**
 	 *
 	 * * @return Tx_News2_Domain_Model_Category
@@ -189,19 +230,18 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		if ($this->category instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->category->_loadRealInstance();
 		}
-	 return $this->category;
+		return $this->category;
 	}
 
 	public function getFirstCategory() {
 		$categories = $this->getCategory();
 		$categories->rewind();
+
 		return $categories->current();
-
-
 	}
 
 	public function setCategory($category) {
-	 $this->category = $category;
+		$this->category = $category;
 	}
 
 	/**
@@ -216,9 +256,9 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	}
 
 	public function setRelated($related) {
-	 $this->related = $related;
+		$this->related = $related;
 	}
-	
+
 	public function getRelatedFiles() {
 		if ($this->relatedFiles instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->relatedFiles->_loadRealInstance();
@@ -227,26 +267,24 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	}
 
 	public function setRelatedFiles($relatedFiles) {
-	 $this->relatedFiles = $relatedFiles;
+		$this->relatedFiles = $relatedFiles;
 	}
 
-
 	public function getType() {
-	 return $this->type;
+		return $this->type;
 	}
 
 	public function setType($type) {
-	 $this->type = $type;
+		$this->type = $type;
 	}
 
 	public function getKeywords() {
-	 return $this->keywords;
+		return $this->keywords;
 	}
 
 	public function setKeywords($keywords) {
-	 $this->keywords = $keywords;
+		$this->keywords = $keywords;
 	}
-
 
 	/**
 	 * Load Media elements
@@ -280,7 +318,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		foreach($mediaElements as $mediaElement) {
 			if ($mediaElement->getShowinpreview()) {
 				$previewCollection[] = $mediaElement;
-			} 
+			}
 		}
 
 		if (count($previewCollection) > 0) {
@@ -291,23 +329,23 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	}
 
 	public function setMedia($media) {
-	 $this->media = $media;
+		$this->media = $media;
 	}
 
 	public function getInternalurl() {
-	 return $this->internalurl;
+		return $this->internalurl;
 	}
 
 	public function setInternalurl($internalurl) {
-	 $this->internalurl = $internalurl;
+		$this->internalurl = $internalurl;
 	}
 
 	public function getExternalurl() {
-	 return $this->externalurl;
+		return $this->externalurl;
 	}
 
 	public function setExternalurl($externalurl) {
-	 $this->externalurl = $externalurl;
+		$this->externalurl = $externalurl;
 	}
 
 	public function getIstopnews() {
@@ -321,6 +359,83 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	public function getCrdate() {
 		return $this->crdate;
 	}
+
+	public function setCrdate($crdate) {
+		$this->crdate = $crdate;
+	}
+
+	public function getPid() {
+		return $this->pid;
+	}
+
+	public function setPid($pid) {
+		$this->pid = $pid;
+	}
+
+	public function getTstamp() {
+		return $this->tstamp;
+	}
+
+	public function setTstamp($tstamp) {
+		$this->tstamp = $tstamp;
+	}
+
+	public function getCruserId() {
+		return $this->cruserId;
+	}
+
+	public function setCruserId($cruserId) {
+		$this->cruserId = $cruserId;
+	}
+
+	public function getEditlock() {
+		return $this->editlock;
+	}
+
+	public function setEditlock($editlock) {
+		$this->editlock = $editlock;
+	}
+
+	public function getHidden() {
+		return $this->hidden;
+	}
+
+	public function setHidden($hidden) {
+		$this->hidden = $hidden;
+	}
+
+	public function getDeleted() {
+		return $this->deleted;
+	}
+
+	public function setDeleted($deleted) {
+		$this->deleted = $deleted;
+	}
+
+	public function getStarttime() {
+		return $this->starttime;
+	}
+
+	public function setStarttime($starttime) {
+		$this->starttime = $starttime;
+	}
+
+	public function getEndtime() {
+		return $this->endtime;
+	}
+
+	public function setEndtime($endtime) {
+		$this->endtime = $endtime;
+	}
+
+	public function getFeGroup() {
+		return $this->feGroup;
+	}
+
+	public function setFeGroup($feGroup) {
+		$this->feGroup = $feGroup;
+	}
+
 
 
 

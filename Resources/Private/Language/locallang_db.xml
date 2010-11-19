@@ -29,6 +29,8 @@
 			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
 			<label index="tx_news2_domain_model_media">Media Element</label>
 			<label index="tx_news2_domain_model_media.title">Title</label>
+			<label index="tx_news2_domain_model_media.alt">Alt title</label>
+			<label index="tx_news2_domain_model_media.caption">Caption</label>
 			<label index="tx_news2_domain_model_media.media">Media Element</label>
 			<label index="tx_news2_domain_model_media.type.I.0">Image</label>
 			<label index="tx_news2_domain_model_media.type.I.2">HTML</label>

@@ -219,7 +219,7 @@ if (TYPO3_MODE == 'BE') {
 		'tx_news2_m1',
 		'',
 		array(
-			'Import' => 'index,import',
+			'Import' => 'index,importNews,importCategory',
 		),
 		array(
 			'access' => 'user,group',

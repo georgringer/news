@@ -11,7 +11,7 @@ $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'crdate,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files'
+		'showRecordFieldList' => 'cruser_id,pid,tstamp,crdate,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -54,6 +54,20 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'default' => 0
 			)
 		),
+		'cruser_id' => array(
+			'exclude' => 1,
+			'label'   => 'cruser_id',
+			'config'  => array(
+				'type'    => 'input'
+			)
+		),
+		'pid' => array(
+			'exclude' => 1,
+			'label'   => 'pid',
+			'config'  => array(
+				'type'    => 'input'
+			)
+		),
 		'crdate' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
@@ -66,7 +80,20 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'default'  => 0,
 				'checkbox' => 0
 			)
-		),		
+		),
+		'tstamp' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => 'crdate',
+			'config'  => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 20,
+				'eval'     => 'date',
+				'default'  => 0,
+				'checkbox' => 0
+			)
+		),
 		'starttime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
@@ -420,7 +447,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'canNotCollapse' => FALSE
 		),
 		'access' => array(
-			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel, 
+			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel,
 					--linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel,
 					--linebreak--,editlock,',
 			'canNotCollapse' => TRUE,

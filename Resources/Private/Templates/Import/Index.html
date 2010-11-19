@@ -6,6 +6,8 @@
 
 <f:section name="content">
 	<f:if condition="{recordCount}">
-		please proceed with import....
+		<f:link.action action="importNews">
+			<f:translate key="start_import" arguments="{0:recordCount}" />
+		</f:link.action>
 	</f:if>
 </f:section>

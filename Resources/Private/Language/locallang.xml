@@ -76,6 +76,9 @@
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>
 			<label index="usersettings.no-languages-available">There are no languages available, so nothing to choose.</label>
+		
+			<!-- BE Module -->
+			<label index="start_import">Start import with %s record(s).</label>
 		</languageKey>
 
 		<languageKey index="de" type="array">

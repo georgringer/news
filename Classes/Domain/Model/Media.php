@@ -32,9 +32,49 @@
 class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
+	 * @var integer
+	 */
+	protected $pid;
+	
+	/**
+	 * @var DateTime
+	 */
+	protected $crdate;
+
+	/**
+	 * @var DateTime
+	 */
+	protected $tstamp;
+
+	/**
+	 * @var boolean
+	 */
+	protected $hidden;	
+
+	/**
+	 * @var boolean
+	 */
+	protected $deleted;
+	
+	/**
+	 * @var integer
+	 */
+	protected $cruserId;
+	
+	/**
 	 * @var string
 	 */
 	protected $title;
+	
+	/**
+	 * @var string
+	 */
+	protected $caption;
+	
+	/**
+	 * @var string
+	 */
+	protected $alt;
 
 	/**
 	 * @var string
@@ -73,6 +113,22 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	public function setTitle($title) {
 	 $this->title = $title;
 	}
+	
+	public function getCaption() {
+		return $this->caption;
+	}
+
+	public function setCaption($caption) {
+		$this->caption = $caption;
+	}
+
+	public function getAlt() {
+		return $this->alt;
+	}
+
+	public function setAlt($alt) {
+		$this->alt = $alt;
+	}	
 
 	public function getMedia() {
 	 return $this->media;
@@ -120,6 +176,54 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 
 	public function setShowinpreview($showinpreview) {
 		$this->showinpreview = $showinpreview;
+	}
+
+	public function getPid() {
+		return $this->pid;
+	}
+
+	public function setPid($pid) {
+		$this->pid = $pid;
+	}
+
+	public function getCrdate() {
+		return $this->crdate;
+	}
+
+	public function setCrdate($crdate) {
+		$this->crdate = $crdate;
+	}
+
+	public function getTstamp() {
+		return $this->tstamp;
+	}
+
+	public function setTstamp($tstamp) {
+		$this->tstamp = $tstamp;
+	}
+
+	public function getHidden() {
+		return $this->hidden;
+	}
+
+	public function setHidden($hidden) {
+		$this->hidden = $hidden;
+	}
+
+	public function getDeleted() {
+		return $this->deleted;
+	}
+
+	public function setDeleted($deleted) {
+		$this->deleted = $deleted;
+	}
+
+	public function getCruserId() {
+		return $this->cruserId;
+	}
+
+	public function setCruserId($cruserId) {
+		$this->cruserId = $cruserId;
 	}
 
 

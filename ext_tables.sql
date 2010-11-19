@@ -121,6 +121,8 @@ CREATE TABLE tx_news2_domain_model_media (
 	sorting int(10) DEFAULT '0' NOT NULL,
 	deleted tinyint(4) DEFAULT '0' NOT NULL,
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	caption tinytext,
+	alt tinytext,
 	title tinytext,
 	media text,
 	type int(11) DEFAULT '0' NOT NULL,
