@@ -67,7 +67,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $endtime;
 
 	/**
-	 * @todo keep it as string as it should be only used during imports
+	 * keep it as string as it should be only used during imports
 	 * @var string
 	 */
 	protected $feGroup;	

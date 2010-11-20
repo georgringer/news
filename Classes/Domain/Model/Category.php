@@ -37,6 +37,11 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	protected $pid;
 
 	/**
+	 * @var integer
+	 */
+	protected $sorting;
+	
+	/**
 	 * @var DateTime
 	 */
 	protected $crdate;
@@ -46,6 +51,16 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 */
 	protected $tstamp;
 
+	/**
+	 * @var DateTime
+	 */
+	protected $starttime;
+	
+	/**
+	 * @var DateTime
+	 */
+	protected $endtime;
+	
 	/**
 	 * @var integer
 	 */
@@ -85,8 +100,18 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	/**
 	 * @var integer
 	 */
+	protected $singlePid;
+	
+	/**
+	 * @var integer
+	 */
 	protected $importId;
 
+	/**
+	 * keep it as string as it should be only used during imports
+	 * @var string
+	 */
+	protected $feGroup;	
 
 	public function getPid() {
 		return $this->pid;
@@ -110,6 +135,22 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
+	}
+	
+	public function getStarttime() {
+		return $this->starttime;
+	}
+
+	public function setStarttime($starttime) {
+		$this->starttime = $starttime;
+	}
+
+	public function getEndtime() {
+		return $this->endtime;
+	}
+
+	public function setEndtime($endtime) {
+		$this->endtime = $endtime;
 	}
 
 	public function getSysLanguageUid() {
@@ -175,6 +216,14 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 		$this->shortcut = $shortcut;
 	}
 
+	public function getSinglePid() {
+		return $this->singlePid;
+	}
+
+	public function setSinglePid($singlePid) {
+		$this->singlePid = $singlePid;
+	}
+
 	public function getImportId() {
 		return $this->importId;
 	}
@@ -182,6 +231,23 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	public function setImportId($importId) {
 		$this->importId = $importId;
 	}
+
+	public function getSorting() {
+		return $this->sorting;
+	}
+
+	public function setSorting($sorting) {
+		$this->sorting = $sorting;
+	}
+
+	public function getFeGroup() {
+		return $this->feGroup;
+	}
+
+	public function setFeGroup($feGroup) {
+		$this->feGroup = $feGroup;
+	}
+
 
 
 }

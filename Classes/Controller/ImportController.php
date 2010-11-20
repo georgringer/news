@@ -62,10 +62,6 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		 * @var Tx_News2_Domain_Repository_NewsRepository
 		 */
 		$newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
-//		/**
-//		 * @var Tx_News2_Domain_Repository_MediaRepository
-//		 */
-//		$mediaRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_MediaRepository');
 
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
@@ -100,55 +96,30 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 			$news->setFeGroup($row['fe_group']);
 			$news->setKeywords($row['keywords']);
 			$news->setSysLanguageUid($row['sys_language_uid']);
-			
+			$news->setType($row['type']);
+			$news->setInternalurl($row['page']);
+			$news->setExternalurl($row['ext_url']);
+
 				// substitute l10n_parent first with old news record * -1
 			$news->setL10nParent(($row['l10n_parent'] * -1));
 
-			$news->setMedia($this->importMediaCollection($row));
-			$news->setRelatedFiles($this->importFileCollection($row));
-			$news->setRelatedLinks($this->importLinkCollection($row));
-
+			$news->setMedia($this->importNewsMediaCollection($row));
+			$news->setRelatedFiles($this->importNewsFileCollection($row));
+			$news->setRelatedLinks($this->importNewsLinkCollection($row));
+			$news->setCategory($this->importNewsCategoryCollection($row));
 				// @todo how to import related news?
 				// idea: import tt_news ORDER BY uid ASC to ensure news imported before?
 
 
-
-//  related int(11) DEFAULT '0' NOT NULL,
-
-
-//  category int(11) DEFAULT '0' NOT NULL,
-
-
-//  type tinyint(4) DEFAULT '0' NOT NULL,
-//  page int(11) DEFAULT '0' NOT NULL,
-
-
-//  ext_url varchar(255) DEFAULT '' NOT NULL,
-//
-//  sys_language_uid int(11) DEFAULT '0' NOT NULL,
-//  l18n_parent int(11) DEFAULT '0' NOT NULL,
-//  l18n_diffsource mediumblob NOT NULL,
-
-//
-//  t3ver_oid int(11) DEFAULT '0' NOT NULL,
-//  t3ver_id int(11) DEFAULT '0' NOT NULL,
-//  t3ver_wsid int(11) DEFAULT '0' NOT NULL,
-//  t3ver_label varchar(30) DEFAULT '' NOT NULL,
-//  t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
-//  t3ver_stage tinyint(4) DEFAULT '0' NOT NULL,
-//  t3ver_count int(11) DEFAULT '0' NOT NULL,
-//  t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
-//  t3_origuid int(11) DEFAULT '0' NOT NULL,
-
 			$newsRepository->add($news);
-
 		}
 
+		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 	}
 
 
 
-	
+
 	public function importCategoryOverviewAction() {
 		$recordCount = 0;
 
@@ -159,7 +130,46 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		}
 
 		$this->view->assign('recordCount', $recordCount);
-	}	
+	}
+	
+	public function importCategoryAction() {
+		/**
+		 * @var Tx_News2_Domain_Repository_CategoryRepository
+		 */
+		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
+
+
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',
+			'tt_news_cat',
+			'deleted=0 AND pid='. (int)t3lib_div::_GET('id')
+		);
+
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+			/**
+			 * @var Tx_News2_Domain_Model_Category
+			 */
+			$category = new Tx_News2_Domain_Model_Category();
+
+			$category->setImportId($row['uid']);
+			$category->setPid($row['pid']);
+			$category->setTitle($row['title']);
+			$category->setStarttime($row['starttime']);
+			$category->setEndtime($row['endtime']);
+			$category->setCrdate($row['crdate']);
+			$category->setSorting($row['sorting']);
+			$category->setDescription($row['description']);
+			$category->setSinglePid($row['single_pid']);
+			$category->setShortcut($row['shortcut']);
+			$category->setImage($this->copyCategoryImage($row));
+			
+				// @todo import parent category rom parent_category > parentcategory
+			$categoryRepository->add($category);
+		}
+
+		$GLOBALS['TYPO3_DB']->sql_free_result($res);		
+		
+	}
 }
 
 ?>

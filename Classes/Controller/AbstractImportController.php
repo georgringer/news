@@ -37,17 +37,13 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	 * @param array $row tt_news record
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
-	public function importMediaCollection(array $row) {
+	public function importNewsMediaCollection(array $row) {
 		$mediaElementCollection = NULL;
 
 			// import images into media elements
 		$imageSplit = t3lib_div::trimExplode(',', $row['image'], TRUE);
 		if (count($imageSplit) > 0) {
-			$absolutePath = str_replace(
-								'typo3/mod.php',
-								'',
-								t3lib_div::getIndPenv('SCRIPT_FILENAME')
-					);
+			$absolutePath = $this->getAbsPath();
 
 				// split addtional info, no trimming!
 			$captionSplit = t3lib_div::trimExplode(chr(10), $row['imagecaption'], FALSE);
@@ -100,17 +96,13 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	 * @param array $row tt_news record
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
-	public function importFileCollection(array $row) {
+	public function importNewsFileCollection(array $row) {
 		$fileElementCollection = NULL;
 
 			// import images into media elements
 		$fileSplit = t3lib_div::trimExplode(',', $row['news_files'], TRUE);
 		if (count($fileSplit) > 0) {
-			$absolutePath = str_replace(
-					'typo3/mod.php',
-					'',
-					t3lib_div::getIndPenv('SCRIPT_FILENAME')
-				);
+			$absolutePath = $this->getAbsPath();
 
 
 			$fileElementCollection = new Tx_Extbase_Persistence_ObjectStorage();
@@ -150,7 +142,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	 * @param array $row tt_news record
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
-	public function importLinkCollection(array $row) {
+	public function importNewsLinkCollection(array $row) {
 		$linkElementCollection = NULL;
 
 			// import images into media elements
@@ -202,7 +194,57 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 
 		return $linkElementCollection;
 	}
+	
+	public function importNewsCategoryCollection(array $row) {
+		
+		
+	}
+	
+	
+	/***********************************
+	 *    C A T E G O R Y
+	 *************************************/
 
+	public function copyCategoryImage(array $row) {
+		$categoryImage = $row['image'];
+		if (!empty($categoryImage)) {
+			
+			$absolutePath = $this->getAbsPath();
+
+				// copy file
+			t3lib_div::upload_copy_move(
+				$absolutePath . 'uploads/pics/' . $categoryImage,
+				$absolutePath . 'uploads/tx_news/' . $categoryImage
+			);
+		}
+		
+		return $categoryImage;
+	}
+
+
+
+
+
+
+	/***********************************
+	 *    G E N E R A L
+	 *************************************/
+	
+	/**
+	 * Get the absolute path
+	 * 
+	 * @return string
+	 */
+	public function getAbsPath() {
+		$absolutePath = str_replace(
+			'typo3/mod.php',
+			'',
+			t3lib_div::getIndPenv('SCRIPT_FILENAME')
+		);
+		
+		return $absolutePath;
+	}
+	
 	/**
 	 * Get count of records
 	 * @param string $table tablename
