@@ -10,12 +10,12 @@ if (!defined('TYPO3_MODE')) {
 $ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 
 
-$TCA['tx_news2_domain_model_file'] = array(
-	'ctrl' => $TCA['tx_news2_domain_model_file']['ctrl'],
+$TCA['tx_news2_domain_model_link'] = array(
+	'ctrl' => $TCA['tx_news2_domain_model_link']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,html,video,showInPreview'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,description,uri'
 	),
-	'feInterface' => $TCA['tx_news2_domain_model_file']['feInterface'],
+	'feInterface' => $TCA['tx_news2_domain_model_link']['feInterface'],
 	'columns' => array(
 		'pid' => array(
 			'exclude' => 1,
@@ -92,38 +92,44 @@ $TCA['tx_news2_domain_model_file'] = array(
 		'title' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_file.title',
+			'label' => $ll . 'tx_news2_domain_model_link.title',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
 			)
 		),
-
-		'file' => array(
+		'description' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_file.file',
+			'label' => $ll . 'tx_news2_domain_model_link.description',
 			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'file',
-				'allowed' => '',
-				'disallowed' => 'php,php3',
-				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-				'uploadfolder' => 'uploads/tx_news',
-				'show_thumbs' => 1,
-				'size' => 1,
-				'minitems' => 0,
-				'maxitems' => 1,
+				'type' => 'text',
+				'cols' => 30,
+				'rows' => 5,
 			)
 		),
+		'uri' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news2_domain_model_link.uri',
+			'config' => array(
+				'type' => 'input',
+				'eval' => 'required',
+				'size' => 30,
+			)
+		),		
 	),
 	'types' => array(
 			// image
-		0 => array('showitem' => 'file;;1,title')
+		0 => array('showitem' => 'uri;;1;;,title;;2,')
 	),
 	'palettes' => array(
 		'1' => array(
 			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, type, hidden',
+			'canNotCollapse' => TRUE
+		),
+		'2' => array(
+			'showitem' => 'description',
 			'canNotCollapse' => TRUE
 		)
 	)

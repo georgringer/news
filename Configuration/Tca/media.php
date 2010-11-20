@@ -17,6 +17,39 @@ $TCA['tx_news2_domain_model_media'] = array(
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_media']['feInterface'],
 	'columns' => array(
+		'pid' => array(
+			'exclude' => 1,
+			'label'   => 'pid',
+			'config'  => array(
+				'type'    => 'input'
+			)
+		),
+		'crdate' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => 'crdate',
+			'config'  => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 20,
+				'eval'     => 'date',
+				'default'  => 0,
+				'checkbox' => 0
+			)
+		),
+		'tstamp' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => 'crdate',
+			'config'  => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 20,
+				'eval'     => 'date',
+				'default'  => 0,
+				'checkbox' => 0
+			)
+		),		
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',

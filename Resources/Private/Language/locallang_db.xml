@@ -42,6 +42,10 @@
 			<label index="tx_news2_domain_model_file">File Element</label>
 			<label index="tx_news2_domain_model_file.title">Title</label>
 			<label index="tx_news2_domain_model_file.file">File</label>
+			
+			<label index="tx_news2_domain_model_link.title">Title</label>
+			<label index="tx_news2_domain_model_link.description">Description</label>
+			<label index="tx_news2_domain_model_link.uri">URL</label>
 		</languageKey>
 	</data>
 </T3locallang>

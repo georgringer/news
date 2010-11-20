@@ -20,6 +20,39 @@ $TCA['tx_news2_domain_model_category'] = array(
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_category']['feInterface'],
 	'columns' => array(
+'pid' => array(
+			'exclude' => 1,
+			'label'   => 'pid',
+			'config'  => array(
+				'type'    => 'input'
+			)
+		),
+		'crdate' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => 'crdate',
+			'config'  => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 20,
+				'eval'     => 'date',
+				'default'  => 0,
+				'checkbox' => 0
+			)
+		),
+		'tstamp' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label'   => 'crdate',
+			'config'  => array(
+				'type'     => 'input',
+				'size'     => 8,
+				'max'      => 20,
+				'eval'     => 'date',
+				'default'  => 0,
+				'checkbox' => 0
+			)
+		),
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
@@ -194,6 +227,11 @@ $TCA['tx_news2_domain_model_category'] = array(
 				'show_thumbs' => 1
 			)
 		),
+		'import_id' => array(
+			'config' => array(
+				'type' => 'input'
+			)
+		),
 	),
 	'types' => array(
 		0 => array(
@@ -201,7 +239,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 				'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, title;;;;2-2-2, parentcategory, ;;;;3-3-3,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,shortcut,
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access, 
-					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,impport_id,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,
 '
 		)

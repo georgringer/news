@@ -30,7 +30,31 @@
  * @version $Id$
  */
 class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueObject {
+	/**
+	 * @var integer
+	 */
+	protected $pid;
+	
+	/**
+	 * @var DateTime
+	 */
+	protected $crdate;
 
+	/**
+	 * @var DateTime
+	 */
+	protected $tstamp;
+	
+	/**
+	 * @var integer
+	 */
+	protected $sysLanguageUid;
+
+	/**
+	 * @var integer
+	 */
+	protected $l10nParent;
+	
 	/**
 	 * @var string
 	 */
@@ -41,13 +65,63 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	 */
 	protected $file;
 
+	public function getPid() {
+		return $this->pid;
+	}
+
+	public function setPid($pid) {
+		$this->pid = $pid;
+	}
+
+	public function getCrdate() {
+		return $this->crdate;
+	}
+
+	public function setCrdate($crdate) {
+		$this->crdate = $crdate;
+	}
+
+	public function getTstamp() {
+		return $this->tstamp;
+	}
+
+	public function setTstamp($tstamp) {
+		$this->tstamp = $tstamp;
+	}	
+	
+	public function getSysLanguageUid() {
+		return $this->sysLanguageUid;
+	}
+
+	public function setSysLanguageUid($sysLanguageUid) {
+		$this->sysLanguageUid = $sysLanguageUid;
+	}
+
+	public function getL10nParent() {
+		return $this->l10nParent;
+	}
+
+	public function setL10nParent($l10nParent) {
+		$this->l10nParent = $l10nParent;
+	}
+	
 	public function getTitle() {
-	 return $this->title;
+		return $this->title;
+	}
+
+	public function setTitle($title) {
+		$this->title = $title;
 	}
 
 	public function getFile() {
-	 return $this->file;
+		return $this->file;
 	}
+
+	public function setFile($file) {
+		$this->file = $file;
+	}
+
+
 
 
 

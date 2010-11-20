@@ -148,6 +148,36 @@ $TCA['tx_news2_domain_model_file'] = array(
 	),
 );
 
+t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_file');
+
+$TCA['tx_news2_domain_model_link'] = array(
+	'ctrl' => array(
+		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_link',
+		'label'     => 'title',
+		'label_alt' => 'uri',
+		'label_alt_force' => 1,
+		'tstamp'    => 'tstamp',
+		'crdate'    => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'type' => 'type',
+		'languageField'            => 'sys_language_uid',
+		'transOrigPointerField'    => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'dividers2tabs' => TRUE,
+		'default_sortby' => 'ORDER BY sorting',
+		'sortby' => 'sorting',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+		),
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/link.php',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_news2_domain_model_link.gif',
+		'hideTable'			=> (boolean)$configurationArray['hideFileTable']
+	),
+);
+
+t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_link');
+
 /***************
  * Plugin
  */
@@ -219,7 +249,7 @@ if (TYPO3_MODE == 'BE') {
 		'tx_news2_m1',
 		'',
 		array(
-			'Import' => 'index,importNews,importCategory',
+			'Import' => 'index,importNewsOverview,importCategoryOverview,importNews,importCategory',
 		),
 		array(
 			'access' => 'user,group',

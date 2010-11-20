@@ -47,6 +47,16 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	protected $tstamp;
 
 	/**
+	 * @var integer
+	 */
+	protected $sysLanguageUid;
+
+	/**
+	 * @var integer
+	 */
+	protected $l10nParent;
+	
+	/**
 	 * @var boolean
 	 */
 	protected $hidden;	
@@ -106,6 +116,7 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	protected $showinpreview;
 
+	
 	public function getTitle() {
 	 return $this->title;
 	}
@@ -224,6 +235,22 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 
 	public function setCruserId($cruserId) {
 		$this->cruserId = $cruserId;
+	}
+
+	public function getSysLanguageUid() {
+		return $this->sysLanguageUid;
+	}
+
+	public function setSysLanguageUid($sysLanguageUid) {
+		$this->sysLanguageUid = $sysLanguageUid;
+	}
+
+	public function getL10nParent() {
+		return $this->l10nParent;
+	}
+
+	public function setL10nParent($l10nParent) {
+		$this->l10nParent = $l10nParent;
 	}
 
 

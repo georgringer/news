@@ -23,19 +23,18 @@
 ***************************************************************/
 
 /**
- * Category Model
+ * Link model
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEntity {
-
+class Tx_News2_Domain_Model_Link extends Tx_Extbase_DomainObject_AbstractValueObject {
 	/**
 	 * @var integer
 	 */
 	protected $pid;
-
+	
 	/**
 	 * @var DateTime
 	 */
@@ -55,7 +54,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * @var integer
 	 */
 	protected $l10nParent;
-
+	
 	/**
 	 * @var string
 	 */
@@ -67,26 +66,9 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	protected $description;
 
 	/**
-	 * @var Tx_News2_Domain_Model_Category
-	 * @lazy
-	 */
-	protected $parentcategory;
-
-	/**
 	 * @var string
 	 */
-	protected $image;
-
-	/**
-	 * @var integer
-	 */
-	protected $shortcut;
-
-	/**
-	 * @var integer
-	 */
-	protected $importId;
-
+	protected $uri;
 
 	public function getPid() {
 		return $this->pid;
@@ -110,8 +92,8 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
-	}
-
+	}	
+	
 	public function getSysLanguageUid() {
 		return $this->sysLanguageUid;
 	}
@@ -127,64 +109,35 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	public function setL10nParent($l10nParent) {
 		$this->l10nParent = $l10nParent;
 	}
-	
-	public function getTitle() {
-	 return $this->title;
+
+		public function getTitle() {
+		return $this->title;
 	}
 
 	public function setTitle($title) {
-	 $this->title = $title;
+		$this->title = $title;
 	}
 
 	public function getDescription() {
-	 return $this->description;
+		return $this->description;
 	}
 
 	public function setDescription($description) {
-	 $this->description = $description;
+		$this->description = $description;
 	}
 
-	public function getImage() {
-	 return $this->image;
+	public function getUri() {
+		return $this->uri;
 	}
 
-	public function setImage($image) {
-	 $this->image = $image;
+	public function setUri($uri) {
+		$this->uri = $uri;
 	}
 
-	/**
-	 *
-	 * * @return Tx_News2_Domain_Model_Category
-	 */
-	public function getParentcategory() {
-		if ($this->parentcategory instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->parentcategory->_loadRealInstance();
-		}
-	 return $this->parentcategory;
-	}
 
-	public function setParentcategory($category) {
-	 $this->parentcategory = $category;
-	}
 
-	public function getShortcut() {
-		return $this->shortcut;
-	}
-
-	public function setShortcut($shortcut) {
-		$this->shortcut = $shortcut;
-	}
-
-	public function getImportId() {
-		return $this->importId;
-	}
-
-	public function setImportId($importId) {
-		$this->importId = $importId;
-	}
 
 
 }
-
 
 ?>

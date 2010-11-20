@@ -11,7 +11,7 @@ $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'cruser_id,pid,tstamp,crdate,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files'
+		'showRecordFieldList' => 'cruser_id,pid,tstamp,crdate,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -300,6 +300,33 @@ $TCA['tx_news2_domain_model_news'] = array(
 				)
 			)
 		),
+		'related_links' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.palettes.media',
+			'config' => array(
+				'type' => 'inline',
+				'allowed' => 'tx_news2_domain_model_link',
+				'foreign_table' => 'tx_news2_domain_model_link',
+				'size' => 5,
+				'minitems' => 0,
+				'maxitems' => 10,
+//				'MM' => 'tx_news2_domain_model_news_file_mm',
+				'appearance' => array(
+					'collapseAll' => 1,
+					'expandSingle' => 1,
+					'levelLinksPosition' => 'bottom',
+					'useSortable' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showRemovedLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'showSynchronizationLink' => 1,
+					'enabledControls' => array(
+						'info' => FALSE,
+					)
+				)
+			)
+		),
 		'type' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
@@ -394,6 +421,11 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'type' => 'check'
 			)
 		),
+		'import_id' => array(
+			'config' => array(
+				'type' => 'input'
+			)
+		),
 	),
 	'types' => array(
 			// default news
@@ -404,8 +436,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,related_files,media,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,import_id,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// internal url
@@ -416,8 +448,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,related_files,media,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,import_id,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// external url
@@ -428,22 +460,23 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,related_files,media,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,import_id,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 	),
 	'palettes' => array(
 		'1' => array(
-			'showitem' => 'endtime, fe_group',
+			'showitem' => 'endtime, fe_group,',
 			'canNotCollapse' => TRUE
 		),
 		'2' => array(
-			'showitem' => 'author_email,datetime, archive',
+			'showitem' => 'author_email,
+							--linebreak--, datetime, archive,',
 			'canNotCollapse' => TRUE
 		),
 		'3' => array(
-			'showitem' => 'istopnews, type, sys_language_uid, hidden',
+			'showitem' => 'istopnews, type, sys_language_uid, hidden,',
 			'canNotCollapse' => FALSE
 		),
 		'access' => array(
@@ -457,7 +490,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 
 	// implement TCA tree
 if ($configurationArray['tcaTree']) {
-	$TCA['tx_news2_domain_model_news']['columns']['category']['label'] = 'fo';
 	$TCA['tx_news2_domain_model_news']['columns']['category']['config'] = array(
 		'renderMode' => 'tree',
 		'treeConfig' => array(
