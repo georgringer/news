@@ -31,6 +31,10 @@
  */
 class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Controller_ActionController {
 
+	/***********************************
+	 *   N E W S
+	 *************************************/
+	
 	/**
 	 * Create media collection based on tt_news media record
 	 *
@@ -243,6 +247,17 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 		);
 		
 		return $absolutePath;
+	}
+	
+	public function updateImportRecord($table, $uid, $newUid) {
+		$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
+			$table,
+			'uid=' . (int)$uid,
+			array(
+				'exportid' => $newUid,
+				
+			)
+		);
 	}
 	
 	/**
