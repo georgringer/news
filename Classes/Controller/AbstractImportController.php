@@ -199,11 +199,89 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 		return $linkElementCollection;
 	}
 	
-	public function importNewsCategoryCollection(array $row) {
-		
+	public function fixNewsCategoryRelation(array $row) {
+		if ($row['category'] > 0) {
+			$mmRelations = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+				'tt_news_cat.*',
+				'tt_news_cat_mm LEFT JOIN tt_news_cat ON tt_news_cat_mm.uid_foreign=tt_news_cat.uid',
+				'tt_news_cat_mm.uid_local=' . $row['uid'],
+				'',
+				'tt_news_cat_mm.sorting'
+			);
+
+			$newCategoryList = array();
+			foreach ($mmRelations as $relation) {
+				if ($relation['exportid'] < 0) {
+					$newCategoryList[] = $relation['exportid'] * (-1);
+				} elseif($relation['exportid'] > 0) {
+					$newCategoryList[] = $relation['exportid'];
+				}
+			}
+			if (count($newCategoryList) > 0) {
+				$catCount = 0;
+				foreach($newCategoryList as $newCat) {
+					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
+						'tx_news2_domain_model_news_category_mm',
+						array(
+							'uid_local'	=> $row['exportid'],
+							'uid_foreign' => $newCat,
+							'sorting'	=> $catCount++
+						)
+					);
+				}
+				$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
+					'tx_news2_domain_model_news',
+					'uid=' . $row['exportid'],
+					array(
+						'category' => $catCount
+					)
+				);
+			}		
+		}
 		
 	}
-	
+
+	public function fixNewsRelatedRelation(array $row) {
+		if ($row['related'] > 0) {
+			$mmRelations = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+				'tt_news.*',
+				'tt_news_related_mm LEFT JOIN tt_news ON tt_news_related_mm.uid_foreign=tt_news.uid',
+				'tt_news_related_mm.uid_local=' . $row['uid'],
+				'',
+				'tt_news_related_mm.sorting'
+			);
+
+			$newRelatedList = array();
+			foreach ($mmRelations as $relation) {
+				if ($relation['exportid'] < 0) {
+					$newRelatedList[] = $relation['exportid'] * (-1);
+				} elseif($relation['exportid'] > 0) {
+					$newRelatedList[] = $relation['exportid'];
+				}
+			}
+			if (count($newRelatedList) > 0) {
+				$relatedCount = 0;
+				foreach($newRelatedList as $newRelated) {
+					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
+						'tx_news2_domain_model_news_related_mm',
+						array(
+							'uid_local'	=> $row['exportid'],
+							'uid_foreign' => $newRelated,
+							'sorting'	=> $newRelated++
+						)
+					);
+				}
+				$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
+					'tx_news2_domain_model_news',
+					'uid=' . $row['exportid'],
+					array(
+						'related' => $newRelated
+					)
+				);
+			}		
+		}
+		
+	}	
 	
 	/***********************************
 	 *    C A T E G O R Y
@@ -252,6 +330,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 					'uid=' . $row['parent_category']
 				);
 
+					// set parentcategory for news2
 				$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 					'tx_news2_domain_model_category',
 					'uid=' . $row['exportid'],
@@ -259,8 +338,6 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 						'parentcategory' => $equivalentParentRecord['exportid']
 					)
 				);
-				
-				t3lib_div::print_array('uid :' . $row['exportid'] . ', to '. $equivalentParentRecord['exportid']);
 			}
 			
 				// update ttnewscat record to know that this recor is done

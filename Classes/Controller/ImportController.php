@@ -67,7 +67,7 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',
 			'tt_news',
-			'deleted=0 AND t3ver_id=0 AND t3ver_wsid = 0 AND pid='. (int)t3lib_div::_GET('id')
+			'exportid = 0 AND deleted=0 AND t3ver_id=0 AND t3ver_wsid = 0 AND pid='. (int)t3lib_div::_GET('id')
 		);
 
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
@@ -106,10 +106,6 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 			$news->setMedia($this->importNewsMediaCollection($row));
 			$news->setRelatedFiles($this->importNewsFileCollection($row));
 			$news->setRelatedLinks($this->importNewsLinkCollection($row));
-			$news->setCategory($this->importNewsCategoryCollection($row));
-				// @todo how to import related news?
-				// idea: import tt_news ORDER BY uid ASC to ensure news imported before?
-
 
 			$newsRepository->add($news);
 			
@@ -118,9 +114,46 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 			$persistenceManager->persistAll();
 
 			$newUid = $news->getUid();
+				
+				// update news record
+			$this->updateImportRecord('tt_news', $row['uid'], $newUid);
 		}
 
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
+		
+			// fix parent categories
+		$fixedRecords = $this->fixNews(t3lib_div::_GET('id'));
+	}
+	
+	
+	public function fixNews($pageUid) {
+		/**
+		 * @var Tx_News2_Domain_Repository_NewsRepository
+		 */
+		$newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
+
+		
+		$count = 0;
+			// get all categories
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',
+			'tt_news',
+			'exportId > 0 AND pid='. (int)$pageUid
+		);
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+				// l10n_parent
+			
+				// related news
+			$this->fixNewsRelatedRelation($row);
+				// category
+//			$this->fixNewsCategoryRelation($row);
+			
+
+			
+		}
+		
+		
+		
 	}
 
 

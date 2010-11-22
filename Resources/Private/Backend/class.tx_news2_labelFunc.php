@@ -128,11 +128,11 @@ class tx_news2_labelFunc {
 
 		$catTitles = array();
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query(
-			'tx_news_domain_model_category.title as title',
-			'tx_news_domain_model_news',
-			'tx_news_domain_model_news_category_mm',
-			'tx_news_domain_model_category',
-			' AND tx_news_domain_model_news.uid=' . (int)$newsUid
+			'tx_news2_domain_model_category.title as title',
+			'tx_news2_domain_model_news',
+			'tx_news2_domain_model_news_category_mm',
+			'tx_news2_domain_model_category',
+			' AND tx_news2_domain_model_news.uid=' . (int)$newsUid
 		);
 		while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$catTitles[] = $row['title'];
