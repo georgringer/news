@@ -112,6 +112,12 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 
 
 			$newsRepository->add($news);
+			
+				//Enforce persistence which is the chance to get new uid
+			$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
+			$persistenceManager->persistAll();
+
+			$newUid = $news->getUid();
 		}
 
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
@@ -185,41 +191,8 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 
 		
 			// fix parent categories
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-			'*',
-			'tt_news_cat',
-			'exportId > 0 AND pid='. (int)t3lib_div::_GET('id')
-		);
-		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-			
-				// just need to check those records which got a parent
-			if ($row['parent_category'] > 0) {
-					// get ttnews parent record to know its new pair
-				$equivalentParentRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
-					'*',
-					'tt_news_cat',
-					'uid=' . $row['parent_category']
-				);
-
-				$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
-					'tx_news2_domain_model_category',
-					'uid=' . $row['exportid'],
-					array(
-						'parentcategory' => $equivalentParentRecord['exportid']
-					)
-				);
-			}
-			
-				// update ttnewscat record to know that this recor is done
-			$GLOBALS['TYPO3_DB']->execUPDATEquery(
-				'tt_news_cat',
-				'uid=' . $row['uid'],
-				array(
-					'exportId' => -1
-				)
-			);
-		}
-		
+		$fixedRecords = $this->fixCategories(t3lib_div::_GET('id'));
+		$this->view->assign('fixedRecords', $fixedRecords);
 	}
 }
 

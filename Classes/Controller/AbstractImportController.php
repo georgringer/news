@@ -225,7 +225,58 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 		return $categoryImage;
 	}
 
+	/**
+	 * Update categories and fix parent category
+	 * 
+	 * @param integer $pageUid page uid
+	 * @return int count of modified records
+	 */
+	public function fixCategories($pageUid) {
+		$count = 0;
+			// get all categories
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',
+			'tt_news_cat',
+			'exportId > 0 AND pid='. (int)$pageUid
+		);
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+			
+				// just need to check those records which got a parent
+				// as this is the only field to update
+			if ($row['parent_category'] > 0) {
+				
+					// get ttnews parent record to know its new pair
+				$equivalentParentRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
+					'*',
+					'tt_news_cat',
+					'uid=' . $row['parent_category']
+				);
 
+				$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
+					'tx_news2_domain_model_category',
+					'uid=' . $row['exportid'],
+					array(
+						'parentcategory' => $equivalentParentRecord['exportid']
+					)
+				);
+			}
+			
+				// update ttnewscat record to know that this recor is done
+			$GLOBALS['TYPO3_DB']->execUPDATEquery(
+				'tt_news_cat',
+				'uid=' . $row['uid'],
+				array(
+					'exportId' => -1
+				)
+			);
+			
+			$count++;
+		}
+		
+		$GLOBALAS['TYPO3_DB']->sql_free_result($res);
+		
+		return $count;
+	}
 
 
 
@@ -249,6 +300,14 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 		return $absolutePath;
 	}
 	
+	/**
+	 * Update tt_news record and set news2's id
+	 * 
+	 * @param string $table tt_news or tt_news_cat
+	 * @param integer $uid uid of tt_news record
+	 * @param integer $newUid uid of news2' record
+	 * @return void
+	 */
 	public function updateImportRecord($table, $uid, $newUid) {
 		$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 			$table,
