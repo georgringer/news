@@ -259,21 +259,23 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 						'parentcategory' => $equivalentParentRecord['exportid']
 					)
 				);
+				
+				t3lib_div::print_array('uid :' . $row['exportid'] . ', to '. $equivalentParentRecord['exportid']);
 			}
 			
 				// update ttnewscat record to know that this recor is done
-			$GLOBALS['TYPO3_DB']->execUPDATEquery(
+			$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 				'tt_news_cat',
 				'uid=' . $row['uid'],
 				array(
-					'exportId' => -1
+					'exportid' => $row['exportid'] * (-1)
 				)
 			);
 			
 			$count++;
 		}
 		
-		$GLOBALAS['TYPO3_DB']->sql_free_result($res);
+		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 		
 		return $count;
 	}
