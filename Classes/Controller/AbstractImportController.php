@@ -27,7 +27,7 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
+ * @version $Id$ 
  */
 class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Controller_ActionController {
 
