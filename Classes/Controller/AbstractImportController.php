@@ -281,7 +281,31 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			}		
 		}
 		
-	}	
+	}
+	
+	public function fixNewsL10nParentRelation(array $row) {
+		if ($row['sys_language_uid'] > 0) {
+			$updateArray = array();
+			$updateArray['sys_language_uid'] = $row['sys_language_uid'];
+			
+				// language parent
+			if ($row['l18n_parent'] > 0) {
+				$languageParent = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
+					'*',
+					'tt_news',
+					'uid=' . $row['l18n_parent']
+				);
+				$updateArray['l10n_parent'] = $languageParent['exportid'];
+			}
+			
+				// update news2 record
+			$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
+				'tx_news2_domain_model_news',
+				'uid=' . $row['exportid'],
+				$updateArray
+			);
+		}
+	}
 	
 	/***********************************
 	 *    C A T E G O R Y
