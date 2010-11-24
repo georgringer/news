@@ -1,12 +1,10 @@
-{namespace n=Tx_News2_ViewHelpers}
-
 <div class="mediaelement mediaelement-image">
-	<a rel="lightbox[myImageSet]" title="{mediaElement.title}" href="{n:imageSrc(src:'uploads/tx_news/{mediaElement.media}' maxWidth:'800')}">
+	<a rel="lightbox[myImageSet]" title="{mediaElement.caption}" href="{f:uri.image(src:'uploads/tx_news/{mediaElement.media}' maxWidth:'800')}">
 		<f:image src="uploads/tx_news/{mediaElement.media}" title="{mediaElement.title}"  alt="{mediaElement.title}" maxWidth="282" />
 	</a>
 </div>
-<f:if condition="{mediaElement.title}">
+<f:if condition="{mediaElement.caption}">
 	<p class="news2-img-caption">
-		{mediaElement.title}
+		{mediaElement.caption}
 	</p>
 </f:if>
