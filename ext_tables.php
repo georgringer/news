@@ -215,10 +215,24 @@ if (TYPO3_MODE == 'BE') {
  * Show news table in page module
  */
 if (!empty($configurationArray['pageModuleFieldsNews'])) {
-	$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news2_domain_model_news'][0] = array(
-		'fList' => htmlspecialchars($configurationArray['pageModuleFieldsNews']),
-		'icon' => TRUE
-	);
+//	$configurationArray['pageModuleFieldsNews'] = 'LLL:EXT:cms/locallang_ttc.xml:sys_language_uid_formlabel=title,datetime;LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent=title,category,teaser,bodytext';
+	$addTableItems = t3lib_div::trimExplode(';', $configurationArray['pageModuleFieldsNews'], TRUE);
+	foreach($addTableItems as $item) {
+		$split = t3lib_div::trimExplode('=', $item, TRUE);
+		$fList = $fTitle = '';
+		if (count($split) == 2) {
+			$fTitle = $split[0];
+			$fList = $split[1];
+		} else {
+			$fList = $split[0];
+		}
+		$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news2_domain_model_news'][] = array(
+			'MENU' => $fTitle,
+			'fList' => $fList,
+			'icon' => TRUE,
+		);
+	}
+	
 }
 
 if (!empty($configurationArray['pageModuleFieldsCategory'])) {

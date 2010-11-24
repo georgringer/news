@@ -1,7 +1,7 @@
  #  @version $Id:$
 
 	# cat=basic/enable/100; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.pageModuleFieldsNews
-pageModuleFieldsNews = title,author,teaser,datetime,archive,category
+pageModuleFieldsNews = LLL:EXT:news2/Resources/Private/Language/locallang.xml:pagemodule_simple=title,datetime;LLL:EXT:news2/Resources/Private/Language/locallang.xml:pagemodule_advanced=title,datetime,teaser,category;LLL:EXT:news2/Resources/Private/Language/locallang.xml:pagemodule_complex=title,datetime,teaser,category,archive;
 
  	# cat=basic/enable/101; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.pageModuleFieldsCategory
 pageModuleFieldsCategory = title,description

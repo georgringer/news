@@ -65,9 +65,15 @@
 			<label index="related-news">Related news</label>
 			<label index="related-files">Related files</label>
 			<label index="author">created by %s</label>
+			
+			
+			<!-- Page Module Record list -->
+			<label index="pagemodule_simple">Simple list</label>
+			<label index="pagemodule_advanced">Advanced list</label>
+			<label index="pagemodule_complex">Full list</label>
 
 			<!-- Extension Manager Configuration -->
-			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module.</label>
+			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module by using the following syntax: label=fieldlist;label=fieldlist</label>
 			<label index="extmng.pageModuleFieldsCategory">Category fields shown in page module:Set the fields which should be shown in the page module.</label>
 			<label index="extmng.hideMediaTable">Hide Media records:As the media elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
 			<label index="extmng.hideFileTable">Hide File records:As the file elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
