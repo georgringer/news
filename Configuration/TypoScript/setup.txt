@@ -20,6 +20,11 @@ plugin.tx_news2 {
 	# Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
 	# ====================================
 	settings {
+		# general settings
+		pidBackAdditionalParams {
+			
+		}		
+
 		orderBy = datetime
 		orderAscDesc = desc
 		orderByRespectTopNews = 0

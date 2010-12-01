@@ -93,7 +93,7 @@ class tx_news2_cms_layout {
 			$result .= '<br /><br /><table>' .
 						$this->getArchiveSettings($data) .
 						$this->getCategorySettings($data) .
-						$this->getStartingPoint($params['row']['pages']) .
+						$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']) .
 					 '</table>';
 
 		}

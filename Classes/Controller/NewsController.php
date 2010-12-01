@@ -36,6 +36,16 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	protected $newsRepository;
 
+//	/**
+//	 *
+//	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepo 
+//	 */
+//	public function injectNewsRepository(Tx_News2_Domain_Repository_NewsRepository $newsRepo) {
+////		print_r($newsRepo);
+////		die('x');
+//		$this->newsRepository = $newsRepo;
+//	}
+//	
 	/**
 	 * Initializes the current action
 	 *
@@ -128,7 +138,9 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	private function splitNewsRecordsInPartials($newsRecords) {
 		$templateSwitch = t3lib_div::intExplode('|', $this->settings['templateSwitch'], TRUE);
+$this->view->assign('news', $newsRecords);
 
+return;
 			// no template switch used
 		if (count($templateSwitch) == 0) {
 			$this->view->assign('news', $newsRecords);
