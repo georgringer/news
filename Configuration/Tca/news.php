@@ -163,11 +163,20 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news2_domain_model_news.teaser',
-			'config' => array(
-				'type' => 'text',
-				'cols' => 30,
-				'rows' => 5,
+			'config' => array (
+        'type' => 'select',
+        'renderMode' => 'tree',
+        'subType' => 'db',
+        'foreign_table' => 'pages',
+        'size' => '5',
+        'treeConfig' => array(
+            'parentField' => 'pid',
+			
+			'appearance' => array(
+				'expandAll' => TRUE
 			)
+        )
+    ) 
 		),
 		'bodytext' => array(
 			'exclude' => 0,
@@ -240,17 +249,21 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'label' => 'aaa',
 			'config' => array(
 				'type' => 'select',
-				'form_type' => 'user',
-				'userFunc' => 'tx_news2_treeview->displayCategoryTree',
-				'treeView' => 1,
-				'treeName' => 'newscategorytree',
+				'renderMode' => 'tree',
+				'treeConfig' => array(
+					'parentField' => 'parentcategory',
+					'appearance' => array(
+						'expandAll' => TRUE,
+						'showHeader' => TRUE,
+					),
+				),
 				'MM' => 'tx_news2_domain_model_news_category_mm',
 				'foreign_table' => 'tx_news2_domain_model_category',
 				'foreign_table_where' => ' AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0)',
-				'size' => 5,
-				'autoSizeMax' => 10,
+				'size' => 10,
+				'autoSizeMax' => 20,
 				'minitems' => 0,
-				'maxitems' => 10,
+				'maxitems' => 20,
 			)
 		),
 		'related' => array(
@@ -487,27 +500,5 @@ $TCA['tx_news2_domain_model_news'] = array(
 		),
 	)
 );
-
-	// implement TCA tree
-if ($configurationArray['tcaTree']) {
-	$TCA['tx_news2_domain_model_news']['columns']['category']['config'] = array(
-		'renderMode' => 'tree',
-		'treeConfig' => array(
-			'parentField' => 'parentcategory',
-			'appearance' => array(
-				'expandAll' => TRUE,
-				'showHeader' => TRUE,
-			),
-		),
-		'type' => 'select',
-		'MM' => 'tx_news2_domain_model_news_category_mm',
-		'foreign_table' => 'tx_news2_domain_model_category',
-		'foreign_table_where' => ' AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0)',
-		'size' => 10,
-		'autoSizeMax' => 20,
-		'minitems' => 0,
-		'maxitems' => 10,
-	);
-}
 
 ?>

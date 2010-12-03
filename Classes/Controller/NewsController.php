@@ -36,23 +36,21 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	protected $newsRepository;
 
-//	/**
-//	 *
-//	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepo 
-//	 */
-//	public function injectNewsRepository(Tx_News2_Domain_Repository_NewsRepository $newsRepo) {
-////		print_r($newsRepo);
-////		die('x');
-//		$this->newsRepository = $newsRepo;
-//	}
-//	
+	/**
+	 *
+	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepository 
+	 */
+	public function injectNewsRepository(Tx_News2_Domain_Repository_NewsRepository $newsRepository) {
+		$this->newsRepository = $newsRepository;
+	}
+	
 	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
 	public function initializeAction() {
-		$this->newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
+//		$this->newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
 
 		$this->newsRepository->setCategories($this->settings['category']);
 		$this->newsRepository->setCategorySettings($this->settings['categoryMode']);
@@ -63,7 +61,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$this->newsRepository->setLimit($this->settings['limit']);
 		$this->newsRepository->setOffset($this->settings['offset']);
 		$this->newsRepository->setSearchFields($this->settings['search']['fields']);
-		$this->newsRepository->setStoragePage($this->recursivePidList($this->settings['startingpoint'], $this->settings['startingpoint']['recursive']));
+		$this->newsRepository->setStoragePage(Tx_News2_Service_RecursivePidListService::find($this->settings['startingpoint'], $this->settings['startingpoint']['recursive']));
 
 
 		$this->requestOverrule();
@@ -80,7 +78,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	public function listAction() {
 		$newsRecords = $this->newsRepository->findList();
 
-		$this->splitNewsRecordsInPartials($newsRecords);
+		$this->view->assign('news', $newsRecords);
 	}
 
 	/**
@@ -96,6 +94,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/**
 	 * Search for news
 	 *
+	 * @todo implement a better search result action
 	 * @param string $searchString
 	 */
 	public function searchResultAction($searchString = NULL) {
@@ -104,7 +103,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		if($searchString !== NULL && trim($searchString !== '')) {
 
 			$newsRecords = $this->newsRepository->findBySearch($searchString);
-			$this->splitNewsRecordsInPartials($newsRecords);
+			$this->view->assign('news', $newsRecords);
 
 
 		} else {
@@ -119,7 +118,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 *
 	 * @param Tx_News2_Domain_Model_News $news
 	 */
-	public function detailAction(Tx_News2_Domain_Model_News $news) {
+	public function detailAction(Tx_News2_Domain_Model_News $news = NULL) {
 		$this->view->assign('newsItem', $news);
 
 		if ($this->settings['detail']['titleInMetaTags'] == 1) {
@@ -130,50 +129,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/***************************************************************************
 	 * helper
 	 **********************/
-
-	/**
-	 * Split news records in partials and assign those to custom views
-	 * 
-	 * @param array $newsRecords news records
-	 */
-	private function splitNewsRecordsInPartials($newsRecords) {
-		$templateSwitch = t3lib_div::intExplode('|', $this->settings['templateSwitch'], TRUE);
-$this->view->assign('news', $newsRecords);
-
-return;
-			// no template switch used
-		if (count($templateSwitch) == 0) {
-			$this->view->assign('news', $newsRecords);
-		} else {
-			$countAll = count($templateSwitch);
-			$countTemplateSuffix = 1;
-
-			foreach($templateSwitch as $internalCount => $templatePartialItems) {
-				$assignedNews = array();
-
-					// walk through count in single templatePartial
-				for($i = 0; $i < $templatePartialItems; $i++) {
-						// attach news record if there is one to attach
-					if (!empty($newsRecords)) {
-						$assignedNews[] = array_shift($newsRecords);
-					}
-				}
-
-					// check if last template partial is reached to fill all other news records
-				if ($countAll == $internalCount + 1) {
-					foreach($newsRecords as $newsRecord) {
-						$assignedNews[] = $newsRecord;
-					}
-				}
-
-					// assign news partials to custom view
-				$this->view->assign('news_' . $countTemplateSuffix, $assignedNews);
-				$countTemplateSuffix++;
-			}
-		}
-	}
-
-
 
 	/**
 	 * Set the meta title
@@ -240,31 +195,7 @@ return;
 		return $access;
 	}
 
-	protected function recursivePidList($pidlist = '', $recursive = 0) {
-		if ($recursive == 0) {
-			return $pidList;
-		}
 
-		$local_cObj = t3lib_div::makeInstance('tslib_cObj');
-
-		$recursive = t3lib_div::intInRange($recursive, 0);
-
-		$pid_list_arr = array_unique(t3lib_div::trimExplode(',', $pidlist, 1));
-		$pid_list     = array();
-
-		foreach($pid_list_arr as $val) {
-			$val = t3lib_div::intInRange($val, 0);
-			if ($val) {
-				$_list = $local_cObj->getTreeList(-1 * $val, $recursive);
-				if ($_list) {
-					$pid_list[] = $_list;
-				}
-			}
-		}
-
-		$extendedPidList = implode(',', $pid_list);
-		return $extendedPidList;
-	}
 }
 
 ?>

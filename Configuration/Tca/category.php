@@ -193,17 +193,21 @@ $TCA['tx_news2_domain_model_category'] = array(
 			'l10n_mode' => 'exclude',
 			'label' => $ll . 'tx_news2_domain_model_category.parentcategory',
 			'config' => array(
+				'renderMode' => 'tree',
+				'treeConfig' => array(
+					'parentField' => 'parentcategory',
+					'appearance' => array(
+						'expandAll' => TRUE,
+						'showHeader' => TRUE,
+					),
+				),
 				'type' => 'select',
-				'form_type' => 'user',
-				'userFunc' => 'tx_news2_treeview->displayCategoryTree',
-				'treeView' => 1,
-				'treeName' => 'newscategorytree',
 				'foreign_table' => 'tx_news2_domain_model_category',
 				'foreign_table_where' => ' AND tx_news2_domain_model_category.sys_language_uid = 0',
 				'size' => 5,
 				'autoSizeMax' => 10,
 				'minitems' => 0,
-				'maxitems' => 5,
+				'maxitems' => 1,
 			)
 		),
 		'single_pid' => array(
@@ -260,25 +264,5 @@ $TCA['tx_news2_domain_model_category'] = array(
 	)
 );
 
-	// implement TCA tree
-if ($configurationArray['tcaTree']) {
-	$TCA['tx_news2_domain_model_category']['columns']['parentcategory']['config'] = array(
-		'renderMode' => 'tree',
-		'treeConfig' => array(
-			'parentField' => 'parentcategory',
-			'appearance' => array(
-				'expandAll' => TRUE,
-				'showHeader' => TRUE,
-			),
-		),
-		'type' => 'select',
-		'foreign_table' => 'tx_news2_domain_model_category',
-		'foreign_table_where' => ' AND tx_news2_domain_model_category.pid = 2 AND tx_news2_domain_model_category.sys_language_uid = 0',
-		'size' => 5,
-		'autoSizeMax' => 10,
-		'minitems' => 0,
-		'maxitems' => 1,
-	);
-}
 
 ?>
