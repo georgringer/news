@@ -163,20 +163,11 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news2_domain_model_news.teaser',
-			'config' => array (
-        'type' => 'select',
-        'renderMode' => 'tree',
-        'subType' => 'db',
-        'foreign_table' => 'pages',
-        'size' => '5',
-        'treeConfig' => array(
-            'parentField' => 'pid',
-			
-			'appearance' => array(
-				'expandAll' => TRUE
+			'config' => array(
+				'type' => 'text',
+				'cols' => 30,
+				'rows' => 5,
 			)
-        )
-    ) 
 		),
 		'bodytext' => array(
 			'exclude' => 0,
