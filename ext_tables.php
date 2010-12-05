@@ -78,6 +78,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 		'transOrigPointerField'    => 'l10n_parent',
 		'transOrigDiffSourceField' => 'l10n_diffsource',
 		'default_sortby' => 'ORDER BY crdate',
+		'sortby' => 'sorting',
 		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
