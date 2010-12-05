@@ -199,7 +199,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 				'size' => 10,
 				'autoSizeMax' => 20,
 				'minitems' => 0,
-				'maxitems' => 1
+				'maxitems' => 2
 			)
 		),
 		'single_pid' => array(

@@ -6,9 +6,9 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="pi1_title">News v2 reloaded</label>
-			<label index="pi1_plus_wiz_description">Overworked news system</label>
-			
+			<label index="pi1_title">News system</label>
+			<label index="pi1_plus_wiz_description">Versatile news system</label>
+
 			<!-- Flexforms -->
 			<label index="flexforms_tab.settings">Settings</label>
 			<label index="flexforms_tab.additional">Additional</label>
@@ -50,15 +50,15 @@
 			<label index="flexforms_template.mediaMaxHeight">Max height for media elements</label>
 			<label index="flexforms_template.cropLength">Length of teaser (in chars)</label>
 			<label index="flexforms_template.templateLayout">Template Layout</label>
-			
+
 			<label index="flexforms_additional.templateSwitch.1">1</label>
 			<label index="flexforms_additional.templateSwitch.2">2</label>
 			<label index="flexforms_additional.pidDetail">PageId for single news display</label>
 			<label index="flexforms_additional.pidBack">PageId to return to</label>
 			<label index="flexforms_additional.limit">Max records displayed</label>
 			<label index="flexforms_additional.offset">Start with news item #</label>
-			<label index="flexforms_additional.orderByRespectTopNews">Sort "Top news" before</label>			
-			
+			<label index="flexforms_additional.orderByRespectTopNews">Sort "Top news" before</label>
+
 			<!-- Page Module Record list -->
 			<label index="pagemodule_simple">Simple list</label>
 			<label index="pagemodule_advanced">Advanced list</label>
@@ -75,7 +75,7 @@
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>
 			<label index="usersettings.no-languages-available">There are no languages available, so nothing to choose.</label>
-		
+
 			<!-- BE Module -->
 			<label index="start_import">Start import with %s record(s).</label>
 		</languageKey>

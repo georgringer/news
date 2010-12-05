@@ -23,39 +23,35 @@
 ***************************************************************/
 
 /**
- * Controller of news categories
+ * ViewHelper to show videos
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
+ * @version $Id: VideoViewHelper.php 40832 2010-12-05 16:12:36Z just2b $
  */
-class Tx_News2_Controller_CategoryController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_News2_ViewHelpers_ActiveCategoryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
 
 	/**
-	 * @var Tx_News2_Domain_Model_CategoryRepository
+	 * Render special class if category is selected
+	 *
+	 * @param Tx_News2_Domain_Model_Category $category
+	 * @param string $class
 	 */
-	protected $categoryRepository;
+	public function render(Tx_News2_Domain_Model_Category $category, $class = '') {
+		$vars =	t3lib_div::_GET('tx_news2_pi1');
+		if (is_array($vars) && isset($vars['category']) && $vars['category'] == $category->getUid()) {
+				// override default class name
+			if (empty($class)) {
+				$class = 'active-category';
+			}
 
-	/**
-	 * Initializes the current action
-	 */
-	public function initializeAction() {
-		$this->categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
+			return $class;
+		}
+
+		return '';
 	}
 
-	/**
-	 * Output a list view of categories
-	 */
-	public function listAction() {
-//		$categoryRecords = $this->categoryRepository->findAll();
-//		$categoryRecords = $this->categoryRepository->findByParentcategory(0);
-
-//		$recur = $this->categoryRepository->findCategoryMenu(0);
-		$recur = $this->categoryRepository->findAll2();
-//print_r($recur);
-//die('x');
-		$this->view->assign('categories', $recur);
-	}
 
 
 }

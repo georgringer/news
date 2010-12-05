@@ -40,8 +40,15 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 		return $out;
 	}
 
+	public function findAll2() {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 
-	
+		return $query->execute()->toArray();
+	}
+
+
+
 
 }
 

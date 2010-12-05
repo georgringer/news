@@ -1,0 +1,26 @@
+{namespace n=Tx_News2_ViewHelpers}
+
+<!--
+	=====================
+		Category/List.html
+-->
+
+<f:if condition="{categories}">
+	<f:for each="{categories}" as="category">
+
+		<ul class="news-categories">
+
+			<li class="{n:activeCategory(category:category)}">
+				{category.title}
+				<f:link.action arguments="{category:category}" controller="News">
+					link
+				</f:link.action>
+
+
+			</li>
+		</ul>
+
+
+
+	</f:for>
+</f:if>
