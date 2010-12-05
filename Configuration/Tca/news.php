@@ -78,7 +78,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'max'      => 20,
 				'eval'     => 'date',
 				'default'  => 0,
-				'checkbox' => 0
 			)
 		),
 		'tstamp' => array(
@@ -91,7 +90,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'max'      => 20,
 				'eval'     => 'date',
 				'default'  => 0,
-				'checkbox' => 0
 			)
 		),
 		'starttime' => array(
@@ -104,7 +102,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'max'      => 20,
 				'eval'     => 'date',
 				'default'  => 0,
-				'checkbox' => 0
 			)
 		),
 		'endtime' => array(
@@ -116,12 +113,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'size'     => 8,
 				'max'      => 20,
 				'eval'     => 'date',
-				'checkbox' => 0,
 				'default'  => 0,
-				'range'    => array(
-					'upper' => mktime(3, 14, 7, 1, 19, 2038),
-					'lower' => mktime(0, 0, 0, date('m')-1, date('d'), date('Y'))
-				)
 			)
 		),
 		'fe_group' => array(
@@ -199,7 +191,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'size'     => 12,
 				'max'      => 20,
 				'eval'     => 'date,required',
-				'checkbox' => 0,
 				'default'  => mktime(date('H'), date('i'), 0, date('m'), date('d'), date('Y'))
 			)
 		),
@@ -212,7 +203,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'size'     => 8,
 				'max'      => 20,
 				'eval'     => 'date',
-				'checkbox' => 0,
 				'default'  => 0
 			)
 		),
@@ -237,15 +227,15 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'category' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'aaa',
+			'label' => $ll . 'tx_news2_domain_model_news.category',
 			'config' => array(
 				'type' => 'select',
 				'renderMode' => 'tree',
 				'treeConfig' => array(
 					'parentField' => 'parentcategory',
 					'appearance' => array(
-						'expandAll' => TRUE,
-						'showHeader' => TRUE,
+//						'expandAll' => TRUE,
+//						'showHeader' => TRUE,
 					),
 				),
 				'MM' => 'tx_news2_domain_model_news_category_mm',
@@ -426,6 +416,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 			)
 		),
 		'import_id' => array(
+			'exclude' => 1,
+			'label'   => $ll . 'tx_news2_domain_model_news.import_id',
 			'config' => array(
 				'type' => 'input'
 			)
@@ -440,7 +432,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,import_id,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,
 				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),

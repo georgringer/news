@@ -13,7 +13,7 @@ $ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 $TCA['tx_news2_domain_model_file'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_file']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,html,video,showInPreview'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,description,file'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_file']['feInterface'],
 	'columns' => array(
@@ -34,7 +34,6 @@ $TCA['tx_news2_domain_model_file'] = array(
 				'max'      => 20,
 				'eval'     => 'date',
 				'default'  => 0,
-				'checkbox' => 0
 			)
 		),
 		'tstamp' => array(
@@ -47,7 +46,6 @@ $TCA['tx_news2_domain_model_file'] = array(
 				'max'      => 20,
 				'eval'     => 'date',
 				'default'  => 0,
-				'checkbox' => 0
 			)
 		),
 		'sys_language_uid' => array(
@@ -98,7 +96,16 @@ $TCA['tx_news2_domain_model_file'] = array(
 				'size' => 30,
 			)
 		),
-
+		'description' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news2_domain_model_file.description',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 30,
+				'rows' => 5,
+			)
+		),
 		'file' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
@@ -118,13 +125,18 @@ $TCA['tx_news2_domain_model_file'] = array(
 		),
 	),
 	'types' => array(
-			// image
-		0 => array('showitem' => 'file;;1,title')
+		0 => array(
+			'showitem' => 'file;;1,title;;2,'
+		)
 	),
 	'palettes' => array(
 		'1' => array(
 			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, type, hidden',
 			'canNotCollapse' => TRUE
+		),
+		'2' => array(
+			'showitem' => 'description',
+			'canNotCollapse' => FALSE
 		)
 	)
 );

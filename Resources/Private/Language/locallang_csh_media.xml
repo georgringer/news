@@ -2,18 +2,24 @@
 <T3locallang>
 	<meta type="array">
 		<description>CSH for table tx_news2_domain_model_media</description>
-        <type>CSH</type>
-        <csh_table>tx_news2_domain_model_media</csh_table>
-        <fileId>EXT:news2/locallang_csh_media.xml</fileId>
+		<type>CSH</type>
+		<csh_table>tx_news2_domain_model_media</csh_table>
+		<fileId>EXT:news2/locallang_csh_media.xml</fileId>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index=".description">Media record</label>
-            <label index=".details">Versatile news system.</label>
-            <label index="_.seeAlso">See also the website http://www.news2.com/</label>
-            <label index="title.description">News title</label>
-            <label index="title.details">Required as it is also used to build the URL to the news record.</label>
-           
+			<label index=".details">Versatile news system.</label>
+			<label index="_.seeAlso">See also the website http://www.news2.com/</label>
+			<label index="hidden.description">Hidden elements are never shown in the frontend.</label>
+			<label index="caption.description">Caption of the media element</label>
+			<label index="title.description">Additional information for the title tag.</label>
+			<label index="alt.description">Additional information for the alt tag.</label>
+			<label index="type.description">Type of media element. This can be (by default): Images, Videos, Plain Html.</label>
+			<label index="showinpreview.description">If checked, this media element is also available in the list view.</label>
+			<label index="video.description">Define the URL to the video. This can be either a relative path (e.g. fileadmin/video.flv) or an absolute path (e.g. to a youtube video).</label>
+			<label index="media.description">Select the image itself.</label>
+			<label index="html.description">Insert plain HTML.</label>  
 		</languageKey>
 	</data>
 </T3locallang>

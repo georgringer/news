@@ -2,18 +2,25 @@
 <T3locallang>
 	<meta type="array">
 		<description>CSH for table tx_news2_domain_model_category</description>
-        <type>CSH</type>
-        <csh_table>tx_news2_domain_model_category</csh_table>
-        <fileId>EXT:news2/locallang_csh_category.xml</fileId>
+		<type>CSH</type>
+		<csh_table>tx_news2_domain_model_category</csh_table>
+		<fileId>EXT:news2/locallang_csh_category.xml</fileId>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index=".description">News record</label>
-            <label index=".details">Versatile news system.</label>
-            <label index="_.seeAlso">See also the website http://www.news2.com/</label>
-            <label index="title.description">News title</label>
-            <label index="title.details">Required as it is also used to build the URL to the news record.</label>
-           
+			<label index=".details">Versatile news system.</label>
+			<label index="_.seeAlso">See also the website http://www.news2.com/</label>
+			<label index="sys_language_uid.description">Language of the category</label>
+			<label index="hidden.description">Hidden categories are never shown in the frontend.</label>
+			<label index="title.description">Title of the category</label>
+			<label index="parentcategory.description">Select a parent category of this record to built up a category tree.</label>
+			<label index="image.description">Optional image of a category.</label>
+			<label index="description.description">Optional description of a category.</label>
+			<label index="single_pid.description">Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</label>
+			<label index="shortcut.description">Optional link of a category.</label>
+			<label index=".description"></label>
+			<label index=".description"></label>
 		</languageKey>
 	</data>
 </T3locallang>

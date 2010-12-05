@@ -10,12 +10,12 @@
 			<label index="tx_news2_domain_model_category.title">Title</label>
 			<label index="tx_news2_domain_model_category.description">Description</label>
 			<label index="tx_news2_domain_model_category.image">Image</label>
-			<label index="tx_news2_domain_model_category.parentcategory">Parent ID</label>
+			<label index="tx_news2_domain_model_category.parentcategory">Parent Category</label>
 			<label index="tx_news2_domain_model_category.single_pid">Single-view page for news from this category</label>
 			<label index="tx_news2_domain_model_category.shortcut">News category shortcut</label>
 
 			<label index="tx_news2_domain_model_news.tabs.media">Media</label>
-			
+
 			<label index="tx_news2_domain_model_news">News</label>
 			<label index="tx_news2_domain_model_news.teaser">Teaser</label>
 			<label index="tx_news2_domain_model_news.datetime">Date &amp; Time</label>
@@ -42,8 +42,9 @@
 			<label index="tx_news2_domain_model_media.showinpreview">Show in preview views</label>
 			<label index="tx_news2_domain_model_file">File Element</label>
 			<label index="tx_news2_domain_model_file.title">Title</label>
+			<label index="tx_news2_domain_model_file.description">Description</label>
 			<label index="tx_news2_domain_model_file.file">File</label>
-			
+
 			<label index="tx_news2_domain_model_link.title">Title</label>
 			<label index="tx_news2_domain_model_link.description">Description</label>
 			<label index="tx_news2_domain_model_link.uri">URL</label>

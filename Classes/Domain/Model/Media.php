@@ -35,7 +35,7 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @var integer
 	 */
 	protected $pid;
-	
+
 	/**
 	 * @var DateTime
 	 */
@@ -55,32 +55,32 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @var integer
 	 */
 	protected $l10nParent;
-	
+
 	/**
 	 * @var boolean
 	 */
-	protected $hidden;	
+	protected $hidden;
 
 	/**
 	 * @var boolean
 	 */
 	protected $deleted;
-	
+
 	/**
 	 * @var integer
 	 */
 	protected $cruserId;
-	
+
 	/**
 	 * @var string
 	 */
 	protected $title;
-	
+
 	/**
 	 * @var string
 	 */
 	protected $caption;
-	
+
 	/**
 	 * @var string
 	 */
@@ -109,22 +109,22 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	/**
 	 * @var Tx_ExtbaseDam_Domain_Model_Dam Location
 	 */
-	protected $dam;	
+	protected $dam;
 
 	/**
 	 * @var boolean;
 	 */
 	protected $showinpreview;
 
-	
+
 	public function getTitle() {
-	 return $this->title;
+		return $this->title;
 	}
 
 	public function setTitle($title) {
-	 $this->title = $title;
+		$this->title = $title;
 	}
-	
+
 	public function getCaption() {
 		return $this->caption;
 	}
@@ -139,38 +139,38 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 
 	public function setAlt($alt) {
 		$this->alt = $alt;
-	}	
+	}
 
 	public function getMedia() {
-	 return $this->media;
+		return $this->media;
 	}
 
 	public function setMedia($media) {
-	 $this->media = $media;
+		$this->media = $media;
 	}
 
 	public function getType() {
-	 return $this->type;
+		return $this->type;
 	}
 
 	public function setType($type) {
-	 $this->type = $type;
+		$this->type = $type;
 	}
 
 	public function getHtml() {
-	 return $this->html;
+		return $this->html;
 	}
 
 	public function setHtml($html) {
-	 $this->html = $html;
+		$this->html = $html;
 	}
 
 	public function getVideo() {
-	 return $this->video;
+		return $this->video;
 	}
 
 	public function setVideo($video) {
-	 $this->video = $video;
+		$this->video = $video;
 	}
 
 	public function getDam() {

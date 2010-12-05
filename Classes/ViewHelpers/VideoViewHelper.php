@@ -42,7 +42,7 @@ class Tx_News2_ViewHelpers_VideoViewHelper extends Tx_Fluid_Core_ViewHelper_Abst
 	 * @param array $configuration
 	 * @return string
 	 */
-	public function render($url, $caption = '', $width, $height,  array $configuration = array()) {
+	public function render($url, $caption = '', $width='', $height='',  array $configuration = array()) {
 		$this->width = $width;
 		$this->height = $height;
 
@@ -56,6 +56,8 @@ class Tx_News2_ViewHelpers_VideoViewHelper extends Tx_Fluid_Core_ViewHelper_Abst
 		if (!$url) {
 			throw new Exception('what to do with this url, could be relative, @todo *gg*');
 		}
+		
+		return $url;
 
 
 //		$video = $this->renderVideoWithCobjMedia($url, $configuration);

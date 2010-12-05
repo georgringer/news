@@ -34,20 +34,18 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'max'      => 20,
 				'eval'     => 'date',
 				'default'  => 0,
-				'checkbox' => 0
 			)
 		),
 		'tstamp' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label'   => 'crdate',
+			'label'   => 'tstamp',
 			'config'  => array(
 				'type'     => 'input',
 				'size'     => 8,
 				'max'      => 20,
 				'eval'     => 'date',
 				'default'  => 0,
-				'checkbox' => 0
 			)
 		),		
 		'sys_language_uid' => array(
@@ -143,7 +141,6 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'type' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-//			'label' => $ll . 'tx_news2_domain_model_media.type',
 			'label' => 'LLL:EXT:cms/locallang_ttc.xml:media.type',
 			'config' => array(
 				'type' => 'select',
@@ -174,6 +171,17 @@ $TCA['tx_news2_domain_model_media'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
+				'eval' => 'trim',
+				'wizards' => array(
+					'_PADDING' => 2,
+					'link' => array(
+						'type' => 'popup',
+						'title' => 'Link',
+						'icon' => 'link_popup.gif',
+						'script' => 'browse_links.php?mode=wizard',
+						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
+					)
+				)
 			)
 		),
 		'dam' => array(
@@ -206,9 +214,9 @@ $TCA['tx_news2_domain_model_media'] = array(
 		)
 	),
 	'types' => array(
-			// image
+			// Image
 		0 => array('showitem' => 'caption;;2;;, media'),
-			// video
+			// Video
 		'1' => array('showitem' => 'caption;;1;;, video'),
 			// HTML
 		'2' => array('showitem' => 'caption;;1;;, html'),

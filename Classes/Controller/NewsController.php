@@ -38,19 +38,19 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 	/**
 	 *
-	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepository 
+	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepository
 	 */
 	public function injectNewsRepository(Tx_News2_Domain_Repository_NewsRepository $newsRepository) {
 		$this->newsRepository = $newsRepository;
 	}
-	
+
 	/**
 	 * Initializes the current action
 	 *
 	 * @return void
 	 */
 	public function initializeAction() {
-//		$this->newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
+		$this->newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
 
 		$this->newsRepository->setCategories($this->settings['category']);
 		$this->newsRepository->setCategorySettings($this->settings['categoryMode']);
@@ -66,7 +66,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 		$this->requestOverrule();
 //		t3lib_div::print_array($this->settings);
-
 	}
 
 
@@ -132,7 +131,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 	/**
 	 * Set the meta title
-	 * 
+	 *
 	 * @param string $title
 	 */
 	private function renderTitle($title) {
@@ -174,7 +173,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 			$this->newsRepository->setOrder($order);
 
 		}
-		
+
 	}
 
 	/**

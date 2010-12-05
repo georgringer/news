@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for backend of news2</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="pi1_title">News v2 reloaded</label>
+			<label index="pi1_plus_wiz_description">Overworked news system</label>
+			
+			<!-- Flexforms -->
+			<label index="flexforms_tab.settings">Settings</label>
+			<label index="flexforms_tab.additional">Additional</label>
+			<label index="flexforms_tab.template">Template</label>
+
+			<label index="flexforms_general.mode">What to display</label>
+			<label index="flexforms_general.mode.news_list">List view</label>
+			<label index="flexforms_general.mode.news_latest">Latest view</label>
+			<label index="flexforms_general.mode.news_detail">Detail view</label>
+			<label index="flexforms_general.mode.news_search">Search form</label>
+			<label index="flexforms_general.mode.news_searchResult">Search result</label>
+			<label index="flexforms_general.mode.category_list">Category Menu</label>
+			<label index="flexforms_general.mode.news_archivemenu">Archive Menu</label>
+			<label index="flexforms_general.mode.not_configured">No view yet configured</label>
+			<label index="flexforms_general.archive">Archive</label>
+			<label index="flexforms_general.archive.active">Only active (non archived)</label>
+			<label index="flexforms_general.archive.archived">Archived</label>
+			<label index="flexforms_general.orderBy">Sort by</label>
+			<label index="flexforms_general.orderBy.tstamp">Last edited</label>
+			<label index="flexforms_general.orderBy.crdate">Created</label>
+			<label index="flexforms_general.orderBy.datetime">Given date/time</label>
+			<label index="flexforms_general.orderBy.title">Title</label>
+			<label index="flexforms_general.orderAscDesc">Sort direction</label>
+			<label index="flexforms_general.orderAscDesc.asc">Ascending</label>
+			<label index="flexforms_general.orderAscDesc.desc">Descending</label>
+			<label index="flexforms_general.category">Category selection</label>
+			<label index="flexforms_general.categoryMode">Category mode</label>
+			<label index="flexforms_general.categoryMode.all">Don't care, show all</label>
+			<label index="flexforms_general.categoryMode.or">Show items with selected categories (OR)</label>
+			<label index="flexforms_general.categoryMode.and">Show items with selected categories (AND)</label>
+			<label index="flexforms_general.categoryMode.notand">Do NOT show items with selected categories (AND)</label>
+			<label index="flexforms_general.categoryMode.notor">Do NOT show items with selected categories (OR)</label>
+			<label index="flexforms_general.timeLimit">Time limit</label>
+			<label index="flexforms_general.topNews">Top News</label>
+			<label index="flexforms_general.topNews.1">only Top News records</label>
+			<label index="flexforms_general.topNews.2">except Top News records</label>
+
+			<label index="flexforms_template.mediaMaxWidth">Max width for media elements</label>
+			<label index="flexforms_template.mediaMaxHeight">Max height for media elements</label>
+			<label index="flexforms_template.cropLength">Length of teaser (in chars)</label>
+			<label index="flexforms_template.templateLayout">Template Layout</label>
+			
+			<label index="flexforms_additional.templateSwitch.1">1</label>
+			<label index="flexforms_additional.templateSwitch.2">2</label>
+			<label index="flexforms_additional.pidDetail">PageId for single news display</label>
+			<label index="flexforms_additional.pidBack">PageId to return to</label>
+			<label index="flexforms_additional.limit">Max records displayed</label>
+			<label index="flexforms_additional.offset">Start with news item #</label>
+			<label index="flexforms_additional.orderByRespectTopNews">Sort "Top news" before</label>			
+			
+			<!-- Page Module Record list -->
+			<label index="pagemodule_simple">Simple list</label>
+			<label index="pagemodule_advanced">Advanced list</label>
+			<label index="pagemodule_complex">Full list</label>
+
+			<!-- Extension Manager Configuration -->
+			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module by using the following syntax: label=fieldlist;label=fieldlist</label>
+			<label index="extmng.pageModuleFieldsCategory">Category fields shown in page module:Set the fields which should be shown in the page module.</label>
+			<label index="extmng.hideMediaTable">Hide Media records:As the media elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
+			<label index="extmng.hideFileTable">Hide File records:As the file elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
+			<label index="extmng.enableDam">Enable DAM:Enable DAM if you want to use it</label>
+			<label index="extmng.showImporter">Show tt_news Importer:Backend module to import records from tt_news;tt_news needs to be installed too.</label>
+
+			<!-- BE User Settings -->
+			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>
+			<label index="usersettings.no-languages-available">There are no languages available, so nothing to choose.</label>
+		
+			<!-- BE Module -->
+			<label index="start_import">Start import with %s record(s).</label>
+		</languageKey>
+
+		<languageKey index="de" type="array">
+
+		</languageKey>
+	</data>
+</T3locallang>

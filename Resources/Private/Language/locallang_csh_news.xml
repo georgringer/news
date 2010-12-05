@@ -2,18 +2,35 @@
 <T3locallang>
 	<meta type="array">
 		<description>CSH for table tx_news2_domain_model_news</description>
-        <type>CSH</type>
-        <csh_table>tx_news2_domain_model_news</csh_table>
-        <fileId>EXT:news2/locallang_csh_news.xml</fileId>
+		<type>CSH</type>
+		<csh_table>tx_news2_domain_model_news</csh_table>
+		<fileId>EXT:news2/locallang_csh_news.xml</fileId>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index=".description">News record</label>
-            <label index=".details">Versatile news system.</label>
-            <label index="_.seeAlso">See also the website http://www.news2.com/</label>
-            <label index="title.description">News title</label>
-            <label index="title.details">Required as it is also used to build the URL to the news record.</label>
-           
+			<label index=".details">Versatile news system.</label>
+			<label index="_.seeAlso">See also the website http://www.news2.com/</label>
+			<label index="sys_language_uid.description">Language of the news record.</label>
+			<label index="starttime.description">Define a date on which the news record should be shown.</label>
+			<label index="endtime.description">Define a date on which the news record should be hidden.</label>
+			<label index="fe_group.description">Select the user groups which are allowed to see the news record.</label>
+			<label index="editlock.description">If checked, this news record can only be edited by administrators.</label>
+			<label index="hidden.description">Hidden records are not shown in the frontend.</label>
+			<label index="title.description">News title</label>
+			<label index="teaser.description">Be aware that it can be cropped.</label>
+			<label index="type.description">Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</label>
+			<label index="istopnews.description">Top news records can get a special treated concerning layout, sorting, ...</label>
+			<label index="author.description">Author of the news record</label>
+			<label index="author_email.description">Email address of the author</label>
+			<label index="datetime.description">Date of the news record</label>
+			<label index="archive.description">Archive date. A date is required if the news record should once be treated as archived news.</label>
+			<label index="bodytext.description">Main content of the news record</label>
+			<label index="category.description">Select the categories which are related to this record.</label>
+			<label index="keywords.description">Define keywords which can be used for SEO optimizations.</label>
+			<label index="related.description">Select related news records.</label>
+			<label index="related_files.description">Define related files, e.g. PDFs</label>
+			<label index="related_links.description">Define related links to internal and external pages.</label>
 		</languageKey>
 	</data>
 </T3locallang>

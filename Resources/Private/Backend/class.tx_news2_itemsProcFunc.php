@@ -52,7 +52,28 @@ class tx_news2_itemsProcFunc {
 				// add entry to type list
 			array_push($config['items'], $damEntry);
 		}
-
+	}
+	
+	/**
+	 * Itemsproc function to extend the selection of templateLayouts in the plugin
+	 * 
+	 * @param array $config
+	 * @param t3lib_TCEforms $parentObject 
+	 */
+	public function user_templateLayout(array &$config, t3lib_TCEforms $parentObject) {
+			// check if the layouts are extended
+		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts']) 
+				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts'])) {
+			
+				// add every item
+			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts'] as $layouts) {
+				$additionalLayout = array(
+					$GLOBALS['LANG']->sL($layouts[0], TRUE),
+					$layouts[1]
+				);
+				array_push($config['items'], $additionalLayout);
+			}
+		}	
 	}
 
 	/**
@@ -86,7 +107,7 @@ class tx_news2_itemsProcFunc {
 
 			$html .= '</select>';
 		} else {
-			$html .= $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang.xml:usersettings.no-languages-available', TRUE);
+			$html .= $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:usersettings.no-languages-available', TRUE);
 		}
 
 		return $html;

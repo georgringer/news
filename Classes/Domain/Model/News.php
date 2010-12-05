@@ -35,7 +35,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @var integer
 	 */
 	protected $pid;
-	
+
 	/**
 	 * @var DateTime
 	 */
@@ -55,12 +55,12 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @var integer
 	 */
 	protected $l10nParent;
-	
+
 	/**
 	 * @var DateTime
 	 */
 	protected $starttime;
-	
+
 	/**
 	 * @var DateTime
 	 */
@@ -70,18 +70,18 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * keep it as string as it should be only used during imports
 	 * @var string
 	 */
-	protected $feGroup;	
-	
+	protected $feGroup;
+
 	/**
 	 * @var boolean
 	 */
-	protected $hidden;	
+	protected $hidden;
 
 	/**
 	 * @var boolean
 	 */
 	protected $deleted;
-	
+
 	/**
 	 * @var integer
 	 */
@@ -139,7 +139,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @lazy
 	 */
 	protected $relatedFiles;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Link>
 	 * @lazy
@@ -181,11 +181,11 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @var integer
 	 */
 	protected $editlock;
-	
+
 	/**
 	 * @var integer
 	 */
-	protected $importId;	
+	protected $importId;
 
 	public function getTitle() {
 		return $this->title;
@@ -290,7 +290,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	public function setRelatedFiles($relatedFiles) {
 		$this->relatedFiles = $relatedFiles;
 	}
-	
+
 	public function getRelatedLinks() {
 		if ($this->relatedLinks instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->relatedLinks->_loadRealInstance();
@@ -426,8 +426,8 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 
 	public function setL10nParent($l10nParent) {
 		$this->l10nParent = $l10nParent;
-	}	
-	
+	}
+
 	public function getCruserId() {
 		return $this->cruserId;
 	}
@@ -491,8 +491,6 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	public function setImportId($importId) {
 		$this->importId = $importId;
 	}
-
-
 
 
 }

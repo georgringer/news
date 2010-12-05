@@ -52,12 +52,12 @@ class news2_pi1_wizicon {
 	}
 
 	/**
-	 * Reads the [extDir]/locallang.xml and returns the $LOCAL_LANG array found in that file.
+	 * Reads the [extDir]/locallang_be.xml and returns the $LOCAL_LANG array found in that file.
 	 *
 	 * @return	The array with language labels
 	 */
 	function includeLocalLang()	{
-		$llFile = t3lib_extMgm::extPath($this->extKey) . 'Resources/Private/Language/locallang.xml';
+		$llFile = t3lib_extMgm::extPath($this->extKey) . 'Resources/Private/Language/locallang_be.xml';
 		$LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
 
 		return $LOCAL_LANG;

@@ -34,7 +34,6 @@ $TCA['tx_news2_domain_model_link'] = array(
 				'max'      => 20,
 				'eval'     => 'date',
 				'default'  => 0,
-				'checkbox' => 0
 			)
 		),
 		'tstamp' => array(
@@ -47,7 +46,6 @@ $TCA['tx_news2_domain_model_link'] = array(
 				'max'      => 20,
 				'eval'     => 'date',
 				'default'  => 0,
-				'checkbox' => 0
 			)
 		),
 		'sys_language_uid' => array(
@@ -116,12 +114,24 @@ $TCA['tx_news2_domain_model_link'] = array(
 				'type' => 'input',
 				'eval' => 'required',
 				'size' => 30,
+				'eval' => 'trim',
+				'wizards' => array(
+					'_PADDING' => 2,
+					'link' => array(
+						'type' => 'popup',
+						'title' => 'Link',
+						'icon' => 'link_popup.gif',
+						'script' => 'browse_links.php?mode=wizard',
+						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
+					)
+				)
 			)
-		),		
+		),
 	),
 	'types' => array(
-			// image
-		0 => array('showitem' => 'uri;;1;;,title;;2,')
+		0 => array(
+			'showitem' => 'uri;;1;;,title;;2,'
+		)
 	),
 	'palettes' => array(
 		'1' => array(
@@ -130,7 +140,7 @@ $TCA['tx_news2_domain_model_link'] = array(
 		),
 		'2' => array(
 			'showitem' => 'description',
-			'canNotCollapse' => TRUE
+			'canNotCollapse' => FALSE
 		)
 	)
 );

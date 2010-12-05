@@ -1,8 +1,18 @@
 {namespace n=Tx_News2_ViewHelpers}
 
 <div class="mediaelement mediaelement-video">
-	<n:video url="{mediaElement.video}" caption="{mediaElement.title}" width="272" height="300" />
+	<n:video url="{mediaElement.video}" />
+	<a
+		href="<n:video url="{mediaElement.video}" />"
+		style="display:block;width:425px;height:300px;"
+		id="player">
+	</a>
 </div>
+<script type="text/javascript" src="typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.4.min.js"></script>
+
+<script language="JavaScript">
+flowplayer("player", "typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.5.swf");
+</script>
 
 <f:if condition="{mediaElement.title}">
 	<p class="news2-img-caption">

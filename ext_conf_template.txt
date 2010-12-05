@@ -1,22 +1,19 @@
  #  @version $Id:$
 
-	# cat=basic/enable/100; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.pageModuleFieldsNews
-pageModuleFieldsNews = LLL:EXT:news2/Resources/Private/Language/locallang.xml:pagemodule_simple=title,datetime;LLL:EXT:news2/Resources/Private/Language/locallang.xml:pagemodule_advanced=title,datetime,teaser,category;LLL:EXT:news2/Resources/Private/Language/locallang.xml:pagemodule_complex=title,datetime,teaser,category,archive;
+	# cat=basic/enable/100; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsNews
+pageModuleFieldsNews = LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:pagemodule_simple=title,datetime;LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:pagemodule_advanced=title,datetime,teaser,category;LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:pagemodule_complex=title,datetime,teaser,category,archive;
 
- 	# cat=basic/enable/101; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.pageModuleFieldsCategory
+ 	# cat=basic/enable/101; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsCategory
 pageModuleFieldsCategory = title,description
 
- 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.hideMediaTable
+ 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.hideMediaTable
 hideMediaTable = 1
 
- 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.hideFileTable
+ 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.hideFileTable
 hideFileTable = 1
 
- 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.enableDam
+ 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.enableDam
 enableDam = 0
 
- 	# cat=basic/enable/103; type=boolean; label=Enable TcaTree:Feature since 4-5
-tcaTree = 1
-
- 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang.xml:extmng.showImporter
-showImporter = 1
+ 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.showImporter
+showImporter = 0

@@ -110,7 +110,7 @@ class tx_news2_labelFunc {
 			$newTitle .= ' ' . $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media.show');
 		}
 		
-		$params['title'] = $params['row']['title'] . $newTitle;
+		$params['title'] = $params['row']['caption'] . $newTitle;
 	}
 
 

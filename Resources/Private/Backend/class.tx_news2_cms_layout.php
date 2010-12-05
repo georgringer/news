@@ -46,7 +46,7 @@ class tx_news2_cms_layout {
 	function getExtensionSummary($params, &$pObj) {
 		$result = '';
 
-		$this->llPath = 'LLL:EXT:' . $this->extKey . '/Resources/Private/Language/locallang.xml';
+		$this->llPath = 'LLL:EXT:' . $this->extKey . '/Resources/Private/Language/locallang_be.xml';
 
 		if ($params['row']['list_type'] == $this->extKey . '_pi1') {
 			$data = t3lib_div::xml2array($params['row']['pi_flexform']);
