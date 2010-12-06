@@ -29,13 +29,16 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_News2_Domain_Repository_AbstractRepository {
+
 
 	protected $fetchedCategories = array();
 
+
+
 	/**
 	 * Recursive function to create category menu
-	 * 
+	 *
 	 * @param  integer $parentId parent category id
 	 * @return array
 	 */

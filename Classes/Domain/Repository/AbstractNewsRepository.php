@@ -29,7 +29,7 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_Repository_AbstractRepository {
 
 	protected $order;
 	protected $orderRespectTopNews;
@@ -40,10 +40,8 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	protected $archiveSetting;
 	protected $latestTimeLimit = NULL;
 	protected $searchFields;
-	protected $limit = NULL;
-	protected $offset = NULL;
 	protected $topNewsSetting;
-	protected $storagePage;
+
 
 	/**
 	 * Set the order like title desc, tstamp asc
@@ -125,27 +123,9 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 		$this->topNewsSetting = $settings;
 	}
 
-	/**
-	 * Limit
-	 *
-	 * @param  integer $limit
-	 */
-	public function setLimit($limit) {
-		$this->limit = (int)$limit;
-	}
 
-	/**
-	 * Offset
-	 *
-	 * @param  integer $offset
-	 */
-	public function setOffset($offset) {
-		$this->offset = (int)$offset;
-	}
 
-	public function setStoragePage($pidlist) {
-		$this->storagePage = $pidlist;
-	}
+
 
 	/**
 	 * Search fields
@@ -316,29 +296,6 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 	}
 
 	/**
-	 * Set limit
-	 *
-	 * @param Tx_Extbase_Persistence_Query $query
-	 */
-	protected function setLimitRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
-
-		if ($this->limit != NULL) {
-			$query->setLimit($this->limit);
-		}
-	}
-
-	/**
-	 * Set offset
-	 *
-	 * @param Tx_Extbase_Persistence_Query $query
-	 */
-	protected function setOffsetRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
-		if ($this->offset != NULL) {
-			$query->setOffset($this->offset);
-		}
-	}
-
-	/**
 	 * Set Ordering
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
@@ -374,23 +331,6 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 		}
 	}
 
-	/**
-	 * Storagepage restriction
-	 * 
-	 * @param Tx_Extbase_Persistence_QueryInterface $query
-	 */
-	public function setStoragePageRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
-		$constraint = NULL;
-
-		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		
-		if ($this->storagePage != 0) {
-			$pidList = t3lib_div::intExplode(',', $this->storagePage, TRUE);
-			$constraint = $query->in('pid', $pidList);
-		}
-		
-        return $constraint;
-	}
 
 
 
@@ -408,7 +348,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_Extbase_Persi
 		}
 		return $constraints;
 
-	}	
+	}
 }
 
 ?>

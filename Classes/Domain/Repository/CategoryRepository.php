@@ -41,13 +41,37 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 	}
 
 	public function findAll2() {
-		$query = $this->createQuery();
-		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 
-		return $query->execute()->toArray();
+		$query = $this->createQuery();
+
+		$constraints = array();
+		$constraints[] = $this->setStoragePageRestriction($query);
+
+		return $this->executeQuery($query, $constraints);
 	}
 
+	/**
+	 * Add the constraints to the query and add Ordering, Limit + Offset
+	 *
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @param array $constraints
+	 * @return array<Tx_News2_Domain_Model_News>
+	 */
+	public function executeQuery(Tx_Extbase_Persistence_QueryInterface $query, array $constraints) {
+		$constraints = $this->checkConstraintArray($constraints);
 
+		if(!empty($constraints)) {
+        	$query->matching(
+				$query->logicalAnd($constraints)
+			);
+		}
+
+		$this->setFinalOrdering($query);
+		$this->setLimitRestriction($query);
+		$this->setOffsetRestriction($query);
+
+		return $query->execute();
+	}
 
 
 }
