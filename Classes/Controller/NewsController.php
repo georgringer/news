@@ -50,7 +50,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return void
 	 */
 	public function initializeAction() {
-		$this->newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
+//		$this->newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
 
 		$this->newsRepository->setCategories($this->settings['category']);
 		$this->newsRepository->setCategorySettings($this->settings['categoryMode']);
@@ -84,30 +84,31 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 *
 	 * Search for news
 	 *
-	 * @param string $searchString
+	 * @param Tx_News2_Domain_Model_Search $search
 	 */
-	public function searchAction($searchString = NULL) {
-		$this->view->assign('searchString', $searchString);
+	public function searchAction(Tx_News2_Domain_Model_Search $search = NULL) {
+//		$search->setSearchString('fobar');
+		$this->view->assign('search', $search);
+		echo 'searc';
+		var_dump($search);
 	}
 
 	/**
 	 * Search for news
 	 *
-	 * @todo implement a better search result action
-	 * @param string $searchString
+	 * @param Tx_News2_Domain_Model_Search $search
 	 */
-	public function searchResultAction($searchString = NULL) {
-		$this->view->assign('searchString', $searchString);
-
-		if($searchString !== NULL && trim($searchString !== '')) {
-
-			$newsRecords = $this->newsRepository->findBySearch($searchString);
-			$this->view->assign('news', $newsRecords);
+	public function searchResultAction(Tx_News2_Domain_Model_Search $search = NULL) {
+		$this->view->assign('search', $search);
+		echo 'serachresult';
+		var_dump($search);
+		if($search !== NULL) {
+//
+//			$newsRecords = $this->newsRepository->findBySearch($searchString);
+//			$this->view->assign('news', $newsRecords);
 
 
 		} else {
-
-			echo 'no';
 //			$this->flashMessages->add(('Please Enter A ProductNumber Or Title'));
 		}
 	}

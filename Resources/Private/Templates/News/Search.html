@@ -1,7 +1,6 @@
 <f:flashMessages />
-<f:form action="searchResult" name="tx_news" pageUid="{settings.pidDetail}">
-
-	<f:form.textbox name="searchString" value="{searchString}" />
+<f:form method="post" action="search" name="search" object="{search}">
+	<f:form.textbox name="searchString" name="property" value="{search.searchString}" />
 	<f:form.submit name="mySubmit" value="Search">
 		<button>Search</button>
 	</f:form.submit>
