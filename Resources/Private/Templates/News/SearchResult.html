@@ -6,20 +6,18 @@
 		<f:if condition="{news}">
 			<f:then>
 				<div>
-					<f:translate key="SearchResult" arguments="{1:'{f:count(subject:\'{news}\')}' , 2:'{search.searchString}'}" htmlEscape="TRUE" />
+					<f:translate key="search-text" arguments="{1:'{f:count(subject:\'{news}\')}' , 2:'{search.searchString}'}" htmlEscape="TRUE" />
+				</div
+
+				<div class="news2 news2-list-view news2-search-view">
+					<f:for each="{news}" as="newsItem">
+							<f:render partial="List/item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'searchresult'}"/>
+					</f:for>
 				</div>
-
-
-
-				<f:for each="{news}" as="newsItem">
-						<f:render partial="List/item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'searchresult'}"/>
-				</f:for>
-
-
 
 			</f:then>
 			<f:else>
-				no news found
+				<f:translate key="search-noresult" />
 			</f:else>
 		</f:if>
 

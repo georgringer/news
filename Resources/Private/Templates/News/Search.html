@@ -1,7 +1,16 @@
 <f:flashMessages />
-<f:form method="post" action="search" name="search" object="{search}">
-	<f:form.textbox name="searchString" property="searchString" value="{search.searchString}" />
-	<f:form.submit name="mySubmit" value="{f:translate(key:'search-start')}" />
 
-</f:form>
+<div class="news2 news2-search">
+	<div class="news2-searchbox">
+		<f:form id="news2-search" method="post" action="search" name="search" object="{search}">
+			<fieldset>
+				 <legend><span class="hidden">News search</span></legend>
 
+				<f:form.textbox name="searchString" property="searchString" value="{search.searchString}" />
+				<f:form.submit name="submit" value="{f:translate(key:'search-start')}" id="news2-search-sb" />
+			</fieldset>
+
+
+		</f:form>
+	</div>
+</div>
