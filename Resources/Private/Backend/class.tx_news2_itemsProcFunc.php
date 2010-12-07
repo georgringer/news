@@ -33,7 +33,7 @@ class tx_news2_itemsProcFunc {
 
 	/**
 	 * Set DAM as an additional option
-	 * 
+	 *
 	 * @param  $config configuration of TCA field
 	 * @param t3lib_TCEforms $parentObject
 	 */
@@ -53,18 +53,18 @@ class tx_news2_itemsProcFunc {
 			array_push($config['items'], $damEntry);
 		}
 	}
-	
+
 	/**
 	 * Itemsproc function to extend the selection of templateLayouts in the plugin
-	 * 
+	 *
 	 * @param array $config
-	 * @param t3lib_TCEforms $parentObject 
+	 * @param t3lib_TCEforms $parentObject
 	 */
 	public function user_templateLayout(array &$config, t3lib_TCEforms $parentObject) {
 			// check if the layouts are extended
-		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts']) 
+		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts'])
 				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts'])) {
-			
+
 				// add every item
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts'] as $layouts) {
 				$additionalLayout = array(
@@ -73,12 +73,57 @@ class tx_news2_itemsProcFunc {
 				);
 				array_push($config['items'], $additionalLayout);
 			}
-		}	
+		}
+	}
+
+
+	public function user_orderBy(array &$config, t3lib_TCEforms $parentObject) {
+		$defaultItems = 'tstmp,datetime,crdate,title';
+		$newItems = '';
+
+			// check if the record has been saved once
+		if (is_array($config['row']) && !empty($config['row']['pi_flexform'])) {
+			$flexformConfig = t3lib_div::xml2array($config['row']['pi_flexform']);
+
+				// check if there is a flexform configuration
+			if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
+				$selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
+
+					// check for selected action
+				if(t3lib_div::isFirstPartOfStr($selectedActionList, 'Category')) {
+//					array_push($config['items'], array('fo','21'));
+					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['orderByCategory'];
+				} else {
+//					array_push($config['items'], array('fonews',	'1'));
+					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['orderByNews'];
+				}
+			}
+		}
+
+			// if a override configuration is found
+		if (!empty($newItems)) {
+				// remove default configuration
+			$config['items'] = array();
+				// empty default line
+			array_push($config['items'], array('', ''));
+
+			$newItemArray = t3lib_div::trimExplode(',', $newItems, TRUE);
+			$languageKey = 'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.';
+			foreach($newItemArray as $item) {
+					// label: if empty, key (=field) is used
+				$label= $GLOBALS['LANG']->sL($languageKey . $item, TRUE);
+				if (empty($label)) {
+					$label = htmlspecialchars($item);
+				}
+				array_push($config['items'], array($label, $item));
+			}
+		}
+
 	}
 
 	/**
 	 * Generate a select box of languages to choose an overlay
-	 * 
+	 *
 	 * @param array $config
 	 * @param SC_mod_user_setup_index $parentObject
 	 * @return string select box

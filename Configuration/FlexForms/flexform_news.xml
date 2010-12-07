@@ -59,6 +59,7 @@
 							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy</label>
 							<config>
 								<type>select</type>
+								<itemsProcFunc>tx_news2_itemsProcFunc->user_orderBy</itemsProcFunc>
 								<items>
 									<numIndex index="0" type="array">
 										<numIndex index="0"></numIndex>
@@ -454,7 +455,7 @@
 			</ROOT>
 		</template>
 
-		
+
 
 
 

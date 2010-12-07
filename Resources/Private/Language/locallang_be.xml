@@ -27,6 +27,8 @@
 			<label index="flexforms_general.archive.active">Only active (non archived)</label>
 			<label index="flexforms_general.archive.archived">Archived</label>
 			<label index="flexforms_general.orderBy">Sort by</label>
+			<label index="flexforms_general.orderBy.uid">Uid</label>
+			<label index="flexforms_general.orderBy.sorting">Backend sorting</label>
 			<label index="flexforms_general.orderBy.tstamp">Last edited</label>
 			<label index="flexforms_general.orderBy.crdate">Created</label>
 			<label index="flexforms_general.orderBy.datetime">Given date/time</label>
