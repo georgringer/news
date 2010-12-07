@@ -87,29 +87,24 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @param Tx_News2_Domain_Model_Search $search
 	 */
 	public function searchAction(Tx_News2_Domain_Model_Search $search = NULL) {
-//		$search->setSearchString('fobar');
 		$this->view->assign('search', $search);
-		echo 'searc';
-		var_dump($search);
 	}
 
 	/**
-	 * Search for news
+	 * Search Result
 	 *
 	 * @param Tx_News2_Domain_Model_Search $search
 	 */
 	public function searchResultAction(Tx_News2_Domain_Model_Search $search = NULL) {
 		$this->view->assign('search', $search);
-		echo 'serachresult';
-		var_dump($search);
+
+			// if a search is submitted
 		if($search !== NULL) {
 //
-//			$newsRecords = $this->newsRepository->findBySearch($searchString);
-//			$this->view->assign('news', $newsRecords);
+			$newsRecords = $this->newsRepository->findBySearch($search->getSearchString());
+			$this->view->assign('news', $newsRecords);
 
 
-		} else {
-//			$this->flashMessages->add(('Please Enter A ProductNumber Or Title'));
 		}
 	}
 
