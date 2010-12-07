@@ -241,7 +241,7 @@
 					</settings.startingpoint>
 
 					<!-- recursive -->
-					<settings.startingpoin.recursive>
+					<settings.startingpoint.recursive>
 						<TCEforms>
 							<exclude>1</exclude>
 							<label>LLL:EXT:lang/locallang_general.xml:LGL.recursive</label>
@@ -275,7 +275,7 @@
 								</items>
 							</config>
 						</TCEforms>
-					</settings.startingpoin.recursive>
+					</settings.startingpoint.recursive>
 
 				</el>
 			</ROOT>
