@@ -61,8 +61,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$this->newsRepository->setLimit($this->settings['limit']);
 		$this->newsRepository->setOffset($this->settings['offset']);
 		$this->newsRepository->setSearchFields($this->settings['search']['fields']);
-		$this->newsRepository->setStoragePage(Tx_News2_Service_RecursivePidListService::find($this->settings['startingpoint'], $this->settings['startingpoint']['recursive']));
-
+		$this->newsRepository->setStoragePage(Tx_News2_Service_RecursivePidListService::find($this->settings['startingpoint'], $this->settings['recursive']));
 
 		$this->requestOverrule();
 //		t3lib_div::print_array($this->settings);
