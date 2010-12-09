@@ -22,8 +22,8 @@ plugin.tx_news2 {
 	settings {
 		# general settings
 		pidBackAdditionalParams {
-			
-		}		
+
+		}
 
 		orderBy = datetime
 		orderAscDesc = desc
@@ -35,15 +35,6 @@ plugin.tx_news2 {
 		search {
 			fields = teaser,title,bodytext
 		}
-
-		# --------------
-		#  Latest
-		# --------------
-		# @todo not used anymore, settings needed?
-		#latest {
-		#	allowCategoryRestrictionFromGetParams = 1
-		#	timeLimit = -10 days
-		#}
 
 		# --------------
 		#  List
@@ -59,14 +50,13 @@ plugin.tx_news2 {
 
 			# Paginate configuration.
 			paginate {
-				itemsPerPage = 1
+				itemsPerPage = 3
 				insertAbove = TRUE
 				insertBelow = TRUE
 			}
 
 			allowCategoryRestrictionFromGetParams = 1
 			allowOrderFromGetParams = 1
-
 		}
 
 

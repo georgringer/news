@@ -73,6 +73,7 @@
 			<label index="extmng.hideFileTable">Hide File records:As the file elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
 			<label index="extmng.enableDam">Enable DAM:Enable DAM if you want to use it</label>
 			<label index="extmng.showImporter">Show tt_news Importer:Backend module to import records from tt_news;tt_news needs to be installed too.</label>
+			<label index="extmng.prependAtCopy">Prepend at copy: Prepend string "copy X".</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>
