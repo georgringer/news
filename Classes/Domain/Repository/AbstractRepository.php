@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Abstract repository for news + category commons
+ * Abstract repository for commons in news & category
  *
  * @package TYPO3
  * @subpackage tx_news2
@@ -122,14 +122,13 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 			$query->setOrderings($finalOrdering);
 		}
 	}
-	
+
 	/**
 	 * Set limit
 	 *
 	 * @param Tx_Extbase_Persistence_Query $query
 	 */
 	public function setLimitRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
-
 		if ($this->limit != NULL) {
 			$query->setLimit($this->limit);
 		}
@@ -159,7 +158,6 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 			}
 		}
 		return $constraints;
-
 	}
 }
 

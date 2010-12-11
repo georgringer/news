@@ -32,42 +32,54 @@
 class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_News2_Domain_Repository_AbstractRepository {
 
 
-	protected $fetchedCategories = array();
+	protected $parentCategories = array();
 
 
-
-	/**
-	 * Recursive function to create category menu
-	 *
-	 * @param  integer $parentId parent category id
-	 * @return array
-	 */
-	public function getRecursiveCategories($parentId, $level=0) {
-		$out = array();
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-			'*', #uid,title,parentcategory
-			'tx_news2_domain_model_category',
-			'sys_language_uid = 0 AND deleted=0 AND hidden=0 AND parentcategory=' . $parentId
-		);
-
-		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-			$uid = $row['uid'];
-			if (!isset($this->fetchedCategories[$uid])) {
-				$this->fetchedCategories[$uid] = 1;
-				$out[$uid] = $row;
-
-				if ($level <=2) {
-					$out[$uid]['sub'] = $this->getRecursiveCategories($uid, $level++);
-				}
-			}
-
-		}
-
-		$GLOBALS['TYPO3_DB']->sql_free_result($res);
-
-		return $out;
-
+	public function setParentCategories($categoryList) {
+		$this->parentCategories = t3lib_div::intExplode(',', $categoryList, TRUE);
 	}
+
+	public function setParentCategoryConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
+		$parentCategories = (empty($this->parentCategories)) ? array('0') : $this->parentCategories;
+
+		$constraint = $query->in('uid', $parentCategories);
+		return $constraint;
+	}
+
+
+//
+//	/**
+//	 * Recursive function to create category menu
+//	 *
+//	 * @param  integer $parentId parent category id
+//	 * @return array
+//	 */
+//	public function getRecursiveCategories($parentId, $level=0) {
+//		$out = array();
+//		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+//			'*', #uid,title,parentcategory
+//			'tx_news2_domain_model_category',
+//			'sys_language_uid = 0 AND deleted=0 AND hidden=0 AND parentcategory=' . $parentId
+//		);
+//
+//		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+//			$uid = $row['uid'];
+//			if (!isset($this->fetchedCategories[$uid])) {
+//				$this->fetchedCategories[$uid] = 1;
+//				$out[$uid] = $row;
+//
+//				if ($level <=2) {
+//					$out[$uid]['sub'] = $this->getRecursiveCategories($uid, $level++);
+//				}
+//			}
+//
+//		}
+//
+//		$GLOBALS['TYPO3_DB']->sql_free_result($res);
+//
+//		return $out;
+//
+//	}
 
 }
 

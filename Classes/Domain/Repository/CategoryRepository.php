@@ -40,12 +40,13 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 		return $out;
 	}
 
-	public function findAll2() {
+	public function findByIdList() {
 
 		$query = $this->createQuery();
 
 		$constraints = array();
 		$constraints[] = $this->setStoragePageRestriction($query);
+		$constraints[] = $this->setParentCategoryConstraint($query);
 
 		return $this->executeQuery($query, $constraints);
 	}

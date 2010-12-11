@@ -101,7 +101,6 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 			} else {
 				throw new Exception('Latest time limit could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
 			}
-
 		}
 	}
 
@@ -332,23 +331,6 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	}
 
 
-
-
-	/**
-	 * Remove empty entries from constraint list
-	 *
-	 * @param array $constraints
-	 * @return array $constraints
-	 */
-	public function checkConstraintArray(array $constraints) {
-		foreach($constraints as $key => $constraint) {
-			if ($constraint === NULL || empty($constraint)) {
-				unset($constraints[$key]);
-			}
-		}
-		return $constraints;
-
-	}
 }
 
 ?>
