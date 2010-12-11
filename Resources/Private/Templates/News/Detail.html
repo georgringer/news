@@ -1,105 +1,108 @@
 {namespace n=Tx_News2_ViewHelpers}
 
+<f:layout name="Detail.html" />
+
+
 <!--
 	=====================
 		News/Detail.html
 -->
 
-<div class="news2 news2-single">
-	<div class="article">
-		<div class="header">
-			<h3>{newsItem.title}</h3>
-		</div>
-		<n:facebook.like width="250" />
-		<div class="footer" role="contentinfo">
-			<p>
+<f:section name="content">
+	<div class="header">
+		<h3>{newsItem.title}</h3>
+	</div>
+	<div class="footer" role="contentinfo">
+		<p>
+			<!-- date -->
+			<span class="news2-list-date">
+				<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
+			</span>
 
-				<!-- date -->
-				<span class="news2-list-date">
-					<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
+			<!-- first category -->
+			<f:if condition="{newsItem.firstCategory}">
+				<span class="hidden">. </span>
+				<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
+			</f:if>
+
+			<!-- author -->
+			<f:if condition="{newsItem.author}">
+				<span class="hidden">. </span>
+				<span class="news2-list-author">
+					<f:translate key="author" arguments="{0:newsItem.author}"></f:translate>
 				</span>
-				
-				<!-- first category -->
-				<f:if condition="{newsItem.firstCategory}">
-					<span class="hidden">. </span>
-					<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
-				</f:if>
+			</f:if>
+		</p>
+	</div>
 
-				<!-- author -->
-				<f:if condition="{newsItem.author}">
-					<span class="hidden">. </span>
-					<span class="news2-list-author">
-						<f:translate key="author" arguments="{0:newsItem.author}"/>
-					</span>
-				</f:if>
-			</p>
+	<!-- teaser -->
+	<div class="teaser-text">
+		{newsItem.teaser}
+	</div>
+
+	<!-- media files -->
+	<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}"/>
+
+	<!-- main text -->
+	<div class="news2-text-wrap">
+		<f:format.html>{newsItem.bodytext}</f:format.html>
+	</div>
+
+	<!-- Link Back -->
+	<f:if condition="{settings.pidBack}">
+		<div class="news2-backlink-wrap">
+			<f:link.page pageUid="{settings.pidBack}">
+				<f:translate key="back-link" />
+			</f:link.page>
 		</div>
+	</f:if>
+	
+	<div class="like">
+		<n:facebook.like width="250"></n:facebook.like>
+	</div>
 
-		<!-- teaser -->
-		<div class="teaser-text">
-			{newsItem.teaser}
-		</div>
+	<!-- related things -->
+	<div class="news2-related-wrap">
 
-		<!-- media files -->
-		<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}"/>
+		<!-- Related news records -->
+		<f:if condition="{newsItem.related}">
+			<div class="news2-related news2-related-news">
+				<h4><f:translate key="related-news" /></h4>
+				<ul>
+					<f:for each="{newsItem.related}" as="related">
+						<li>
+							<span class="news2-related-news-date"><f:format.date format="d.m.Y">{related.datetime}</f:format.date></span>
+							<span class="hidden">. </span>
+							<n:link newsItem="{related}" settings="{settings}" class="news2-related-news-link">
+								{related.title}
+							</n:link>
+						</li>
 
-		<!-- main text -->
-		<div class="news2-text-wrap">
-			<f:format.html>{newsItem.bodytext}</f:format.html>
-		</div>
-
-		<!-- Link Back -->
-		<f:if condition="{settings.pidBack}">
-			<div class="news2-backlink-wrap">
-				<f:link.page pageUid="{settings.pidBack}">
-					<f:translate key="back-link" />
-				</f:link.page>
+					</f:for>
+				</ul>
 			</div>
 		</f:if>
 
-		<!-- related things -->
-		<div class="news2-related-wrap">
-
-			<!-- Related news records -->
-			<f:if condition="{newsItem.related}">
-				<div class="news2-related news2-related-news">
-					<h4><f:translate key="related-news" /></h4>
-					<ul>
-						<f:for each="{newsItem.related}" as="related">
-							<li>
-								<span class="news2-related-news-date"><f:format.date format="d.m.Y">{related.datetime}</f:format.date></span>
-								<span class="hidden">. </span>
-								<n:link newsItem="{related}" settings="{settings}" class="news2-related-news-link">
-									{related.title}
-								</n:link>
-							</li>
-							 
-						</f:for>
-					</ul>
-				</div>
-			</f:if>
-
-			<!-- Related files -->
-			<f:if condition="{newsItem.relatedFiles}">
-				<div class="news2-related news2-related-files">
-					<h4><f:translate key="related-files" /></h4>
-					<ul>
-						<f:for each="{newsItem.relatedFiles}" as="relatedFile">
-							<li>
-								<span class="news2-related-files-link">
-									<n:format.fileDownload file="{relatedFile.file}" path="uploads/tx_news/" configuration="{settings.relatedFiles.download}">
-										{relatedFile.title}
-									</n:format.fileDownload>
-								</span>
-								<span class="hidden">. </span>
-								<span class="news2-related-files-size">
-									<n:format.fileSize file="{relatedFile.file}" path="uploads/tx_news/" format="{settings.relatedFiles.fileSizeLabels}" />
-								</span>
-							</li>
-						</f:for>
-					</ul>
-				</div>
-			</f:if>
-		</div>
+		<!-- Related files -->
+		<f:if condition="{newsItem.relatedFiles}">
+			<div class="news2-related news2-related-files">
+				<h4><f:translate key="related-files" /></h4>
+				<ul>
+					<f:for each="{newsItem.relatedFiles}" as="relatedFile">
+						<li>
+							<span class="news2-related-files-link">
+								<n:format.fileDownload file="{relatedFile.file}" path="uploads/tx_news/" configuration="{settings.relatedFiles.download}">
+									{relatedFile.title}
+								</n:format.fileDownload>
+							</span>
+							<span class="hidden">. </span>
+							<span class="news2-related-files-size">
+								<n:format.fileSize file="{relatedFile.file}" path="uploads/tx_news/" format="{settings.relatedFiles.fileSizeLabels}" />
+							</span>
+						</li>
+					</f:for>
+				</ul>
+			</div>
+		</f:if>
 	</div>
-</div>
+</f:section>
