@@ -32,7 +32,7 @@
  * <n:facebook.like />
  * Result: Facebook widget to share the current URL
  * 
- * <n:facebook.like url="http://www.typo3.org" width="300" font="arial" />
+ * <n:facebook.like href="http://www.typo3.org" width="300" font="arial" />
  * Result: Facebook widget to share www.typo3.org within a plugin styled with 
  * width 300 and arial as font
  * 
@@ -42,14 +42,18 @@
  * @version $Id$
  */
 class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
-
+	/**
+	 * @var	string
+	 */
+	protected $tagName = 'fb:like';
+	
 	/**
 	 * Arguments initialization
 	 *
 	 * @return void
 	 */
 	public function initializeArguments() {
-		$this->registerTagAttribute('url', 'string', 'Given url, if empty, current url is used');
+		$this->registerTagAttribute('href', 'string', 'Given url, if empty, current url is used');
 		$this->registerTagAttribute('layout', 'string', 'Either: standard, button_count or box_count');
 		$this->registerTagAttribute('width', 'integer', 'With of widget, default 450');
 		$this->registerTagAttribute('font', 'string', 'Font, options are: arial, lucidia grande, segoe ui, tahoma, trebuchet ms, verdana');
@@ -58,10 +62,8 @@ class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHel
 
 	public function render() {
 		$code = '';
-		$url = (!empty($this->arguments['layout'])) ? $this->arguments['layout'] : t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
-		$width = ((int)$this->arguments['width']) ? $this->arguments['width'] : 450;
-		$layout = (!empty($this->arguments['layout'])) ? $this->arguments['layout'] : 'standard';
-		$font = (!empty($this->arguments['font'])) ? $this->arguments['font'] : 'verdana';
+		$this->tag->addAttribute('href', (!empty($this->arguments['href'])) ? $this->arguments['href'] : t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
+
 
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
@@ -72,8 +74,8 @@ class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHel
 			}
 		}
 		
-		$code .= '<fb:like layout="' . $layout . '" href="' . rawurlencode($url) . '" width="' . (int)$width . '" font="' . $font . '"></fb:like>';
-
+		
+		$code .= $this->tag->render();
 		return $code;
 	}
 

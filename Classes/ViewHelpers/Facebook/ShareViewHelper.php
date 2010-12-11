@@ -28,11 +28,8 @@
  *
  * Examples
  * ==============
- * <n:facebook.share text="Teilen" />
- * Result: Facebook widget to share current URL with the text "Teilen"
- *
- * <n:facebook.share text="Share it with your friends" url="http://www.typo3.org" />
- * Result: Facebook widget to share www.typo3.org with the text "Share with your friends"
+ * <n:facebook.share>Share</n:facebook.share>
+ * Result: Facebook widget to share current URL with the text "Share"
  *
  * @package TYPO3
  * @subpackage tx_news2
@@ -41,20 +38,44 @@
 class Tx_News2_ViewHelpers_Facebook_ShareViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
 	/**
+	 * @var	string
+	 */
+	protected $tagName = 'a';
+
+	/**
 	 * Arguments initialization
 	 *
 	 * @return void
 	 */
 	public function initializeArguments() {
-		$this->registerTagAttribute('url', 'string', 'Given url, if empty, current url is used');
-		$this->registerTagAttribute('text', 'string', 'Given text', TRUE);
+		$this->registerTagAttribute('share_url', 'string', 'Shared url, default: http://www.facebook.com/sharer.php');
+		$this->registerTagAttribute('name', 'string', 'default: fb_share');
+		$this->registerTagAttribute('type', 'string', 'default: button_count');
 	}
 
+	/**
+	 * Render a share button
+	 * @return string 
+	 */
 	public function render() {
-		$url = (!empty($this->arguments['layout'])) ? $this->arguments['layout'] : t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
+			// check defaults
+		if (empty($this->arguments['href'])) {
+			$this->tag->addAttribute('href', 'http://www.facebook.com/sharer.php');
+		}
+		if (empty($this->arguments['name'])) {
+			$this->tag->addAttribute('name', 'fb_share');
+		}
+		if (empty($this->arguments['type'])) {
+			$this->tag->addAttribute('type', 'button_count');
+		}
+		if (empty($this->arguments['share_url'])) {
+			$this->tag->addAttribute('share_url', t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
+		}
+		
+		$this->tag->setContent($this->renderChildren());
 
-		$code = '<a name="fb_share" type="button_count" share_url="' . rawurlencode($url) . '" href="http://www.facebook.com/sharer.php">' . htmlspecialchars($this->arguments['text']) . '</a>
-					<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>';
+		$code = $this->tag->render() . 
+					'<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>';
 
 		return $code;
 	}
