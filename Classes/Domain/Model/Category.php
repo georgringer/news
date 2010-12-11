@@ -40,7 +40,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * @var integer
 	 */
 	protected $sorting;
-	
+
 	/**
 	 * @var DateTime
 	 */
@@ -55,12 +55,12 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * @var DateTime
 	 */
 	protected $starttime;
-	
+
 	/**
 	 * @var DateTime
 	 */
 	protected $endtime;
-	
+
 	/**
 	 * @var integer
 	 */
@@ -101,7 +101,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * @var integer
 	 */
 	protected $singlePid;
-	
+
 	/**
 	 * @var integer
 	 */
@@ -111,7 +111,12 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * keep it as string as it should be only used during imports
 	 * @var string
 	 */
-	protected $feGroup;	
+	protected $feGroup;
+
+	/**
+	 * @var integer
+	 */
+	protected $countRelatedNews = 0;
 
 	public function getPid() {
 		return $this->pid;
@@ -136,7 +141,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
 	}
-	
+
 	public function getStarttime() {
 		return $this->starttime;
 	}
@@ -168,7 +173,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	public function setL10nParent($l10nParent) {
 		$this->l10nParent = $l10nParent;
 	}
-	
+
 	public function getTitle() {
 	 return $this->title;
 	}
@@ -248,7 +253,16 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 		$this->feGroup = $feGroup;
 	}
 
+	/**************************
+	 * helper functions
+	 */
 
+	public function getCountRelatedNews() {
+		/** @var Tx_News2_Domain_Repository_NewsRepository */
+		$newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
+		$newsRepository->setCategories($this->uid);
+		return $newsRepository->countByTest();
+	}
 
 }
 

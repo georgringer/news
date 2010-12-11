@@ -145,6 +145,10 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
         $constraint = NULL;
 		$selectedCategories = $this->categories;
 
+		if (!isset($this->categorySetting)) {
+			$this->categorySetting = 'and';
+		}
+
 		if (count($selectedCategories) > 0 && !empty($this->categorySetting)) {
 			$constraintList = array();
 

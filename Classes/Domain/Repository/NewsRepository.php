@@ -66,6 +66,23 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	}
 
 
+	/**
+	 * @todo: tests
+	 */
+	public function countByTest() {
+		$query = $this->createQuery();
+
+		$constraints = array();
+		$constraints[] = $this->getArchiveRestriction($query);
+		$constraints[] = $this->getCategoryRestriction($query);
+		$constraints[] = $this->getSearchConstraint($query, $searchString);
+		$constraints[] = $this->getTopNewsConstraint($query);
+		$constraints[] = $this->setStoragePageRestriction($query);
+
+		return $this->executeCountQuery($query, $constraints);
+	}
+
+
 }
 
 ?>

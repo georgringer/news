@@ -183,6 +183,29 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 		return $query->execute();
 	}
 
+	/**
+	 * Count query
+	 *
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @param array $constraints
+	 * @return integer
+	 */
+	public function executeCountQuery(Tx_Extbase_Persistence_QueryInterface $query, array $constraints) {
+		$constraints = $this->checkConstraintArray($constraints);
+
+		if(!empty($constraints)) {
+        	$query->matching(
+				$query->logicalAnd($constraints)
+			);
+		}
+
+//		$this->setFinalOrdering($query);
+		$this->setLimitRestriction($query);
+		$this->setOffsetRestriction($query);
+
+		return $query->count();
+	}
+
 }
 
 ?>
