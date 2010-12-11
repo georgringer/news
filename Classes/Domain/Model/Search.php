@@ -34,6 +34,16 @@ class Tx_News2_Domain_Model_Search extends Tx_Extbase_DomainObject_AbstractEntit
 	 * @var string
 	 */
 	protected $searchString;
+	
+	/**
+	 * @var string
+	 */
+	protected $fromDate;
+	
+	/**
+	 * @var DateTime
+	 */
+	protected $toDate;
 
 	public function getSearchString() {
 		return $this->searchString;
@@ -42,6 +52,23 @@ class Tx_News2_Domain_Model_Search extends Tx_Extbase_DomainObject_AbstractEntit
 	public function setSearchString($searchString) {
 		$this->searchString = $searchString;
 	}
+
+	public function getFromDate() {
+		return $this->fromDate;
+	}
+
+	public function setFromDate($fromDate) {
+		$this->fromDate = $fromDate;
+	}
+
+	public function getToDate() {
+		return $this->toDate;
+	}
+
+	public function setToDate($toDate) {
+		$this->toDate = $toDate;
+	}
+
 
 
 }

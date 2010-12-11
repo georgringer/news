@@ -49,16 +49,16 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	}
 
     /**
-     * @param  $searchString string to search for
+     * @param  Tx_News2_Domain_Model_Search $searchobject
      * @return
      */
-	public function findBySearch($searchString) {
+	public function findBySearch($searchobject) {
 		$query = $this->createQuery();
 
 		$constraints = array();
 		$constraints[] = $this->getArchiveRestriction($query);
 		$constraints[] = $this->getCategoryRestriction($query);
-		$constraints[] = $this->getSearchConstraint($query, $searchString);
+		$constraints[] = $this->getSearchConstraint($query, $searchobject->getSearchString());
 		$constraints[] = $this->getTopNewsConstraint($query);
 		$constraints[] = $this->setStoragePageRestriction($query);
 

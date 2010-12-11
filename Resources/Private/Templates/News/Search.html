@@ -5,8 +5,17 @@
 		<f:form id="news2-search" method="post" action="search" name="search" object="{search}">
 			<fieldset>
 				 <legend><span class="hidden">News search</span></legend>
-
-				<f:form.textbox name="searchString" property="searchString" value="{search.searchString}" />
+				
+				 <div class="form">
+					 <label for="searchstring">Searchstring</label>
+					 <f:form.textbox id="searchString" name="searchString" property="searchString" value="{search.searchString}" />
+				 </div>
+				 
+				 <div class="form">
+					 <label for="fromDate">From Date</label>
+					 <f:form.textbox id="fromDate" name="fromDate" property="fromDate" value="{search.fromDate}" />
+				 </div>
+				 
 				<f:form.submit name="submit" value="{f:translate(key:'search-start')}" id="news2-search-sb" />
 			</fieldset>
 

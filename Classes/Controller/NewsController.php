@@ -99,8 +99,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 			// if a search is submitted
 		if($search !== NULL) {
-//
-			$newsRecords = $this->newsRepository->findBySearch($search->getSearchString());
+			$newsRecords = $this->newsRepository->findBySearch($search);
 			$this->view->assign('news', $newsRecords);
 
 
