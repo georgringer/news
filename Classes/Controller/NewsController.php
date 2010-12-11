@@ -32,7 +32,7 @@
 class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * @var Tx_News2_Domain_Model_NewsRepository
+	 * @var Tx_News2_Domain_Repository_NewsRepository
 	 */
 	protected $newsRepository;
 

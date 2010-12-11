@@ -32,7 +32,7 @@
 class Tx_News2_Controller_CategoryController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * @var Tx_News2_Domain_Model_CategoryRepository
+	 * @var Tx_News2_Domain_Repository_CategoryRepository
 	 */
 	protected $categoryRepository;
 
