@@ -58,7 +58,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		$constraints = array();
 		$constraints[] = $this->getArchiveRestriction($query);
 		$constraints[] = $this->getCategoryRestriction($query);
-		$constraints[] = $this->getSearchConstraint($query, $searchobject->getSearchString());
+		$constraints[] = $this->getSearchConstraint($query, $searchobject);
 		$constraints[] = $this->getTopNewsConstraint($query);
 		$constraints[] = $this->setStoragePageRestriction($query);
 

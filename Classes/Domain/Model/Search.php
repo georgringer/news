@@ -41,7 +41,7 @@ class Tx_News2_Domain_Model_Search extends Tx_Extbase_DomainObject_AbstractEntit
 	protected $fromDate;
 	
 	/**
-	 * @var DateTime
+	 * @var string
 	 */
 	protected $toDate;
 

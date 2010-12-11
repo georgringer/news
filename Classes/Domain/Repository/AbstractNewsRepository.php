@@ -278,24 +278,48 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	 * Get the search constraints
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
-	 * @param  string $searchString
+	 * @param  Tx_News2_Domain_Model_Search $search
 	 * @return
 	 */
-	protected function getSearchConstraint(Tx_Extbase_Persistence_QueryInterface $query, $searchString) {
-		$constraint = NULL;
+	protected function getSearchConstraint(Tx_Extbase_Persistence_QueryInterface $query, $search) {
+		$searchConstraints = array();
+		
+			// search string
 		$searchFields = $this->searchFields;
-
-		if (!empty($searchString) && !empty($searchFields)) {
+		$seachString = $search->getSearchString();
+		if (!empty($seachString) && !empty($searchFields)) {
 			$constraintItems = array();
 
 			foreach($searchFields as $searchField) {
-				$constraintItems[] = $query->like($searchField, '%' . $searchString . '%');
+				$constraintItems[] = $query->like($searchField, '%' . $seachString . '%');
 			}
 
-			$constraint = $query->logicalOr($constraintItems);
+			$searchConstraints[] = $query->logicalOr($constraintItems);
+		}
+		
+			// from date
+		$fromDate = $search->getFromDate();
+		if (!empty($fromDate)) {
+			$convertedDate = strtotime($fromDate);
+			if ($convertedDate) {
+				$searchConstraints[] = $query->greaterThanOrEqual('datetime', $convertedDate);
+			}
+		}
+			// to date
+		$toDate = $search->getToDate();
+		if (!empty($toDate)) {
+			$convertedDate = strtotime($toDate);
+			if ($convertedDate) {
+				$searchConstraints[] = $query->lessThan('datetime', $convertedDate);
+			}
+		}
+		
+			// check if any search constraint has been met
+		if (count($searchConstraints) > 0) {
+			return $query->logicalAnd($searchConstraints);
 		}
 
-		return $constraint;
+		return NULL;
 	}
 
 	/**

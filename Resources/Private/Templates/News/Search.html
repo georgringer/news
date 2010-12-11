@@ -6,14 +6,19 @@
 			<fieldset>
 				 <legend><span class="hidden">News search</span></legend>
 				
-				 <div class="form">
+				 <div class="form-field">
 					 <label for="searchstring">Searchstring</label>
 					 <f:form.textbox id="searchString" name="searchString" property="searchString" value="{search.searchString}" />
 				 </div>
 				 
-				 <div class="form">
+				 <div class="form-field">
 					 <label for="fromDate">From Date</label>
 					 <f:form.textbox id="fromDate" name="fromDate" property="fromDate" value="{search.fromDate}" />
+				 </div>
+				 
+				 <div class="form-field">
+					 <label for="toDate">To Date</label>
+					 <f:form.textbox id="toDate" name="toDate" property="toDate" value="{search.toDate}" />
 				 </div>
 				 
 				<f:form.submit name="submit" value="{f:translate(key:'search-start')}" id="news2-search-sb" />
