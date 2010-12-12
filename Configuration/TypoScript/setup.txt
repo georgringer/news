@@ -24,6 +24,7 @@ plugin.tx_news2 {
 		pidBackAdditionalParams {
 
 		}
+		hrDates = 1
 
 		orderBy = datetime
 		orderAscDesc = desc
