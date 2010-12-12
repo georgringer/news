@@ -44,6 +44,11 @@ class Tx_News2_Domain_Model_Search extends Tx_Extbase_DomainObject_AbstractEntit
 	 * @var string
 	 */
 	protected $toDate;
+	
+	/**
+	 * @var array 
+	 */
+	protected $category;
 
 	public function getSearchString() {
 		return $this->searchString;
@@ -67,6 +72,14 @@ class Tx_News2_Domain_Model_Search extends Tx_Extbase_DomainObject_AbstractEntit
 
 	public function setToDate($toDate) {
 		$this->toDate = $toDate;
+	}
+
+	public function getCategory() {
+		return $this->category;
+	}
+
+	public function setCategory($category) {
+		$this->category = $category;
 	}
 
 

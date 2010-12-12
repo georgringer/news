@@ -86,6 +86,16 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @param Tx_News2_Domain_Model_Search $search
 	 */
 	public function searchAction(Tx_News2_Domain_Model_Search $search = NULL) {
+		if ($search === NULL) {
+			$search = new Tx_News2_Domain_Model_Search();
+		}
+		
+		/** @var Tx_News2_Domain_Repository_CategoryRepository */
+		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
+		$categoryRepository->setParentCategories($this->settings['category']);
+		$categories = $categoryRepository->findByIdList()->toArray();
+		$search->setCategory($categories);
+		
 		$this->view->assign('search', $search);
 	}
 
