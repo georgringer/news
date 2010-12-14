@@ -315,12 +315,12 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 		}
 		
 			// category
-		var_dump($search->getCategory());
-//		$searchConstraints[] = $query->logicalAnd($query->in('category.uid', array(2)), $query->in('category.uid', array(5)));
-//		$searchConstraints[] = $query->equals('category.uid', 2);
-//		$searchConstraints[] = $query->equals('category.uidx', 5);
-//		$searchConstraints[] = $query->contains('category.uid', array(2,5));
-		
+//		var_dump($search->getCategory());
+
+		$searchConstraints[] = $query->logicalAnd(
+								$query->contains('category',2),
+								$query->contains('category', 5)
+								);
 			// check if any search constraint has been met
 		if (count($searchConstraints) > 0) {
 			return $query->logicalAnd($searchConstraints);
