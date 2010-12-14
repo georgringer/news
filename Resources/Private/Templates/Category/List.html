@@ -1,14 +1,19 @@
 {namespace n=Tx_News2_ViewHelpers}
+<f:layout name="General.html" />
+
 
 <!--
 	=====================
 		Category/List.html
 -->
 
-<f:if condition="{categories}">
-	<ul class="news-categories">
-		<f:for each="{categories}" as="category">
-			<f:render partial="Category/TreeItem.html" arguments="{category:category}" />
-		</f:for>
-	</ul>
-</f:if>
+<f:section name="content">
+	<f:if condition="{categories}">
+		<ul class="news-categories">
+			<f:for each="{categories}" as="category">
+				<f:render partial="Category/TreeItem.html" arguments="{category:category}" />
+			</f:for>
+		</ul>
+	</f:if>	
+</f:section>
+

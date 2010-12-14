@@ -1,12 +1,11 @@
 {namespace n=Tx_News2_ViewHelpers}
+<f:layout name="General.html" />
 <!--
 	=====================
 		Templates/News/List.html
 -->
 
-<n:includeFile path="EXT:news2/Resources/Public/Css/news2-basic.css" />
-<n:includeFile path="EXT:news2/Resources/Public/Css/news2-advanced.css" />
-
+<f:section name="content">
 <f:if condition="{news}">
 	<f:then>
 		<div class="news2 news2-list-view">
@@ -21,3 +20,4 @@
 		<f:render partial="List/NoNewsFound" />
 	</f:else>
 </f:if>
+</f:section>
