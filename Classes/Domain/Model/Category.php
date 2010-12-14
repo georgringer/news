@@ -117,6 +117,12 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * @var integer
 	 */
 	protected $countRelatedNews = 0;
+	
+	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
+	 * @lazy
+	 */
+	protected $childs;	
 
 	public function getPid() {
 		return $this->pid;
@@ -258,11 +264,21 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 */
 
 	public function getCountRelatedNews() {
-                /** @var Tx_News2_Domain_Repository_NewsRepository */
+		/** @var Tx_News2_Domain_Repository_NewsRepository */
 		$newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
 		$newsRepository->setCategories($this->uid);
 		return $newsRepository->countByTest();
 	}
+
+	public function getChilds() {
+		/** @var Tx_News2_Domain_Repository_CategoryRepository */
+		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
+		$categoryRepository->setParentUidList($this->uid);
+		$childs = $categoryRepository->findByParent();
+		
+		return $childs;
+	}
+
 
 }
 

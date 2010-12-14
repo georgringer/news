@@ -45,12 +45,21 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 
 		$constraints = array();
 		$constraints[] = $this->setStoragePageRestriction($query);
-		$constraints[] = $this->setParentCategoryConstraint($query);
+		$constraints[] = $this->setUidListConstraint($query);
 
 		return $this->executeQuery($query, $constraints);
 	}
+	
+	public function findByParent() {
+		$query = $this->createQuery();
 
+		$constraints = array();
+		$constraints[] = $this->setStoragePageRestriction($query);
+		$constraints[] = $this->setParentUidListConstraint($query);
 
+		return $this->executeQuery($query, $constraints);
+	}
+	
 
 }
 

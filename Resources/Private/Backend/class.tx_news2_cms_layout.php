@@ -155,7 +155,7 @@ class tx_news2_cms_layout {
 				// Category records
 			$rawCategoryRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'title',
-				'tx_news_domain_model_category',
+				'tx_news2_domain_model_category',
 				'deleted=0 AND uid IN(' . implode(',', $categories) . ')'
 			);
 

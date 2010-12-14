@@ -32,17 +32,29 @@
 class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_News2_Domain_Repository_AbstractRepository {
 
 
-	protected $parentCategories = array();
+	protected $uidList = array();
+	protected $parentUidList = array();
 
 
-	public function setParentCategories($categoryList) {
-		$this->parentCategories = t3lib_div::intExplode(',', $categoryList, TRUE);
+	public function setUidList($categoryList) {
+		$this->uidList = t3lib_div::intExplode(',', $categoryList, TRUE);
 	}
 
-	public function setParentCategoryConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
-		$parentCategories = (empty($this->parentCategories)) ? array('0') : $this->parentCategories;
+	public function setUidListConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
+		$idList = (empty($this->uidList)) ? array('0') : $this->uidList;
 
-		$constraint = $query->in('uid', $parentCategories);
+		$constraint = $query->in('uid', $idList);
+		return $constraint;
+	}
+	
+	public function setParentUidList($categoryList) {
+		$this->parentUidList = t3lib_div::intExplode(',', $categoryList, TRUE);
+	}
+
+	public function setParentUidListConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
+		$idList = (empty($this->parentUidList)) ? array('0') : $this->parentUidList;
+
+		$constraint = $query->in('parentcategory', $idList);
 		return $constraint;
 	}
 

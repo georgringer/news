@@ -60,7 +60,7 @@ class tx_news2_labelFunc {
 //		if ($params['row']['parent_id'] > 0) {
 //			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 //				'title',
-//				'tx_news_domain_model_category',
+//				'tx_news2_domain_model_category',
 //				'deleted=0 AND uid=' . (int)$params['row']['parent_id']
 //			);
 //

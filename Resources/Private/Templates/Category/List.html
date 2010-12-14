@@ -6,20 +6,10 @@
 -->
 
 <f:if condition="{categories}">
-	<f:for each="{categories}" as="category">
+	<ul class="news-categories">
+		<f:for each="{categories}" as="category">
+			<f:render partial="Category/TreeItem.html" arguments="{category:category}" />
 
-		<ul class="news-categories">
-			<li class="{n:activeCategory(category:category)}">
-				<f:link.action arguments="{category:category}" controller="News">
-					{category.title}
-				</f:link.action>
-			<br />
-			Related News items: {category.countRelatedNews} <br />
-			Sub categories: <br />
-			</li>
-		</ul>
-
-
-
-	</f:for>
+		</f:for>
+	</ul>
 </f:if>

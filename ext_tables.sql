@@ -54,7 +54,7 @@ CREATE TABLE tx_news2_domain_model_news (
 );
 
 #
-# Table structure for table 'tx_news_domain_model_category'
+# Table structure for table 'tx_news2_domain_model_category'
 #
 CREATE TABLE tx_news2_domain_model_category (
 	uid int(11) NOT NULL auto_increment,
