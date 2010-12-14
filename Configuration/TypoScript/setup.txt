@@ -60,6 +60,14 @@ plugin.tx_news2 {
 			allowOrderFromGetParams = 1
 		}
 
+		relatedFiles {
+			download {
+				labelStdWrap {
+					cObject = TEXT
+				}
+			}
+		}
+
 
 	}
 
