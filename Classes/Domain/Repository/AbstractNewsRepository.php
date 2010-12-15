@@ -220,9 +220,10 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 
 			// archived news
 		if ($this->archiveSetting == 'archived') {
-			$constraint = $query->lessThan(
-				'archive', $GLOBALS['EXEC_TIME']
-			);
+			$constraint = $query->logicalAnd(
+							$query->lessThan('archive', $GLOBALS['EXEC_TIME']),
+							$query->greaterThan('archive', 0)
+							);
 			// active news
 		} elseif ($this->archiveSetting == 'active') {
 			$constraint = $query->greaterThanOrEqual(
