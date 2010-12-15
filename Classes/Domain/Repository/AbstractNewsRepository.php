@@ -153,7 +153,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 			$constraintList = array();
 
 			foreach($selectedCategories as $categoryId) {
-				$constraintList[] = $query->equals('category.uid', $categoryId);
+				$constraintList[] = $query->contains('category', $categoryId);
 			}
 
 				// OR > Show items with selected categories (OR)
@@ -185,7 +185,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 			$constraintList = array();
 
 			foreach($selectedCategories as $categoryId) {
-				$constraintList[] = $query->equals('category.uid', $categoryId);
+				$constraintList[] = $query->contains('category', $categoryId);
 			}
 
 				// OR > Show items with selected categories (OR)
@@ -317,10 +317,10 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 			// category
 //		var_dump($search->getCategory());
 
-		$searchConstraints[] = $query->logicalAnd(
-								$query->contains('category',2),
-								$query->contains('category', 5)
-								);
+//		$searchConstraints[] = $query->logicalAnd(
+//								$query->contains('category',2),
+//								$query->contains('category', 5)
+//								);
 			// check if any search constraint has been met
 		if (count($searchConstraints) > 0) {
 			return $query->logicalAnd($searchConstraints);
