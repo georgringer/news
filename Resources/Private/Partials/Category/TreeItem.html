@@ -12,7 +12,7 @@
 	<f:if condition="{category.childs}">
 		<ul>
 			<f:for each="{category.childs}" as="sub">
-				<f:render partial="Category/TreeItem.html" arguments="{category:sub}" />
+				<f:render partial="Category/TreeItem" arguments="{category:sub}" />
 			</f:for>
 		</ul>
 	</f:if>
