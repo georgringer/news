@@ -38,9 +38,11 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 	 * @param array $settings
 	 * @param boolean $renderTypeClass
 	 * @param string $class
+	 * @param boolean $linkOnly
+	 * @param boolean $hsc
 	 * @return string url
 	 */
-	public function render(Tx_News2_Domain_Model_News $newsItem, array $settings=array(), $renderTypeClass = TRUE, $class = '') {
+	public function render(Tx_News2_Domain_Model_News $newsItem, array $settings=array(), $renderTypeClass = TRUE, $class = '', $linkOnly = FALSE, $hsc = FALSE) {
 		$url = '';
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 		$linkConfiguration = array();
@@ -76,8 +78,17 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 		} else {
 			// @todo error handling
 		}
+		
+		if ($linkOnly) {
+			$linkConfiguration['returnLast'] = 'url';
+		}
 			
-
-		return $cObj->typolink($this->renderChildren(), $linkConfiguration);
+		$finalLink = $cObj->typolink($this->renderChildren(), $linkConfiguration);
+		
+		if ($hsc) {
+			$finalLink = htmlspecialchars($finalLink);
+		}
+		
+		return $finalLink;
 	}
 }

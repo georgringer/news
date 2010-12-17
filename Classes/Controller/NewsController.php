@@ -63,6 +63,9 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$this->newsRepository->setSearchFields($this->settings['search']['fields']);
 		$this->newsRepository->setStoragePage(Tx_News2_Service_RecursivePidListService::find($this->settings['startingpoint'], $this->settings['recursive']));
 
+		if (isset($this->settings['format'])) {
+			$this->request->setFormat($this->settings['format']);
+		}
 		$this->requestOverrule();
 //		t3lib_div::print_array($this->settings);
 	}
