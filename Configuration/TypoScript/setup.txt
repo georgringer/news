@@ -20,6 +20,9 @@ plugin.tx_news2 {
 	# Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
 	# ====================================
 	settings {
+		# Output format
+		format = html
+
 		# general settings
 		pidBackAdditionalParams {
 
