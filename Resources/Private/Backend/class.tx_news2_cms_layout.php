@@ -94,6 +94,7 @@ class tx_news2_cms_layout {
 						$this->getArchiveSettings($data) .
 						$this->getCategorySettings($data) .
 						$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']) .
+						$this->getOffsetLimitSettings($data) .
 					 '</table>';
 
 		}
@@ -175,6 +176,40 @@ class tx_news2_cms_layout {
 
 		return $content;
 	}
+	
+	private function getOffsetLimitSettings($data) {
+		$content = '';
+		
+		if (!is_array($data))
+			return $content;
+
+
+		$offset = $data['data']['additional']['lDEF']['settings.offset']['vDEF'];
+		$limit = $data['data']['additional']['lDEF']['settings.limit']['vDEF'];
+		
+		if ($offset) {
+			$content .= '<tr>
+							<td style="font-weight:bold;width:200px;">'.
+								$GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.offset') . '
+								
+							</td><td>' .
+								$offset .
+							'</td>
+						</tr>';			
+		}
+		if ($limit) {
+			$content .= '<tr>
+							<td style="font-weight:bold;width:200px;">'.
+								$GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.limit') . '
+								
+							</td><td>' .
+								$limit .
+							'</td>
+						</tr>';			
+		}
+		
+		return $content;
+	}
 
 	/**
 	 * Get the startingpoint
@@ -182,7 +217,7 @@ class tx_news2_cms_layout {
 	 * @param string $startingpoint comma seperated list of pages
 	 * @return string
 	 */
-	public function getStartingPoint($startingpoint) {
+	private function getStartingPoint($startingpoint) {
 			// @todo: possible check through TS
 		if (empty($startingpoint)) {
 			return '';
