@@ -116,13 +116,10 @@ class tx_news2_cms_layout {
 		$archive = $data['data']['sDEF']['lDEF']['settings.archive']['vDEF'];
 
 		if ($archive != '') {
-			$content = '<tr>
-							<td style="font-weight:bold">'.
-								$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archive') .
-							'</td><td>' .
-								$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archive.' . $archive) .
-							'</td>
-						</tr>';
+			$content = $this->renderLine(
+							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archive'),
+							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archive.' . $archive)
+						);
 		}
 		return $content;
 	}
@@ -164,48 +161,36 @@ class tx_news2_cms_layout {
 				$categoriesOut[] = htmlspecialchars($record['title']);
 			}
 
-			$content = '<tr>
-							<td style="font-weight:bold;width:200px;">'.
-								$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.category') .
-								'<br /><span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>
-							</td><td>' .
-								implode(', ', $categoriesOut) .
-							'</td>
-						</tr>';
+			$content = $this->renderLine(
+							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.category') .
+								'<br /><span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>',
+							implode(', ', $categoriesOut)
+						);
 		}
 
 		return $content;
 	}
 	
+	/**
+	 * Render offset & limit configuration
+	 * 
+	 * @param array $data
+	 * @return string 
+	 */
 	private function getOffsetLimitSettings($data) {
 		$content = '';
 		
 		if (!is_array($data))
 			return $content;
 
-
 		$offset = $data['data']['additional']['lDEF']['settings.offset']['vDEF'];
 		$limit = $data['data']['additional']['lDEF']['settings.limit']['vDEF'];
 		
 		if ($offset) {
-			$content .= '<tr>
-							<td style="font-weight:bold;width:200px;">'.
-								$GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.offset') . '
-								
-							</td><td>' .
-								$offset .
-							'</td>
-						</tr>';			
+			$content .= $this->renderLine($GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.offset'), $offset);			
 		}
 		if ($limit) {
-			$content .= '<tr>
-							<td style="font-weight:bold;width:200px;">'.
-								$GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.limit') . '
-								
-							</td><td>' .
-								$limit .
-							'</td>
-						</tr>';			
+			$content .= $this->renderLine($GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.limit'), $limit);
 		}
 		
 		return $content;
@@ -236,14 +221,27 @@ class tx_news2_cms_layout {
 			$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>' ;
 		}
 
+		$content = $this->renderLine(
+						$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'), 
+						implode(', ', $pagesOut)
+					);
+		
+		return $content;
+	}
+	
+	/**
+	 * Render a configuration line with a tr/td
+	 * 
+	 * @param string $head
+	 * @param string $content
+	 * @return string rendered configuration
+	 */
+	private function renderLine($head, $content) {
 		$content = '<tr>
-						<td style="font-weight:bold">' .
-							$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint') .
-						'</td><td>' .
-							implode(', ', $pagesOut) .
-						'</td>
+						<td style="font-weight:bold;width:200px;">' . $head .	'</td>
+						<td>' . $content . '</td>
 					</tr>';
-
+		
 		return $content;
 	}
 
