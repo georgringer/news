@@ -6,16 +6,7 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="tx_news2_domain_model_category">Category</label>
-			<label index="tx_news2_domain_model_category.title">Title</label>
-			<label index="tx_news2_domain_model_category.description">Description</label>
-			<label index="tx_news2_domain_model_category.image">Image</label>
-			<label index="tx_news2_domain_model_category.parentcategory">Parent Category</label>
-			<label index="tx_news2_domain_model_category.single_pid">Single-view page for news from this category</label>
-			<label index="tx_news2_domain_model_category.shortcut">News category shortcut</label>
-
 			<label index="tx_news2_domain_model_news.tabs.media">Media</label>
-
 			<label index="tx_news2_domain_model_news">News</label>
 			<label index="tx_news2_domain_model_news.teaser">Teaser</label>
 			<label index="tx_news2_domain_model_news.datetime">Date &amp; Time</label>
@@ -28,9 +19,16 @@
 			<label index="tx_news2_domain_model_news.type.I.2">External Page</label>
 			<label index="tx_news2_domain_model_news.media">Media Element</label>
 			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
+			
+			<label index="tx_news2_domain_model_category">Category</label>
+			<label index="tx_news2_domain_model_category.title">Title</label>
+			<label index="tx_news2_domain_model_category.description">Description</label>
+			<label index="tx_news2_domain_model_category.image">Image</label>
+			<label index="tx_news2_domain_model_category.parentcategory">Parent Category</label>
+			<label index="tx_news2_domain_model_category.single_pid">Single-view page for news from this category</label>
+			<label index="tx_news2_domain_model_category.shortcut">News category shortcut</label>
+			
 			<label index="tx_news2_domain_model_media">Media Element</label>
-			<label index="tx_news2_domain_model_media.title">Title</label>
-			<label index="tx_news2_domain_model_media.alt">Alt title</label>
 			<label index="tx_news2_domain_model_media.caption">Caption</label>
 			<label index="tx_news2_domain_model_media.media">Media Element</label>
 			<label index="tx_news2_domain_model_media.type.I.0">Image</label>
@@ -40,6 +38,7 @@
 			<label index="tx_news2_domain_model_media.video">Video URL</label>
 			<label index="tx_news2_domain_model_media.show">Show</label>
 			<label index="tx_news2_domain_model_media.showinpreview">Show in preview views</label>
+			
 			<label index="tx_news2_domain_model_file">File Element</label>
 			<label index="tx_news2_domain_model_file.title">Title</label>
 			<label index="tx_news2_domain_model_file.description">Description</label>
@@ -49,5 +48,49 @@
 			<label index="tx_news2_domain_model_link.description">Description</label>
 			<label index="tx_news2_domain_model_link.uri">URL</label>
 		</languageKey>
+		
+		<languageKey index="de" type="array">
+			<label index="tx_news2_domain_model_news.tabs.media">Medienelement</label>
+			<label index="tx_news2_domain_model_news">News</label>
+			<label index="tx_news2_domain_model_news.teaser">Teaser</label>
+			<label index="tx_news2_domain_model_news.datetime">Datum</label>
+			<label index="tx_news2_domain_model_news.archive">Archivdatum</label>
+			<label index="tx_news2_domain_model_news.category">Kategorie</label>
+			<label index="tx_news2_domain_model_news.related">Verwandte Artikel</label>
+			<label index="tx_news2_domain_model_news.related_links">Verwandte Links</label>
+			<label index="tx_news2_domain_model_news.type.I.0">News</label>
+			<label index="tx_news2_domain_model_news.type.I.1">Interne Seite</label>
+			<label index="tx_news2_domain_model_news.type.I.2">Externe Seite/URL</label>
+			<label index="tx_news2_domain_model_news.media">Medienelement</label>
+			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
+			
+			<label index="tx_news2_domain_model_category">Kategorie</label>
+			<label index="tx_news2_domain_model_category.title">Titel</label>
+			<label index="tx_news2_domain_model_category.description">Beschreibung</label>
+			<label index="tx_news2_domain_model_category.image">Bild</label>
+			<label index="tx_news2_domain_model_category.parentcategory">Elternkategorie</label>
+			<label index="tx_news2_domain_model_category.single_pid">Seite für Einzelansicht von News dieser Kategorie</label>
+			<label index="tx_news2_domain_model_category.shortcut">Verknüpfte Seite</label>
+			
+			<label index="tx_news2_domain_model_media">Medienelement</label>
+			<label index="tx_news2_domain_model_media.caption">Caption</label>
+			<label index="tx_news2_domain_model_media.media">Medientyp</label>
+			<label index="tx_news2_domain_model_media.type.I.0">Bild</label>
+			<label index="tx_news2_domain_model_media.type.I.2">HTML</label>
+			<label index="tx_news2_domain_model_media.type.I.3">DAM</label>
+			<label index="tx_news2_domain_model_media.html">HTML</label>
+			<label index="tx_news2_domain_model_media.video">Video URL</label>
+			<label index="tx_news2_domain_model_media.show">Anzeigen</label>
+			<label index="tx_news2_domain_model_media.showinpreview">In Voransicht anzeigen</label>
+			
+			<label index="tx_news2_domain_model_file">Dateielement</label>
+			<label index="tx_news2_domain_model_file.title">Titel</label>
+			<label index="tx_news2_domain_model_file.description">Beschreibung</label>
+			<label index="tx_news2_domain_model_file.file">Datei</label>
+
+			<label index="tx_news2_domain_model_link.title">Titel</label>
+			<label index="tx_news2_domain_model_link.description">Beschreibung</label>
+			<label index="tx_news2_domain_model_link.uri">URL</label>
+		</languageKey>		
 	</data>
 </T3locallang>
