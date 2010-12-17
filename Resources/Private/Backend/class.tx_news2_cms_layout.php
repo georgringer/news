@@ -43,7 +43,7 @@ class tx_news2_cms_layout {
 	 * @param	object		$pObj	A reference to calling object
 	 * @return	string		Information about pi1 plugin
 	 */
-	function getExtensionSummary($params, &$pObj) {
+	function getExtensionSummary(array $params, tx_cms_layout &$pObj) {
 		$result = '';
 
 		$this->llPath = 'LLL:EXT:' . $this->extKey . '/Resources/Private/Language/locallang_be.xml';
@@ -54,38 +54,16 @@ class tx_news2_cms_layout {
 				// if flexform data is found
 			if (is_array($data) && !empty($data['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
 				$actionList = t3lib_div::trimExplode(';', $data['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF']);
-				$ll = '';
-
-					// render a preview
-				switch($actionList[0]) {
-					case 'News->list':
-						$ll = 'news_list';
-						break;
-					case 'News->latest':
-						$ll = 'news_latest';
-						break;
-					case 'News->detail':
-						$ll = 'news_detail';
-						break;
-					case 'News->search':
-						$ll = 'news_search';
-						break;
-					case 'News->searchResult':
-						$ll = 'news_searchResult';
-						break;
-					case 'Category->list':
-						$ll = 'category_list';
-						break;
-					default:
-						$ll = 'no-mode';
-				}
-
+				
+					// translate the first action into its translation
+				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
+				$actionTranslation = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode.' . $actionTranslationKey);
+				
 				$result =
 						'<strong>' .
-							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode') .
-						': </strong>' .
-						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode.' . $ll);
-
+							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode', TRUE) . 
+						': </strong>' . htmlspecialchars($actionTranslation) ;
+						
 			} else {
 				$result = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode.not_configured');
 			}
@@ -96,7 +74,6 @@ class tx_news2_cms_layout {
 						$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']) .
 						$this->getOffsetLimitSettings($data) .
 					 '</table>';
-
 		}
 
 		return $result;
@@ -109,13 +86,14 @@ class tx_news2_cms_layout {
 	 * @return string
 	 */
 	private function getArchiveSettings($data) {
-		if (!is_array($data))
-			return '';
-
 		$content = '';
+		
+		if (!is_array($data))
+			return $content;
+
 		$archive = $data['data']['sDEF']['lDEF']['settings.archive']['vDEF'];
 
-		if ($archive != '') {
+		if (!empty($archive)) {
 			$content = $this->renderLine(
 							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archive'),
 							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archive.' . $archive)
@@ -208,7 +186,7 @@ class tx_news2_cms_layout {
 			return '';
 		}
 
-		$pageIds = t3lib_div::trimExplode(',', $startingpoint, TRUE);
+		$pageIds = t3lib_div::intExplode(',', $startingpoint, TRUE);
 
 		$pagesOut = array();
 		$rawPagesRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
@@ -249,7 +227,7 @@ class tx_news2_cms_layout {
 }
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Resources/Private/Backend/class.tx_news2_cms_layout.php'])	{
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Resources/Private/Backend/class.tx_news2_cms_layout.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Resources/Private/Backend/class.tx_news2_cms_layout.php']);
 }
 
