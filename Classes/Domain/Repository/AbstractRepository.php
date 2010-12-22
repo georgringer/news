@@ -65,7 +65,6 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 	}
 
 	public function setStoragePage($pidlist) {
-//		echo 'xx' . $pidlist;
 		$this->storagePage = $pidlist;
 	}
 
@@ -78,7 +77,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 		$constraint = NULL;
 
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-//echo $this->storagePage . 'x';
+
 		if ($this->storagePage != 0) {
 			$pidList = t3lib_div::intExplode(',', $this->storagePage, TRUE);
 			$constraint = $query->in('pid', $pidList);
