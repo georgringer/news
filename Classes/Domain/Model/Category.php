@@ -263,13 +263,6 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * helper functions
 	 */
 
-	public function getCountRelatedNews() {
-		/** @var Tx_News2_Domain_Repository_NewsRepository */
-		$newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
-		$newsRepository->setCategories($this->uid);
-		return $newsRepository->countByTest();
-	}
-
 	public function getChilds() {
 		/** @var Tx_News2_Domain_Repository_CategoryRepository */
 		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');

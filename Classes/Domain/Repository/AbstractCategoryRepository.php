@@ -35,22 +35,43 @@ class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_News2_Dom
 	protected $uidList = array();
 	protected $parentUidList = array();
 
-
+	/**
+	 * Set a list of category uids
+	 * 
+	 * @param string $categoryList comma seperated list of ids
+	 */
 	public function setUidList($categoryList) {
 		$this->uidList = t3lib_div::intExplode(',', $categoryList, TRUE);
 	}
 
+	/**
+	 * Constraint to get all categories which got a uid which is set via $this->setUidList()
+	 * 
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @return Tx_Extbase_Persistence_QOM_ComparisonInterface 
+	 */
 	public function setUidListConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
 		$idList = (empty($this->uidList)) ? array('0') : $this->uidList;
 
 		$constraint = $query->in('uid', $idList);
 		return $constraint;
 	}
-	
+
+	/**
+	 * Set a list of parent category uids
+	 * 
+	 * @param string $categoryList comma seperated list of ids
+	 */	
 	public function setParentUidList($categoryList) {
 		$this->parentUidList = t3lib_div::intExplode(',', $categoryList, TRUE);
 	}
 
+	/**
+	 * Constraint to get all categories which are childs of categories set in $this->parentUidList
+	 * 
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @return Tx_Extbase_Persistence_QOM_ComparisonInterface 
+ */	
 	public function setParentUidListConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
 		$idList = (empty($this->parentUidList)) ? array('0') : $this->parentUidList;
 
@@ -59,41 +80,6 @@ class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_News2_Dom
 	}
 
 
-//
-//	/**
-//	 * Recursive function to create category menu
-//	 *
-//	 * @param  integer $parentId parent category id
-//	 * @return array
-//	 */
-//	public function getRecursiveCategories($parentId, $level=0) {
-//		$out = array();
-//		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-//			'*', #uid,title,parentcategory
-//			'tx_news2_domain_model_category',
-//			'sys_language_uid = 0 AND deleted=0 AND hidden=0 AND parentcategory=' . $parentId
-//		);
-//
-//		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-//			$uid = $row['uid'];
-//			if (!isset($this->fetchedCategories[$uid])) {
-//				$this->fetchedCategories[$uid] = 1;
-//				$out[$uid] = $row;
-//
-//				if ($level <=2) {
-//					$out[$uid]['sub'] = $this->getRecursiveCategories($uid, $level++);
-//				}
-//			}
-//
-//		}
-//
-//		$GLOBALS['TYPO3_DB']->sql_free_result($res);
-//
-//		return $out;
-//
-//	}
-
 }
-
 
 ?>

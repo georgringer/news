@@ -65,6 +65,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 	}
 
 	public function setStoragePage($pidlist) {
+//		echo 'xx' . $pidlist;
 		$this->storagePage = $pidlist;
 	}
 
@@ -77,7 +78,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 		$constraint = NULL;
 
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-
+//echo $this->storagePage . 'x';
 		if ($this->storagePage != 0) {
 			$pidList = t3lib_div::intExplode(',', $this->storagePage, TRUE);
 			$constraint = $query->in('pid', $pidList);
@@ -144,7 +145,20 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 			$query->setOffset($this->offset);
 		}
 	}
+	
+	/**
+	 * A debug constraint to show query because it will never work.
+	 * SQLdebug needs to be turned on
+	 * 
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @return type 
+	 */
+	public function setDebugConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
+		$constraint = $query->equals('xyz', 0);
 
+        return $constraint;
+	}
+	
 	/**
 	 * Remove empty entries from constraint list
 	 *

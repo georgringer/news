@@ -146,7 +146,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 		$selectedCategories = $this->categories;
 
 		if (!isset($this->categorySetting)) {
-			$this->categorySetting = 'and';
+			throw new Exception('No category setting is set. this can be either and, or, notor, notand');
 		}
 
 		if (count($selectedCategories) > 0 && !empty($this->categorySetting)) {

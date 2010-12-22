@@ -7,7 +7,9 @@
 <li class="{n:activeCategory(category:category)}">
 	<f:link.action arguments="{category:category}" controller="News">
 		{category.title}
-	</f:link.action> (News inside: {category.countRelatedNews})
+	</f:link.action> 
+	
+	(News inside: <n:category.countNews settings="{settings}" category="{category}" />)
 	
 	<f:if condition="{category.childs}">
 		<ul>
