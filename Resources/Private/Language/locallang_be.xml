@@ -22,6 +22,7 @@
 			<label index="flexforms_general.mode.news_searchresult">Search result</label>
 			<label index="flexforms_general.mode.category_list">Category Menu</label>
 			<label index="flexforms_general.mode.news_archivemenu">Archive Menu</label>
+			<label index="flexforms_general.mode.news_menubydate">Date menu</label>
 			<label index="flexforms_general.mode.not_configured">No view yet configured</label>
 			<label index="flexforms_general.archive">Archive</label>
 			<label index="flexforms_general.archive.active">Only active (non archived)</label>

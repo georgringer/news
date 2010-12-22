@@ -137,6 +137,13 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 			$this->renderTitle($news->getTitle());
 		}
 	}
+	
+	/**
+	 * Render a menu by dates, e.g. years, months or dates
+	 */
+	public function menuByDateAction() {
+		
+	}
 
 	/***************************************************************************
 	 * helper
