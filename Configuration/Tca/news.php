@@ -235,7 +235,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					'parentField' => 'parentcategory',
 					'appearance' => array(
 //						'expandAll' => TRUE,
-//						'showHeader' => TRUE,
+						'showHeader' => TRUE,
 					),
 				),
 				'MM' => 'tx_news2_domain_model_news_category_mm',
@@ -483,5 +483,26 @@ $TCA['tx_news2_domain_model_news'] = array(
 		),
 	)
 );
+
+	// category restriction based on settings in extension manager
+if (isset($configurationArray['categoryRestriction'])) {
+	$categoryRestriction = '';
+	switch ($configurationArray['categoryRestriction']) {
+		case 'current_pid':
+			$categoryRestriction = ' AND tx_news2_domain_model_category.pid=###CURRENT_PID### ';
+			break;
+		case 'storage_pid':
+			$categoryRestriction = ' AND tx_news2_domain_model_category.pid=###STORAGE_PID### ';
+			break;
+		case 'siteroot':
+			$categoryRestriction = ' AND tx_news2_domain_model_category.pid IN (###SITEROOT###) ';
+			break;
+	}
+	
+	if (!empty ($categoryRestriction)) {
+		$TCA['tx_news2_domain_model_news']['columns']['category']['config']['foreign_table_where'] .= $categoryRestriction;
+	}
+	
+}
 
 ?>

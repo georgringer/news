@@ -20,3 +20,6 @@ showImporter = 0
 
  	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.prependAtCopy
 prependAtCopy = 1
+
+	# cat=basic/enable/106; type=options[LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.none=none,LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.current_pid=current_pid,LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.storage_pid=storage_pid,LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.siteroot=siteroot]; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction
+categoryRestriction = 

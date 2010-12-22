@@ -74,6 +74,11 @@
 			<label index="extmng.enableDam">Enable DAM:Enable DAM if you want to use it</label>
 			<label index="extmng.showImporter">Show tt_news Importer:Backend module to import records from tt_news;tt_news needs to be installed too.</label>
 			<label index="extmng.prependAtCopy">Prepend at copy: Prepend string "copy X".</label>
+			<label index="extmng.categoryRestriction">Category restriction: Restrict the available categories in news records.</label>
+			<label index="extmng.categoryRestriction.current_pid">Categories from current page</label>
+			<label index="extmng.categoryRestriction.storage_pid">Categories from page which is defined in page properties</label>
+			<label index="extmng.categoryRestriction.siteroot">Categories from site root</label>
+			<label index="extmng.categoryRestriction.none">No restriction</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>
