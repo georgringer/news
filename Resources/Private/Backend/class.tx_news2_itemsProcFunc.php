@@ -76,7 +76,13 @@ class tx_news2_itemsProcFunc {
 		}
 	}
 
-
+	/**
+	 * Modifies the selectbox of orderby-options as a categorymenu needs different ones then a news action
+	 *
+	 * @param array $config
+	 * @param t3lib_TCEforms $parentObject
+	 * @return void
+	 */
 	public function user_orderBy(array &$config, t3lib_TCEforms $parentObject) {
 		$defaultItems = 'tstmp,datetime,crdate,title';
 		$newItems = '';
@@ -91,11 +97,9 @@ class tx_news2_itemsProcFunc {
 
 					// check for selected action
 				if(t3lib_div::isFirstPartOfStr($selectedActionList, 'Category')) {
-//					array_push($config['items'], array('fo','21'));
-					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['orderByCategory'];
+					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByCategory'];
 				} else {
-//					array_push($config['items'], array('fonews',	'1'));
-					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['orderByNews'];
+					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByNews'];
 				}
 			}
 		}
@@ -118,7 +122,21 @@ class tx_news2_itemsProcFunc {
 				array_push($config['items'], array($label, $item));
 			}
 		}
+	}
 
+	/**
+	 * Modifies the selectbox of available actions
+	 *
+	 * @param array $config
+	 * @param t3lib_TCEforms $parentObject
+	 * @return void
+	 */	
+	public function user_switchableControllerActions(array &$config, t3lib_TCEforms $parentObject) {
+		
+		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions'])) {
+			// @todo: make it possible to add items... maybe use switchableControllerActionsAdd
+			// @todo #2: make a switch to toggle between news->list;news->detail + news->list
+		}
 	}
 
 	/**
