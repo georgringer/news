@@ -55,7 +55,6 @@ class Tx_News2_ViewHelpers_Category_CountNewsViewHelper extends Tx_Fluid_Core_Vi
 		$newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
 		$newsRepository->setCategories($categories);
 		$newsRepository->setStoragePage(Tx_News2_Service_RecursivePidListService::find($settings['startingpoint'], $settings['recursive']));
-		$newsRepository->setStoragePage(8);
 
 		$newsRepository->setCategorySettings('or');
 		return $newsRepository->countByTest();
