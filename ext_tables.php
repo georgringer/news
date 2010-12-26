@@ -282,4 +282,14 @@ if (TYPO3_MODE == 'BE' && t3lib_extMgm::isLoaded('tt_news') && $configurationArr
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByCategory'] = 'uid,title,tstamp,sorting';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByNews'] = 'tstamp,datetime,crdate,title';
 
+/* ==============================================================================
+ 	Possible additional options
+	@todo: add those things to a manual once it is there
+ ============================================================================== */
+	// switch the "News->List;News->detail" action entry to "News->list" to avoid showing detail view in list view
+#$GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['listActionOnly'] = 1;
+
+	// add an additional action: Key is "Controller->action", value is label
+#$GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems']['News->byFobar'] = 'A fobar action';
+
 ?>
