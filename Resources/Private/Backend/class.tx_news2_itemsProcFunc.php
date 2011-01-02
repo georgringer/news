@@ -130,24 +130,20 @@ class tx_news2_itemsProcFunc {
 	 * @param array $config
 	 * @param t3lib_TCEforms $parentObject
 	 * @return void
-	 */	
+	 */
 	public function user_switchableControllerActions(array &$config, t3lib_TCEforms $parentObject) {
-		
 			// remove the detail action from the listAction
 		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['listActionOnly'])) {
 			$config['items'][0][1] = 'News->list;';
-// @todo: make it possible to add items... maybe use switchableControllerActionsAdd
 		}
-		
+
 			// add additional actions
-		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems']) 
+		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'])
 				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'])) {
 			foreach($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'] as $key => $label) {
 				array_push($config['items'], array($GLOBALS['LANG']->sL($label), $key, ''));
 			}
 		}
-		
-		t3lib_div::debug($config['items']);
 	}
 
 	/**
