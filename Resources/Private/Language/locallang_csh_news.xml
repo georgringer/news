@@ -10,7 +10,7 @@
 		<languageKey index="default" type="array">
 			<label index=".description">News record</label>
 			<label index=".details">Versatile news system.</label>
-			<label index="_.seeAlso">See also the website http://www.news2.com/</label>
+			<label index="_.seeAlso">See also the website @todo</label>
 			<label index="sys_language_uid.description">Language of the news record.</label>
 			<label index="starttime.description">Define a date on which the news record should be shown.</label>
 			<label index="endtime.description">Define a date on which the news record should be hidden.</label>
@@ -31,6 +31,32 @@
 			<label index="related.description">Select related news records.</label>
 			<label index="related_files.description">Define related files, e.g. PDFs</label>
 			<label index="related_links.description">Define related links to internal and external pages.</label>
+		</languageKey>
+		
+		<languageKey index="de" type="array">
+			<label index=".description">News Datensatz</label>
+			<label index=".details">Versatile news system.</label>
+			<label index="_.seeAlso">See also the website @todo</label>
+			<label index="sys_language_uid.description">Spraches des Newsdatensatz</label>
+			<label index="starttime.description">Datum ab dem der Newsdatensatz angezeigt werden soll.</label>
+			<label index="endtime.description">Datum bis zu dem der Newsdatensatz angezeigt werden soll.</label>
+			<label index="fe_group.description">Benutzergruppen, die den Newsdatensatz sehen dürfen.</label>
+			<label index="editlock.description">Falls aktiviert können nur Benutzer mit Administratorrechten den Datensatz bearbeiten.</label>
+			<label index="hidden.description">Ein versteckter Datensatz wird im Frontend nicht angezeigt.</label>
+			<label index="title.description">Titel des Newsdatensatz</label>
+			<label index="teaser.description">Teaser des Newsdatensatz</label>
+			<label index="type.description">Der Typ eines Newsdatensatz kann neben einem regulären Datensatz auch ein Link zu einer internen TYPO3-Seite oder zu einer externen Seite sein.</label>
+			<label index="istopnews.description">Mit der Checkbox "Top news" können bestimmte Datensätze hervorgehoben werden.</label>
+			<label index="author.description">Autor eines Datensatz</label>
+			<label index="author_email.description">Emailadresse des Autors</label>
+			<label index="datetime.description">Datum des Newsdatensatz</label>
+			<label index="archive.description">Archivdatum. Falls der Newsdatensatz über ein Archivmenü angezeigt werden soll, muss das Datum ausgefüllt werden.</label>
+			<label index="bodytext.description">Hauptinhalt des Newsdatensatz</label>
+			<label index="category.description">Kategorien zu denen der Newsdatensatz gehört</label>
+			<label index="keywords.description">Keywords eines Newsdatensatz, besonders für Suchmaschinenoptimierung zu verwenden.</label>
+			<label index="related.description">Verwandte Newsdatensätze</label>
+			<label index="related_files.description">Zu dem Newsdatensatz gehörige Dateien</label>
+			<label index="related_links.description">Zu dem Newsdatensatz gehörige Links</label>
 		</languageKey>
 	</data>
 </T3locallang>
