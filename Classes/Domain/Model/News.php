@@ -186,6 +186,11 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @var integer
 	 */
 	protected $importId;
+	
+	/**
+	 * @var integer
+	 */
+	protected $sorting;
 
 	public function getTitle() {
 		return $this->title;
@@ -491,6 +496,15 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	public function setImportId($importId) {
 		$this->importId = $importId;
 	}
+
+	public function getSorting() {
+		return $this->sorting;
+	}
+
+	public function setSorting($sorting) {
+		$this->sorting = $sorting;
+	}
+
 
 
 }
