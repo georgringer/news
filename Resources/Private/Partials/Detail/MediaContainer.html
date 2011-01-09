@@ -2,16 +2,16 @@
 	<div class="news2-img-wrap">
 		<f:for each="{media}" as="mediaElement">
 			<f:if condition="{mediaElement.type} == 0">
-				<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement}"/>
+				<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
 			</f:if>
 			<f:if condition="{mediaElement.type} == 1">
-				<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}"/>
+				<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
 			</f:if>
 			<f:if condition="{mediaElement.type} == 2">
-				<f:render partial="Detail/MediaHtml" arguments="{mediaElement: mediaElement}"/>
+				<f:render partial="Detail/MediaHtml" arguments="{mediaElement: mediaElement, settings:settings}"/>
 			</f:if>
 			<f:if condition="{mediaElement.type} == 3">
-				<f:render partial="Detail/MediaDam" arguments="{mediaElement: mediaElement}"/>
+				<f:render partial="Detail/MediaDam" arguments="{mediaElement: mediaElement, settings:settings}"/>
 			</f:if>
 		</f:for>
 	</div>

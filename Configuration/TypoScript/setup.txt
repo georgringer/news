@@ -41,6 +41,20 @@ plugin.tx_news2 {
 		}
 
 		# --------------
+		#  Detail
+		# --------------
+		detail {
+			# media configuration
+			media {
+				image {
+						# choose the rel tag like gallery[fo]
+					lightbox = lightbox[myImageSet]
+					maxWidth = 282
+				}
+			}
+		}
+
+		# --------------
 		#  List
 		# --------------
 		list {
