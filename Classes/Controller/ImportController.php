@@ -39,7 +39,7 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		try {
 			$recordCount = $this->getRecordCount('tt_news');
 		} catch (Exception $e) {
-			$this->flashMessages->add($e->getMessage());
+			$this->flashMessageContainer->add($e->getMessage());
 		}
 
 		$this->view->assign('recordCount', $recordCount);
@@ -51,7 +51,7 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		try {
 			$recordCount = $this->getRecordCount('tt_news');
 		} catch (Exception $e) {
-			$this->flashMessages->add($e->getMessage());
+			$this->flashMessageContainer->add($e->getMessage());
 		}
 
 		$this->view->assign('recordCount', $recordCount);
@@ -163,7 +163,7 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		try {
 			$recordCount = $this->getRecordCount('tt_news_cat');
 		} catch (Exception $e) {
-			$this->flashMessages->add($e->getMessage());
+			$this->flashMessageContainer->add($e->getMessage());
 		}
 
 		$this->view->assign('recordCount', $recordCount);
