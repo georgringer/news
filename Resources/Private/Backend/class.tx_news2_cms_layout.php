@@ -40,10 +40,10 @@ class tx_news2_cms_layout {
 	 * Returns information about this extension's pi1 plugin
 	 *
 	 * @param	array		$params	Parameters to the hook
-	 * @param	object		$pObj	A reference to calling object
+	 * @param	mixed		$pObj	A reference to calling object
 	 * @return	string		Information about pi1 plugin
 	 */
-	function getExtensionSummary(array $params, tx_cms_layout &$pObj) {
+	function getExtensionSummary(array $params, &$pObj) {
 		$result = '';
 
 		$this->llPath = 'LLL:EXT:' . $this->extKey . '/Resources/Private/Language/locallang_be.xml';
