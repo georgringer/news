@@ -116,6 +116,16 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	protected $showinpreview;
 
+	/**
+	 * @var integer;
+	 */
+	protected $width;
+
+	/**
+	 * @var integer;
+	 */
+	protected $height;
+
 
 	public function getTitle() {
 		return $this->title;
@@ -251,6 +261,22 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 
 	public function setL10nParent($l10nParent) {
 		$this->l10nParent = $l10nParent;
+	}
+
+	public function getWidth() {
+		return $this->width;
+	}
+
+	public function setWidth($width) {
+		$this->width = $width;
+	}
+
+	public function getHeight() {
+		return $this->height;
+	}
+
+	public function setHeight($height) {
+		$this->height = $height;
 	}
 
 

@@ -46,6 +46,12 @@ class Tx_News2_Interfaces_Flv implements Tx_News2_Interfaces_VideoMediaInterface
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.4.min.js');
 		$uniqueDivId = 'mediaelement-' . md5($element->getUid() . uniqid());
 
+			// override width & height if both are set
+		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
+			$width = $element->getWidth();
+			$height = $element->getHeight();
+		}		
+		
 		$content .= '<a href="' . htmlspecialchars($url) . '"
 						style="display:block;width:' . (int)$width . 'px;height:' . (int)$height . 'px;"
 						id="' . $uniqueDivId . '">

@@ -44,6 +44,13 @@ class Tx_News2_Interfaces_Quicktime implements Tx_News2_Interfaces_VideoMediaInt
 		
 		$width = (int)$width;
 		$height = (int)$height;
+		
+			// override width & height if both are set
+		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
+			$width = $element->getWidth();
+			$height = $element->getHeight();
+		}
+		
 
 		$content = 
 			'<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="' . $width . '" height="' . $height . '" >
