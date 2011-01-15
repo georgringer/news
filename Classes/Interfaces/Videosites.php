@@ -7,10 +7,18 @@
 
 class Tx_News2_Interfaces_Videosites implements Tx_News2_Interfaces_VideoMediaInterface {
 
+	/**
+	 *
+	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param integer $width
+	 * @param integer $height
+	 * @return string 
+	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
 		$content = '';
 		$url = $element->getVideo();
-
+			
+			// get the correct rewritten url
 		$mediaWizard = tslib_mediaWizardManager::getValidMediaWizardProvider($url);
 		if ($mediaWizard !== NULL) {
 			$url = $mediaWizard->rewriteUrl($url);
@@ -27,11 +35,15 @@ class Tx_News2_Interfaces_Videosites implements Tx_News2_Interfaces_VideoMediaIn
 							"' . $uniqueDivId . '", "' . (int)$width .'", "' . (int)$height .'", "8", null, null, params, atts);
 						</script>';
 		}
-
 		
 		return $content;
 	}
 
+	/**
+	 *
+	 * @param Tx_News2_Domain_Model_Media $element
+	 * @return boolean
+	 */
 	public function enabled(Tx_News2_Domain_Model_Media $element) {
 		return TRUE;
 	}
