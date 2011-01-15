@@ -16,7 +16,7 @@
 			<label index="related-files">Related files</label>
 			<label index="related-links">Related links</label>
 			<label index="author">created by %s</label>
-
+			<label index="list.settings.notfound">List view settings not found. TypoScript included?</label>	
 
 		</languageKey>
 

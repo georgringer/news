@@ -77,8 +77,13 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * return Tx_News2_Domain_Repository_NewsRepository news
 	 */
 	public function listAction() {
+		         // If the TypoScript config is not set return an error
+                if (!$this->settings['list']) {
+                        $this->flashMessages->add($this->localize('list.settings.notfound'), t3lib_FlashMessage::ERROR);
+                        return NULL;
+                }
+		
 		$newsRecords = $this->newsRepository->findList();
-
 		$this->view->assign('news', $newsRecords);
 	}
 
