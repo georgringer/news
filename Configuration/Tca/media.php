@@ -235,7 +235,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 	),
 	'types' => array(
 			// Image
-		0 => array('showitem' => 'type;;2,media;;1;;,caption;;3'),
+		0 => array('showitem' => 'type;;2,media,caption;;3'),
 			// Video
 		'1' => array('showitem' => 'type;;2,video,caption;;3'),
 			// HTML
