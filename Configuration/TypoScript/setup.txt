@@ -33,6 +33,13 @@ plugin.tx_news2 {
 		orderAscDesc = desc
 		orderByRespectTopNews = 0
 
+		# Interface implemenations
+		interfaces {
+			media {
+				video = Tx_News2_Interfaces_Videosites
+			}
+		}
+
 		# --------------
 		#  Search
 		# --------------
@@ -50,6 +57,11 @@ plugin.tx_news2 {
 						# choose the rel tag like gallery[fo]
 					lightbox = lightbox[myImageSet]
 					maxWidth = 282
+				}
+
+				video {
+					width = 282
+					height = 300
 				}
 			}
 		}
