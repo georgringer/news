@@ -36,7 +36,7 @@ plugin.tx_news2 {
 		# Interface implemenations
 		interfaces {
 			media {
-				video = Tx_News2_Interfaces_Flv,Tx_News2_Interfaces_Videosites
+				video = Tx_News2_Interfaces_Quicktime,Tx_News2_Interfaces_Flv,Tx_News2_Interfaces_Videosites
 			}
 		}
 

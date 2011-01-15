@@ -23,13 +23,13 @@
 ***************************************************************/
 
 /**
- * Implementation of flv support
+ * Implementation of quicktime support
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Interfaces_Flv implements Tx_News2_Interfaces_VideoMediaInterface {
+class Tx_News2_Interfaces_Quicktime implements Tx_News2_Interfaces_VideoMediaInterface {
 
 	/**
 	 * Render flv viles
@@ -40,32 +40,19 @@ class Tx_News2_Interfaces_Flv implements Tx_News2_Interfaces_VideoMediaInterface
 	 * @return string 
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
-		$content = '';
-		$url = $element->getVideo();
-
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.4.min.js');
-		$uniqueDivId = 'mediaelement-' . md5($element->getUid() . uniqid());
-
-		$content .= '<a href="' . htmlspecialchars($url) . '"
-						style="display:block;width:' . (int)$width . 'px;height:' . (int)$height . 'px;"
-						id="' . $uniqueDivId . '">
-					</a>
-					<script>
-						flowplayer("' . $uniqueDivId . '", "typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.5.swf", {
-							clip: {
-								autoPlay: false,
-								autoBuffering: true
-							},
-							plugins:  {
-								controls:  {
-									volume: true		
-								}
-							}
-						});
-					</script>
-';
+		$url = htmlspecialchars($element->getVideo());
 		
+		$width = (int)$width;
+		$height = (int)$height;
 
+		$content = 
+			'<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="' . $width . '" height="' . $height . '" >
+              <param name="src" value="' . $url . '">
+              <param name="autoplay" value="true">
+              <param name="type" value="video/quicktime" width="' . $width . '" height="' . $height . '">      
+              <embed src="' . $url . '" width="' . $width . '" height="' . $height . '" autoplay="false" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
+            </object>';
+			
 
 		return $content;
 	}
@@ -79,7 +66,7 @@ class Tx_News2_Interfaces_Flv implements Tx_News2_Interfaces_VideoMediaInterface
 		$url = $element->getVideo();
 		$fileEnding = strtolower(substr($url, -3));
 		
-		return ($fileEnding === 'flv');
+		return ($fileEnding === 'mov');
 	}
 
 }
