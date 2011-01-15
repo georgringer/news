@@ -109,5 +109,19 @@
 				</ul>
 			</div>
 		</f:if>
+		
+		<!-- Related links -->
+		<f:if condition="{newsItem.relatedLinks}">
+			<div class="news2-related news2-related-links">
+				<h4><f:translate key="related-links" /></h4>
+				<ul>
+					<f:for each="{newsItem.relatedLinks}" as="relatedLink">
+						<li>
+							<f:link.page pageUid="{relatedLink.uri}">{relatedLink.title}</f:link.page>
+						</li>
+					</f:for>
+				</ul>
+			</div>
+		</f:if>
 	</div>
 </f:section>

@@ -14,6 +14,7 @@
 			<label index="back-link">Back</label>
 			<label index="related-news">Related news</label>
 			<label index="related-files">Related files</label>
+			<label index="related-links">Related links</label>
 			<label index="author">created by %s</label>
 
 
