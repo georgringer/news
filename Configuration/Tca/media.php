@@ -13,7 +13,7 @@ $ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 $TCA['tx_news2_domain_model_media'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_media']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,html,video,showInPreview'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,html,video,showInPreview, width, height'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_media']['feInterface'],
 	'columns' => array(
@@ -47,7 +47,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'eval'     => 'date',
 				'default'  => 0,
 			)
-		),		
+		),
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
@@ -154,6 +154,26 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'maxitems' => 1,
 			)
 		),
+		'width' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xml:imagewidth_formlabel',
+			'config' => array(
+				'type' => 'input',
+				'size' => 3,
+				'eval' => 'int',
+			)
+		),
+		'height' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xml:imageheight_formlabel',
+			'config' => array(
+				'type' => 'input',
+				'size' => 3,
+				'eval' => 'int',
+			)
+		),
 		'html' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
@@ -215,26 +235,27 @@ $TCA['tx_news2_domain_model_media'] = array(
 	),
 	'types' => array(
 			// Image
-		0 => array('showitem' => 'caption;;2;;, media'),
+		0 => array('showitem' => 'type;;2,media;;1;;,caption;;3'),
 			// Video
-		'1' => array('showitem' => 'caption;;1;;, video'),
+		'1' => array('showitem' => 'type;;2,video,caption;;3'),
 			// HTML
-		'2' => array('showitem' => 'caption;;1;;, html'),
+		'2' => array('showitem' => 'type;;2,html,caption;;3'),
 			// DAM
-		'3' => array('showitem' => 'caption;;1;;, dam')
+		'3' => array('showitem' => 'type;;2,dam,caption;;3')
 	),
 	'palettes' => array(
 		'1' => array(
-			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, type, --linebreak--,
-							showinpreview, hidden',
+			'showitem' => 'width,height',
 			'canNotCollapse' => TRUE
 		),
 		'2' => array(
-			'showitem' => 'title,alt,--linebreak--,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, type, --linebreak--,
-							showinpreview, hidden',
+			'showitem' => 'showinpreview, hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource',
+			'canNotCollapse' => TRUE
+		),		
+		'3' => array(
+			'showitem' => 'title,alt,--linebreak--,',
 			'canNotCollapse' => TRUE
 		),
-		
 	)
 );
 
