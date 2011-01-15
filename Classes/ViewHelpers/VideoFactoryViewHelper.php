@@ -29,7 +29,7 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_ViewHelpers_VideoInterfaceViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News2_ViewHelpers_VideoFactoryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * If the escaping interceptor should be disabled inside this ViewHelper, then set this value to FALSE.

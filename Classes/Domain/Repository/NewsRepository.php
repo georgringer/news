@@ -44,6 +44,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		$constraints[] = $this->getLatestTimeLimitRestriction($query);
 		$constraints[] = $this->getTopNewsConstraint($query);
 		$constraints[] = $this->setStoragePageRestriction($query);
+//		$constraints[] = $this->setDebugConstraint($query);
 
 		return $this->executeQuery($query, $constraints);
 	}
