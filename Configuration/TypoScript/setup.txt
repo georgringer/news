@@ -20,6 +20,9 @@ plugin.tx_news2 {
 	# Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
 	# ====================================
 	settings {
+		#Displays a dummy image if the news have no media items
+		displayDummyIfNoMedia = 1
+
 		# Output format
 		format = html
 

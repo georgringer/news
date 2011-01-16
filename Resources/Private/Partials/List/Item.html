@@ -30,6 +30,15 @@
 				</n:link>
 			</div>
 			</f:then>
+			<f:else>
+				<f:if condition="{settings.displayDummyIfNoMedia}">
+					<f:then>
+						<div class="news2-img-wrap">
+							<f:render partial="Media/MediaPreviewNotAvailable" arguments="{settings:settings}" />
+						</div>
+					</f:then>
+				</f:if>
+			</f:else>
 		</f:if>
 
 		<!-- teaser text -->
