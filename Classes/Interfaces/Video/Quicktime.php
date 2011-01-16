@@ -29,7 +29,7 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Interfaces_Quicktime implements Tx_News2_Interfaces_VideoMediaInterface {
+class Tx_News2_Interfaces_Video_Quicktime implements Tx_News2_Interfaces_VideoMediaInterface {
 
 	/**
 	 * Render flv viles

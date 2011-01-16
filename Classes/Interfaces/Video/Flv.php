@@ -23,16 +23,16 @@
 ***************************************************************/
 
 /**
- * Implementation of video portal support
+ * Implementation of flv support
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Interfaces_Videosites implements Tx_News2_Interfaces_VideoMediaInterface {
+class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_VideoMediaInterface {
 
 	/**
-	 * Render videos from various video portals
+	 * Render flv viles
 	 * 
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @param integer $width
@@ -40,34 +40,39 @@ class Tx_News2_Interfaces_Videosites implements Tx_News2_Interfaces_VideoMediaIn
 	 * @return string 
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
-		$content = $finalUrl = '';
+		$content = '';
 		$url = $element->getVideo();
-			
-			// get the correct rewritten url
-		$mediaWizard = tslib_mediaWizardManager::getValidMediaWizardProvider($url);
-		if ($mediaWizard !== NULL) {
-			$finalUrl = $mediaWizard->rewriteUrl($url);
-		}
-		
+
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.4.min.js');
+		$uniqueDivId = 'mediaelement-' . md5($element->getUid() . uniqid());
+
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
 			$width = $element->getWidth();
 			$height = $element->getHeight();
-		}
-
-		if (!empty($finalUrl)) {
-			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/swfobject-2-2.js');
-			$uniqueDivId = 'mediaelement-' . md5($element->getUid() . uniqid());
-			
-			$content .= '<div id="' . $uniqueDivId . '"></div> 
-						<script type="text/javascript">
-							var params = { allowScriptAccess: "always" };
-							var atts = { id: "myytplayer" };
-							swfobject.embedSWF("' . htmlspecialchars($url) . '", 
-							"' . $uniqueDivId . '", "' . (int)$width .'", "' . (int)$height .'", "8", null, null, params, atts);
-						</script>';
-		}
+		}		
 		
+		$content .= '<a href="' . htmlspecialchars($url) . '"
+						style="display:block;width:' . (int)$width . 'px;height:' . (int)$height . 'px;"
+						id="' . $uniqueDivId . '">
+					</a>
+					<script>
+						flowplayer("' . $uniqueDivId . '", "typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.5.swf", {
+							clip: {
+								autoPlay: false,
+								autoBuffering: true
+							},
+							plugins:  {
+								controls:  {
+									volume: true		
+								}
+							}
+						});
+					</script>
+';
+		
+
+
 		return $content;
 	}
 
@@ -77,7 +82,10 @@ class Tx_News2_Interfaces_Videosites implements Tx_News2_Interfaces_VideoMediaIn
 	 * @return boolean
 	 */
 	public function enabled(Tx_News2_Domain_Model_Media $element) {
-		return TRUE;
+		$url = $element->getVideo();
+		$fileEnding = strtolower(substr($url, -3));
+		
+		return ($fileEnding === 'flv');
 	}
 
 }
