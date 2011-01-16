@@ -56,7 +56,7 @@
 			</f:link.page>
 		</div>
 	</f:if>
-	
+
 	<div class="facebook">
 		<div class="like">
 			<n:facebook.like></n:facebook.like>
@@ -97,7 +97,14 @@
 						<li>
 							<span class="news2-related-files-link">
 								<n:format.fileDownload file="{relatedFile.file}" path="uploads/tx_news/" configuration="{settings.relatedFiles.download}">
-									{relatedFile.title}
+									<f:if condition="{relatedFile.title}">
+										<f:then>
+											{relatedFile.title}
+										</f:then>
+										<f:else>
+											{relatedFile.file}
+										</f:else>
+									</f:if>
 								</n:format.fileDownload>
 							</span>
 							<span class="hidden">. </span>
@@ -109,7 +116,7 @@
 				</ul>
 			</div>
 		</f:if>
-		
+
 		<!-- Related links -->
 		<f:if condition="{newsItem.relatedLinks}">
 			<div class="news2-related news2-related-links">
