@@ -37,11 +37,16 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_VideoMediaInt
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
+	 * @param string $templateFile (optional) template file to override. Absolute path
 	 * @return string
 	 */
-	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
+	public function render(Tx_News2_Domain_Model_Media $element, $width, $height, $templateFile = '' ) {
 		$view = t3lib_div::makeInstance('Tx_Fluid_View_StandaloneView');
-		$view->setTemplatePathAndFilename(t3lib_extMgm::extPath('news2').'Resources/Private/Templates/ViewHelpers/Flv.html');
+		if (!$templateFile || !is_readable($templateFile)) {
+			$view->setTemplatePathAndFilename(t3lib_extMgm::extPath('news2').'Resources/Private/Templates/ViewHelpers/Flv.html');
+		} else {
+			$view->setTemplatePathAndFilename($templateFile);
+		}
 
 		$content = '';
 		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
