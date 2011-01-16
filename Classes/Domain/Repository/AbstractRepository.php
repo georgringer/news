@@ -216,7 +216,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 		$this->setLimitRestriction($query);
 		$this->setOffsetRestriction($query);
 
-		return $query->count();
+		return $query->execute()->count();
 	}
 
 }
