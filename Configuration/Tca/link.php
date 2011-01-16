@@ -94,6 +94,7 @@ $TCA['tx_news2_domain_model_link'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
+				'eval' => 'required',
 			)
 		),
 		'description' => array(
