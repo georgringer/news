@@ -31,18 +31,33 @@
  */
 class Tx_News2_Service_FileService {
 	
-	public function checkPath($url) {
-		
-			// check file
+	/**
+	 * If it is an URL, nothing to do, if it is a file, check if path is allowed and prepend current url
+	 * 
+	 * @param string $url
+	 * @return string 
+	 */
+	public function getCorrectUrl($url) {
+		if (empty($url)) {
+			throw new Exception('An empty url is given');
+		}
+			// check URL
 		$urlInfo = parse_url($url);
+		
+			// means: it is no external url
 		if (!isset($urlInfo['scheme'])) {
-			$url = t3lib_div::resolveBackPath($url);
-			$url = t3lib_div::getFileAbsFileName($url);
 			
-			$allowed = t3lib_div::isAllowedAbsPath($url);
-			if (!$allowed) {
-				throw new Exception('not allowed...');
+				// resolve paths like ../
+			$url = t3lib_div::resolveBackPath($url);
+			
+				// absolute path is used to check path
+			$absoluteUrl = t3lib_div::getFileAbsFileName($url);
+			if (!t3lib_div::isAllowedAbsPath($absoluteUrl)) {
+				throw new Exception('The path "' . $url . '" is not allowed.');
 			}
+			
+				// append current domain
+			$url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $url;
 		}		
 		
 		return $url;

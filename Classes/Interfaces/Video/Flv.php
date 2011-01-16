@@ -41,7 +41,7 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_VideoMediaInt
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
 		$content = '';
-		$url = $element->getVideo();
+		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
 
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.4.min.js');
 		$uniqueDivId = 'mediaelement-' . md5($element->getUid() . uniqid());
@@ -51,15 +51,7 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_VideoMediaInt
 			$width = $element->getWidth();
 			$height = $element->getHeight();
 		}
-//		$url = 'http://a55.video2.blip.tv/7990006186405/KimAronson-TwentySeconds6421.flv';
-		
-
-		$url = Tx_News2_Service_FileService::checkPath($url);
 	
-//		t3lib_div::print_array($urlInfo);
-		
-		
-
 		$content .= '<a href="' . htmlspecialchars($url) . '"
 						style="display:block;width:' . (int)$width . 'px;height:' . (int)$height . 'px;"
 						id="' . $uniqueDivId . '">
