@@ -27,10 +27,12 @@ plugin.tx_news2 {
 		format = html
 
 		# general settings
+		overrideFlexformSettingsIfEmpty = cropLength
 		pidBackAdditionalParams {
 
 		}
-		hrDates = 1
+		hrDates = 0
+		cropLength = 150
 
 		orderBy = datetime
 		orderAscDesc = desc

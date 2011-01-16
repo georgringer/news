@@ -63,7 +63,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 			$linkConfiguration['useCacheHash'] = 1;
 			
 				// human readable dates, e.g. example.com/fo/bar/news/2010/10/news-title.html
-			if (isset($settings['hrDates']) && $settings['hrDates'] == 1) {
+			if (isset($settings['hrDates']) && $settings['hrDates'] == 1 &&  $newsItem->getDatetime()) {
 				/** @var DateTime */
 				$date = $newsItem->getDatetime();
 				$year = $date->format('Y');

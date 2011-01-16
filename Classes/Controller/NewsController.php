@@ -35,7 +35,11 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @var Tx_News2_Domain_Repository_NewsRepository
 	 */
 	protected $newsRepository;
-
+	
+/**
+ * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+ */
+protected $configurationManager; 
 	/**
 	 *
 	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepository
@@ -196,9 +200,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 			}
 
 			$this->newsRepository->setOrder($order);
-
 		}
-
 	}
 
 	/**
@@ -218,6 +220,40 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 		return $access;
 	}
+	
+
+	/**
+	 * Injects the Configuration Manager and is initializing the framework settings
+	 *
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface An instance of the Configuration Manager
+	 * @return void
+	 */
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+		$this->configurationManager = $configurationManager;
+
+		$tsSettings = $this->configurationManager->getConfiguration(
+				Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK, 
+				'news2',
+				'news2_pi1'
+			);
+		$originalSettings = $this->configurationManager->getConfiguration(
+				Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+			);
+
+			// start override
+		if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
+			$overrideIfEmpty = t3lib_div::trimExplode(',', $tsSettings['settings']['overrideFlexformSettingsIfEmpty'], TRUE);
+			foreach($overrideIfEmpty as $key) {
+					// if flexform setting is empty and value is available in TS
+				if ((!isset($originalSettings[$key]) || empty($originalSettings[$key])) 
+						&& isset($tsSettings['settings'][$key])){
+					$originalSettings[$key] = $tsSettings['settings'][$key];
+				}
+			}
+		}
+
+		$this->settings = $originalSettings;
+	} 
 
 
 }

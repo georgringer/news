@@ -45,9 +45,9 @@
 		<div class="teaser-text">
 			<f:if condition="{newsItem.teaser}">
 				<f:then>
-					<n:format.striptags>
+					<f:format.html>
 						<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop>
-					</n:format.striptags>
+				</f:format.html>
 				</f:then>
 				<f:else>
 					<f:format.html>
