@@ -40,7 +40,7 @@ class Tx_News2_Service_RecursivePidListService {
 	 */
 	public function find($pidlist = '', $recursive = 0) {
 		if ($recursive <= 0) {
-			return $pidList;
+			return $pidlist;
 		}
 
 		$local_cObj = t3lib_div::makeInstance('tslib_cObj');
