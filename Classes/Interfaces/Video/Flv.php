@@ -33,11 +33,11 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_VideoMediaInt
 
 	/**
 	 * Render flv viles
-	 * 
+	 *
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
-	 * @return string 
+	 * @return string
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
 		$content = '';
@@ -50,8 +50,16 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_VideoMediaInt
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
 			$width = $element->getWidth();
 			$height = $element->getHeight();
-		}		
+		}
+//		$url = 'http://a55.video2.blip.tv/7990006186405/KimAronson-TwentySeconds6421.flv';
 		
+
+		$url = Tx_News2_Service_FileService::checkPath($url);
+	
+//		t3lib_div::print_array($urlInfo);
+		
+		
+
 		$content .= '<a href="' . htmlspecialchars($url) . '"
 						style="display:block;width:' . (int)$width . 'px;height:' . (int)$height . 'px;"
 						id="' . $uniqueDivId . '">
@@ -64,13 +72,13 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_VideoMediaInt
 							},
 							plugins:  {
 								controls:  {
-									volume: true		
+									volume: true
 								}
 							}
 						});
 					</script>
 ';
-		
+
 
 
 		return $content;
@@ -84,7 +92,7 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_VideoMediaInt
 	public function enabled(Tx_News2_Domain_Model_Media $element) {
 		$url = $element->getVideo();
 		$fileEnding = strtolower(substr($url, -3));
-		
+
 		return ($fileEnding === 'flv');
 	}
 
