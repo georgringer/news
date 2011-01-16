@@ -40,40 +40,29 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_VideoMediaInt
 	 * @return string
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
+		$view = t3lib_div::makeInstance('Tx_Fluid_View_StandaloneView');
+		$view->setTemplatePathAndFilename(t3lib_extMgm::extPath('news2').'Resources/Private/Templates/ViewHelpers/Flv.html');
+
 		$content = '';
 		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
 
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.4.min.js');
+
 		$uniqueDivId = 'mediaelement-' . md5($element->getUid() . uniqid());
+
 
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
 			$width = $element->getWidth();
 			$height = $element->getHeight();
 		}
-	
-		$content .= '<a href="' . htmlspecialchars($url) . '"
-						style="display:block;width:' . (int)$width . 'px;height:' . (int)$height . 'px;"
-						id="' . $uniqueDivId . '">
-					</a>
-					<script>
-						flowplayer("' . $uniqueDivId . '", "typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.5.swf", {
-							clip: {
-								autoPlay: false,
-								autoBuffering: true
-							},
-							plugins:  {
-								controls:  {
-									volume: true
-								}
-							}
-						});
-					</script>
-';
 
+		$view->assign('width', t3lib_div::intval_positive($width));
+		$view->assign('height', t3lib_div::intval_positive($height));
+		$view->assign('uniqueDivId', $uniqueDivId);
+		$view->assign('url', htmlspecialchars($url));
 
-
-		return $content;
+		return $view->render();
 	}
 
 	/**
