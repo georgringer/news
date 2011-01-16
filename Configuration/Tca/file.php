@@ -18,14 +18,12 @@ $TCA['tx_news2_domain_model_file'] = array(
 	'feInterface' => $TCA['tx_news2_domain_model_file']['feInterface'],
 	'columns' => array(
 		'pid' => array(
-			'exclude' => 1,
 			'label'   => 'pid',
 			'config'  => array(
 				'type'    => 'input'
 			)
 		),
 		'crdate' => array(
-			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(
@@ -37,7 +35,6 @@ $TCA['tx_news2_domain_model_file'] = array(
 			)
 		),
 		'tstamp' => array(
-			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(

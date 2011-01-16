@@ -13,21 +13,17 @@ $ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 $TCA['tx_news2_domain_model_link'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_link']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,description,uri'
+		'showRecordFieldList' => 'hidden,title,description,uri'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_link']['feInterface'],
 	'columns' => array(
 		'pid' => array(
-			'exclude' => 1,
-			'label'   => 'pid',
 			'config'  => array(
 				'type'    => 'input'
 			)
 		),
 		'crdate' => array(
-			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label'   => 'crdate',
 			'config'  => array(
 				'type'     => 'input',
 				'size'     => 8,
@@ -37,9 +33,7 @@ $TCA['tx_news2_domain_model_link'] = array(
 			)
 		),
 		'tstamp' => array(
-			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label'   => 'crdate',
 			'config'  => array(
 				'type'     => 'input',
 				'size'     => 8,

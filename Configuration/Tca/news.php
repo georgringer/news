@@ -11,7 +11,7 @@ $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'cruser_id,pid,tstamp,crdate,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links'
+		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -55,21 +55,18 @@ $TCA['tx_news2_domain_model_news'] = array(
 			)
 		),
 		'cruser_id' => array(
-			'exclude' => 1,
 			'label'   => 'cruser_id',
 			'config'  => array(
 				'type'    => 'input'
 			)
 		),
 		'pid' => array(
-			'exclude' => 1,
 			'label'   => 'pid',
 			'config'  => array(
 				'type'    => 'input'
 			)
 		),
 		'crdate' => array(
-			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(
@@ -81,7 +78,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 			)
 		),
 		'tstamp' => array(
-			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(
@@ -416,7 +412,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 			)
 		),
 		'import_id' => array(
-			'exclude' => 1,
 			'label'   => $ll . 'tx_news2_domain_model_news.import_id',
 			'config' => array(
 				'type' => 'input'

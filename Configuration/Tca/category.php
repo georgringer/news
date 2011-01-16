@@ -21,21 +21,18 @@ $TCA['tx_news2_domain_model_category'] = array(
 	'feInterface' => $TCA['tx_news2_domain_model_category']['feInterface'],
 	'columns' => array(
 		'pid' => array(
-			'exclude' => 1,
 			'label'   => 'pid',
 			'config'  => array(
 				'type'    => 'input'
 			)
 		),
 		'sorting' => array(
-			'exclude' => 1,
 			'label'   => 'sorting',
 			'config'  => array(
 				'type'    => 'input'
 			)
 		),
 		'crdate' => array(
-			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(
@@ -47,7 +44,6 @@ $TCA['tx_news2_domain_model_category'] = array(
 			)
 		),
 		'tstamp' => array(
-			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(
@@ -232,7 +228,6 @@ $TCA['tx_news2_domain_model_category'] = array(
 			)
 		),
 		'import_id' => array(
-			'exclude' => 1,
 			'label'   => $ll . 'tx_news2_domain_model_news.import_id',
 			'config' => array(
 				'type' => 'input'
