@@ -15,21 +15,25 @@
 		</div>
 
 		<!-- media preview element -->
-		<div class="news2-img-wrap">
-			<n:link newsItem="{newsItem}" settings="{settings}">
-				<f:if condition="{newsItem.mediaPreviews}">
-					<f:then>
-						<f:render partial="Media/MediaPreview" arguments="{mediaElement: newsItem.mediaPreviews.0, settings:settings}" />
-					</f:then>
-					<f:else>
-						<f:render partial="Media/MediaPreviewNotAvailable" arguments="{settings:settings}" />
-					</f:else>
-				</f:if>
-			</n:link>
-		</div>
+		<f:if condition="{newsItem.media}">
+			<f:then>
+			<div class="news2-img-wrap">
+				<n:link newsItem="{newsItem}" settings="{settings}">
+					<f:if condition="{newsItem.mediaPreviews}">
+						<f:then>
+							<f:render partial="Media/MediaPreview" arguments="{mediaElement: newsItem.mediaPreviews.0, settings:settings}" />
+						</f:then>
+						<f:else>
+							<f:render partial="Media/MediaPreviewNotAvailable" arguments="{settings:settings}" />
+						</f:else>
+					</f:if>
+				</n:link>
+			</div>
+			</f:then>
+		</f:if>
 
 		<!-- teaser text -->
-		<div class="teaser-text">	
+		<div class="teaser-text">
 			<f:if condition="{newsItem.teaser}">
 				<f:then>
 					<n:format.striptags>
@@ -68,5 +72,5 @@
 			</p>
 		</div>
 	</div>
-	
+
 </n:Unique>
