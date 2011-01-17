@@ -9,7 +9,7 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index=".description">File record</label>
-			<label index=".details">Versatile news system.</label>
+			<label index=".details">Relation to files</label>
 			<label index="_.seeAlso">See also the website http://www.news2.com/</label>
 			<label index="hidden.description">Hidden elements are never shown in the frontend.</label>
 			<label index="title.description">Optional title of selected file.</label>

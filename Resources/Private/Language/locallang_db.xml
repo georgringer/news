@@ -44,7 +44,7 @@
 			<label index="tx_news2_domain_model_file.description">Description</label>
 			<label index="tx_news2_domain_model_file.file">File</label>
 
-			<label index="tx_news2_domain_model_link">News File Element</label>
+			<label index="tx_news2_domain_model_link">News Link Element</label>
 			<label index="tx_news2_domain_model_link.title">Title</label>
 			<label index="tx_news2_domain_model_link.description">Description</label>
 			<label index="tx_news2_domain_model_link.uri">URL</label>

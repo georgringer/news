@@ -8,15 +8,13 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index=".description">File record</label>
-			<label index=".details">Versatile news system.</label>
+			<label index=".description">Link record</label>
+			<label index=".details">Relation to other pages and records.</label>
 			<label index="_.seeAlso">See also the website http://www.news2.com/</label>
 			<label index="hidden.description">Hidden elements are never shown in the frontend.</label>
 			<label index="title.description">Optional title of a link.</label>
 			<label index="description.description">Description of a link.</label>
 			<label index="uri.description">Link to a file, ... .</label>
-			<label index=".description"></label>
-			<label index=".description"></label>
 		</languageKey>
 	</data>
 </T3locallang>

@@ -8,8 +8,8 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index=".description">News record</label>
-			<label index=".details">Versatile news system.</label>
+			<label index=".description">Category record</label>
+			<label index=".details">Category for news records.</label>
 			<label index="_.seeAlso">See also the website http://www.news2.com/</label>
 			<label index="sys_language_uid.description">Language of the category</label>
 			<label index="hidden.description">Hidden categories are never shown in the frontend.</label>
@@ -19,8 +19,6 @@
 			<label index="description.description">Optional description of a category.</label>
 			<label index="single_pid.description">Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</label>
 			<label index="shortcut.description">Optional link of a category.</label>
-			<label index=".description"></label>
-			<label index=".description"></label>
 		</languageKey>
 	</data>
 </T3locallang>
