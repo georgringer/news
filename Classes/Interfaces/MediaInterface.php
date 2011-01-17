@@ -29,7 +29,7 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-interface Tx_News2_Interfaces_VideoMediaInterface {
+interface Tx_News2_Interfaces_MediaInterface {
 	
 	/**
 	 * Render a media element

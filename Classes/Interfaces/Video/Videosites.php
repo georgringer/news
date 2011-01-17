@@ -29,7 +29,7 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_VideoMediaInterface {
+class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaInterface {
 
 	/**
 	 * Render videos from various video portals
