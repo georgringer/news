@@ -8,4 +8,7 @@ Design			by opendo
 Icons
 	dummy-preview-image.png	by Eugen Buzuk http://www.icondrawer.com/
 
-	testxxxx
+
+Plugins
+	- WordPress Audio Player: MIT license http://wpaudioplayer.com/license
+	- Flowplayer: GPL 3.0 http://flowplayer.org/download/free-license-faq.html
