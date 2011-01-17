@@ -48,13 +48,9 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_MediaInterfac
 			$view->setTemplatePathAndFilename($templateFile);
 		}
 
-		$content = '';
 		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
 
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/flowplayer-3.2.4.min.js');
-
-		$uniqueDivId = 'mediaelement-' . md5($element->getUid() . uniqid());
-
 
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
@@ -64,7 +60,7 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_MediaInterfac
 
 		$view->assign('width', t3lib_div::intval_positive($width));
 		$view->assign('height', t3lib_div::intval_positive($height));
-		$view->assign('uniqueDivId', $uniqueDivId);
+		$view->assign('uniqueDivId', 'mediaelement-' . md5($element->getUid() . uniqid()));
 		$view->assign('url', htmlspecialchars($url));
 
 		return $view->render();

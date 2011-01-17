@@ -23,13 +23,13 @@
 ***************************************************************/
 
 /**
- * Implementation of quicktime support
+ * Implementation of typical audio files
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Interfaces_Audio_General implements Tx_News2_Interfaces_MediaInterface {
+class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterface {
 
 	/**
 	 * Render flv viles
@@ -37,30 +37,28 @@ class Tx_News2_Interfaces_Audio_General implements Tx_News2_Interfaces_MediaInte
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
+	 * @param string $template
 	 * @return string 
 	 */
-	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
+	public function render(Tx_News2_Domain_Model_Media $element, $width, $height, $template='') {	
 		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
 		$url = htmlspecialchars($url);
+		$uniqueId = Tx_News2_Service_FileService::getUniqueId($element);
 		
-		$width = (int)$width;
-		$height = (int)$height;
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/swfobject-2-2.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/audioplayer-noswfobject.js');
 		
-			// override width & height if both are set
-		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
-			$width = $element->getWidth();
-			$height = $element->getHeight();
-		}
+		$inlineJS = '
+            AudioPlayer.setup("http://localhost/currenttrunk/typo3conf/ext/news2/Resources/Public/JavaScript/audioplayer-player.swf", {  
+                width: 290  
+            });  
+       ';
+		$GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode('news2_audio', $inlineJS);
 		
-
-		$content = 
-			'<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="' . $width . '" height="' . $height . '" >
-              <param name="src" value="' . $url . '">
-              <param name="autoplay" value="true">
-              <param name="type" value="video/quicktime" width="' . $width . '" height="' . $height . '">      
-              <embed src="' . $url . '" width="' . $width . '" height="' . $height . '" autoplay="false" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
-            </object>';
-			
+		$content = '<p id="' . $uniqueId . '">' . htmlspecialchars($element->getCaption()) . '</p>  
+					<script type="text/javascript">  
+						AudioPlayer.embed("' . $uniqueId . '", {soundFile: "' . $url . '"});  
+					</script> ';
 
 		return $content;
 	}
@@ -74,7 +72,7 @@ class Tx_News2_Interfaces_Audio_General implements Tx_News2_Interfaces_MediaInte
 		$url = $element->getVideo();
 		$fileEnding = strtolower(substr($url, -3));
 		
-		return ($fileEnding === 'mov');
+		return ($fileEnding === 'mp3');
 	}
 
 }

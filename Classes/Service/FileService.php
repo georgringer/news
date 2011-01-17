@@ -63,5 +63,15 @@ class Tx_News2_Service_FileService {
 		return $url;
 	}
 	
+	/**
+	 * Get a unique container id
+	 * 
+	 * @param Tx_News2_Domain_Model_Media $element
+	 * @return string
+	 */
+	public function getUniqueId(Tx_News2_Domain_Model_Media $element) {
+		return 'mediaelement-' . md5($element->getUid() . uniqid());
+	}
+	
 }
 ?>
