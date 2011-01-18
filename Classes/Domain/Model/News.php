@@ -333,18 +333,6 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 			$this->media->_loadRealInstance();
 		}
 
-		if ($removeFirstElement) {
-			$currentElements = $this->media;
-			$newElements = new Tx_Extbase_Persistence_ObjectStorage();
-			$count = 0;
-			foreach($currentElements as $media) {
-				if ($count > 0) {
-					$newElements->attach($media);
-				}
-				$count++;
-			}
-			return $newElements;
-		}
 		return $this->media;
 	}
 

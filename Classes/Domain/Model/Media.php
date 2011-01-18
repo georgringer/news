@@ -126,6 +126,11 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	 */
 	protected $height;
 
+	/**
+	 * @var integer;
+	 */
+	protected $sorting;
+
 
 	public function getTitle() {
 		return $this->title;
@@ -277,6 +282,10 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 
 	public function setHeight($height) {
 		$this->height = $height;
+	}
+
+	public function getSorting() {
+		return $this->sorting;
 	}
 
 

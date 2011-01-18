@@ -23,6 +23,12 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'type'    => 'input'
 			)
 		),
+		'sorting' => array(
+			'label'   => 'pid',
+			'config'  => array(
+				'type'    => 'input'
+			)
+		),
 		'crdate' => array(
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
