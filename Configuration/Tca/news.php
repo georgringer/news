@@ -348,6 +348,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 
 			'config' => array(
 				'type' => 'inline',
+				'foreign_sortby' => 'sorting',
 				'foreign_table' => 'tx_news2_domain_model_media',
 				'foreign_sortby' => 'sorting',
 				'size' => 5,
