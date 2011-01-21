@@ -36,7 +36,7 @@
 
 		<exec dir="${basedir}"
 			  executable="phpcpd"
-			  failonerror="true">
+			  failonerror="false">
 			<arg line="--log-pmd build/logs/pmd.xml ./"/>
 		</exec>
 	</target>
