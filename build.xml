@@ -37,7 +37,7 @@
 		<exec dir="${basedir}"
 			  executable="phpcpd"
 			  failonerror="true">
-			<arg line="--log-pmd build/logs/pmd.xml workspace/trunk"/>
+			<arg line="--log-pmd build/logs/pmd.xml ./"/>
 		</exec>
 	</target>
 
@@ -46,7 +46,7 @@
 			  executable="phpcs"
 			  output="${basedir}/build/logs/checkstyle.xml"
 			  failonerror="false">
-			<arg line="--report=checkstyle svn"/>
+			<arg line="--report=checkstyle ./"/>
 		</exec>
 	</target>
 
