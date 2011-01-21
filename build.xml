@@ -27,7 +27,7 @@
 
 	<target name="php-documentor">
 		<exec executable="phpdoc" dir="${basedir}/">
-			<arg line="-ct type -t ${basedir}/build/api -ti news2' -ue on -s -d ./ "/>
+			<arg line="-ct type -t ${basedir}/build/api -ti 'news2' -ue on -s -d ./ "/>
 		</exec>
 	</target>
 
