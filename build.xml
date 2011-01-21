@@ -23,7 +23,7 @@
 	</target>
 
 	<!-- Default target -->
-	<target name="build" depends="init,phpunit,php-documentor"/>
+
 
 	<target name="php-documentor">
 		<exec executable="phpdoc" dir="${basedir}/">
@@ -31,10 +31,28 @@
 		</exec>
 	</target>
 
+
+	<target name="phpcpd">
+
+		<exec dir="${basedir}"
+			  executable="phpcpd"
+			  failonerror="true">
+			<arg line="--log-pmd build/logs/pmd.xml svn"/>
+		</exec>
+	</target>
+
+	<target name="phpcs">
+		<exec dir="${basedir}"
+			  executable="phpcs"
+			  output="${basedir}/build/logs/checkstyle.xml"
+			  failonerror="false">
+			<arg line="--report=checkstyle svn"/>
+		</exec>
+	</target>
+
 	<target name="phpunit">
 		<exec executable="phpunit" dir="${basedir}/Tests" failonerror="off">
 			<arg line="--log-junit ${basedir}/build/logs/phpunit.xml
-                 --log-pmd ${basedir}/build/logs/phpunit.pmd.xml
                  --log-metrics ${basedir}/build/logs/metrics.xml
                  --coverage-xml  ${basedir}/build/logs/coverage.xml
                  --coverage-html ${basedir}/build/coverage
@@ -43,4 +61,6 @@
                 "/>
 		</exec>
 	</target>
+
+	<target name="build" depends="init,phpcpd,phpcs, phpunit,php-documentor"/>
 </project>
