@@ -37,7 +37,7 @@
 		<exec dir="${basedir}"
 			  executable="phpcpd"
 			  failonerror="true">
-			<arg line="--log-pmd build/logs/pmd.xml svn"/>
+			<arg line="--log-pmd build/logs/pmd.xml workspace/trunk"/>
 		</exec>
 	</target>
 
@@ -62,5 +62,5 @@
 		</exec>
 	</target>
 
-	<target name="build" depends="init,phpcpd,phpcs, phpunit,php-documentor"/>
+	<target name="build" depends="init,phpcpd, phpcs, phpunit,php-documentor"/>
 </project>
