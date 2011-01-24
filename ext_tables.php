@@ -21,6 +21,7 @@ t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_category', 'EXT:' . $_E
 t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_media', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_media.xml');
 t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_file', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_file.xml');
 t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_link', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_link.xml');
+t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.news2_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
 
 t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_news');
 
