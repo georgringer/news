@@ -31,11 +31,6 @@
  */
 class Tx_News2_Domain_Model_Link extends Tx_Extbase_DomainObject_AbstractValueObject {
 	/**
-	 * @var integer
-	 */
-	protected $pid;
-	
-	/**
 	 * @var DateTime
 	 */
 	protected $crdate;
@@ -54,7 +49,7 @@ class Tx_News2_Domain_Model_Link extends Tx_Extbase_DomainObject_AbstractValueOb
 	 * @var integer
 	 */
 	protected $l10nParent;
-	
+
 	/**
 	 * @var string
 	 */
@@ -84,8 +79,8 @@ class Tx_News2_Domain_Model_Link extends Tx_Extbase_DomainObject_AbstractValueOb
 
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
-	}	
-	
+	}
+
 	public function getSysLanguageUid() {
 		return $this->sysLanguageUid;
 	}

@@ -23,19 +23,13 @@
 ***************************************************************/
 
 /**
-* News model
-*
-* @package TYPO3
-* @subpackage tx_news2
-* @version $Id$
-*/
+ * News model
+ *
+ * @package TYPO3
+ * @subpackage tx_news2
+ * @version $Id$
+ */
 class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
-
-	/**
-	 * @var integer
-	 */
-	protected $pid;
-
 	/**
 	 * @var DateTime
 	 */
@@ -186,7 +180,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @var integer
 	 */
 	protected $importId;
-	
+
 	/**
 	 * @var integer
 	 */
@@ -484,9 +478,6 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	public function setSorting($sorting) {
 		$this->sorting = $sorting;
 	}
-
-
-
 }
 
 ?>

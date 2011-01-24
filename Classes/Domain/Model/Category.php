@@ -30,12 +30,6 @@
  * @version $Id$
  */
 class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEntity {
-
-	/**
-	 * @var integer
-	 */
-	protected $pid;
-
 	/**
 	 * @var integer
 	 */
@@ -117,12 +111,12 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * @var integer
 	 */
 	protected $countRelatedNews = 0;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
 	 * @lazy
 	 */
-	protected $childs;	
+	protected $childs;
 
 	public function getCrdate() {
 		return $this->crdate;
@@ -260,7 +254,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
 		$categoryRepository->setParentUidList($this->uid);
 		$childs = $categoryRepository->findByParent();
-		
+
 		return $childs;
 	}
 

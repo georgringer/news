@@ -30,12 +30,6 @@
  * @version $Id$
  */
 class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity {
-
-	/**
-	 * @var integer
-	 */
-	protected $pid;
-
 	/**
 	 * @var DateTime
 	 */

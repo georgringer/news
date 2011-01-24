@@ -31,11 +31,6 @@
  */
 class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueObject {
 	/**
-	 * @var integer
-	 */
-	protected $pid;
-	
-	/**
 	 * @var DateTime
 	 */
 	protected $crdate;
@@ -44,7 +39,7 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	 * @var DateTime
 	 */
 	protected $tstamp;
-	
+
 	/**
 	 * @var integer
 	 */
@@ -54,7 +49,7 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	 * @var integer
 	 */
 	protected $l10nParent;
-	
+
 	/**
 	 * @var string
 	 */
@@ -79,8 +74,8 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
-	}	
-	
+	}
+
 	public function getSysLanguageUid() {
 		return $this->sysLanguageUid;
 	}
@@ -96,7 +91,7 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	public function setL10nParent($l10nParent) {
 		$this->l10nParent = $l10nParent;
 	}
-	
+
 	public function getTitle() {
 		return $this->title;
 	}
