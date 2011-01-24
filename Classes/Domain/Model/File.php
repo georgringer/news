@@ -65,14 +65,6 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	 */
 	protected $file;
 
-	public function getPid() {
-		return $this->pid;
-	}
-
-	public function setPid($pid) {
-		$this->pid = $pid;
-	}
-
 	public function getCrdate() {
 		return $this->crdate;
 	}

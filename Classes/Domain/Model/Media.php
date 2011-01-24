@@ -204,14 +204,6 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->showinpreview = $showinpreview;
 	}
 
-	public function getPid() {
-		return $this->pid;
-	}
-
-	public function setPid($pid) {
-		$this->pid = $pid;
-	}
-
 	public function getCrdate() {
 		return $this->crdate;
 	}

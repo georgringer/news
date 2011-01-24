@@ -389,14 +389,6 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		$this->crdate = $crdate;
 	}
 
-	public function getPid() {
-		return $this->pid;
-	}
-
-	public function setPid($pid) {
-		$this->pid = $pid;
-	}
-
 	public function getTstamp() {
 		return $this->tstamp;
 	}
