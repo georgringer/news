@@ -1,1 +1,28 @@
-xx
+{namespace n=Tx_News2_ViewHelpers}
+<f:layout name="General" />
+<!--
+	=====================
+		Templates/News/List.html
+-->
+
+<f:section name="content">
+	<div class="news2 news2-list-view">
+		<n:widget.yearMenu objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
+			<f:for each="{paginatedNews}" as="count" key="month">
+				<div>
+					<f:if condition="{count}">
+						<f:then>
+							<strong>{month} : {count}</strong>
+						</f:then>
+						<f:else>
+							{month}
+						</f:else>
+					</f:if>
+					
+					
+				</div>
+			</f:for>
+		</n:widget.yearMenu>
+	</div>
+
+</f:section>
