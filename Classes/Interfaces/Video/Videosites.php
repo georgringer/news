@@ -55,15 +55,16 @@ class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaI
 			$height = $element->getHeight();
 		}
 
+
 		if (!empty($finalUrl)) {
 			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/swfobject-2-2.js');
-			$uniqueDivId = 'mediaelement-' . md5($element->getUid() . uniqid());
+			$uniqueDivId = 'mediaelement' . md5($element->getUid() . uniqid());
 			
 			$content .= '<div id="' . $uniqueDivId . '"></div> 
 						<script type="text/javascript">
 							var params = { allowScriptAccess: "always" };
-							var atts = { id: "myytplayer" };
-							swfobject.embedSWF("' . htmlspecialchars($url) . '", 
+							var atts = { id: "' . $uniqueDivId . '" };
+							swfobject.embedSWF("' . htmlspecialchars($finalUrl) . '",
 							"' . $uniqueDivId . '", "' . (int)$width .'", "' . (int)$height .'", "8", null, null, params, atts);
 						</script>';
 		}
