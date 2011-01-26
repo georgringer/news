@@ -54,7 +54,6 @@ class Tx_News2_ViewHelpers_Widget_Controller_YearMenuController extends Tx_Fluid
 
 		$this->currentYear = ((int)$this->widgetConfiguration['year'] != 0) ? $this->widgetConfiguration['year'] : date('Y');
 		$this->configuration = t3lib_div::array_merge_recursive_overrule($this->configuration, $this->widgetConfiguration['configuration'], TRUE);
-
 	}
 
 	/**
@@ -72,19 +71,21 @@ class Tx_News2_ViewHelpers_Widget_Controller_YearMenuController extends Tx_Fluid
 
 	/**
 	 * Build the year menu
-	 * 
+	 *
 	 * @param integer $year year
 	 * @return array
 	 */
 	protected function buildMenu($year) {
 		$menu = array();
-		
+
 		$query = $this->objects->getQuery();
 
 			// no need for orderings
 		$query->setOrderings(array());
-		
+
 		$oldConstraints = $query->getConstraint();
+
+		$vars = t3lib_div::_GET('tx_news2_pi1');
 
 			// 12 months
 		for($i=1;$i<=12;$i++) {
@@ -97,21 +98,22 @@ class Tx_News2_ViewHelpers_Widget_Controller_YearMenuController extends Tx_Fluid
 				$query->lessThanOrEqual('datetime', 	$endMonth)
 			);
 
-
 				// add the new constraing or append it
 			if (is_null($oldConstraints)) {
 				$query->matching($constraints);
 			} else {
 				$query->matching($query->logicalAnd(array($oldConstraints, $constraints)));
 			}
-			
-				// build result together
+
+				// build result
 			$menu[$i] = array(
 				'count' => $query->execute()->count(),
-				'date' => new DateTime($this->currentYear . '-' . $i . '-1')
+				'date' => new DateTime($this->currentYear . '-' . $i . '-1'),
+				'active' => (isset($vars['year']) && $vars['year'] == $year
+								&& isset($vars['month']) && $vars['month'] == $i)
 			);
 		}
-		
+
 		return $menu;
 	}
 

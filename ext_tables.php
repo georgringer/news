@@ -272,7 +272,7 @@ if (TYPO3_MODE == 'BE' && t3lib_extMgm::isLoaded('tt_news') && $configurationArr
 		),
 		array(
 			'access' => 'user,group',
-			'icon'   => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/tt_news_article.gif',
+			'icon'   => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/import_module.gif',
 			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
 		)
 	);

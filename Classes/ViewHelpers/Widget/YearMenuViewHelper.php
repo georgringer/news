@@ -23,14 +23,14 @@
 ***************************************************************/
 
 /**
- * ViewHelper to include a css/js file
+ * ViewHelper to show news count by months and years
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  */
 class Tx_News2_ViewHelpers_Widget_YearMenuViewHelper  extends Tx_Fluid_Core_Widget_AbstractWidgetViewHelper {
-	
+
 
 	/**
 	 * @var Tx_News2_ViewHelpers_Widget_Controller_YearMenuController
@@ -55,7 +55,7 @@ class Tx_News2_ViewHelpers_Widget_YearMenuViewHelper  extends Tx_Fluid_Core_Widg
 	 */
 	public function render(Tx_Extbase_Persistence_QueryResultInterface $objects, $as, array $configuration = array(), $year = 0) {
 		return $this->initiateSubRequest();
-	}	
-	
+	}
+
 }
 ?>

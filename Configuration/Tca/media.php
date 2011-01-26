@@ -150,7 +150,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'itemsProcFunc' => 'tx_news2_itemsProcFunc->user_MediaType',
 				'items' => array(
 					array($ll . 'tx_news2_domain_model_media.type.I.0', '0', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_image.png'),
-					array('LLL:EXT:cms/locallang_ttc.xml:media.type.video', '1', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_movie.png'),
+					array('LLL:EXT:cms/locallang_ttc.xml:media.type.video', '1', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_multimedia.png'),
 					array($ll . 'tx_news2_domain_model_media.type.I.2', '2', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_html.png'),
 				),
 				'size' => 1,
@@ -254,7 +254,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'2' => array(
 			'showitem' => 'showinpreview, hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource',
 			'canNotCollapse' => TRUE
-		),		
+		),
 		'3' => array(
 			'showitem' => 'title,alt,--linebreak--,',
 			'canNotCollapse' => TRUE

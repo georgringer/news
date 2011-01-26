@@ -34,8 +34,8 @@ class tx_news2_labelFunc {
 
 	/**
 	 * Labels of a news record
-	 * 
-	 * @param array $params 
+	 *
+	 * @param array $params
 	 */
 	public function getUserLabelNews(array $params) {
 		$categoryTitles = $this->getCategories($params['row']['uid'], $params['row']['category']);
@@ -55,22 +55,6 @@ class tx_news2_labelFunc {
 	 * @param array $params
 	 */
 	public function getUserLabelCategory(array $params) {
-//		$parentCategory = '';
-//
-//		if ($params['row']['parent_id'] > 0) {
-//			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-//				'title',
-//				'tx_news2_domain_model_category',
-//				'deleted=0 AND uid=' . (int)$params['row']['parent_id']
-//			);
-//
-//			$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
-//			$parentCategory = ', ' . $row['title'];
-//			$GLOBALS['TYPO3_DB']->sql_free_result($res);
-//		}
-//
-//		$params['title'] = $params['row']['title'] . $parentCategory;
-
 			// new version shows translation of language set in user settings
 		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['news2overlay'];
 
@@ -96,7 +80,7 @@ class tx_news2_labelFunc {
 
 	/**
 	 * Render different label for media elements
-	 * 
+	 *
 	 * @param array $params configuration
 	 */
 	public function getUserLabelMedia(array $params) {
@@ -109,19 +93,19 @@ class tx_news2_labelFunc {
 		if ($params['row']['showinpreview']) {
 			$newTitle .= ' ' . $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media.show');
 		}
-		
+
 		$params['title'] = $params['row']['caption'] . $newTitle;
 	}
 
 
 	/**
 	 * Get news categories based on the news id
-	 * 
+	 *
 	 * @param integer $newsUid
 	 * @param integer $catMM
 	 * @return string list of categories
 	 */
-	private function getCategories($newsUid, $catMM) {
+	protected function getCategories($newsUid, $catMM) {
 		if ($catMM == 0) {
 			return '';
 		}

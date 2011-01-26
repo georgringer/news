@@ -29,6 +29,12 @@ $postvars = array(
 		array(
 			'GETvar' => 'tx_news2_pi1[controller]',
 		),
+		array(
+			'GETvar' => 'tx_news2_pi1[year]',
+		),
+		array(
+			'GETvar' => 'tx_news2_pi1[month]',
+		),
 	),
 
 );

@@ -54,14 +54,18 @@ class Tx_News2_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelp
 		$content = '';
 		$classList = t3lib_div::trimExplode(',', $classes, TRUE);
 
+			// go through every class provided by argument
 		foreach($classList as $classData) {
 			$videoObject = t3lib_div::makeInstance($classData);
 
+				// check interface implementation
 			if(!($videoObject instanceof Tx_News2_Interfaces_MediaInterface)) {
 				throw new UnexpectedValueException('$videoObject must implement interface Tx_News2_Interfaces_MediaInterface', 1295088673);
 			}
 
-			if ($videoObject->enabled($element) && empty($content)) {
+				// if no content found and the implementation is enabled, try to render
+				// with current implementation
+			if (empty($content) && $videoObject->enabled($element)) {
 				$content = $videoObject->render($element, $width, $height);
 			}
 		}
