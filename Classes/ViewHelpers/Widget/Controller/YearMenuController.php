@@ -44,13 +44,15 @@ class Tx_News2_ViewHelpers_Widget_Controller_YearMenuController extends Tx_Fluid
 	/**
 	 * @var integer
 	 */
-	protected $currentYear = '2010';
+	protected $currentYear = 0;
 
 	/**
 	 * @return void
 	 */
 	public function initializeAction() {
 		$this->objects = $this->widgetConfiguration['objects'];
+
+		$this->currentYear = ((int)$this->widgetConfiguration['year'] != 0) ? $this->widgetConfiguration['year'] : date('Y');
 		$this->configuration = t3lib_div::array_merge_recursive_overrule($this->configuration, $this->widgetConfiguration['configuration'], TRUE);
 
 	}
@@ -60,41 +62,54 @@ class Tx_News2_ViewHelpers_Widget_Controller_YearMenuController extends Tx_Fluid
 	 * @return void
 	 */
 	public function indexAction($currentPage = 1) {
-
-
-		$modifiedObjects = $this->buildMenu();
+		$year = $this->currentYear;
 
 		$this->view->assign('contentArguments', array(
-			$this->widgetConfiguration['as'] => $modifiedObjects
+			$this->widgetConfiguration['as'] => $this->buildMenu($year)
 		));
 		$this->view->assign('configuration', $this->configuration);
-//		$this->view->assign('pagination', $this->buildPagination());
 	}
-	
-	protected function buildMenu() {
+
+	/**
+	 * Build the year menu
+	 * 
+	 * @param integer $year year
+	 * @return array
+	 */
+	protected function buildMenu($year) {
 		$menu = array();
 		
 		$query = $this->objects->getQuery();
+
+			// no need for orderings
+		$query->setOrderings(array());
 		
 		$oldConstraints = $query->getConstraint();
 
+			// 12 months
 		for($i=1;$i<=12;$i++) {
-			$startMonth = mktime(0, 0, 1, $i, 0, $this->currentYear);
-			$endMonth = mktime(0, 0, 0, $i+1, 0, $this->currentYear);
+			$startMonth = mktime(0, 0, 1, $i, 0, $year);
+			$endMonth = mktime(0, 0, 0, $i+1, 0, $year);
+
+				// all news with datetime inside this month
 			$constraints = $query->logicalAnd(
 				$query->greaterThanOrEqual('datetime', 	$startMonth),
 				$query->lessThanOrEqual('datetime', 	$endMonth)
 			);
 
 
+				// add the new constraing or append it
 			if (is_null($oldConstraints)) {
 				$query->matching($constraints);
 			} else {
 				$query->matching($query->logicalAnd(array($oldConstraints, $constraints)));
 			}
 			
-			
-			$menu[$i] = $query->execute()->count();		
+				// build result together
+			$menu[$i] = array(
+				'count' => $query->execute()->count(),
+				'date' => new DateTime($this->currentYear . '-' . $i . '-1')
+			);
 		}
 		
 		return $menu;

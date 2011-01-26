@@ -50,9 +50,10 @@ class Tx_News2_ViewHelpers_Widget_YearMenuViewHelper  extends Tx_Fluid_Core_Widg
 	 * @param Tx_Extbase_Persistence_QueryResultInterface $objects
 	 * @param string $as
 	 * @param array $configuration
+	 * @param integer $year
 	 * @return string
 	 */
-	public function render(Tx_Extbase_Persistence_QueryResultInterface $objects, $as, array $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE)) {
+	public function render(Tx_Extbase_Persistence_QueryResultInterface $objects, $as, array $configuration = array(), $year = 0) {
 		return $this->initiateSubRequest();
 	}	
 	

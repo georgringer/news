@@ -2,26 +2,26 @@
 <f:layout name="General" />
 <!--
 	=====================
-		Templates/News/List.html
+		Templates/News/MenuByDate.html
 -->
 
 <f:section name="content">
-	<div class="news2 news2-list-view">
-		<n:widget.yearMenu objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
-			<f:for each="{paginatedNews}" as="count" key="month">
-				<div>
-					<f:if condition="{count}">
-						<f:then>
-							<strong>{month} : {count}</strong>
-						</f:then>
-						<f:else>
-							{month}
-						</f:else>
-					</f:if>
-					
-					
-				</div>
-			</f:for>
+	<div class="news2 news2-menu-view">
+		<n:widget.yearMenu objects="{news}" as="newsCountByMonth" year="2010">
+			<ul>
+				<f:for each="{newsCountByMonth}" as="month">
+					<li>
+						<f:if condition="{month.count}">
+							<f:then>
+								<strong><f:format.date format="F Y">{month.date}</f:format.date> : {month.count}</strong>
+							</f:then>
+							<f:else>
+								<f:format.date format="F Y">{month.date}</f:format.date>: <f:translate key="no_entries" />
+							</f:else>
+						</f:if>
+					</li>
+				</f:for>
+			</ul>
 		</n:widget.yearMenu>
 	</div>
 

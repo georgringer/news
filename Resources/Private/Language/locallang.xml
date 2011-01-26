@@ -17,6 +17,7 @@
 			<label index="related-links">Related links</label>
 			<label index="author">created by %s</label>
 			<label index="list.settings.notfound">List view settings not found. TypoScript included?</label>	
+			<label index="no_entries">No entries</label>
 
 		</languageKey>
 
