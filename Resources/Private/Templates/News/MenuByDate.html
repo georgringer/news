@@ -7,22 +7,33 @@
 
 <f:section name="content">
 	<div class="news2 news2-menu-view">
-		<n:widget.yearMenu objects="{news}" as="newsCountByMonth" year="2010">
-			<ul>
-				<f:for each="{newsCountByMonth}" as="month">
-					<li>
-						<f:if condition="{month.count}">
-							<f:then>
-								<strong><f:format.date format="F Y">{month.date}</f:format.date> : {month.count}</strong>
-							</f:then>
-							<f:else>
-								<f:format.date format="F Y">{month.date}</f:format.date>: <f:translate key="no_entries" />
-							</f:else>
-						</f:if>
-					</li>
-				</f:for>
-			</ul>
-		</n:widget.yearMenu>
+		<f:for each="{0:2009,1:2010,2:2011}" as="year">
+			<n:widget.yearMenu objects="{news}" as="newsCountByMonth" year="{year}">
+				<ul>
+					<f:for each="{newsCountByMonth}" as="month">
+						<li>
+							<f:if condition="{month.count}">
+								<f:then>
+									<strong><f:format.date format="F Y">{month.date}</f:format.date> :
+										<f:if condition="{month.count} == 1">
+											<f:then>
+												<f:translate key="single_entry" arguments="{0:month.count}" />
+											</f:then>
+											<f:else>
+												<f:translate key="multiple_entries" arguments="{0:month.count}" />
+											</f:else>
+										</f:if>
+									</strong>
+								</f:then>
+								<f:else>
+									<f:format.date format="F Y">{month.date}</f:format.date>: <f:translate key="no_entries" />
+								</f:else>
+							</f:if>
+						</li>
+					</f:for>
+				</ul>
+			</n:widget.yearMenu>
+		</f:for>
 	</div>
 
 </f:section>

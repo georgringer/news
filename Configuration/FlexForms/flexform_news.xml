@@ -13,7 +13,6 @@
 			<ROOT>
 				<TCEforms>
 					<sheetTitle>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_tab.settings</sheetTitle>
-					<cshFile>LLL:EXT:news2/Resources/Private/Language/locallang_csh_flexforms.xml</cshFile>
 				</TCEforms>
 				<type>array</type>
 				<el>
@@ -91,7 +90,7 @@
 						</TCEforms>
 					</settings.orderBy>
 
-					<!-- Archive -->
+					<!-- order direction  -->
 					<settings.orderAscDesc>
 						<TCEforms>
 							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderAscDesc</label>
@@ -299,7 +298,6 @@
 			<ROOT>
 				<TCEforms>
 					<sheetTitle>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_tab.additional</sheetTitle>
-					<cshFile>LLL:EXT:news2/Resources/Private/Language/locallang_csh_flexforms.xml</cshFile>
 				</TCEforms>
 				<type>array</type>
 				<el>
@@ -397,7 +395,6 @@
 			<ROOT>
 				<TCEforms>
 					<sheetTitle>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_tab.template</sheetTitle>
-					<cshFile>LLL:EXT:news2/Resources/Private/Language/locallang_csh_flexforms.xml</cshFile>
 				</TCEforms>
 				<type>array</type>
 				<el>
