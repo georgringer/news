@@ -52,6 +52,6 @@ class Tx_News2_ViewHelpers_ActiveCategoryViewHelper extends Tx_Fluid_Core_ViewHe
 		return '';
 	}
 
-
-
 }
+
+?>

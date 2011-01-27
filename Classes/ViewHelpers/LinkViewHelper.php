@@ -92,3 +92,5 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 		return $finalLink;
 	}
 }
+
+?>

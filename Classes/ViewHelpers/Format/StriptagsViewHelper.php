@@ -53,3 +53,5 @@ class Tx_News2_ViewHelpers_Format_StriptagsViewHelper extends Tx_Fluid_Core_View
 		return $content;
 	}
 }
+
+?>

@@ -58,4 +58,5 @@ class Tx_News2_ViewHelpers_Widget_YearMenuViewHelper  extends Tx_Fluid_Core_Widg
 	}
 
 }
+
 ?>

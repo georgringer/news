@@ -60,3 +60,5 @@ class Tx_News2_ViewHelpers_Category_CountNewsViewHelper extends Tx_Fluid_Core_Vi
 		return $newsRepository->countByTest();
 	}
 }
+
+?>

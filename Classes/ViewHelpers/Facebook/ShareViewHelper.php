@@ -81,3 +81,5 @@ class Tx_News2_ViewHelpers_Facebook_ShareViewHelper extends Tx_Fluid_Core_ViewHe
 	}
 
 }
+
+?>

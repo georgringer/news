@@ -80,3 +80,5 @@ class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHel
 	}
 
 }
+
+?>

@@ -115,3 +115,5 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 
 
 }
+
+?>
