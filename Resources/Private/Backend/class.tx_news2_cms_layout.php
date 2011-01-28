@@ -39,11 +39,11 @@ class tx_news2_cms_layout {
 	/**
 	 * Returns information about this extension's pi1 plugin
 	 *
-	 * @param	array		$params	Parameters to the hook
-	 * @param	mixed		$pObj	A reference to calling object
-	 * @return	string		Information about pi1 plugin
+	 * @param array	$params	Parameters to the hook
+	 * @param mixed	$pObj	A reference to calling object
+	 * @return string Information about pi1 plugin
 	 */
-	function getExtensionSummary(array $params, &$pObj) {
+	public function getExtensionSummary(array $params, $pObj) {
 		$result = '';
 
 		$this->llPath = 'LLL:EXT:' . $this->extKey . '/Resources/Private/Language/locallang_be.xml';
@@ -54,16 +54,16 @@ class tx_news2_cms_layout {
 				// if flexform data is found
 			if (is_array($data) && !empty($data['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
 				$actionList = t3lib_div::trimExplode(';', $data['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF']);
-				
+
 					// translate the first action into its translation
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
 				$actionTranslation = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode.' . $actionTranslationKey);
-				
+
 				$result =
 						'<strong>' .
-							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode', TRUE) . 
+							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode', TRUE) .
 						': </strong>' . htmlspecialchars($actionTranslation);
-						
+
 			} else {
 				$result = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode.not_configured');
 			}
@@ -87,9 +87,10 @@ class tx_news2_cms_layout {
 	 */
 	private function getArchiveSettings($data) {
 		$content = '';
-		
-		if (!is_array($data))
+
+		if (!is_array($data)) {
 			return $content;
+		}
 
 		$archive = $data['data']['sDEF']['lDEF']['settings.archive']['vDEF'];
 
@@ -110,8 +111,9 @@ class tx_news2_cms_layout {
 	 * @return string
 	 */
 	private function getCategorySettings($data) {
-		if (!is_array($data))
+		if (!is_array($data)) {
 			return '';
+		}
 
 		$content = $categoryMode = '';
 		$categoriesOut = array();
@@ -148,29 +150,30 @@ class tx_news2_cms_layout {
 
 		return $content;
 	}
-	
+
 	/**
 	 * Render offset & limit configuration
-	 * 
+	 *
 	 * @param array $data
-	 * @return string 
+	 * @return string
 	 */
 	private function getOffsetLimitSettings($data) {
 		$content = '';
-		
-		if (!is_array($data))
+
+		if (!is_array($data)) {
 			return $content;
+		}
 
 		$offset = $data['data']['additional']['lDEF']['settings.offset']['vDEF'];
 		$limit = $data['data']['additional']['lDEF']['settings.limit']['vDEF'];
-		
+
 		if ($offset) {
-			$content .= $this->renderLine($GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.offset'), $offset);			
+			$content .= $this->renderLine($GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.offset'), $offset);
 		}
 		if ($limit) {
 			$content .= $this->renderLine($GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.limit'), $limit);
 		}
-		
+
 		return $content;
 	}
 
@@ -200,16 +203,16 @@ class tx_news2_cms_layout {
 		}
 
 		$content = $this->renderLine(
-						$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'), 
+						$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
 						implode(', ', $pagesOut)
 					);
-		
+
 		return $content;
 	}
-	
+
 	/**
 	 * Render a configuration line with a tr/td
-	 * 
+	 *
 	 * @param string $head
 	 * @param string $content
 	 * @return string rendered configuration
@@ -219,7 +222,7 @@ class tx_news2_cms_layout {
 						<td style="font-weight:bold;width:200px;">' . $head .	'</td>
 						<td>' . $content . '</td>
 					</tr>';
-		
+
 		return $content;
 	}
 

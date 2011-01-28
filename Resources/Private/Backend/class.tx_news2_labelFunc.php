@@ -36,6 +36,7 @@ class tx_news2_labelFunc {
 	 * Labels of a news record
 	 *
 	 * @param array $params
+	 * @return void
 	 */
 	public function getUserLabelNews(array $params) {
 		$categoryTitles = $this->getCategories($params['row']['uid'], $params['row']['category']);
@@ -50,9 +51,11 @@ class tx_news2_labelFunc {
 
 
 	/**
-	 * Generate additional label for category records including the title of the parent category
+	 * Generate additional label for category records
+	 * including the title of the parent category
 	 *
 	 * @param array $params
+	 * @return void
 	 */
 	public function getUserLabelCategory(array $params) {
 			// new version shows translation of language set in user settings
@@ -82,6 +85,7 @@ class tx_news2_labelFunc {
 	 * Render different label for media elements
 	 *
 	 * @param array $params configuration
+	 * @return void
 	 */
 	public function getUserLabelMedia(array $params) {
 
@@ -102,11 +106,11 @@ class tx_news2_labelFunc {
 	 * Get news categories based on the news id
 	 *
 	 * @param integer $newsUid
-	 * @param integer $catMM
+	 * @param integer $catMm
 	 * @return string list of categories
 	 */
-	protected function getCategories($newsUid, $catMM) {
-		if ($catMM == 0) {
+	protected function getCategories($newsUid, $catMm) {
+		if ($catMm == 0) {
 			return '';
 		}
 
@@ -118,7 +122,7 @@ class tx_news2_labelFunc {
 			'tx_news2_domain_model_category',
 			' AND tx_news2_domain_model_news.uid=' . (int)$newsUid
 		);
-		while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$catTitles[] = $row['title'];
 		}
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);

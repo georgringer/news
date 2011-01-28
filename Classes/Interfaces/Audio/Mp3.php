@@ -40,7 +40,7 @@ class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterfac
 	 * @param string $template
 	 * @return string
 	 */
-	public function render(Tx_News2_Domain_Model_Media $element, $width, $height, $template='') {
+	public function render(Tx_News2_Domain_Model_Media $element, $width, $height, $template = '') {
 		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
 		$url = htmlspecialchars($url);
 		$uniqueId = Tx_News2_Service_FileService::getUniqueId($element);
@@ -48,12 +48,12 @@ class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterfac
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/swfobject-2-2.js');
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/audioplayer-noswfobject.js');
 
-		$inlineJS = '
+		$inlineJs = '
 			AudioPlayer.setup("' . getIndpEnv('TYPO3_SITE_URL') . 'typo3conf/ext/news2/Resources/Public/JavaScript/audioplayer-player.swf", {
-				width: 290
+				width: ' . (int)$width . '
 			});';
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode('news2_audio', $inlineJS);
+		$GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode('news2_audio', $inlineJs);
 
 		$content = '<p id="' . $uniqueId . '">' . htmlspecialchars($element->getCaption()) . '</p>
 					<script type="text/javascript">
@@ -64,8 +64,9 @@ class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterfac
 	}
 
 	/**
-	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * Implementation is only used if file ending is mp3
+	 * 
+	 * @param Tx_News2_Domain_Model_Media $element media element
 	 * @return boolean
 	 */
 	public function enabled(Tx_News2_Domain_Model_Media $element) {

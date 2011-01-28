@@ -47,6 +47,8 @@ class Tx_News2_ViewHelpers_Widget_Controller_YearMenuController extends Tx_Fluid
 	protected $currentYear = 0;
 
 	/**
+	 * Initialize
+	 *
 	 * @return void
 	 */
 	public function initializeAction() {
@@ -88,7 +90,7 @@ class Tx_News2_ViewHelpers_Widget_Controller_YearMenuController extends Tx_Fluid
 		$vars = t3lib_div::_GET('tx_news2_pi1');
 
 			// 12 months
-		for($i=1;$i<=12;$i++) {
+		for ($i = 1; $i <= 12; $i++) {
 			$startMonth = mktime(0, 0, 1, $i, 0, $year);
 			$endMonth = mktime(0, 0, 0, $i+1, 0, $year);
 

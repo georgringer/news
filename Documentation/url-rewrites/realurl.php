@@ -1,12 +1,6 @@
 <?php
 
-/**
- * @version $Id:$
- * @author Georg Ringer <georg.ringer@cyberhouse.at>
- */
-
-// starting a nice documentation
-
+	// starting a nice documentation
 $postvars = array(
 	'news' => array(
 		array(
@@ -38,4 +32,5 @@ $postvars = array(
 	),
 
 );
+
 ?>

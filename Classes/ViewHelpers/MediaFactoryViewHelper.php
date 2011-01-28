@@ -32,7 +32,8 @@
 class Tx_News2_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * If the escaping interceptor should be disabled inside this ViewHelper, then set this value to FALSE.
+	 * If the escaping interceptor should be disabled inside this ViewHelper,
+	 * then set this value to FALSE.
 	 * This is internal and NO part of the API. It is very likely to change.
 	 *
 	 * @var boolean
@@ -42,7 +43,8 @@ class Tx_News2_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelp
 
 
 	/**
-	 * Go through all given classes which implement the mediainterface and get the videos
+	 * Go through all given classes which implement the mediainterface
+	 * and get the videos
 	 *
 	 * @param string $classes
 	 * @param Tx_News2_Domain_Model_Media $element
@@ -55,11 +57,11 @@ class Tx_News2_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelp
 		$classList = t3lib_div::trimExplode(',', $classes, TRUE);
 
 			// go through every class provided by argument
-		foreach($classList as $classData) {
+		foreach ($classList as $classData) {
 			$videoObject = t3lib_div::makeInstance($classData);
 
 				// check interface implementation
-			if(!($videoObject instanceof Tx_News2_Interfaces_MediaInterface)) {
+			if (!($videoObject instanceof Tx_News2_Interfaces_MediaInterface)) {
 				throw new UnexpectedValueException('$videoObject must implement interface Tx_News2_Interfaces_MediaInterface', 1295088673);
 			}
 

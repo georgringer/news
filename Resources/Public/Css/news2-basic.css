@@ -16,7 +16,7 @@
     width: 1px;
     height: 1px;
     margin: 0;
-	overflow: hidden;	
+	overflow: hidden;
 }
 .news2 .clear { clear: both; }
 
@@ -24,11 +24,11 @@
     float: left;
     display: inline;
 	margin: 0;
-} 
+}
 .news2 .nav li {
     float: left;
     list-style: none;
-	line-height: 1em; 
+	line-height: 1em;
 }
 .news2 .nav a {
     float: left;
@@ -60,7 +60,7 @@
     display: block;
     height: 0;
     clear: both;
-    visibility: hidden;	
+    visibility: hidden;
 }
 .news2 .article { zoom: 1; }
 
@@ -70,7 +70,7 @@
 	width: 128px;
 	margin: 3px 12px 5px 0;
 	background: #fff;
-	
+
 }
 .news2 .article .news2-img-wrap a {
 	display: block;
@@ -225,4 +225,3 @@
 }
 .news2-related-files ul li { margin-bottom: 20px; }
 .news2-related-files .news2-related-files-link .jpg { background-position: 0 0; }
-

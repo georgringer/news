@@ -30,28 +30,28 @@
  * @version $Id$
  */
 interface Tx_News2_Interfaces_MediaInterface {
-	
+
 	/**
 	 * Render a media element
 	 *
-	 * @param	Tx_News2_Domain_Model_Media $element
-	 * @param	integer $width
-	 * @param	integer $height
-	 * @return	string
+	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param integer $width
+	 * @param integer $height
+	 * @return string
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height);
-	
-	
+
+
 	/**
 	 * If enabled
 	 *
-	 * @param	Tx_News2_Domain_Model_Media $element
-	 * @return	string
+	 * @param Tx_News2_Domain_Model_Media $element
+	 * @return string
 	 */
 	public function enabled(Tx_News2_Domain_Model_Media $element);
-	
-	
+
+
 }
-	
+
 
 ?>

@@ -33,34 +33,33 @@ class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaI
 
 	/**
 	 * Render videos from various video portals
-	 * 
+	 *
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
-	 * @return string 
+	 * @return string
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
 		$content = $finalUrl = '';
 		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
-			
+
 			// get the correct rewritten url
 		$mediaWizard = tslib_mediaWizardManager::getValidMediaWizardProvider($url);
 		if ($mediaWizard !== NULL) {
 			$finalUrl = $mediaWizard->rewriteUrl($url);
 		}
-		
+
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
 			$width = $element->getWidth();
 			$height = $element->getHeight();
 		}
 
-
 		if (!empty($finalUrl)) {
 			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/swfobject-2-2.js');
 			$uniqueDivId = 'mediaelement' . md5($element->getUid() . uniqid());
-			
-			$content .= '<div id="' . $uniqueDivId . '"></div> 
+
+			$content .= '<div id="' . $uniqueDivId . '"></div>
 						<script type="text/javascript">
 							var params = { allowScriptAccess: "always" };
 							var atts = { id: "' . $uniqueDivId . '" };
@@ -68,12 +67,12 @@ class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaI
 							"' . $uniqueDivId . '", "' . (int)$width .'", "' . (int)$height .'", "8", null, null, params, atts);
 						</script>';
 		}
-		
+
 		return $content;
 	}
 
 	/**
-	 *
+	 * Videosites implementation is always enabled as check is done in tslib_mediaWizardManager
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @return boolean
 	 */

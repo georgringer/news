@@ -7,21 +7,25 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-	// extension manager configuration
+	// Extension manager configuration
 $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
-	// alternative labels for news & category records
+	// Alternative labels for news & category records
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_news2_labelFunc.php');
-	// category tree
-t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_news2_treeView.php');
 	// Add additional media types like DAM
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_' . $_EXTKEY . '_itemsProcFunc.php');
 	// CSH - context sensitive help
-t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_news', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_news.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_category', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_category.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_media', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_media.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_file', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_file.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tx_news2_domain_model_link', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_link.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.news2_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
+t3lib_extMgm::addLLrefForTCAdescr(
+		'tx_news2_domain_model_news', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_news.xml');
+t3lib_extMgm::addLLrefForTCAdescr(
+		'tx_news2_domain_model_category', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_category.xml');
+t3lib_extMgm::addLLrefForTCAdescr(
+		'tx_news2_domain_model_media', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_media.xml');
+t3lib_extMgm::addLLrefForTCAdescr(
+		'tx_news2_domain_model_file', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_file.xml');
+t3lib_extMgm::addLLrefForTCAdescr(
+		'tx_news2_domain_model_link', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_link.xml');
+t3lib_extMgm::addLLrefForTCAdescr(
+		'tt_content.pi_flexform.news2_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
 
 t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_news');
 
@@ -218,9 +222,8 @@ if (TYPO3_MODE == 'BE') {
  * Show news table in page module
  */
 if (!empty($configurationArray['pageModuleFieldsNews'])) {
-//	$configurationArray['pageModuleFieldsNews'] = 'LLL:EXT:cms/locallang_ttc.xml:sys_language_uid_formlabel=title,datetime;LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent=title,category,teaser,bodytext';
 	$addTableItems = t3lib_div::trimExplode(';', $configurationArray['pageModuleFieldsNews'], TRUE);
-	foreach($addTableItems as $item) {
+	foreach ($addTableItems as $item) {
 		$split = t3lib_div::trimExplode('=', $item, TRUE);
 		$fList = $fTitle = '';
 		if (count($split) == 2) {
