@@ -167,27 +167,27 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	}
 
 	public function getTitle() {
-	 return $this->title;
+		return $this->title;
 	}
 
 	public function setTitle($title) {
-	 $this->title = $title;
+		$this->title = $title;
 	}
 
 	public function getDescription() {
-	 return $this->description;
+		return $this->description;
 	}
 
 	public function setDescription($description) {
-	 $this->description = $description;
+		$this->description = $description;
 	}
 
 	public function getImage() {
-	 return $this->image;
+		return $this->image;
 	}
 
 	public function setImage($image) {
-	 $this->image = $image;
+		$this->image = $image;
 	}
 
 	/**
@@ -198,11 +198,11 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 		if ($this->parentcategory instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->parentcategory->_loadRealInstance();
 		}
-	 return $this->parentcategory;
+		return $this->parentcategory;
 	}
 
 	public function setParentcategory($category) {
-	 $this->parentcategory = $category;
+		$this->parentcategory = $category;
 	}
 
 	public function getShortcut() {

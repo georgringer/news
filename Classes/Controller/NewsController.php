@@ -78,7 +78,7 @@ protected $configurationManager;
 	/**
 	 * Output a list view of news
 	 *
-	 * return Tx_News2_Domain_Repository_NewsRepository news
+	 * return void
 	 */
 	public function listAction() {
 			// If the TypoScript config is not set return an error

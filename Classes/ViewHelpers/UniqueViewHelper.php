@@ -63,7 +63,7 @@ class Tx_News2_ViewHelpers_UniqueViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 			return $this->renderChildren();
 		}
 
-
+		return '';
 	}
 }
 

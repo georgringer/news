@@ -49,10 +49,10 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		return $this->executeQuery($query, $constraints);
 	}
 
-    /**
-     * @param  Tx_News2_Domain_Model_Search $searchobject
-     * @return
-     */
+	/**
+	 * @param  Tx_News2_Domain_Model_Search $searchobject
+	 * @return
+	 */
 	public function findBySearch($searchobject) {
 		$query = $this->createQuery();
 

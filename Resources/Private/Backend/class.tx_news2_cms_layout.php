@@ -73,7 +73,7 @@ class tx_news2_cms_layout {
 						$this->getCategorySettings($data) .
 						$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']) .
 						$this->getOffsetLimitSettings($data) .
-					 '</table>';
+					'</table>';
 		}
 
 		return $result;

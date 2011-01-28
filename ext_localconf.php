@@ -8,15 +8,15 @@ if (!defined ('TYPO3_MODE')) {
 }
 
 Tx_Extbase_Utility_Extension::configurePlugin(
-    $_EXTKEY,
-    'Pi1',
-    array(
-        'News' => 'index,list,latest,detail,search,searchResult,archiveMenu',
-        'Category' => 'list',
-    ),
+	$_EXTKEY,
+	'Pi1',
 	array(
-        'News' => 'search,searchResult',
-    )
+		'News' => 'index,list,latest,detail,search,searchResult,archiveMenu',
+		'Category' => 'list',
+	),
+	array(
+		'News' => 'search,searchResult',
+	)
 );
 
 

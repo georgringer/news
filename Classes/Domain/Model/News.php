@@ -342,9 +342,9 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 
 		if (count($previewCollection) > 0) {
 			return $previewCollection;
-		} else {
-			return NULL;
 		}
+
+		return NULL;
 	}
 
 	public function setMedia($media) {

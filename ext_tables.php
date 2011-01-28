@@ -38,7 +38,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'versioningWS' => TRUE,
-        'origUid' => 't3_origuid',
+		'origUid' => 't3_origuid',
 		'editlock' => 'editlock',
 		'type' => 'type',
 		'typeicon_column' => 'type',
@@ -259,7 +259,7 @@ $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 
 /* ==============================================================================
  	Register BE-Modules
- ============================================================================== */
+============================================================================== */
 
 if (TYPO3_MODE == 'BE' && t3lib_extMgm::isLoaded('tt_news') && $configurationArray['showImporter'] == 1) {
 	Tx_Extbase_Utility_Extension::registerModule(
@@ -280,14 +280,14 @@ if (TYPO3_MODE == 'BE' && t3lib_extMgm::isLoaded('tt_news') && $configurationArr
 
 /* ==============================================================================
  	Default configuration
- ============================================================================== */
+============================================================================== */
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByCategory'] = 'uid,title,tstamp,sorting';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByNews'] = 'tstamp,datetime,crdate,title';
 
 /* ==============================================================================
  	Possible additional options
 	@todo: add those things to a manual once it is there
- ============================================================================== */
+============================================================================== */
 	// switch the "News->List;News->detail" action entry to "News->list" to avoid showing detail view in list view
 #$GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['listActionOnly'] = 1;
 

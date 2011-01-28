@@ -257,8 +257,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'maxitems' => 10,
 				'MM' => 'tx_news2_domain_model_news_related_mm',
 				'wizards' => array(
-      				'suggest' => array(
-        				'type' => 'suggest',
+					'suggest' => array(
+						'type' => 'suggest',
 					),
 				),
 			)
@@ -382,8 +382,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'minitems' => 0,
 				'show_thumbs' => 1,
 				'wizards' => array(
-      				'suggest' => array(
-        				'type' => 'suggest',
+					'suggest' => array(
+						'type' => 'suggest',
 					),
 				),
 			)
