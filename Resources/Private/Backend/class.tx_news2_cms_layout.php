@@ -198,7 +198,7 @@ class tx_news2_cms_layout {
 			'deleted=0 AND uid IN(' . implode(',', $pageIds) . ')'
 		);
 
-		foreach($rawPagesRecords as $page) {
+		foreach ($rawPagesRecords as $page) {
 			$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>';
 		}
 

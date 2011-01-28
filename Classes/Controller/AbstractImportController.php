@@ -27,14 +27,14 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$ 
+ * @version $Id$
  */
 class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/***********************************
 	 *   N E W S
 	 *************************************/
-	
+
 	/**
 	 * Create media collection based on tt_news media record
 	 *
@@ -55,7 +55,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			$titleSplit = t3lib_div::trimExplode(chr(10), $row['imagetitletext'], FALSE);
 
 			$mediaElementCollection = new Tx_Extbase_Persistence_ObjectStorage();
-			foreach($imageSplit as $key => $singleImage) {
+			foreach ($imageSplit as $key => $singleImage) {
 
 					// copy file
 				t3lib_div::upload_copy_move(
@@ -79,7 +79,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 
 					// substitute l10n_parent first with old news record * -1
 				$media->setL10nParent(($row['l10n_parent'] * -1));
-				
+
 					// show in preview enabled for 1st image
 				if ($key == 0) {
 					$media->setShowinpreview(1);
@@ -110,7 +110,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 
 
 			$fileElementCollection = new Tx_Extbase_Persistence_ObjectStorage();
-			foreach($fileSplit as $key => $singleFile) {
+			foreach ($fileSplit as $key => $singleFile) {
 
 					// copy file
 				t3lib_div::upload_copy_move(
@@ -154,7 +154,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 		if (count($linkSplit) > 0) {
 
 			$linkElementCollection = new Tx_Extbase_Persistence_ObjectStorage();
-			foreach($linkSplit as $key => $singleLink) {
+			foreach ($linkSplit as $key => $singleLink) {
 
 				/**
 				 * @var Tx_News2_Domain_Model_Link
@@ -198,7 +198,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 
 		return $linkElementCollection;
 	}
-	
+
 	public function fixNewsCategoryRelation(array $row) {
 		if ($row['category'] > 0) {
 			$mmRelations = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
@@ -219,7 +219,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			}
 			if (count($newCategoryList) > 0) {
 				$catCount = 0;
-				foreach($newCategoryList as $newCat) {
+				foreach ($newCategoryList as $newCat) {
 					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
 						'tx_news2_domain_model_news_category_mm',
 						array(
@@ -236,9 +236,9 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 						'category' => $catCount
 					)
 				);
-			}		
+			}
 		}
-		
+
 	}
 
 	public function fixNewsRelatedRelation(array $row) {
@@ -261,7 +261,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			}
 			if (count($newRelatedList) > 0) {
 				$relatedCount = 0;
-				foreach($newRelatedList as $newRelated) {
+				foreach ($newRelatedList as $newRelated) {
 					$GLOBALS['TYPO3_DB']->exec_INSERTquery(
 						'tx_news2_domain_model_news_related_mm',
 						array(
@@ -278,16 +278,16 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 						'related' => $newRelated
 					)
 				);
-			}		
+			}
 		}
-		
+
 	}
-	
+
 	public function fixNewsL10nParentRelation(array $row) {
 		if ($row['sys_language_uid'] > 0) {
 			$updateArray = array();
 			$updateArray['sys_language_uid'] = $row['sys_language_uid'];
-			
+
 				// language parent
 			if ($row['l18n_parent'] > 0) {
 				$languageParent = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
@@ -297,7 +297,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 				);
 				$updateArray['l10n_parent'] = $languageParent['exportid'];
 			}
-			
+
 				// update news2 record
 			$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 				'tx_news2_domain_model_news',
@@ -306,7 +306,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			);
 		}
 	}
-	
+
 	/***********************************
 	 *    C A T E G O R Y
 	 *************************************/
@@ -314,7 +314,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	public function copyCategoryImage(array $row) {
 		$categoryImage = $row['image'];
 		if (!empty($categoryImage)) {
-			
+
 			$absolutePath = $this->getAbsPath();
 
 				// copy file
@@ -323,13 +323,13 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 				$absolutePath . 'uploads/tx_news/' . $categoryImage
 			);
 		}
-		
+
 		return $categoryImage;
 	}
 
 	/**
 	 * Update categories and fix parent category
-	 * 
+	 *
 	 * @param integer $pageUid page uid
 	 * @return int count of modified records
 	 */
@@ -342,11 +342,11 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			'exportId > 0 AND pid='. (int)$pageUid
 		);
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-			
+
 				// just need to check those records which got a parent
 				// as this is the only field to update
 			if ($row['parent_category'] > 0) {
-				
+
 					// get ttnews parent record to know its new pair
 				$equivalentParentRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
 					'*',
@@ -363,7 +363,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 					)
 				);
 			}
-			
+
 				// update ttnewscat record to know that this recor is done
 			$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 				'tt_news_cat',
@@ -372,12 +372,12 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 					'exportid' => $row['exportid'] * (-1)
 				)
 			);
-			
+
 			$count++;
 		}
-		
+
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
-		
+
 		return $count;
 	}
 
@@ -387,10 +387,10 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	/***********************************
 	 *    G E N E R A L
 	 *************************************/
-	
+
 	/**
 	 * Get the absolute path
-	 * 
+	 *
 	 * @return string
 	 */
 	public function getAbsPath() {
@@ -399,13 +399,13 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			'',
 			t3lib_div::getIndPenv('SCRIPT_FILENAME')
 		);
-		
+
 		return $absolutePath;
 	}
-	
+
 	/**
 	 * Update tt_news record and set news2's id
-	 * 
+	 *
 	 * @param string $table tt_news or tt_news_cat
 	 * @param integer $uid uid of tt_news record
 	 * @param integer $newUid uid of news2' record
@@ -417,11 +417,11 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			'uid=' . (int)$uid,
 			array(
 				'exportid' => $newUid,
-				
+
 			)
 		);
 	}
-	
+
 	/**
 	 * Get count of records
 	 * @param string $table tablename

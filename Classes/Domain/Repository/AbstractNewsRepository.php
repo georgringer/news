@@ -152,7 +152,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 		if (count($selectedCategories) > 0 && !empty($this->categorySetting)) {
 			$constraintList = array();
 
-			foreach($selectedCategories as $categoryId) {
+			foreach ($selectedCategories as $categoryId) {
 				$constraintList[] = $query->contains('category', $categoryId);
 			}
 
@@ -184,7 +184,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 		if (count($selectedCategories) > 0 && !empty($this->additionalCategorySetting)) {
 			$constraintList = array();
 
-			foreach($selectedCategories as $categoryId) {
+			foreach ($selectedCategories as $categoryId) {
 				$constraintList[] = $query->contains('category', $categoryId);
 			}
 
@@ -284,20 +284,20 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	 */
 	protected function getSearchConstraint(Tx_Extbase_Persistence_QueryInterface $query, $search) {
 		$searchConstraints = array();
-		
+
 			// search string
 		$searchFields = $this->searchFields;
 		$seachString = $search->getSearchString();
 		if (!empty($seachString) && !empty($searchFields)) {
 			$constraintItems = array();
 
-			foreach($searchFields as $searchField) {
+			foreach ($searchFields as $searchField) {
 				$constraintItems[] = $query->like($searchField, '%' . $seachString . '%');
 			}
 
 			$searchConstraints[] = $query->logicalOr($constraintItems);
 		}
-		
+
 			// from date
 		$fromDate = $search->getFromDate();
 		if (!empty($fromDate)) {
@@ -314,7 +314,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 				$searchConstraints[] = $query->lessThan('datetime', $convertedDate);
 			}
 		}
-		
+
 			// category
 //		var_dump($search->getCategory());
 
@@ -347,7 +347,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 		if (!empty($orderList)) {
 
 				// go through every order statement
-			foreach($orderList as $orderEntry) {
+			foreach ($orderList as $orderEntry) {
 				$simpleOrderStatement = t3lib_div::trimExplode(' ', $orderEntry, TRUE);
 				$count = count($simpleOrderStatement);
 

@@ -113,7 +113,7 @@ class tx_news2_itemsProcFunc {
 
 			$newItemArray = t3lib_div::trimExplode(',', $newItems, TRUE);
 			$languageKey = 'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.';
-			foreach($newItemArray as $item) {
+			foreach ($newItemArray as $item) {
 					// label: if empty, key (=field) is used
 				$label= $GLOBALS['LANG']->sL($languageKey . $item, TRUE);
 				if (empty($label)) {
@@ -140,7 +140,7 @@ class tx_news2_itemsProcFunc {
 			// add additional actions
 		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'])
 				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'])) {
-			foreach($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'] as $key => $label) {
+			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'] as $key => $label) {
 				array_push($config['items'], array($GLOBALS['LANG']->sL($label), $key, ''));
 			}
 		}
@@ -170,7 +170,7 @@ class tx_news2_itemsProcFunc {
 			$html = '<select name="data[news2overlay]">
 						<option value="0">' . $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.default_value', TRUE) . '</option>';
 
-			foreach($languages as $language) {
+			foreach ($languages as $language) {
 				$selected = ($GLOBALS['BE_USER']->uc['news2overlay'] == $language['uid']) ? ' selected="selected" ' : '';
 				$html .= '<option ' . $selected . 'value="' . $language['uid'] . '">' . htmlspecialchars($language['title']) . '</option>';
 			}

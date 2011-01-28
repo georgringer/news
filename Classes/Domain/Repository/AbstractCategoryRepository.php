@@ -37,7 +37,7 @@ class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_News2_Dom
 
 	/**
 	 * Set a list of category uids
-	 * 
+	 *
 	 * @param string $categoryList comma seperated list of ids
 	 */
 	public function setUidList($categoryList) {
@@ -46,9 +46,9 @@ class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_News2_Dom
 
 	/**
 	 * Constraint to get all categories which got a uid which is set via $this->setUidList()
-	 * 
+	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
-	 * @return Tx_Extbase_Persistence_QOM_ComparisonInterface 
+	 * @return Tx_Extbase_Persistence_QOM_ComparisonInterface
 	 */
 	public function setUidListConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
 		$idList = (empty($this->uidList)) ? array('0') : $this->uidList;
@@ -59,19 +59,19 @@ class Tx_News2_Domain_Repository_AbstractCategoryRepository extends Tx_News2_Dom
 
 	/**
 	 * Set a list of parent category uids
-	 * 
+	 *
 	 * @param string $categoryList comma seperated list of ids
-	 */	
+	 */
 	public function setParentUidList($categoryList) {
 		$this->parentUidList = t3lib_div::intExplode(',', $categoryList, TRUE);
 	}
 
 	/**
 	 * Constraint to get all categories which are childs of categories set in $this->parentUidList
-	 * 
+	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
-	 * @return Tx_Extbase_Persistence_QOM_ComparisonInterface 
- */	
+	 * @return Tx_Extbase_Persistence_QOM_ComparisonInterface
+ */
 	public function setParentUidListConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
 		$idList = (empty($this->parentUidList)) ? array('0') : $this->parentUidList;
 

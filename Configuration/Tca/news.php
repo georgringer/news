@@ -495,11 +495,11 @@ if (isset($configurationArray['categoryRestriction'])) {
 			$categoryRestriction = ' AND tx_news2_domain_model_category.pid IN (###SITEROOT###) ';
 			break;
 	}
-	
+
 	if (!empty ($categoryRestriction)) {
 		$TCA['tx_news2_domain_model_news']['columns']['category']['config']['foreign_table_where'] .= $categoryRestriction;
 	}
-	
+
 }
 
 ?>

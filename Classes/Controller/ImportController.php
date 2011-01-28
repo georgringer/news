@@ -109,26 +109,26 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 			$news->setRelatedLinks($this->importNewsLinkCollection($row));
 
 			$newsRepository->add($news);
-			
+
 				//Enforce persistence which is the chance to get new uid
 			$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 			$persistenceManager->persistAll();
 
 			$newUid = $news->getUid();
-				
+
 				// update news record
 			$this->updateImportRecord('tt_news', $row['uid'], $newUid);
 		}
 
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
-		
+
 			// fix parent categories
 		$fixedRecords = $this->fixNews(t3lib_div::_GET('id'));
 	}
-	
+
 	/**
 	 * Fix languages, related news and category relation
-	 * 
+	 *
 	 * @param integer $pageUid page uid
 	 */
 	public function fixNews($pageUid) {
@@ -145,7 +145,7 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 			$this->fixNewsRelatedRelation($row);
 				// category
 			$this->fixNewsCategoryRelation($row);
-			
+
 			$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 				'tt_news',
 				'uid=' . $row['uid'],
@@ -168,10 +168,10 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 
 		$this->view->assign('recordCount', $recordCount);
 	}
-	
+
 	public function importCategoryAction() {
 		$importCount = 0;
-		
+
 		/**
 		 * @var Tx_News2_Domain_Repository_CategoryRepository
 		 */
@@ -201,25 +201,25 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 			$category->setSinglePid($row['single_pid']);
 			$category->setShortcut($row['shortcut']);
 			$category->setImage($this->copyCategoryImage($row));
-			
+
 			$categoryRepository->add($category);
-			
+
 				//Enforce persistence which is the chance to get new uid
 			$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 			$persistenceManager->persistAll();
 
 			$newUid = $category->getUid();
-			
+
 				// update news record
 			$this->updateImportRecord('tt_news_cat', $row['uid'], $newUid);
 			$importCount++;
 		}
-		
+
 		$this->view->assign('importedRecords', $importCount);
 
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 
-		
+
 			// fix parent categories
 		$fixedRecords = $this->fixCategories(t3lib_div::_GET('id'));
 		$this->view->assign('fixedRecords', $fixedRecords);

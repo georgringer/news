@@ -49,7 +49,7 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 
 		return $this->executeQuery($query, $constraints);
 	}
-	
+
 	public function findByParent() {
 		$query = $this->createQuery();
 
@@ -59,7 +59,7 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 
 		return $this->executeQuery($query, $constraints);
 	}
-	
+
 
 }
 

@@ -104,7 +104,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 		if (!empty($orderList)) {
 
 				// go through every order statement
-			foreach($orderList as $orderEntry) {
+			foreach ($orderList as $orderEntry) {
 				$simpleOrderStatement = t3lib_div::trimExplode(' ', $orderEntry, TRUE);
 				$count = count($simpleOrderStatement);
 
@@ -144,20 +144,20 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 			$query->setOffset($this->offset);
 		}
 	}
-	
+
 	/**
 	 * A debug constraint to show query because it will never work.
 	 * SQLdebug needs to be turned on
-	 * 
+	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
-	 * @return type 
+	 * @return type
 	 */
 	public function setDebugConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
 		$constraint = $query->equals('xyz', 0);
 
         return $constraint;
 	}
-	
+
 	/**
 	 * Remove empty entries from constraint list
 	 *
@@ -165,7 +165,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 	 * @return array $constraints
 	 */
 	public function checkConstraintArray(array $constraints) {
-		foreach($constraints as $key => $constraint) {
+		foreach ($constraints as $key => $constraint) {
 			if ($constraint === NULL || empty($constraint)) {
 				unset($constraints[$key]);
 			}

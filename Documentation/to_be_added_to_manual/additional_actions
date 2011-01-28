@@ -1,0 +1,11 @@
+
+/* ==============================================================================
+ 	Possible additional options in flexforms
+============================================================================== */
+
+	// switch the "News->List;News->detail" action entry to "News->list" to avoid showing detail view in list view
+$GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['listActionOnly'] = 1;
+
+	// add an additional action: Key is "Controller->action", value is label
+$GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems']['News->byFobar'] = 'A fobar action';
+

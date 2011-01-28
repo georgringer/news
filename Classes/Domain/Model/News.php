@@ -334,7 +334,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		$mediaElements = $this->media;
 
 		$previewCollection = array();
-		foreach($mediaElements as $mediaElement) {
+		foreach ($mediaElements as $mediaElement) {
 			if ($mediaElement->getShowinpreview()) {
 				$previewCollection[] = $mediaElement;
 			}

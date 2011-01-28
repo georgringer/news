@@ -35,11 +35,11 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @var Tx_News2_Domain_Repository_NewsRepository
 	 */
 	protected $newsRepository;
-	
+
 /**
  * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
  */
-protected $configurationManager; 
+protected $configurationManager;
 	/**
 	 *
 	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepository
@@ -86,7 +86,7 @@ protected $configurationManager;
 			$this->flashMessages->add($this->localize('list.settings.notfound'), t3lib_FlashMessage::ERROR);
 			return NULL;
 		}
-		
+
 		$newsRecords = $this->newsRepository->findList();
 		$this->view->assign('news', $newsRecords);
 	}
@@ -103,15 +103,15 @@ protected $configurationManager;
 		} else {
 			var_dump($search);
 		}
-		
+
 		/** @var Tx_News2_Domain_Repository_CategoryRepository */
 		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
 		$categoryRepository->setUidList($this->settings['category']);
 		$categories = $categoryRepository->findByIdList();
 		$search->setCategory($categories);
-		
+
 //		var_dump($search->getCategory());
-		
+
 		$this->view->assign('search', $search);
 	}
 
@@ -126,7 +126,7 @@ protected $configurationManager;
 			// if a search is submitted
 		if($search !== NULL) {
 			var_dump($search->getCategory());
-			
+
 			$newsRecords = $this->newsRepository->findBySearch($search);
 			$this->view->assign('news', $newsRecords);
 
@@ -146,7 +146,7 @@ protected $configurationManager;
 			$this->renderTitle($news->getTitle());
 		}
 	}
-	
+
 	/**
 	 * Render a menu by dates, e.g. years, months or dates
 	 */
@@ -221,7 +221,7 @@ protected $configurationManager;
 
 		return $access;
 	}
-	
+
 
 	/**
 	 * Injects the Configuration Manager and is initializing the framework settings
@@ -233,7 +233,7 @@ protected $configurationManager;
 		$this->configurationManager = $configurationManager;
 
 		$tsSettings = $this->configurationManager->getConfiguration(
-				Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK, 
+				Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
 				'news2',
 				'news2_pi1'
 			);
@@ -244,9 +244,9 @@ protected $configurationManager;
 			// start override
 		if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
 			$overrideIfEmpty = t3lib_div::trimExplode(',', $tsSettings['settings']['overrideFlexformSettingsIfEmpty'], TRUE);
-			foreach($overrideIfEmpty as $key) {
+			foreach ($overrideIfEmpty as $key) {
 					// if flexform setting is empty and value is available in TS
-				if ((!isset($originalSettings[$key]) || empty($originalSettings[$key])) 
+				if ((!isset($originalSettings[$key]) || empty($originalSettings[$key]))
 						&& isset($tsSettings['settings'][$key])){
 					$originalSettings[$key] = $tsSettings['settings'][$key];
 				}
@@ -254,7 +254,7 @@ protected $configurationManager;
 		}
 
 		$this->settings = $originalSettings;
-	} 
+	}
 
 
 }

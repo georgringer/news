@@ -50,7 +50,7 @@ class Tx_News2_Service_RecursivePidListService {
 		$pid_list_arr = array_unique(t3lib_div::trimExplode(',', $pidlist, 1));
 		$pid_list     = array();
 
-		foreach($pid_list_arr as $val) {
+		foreach ($pid_list_arr as $val) {
 			$val = t3lib_div::intInRange($val, 0);
 			if ($val) {
 				$_list = $local_cObj->getTreeList(-1 * $val, $recursive);
