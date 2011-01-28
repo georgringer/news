@@ -56,7 +56,7 @@ class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaI
 		}
 
 		if (!empty($finalUrl)) {
-			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/swfobject-2-2.js');
+			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
 			$uniqueDivId = 'mediaelement' . md5($element->getUid() . uniqid());
 
 			$content .= '<div id="' . $uniqueDivId . '"></div>

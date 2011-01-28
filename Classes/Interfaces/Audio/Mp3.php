@@ -45,11 +45,11 @@ class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterfac
 		$url = htmlspecialchars($url);
 		$uniqueId = Tx_News2_Service_FileService::getUniqueId($element);
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/swfobject-2-2.js');
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/audioplayer-noswfobject.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript0/Contrib/swfobject-2-2.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/Contrib/audioplayer-noswfobject.js');
 
 		$inlineJs = '
-			AudioPlayer.setup("' . getIndpEnv('TYPO3_SITE_URL') . 'typo3conf/ext/news2/Resources/Public/JavaScript/audioplayer-player.swf", {
+			AudioPlayer.setup("' . getIndpEnv('TYPO3_SITE_URL') . 'typo3conf/ext/news2/Resources/Public/JavaScript/Contrib/audioplayer-player.swf", {
 				width: ' . (int)$width . '
 			});';
 
