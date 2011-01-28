@@ -173,12 +173,11 @@ class tx_news2_treeview {
 			// Register the required number of elements:
 		$this->pObj->requiredElements[$PA['itemFormElName']] = array($minitems,$maxitems,'imgName'=>$table.'_'.$row['uid'].'_'.$field);
 		if($config['treeView'] AND $config['foreign_table']) {
-			global $TCA, $LANG;
 			// @todo fix that
 			if ($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news2']) {
 				$confArr = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news2']);
 			}
-			if($config['treeViewClass'] AND is_object($treeViewObj = &t3lib_div::getUserObj($config['treeViewClass'],'user_',false)))      {
+			if($config['treeViewClass'] AND is_object($treeViewObj = &t3lib_div::getUserObj($config['treeViewClass'],'user_', FALSE)))      {
 			} else {
 				$treeViewObj = t3lib_div::makeInstance('tx_news2_tceFunc_selectTreeView');
 			}
@@ -189,7 +188,7 @@ class tx_news2_treeview {
 			$treeViewObj->table = $config['foreign_table'];
 			$treeViewObj->init($additionalWhere);
 			$treeViewObj->backPath = $this->pObj->backPath;
-			$treeViewObj->parentField = $TCA[$config['foreign_table']]['ctrl']['treeParentField'];
+			$treeViewObj->parentField = $GLOBALS['TCA'][$config['foreign_table']]['ctrl']['treeParentField'];
 			$treeViewObj->expandAll = 0;
 			$treeViewObj->expandFirst = 1;
 			$treeViewObj->fieldArray = array('uid','title'); // those fields will be filled to the array $treeViewObj->tree

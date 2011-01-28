@@ -53,7 +53,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 			$linkConfiguration['ATagParams'] = 'class="' . $class . '"';
 		}
 
-		
+
 		$newsType = $newsItem->getType();
 
 		if ($newsType == 0) {
@@ -61,14 +61,14 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 			$linkConfiguration['parameter'] = $pageId;
 			$linkConfiguration['additionalParams'] = '&tx_news2_pi1[controller]=News&tx_news2_pi1[action]=detail&tx_news2_pi1[news]=' . $newsItem->getUid();
 			$linkConfiguration['useCacheHash'] = 1;
-			
+
 				// human readable dates, e.g. example.com/fo/bar/news/2010/10/news-title.html
 			if (isset($settings['hrDates']) && $settings['hrDates'] == 1 &&  $newsItem->getDatetime()) {
 				/** @var DateTime */
 				$date = $newsItem->getDatetime();
 				$year = $date->format('Y');
 				$month = $date->format('m');
-				
+
 				$linkConfiguration['additionalParams'] .= '&tx_news2_pi1[year]=' . $year . '&tx_news2_pi1[month]=' . $month;
 			}
 		} elseif($newsType == 1) {
@@ -78,17 +78,17 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 		} else {
 			// @todo error handling
 		}
-		
+
 		if ($linkOnly) {
 			$linkConfiguration['returnLast'] = 'url';
 		}
-			
+
 		$finalLink = $cObj->typolink($this->renderChildren(), $linkConfiguration);
-		
+
 		if ($hsc) {
 			$finalLink = htmlspecialchars($finalLink);
 		}
-		
+
 		return $finalLink;
 	}
 }

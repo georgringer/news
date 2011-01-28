@@ -33,31 +33,31 @@ class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterfac
 
 	/**
 	 * Render flv viles
-	 * 
+	 *
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @param string $template
-	 * @return string 
+	 * @return string
 	 */
-	public function render(Tx_News2_Domain_Model_Media $element, $width, $height, $template='') {	
+	public function render(Tx_News2_Domain_Model_Media $element, $width, $height, $template='') {
 		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
 		$url = htmlspecialchars($url);
 		$uniqueId = Tx_News2_Service_FileService::getUniqueId($element);
-		
+
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/swfobject-2-2.js');
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/audioplayer-noswfobject.js');
-		
+
 		$inlineJS = '
-            AudioPlayer.setup("http://localhost/currenttrunk/typo3conf/ext/news2/Resources/Public/JavaScript/audioplayer-player.swf", {  
-                width: 290  
-            });  
+            AudioPlayer.setup("http://localhost/currenttrunk/typo3conf/ext/news2/Resources/Public/JavaScript/audioplayer-player.swf", {
+                width: 290
+            });
        ';
 		$GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode('news2_audio', $inlineJS);
-		
-		$content = '<p id="' . $uniqueId . '">' . htmlspecialchars($element->getCaption()) . '</p>  
-					<script type="text/javascript">  
-						AudioPlayer.embed("' . $uniqueId . '", {soundFile: "' . $url . '"});  
+
+		$content = '<p id="' . $uniqueId . '">' . htmlspecialchars($element->getCaption()) . '</p>
+					<script type="text/javascript">
+						AudioPlayer.embed("' . $uniqueId . '", {soundFile: "' . $url . '"});
 					</script> ';
 
 		return $content;
@@ -71,7 +71,7 @@ class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterfac
 	public function enabled(Tx_News2_Domain_Model_Media $element) {
 		$url = $element->getVideo();
 		$fileEnding = strtolower(substr($url, -3));
-		
+
 		return ($fileEnding === 'mp3');
 	}
 

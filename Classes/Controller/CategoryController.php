@@ -59,3 +59,5 @@ class Tx_News2_Controller_CategoryController extends Tx_Extbase_MVC_Controller_A
 
 
 }
+
+?>

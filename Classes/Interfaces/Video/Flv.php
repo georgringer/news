@@ -37,7 +37,7 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_MediaInterfac
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
-	 * @param string $templateFile (optional) template file to override. Absolute path
+	 * @param string $templateFile template file to override. Absolute path
 	 * @return string
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height, $templateFile = '' ) {

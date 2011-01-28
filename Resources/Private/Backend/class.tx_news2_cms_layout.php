@@ -34,7 +34,7 @@ class tx_news2_cms_layout {
 	 * Extension key
 	 * @var string
 	 */
-	var $extKey = 'news2';
+	protected $extKey = 'news2';
 
 	/**
 	 * Returns information about this extension's pi1 plugin
@@ -62,7 +62,7 @@ class tx_news2_cms_layout {
 				$result =
 						'<strong>' .
 							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode', TRUE) . 
-						': </strong>' . htmlspecialchars($actionTranslation) ;
+						': </strong>' . htmlspecialchars($actionTranslation);
 						
 			} else {
 				$result = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode.not_configured');
@@ -196,7 +196,7 @@ class tx_news2_cms_layout {
 		);
 
 		foreach($rawPagesRecords as $page) {
-			$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>' ;
+			$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>';
 		}
 
 		$content = $this->renderLine(

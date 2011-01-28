@@ -30,7 +30,7 @@
  * @version $Id$
  */
 class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractImportController {
-	var $currentPageId = NULL;
+	public $currentPageId = NULL;
 
 
 	public function indexAction() {

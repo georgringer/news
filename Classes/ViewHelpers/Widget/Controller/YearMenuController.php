@@ -94,8 +94,8 @@ class Tx_News2_ViewHelpers_Widget_Controller_YearMenuController extends Tx_Fluid
 
 				// all news with datetime inside this month
 			$constraints = $query->logicalAnd(
-				$query->greaterThanOrEqual('datetime', 	$startMonth),
-				$query->lessThanOrEqual('datetime', 	$endMonth)
+				$query->greaterThanOrEqual('datetime', $startMonth),
+				$query->lessThanOrEqual('datetime', $endMonth)
 			);
 
 				// add the new constraing or append it

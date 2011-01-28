@@ -30,7 +30,7 @@
  * @version $Id$
  */
 class news2_pi1_wizicon {
-	var $extKey = 'news2';
+	protected $extKey = 'news2';
 
 	/**
 	 * Processing the wizard items array
