@@ -19,10 +19,14 @@
 				<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
 			</span>
 
-			<!-- first category -->
-			<f:if condition="{newsItem.firstCategory}">
+			<!-- categories -->
+			<f:if condition="{newsItem.category}">
 				<span class="hidden">. </span>
-				<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
+				<span class="news2-list-category">
+					<f:for each="{newsItem.category}" as="category">
+						{category.title}
+					</f:for>
+				</span>
 			</f:if>
 
 			<!-- author -->
