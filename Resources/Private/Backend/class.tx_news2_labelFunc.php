@@ -39,13 +39,13 @@ class tx_news2_labelFunc {
 	 * @return void
 	 */
 	public function getUserLabelNews(array $params) {
-		$categoryTitles = $this->getCategories($params['row']['uid'], $params['row']['category']);
-
+//		$categoryTitles = $this->getCategories($params['row']['uid'], $params['row']['category']);
+//
 		$params['title'] = $params['row']['title'];
-
-		if ($categoryTitles) {
-			$params['title'] .= ', cat: ' . $categoryTitles;
-		}
+//
+//		if ($categoryTitles) {
+//			$params['title'] .= ', cat: ' . $categoryTitles;
+//		}
 
 	}
 
