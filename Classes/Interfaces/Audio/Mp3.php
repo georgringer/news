@@ -45,7 +45,7 @@ class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterfac
 		$url = htmlspecialchars($url);
 		$uniqueId = Tx_News2_Service_FileService::getUniqueId($element);
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript0/Contrib/swfobject-2-2.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/Contrib/audioplayer-noswfobject.js');
 
 		$inlineJs = '
