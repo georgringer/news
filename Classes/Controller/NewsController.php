@@ -43,6 +43,7 @@ protected $configurationManager;
 	/**
 	 *
 	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepository
+	 * @return void
 	 */
 	public function injectNewsRepository(Tx_News2_Domain_Repository_NewsRepository $newsRepository) {
 		$this->newsRepository = $newsRepository;
@@ -96,6 +97,7 @@ protected $configurationManager;
 	 * Search for news
 	 *
 	 * @param Tx_News2_Domain_Model_Search $search
+	 * @return void
 	 */
 	public function searchAction(Tx_News2_Domain_Model_Search $search = NULL) {
 		if ($search === NULL) {
@@ -119,6 +121,7 @@ protected $configurationManager;
 	 * Search Result
 	 *
 	 * @param Tx_News2_Domain_Model_Search $search
+	 * @return void
 	 */
 	public function searchResultAction(Tx_News2_Domain_Model_Search $search = NULL) {
 		$this->view->assign('search', $search);
@@ -138,10 +141,10 @@ protected $configurationManager;
 	 * Single view of a news record
 	 *
 	 * @param Tx_News2_Domain_Model_News $news
+	 * @return void
 	 */
 	public function detailAction(Tx_News2_Domain_Model_News $news = NULL) {
 		$this->view->assign('newsItem', $news);
-
 		if ($this->settings['detail']['titleInMetaTags'] == 1) {
 			$this->renderTitle($news->getTitle());
 		}
@@ -149,6 +152,8 @@ protected $configurationManager;
 
 	/**
 	 * Render a menu by dates, e.g. years, months or dates
+	 * 
+	 * @return void
 	 */
 	public function menuByDateAction() {
 		$newsRecords = $this->newsRepository->findList();
@@ -163,8 +168,10 @@ protected $configurationManager;
 	 * Set the meta title
 	 *
 	 * @param string $title
+	 * @return void
 	 */
 	protected function renderTitle($title) {
+		echo $title;
 		$GLOBALS['TSFE']->page['title'] = $title;
 		$GLOBALS['TSFE']->indexedDocTitle = $title;
 		$GLOBALS['TSFE']->pSetup['meta.']['DESCRIPTION.'] = NULL;
@@ -184,6 +191,8 @@ protected $configurationManager;
 
 	/**
 	 * Allow overruling of settings by get request
+	 * 
+	 * @return void
 	 */
 	protected function requestOverrule() {
 		$requests = $this->request->getArguments();
@@ -208,7 +217,7 @@ protected $configurationManager;
 	 * Check access which can be set for each action by using <action>.<setting> = 1
 	 *
 	 * @param  string $setting name of the setting
-	 * @return bool
+	 * @return boolean
 	 */
 	protected function accessCheck($setting) {
 		$access = FALSE;

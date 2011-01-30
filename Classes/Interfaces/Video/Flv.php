@@ -67,7 +67,8 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_MediaInterfac
 	}
 
 	/**
-	 *
+	 * Files with extension flv are handled within this implementation
+	 * 
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @return boolean
 	 */
