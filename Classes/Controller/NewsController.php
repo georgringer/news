@@ -171,7 +171,6 @@ protected $configurationManager;
 	 * @return void
 	 */
 	protected function renderTitle($title) {
-		echo $title;
 		$GLOBALS['TSFE']->page['title'] = $title;
 		$GLOBALS['TSFE']->indexedDocTitle = $title;
 		$GLOBALS['TSFE']->pSetup['meta.']['DESCRIPTION.'] = NULL;
