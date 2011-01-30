@@ -75,8 +75,6 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 			$linkConfiguration['parameter'] = $newsItem->getInternalurl();
 		} elseif($newsType == 2) {
 			$linkConfiguration['parameter'] = $newsItem->getExternalurl();
-		} else {
-			// @todo error handling
 		}
 
 		if ($linkOnly) {
