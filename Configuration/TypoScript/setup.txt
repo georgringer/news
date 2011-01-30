@@ -104,6 +104,13 @@ plugin.tx_news2 {
 			}
 		}
 
+		# Opengraph implementation (used for facebook likes)
+		opengraph {
+		    site_name = Perfect test site
+		    type = News
+		}
+}
+
 
 	}
 

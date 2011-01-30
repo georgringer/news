@@ -45,12 +45,17 @@ class Tx_News2_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Ab
 		$this->registerTagAttribute('content', 'string', 'Content of meta tag');
 	}	
 	
-	/**
-	 * Render a meta tag
-	 * 
-	 * @return void
-	 */
-	public function render() {
+
+    /**
+     * Renders a meta tag
+     *
+     * @param boolean $useCurrentDomain
+     * @return void
+     */
+	public function render($useCurrentDomain = FALSE) {
+        if ($useCurrentDomain) {
+            $this->tag->addAttribute('content', t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
+        }
 		$GLOBALS['TSFE']->getPageRenderer()->addMetaTag($this->tag->render());
 	}
 }

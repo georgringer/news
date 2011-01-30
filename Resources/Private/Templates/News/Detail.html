@@ -8,7 +8,10 @@
 		News/Detail.html
 -->
 
+
 <f:section name="content">
+	<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}"/>
+	
 	<div class="header">
 		<h3>{newsItem.title}</h3>
 	</div>
