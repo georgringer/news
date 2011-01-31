@@ -201,7 +201,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	/**
 	 * Fix the relation to news categories
 	 *
-	 * @param $row array news cat record
+	 * @param array $row news cat record
 	 * @return void
 	 */
 	public function fixNewsCategoryRelation(array $row) {
@@ -249,7 +249,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	/**
 	 * Fix the relation to related news
 	 *
-	 * @param $row array news record
+	 * @param array $row news record
 	 * @return void
 	 */
 	public function fixNewsRelatedRelation(array $row) {
@@ -297,7 +297,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	/**
 	 * Fix the relation to news l10n parents
 	 *
-	 * @param $row array news record
+	 * @param array $row news record
 	 * @return void
 	 */
 	public function fixNewsL10nParentRelation(array $row) {
@@ -331,7 +331,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	/**
 	 * Copy category image and return new path
 	 *
-	 * @param $row array news cat record
+	 * @param array $row news cat record
 	 * @return string
 	 */
 	public function copyCategoryImage(array $row) {
@@ -447,6 +447,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 
 	/**
 	 * Get count of records
+	 * 
 	 * @param string $table tablename
 	 * @return integer record count
 	 */

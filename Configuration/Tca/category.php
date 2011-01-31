@@ -257,54 +257,5 @@ $TCA['tx_news2_domain_model_category'] = array(
 		),
 	)
 );
-//
-//$TCA['tx_news2_domain_model_category']['columns']['parentcategory'] = array(
-//
-//			'exclude' => 0,
-//			'l10n_mode' => 'exclude',
-//			'label' => $ll . 'tx_news2_domain_model_category.parentcategory',
-//			'config' => array(
-//				'type' => 'select',
-//				'renderMode' => 'tree',
-//				'treeConfig' => array(
-//					'parentField' => 'parentcategory',
-//					'appearance' => array(
-//						'expandAll' => TRUE,
-//						'showHeader' => TRUE,
-//					),
-//				),
-//				'foreign_table' => 'tx_news2_domain_model_category',
-////				'foreign_table_where' => ' AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0)',
-//				'size' => 10,
-//				'autoSizeMax' => 20,
-//				'minitems' => 0,
-//				'maxitems' => 1,
-//				'type' => 'select',
-//				'renderMode' => 'tree',
-//				'subType' => 'db',
-//				'foreign_table' => 'tx_news2_domain_model_category',
-//				'size' => '5',
-//				'treeConfig' => array(
-//					'parentField' => 'parentcategory',
-////					'appearance' => array(
-////						'expandAll' => TRUE,
-////						'showHeader' => TRUE,
-////					),
-//				),
-//				'type' => 'select',
-//        'renderMode' => 'tree',
-//        'subType' => 'db',
-////        'foreign_table' => 'pages',
-//        'size' => '5',
-//        'treeConfig' => array(
-//           'parentField' => 'parentcategory',
-//			'appearance' => array(
-//						'expandAll' => TRUE,
-////						'showHeader' => TRUE,
-//					),
-//        )
-//			)
-//
-//);
 
 ?>

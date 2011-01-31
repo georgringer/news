@@ -30,6 +30,7 @@
  * @version $Id$
  */
 class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueObject {
+
 	/**
 	 * @var DateTime
 	 */
@@ -60,50 +61,116 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	 */
 	protected $file;
 
+	/**
+	 * Get crdate
+	 *
+	 * @return DateTime
+	 */
 	public function getCrdate() {
 		return $this->crdate;
 	}
 
+	/**
+	 * Set crdate
+	 *
+	 * @param DateTime $crdate crdate
+	 * @return void
+	 */
 	public function setCrdate($crdate) {
 		$this->crdate = $crdate;
 	}
 
+	/**
+	 * Get Tstamp
+	 *
+	 * @return DateTime
+	 */
 	public function getTstamp() {
 		return $this->tstamp;
 	}
 
+	/**
+	 * Set tstamp
+	 *
+	 * @param DateTime $tstamp tstamp
+	 * @return void
+	 */
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
 	}
 
+	/**
+	 * Get sys language uid
+	 *
+	 * @return integer
+	 */
 	public function getSysLanguageUid() {
 		return $this->sysLanguageUid;
 	}
 
+	/**
+	 * Set sys language uid
+	 *
+	 * @param integer $sysLanguageUid syslanguage
+	 * @return void
+	 */
 	public function setSysLanguageUid($sysLanguageUid) {
 		$this->sysLanguageUid = $sysLanguageUid;
 	}
 
+	/**
+	 * Get l10n parent
+	 *
+	 * @return integer
+	 */
 	public function getL10nParent() {
 		return $this->l10nParent;
 	}
 
+	/**
+	 * Set l10n parent
+	 *
+	 * @param integer $l10nParent l10nparent
+	 * @return void
+	 */
 	public function setL10nParent($l10nParent) {
 		$this->l10nParent = $l10nParent;
 	}
 
+	/**
+	 * Get title
+	 *
+	 * @return string
+	 */
 	public function getTitle() {
 		return $this->title;
 	}
 
+	/**
+	 * Set title
+	 *
+	 * @param string $title title
+	 * @return void
+	 */
 	public function setTitle($title) {
 		$this->title = $title;
 	}
 
+	/**
+	 * Get file
+	 *
+	 * @return string
+	 */
 	public function getFile() {
 		return $this->file;
 	}
 
+	/**
+	 * Set File
+	 *
+	 * @param string $file file
+	 * @return void
+	 */
 	public function setFile($file) {
 		$this->file = $file;
 	}

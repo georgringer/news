@@ -36,12 +36,16 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	 */
 	protected $categoryDomainModelInstance;
 
+	/**
+	 * @return void
+	 */
 	protected function setUp() {
 		$this->categoryDomainModelInstance = $this->objectManager->get('Tx_News2_Domain_Model_Category');
 	}
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function titleCanBeSet() {
 		$title = 'Category title';
@@ -51,6 +55,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function descriptionCanBeSet() {
 		$description = 'Category description';
@@ -60,6 +65,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function imageCanBeSet() {
 		$image = 'categoryImage.jpg';
@@ -69,6 +75,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function shortcutCanBeSet() {
 		$shortcut = 'category shortcut';
@@ -78,6 +85,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function singlePidCanBeSet() {
 		$singlePid = 4711;
@@ -87,6 +95,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function feGroupCanBeSet() {
 		$feGroup = 666;
@@ -96,6 +105,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function importIdCanBeSet() {
 		$importId = 2;
@@ -105,6 +115,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function sortingCanBeSet() {
 		$sorting = 2;

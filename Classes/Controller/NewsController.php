@@ -84,11 +84,10 @@ protected $configurationManager;
 			// If the TypoScript config is not set return an error
 		if (!$this->settings['list']) {
 			$this->flashMessages->add($this->localize('list.settings.notfound'), t3lib_FlashMessage::ERROR);
-			return NULL;
+		} else {
+			$newsRecords = $this->newsRepository->findList();
+			$this->view->assign('news', $newsRecords);
 		}
-
-		$newsRecords = $this->newsRepository->findList();
-		$this->view->assign('news', $newsRecords);
 	}
 
 	/**

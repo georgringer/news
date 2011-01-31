@@ -260,9 +260,9 @@ $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 
 
 
-/* ==============================================================================
+/* ===========================================================================
  	Register BE-Modules
-============================================================================== */
+=========================================================================== */
 
 if (TYPO3_MODE == 'BE' && t3lib_extMgm::isLoaded('tt_news') && $configurationArray['showImporter'] == 1) {
 	Tx_Extbase_Utility_Extension::registerModule(
@@ -281,9 +281,9 @@ if (TYPO3_MODE == 'BE' && t3lib_extMgm::isLoaded('tt_news') && $configurationArr
 	);
 }
 
-/* ==============================================================================
+/* ===========================================================================
  	Default configuration
-============================================================================== */
+=========================================================================== */
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByCategory'] = 'uid,title,tstamp,sorting';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByNews'] = 'tstamp,datetime,crdate,title';
 

@@ -124,7 +124,7 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 
 			$newsRepository->add($news);
 
-				//Enforce persistence which is the chance to get new uid
+				// Enforce persistence which is the chance to get new uid
 			$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 			$persistenceManager->persistAll();
 

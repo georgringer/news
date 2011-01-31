@@ -205,6 +205,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 
 	/**
 	 * Set sys language
+	 *
 	 * @param integer $sysLanguageUid language uid
 	 * @return void
 	 */

@@ -37,12 +37,16 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	 */
 	protected $newsDomainModelInstance;
 
+	/**
+	 * @return void
+	 */
 	protected function setUp() {
 		$this->newsDomainModelInstance = $this->objectManager->get('Tx_News2_Domain_Model_News');
 	}
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function titleCanBeSet() {
 		$title = 'News title';
@@ -52,6 +56,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function teaserCanBeSet() {
 		$teaser = 'News teaser';
@@ -61,6 +66,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function bodytextCanBeSet() {
 		$bodytext = 'News bodytext';
@@ -70,6 +76,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function datetimeCanBeSet() {
 		$datetime = new DateTime();
@@ -79,6 +86,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function archiveCanBeSet() {
 		$archive = new DateTime();
@@ -88,6 +96,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function authorCanBeSet() {
 		$author = 'News author';
@@ -97,6 +106,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function authorEmailCanBeSet() {
 		$authorEmail = 'author@news.org';
@@ -106,6 +116,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function typeCanBeSet() {
 		$type = 123;
@@ -115,6 +126,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function keywordsCanBeSet() {
 		$keywords = 'news1 keyword, news2 keyword';
@@ -124,6 +136,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function internalurlCanBeSet() {
 		$internalurl = 'http://foo.org/';
@@ -133,6 +146,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function externalurlCanBeSet() {
 		$externalurl = 'http://bar.org/';
@@ -142,6 +156,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function isttopnewsCanBeSet() {
 		$istopnews = TRUE;
@@ -151,6 +166,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function editlockCanBeSet() {
 		$editlock = 2;
@@ -160,6 +176,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function importIdCanBeSet() {
 		$importId = 2;
@@ -169,6 +186,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function sortingCanBeSet() {
 		$sorting = 2;
