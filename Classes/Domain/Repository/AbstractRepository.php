@@ -112,7 +112,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 				if ($count == 1) {
 					$finalOrdering[$simpleOrderStatement[0]] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
 					// count == 2 means that field + direction is given
-				} elseif($count == 2) {
+				} elseif ($count == 2) {
 					$finalOrdering[$simpleOrderStatement[0]] = (strtolower(($simpleOrderStatement[1]) == 'desc')) ? Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING : Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
 				}
 			}
@@ -183,7 +183,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 	public function executeQuery(Tx_Extbase_Persistence_QueryInterface $query, array $constraints) {
 		$constraints = $this->checkConstraintArray($constraints);
 
-		if(!empty($constraints)) {
+		if (!empty($constraints)) {
         	$query->matching(
 				$query->logicalAnd($constraints)
 			);
@@ -206,7 +206,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 	public function executeCountQuery(Tx_Extbase_Persistence_QueryInterface $query, array $constraints) {
 		$constraints = $this->checkConstraintArray($constraints);
 
-		if(!empty($constraints)) {
+		if (!empty($constraints)) {
         	$query->matching(
 				$query->logicalAnd($constraints)
 			);

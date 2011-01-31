@@ -49,7 +49,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 
 		if ($renderTypeClass && !empty($class)) {
 			$linkConfiguration['ATagParams'] = 'class="list-item ' . $class . '"';
-		} elseif(!empty($class)) {
+		} elseif (!empty($class)) {
 			$linkConfiguration['ATagParams'] = 'class="' . $class . '"';
 		}
 
@@ -71,9 +71,9 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 
 				$linkConfiguration['additionalParams'] .= '&tx_news2_pi1[year]=' . $year . '&tx_news2_pi1[month]=' . $month;
 			}
-		} elseif($newsType == 1) {
+		} elseif ($newsType == 1) {
 			$linkConfiguration['parameter'] = $newsItem->getInternalurl();
-		} elseif($newsType == 2) {
+		} elseif ($newsType == 2) {
 			$linkConfiguration['parameter'] = $newsItem->getExternalurl();
 		}
 

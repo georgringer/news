@@ -87,10 +87,10 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 	 */
 	public function convertExtbaseToClassicTS(array $extBaseTS) {
 		$classicTS = array();
-		if(is_array($extBaseTS)) {
+		if (is_array($extBaseTS)) {
 			foreach ($extBaseTS as $key => $value) {
-				if(is_array($value)) {
-//					if(isset($value['_typoscriptNodeValue'])){
+				if (is_array($value)) {
+//					if (isset($value['_typoscriptNodeValue'])){
 ////						$classicTS[$key] = $value['_typoscriptNodeValue'];
 ////						unset($value['_typoscriptNodeValue']);
 //						echo 'x';

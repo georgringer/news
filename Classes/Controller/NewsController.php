@@ -127,7 +127,7 @@ protected $configurationManager;
 		$this->view->assign('search', $search);
 
 			// if a search is submitted
-		if($search !== NULL) {
+		if ($search !== NULL) {
 			var_dump($search->getCategory());
 
 			$newsRecords = $this->newsRepository->findBySearch($search);

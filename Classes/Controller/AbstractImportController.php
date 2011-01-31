@@ -213,7 +213,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			foreach ($mmRelations as $relation) {
 				if ($relation['exportid'] < 0) {
 					$newCategoryList[] = $relation['exportid'] * (-1);
-				} elseif($relation['exportid'] > 0) {
+				} elseif ($relation['exportid'] > 0) {
 					$newCategoryList[] = $relation['exportid'];
 				}
 			}
@@ -255,7 +255,7 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 			foreach ($mmRelations as $relation) {
 				if ($relation['exportid'] < 0) {
 					$newRelatedList[] = $relation['exportid'] * (-1);
-				} elseif($relation['exportid'] > 0) {
+				} elseif ($relation['exportid'] > 0) {
 					$newRelatedList[] = $relation['exportid'];
 				}
 			}

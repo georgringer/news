@@ -96,7 +96,7 @@ class tx_news2_itemsProcFunc {
 				$selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
 
 					// check for selected action
-				if(t3lib_div::isFirstPartOfStr($selectedActionList, 'Category')) {
+				if (t3lib_div::isFirstPartOfStr($selectedActionList, 'Category')) {
 					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByCategory'];
 				} else {
 					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByNews'];

@@ -266,7 +266,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news2']);
 
 	// Hide DAM field if not used to avoid errors
-if($configurationArray['enableDam'] != 1) {
+if ($configurationArray['enableDam'] != 1) {
 	unset($TCA['tx_news2_domain_model_media']['columns']['dam']);
 }
 

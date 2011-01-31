@@ -96,7 +96,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 		} else {
 				// try to check strtotime
 			$timeFromString = strtotime($timeLimit);
-			if($timeFromString) {
+			if ($timeFromString) {
 				$this->latestTimeLimit = $timeFromString;
 			} else {
 				throw new Exception('Latest time limit could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
@@ -165,11 +165,11 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 				$constraint = $query->logicalAnd($constraintList);
 
 				// NOT > Do NOT show items with selected categories (AND)
-			} elseif($this->categorySetting == 'notand') {
+			} elseif ($this->categorySetting == 'notand') {
 				$constraint = $query->logicalNot($query->logicalAnd($constraintList));
 
 				// NOT > Do NOT show items with selected categories (OR)
-			} elseif($this->categorySetting == 'notor') {
+			} elseif ($this->categorySetting == 'notor') {
 				$constraint = $query->logicalNot($query->logicalOr($constraintList));
 			}
 		}
@@ -197,11 +197,11 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 				$constraint = $query->logicalAnd($constraintList);
 
 				// NOT > Do NOT show items with selected categories (AND)
-			} elseif($this->additionalCategorySetting == 'notand') {
+			} elseif ($this->additionalCategorySetting == 'notand') {
 				$constraint = $query->logicalNot($query->logicalAnd($constraintList));
 
 				// NOT > Do NOT show items with selected categories (OR)
-			} elseif($this->additionalCategorySetting == 'notor') {
+			} elseif ($this->additionalCategorySetting == 'notor') {
 				$constraint = $query->logicalNot($query->logicalOr($constraintList));
 			}
 		}
@@ -355,7 +355,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 				if ($count == 1) {
 					$finalOrdering[$simpleOrderStatement[0]] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
 					// count == 2 means that field + direction is given
-				} elseif($count == 2) {
+				} elseif ($count == 2) {
 					$finalOrdering[$simpleOrderStatement[0]] = (strtolower(($simpleOrderStatement[1]) == 'desc')) ? Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING : Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
 				}
 			}
