@@ -198,6 +198,12 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 		return $linkElementCollection;
 	}
 
+	/**
+	 * Fix the relation to news categories
+	 *
+	 * @param $row array news cat record
+	 * @return void
+	 */
 	public function fixNewsCategoryRelation(array $row) {
 		if ($row['category'] > 0) {
 			$mmRelations = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
@@ -240,6 +246,12 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 
 	}
 
+	/**
+	 * Fix the relation to related news
+	 *
+	 * @param $row array news record
+	 * @return void
+	 */
 	public function fixNewsRelatedRelation(array $row) {
 		if ($row['related'] > 0) {
 			$mmRelations = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
@@ -282,6 +294,12 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 
 	}
 
+	/**
+	 * Fix the relation to news l10n parents
+	 *
+	 * @param $row array news record
+	 * @return void
+	 */
 	public function fixNewsL10nParentRelation(array $row) {
 		if ($row['sys_language_uid'] > 0) {
 			$updateArray = array();
@@ -310,6 +328,12 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 	 *    C A T E G O R Y
 	 *************************************/
 
+	/**
+	 * Copy category image and return new path
+	 *
+	 * @param $row array news cat record
+	 * @return string
+	 */
 	public function copyCategoryImage(array $row) {
 		$categoryImage = $row['image'];
 		if (!empty($categoryImage)) {

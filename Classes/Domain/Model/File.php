@@ -108,12 +108,6 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 		$this->file = $file;
 	}
 
-
-
-
-
-
 }
-
 
 ?>

@@ -118,81 +118,180 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 */
 	protected $childs;
 
+	/**
+	 * Get creation date
+	 *
+	 * @return DateTime
+	 */
 	public function getCrdate() {
 		return $this->crdate;
 	}
 
+	/**
+	 * Set Creation Date
+	 *
+	 * @param DateTime $crdate crdate
+	 * @return void
+	 */
 	public function setCrdate($crdate) {
 		$this->crdate = $crdate;
 	}
 
+	/**
+	 * Get Tstamp
+	 *
+	 * @return DateTime
+	 */
 	public function getTstamp() {
 		return $this->tstamp;
 	}
 
+	/**
+	 * Set tstamp
+	 *
+	 * @param DateTime $tstamp tstamp
+	 * @return void
+	 */
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
 	}
 
+	/**
+	 * Get starttime
+	 *
+	 * @return type
+	 */
 	public function getStarttime() {
 		return $this->starttime;
 	}
 
+	/**
+	 * Set starttime
+	 *
+	 * @param DateTime $starttime starttime
+	 * @return void
+	 */
 	public function setStarttime($starttime) {
 		$this->starttime = $starttime;
 	}
 
+	/**
+	 * Get Endtime
+	 *
+	 * @return DateTime
+	 */
 	public function getEndtime() {
 		return $this->endtime;
 	}
 
+	/**
+	 * Set Endtime
+	 *
+	 * @param DateTime $endtime endttime
+	 * @return void
+	 */
 	public function setEndtime($endtime) {
 		$this->endtime = $endtime;
 	}
 
+	/**
+	 * Get sys language
+	 *
+	 * @return integer
+	 */
 	public function getSysLanguageUid() {
 		return $this->sysLanguageUid;
 	}
 
+	/**
+	 * Set sys language
+	 * @param integer $sysLanguageUid language uid
+	 * @return void
+	 */
 	public function setSysLanguageUid($sysLanguageUid) {
 		$this->sysLanguageUid = $sysLanguageUid;
 	}
 
+	/**
+	 * Get language parent
+	 *
+	 * @return integer
+	 */
 	public function getL10nParent() {
 		return $this->l10nParent;
 	}
 
+	/**
+	 * Set language parent
+	 *
+	 * @param integer $l10nParent l10nparent
+	 * @return void
+	 */
 	public function setL10nParent($l10nParent) {
 		$this->l10nParent = $l10nParent;
 	}
 
+	/**
+	 * Get category title
+	 *
+	 * @return string
+	 */
 	public function getTitle() {
 		return $this->title;
 	}
 
+	/**
+	 * Set category title
+	 *
+	 * @param string $title title
+	 * @return void
+	 */
 	public function setTitle($title) {
 		$this->title = $title;
 	}
 
+	/**
+	 * Get description
+	 *
+	 * @return string
+	 */
 	public function getDescription() {
 		return $this->description;
 	}
 
+	/**
+	 * Set description
+	 *
+	 * @param string $description description
+	 * @return void
+	 */
 	public function setDescription($description) {
 		$this->description = $description;
 	}
 
+	/**
+	 * Get image
+	 *
+	 * @return string image
+	 */
 	public function getImage() {
 		return $this->image;
 	}
 
+	/**
+	 * Set image
+	 *
+	 * @param string $image image
+	 * @return void
+	 */
 	public function setImage($image) {
 		$this->image = $image;
 	}
 
 	/**
+	 * Get parent category
 	 *
-	 * * @return Tx_News2_Domain_Model_Category
+	 * @return Tx_News2_Domain_Model_Category
 	 */
 	public function getParentcategory() {
 		if ($this->parentcategory instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
@@ -201,46 +300,107 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 		return $this->parentcategory;
 	}
 
-	public function setParentcategory($category) {
+	/**
+	 * Set parent category
+	 *
+	 * @param Tx_News2_Domain_Model_Category $category parent category
+	 * @return void
+	 */
+	public function setParentcategory(Tx_News2_Domain_Model_Category $category) {
 		$this->parentcategory = $category;
 	}
 
+	/**
+	 * Get shortcut
+	 *
+	 * @return integer
+	 */
 	public function getShortcut() {
 		return $this->shortcut;
 	}
 
+	/**
+	 * Set shortcut
+	 *
+	 * @param integer $shortcut shortcut
+	 * @return void
+	 */
 	public function setShortcut($shortcut) {
 		$this->shortcut = $shortcut;
 	}
 
+	/**
+	 * Get single pid of category
+	 *
+	 * @return integer
+	 */
 	public function getSinglePid() {
 		return $this->singlePid;
 	}
 
+	/**
+	 * Set single pid
+	 *
+	 * @param integer $singlePid single pid
+	 * @return void
+	 */
 	public function setSinglePid($singlePid) {
 		$this->singlePid = $singlePid;
 	}
 
+	/**
+	 * Get import id
+	 *
+	 * @return integer
+	 */
 	public function getImportId() {
 		return $this->importId;
 	}
 
+	/**
+	 * Set import id
+	 *
+	 * @param integer $importId import id
+	 * @return void
+	 */
 	public function setImportId($importId) {
 		$this->importId = $importId;
 	}
 
+	/**
+	 * Get sorting id
+	 *
+	 * @return integer sorting id
+	 */
 	public function getSorting() {
 		return $this->sorting;
 	}
 
+	/**
+	 * Set sorting id
+	 *
+	 * @param integer $sorting sorting id
+	 * @return void
+	 */
 	public function setSorting($sorting) {
 		$this->sorting = $sorting;
 	}
 
+	/**
+	 * Get fegroup
+	 *
+	 * @return string
+	 */
 	public function getFeGroup() {
 		return $this->feGroup;
 	}
 
+	/**
+	 * Get Fegroup
+	 *
+	 * @param string $feGroup fegroup
+	 * @return void
+	 */
 	public function setFeGroup($feGroup) {
 		$this->feGroup = $feGroup;
 	}
@@ -249,13 +409,18 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * helper functions
 	 */
 
+	/**
+	 * Get children of a category
+	 *
+	 * @return Tx_Extbase_Persistence_QueryInterface
+	 */
 	public function getChilds() {
 		/** @var Tx_News2_Domain_Repository_CategoryRepository */
 		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
 		$categoryRepository->setParentUidList($this->uid);
-		$childs = $categoryRepository->findByParent();
+		$children = $categoryRepository->findByParent();
 
-		return $childs;
+		return $children;
 	}
 
 

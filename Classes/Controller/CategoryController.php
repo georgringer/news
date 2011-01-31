@@ -38,25 +38,30 @@ class Tx_News2_Controller_CategoryController extends Tx_Extbase_MVC_Controller_A
 
 	/**
 	 * Initializes the current action
+	 *
+	 * @return void
 	 */
 	public function initializeAction() {
 		$this->categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
 
 		$this->categoryRepository->setOrder($this->settings['orderBy'] . ' ' . $this->settings['orderAscDesc']);
 		$this->categoryRepository->setUidList($this->settings['category']);
-		$this->categoryRepository->setStoragePage(Tx_News2_Service_RecursivePidListService::find($this->settings['startingpoint'], $this->settings['recursive']));
+		$this->categoryRepository->setStoragePage(
+				Tx_News2_Service_RecursivePidListService::find($this->settings['startingpoint'], $this->settings['recursive'])
+		);
 		$this->categoryRepository->setLimit($this->settings['limit']);
 		$this->categoryRepository->setOffset($this->settings['offset']);
 	}
 
 	/**
 	 * Output a list view of categories
+	 *
+	 * @return void
 	 */
 	public function listAction() {
 		$categories = $this->categoryRepository->findByIdList();
 		$this->view->assign('categories', $categories);
 	}
-
 
 }
 

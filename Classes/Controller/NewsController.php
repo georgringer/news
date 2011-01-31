@@ -40,7 +40,9 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
  * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
  */
 protected $configurationManager;
+
 	/**
+	 * Inject a news repository to enable DI
 	 *
 	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepository
 	 * @return void
@@ -55,8 +57,6 @@ protected $configurationManager;
 	 * @return void
 	 */
 	public function initializeAction() {
-//		$this->newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
-
 		$this->newsRepository->setCategories($this->settings['category']);
 		$this->newsRepository->setCategorySettings($this->settings['categoryMode']);
 		$this->newsRepository->setTopNewsRestriction($this->settings['topNews']);
@@ -72,14 +72,13 @@ protected $configurationManager;
 			$this->request->setFormat($this->settings['format']);
 		}
 		$this->requestOverrule();
-//		t3lib_div::print_array($this->settings);
 	}
 
 
 	/**
 	 * Output a list view of news
 	 *
-	 * return void
+	 * @return void
 	 */
 	public function listAction() {
 			// If the TypoScript config is not set return an error
@@ -93,7 +92,6 @@ protected $configurationManager;
 	}
 
 	/**
-	 *
 	 * Search for news
 	 *
 	 * @param Tx_News2_Domain_Model_Search $search
@@ -132,8 +130,6 @@ protected $configurationManager;
 
 			$newsRecords = $this->newsRepository->findBySearch($search);
 			$this->view->assign('news', $newsRecords);
-
-
 		}
 	}
 
@@ -152,7 +148,7 @@ protected $configurationManager;
 
 	/**
 	 * Render a menu by dates, e.g. years, months or dates
-	 * 
+	 *
 	 * @return void
 	 */
 	public function menuByDateAction() {
@@ -190,7 +186,7 @@ protected $configurationManager;
 
 	/**
 	 * Allow overruling of settings by get request
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function requestOverrule() {
@@ -234,7 +230,7 @@ protected $configurationManager;
 	/**
 	 * Injects the Configuration Manager and is initializing the framework settings
 	 *
-	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface An instance of the Configuration Manager
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
 	 * @return void
 	 */
 	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {

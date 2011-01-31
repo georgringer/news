@@ -78,7 +78,6 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		 */
 		$newsRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_NewsRepository');
 
-
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',
 			'tt_news',
@@ -103,7 +102,7 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 			$news->setBodytext($row['bodytext']);
 			$news->setTeaser($row['short']);
 			$news->setHidden($row['hidden']);
-			$news->setDeleted($row['deleted']); // excluded via query
+			$news->setDeleted($row['deleted']);
 			$news->setStarttime($row['starttime']);
 			$news->setEndtime($row['endtime']);
 			$news->setDatetime($row['datetime']);
@@ -145,6 +144,7 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 	 * Fix languages, related news and category relation
 	 *
 	 * @param integer $pageUid page uid
+	 * @return void
 	 */
 	public function fixNews($pageUid) {
 			// get all categories
@@ -227,7 +227,7 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 
 			$categoryRepository->add($category);
 
-				//Enforce persistence which is the chance to get new uid
+				// Enforce persistence which is the chance to get new uid
 			$persistenceManager = t3lib_div::makeInstance('Tx_Extbase_Persistence_Manager');
 			$persistenceManager->persistAll();
 
