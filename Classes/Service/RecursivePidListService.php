@@ -30,10 +30,10 @@
  * @version $Id$
  */
 class Tx_News2_Service_RecursivePidListService {
-	
+
 	/**
 	 * Find all ids from given ids and level
-	 * 
+	 *
 	 * @param string $pidlist comma seperated list of ids
 	 * @param integer $recursive recursive levels
 	 * @return string comma seperated list of ids
@@ -63,6 +63,6 @@ class Tx_News2_Service_RecursivePidListService {
 		$extendedPidList = implode(',', $pid_list);
 		return $extendedPidList;
 	}
-	
+
 }
 ?>

@@ -51,7 +51,6 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 
 		$fileInformation = pathinfo($filePath);
 
-
 			// set a basic configuration for cObj->filelink
 		$tsConfiguration = array(
 			'path' => $path,
@@ -64,7 +63,6 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 			),
 
 		);
-
 
 		$configuration = $this->convertExtbaseToClassicTS($configuration);
 

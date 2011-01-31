@@ -108,7 +108,6 @@ class Tx_News2_Controller_AbstractImportController extends Tx_Extbase_MVC_Contro
 		if (count($fileSplit) > 0) {
 			$absolutePath = $this->getAbsPath();
 
-
 			$fileElementCollection = new Tx_Extbase_Persistence_ObjectStorage();
 			foreach ($fileSplit as $key => $singleFile) {
 

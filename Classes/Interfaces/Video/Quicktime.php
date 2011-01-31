@@ -33,34 +33,32 @@ class Tx_News2_Interfaces_Video_Quicktime implements Tx_News2_Interfaces_MediaIn
 
 	/**
 	 * Render flv viles
-	 * 
+	 *
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
-	 * @return string 
+	 * @return string
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
 		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
 		$url = htmlspecialchars($url);
-		
+
 		$width = (int)$width;
 		$height = (int)$height;
-		
+
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
 			$width = $element->getWidth();
 			$height = $element->getHeight();
 		}
-		
 
-		$content = 
+		$content =
 				'<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="' . $width . '" height="' . $height . '" >
 					<param name="src" value="' . $url . '">
 					<param name="autoplay" value="true">
 					<param name="type" value="video/quicktime" width="' . $width . '" height="' . $height . '">
 					<embed src="' . $url . '" width="' . $width . '" height="' . $height . '" autoplay="false" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
 				</object>';
-			
 
 		return $content;
 	}
@@ -73,7 +71,7 @@ class Tx_News2_Interfaces_Video_Quicktime implements Tx_News2_Interfaces_MediaIn
 	public function enabled(Tx_News2_Domain_Model_Media $element) {
 		$url = $element->getVideo();
 		$fileEnding = strtolower(substr($url, -3));
-		
+
 		return ($fileEnding === 'mov');
 	}
 

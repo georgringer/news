@@ -38,12 +38,12 @@ class Tx_News2_ViewHelpers_IncludeFileViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 */
 	public function render($path, $compress = FALSE) {
 		$path = $GLOBALS['TSFE']->tmpl->getFileName($path);
-		
+
 		if ($path) {
 				// JS
 			if (strtolower(substr($path, -3)) === '.js') {
 				$GLOBALS['TSFE']->getPageRenderer()->addJsFile($path, NULL, $compress);
-			
+
 				// CSS
 			} elseif (strtolower(substr($path, -4)) === '.css') {
 				$GLOBALS['TSFE']->getPageRenderer()->addCssFile($path, $rel = 'stylesheet', $media = 'all', $title = '', $compress);

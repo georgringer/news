@@ -115,7 +115,7 @@ class tx_news2_itemsProcFunc {
 			$languageKey = 'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.';
 			foreach ($newItemArray as $item) {
 					// label: if empty, key (=field) is used
-				$label= $GLOBALS['LANG']->sL($languageKey . $item, TRUE);
+				$label = $GLOBALS['LANG']->sL($languageKey . $item, TRUE);
 				if (empty($label)) {
 					$label = htmlspecialchars($item);
 				}

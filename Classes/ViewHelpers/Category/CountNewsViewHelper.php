@@ -41,13 +41,14 @@
 class Tx_News2_ViewHelpers_Category_CountNewsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 *
+	 * Count the news belonging to a category
+	 * 
 	 * @param Tx_News2_Domain_Model_Category $category
 	 * @param array $settings
 	 * @param boolean $countSubCategories if news of sub categories need to be counted too
-	 * @return integer 
+	 * @return integer
 	 */
-	public function render(Tx_News2_Domain_Model_Category $category, array $settings = array(), $countSubCategories = TRUE) {	
+	public function render(Tx_News2_Domain_Model_Category $category, array $settings = array(), $countSubCategories = TRUE) {
 			// categories either from subcategories or strict by current category
 		$categories = ($countSubCategories) ? Tx_News2_Service_RecursiveCategoryListService::find($category->getUid()) : $category->getUid();
 

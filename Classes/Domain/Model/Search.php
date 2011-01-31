@@ -34,17 +34,17 @@ class Tx_News2_Domain_Model_Search extends Tx_Extbase_DomainObject_AbstractEntit
 	 * @var string
 	 */
 	protected $searchString;
-	
+
 	/**
 	 * @var string
 	 */
 	protected $fromDate;
-	
+
 	/**
 	 * @var string
 	 */
 	protected $toDate;
-	
+
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
 	 */

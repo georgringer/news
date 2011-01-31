@@ -33,6 +33,11 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 	public $currentPageId = NULL;
 
 
+	/**
+	 * Index action
+	 *
+	 * @return void
+	 */
 	public function indexAction() {
 		$recordCount = 0;
 
@@ -45,6 +50,11 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		$this->view->assign('recordCount', $recordCount);
 	}
 
+	/**
+	 * Start of importer
+	 *
+	 * @return void
+	 */
 	public function importNewsOverviewAction() {
 		$recordCount = 0;
 
@@ -57,6 +67,11 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		$this->view->assign('recordCount', $recordCount);
 	}
 
+	/**
+	 * Import news
+	 *
+	 * @return void
+	 */
 	public function importNewsAction() {
 		/**
 		 * @var Tx_News2_Domain_Repository_NewsRepository
@@ -156,7 +171,11 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		}
 	}
 
-
+	/**
+	 * Basic category import
+	 *
+	 * @return void
+	 */
 	public function importCategoryOverviewAction() {
 		$recordCount = 0;
 
@@ -169,6 +188,11 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		$this->view->assign('recordCount', $recordCount);
 	}
 
+	/**
+	 * Import categories
+	 *
+	 * @return void
+	 */
 	public function importCategoryAction() {
 		$importCount = 0;
 
@@ -176,7 +200,6 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		 * @var Tx_News2_Domain_Repository_CategoryRepository
 		 */
 		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
-
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',
@@ -218,7 +241,6 @@ class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractI
 		$this->view->assign('importedRecords', $importCount);
 
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
-
 
 			// fix parent categories
 		$fixedRecords = $this->fixCategories(t3lib_div::_GET('id'));

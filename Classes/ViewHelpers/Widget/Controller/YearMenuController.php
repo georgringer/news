@@ -92,7 +92,7 @@ class Tx_News2_ViewHelpers_Widget_Controller_YearMenuController extends Tx_Fluid
 			// 12 months
 		for ($i = 1; $i <= 12; $i++) {
 			$startMonth = mktime(0, 0, 1, $i, 0, $year);
-			$endMonth = mktime(0, 0, 0, $i+1, 0, $year);
+			$endMonth = mktime(0, 0, 0, ($i + 1), 0, $year);
 
 				// all news with datetime inside this month
 			$constraints = $query->logicalAnd(

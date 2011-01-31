@@ -30,28 +30,28 @@
  * @version $Id$
  */
 class Tx_News2_Service_RecursiveCategoryListService {
-	
+
 	/**
 	 * Find all ids from given ids and level
-	 * 
+	 *
 	 * @param string $pidlist comma seperated list of ids
 	 * @param integer $recursive recursive levels
 	 * @return string comma seperated list of ids
 	 */
 	public function find($parentId, $level = 99, array $out = array()) {
 		$out[$parentId] = $parentId;
-		
+
 		$out = self::recursiveCall($parentId, $level, $out);
-		
+
 		return implode(',', $out);
 	}
-	
+
 	public function recursiveCall($parentId, $level, $out) {
 		if ($level == 0) {
 			return $out;
 		}
 		// @todo hardcoded sys_language_uid is not a good idea
-		// @todo enableFields? 
+		// @todo enableFields?
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'uid,title,parentcategory',
 			'tx_news2_domain_model_category',
@@ -62,13 +62,13 @@ class Tx_News2_Service_RecursiveCategoryListService {
 			$uid = $row['uid'];
 
 			$out[$uid] = $uid;
-			$out = self::recursiveCall($uid, $level--, $out);	
+			$out = self::recursiveCall($uid, $level--, $out);
 		}
 
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 
-		return $out;		
+		return $out;
 	}
-	
+
 }
 ?>

@@ -25,15 +25,15 @@
 /**
  * ViewHelper to add a like button
  * Details: http://developers.facebook.com/docs/reference/plugins/like
- * 
+ *
  * Examples
  * ==============
- * 
+ *
  * <n:facebook.like />
  * Result: Facebook widget to share the current URL
- * 
+ *
  * <n:facebook.like href="http://www.typo3.org" width="300" font="arial" />
- * Result: Facebook widget to share www.typo3.org within a plugin styled with 
+ * Result: Facebook widget to share www.typo3.org within a plugin styled with
  * width 300 and arial as font
  *
  * @package TYPO3
@@ -45,7 +45,7 @@ class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHel
 	 * @var	string
 	 */
 	protected $tagName = 'fb:like';
-	
+
 	/**
 	 * Arguments initialization
 	 *
@@ -72,8 +72,8 @@ class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHel
 				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
 			}
 		}
-		
-		
+
+
 		$code .= $this->tag->render();
 		return $code;
 	}

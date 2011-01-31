@@ -42,7 +42,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 	 * @param boolean $hsc
 	 * @return string url
 	 */
-	public function render(Tx_News2_Domain_Model_News $newsItem, array $settings=array(), $renderTypeClass = TRUE, $class = '', $linkOnly = FALSE, $hsc = FALSE) {
+	public function render(Tx_News2_Domain_Model_News $newsItem, array $settings = array(), $renderTypeClass = TRUE, $class = '', $linkOnly = FALSE, $hsc = FALSE) {
 		$url = '';
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 		$linkConfiguration = array();
@@ -53,7 +53,6 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 			$linkConfiguration['ATagParams'] = 'class="' . $class . '"';
 		}
 
-
 		$newsType = $newsItem->getType();
 
 		if ($newsType == 0) {
@@ -63,7 +62,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 			$linkConfiguration['useCacheHash'] = 1;
 
 				// human readable dates, e.g. example.com/fo/bar/news/2010/10/news-title.html
-			if (isset($settings['hrDates']) && $settings['hrDates'] == 1 &&  $newsItem->getDatetime()) {
+			if (isset($settings['hrDates']) && $settings['hrDates'] == 1 && $newsItem->getDatetime()) {
 				/** @var DateTime */
 				$date = $newsItem->getDatetime();
 				$year = $date->format('Y');

@@ -38,7 +38,7 @@ class Tx_News2_ViewHelpers_UniqueViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 	 * @param boolean $debug if TRUE, additonal message is returned
 	 * @return string
 	 */
-	public function render($newsUid, $view, $debug=FALSE) {
+	public function render($newsUid, $view, $debug = FALSE) {
 		$show = TRUE;
 		if (!is_array($GLOBALS['TSFE']->displayedNews2)) {
 				$GLOBALS['TSFE']->displayedNews2 = array();
@@ -48,11 +48,11 @@ class Tx_News2_ViewHelpers_UniqueViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 			}
 		}
 
-		if ($view == 'list' || $view =='latest') {
+		if ($view == 'list' || $view == 'latest') {
 			$GLOBALS['TSFE']->displayedNews2[$newsUid] = 1;
 		}
 
-		if (!$show && ($view == 'list' || $view =='latest')) {
+		if (!$show && ($view == 'list' || $view == 'latest')) {
 			if ($debug) {
 				return '<tr><td colspan="6">not rendered, uid = ' . $newsUid . '</td><tr>';
 			} else {
