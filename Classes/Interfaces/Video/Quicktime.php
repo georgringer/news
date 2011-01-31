@@ -64,7 +64,8 @@ class Tx_News2_Interfaces_Video_Quicktime implements Tx_News2_Interfaces_MediaIn
 	}
 
 	/**
-	 *
+	 * Implementation is used if file extension is mov
+	 * 
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @return boolean
 	 */

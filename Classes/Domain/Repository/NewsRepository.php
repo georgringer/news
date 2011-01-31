@@ -50,6 +50,8 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	}
 
 	/**
+	 * Find by search
+	 *
 	 * @param  Tx_News2_Domain_Model_Search $searchobject
 	 * @return
 	 */
@@ -68,6 +70,8 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 
 
 	/**
+	 * Test
+	 *
 	 * @todo: tests
 	 */
 	public function countByTest() {

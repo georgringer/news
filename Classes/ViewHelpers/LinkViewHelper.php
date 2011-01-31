@@ -33,7 +33,8 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 
 
 	/**
-	 *
+	 * Render link to news item or internal/external pages
+	 * 
 	 * @param Tx_News2_Domain_Model_News $newsItem
 	 * @param array $settings
 	 * @param boolean $renderTypeClass

@@ -37,6 +37,8 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	protected $categoryDomainModelInstance;
 
 	/**
+	 * Setup
+	 *
 	 * @return void
 	 */
 	protected function setUp() {

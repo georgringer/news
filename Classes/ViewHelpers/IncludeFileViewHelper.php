@@ -33,6 +33,7 @@ class Tx_News2_ViewHelpers_IncludeFileViewHelper extends Tx_Fluid_Core_ViewHelpe
 
 	/**
 	 * Include a CSS/JS file
+	 * 
 	 * @param string $path path to the file
 	 * @param boolean $compress if file should be compressed
 	 */

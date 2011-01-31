@@ -38,6 +38,8 @@ class Tx_News2_ViewHelpers_Widget_YearMenuViewHelper  extends Tx_Fluid_Core_Widg
 	protected $controller;
 
 	/**
+	 * Inject controller
+	 * 
 	 * @param Tx_News2_ViewHelpers_Widget_Controller_YearMenuController $controller controller
 	 * @return void
 	 */
@@ -46,6 +48,7 @@ class Tx_News2_ViewHelpers_Widget_YearMenuViewHelper  extends Tx_Fluid_Core_Widg
 	}
 
 	/**
+	 * Render viewHelper
 	 *
 	 * @param Tx_Extbase_Persistence_QueryResultInterface $objects
 	 * @param string $as

@@ -33,6 +33,8 @@ class Tx_News2_ViewHelpers_UniqueViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 
 
 	/**
+	 * Test for showing news only once, should not be used
+	 *
 	 * @param  integer $newsUid news uid
 	 * @param string $view view
 	 * @param boolean $debug if TRUE, additonal message is returned

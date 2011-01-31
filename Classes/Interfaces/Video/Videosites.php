@@ -73,6 +73,7 @@ class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaI
 
 	/**
 	 * Videosites implementation is always enabled as check is done in tslib_mediaWizardManager
+	 * 
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @return boolean
 	 */
