@@ -116,7 +116,7 @@ class tx_news2_cms_layout {
 
 		$content = $categoryMode = '';
 		$categoriesOut = array();
-t3lib_div::debug($data);
+
 		$categories = t3lib_div::intExplode(',', $data['data']['sDEF']['lDEF']['settings.category']['vDEF'], TRUE);
 		if (count($categories) > 0) {
 
