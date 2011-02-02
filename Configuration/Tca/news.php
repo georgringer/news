@@ -257,8 +257,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'maxitems' => 10,
 				'MM' => 'tx_news2_domain_model_news_related_mm',
 				'wizards' => array(
-					'suggest' => array(
-						'type' => 'suggest',
+      				'suggest' => array(
+        				'type' => 'suggest',
 					),
 				),
 			)
@@ -298,10 +298,11 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'type' => 'inline',
 				'allowed' => 'tx_news2_domain_model_link',
 				'foreign_table' => 'tx_news2_domain_model_link',
+				'foreign_sortby' => 'sorting',
+				'foreign_field' => 'parent',
 				'size' => 5,
 				'minitems' => 0,
 				'maxitems' => 10,
-//				'MM' => 'tx_news2_domain_model_news_file_mm',
 				'appearance' => array(
 					'collapseAll' => 1,
 					'expandSingle' => 1,
@@ -350,7 +351,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'type' => 'inline',
 				'foreign_sortby' => 'sorting',
 				'foreign_table' => 'tx_news2_domain_model_media',
-				'foreign_sortby' => 'sorting',
+				'foreign_field' => 'parent',
 				'size' => 5,
 				'minitems' => 0,
 				'maxitems' => 10,
@@ -382,8 +383,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'minitems' => 0,
 				'show_thumbs' => 1,
 				'wizards' => array(
-					'suggest' => array(
-						'type' => 'suggest',
+      				'suggest' => array(
+        				'type' => 'suggest',
 					),
 				),
 			)
