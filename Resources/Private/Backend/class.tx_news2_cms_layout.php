@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  */
 class tx_news2_cms_layout {
 	/**
@@ -39,8 +38,8 @@ class tx_news2_cms_layout {
 	/**
 	 * Returns information about this extension's pi1 plugin
 	 *
-	 * @param array	$params	Parameters to the hook
-	 * @param mixed	$pObj	A reference to calling object
+	 * @param array $params Parameters to the hook
+	 * @param mixed $pObj A reference to calling object
 	 * @return string Information about pi1 plugin
 	 */
 	public function getExtensionSummary(array $params, $pObj) {

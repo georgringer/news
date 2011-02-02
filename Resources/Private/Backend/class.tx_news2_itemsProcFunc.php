@@ -57,7 +57,7 @@ class tx_news2_itemsProcFunc {
 	/**
 	 * Itemsproc function to extend the selection of templateLayouts in the plugin
 	 *
-	 * @param array $config
+	 * @param array &$config
 	 * @param t3lib_TCEforms $parentObject
 	 */
 	public function user_templateLayout(array &$config, t3lib_TCEforms $parentObject) {
@@ -77,9 +77,10 @@ class tx_news2_itemsProcFunc {
 	}
 
 	/**
-	 * Modifies the selectbox of orderby-options as a categorymenu needs different ones then a news action
+	 * Modifies the selectbox of orderby-options as a categorymenu
+	 * needs different ones then a news action
 	 *
-	 * @param array $config
+	 * @param array &$config
 	 * @param t3lib_TCEforms $parentObject
 	 * @return void
 	 */
@@ -127,7 +128,7 @@ class tx_news2_itemsProcFunc {
 	/**
 	 * Modifies the selectbox of available actions
 	 *
-	 * @param array $config
+	 * @param array &$config
 	 * @param t3lib_TCEforms $parentObject
 	 * @return void
 	 */

@@ -39,14 +39,7 @@ class tx_news2_labelFunc {
 	 * @return void
 	 */
 	public function getUserLabelNews(array $params) {
-//		$categoryTitles = $this->getCategories($params['row']['uid'], $params['row']['category']);
-//
 		$params['title'] = $params['row']['title'];
-//
-//		if ($categoryTitles) {
-//			$params['title'] .= ', cat: ' . $categoryTitles;
-//		}
-
 	}
 
 
@@ -88,14 +81,15 @@ class tx_news2_labelFunc {
 	 * @return void
 	 */
 	public function getUserLabelMedia(array $params) {
+		$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
 
 			// Type
-		$newTitle = $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media.type.I.' . $params['row']['type']);
+		$newTitle = $GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.type.I.' . $params['row']['type']);
 		$newTitle = ' (' . $newTitle . ')';
 
 			// Preview
 		if ($params['row']['showinpreview']) {
-			$newTitle .= ' ' . $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media.show');
+			$newTitle .= ' ' . $GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.show');
 		}
 
 		$params['title'] = $params['row']['caption'] . $newTitle;
