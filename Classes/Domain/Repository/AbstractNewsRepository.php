@@ -46,7 +46,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	/**
 	 * Set the order like title desc, tstamp asc
 	 *
-	 * @param  string $order order
+	 * @param string $order order
 	 */
 	public function setOrder($order) {
 	 $this->order = $order;

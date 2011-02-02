@@ -57,6 +57,8 @@ protected $configurationManager;
 	 * @return void
 	 */
 	public function initializeAction() {
+		t3lib_div::print_array($this->settings);
+		die('-');
 		$this->newsRepository->setCategories($this->settings['category']);
 		$this->newsRepository->setCategorySettings($this->settings['categoryMode']);
 		$this->newsRepository->setTopNewsRestriction($this->settings['topNews']);
@@ -250,7 +252,7 @@ protected $configurationManager;
 			foreach ($overrideIfEmpty as $key) {
 					// if flexform setting is empty and value is available in TS
 				if ((!isset($originalSettings[$key]) || empty($originalSettings[$key]))
-						&& isset($tsSettings['settings'][$key])){
+						&& isset($tsSettings['settings'][$key])) {
 					$originalSettings[$key] = $tsSettings['settings'][$key];
 				}
 			}
@@ -258,7 +260,6 @@ protected $configurationManager;
 
 		$this->settings = $originalSettings;
 	}
-
 
 }
 

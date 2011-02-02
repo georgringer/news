@@ -34,7 +34,7 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 
 	/**
 	 * Download a file
-	 * 
+	 *
 	 * @param string $file
 	 * @param string $path
 	 * @param array $configuration
@@ -78,7 +78,7 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 
 	/**
 	 * Modify TS to fit cObjs
-	 * 
+	 *
 	 * @todo really needed? check convertExtbaseToClassicTS in extbase_utility
 	 * @param array $extBaseTS
 	 * @return array convertes TS
@@ -88,19 +88,6 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 		if (is_array($extBaseTS)) {
 			foreach ($extBaseTS as $key => $value) {
 				if (is_array($value)) {
-//					if (isset($value['_typoscriptNodeValue'])){
-////						$classicTS[$key] = $value['_typoscriptNodeValue'];
-////						unset($value['_typoscriptNodeValue']);
-//						echo 'x';
-//					}
-
-//					foreach ($value as $k1 => $v1) {
-//						echo $k1;
-//						if ($k1 == '_typoScriptNodeValue') {
-//							$value[$key] = $v1 . 'xxxxxxxxxxxxxxxxxxxxx';
-//
-//						}
-//					}
 
 					$classicTS[$key.'.'] = $this->convertExtbaseToClassicTS($value);
 				} else{

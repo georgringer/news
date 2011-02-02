@@ -128,7 +128,6 @@
 										<showHeader>TRUE</showHeader>
 									</appearance>
 								</treeConfig>
-								<MM>tx_news2_domain_model_news_category_mm</MM>
 								<foreign_table>tx_news2_domain_model_category</foreign_table>
 								<foreign_table_where> AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0)</foreign_table_where>
 								<size>10</size>
