@@ -57,8 +57,6 @@ protected $configurationManager;
 	 * @return void
 	 */
 	public function initializeAction() {
-		t3lib_div::print_array($this->settings);
-		die('-');
 		$this->newsRepository->setCategories($this->settings['category']);
 		$this->newsRepository->setCategorySettings($this->settings['categoryMode']);
 		$this->newsRepository->setTopNewsRestriction($this->settings['topNews']);
