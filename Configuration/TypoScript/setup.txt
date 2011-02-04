@@ -111,11 +111,7 @@ plugin.tx_news2 {
 		    site_name = Perfect test site
 		    type = article
 		}
-}
-
-
 	}
-
 }
 
 /*
