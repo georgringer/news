@@ -41,7 +41,28 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	protected $latestTimeLimit = NULL;
 	protected $searchFields;
 	protected $topNewsSetting;
+	protected $year;
+	protected $month;
 
+	/**
+	 * Set month
+	 *
+	 * @param integer $month
+	 * @return void
+	 */
+	public function setMonth($month) {
+		$this->month = $month;
+	}
+
+	/**
+	 * Set year
+	 *
+	 * @param integer $year
+	 * @return void
+	 */
+	public function setYear($year) {
+		$this->year = $year;
+	}
 
 	/**
 	 * Set the order like title desc, tstamp asc
@@ -133,6 +154,32 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	 */
 	public function setSearchFields($searchFields) {
 		$this->searchFields = t3lib_div::trimExplode(',', $searchFields, TRUE);
+	}
+
+	/**
+	 * Get a restriction based on month and year
+	 *
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @return Tx_Extbase_Persistence_QOM_AndInterface
+	 */
+	public function getDateRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
+		$constraint = NULL;
+		$month = (int)$this->month;
+		$year = (int)$this->year;
+
+		if ($month === 0 || $year === 0) {
+			return $constraint;
+		}
+
+		$begin = mktime(0, 0, 0, $month, 0, $year);
+		$end = mktime(0, 0, 0, ($month + 1), 0, $year);
+
+		$constraint = $query->logicalAnd(
+				$query->greaterThanOrEqual('datetime', $begin),
+				$query->lessThanOrEqual('datetime', $end)
+			);
+
+		return $constraint;
 	}
 
 

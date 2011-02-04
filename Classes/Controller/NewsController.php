@@ -205,6 +205,16 @@ protected $configurationManager;
 
 			$this->newsRepository->setOrder($order);
 		}
+
+			// year
+		if (isset($requests['year']) && $this->accessCheck('allowYearFromGetParams')) {
+			$this->newsRepository->setYear((int)$requests['year']);
+		}
+
+			// month
+		if (isset($requests['month']) && $this->accessCheck('allowMonthFromGetParams')) {
+			$this->newsRepository->setMonth((int)$requests['month']);
+		}
 	}
 
 	/**

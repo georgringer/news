@@ -94,6 +94,8 @@ plugin.tx_news2 {
 
 			allowCategoryRestrictionFromGetParams = 1
 			allowOrderFromGetParams = 1
+			allowYearFromGetParams = 1
+			allowMonthFromGetParams = 1
 		}
 
 		relatedFiles {
