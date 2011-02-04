@@ -51,7 +51,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	public function titleCanBeSet() {
 		$title = 'News title';
 		$this->newsDomainModelInstance->setTitle($title);
-		$this->assertEquals($title, 'xxx');
+		$this->assertEquals($title, $this->newsDomainModelInstance->getTitle());
 	}
 
 	/**
