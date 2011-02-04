@@ -70,7 +70,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	 * @param string $order order
 	 */
 	public function setOrder($order) {
-	 $this->order = $order;
+		$this->order = $order;
 	}
 
 	public function setOrderRespectTopNews($respectTopNews) {
@@ -189,7 +189,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
 	 */
 	protected function getCategoryRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
-        $constraint = NULL;
+		$constraint = NULL;
 		$selectedCategories = $this->categories;
 
 		if (!isset($this->categorySetting)) {
@@ -221,11 +221,11 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 			}
 		}
 
-        return $constraint;
+		return $constraint;
 	}
 
 	protected function getAdditionalCategoryRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
-        $constraint = NULL;
+		$constraint = NULL;
 		$selectedCategories = $this->additionalCategories;
 
 		if (count($selectedCategories) > 0 && !empty($this->additionalCategorySetting)) {
@@ -253,7 +253,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 			}
 		}
 
-        return $constraint;
+		return $constraint;
 	}
 
 	/**
@@ -263,7 +263,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	 * @return
 	 */
 	protected function getArchiveRestriction(Tx_Extbase_Persistence_QueryInterface $query) {
-        $constraint = NULL;
+		$constraint = NULL;
 
 			// archived news
 		if ($this->archiveSetting == 'archived') {
@@ -278,7 +278,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 			);
 		}
 
-        return $constraint;
+		return $constraint;
 	}
 
 	/**
@@ -305,7 +305,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 	 * @return
 	 */
 	protected function getTopNewsConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
-        $constraint = NULL;
+		$constraint = NULL;
 
 			// top news
 		if ($this->topNewsSetting == 1) {
@@ -319,7 +319,7 @@ class Tx_News2_Domain_Repository_AbstractNewsRepository extends Tx_News2_Domain_
 			);
 		}
 
-        return $constraint;
+		return $constraint;
 	}
 
 	/**

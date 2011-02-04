@@ -43,7 +43,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 	 * @param  string $order order
 	 */
 	public function setOrder($order) {
-	 $this->order = $order;
+		$this->order = $order;
 	}
 
 	/**
@@ -83,7 +83,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 			$constraint = $query->in('pid', $pidList);
 		}
 
-        return $constraint;
+		return $constraint;
 	}
 
 
@@ -155,7 +155,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 	public function setDebugConstraint(Tx_Extbase_Persistence_QueryInterface $query) {
 		$constraint = $query->equals('xyz', 0);
 
-        return $constraint;
+		return $constraint;
 	}
 
 	/**
@@ -184,7 +184,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 		$constraints = $this->checkConstraintArray($constraints);
 
 		if (!empty($constraints)) {
-        	$query->matching(
+			$query->matching(
 				$query->logicalAnd($constraints)
 			);
 		}
@@ -207,7 +207,7 @@ class Tx_News2_Domain_Repository_AbstractRepository extends Tx_Extbase_Persisten
 		$constraints = $this->checkConstraintArray($constraints);
 
 		if (!empty($constraints)) {
-        	$query->matching(
+			$query->matching(
 				$query->logicalAnd($constraints)
 			);
 		}
