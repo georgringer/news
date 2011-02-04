@@ -151,6 +151,9 @@ protected $configurationManager;
 	 * @return void
 	 */
 	public function menuByDateAction() {
+		$this->newsRepository->setYear(0);
+		$this->newsRepository->setMonth(0);
+		
 		$newsRecords = $this->newsRepository->findList();
 		$this->view->assign('news', $newsRecords);
 	}
