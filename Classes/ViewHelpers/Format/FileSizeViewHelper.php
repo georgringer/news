@@ -34,7 +34,7 @@ class Tx_News2_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewH
 
 	/**
 	 * Renders the size of a file using t3lib_div::formatSize
-	 * 
+	 *
 	 * @param string $file
 	 * @param string $path
 	 * @param string $format
@@ -44,7 +44,7 @@ class Tx_News2_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewH
 		$filePath = $path . $file;
 		if (!is_file($filePath)) {
 				// @todo: better exceptions
-			throw new Exception('Given file is not a valid file: ' . htmlspecialchars($filePath));
+			throw new Tx_Fluid_Core_ViewHelper_Exception('Given file is not a valid file: ' . htmlspecialchars($filePath));
 		}
 
 		$fileSize = t3lib_div::formatSize(filesize($filePath), $format);
