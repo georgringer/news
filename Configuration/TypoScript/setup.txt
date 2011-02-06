@@ -110,6 +110,17 @@ plugin.tx_news2 {
 		opengraph {
 		    site_name = Perfect test site
 		    type = article
+			admins =
+			email =
+			phone_number =
+			fax_number =
+			latitude =
+			longitude =
+			street-adress =
+			locality =
+			region =
+			postal-code =
+			country-name =
 		}
 	}
 }

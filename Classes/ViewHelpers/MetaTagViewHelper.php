@@ -56,7 +56,10 @@ class Tx_News2_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Ab
 		if ($useCurrentDomain) {
 			$this->tag->addAttribute('content', t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
 		}
-		$GLOBALS['TSFE']->getPageRenderer()->addMetaTag($this->tag->render());
+		
+		if (isset($this->arguments['content']) && !empty($this->arguments['content'])) {
+			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag($this->tag->render());
+		}
 	}
 }
 
