@@ -139,9 +139,11 @@ protected $configurationManager;
 	 * @return void
 	 */
 	public function detailAction(Tx_News2_Domain_Model_News $news = NULL) {
-		$this->view->assign('newsItem', $news);
-		if ($this->settings['detail']['titleInMetaTags'] == 1) {
-			$this->renderTitle($news->getTitle());
+		if (!is_null($news)) {
+			$this->view->assign('newsItem', $news);
+			if ($this->settings['detail']['titleInMetaTags'] == 1) {
+				$this->renderTitle($news->getTitle());
+			}
 		}
 	}
 
@@ -153,7 +155,7 @@ protected $configurationManager;
 	public function menuByDateAction() {
 		$this->newsRepository->setYear(0);
 		$this->newsRepository->setMonth(0);
-		
+
 		$newsRecords = $this->newsRepository->findList();
 		$this->view->assign('news', $newsRecords);
 	}
