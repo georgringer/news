@@ -67,12 +67,14 @@ class tx_news2_cms_layout {
 				$result = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.mode.not_configured');
 			}
 
-			$result .= '<br /><br /><table>' .
-						$this->getArchiveSettings($data) .
-						$this->getCategorySettings($data) .
-						$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']) .
-						$this->getOffsetLimitSettings($data) .
-					'</table>';
+			if (is_array($data)) {
+				$result .= '<br /><br /><table>' .
+							$this->getArchiveSettings($data) .
+							$this->getCategorySettings($data) .
+							$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']) .
+							$this->getOffsetLimitSettings($data) .
+						'</table>';
+			}
 		}
 
 		return $result;
