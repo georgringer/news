@@ -29,65 +29,121 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Repository_AbstractNewsRepository {
+class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Repository_AbstractDemandedRepository  {
 
 	/**
-	 * List entries
-	 */
-	public function findList() {
-		$query = $this->createQuery();
-
-		$constraints = array();
-		$constraints[] = $this->getArchiveRestriction($query);
-		$constraints[] = $this->getCategoryRestriction($query);
-		$constraints[] = $this->getAdditionalCategoryRestriction($query);
-		$constraints[] = $this->getLatestTimeLimitRestriction($query);
-		$constraints[] = $this->getTopNewsConstraint($query);
-		$constraints[] = $this->setStoragePageRestriction($query);
-		$constraints[] = $this->getDateRestriction($query);
-//		$constraints[] = $this->setDebugConstraint($query);
-
-		return $this->executeQuery($query, $constraints);
-	}
-
-	/**
-	 * Find by search
+	 * Returns a category contstrain created by a given list of categories and a junction string
 	 *
-	 * @param  Tx_News2_Domain_Model_Search $searchobject
-	 * @return
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @param  array $categories
+	 * @param  string $conjunction
+	 * @return Tx_Extbase_Persistence_QOM_Constrain|null
 	 */
-	public function findBySearch($searchobject) {
-		$query = $this->createQuery();
+	protected function createCategoryConstraint(Tx_Extbase_Persistence_QueryInterface $query, $categories, $conjunction) {
+        $constraint = NULL;
+		$categoryConstraints = array();
 
-		$constraints = array();
-		$constraints[] = $this->getArchiveRestriction($query);
-		$constraints[] = $this->getCategoryRestriction($query);
-		$constraints[] = $this->getSearchConstraint($query, $searchobject);
-		$constraints[] = $this->getTopNewsConstraint($query);
-		$constraints[] = $this->setStoragePageRestriction($query);
+		foreach($categories as $category) {
+			$categoryConstraints[] = $query->contains('category', $category);
+		}
 
-		return $this->executeQuery($query, $constraints);
+		switch($conjunction) {
+			case 'or':
+				$constraint = $query->logicalOr($categoryConstraints);
+				break;
+
+			case 'notor':
+				$constraint =  $query->logicalNot($query->logicalOr($categoryConstraints));
+				break;
+
+			case 'notand':
+				$constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
+				break;
+
+			case 'and':
+			default:
+				$constraint = $query->logicalAnd($categoryConstraints);
 	}
 
+		return $constraint;
+	}
 
 	/**
-	 * Test
+	 * Returns an array of constraints created from a given demand object.
 	 *
-	 * @todo: tests
+	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @param Tx_News2_Domain_Model_DemandInterface $demand
+	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
 	 */
-	public function countByTest() {
-		$query = $this->createQuery();
-
+	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News2_Domain_Model_DemandInterface $demand) {
 		$constraints = array();
-		$constraints[] = $this->getArchiveRestriction($query);
-		$constraints[] = $this->getCategoryRestriction($query);
-		$constraints[] = $this->setStoragePageRestriction($query);
-//		$constraints[] = $this->setDebugConstraint($query);
 
-		return $this->executeCountQuery($query, $constraints);
+		if ($demand->getCategories() && $demand->getCategories() !== '0') {
+			$constraints[] = $this->createCategoryConstraint($query, $demand->getCategories(),
+				$demand->getCategorySetting());
 	}
 
+		if ($demand->getArchiveSetting() == 'archived') {
+			$constraints[] = $query->logicalAnd(
+				$query->lessThan('archive', $GLOBALS['EXEC_TIME']),
+				$query->greaterThan('archive', 0)
+			);
+		} elseif ($demand->getArchiveSetting() == 'active') {
+			$constraints[] = $query->greaterThanOrEqual('archive', $GLOBALS['EXEC_TIME']);
+		}
+
+		if ($demand->getLatestTimeLimit() !== NULL) {
+			$constraints[] = $query->greaterThanOrEqual(
+				'datetime',
+				$demand->getLatestTimeLimit()
+			);
+		}
+
+		if ($demand->getTopNewsSetting() == 1) {
+			$constraints[] = $query->equals('istopnews', 1);
+		} elseif ($demand->getTopNewsSetting() == 2) {
+			$constraints[] = $query->greaterThanOrEqual('istopnews', 0);
+		}
+
+		if ($demand->getStoragePage() != 0) {
+			$pidList = t3lib_div::intExplode(',', $demand->getStoragePage(), TRUE);
+			$constraints[]  = $query->in('pid', $pidList);
+		}
+
+		return $constraints;
+	}
+
+	/**
+	 * Returns an array of orderings created from a given demand object.
+	 *
+	 * @param Tx_News2_Domain_Model_DemandInterface $demand
+	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
+	 */
+	protected function createOrderingsFromDemand(Tx_News2_Domain_Model_DemandInterface $demand) {
+		$orderings = array();
+		if ($demand->getOrderRespectTopNews()) {
+			$orderings['istopnews'] = Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING;
+		}
+
+		$orderList = t3lib_div::trimExplode(',', $demand->getOrder(), TRUE);
+
+		if (!empty($orderList)) {
+				// go through every order statement
+			foreach($orderList as $orderItem) {
+				list($orderField, $ascDesc) = t3lib_div::trimExplode(' ', $orderItem, TRUE);
+					// count == 1 means that no direction is given
+				if ($ascDesc) {
+					$orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
+						Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING :
+						Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
+				} else {
+					$orderings[$orderField] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
+	}
+			}
+		}
+
+		return $orderings;
+	}
 
 }
-
 ?>

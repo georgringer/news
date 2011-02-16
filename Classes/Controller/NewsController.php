@@ -57,30 +57,36 @@ protected $configurationManager;
 	 * @return void
 	 */
 	public function initializeAction() {
-		$this->newsRepository->setCategories($this->settings['category']);
-		$this->newsRepository->setCategorySettings($this->settings['categoryMode']);
-		$this->newsRepository->setTopNewsRestriction($this->settings['topNews']);
-		$this->newsRepository->setArchiveSettings($this->settings['archive']);
-		$this->newsRepository->setOrder($this->settings['orderBy'] . ' ' . $this->settings['orderAscDesc']);
-		$this->newsRepository->setOrderRespectTopNews($this->settings['orderByRespectTopNews']);
-		$this->newsRepository->setLimit($this->settings['limit']);
-		$this->newsRepository->setOffset($this->settings['offset']);
-		$this->newsRepository->setSearchFields($this->settings['search']['fields']);
-		$this->newsRepository->setStoragePage(Tx_News2_Service_RecursivePidListService::find($this->settings['startingpoint'], $this->settings['recursive']));
-
 		if (isset($this->settings['format'])) {
 			$this->request->setFormat($this->settings['format']);
 		}
-		$this->requestOverrule();
 	}
 
+	protected function createDemandObjectFromSettings($settings) {
+		$demandObject = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
+
+		$demandObject->setCategories($this->settings['category']);
+		$demandObject->setCategorySetting($this->settings['categoryMode']);
+		$demandObject->setTopNewsSetting($this->settings['topNews']);
+		$demandObject->setArchiveSetting($this->settings['archive']);
+		$demandObject->setOrder($this->settings['orderBy'] . ' ' . $this->settings['orderAscDesc']);
+		$demandObject->setOrderRespectTopNews($this->settings['orderByRespectTopNews']);
+		$demandObject->setLimit($this->settings['limit']);
+		$demandObject->setOffset($this->settings['offset']);
+		$demandObject->setSearchFields($this->settings['search']['fields']);
+		$demandObject->setStoragePage(Tx_News2_Service_RecursivePidListService::find($this->settings['startingpoint'],
+			$this->settings['recursive']));
+
+		return $demandObject;
+	}
 
 	/**
 	 * Output a list view of news
 	 *
-	 * @return void
+	 * return string the Rendered view
 	 */
 	public function listAction() {
+
 			// If the TypoScript config is not set return an error
 		if (!$this->settings['list']) {
 			$this->flashMessages->add($this->localize('list.settings.notfound'), t3lib_FlashMessage::ERROR);
@@ -88,48 +94,36 @@ protected $configurationManager;
 			$newsRecords = $this->newsRepository->findList();
 			$this->view->assign('news', $newsRecords);
 		}
+
+		$demand = $this->createDemandObjectFromSettings($this->settings);
+		$newsRecords = $this->newsRepository->findDemanded($demand);
+
+		$this->view->assign('news', $newsRecords);
 	}
 
 	/**
-	 * Search for news
+	 * Displays the news search form
 	 *
-	 * @param Tx_News2_Domain_Model_Search $search
+	 * @return string the Rendered view
 	 * @return void
 	 */
-	public function searchAction(Tx_News2_Domain_Model_Search $search = NULL) {
-		if ($search === NULL) {
-			$search = new Tx_News2_Domain_Model_Search();
-		} else {
-			var_dump($search);
-		}
-
-		/** @var Tx_News2_Domain_Repository_CategoryRepository */
-		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
-		$categoryRepository->setUidList($this->settings['category']);
-		$categories = $categoryRepository->findByIdList();
-		$search->setCategory($categories);
-
-//		var_dump($search->getCategory());
-
-		$this->view->assign('search', $search);
+	public function searchAction() {
+		$demand = $this->createDemandObjectFromSettings($this->settings);
+		$this->view->assign('demand', $demand);
 	}
 
 	/**
-	 * Search Result
+	 * Displays the news search result
 	 *
-	 * @param Tx_News2_Domain_Model_Search $search
+	 * @param Tx_News2_Domain_Model_NewsDemand $demand
+	 * @return string the Rendered view
 	 * @return void
 	 */
-	public function searchResultAction(Tx_News2_Domain_Model_Search $search = NULL) {
-		$this->view->assign('search', $search);
-
-			// if a search is submitted
-		if ($search !== NULL) {
-			var_dump($search->getCategory());
-
-			$newsRecords = $this->newsRepository->findBySearch($search);
-			$this->view->assign('news', $newsRecords);
-		}
+	public function searchResultAction(Tx_News2_Domain_Model_NewsDemand $demand) {
+		$this->view->assignMultiple(array(
+			'demand' => $demand,
+			'news' => $this->newsRepository->findDemanded($demand)
+		));
 	}
 
 	/**
@@ -189,59 +183,6 @@ protected $configurationManager;
 	}
 
 	/**
-	 * Allow overruling of settings by get request
-	 *
-	 * @return void
-	 */
-	protected function requestOverrule() {
-		$requests = $this->request->getArguments();
-
-			// category restriction
-		if (isset($requests['category']) && $this->accessCheck('allowCategoryRestrictionFromGetParams')) {
-			$this->newsRepository->setAdditionalCategories($requests['category']);
-		}
-
-			// ordering
-		if (isset($requests['order']) && $this->accessCheck('allowOrderFromGetParams')) {
-			$order = $requests['order'];
-			if (isset($requests['orderDirection'])) {
-				$order .= ' ' . $requests['orderDirection'];
-			}
-
-			$this->newsRepository->setOrder($order);
-		}
-
-			// year
-		if (isset($requests['year']) && $this->accessCheck('allowYearFromGetParams')) {
-			$this->newsRepository->setYear((int)$requests['year']);
-		}
-
-			// month
-		if (isset($requests['month']) && $this->accessCheck('allowMonthFromGetParams')) {
-			$this->newsRepository->setMonth((int)$requests['month']);
-		}
-	}
-
-	/**
-	 * Check access which can be set for each action by using <action>.<setting> = 1
-	 *
-	 * @param  string $setting name of the setting
-	 * @return boolean
-	 */
-	protected function accessCheck($setting) {
-		$access = FALSE;
-			// remove the Action from the method: listAction > list
-		$actionName = str_replace('Action', '', $this->actionMethodName);
-
-		if ($this->settings[$actionName][$setting] == 1) {
-			$access = TRUE;
-		}
-
-		return $access;
-	}
-
-
-	/**
 	 * Injects the Configuration Manager and is initializing the framework settings
 	 *
 	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
@@ -273,7 +214,5 @@ protected $configurationManager;
 
 		$this->settings = $originalSettings;
 	}
-
 }
-
 ?>
