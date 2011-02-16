@@ -74,7 +74,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$demandObject->setLimit($this->settings['limit']);
 		$demandObject->setOffset($this->settings['offset']);
 		$demandObject->setSearchFields($this->settings['search']['fields']);
-		$demandObject->setStoragePage(Tx_News2_Service_RecursivePidListService::find($this->settings['startingpoint'],
+		$demandObject->setStoragePage(Tx_News2_Utility_Page::extendPidListByChildren($this->settings['startingpoint'],
 			$this->settings['recursive']));
 
 		return $demandObject;

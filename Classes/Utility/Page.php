@@ -44,5 +44,38 @@ class Tx_News2_Utility_Page {
 		$GLOBALS['TSFE']->pSetup['meta.']['DESCRIPTION.'] = NULL;
 		$GLOBALS['TSFE']->pSetup['meta.']['DESCRIPTION'] = $title;
 	}
+
+	/**
+	 * Find all ids from given ids and level
+	 *
+	 * @param string $pidList comma seperated list of ids
+	 * @param integer $recursive recursive levels
+	 * @return string comma seperated list of ids
+	 */
+	public static function extendPidListByChildren($pidList = '', $recursive = 0) {
+		if ($recursive <= 0) {
+			return $pidList;
+		}
+
+		$cObj = t3lib_div::makeInstance('tslib_cObj');
+
+		$recursive = t3lib_div::intInRange($recursive, 0);
+
+		$pidList = array_unique(t3lib_div::trimExplode(',', $pidList, 1));
+
+		$result = array();
+
+		foreach ($pidList as $pid) {
+			$pid = t3lib_div::intInRange($pid, 0);
+			if ($pid) {
+				$children = $cObj->getTreeList(-1 * $pid, $recursive);
+				if ($children) {
+					$result[] = $children;
+				}
+			}
+		}
+
+		return implode(',', $result);
+	}
 }
 ?>
