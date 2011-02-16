@@ -132,7 +132,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		if (!is_null($news)) {
 			$this->view->assign('newsItem', $news);
 			if ($this->settings['detail']['titleInMetaTags'] == 1) {
-				$this->renderTitle($news->getTitle());
+				Tx_News2_Utility_Page::renderTitle($news->getTitle());
 			}
 		}
 	}
@@ -151,19 +151,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/***************************************************************************
 	 * helper
 	 **********************/
-
-	/**
-	 * Set the meta title
-	 *
-	 * @param string $title
-	 * @return void
-	 */
-	protected function renderTitle($title) {
-		$GLOBALS['TSFE']->page['title'] = $title;
-		$GLOBALS['TSFE']->indexedDocTitle = $title;
-		$GLOBALS['TSFE']->pSetup['meta.']['DESCRIPTION.'] = NULL;
-		$GLOBALS['TSFE']->pSetup['meta.']['DESCRIPTION'] = $title;
-	}
 
 	/**
 	 * Localizes the given key by forwarding it to the Tx_Extbase_Utility_Localization::translate method.
