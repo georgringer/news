@@ -36,10 +36,10 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	protected $newsRepository;
 
-/**
- * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
- */
-protected $configurationManager;
+	/**
+	 * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+	 */
+	protected $configurationManager;
 
 	/**
 	 * Inject a news repository to enable DI
@@ -86,19 +86,15 @@ protected $configurationManager;
 	 * return string the Rendered view
 	 */
 	public function listAction() {
-
 			// If the TypoScript config is not set return an error
 		if (!$this->settings['list']) {
 			$this->flashMessages->add($this->localize('list.settings.notfound'), t3lib_FlashMessage::ERROR);
 		} else {
-			$newsRecords = $this->newsRepository->findList();
+			$demand = $this->createDemandObjectFromSettings($this->settings);
+			$newsRecords = $this->newsRepository->findDemanded($demand);
 			$this->view->assign('news', $newsRecords);
 		}
 
-		$demand = $this->createDemandObjectFromSettings($this->settings);
-		$newsRecords = $this->newsRepository->findDemanded($demand);
-
-		$this->view->assign('news', $newsRecords);
 	}
 
 	/**
@@ -146,11 +142,9 @@ protected $configurationManager;
 	 *
 	 * @return void
 	 */
-	public function menuByDateAction() {
-		$this->newsRepository->setYear(0);
-		$this->newsRepository->setMonth(0);
-
-		$newsRecords = $this->newsRepository->findList();
+	public function dateMenuAction() {
+		$demand = $this->createDemandObjectFromSettings($this->settings);
+		$newsRecords = $this->newsRepository->findDemanded($demand);
 		$this->view->assign('news', $newsRecords);
 	}
 

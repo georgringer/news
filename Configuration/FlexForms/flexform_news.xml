@@ -45,12 +45,8 @@
 									<numIndex index="1">Category->list</numIndex>
 								</numIndex>
 								<numIndex index="7">
-									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_archivemenu</numIndex>
-									<numIndex index="1">News->archiveMenu</numIndex>
-								</numIndex>
-								<numIndex index="8">
-									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_menubydate</numIndex>
-									<numIndex index="1">News->menuByDate</numIndex>
+									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_date_menu</numIndex>
+									<numIndex index="1">News->dateMenu</numIndex>
 								</numIndex>
 							</items>
 						</config>
