@@ -149,9 +149,22 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return void
 	 */
 	public function dateMenuAction() {
+		 // @todo: should be configurable via settings
+		$dateField = 'datetime';
+		 // @todo: should be configurable via settings
+		$yearOrder = 'desc';
+
 		$demand = $this->createDemandObjectFromSettings($this->settings);
+
+		// @todo: should be set by settings directly.
+		$demand->setOrder($dateField . ' ' . $yearOrder);
+
 		$newsRecords = $this->newsRepository->findDemanded($demand);
-		$this->view->assign('news', $newsRecords);
+
+		$this->view->assignMultiple(array(
+			'dateField' => $dateField,
+			'news' => $newsRecords
+		));
 	}
 
 	/***************************************************************************

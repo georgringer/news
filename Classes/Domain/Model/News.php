@@ -218,6 +218,14 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		$this->datetime = $datetime;
 	}
 
+	public function getYearOfDatetime() {
+		return $this->datetime->format('Y');
+	}
+
+	public function getMonthOfDatetime() {
+		return $this->datetime->format('m');
+	}
+
 	public function getArchive() {
 		return $this->archive;
 	}
