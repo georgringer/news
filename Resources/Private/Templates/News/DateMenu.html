@@ -13,10 +13,8 @@
 				<ul>
 				<f:groupedFor each="{newsByYear}" as="newsByMonth" groupBy="MonthOfDatetime" groupKey="month">
 					<li class="item{f:if(condition: month.active, then: ' itemactive')}">
-						<f:link.action arguments="{year:year,month:month}">
-							<f:translate key="month.{month}" /> {year}
-						</f:link.action>
-						(<f:count subject="{newsByMonth}" />)
+						<f:link.action arguments="{year:year,month:month}"><f:translate key="month.{month}" /> {year}</f:link.action>
+						(<f:count subject="{newsByMonth}" /> <f:translate key="{f:if(condition: '{f:count(subject: newsByMonth)} == 1', then: 'entry', else: 'entries')}" />)
 					</li>
 				</f:groupedFor>
 				</ul>

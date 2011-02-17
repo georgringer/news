@@ -17,9 +17,9 @@
 			<label index="related-links">Related links</label>
 			<label index="author">created by %s</label>
 			<label index="list.settings.notfound">List view settings not found. TypoScript included?</label>
-			<label index="no_entries">No entries</label>
-			<label index="single_entry">%s entry</label>
-			<label index="multiple_entries">%s entries</label>
+
+			<label index="entry">entry</label>
+			<label index="entries">entries</label>
 
 			<label index="month.01">January</label>
 			<label index="month.02">February</label>
@@ -38,6 +38,9 @@
 		<languageKey index="de" type="array">
 
 			<label index="SearchResult">%1$s Treffer für die Suche nach "%2$s".</label>
+
+			<label index="entry">Eintrag</label>
+			<label index="entries">Einträge</label>
 
 			<label index="month.01">Januar</label>
 			<label index="month.02">Februar</label>
