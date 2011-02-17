@@ -62,20 +62,26 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		}
 	}
 
+	/**
+	 * Create the demand object which define which records will get shown
+	 *
+	 * @param array $settings
+	 * @return Tx_News2_Domain_Model_NewsDemand
+	 */
 	protected function createDemandObjectFromSettings($settings) {
 		$demandObject = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
 
-		$demandObject->setCategories($this->settings['category']);
-		$demandObject->setCategorySetting($this->settings['categoryMode']);
-		$demandObject->setTopNewsSetting($this->settings['topNews']);
-		$demandObject->setArchiveSetting($this->settings['archive']);
-		$demandObject->setOrder($this->settings['orderBy'] . ' ' . $this->settings['orderAscDesc']);
-		$demandObject->setOrderRespectTopNews($this->settings['orderByRespectTopNews']);
-		$demandObject->setLimit($this->settings['limit']);
-		$demandObject->setOffset($this->settings['offset']);
-		$demandObject->setSearchFields($this->settings['search']['fields']);
-		$demandObject->setStoragePage(Tx_News2_Utility_Page::extendPidListByChildren($this->settings['startingpoint'],
-			$this->settings['recursive']));
+		$demandObject->setCategories($settings['category']);
+		$demandObject->setCategorySetting($settings['categoryMode']);
+		$demandObject->setTopNewsSetting($settings['topNews']);
+		$demandObject->setArchiveSetting($settings['archive']);
+		$demandObject->setOrder($settings['orderBy'] . ' ' . $settings['orderAscDesc']);
+		$demandObject->setOrderRespectTopNews($settings['orderByRespectTopNews']);
+		$demandObject->setLimit($settings['limit']);
+		$demandObject->setOffset($settings['offset']);
+		$demandObject->setSearchFields($settings['search']['fields']);
+		$demandObject->setStoragePage(Tx_News2_Utility_Page::extendPidListByChildren($settings['startingpoint'],
+			$settings['recursive']));
 
 		return $demandObject;
 	}

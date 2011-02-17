@@ -47,19 +47,16 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			$categoryConstraints[] = $query->contains('category', $category);
 		}
 
-		switch($conjunction) {
+		switch(strtolower($conjunction)) {
 			case 'or':
 				$constraint = $query->logicalOr($categoryConstraints);
 				break;
-
 			case 'notor':
 				$constraint =  $query->logicalNot($query->logicalOr($categoryConstraints));
 				break;
-
 			case 'notand':
 				$constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
 				break;
-
 			case 'and':
 			default:
 				$constraint = $query->logicalAnd($categoryConstraints);
@@ -81,8 +78,9 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		if ($demand->getCategories() && $demand->getCategories() !== '0') {
 			$constraints[] = $this->createCategoryConstraint($query, $demand->getCategories(),
 				$demand->getCategorySetting());
-	}
+		}
 
+			// archived
 		if ($demand->getArchiveSetting() == 'archived') {
 			$constraints[] = $query->logicalAnd(
 				$query->lessThan('archive', $GLOBALS['EXEC_TIME']),
@@ -92,6 +90,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			$constraints[] = $query->greaterThanOrEqual('archive', $GLOBALS['EXEC_TIME']);
 		}
 
+			// latest time
 		if ($demand->getLatestTimeLimit() !== NULL) {
 			$constraints[] = $query->greaterThanOrEqual(
 				'datetime',
@@ -99,12 +98,14 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			);
 		}
 
+			// top news
 		if ($demand->getTopNewsSetting() == 1) {
 			$constraints[] = $query->equals('istopnews', 1);
 		} elseif ($demand->getTopNewsSetting() == 2) {
 			$constraints[] = $query->greaterThanOrEqual('istopnews', 0);
 		}
 
+			// storage page
 		if ($demand->getStoragePage() != 0) {
 			$pidList = t3lib_div::intExplode(',', $demand->getStoragePage(), TRUE);
 			$constraints[]  = $query->in('pid', $pidList);
