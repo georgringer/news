@@ -417,11 +417,14 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 */
 	public function getChilds() {
 		/** @var Tx_News2_Domain_Repository_CategoryRepository */
+		/*
 		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
 		$categoryRepository->setParentUidList($this->uid);
 		$children = $categoryRepository->findByParent();
 
 		return $children;
+
+		 */
 	}
 
 

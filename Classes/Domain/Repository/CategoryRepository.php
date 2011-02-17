@@ -29,38 +29,12 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repository_AbstractCategoryRepository {
+class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repository_AbstractDemandedRepository {
 
+	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query,
+		Tx_News2_Domain_Model_DemandInterface $demand) {}
 
-	public function findCategoryMenu($parentId = 0) {
-		$parentId = (int)$parentId;
-
-		$out = $this->getRecursiveCategories($parentId);
-
-		return $out;
-	}
-
-	public function findByIdList() {
-		$query = $this->createQuery();
-
-		$constraints = array();
-		$constraints[] = $this->setStoragePageRestriction($query);
-		$constraints[] = $this->setUidListConstraint($query);
-
-		return $this->executeQuery($query, $constraints);
-	}
-
-	public function findByParent() {
-		$query = $this->createQuery();
-
-		$constraints = array();
-		$constraints[] = $this->setStoragePageRestriction($query);
-		$constraints[] = $this->setParentUidListConstraint($query);
-
-		return $this->executeQuery($query, $constraints);
-	}
-
-
+	protected function createOrderingsFromDemand(Tx_News2_Domain_Model_DemandInterface $demand) {}
 }
 
 ?>

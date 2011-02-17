@@ -11,8 +11,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'News' => 'list,detail,search,searchResult,dateMenu',
-		'Category' => 'list',
+		'News' => 'list, detail, search, searchResult, dateMenu',
 	),
 	array(
 		'News' => 'search, searchResult',

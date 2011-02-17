@@ -41,10 +41,6 @@
 									<numIndex index="1">News->searchResult</numIndex>
 								</numIndex>
 								<numIndex index="6">
-									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.category_list</numIndex>
-									<numIndex index="1">Category->list</numIndex>
-								</numIndex>
-								<numIndex index="7">
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_date_menu</numIndex>
 									<numIndex index="1">News->dateMenu</numIndex>
 								</numIndex>
