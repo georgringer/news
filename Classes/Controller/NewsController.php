@@ -94,13 +94,15 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	public function listAction() {
 			// If the TypoScript config is not set return an error
 		if (!$this->settings['list']) {
-			$this->flashMessages->add($this->localize('list.settings.notfound'), t3lib_FlashMessage::ERROR);
+			$this->flashMessageContainer->add(
+				Tx_Extbase_Utility_Localization::translate('list.settings.notfound', $this->extensionName),
+				 t3lib_FlashMessage::ERROR
+			);
 		} else {
 			$demand = $this->createDemandObjectFromSettings($this->settings);
 			$newsRecords = $this->newsRepository->findDemanded($demand);
 			$this->view->assign('news', $newsRecords);
 		}
-
 	}
 
 	/**
@@ -170,17 +172,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/***************************************************************************
 	 * helper
 	 **********************/
-
-	/**
-	 * Localizes the given key by forwarding it to the Tx_Extbase_Utility_Localization::translate method.
-	 *
-	 * @param string $key
-	 * @param array $arguments
-	 * @return string
-	 */
-	protected function localize($key, array $arguments = NULL) {
-		return Tx_Extbase_Utility_Localization::translate($key, 'news2', $arguments);
-	}
 
 	/**
 	 * Injects the Configuration Manager and is initializing the framework settings
