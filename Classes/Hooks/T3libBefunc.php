@@ -23,12 +23,14 @@
 ***************************************************************/
 
 /**
- * Hook into t3lib_befunc to change flexform hehaviour, depending on action selection
+ * Hook into t3lib_befunc to change flexform hehaviour
+ * depending on action selection
  *
  * @package TYPO3
  * @subpackage tx_news2
  */
 class tx_News2_Hooks_T3libBefunc {
+
 	/**
 	 * Hook function of t3lib_befunc
 	 * It is used to change the flexform if it is about news2
@@ -87,7 +89,7 @@ class tx_News2_Hooks_T3libBefunc {
 	 * @return void
 	 */
 	protected function updateForNewsListAction(array &$dataStructure) {
-		
+
 	}
 
 	/**
@@ -103,10 +105,10 @@ class tx_News2_Hooks_T3libBefunc {
 			'template' => 'cropLength'
 		);
 
-		foreach($fieldsToBeRemoved as $sheetName => $sheetFields) {
+		foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
 			$fieldsInSheet = explode(',', $sheetFields);
 
-			foreach($fieldsInSheet as $fieldName) {
+			foreach ($fieldsInSheet as $fieldName) {
 				unset($dataStructure['sheets'][$sheetName]['ROOT']['el']['settings.' . $fieldName]);
 			}
 		}
