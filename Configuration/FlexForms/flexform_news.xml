@@ -20,6 +20,7 @@
 					<switchableControllerActions>
 						<TCEforms>
 						<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode</label>
+						<onChange>reload</onChange>
 						<config>
 							<type>select</type>
 							<itemsProcFunc>tx_news2_itemsProcFunc->user_switchableControllerActions</itemsProcFunc>

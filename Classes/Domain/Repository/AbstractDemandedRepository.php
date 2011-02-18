@@ -60,7 +60,7 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 	public function findDemanded(Tx_News2_Domain_Model_DemandInterface $demand) {
 		$query = $this->createQuery();
 
-		 // @todo find a better place for setting respectStoragePage. Perhaps $this->createQuery().
+			 // @todo find a better place for setting respectStoragePage. Perhaps $this->createQuery().
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 
 		if($constraints = $this->createConstraintsFromDemand($query, $demand)) {
@@ -73,11 +73,12 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 			$query->setOrderings($orderings);
 		}
 
-		 // @todo consider moving this to a seperate function as well
+			 // @todo consider moving this to a seperate function as well
 		if ($demand->getLimit() != NULL) {
 			$query->setLimit($demand->getLimit());
 		}
-		 // @todo consider moving this to a seperate function as well
+
+			 // @todo consider moving this to a seperate function as well
 		if ($demand->getOffset() != NULL) {
 			$query->setOffset($demand->getOffset());
 		}
