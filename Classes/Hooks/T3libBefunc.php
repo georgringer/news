@@ -78,6 +78,12 @@ class tx_News2_Hooks_T3libBefunc {
 				case 'News->detail':
 					$this->updateForNewsDetailAction(&$dataStructure);
 					break;
+				case 'News->search':
+					$this->updateForSearchAction(&$dataStructure);
+					break;
+				case 'News->dateMenu':
+					$this->updateForDateMenuAction(&$dataStructure);
+					break;
 			}
 		}
 	}
@@ -105,6 +111,49 @@ class tx_News2_Hooks_T3libBefunc {
 			'template' => 'cropLength'
 		);
 
+		$this->deleteFromStructure(&$dataStructure, $fieldsToBeRemoved);
+	}
+	
+	/**
+	 * Change flexform for News->detail which is the single view of a news record
+	 *
+	 * @param array $dataStructure flexform structure
+	 * @return void
+	 */
+	protected function updateForSearchAction(array &$dataStructure) {
+		$fieldsToBeRemoved = array(
+			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive',
+			'additional' => 'limit,offset,orderByRespectTopNews',
+			'template' => 'cropLength,media.maxWidth,media.maxHeight'
+		);
+
+		$this->deleteFromStructure(&$dataStructure, $fieldsToBeRemoved);
+	}
+	
+	/**
+	 * Change flexform for News->detail which is the single view of a news record
+	 *
+	 * @param array $dataStructure flexform structure
+	 * @return void
+	 */
+	protected function updateForDateMenuAction(array &$dataStructure) {
+		$fieldsToBeRemoved = array(
+			'sDEF' => 'orderBy,orderAscDesc',
+			'additional' => 'limit,offset,orderByRespectTopNews',
+			'template' => 'cropLength,media.maxWidth,media.maxHeight'
+		);
+
+		$this->deleteFromStructure(&$dataStructure, $fieldsToBeRemoved);
+	}
+
+
+	/**
+	 * Helper function to remove fields from flexform structure
+	 * 
+	 * @param array $dataStructure flexform structure
+	 * @param array $fieldsToBeRemoved fields which need to be removed
+	 */
+	protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved) {
 		foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
 			$fieldsInSheet = explode(',', $sheetFields);
 
