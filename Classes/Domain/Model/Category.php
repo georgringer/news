@@ -113,12 +113,6 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	protected $countRelatedNews = 0;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
-	 * @lazy
-	 */
-	protected $childs;
-
-	/**
 	 * Get creation date
 	 *
 	 * @return DateTime
@@ -405,30 +399,5 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	public function setFeGroup($feGroup) {
 		$this->feGroup = $feGroup;
 	}
-
-	/**************************
-	 * helper functions
-	 */
-
-	/**
-	 * Get children of a category
-	 *
-	 * @return Tx_Extbase_Persistence_QueryInterface
-	 */
-	public function getChilds() {
-		/** @var Tx_News2_Domain_Repository_CategoryRepository */
-		/*
-		$categoryRepository = t3lib_div::makeInstance('Tx_News2_Domain_Repository_CategoryRepository');
-		$categoryRepository->setParentUidList($this->uid);
-		$children = $categoryRepository->findByParent();
-
-		return $children;
-
-		 */
-	}
-
-
 }
-
-
 ?>
