@@ -20,8 +20,8 @@
 			<label index="flexforms_general.mode.news_detail">Detail view</label>
 			<label index="flexforms_general.mode.news_search">Search form</label>
 			<label index="flexforms_general.mode.news_searchresult">Search result</label>
+			<label index="flexforms_general.mode.news_datemenu">Date menu</label>
 			<label index="flexforms_general.mode.category_list">Category Menu</label>
-			<label index="flexforms_general.mode.news_date_menu">Date menu</label>
 			<label index="flexforms_general.mode.not_configured">No view yet configured</label>
 			<label index="flexforms_general.archive">Archive</label>
 			<label index="flexforms_general.archive.active">Only active (non archived)</label>
@@ -36,6 +36,11 @@
 			<label index="flexforms_general.orderAscDesc">Sort direction</label>
 			<label index="flexforms_general.orderAscDesc.asc">Ascending</label>
 			<label index="flexforms_general.orderAscDesc.desc">Descending</label>
+
+			<label index="flexforms_general.dateField">Date field to use</label>
+			<label index="flexforms_general.dateField.datetime">Given date/time</label>
+			<label index="flexforms_general.dateField.archive">Archive date</label>
+
 			<label index="flexforms_general.category">Category selection</label>
 			<label index="flexforms_general.categoryMode">Category mode</label>
 			<label index="flexforms_general.categoryMode.all">Don't care, show all</label>
@@ -57,6 +62,7 @@
 			<label index="flexforms_additional.templateSwitch.2">2</label>
 			<label index="flexforms_additional.pidDetail">PageId for single news display</label>
 			<label index="flexforms_additional.pidBack">PageId to return to</label>
+			<label index="flexforms_additional.listPid">PageId for list display</label>
 			<label index="flexforms_additional.limit">Max records displayed</label>
 			<label index="flexforms_additional.offset">Start with news item #</label>
 			<label index="flexforms_additional.orderByRespectTopNews">Sort "Top news" before</label>

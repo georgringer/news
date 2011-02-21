@@ -38,6 +38,7 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 
 	protected $topNewsSetting;
 
+	protected $dateField;
 	protected $month;
 	protected $year;
 
@@ -146,6 +147,14 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 
 	public function getOffset() {
 		return $this->offset;
+	}
+
+	public function setDateField($dateField) {
+		$this->dateField = $dateField;
+	}
+
+	public function getDateField() {
+		return $this->dateField;
 	}
 }
 

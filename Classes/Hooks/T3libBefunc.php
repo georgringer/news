@@ -95,7 +95,13 @@ class tx_News2_Hooks_T3libBefunc {
 	 * @return void
 	 */
 	protected function updateForNewsListAction(array &$dataStructure) {
+		$fieldsToBeRemoved = array(
+			'sDEF' => 'dateField',
+			'additional' => 'listPid',
+			'template' => ''
+		);
 
+		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
 	}
 
 	/**
@@ -106,8 +112,8 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForNewsDetailAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive',
-			'additional' => 'limit,offset,orderByRespectTopNews',
+			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive,dateField',
+			'additional' => 'limit,offset,orderByRespectTopNews,listPid',
 			'template' => 'cropLength'
 		);
 
@@ -122,8 +128,8 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForSearchAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive',
-			'additional' => 'limit,offset,orderByRespectTopNews',
+			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive,dateField',
+			'additional' => 'limit,offset,orderByRespectTopNews,listPid',
 			'template' => 'cropLength,media.maxWidth,media.maxHeight'
 		);
 
@@ -139,7 +145,7 @@ class tx_News2_Hooks_T3libBefunc {
 	protected function updateForDateMenuAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
 			'sDEF' => 'orderBy,orderAscDesc',
-			'additional' => 'limit,offset,orderByRespectTopNews',
+			'additional' => 'limit,offset,orderByRespectTopNews,pidDetail,pidBack',
 			'template' => 'cropLength,media.maxWidth,media.maxHeight'
 		);
 

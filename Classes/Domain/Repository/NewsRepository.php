@@ -117,8 +117,8 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			$end = mktime(0, 0, 0, ($demand->getMonth() + 1), 0, $demand->getYear());
 
 			$constraints[] = $query->logicalAnd(
-					$query->greaterThanOrEqual('datetime', $begin),
-					$query->lessThanOrEqual('datetime', $end)
+					$query->greaterThanOrEqual($demand->getDateField(), $begin),
+					$query->lessThanOrEqual($demand->getDateField(), $end)
 				);
 
 //			$constraints[] = $query->in('pidx', array('1','2'));

@@ -234,6 +234,14 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		$this->archive = $archive;
 	}
 
+	public function getYearOfArchive() {
+		return $this->archive->format('Y');
+	}
+
+	public function getMonthOfArchive() {
+		return $this->archive->format('m');
+	}
+
 	public function getAuthor() {
 		return $this->author;
 	}
