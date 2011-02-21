@@ -150,7 +150,7 @@ class ext_update {
 	 * @return void
 	 */
 	protected function processUpdates() {
-		$this->renameDatabaseTableField('tx_news2_domain_model_news', 'cateories', 'categories');
+		$this->renameDatabaseTableField('tx_news2_domain_model_news', 'category', 'categories');
 	}
 
 	/**
