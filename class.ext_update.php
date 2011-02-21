@@ -30,9 +30,9 @@
  * @version $Id$
  */
 class ext_update {
-	const STATUS_WARNING=-1;
-	const STATUS_ERROR=0;
-	const STATUS_OK=1;
+	const STATUS_WARNING = -1;
+	const STATUS_ERROR = 0;
+	const STATUS_OK = 1;
 
 	protected $messageArray = array();
 
@@ -44,7 +44,7 @@ class ext_update {
 	 * @param  string $newFieldName
 	 * @return int
 	 */
-	protected function renameTableField($table, $oldFieldName, $newFieldName) {
+	protected function renameDatabaseTableField($table, $oldFieldName, $newFieldName) {
 		$title = 'Renaming "' . $table . ':' . $oldFieldName . '" to "' . $table . ':' . $newFieldName . '": ';
 
 		$currentTableFields = $GLOBALS['TYPO3_DB']->admin_get_fields($table);
@@ -71,9 +71,68 @@ class ext_update {
 			}
 		}
 
-		$this->messageArray[] = array(status, $title, $message);
+		$this->messageArray[] = array($status, $title, $message);
 		return $status;
 	}
+
+	/**
+	 * Renames a flex form field
+	 *
+	 * @param  string $pluginName The pluginName used in list_type
+	 * @param  array $oldFieldPointer Pointer array the old field. E.g. array('sheetName', 'fieldName');
+	 * @param  array $newFieldPointer  Pointer array the new field. E.g. array('sheetName', 'fieldName');
+	 * @return void
+	 */
+	protected function renameFlexformField($pluginName, array $oldFieldPointer, array $newFieldPointer) {
+		$title = 'Renaming flexform field for "' .  $pluginName . '" - ' .
+			' sheet: ' . $oldFieldPointer[0] . ', field: ' .  $oldFieldPointer[1] . ' to ' .
+			' sheet: ' . $newFieldPointer[0] . ', field: ' .  $newFieldPointer[1];
+
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid, pi_flexform',
+			'tt_content',
+			'CType=\'list\' AND list_type=\'' . $pluginName . '\'');
+
+		$flexformTools = t3lib_div::makeInstance('t3lib_flexformtools');
+
+		while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+
+			$xmlArray = t3lib_div::xml2array($row['pi_flexform']);
+
+			if (!$xmlArray['data'][$oldFieldPointer[0]]) {
+				$status = self::STATUS_WARNING;
+				$message = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain ' .
+					'sheet: ' . $oldFieldPointer[0];
+			} else {
+				$updated = FALSE;
+
+				foreach($xmlArray['data'][$oldFieldPointer[0]] as $language => $fields) {
+					if ($fields[$oldFieldPointer[1]]) {
+
+						$xmlArray['data'][$newFieldPointer[0]][$language][$newFieldPointer[1]] = $fields[$oldFieldPointer[1]];
+						unset($xmlArray['data'][$oldFieldPointer[0]][$language][$oldFieldPointer[1]]);
+
+						$updated = TRUE;
+					}
+				}
+
+				if ($updated === TRUE) {
+					$GLOBALS['TYPO3_DB']->UPDATEquery('tt_content','uid=' . $row['uid'], array(
+						'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray)
+					));
+
+					$message = 'OK!';
+					$status = self::STATUS_OK;
+				} else {
+					$status = self::STATUS_WARNING;
+					$message = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain ' .
+						'sheet: ' . $oldFieldPointer[0] . ', field: ' .  $oldFieldPointer[1];
+				}
+			}
+
+			$this->messageArray[] = array($status, $title, $message);
+		}
+	}
+
 
 	/**
 	 * Main update function called by the extension manager.
@@ -82,7 +141,6 @@ class ext_update {
 	 */
 	public function main() {
 		$this->processUpdates();
-
 		return $this->generateOutput();
 	}
 
@@ -92,7 +150,7 @@ class ext_update {
 	 * @return void
 	 */
 	protected function processUpdates() {
-		$this->renameTableField('tx_news2_domain_model_news', 'cateories', 'categories');
+		$this->renameDatabaseTableField('tx_news2_domain_model_news', 'cateories', 'categories');
 	}
 
 	/**
