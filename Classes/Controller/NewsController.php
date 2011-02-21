@@ -181,7 +181,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$newsRecords = $this->newsRepository->findDemanded($demand);
 
 		$this->view->assignMultiple(array(
-			'listPid' => $this->settings['listPid'],
+			'listPid' => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
 			'dateField' => $this->settings['dateField'],
 			'news' => $newsRecords
 		));
