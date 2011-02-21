@@ -111,6 +111,19 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			$constraints[]  = $query->in('pid', $pidList);
 		}
 
+			// month & year
+		if ($demand->getYear() > 0 && $demand->getMonth() > 0) {
+			$begin = mktime(0, 0, 0, $demand->getMonth(), 0, $demand->getYear());
+			$end = mktime(0, 0, 0, ($demand->getMonth() + 1), 0, $demand->getYear());
+
+			$constraints[] = $query->logicalAnd(
+					$query->greaterThanOrEqual('datetime', $begin),
+					$query->lessThanOrEqual('datetime', $end)
+				);
+
+//			$constraints[] = $query->in('pidx', array('1','2'));
+		}
+
 		return $constraints;
 	}
 

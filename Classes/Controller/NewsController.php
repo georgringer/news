@@ -69,29 +69,47 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return Tx_News2_Domain_Model_NewsDemand
 	 */
 	protected function createDemandObjectFromSettings($settings) {
-		$demandObject = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
+		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
 
-		$demandObject->setCategories($settings['category']);
-		$demandObject->setCategorySetting($settings['categoryMode']);
-		$demandObject->setTopNewsSetting($settings['topNews']);
-		$demandObject->setArchiveSetting($settings['archive']);
-		$demandObject->setOrder($settings['orderBy'] . ' ' . $settings['orderAscDesc']);
-		$demandObject->setOrderRespectTopNews($settings['orderByRespectTopNews']);
-		$demandObject->setLimit($settings['limit']);
-		$demandObject->setOffset($settings['offset']);
-		$demandObject->setSearchFields($settings['search']['fields']);
-		$demandObject->setStoragePage(Tx_News2_Utility_Page::extendPidListByChildren($settings['startingpoint'],
+		$demand->setCategories($settings['category']);
+		$demand->setCategorySetting($settings['categoryMode']);
+		$demand->setTopNewsSetting($settings['topNews']);
+		$demand->setArchiveSetting($settings['archive']);
+		$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderAscDesc']);
+		$demand->setOrderRespectTopNews($settings['orderByRespectTopNews']);
+		$demand->setLimit($settings['limit']);
+		$demand->setOffset($settings['offset']);
+		$demand->setSearchFields($settings['search']['fields']);
+		$demand->setStoragePage(Tx_News2_Utility_Page::extendPidListByChildren($settings['startingpoint'],
 			$settings['recursive']));
 
-		return $demandObject;
+		return $demand;
+	}
+
+	/**
+	 * Overwrites a given demand object by an propertyName =>  $propertyValue array
+	 *
+	 * @param  $demand
+	 * @param  $overwriteDemand
+	 * @return Tx_News2_Domain_Model_NewsDemand
+	 */
+	protected function overwriteDemandObject($demand, $overwriteDemand) {
+		foreach ($overwriteDemand as $propertyName => $propertyValue) {
+			// @todo: consider adding an per mode access check
+			if (property_exists(Tx_News2_Domain_Model_NewsDemand, $propertyName)) {
+				$demand->{'set'.ucfirst($propertyName)}($propertyValue);
+			}
+		}
+		return $demand;
 	}
 
 	/**
 	 * Output a list view of news
 	 *
-	 * return string the Rendered view
+	 * @param array $overwriteDemand
+	 * @return return string the Rendered view
 	 */
-	public function listAction() {
+	public function listAction(array $overwriteDemand = NULL) {
 			// If the TypoScript config is not set return an error
 		if (!$this->settings['list']) {
 			$this->flashMessageContainer->add(
@@ -100,6 +118,11 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 			);
 		} else {
 			$demand = $this->createDemandObjectFromSettings($this->settings);
+
+			if ($overwriteDemand !== NULL) {
+				$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
+			}
+
 			$newsRecords = $this->newsRepository->findDemanded($demand);
 			$this->view->assign('news', $newsRecords);
 		}

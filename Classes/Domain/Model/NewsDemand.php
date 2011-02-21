@@ -38,6 +38,9 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 
 	protected $topNewsSetting;
 
+	protected $month;
+	protected $year;
+
 	protected $limit;
 	protected $offset;
 
@@ -111,6 +114,22 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 
 	public function getStoragePage() {
 		return $this->storagePage;
+	}
+
+	public function getMonth() {
+		return $this->month;
+	}
+
+	public function setMonth($month) {
+		$this->month = $month;
+	}
+
+	public function getYear() {
+		return $this->year;
+	}
+
+	public function setYear($year) {
+		$this->year = $year;
 	}
 
 	public function setLimit($limit) {
