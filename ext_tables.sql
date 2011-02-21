@@ -38,7 +38,7 @@ CREATE TABLE tx_news2_domain_model_news (
 	archive int(11) DEFAULT '0' NOT NULL,
 	author tinytext,
 	author_email tinytext,
-	category int(11) DEFAULT '0' NOT NULL,
+	categories int(11) DEFAULT '0' NOT NULL,
 	related int(11) DEFAULT '0' NOT NULL,
 	related_files tinytext,
 	related_links tinytext,

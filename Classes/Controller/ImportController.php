@@ -32,7 +32,6 @@
 class Tx_News2_Controller_ImportController extends Tx_News2_Controller_AbstractImportController {
 	public $currentPageId = NULL;
 
-
 	/**
 	 * Index action
 	 *

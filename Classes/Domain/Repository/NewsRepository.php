@@ -44,7 +44,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		$categoryConstraints = array();
 
 		foreach($categories as $category) {
-			$categoryConstraints[] = $query->contains('category', $category);
+			$categoryConstraints[] = $query->contains('categories', $category);
 		}
 
 		switch(strtolower($conjunction)) {

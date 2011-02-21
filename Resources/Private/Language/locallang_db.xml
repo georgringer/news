@@ -11,7 +11,7 @@
 			<label index="tx_news2_domain_model_news.teaser">Teaser</label>
 			<label index="tx_news2_domain_model_news.datetime">Date &amp; Time</label>
 			<label index="tx_news2_domain_model_news.archive">Archive</label>
-			<label index="tx_news2_domain_model_news.category">Category</label>
+			<label index="tx_news2_domain_model_news.categories">Categories</label>
 			<label index="tx_news2_domain_model_news.related">Related News</label>
 			<label index="tx_news2_domain_model_news.related_links">Related links</label>
 			<label index="tx_news2_domain_model_news.type.I.0">News</label>

@@ -11,7 +11,7 @@ $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,category,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links'
+		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -220,10 +220,10 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'size' => 30,
 			)
 		),
-		'category' => array(
+		'categories' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.category',
+			'label' => $ll . 'tx_news2_domain_model_news.categories',
 			'config' => array(
 				'type' => 'select',
 				'renderMode' => 'tree',
@@ -431,7 +431,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,
 				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
@@ -443,7 +443,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,import_id,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,import_id,
 				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
@@ -455,7 +455,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,category, related, keywords,import_id,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,import_id,
 				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),

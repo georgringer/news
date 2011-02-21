@@ -120,7 +120,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
 	 * @lazy
 	 */
-	protected $category;
+	protected $categories;
 
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_News>
@@ -262,22 +262,22 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 *
 	 * * @return Tx_News2_Domain_Model_Category
 	 */
-	public function getCategory() {
-		if ($this->category instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->category->_loadRealInstance();
+	public function getCategories() {
+		if ($this->categories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
+			$this->categories->_loadRealInstance();
 		}
-		return $this->category;
+		return $this->categories;
 	}
 
 	public function getFirstCategory() {
-		$categories = $this->getCategory();
+		$categories = $this->getCategories();
 		$categories->rewind();
 
 		return $categories->current();
 	}
 
-	public function setCategory($category) {
-		$this->category = $category;
+	public function setCategories($categories) {
+		$this->categories = $categories;
 	}
 
 	/**
