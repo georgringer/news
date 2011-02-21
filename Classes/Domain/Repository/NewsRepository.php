@@ -120,8 +120,6 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 					$query->greaterThanOrEqual($demand->getDateField(), $begin),
 					$query->lessThanOrEqual($demand->getDateField(), $end)
 				);
-
-//			$constraints[] = $query->in('pidx', array('1','2'));
 		}
 
 		return $constraints;
