@@ -73,16 +73,16 @@ class tx_News2_Hooks_T3libBefunc {
 				// modify the flexform structure depending on the first found action
 			switch ($selectedView) {
 				case 'News->list':
-					$this->updateForNewsListAction(&$dataStructure);
+					$this->updateForNewsListAction($dataStructure);
 					break;
 				case 'News->detail':
-					$this->updateForNewsDetailAction(&$dataStructure);
+					$this->updateForNewsDetailAction($dataStructure);
 					break;
 				case 'News->search':
-					$this->updateForSearchAction(&$dataStructure);
+					$this->updateForSearchAction($dataStructure);
 					break;
 				case 'News->dateMenu':
-					$this->updateForDateMenuAction(&$dataStructure);
+					$this->updateForDateMenuAction($dataStructure);
 					break;
 			}
 		}
@@ -111,9 +111,9 @@ class tx_News2_Hooks_T3libBefunc {
 			'template' => 'cropLength'
 		);
 
-		$this->deleteFromStructure(&$dataStructure, $fieldsToBeRemoved);
+		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
 	}
-	
+
 	/**
 	 * Change flexform for News->detail which is the single view of a news record
 	 *
@@ -127,9 +127,9 @@ class tx_News2_Hooks_T3libBefunc {
 			'template' => 'cropLength,media.maxWidth,media.maxHeight'
 		);
 
-		$this->deleteFromStructure(&$dataStructure, $fieldsToBeRemoved);
+		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
 	}
-	
+
 	/**
 	 * Change flexform for News->detail which is the single view of a news record
 	 *
@@ -143,13 +143,13 @@ class tx_News2_Hooks_T3libBefunc {
 			'template' => 'cropLength,media.maxWidth,media.maxHeight'
 		);
 
-		$this->deleteFromStructure(&$dataStructure, $fieldsToBeRemoved);
+		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
 	}
 
 
 	/**
 	 * Helper function to remove fields from flexform structure
-	 * 
+	 *
 	 * @param array $dataStructure flexform structure
 	 * @param array $fieldsToBeRemoved fields which need to be removed
 	 */
