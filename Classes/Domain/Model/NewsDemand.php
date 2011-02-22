@@ -134,7 +134,7 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 	}
 
 	public function setLimit($limit) {
-		$this->limit = $limit;
+		$this->limit = (int)$limit;
 	}
 
 	public function getLimit() {
@@ -142,7 +142,7 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 	}
 
 	public function setOffset($offset) {
-		$this->offset = $offset;
+		$this->offset = (int)$offset;
 	}
 
 	public function getOffset() {
