@@ -10,7 +10,7 @@ if (!defined('TYPO3_MODE')) {
 	// Extension manager configuration
 $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
 	// Alternative labels for news & category records
-t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_news2_labelFunc.php');
+t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hooks/Labels.php');
 	// Add additional media types like DAM
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_' . $_EXTKEY . '_itemsProcFunc.php');
 	// CSH - context sensitive help
@@ -35,7 +35,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'label'     => 'title',
 		'label_alt' => 'categories',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'tx_news2_labelFunc->getUserLabelNews',
+		'label_userFunc' => 'tx_News2_Hooks_Labels->getUserLabelNews',
 		'prependAtCopy' => $configurationArray['prependAtCopy'] ? 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy' : '',
 		'hideAtCopy' => TRUE,
 		'tstamp'    => 'tstamp',
@@ -77,7 +77,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 		'label'     => 'title',
 		'label_alt' => 'parentcategory,sys_language_uid',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'tx_news2_labelFunc->getUserLabelCategory',
+		'label_userFunc' => 'tx_News2_Hooks_Labels->getUserLabelCategory',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -108,7 +108,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'label'     => 'caption',
 		'label_alt' => 'type, showinpreview',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'tx_news2_labelFunc->getUserLabelMedia',
+		'label_userFunc' => 'tx_News2_Hooks_Labels->getUserLabelMedia',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
