@@ -186,7 +186,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'type'     => 'input',
 				'size'     => 12,
 				'max'      => 20,
-				'eval'     => 'date,required',
+				'eval'     => 'datetime,required',
 				'default'  => mktime(date('H'), date('i'), 0, date('m'), date('d'), date('Y'))
 			)
 		),
