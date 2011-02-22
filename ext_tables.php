@@ -12,7 +12,7 @@ $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][
 	// Alternative labels for news & category records
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hooks/Labels.php');
 	// Add additional media types like DAM
-t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.tx_' . $_EXTKEY . '_itemsProcFunc.php');
+t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hooks/ItemsProcFunc.php');
 	// CSH - context sensitive help
 t3lib_extMgm::addLLrefForTCAdescr(
 		'tx_news2_domain_model_news', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_news.xml');
@@ -253,7 +253,7 @@ if (!empty($configurationArray['pageModuleFieldsCategory'])) {
 $GLOBALS['TYPO3_USER_SETTINGS']['columns']['news2overlay'] = array(
 	'label'			=> 'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:usersettings.overlay',
 	'type'			=> 'select',
-	'itemsProcFunc'	=> 'tx_news2_itemsProcFunc->user_categoryOverlay',
+	'itemsProcFunc'	=> 'tx_News2_Hooks_ItemsProcFunc->user_categoryOverlay',
 );
 $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 	--div--;LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:pi1_title,news2overlay';

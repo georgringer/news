@@ -23,7 +23,7 @@
 						<onChange>reload</onChange>
 						<config>
 							<type>select</type>
-							<itemsProcFunc>tx_news2_itemsProcFunc->user_switchableControllerActions</itemsProcFunc>
+							<itemsProcFunc>tx_News2_Hooks_ItemsProcFunc->user_switchableControllerActions</itemsProcFunc>
 							<items>
 								<numIndex index="1">
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_list</numIndex>
@@ -56,7 +56,7 @@
 							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy</label>
 							<config>
 								<type>select</type>
-								<itemsProcFunc>tx_news2_itemsProcFunc->user_orderBy</itemsProcFunc>
+								<itemsProcFunc>tx_News2_Hooks_ItemsProcFunc->user_orderBy</itemsProcFunc>
 								<items>
 									<numIndex index="0" type="array">
 										<numIndex index="0"></numIndex>
@@ -474,7 +474,7 @@
 						<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_template.templateLayout</label>
 							<config>
 								<type>select</type>
-								<itemsProcFunc>tx_news2_itemsProcFunc->user_templateLayout</itemsProcFunc>
+								<itemsProcFunc>tx_News2_Hooks_ItemsProcFunc->user_templateLayout</itemsProcFunc>
 								<items>
 									<numIndex index="0" type="array">
 										<numIndex index="0"></numIndex>
