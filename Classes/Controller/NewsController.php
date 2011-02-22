@@ -160,12 +160,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return void
 	 */
 	public function detailAction(Tx_News2_Domain_Model_News $news = NULL) {
-		if (!is_null($news)) {
-			$this->view->assign('newsItem', $news);
-			if ($this->settings['detail']['titleInMetaTags'] == 1) {
-				Tx_News2_Utility_Page::renderTitle($news->getTitle());
-			}
-		}
+		$this->view->assign('newsItem', $news);
 	}
 
 	/**

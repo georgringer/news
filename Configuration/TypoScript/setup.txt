@@ -56,8 +56,6 @@ plugin.tx_news2 {
 		#  Detail
 		# --------------
 		detail {
-			titleInMetaTags = 1
-
 			# media configuration
 			media {
 				image {

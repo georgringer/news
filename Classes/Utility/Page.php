@@ -33,19 +33,6 @@
 class Tx_News2_Utility_Page {
 
 	/**
-	 * Sets the rendered page title
-	 *
-	 * @param  $title
-	 * @return void
-	 */
-	public static function renderTitle($title) {
-		$GLOBALS['TSFE']->page['title'] = $title;
-		$GLOBALS['TSFE']->indexedDocTitle = $title;
-		$GLOBALS['TSFE']->pSetup['meta.']['DESCRIPTION.'] = NULL;
-		$GLOBALS['TSFE']->pSetup['meta.']['DESCRIPTION'] = $title;
-	}
-
-	/**
 	 * Find all ids from given ids and level
 	 *
 	 * @param string $pidList comma seperated list of ids
