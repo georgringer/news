@@ -215,7 +215,7 @@ t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'News v2');
  */
 if (TYPO3_MODE == 'BE') {
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses'][$pluginSignature . '_wizicon'] =
-		t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Backend/class.' . $_EXTKEY . '_wizicon.php';
+		t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Php/class.' . $_EXTKEY . '_wizicon.php';
 }
 
 /***************
