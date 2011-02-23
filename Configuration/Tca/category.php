@@ -210,7 +210,12 @@ $TCA['tx_news2_domain_model_category'] = array(
 				'size' => 1,
 				'maxitems' => 1,
 				'minitems' => 0,
-				'show_thumbs' => 1
+				'show_thumbs' => 1,
+				'wizards' => array(
+					'suggest' => array(
+						'type' => 'suggest',
+					),
+				),
 			)
 		),
 		'shortcut' => array(
@@ -224,7 +229,12 @@ $TCA['tx_news2_domain_model_category'] = array(
 				'size' => 1,
 				'maxitems' => 1,
 				'minitems' => 0,
-				'show_thumbs' => 1
+				'show_thumbs' => 1,
+				'wizards' => array(
+					'suggest' => array(
+						'type' => 'suggest',
+					),
+				),
 			)
 		),
 		'import_id' => array(
