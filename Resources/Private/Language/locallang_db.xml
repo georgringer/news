@@ -13,6 +13,7 @@
 			<label index="tx_news2_domain_model_news.archive">Archive</label>
 			<label index="tx_news2_domain_model_news.categories">Categories</label>
 			<label index="tx_news2_domain_model_news.related">Related News</label>
+			<label index="tx_news2_domain_model_news.related_files">Related Files</label>
 			<label index="tx_news2_domain_model_news.related_links">Related Links</label>
 			<label index="tx_news2_domain_model_news.type.I.0">News</label>
 			<label index="tx_news2_domain_model_news.type.I.1">Internal Page</label>
@@ -60,6 +61,7 @@
 			<label index="tx_news2_domain_model_news.archive">Archivdatum</label>
 			<label index="tx_news2_domain_model_news.category">Kategorie</label>
 			<label index="tx_news2_domain_model_news.related">Verwandte Artikel</label>
+			<label index="tx_news2_domain_model_news.related_files">Verwandte Dateien</label>
 			<label index="tx_news2_domain_model_news.related_links">Verwandte Links</label>
 			<label index="tx_news2_domain_model_news.type.I.0">News</label>
 			<label index="tx_news2_domain_model_news.type.I.1">Interne Seite</label>
