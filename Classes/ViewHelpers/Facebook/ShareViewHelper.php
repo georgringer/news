@@ -56,9 +56,10 @@ class Tx_News2_ViewHelpers_Facebook_ShareViewHelper extends Tx_Fluid_Core_ViewHe
 	/**
 	 * Render a share button
 	 *
+	 * @param boolean $loadJs
 	 * @return string
 	 */
-	public function render() {
+	public function render($loadJs = TRUE) {
 			// check defaults
 		if (empty($this->arguments['href'])) {
 			$this->tag->addAttribute('href', 'http://www.facebook.com/sharer.php');
@@ -75,8 +76,11 @@ class Tx_News2_ViewHelpers_Facebook_ShareViewHelper extends Tx_Fluid_Core_ViewHe
 
 		$this->tag->setContent($this->renderChildren());
 
-		$code = $this->tag->render() .
-					'<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>';
+		$code = $this->tag->render();
+
+		if ($loadJs) {
+			$code .= '<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>';
+		}
 
 		return $code;
 	}

@@ -28,11 +28,8 @@
  *
  * Examples
  * ==============
- * <n:facebook.share text="Teilen" />
- * Result: Facebook widget to share current URL with the text "Teilen"
- *
- * <n:facebook.share text="Share it with your friends" url="http://www.typo3.org" />
- * Result: Facebook widget to share www.typo3.org with the text "Share with your friends"
+ * <n:facebook.comment appId="165193833530000" xid="news-{newsItem.uid}"></n:facebook.comment>
+ * Result: Facebook widget to comment an article
  *
  * @package TYPO3
  * @subpackage tx_news2
@@ -41,25 +38,31 @@
 class Tx_News2_ViewHelpers_Facebook_CommentViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
 	/**
+	 * @var	string
+	 */
+	protected $tagName = 'fb:comments';
+
+	/**
 	 * Arguments initialization
 	 *
 	 * @return void
 	 */
 	public function initializeArguments() {
-		$this->registerTagAttribute('identifier', 'string', 'An id associated with the comments object (defaults to URL-encoded page URL)');
-		$this->registerTagAttribute('count', 'integer', 'the number of comments to display, or 0 to hide all comments');
+		$this->registerTagAttribute('xid', 'string', 'An id associated with the comments object (defaults to URL-encoded page URL)', TRUE);
+		$this->registerTagAttribute('numposts', 'integer', 'the number of comments to display, or 0 to hide all comments');
 		$this->registerTagAttribute('width', 'integer', 'The width of the plugin in px, default = 425');
 		$this->registerTagAttribute('publishFeed', 'boolean', 'Whether the publish feed story checkbox is checked., default = TRUE');
 	}
 
-	public function render() {
-		$url = (!empty($this->arguments['identifier'])) ? ' xid="' . rawurlencode($this->arguments['identifier']) . '"' : '';
-		$width = !empty($this->arguments['width']) ? ' width="' . $this->arguments['width'] . '"' : '';
-
-			// @todo: check that
+	/**
+	 *
+	 * @param string $appId
+	 * @return string
+	 */
+	public function render($appId) {
 		$code = '<div id="fb-root"></div>
-					<script src="http://connect.facebook.net/en_US/all.js#appId=APP_ID&amp;xfbml=1"></script>
-					<fb:comments ' . $url . $width . '></fb:comments>';
+					<script src="http://connect.facebook.net/en_US/all.js#appId=' . htmlspecialchars($appId) . '&amp;xfbml=1"></script>';
+		$code .= $this->tag->render();
 
 		return $code;
 	}
