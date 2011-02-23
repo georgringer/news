@@ -432,7 +432,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// internal url
@@ -444,7 +444,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,import_id,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// external url
@@ -456,7 +456,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,import_id,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.media,media,related_files,related_links,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 	),

@@ -6,7 +6,7 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="tx_news2_domain_model_news.tabs.media">Media</label>
+			<label index="tx_news2_domain_model_news.tabs.relations">Relations</label>
 			<label index="tx_news2_domain_model_news">News</label>
 			<label index="tx_news2_domain_model_news.teaser">Teaser</label>
 			<label index="tx_news2_domain_model_news.datetime">Date &amp; Time</label>
@@ -53,7 +53,7 @@
 		</languageKey>
 
 		<languageKey index="de" type="array">
-			<label index="tx_news2_domain_model_news.tabs.media">Medienelement</label>
+			<label index="tx_news2_domain_model_news.tabs.relations">Relationen</label>
 			<label index="tx_news2_domain_model_news">News</label>
 			<label index="tx_news2_domain_model_news.teaser">Teaser</label>
 			<label index="tx_news2_domain_model_news.datetime">Datum</label>
