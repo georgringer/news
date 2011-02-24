@@ -96,8 +96,9 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	protected function overwriteDemandObject($demand, $overwriteDemand) {
 		foreach ($overwriteDemand as $propertyName => $propertyValue) {
 			// @todo: consider adding an per mode access check
-			if (property_exists(Tx_News2_Domain_Model_NewsDemand, $propertyName)) {
-				$demand->{'set'.ucfirst($propertyName)}($propertyValue);
+			$setterMethod = 'set'.ucfirst($propertyName);
+			if (method_exists(Tx_News2_Domain_Model_NewsDemand, $setterMethod)) {
+				$demand->{$setterMethod}($propertyValue);
 			}
 		}
 		return $demand;
