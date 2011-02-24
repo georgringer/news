@@ -109,7 +109,7 @@
 							<f:for each="{newsItem.relatedFiles}" as="relatedFile">
 								<li>
 									<span class="news2-related-files-link">
-										<n:format.fileDownload file="{relatedFile.file}" path="uploads/tx_news/" configuration="{settings.relatedFiles.download}">
+										<n:format.fileDownload file="{relatedFile.file}" path="uploads/tx_news2/" configuration="{settings.relatedFiles.download}">
 											<f:if condition="{relatedFile.title}">
 												<f:then>
 													{relatedFile.title}
@@ -122,7 +122,7 @@
 									</span>
 									<span class="hidden">. </span>
 									<span class="news2-related-files-size">
-										<n:format.fileSize file="{relatedFile.file}" path="uploads/tx_news/" format="{settings.relatedFiles.fileSizeLabels}" />
+										<n:format.fileSize file="{relatedFile.file}" path="uploads/tx_news2/" format="{settings.relatedFiles.fileSizeLabels}" />
 									</span>
 								</li>
 							</f:for>
