@@ -71,7 +71,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	protected function createDemandObjectFromSettings($settings) {
 		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
 
-		$demand->setCategories($settings['category']);
+		$demand->setCategories(explode(',',$settings['category']));
 		$demand->setCategorySetting($settings['categoryMode']);
 		$demand->setTopNewsSetting($settings['topNews']);
 		$demand->setArchiveSetting($settings['archive']);
