@@ -48,13 +48,13 @@ class Tx_News2_Jobs_TTNewsCategoryImportJob implements Tx_News2_Jobs_ImportJobIn
 		$totalRecordCount = $this->ttNewsCategoryImportService->getTotalRecordCount();
 		return array(
 			'totalRecordCount' => $totalRecordCount,
-			'runsToComplete' => ceil($totalRecordCount / 30),
-			'increaseOffsetPerRunBy' => 30,
+			'runsToComplete' => 1,
+			'increaseOffsetPerRunBy' => 0,
 		);
 	}
 
 	public function run($offset) {
-		$importArray = $this->ttNewsCategoryImportService->createImportArray($offset, 30);
+		$importArray = $this->ttNewsCategoryImportService->createImportArray($offset, $this->ttNewsCategoryImportService->getTotalRecordCount());
 		$this->categoryImportService->import($importArray);
 	}
 }
