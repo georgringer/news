@@ -5,11 +5,148 @@
 </f:section>
 
 <f:section name="content">
-	<p>This is a importer of tt_news into news2.</p>
-	
-	<div style="padding:4px;margin:5px;border:1px solid red;font-weight:strong;">
-		There needs to be an additional field 'exportid' in the tables tt_news and tt_news_cat.
-		<br />
-		Those fields are not created by this importer.
+	<h3 class="uppercase">News2 importer</h3>
+	<p class="description">
+		This is the "News2 importer module". Within the select box below you find a list of all available import jobs.<br />
+		<strong>Note</strong>: It's strongly recommended to backup all news2 tables before running an import job.
+
+	</p>
+	<br />
+	Choose a job: 	<f:form.select id="jobSelector" options="{availableJobs}" />
+	<br /><br />
+
+	<div id="job" style="display:none;">
+		<div id="progressBar" style="width:300px;"></div>
+		<button id="startButton">Start</button><br />
 	</div>
+
+
+	<script type="text/javascript">
+	<![CDATA[
+		Ext.namespace('Tx_News2');
+
+		Tx_News2.Common = function() {
+			var pub = {};
+			var extKey = 'news2';
+
+			var underscoreToUpperCamelCase = function (subject) {
+				var matches = subject.match(/(_\w)/g);
+					if (matches) {
+						matches.each(function(m) {
+							subject = subject.replace(m, m.charAt(1).toUpperCase());
+						});
+					}
+					return subject.charAt(0).toUpperCase() + subject.substr(1);
+			};
+
+			var getParameterPrefix = function (mainModuleName, subModuleName) {
+				return  'tx_' + extKey + '_' + mainModuleName + '_' + extKey + subModuleName.replace(/_/g, '');
+			};
+
+			pub.getExtKey = function() {
+				return extKey;
+			};
+
+			pub.getBackendRequest = function (mainModuleName, subModuleName, controller, action, parameters) {
+				var parameterPrefix = getParameterPrefix(mainModuleName, subModuleName);
+			    var params = {};
+
+				Ext.apply(parameters, {controller: controller, action: action});
+
+				Ext.iterate(parameters, function(key,value) {
+					params[parameterPrefix + '[' + key + ']']  = value;
+				});
+
+				var request = {
+					'url' : 'mod.php?' + 'M=' + mainModuleName + '_' +  Ext.util.Format.capitalize(extKey) +
+						underscoreToUpperCamelCase(subModuleName),
+					'params' : params
+				};
+
+				return request;
+			};
+
+			return pub;
+		}();
+
+
+		Tx_News2.Importer = function() {
+			var pub ={};
+			var jobInfo = {};
+			var progressBar;
+
+			var runCounter = 1;
+
+			var run = function () {
+				var request = Ext.apply(Tx_News2.Common.getBackendRequest('web', 'tx_news2_m1', 'import',
+					'runJob', {jobClassName: jobInfo.jobClassName, offset: runCounter * jobInfo.increaseOffsetPerRunBy}));
+
+				Ext.apply(request, {
+					success: function(){
+						var progress =  runCounter / jobInfo.runsToComplete;
+
+						progressBar.updateProgress(progress, Math.round(100*progress)+'%');
+						runCounter ++;
+
+						if (runCounter <= jobInfo.runsToComplete) {
+							run();
+						} else {
+							progressBar.updateText('Done.');
+							progressBar.reset();
+							runCounter = 1;
+						}
+					},
+					failure: function() {
+						alert('error');
+					}
+				});
+
+				Ext.Ajax.request(request);
+			};
+
+			var initJob = function() {
+				Ext.get('job').show();
+
+				progressBar = new Ext.ProgressBar({
+					renderTo: 'progressBar'
+				});
+
+				Ext.get('startButton').on('click', function() {
+					run();
+				});
+			};
+
+			var loadJobInfo = function (jobClassName) {
+				var request = Ext.apply(Tx_News2.Common.getBackendRequest('web', 'tx_news2_m1', 'import',
+					'jobInfo', {jobClassName: jobClassName}));
+
+				Ext.apply(request, {
+					success: function(response) {
+						jobInfo = (Ext.decode(response.responseText));
+						Ext.apply(jobInfo, {jobClassName: jobClassName});
+						initJob();
+					}
+				});
+
+				Ext.Ajax.request(request);
+			};
+
+			pub.init = function() {
+				Ext.get('jobSelector').on('change', function() {
+					var jobClassName = this.getValue();
+					if (jobClassName != '0') {
+						loadJobInfo(jobClassName);
+					} else {
+						Ext.get('job').hide();
+					}
+				});
+			};
+			return pub;
+		}();
+
+		Ext.onReady(function() {
+			Tx_News2.Importer.init();
+		});
+	]]>
+	</script>
 </f:section>

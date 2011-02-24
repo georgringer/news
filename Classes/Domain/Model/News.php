@@ -182,9 +182,20 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $importId;
 
 	/**
+	 * @var string
+	 */
+	protected $importSource;
+
+	/**
 	 * @var integer
 	 */
 	protected $sorting;
+
+
+	public function __construct() {
+		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->media = new Tx_Extbase_Persistence_ObjectStorage();
+	}
 
 	public function getTitle() {
 		return $this->title;
@@ -276,8 +287,24 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		return $categories->current();
 	}
 
+	/**
+	 * Set categories
+	 *
+	 * @param  Tx_Extbase_Persistence_ObjectStorage $categories
+	 * @return void
+	 */
 	public function setCategories($categories) {
 		$this->categories = $categories;
+	}
+
+	/**
+	 * Adds a category to this categories.
+	 *
+	 * @param Tx_News2_Domain_Model_Category $category
+	 * @return void
+	 */
+	public function addCategory(Tx_News2_Domain_Model_Category $category) {
+		$this->categories->attach($category);
 	}
 
 	/**
@@ -380,6 +407,16 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		return NULL;
 	}
 
+	/**
+	 * Adds a media to this media.
+	 *
+	 * @param Tx_News2_Domain_Model_Media $media
+	 * @return void
+	 */
+	public function addMedia(Tx_News2_Domain_Model_Media $media) {
+		$this->media->attach($media);
+
+	}
 
 	/**
 	 * Get first media element which is tagged as preview and is of type image
@@ -530,6 +567,24 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		$this->sorting = $sorting;
 	}
 
+	/**
+	 * Set importSource
+	 *
+	 * @param  string $importSource
+	 * @return void
+	 */
+	public function setImportSource($importSource) {
+		$this->importSource = $importSource;
+	}
+
+	/**
+	 * Get importSource
+	 *
+	 * @return string
+	 */
+	public function getImportSource() {
+		return $this->importSource;
+	}
 
 }
 

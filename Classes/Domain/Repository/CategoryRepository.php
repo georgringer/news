@@ -35,6 +35,22 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 		Tx_News2_Domain_Model_DemandInterface $demand) {}
 
 	protected function createOrderingsFromDemand(Tx_News2_Domain_Model_DemandInterface $demand) {}
+
+	/**
+	 * @param  $importSource
+	 * @param  $importId
+	 * @return
+	 */
+	public function findOneByImportSourceAndImportId($importSource, $importId) {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+
+		return $query->matching(
+			$query->logicalAnd(
+				$query->equals('importSource', $importSource),
+				$query->equals('importId', $importId)
+			))->execute()->getFirst();
+	}
 }
 
 ?>

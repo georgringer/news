@@ -48,10 +48,13 @@ CREATE TABLE tx_news2_domain_model_news (
 	internalurl text,
 	externalurl text,
 	istopnews int(11) DEFAULT '0' NOT NULL,
+
 	import_id int(11) DEFAULT '0' NOT NULL,
+	import_source varchar(100) DEFAULT '' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
+	KEY import (import_id, import_source)
 );
 
 #
@@ -79,10 +82,13 @@ CREATE TABLE tx_news2_domain_model_category (
 	single_pid int(11) unsigned DEFAULT '0' NOT NULL,
 	shortcut int(11) DEFAULT '0' NOT NULL,
 	import_id int(11) DEFAULT '0' NOT NULL,
+	import_source varchar(100) DEFAULT '' NOT NULL,
+
 
 	PRIMARY KEY (uid),
 	KEY parent (pid),
-	KEY parentcategory (parentcategory)
+	KEY parentcategory (parentcategory),
+	KEY import (import_id, import_source)
 );
 
 

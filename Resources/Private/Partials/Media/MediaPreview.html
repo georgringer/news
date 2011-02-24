@@ -1,13 +1,12 @@
-
 <f:if condition="{mediaElement.type} == 0">
 	<f:image
-		src="uploads/tx_news/{mediaElement.media}"
+		src="uploads/tx_news2/{mediaElement.media}"
 		title="{mediaElement.title}"
 		alt="{mediaElement.title}"
 		maxWidth="{settings.list.media.image.maxWidth}"
-		maxHeight="{settings.list.media.image.maxHeight}" 
+		maxHeight="{settings.list.media.image.maxHeight}"
 	/>
-	
+
 </f:if>
 <f:if condition="{mediaElement.type} == 1">
 	<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}"/>

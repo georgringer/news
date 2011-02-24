@@ -415,12 +415,20 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'type' => 'check'
 			)
 		),
+
 		'import_id' => array(
 			'label'   => $ll . 'tx_news2_domain_model_news.import_id',
 			'config' => array(
-				'type' => 'input'
+				'type' => 'none'
 			)
 		),
+
+		'import_source' => array(
+			'label'   => $ll . 'tx_news2_domain_model_news.import_source',
+			'config' => array(
+				'type' => 'none'
+			)
+		)
 	),
 	'types' => array(
 			// default news

@@ -169,7 +169,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 				'internal_type' => 'file',
 				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-				'uploadfolder' => 'uploads/tx_news',
+				'uploadfolder' => 'uploads/tx_news2',
 				'show_thumbs' => 1,
 				'size' => 3,
 				'minitems' => 0,
@@ -240,7 +240,14 @@ $TCA['tx_news2_domain_model_category'] = array(
 		'import_id' => array(
 			'label'   => $ll . 'tx_news2_domain_model_news.import_id',
 			'config' => array(
-				'type' => 'input'
+				'type' => 'none'
+			)
+		),
+
+		'import_source' => array(
+			'label'   => $ll . 'tx_news2_domain_model_news.import_source',
+			'config' => array(
+				'type' => 'none'
 			)
 		),
 	),

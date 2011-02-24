@@ -110,6 +110,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return return string the Rendered view
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
+
 			// If the TypoScript config is not set return an error
 		if (!$this->settings['list']) {
 			$this->flashMessageContainer->add(

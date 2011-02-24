@@ -102,6 +102,11 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	protected $importId;
 
 	/**
+	 * @var string
+	 */
+	protected $importSource;
+
+	/**
 	 * keep it as string as it should be only used during imports
 	 * @var string
 	 */
@@ -398,6 +403,25 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 */
 	public function setFeGroup($feGroup) {
 		$this->feGroup = $feGroup;
+	}
+
+	/**
+	 * Set importSource
+	 *
+	 * @param  string $importSource
+	 * @return void
+	 */
+	public function setImportSource($importSource) {
+		$this->importSource = $importSource;
+	}
+
+	/**
+	 * Get importSource
+	 *
+	 * @return string
+	 */
+	public function getImportSource() {
+		return $this->importSource;
 	}
 }
 ?>

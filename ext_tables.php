@@ -264,14 +264,14 @@ $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
  	Register BE-Modules
 =========================================================================== */
 
-if (TYPO3_MODE == 'BE' && t3lib_extMgm::isLoaded('tt_news') && $configurationArray['showImporter'] == 1) {
+if (TYPO3_MODE == 'BE') {
 	Tx_Extbase_Utility_Extension::registerModule(
 		$_EXTKEY,
 		'web',
 		'tx_news2_m1',
 		'',
 		array(
-			'Import' => 'index,importNewsOverview,importCategoryOverview,importNews,importCategory',
+			'Import' => 'index, runJob, jobInfo',
 		),
 		array(
 			'access' => 'user,group',

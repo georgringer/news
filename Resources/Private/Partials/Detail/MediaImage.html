@@ -1,12 +1,12 @@
 <div class="mediaelement mediaelement-image">
 	<f:if condition="{settings.detail.media.image.lightbox}">
 		<f:then>
-			<a rel="{settings.detail.media.image.lightbox}" title="{mediaElement.caption}" href="{f:uri.image(src:'uploads/tx_news/{mediaElement.media}' maxWidth:'800')}">
-				<f:image src="uploads/tx_news/{mediaElement.media}" title="{mediaElement.title}"  alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
-			</a>			
+			<a rel="{settings.detail.media.image.lightbox}" title="{mediaElement.caption}" href="{f:uri.image(src:'uploads/tx_news2/{mediaElement.media}' maxWidth:'800')}">
+				<f:image src="uploads/tx_news2/{mediaElement.media}" title="{mediaElement.title}"  alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
+			</a>
 		</f:then>
 		<f:else>
-			<f:image src="uploads/tx_news/{mediaElement.media}" title="{mediaElement.title}"  alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
+			<f:image src="uploads/tx_news2/{mediaElement.media}" title="{mediaElement.title}"  alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
 		</f:else>
 	</f:if>
 </div>

@@ -157,5 +157,21 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		return $orderings;
 	}
 
+	/**
+	 * @param  $importSource
+	 * @param  $importId
+	 * @return
+	 */
+	public function findOneByImportSourceAndImportId($importSource, $importId) {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+
+		return $query->matching(
+			$query->logicalAnd(
+				$query->equals('importSource', $importSource),
+				$query->equals('importId', $importId)
+			))->execute()->getFirst();
+	}
+
 }
 ?>
