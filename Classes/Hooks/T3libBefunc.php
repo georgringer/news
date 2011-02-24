@@ -43,7 +43,7 @@ class tx_News2_Hooks_T3libBefunc {
 	 * @return void
 	 */
 	public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table, $fieldName) {
-		if ($table == 'tt_content' && $row['list_type'] == 'news2_pi1') {
+		if ($table == 'tt_content' && $row['list_type'] == 'news2_pi1' && is_array($dataStructure)) {
 			$this->updateFlexforms($dataStructure, $row);
 		}
 	}
@@ -51,7 +51,7 @@ class tx_News2_Hooks_T3libBefunc {
 	/**
 	 * Update flexform configuration if a action is selected
 	 *
-	 * @param array $dataStructure flexform structur
+	 * @param array|string $dataStructure flexform structur
 	 * @param array $row row of current record
 	 * @return void
 	 */
