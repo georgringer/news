@@ -37,18 +37,20 @@
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
+ * @see http://de.php.net/manual/de/function.strip-tags.php
  */
 class Tx_News2_ViewHelpers_Format_StriptagsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 
 	/**
 	 * Strip tags
-	 * 
+	 *
+	 * @param string $allowTags Allowed tags
 	 * @return string
 	 */
-	public function render() {
+	public function render($allowTags = '') {
 
-		$content = strip_tags($this->renderChildren());
+		$content = strip_tags($this->renderChildren(), $allowTags);
 
 		return $content;
 	}
