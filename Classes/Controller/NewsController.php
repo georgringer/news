@@ -74,6 +74,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$demand->setCategories(t3lib_div::trimExplode(',', $settings['category'], TRUE));
 		$demand->setCategorySetting($settings['categoryMode']);
 		$demand->setTopNewsSetting($settings['topNews']);
+		$demand->setLatestTimeLimit($settings['timeLimit']);
 		$demand->setArchiveSetting($settings['archive']);
 		$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderAscDesc']);
 		$demand->setOrderRespectTopNews($settings['orderByRespectTopNews']);
