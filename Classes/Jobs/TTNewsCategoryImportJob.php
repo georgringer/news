@@ -30,32 +30,28 @@
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 
-class Tx_News2_Jobs_TTNewsCategoryImportJob implements Tx_News2_Jobs_ImportJobInterface {
+class Tx_News2_Jobs_TTNewsCategoryImportJob extends Tx_News2_Jobs_AbstractImportJob {
 
-	protected $ttNewsCategoryImportService;
-	protected $categoryImportService;
+	/**
+	 * Inject import dataprovider service
+	 *
+	 * @param Tx_News2_Service_Import_TTNewsCategoryDataProviderService $importDataProviderService
+	 * @return void
+	 */
+	public function injectImportDataProviderService(Tx_News2_Service_Import_TTNewsCategoryDataProviderService
+		$importDataProviderService) {
 
-
-	public function injectTTNewsCategoryImportService(Tx_News2_Service_Import_TTNewsCategoryImportService $ttNewsCategoryImportService) {
-		$this->ttNewsCategoryImportService = $ttNewsCategoryImportService;
+		$this->importDataProviderService = $importDataProviderService;
 	}
 
-	public function injectCategoryImportService(Tx_News2_Domain_Service_CategoryImportService $categoryImportService) {
-		$this->categoryImportService = $categoryImportService;
-	}
-
-	public function getInfo() {
-		$totalRecordCount = $this->ttNewsCategoryImportService->getTotalRecordCount();
-		return array(
-			'totalRecordCount' => $totalRecordCount,
-			'runsToComplete' => 1,
-			'increaseOffsetPerRunBy' => 0,
-		);
-	}
-
-	public function run($offset) {
-		$importArray = $this->ttNewsCategoryImportService->createImportArray($offset, $this->ttNewsCategoryImportService->getTotalRecordCount());
-		$this->categoryImportService->import($importArray);
+	/**
+	 * Inject import service
+	 *
+	 * @param Tx_News2_Domain_Service_CategoryImportService $importService
+	 * @return void
+	 */
+	public function injectImportService(Tx_News2_Domain_Service_CategoryImportService $importService) {
+		$this->importService = $importService;
 	}
 }
 ?>

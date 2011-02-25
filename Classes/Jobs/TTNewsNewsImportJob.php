@@ -22,17 +22,40 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * Import job interface
+ * Import job
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-interface Tx_News2_Jobs_ImportJobInterface {
-	public function run($offset);
-	public function getInfo();
-	public function isEnabled();
-	public function getNumberOfRecordsPerRun();
+
+class Tx_News2_Jobs_TTNewsNewsImportJob extends Tx_News2_Jobs_AbstractImportJob {
+	/**
+	 * @var int
+	 */
+	protected $numberOfRecordsPerRun = 30;
+
+	/**
+	 * Inject import dataprovider service
+	 *
+	 * @param Tx_News2_Service_Import_TTNewsNewsDataProviderService $importDataProviderService
+	 * @return void
+	 */
+	public function injectImportDataProviderService(Tx_News2_Service_Import_TTNewsNewsDataProviderService
+		$importDataProviderService) {
+
+		$this->importDataProviderService = $importDataProviderService;
+	}
+
+	/**
+	 * Inject import service
+	 *
+	 * @param Tx_News2_Domain_Service_NewsImportService $importService
+	 * @return void
+	 */
+	public function injectImportService(Tx_News2_Domain_Service_NewsImportService $importService) {
+		$this->importService = $importService;
+	}
 }
 ?>

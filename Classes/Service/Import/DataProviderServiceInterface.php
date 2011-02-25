@@ -29,8 +29,8 @@
  * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-interface Tx_News2_Service_Import_ImportServiceInterface {
+interface Tx_News2_Service_Import_DataProviderServiceInterface {
 	public function getTotalRecordCount();
-
+	public function getImportData();
 }
 ?>

@@ -30,7 +30,7 @@
  * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Service_Import_TTNewsImportService implements Tx_News2_Service_Import_ImportServiceInterface, t3lib_Singleton {
+class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_Service_Import_DataProviderServiceInterface, t3lib_Singleton {
 
 	protected $importSource = 'TT_NEWS_IMPORT';
 
@@ -44,8 +44,8 @@ class Tx_News2_Service_Import_TTNewsImportService implements Tx_News2_Service_Im
 		return $count;
 	}
 
-	public function createImportArray($offset = 0, $limit = 50) {
-		$importArray = array();
+	public function getImportData($offset = 0, $limit = 50) {
+		$importData = array();
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*',
 			'tt_news',
@@ -56,7 +56,7 @@ class Tx_News2_Service_Import_TTNewsImportService implements Tx_News2_Service_Im
 		);
 
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-			$importArray[] = array(
+			$importData[] = array(
 				'pid' => $row['pid'],
 				'starttime' => $row['starttime'],
 				'endtime'  => $row['endtime'],
@@ -79,7 +79,7 @@ class Tx_News2_Service_Import_TTNewsImportService implements Tx_News2_Service_Im
 		}
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 
-		return $importArray;
+		return $importData;
 	}
 
 	protected function getCategories($newsUid) {

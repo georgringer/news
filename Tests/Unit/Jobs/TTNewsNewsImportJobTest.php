@@ -23,44 +23,22 @@
 ***************************************************************/
 
 /**
- * Controller to import news records from tt_news2
+ * Tests for tt_news news import job
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
+ * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Controller_ImportController extends Tx_Extbase_MVC_Controller_ActionController {
-
-	protected function getAvailableJobs() {
-		return array(
-			'Tx_News2_Jobs_TTNewsCategoryImportJob' => 'Import tt_news category records',
-			'Tx_News2_Jobs_TTNewsNewsImportJob' => 'Import tt_news news records'
-		);
-	}
-
-	public function indexAction() {
-		$this->view->assign('availableJobs', array_merge(array(0 => ''), $this->getAvailableJobs()));
-	}
+class Tx_News2_Tests_Unit_Jobs_TTNewsNewsImportJobTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
-	 * @param string $jobClassName
-	 * @param int $offset
-	 * @return string
+	 * @test
+	 * @return void
 	 */
-	public function runJobAction($jobClassName, $offset = 0) {
-		$job = $this->objectManager->get($jobClassName);
-		$job->run($offset);
+	public function getNumberOfRecordsPerRun_returns_expected_value() {
+		$jobInstance = $this->objectManager->get('Tx_News2_Jobs_TTNewsNewsImportJob');
+		$this->assertEquals($jobInstance->getNumberOfRecordsPerRun(), 30);
 
-		return 'OK';
-	}
-
-	/**
-	 * @param  string $jobClassName
-	 * @return string
-	 */
-	public function jobInfoAction($jobClassName) {
-		$job = $this->objectManager->get($jobClassName);
-		return json_encode($job->getInfo());
 	}
 }
-?>
