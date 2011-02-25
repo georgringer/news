@@ -96,7 +96,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	protected function overwriteDemandObject($demand, $overwriteDemand) {
 		foreach ($overwriteDemand as $propertyName => $propertyValue) {
 			// @todo: consider adding an per mode access check
-			$setterMethod = 'set'.ucfirst($propertyName);
+			$setterMethod = 'set' . ucfirst($propertyName);
 			if (method_exists(Tx_News2_Domain_Model_NewsDemand, $setterMethod)) {
 				$demand->{$setterMethod}($propertyValue);
 			}
@@ -160,11 +160,14 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 	/**
 	 * Single view of a news record
-	 *
+	 *	
 	 * @param Tx_News2_Domain_Model_News $news
 	 * @return void
 	 */
 	public function detailAction(Tx_News2_Domain_Model_News $news = NULL) {
+		if (isset($this->settings['singleNews'])) {
+			$news = $this->newsRepository->findByUid($this->settings['singleNews']);
+		}
 		$this->view->assign('newsItem', $news);
 	}
 
@@ -172,7 +175,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * Render a menu by dates, e.g. years, months or dates
 	 *
 	 * @param array|null $overwriteDemand
-	 * @return return string the Rendered view
+	 * @return void
 	 */
 	public function dateMenuAction(array $overwriteDemand = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);

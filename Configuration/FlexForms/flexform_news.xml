@@ -244,6 +244,28 @@
 						</TCEforms>
 					</settings.topNews>
 
+					<!-- single news -->
+					<settings.singleNews>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.singleNews</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>tx_news2_domain_model_news</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+										<maxItemsInResultList>20</maxItemsInResultList>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.singleNews>
+
 					<!-- startingpoint -->
 					<settings.startingpoint>
 						<TCEforms>

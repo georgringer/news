@@ -96,7 +96,7 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForNewsListAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'dateField',
+			'sDEF' => 'dateField,singleNews',
 			'additional' => 'listPid',
 			'template' => ''
 		);
@@ -128,7 +128,7 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForSearchAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive,dateField',
+			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive,dateField,singleNews',
 			'additional' => 'limit,offset,orderByRespectTopNews,listPid',
 			'template' => 'cropLength,media.maxWidth,media.maxHeight'
 		);
@@ -144,7 +144,7 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForDateMenuAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderAscDesc',
+			'sDEF' => 'orderBy,orderAscDesc,singleNews',
 			'additional' => 'limit,offset,orderByRespectTopNews,pidDetail,pidBack',
 			'template' => 'cropLength,media.maxWidth,media.maxHeight'
 		);
