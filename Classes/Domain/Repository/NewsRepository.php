@@ -92,9 +92,23 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 
 			// latest time
 		if ($demand->getLatestTimeLimit() !== NULL) {
+			$timeLimit = 0;
+				// integer = timestamp
+			if (is_int($demand->getLatestTimeLimit())) {
+				$timeLimit = $GLOBALS['EXEC_TIME'] - $timeLimit;
+			} else {
+					// try to check strtotime
+				$timeFromString = strtotime($timeLimit);
+				if ($timeFromString) {
+					$timeLimit = $timeFromString;
+				} else {
+					throw new Exception('Latest time limit could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+				}
+			}
+		
 			$constraints[] = $query->greaterThanOrEqual(
 				'datetime',
-				$demand->getLatestTimeLimit()
+				$timeLimit
 			);
 		}
 
