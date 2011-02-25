@@ -168,19 +168,20 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/**
 	 * Render a menu by dates, e.g. years, months or dates
 	 *
-	 * @return void
+	 * @param array|null $overwriteDemand
+	 * @return return string the Rendered view
 	 */
-	public function dateMenuAction() {
+	public function dateMenuAction(array $overwriteDemand = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
 		// @todo: should be covert by createDemandObjectFromSettings
 		$demand->setOrder($this->settings['dateField'] . ' DESC');
 
 		$newsRecords = $this->newsRepository->findDemanded($demand);
-
 		$this->view->assignMultiple(array(
 			'listPid' => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
 			'dateField' => $this->settings['dateField'],
-			'news' => $newsRecords
+			'news' => $newsRecords,
+			'overwriteDemand' => $overwriteDemand
 		));
 	}
 
