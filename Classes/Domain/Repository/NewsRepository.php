@@ -91,11 +91,11 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		}
 
 			// latest time
-		if ($demand->getLatestTimeLimit() !== NULL) {
+		if ($demand->getLatestTimeLimit() !== NULL && $demand->getLatestTimeLimit() != 0) {
 			$timeLimit = 0;
 				// integer = timestamp
-			if (is_int($demand->getLatestTimeLimit())) {
-				$timeLimit = $GLOBALS['EXEC_TIME'] - $timeLimit;
+			if (is_int($demand->getLatestTimeLimit()) || (int)$demand->getLatestTimeLimit() == $demand->getLatestTimeLimit()) {
+				$timeLimit = $GLOBALS['EXEC_TIME'] - $demand->getLatestTimeLimit();
 			} else {
 					// try to check strtotime
 				$timeFromString = strtotime($timeLimit);
