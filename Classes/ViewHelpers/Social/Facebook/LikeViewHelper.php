@@ -29,10 +29,10 @@
  * Examples
  * ==============
  *
- * <n:facebook.like />
+ * <n:social.facebook.like />
  * Result: Facebook widget to share the current URL
  *
- * <n:facebook.like href="http://www.typo3.org" width="300" font="arial" />
+ * <n:social.facebook.like href="http://www.typo3.org" width="300" font="arial" />
  * Result: Facebook widget to share www.typo3.org within a plugin styled with
  * width 300 and arial as font
  *
@@ -40,7 +40,7 @@
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_ViewHelpers_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 	/**
 	 * @var	string
 	 */

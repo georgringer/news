@@ -28,14 +28,14 @@
  *
  * Examples
  * ==============
- * <n:facebook.share>Share</n:facebook.share>
+ * <n:social.facebook.share>Share</n:social.facebook.share>
  * Result: Facebook widget to share current URL with the text "Share"
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_ViewHelpers_Facebook_ShareViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_News2_ViewHelpers_Social_Facebook_ShareViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
 	/**
 	 * @var	string

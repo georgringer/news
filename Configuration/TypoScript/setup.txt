@@ -89,13 +89,11 @@ plugin.tx_news2 {
 				insertAbove = TRUE
 				insertBelow = TRUE
 			}
-
-			allowCategoryRestrictionFromGetParams = 1
-			allowOrderFromGetParams = 1
-			allowYearFromGetParams = 1
-			allowMonthFromGetParams = 1
 		}
 
+		# --------------
+		#  Common
+		# --------------
 		relatedFiles {
 			download {
 				labelStdWrap {
@@ -104,7 +102,7 @@ plugin.tx_news2 {
 			}
 		}
 
-		# Opengraph implementation (used for facebook likes)
+		# Opengraph implementation
 		opengraph {
 		    site_name = Perfect test site
 		    type = article
@@ -122,16 +120,3 @@ plugin.tx_news2 {
 		}
 	}
 }
-
-/*
-module.tx_news2 {
-	settings < plugin.tx_news2.settings
-	persistence < plugin.tx_news2.persistence
-	view < plugin.tx_news2.view
-	view {
-#		templateRootPath = {$module.tx_news2.view.templateRootPath}
-#		partialRootPath = {$module.tx_news2.view.partialRootPath}
-#		layoutRootPath = {$module.tx_news2.view.layoutRootPath}
-	}
-}
-*/

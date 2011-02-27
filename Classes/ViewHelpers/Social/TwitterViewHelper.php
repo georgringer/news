@@ -29,17 +29,17 @@
  * Examples
  * ==============
  *
- * <n:twitter>Twitter</n:twitter>
+ * <n:social.twitter>Twitter</n:social.twitter>
  * Result: Twitter widget
  *
- * <n:twitter datacount="vertical" datalang="de" dataurl="http://www.mydomain.tld">Twitter</n:twitter>
+ * <n:social.twitter datacount="vertical" datalang="de" dataurl="http://www.mydomain.tld">Twitter</n:social.twitter>
  * Result: Twitter widget to share www.mydomain.tld with a german twitter text
  *
  * @package TYPO3
  * @subpackage tx_news2
  * @version $Id$
  */
-class Tx_News2_ViewHelpers_TwitterViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_News2_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 	/**
 	 * @var	string
 	 */
@@ -65,7 +65,7 @@ class Tx_News2_ViewHelpers_TwitterViewHelper extends Tx_Fluid_Core_ViewHelper_Ab
 		$code = '';
 		$this->tag->addAttribute('href', 'http://twitter.com/share');
 		$this->tag->addAttribute('class', (!empty($this->arguments['class'])) ? $this->arguments['class'] : 'twitter-share-button');
-		
+
 			// rewrite tags as it seems that it is not possible to have tags with a '-'.
 		$rewriteTags = array('datacount', 'datavia', 'datarelated', 'datatext', 'dataurl', 'datalang');
 		foreach($rewriteTags as $tag) {
@@ -75,7 +75,7 @@ class Tx_News2_ViewHelpers_TwitterViewHelper extends Tx_Fluid_Core_ViewHelper_Ab
 				$this->tag->removeAttribute($tag);
 			}
 		}
-	
+
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
 			if (empty($this->arguments['javaScript'])) {
