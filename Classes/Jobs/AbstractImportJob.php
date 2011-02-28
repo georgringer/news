@@ -41,6 +41,16 @@ abstract class Tx_News2_Jobs_AbstractImportJob implements Tx_News2_Jobs_ImportJo
 	 */
 	protected $importService;
 
+	/**
+	 * @var array
+	 */
+	protected $importServiceSettings = array();
+
+	/**
+	 * @var array
+	 */
+	protected $importItemOverwrite = array();
+
 	/*
 	 * @var int
 	 */
@@ -94,7 +104,7 @@ abstract class Tx_News2_Jobs_AbstractImportJob implements Tx_News2_Jobs_ImportJo
 	 */
 	public function run($offset) {
 		$importData = $this->importDataProviderService->getImportData($offset, $this->getNumberOfRecordsPerRun());
-		$this->importService->import($importData);
+		$this->importService->import($importData, $this->importItemOverwrite, $this->importServiceSettings);
 	}
 }
 ?>

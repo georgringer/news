@@ -79,8 +79,8 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 		$this->categoryRepository = $categoryRepository;
 	}
 
-	public function import(array $importArray, array $importArrayOverwrite = array()) {
-		foreach ($importArray as $importItem) {
+	public function import(array $importData, array $importItemOverwrite = array(), $settings = array()) {
+		foreach ($importData as $importItem) {
 
 			if ($importItem['import_source'] && $importItem['import_id']) {
 				$news = $this->newsRepository->findOneByImportSourceAndImportId($importItem['import_source'],
@@ -92,8 +92,8 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 				$this->newsRepository->add($news);
 			}
 
-			if (!empty($importArrayOverwrite)) {
-				$importArray = array_merge($importArray, $importArrayOverwrite);
+			if (!empty($importItemOverwrite)) {
+				$importItem = array_merge($importItem, $importItemOverwrite);
 			}
 
 			$news->setPid($importItem['pid']);
@@ -121,8 +121,12 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 
 			foreach($importItem['categories'] as $categoryUid) {
-				$category = $this->categoryRepository->findOneByImportSourceAndImportId(
-					'TT_NEWS_CATEGORY_IMPORT', $categoryUid);
+				if ($settings['findCategoriesByImportSource']) {
+					$category = $this->categoryRepository->findOneByImportSourceAndImportId(
+						$settings['findCategoriesByImportSource'], $categoryUid);
+				} else {
+					$category = $this->categoryRepository->findByUid($categoryUid);
+				}
 
 				if ($category) {
 					$news->addCategory($category);

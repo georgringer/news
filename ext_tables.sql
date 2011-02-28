@@ -49,7 +49,7 @@ CREATE TABLE tx_news2_domain_model_news (
 	externalurl text,
 	istopnews int(11) DEFAULT '0' NOT NULL,
 
-	import_id int(11) DEFAULT '0' NOT NULL,
+	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
 
 	PRIMARY KEY (uid),
@@ -81,7 +81,7 @@ CREATE TABLE tx_news2_domain_model_category (
 	parentcategory int(11) DEFAULT '0' NOT NULL,
 	single_pid int(11) unsigned DEFAULT '0' NOT NULL,
 	shortcut int(11) DEFAULT '0' NOT NULL,
-	import_id int(11) DEFAULT '0' NOT NULL,
+	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
 
 

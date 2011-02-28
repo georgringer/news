@@ -97,7 +97,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	protected $singlePid;
 
 	/**
-	 * @var integer
+	 * @var string
 	 */
 	protected $importId;
 
@@ -351,7 +351,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	/**
 	 * Get import id
 	 *
-	 * @return integer
+	 * @return string
 	 */
 	public function getImportId() {
 		return $this->importId;
@@ -360,7 +360,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	/**
 	 * Set import id
 	 *
-	 * @param integer $importId import id
+	 * @param string $importId import id
 	 * @return void
 	 */
 	public function setImportId($importId) {

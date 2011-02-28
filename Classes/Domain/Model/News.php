@@ -177,7 +177,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $editlock;
 
 	/**
-	 * @var integer
+	 * @var string
 	 */
 	protected $importId;
 

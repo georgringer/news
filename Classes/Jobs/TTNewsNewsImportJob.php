@@ -36,6 +36,10 @@ class Tx_News2_Jobs_TTNewsNewsImportJob extends Tx_News2_Jobs_AbstractImportJob 
 	 */
 	protected $numberOfRecordsPerRun = 30;
 
+	protected $importServiceSettings = array(
+		'findCategoriesByImportSource' => 'TT_NEWS_CATEGORY_IMPORT'
+	);
+
 	/**
 	 * Inject import dataprovider service
 	 *
