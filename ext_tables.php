@@ -279,6 +279,9 @@ if (TYPO3_MODE == 'BE') {
 			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xml',
 		)
 	);
+
+	Tx_News2_Utility_ImportJob::register('Tx_News2_Jobs_TTNewsNewsImportJob', 'Import tt_news news records', '');
+	Tx_News2_Utility_ImportJob::register('Tx_News2_Jobs_TTNewsCategoryImportJob', 'Import tt_news category records', '');
 }
 
 /* ===========================================================================

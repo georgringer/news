@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Controller of news records
+ * Page Utitlity class
  *
  * @package TYPO3
  * @subpackage tx_news2

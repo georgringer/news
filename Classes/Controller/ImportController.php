@@ -31,18 +31,37 @@
  */
 class Tx_News2_Controller_ImportController extends Tx_Extbase_MVC_Controller_ActionController {
 
+	/**
+	 * Retrieve all available import jobs by traversing trough registered import jobs and checking "isEnabled".
+	 *
+	 * @return array
+	 */
 	protected function getAvailableJobs() {
-		return array(
-			'Tx_News2_Jobs_TTNewsCategoryImportJob' => 'Import tt_news category records',
-			'Tx_News2_Jobs_TTNewsNewsImportJob' => 'Import tt_news news records'
-		);
+		$availableJobs = array();
+		$registeredJobs = Tx_News2_Utility_ImportJob::getRegisteredJobs();
+
+		foreach($registeredJobs as $registeredJob) {
+			$jobInstance = $this->objectManager->get($registeredJob['className']);
+			if ($jobInstance instanceof Tx_News2_Jobs_ImportJobInterface && $jobInstance->isEnabled()) {
+				$availableJobs[$registeredJob['className']] = $registeredJob['title'];
+			}
+		}
+
+		return $availableJobs;
 	}
 
+	/**
+	 * Shows the import jobs selection .
+	 *
+	 * @return string The rendered view
+	 */
 	public function indexAction() {
 		$this->view->assign('availableJobs', array_merge(array(0 => ''), $this->getAvailableJobs()));
 	}
 
 	/**
+	 * Runs an actual job.
+	 *
 	 * @param string $jobClassName
 	 * @param int $offset
 	 * @return string
@@ -55,6 +74,8 @@ class Tx_News2_Controller_ImportController extends Tx_Extbase_MVC_Controller_Act
 	}
 
 	/**
+	 * Retrieves the job info of a given jobClass
+	 *
 	 * @param  string $jobClassName
 	 * @return string
 	 */

@@ -21,21 +21,47 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
 /**
- * Import job interface
+ * Utilitiy class for import jobs
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
+ * @version $Id:
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-interface Tx_News2_Jobs_ImportJobInterface {
-	public function getNumberOfRecordsPerRun();
+class Tx_News2_Utility_ImportJob {
 
-	public function getInfo();
+	/**
+	 * @var array
+	 */
+	protected static $registeredJobs = array();
 
-	public function isEnabled();
+	/**
+	 * Register an import job.
+	 *
+	 * @static
+	 * @param  $className
+	 * @param  $title
+	 * @param  $description
+	 * @return void
+	 */
+	public static function register($className, $title, $description) {
+		self::$registeredJobs[] = array(
+			'className' => $className,
+			'title' => $title,
+			'description' => $description
+		);
+	}
 
-	public function run($offset);
+	/**
+	 * Get registered import jobs
+	 *
+	 * @static
+	 * @return array
+	 */
+	public static function getRegisteredJobs() {
+		return self::$registeredJobs;
+	}
 }
 ?>
