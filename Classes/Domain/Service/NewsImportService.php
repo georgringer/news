@@ -39,6 +39,11 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 	protected $objectManager;
 
 	/**
+	 * @var Tx_Extbase_Persistence_Manager
+	 */
+	protected $persistenceManager;
+
+	/**
 	 * @var Tx_News2_Domain_Repository_NewsRepository
 	 */
 	protected $newsRepository;
@@ -57,6 +62,15 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 	 */
 	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
 		$this->objectManager = $objectManager;
+	}
+
+	/**
+	 *
+	 * @param Tx_Extbase_Persistence_Manager $persistenceManager
+	 * @return void
+	 */
+	public function injectPersistenceManager(Tx_Extbase_Persistence_Manager $persistenceManager) {
+		$this->persistenceManager = $persistenceManager;
 	}
 
 	/**
@@ -138,6 +152,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 			foreach($importItem['media'] as $mediaItem) {
 				if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['media'])) {
+
 					$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['media'],
 						PATH_site . self::UPLOAD_PATH);
 
@@ -159,6 +174,8 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 				$media->setShowinpreview($mediaItem['showinpreview']);
 			}
 		}
+
+		$this->persistenceManager->persistAll();
 	}
 
 	/**
@@ -172,12 +189,12 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 		if ($mediaItems->count() !== 0) {
 			foreach($mediaItems as $mediaItem) {
+
 				if ($mediaItem->getMedia() == basename($mediaFile) &&
 					$this->filesAreEqual(
 						PATH_site. $mediaFile,
 						PATH_site . self::UPLOAD_PATH . $mediaItem->getMedia()
 					)) {
-
 					$result = $mediaItem;
 					break;
 				}

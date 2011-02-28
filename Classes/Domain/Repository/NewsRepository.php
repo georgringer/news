@@ -105,7 +105,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 					throw new Exception('Latest time limit could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
 				}
 			}
-		
+
 			$constraints[] = $query->greaterThanOrEqual(
 				'datetime',
 				$timeLimit
@@ -192,6 +192,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		$query->getQuerySettings()->setRespectEnableFields(FALSE);
 
 		return $query->matching(
 			$query->logicalAnd(

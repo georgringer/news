@@ -44,7 +44,7 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-
+		$query->getQuerySettings()->setRespectEnableFields(FALSE);
 		return $query->matching(
 			$query->logicalAnd(
 				$query->equals('importSource', $importSource),

@@ -379,10 +379,6 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getMedia() {
-		if ($this->media instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->media->_loadRealInstance();
-		}
-
 		return $this->media;
 	}
 
@@ -424,10 +420,10 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @return Tx_News2_Domain_Model_Media
 	 */
 	public function getFirstImagePreview() {
-		$mediaElements = $this->media;
+		$mediaElements = $this->getMedia();
 
 		foreach ($mediaElements as $mediaElement) {
-			if ($mediaElement->getShowinpreview() && $mediaElement->getType == 0) {
+			if ($mediaElement->getShowinpreview() && $mediaElement->getType() == 0) {
 				return $mediaElement;
 			}
 		}
@@ -435,7 +431,11 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		return NULL;
 	}
 
-	public function setMedia($media) {
+	/**
+	 * @param   Tx_Extbase_Persistence_ObjectStorage $media
+	 * @return void
+	 */
+	public function setMedia(Tx_Extbase_Persistence_ObjectStorage $media) {
 		$this->media = $media;
 	}
 
