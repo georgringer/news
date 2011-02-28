@@ -18,7 +18,7 @@
 			<label index="flexforms_general.mode.news_list">List view</label>
 			<label index="flexforms_general.mode.news_latest">Latest view</label>
 			<label index="flexforms_general.mode.news_detail">Detail view</label>
-			<label index="flexforms_general.mode.news_search">Search form</label>
+			<label index="flexforms_general.mode.news_searchform">Search form</label>
 			<label index="flexforms_general.mode.news_searchresult">Search result</label>
 			<label index="flexforms_general.mode.news_datemenu">Date menu</label>
 			<label index="flexforms_general.mode.category_list">Category Menu</label>

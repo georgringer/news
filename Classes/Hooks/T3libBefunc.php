@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Hook into t3lib_befunc to change flexform hehaviour
+ * Hook into t3lib_befunc to change flexform behaviour
  * depending on action selection
  *
  * @package TYPO3
@@ -43,7 +43,7 @@ class tx_News2_Hooks_T3libBefunc {
 	 * @return void
 	 */
 	public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table, $fieldName) {
-		if ($table == 'tt_content' && $row['list_type'] == 'news2_pi1' && is_array($dataStructure)) {
+		if ($table === 'tt_content' && $row['list_type'] === 'news2_pi1' && is_array($dataStructure)) {
 			$this->updateFlexforms($dataStructure, $row);
 		}
 	}
@@ -66,20 +66,26 @@ class tx_News2_Hooks_T3libBefunc {
 				$actionParts = t3lib_div::trimExplode(';', $selectedView, TRUE);
 				$selectedView = $actionParts[0];
 			}
+
+			// new plugin element
+		} elseif(t3lib_div::isFirstPartOfStr($row['uid'], 'NEW')) {
+				// use List as starting view
+				// @todo dynamic check, getting view from $flexformSelection
+			$selectedView = 'News->list';
 		}
 
 		if (!empty($selectedView)) {
-
 				// modify the flexform structure depending on the first found action
 			switch ($selectedView) {
 				case 'News->list':
+				case 'News->searchResult':
 					$this->updateForNewsListAction($dataStructure);
 					break;
 				case 'News->detail':
 					$this->updateForNewsDetailAction($dataStructure);
 					break;
-				case 'News->search':
-					$this->updateForSearchAction($dataStructure);
+				case 'News->searchForm':
+					$this->updateForSearchFormAction($dataStructure);
 					break;
 				case 'News->dateMenu':
 					$this->updateForDateMenuAction($dataStructure);
@@ -126,7 +132,7 @@ class tx_News2_Hooks_T3libBefunc {
 	 * @param array $dataStructure flexform structure
 	 * @return void
 	 */
-	protected function updateForSearchAction(array &$dataStructure) {
+	protected function updateForSearchFormAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
 			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive,dateField,singleNews',
 			'additional' => 'limit,offset,orderByRespectTopNews,listPid',
@@ -154,12 +160,13 @@ class tx_News2_Hooks_T3libBefunc {
 
 
 	/**
-	 * Helper function to remove fields from flexform structure
+	 * Remove fields from flexform structure
 	 *
 	 * @param array $dataStructure flexform structure
 	 * @param array $fieldsToBeRemoved fields which need to be removed
+	 * @return void
 	 */
-	protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved) {
+	private function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved) {
 		foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
 			$fieldsInSheet = explode(',', $sheetFields);
 
@@ -168,6 +175,10 @@ class tx_News2_Hooks_T3libBefunc {
 			}
 		}
 	}
+}
+
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/T3libBefunc.php']) {
+	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/T3libBefunc.php']);
 }
 
 ?>

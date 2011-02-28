@@ -69,6 +69,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return Tx_News2_Domain_Model_NewsDemand
 	 */
 	protected function createDemandObjectFromSettings($settings) {
+		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
 
 		$demand->setCategories(t3lib_div::trimExplode(',', $settings['category'], TRUE));
@@ -137,24 +138,30 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/**
 	 * Displays the news search form
 	 *
-	 * @return string the Rendered view
+	 * @param $search Tx_News2_Domain_Model_Dto_Search
 	 * @return void
 	 */
-	public function searchAction() {
+	public function searchFormAction(Tx_News2_Domain_Model_Dto_Search $search = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
-		$this->view->assign('demand', $demand);
+		$this->view->assignMultiple(array(
+			'demand' => $demand,
+			'search' => $search
+		));
 	}
 
 	/**
 	 * Displays the news search result
 	 *
-	 * @param Tx_News2_Domain_Model_NewsDemand $demand
-	 * @return string the Rendered view
+	 * @param $search Tx_News2_Domain_Model_Dto_Search
 	 * @return void
 	 */
-	public function searchResultAction(Tx_News2_Domain_Model_NewsDemand $demand) {
+	public function searchResultAction(Tx_News2_Domain_Model_Dto_Search $search = NULL) {
+
+		$demand = $this->createDemandObjectFromSettings($this->settings);
+		$demand->setSearch($search);
 		$this->view->assignMultiple(array(
 			'demand' => $demand,
+			'search' => $search,
 			'news' => $this->newsRepository->findDemanded($demand)
 		));
 	}

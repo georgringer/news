@@ -45,6 +45,8 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 	protected $limit;
 	protected $offset;
 
+	protected $search;
+
 	public function setArchiveSetting($archiveSetting) {
 		$this->archiveSetting = $archiveSetting;
 	}
@@ -156,6 +158,16 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 	public function getDateField() {
 		return $this->dateField;
 	}
+
+	public function getSearch() {
+		return $this->search;
+	}
+
+	public function setSearch($search) {
+		$this->search = $search;
+	}
+
+
 }
 
 ?>

@@ -85,7 +85,7 @@ plugin.tx_news2 {
 
 			# Paginate configuration.
 			paginate {
-				itemsPerPage = 3
+				itemsPerPage = 10
 				insertAbove = TRUE
 				insertBelow = TRUE
 			}

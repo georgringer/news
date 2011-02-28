@@ -4,7 +4,7 @@
 
 <!--
 	=====================
-		News/Search.html
+		News/SearchForm.html
 -->
 
 <f:section name="content">
@@ -12,28 +12,23 @@
 
 	<div class="news2 news2-search">
 		<div class="news2-searchbox">
-			<f:form id="news2-search" method="post" action="search" name="search" object="{search}">
+			<f:form id="news2-search" method="post" action="searchResult" name="search" object="{search}">
 				<fieldset>
 					 <legend><span class="hidden">News search</span></legend>
 
 					 <div class="form-field">
 						 <label for="searchstring">Searchstring</label>
-						 <f:form.textbox id="searchString" name="searchString" property="searchString" value="{search.searchString}" />
+						 <f:form.textbox id="searchString" property="searchString" />
 					 </div>
 
 					 <div class="form-field">
 						 <label for="fromDate">From Date</label>
-						 <f:form.textbox id="fromDate" name="fromDate" property="fromDate" value="{search.fromDate}" additionalAttributes="{type:'date'}"/>
+						 <f:form.textbox id="fromDate" property="fromDate" additionalAttributes="{type:'date'}"/>
 					 </div>
 
 					 <div class="form-field">
 						 <label for="toDate">To Date</label>
-						 <f:form.textbox id="toDate" name="toDate" property="toDate" value="{search.toDate}" />
-					 </div>
-
-					 <div class="form-field">
-						 <label for="news-cat">News Category</label>
-						<f:form.select name="category" id="category" options="{search.category}" optionValueField="uid" optionLabelField="title" />
+						 <f:form.textbox id="toDate" property="toDate" />
 					 </div>
 
 					<f:form.submit name="submit" value="{f:translate(key:'search-start')}" id="news2-search-sb" />

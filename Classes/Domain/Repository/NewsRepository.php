@@ -136,6 +136,19 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 				);
 		}
 
+			// Search
+		if ($demand->getSearch() !== NULL) {
+			/** @var $searchObject Tx_News2_Domain_Model_Dto_Search */
+			$searchObject = $demand->getSearch();
+
+			$searchString = $searchObject->getSearchString();
+			if (!empty($searchString)) {
+				$constraints[] = $query->like('title', '%' . $searchString . '%');
+			}
+		#	$searchObject->
+		}
+
+
 		return $constraints;
 	}
 

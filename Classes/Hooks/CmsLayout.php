@@ -35,6 +35,8 @@ class tx_News2_Hooks_CmsLayout {
 	 */
 	protected $extKey = 'news2';
 
+	protected $llPath;
+
 	/**
 	 * Returns information about this extension's pi1 plugin
 	 *
@@ -69,6 +71,7 @@ class tx_News2_Hooks_CmsLayout {
 
 			if (is_array($data)) {
 				$result .= '<br /><br /><table>' .
+							$this->getDateMenuSettings($data, $actionTranslationKey) .
 							$this->getArchiveSettings($data) .
 							$this->getCategorySettings($data) .
 							$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']) .
@@ -179,13 +182,34 @@ class tx_News2_Hooks_CmsLayout {
 	}
 
 	/**
+	 * Render datemenu configuration
+	 *
+	 * @param array $data
+	 * @return string
+	 */
+	private function getDateMenuSettings($data, $actionKey) {
+		$content = '';
+
+		if (!is_array($data) || $actionKey !== 'news_datemenu') {
+			return $content;
+		}
+
+		$dateMenuField = $data['data']['sDEF']['lDEF']['settings.dateField']['vDEF'];
+
+		$content .= $this->renderLine(
+						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.dateField'),
+						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.dateField.' . $dateMenuField)
+					);
+
+		return $content;
+	}
+	/**
 	 * Get the startingpoint
 	 *
 	 * @param string $startingpoint comma seperated list of pages
 	 * @return string
 	 */
 	private function getStartingPoint($startingpoint) {
-			// @todo: possible check through TS
 		if (empty($startingpoint)) {
 			return '';
 		}

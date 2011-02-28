@@ -37,7 +37,7 @@ class Tx_News2_Service_FileService {
 	 * @param string $url
 	 * @return string
 	 */
-	public function getCorrectUrl($url) {
+	public static function getCorrectUrl($url) {
 		if (empty($url)) {
 			throw new Exception('An empty url is given');
 		}
@@ -69,7 +69,7 @@ class Tx_News2_Service_FileService {
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @return string
 	 */
-	public function getUniqueId(Tx_News2_Domain_Model_Media $element) {
+	public static function getUniqueId(Tx_News2_Domain_Model_Media $element) {
 		return 'mediaelement-' . md5($element->getUid() . uniqid());
 	}
 

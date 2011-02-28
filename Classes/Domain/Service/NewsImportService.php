@@ -81,6 +81,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 	public function import(array $importData, array $importItemOverwrite = array(), $settings = array()) {
 		foreach ($importData as $importItem) {
+			$news = NULL;
 
 			if ($importItem['import_source'] && $importItem['import_id']) {
 				$news = $this->newsRepository->findOneByImportSourceAndImportId($importItem['import_source'],
