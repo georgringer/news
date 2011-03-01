@@ -40,7 +40,7 @@
  * @see http://de.php.net/manual/de/function.strip-tags.php
  */
 class Tx_News2_ViewHelpers_Format_StriptagsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
-
+	protected $escapingInterceptorEnabled = FALSE;
 
 	/**
 	 * Strip tags
@@ -49,9 +49,7 @@ class Tx_News2_ViewHelpers_Format_StriptagsViewHelper extends Tx_Fluid_Core_View
 	 * @return string
 	 */
 	public function render($allowTags = '') {
-
 		$content = strip_tags($this->renderChildren(), $allowTags);
-
 		return $content;
 	}
 }
