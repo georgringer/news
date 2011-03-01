@@ -11,7 +11,7 @@ $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links'
+		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -415,7 +415,31 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'type' => 'check'
 			)
 		),
-
+		'content_elements' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news2_domain_model_news.content_elements',
+			'config' => array(
+				'type' => 'inline',
+				'allowed' => 'tt_content',
+				'foreign_table' => 'tt_content',
+				'minitems' => 0,
+				'maxitems' => 10,
+				'appearance' => array(
+					'collapseAll' => 1,
+					'expandSingle' => 1,
+					'levelLinksPosition' => 'bottom',
+					'useSortable' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showRemovedLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'showSynchronizationLink' => 1,
+					'enabledControls' => array(
+						'info' => FALSE,
+					)
+				)
+			)
+		),
 		'import_id' => array(
 			'label'   => $ll . 'tx_news2_domain_model_news.import_id',
 			'config' => array(
@@ -434,7 +458,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 			// default news
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,bodytext;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css],
+					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,bodytext;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css],content_elements,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
@@ -509,7 +533,10 @@ if (isset($configurationArray['categoryRestriction'])) {
 	if (!empty ($categoryRestriction)) {
 		$TCA['tx_news2_domain_model_news']['columns']['category']['config']['foreign_table_where'] .= $categoryRestriction;
 	}
+}
 
+if (isset($configurationArray['hideContentElementRelation'])) {
+	unset($TCA['tx_news2_domain_model_news']['columns']['content_elements']);
 }
 
 ?>

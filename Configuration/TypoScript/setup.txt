@@ -2,7 +2,6 @@
 # ==============================================
 # FE-Plugin configuration for EXT:news2
 # ==============================================
-
 plugin.tx_news2 {
 	view {
 		templateRootPath = {$plugin.tx_news2.view.templateRootPath}
@@ -56,6 +55,10 @@ plugin.tx_news2 {
 		#  Detail
 		# --------------
 		detail {
+			# Content element rendering
+			contentElementRendering = TEXT
+			contentElementRendering.value = fobar
+
 			# media configuration
 			media {
 				image {
@@ -119,4 +122,12 @@ plugin.tx_news2 {
 			country-name =
 		}
 	}
+}
+
+# Rendering of content elements in detail view
+lib.tx_news2.contentElementRendering = RECORDS
+lib.tx_news2.contentElementRendering {
+	tables = tt_content
+	source.current = 1
+	dontCheckPid = 1
 }

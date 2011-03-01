@@ -172,6 +172,11 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $istopnews;
 
 	/**
+	 * @var string
+	 */
+	protected $contentElements;
+
+	/**
 	 * @var integer
 	 */
 	protected $editlock;
@@ -461,6 +466,14 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 
 	public function setIstopnews($istopnews) {
 		$this->istopnews = $istopnews;
+	}
+
+	public function getContentElements() {
+		return $this->contentElements;
+	}
+
+	public function setContentElements($contentElements) {
+		$this->contentElements = $contentElements;
 	}
 
 	public function getCrdate() {

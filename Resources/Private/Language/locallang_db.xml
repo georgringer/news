@@ -20,6 +20,7 @@
 			<label index="tx_news2_domain_model_news.type.I.2">External Page</label>
 			<label index="tx_news2_domain_model_news.media">Media Element</label>
 			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
+			<label index="tx_news2_domain_model_news.content_elements">Content elements</label>
 
 			<label index="tx_news2_domain_model_category">News Category</label>
 			<label index="tx_news2_domain_model_category.title">Title</label>

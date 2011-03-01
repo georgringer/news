@@ -87,6 +87,7 @@
 			<label index="extmng.categoryRestriction.siteroot">Categories from site root</label>
 			<label index="extmng.categoryRestriction.none">No restriction</label>
 			<label index="extmng.manualSorting">Enable manual sorting of news records</label>
+			<label index="extmng.hideContentElementRelation">Hide content element relation:If set, the relation to content elements is hidden and can't be used.</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>

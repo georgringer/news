@@ -48,6 +48,10 @@
 			<!-- teaser -->
 			<div class="teaser-text">
 				{newsItem.teaser}
+				<f:if condition="{newsItem.contentElements">
+
+					<f:cObject typoscriptObjectPath="lib.tx_news2.contentElementRendering">{newsItem.contentElements}</f:cObject>
+				</f:if>
 			</div>
 
 			<!-- media files -->
