@@ -35,6 +35,10 @@ class tx_News2_Hooks_CmsLayout {
 	 */
 	protected $extKey = 'news2';
 
+	/**
+	 * Path to the locallang file
+	 * @var string
+	 */
 	protected $llPath;
 
 	/**
@@ -53,8 +57,9 @@ class tx_News2_Hooks_CmsLayout {
 			$data = t3lib_div::xml2array($params['row']['pi_flexform']);
 
 				// if flexform data is found
-			if (is_array($data) && !empty($data['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
-				$actionList = t3lib_div::trimExplode(';', $data['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF']);
+			$actions = $this->getFieldFromFlexform($data, 'switchableControllerActions');
+			if (!empty($actions)) {
+				$actionList = t3lib_div::trimExplode(';', $actions);
 
 					// translate the first action into its translation
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
@@ -96,7 +101,7 @@ class tx_News2_Hooks_CmsLayout {
 			return $content;
 		}
 
-		$archive = $data['data']['sDEF']['lDEF']['settings.archive']['vDEF'];
+		$archive = $this->getFieldFromFlexform($data, 'settings.archive');;
 
 		if (!empty($archive)) {
 			$content = $this->renderLine(
@@ -122,11 +127,11 @@ class tx_News2_Hooks_CmsLayout {
 		$content = $categoryMode = '';
 		$categoriesOut = array();
 
-		$categories = t3lib_div::intExplode(',', $data['data']['sDEF']['lDEF']['settings.category']['vDEF'], TRUE);
+		$categories = t3lib_div::intExplode(',', $this->getFieldFromFlexform($data, 'settings.category'), TRUE);
 		if (count($categories) > 0) {
 
 				// Category mode
-			$categoryModeSelection = $data['data']['sDEF']['lDEF']['settings.categoryMode']['vDEF'];
+			$categoryModeSelection = $this->getFieldFromFlexform($data, 'settings.categoryMode');
 
 			if (empty($categoryModeSelection)) {
 				$categoryMode = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.categoryMode.all');
@@ -168,8 +173,8 @@ class tx_News2_Hooks_CmsLayout {
 			return $content;
 		}
 
-		$offset = $data['data']['additional']['lDEF']['settings.offset']['vDEF'];
-		$limit = $data['data']['additional']['lDEF']['settings.limit']['vDEF'];
+		$offset = $this->getFieldFromFlexform($data, 'settings.offset', 'additional');
+		$limit = $this->getFieldFromFlexform($data, 'settings.limit', 'additional');
 
 		if ($offset) {
 			$content .= $this->renderLine($GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.offset'), $offset);
@@ -194,7 +199,7 @@ class tx_News2_Hooks_CmsLayout {
 			return $content;
 		}
 
-		$dateMenuField = $data['data']['sDEF']['lDEF']['settings.dateField']['vDEF'];
+		$dateMenuField = $this->getFieldFromFlexform($data, 'settings.dateField');
 
 		$content .= $this->renderLine(
 						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.dateField'),
@@ -203,6 +208,7 @@ class tx_News2_Hooks_CmsLayout {
 
 		return $content;
 	}
+
 	/**
 	 * Get the startingpoint
 	 *
@@ -214,13 +220,11 @@ class tx_News2_Hooks_CmsLayout {
 			return '';
 		}
 
-		$pageIds = t3lib_div::intExplode(',', $startingpoint, TRUE);
-
 		$pagesOut = array();
 		$rawPagesRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'title,uid',
 			'pages',
-			'deleted=0 AND uid IN(' . implode(',', $pageIds) . ')'
+			'deleted=0 AND uid IN(' . implode(',', t3lib_div::intExplode(',', $startingpoint, TRUE)) . ')'
 		);
 
 		foreach ($rawPagesRecords as $page) {
@@ -242,13 +246,33 @@ class tx_News2_Hooks_CmsLayout {
 	 * @param string $content
 	 * @return string rendered configuration
 	 */
-	private function renderLine($head, $content) {
+	protected function renderLine($head, $content) {
 		$content = '<tr>
 						<td style="font-weight:bold;width:200px;">' . $head .	'</td>
 						<td>' . $content . '</td>
 					</tr>';
 
 		return $content;
+	}
+
+	/**
+	 * Get field value from flexform configuration,
+	 * including checks if flexform configuration is available
+	 *
+	 * @param array $flexform flexform configuration
+	 * @param string $key name of the key
+	 * @param string $sheet name of the sheet
+	 * @return NULL if nothing found, value if found
+	 */
+	protected function getFieldFromFlexform($flexform, $key, $sheet = 'sDEF') {
+		$flexform = $flexform['data'];
+		if (is_array($flexform) && is_array($flexform[$sheet]) && is_array($flexform[$sheet]['lDEF'])
+				&& is_array($flexform[$sheet]['lDEF'][$key]) && isset($flexform[$sheet]['lDEF'][$key]['vDEF'])
+		) {
+			return $flexform[$sheet]['lDEF'][$key]['vDEF'];
+		}
+
+		return NULL;
 	}
 
 
