@@ -127,7 +127,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 */
 	public function limitCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
-		$limit = 'Test limit';
+		$limit = 10;
 		$domainModelInstance->setLimit($limit);
 		$this->assertEquals($limit, $domainModelInstance->getLimit());
 	}
@@ -137,7 +137,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 */
 	public function offsetCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
-		$offset = 'Test offset';
+		$offset = 10;
 		$domainModelInstance->setOffset($offset);
 		$this->assertEquals($offset, $domainModelInstance->getOffset());
 	}
