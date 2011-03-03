@@ -27,8 +27,12 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
+ *
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
+ * @author Oliver Klee <typo3-coding@oliverklee.de>
+ * @author Georg Ringer <mail@ringerge.org>
+ *
+ * @version $Id$
  */
 class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
@@ -86,6 +90,23 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbas
 		$newsRepository->findDemanded($mockDemand);
 	}
 
+	/**
+	 * @test
+	 */
+	public function createConstraintsFromDemandForDemandWithTopnewsSetting1QueriesForIsTopNews() {
+		$demand = $this->getMock('Tx_News2_Domain_Model_NewsDemand');
+		$demand->expects($this->atLeastOnce())->method('getTopNewsSetting')
+			->will($this->returnValue(1));
 
+
+		$query = $this->getMock('Tx_Extbase_Persistence_QueryInterface');
+		$query->expects($this->once())->method('equals')->with('istopnews', 1);
+
+		$newsRepository = $this->getAccessibleMock(
+			'Tx_News2_Domain_Repository_NewsRepository', array('dummy')
+		);
+
+		$newsRepository->_call('createConstraintsFromDemand', $query, $demand);
+	}
 }
 ?>

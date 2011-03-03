@@ -168,7 +168,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 	/**
 	 * Single view of a news record
-	 *	
+	 *
 	 * @param Tx_News2_Domain_Model_News $news
 	 * @return void
 	 */
@@ -234,6 +234,18 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		}
 
 		$this->settings = $originalSettings;
+	}
+
+    /**
+	 * Injects a view.
+	 * This function is for testing purposes only.
+	 *
+	 * @param Tx_Fluid_View_TemplateView $view the view to inject
+	 *
+	 * @return void
+	 */
+	public function setView(Tx_Fluid_View_TemplateView $view) {
+		$this->view = $view;
 	}
 }
 ?>
