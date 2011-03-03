@@ -34,7 +34,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 
 	/**
 	 * Render link to news item or internal/external pages
-	 * 
+	 *
 	 * @param Tx_News2_Domain_Model_News $newsItem
 	 * @param array $settings
 	 * @param boolean $renderTypeClass
@@ -58,6 +58,20 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 
 		if ($newsType == 0) {
 			$pageId = ((int)($settings['pidDetail']) > 0) ? (int)($settings['pidDetail']) : $GLOBALS['TSFE']->id;
+
+				// if enabled, get detail id from the singlePid field of categories
+			if ($settings['pidDetailFromCategories'] == 1) {
+				$singlePidFromCategory = 0;
+				foreach ($newsItem->getCategories() as $category) {
+					if ($singlePidFromCategory === 0 && (int)$category->getSinglePid() > 0) {
+						$singlePidFromCategory = (int)$category->getSinglePid();
+					}
+				}
+				if ($singlePidFromCategory > 0) {
+					echo $pageId = $singlePidFromCategory;
+				}
+			}
+
 			$linkConfiguration['parameter'] = $pageId;
 			$linkConfiguration['additionalParams'] = '&tx_news2_pi1[controller]=News&tx_news2_pi1[action]=detail&tx_news2_pi1[news]=' . $newsItem->getUid();
 			$linkConfiguration['useCacheHash'] = 1;

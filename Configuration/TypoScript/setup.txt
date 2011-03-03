@@ -32,6 +32,7 @@ plugin.tx_news2 {
 		}
 		hrDates = 0
 		cropLength = 150
+		pidDetailFromCategories = 1
 
 		orderBy = datetime
 		orderAscDesc = desc
@@ -91,6 +92,10 @@ plugin.tx_news2 {
 				itemsPerPage = 10
 				insertAbove = TRUE
 				insertBelow = TRUE
+				lessPages = TRUE
+				forcedNumberOfLinks = 5
+				pagesBefore = 3
+				pagesAfter = 3
 			}
 		}
 
