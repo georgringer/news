@@ -16,7 +16,9 @@
 			<label index="related-files">Related files</label>
 			<label index="related-links">Related links</label>
 			<label index="author">created by %s</label>
-			<label index="list.settings.notfound">List view settings not found. TypoScript included?</label>
+			<label index="paginate_overall">Page %s from %s.</label>
+			<label index="paginate_next">Next</label>
+			<label index="paginate_previous">Previous</label>
 
 			<label index="entry">entry</label>
 			<label index="entries">entries</label>
@@ -38,6 +40,9 @@
 		<languageKey index="de" type="array">
 
 			<label index="SearchResult">%1$s Treffer für die Suche nach "%2$s".</label>
+			<label index="paginate_overall">Seite %s von %s.</label>
+			<label index="paginate_next">Nächsten</label>
+			<label index="paginate_previous">Vorigen</label>
 
 			<label index="entry">Eintrag</label>
 			<label index="entries">Einträge</label>

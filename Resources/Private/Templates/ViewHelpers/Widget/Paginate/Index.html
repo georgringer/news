@@ -10,7 +10,7 @@
 
 <f:section name="paginator">
 <div class="page-navi">
-	<p>Seite {pagination.current} von {pagination.numberOfPages}</p>
+	<p><f:translate key="paginate_overall" arguments="{0:pagination.current,1:pagination.numberOfPages}"/></p>
 	<ul class="f3-widget-paginator">
 		<f:if condition="{pagination.previousPage}">
 			<li class="previous">
@@ -19,7 +19,7 @@
 						<f:widget.link arguments="{currentPage: pagination.previousPage}">previous</f:widget.link>
 					</f:then>
 					<f:else>
-						<f:widget.link>previous</f:widget.link>
+						<f:widget.link><f:translate key="paginate_previous" /></f:widget.link>
 					</f:else>
 				</f:if>
 			</li>
@@ -53,7 +53,7 @@
 		</f:if>
 		<f:if condition="{pagination.nextPage}">
 			<li class="last next">
-				<f:widget.link arguments="{currentPage: pagination.nextPage}">next</f:widget.link>
+				<f:widget.link arguments="{currentPage: pagination.nextPage}"><f:translate key="paginate_next" /></f:widget.link>
 			</li>
 		</f:if>
 	</ul>
