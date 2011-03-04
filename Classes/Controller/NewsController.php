@@ -113,26 +113,17 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return return string the Rendered view
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
+		$demand = $this->createDemandObjectFromSettings($this->settings);
 
-			// If the TypoScript config is not set return an error
-		if (!$this->settings['list']) {
-			$this->flashMessageContainer->add(
-				Tx_Extbase_Utility_Localization::translate('list.settings.notfound', $this->extensionName),
-				 t3lib_FlashMessage::ERROR
-			);
-		} else {
-			$demand = $this->createDemandObjectFromSettings($this->settings);
-
-			if ($overwriteDemand !== NULL) {
-				$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
-			}
-
-			$newsRecords = $this->newsRepository->findDemanded($demand);
-			$this->view->assignMultiple(array(
-				'news' => $newsRecords,
-				'overwriteDemand' => $overwriteDemand
-			));
+		if ($overwriteDemand !== NULL) {
+			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
 		}
+
+		$newsRecords = $this->newsRepository->findDemanded($demand);
+		$this->view->assignMultiple(array(
+			'news' => $newsRecords,
+			'overwriteDemand' => $overwriteDemand
+		));
 	}
 
 	/**
