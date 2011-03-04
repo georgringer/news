@@ -48,7 +48,7 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_MediaInterfac
 			$view->setTemplatePathAndFilename($templateFile);
 		}
 
-		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
+		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getContent());
 
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/Contrib/flowplayer-3.2.4.min.js');
 
@@ -68,7 +68,7 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_MediaInterfac
 
 	/**
 	 * Files with extension flv are handled within this implementation
-	 * 
+	 *
 	 * @param Tx_News2_Domain_Model_Media $element
 	 * @return boolean
 	 */

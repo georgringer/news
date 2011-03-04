@@ -41,7 +41,7 @@ class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterfac
 	 * @return string
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height, $template = '') {
-		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getVideo());
+		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getContent());
 		$url = htmlspecialchars($url);
 		$uniqueId = Tx_News2_Service_FileService::getUniqueId($element);
 
@@ -65,7 +65,7 @@ class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterfac
 
 	/**
 	 * Implementation is only used if file ending is mp3
-	 * 
+	 *
 	 * @param Tx_News2_Domain_Model_Media $element media element
 	 * @return boolean
 	 */

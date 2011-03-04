@@ -41,16 +41,6 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	protected $tstamp;
 
 	/**
-	 * @var integer
-	 */
-	protected $sysLanguageUid;
-
-	/**
-	 * @var integer
-	 */
-	protected $l10nParent;
-
-	/**
 	 * @var boolean
 	 */
 	protected $hidden;
@@ -81,29 +71,9 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	protected $alt;
 
 	/**
-	 * @var string
-	 */
-	protected $media;
-
-	/**
 	 * @var integer
 	 */
 	protected $type;
-
-	/**
-	 * @var string
-	 */
-	protected $html;
-
-	/**
-	 * @var string
-	 */
-	protected $video;
-
-	/**
-	 * @var Tx_ExtbaseDam_Domain_Model_Dam Location
-	 */
-	protected $dam;
 
 	/**
 	 * @var boolean;
@@ -124,6 +94,11 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @var integer;
 	 */
 	protected $sorting;
+
+	/**
+	 * @var string
+	 */
+	protected $content;
 
 
 	public function getTitle() {
@@ -150,44 +125,12 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->alt = $alt;
 	}
 
-	public function getMedia() {
-		return $this->media;
-	}
-
-	public function setMedia($media) {
-		$this->media = $media;
-	}
-
 	public function getType() {
 		return $this->type;
 	}
 
 	public function setType($type) {
 		$this->type = $type;
-	}
-
-	public function getHtml() {
-		return $this->html;
-	}
-
-	public function setHtml($html) {
-		$this->html = $html;
-	}
-
-	public function getVideo() {
-		return $this->video;
-	}
-
-	public function setVideo($video) {
-		$this->video = $video;
-	}
-
-	public function getDam() {
-		return Tx_ExtbaseDam_Utility_Dam::getOne('tx_news2_domain_model_media', $this->uid, 'tx_news2_media');
-	}
-
-	public function setDam($dam) {
-		return $this->dam = $dam;
 	}
 
 	public function getShowinpreview() {
@@ -236,22 +179,6 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 
 	public function setCruserId($cruserId) {
 		$this->cruserId = $cruserId;
-	}
-
-	public function getSysLanguageUid() {
-		return $this->sysLanguageUid;
-	}
-
-	public function setSysLanguageUid($sysLanguageUid) {
-		$this->sysLanguageUid = $sysLanguageUid;
-	}
-
-	public function getL10nParent() {
-		return $this->l10nParent;
-	}
-
-	public function setL10nParent($l10nParent) {
-		$this->l10nParent = $l10nParent;
 	}
 
 	public function getWidth() {
