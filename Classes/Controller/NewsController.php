@@ -72,13 +72,13 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
 
-		$demand->setCategories(t3lib_div::trimExplode(',', $settings['category'], TRUE));
-		$demand->setCategorySetting($settings['categoryMode']);
-		$demand->setTopNewsSetting($settings['topNews']);
-		$demand->setLatestTimeLimit($settings['timeLimit']);
-		$demand->setArchiveSetting($settings['archive']);
-		$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderAscDesc']);
-		$demand->setOrderRespectTopNews($settings['orderByRespectTopNews']);
+		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categorIES'], TRUE));
+		$demand->setCategorySetting($settings['categoryConjunction']);
+		$demand->setTopNewsSetting($settings['topNewsRestriction']);
+		$demand->setLatestTimeLimit($settings['timeRestriction']);
+		$demand->setArchiveSetting($settings['archiveRestriction']);
+		$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
+		$demand->setOrderRespectTopNews($settings['topNewsFirst']);
 		$demand->setLimit($settings['limit']);
 		$demand->setOffset($settings['offset']);
 		$demand->setSearchFields($settings['search']['fields']);

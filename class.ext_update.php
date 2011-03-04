@@ -151,6 +151,17 @@ class ext_update {
 	 */
 	protected function processUpdates() {
 		$this->renameDatabaseTableField('tx_news2_domain_model_news', 'category', 'categories');
+
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'orderAscDesc'), array('sDEF', 'orderDirection'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'category'), array('sDEF', 'categories'));
+		$this->renameFlexformField('news2_pi1', array('additional', 'pidDetail'), array('additional', 'detailPid'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'categoryMode'), array('sDEF', 'categoryConjunction'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'archive'), array('sDEF', 'archiveRestriction'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'timeLimit'), array('sDEF', 'timeRestriction'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'topNews'), array('sDEF', 'topNewsRestriction'));
+		$this->renameFlexformField('news2_pi1', array('additional', 'pidBack'), array('additional', 'backPid'));
+		$this->renameFlexformField('news2_pi1', array('additional', 'orderByRespectTopNews'), array('additional', 'topNewsFirst'));
+		$this->renameFlexformField('news2_pi1', array('template', 'cropLength'), array('template', 'cropMaxCharacters'));
 	}
 
 	/**
@@ -176,7 +187,7 @@ class ext_update {
 	 * @todo find a better way to determine if update is needed or not.
 	 */
 	public function access() {
-		return true;
+		return TRUE;
 	}
 }
 ?>

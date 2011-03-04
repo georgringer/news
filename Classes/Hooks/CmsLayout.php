@@ -101,12 +101,12 @@ class tx_News2_Hooks_CmsLayout {
 			return $content;
 		}
 
-		$archive = $this->getFieldFromFlexform($data, 'settings.archive');;
+		$archive = $this->getFieldFromFlexform($data, 'settings.archiveRestriction');
 
 		if (!empty($archive)) {
 			$content = $this->renderLine(
-							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archive'),
-							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archive.' . $archive)
+							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archiveRestriction'),
+							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.archiveRestriction.' . $archive)
 						);
 		}
 		return $content;
@@ -127,16 +127,16 @@ class tx_News2_Hooks_CmsLayout {
 		$content = $categoryMode = '';
 		$categoriesOut = array();
 
-		$categories = t3lib_div::intExplode(',', $this->getFieldFromFlexform($data, 'settings.category'), TRUE);
+		$categories = t3lib_div::intExplode(',', $this->getFieldFromFlexform($data, 'settings.categories'), TRUE);
 		if (count($categories) > 0) {
 
 				// Category mode
-			$categoryModeSelection = $this->getFieldFromFlexform($data, 'settings.categoryMode');
+			$categoryModeSelection = $this->getFieldFromFlexform($data, 'settings.categoryConjunction');
 
 			if (empty($categoryModeSelection)) {
-				$categoryMode = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.categoryMode.all');
+				$categoryMode = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.categoryConjunction.all');
 			} else {
-				$categoryMode = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.categoryMode.' . $categoryModeSelection);
+				$categoryMode = $GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.categoryConjunction.' . $categoryModeSelection);
 			}
 
 				// Category records
@@ -151,7 +151,7 @@ class tx_News2_Hooks_CmsLayout {
 			}
 
 			$content = $this->renderLine(
-							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.category') .
+							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.categories') .
 								'<br /><span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>',
 							implode(', ', $categoriesOut)
 						);
