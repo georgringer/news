@@ -83,6 +83,30 @@
 						</TCEforms>
 					</settings.orderBy>
 
+					<!-- order direction  -->
+					<settings.orderDirection>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderDirection</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0"></numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderDirection.asc</numIndex>
+										<numIndex index="1">asc</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderDirection.desc</numIndex>
+										<numIndex index="1">desc</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.orderDirection>
+
 					<!-- datefield: select relevant file dateMenu  -->
 					<settings.dateField>
 						<TCEforms>
@@ -103,34 +127,10 @@
 						</TCEforms>
 					</settings.dateField>
 
-					<!-- order direction  -->
-					<settings.orderAscDesc>
-						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderAscDesc</label>
-							<config>
-								<type>select</type>
-								<items>
-									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
-										<numIndex index="1"></numIndex>
-									</numIndex>
-									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderAscDesc.asc</numIndex>
-										<numIndex index="1">asc</numIndex>
-									</numIndex>
-									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderAscDesc.desc</numIndex>
-										<numIndex index="1">desc</numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.orderAscDesc>
-
 					<!-- Category -->
-					<settings.category>
+					<settings.categories>
 						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.category</label>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categories</label>
 							<config>
 								<type>select</type>
 								<renderMode>tree</renderMode>
@@ -149,44 +149,44 @@
 								<maxitems>20</maxitems>
 							</config>
 						</TCEforms>
-					</settings.category>
+					</settings.categories>
 
 					<!-- Category Mode -->
-					<settings.categoryMode>
+					<settings.categoryConjunction>
 						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryMode</label>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryConjunction</label>
 							<config>
 								<type>select</type>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryMode.all</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryConjunction.all</numIndex>
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryMode.or</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryConjunction.or</numIndex>
 										<numIndex index="1">or</numIndex>
 									</numIndex>
 									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryMode.and</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryConjunction.and</numIndex>
 										<numIndex index="1">and</numIndex>
 									</numIndex>
 									<numIndex index="3">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryMode.notor</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryConjunction.notor</numIndex>
 										<numIndex index="1">notor</numIndex>
 									</numIndex>
 									<numIndex index="4">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryMode.notand</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryConjunction.notand</numIndex>
 										<numIndex index="1">notand</numIndex>
 									</numIndex>
 								</items>
 							</config>
 						</TCEforms>
-					</settings.categoryMode>
+					</settings.categoryConjunction>
 
 					<!-- Archive -->
-					<settings.archive>
+					<settings.archiveRestriction>
 						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.archive</label>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.archiveRestriction</label>
 							<config>
 								<type>select</type>
 								<items>
@@ -195,22 +195,22 @@
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.archive.active</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.archiveRestriction.active</numIndex>
 										<numIndex index="1">active</numIndex>
 									</numIndex>
 									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.archive.archived</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.archiveRestriction.archived</numIndex>
 										<numIndex index="1">archived</numIndex>
 									</numIndex>
 								</items>
 							</config>
 						</TCEforms>
-					</settings.archive>
+					</settings.archiveRestriction>
 
 					<!-- Time limit -->
-					<settings.timeLimit>
+					<settings.timeRestriction>
 						<TCEforms>
-						<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.timeLimit</label>
+						<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.timeRestriction</label>
 							<config>
 								<checkbox>1</checkbox>
 								<default></default>
@@ -218,12 +218,12 @@
 								<size>15</size>
 							</config>
 						</TCEforms>
-					</settings.timeLimit>
+					</settings.timeRestriction>
 
 					<!-- Top News -->
-					<settings.topNews>
+					<settings.topNewsRestriction>
 						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNews</label>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction</label>
 							<config>
 								<type>select</type>
 								<items>
@@ -232,17 +232,17 @@
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNews.1</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.1</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNews.2</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.2</numIndex>
 										<numIndex index="1">2</numIndex>
 									</numIndex>
 								</items>
 							</config>
 						</TCEforms>
-					</settings.topNews>
+					</settings.topNewsRestriction>
 
 					<!-- single news -->
 					<settings.singleNews>
@@ -338,9 +338,9 @@
 
 
 					<!-- PID Single Page -->
-					<settings.pidDetail>
+					<settings.detailPid>
 						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_additional.pidDetail</label>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_additional.detailPid</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -357,7 +357,7 @@
 								</wizards>
 							</config>
 						</TCEforms>
-					</settings.pidDetail>
+					</settings.detailPid>
 
 					<!-- PID Single Page -->
 					<settings.listPid>
@@ -382,9 +382,9 @@
 					</settings.listPid>
 
 					<!-- PID Back -->
-					<settings.pidBack>
+					<settings.backPid>
 						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_additional.pidBack</label>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_additional.backPid</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -401,7 +401,7 @@
 								</wizards>
 							</config>
 						</TCEforms>
-					</settings.pidBack>
+					</settings.backPid>
 
 					<!-- Limit Start -->
 					<settings.limit>
@@ -427,17 +427,15 @@
 						</TCEforms>
 					</settings.offset>
 
-					<!-- orderByRespectTopNews -->
-					<settings.orderByRespectTopNews>
+					<!-- topNewsFirst -->
+					<settings.topNewsFirst>
 						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_additional.orderByRespectTopNews</label>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_additional.topNewsFirst</label>
 							<config>
 								<type>check</type>
 							</config>
 						</TCEforms>
-					</settings.orderByRespectTopNews>
-
-
+					</settings.topNewsFirst>
 				</el>
 			</ROOT>
 		</additional>
@@ -480,15 +478,15 @@
 					</settings.media.maxHeight>
 
 					<!-- crop length Teaser -->
-					<settings.cropLength>
+					<settings.cropMaxCharacters>
 						<TCEforms>
-							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_template.cropLength</label>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_template.cropMaxCharacters</label>
 							<config>
 								<type>input</type>
 								<size>5</size>
 							</config>
 						</TCEforms>
-					</settings.cropLength>
+					</settings.cropMaxCharacters>
 
 					<!-- Template Layout -->
 					<settings.templateLayout>
@@ -503,11 +501,11 @@
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNews.1</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.1</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNews.2</numIndex>
+										<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.2</numIndex>
 										<numIndex index="1">2</numIndex>
 									</numIndex>
 								</items>

@@ -118,9 +118,9 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForNewsDetailAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive,dateField',
-			'additional' => 'limit,offset,orderByRespectTopNews,listPid',
-			'template' => 'cropLength'
+			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,archiveRestriction,timeRestriction,topNewsRestriction,startingpoint,recursive,dateField',
+			'additional' => 'limit,offset,topNewsFirst,listPid',
+			'template' => 'cropMaxCharacters'
 		);
 
 		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
@@ -134,9 +134,9 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForSearchFormAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderAscDesc,category,categoryMode,archive,timeLimit,topNews,startingpoint,recursive,dateField,singleNews',
-			'additional' => 'limit,offset,orderByRespectTopNews,listPid',
-			'template' => 'cropLength,media.maxWidth,media.maxHeight'
+			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,archiveRestriction,timeRestriction,topNewsRestriction,startingpoint,recursive,dateField,singleNews',
+			'additional' => 'limit,offset,topNewsFirst,listPid',
+			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
 		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
@@ -150,9 +150,9 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForDateMenuAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderAscDesc,singleNews',
-			'additional' => 'limit,offset,orderByRespectTopNews,pidDetail,pidBack',
-			'template' => 'cropLength,media.maxWidth,media.maxHeight'
+			'sDEF' => 'orderBy,orderDirection,singleNews',
+			'additional' => 'limit,offset,topNewsFirst,detailPid,backPid',
+			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
 		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
