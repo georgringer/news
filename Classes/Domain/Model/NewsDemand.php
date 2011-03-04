@@ -46,6 +46,7 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 	protected $offset;
 
 	protected $search;
+	protected $isDummyRecord;
 
 	public function setArchiveSetting($archiveSetting) {
 		$this->archiveSetting = $archiveSetting;
@@ -167,6 +168,13 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 		$this->search = $search;
 	}
 
+	public function getIsDummyRecord() {
+		return $this->isDummyRecord;
+	}
+
+	public function setIsDummyRecord($isDummyRecord) {
+		$this->isDummyRecord = $isDummyRecord;
+	}
 
 }
 

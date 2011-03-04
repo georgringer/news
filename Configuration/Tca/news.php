@@ -60,6 +60,11 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'type'    => 'input'
 			)
 		),
+		'is_dummy_record' => array(
+			'config'  => array(
+				'type'    => 'check'
+			)
+		),
 		'pid' => array(
 			'label'   => 'pid',
 			'config'  => array(

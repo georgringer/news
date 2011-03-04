@@ -52,6 +52,7 @@ CREATE TABLE tx_news2_domain_model_news (
 
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
+	is_dummy_record tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -84,7 +85,7 @@ CREATE TABLE tx_news2_domain_model_category (
 	shortcut int(11) DEFAULT '0' NOT NULL,
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
-
+	is_dummy_record tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid),
@@ -149,7 +150,7 @@ CREATE TABLE tx_news2_domain_model_media (
 	showinpreview tinyint(4) DEFAULT '0' NOT NULL,
 	width int(11) DEFAULT '0' NOT NULL,
 	height int(11) DEFAULT '0' NOT NULL,
-
+	is_dummy_record tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -188,7 +189,7 @@ CREATE TABLE tx_news2_domain_model_file (
 	title tinytext,
 	description text,
 	file text,
-
+	is_dummy_record tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
@@ -214,7 +215,7 @@ CREATE TABLE tx_news2_domain_model_link (
 	title tinytext,
 	description text,
 	uri text,
-
+	is_dummy_record tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

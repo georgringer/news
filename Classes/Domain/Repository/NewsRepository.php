@@ -116,7 +116,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		if ($demand->getTopNewsSetting() == 1) {
 			$constraints[] = $query->equals('istopnews', 1);
 		} elseif ($demand->getTopNewsSetting() == 2) {
-			$constraints[] = $query->greaterThanOrEqual('istopnews', 0);
+			$constraints[] = $query->equals('istopnews', 0);
 		}
 
 			// storage page
@@ -134,6 +134,11 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 					$query->greaterThanOrEqual($demand->getDateField(), $begin),
 					$query->lessThanOrEqual($demand->getDateField(), $end)
 				);
+		}
+
+			// dummy records, used for UnitTests only!
+		if ($demand->getIsDummyRecord()) {
+			$constraints[] = $query->equals('isDummyRecord', 1);
 		}
 
 			// Search
