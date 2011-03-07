@@ -76,22 +76,22 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	protected $type;
 
 	/**
-	 * @var boolean;
+	 * @var boolean
 	 */
 	protected $showinpreview;
 
 	/**
-	 * @var integer;
+	 * @var integer
 	 */
 	protected $width;
 
 	/**
-	 * @var integer;
+	 * @var integer
 	 */
 	protected $height;
 
 	/**
-	 * @var integer;
+	 * @var integer
 	 */
 	protected $sorting;
 
