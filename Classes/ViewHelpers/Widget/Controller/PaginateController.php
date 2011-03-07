@@ -1,27 +1,33 @@
 <?php
-
-/*                                                                        *
- * This script belongs to the FLOW3 package "Fluid".                      *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License as published by the *
- * Free Software Foundation, either version 3 of the License, or (at your *
- * option) any later version.                                             *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  All rights reserved
+*
+*  This script is part of the TYPO3 project. The TYPO3 project is
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
 
 /**
- * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * Paginate controller to create the pagination.
+ * Extended version from fluid core
+ *
+ * @package TYPO3
+ * @subpackage tx_news2
  */
 class Tx_News2_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_Core_Widget_AbstractWidgetController {
 
@@ -65,11 +71,15 @@ class Tx_News2_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid
 	protected $numberOfPages = 1;
 
 	/**
+	 * Initialize the action and get correct configuration
+	 *
 	 * @return void
 	 */
 	public function initializeAction() {
 		$this->objects = $this->widgetConfiguration['objects'];
-		$this->configuration = t3lib_div::array_merge_recursive_overrule($this->configuration, $this->widgetConfiguration['configuration'], TRUE);
+		$this->configuration = t3lib_div::array_merge_recursive_overrule(
+								$this->configuration,
+								$this->widgetConfiguration['configuration'], TRUE);
 		$this->numberOfPages = ceil(count($this->objects) / (integer)$this->configuration['itemsPerPage']);
 		$this->pagesBefore = (integer)$this->configuration['pagesBefore'];
 		$this->pagesAfter = (integer)$this->configuration['pagesAfter'];
@@ -91,9 +101,8 @@ class Tx_News2_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid
 		$totalNumberOfLinks = min($this->currentPage, $this->pagesBefore) +
 				min($this->pagesAfter, $this->numberOfPages - $this->currentPage) + 1;
 
-
 		if ($totalNumberOfLinks <= $forcedNumberOfLinks) {
-			$delta = intval(ceil(($forcedNumberOfLinks - $totalNumberOfLinks)/2));
+			$delta = intval(ceil(($forcedNumberOfLinks - $totalNumberOfLinks) / 2));
 			$incr = ($forcedNumberOfLinks & 1) == 0 ? 1 : 0;
 			if ($this->currentPage - ($this->pagesBefore + $delta) < 1) {
 					// Too little from the right to adjust
@@ -103,8 +112,7 @@ class Tx_News2_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid
 			elseif ($this->currentPage + ($this->pagesAfter + $delta) >= $this->numberOfPages) {
 				$this->pagesBefore = $forcedNumberOfLinks - ($this->numberOfPages - $this->currentPage);
 				$this->pagesAfter = $forcedNumberOfLinks - $this->pagesBefore - 1;
-			}
-			else {
+			} else {
 				$this->pagesBefore += $delta;
 				$this->pagesAfter += $delta - $incr;
 			}
@@ -113,6 +121,8 @@ class Tx_News2_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid
 	}
 
 	/**
+	 * Main action which does all the fun
+	 *
 	 * @param integer $currentPage
 	 * @return void
 	 */
@@ -142,7 +152,8 @@ class Tx_News2_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid
 	}
 
 	/**
-	 * Returns an array with the keys "pages", "current", "numberOfPages", "nextPage" & "previousPage"
+	 * Returns an array with the keys
+	 * "pages", "current", "numberOfPages", "nextPage" & "previousPage"
 	 *
 	 * @return array
 	 */
@@ -176,7 +187,7 @@ class Tx_News2_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid
 			$pagination['lessPages'] = TRUE;
 		}
 			// More pages
-		if ($end != $this->numberOfPages  && $this->lessPages) {
+		if ($end != $this->numberOfPages && $this->lessPages) {
 			$pagination['morePages'] = TRUE;
 		}
 		return $pagination;

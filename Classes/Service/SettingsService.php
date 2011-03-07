@@ -28,7 +28,7 @@
  *
  * Example
  * $pluginSettingsService =
- *	$this->objectManager->get('Tx_News2_Service_SettingsService');
+ * $this->objectManager->get('Tx_News2_Service_SettingsService');
  * t3lib_div::print_array($pluginSettingsService->getSettings());
  *
  * If objectManager is not available:
@@ -67,13 +67,16 @@ class Tx_News2_Service_SettingsService implements t3lib_Singleton {
 	 */
 	public function getSettings() {
 		if ($this->settings === NULL) {
-			$this->settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+			$this->settings = $this->configurationManager->getConfiguration(
+					Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+			);
 		}
 		return $this->settings;
 	}
 
 	/**
-	 * Returns the settings at path $path, which is separated by ".", e.g. "pages.uid".
+	 * Returns the settings at path $path, which is separated by ".",
+	 * e.g. "pages.uid".
 	 * "pages.uid" would return $this->settings['pages']['uid'].
 	 *
 	 * If the path is invalid or no entry is found, false is returned.

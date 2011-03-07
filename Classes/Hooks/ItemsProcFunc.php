@@ -59,7 +59,8 @@ class tx_News2_Hooks_ItemsProcFunc {
 	 * Itemsproc function to extend the selection of templateLayouts in the plugin
 	 *
 	 * @param array &$config configuration array
-	 * @param t3lib_TCEforms $parentObject
+	 * @param t3lib_TCEforms $parentObject parent object
+	 * @return void
 	 */
 	public function user_templateLayout(array &$config, t3lib_TCEforms $parentObject) {
 			// check if the layouts are extended

@@ -358,6 +358,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 
 	/**
 	 * Gett author's email
+	 *
 	 * @return string
 	 */
 	public function getAuthorEmail() {
@@ -446,7 +447,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Set related news
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_News> $related related news
+	 * @param Tx_Extbase_Persistence_ObjectStorage $related related news
 	 * @return void
 	 */
 	public function setRelated($related) {
@@ -468,7 +469,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Set related files
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_File> $relatedFiles related files
+	 * @param Tx_Extbase_Persistence_ObjectStorage $relatedFiles related files
 	 * @return void
 	 */
 	public function setRelatedFiles($relatedFiles) {
@@ -489,6 +490,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 
 	/**
 	 * Set related links
+	 *
 	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Link> $relatedLinks related links relation
 	 * @return void
 	 */
