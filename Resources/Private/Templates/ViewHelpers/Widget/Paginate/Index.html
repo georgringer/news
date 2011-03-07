@@ -17,7 +17,7 @@
 				<li class="previous">
 					<f:if condition="{pagination.previousPage} > 1">
 						<f:then>
-							<f:widget.link arguments="{currentPage: pagination.previousPage}">previous</f:widget.link>
+							<f:widget.link arguments="{currentPage: pagination.previousPage}"><f:translate key="paginate_previous" /></f:widget.link>
 						</f:then>
 						<f:else>
 							<f:widget.link><f:translate key="paginate_previous" /></f:widget.link>

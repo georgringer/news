@@ -41,8 +41,8 @@
 
 			<label index="SearchResult">%1$s Treffer für die Suche nach "%2$s".</label>
 			<label index="paginate_overall">Seite %s von %s.</label>
-			<label index="paginate_next">Nächsten</label>
-			<label index="paginate_previous">Vorigen</label>
+			<label index="paginate_next">Nächste</label>
+			<label index="paginate_previous">Vorherige</label>
 
 			<label index="entry">Eintrag</label>
 			<label index="entries">Einträge</label>
