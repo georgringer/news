@@ -94,11 +94,11 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		if ($demand->getLatestTimeLimit() !== NULL && $demand->getLatestTimeLimit() != 0) {
 			$timeLimit = 0;
 				// integer = timestamp
-			if (is_int($demand->getLatestTimeLimit()) || (int)$demand->getLatestTimeLimit() == $demand->getLatestTimeLimit()) {
+			if (t3lib_div::testInt($demand->getLatestTimeLimit())) {
 				$timeLimit = $GLOBALS['EXEC_TIME'] - $demand->getLatestTimeLimit();
 			} else {
 					// try to check strtotime
-				$timeFromString = strtotime($timeLimit);
+				$timeFromString = strtotime($demand->getLatestTimeLimit());
 				if ($timeFromString) {
 					$timeLimit = $timeFromString;
 				} else {
@@ -127,7 +127,10 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 
 			// month & year
 		if ($demand->getYear() > 0 && $demand->getMonth() > 0) {
-			$begin = mktime(0, 0, 0, $demand->getMonth(), 0, $demand->getYear());
+			if (is_null($demand->getDateField())) {
+				throw new Exception('No Datefield is set, therefore no Datemenu is possible!');
+			}
+			$begin = mktime(0, 0, 0, $demand->getMonth(), 1, $demand->getYear());
 			$end = mktime(0, 0, 0, ($demand->getMonth() + 1), 0, $demand->getYear());
 
 			$constraints[] = $query->logicalAnd(

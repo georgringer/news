@@ -35,7 +35,6 @@
  * @version $Id$
  */
 class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
-//	var $testingFram
 
 	/**
 	 * @var Tx_Phpunit_Framework
@@ -49,14 +48,14 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 	/**
 	 * @test
 	 */
-	public function findTopNews1Records() {
+	public function findTopNewsRecords() {
 		$pid = 2;
 		$newsRepository = $this->objectManager->get('Tx_News2_Domain_Repository_NewsRepository');
 
 		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
 		$demand->setIsDummyRecord(1);
-		$demand->setStoragePage(2);
+		$demand->setStoragePage($pid);
 
 			// create some dummy records
 		$this->testingFramework->createRecord(
@@ -71,27 +70,116 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 				'tx_news2_domain_model_news', array('istopnews' => 0, 'pid' => $pid));
 
 				// no matter about top news
-		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
-		$demand->setIsDummyRecord(1);
-		$demand->setStoragePage(2);
 		$demand->setTopNewsSetting(0);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
 
-				// Only Top news
-		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
-		$demand->setIsDummyRecord(1);
-		$demand->setStoragePage(2);
+			// Only Top news
 		$demand->setTopNewsSetting(1);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 2);
 
-				// Only non Top news
-		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
-		$demand->setIsDummyRecord(1);
-		$demand->setStoragePage(2);
+			// Only non Top news
 		$demand->setTopNewsSetting(2);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 3);
+	}
+
+	/**
+	 * @test
+	 */
+	public function findLatestLimitRecords() {
+		$pid = 91;
+		$newsRepository = $this->objectManager->get('Tx_News2_Domain_Repository_NewsRepository');
+
+		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
+		$demand->setIsDummyRecord(1);
+		$demand->setStoragePage($pid);
+
+			// create some dummy records
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+				'datetime' => (time() + (-10 * 86400)), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+				'datetime' => (time() + (-7 * 86400)), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+				'datetime' => (time() + (-4 * 86400)), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+				'datetime' => (time() + (-3 * 86400)), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+				'datetime' => (time() + (1 * 86400)), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+				'datetime' => (time() + (3 * 86400)), 'pid' => $pid));
+
+				// maximum 8 days old
+		$demand->setLatestTimeLimit('-8 days');
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
+
+			// get all news maximum 6 days old
+		$demand->setLatestTimeLimit((6 * 86400));
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
+
+			// no restriction should get you all
+		$demand->setLatestTimeLimit(0);
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 6);
+	}
+
+	/**
+	 * @test
+	 */
+	public function findRecordsByMonthAndYear() {
+		$pid = 92;
+		$newsRepository = $this->objectManager->get('Tx_News2_Domain_Repository_NewsRepository');
+
+		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
+		$demand->setIsDummyRecord(1);
+		$demand->setStoragePage($pid);
+
+			// create some dummy records
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'datetime' => strtotime('2011/02/20'), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'datetime' => strtotime('2011/02/22'), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'datetime' => strtotime('2011/03/1'), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'datetime' => strtotime('2011/03/10'), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'datetime' => strtotime('2011/03/31'), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'datetime' => strtotime('2011/03/10'), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'datetime' => strtotime('2011/04/1'), 'pid' => $pid));
+
+			// @todo: add test if setDateField is not used > exception is thrown!
 
 
+			// set month and year with integers
+		$demand->setDateField('datetime');
+		$demand->setMonth(4);
+		$demand->setYear(2011);
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 1);
+
+		$demand->setDateField('datetime');
+		$demand->setMonth('4');
+		$demand->setYear('2011');
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 1);
+
+			// set month and year with strings
+		$demand->setMonth('3');
+		$demand->setYear('2011');
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
 	}
 
 	public function tearDown() {
