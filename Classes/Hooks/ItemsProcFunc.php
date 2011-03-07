@@ -32,10 +32,11 @@
 class tx_News2_Hooks_ItemsProcFunc {
 
 	/**
-	 * Set DAM as an additional option
+	 * Set DAM as an additional option. Changes are done in $config
 	 *
 	 * @param  $config configuration of TCA field
-	 * @param t3lib_TCEforms $parentObject
+	 * @param t3lib_TCEforms $parentObject parent object
+	 * @return void
 	 */
 	public function user_MediaType(array &$config, t3lib_TCEforms $parentObject) {
 			// if dam is loaded
@@ -57,7 +58,7 @@ class tx_News2_Hooks_ItemsProcFunc {
 	/**
 	 * Itemsproc function to extend the selection of templateLayouts in the plugin
 	 *
-	 * @param array &$config
+	 * @param array &$config configuration array
 	 * @param t3lib_TCEforms $parentObject
 	 */
 	public function user_templateLayout(array &$config, t3lib_TCEforms $parentObject) {
@@ -80,8 +81,8 @@ class tx_News2_Hooks_ItemsProcFunc {
 	 * Modifies the selectbox of orderby-options as a categorymenu
 	 * needs different ones then a news action
 	 *
-	 * @param array &$config
-	 * @param t3lib_TCEforms $parentObject
+	 * @param array &$config configuration array
+	 * @param t3lib_TCEforms $parentObject parent object
 	 * @return void
 	 */
 	public function user_orderBy(array &$config, t3lib_TCEforms $parentObject) {
@@ -178,7 +179,9 @@ class tx_News2_Hooks_ItemsProcFunc {
 
 			$html .= '</select>';
 		} else {
-			$html .= $GLOBALS['LANG']->sL('LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:usersettings.no-languages-available', TRUE);
+			$html .= $GLOBALS['LANG']->sL(
+						'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:usersettings.no-languages-available', TRUE
+					);
 		}
 
 		return $html;

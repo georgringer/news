@@ -22,6 +22,13 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+/**
+ * News Demand object which holds all information to get the correct
+ * news records.
+ *
+ * @package TYPO3
+ * @subpackage tx_news2
+ */
 class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEntity implements Tx_News2_Domain_Model_DemandInterface {
 
 	protected $order;

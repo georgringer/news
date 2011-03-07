@@ -196,87 +196,188 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 */
 	protected $sorting;
 
-
+	/**
+	 * Initialize categories and media relation
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->media = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
+	/**
+	 * Get title
+	 *
+	 * @return string
+	 */
 	public function getTitle() {
 		return $this->title;
 	}
 
+	/**
+	 * Set title
+	 *
+	 * @param string $title title
+	 * @return void
+	 */
 	public function setTitle($title) {
 		$this->title = $title;
 	}
 
+	/**
+	 * Get Teaser text
+	 *
+	 * @return string
+	 */
 	public function getTeaser() {
 		return $this->teaser;
 	}
 
+	/**
+	 * Set Teaser text
+	 *
+	 * @param string $teaser teaser text
+	 * @return void
+	 */
 	public function setTeaser($teaser) {
 		$this->teaser = $teaser;
 	}
 
+	/**
+	 * Get bodytext
+	 *
+	 * @return string
+	 */
 	public function getBodytext() {
 		return $this->bodytext;
 	}
 
+	/**
+	 * Set bodytext
+	 *
+	 * @param string $bodytext main content
+	 * @return void
+	 */
 	public function setBodytext($bodytext) {
 		$this->bodytext = $bodytext;
 	}
 
+	/**
+	 * Get datetime
+	 *
+	 * @return DateTime
+	 */
 	public function getDatetime() {
 		return $this->datetime;
 	}
 
+	/**
+	 * Set date time
+	 *
+	 * @param DateTime $datetime datetime
+	 * @return void
+	 */
 	public function setDatetime($datetime) {
 		$this->datetime = $datetime;
 	}
 
+	/**
+	 * Get year of datetime
+	 *
+	 * @return integer
+	 */
 	public function getYearOfDatetime() {
 		return $this->datetime->format('Y');
 	}
 
+	/**
+	 * Get month of datetime
+	 *
+	 * @return integer
+	 */
 	public function getMonthOfDatetime() {
 		return $this->datetime->format('m');
 	}
 
+	/**
+	 * Get archive date
+	 *
+	 * @return DateTime
+	 */
 	public function getArchive() {
 		return $this->archive;
 	}
 
+	/**
+	 * Set archive date
+	 *
+	 * @param DateTime $archive archive date
+	 * @return void
+	 */
 	public function setArchive($archive) {
 		$this->archive = $archive;
 	}
 
+	/**
+	 * Get year of archive date
+	 *
+	 * @return integer
+	 */
 	public function getYearOfArchive() {
 		return $this->archive->format('Y');
 	}
 
+	/**
+	 * Get Month or archive date
+	 *
+	 * @return integer
+	 */
 	public function getMonthOfArchive() {
 		return $this->archive->format('m');
 	}
 
+	/**
+	 * Get author
+	 *
+	 * @return string
+	 */
 	public function getAuthor() {
 		return $this->author;
 	}
 
+	/**
+	 * Set author
+	 *
+	 * @param string $author author
+	 * @return void
+	 */
 	public function setAuthor($author) {
 		$this->author = $author;
 	}
 
+	/**
+	 * Gett author's email
+	 * @return string
+	 */
 	public function getAuthorEmail() {
 		return $this->authorEmail;
 	}
 
+	/**
+	 * Set author's email
+	 *
+	 * @param string $authorEmail author's email
+	 * @return void
+	 */
 	public function setAuthorEmail($authorEmail) {
 		$this->authorEmail = $authorEmail;
 	}
 
 	/**
+	 * Get categories
 	 *
-	 * * @return Tx_News2_Domain_Model_Category
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
 	 */
 	public function getCategories() {
 		if ($this->categories instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
@@ -285,6 +386,11 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		return $this->categories;
 	}
 
+	/**
+	 * Get first category
+	 *
+	 * @return Tx_News2_Domain_Model_Category
+	 */
 	public function getFirstCategory() {
 		$categories = $this->getCategories();
 		$categories->rewind();
@@ -313,8 +419,9 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	}
 
 	/**
+	 * Get related news
 	 *
-	 * * @return Tx_News2_Domain_Model_News
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_News>
 	 */
 	public function getRelated() {
 		if ($this->related instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
@@ -332,14 +439,25 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		$items = $this->getRelated();
 		$items = $items->toArray();
 
-		usort($items, create_function('$a, $b',  'return $a->getDatetime() < $b->getDatetime();'));
+		usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
 		return $items;
 	}
 
+	/**
+	 * Set related news
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_News> $related related news
+	 * @return void
+	 */
 	public function setRelated($related) {
 		$this->related = $related;
 	}
 
+	/**
+	 * Get related files
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_File>
+	 */
 	public function getRelatedFiles() {
 		if ($this->relatedFiles instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->relatedFiles->_loadRealInstance();
@@ -347,10 +465,21 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		return $this->relatedFiles;
 	}
 
+	/**
+	 * Set related files
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_File> $relatedFiles related files
+	 * @return void
+	 */
 	public function setRelatedFiles($relatedFiles) {
 		$this->relatedFiles = $relatedFiles;
 	}
 
+	/**
+	 * Get related links
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Link>
+	 */
 	public function getRelatedLinks() {
 		if ($this->relatedLinks instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
 			$this->relatedLinks->_loadRealInstance();
@@ -358,22 +487,49 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		return $this->relatedLinks;
 	}
 
+	/**
+	 * Set related links
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Link> $relatedLinks related links relation
+	 * @return void
+	 */
 	public function setRelatedLinks($relatedLinks) {
 		$this->relatedLinks = $relatedLinks;
 	}
 
+	/**
+	 * Get type of news
+	 *
+	 * @return integer
+	 */
 	public function getType() {
 		return $this->type;
 	}
 
+	/**
+	 * Set type of news
+	 *
+	 * @param integer $type type
+	 * @return void
+	 */
 	public function setType($type) {
 		$this->type = $type;
 	}
 
+	/**
+	 * Get keywords
+	 *
+	 * @return string
+	 */
 	public function getKeywords() {
 		return $this->keywords;
 	}
 
+	/**
+	 * Set keywords
+	 *
+	 * @param string $keywords keywords
+	 * @return void
+	 */
 	public function setKeywords($keywords) {
 		$this->keywords = $keywords;
 	}
@@ -389,6 +545,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 
 	/**
 	 * Get all media elements which are tagged as preview
+	 *
 	 * @return array
 	 */
 	public function getMediaPreviews() {
@@ -437,6 +594,8 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	}
 
 	/**
+	 * Set media relation
+	 *
 	 * @param   Tx_Extbase_Persistence_ObjectStorage $media
 	 * @return void
 	 */
@@ -444,138 +603,287 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 		$this->media = $media;
 	}
 
+	/**
+	 * Get internal url
+	 *
+	 * @return string
+	 */
 	public function getInternalurl() {
 		return $this->internalurl;
 	}
 
+	/**
+	 * Set internal url
+	 *
+	 * @param string $internalurl internal url
+	 * @return void
+	 */
 	public function setInternalurl($internalurl) {
 		$this->internalurl = $internalurl;
 	}
 
+	/**
+	 * Get external url
+	 *
+	 * @return string
+	 */
 	public function getExternalurl() {
 		return $this->externalurl;
 	}
 
+	/**
+	 * Set external url
+	 *
+	 * @param string $externalurl external url
+	 * @return void
+	 */
 	public function setExternalurl($externalurl) {
 		$this->externalurl = $externalurl;
 	}
 
+	/**
+	 * Get top news flag
+	 *
+	 * @return integer
+	 */
 	public function getIstopnews() {
 		return $this->istopnews;
 	}
 
+	/**
+	 * Set top news flag
+	 *
+	 * @param integer $istopnews top news flag
+	 * @return void
+	 */
 	public function setIstopnews($istopnews) {
 		$this->istopnews = $istopnews;
 	}
 
+	/**
+	 * Get content elements
+	 *
+	 * @return string
+	 */
 	public function getContentElements() {
 		return $this->contentElements;
 	}
 
+	/**
+	 * Set content element list
+	 *
+	 * @param string $contentElements list of ce uids
+	 * @return void
+	 */
 	public function setContentElements($contentElements) {
 		$this->contentElements = $contentElements;
 	}
 
+	/**
+	 * Get creation date
+	 *
+	 * @return integer
+	 */
 	public function getCrdate() {
 		return $this->crdate;
 	}
 
+	/**
+	 * Set creation date
+	 *
+	 * @param integer $crdate
+	 * @return void
+	 */
 	public function setCrdate($crdate) {
 		$this->crdate = $crdate;
 	}
 
+	/**
+	 * Get timestamp
+	 *
+	 * @return integer
+	 */
 	public function getTstamp() {
 		return $this->tstamp;
 	}
 
+	/**
+	 * Set time stamp
+	 *
+	 * @param integer $tstamp time stamp
+	 * @return void
+	 */
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
 	}
 
-	public function getSysLanguageUid() {
-		return $this->sysLanguageUid;
-	}
-
-	public function setSysLanguageUid($sysLanguageUid) {
-		$this->sysLanguageUid = $sysLanguageUid;
-	}
-
-	public function getL10nParent() {
-		return $this->l10nParent;
-	}
-
-	public function setL10nParent($l10nParent) {
-		$this->l10nParent = $l10nParent;
-	}
-
+	/**
+	 * Get id of creator user
+	 *
+	 * @return integer
+	 */
 	public function getCruserId() {
 		return $this->cruserId;
 	}
 
+	/**
+	 * Set cruser id
+	 *
+	 * @param integer $cruserId id of creator user
+	 * @return void
+	 */
 	public function setCruserId($cruserId) {
 		$this->cruserId = $cruserId;
 	}
 
+	/**
+	 * Get editlock flag
+	 *
+	 * @return integer
+	 */
 	public function getEditlock() {
 		return $this->editlock;
 	}
 
+	/**
+	 * Set edit lock flag
+	 *
+	 * @param integer $editlock editlock flag
+	 * @return void
+	 */
 	public function setEditlock($editlock) {
 		$this->editlock = $editlock;
 	}
 
+	/**
+	 * Get hidden flag
+	 *
+	 * @return integer
+	 */
 	public function getHidden() {
 		return $this->hidden;
 	}
 
+	/**
+	 * Set hidden flag
+	 *
+	 * @param integer $hidden hidden flag
+	 * @return void
+	 */
 	public function setHidden($hidden) {
 		$this->hidden = $hidden;
 	}
 
+	/**
+	 * Get deleted flag
+	 *
+	 * @return integer
+	 */
 	public function getDeleted() {
 		return $this->deleted;
 	}
 
+	/**
+	 * Set deleted flag
+	 *
+	 * @param integer $deleted deleted flag
+	 * @return void
+	 */
 	public function setDeleted($deleted) {
 		$this->deleted = $deleted;
 	}
 
+	/**
+	 * Get start time
+	 *
+	 * @return integer
+	 */
 	public function getStarttime() {
 		return $this->starttime;
 	}
 
+	/**
+	 * Set start time
+	 *
+	 * @param integer $starttime start time
+	 * @return void
+	 */
 	public function setStarttime($starttime) {
 		$this->starttime = $starttime;
 	}
 
+	/**
+	 * Get enddtime
+	 *
+	 * @return integer
+	 */
 	public function getEndtime() {
 		return $this->endtime;
 	}
 
+	/**
+	 * Set end time
+	 *
+	 * @param integer $endtime end time
+	 * @return void
+	 */
 	public function setEndtime($endtime) {
 		$this->endtime = $endtime;
 	}
 
+	/**
+	 * Get fe groups
+	 *
+	 * @return string
+	 */
 	public function getFeGroup() {
 		return $this->feGroup;
 	}
 
+	/**
+	 * Set fe group
+	 *
+	 * @param string $feGroup comma seperated list
+	 * @return void
+	 */
 	public function setFeGroup($feGroup) {
 		$this->feGroup = $feGroup;
 	}
 
+	/**
+	 * Get import id
+	 *
+	 * @return integer
+	 */
 	public function getImportId() {
 		return $this->importId;
 	}
 
+	/**
+	 * Set import id
+	 *
+	 * @param integer $importId import id
+	 * @return void
+	 */
 	public function setImportId($importId) {
 		$this->importId = $importId;
 	}
 
+	/**
+	 * Get sorting
+	 *
+	 * @return integer
+	 */
 	public function getSorting() {
 		return $this->sorting;
 	}
 
+	/**
+	 * Set sorting
+	 *
+	 * @param integer $sorting sorting
+	 * @return void
+	 */
 	public function setSorting($sorting) {
 		$this->sorting = $sorting;
 	}

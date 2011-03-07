@@ -27,7 +27,8 @@
  * Provide a way to get the configuration just everywhere
  *
  * Example
- * $pluginSettingsService = $this->objectManager->get('Tx_News2_Service_SettingsService');
+ * $pluginSettingsService =
+ *	$this->objectManager->get('Tx_News2_Service_SettingsService');
  * t3lib_div::print_array($pluginSettingsService->getSettings());
  *
  * If objectManager is not available:
@@ -39,52 +40,51 @@
  */
 class Tx_News2_Service_SettingsService implements t3lib_Singleton {
 
-    /**
-     * @var mixed
-     */
-    protected $settings = NULL;
+	/**
+	 * @var mixed
+	 */
+	protected $settings = NULL;
 
-    /**
-     * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
-     */
-    protected $configurationManager;
+	/**
+	 * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+	 */
+	protected $configurationManager;
 
-    /**
-     * Injects the Configuration Manager and loads the settings
-     *
-     * @param Tx_Extbase_Configuration_ConfigurationManagerInterface An instance of the Configuration Manager
-     * @return void
-     */
-    public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
-        $this->configurationManager = $configurationManager;
-    }
+	/**
+	 * Injects the Configuration Manager and loads the settings
+	 *
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface An instance of the Configuration Manager
+	 * @return void
+	 */
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+		$this->configurationManager = $configurationManager;
+	}
 
-    /**
-     * Returns all settings.
-     *
-     * @return array
-     */
-    public function getSettings() {
-        if ($this->settings === NULL) {
-            $this->settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
-        }
-        return $this->settings;
-    }
+	/**
+	 * Returns all settings.
+	 *
+	 * @return array
+	 */
+	public function getSettings() {
+		if ($this->settings === NULL) {
+			$this->settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+		}
+		return $this->settings;
+	}
 
-    /**
-     * Returns the settings at path $path, which is separated by ".", e.g. "pages.uid".
-     * "pages.uid" would return $this->settings['pages']['uid'].
-     *
-     * If the path is invalid or no entry is found, false is returned.
-     *
-     * @param string $path
-     * @return mixed
-     */
-    public function getByPath($path) {
-        return Tx_Extbase_Reflection_ObjectAccess::getPropertyPath($this->getSettings(), $path);
-    }
+	/**
+	 * Returns the settings at path $path, which is separated by ".", e.g. "pages.uid".
+	 * "pages.uid" would return $this->settings['pages']['uid'].
+	 *
+	 * If the path is invalid or no entry is found, false is returned.
+	 *
+	 * @param string $path
+	 * @return mixed
+	 */
+	public function getByPath($path) {
+		return Tx_Extbase_Reflection_ObjectAccess::getPropertyPath($this->getSettings(), $path);
+	}
 
 }
 
 ?>
-
