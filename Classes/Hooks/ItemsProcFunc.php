@@ -33,7 +33,7 @@ class tx_News2_Hooks_ItemsProcFunc {
 	/**
 	 * Set DAM as an additional option. Changes are done in $config
 	 *
-	 * @param  $config configuration of TCA field
+	 * @param array $config configuration of TCA field
 	 * @param t3lib_TCEforms $parentObject parent object
 	 * @return void
 	 */
@@ -158,7 +158,10 @@ class tx_News2_Hooks_ItemsProcFunc {
 	public function user_categoryOverlay(array $config, SC_mod_user_setup_index $parentObject) {
 		$html = '';
 
-		$orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ? $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] : $GLOBALS['TYPO3_DB']->stripOrderBy($GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']);
+		$orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ?
+						$GLOBALS['TCA']['sys_language']['ctrl']['sortby'] :
+						$GLOBALS['TYPO3_DB']->stripOrderBy($GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']);
+
 		$languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'*',
 			'sys_language',
@@ -190,7 +193,7 @@ class tx_News2_Hooks_ItemsProcFunc {
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/ItemsProcFunc.php']) {
-	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/ItemsProcFunc.php']);
+	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/ItemsProcFunc.php']);
 }
 
 ?>
