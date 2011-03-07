@@ -52,9 +52,9 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 */
 	public function orderRespectTopNewsCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
-		$orderRespectTopNews = 'Test orderRespectTopNews';
-		$domainModelInstance->setOrderRespectTopNews($orderRespectTopNews);
-		$this->assertEquals($orderRespectTopNews, $domainModelInstance->getOrderRespectTopNews());
+		$orderRespectTopNews = 'Test topNewsFirst';
+		$domainModelInstance->setTopNewsFirst($orderRespectTopNews);
+		$this->assertEquals($orderRespectTopNews, $domainModelInstance->getTopNewsFirst());
 	}
 
 	/**
@@ -78,9 +78,9 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 */
 	public function categorySettingCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
-		$categorySetting = 'Test categorySetting';
-		$domainModelInstance->setCategorySetting($categorySetting);
-		$this->assertEquals($categorySetting, $domainModelInstance->getCategorySetting());
+		$categorySetting = 'Test categoryConjunction';
+		$domainModelInstance->setCategoryConjunction($categorySetting);
+		$this->assertEquals($categorySetting, $domainModelInstance->getCategoryConjunction());
 	}
 
 	/**
@@ -91,9 +91,9 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 */
 	public function archiveSettingCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
-		$archiveSetting = 'Test archiveSetting';
-		$domainModelInstance->setArchiveSetting($archiveSetting);
-		$this->assertEquals($archiveSetting, $domainModelInstance->getArchiveSetting());
+		$archiveSetting = 'Test archiveRestriction';
+		$domainModelInstance->setArchiveRestriction($archiveSetting);
+		$this->assertEquals($archiveSetting, $domainModelInstance->getArchiveRestriction());
 	}
 
 	/**
@@ -104,9 +104,9 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 */
 	public function latestTimeLimitCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
-		$latestTimeLimit = 'Test latestTimeLimit';
-		$domainModelInstance->setLatestTimeLimit($latestTimeLimit);
-		$this->assertEquals($latestTimeLimit, $domainModelInstance->getLatestTimeLimit());
+		$latestTimeLimit = 'Test timeRestriction';
+		$domainModelInstance->setTimeRestriction($latestTimeLimit);
+		$this->assertEquals($latestTimeLimit, $domainModelInstance->getTimeRestriction());
 	}
 
 	/**
@@ -143,9 +143,9 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 */
 	public function topNewsSettingCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
-		$topNewsSetting = 'Test topNewsSetting';
-		$domainModelInstance->setTopNewsSetting($topNewsSetting);
-		$this->assertEquals($topNewsSetting, $domainModelInstance->getTopNewsSetting());
+		$topNewsSetting = 'Test topNewsRestriction';
+		$domainModelInstance->setTopNewsRestriction($topNewsSetting);
+		$this->assertEquals($topNewsSetting, $domainModelInstance->getTopNewsRestriction());
 	}
 
 	/**

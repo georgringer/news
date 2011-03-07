@@ -38,8 +38,7 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 	 * @param Tx_News2_Domain_Model_DemandInterface $demand
 	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
 	 */
-	abstract protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query,
-		Tx_News2_Domain_Model_DemandInterface $demand);
+	abstract protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News2_Domain_Model_DemandInterface $demand);
 
 	/**
 	 * Returns an array of orderings created from a given demand object.
@@ -57,6 +56,7 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 	 * @return Tx_Extbase_Persistence_QueryResultInterface
 	 */
 	public function findDemanded(Tx_News2_Domain_Model_DemandInterface $demand) {
+
 		$query = $this->createQuery();
 
 			// @todo find a better place for setting respectStoragePage. Perhaps $this->createQuery().

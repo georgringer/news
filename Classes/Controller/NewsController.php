@@ -68,22 +68,28 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return Tx_News2_Domain_Model_NewsDemand
 	 */
 	protected function createDemandObjectFromSettings($settings) {
-		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
+		/**
+		 * @var $demand Tx_News2_Domain_Model_NewsDemand
+		 */
 		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
 
 		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categories'], TRUE));
-		$demand->setCategorySetting($settings['categoryConjunction']);
-		$demand->setTopNewsSetting($settings['topNewsRestriction']);
-		$demand->setLatestTimeLimit($settings['timeRestriction']);
-		$demand->setArchiveSetting($settings['archiveRestriction']);
+		$demand->setCategoryConjunction($settings['categoryConjunction']);
+
+		$demand->setTopNewsRestriction($settings['topNewsRestriction']);
+		$demand->setTimeRestriction($settings['timeRestriction']);
+		$demand->setArchiveRestriction($settings['archiveRestriction']);
+
 		$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
-		$demand->setOrderRespectTopNews($settings['topNewsFirst']);
+		$demand->setTopNewsFirst($settings['topNewsFirst']);
+
 		$demand->setLimit($settings['limit']);
 		$demand->setOffset($settings['offset']);
+
 		$demand->setSearchFields($settings['search']['fields']);
+
 		$demand->setStoragePage(Tx_News2_Utility_Page::extendPidListByChildren($settings['startingpoint'],
 			$settings['recursive']));
-
 		return $demand;
 	}
 
@@ -112,6 +118,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return return string the Rendered view
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
+
 		$demand = $this->createDemandObjectFromSettings($this->settings);
 
 		if ($overwriteDemand !== NULL) {
@@ -119,6 +126,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		}
 
 		$newsRecords = $this->newsRepository->findDemanded($demand);
+
 		$this->view->assignMultiple(array(
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand

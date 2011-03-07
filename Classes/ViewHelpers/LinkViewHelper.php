@@ -67,7 +67,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 					}
 				}
 				if ($singlePidFromCategory > 0) {
-					echo $pageId = $singlePidFromCategory;
+					$pageId = $singlePidFromCategory;
 				}
 			}
 

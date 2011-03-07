@@ -76,28 +76,28 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 
 		if ($demand->getCategories() && $demand->getCategories() !== '0') {
 			$constraints[] = $this->createCategoryConstraint($query, $demand->getCategories(),
-				$demand->getCategorySetting());
+				$demand->getCategoryConjunction());
 		}
 
 			// archived
-		if ($demand->getArchiveSetting() == 'archived') {
+		if ($demand->getArchiveRestriction() == 'archived') {
 			$constraints[] = $query->logicalAnd(
 				$query->lessThan('archive', $GLOBALS['EXEC_TIME']),
 				$query->greaterThan('archive', 0)
 			);
-		} elseif ($demand->getArchiveSetting() == 'active') {
+		} elseif ($demand->getArchiveRestriction() == 'active') {
 			$constraints[] = $query->greaterThanOrEqual('archive', $GLOBALS['EXEC_TIME']);
 		}
 
 			// latest time
-		if ($demand->getLatestTimeLimit() !== NULL && $demand->getLatestTimeLimit() != 0) {
+		if ($demand->getTimeRestriction() !== NULL && $demand->getTimeRestriction() != 0) {
 			$timeLimit = 0;
 				// integer = timestamp
-			if (t3lib_div::testInt($demand->getLatestTimeLimit())) {
-				$timeLimit = $GLOBALS['EXEC_TIME'] - $demand->getLatestTimeLimit();
+			if (t3lib_div::testInt($demand->getTimeRestriction())) {
+				$timeLimit = $GLOBALS['EXEC_TIME'] - $demand->getTimeRestriction();
 			} else {
 					// try to check strtotime
-				$timeFromString = strtotime($demand->getLatestTimeLimit());
+				$timeFromString = strtotime($demand->getTimeRestriction());
 				if ($timeFromString) {
 					$timeLimit = $timeFromString;
 				} else {
@@ -112,9 +112,9 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		}
 
 			// top news
-		if ($demand->getTopNewsSetting() == 1) {
+		if ($demand->getTopNewsRestriction() == 1) {
 			$constraints[] = $query->equals('istopnews', 1);
-		} elseif ($demand->getTopNewsSetting() == 2) {
+		} elseif ($demand->getTopNewsRestriction() == 2) {
 			$constraints[] = $query->equals('istopnews', 0);
 		}
 
@@ -165,7 +165,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	 */
 	protected function createOrderingsFromDemand(Tx_News2_Domain_Model_DemandInterface $demand) {
 		$orderings = array();
-		if ($demand->getOrderRespectTopNews()) {
+		if ($demand->getTopNewsFirst()) {
 			$orderings['istopnews'] = Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING;
 		}
 

@@ -71,15 +71,15 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 				'tx_news2_domain_model_news', array('istopnews' => 0, 'pid' => $pid));
 
 			// no matter about top news
-		$demand->setTopNewsSetting(0);
+		$demand->setTopNewsRestriction(0);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
 
 			// Only Top news
-		$demand->setTopNewsSetting(1);
+		$demand->setTopNewsRestriction(1);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 2);
 
 			// Only non Top news
-		$demand->setTopNewsSetting(2);
+		$demand->setTopNewsRestriction(2);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 3);
 	}
 
@@ -119,15 +119,15 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 				'datetime' => (time() + (3 * 86400)), 'pid' => $pid));
 
 			// maximum 8 days old
-		$demand->setLatestTimeLimit('-8 days');
+		$demand->setTimeRestriction('-8 days');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
 
 			// get all news maximum 6 days old
-		$demand->setLatestTimeLimit((6 * 86400));
+		$demand->setTimeRestriction((6 * 86400));
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
 
 			// no restriction should get you all
-		$demand->setLatestTimeLimit(0);
+		$demand->setTimeRestriction(0);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 6);
 	}
 
