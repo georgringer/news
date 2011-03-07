@@ -40,16 +40,6 @@ class Tx_News2_Domain_Model_Link extends Tx_Extbase_DomainObject_AbstractValueOb
 	protected $tstamp;
 
 	/**
-	 * @var integer
-	 */
-	protected $sysLanguageUid;
-
-	/**
-	 * @var integer
-	 */
-	protected $l10nParent;
-
-	/**
 	 * @var string
 	 */
 	protected $title;
@@ -64,65 +54,100 @@ class Tx_News2_Domain_Model_Link extends Tx_Extbase_DomainObject_AbstractValueOb
 	 */
 	protected $uri;
 
+	/**
+	 * Get creation date
+	 *
+	 * @return integer
+	 */
 	public function getCrdate() {
 		return $this->crdate;
 	}
 
+	/**
+	 * Set creation date
+	 *
+	 * @param integer $crdate creation date
+	 * @return void
+	 */
 	public function setCrdate($crdate) {
 		$this->crdate = $crdate;
 	}
 
+	/**
+	 * Get timestamp
+	 *
+	 * @return integer
+	 */
 	public function getTstamp() {
 		return $this->tstamp;
 	}
 
+	/**
+	 * Set timestamp
+	 *
+	 * @param type $tstamp timestamp
+	 * @return void
+	 */
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
 	}
 
-	public function getSysLanguageUid() {
-		return $this->sysLanguageUid;
-	}
-
-	public function setSysLanguageUid($sysLanguageUid) {
-		$this->sysLanguageUid = $sysLanguageUid;
-	}
-
-	public function getL10nParent() {
-		return $this->l10nParent;
-	}
-
-	public function setL10nParent($l10nParent) {
-		$this->l10nParent = $l10nParent;
-	}
-
-		public function getTitle() {
+	/**
+	 * Get title
+	 *
+	 * @return string
+	 */
+	public function getTitle() {
 		return $this->title;
 	}
 
+	/**
+	 * Set title
+	 *
+	 * @param string $title title
+	 * @return void
+	 */
 	public function setTitle($title) {
 		$this->title = $title;
 	}
 
+	/**
+	 * Get description
+	 *
+	 * @return string
+	 */
 	public function getDescription() {
 		return $this->description;
 	}
 
+	/**
+	 * Set description
+	 *
+	 * @param string $description description
+	 * @return void
+	 */
 	public function setDescription($description) {
 		$this->description = $description;
 	}
 
+	/**
+	 * Get uri
+	 *
+	 * @return string
+	 */
 	public function getUri() {
 		return $this->uri;
 	}
 
+	/**
+	 * Set uri
+	 *
+	 * @param string $uri uri
+	 * @return void
+	 */
 	public function setUri($uri) {
 		$this->uri = $uri;
 	}
-
-
-
-
 
 }
 

@@ -77,9 +77,9 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 	/**
 	 * Modify TS to fit cObjs
 	 *
-	 * @todo really needed? check convertExtbaseToClassicTS in extbase_utility
 	 * @param array $extBaseTS
 	 * @return array convertes TS
+	 * @todo really needed? check convertExtbaseToClassicTS in extbase_utility
 	 */
 	public function convertExtbaseToClassicTS(array $extBaseTS) {
 		$classicTS = array();

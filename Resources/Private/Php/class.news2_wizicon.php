@@ -34,7 +34,7 @@ class news2_pi1_wizicon {
 	/**
 	 * Processing the wizard items array
 	 *
-	 * @param array $wizardItems: The wizard items
+	 * @param array $wizardItems The wizard items
 	 * @return Modified array with wizard items
 	 */
 	public function proc($wizardItems) {

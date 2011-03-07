@@ -60,6 +60,11 @@ class Tx_News2_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHe
 		$this->registerTagAttribute('javaScript', 'string', 'JS URL. If not set, default is used, if set to -1 no Js is loaded');
 	}
 
+	/**
+	 * Render twitter viewhelper
+	 *
+	 * @return string
+	 */
 	public function render() {
 		$code = '';
 		$this->tag->addAttribute('href', 'http://twitter.com/share');

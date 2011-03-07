@@ -58,6 +58,11 @@ class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_
 		$this->registerTagAttribute('javaScript', 'string', 'JS URL. If not set, default is used, if set to -1 no Js is loaded');
 	}
 
+	/**
+	 * Render the facebook like viewhelper
+	 *
+	 * @return string
+	 */
 	public function render() {
 		$code = '';
 		$this->tag->addAttribute('href', (!empty($this->arguments['href'])) ? $this->arguments['href'] : t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
