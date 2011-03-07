@@ -9,53 +9,55 @@
 </f:if>
 
 <f:section name="paginator">
-<div class="page-navi">
-	<p><f:translate key="paginate_overall" arguments="{0:pagination.current,1:pagination.numberOfPages}"/></p>
-	<ul class="f3-widget-paginator">
-		<f:if condition="{pagination.previousPage}">
-			<li class="previous">
-				<f:if condition="{pagination.previousPage} > 1">
+	<f:if condition="{pagination.numberOfPages} > 1">
+	<div class="page-navi">
+		<p><f:translate key="paginate_overall" arguments="{0:pagination.current,1:pagination.numberOfPages}"/></p>
+		<ul class="f3-widget-paginator">
+			<f:if condition="{pagination.previousPage}">
+				<li class="previous">
+					<f:if condition="{pagination.previousPage} > 1">
+						<f:then>
+							<f:widget.link arguments="{currentPage: pagination.previousPage}">previous</f:widget.link>
+						</f:then>
+						<f:else>
+							<f:widget.link><f:translate key="paginate_previous" /></f:widget.link>
+						</f:else>
+					</f:if>
+				</li>
+			</f:if>
+			<f:if condition="{pagination.lessPages}">
+				<li>....</li>
+			</f:if>
+			<f:for each="{pagination.pages}" as="page">
+				<f:if condition="{page.isCurrent}">
 					<f:then>
-						<f:widget.link arguments="{currentPage: pagination.previousPage}">previous</f:widget.link>
+						<li class="current">
+							<f:widget.link>{page.number}</f:widget.link>
+						</li>
 					</f:then>
 					<f:else>
-						<f:widget.link><f:translate key="paginate_previous" /></f:widget.link>
+						<li>
+							<f:if condition="{page.number} > 1">
+								<f:then>
+									<f:widget.link arguments="{currentPage: page.number}">{page.number}</f:widget.link>
+								</f:then>
+								<f:else>
+									<f:widget.link>{page.number}</f:widget.link>
+								</f:else>
+							</f:if>
+						</li>
 					</f:else>
 				</f:if>
-			</li>
-		</f:if>
-		<f:if condition="{pagination.lessPages}">
-			<li>....</li>
-		</f:if>
-		<f:for each="{pagination.pages}" as="page">
-			<f:if condition="{page.isCurrent}">
-				<f:then>
-					<li class="current">
-						<f:widget.link>{page.number}</f:widget.link>
-					</li>
-				</f:then>
-				<f:else>
-					<li>
-						<f:if condition="{page.number} > 1">
-							<f:then>
-								<f:widget.link arguments="{currentPage: page.number}">{page.number}</f:widget.link>
-							</f:then>
-							<f:else>
-								<f:widget.link>{page.number}</f:widget.link>
-							</f:else>
-						</f:if>
-					</li>
-				</f:else>
+			</f:for>
+			<f:if condition="{pagination.morePages}">
+				<li>....</li>
 			</f:if>
-		</f:for>
-		<f:if condition="{pagination.morePages}">
-			<li>....</li>
-		</f:if>
-		<f:if condition="{pagination.nextPage}">
-			<li class="last next">
-				<f:widget.link arguments="{currentPage: pagination.nextPage}"><f:translate key="paginate_next" /></f:widget.link>
-			</li>
-		</f:if>
-	</ul>
-</div>
+			<f:if condition="{pagination.nextPage}">
+				<li class="last next">
+					<f:widget.link arguments="{currentPage: pagination.nextPage}"><f:translate key="paginate_next" /></f:widget.link>
+				</li>
+			</f:if>
+		</ul>
+	</div>
+	</f:if>
 </f:section>
