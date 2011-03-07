@@ -71,7 +71,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
 
-		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categorIES'], TRUE));
+		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categories'], TRUE));
 		$demand->setCategorySetting($settings['categoryConjunction']);
 		$demand->setTopNewsSetting($settings['topNewsRestriction']);
 		$demand->setLatestTimeLimit($settings['timeRestriction']);

@@ -115,7 +115,8 @@ class ext_update {
 				}
 
 				if ($updated === TRUE) {
-					$GLOBALS['TYPO3_DB']->UPDATEquery('tt_content', 'uid=' . $row['uid'], array(
+
+					$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tt_content', 'uid=' . $row['uid'], array(
 						'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray)
 					));
 
@@ -151,16 +152,16 @@ class ext_update {
 	protected function processUpdates() {
 		$this->renameDatabaseTableField('tx_news2_domain_model_news', 'category', 'categories');
 
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'orderAscDesc'), array('sDEF', 'orderDirection'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'category'), array('sDEF', 'categories'));
-		$this->renameFlexformField('news2_pi1', array('additional', 'pidDetail'), array('additional', 'detailPid'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'categoryMode'), array('sDEF', 'categoryConjunction'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'archive'), array('sDEF', 'archiveRestriction'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'timeLimit'), array('sDEF', 'timeRestriction'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'topNews'), array('sDEF', 'topNewsRestriction'));
-		$this->renameFlexformField('news2_pi1', array('additional', 'pidBack'), array('additional', 'backPid'));
-		$this->renameFlexformField('news2_pi1', array('additional', 'orderByRespectTopNews'), array('additional', 'topNewsFirst'));
-		$this->renameFlexformField('news2_pi1', array('template', 'cropLength'), array('template', 'cropMaxCharacters'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.category'), array('sDEF', 'settings.categories'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.orderAscDesc'), array('sDEF', 'settings.orderDirection'));
+		$this->renameFlexformField('news2_pi1', array('additional', 'settings.pidDetail'), array('additional', 'settings.detailPid'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.categoryMode'), array('sDEF', 'settings.categoryConjunction'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.archive'), array('sDEF', 'settings.archiveRestriction'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.timeLimit'), array('sDEF', 'settings.timeRestriction'));
+		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.topNews'), array('sDEF', 'settings.topNewsRestriction'));
+		$this->renameFlexformField('news2_pi1', array('additional', 'settings.pidBack'), array('additional', 'settings.backPid'));
+		$this->renameFlexformField('news2_pi1', array('additional', 'settings.orderByRespectTopNews'), array('additional', 'settings.topNewsFirst'));
+		$this->renameFlexformField('news2_pi1', array('template', 'settings.cropLength'), array('template', 'settings.cropMaxCharacters'));
 	}
 
 	/**
