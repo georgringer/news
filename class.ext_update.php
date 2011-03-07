@@ -93,7 +93,7 @@ class ext_update {
 
 		$flexformTools = t3lib_div::makeInstance('t3lib_flexformtools');
 
-		while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 
 			$xmlArray = t3lib_div::xml2array($row['pi_flexform']);
 
@@ -104,7 +104,7 @@ class ext_update {
 			} else {
 				$updated = FALSE;
 
-				foreach($xmlArray['data'][$oldFieldPointer[0]] as $language => $fields) {
+				foreach ($xmlArray['data'][$oldFieldPointer[0]] as $language => $fields) {
 					if ($fields[$oldFieldPointer[1]]) {
 
 						$xmlArray['data'][$newFieldPointer[0]][$language][$newFieldPointer[1]] = $fields[$oldFieldPointer[1]];
@@ -171,7 +171,7 @@ class ext_update {
 	 */
 	protected function generateOutput() {
 		$output = '';
-		foreach($this->messageArray as $messageItem) {
+		foreach ($this->messageArray as $messageItem) {
 			$output .= '<strong>' . $messageItem[1] . '</strong><br />' .
 				'&nbsp;&nbsp;&nbsp;->' . $messageItem[2] . '<br /><br />';
 		}

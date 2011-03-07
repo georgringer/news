@@ -42,7 +42,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		$constraint = NULL;
 		$categoryConstraints = array();
 
-		foreach($categories as $category) {
+		foreach ($categories as $category) {
 			$categoryConstraints[] = $query->contains('categories', $category);
 		}
 
@@ -173,7 +173,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 
 		if (!empty($orderList)) {
 				// go through every order statement
-			foreach($orderList as $orderItem) {
+			foreach ($orderList as $orderItem) {
 				list($orderField, $ascDesc) = t3lib_div::trimExplode(' ', $orderItem, TRUE);
 					// count == 1 means that no direction is given
 				if ($ascDesc) {
@@ -192,8 +192,8 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	/**
 	 * Find first news by import and source id
 	 *
-	 * @param  $importSource
-	 * @param  $importId
+	 * @param string $importSource import source
+	 * @param integer $importId import id
 	 * @return Tx_News2_Domain_Model_News
 	 */
 	public function findOneByImportSourceAndImportId($importSource, $importId) {

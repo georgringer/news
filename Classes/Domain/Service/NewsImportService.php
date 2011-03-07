@@ -148,7 +148,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 			$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions');
 
-			foreach($importItem['media'] as $mediaItem) {
+			foreach ($importItem['media'] as $mediaItem) {
 				if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['media'])) {
 
 					$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['media'],
@@ -186,7 +186,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 		$mediaItems = $news->getMedia();
 
 		if ($mediaItems->count() !== 0) {
-			foreach($mediaItems as $mediaItem) {
+			foreach ($mediaItems as $mediaItem) {
 
 				if ($mediaItem->getMedia() == basename($mediaFile) &&
 					$this->filesAreEqual(

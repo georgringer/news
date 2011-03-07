@@ -80,7 +80,7 @@ class Tx_News2_Domain_Service_CategoryImportService implements t3lib_Singleton {
 	}
 
 	public function import(array $importArray) {
-		foreach($importArray as $importItem) {
+		foreach ($importArray as $importItem) {
 			if (is_null($category = $this->categoryRepository->findOneByImportSourceAndImportId(
 				$importItem['import_source'], $importItem['import_id']))) {
 
@@ -109,7 +109,7 @@ class Tx_News2_Domain_Service_CategoryImportService implements t3lib_Singleton {
 
 		$this->persistenceManager->persistAll();
 
-		foreach($this->postPersistQueue as $originalPrimaryKey => $queueItem) {
+		foreach ($this->postPersistQueue as $originalPrimaryKey => $queueItem) {
 			$category = $queueItem['category'];
 			$parentCategoryOriginUid = $queueItem['parentCategoryOriginUid'];
 

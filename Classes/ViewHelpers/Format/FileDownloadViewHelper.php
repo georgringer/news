@@ -88,7 +88,7 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 				if (is_array($value)) {
 
 					$classicTS[$key.'.'] = $this->convertExtbaseToClassicTS($value);
-				} else{
+				} else {
 					$classicTS[$key] = $value;
 				}
 			}

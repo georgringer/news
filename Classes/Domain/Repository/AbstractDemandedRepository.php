@@ -62,7 +62,7 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 			// @todo find a better place for setting respectStoragePage. Perhaps $this->createQuery().
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 
-		if($constraints = $this->createConstraintsFromDemand($query, $demand)) {
+		if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {
 			$query->matching(
 				$query->logicalAnd($constraints)
 			);
@@ -94,7 +94,7 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 	public function countDemanded(Tx_News2_Domain_Model_DemandInterface $demand) {
 		$query = $this->createQuery();
 
-		if($constraints = $this->createConstraintsFromDemand($query, $demand)) {
+		if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {
 			$query->matching(
 				$query->logicalAnd($constraints)
 			);

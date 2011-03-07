@@ -32,6 +32,8 @@
 class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
+	 * Test if order can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -43,6 +45,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test of top news can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -54,6 +58,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if categories can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -65,6 +71,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if categorysetting can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -76,6 +84,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if archive can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -87,6 +97,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if timelimit can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -98,6 +110,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if searchfield can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -109,6 +123,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if storagepage can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -120,6 +136,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if topnews setting can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -131,6 +149,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if limit can be set
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -142,6 +162,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if offset can be set
+	 *
 	 * @test
 	 * @return void
 	 */

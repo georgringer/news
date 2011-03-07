@@ -44,6 +44,8 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 	}
 
 	/**
+	 * Test if top news constraint works
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -82,6 +84,8 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 	}
 
 	/**
+	 * Test if latestlimit constraint works
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -128,6 +132,8 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 	}
 
 	/**
+	 * Test if record by month/year constraint works
+	 *
 	 * @test
 	 * @return void
 	 */

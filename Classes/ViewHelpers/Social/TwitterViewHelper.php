@@ -67,7 +67,7 @@ class Tx_News2_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHe
 
 			// rewrite tags as it seems that it is not possible to have tags with a '-'.
 		$rewriteTags = array('datacount', 'datavia', 'datarelated', 'datatext', 'dataurl', 'datalang');
-		foreach($rewriteTags as $tag) {
+		foreach ($rewriteTags as $tag) {
 			if (!empty($this->arguments[$tag])) {
 				$newTag = str_replace('data', 'data-', $tag);
 				$this->tag->addAttribute($newTag, $this->arguments[$tag]);

@@ -32,6 +32,8 @@
 class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
+	 * Test if default file format works
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -42,6 +44,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 	}
 
 	/**
+	 * Test if given format works
 	 * @test
 	 * @return void
 	 */
@@ -52,6 +55,8 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 	}
 
 	/**
+	 * Tetst if exception handling works
+	 *
 	 * @test
 	 * @expectedException Tx_Fluid_Core_ViewHelper_Exception
 	 * @return void

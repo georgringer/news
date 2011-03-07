@@ -37,26 +37,26 @@ class tx_News2_Hooks_Tceforms {
 	 * @param type $table current table
 	 * @param type $field current field
 	 * @param array $row record row
-	 * @param array $PA configuration
+	 * @param array $Pa configuration
 	 * @return void
 	 */
-	public function getSingleField_beforeRender($table, $field, array $row, array &$PA) {
+	public function getSingleField_beforeRender($table, $field, array $row, array &$Pa) {
 		if ($table === 'tx_news2_domain_model_media' && $field === 'content') {
 
 			$type = $row['type'];
-			if (!isset($type) || !isset($PA['fieldConf']['variants'][$type])) {
-				$type = (int)$PA['fieldConf']['variants']['default'];
+			if (!isset($type) || !isset($Pa['fieldConf']['variants'][$type])) {
+				$type = (int)$Pa['fieldConf']['variants']['default'];
 			}
-			$PA['fieldConf'] = $PA['fieldConf']['variants'][$type];
-			$PA['label'] = $GLOBALS['LANG']->sL($PA['fieldConf']['label'], TRUE);
-			$PA['fieldConf']['config']['form_type'] = $PA['fieldConf']['config']['type'];
+			$Pa['fieldConf'] = $Pa['fieldConf']['variants'][$type];
+			$Pa['label'] = $GLOBALS['LANG']->sL($Pa['fieldConf']['label'], TRUE);
+			$Pa['fieldConf']['config']['form_type'] = $Pa['fieldConf']['config']['type'];
 		}
 	}
 
 }
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Tceforms.php'])    {
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Tceforms.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Tceforms.php']);
 }
 

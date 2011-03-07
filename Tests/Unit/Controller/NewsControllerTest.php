@@ -67,6 +67,8 @@ class Tx_News2_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
 	}
 
 	/**
+	 * Test for creating correct demand call
+	 *
 	 * @test
 	 * @return void
 	 */
