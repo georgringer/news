@@ -35,11 +35,11 @@ class tx_News2_Hooks_T3libBefunc {
 	 * Hook function of t3lib_befunc
 	 * It is used to change the flexform if it is about news2
 	 *
-	 * @param type $dataStructure Flexform structure
-	 * @param type $conf some strange configuration
-	 * @param type $row row of current record
-	 * @param type $table table anme
-	 * @param type $fieldName some strange field name
+	 * @param array &$dataStructure Flexform structure
+	 * @param array $conf some strange configuration
+	 * @param array $row row of current record
+	 * @param string $table table anme
+	 * @param string $fieldName some strange field name
 	 * @return void
 	 */
 	public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table, $fieldName) {
@@ -51,7 +51,7 @@ class tx_News2_Hooks_T3libBefunc {
 	/**
 	 * Update flexform configuration if a action is selected
 	 *
-	 * @param array|string $dataStructure flexform structur
+	 * @param array|string &$dataStructure flexform structur
 	 * @param array $row row of current record
 	 * @return void
 	 */
@@ -97,7 +97,7 @@ class tx_News2_Hooks_T3libBefunc {
 	/**
 	 * Change flexform for News->list which is the overall used list view
 	 *
-	 * @param array $dataStructure flexform structure
+	 * @param array &$dataStructure flexform structure
 	 * @return void
 	 */
 	protected function updateForNewsListAction(array &$dataStructure) {
@@ -113,7 +113,7 @@ class tx_News2_Hooks_T3libBefunc {
 	/**
 	 * Change flexform for News->detail which is the single view of a news record
 	 *
-	 * @param array $dataStructure flexform structure
+	 * @param array &$dataStructure flexform structure
 	 * @return void
 	 */
 	protected function updateForNewsDetailAction(array &$dataStructure) {
@@ -129,7 +129,7 @@ class tx_News2_Hooks_T3libBefunc {
 	/**
 	 * Change flexform for News->detail which is the single view of a news record
 	 *
-	 * @param array $dataStructure flexform structure
+	 * @param array &$dataStructure flexform structure
 	 * @return void
 	 */
 	protected function updateForSearchFormAction(array &$dataStructure) {
@@ -145,7 +145,7 @@ class tx_News2_Hooks_T3libBefunc {
 	/**
 	 * Change flexform for News->detail which is the single view of a news record
 	 *
-	 * @param array $dataStructure flexform structure
+	 * @param array &$dataStructure flexform structure
 	 * @return void
 	 */
 	protected function updateForDateMenuAction(array &$dataStructure) {
@@ -162,7 +162,7 @@ class tx_News2_Hooks_T3libBefunc {
 	/**
 	 * Remove fields from flexform structure
 	 *
-	 * @param array $dataStructure flexform structure
+	 * @param array &$dataStructure flexform structure
 	 * @param array $fieldsToBeRemoved fields which need to be removed
 	 * @return void
 	 */

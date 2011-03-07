@@ -51,13 +51,13 @@ class tx_News2_Hooks_Tcemain{
 			if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fieldArray['type'] && !$GLOBALS['BE_USER']->workspace) {
 					// if "savedokview" has been pressed and current article has "type" 0 (= normal news article)
 					// and the beUser works in the LIVE workspace open current record in single view
-				$pagesTSC = t3lib_BEfunc::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
-				if ($pagesTSC['tx_news2.']['singlePid']) {
+				$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
+				if ($pagesTsConfig['tx_news2.']['singlePid']) {
 					$GLOBALS['_POST']['popViewId_addParams'] = ($fieldArray['sys_language_uid'] > 0 ?
 						'&L=' . $fieldArray['sys_language_uid'] : 0) . '&no_cache=1 ' .
 						'&tx_news2_pi1[controller]=News&tx_news2_pi1[action]=detail&tx_news2_pi1[news]=' . $id;
 
-					$GLOBALS['_POST']['popViewId'] = $pagesTSC['tx_news2.']['singlePid'];
+					$GLOBALS['_POST']['popViewId'] = $pagesTsConfig['tx_news2.']['singlePid'];
 				}
 			}
 		}

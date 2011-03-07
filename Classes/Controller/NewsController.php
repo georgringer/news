@@ -96,7 +96,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	protected function overwriteDemandObject($demand, $overwriteDemand) {
 		foreach ($overwriteDemand as $propertyName => $propertyValue) {
-			// @todo: consider adding an per mode access check
+				// @todo: consider adding an per mode access check
 			$setterMethod = 'set' . ucfirst($propertyName);
 			if (method_exists(Tx_News2_Domain_Model_NewsDemand, $setterMethod)) {
 				$demand->{$setterMethod}($propertyValue);
@@ -177,7 +177,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	public function dateMenuAction(array $overwriteDemand = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
-		// @todo: should be covert by createDemandObjectFromSettings
+			// @todo: should be covert by createDemandObjectFromSettings
 		$demand->setOrder($this->settings['dateField'] . ' DESC');
 
 		$newsRecords = $this->newsRepository->findDemanded($demand);

@@ -37,19 +37,19 @@ class tx_News2_Hooks_Tceforms {
 	 * @param type $table current table
 	 * @param type $field current field
 	 * @param array $row record row
-	 * @param array $Pa configuration
+	 * @param array $configuration configuration
 	 * @return void
 	 */
-	public function getSingleField_beforeRender($table, $field, array $row, array &$Pa) {
+	public function getSingleField_beforeRender($table, $field, array $row, array &$configuration) {
 		if ($table === 'tx_news2_domain_model_media' && $field === 'content') {
 
 			$type = $row['type'];
-			if (!isset($type) || !isset($Pa['fieldConf']['variants'][$type])) {
-				$type = (int)$Pa['fieldConf']['variants']['default'];
+			if (!isset($type) || !isset($configuration['fieldConf']['variants'][$type])) {
+				$type = (int)$configuration['fieldConf']['variants']['default'];
 			}
-			$Pa['fieldConf'] = $Pa['fieldConf']['variants'][$type];
-			$Pa['label'] = $GLOBALS['LANG']->sL($Pa['fieldConf']['label'], TRUE);
-			$Pa['fieldConf']['config']['form_type'] = $Pa['fieldConf']['config']['type'];
+			$configuration['fieldConf'] = $configuration['fieldConf']['variants'][$type];
+			$configuration['label'] = $GLOBALS['LANG']->sL($configuration['fieldConf']['label'], TRUE);
+			$configuration['fieldConf']['config']['form_type'] = $configuration['fieldConf']['config']['type'];
 		}
 	}
 

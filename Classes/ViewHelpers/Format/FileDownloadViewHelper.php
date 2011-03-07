@@ -42,7 +42,7 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 	public function render($file, $path = '', array $configuration = array()) {
 		$filePath = $path . $file;
 		if (!is_file($filePath)) {
-			// @todo: better exceptions
+				// @todo: better exceptions
 			throw new Exception('Given file is not a valid file: ' . htmlspecialchars($filePath));
 		}
 
@@ -62,7 +62,7 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 
 		);
 
-		$configuration = $this->convertExtbaseToClassicTS($configuration);
+		$configuration = $this->convertExtbaseToClassicTs($configuration);
 
 			// merge default configuration with optional configuration
 		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration, $configuration);
@@ -77,23 +77,23 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 	/**
 	 * Modify TS to fit cObjs
 	 *
-	 * @param array $extBaseTS
+	 * @param array $extbaseTs
 	 * @return array convertes TS
 	 * @todo really needed? check convertExtbaseToClassicTS in extbase_utility
 	 */
-	public function convertExtbaseToClassicTS(array $extBaseTS) {
-		$classicTS = array();
-		if (is_array($extBaseTS)) {
-			foreach ($extBaseTS as $key => $value) {
+	public function convertExtbaseToClassicTs(array $extbaseTs) {
+		$classicTs = array();
+		if (is_array($extbaseTs)) {
+			foreach ($extbaseTs as $key => $value) {
 				if (is_array($value)) {
 
-					$classicTS[$key.'.'] = $this->convertExtbaseToClassicTS($value);
+					$classicTs[$key.'.'] = $this->convertExtbaseToClassicTs($value);
 				} else {
-					$classicTS[$key] = $value;
+					$classicTs[$key] = $value;
 				}
 			}
 		}
-		return $classicTS;
+		return $classicTs;
 	}
 
 

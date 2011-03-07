@@ -70,7 +70,7 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 		$this->testingFramework->createRecord(
 				'tx_news2_domain_model_news', array('istopnews' => 0, 'pid' => $pid));
 
-				// no matter about top news
+			// no matter about top news
 		$demand->setTopNewsSetting(0);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
 
@@ -118,7 +118,7 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 				'tx_news2_domain_model_news', array(
 				'datetime' => (time() + (3 * 86400)), 'pid' => $pid));
 
-				// maximum 8 days old
+			// maximum 8 days old
 		$demand->setLatestTimeLimit('-8 days');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
 
