@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_Service_Import_DataProviderServiceInterface, t3lib_Singleton {
@@ -109,7 +108,6 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 		$alts = t3lib_div::trimExplode(chr(10), $row['imagealttext'], FALSE);
 		$titles = t3lib_div::trimExplode(chr(10), $row['imagetitletext'], FALSE);
 
-
 		$i = 0;
 		foreach ($images as $image) {
 			$media[] = array(
@@ -118,7 +116,7 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 				'caption' => $captions[$i],
 				'media' => 'uploads/pics/' . $image,
 				'type' => 0,
-				'showinpreview' => (int)$i==0
+				'showinpreview' => (int)$i == 0
 			);
 			$i ++;
 		}

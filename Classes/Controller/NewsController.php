@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  */
 class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_ActionController {
 
@@ -227,7 +226,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$this->settings = $originalSettings;
 	}
 
-    /**
+	/**
 	 * Injects a view.
 	 * This function is for testing purposes only.
 	 *

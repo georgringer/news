@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
@@ -133,7 +132,6 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 			$news->setImportid($importItem['import_id']);
 			$news->setImportSource($importItem['import_source']);
-
 
 			foreach($importItem['categories'] as $categoryUid) {
 				if ($settings['findCategoriesByImportSource']) {

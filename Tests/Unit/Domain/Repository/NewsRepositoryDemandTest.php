@@ -31,8 +31,6 @@
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Georg Ringer <mail@ringerge.org>
- *
- * @version $Id$
  */
 class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
@@ -163,7 +161,6 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 					'datetime' => strtotime('2011/04/1'), 'pid' => $pid));
 
 			// @todo: add test if setDateField is not used > exception is thrown!
-
 
 			// set month and year with integers
 		$demand->setDateField('datetime');

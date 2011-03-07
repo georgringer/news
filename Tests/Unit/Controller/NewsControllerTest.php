@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id: NewsController.php 44402 2011-02-28 16:13:59Z just2b $
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Georg Ringer <mail@ringerge.org>

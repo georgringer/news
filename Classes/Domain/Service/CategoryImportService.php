@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News2_Domain_Service_CategoryImportService implements t3lib_Singleton {
@@ -100,7 +99,7 @@ class Tx_News2_Domain_Service_CategoryImportService implements t3lib_Singleton {
 			$category->setImportId($importItem['import_id']);
 			$category->setImportSource($importItem['import_source']);
 
-  			if ($importItem['parentcategory']) {
+			if ($importItem['parentcategory']) {
 				$this->postPersistQueue[$importItem['import_id']] = array(
 					'category' => $category,
 					'parentCategoryOriginUid' => $importItem['parentcategory']
@@ -109,7 +108,6 @@ class Tx_News2_Domain_Service_CategoryImportService implements t3lib_Singleton {
 		}
 
 		$this->persistenceManager->persistAll();
-
 
 		foreach($this->postPersistQueue as $originalPrimaryKey => $queueItem) {
 			$category = $queueItem['category'];

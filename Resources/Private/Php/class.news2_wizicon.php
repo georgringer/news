@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id: class.news2_wizicon.php 42732 2011-01-28 09:15:24Z just2b $
  */
 class news2_pi1_wizicon {
 	protected $extKey = 'news2';

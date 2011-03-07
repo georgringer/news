@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  */
 class Tx_News2_Domain_Model_Link extends Tx_Extbase_DomainObject_AbstractValueObject {
 	/**

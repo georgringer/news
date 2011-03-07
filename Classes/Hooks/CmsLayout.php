@@ -189,7 +189,8 @@ class tx_News2_Hooks_CmsLayout {
 	/**
 	 * Render datemenu configuration
 	 *
-	 * @param array $data
+	 * @param array $data flexform data
+	 * @param string $actionKey current action
 	 * @return string
 	 */
 	private function getDateMenuSettings($data, $actionKey) {
@@ -274,8 +275,6 @@ class tx_News2_Hooks_CmsLayout {
 
 		return NULL;
 	}
-
-
 }
 
 

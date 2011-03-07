@@ -1,5 +1,3 @@
- #  @version $Id:$
-
 	# cat=basic/enable/100; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsNews
 pageModuleFieldsNews = LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:pagemodule_simple=title,datetime;LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:pagemodule_advanced=title,datetime,teaser,category;LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:pagemodule_complex=title,datetime,teaser,category,archive;
 
@@ -22,7 +20,7 @@ showImporter = 0
 prependAtCopy = 1
 
 	# cat=basic/enable/106; type=options[LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.none=none,LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.current_pid=current_pid,LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.storage_pid=storage_pid,LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.siteroot=siteroot]; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction
-categoryRestriction = 
+categoryRestriction =
 
 	# cat=basic/enable/110; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.hideContentElementRelation
 hideContentElementRelation = 1

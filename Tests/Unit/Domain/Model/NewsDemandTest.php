@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Unit_BaseTestCase {

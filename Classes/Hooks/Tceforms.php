@@ -33,7 +33,7 @@ class tx_News2_Hooks_Tceforms {
 
 	/**
 	 * Change field configuration depending on the type field
-	 * 
+	 *
 	 * @param type $table current table
 	 * @param type $field current field
 	 * @param array $row record row
@@ -56,7 +56,7 @@ class tx_News2_Hooks_Tceforms {
 
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Tceforms.php'])    {
-    include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Tceforms.php']);
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Tceforms.php']);
 }
 
 ?>

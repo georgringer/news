@@ -21,15 +21,14 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
 /**
  * Abstract Import job
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-
 abstract class Tx_News2_Jobs_AbstractImportJob implements Tx_News2_Jobs_ImportJobInterface {
 	/**
 	 * @var Tx_News2_Service_Import_DataProviderServiceInterface
@@ -65,7 +64,7 @@ abstract class Tx_News2_Jobs_AbstractImportJob implements Tx_News2_Jobs_ImportJo
 	 * @return integer
 	 */
 	public function getNumberOfRecordsPerRun() {
-		 // If not explicit defined by the job we import all records at once.
+			// If not explicit defined by the job we import all records at once.
 		if ($this->numberOfRecordsPerRun === NULL) {
 			$this->numberOfRecordsPerRun = $this->importDataProviderService->getTotalRecordCount();
 		}

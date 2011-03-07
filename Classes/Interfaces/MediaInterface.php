@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  */
 interface Tx_News2_Interfaces_MediaInterface {
 

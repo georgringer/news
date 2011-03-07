@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  */
 class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Repository_AbstractDemandedRepository  {
 
@@ -40,7 +39,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	 * @return Tx_Extbase_Persistence_QOM_Constrain|null
 	 */
 	protected function createCategoryConstraint(Tx_Extbase_Persistence_QueryInterface $query, $categories, $conjunction) {
-        $constraint = NULL;
+		$constraint = NULL;
 		$categoryConstraints = array();
 
 		foreach($categories as $category) {
@@ -153,9 +152,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			if (!empty($searchString)) {
 				$constraints[] = $query->like('title', '%' . $searchString . '%');
 			}
-		#	$searchObject->
 		}
-
 
 		return $constraints;
 	}

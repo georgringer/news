@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Georg Ringer <typo3@ringerge.org>
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */

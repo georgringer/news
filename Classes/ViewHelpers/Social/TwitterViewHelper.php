@@ -37,7 +37,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  */
 class Tx_News2_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 	/**

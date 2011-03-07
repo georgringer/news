@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id: FileSizeViewHelper.php 39680 2010-10-29 17:44:22Z just2b $
  */
 class Tx_News2_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 

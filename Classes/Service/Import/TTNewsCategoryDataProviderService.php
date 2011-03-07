@@ -27,12 +27,11 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News2_Service_Import_TTNewsCategoryDataProviderService implements Tx_News2_Service_Import_DataProviderServiceInterface, t3lib_Singleton {
 
-	protected $importSource= 'TT_NEWS_CATEGORY_IMPORT';
+	protected $importSource = 'TT_NEWS_CATEGORY_IMPORT';
 
 	public function getTotalRecordCount() {
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(*)',

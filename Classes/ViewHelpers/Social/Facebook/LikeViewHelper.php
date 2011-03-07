@@ -38,7 +38,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  */
 class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 	/**
@@ -63,7 +62,6 @@ class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_
 		$code = '';
 		$this->tag->addAttribute('href', (!empty($this->arguments['href'])) ? $this->arguments['href'] : t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
 
-
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
 			if (empty($this->arguments['javaScript'])) {
@@ -72,7 +70,6 @@ class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_
 				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
 			}
 		}
-
 
 		$code .= $this->tag->render();
 		return $code;

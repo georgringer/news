@@ -26,7 +26,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_Extbase_Persistence_Repository implements Tx_News2_Domain_Repository_DemandedRepositoryInterface {
@@ -60,11 +59,11 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 	public function findDemanded(Tx_News2_Domain_Model_DemandInterface $demand) {
 		$query = $this->createQuery();
 
-			 // @todo find a better place for setting respectStoragePage. Perhaps $this->createQuery().
+			// @todo find a better place for setting respectStoragePage. Perhaps $this->createQuery().
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 
 		if($constraints = $this->createConstraintsFromDemand($query, $demand)) {
-        	$query->matching(
+			$query->matching(
 				$query->logicalAnd($constraints)
 			);
 		}
@@ -73,12 +72,12 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 			$query->setOrderings($orderings);
 		}
 
-			 // @todo consider moving this to a seperate function as well
+			// @todo consider moving this to a seperate function as well
 		if ($demand->getLimit() != NULL) {
 			$query->setLimit($demand->getLimit());
 		}
 
-			 // @todo consider moving this to a seperate function as well
+			// @todo consider moving this to a seperate function as well
 		if ($demand->getOffset() != NULL) {
 			$query->setOffset($demand->getOffset());
 		}
@@ -96,7 +95,7 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 		$query = $this->createQuery();
 
 		if($constraints = $this->createConstraintsFromDemand($query, $demand)) {
-        	$query->matching(
+			$query->matching(
 				$query->logicalAnd($constraints)
 			);
 		}

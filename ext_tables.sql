@@ -1,9 +1,4 @@
 #
-# @version $Id$
-#
-
-
-#
 # Table structure for table 'tx_news2_domain_model_news'
 #
 CREATE TABLE tx_news2_domain_model_news (

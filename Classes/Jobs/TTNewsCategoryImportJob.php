@@ -21,15 +21,14 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
 /**
  * Import job
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-
 class Tx_News2_Jobs_TTNewsCategoryImportJob extends Tx_News2_Jobs_AbstractImportJob {
 
 	/**

@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  */
 class ext_update {
 	const STATUS_WARNING = -1;
@@ -116,7 +115,7 @@ class ext_update {
 				}
 
 				if ($updated === TRUE) {
-					$GLOBALS['TYPO3_DB']->UPDATEquery('tt_content','uid=' . $row['uid'], array(
+					$GLOBALS['TYPO3_DB']->UPDATEquery('tt_content', 'uid=' . $row['uid'], array(
 						'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray)
 					));
 

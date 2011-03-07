@@ -1,26 +1,32 @@
 <?php
-
-/*                                                                        *
- * This script belongs to the FLOW3 package "Fluid".                      *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU General Public License as published by the Free   *
- * Software Foundation, either version 3 of the License, or (at your      *
- * option) any later version.                                             *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General      *
- * Public License for more details.                                       *
- *                                                                        *
- * You should have received a copy of the GNU General Public License      *
- * along with the script.                                                 *
- * If not, see http://www.gnu.org/licenses/gpl.html                       *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  All rights reserved
+*
+*  This script is part of the TYPO3 project. The TYPO3 project is
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
 
 /**
+ * Base view helper test case
+ *
+ * @package TYPO3
+ * @subpackage tx_news2
  */
 abstract class Tx_News2_ViewHelpers_ViewHelperBaseTestcase extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
@@ -66,7 +72,6 @@ abstract class Tx_News2_ViewHelpers_ViewHelperBaseTestcase extends Tx_Extbase_Te
 
 	/**
 	 * @return void
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
 	public function setUp() {
 		$this->viewHelperVariableContainer = $this->getMock('Tx_Fluid_Core_ViewHelper_ViewHelperVariableContainer');
@@ -96,7 +101,6 @@ abstract class Tx_News2_ViewHelpers_ViewHelperBaseTestcase extends Tx_Extbase_Te
 	/**
 	 * @param Tx_Fluid_Core_ViewHelper_AbstractViewHelper $viewHelper
 	 * @return void
-	 * @author Sebastian Kurfürst <sebastian@typo3.org>
 	 */
 	protected function injectDependenciesIntoViewHelper(Tx_Fluid_Core_ViewHelper_AbstractViewHelper $viewHelper) {
 		$viewHelper->setViewHelperVariableContainer($this->viewHelperVariableContainer);

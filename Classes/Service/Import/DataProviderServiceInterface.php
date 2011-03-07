@@ -26,7 +26,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 interface Tx_News2_Service_Import_DataProviderServiceInterface {

@@ -31,8 +31,6 @@
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Georg Ringer <mail@ringerge.org>
- *
- * @version $Id$
  */
 class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
@@ -97,7 +95,6 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbas
 		$demand = $this->getMock('Tx_News2_Domain_Model_NewsDemand');
 		$demand->expects($this->atLeastOnce())->method('getTopNewsSetting')
 			->will($this->returnValue(1));
-
 
 		$query = $this->getMock('Tx_Extbase_Persistence_QueryInterface');
 		$query->expects($this->once())->method('equals')->with('istopnews', 1);

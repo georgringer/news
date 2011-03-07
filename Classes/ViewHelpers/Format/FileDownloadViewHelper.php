@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id: FileDownloadViewHelper.php 39669 2010-10-29 13:29:06Z just2b $
  */
 class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
@@ -67,7 +66,7 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 		$configuration = $this->convertExtbaseToClassicTS($configuration);
 
 			// merge default configuration with optional configuration
-		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration,$configuration);
+		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration, $configuration);
 
 			// generate file
 		$file = $cObj->filelink($file, $tsConfiguration);

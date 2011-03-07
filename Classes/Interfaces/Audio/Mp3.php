@@ -27,7 +27,6 @@
  *
  * @package TYPO3
  * @subpackage tx_news2
- * @version $Id$
  */
 class Tx_News2_Interfaces_Audio_Mp3 implements Tx_News2_Interfaces_MediaInterface {
 
