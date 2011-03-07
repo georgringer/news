@@ -134,7 +134,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 			$news->setImportid($importItem['import_id']);
 			$news->setImportSource($importItem['import_source']);
 
-			foreach($importItem['categories'] as $categoryUid) {
+			foreach ($importItem['categories'] as $categoryUid) {
 				if ($settings['findCategoriesByImportSource']) {
 					$category = $this->categoryRepository->findOneByImportSourceAndImportId(
 						$settings['findCategoriesByImportSource'], $categoryUid);
@@ -178,11 +178,13 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 	}
 
 	/**
-	 * @param  $news
-	 * @param  $mediaFile
+	 * Get media file if it exists
+	 *
+	 * @param Tx_News2_Domain_Model_News $news
+	 * @param string $mediaFile
 	 * @return Boolean|Tx_News2_Domain_Model_Media
 	 */
-	protected function getMediaIfAlreadyExists($news, $mediaFile) {
+	protected function getMediaIfAlreadyExists(Tx_News2_Domain_Model_News $news, $mediaFile) {
 		$result = FALSE;
 		$mediaItems = $news->getMedia();
 

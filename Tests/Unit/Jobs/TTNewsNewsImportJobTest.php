@@ -32,6 +32,8 @@
 class Tx_News2_Tests_Unit_Jobs_TTNewsNewsImportJobTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
+	 * Test getNumberOfRecordsPerRun_returns_expected_value
+	 *
 	 * @test
 	 * @return void
 	 */

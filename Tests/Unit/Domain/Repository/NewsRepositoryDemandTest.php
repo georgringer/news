@@ -169,8 +169,6 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 				'tx_news2_domain_model_news', array(
 					'datetime' => strtotime('2011/04/1'), 'pid' => $pid));
 
-			// @todo: add test if setDateField is not used > exception is thrown!
-
 			// set month and year with integers
 		$demand->setDateField('datetime');
 		$demand->setMonth(4);

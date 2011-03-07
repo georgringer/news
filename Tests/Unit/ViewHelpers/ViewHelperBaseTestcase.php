@@ -71,6 +71,8 @@ abstract class Tx_News2_ViewHelpers_ViewHelperBaseTestcase extends Tx_Extbase_Te
 	protected $renderingContext;
 
 	/**
+	 * Set up unit test framework
+	 *
 	 * @return void
 	 */
 	public function setUp() {

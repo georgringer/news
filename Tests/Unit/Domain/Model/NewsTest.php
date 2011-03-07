@@ -37,6 +37,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	protected $newsDomainModelInstance;
 
 	/**
+	 * Set up framework
+	 *
 	 * @return void
 	 */
 	protected function setUp() {
@@ -213,7 +215,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 
 	/**
 	 * Test if field can be set
-	 * 
+	 *
 	 * @test
 	 * @return void
 	 */

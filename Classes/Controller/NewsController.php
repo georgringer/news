@@ -90,8 +90,8 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/**
 	 * Overwrites a given demand object by an propertyName =>  $propertyValue array
 	 *
-	 * @param  $demand
-	 * @param  $overwriteDemand
+	 * @param Tx_News2_Domain_Model_NewsDemand $demand
+	 * @param array $overwriteDemand
 	 * @return Tx_News2_Domain_Model_NewsDemand
 	 */
 	protected function overwriteDemandObject($demand, $overwriteDemand) {

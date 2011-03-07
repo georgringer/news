@@ -36,6 +36,7 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbas
 
 	/**
 	 * dataProvider for createCategoryConstraint_creates_correct_junctions
+	 *
 	 * @return array
 	 */
 	public function conjunctionNameProvider() {
@@ -48,6 +49,8 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbas
 	}
 
 	/**
+	 * Test createCategoryConstraint_creates_correct_junctions
+	 *
 	 * @test
 	 * @dataProvider conjunctionNameProvider
 	 * @return void
@@ -66,6 +69,8 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbas
 	}
 
 	/**
+	 * Test findDemanded_calls_createConstraintsFromDemand_once
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -78,6 +83,8 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbas
 	}
 
 	/**
+	 * Test findDemanded_calls_createOrderingsFromDemand_once
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -89,6 +96,8 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbas
 	}
 
 	/**
+	 * Test createConstraintsFromDemandForDemandWithTopnewsSetting1QueriesForIsTopNews
+	 *
 	 * @test
 	 * @return void
 	 */
