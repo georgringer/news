@@ -32,6 +32,7 @@
 class Tx_News2_Tests_Unit_ViewHelpers_Format_StriptagsViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
+	 * 
 	 * @test
 	 * @return void
 	 */

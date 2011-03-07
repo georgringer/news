@@ -36,8 +36,10 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 	protected function createOrderingsFromDemand(Tx_News2_Domain_Model_DemandInterface $demand) {}
 
 	/**
-	 * @param  $importSource
-	 * @param  $importId
+	 * Find category by import source and import id
+	 *
+	 * @param string $importSource import source
+	 * @param integer $importId import id
 	 * @return Tx_Extbase_Persistence_QueryInterface
 	 */
 	public function findOneByImportSourceAndImportId($importSource, $importId) {

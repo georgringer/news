@@ -45,6 +45,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 
 	/**
 	 * Test if given format works
+	 *
 	 * @test
 	 * @return void
 	 */

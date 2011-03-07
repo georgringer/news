@@ -61,6 +61,8 @@ abstract class Tx_News2_Jobs_AbstractImportJob implements Tx_News2_Jobs_ImportJo
 	protected $increaseOffsetPerRunBy;
 
 	/**
+	 * Get number of runs
+	 *
 	 * @return integer
 	 */
 	public function getNumberOfRecordsPerRun() {

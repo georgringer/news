@@ -99,6 +99,8 @@ abstract class Tx_News2_ViewHelpers_ViewHelperBaseTestcase extends Tx_Extbase_Te
 	}
 
 	/**
+	 * Inject dependencies
+	 *
 	 * @param Tx_Fluid_Core_ViewHelper_AbstractViewHelper $viewHelper
 	 * @return void
 	 */

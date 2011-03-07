@@ -45,6 +45,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -55,6 +56,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -65,6 +67,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -75,6 +78,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -85,6 +89,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -95,6 +100,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -105,6 +111,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 *
 	 * @test
 	 * @return void
 	 */
@@ -115,6 +122,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 *
 	 * @test
 	 * @return void
 	 */

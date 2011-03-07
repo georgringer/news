@@ -61,6 +61,7 @@ class Tx_News2_Domain_Service_CategoryImportService implements t3lib_Singleton {
 	}
 
 	/**
+	 * Inject Persistence Manager
 	 *
 	 * @param Tx_Extbase_Persistence_Manager $persistenceManager
 	 * @return void

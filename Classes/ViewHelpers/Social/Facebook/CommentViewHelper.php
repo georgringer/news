@@ -54,6 +54,7 @@ class Tx_News2_ViewHelpers_Facebook_CommentViewHelper extends Tx_Fluid_Core_View
 	}
 
 	/**
+	 * Render facebook comment viewhelper
 	 *
 	 * @param string $appId
 	 * @return string
