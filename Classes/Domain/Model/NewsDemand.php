@@ -55,130 +55,305 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 	protected $search;
 	protected $isDummyRecord;
 
+	/**
+	 * Set archive settings
+	 *
+	 * @param string $archiveSetting archivesetting
+	 * @return void
+	 */
 	public function setArchiveSetting($archiveSetting) {
 		$this->archiveSetting = $archiveSetting;
 	}
 
+	/**
+	 * Get archive setting
+	 *
+	 * @return string
+	 */
 	public function getArchiveSetting() {
 		return $this->archiveSetting;
 	}
 
+	/**
+	 * List of allowed categories
+	 *
+	 * @param string $categories categories
+	 * @return void
+	 */
 	public function setCategories($categories) {
 		$this->categories = $categories;
 	}
 
+	/**
+	 * Get allowed categories
+	 *
+	 * @return string
+	 */
 	public function getCategories() {
 		return $this->categories;
 	}
 
+	/**
+	 * Set category mode
+	 *
+	 * @param string $categorySetting categorysetting
+	 * @return void
+	 */
 	public function setCategorySetting($categorySetting) {
 		$this->categorySetting = $categorySetting;
 	}
 
+	/**
+	 * Get category mode
+	 *
+	 * @return string
+	 */
 	public function getCategorySetting() {
 		return $this->categorySetting;
 	}
 
+	/**
+	 * Set latest time limit, either integer or string
+	 *
+	 * @param mixed $latestTimeLimit time limit
+	 * @return void
+	 */
 	public function setLatestTimeLimit($latestTimeLimit) {
 		$this->latestTimeLimit = $latestTimeLimit;
 	}
 
+	/**
+	 * Get latest time limit
+	 *
+	 * @return mixed
+	 */
 	public function getLatestTimeLimit() {
 		return $this->latestTimeLimit;
 	}
 
+	/**
+	 * Set order
+	 *
+	 * @param string $order order
+	 * @return void
+	 */
 	public function setOrder($order) {
 		$this->order = $order;
 	}
 
+	/**
+	 * Get order
+	 *
+	 * @return string
+	 */
 	public function getOrder() {
 		return $this->order;
 	}
 
+	/**
+	 * Set order respect top news flag
+	 *
+	 * @param integer $orderRespectTopNews respect top news flag
+	 * @return void
+	 */
 	public function setOrderRespectTopNews($orderRespectTopNews) {
 		$this->orderRespectTopNews = $orderRespectTopNews;
 	}
 
+	/**
+	 * Get order respect top news flag
+	 *
+	 * @return integer
+	 */
 	public function getOrderRespectTopNews() {
 		return $this->orderRespectTopNews;
 	}
 
+	/**
+	 * Set search fields
+	 *
+	 * @param string $searchFields search fields
+	 * @return void
+	 */
 	public function setSearchFields($searchFields) {
 		$this->searchFields = $searchFields;
 	}
 
+	/**
+	 * Get search fields
+	 *
+	 * @return string
+	 */
 	public function getSearchFields() {
 		return $this->searchFields;
 	}
 
+	/**
+	 * Set top news setting
+	 *
+	 * @param string $topNewsSetting top news settings
+	 * @return void
+	 */
 	public function setTopNewsSetting($topNewsSetting) {
 		$this->topNewsSetting = $topNewsSetting;
 	}
 
+	/**
+	 * Get top news setting
+	 * @return string
+	 */
 	public function getTopNewsSetting() {
 		return $this->topNewsSetting;
 	}
 
+	/**
+	 * Set list of storage pages
+	 *
+	 * @param string $storagePage storage page list
+	 * @return void
+	 */
 	public function setStoragePage($storagePage) {
 		$this->storagePage = $storagePage;
 	}
 
+	/**
+	 * Get list of storage pages
+	 *
+	 * @return string
+	 */
 	public function getStoragePage() {
 		return $this->storagePage;
 	}
 
+	/**
+	 * Get month restriction
+	 *
+	 * @return integer
+	 */
 	public function getMonth() {
 		return $this->month;
 	}
 
+	/**
+	 * Set month restriction
+	 *
+	 * @param integer $month month
+	 * @return void
+	 */
 	public function setMonth($month) {
 		$this->month = $month;
 	}
 
+	/**
+	 * Get year restriction
+	 *
+	 * @return integer
+	 */
 	public function getYear() {
 		return $this->year;
 	}
 
+	/**
+	 * Set year restriction
+	 *
+	 * @param integer $year year
+	 * @return void
+	 */
 	public function setYear($year) {
 		$this->year = $year;
 	}
 
+	/**
+	 * Set limit
+	 *
+	 * @param integer $limit limit
+	 * @return void
+	 */
 	public function setLimit($limit) {
 		$this->limit = (int)$limit;
 	}
 
+	/**
+	 * Get limit
+	 *
+	 * @return integer
+	 */
 	public function getLimit() {
 		return $this->limit;
 	}
 
+	/**
+	 * Set offset
+	 *
+	 * @param integer $offset offset
+	 * @return void
+	 */
 	public function setOffset($offset) {
 		$this->offset = (int)$offset;
 	}
 
+	/**
+	 * Get offset
+	 *
+	 * @return integer
+	 */
 	public function getOffset() {
 		return $this->offset;
 	}
 
+	/**
+	 * Set date field which is used for datemenu
+	 *
+	 * @param string $dateField datefield
+	 * @return void
+	 */
 	public function setDateField($dateField) {
 		$this->dateField = $dateField;
 	}
 
+	/**
+	 * Get datefield which is used for datemenu
+	 *
+	 * @return string
+	 */
 	public function getDateField() {
 		return $this->dateField;
 	}
 
+	/**
+	 * Get search object
+	 *
+	 * @return Tx_News2_Domain_Model_Dto_Search
+	 */
 	public function getSearch() {
 		return $this->search;
 	}
 
+	/**
+	 * Set search object
+	 *
+	 * @param Tx_News2_Domain_Model_Dto_Search $search search object
+	 * @return void
+	 */
 	public function setSearch($search) {
 		$this->search = $search;
 	}
 
+	/**
+	 * Get dummy record flag, used for unit tests
+	 *
+	 * @return integer
+	 */
 	public function getIsDummyRecord() {
 		return $this->isDummyRecord;
 	}
 
+	/**
+	 * Set dummy record flag, used for unit tests
+	 *
+	 * @param integer $isDummyRecord dummy record flag
+	 * @return void
+	 */
 	public function setIsDummyRecord($isDummyRecord) {
 		$this->isDummyRecord = $isDummyRecord;
 	}
