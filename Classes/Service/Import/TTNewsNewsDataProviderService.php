@@ -100,8 +100,9 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 	protected function getMedia($row) {
 		$media = array();
 
-		if (empty($row['image']))
+		if (empty($row['image'])) {
 			return $media;
+		}
 
 		$images = t3lib_div::trimExplode(',', $row['image'], TRUE);
 		$captions = t3lib_div::trimExplode(chr(10), $row['imagecaption'], FALSE);
@@ -114,7 +115,7 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 				'title' => $titles[$i],
 				'alt' => $alts[$i],
 				'caption' => $captions[$i],
-				'media' => 'uploads/pics/' . $image,
+				'content' => 'uploads/pics/' . $image,
 				'type' => 0,
 				'showinpreview' => (int)$i == 0
 			);

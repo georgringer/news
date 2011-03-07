@@ -44,6 +44,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -55,6 +56,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -66,6 +68,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -77,6 +80,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -88,6 +92,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -99,6 +104,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -110,6 +116,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -121,6 +128,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -132,6 +140,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -143,6 +152,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -154,6 +164,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -165,6 +176,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -176,6 +188,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -187,6 +200,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if field can be set
 	 *
 	 * @test
 	 * @return void
@@ -198,7 +212,8 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 *
+	 * Test if field can be set
+	 * 
 	 * @test
 	 * @return void
 	 */

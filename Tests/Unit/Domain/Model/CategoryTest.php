@@ -45,6 +45,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 * Test if title can be set
 	 *
 	 * @test
 	 * @return void
@@ -56,6 +57,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 * Test if description can be set
 	 *
 	 * @test
 	 * @return void
@@ -67,6 +69,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 * Test if image can be set
 	 *
 	 * @test
 	 * @return void
@@ -78,6 +81,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 * Test if shortcut can be set
 	 *
 	 * @test
 	 * @return void
@@ -89,6 +93,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 * Test if single pid can be set
 	 *
 	 * @test
 	 * @return void
@@ -100,6 +105,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 * Test if fegroup can be set
 	 *
 	 * @test
 	 * @return void
@@ -111,6 +117,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 * Test if import id can be set
 	 *
 	 * @test
 	 * @return void
@@ -122,6 +129,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	}
 
 	/**
+	 * Test if sorting can be set
 	 *
 	 * @test
 	 * @return void

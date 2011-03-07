@@ -200,6 +200,13 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 		return $this->sorting;
 	}
 
+	public function getContent() {
+		return $this->content;
+	}
+
+	public function setContent($content) {
+		$this->content = $content;
+	}
 
 
 }

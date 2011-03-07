@@ -64,6 +64,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 	}
 
 	/**
+	 * Inject Persistence Manager
 	 *
 	 * @param Tx_Extbase_Persistence_Manager $persistenceManager
 	 * @return void
@@ -187,7 +188,6 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 		if ($mediaItems->count() !== 0) {
 			foreach ($mediaItems as $mediaItem) {
-
 				if ($mediaItem->getMedia() == basename($mediaFile) &&
 					$this->filesAreEqual(
 						PATH_site. $mediaFile,
