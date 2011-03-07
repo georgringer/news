@@ -45,6 +45,7 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function findTopNewsRecords() {
 		$pid = 2;
@@ -82,6 +83,7 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function findLatestLimitRecords() {
 		$pid = 91;
@@ -127,6 +129,7 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function findRecordsByMonthAndYear() {
 		$pid = 92;
@@ -179,6 +182,11 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
 	}
 
+	/**
+	 * Tear down and remove records
+	 *
+	 * @return void
+	 */
 	public function tearDown() {
 		$this->testingFramework->cleanUp();
 		unset($this->testingFramework);

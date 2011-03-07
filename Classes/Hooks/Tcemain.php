@@ -38,6 +38,7 @@ class tx_News2_Hooks_Tcemain{
 	 * @param integer $id id of the record
 	 * @param array $fieldArray fieldArray
 	 * @param t3lib_TCEmain $parentObject parent Object
+	 * @return void
 	 */
 	public function processDatamap_afterDatabaseOperations($status, $table, $id, array $fieldArray, t3lib_TCEmain $parentObject) {
 		if ($table == 'tx_news2_domain_model_news') {

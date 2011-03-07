@@ -38,7 +38,7 @@ class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repo
 	/**
 	 * @param  $importSource
 	 * @param  $importId
-	 * @return
+	 * @return Tx_Extbase_Persistence_QueryInterface
 	 */
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();

@@ -33,6 +33,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function viewHelperReturnsFileSizeWithDefaultFormat() {
 		$viewHelper = new Tx_News2_ViewHelpers_Format_FileSizeViewHelper();
@@ -42,6 +43,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function viewHelperReturnsFileSizeWithGivenFormat() {
 		$viewHelper = new Tx_News2_ViewHelpers_Format_FileSizeViewHelper();
@@ -52,6 +54,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 	/**
 	 * @test
 	 * @expectedException Tx_Fluid_Core_ViewHelper_Exception
+	 * @return void
 	 */
 	public function viewHelperThrowsExceptionIfFileNotFound() {
 		$viewHelper = new Tx_News2_ViewHelpers_Format_FileSizeViewHelper();

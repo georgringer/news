@@ -33,6 +33,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_StriptagsViewHelperTest extends Tx_
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function stripTagsFromContent() {
 		$viewHelper = $this->getMock('Tx_News2_ViewHelpers_Format_StriptagsViewHelper', array('renderChildren'));

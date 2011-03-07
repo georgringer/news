@@ -33,6 +33,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function orderCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -43,6 +44,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function orderRespectTopNewsCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -53,6 +55,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function categoriesCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -63,6 +66,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function categorySettingCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -73,6 +77,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function archiveSettingCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -83,6 +88,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function latestTimeLimitCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -93,6 +99,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function searchFieldsCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -103,6 +110,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function storagePageCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -113,6 +121,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function topNewsSettingCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -123,6 +132,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function limitCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
@@ -133,6 +143,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function offsetCanBeSet() {
 		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();

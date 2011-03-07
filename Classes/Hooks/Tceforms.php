@@ -38,6 +38,7 @@ class tx_News2_Hooks_Tceforms {
 	 * @param type $field current field
 	 * @param array $row record row
 	 * @param array $PA configuration
+	 * @return void
 	 */
 	public function getSingleField_beforeRender($table, $field, array $row, array &$PA) {
 		if ($table === 'tx_news2_domain_model_media' && $field === 'content') {

@@ -235,7 +235,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'treeConfig' => array(
 					'parentField' => 'parentcategory',
 					'appearance' => array(
-//						'expandAll' => TRUE,
 						'showHeader' => TRUE,
 						'allowRecursiveMode' => TRUE,
 					),
@@ -280,7 +279,6 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'size' => 5,
 				'minitems' => 0,
 				'maxitems' => 10,
-//				'MM' => 'tx_news2_domain_model_news_file_mm',
 				'appearance' => array(
 					'collapseAll' => 1,
 					'expandSingle' => 1,

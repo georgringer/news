@@ -90,6 +90,7 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbas
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function createConstraintsFromDemandForDemandWithTopnewsSetting1QueriesForIsTopNews() {
 		$demand = $this->getMock('Tx_News2_Domain_Model_NewsDemand');

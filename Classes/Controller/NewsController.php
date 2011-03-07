@@ -231,7 +231,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * This function is for testing purposes only.
 	 *
 	 * @param Tx_Fluid_View_TemplateView $view the view to inject
-	 *
 	 * @return void
 	 */
 	public function setView(Tx_Fluid_View_TemplateView $view) {

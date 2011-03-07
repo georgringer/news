@@ -32,6 +32,7 @@
  * @author Georg Ringer <mail@ringerge.org>
  */
 class Tx_News2_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
+
 	/**
 	 * @var Tx_News2_Controller_NewsController
 	 */
@@ -42,6 +43,11 @@ class Tx_News2_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
 	 */
 	private $newsRepository = NULL;
 
+	/**
+	 * Set up framework
+	 *
+	 * @return void
+	 */
 	public function setUp() {
 		$this->fixture = new Tx_News2_Controller_NewsController();
 
@@ -51,12 +57,18 @@ class Tx_News2_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
 		$this->fixture->injectNewsRepository($this->newsRepository);
 	}
 
+	/**
+	 * Tear down framework
+	 *
+	 * @return void
+	 */
 	public function tearDown() {
 		unset($this->fixture, $this->newsRepository);
 	}
 
 	/**
 	 * @test
+	 * @return void
 	 */
 	public function listActionFindsDemandedNewsByDemandFromSettings() {
 		$demand = clone new Tx_News2_Domain_Model_NewsDemand();

@@ -182,7 +182,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 						Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
 				} else {
 					$orderings[$orderField] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
-	}
+				}
 			}
 		}
 
@@ -190,9 +190,11 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	}
 
 	/**
+	 * Find first news by import and source id
+	 *
 	 * @param  $importSource
 	 * @param  $importId
-	 * @return
+	 * @return Tx_News2_Domain_Model_News
 	 */
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();
