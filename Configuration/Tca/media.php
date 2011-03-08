@@ -190,7 +190,12 @@ $TCA['tx_news2_domain_model_media'] = array(
 				)
 			),
 			'config' => array(
-				'type' => 'input',
+				'type' => 'group',
+				'internal_type' => 'file',
+				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
+				'uploadfolder' => 'uploads/tx_news2',
+				'show_thumbs' => 1,
 				'size' => 20,
 			)
 		),

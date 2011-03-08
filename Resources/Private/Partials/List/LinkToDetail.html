@@ -1,11 +1,5 @@
 {namespace n=Tx_News2_ViewHelpers}
 
-<!--
-<n:link newsItem="{newsItem}" settings="{settings}">
-	<f:translate key="more-link" />
-</n:link>
--->
-
 <f:if condition="{newsItem.type} == 0">
 	<span class="news2-more-link news2-more-link-news">
 		<f:link.action pageUid="{settings.pidDetail}" action="detail" arguments="{news: newsItem}">

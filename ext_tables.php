@@ -121,7 +121,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/media.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_media.gif',
-		'hideTable'			=> (boolean)$configurationArray['hideMediaTable']
+//		'hideTable'			=> (boolean)$configurationArray['hideMediaTable']
 	),
 );
 

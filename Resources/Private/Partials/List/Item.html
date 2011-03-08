@@ -3,83 +3,104 @@
 	=====================
 		Partials/List/Item.html
 -->
-<n:Unique newsUid="{newsItem.uid}" view="{view}">
-	<div class="article">
-		<!-- header -->
-		<div class="header">
-			<h3>
-				<n:link newsItem="{newsItem}" settings="{settings}">
-					{newsItem.title}
-				</n:link>
-			</h3>
-		</div>
-
-		<!-- media preview element -->
-		<f:if condition="{newsItem.media}">
-			<f:then>
-			<div class="news2-img-wrap">
-				<n:link newsItem="{newsItem}" settings="{settings}">
-					<f:if condition="{newsItem.mediaPreviews}">
-						<f:then>
-							<f:render partial="Media/MediaPreview" arguments="{mediaElement: newsItem.mediaPreviews.0, settings:settings}" />
-						</f:then>
-						<f:else>
-							<f:render partial="Media/MediaPreviewNotAvailable" arguments="{settings:settings}" />
-						</f:else>
-					</f:if>
-				</n:link>
-			</div>
-			</f:then>
-			<f:else>
-				<f:if condition="{settings.displayDummyIfNoMedia}">
-					<f:then>
-						<div class="news2-img-wrap">
-							<f:render partial="Media/MediaPreviewNotAvailable" arguments="{settings:settings}" />
-						</div>
-					</f:then>
-				</f:if>
-			</f:else>
-		</f:if>
-
-		<!-- teaser text -->
-		<div class="teaser-text">
-			<f:if condition="{newsItem.teaser}">
-				<f:then>
-					<f:format.html>
-						<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop>
-				</f:format.html>
-				</f:then>
-				<f:else>
-					<f:format.html>
-						<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop>
-					</f:format.html>
-				</f:else>
-			</f:if>
-		</div>
-
-		<!-- footer information -->
-		<div class="footer" role="contentinfo">
-			<p>
-				<!-- date -->
-				<span class="news2-list-date">
-					<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
-				</span>
-
-				<!-- first category -->
-				<f:if condition="{newsItem.firstCategory}">
-					<span class="hidden">. </span>
-					<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
-				</f:if>
-
-				<!-- author -->
-				<f:if condition="{newsItem.author}">
-					<span class="hidden">. </span>
-					<span class="news2-list-author">
-						<f:translate key="author" arguments="{0:newsItem.author}"/>
-					</span>
-				</f:if>
-			</p>
-		</div>
+<div class="article">
+	<!-- header -->
+	<div class="header">
+		<h3>
+			<n:link newsItem="{newsItem}" settings="{settings}">
+				{newsItem.title}
+			</n:link>
+		</h3>
 	</div>
 
-</n:Unique>
+	<!-- media preview element -->
+	<f:if condition="{newsItem.media}">
+		<f:then>
+		<div class="news2-img-wrap">
+			<n:link newsItem="{newsItem}" settings="{settings}">
+				<f:if condition="{newsItem.mediaPreviews}">
+					<f:then>
+						<f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+							<f:if condition="{mediaElement.type} == 0">
+								<f:image
+									src="uploads/tx_news2/{mediaElement.content}"
+									title="{mediaElement.title}"
+									alt="{mediaElement.title}"
+									maxWidth="{settings.list.media.image.maxWidth}"
+									maxHeight="{settings.list.media.image.maxHeight}"
+								/>
+							</f:if>
+							<f:if condition="{mediaElement.type} == 1">
+								<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}"/>
+							</f:if>
+							<f:if condition="{mediaElement.type} == 2">
+								<f:render partial="Detail/MediaHtml" arguments="{mediaElement: mediaElement}"/>
+							</f:if>
+							<f:if condition="{mediaElement.type} == 3">
+								<f:render partial="Detail/MediaDam" arguments="{mediaElement: mediaElement}"/>
+							</f:if>
+						</f:alias>
+
+					</f:then>
+					<f:else>
+						<span class="no-media-element">
+							<f:image src="typo3conf/ext/news2/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
+						</span>
+					</f:else>
+				</f:if>
+			</n:link>
+		</div>
+		</f:then>
+		<f:else>
+			<f:if condition="{settings.displayDummyIfNoMedia}">
+				<f:then>
+					<div class="news2-img-wrap">
+						<span class="no-media-element">
+							<f:image src="typo3conf/ext/news2/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
+						</span>
+					</div>
+				</f:then>
+			</f:if>
+		</f:else>
+	</f:if>
+
+	<!-- teaser text -->
+	<div class="teaser-text">
+		<f:if condition="{newsItem.teaser}">
+			<f:then>
+				<f:format.html>
+					<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop>
+			</f:format.html>
+			</f:then>
+			<f:else>
+				<f:format.html>
+					<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop>
+				</f:format.html>
+			</f:else>
+		</f:if>
+	</div>
+
+	<!-- footer information -->
+	<div class="footer" role="contentinfo">
+		<p>
+			<!-- date -->
+			<span class="news2-list-date">
+				<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
+			</span>
+
+			<!-- first category -->
+			<f:if condition="{newsItem.firstCategory}">
+				<span class="hidden">. </span>
+				<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
+			</f:if>
+
+			<!-- author -->
+			<f:if condition="{newsItem.author}">
+				<span class="hidden">. </span>
+				<span class="news2-list-author">
+					<f:translate key="author" arguments="{0:newsItem.author}"/>
+				</span>
+			</f:if>
+		</p>
+	</div>
+</div>

@@ -35,6 +35,8 @@
 			<label index="month.10">October</label>
 			<label index="month.11">November</label>
 			<label index="month.12">December</label>
+
+			<label index="list_nonewsfound">No news available.</label>
 		</languageKey>
 
 		<languageKey index="de" type="array">
@@ -59,6 +61,8 @@
 			<label index="month.10">Oktober</label>
 			<label index="month.11">November</label>
 			<label index="month.12">Dezember</label>
+
+			<label index="list_nonewsfound">Keine Artikel vorhanden.</label>
 		</languageKey>
 	</data>
 </T3locallang>
