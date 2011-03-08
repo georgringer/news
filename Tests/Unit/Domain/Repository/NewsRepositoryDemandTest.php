@@ -207,6 +207,54 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 	}
 
 	/**
+	 * Test if record are found by archived/non archived flag
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function findRecordsByArchiveRestriction() {
+		$pid = 93;
+		$newsRepository = $this->objectManager->get('Tx_News2_Domain_Repository_NewsRepository');
+
+		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
+		$demand->setIsDummyRecord(1);
+		$demand->setStoragePage($pid);
+
+			// create some dummy records
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'archive' => 0, 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'archive' => (time() + (-10 * 86400)), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'archive' => (time() + (-5 * 86400)), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'archive' => (time() + (1 * 86400)), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'archive' => (time() + (5 * 86400)), 'pid' => $pid));
+		$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array(
+					'archive' => (time() + (10 * 86400)), 'pid' => $pid));
+
+			// Archived means: archive date must be lower than current time AND != 0
+		$demand->setArchiveRestriction('archived');
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 2);
+
+			// Active means: archive date must be in future
+		$demand->setArchiveRestriction('active');
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 3);
+
+			// no value means: give all
+		$demand->setArchiveRestriction('');
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 6);
+	}
+
+	/**
 	 * Tear down and remove records
 	 *
 	 * @return void
