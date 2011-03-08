@@ -42,16 +42,6 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	protected $tstamp;
 
 	/**
-	 * @var integer
-	 */
-	protected $sysLanguageUid;
-
-	/**
-	 * @var integer
-	 */
-	protected $l10nParent;
-
-	/**
 	 * @var string
 	 */
 	protected $title;
@@ -97,44 +87,6 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	 */
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
-	}
-
-	/**
-	 * Get sys language uid
-	 *
-	 * @return integer
-	 */
-	public function getSysLanguageUid() {
-		return $this->sysLanguageUid;
-	}
-
-	/**
-	 * Set sys language uid
-	 *
-	 * @param integer $sysLanguageUid syslanguage
-	 * @return void
-	 */
-	public function setSysLanguageUid($sysLanguageUid) {
-		$this->sysLanguageUid = $sysLanguageUid;
-	}
-
-	/**
-	 * Get l10n parent
-	 *
-	 * @return integer
-	 */
-	public function getL10nParent() {
-		return $this->l10nParent;
-	}
-
-	/**
-	 * Set l10n parent
-	 *
-	 * @param integer $l10nParent l10nparent
-	 * @return void
-	 */
-	public function setL10nParent($l10nParent) {
-		$this->l10nParent = $l10nParent;
 	}
 
 	/**
