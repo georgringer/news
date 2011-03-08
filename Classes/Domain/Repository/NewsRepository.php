@@ -127,7 +127,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			// month & year
 		if ($demand->getYear() > 0 && $demand->getMonth() > 0) {
 			if (is_null($demand->getDateField())) {
-				throw new Exception('No Datefield is set, therefore no Datemenu is possible!');
+				throw new InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
 			}
 			$begin = mktime(0, 0, 0, $demand->getMonth(), 1, $demand->getYear());
 			$end = mktime(0, 0, 0, ($demand->getMonth() + 1), 0, $demand->getYear());

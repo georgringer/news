@@ -187,6 +187,26 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 	}
 
 	/**
+	 * Test if record by month/year constraint doesn't work with no datefield set
+	 *
+	 * @test
+	 * @return void
+	 * @expectedException InvalidArgumentException
+	 */
+	public function findRecordsByMonthAndYearWithNoDateField() {
+		$pid = 92;
+		$newsRepository = $this->objectManager->get('Tx_News2_Domain_Repository_NewsRepository');
+
+		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
+		$demand->setIsDummyRecord(1);
+		$demand->setStoragePage($pid);
+		$demand->setMonth(4);
+		$demand->setYear(2011);
+		$count = $newsRepository->findDemanded($demand)->count();
+	}
+
+	/**
 	 * Tear down and remove records
 	 *
 	 * @return void
