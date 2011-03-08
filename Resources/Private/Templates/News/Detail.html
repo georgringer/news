@@ -10,9 +10,10 @@
 <f:section name="content">
 	<f:if condition="{newsItem}">
 		<f:then>
-			<n:titleTag>{newsItem.title}</n:titleTag>
-			<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}"/>
-
+			<n:format.nothing>
+				<n:titleTag>{newsItem.title}</n:titleTag>
+				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}"/>
+			</n:format.nothing>
 			<div class="header">
 				<h3>{newsItem.title}</h3>
 			</div>
