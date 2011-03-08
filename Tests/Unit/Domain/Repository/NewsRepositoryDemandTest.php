@@ -254,6 +254,39 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 6);
 	}
 
+
+	/**
+	 * Test if startingpoint is working
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function findRecordsByStartingpointRestriction() {
+		$newsRepository = $this->objectManager->get('Tx_News2_Domain_Repository_NewsRepository');
+
+		/** @var $demand Tx_News2_Domain_Model_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
+		$demand->setIsDummyRecord(1);
+
+		$pidList = array(94,94,95,96,96,97);
+		foreach($pidList as $pid) {
+			$this->testingFramework->createRecord(
+				'tx_news2_domain_model_news', array('pid' => $pid));
+		}
+
+			// simple starting point
+		$demand->setStoragePage(94);
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 2);
+
+			// multiple starting points
+		$demand->setStoragePage('94,95,96');
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
+
+			// multiple starting points, including invalid values and commas
+		$demand->setStoragePage('94 , 95 , x ,97');
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
+	}
+
 	/**
 	 * Tear down and remove records
 	 *
