@@ -269,7 +269,7 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_
 		$demand->setIsDummyRecord(1);
 
 		$pidList = array(94,94,95,96,96,97);
-		foreach($pidList as $pid) {
+		foreach ($pidList as $pid) {
 			$this->testingFramework->createRecord(
 				'tx_news2_domain_model_news', array('pid' => $pid));
 		}

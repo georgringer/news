@@ -44,5 +44,17 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_StriptagsViewHelperTest extends Tx_
 		$this->assertEquals('TestFo', $actualResult);
 	}
 
+	/**
+	 * Test if given format works
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function stripTagsFromContentWithAllowedTags() {
+		$viewHelper = $this->getMock('Tx_News2_ViewHelpers_Format_StriptagsViewHelper', array('renderChildren'));
+		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p><strong>Bar</strong>'));
+		$actualResult = $viewHelper->render('<strong>');
+		$this->assertEquals('TestFo<strong>Bar</strong>', $actualResult);
+	}
 }
 ?>
