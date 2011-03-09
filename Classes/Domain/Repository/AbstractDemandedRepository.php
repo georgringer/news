@@ -33,19 +33,19 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 	/**
 	 * Returns an array of constraints created from a given demand object.
 	 *
-	 * @abstract
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
 	 * @param Tx_News2_Domain_Model_DemandInterface $demand
 	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
+	 * @abstract
 	 */
 	abstract protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News2_Domain_Model_DemandInterface $demand);
 
 	/**
 	 * Returns an array of orderings created from a given demand object.
 	 *
-	 * @abstract
 	 * @param Tx_News2_Domain_Model_DemandInterface $demand
 	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
+	 * @abstract
 	 */
 	abstract protected function createOrderingsFromDemand(Tx_News2_Domain_Model_DemandInterface $demand);
 

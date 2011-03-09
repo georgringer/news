@@ -58,8 +58,8 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_DisqusViewHelperTest extends Tx_Ext
 
 		$expectedCode = '<script type="text/javascript">
 					var disqus_shortname = "abcdef";
-					 var disqus_identifier = "news_' . $newUid . '";
-					 var disqus_url = "' . htmlspecialchars('http://typo3.org/dummy/fobar.html') . '";
+					var disqus_identifier = "news_' . $newUid . '";
+					var disqus_url = "' . htmlspecialchars('http://typo3.org/dummy/fobar.html') . '";
 
 					(function() {
 						var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;

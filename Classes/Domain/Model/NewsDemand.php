@@ -199,6 +199,7 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 
 	/**
 	 * Get top news setting
+	 *
 	 * @return string
 	 */
 	public function getTopNewsRestriction() {

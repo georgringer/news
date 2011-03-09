@@ -39,11 +39,11 @@ class Tx_News2_Utility_ImportJob {
 	/**
 	 * Register an import job.
 	 *
-	 * @static
-	 * @param  $className
-	 * @param  $title
-	 * @param  $description
+	 * @param string $className class name
+	 * @param string $title title
+	 * @param string $description description
 	 * @return void
+	 * @static
 	 */
 	public static function register($className, $title, $description) {
 		self::$registeredJobs[] = array(
