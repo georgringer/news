@@ -38,6 +38,39 @@
 
 			<label index="list_nonewsfound">No news available.</label>
 		</languageKey>
+		<languageKey index="es" type="array">
+			<!-- Commmon -->
+			<label index="search-text">Hay %1$s resultados de "%2$s".</label>
+			<label index="search-start">Comenzar búsqueda</label>
+			<label index="search-noresult">No se encontraron noticias.</label>
+			<label index="more-link">Leer mas</label>
+			<label index="back-link">Volver</label>
+			<label index="related-news">Noticias relacionadas</label>
+			<label index="related-files">Ficheros relacionados</label>
+			<label index="related-links">Links relacionados</label>
+			<label index="author">Creado por %s</label>
+			<label index="paginate_overall">Página %s de %s.</label>
+			<label index="paginate_next">Siguiente</label>
+			<label index="paginate_previous">Previo</label>
+
+			<label index="entry">entradas</label>
+			<label index="entries">entradas</label>
+
+			<label index="month.01">Enero</label>
+			<label index="month.02">Febrero</label>
+			<label index="month.03">Marzo</label>
+			<label index="month.04">Abril</label>
+			<label index="month.05">Mayo</label>
+			<label index="month.06">Junio</label>
+			<label index="month.07">Julio</label>
+			<label index="month.08">Agosto</label>
+			<label index="month.09">Septiembre</label>
+			<label index="month.10">Octubre</label>
+			<label index="month.11">Noviembre</label>
+			<label index="month.12">Diciembre</label>
+
+			<label index="list_nonewsfound">No hay noticias disponibles.</label>
+		</languageKey>
 
 		<languageKey index="de" type="array">
 
