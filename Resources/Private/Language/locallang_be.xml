@@ -97,6 +97,83 @@
 			<label index="start_import">Start import with %s record(s).</label>
 		</languageKey>
 
+		<languageKey index="es" type="array">
+			<label index="pi1_title">Sistema de noticias</label>
+			<label index="pi1_plus_wiz_description">Sistema de noticias versátil</label>
+
+			<!-- Flexforms -->
+			<label index="flexforms_tab.settings">Ajustes</label>
+			<label index="flexforms_tab.additional">Adicional</label>
+			<label index="flexforms_tab.template">Plantilla</label>
+
+			<label index="flexforms_general.mode">Qué mostrar</label>
+			<label index="flexforms_general.mode.news_list">Vista de lista</label>
+			<label index="flexforms_general.mode.news_latest">Vista de últimas noticias</label>
+			<label index="flexforms_general.mode.news_detail">Vista de detalle</label>
+			<label index="flexforms_general.mode.news_searchform">Formulario de búsqueda</label>
+			<label index="flexforms_general.mode.news_searchresult">Resultados de búsqueda</label>
+			<label index="flexforms_general.mode.news_datemenu">Menu de fechas</label>
+			<label index="flexforms_general.mode.category_list">Menu de categorías</label>
+			<label index="flexforms_general.mode.not_configured">Vista todavía sin configurar</label>
+			<label index="flexforms_general.archiveRestriction">Archivo</label>
+			<label index="flexforms_general.archiveRestriction.active">Sólo activas (no archivadas)</label>
+			<label index="flexforms_general.archiveRestriction.archived">Archivadas</label>
+			<label index="flexforms_general.orderBy">Ordenar por:</label>
+			<label index="flexforms_general.orderBy.uid">Uid</label>
+			<label index="flexforms_general.orderBy.sorting">Ordenación manual</label>
+			<label index="flexforms_general.orderBy.tstamp">Últimas editadas</label>
+			<label index="flexforms_general.orderBy.crdate">Fecha de creación</label>
+			<label index="flexforms_general.orderBy.datetime">Fecha/Hora asignada</label>
+			<label index="flexforms_general.orderBy.title">Título</label>
+			<label index="flexforms_general.orderDirection">Dirección de ordenación</label>
+			<label index="flexforms_general.orderDirection.asc">Ascendente</label>
+			<label index="flexforms_general.orderDirection.desc">Descendente</label>
+
+			<label index="flexforms_general.dateField">Campo de fecha a usar</label>
+			<label index="flexforms_general.dateField.datetime">Fecha/Hora asignada</label>
+			<label index="flexforms_general.dateField.archive">AFecha de archivado</label>
+
+			<label index="flexforms_general.categories">Selección de categoría</label>
+			<label index="flexforms_general.categoryConjunction">Modo de categoría</label>
+			<label index="flexforms_general.categoryConjunction.all">No tener en cuenta, mostrar todo</label>
+			<label index="flexforms_general.categoryConjunction.or">Mostrar elementos con las categorías seleccionadas (OR)</label>
+			<label index="flexforms_general.categoryConjunction.and">Mostrar elementos con las categorías seleccionadas (AND)</label>
+			<label index="flexforms_general.categoryConjunction.notand">NO mostrar elementos con las categorías seleccionadas (AND)</label>
+			<label index="flexforms_general.categoryConjunction.notor">NO mostrar elementos con las categorías seleccionadas (AND) (OR)</label>
+			<label index="flexforms_general.timeRestriction">Límite de tiempo</label>
+			<label index="flexforms_general.topNewsRestriction">Noticias destacadas</label>
+			<label index="flexforms_general.topNewsRestriction.1">Sólo noticias destacadas</label>
+			<label index="flexforms_general.topNewsRestriction.2">Excepto noticias destacadas</label>
+			<label index="flexforms_general.singleNews">Mostrar un registro de noticia concreto</label>
+
+			<label index="flexforms_template.mediaMaxWidth">Anchura máxima para elementos multimedia</label>
+			<label index="flexforms_template.mediaMaxHeight">Altura máxima para elementos multimedia</label>
+			<label index="flexforms_template.cropMaxCharacters">Longitud del resumen (en carácteres)</label>
+			<label index="flexforms_template.templateLayout">Template Layout</label>
+
+			<label index="flexforms_additional.templateSwitch.1">1</label>
+			<label index="flexforms_additional.templateSwitch.2">2</label>
+			<label index="flexforms_additional.detailPid">ID de página para mostrar las noticas detalladas</label>
+			<label index="flexforms_additional.backPid">ID de página para regresar</label>
+			<label index="flexforms_additional.listPid">ID de página para lista de noticias</label>
+			<label index="flexforms_additional.limit">Máximo número de registros a mostrar</label>
+			<label index="flexforms_additional.offset">Empezar con la noticia #</label>
+			<label index="flexforms_additional.topNewsFirst">Ordenar "Noticas destacadas" primero</label>
+
+			<!-- Page Module Record list -->
+			<label index="pagemodule_simple">Lista simple</label>
+			<label index="pagemodule_advanced">Lista avanzada</label>
+			<label index="pagemodule_complex">Lista completa</label>
+
+
+			<!-- BE User Settings -->
+			<label index="usersettings.overlay">Usar esto para sobreescribir las categorías de noticas en el BackEndUse</label>
+			<label index="usersettings.no-languages-available">No hay idiomas disponibles, asi que no hay nada para elegir.</label>
+
+			<!-- BE Module -->
+			<label index="start_import">Comenzar la importación %s registro(s).</label>
+		</languageKey>
+
 		<languageKey index="de" type="array">
 
 		</languageKey>

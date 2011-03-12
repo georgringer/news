@@ -9,5 +9,9 @@
 			<label index="mlang_tabs_tab">News2 Import</label>
 			<label index="mlang_labels_tablabel">News2 Import</label>
 		</languageKey>
+		<languageKey index="es" type="array">
+			<label index="mlang_tabs_tab">Importador de News2</label>
+			<label index="mlang_labels_tablabel">Importador de News2</label>
+		</languageKey>
 	</data>
 </T3locallang>
