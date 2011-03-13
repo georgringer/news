@@ -244,5 +244,47 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	public function setView(Tx_Fluid_View_TemplateView $view) {
 		$this->view = $view;
 	}
+
+	/**
+	 * View Initialization
+	 *
+	 * @param object $view The view object
+	 * @see Tx_Extbase_MVC_Controller_ActionController::initializeView()
+	 * @return void
+	 */
+	public function initializeView($view) {
+		$templateFile = $this->selectTemplateFileFromSettings($this->settings['templateFiles']);
+		$this->overrideViewFile($templateFile);
+	}
+
+	/**
+	 * Overrides template file from settings
+	 *
+	 * @param file $templateFile Fichero fluid
+	 * @return void
+	 */
+	private function overrideViewFile($templateFile) {
+		if ($templateFile && file_exists($templateFile)) {
+			$this->view->setTemplatePathAndFilename($templateFile);
+		}
+	}
+
+	/**
+	 * return the approate file string for the selected view
+	 *
+	 * @param array $settings hash array with key 'file'
+	 * @return string file path
+	 */
+	private function selectTemplateFileFromSettings($settings) {
+		$format = $this->request->getFormat();
+		$action = $this->request->getControllerActionName();
+		foreach ($settings as $fileSettings) {
+			$file = trim($fileSettings['file']);
+			if (preg_match('/.*-'. $action .'\.' . $format . '$/', strtolower($file))) {
+				return $file;
+			}
+		}
+		return NULL;
+	}
 }
 ?>

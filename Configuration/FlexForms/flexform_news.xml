@@ -512,6 +512,35 @@
 							</config>
 						</TCEforms>
 					</settings.templateLayout>
+					<settings.templateFiles>
+						<section>1</section>
+						<type>array</type>
+						<el>
+							<file>
+								<TCEforms>
+									<label>Template File (optional) FreeName-action.format</label>
+									<config>
+										<type>input</type>
+										<wizards type="array">
+										<_PADDING type="integer">2</_PADDING>
+											<link type="array">
+												<type>popup</type>
+												<title>Link</title>
+												<icon>link_popup.gif</icon>
+												<script>browse_links.php?mode=wizard&amp;act=file</script>
+												<JSopenParams>height=300,width=500,status=0,menubar=0,scrollbars=1</JSopenParams>
+												<params type="array">
+													<blindLinkOptions>page,url,mail,spec,folder</blindLinkOptions>
+													<allowedExtensions>html,xml,json</allowedExtensions>
+												</params>
+
+											</link>
+										</wizards>
+									</config>
+								</TCEforms>
+							</file>
+						</el>
+					</settings.templateFiles>
 				</el>
 			</ROOT>
 		</template>
