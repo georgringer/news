@@ -215,6 +215,15 @@ if (TYPO3_MODE == 'BE') {
 }
 
 /***************
+ * News icon in page tree
+ */
+if (TYPO3_MODE=='BE') {
+	unset($ICON_TYPES['news']);
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news2/Resources/Public/Icons/folder.gif');
+}
+
+
+/***************
  * Show news table in page module
  */
 if (!empty($configurationArray['pageModuleFieldsNews'])) {
@@ -259,7 +268,6 @@ $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 /* ===========================================================================
  	Register BE-Modules
 =========================================================================== */
-
 if (TYPO3_MODE == 'BE') {
 	Tx_Extbase_Utility_Extension::registerModule(
 		$_EXTKEY,
