@@ -150,20 +150,20 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 			$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions');
 
 			foreach ($importItem['media'] as $mediaItem) {
-				if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['media'])) {
+				if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['content'])) {
 
-					$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['media'],
+					$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['content'],
 						PATH_site . self::UPLOAD_PATH);
 
 					copy(
-						PATH_site . $mediaItem['media'],
+						PATH_site . $mediaItem['content'],
 						$uniqueName
 					);
 
 					$media = $this->objectManager->get('Tx_News2_Domain_Model_Media');
 					$news->addMedia($media);
 
-					$media->setMedia(basename($uniqueName));
+					$media->setContent(basename($uniqueName));
 				}
 
 				$media->setTitle($mediaItem['title']);
@@ -190,10 +190,10 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 		if ($mediaItems->count() !== 0) {
 			foreach ($mediaItems as $mediaItem) {
-				if ($mediaItem->getMedia() == basename($mediaFile) &&
+				if ($mediaItem->getContent() == basename($mediaFile) &&
 					$this->filesAreEqual(
 						PATH_site. $mediaFile,
-						PATH_site . self::UPLOAD_PATH . $mediaItem->getMedia()
+						PATH_site . self::UPLOAD_PATH . $mediaItem->getContent()
 					)) {
 					$result = $mediaItem;
 					break;
