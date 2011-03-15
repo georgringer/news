@@ -33,6 +33,7 @@
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_detail</numIndex>
 									<numIndex index="1">News->detail</numIndex>
 								</numIndex>
+<!--
 								<numIndex index="4">
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_searchform</numIndex>
 									<numIndex index="1">News->searchForm</numIndex>
@@ -41,6 +42,7 @@
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_searchresult</numIndex>
 									<numIndex index="1">News->searchResult</numIndex>
 								</numIndex>
+-->
 								<numIndex index="6">
 									<numIndex index="0">LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_datemenu</numIndex>
 									<numIndex index="1">News->dateMenu</numIndex>

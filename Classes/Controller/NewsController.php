@@ -29,7 +29,6 @@
  * @subpackage tx_news2
  */
 class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_ActionController {
-
 	/**
 	 * @var Tx_News2_Domain_Repository_NewsRepository
 	 */
@@ -131,37 +130,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	}
 
 	/**
-	 * Displays the news search form
-	 *
-	 * @param $search Tx_News2_Domain_Model_Dto_Search
-	 * @return void
-	 */
-	public function searchFormAction(Tx_News2_Domain_Model_Dto_Search $search = NULL) {
-		$demand = $this->createDemandObjectFromSettings($this->settings);
-		$this->view->assignMultiple(array(
-			'demand' => $demand,
-			'search' => $search
-		));
-	}
-
-	/**
-	 * Displays the news search result
-	 *
-	 * @param $search Tx_News2_Domain_Model_Dto_Search
-	 * @return void
-	 */
-	public function searchResultAction(Tx_News2_Domain_Model_Dto_Search $search = NULL) {
-
-		$demand = $this->createDemandObjectFromSettings($this->settings);
-		$demand->setSearch($search);
-		$this->view->assignMultiple(array(
-			'demand' => $demand,
-			'search' => $search,
-			'news' => $this->newsRepository->findDemanded($demand)
-		));
-	}
-
-	/**
 	 * Single view of a news record
 	 *
 	 * @param Tx_News2_Domain_Model_News $news
@@ -193,6 +161,28 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 			'overwriteDemand' => $overwriteDemand
 		));
 	}
+
+
+	/**
+	 * Displays the news search form
+	 *
+	 * @return void
+	 * @todo implement :)
+	 */
+	public function searchFormAction() {
+	}
+
+	/**
+	 * Displays the news search result
+	 *
+	 * @param $search Tx_News2_Domain_Model_Dto_Search
+	 * @todo implement :)
+	 * @return void
+	 */
+	public function searchResultAction() {
+	}
+
+
 
 	/***************************************************************************
 	 * helper
@@ -240,48 +230,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	public function setView(Tx_Fluid_View_TemplateView $view) {
 		$this->view = $view;
-	}
-
-	/**
-	 * View Initialization
-	 *
-	 * @param object $view The view object
-	 * @see Tx_Extbase_MVC_Controller_ActionController::initializeView()
-	 * @return void
-	 */
-	public function initializeView($view) {
-		$templateFile = $this->selectTemplateFileFromSettings($this->settings['templateFiles']);
-		$this->overrideViewFile($templateFile);
-	}
-
-	/**
-	 * Overrides template file from settings
-	 *
-	 * @param file $templateFile Fichero fluid
-	 * @return void
-	 */
-	private function overrideViewFile($templateFile) {
-		if ($templateFile && file_exists($templateFile)) {
-			$this->view->setTemplatePathAndFilename($templateFile);
-		}
-	}
-
-	/**
-	 * return the approate file string for the selected view
-	 *
-	 * @param array $settings hash array with key 'file'
-	 * @return string file path
-	 */
-	private function selectTemplateFileFromSettings($settings) {
-		$format = $this->request->getFormat();
-		$action = $this->request->getControllerActionName();
-		foreach ($settings as $fileSettings) {
-			$file = trim($fileSettings['file']);
-			if (preg_match('/.*-'. $action .'\.' . $format . '$/', strtolower($file))) {
-				return $file;
-			}
-		}
-		return NULL;
 	}
 }
 ?>
