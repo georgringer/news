@@ -27,13 +27,15 @@ plugin.tx_news2 {
 
 		# general settings
 		overrideFlexformSettingsIfEmpty = cropLength
+
 		pidBackAdditionalParams {
 
 		}
-		hrDates = 0
-		cropLength = 150
-		pidDetailFromCategories = 1
 
+		detailPidDetermination = flexform, categories, default
+		defaultDetailPid = 0
+
+		cropLength = 150
 		orderBy = datetime
 		orderAscDesc = desc
 		orderByRespectTopNews = 0

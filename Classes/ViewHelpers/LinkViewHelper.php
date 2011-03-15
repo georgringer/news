@@ -30,6 +30,14 @@
  */
 class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
+	/**
+	 * @var array
+	 */
+	protected $detailPidDeterminationCallbacks = array (
+		'flexform' => 'getDetailPidFromFlexform',
+		'categories' => 'getDetailPidFromCategories',
+		'default' => 'getDetailPidFromDefaultDetailPid',
+	);
 
 	/**
 	 * Render link to news item or internal/external pages
@@ -43,7 +51,6 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 	 * @return string url
 	 */
 	public function render(Tx_News2_Domain_Model_News $newsItem, array $settings = array(), $renderTypeClass = TRUE, $class = '', $linkOnly = FALSE, $hsc = FALSE) {
-		$url = '';
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 		$linkConfiguration = array();
 
@@ -56,36 +63,26 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 		$newsType = $newsItem->getType();
 
 		if ($newsType == 0) {
-			$pageId = ((int)($settings['pidDetail']) > 0) ? (int)($settings['pidDetail']) : $GLOBALS['TSFE']->id;
+			$detailPid = 0;
+			$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $settings['detailPidDetermination']);
 
-				// if enabled, get detail id from the singlePid field of categories
-			if ($settings['pidDetailFromCategories'] == 1) {
-				$singlePidFromCategory = 0;
-				foreach ($newsItem->getCategories() as $category) {
-					if ($singlePidFromCategory === 0 && (int)$category->getSinglePid() > 0) {
-						$singlePidFromCategory = (int)$category->getSinglePid();
+			foreach($detailPidDeterminationMethods as $determinationMethod) {
+				if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
+					if ($detailPid = call_user_func(array($this, $callback), $settings, $newsItem)) {
+					  break;
 					}
 				}
-				if ($singlePidFromCategory > 0) {
-					$pageId = $singlePidFromCategory;
-				}
 			}
 
-			$linkConfiguration['parameter'] = $pageId;
-			$linkConfiguration['additionalParams'] = '&tx_news2_pi1[controller]=News' .
-													'&tx_news2_pi1[action]=detail' .
-													'&tx_news2_pi1[news]=' . $newsItem->getUid();
+			if (!$detailPid) {
+				$detailPid = $GLOBALS['TSFE']->id;
+			}
+
 			$linkConfiguration['useCacheHash'] = 1;
-
-				// human readable dates, e.g. example.com/fo/bar/news/2010/10/news-title.html
-			if (isset($settings['hrDates']) && $settings['hrDates'] == 1 && $newsItem->getDatetime()) {
-				/** @var DateTime */
-				$date = $newsItem->getDatetime();
-				$year = $date->format('Y');
-				$month = $date->format('m');
-
-				$linkConfiguration['additionalParams'] .= '&tx_news2_pi1[year]=' . $year . '&tx_news2_pi1[month]=' . $month;
-			}
+			$linkConfiguration['parameter'] = $detailPid;
+			$linkConfiguration['additionalParams'] = '&tx_news2_pi1[controller]=News' .
+				'&tx_news2_pi1[action]=detail' .
+				'&tx_news2_pi1[news]=' . $newsItem->getUid();
 		} elseif ($newsType == 1) {
 			$linkConfiguration['parameter'] = $newsItem->getInternalurl();
 		} elseif ($newsType == 2) {
@@ -104,6 +101,45 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 
 		return $finalLink;
 	}
-}
 
+	/**
+	 * Gets detailPid from categories of the given news item. First will be return.
+	 *
+	 * @param  array $settings
+	 * @param  Tx_News2_Domain_Model_News $newsItem
+	 * @return int
+	 */
+	protected function getDetailPidFromCategories($settings, $newsItem) {
+		$detailPid = 0;
+		foreach ($newsItem->getCategories() as $category) {
+			if ($detailPid = (int)$category->getSinglePid()) {
+				break;
+			}
+		}
+		return $detailPid;
+	}
+
+	/**
+	 * Gets detailPid from defaultDetailPid setting
+	 *
+	 * @param  array $settings
+	 * @param  Tx_News2_Domain_Model_News $newsItem
+	 * @return int
+	 */
+	protected function getDetailPidFromDefaultDetailPid($settings, $newsItem) {
+		return (int)$settings['defaultDetailPid'];
+	}
+
+	/**
+	 * Gets detailPid from flexfrom of current plugin.
+	 *
+	 * @param  array $settings
+	 * @param  Tx_News2_Domain_Model_News $newsItem
+	 * @return int
+	 */
+	protected function getDetailPidFromFlexform($settings, $newsItem) {
+		return (int)$settings['detailPid'];
+
+	}
+}
 ?>
