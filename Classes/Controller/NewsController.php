@@ -79,7 +79,10 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$demand->setTimeRestriction($settings['timeRestriction']);
 		$demand->setArchiveRestriction($settings['archiveRestriction']);
 
-		$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
+		if ($settings['orderBy']) {
+			$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
+		}
+
 		$demand->setTopNewsFirst($settings['topNewsFirst']);
 
 		$demand->setLimit($settings['limit']);
@@ -149,13 +152,16 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	public function dateMenuAction(array $overwriteDemand = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
-			// @todo: should be covert by createDemandObjectFromSettings
-		$demand->setOrder($this->settings['dateField'] . ' DESC');
+			// @todo: find a better way to do this related to #13856
+		if (!$dateField = $this->settings['dateField']) {
+			$dateField = 'datetime';
+		}
+		$demand->setOrder($dateField . ' DESC');
 
 		$newsRecords = $this->newsRepository->findDemanded($demand);
 		$this->view->assignMultiple(array(
 			'listPid' => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
-			'dateField' => $this->settings['dateField'],
+			'dateField' => $dateField,
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand
 		));

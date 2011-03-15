@@ -8,10 +8,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'News' => 'list,detail,searchForm,searchResult,dateMenu',
-	),
-	array(
-		'News' => 'searchForm,searchResult',
+		'News' => 'list,detail,dateMenu',
 	)
 );
 

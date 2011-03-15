@@ -201,6 +201,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @return void
 	 */
 	public function __construct() {
+		echo 'hier';
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->media = new Tx_Extbase_Persistence_ObjectStorage();
 	}
