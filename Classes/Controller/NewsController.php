@@ -114,7 +114,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * @return return string the Rendered view
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
-
 		$demand = $this->createDemandObjectFromSettings($this->settings);
 
 		if ($overwriteDemand !== NULL) {

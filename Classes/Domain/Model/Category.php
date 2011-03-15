@@ -293,9 +293,6 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	 * @return Tx_News2_Domain_Model_Category
 	 */
 	public function getParentcategory() {
-		if ($this->parentcategory instanceof Tx_Extbase_Persistence_LazyLoadingProxy) {
-			$this->parentcategory->_loadRealInstance();
-		}
 		return $this->parentcategory;
 	}
 
