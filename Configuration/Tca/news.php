@@ -538,7 +538,7 @@ if (isset($configurationArray['categoryRestriction'])) {
 	}
 }
 
-if (isset($configurationArray['hideContentElementRelation'])) {
+if (!isset($configurationArray['contentElementRelation']) || $configurationArray['contentElementRelation'] == 0) {
 	unset($TCA['tx_news2_domain_model_news']['columns']['content_elements']);
 }
 

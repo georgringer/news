@@ -22,8 +22,8 @@ prependAtCopy = 1
 	# cat=basic/enable/106; type=options[LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.none=none,LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.current_pid=current_pid,LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.storage_pid=storage_pid,LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.siteroot=siteroot]; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction
 categoryRestriction =
 
-	# cat=basic/enable/110; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.hideContentElementRelation
-hideContentElementRelation = 1
+	# cat=basic/enable/110; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.contentElementRelation
+contentElementRelation = 0
 
 	# cat=basic/enable/120; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.manualSorting
 manualSorting = 0
