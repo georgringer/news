@@ -90,7 +90,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		}
 
 			// latest time
-		if ($demand->getTimeRestriction() !== NULL && $demand->getTimeRestriction() != 0) {
+		if ($demand->getTimeRestriction()) {
 			$timeLimit = 0;
 				// integer = timestamp
 			if (t3lib_div::testInt($demand->getTimeRestriction())) {
@@ -98,6 +98,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			} else {
 					// try to check strtotime
 				$timeFromString = strtotime($demand->getTimeRestriction());
+
 				if ($timeFromString) {
 					$timeLimit = $timeFromString;
 				} else {
