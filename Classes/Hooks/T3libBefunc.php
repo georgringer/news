@@ -118,7 +118,9 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForNewsDetailAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,archiveRestriction,timeRestriction,topNewsRestriction,startingpoint,recursive,dateField',
+			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
+						archiveRestriction,timeRestriction,topNewsRestriction,
+						startingpoint,recursive,dateField',
 			'additional' => 'limit,offset,topNewsFirst,listPid',
 			'template' => 'cropMaxCharacters'
 		);
@@ -134,7 +136,9 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	protected function updateForSearchFormAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,archiveRestriction,timeRestriction,topNewsRestriction,startingpoint,recursive,dateField,singleNews',
+			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
+						archiveRestriction,timeRestriction,topNewsRestriction,
+						startingpoint,recursive,dateField,singleNews',
 			'additional' => 'limit,offset,topNewsFirst,listPid',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
@@ -168,7 +172,7 @@ class tx_News2_Hooks_T3libBefunc {
 	 */
 	private function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved) {
 		foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
-			$fieldsInSheet = explode(',', $sheetFields);
+			$fieldsInSheet = t3lib_div::trimExplode(',', $sheetFields, TRUE);
 
 			foreach ($fieldsInSheet as $fieldName) {
 				unset($dataStructure['sheets'][$sheetName]['ROOT']['el']['settings.' . $fieldName]);

@@ -183,7 +183,8 @@ class ext_update {
 	}
 
 	/**
-	 * Called by the extension manager to determine if the update menu entry should by showed.
+	 * Called by the extension manager to determine if the update menu entry
+	 * should by showed.
 	 *
 	 * @return bool
 	 * @todo find a better way to determine if update is needed or not.

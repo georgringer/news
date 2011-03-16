@@ -32,7 +32,8 @@
  * <n:social.twitter>Twitter</n:social.twitter>
  * Result: Twitter widget
  *
- * <n:social.twitter datacount="vertical" datalang="de" dataurl="http://www.mydomain.tld">Twitter</n:social.twitter>
+ * <n:social.twitter datacount="vertical" datalang="de"
+ * dataurl="http://www.mydomain.tld">Twitter</n:social.twitter>
  * Result: Twitter widget to share www.mydomain.tld with a german twitter text
  *
  * @package TYPO3

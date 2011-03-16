@@ -36,6 +36,11 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_DisqusViewHelperTest extends Tx_Ext
 	 */
 	protected $testingFramework;
 
+	/**
+	 * Set up test class
+	 *
+	 * @return void
+	 */
 	public function setUp() {
 		$this->testingFramework = new Tx_Phpunit_Framework('tx_news2');
 	}

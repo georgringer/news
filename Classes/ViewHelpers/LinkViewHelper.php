@@ -62,11 +62,12 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 
 		$newsType = $newsItem->getType();
 
+			// normal news record
 		if ($newsType == 0) {
 			$detailPid = 0;
 			$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $settings['detailPidDetermination']);
 
-			foreach($detailPidDeterminationMethods as $determinationMethod) {
+			foreach ($detailPidDeterminationMethods as $determinationMethod) {
 				if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
 					if ($detailPid = call_user_func(array($this, $callback), $settings, $newsItem)) {
 					  break;
@@ -83,8 +84,10 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 			$linkConfiguration['additionalParams'] = '&tx_news2_pi1[controller]=News' .
 				'&tx_news2_pi1[action]=detail' .
 				'&tx_news2_pi1[news]=' . $newsItem->getUid();
+			// internal news
 		} elseif ($newsType == 1) {
 			$linkConfiguration['parameter'] = $newsItem->getInternalurl();
+			// external news
 		} elseif ($newsType == 2) {
 			$linkConfiguration['parameter'] = $newsItem->getExternalurl();
 		}

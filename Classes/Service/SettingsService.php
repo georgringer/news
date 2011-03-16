@@ -52,7 +52,7 @@ class Tx_News2_Service_SettingsService implements t3lib_Singleton {
 	/**
 	 * Injects the Configuration Manager and loads the settings
 	 *
-	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface An instance of the Configuration Manager
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
 	 * @return void
 	 */
 	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {

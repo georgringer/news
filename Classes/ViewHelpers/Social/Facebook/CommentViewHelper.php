@@ -28,7 +28,7 @@
  *
  * Examples
  * ==============
- * <n:facebook.comment appId="165193833530000" xid="news-{newsItem.uid}"></n:facebook.comment>
+ * <n:facebook.comment appId="165193833530000" xid="news-{newsItem.uid}" />
  * Result: Facebook widget to comment an article
  *
  * @package TYPO3

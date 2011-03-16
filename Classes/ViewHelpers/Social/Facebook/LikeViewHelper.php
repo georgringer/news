@@ -65,7 +65,10 @@ class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_
 	 */
 	public function render() {
 		$code = '';
-		$this->tag->addAttribute('href', (!empty($this->arguments['href'])) ? $this->arguments['href'] : t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
+		$this->tag->addAttribute('href',
+				(!empty($this->arguments['href'])) ?
+				$this->arguments['href'] :
+			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
 
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
@@ -75,7 +78,9 @@ class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_
 				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
 			}
 		}
-			// seems as if a div with id fb-root is needed this is just a dirty workarround to make things work again Perhaps we should use the iframe variation.
+			// seems as if a div with id fb-root is needed this is just a dirty
+			// workarround to make things work again Perhaps we should
+			// use the iframe variation.
 		$code .= '<div id="fb-root"></div>' . $this->tag->render();
 		return $code;
 	}
