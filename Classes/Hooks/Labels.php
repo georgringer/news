@@ -94,11 +94,12 @@ class tx_News2_Hooks_Labels {
 				break;
 				// HTML
 			case 2:
-				$typeInfo .= $params['row']['html'];
+					// don't show html value as this could get a XSS
+				$typeInfo .= $params['row']['caption'];
 				break;
 				// DAM
 			case 3:
-				$typeInfo .= $params['row']['html'];
+				$typeInfo .= $params['row']['dam'];
 				break;
 			default:
 				$typeInfo .= $params['row']['caption'];
