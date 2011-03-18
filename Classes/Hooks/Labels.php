@@ -82,17 +82,38 @@ class tx_News2_Hooks_Labels {
 	 */
 	public function getUserLabelMedia(array $params) {
 		$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+		$title = $typeInfo = '';
 
-			// Type
-		$newTitle = $GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.type.I.' . $params['row']['type']);
-		$newTitle = ' (' . $newTitle . ')';
+		$type = $GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.type.I.' . $params['row']['type']);
+
+			// Add additional info based on type
+		switch ($params['row']['type']) {
+				// Audio & Video
+			case 1:
+				$typeInfo .= $params['row']['multimedia'];
+				break;
+				// HTML
+			case 2:
+				$typeInfo .= $params['row']['html'];
+				break;
+				// DAM
+			case 3:
+				$typeInfo .= $params['row']['html'];
+				break;
+			default:
+				$typeInfo .= $params['row']['caption'];
+		}
+
+		$title = (!empty($typeInfo)) ? $type . ': ' . $typeInfo : $type;
 
 			// Preview
 		if ($params['row']['showinpreview']) {
-			$newTitle .= ' ' . $GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.show');
+			$label = htmlspecialchars($GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.show'));
+			$icon = '../' . t3lib_extMgm::siteRelPath('news2') . 'Resources/Public/Icons/preview.gif';
+			$title .= ' <img title="' . $label . '" src="' . $icon . '" />';
 		}
 
-		$params['title'] = $params['row']['caption'] . $newTitle;
+		$params['title'] = $title;
 	}
 
 
