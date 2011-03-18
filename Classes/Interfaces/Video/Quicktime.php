@@ -69,7 +69,7 @@ class Tx_News2_Interfaces_Video_Quicktime implements Tx_News2_Interfaces_MediaIn
 	 * @return boolean
 	 */
 	public function enabled(Tx_News2_Domain_Model_Media $element) {
-		$url = $element->getVideo();
+		$url = $element->getMultimedia();
 		$fileEnding = strtolower(substr($url, -3));
 
 		return ($fileEnding === 'mov');
