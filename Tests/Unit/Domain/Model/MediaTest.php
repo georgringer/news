@@ -190,15 +190,51 @@ class Tx_News2_Tests_Unit_Domain_Model_MediaTest extends Tx_Extbase_Tests_Unit_B
 	}
 
 	/**
-	 * Test if content can be set
+	 * Test if image can be set
 	 *
 	 * @test
 	 * @return void
 	 */
-	public function contentCanBeSet() {
-		$content = 'abcdefgh';
-		$this->mediaDomainModelInstance->setContent($content);
-		$this->assertEquals($content, $this->mediaDomainModelInstance->getContent());
+	public function imageCanBeSet() {
+		$image = 'fo.jpg';
+		$this->mediaDomainModelInstance->setImage($image);
+		$this->assertEquals($image, $this->mediaDomainModelInstance->getImage());
+	}
+
+	/**
+	 * Test if video can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function multimediaCanBeSet() {
+		$multimedia = 'http://youtube.com/123';
+		$this->mediaDomainModelInstance->setMultimedia($multimedia);
+		$this->assertEquals($multimedia, $this->mediaDomainModelInstance->getMultimedia());
+	}
+
+	/**
+	 * Test if html can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function htmlCanBeSet() {
+		$html = '<div>123</div>';
+		$this->mediaDomainModelInstance->setHtml($html);
+		$this->assertEquals($html, $this->mediaDomainModelInstance->getHtml());
+	}
+
+	/**
+	 * Test if dam can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function damCanBeSet() {
+		$dam = 123;
+		$this->mediaDomainModelInstance->setDam($dam);
+		$this->assertEquals($dam, $this->mediaDomainModelInstance->getDam());
 	}
 }
 ?>

@@ -113,82 +113,10 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'size' => 20,
 			)
 		),
-		'content' => array(
+		'image' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_media.content',
-			'variants' => array(
-				'default' => '0',
-				'0' => array(
-					'exclude' => 0,
-					'l10n_mode' => 'mergeIfNotBlank',
-					'label' => $ll . 'tx_news2_domain_model_media.media',
-					'config' => array(
-						'type' => 'group',
-						'internal_type' => 'file',
-						'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
-						'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-						'uploadfolder' => 'uploads/tx_news2',
-						'show_thumbs' => 1,
-						'size' => 1,
-						'minitems' => 0,
-						'maxitems' => 1,
-					)
-				),
-				'1' => array(
-					'exclude' => 0,
-					'l10n_mode' => 'mergeIfNotBlank',
-					'label' => $ll . 'tx_news2_domain_model_media.video',
-					'config' => array(
-						'type' => 'input',
-						'size' => 30,
-						'eval' => 'trim',
-						'wizards' => array(
-							'_PADDING' => 2,
-							'link' => array(
-								'type' => 'popup',
-								'title' => 'Link',
-								'icon' => 'link_popup.gif',
-								'script' => 'browse_links.php?mode=wizard',
-								'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
-							)
-						)
-					)
-				),
-				'2' => array(
-					'exclude' => 0,
-					'l10n_mode' => 'mergeIfNotBlank',
-					'label' => $ll . 'tx_news2_domain_model_media.html',
-					'config' => array(
-						'type' => 'text',
-						'cols' => 30,
-						'rows' => 5,
-					)
-				),
-				'3' => array(
-					'form_type' => 'user',
-					'userFunc' => 'EXT:dam/lib/class.tx_dam_tcefunc.php:&tx_dam_tceFunc->getSingleField_typeMedia',
-
-					'userProcessClass' => 'EXT:mmforeign/class.tx_mmforeign_tce.php:tx_mmforeign_tce',
-					'type' => 'group',
-					'internal_type' => 'db',
-					'allowed' => 'tx_dam',
-					'prepend_tname' => 1,
-					'foreign_table'       => 'tx_dam',
-					'MM' => 'tx_dam_mm_ref',
-					'MM_opposite_field' => 'file_usage',
-					'MM_match_fields' => array('ident' => 'tx_news2_media'),
-
-					'allowed_types' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
-
-					'max_size' => '1',
-					'show_thumbs' => 1,
-					'size' => 1,
-					'maxitems' => 200,
-					'minitems' => 0,
-					'autoSizeMax' => 30,
-				)
-			),
+			'label' => $ll . 'tx_news2_domain_model_media.media',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'file',
@@ -196,8 +124,63 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
 				'uploadfolder' => 'uploads/tx_news2',
 				'show_thumbs' => 1,
-				'size' => 20,
+				'size' => 1,
+				'minitems' => 0,
+				'maxitems' => 1,
 			)
+		),
+		'html' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news2_domain_model_media.html',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 30,
+				'rows' => 5,
+			)
+		),
+		'multimedia' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news2_domain_model_media.multimedia',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim',
+				'wizards' => array(
+					'_PADDING' => 2,
+					'link' => array(
+						'type' => 'popup',
+						'title' => 'Link',
+						'icon' => 'link_popup.gif',
+						'script' => 'browse_links.php?mode=wizard',
+						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
+					)
+				)
+			)
+		),
+		'dam' => array(
+			'form_type' => 'user',
+			'userFunc' => 'EXT:dam/lib/class.tx_dam_tcefunc.php:&tx_dam_tceFunc->getSingleField_typeMedia',
+
+			'userProcessClass' => 'EXT:mmforeign/class.tx_mmforeign_tce.php:tx_mmforeign_tce',
+			'type' => 'group',
+			'internal_type' => 'db',
+			'allowed' => 'tx_dam',
+			'prepend_tname' => 1,
+			'foreign_table'       => 'tx_dam',
+			'MM' => 'tx_dam_mm_ref',
+			'MM_opposite_field' => 'file_usage',
+			'MM_match_fields' => array('ident' => 'tx_news2_media'),
+
+			'allowed_types' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+
+			'max_size' => '1',
+			'show_thumbs' => 1,
+			'size' => 1,
+			'maxitems' => 200,
+			'minitems' => 0,
+			'autoSizeMax' => 30,
 		),
 		'showinpreview' => array(
 			'exclude' => 1,
@@ -246,13 +229,13 @@ $TCA['tx_news2_domain_model_media'] = array(
 	),
 	'types' => array(
 			// Image
-		0 => array('showitem' => 'type;;2,content,caption;;3'),
-			// Video
-		'1' => array('showitem' => 'type;;2,content,caption;;3'),
+		'0' => array('showitem' => 'type;;2,image,caption;;3'),
+			// Multimedia (Video & Audio)
+		'1' => array('showitem' => 'type;;2,multimedia,caption;;3'),
 			// HTML
-		'2' => array('showitem' => 'type;;2,content,caption;;3'),
+		'2' => array('showitem' => 'type;;2,html,caption;;3'),
 			// DAM
-		'3' => array('showitem' => 'type;;2,content,caption;;3')
+		'3' => array('showitem' => 'type;;2,dam,caption;;3')
 	),
 	'palettes' => array(
 		'1' => array(

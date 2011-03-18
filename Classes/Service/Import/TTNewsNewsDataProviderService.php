@@ -115,7 +115,7 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 				'title' => $titles[$i],
 				'alt' => $alts[$i],
 				'caption' => $captions[$i],
-				'content' => 'uploads/pics/' . $image,
+				'image' => 'uploads/pics/' . $image,
 				'type' => 0,
 				'showinpreview' => (int)$i == 0
 			);

@@ -163,7 +163,7 @@ class ext_update {
 		$this->renameFlexformField('news2_pi1', array('additional', 'settings.orderByRespectTopNews'), array('additional', 'settings.topNewsFirst'));
 		$this->renameFlexformField('news2_pi1', array('template', 'settings.cropLength'), array('template', 'settings.cropMaxCharacters'));
 
-		$this->renameDatabaseTableField('tx_news2_domain_model_media', 'media', 'content');
+		$this->renameDatabaseTableField('tx_news2_domain_model_media', 'content', 'image');
 	}
 
 	/**

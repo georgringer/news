@@ -39,7 +39,7 @@ class Tx_News2_Interfaces_Video_Quicktime implements Tx_News2_Interfaces_MediaIn
 	 * @return string
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
-		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getContent());
+		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getMultimedia());
 		$url = htmlspecialchars($url);
 
 		$width = (int)$width;

@@ -38,7 +38,7 @@
 			<label index="tx_news2_domain_model_media.type.I.2">HTML</label>
 			<label index="tx_news2_domain_model_media.type.I.3">DAM record</label>
 			<label index="tx_news2_domain_model_media.html">HTML</label>
-			<label index="tx_news2_domain_model_media.video">Video- / Audio-URL</label>
+			<label index="tx_news2_domain_model_media.multimedia">Video- / Audio-URL</label>
 			<label index="tx_news2_domain_model_media.dam">DAM record</label>
 			<label index="tx_news2_domain_model_media.show">Show</label>
 			<label index="tx_news2_domain_model_media.showinpreview">Show in preview views</label>
@@ -87,7 +87,7 @@
 			<label index="tx_news2_domain_model_media.type.I.2">HTML</label>
 			<label index="tx_news2_domain_model_media.type.I.3">registro de DAM</label>
 			<label index="tx_news2_domain_model_media.html">HTML</label>
-			<label index="tx_news2_domain_model_media.video">Video- / Audio-URL</label>
+			<label index="tx_news2_domain_model_media.multimedia">Video- / Audio-URL</label>
 			<label index="tx_news2_domain_model_media.dam">registro de DAM</label>
 			<label index="tx_news2_domain_model_media.show">Mostrar</label>
 			<label index="tx_news2_domain_model_media.showinpreview">Mostrar en previsualización</label>
@@ -134,7 +134,7 @@
 			<label index="tx_news2_domain_model_media.type.I.2">HTML</label>
 			<label index="tx_news2_domain_model_media.type.I.3">DAM</label>
 			<label index="tx_news2_domain_model_media.html">HTML</label>
-			<label index="tx_news2_domain_model_media.video">Video URL</label>
+			<label index="tx_news2_domain_model_media.multimedia">Video URL</label>
 			<label index="tx_news2_domain_model_media.show">Anzeigen</label>
 			<label index="tx_news2_domain_model_media.showinpreview">In Voransicht anzeigen</label>
 

@@ -24,8 +24,4 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['proc
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][$_EXTKEY] =
 	'EXT:' . $_EXTKEY. '/Classes/Hooks/T3libBefunc.php:tx_News2_Hooks_T3libBefunc';
 
-	// Dynamic content element
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass'][$_EXTKEY] =
-	'EXT:' . $_EXTKEY. '/Classes/Hooks/Tceforms.php:tx_News2_Hooks_Tceforms';
-
 ?>

@@ -40,7 +40,7 @@ class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaI
 	 */
 	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
 		$content = $finalUrl = '';
-		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getContent());
+		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getMultimedia());
 
 			// get the correct rewritten url
 		$mediaWizard = tslib_mediaWizardManager::getValidMediaWizardProvider($url);

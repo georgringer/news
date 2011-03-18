@@ -98,9 +98,24 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	/**
 	 * @var string
 	 */
-	protected $content;
+	protected $image;
 
 	/**
+	 * @var integer
+	 */
+	protected $dam;
+
+	/**
+	 * @var string
+	 */
+	protected $multimedia;
+
+	/**
+	 * @var string
+	 */
+	protected $html;
+
+		/**
 	 * Get title
 	 *
 	 * @return string
@@ -348,22 +363,79 @@ class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity
 	}
 
 	/**
-	 * Content of media element
+	 * Get image
 	 *
 	 * @return string
 	 */
-	public function getContent() {
-		return $this->content;
+	public function getImage() {
+		return $this->image;
 	}
 
 	/**
-	 * Set content of media element
+	 * Set image
 	 *
-	 * @param string $content content
+	 * @param string $image image
 	 * @return void
 	 */
-	public function setContent($content) {
-		$this->content = $content;
+	public function setImage($image) {
+		$this->image = $image;
+	}
+
+	/**
+	 * Get dam record uid
+	 *
+	 * @return integer
+	 */
+	public function getDam() {
+		return $this->dam;
+	}
+
+	/**
+	 * Set dam record
+	 *
+	 * @param integer $dam
+	 * @return void
+	 */
+	public function setDam($dam) {
+		$this->dam = $dam;
+	}
+
+	/**
+	 * Get multimedia url
+	 *
+	 * @return string
+	 */
+	public function getMultimedia() {
+		return $this->multimedia;
+	}
+
+	/**
+	 * Set multimedia
+	 *
+	 * @param string $multimedia multimedia url
+	 * @return void
+	 */
+	public function setMultimedia($multimedia) {
+		$this->multimedia = $multimedia;
+	}
+
+	/**
+	 * Get html
+	 *
+	 * @return string
+	 */
+	public function getHtml() {
+		return $this->html;
+	}
+
+	/**
+	 * Set html
+	 *
+	 * @param string $html html
+	 * @return void
+	 */
+	public function setHtml($html) {
+		$this->html = $html;
 	}
 
 }
