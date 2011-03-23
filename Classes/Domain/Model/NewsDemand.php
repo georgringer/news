@@ -32,6 +32,7 @@
 class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEntity implements Tx_News2_Domain_Model_DemandInterface {
 	protected $categories;
 	protected $categoryConjunction;
+	protected $tags;
 
 	protected $archiveRestriction;
 	protected $timeRestriction = NULL;
@@ -110,6 +111,26 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 	public function getCategoryConjunction() {
 		return $this->categoryConjunction;
 	}
+
+	/**
+	 * Get Tags
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getTags() {
+		return $this->tags;
+	}
+
+	/**
+	 * Set Tags
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $tags tags
+	 * @return void
+	 */
+	public function setTags($tags) {
+		$this->tags = $tags;
+	}
+
 
 	/**
 	 * Set latest time limit, either integer or string

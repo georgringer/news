@@ -39,6 +39,7 @@ CREATE TABLE tx_news2_domain_model_news (
 	related_links tinytext,
 	type int(11) DEFAULT '0' NOT NULL,
 	keywords text,
+	tags int(11) DEFAULT '0' NOT NULL,
 	media text,
 	internalurl text,
 	externalurl text,
@@ -217,4 +218,34 @@ CREATE TABLE tx_news2_domain_model_link (
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
+);
+
+#
+# Table structure for table 'tx_news2_domain_model_tag'
+#
+CREATE TABLE tx_news2_domain_model_tag (
+	uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+	tstamp int(11) DEFAULT '0' NOT NULL,
+	crdate int(11) DEFAULT '0' NOT NULL,
+	cruser_id int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	deleted tinyint(4) DEFAULT '0' NOT NULL,
+	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	title tinytext,
+
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+);
+
+#
+# Table structure for table 'tx_news2_domain_model_news_tag_mm'
+#
+CREATE TABLE tx_news2_domain_model_news_tag_mm (
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	tablenames varchar(30) DEFAULT '' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
 );

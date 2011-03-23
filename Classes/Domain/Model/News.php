@@ -176,6 +176,12 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $contentElements;
 
 	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Tag>
+	 * @lazy
+	 */
+	protected $tags;
+
+	/**
 	 * @var integer
 	 */
 	protected $editlock;
@@ -667,6 +673,25 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	public function setContentElements($contentElements) {
 		$this->contentElements = $contentElements;
 	}
+
+	/**
+	 * Get Tags
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getTags() {
+		return $this->tags;
+	}
+
+	/**
+	 * Set Tags
+	 * @param Tx_Extbase_Persistence_ObjectStorage $tags tags
+	 * @return void
+	 */
+	public function setTags($tags) {
+		$this->tags = $tags;
+	}
+
 
 	/**
 	 * Get creation date

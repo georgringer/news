@@ -21,6 +21,7 @@
 			<label index="tx_news2_domain_model_news.media">Media Element</label>
 			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
 			<label index="tx_news2_domain_model_news.content_elements">Content elements</label>
+			<label index="tx_news2_domain_model_news.tags">Tags</label>
 
 			<label index="tx_news2_domain_model_category">News Category</label>
 			<label index="tx_news2_domain_model_category.title">Title</label>
@@ -52,6 +53,9 @@
 			<label index="tx_news2_domain_model_link.title">Title</label>
 			<label index="tx_news2_domain_model_link.description">Description</label>
 			<label index="tx_news2_domain_model_link.uri">URL</label>
+
+			<label index="tx_news2_domain_model_tag">News Tag</label>
+			<label index="tx_news2_domain_model_tag.title">Title</label>
 		</languageKey>
 
 		<languageKey index="es" type="array">

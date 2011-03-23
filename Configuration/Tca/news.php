@@ -11,7 +11,7 @@ $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][
 $TCA['tx_news2_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements'
+		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements,tags'
 	),
 	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -443,6 +443,25 @@ $TCA['tx_news2_domain_model_news'] = array(
 				)
 			)
 		),
+		'tags' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news2_domain_model_news.tags',
+			'config' => array(
+				'type' => 'select',
+				'MM' => 'tx_news2_domain_model_news_tag_mm',
+				'foreign_table' => 'tx_news2_domain_model_tag',
+				'size' => 10,
+				'autoSizeMax' => 20,
+				'minitems' => 0,
+				'maxitems' => 20,
+				'wizards' => array(
+					'suggest' => array(
+						'type' => 'suggest',
+					),
+				),
+			),
+		),
 		'import_id' => array(
 			'label'   => $ll . 'tx_news2_domain_model_news.import_id',
 			'config' => array(
@@ -466,7 +485,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,tags,
 				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),

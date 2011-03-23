@@ -142,6 +142,11 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 				);
 		}
 
+			// Tags
+		if ($demand->getTags()) {
+			$constraints = $query->contains('tags', $demand->getTags());
+		}
+
 			// dummy records, used for UnitTests only!
 		if ($demand->getIsDummyRecord()) {
 			$constraints[] = $query->equals('isDummyRecord', 1);

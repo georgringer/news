@@ -214,7 +214,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if sorting can be set
 	 *
 	 * @test
 	 * @return void
@@ -223,6 +223,18 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 		$sorting = 2;
 		$this->newsDomainModelInstance->setSorting($sorting);
 		$this->assertEquals($sorting, $this->newsDomainModelInstance->getSorting());
+	}
+
+	/**
+	 * Test if tag  can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function tagsCanBeSet() {
+		$tags = '123';
+		$this->newsDomainModelInstance->setTags($tags);
+		$this->assertEquals($tags, $this->newsDomainModelInstance->getTags());
 	}
 }
 ?>

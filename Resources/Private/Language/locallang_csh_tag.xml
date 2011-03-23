@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>CSH for table tx_news2_domain_model_tag</description>
+		<type>CSH</type>
+		<csh_table>tx_news2_domain_model_tag</csh_table>
+		<fileId>EXT:news2/locallang_csh_tag.xml</fileId>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".description">Tag record</label>
+			<label index=".details">News records can be tagged by those records</label>
+			<label index="_.seeAlso">See also the website http://www.news2.com/</label>
+			<label index="hidden.description">Hidden elements are never shown in the frontend.</label>
+			<label index="title.description">Title of the tag.</label>
+		</languageKey>
+	</data>
+</T3locallang>

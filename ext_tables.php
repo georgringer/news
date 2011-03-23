@@ -21,6 +21,8 @@ t3lib_extMgm::addLLrefForTCAdescr(
 t3lib_extMgm::addLLrefForTCAdescr(
 		'tx_news2_domain_model_link', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_link.xml');
 t3lib_extMgm::addLLrefForTCAdescr(
+		'tx_news2_domain_model_tag', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_tag.xml');
+t3lib_extMgm::addLLrefForTCAdescr(
 		'tt_content.pi_flexform.news2_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
 
 t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_news');
@@ -182,6 +184,26 @@ $TCA['tx_news2_domain_model_link'] = array(
 );
 
 t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_link');
+
+$TCA['tx_news2_domain_model_tag'] = array(
+	'ctrl' => array(
+		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_tag',
+		'label'     => 'title',
+		'tstamp'    => 'tstamp',
+		'crdate'    => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+		'default_sortby' => 'ORDER BY title',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+		),
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tag.php',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_tag.gif',
+	),
+);
+
+t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_tag');
 
 /***************
  * Plugin
