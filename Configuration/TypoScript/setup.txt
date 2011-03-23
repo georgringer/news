@@ -26,7 +26,7 @@ plugin.tx_news2 {
 		format = html
 
 		# general settings
-		overrideFlexformSettingsIfEmpty = cropLength
+		overrideFlexformSettingsIfEmpty = cropLength,dateField
 
 		pidBackAdditionalParams {
 
@@ -34,6 +34,7 @@ plugin.tx_news2 {
 
 		detailPidDetermination = flexform, categories, default
 		defaultDetailPid = 0
+		dateField = datetime
 
 		cropLength = 150
 		orderBy = datetime

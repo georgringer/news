@@ -89,6 +89,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$demand->setOffset($settings['offset']);
 
 		$demand->setSearchFields($settings['search']['fields']);
+		$demand->setDateField($settings['dateField']);
 
 		$demand->setStoragePage(Tx_News2_Utility_Page::extendPidListByChildren($settings['startingpoint'],
 			$settings['recursive']));
