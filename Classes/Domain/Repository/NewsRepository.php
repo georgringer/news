@@ -42,6 +42,9 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 		$constraint = NULL;
 		$categoryConstraints = array();
 
+		if (!is_array($categories)) {
+			$categories = t3lib_div::intExplode(',', $categories, TRUE);
+		}
 		foreach ($categories as $category) {
 			$categoryConstraints[] = $query->contains('categories', $category);
 		}
@@ -59,7 +62,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			case 'and':
 			default:
 				$constraint = $query->logicalAnd($categoryConstraints);
-	}
+		}
 
 		return $constraint;
 	}
