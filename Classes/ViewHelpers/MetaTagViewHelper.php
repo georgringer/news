@@ -49,12 +49,23 @@ class Tx_News2_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Ab
 	/**
 	 * Renders a meta tag
 	 *
-	 * @param boolean $useCurrentDomain
+	 * @param boolean $useCurrentDomain If set, current domain is used
+	 * @param boolean $forceAbsoluteUrl If set, absolute url is forced
 	 * @return void
 	*/
-	public function render($useCurrentDomain = FALSE) {
+	public function render($useCurrentDomain = FALSE, $forceAbsoluteUrl = FALSE) {
+
+			// set current domain
 		if ($useCurrentDomain) {
-			$this->tag->addAttribute('content', t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
+			$this->tag->addAttribute('content', t3lib_div::getIndpEnv('TYPO3_SITE_URL'));
+		}
+
+			// prepend current domain
+		if ($forceAbsoluteUrl) {
+			$path = $this->arguments['content'];
+			if (!t3lib_div::isFirstPartOfStr($path, t3lib_div::getIndpEnv('TYPO3_SITE_URL'))) {
+				$this->tag->addAttribute('content', t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->arguments['content']);
+			}
 		}
 
 		if (isset($this->arguments['content']) && !empty($this->arguments['content'])) {

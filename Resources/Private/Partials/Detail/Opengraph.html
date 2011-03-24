@@ -6,7 +6,10 @@
 <n:metaTag property="og:url" content="" useCurrentDomain="1" />
 <n:metaTag property="og:site_name" content="{settings.opengraph.site_name}" />
 <f:if condition="{newsItem.firstImagePreview.image}">
-	<n:metaTag property="og:image" content="{f:uri.image(src:'uploads/tx_news2/{newsItem.firstImagePreview.image}' maxWidth:'100')}" />
+	<n:metaTag
+		property="og:image"
+		content="{f:uri.image(src:'uploads/tx_news2/{newsItem.firstImagePreview.image}' maxWidth:'100')}"
+		forceAbsoluteUrl="1" />
 </f:if>
 <n:metaTag property="fb:admins" content="{settings.opengraph.admins}" />
 <n:metaTag property="og:description" content="{newsItem.teaser}" />

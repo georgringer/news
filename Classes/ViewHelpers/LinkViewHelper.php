@@ -25,6 +25,14 @@
 /**
  * ViewHelper to render links from news records to detail view or page
  *
+ * Example
+ * <n:link newsItem="{newsItem}" settings="{settings}">
+ * {newsItem.title}
+ * </n:link>
+ *
+ * Inline notation:
+ * {n:link(newsItem:newsItem,settings:settings,linkOnly:1)}
+ *
  * @package TYPO3
  * @subpackage tx_news2
  */
