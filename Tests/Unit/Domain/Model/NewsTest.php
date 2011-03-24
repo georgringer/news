@@ -46,7 +46,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if title can be set
 	 *
 	 * @test
 	 * @return void
@@ -58,7 +58,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if teaser can be set
 	 *
 	 * @test
 	 * @return void
@@ -70,7 +70,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if bodytext can be set
 	 *
 	 * @test
 	 * @return void
@@ -82,7 +82,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if datetime can be set
 	 *
 	 * @test
 	 * @return void
@@ -94,7 +94,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if archive can be set
 	 *
 	 * @test
 	 * @return void
@@ -106,7 +106,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if author can be set
 	 *
 	 * @test
 	 * @return void
@@ -118,7 +118,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if emailadr can be set
 	 *
 	 * @test
 	 * @return void
@@ -130,7 +130,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if type can be set
 	 *
 	 * @test
 	 * @return void
@@ -142,7 +142,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if keyword can be set
 	 *
 	 * @test
 	 * @return void
@@ -154,7 +154,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if internalurl can be set
 	 *
 	 * @test
 	 * @return void
@@ -166,7 +166,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if externalurl can be set
 	 *
 	 * @test
 	 * @return void
@@ -178,7 +178,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if topnews can be set
 	 *
 	 * @test
 	 * @return void
@@ -190,7 +190,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if editlock can be set
 	 *
 	 * @test
 	 * @return void
@@ -202,7 +202,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if field can be set
+	 * Test if importid can be set
 	 *
 	 * @test
 	 * @return void
@@ -211,6 +211,18 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 		$importId = 2;
 		$this->newsDomainModelInstance->setImportId($importId);
 		$this->assertEquals($importId, $this->newsDomainModelInstance->getImportId());
+	}
+
+	/**
+	 * Test if importSource can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function importSourceCanBeSet() {
+		$importSource = 'test';
+		$this->newsDomainModelInstance->setImportSource($importSource);
+		$this->assertEquals($importSource, $this->newsDomainModelInstance->getImportSource());
 	}
 
 	/**
@@ -226,7 +238,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if tag  can be set
+	 * Test if tag can be set
 	 *
 	 * @test
 	 * @return void
@@ -235,6 +247,83 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 		$tags = '123';
 		$this->newsDomainModelInstance->setTags($tags);
 		$this->assertEquals($tags, $this->newsDomainModelInstance->getTags());
+	}
+
+	/**
+	 * Test if content elements can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function contentElementsCanBeSet() {
+		$ce = '12,34';
+		$this->newsDomainModelInstance->setContentElements($ce);
+		$this->assertEquals($ce, $this->newsDomainModelInstance->getContentElements());
+	}
+
+	/**
+	 * Test if category can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function categoryCanBeSet() {
+		$categories = new Tx_Extbase_Persistence_ObjectStorage();
+		$categories->attach('test');
+		$this->newsDomainModelInstance->setCategories($categories);
+		$this->assertEquals($categories, $this->newsDomainModelInstance->getCategories());
+	}
+
+	/**
+	 * Test if media can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function mediaCanBeSet() {
+		$media = new Tx_Extbase_Persistence_ObjectStorage();
+		$media->attach('test');
+		$this->newsDomainModelInstance->setMedia($media);
+		$this->assertEquals($media, $this->newsDomainModelInstance->getMedia());
+	}
+
+	/**
+	 * Test if related can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function relatedCanBeSet() {
+		$related = new Tx_Extbase_Persistence_ObjectStorage();
+		$related->attach('test');
+		$this->newsDomainModelInstance->setRelated($related);
+		$this->assertEquals($related, $this->newsDomainModelInstance->getRelated());
+	}
+
+	/**
+	 * Test if related files can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function relatedFilesCanBeSet() {
+		$related = new Tx_Extbase_Persistence_ObjectStorage();
+		$related->attach('test');
+		$this->newsDomainModelInstance->setRelatedFiles($related);
+		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedFiles());
+	}
+
+	/**
+	 * Test if related links can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function relatedLinksCanBeSet() {
+		$related = new Tx_Extbase_Persistence_ObjectStorage();
+		$related->attach('test');
+		$this->newsDomainModelInstance->setRelatedLinks($related);
+		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedLinks());
 	}
 }
 ?>
