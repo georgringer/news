@@ -127,6 +127,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 			$news->setType($importItem['type']);
 			$news->setKeywords($importItem['keywords']);
+			$news->setContentElements($importItem['content_elements']);
 
 			$news->setInternalurl($importItem['internalurl']);
 			$news->setExternalurl($importItem['externalurl']);

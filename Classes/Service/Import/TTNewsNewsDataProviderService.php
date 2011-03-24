@@ -72,6 +72,7 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 				'internalurl' => $row['page'],
 				'categories' => $this->getCategories($row['uid']),
 				'media' => $this->getMedia($row),
+				'content_elements' => $row['tx_rgnewsce_ce'],
 				'import_id' => $row['uid'],
 				'import_source' => $this->importSource
 			);
