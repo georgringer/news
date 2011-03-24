@@ -180,7 +180,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_news2_domain_model_category',
-				'foreign_table_where' => ' AND tx_news2_domain_model_category.pid = ###CURRENT_PID### AND tx_news2_domain_model_category.uid != ###THIS_UID###',
+				'foreign_table_where' => ' AND tx_news2_domain_model_category.pid = ###CURRENT_PID### AND tx_news2_domain_model_category.uid != ###THIS_UID### ORDER BY tx_news2_domain_model_category.sorting',
 				'renderMode' => 'tree',
 				'subType' => 'db',
 				'treeConfig' => array(

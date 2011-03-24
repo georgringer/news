@@ -144,7 +144,7 @@
 									</appearance>
 								</treeConfig>
 								<foreign_table>tx_news2_domain_model_category</foreign_table>
-								<foreign_table_where> AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0)</foreign_table_where>
+								<foreign_table_where> AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0) ORDER BY tx_news2_domain_model_category.sorting</foreign_table_where>
 								<size>10</size>
 								<autoSizeMax>20</autoSizeMax>
 								<minitems>0</minitems>

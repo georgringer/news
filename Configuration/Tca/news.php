@@ -241,7 +241,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				),
 				'MM' => 'tx_news2_domain_model_news_category_mm',
 				'foreign_table' => 'tx_news2_domain_model_category',
-				'foreign_table_where' => ' AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0)',
+				'foreign_table_where' => ' AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0) ORDER BY tx_news2_domain_model_category.sorting',
 				'size' => 10,
 				'autoSizeMax' => 20,
 				'minitems' => 0,
