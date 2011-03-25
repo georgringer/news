@@ -224,3 +224,24 @@
 }
 .news2-related-files ul li { margin-bottom: 20px; }
 .news2-related-files .news2-related-files-link .jpg { background-position: 0 0;}
+
+.news2 .page-navigation p {
+	float:left;
+}
+.news2 .page-navigation ul{
+	float:right;
+}
+.news2 .page-navigation ul li{
+	float:left;
+	display:block;
+	padding:0 1px;
+	background: none;
+}
+.news2 .page-navigation ul li a{
+	display:block;
+	padding:1px 2px;
+}
+
+.news2-clear {
+	clear:both;
+}
