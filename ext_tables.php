@@ -290,7 +290,7 @@ $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 /* ===========================================================================
  	Register BE-Modules
 =========================================================================== */
-if (TYPO3_MODE == 'BE') {
+if (TYPO3_MODE == 'BE' && $configurationArray['showImporter'] == 1) {
 	Tx_Extbase_Utility_Extension::registerModule(
 		$_EXTKEY,
 		'web',
