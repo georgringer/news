@@ -55,9 +55,11 @@
 			<f:if condition="{settings.displayDummyIfNoMedia}">
 				<f:then>
 					<div class="news2-img-wrap">
-						<span class="no-media-element">
-							<f:image src="typo3conf/ext/news2/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
-						</span>
+						<n:link newsItem="{newsItem}" settings="{settings}">
+							<span class="no-media-element">
+								<f:image src="typo3conf/ext/news2/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
+							</span>
+						</n:link>
 					</div>
 				</f:then>
 			</f:if>
