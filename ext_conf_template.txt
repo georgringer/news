@@ -4,6 +4,9 @@ pageModuleFieldsNews = LLL:EXT:news2/Resources/Private/Language/locallang_be.xml
  	# cat=basic/enable/101; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsCategory
 pageModuleFieldsCategory = title,description
 
+ 	# cat=basic/enable/101; type=input; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.tagPid
+tagPid = 1
+
  	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.hideMediaTable
 hideMediaTable = 1
 

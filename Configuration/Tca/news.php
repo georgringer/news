@@ -448,7 +448,9 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news2_domain_model_news.tags',
 			'config' => array(
-				'type' => 'select',
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'tx_news2_domain_model_tag',
 				'MM' => 'tx_news2_domain_model_news_tag_mm',
 				'foreign_table' => 'tx_news2_domain_model_tag',
 				'foreign_table_where' => 'ORDER BY tx_news2_domain_model_tag.title',
@@ -457,8 +459,31 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'minitems' => 0,
 				'maxitems' => 20,
 				'wizards' => array(
+					'_PADDING'  => 2,
+					'_VERTICAL' => 1,
 					'suggest' => array(
 						'type' => 'suggest',
+					),
+					'add' => array(
+						'type'   => 'script',
+						'title'  => 'Create new record',
+						'icon'   => 'add.gif',
+						'params' => array(
+							'table'    => 'tx_news2_domain_model_tag',
+							'pid'      => (int)$configurationArray['tagPid'],
+							'setValue' => 'prepend'
+						),
+						'script' => 'wizard_add.php',
+					),
+					'list' => array(
+						'type'   => 'script',
+						'title'  => 'List',
+						'icon'   => 'list.gif',
+						'params' => array(
+							'table' => 'tx_news2_domain_model_tag',
+							'pid'   => (int)$configurationArray['tagPid'],
+						),
+						'script' => 'wizard_list.php',
 					),
 				),
 			),
