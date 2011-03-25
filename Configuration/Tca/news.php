@@ -451,6 +451,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'type' => 'select',
 				'MM' => 'tx_news2_domain_model_news_tag_mm',
 				'foreign_table' => 'tx_news2_domain_model_tag',
+				'foreign_table_where' => 'ORDER BY tx_news2_domain_model_tag.title',
 				'size' => 10,
 				'autoSizeMax' => 20,
 				'minitems' => 0,
