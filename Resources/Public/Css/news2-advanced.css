@@ -113,6 +113,10 @@
 	margin: 0 0 10px 0;
 }
 
+.news2 .topnews .header {
+	background: url(../Images/topnews.png) no-repeat right center;
+}
+
 .news2 footer {
 	clear: both;
 	padding: 10px 0 0 0;
