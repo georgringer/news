@@ -71,12 +71,12 @@
 		<f:if condition="{newsItem.teaser}">
 			<f:then>
 				<f:format.html>
-					<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop>
+					<f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop>
 			</f:format.html>
 			</f:then>
 			<f:else>
 				<f:format.html>
-					<f:format.crop maxCharacters="{settings.cropLength}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop>
+					<f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop>
 				</f:format.html>
 			</f:else>
 		</f:if>

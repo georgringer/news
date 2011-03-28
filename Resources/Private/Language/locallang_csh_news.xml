@@ -26,13 +26,15 @@
 			<label index="datetime.description">Date of the news record</label>
 			<label index="archive.description">Archive date. A date is required if the news record should once be treated as archived news.</label>
 			<label index="bodytext.description">Main content of the news record</label>
-			<label index="category.description">Select the categories which are related to this record.</label>
+			<label index="categories.description">Select the categories which are related to this record.</label>
+			<label index="tags.description">Define and select tags which fit to the article.</label>
+			<label index="content_elements.description">Content elements can be used to generate feature rich news articles.</label>
 			<label index="keywords.description">Define keywords which can be used for SEO optimizations.</label>
 			<label index="related.description">Select related news records.</label>
 			<label index="related_files.description">Define related files, e.g. PDFs</label>
 			<label index="related_links.description">Define related links to internal and external pages.</label>
 		</languageKey>
-		
+
 		<languageKey index="de" type="array">
 			<label index=".description">News Datensatz</label>
 			<label index=".details">Versatile news system.</label>
@@ -52,7 +54,7 @@
 			<label index="datetime.description">Datum des Newsdatensatz</label>
 			<label index="archive.description">Archivdatum. Falls der Newsdatensatz über ein Archivmenü angezeigt werden soll, muss das Datum ausgefüllt werden.</label>
 			<label index="bodytext.description">Hauptinhalt des Newsdatensatz</label>
-			<label index="category.description">Kategorien zu denen der Newsdatensatz gehört</label>
+			<label index="categories.description">Kategorien zu denen der Newsdatensatz gehört</label>
 			<label index="keywords.description">Keywords eines Newsdatensatz, besonders für Suchmaschinenoptimierung zu verwenden.</label>
 			<label index="related.description">Verwandte Newsdatensätze</label>
 			<label index="related_files.description">Zu dem Newsdatensatz gehörige Dateien</label>

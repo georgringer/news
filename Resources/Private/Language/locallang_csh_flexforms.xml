@@ -20,29 +20,32 @@
 			<label index="switchableControllerActions.description">Set the view you want to display</label>
 			<label index="switchableControllerActions.details">List view shows all news records. Latest uses a time restriction, the rest should be understandable</label>
 			<label index="settings.orderBy.description">Define the sorting field</label>
-			<label index="settings.orderAscDesc.description">Define the sorting direction</label>
-			<label index="settings.category.description">Choose the categories to define which news items are displayed</label>
-			<label index="settings.categoryMode.description">Define how the selected categories are used</label>
-			<label index="settings.categoryMode.details">"Don't care": No category restriction is set. "Show items with selected categories OR": A news records need to be related with at least one of the selected categories. "Show selected categories AND". A news record need to be related to all selected categories. "Do not show" is the opposite of above.</label>
-			<label index="settings.archive.description">Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</label>
-			<label index="settings.timeLimit.description">Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important!</label>
-			<label index="settings.topNews.description">A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</label>
+			<label index="settings.orderDirection.description">Define the sorting direction</label>
+			<label index="settings.dateField.description">Select the field which is used to build the date menu.</label>
+			<label index="settings.categories.description">Choose the categories to define which news items are displayed</label>
+			<label index="settings.categoryConjunction.description">Define how the selected categories are used</label>
+			<label index="settings.categoryConjunction.details">"Don't care": No category restriction is set. "Show items with selected categories OR": A news records need to be related with at least one of the selected categories. "Show selected categories AND". A news record need to be related to all selected categories. "Do not show" is the opposite of above.</label>
+			<label index="settings.archiveRestriction.description">Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</label>
+			<label index="settings.timeRestriction.description">Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important!</label>
+			<label index="settings.topNewsRestriction.description">A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</label>
+			<label index="settings.singleNews.description">Display the selected single news record.</label>
+			<label index="settings.previewHiddenRecords.description">If set, hidden records are also displayed. This is needed if you want to preview still hidden records.</label>
 			<label index="settings.startingpoint.description">Define the pages/sysfolders which hold the news records</label>
-			<label index="settings.startingpoin.recursive.description">Select the recursion level of the startingpoint.</label>
+			<label index="settings.recursive.description">Select the recursion level of the startingpoint.</label>
 
 			<!-- Tab Additional -->
-			<label index="settings.pidDetail.description">Select the page on which the detail view should be shown.</label>
-			<label index="settings.pidBack.description">Select the page which is used to return to on detail view.</label>
+			<label index="settings.detailPid.description">Select the page on which the detail view should be shown.</label>
+			<label index="settings.backPid.description">Select the page which is used to return to on detail view.</label>
+			<label index="settings.listPid.description">Select the page on which the list view is shown.</label>
 			<label index="settings.limit.description">Set the maximum amount of news records to be displayed</label>
 			<label index="settings.offset.description">Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</label>
-			<label index="settings.orderByRespectTopNews.description">If checked: No matter which sorting is defined, top news are shown as first news records. </label>
+			<label index="settings.topNewsFirst.description">If checked: No matter which sorting is defined, top news are shown as first news records. </label>
 
 			<!-- Tab Template -->
 			<label index="settings.media.maxWidth.description">Maximal width of media elements (images, videos, ...)</label>
 			<label index="settings.media.maxHeight.description">Maximal height of media elements (images, videos, ...)</label>
-			<label index="settings.cropLength.description">Define the length of the teaser in chars. The teaser is typically cropped in the list view.</label>
+			<label index="settings.cropMaxCharacters.description">Define the length of the teaser in chars. The teaser is typically cropped in the list view.</label>
 			<label index="settings.templateLayout.description">Select a special layout for displaying news records.</label>
-
 		</languageKey>
 	</data>
 </T3locallang>

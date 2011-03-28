@@ -36,9 +36,9 @@ plugin.tx_news2 {
 		defaultDetailPid = 0
 		dateField = datetime
 
-		cropLength = 150
+		cropMaxCharacters = 150
 		orderBy = datetime
-		orderAscDesc = desc
+		orderDirection = desc
 		orderByRespectTopNews = 0
 
 		facebookLocale = en_US
@@ -61,10 +61,6 @@ plugin.tx_news2 {
 		#  Detail
 		# --------------
 		detail {
-			# Content element rendering
-			contentElementRendering = TEXT
-			contentElementRendering.value = fobar
-
 			# media configuration
 			media {
 				image {
