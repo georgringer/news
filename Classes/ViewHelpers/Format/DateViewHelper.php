@@ -25,6 +25,12 @@
 /**
  * ViewHelper to format a date, using strftime
  *
+ * Example
+ * <n:format.date format="%d.%m.%Y">{newsItem.datetime}</n:format.date>
+ *
+ * Result
+ * Formatted date
+ *
  * @package TYPO3
  * @subpackage tx_news2
  */
@@ -36,9 +42,6 @@ class Tx_News2_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 * @param mixed $date either a DateTime object or a string that is accepted by DateTime constructor
 	 * @param string $format Format String which is taken to format the Date/Time
 	 * @return string Formatted date
-	 * @author Christopher Hlubek <hlubek@networkteam.com>
-	 * @author Bastian Waidelich <bastian@typo3.org>
-	 * @api
 	 */
 	public function render($date = NULL, $format = '%Y-%m-%d') {
 		if ($date === NULL) {
