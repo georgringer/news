@@ -54,7 +54,7 @@ class tx_News2_Hooks_Tcemain{
 				$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
 				if ($pagesTsConfig['tx_news2.']['singlePid']) {
 					$GLOBALS['_POST']['popViewId_addParams'] = ($fieldArray['sys_language_uid'] > 0 ?
-						'&L=' . $fieldArray['sys_language_uid'] : 0) . '&no_cache=1 ' .
+						'&L=' . $fieldArray['sys_language_uid'] : '') . '&no_cache=1 ' .
 						'&tx_news2_pi1[controller]=News&tx_news2_pi1[action]=detail&tx_news2_pi1[news]=' . $id;
 
 					$GLOBALS['_POST']['popViewId'] = $pagesTsConfig['tx_news2.']['singlePid'];
