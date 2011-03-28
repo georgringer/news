@@ -561,6 +561,28 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	}
 
 	/**
+	 * Get all media elements which are not tagged as preview
+	 *
+	 * @return array
+	 */
+	public function getNonMediaPreviews() {
+		$mediaElements = $this->media;
+
+		$collection = array();
+		foreach ($mediaElements as $mediaElement) {
+			if (!$mediaElement->getShowinpreview()) {
+				$collection[] = $mediaElement;
+			}
+		}
+
+		if (count($collection) > 0) {
+			return $collection;
+		}
+
+		return NULL;
+	}
+
+	/**
 	 * Adds a media to this media.
 	 *
 	 * @param Tx_News2_Domain_Model_Media $media
