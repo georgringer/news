@@ -55,7 +55,7 @@ class Tx_News2_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewHelpe
 			}
 		}
 
-		return strftime($format, $date->getTimestamp());
+		return strftime($format, $date->format('U'));
 	}
 }
 ?>
