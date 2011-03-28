@@ -141,6 +141,8 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	public function detailAction(Tx_News2_Domain_Model_News $news = NULL) {
 		if (isset($this->settings['singleNews']) && (int)$this->settings['singleNews'] > 0) {
 			$news = $this->newsRepository->findByUid($this->settings['singleNews']);
+		} elseif($this->settings['previewHiddenRecords']) {
+			$news = $this->newsRepository->findByUid($this->request->getArgument('news'), FALSE);
 		}
 		$this->view->assign('newsItem', $news);
 	}

@@ -53,6 +53,7 @@
 			<label index="flexforms_general.topNewsRestriction.1">only Top News records</label>
 			<label index="flexforms_general.topNewsRestriction.2">except Top News records</label>
 			<label index="flexforms_general.singleNews">Show a single news record</label>
+			<label index="flexforms_general.previewHiddenRecords">Allow preview of hidden records</label>
 
 			<label index="flexforms_template.mediaMaxWidth">Max width for media elements</label>
 			<label index="flexforms_template.mediaMaxHeight">Max height for media elements</label>

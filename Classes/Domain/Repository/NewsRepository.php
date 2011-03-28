@@ -217,5 +217,25 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 			))->execute()->getFirst();
 	}
 
+	/**
+	 * Override default findByUid function to enable also the option to turn of
+	 * the enableField setting
+	 *
+	 * @param integer $uid id of record
+	 * @param boolean $respectEnableFields if set to false, also hidden records are shown
+	 * @return Tx_News2_Domain_Model_News
+	 */
+	public function findByUid($uid, $respectEnableFields = TRUE) {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		$query->getQuerySettings()->setRespectEnableFields($respectEnableFields);
+
+		return $query->matching(
+			$query->logicalAnd(
+				$query->equals('uid', $uid),
+				$query->equals('deleted', 0)
+			))->execute()->getFirst();
+	}
+
 }
 ?>
