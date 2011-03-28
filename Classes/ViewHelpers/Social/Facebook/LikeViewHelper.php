@@ -70,6 +70,11 @@ class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_
 				$this->arguments['href'] :
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
 
+			// absolute urls are needed
+		if (!t3lib_div::isFirstPartOfStr($this->arguments['href'], t3lib_div::getIndpEnv('TYPO3_SITE_URL'))) {
+			$this->tag->addAttribute('href', t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->arguments['href']);
+		}
+
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
 			if (empty($this->arguments['javaScript'])) {
