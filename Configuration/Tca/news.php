@@ -466,7 +466,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					),
 					'add' => array(
 						'type'   => 'script',
-						'title'  => 'Create new record',
+						'title'  => $ll . 'tx_news2_domain_model_news.tags.add',
 						'icon'   => 'add.gif',
 						'params' => array(
 							'table'    => 'tx_news2_domain_model_tag',
@@ -477,7 +477,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					),
 					'list' => array(
 						'type'   => 'script',
-						'title'  => 'List',
+						'title'  => $ll . 'tx_news2_domain_model_news.tags.list',
 						'icon'   => 'list.gif',
 						'params' => array(
 							'table' => 'tx_news2_domain_model_tag',
@@ -511,8 +511,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,tags,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,related,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// internal url
@@ -523,8 +523,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,import_id,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,related,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// external url
@@ -535,8 +535,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,related, keywords,import_id,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
+				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,related,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 	),

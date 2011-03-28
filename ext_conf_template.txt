@@ -16,9 +16,6 @@ hideFileTable = 1
  	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.enableDam
 enableDam = 0
 
- 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.showImporter
-showImporter = 0
-
  	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.prependAtCopy
 prependAtCopy = 1
 
@@ -30,3 +27,6 @@ contentElementRelation = 0
 
 	# cat=basic/enable/120; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.manualSorting
 manualSorting = 0
+
+ 	# cat=basic/enable/20; type=boolean; label=LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:extmng.showImporter
+showImporter = 0

@@ -88,6 +88,7 @@
 			<label index="extmng.categoryRestriction.none">No restriction</label>
 			<label index="extmng.manualSorting">Enable manual sorting of news records</label>
 			<label index="extmng.contentElementRelation">Use content element relation:If set, content elements can be added to news records.</label>
+			<label index="extmng.tagPid">Define pid of tag records:Tags are collected on one central page.</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>

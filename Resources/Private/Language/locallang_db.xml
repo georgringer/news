@@ -22,6 +22,8 @@
 			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
 			<label index="tx_news2_domain_model_news.content_elements">Content elements</label>
 			<label index="tx_news2_domain_model_news.tags">Tags</label>
+			<label index="tx_news2_domain_model_news.tags.add">Add a new tag</label>
+			<label index="tx_news2_domain_model_news.tags.list">List all tags</label>
 
 			<label index="tx_news2_domain_model_category">News Category</label>
 			<label index="tx_news2_domain_model_category.title">Title</label>
@@ -74,6 +76,9 @@
 			<label index="tx_news2_domain_model_news.media">Elemento multimedia</label>
 			<label index="tx_news2_domain_model_news.istopnews">Noticias destacadas</label>
 			<label index="tx_news2_domain_model_news.content_elements">Elementos de contenido</label>
+			<label index="tx_news2_domain_model_news.tags">Tags</label>
+			<label index="tx_news2_domain_model_news.tags.add">Add a new tag</label>
+			<label index="tx_news2_domain_model_news.tags.list">List all tags</label>
 
 			<label index="tx_news2_domain_model_category">Categoría de noticias</label>
 			<label index="tx_news2_domain_model_category.title">Título</label>
@@ -122,6 +127,10 @@
 			<label index="tx_news2_domain_model_news.type.I.2">Externe Seite/URL</label>
 			<label index="tx_news2_domain_model_news.media">Medienelement</label>
 			<label index="tx_news2_domain_model_news.istopnews">Top news</label>
+			<label index="tx_news2_domain_model_news.content_elements">Content elements</label>
+			<label index="tx_news2_domain_model_news.tags">Tags</label>
+			<label index="tx_news2_domain_model_news.tags.add">Neuen Tag hinzufügen</label>
+			<label index="tx_news2_domain_model_news.tags.list">Liste aller Tags</label>
 
 			<label index="tx_news2_domain_model_category">Kategorie</label>
 			<label index="tx_news2_domain_model_category.title">Titel</label>
