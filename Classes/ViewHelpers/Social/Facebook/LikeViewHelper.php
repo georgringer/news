@@ -76,11 +76,17 @@ class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
 			if (empty($this->arguments['javaScript'])) {
-				$code = '<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>';
+				$pluginSettingsService = $this->objectManager->get('Tx_News2_Service_SettingsService');
+				$tsSettings = $pluginSettingsService->getSettings();
+
+				$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
+
+				$code = '<script src="http://connect.facebook.net/' . $locale . '/all.js#xfbml=1"></script>';
 			} else {
 				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
 			}
 		}
+
 			// seems as if a div with id fb-root is needed this is just a dirty
 			// workarround to make things work again Perhaps we should
 			// use the iframe variation.

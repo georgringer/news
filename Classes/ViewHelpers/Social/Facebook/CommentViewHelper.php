@@ -60,8 +60,13 @@ class Tx_News2_ViewHelpers_Facebook_CommentViewHelper extends Tx_Fluid_Core_View
 	 * @return string
 	 */
 	public function render($appId) {
+		$pluginSettingsService = $this->objectManager->get('Tx_News2_Service_SettingsService');
+		$tsSettings = $pluginSettingsService->getSettings();
+
+		$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
+
 		$code = '<div id="fb-root"></div>
-					<script src="http://connect.facebook.net/en_US/all.js#appId=' . htmlspecialchars($appId) . '&amp;xfbml=1"></script>';
+					<script src="http://connect.facebook.net/' . $locale' . /all.js#appId=' . htmlspecialchars($appId) . '&amp;xfbml=1"></script>';
 		$code .= $this->tag->render();
 
 		return $code;

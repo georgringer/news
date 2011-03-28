@@ -41,6 +41,8 @@ plugin.tx_news2 {
 		orderAscDesc = desc
 		orderByRespectTopNews = 0
 
+		facebookLocale = en_US
+
 		# Interface implemenations
 		interfaces {
 			media {
