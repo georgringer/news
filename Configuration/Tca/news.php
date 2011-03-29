@@ -578,8 +578,12 @@ if (isset($configurationArray['categoryRestriction'])) {
 			break;
 	}
 
+		// prepend category restriction at the beginning of foreign_table_where
 	if (!empty ($categoryRestriction)) {
-		$TCA['tx_news2_domain_model_news']['columns']['category']['config']['foreign_table_where'] .= $categoryRestriction;
+		$TCA['tx_news2_domain_model_news']['columns']['categories']
+			['config']['foreign_table_where'] = $categoryRestriction .
+		$TCA['tx_news2_domain_model_news']['columns']['categories']
+			['config']['foreign_table_where'];
 	}
 }
 
