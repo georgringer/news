@@ -39,7 +39,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 	 */
 	public function viewHelperReturnsFileSizeWithDefaultFormat() {
 		$viewHelper = new Tx_News2_ViewHelpers_Format_FileSizeViewHelper();
-		$actualResult = $viewHelper->render('dummy.txt', t3lib_extMgm::extPath('news2', 'Tests/Unit/ViewHelpers/Format/'));
+		$actualResult = $viewHelper->render(t3lib_extMgm::extPath('news2', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt');
 		$this->assertEquals('14.4 K', $actualResult);
 	}
 
@@ -51,7 +51,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 	 */
 	public function viewHelperReturnsFileSizeWithGivenFormat() {
 		$viewHelper = new Tx_News2_ViewHelpers_Format_FileSizeViewHelper();
-		$actualResult = $viewHelper->render('dummy.txt', t3lib_extMgm::extPath('news2', 'Tests/Unit/ViewHelpers/Format/'), '| A| B| C');
+		$actualResult = $viewHelper->render(t3lib_extMgm::extPath('news2', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt', '| A| B| C');
 		$this->assertEquals('14.4 A', $actualResult);
 	}
 

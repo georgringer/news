@@ -34,25 +34,24 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 	/**
 	 * Download a file
 	 *
-	 * @param string $file
-	 * @param string $path
+	 * @param string $file file
 	 * @param array $configuration
 	 * @return string
 	 */
-	public function render($file, $path = '', array $configuration = array()) {
-		$filePath = $path . $file;
-		if (!is_file($filePath)) {
+	public function render($file, array $configuration = array()) {
+		if (!is_file($file)) {
 				// @todo: better exceptions
-			throw new Exception('Given file is not a valid file: ' . htmlspecialchars($filePath));
+			throw new Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException(
+				'Given file is not a valid file: ' . htmlspecialchars($file));
 		}
 
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 
-		$fileInformation = pathinfo($filePath);
+		$fileInformation = pathinfo($file);
 
 			// set a basic configuration for cObj->filelink
 		$tsConfiguration = array(
-			'path' => $path,
+			'path' => $fileInformation['dirname'] . '/',
 			'ATagParams' => 'class="download-link basic-class ' . $fileInformation['extension'] . '"',
 			'labelStdWrap.' => array(
 				'cObject.' => array(
@@ -62,41 +61,16 @@ class Tx_News2_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_V
 
 		);
 
-		$configuration = $this->convertExtbaseToClassicTs($configuration);
+		$configuration = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($configuration);
 
 			// merge default configuration with optional configuration
 		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration, $configuration);
 
 			// generate file
-		$file = $cObj->filelink($file, $tsConfiguration);
+		$file = $cObj->filelink($fileInformation['basename'], $tsConfiguration);
 
 		return $file;
 	}
-
-
-	/**
-	 * Modify TS to fit cObjs
-	 *
-	 * @param array $extbaseTs
-	 * @return array convertes TS
-	 * @todo really needed? check convertExtbaseToClassicTS in extbase_utility
-	 */
-	public function convertExtbaseToClassicTs(array $extbaseTs) {
-		$classicTs = array();
-		if (is_array($extbaseTs)) {
-			foreach ($extbaseTs as $key => $value) {
-				if (is_array($value)) {
-
-					$classicTs[$key.'.'] = $this->convertExtbaseToClassicTs($value);
-				} else {
-					$classicTs[$key] = $value;
-				}
-			}
-		}
-		return $classicTs;
-	}
-
-
 }
 
 ?>
