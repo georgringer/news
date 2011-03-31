@@ -40,7 +40,6 @@ class Tx_News2_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewH
 	 */
 	public function render($file, $format = '') {
 		if (!is_file($file)) {
-				// @todo: better exceptions
 			throw new Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException('Given file is not a valid file: ' . htmlspecialchars($filePath));
 		}
 
