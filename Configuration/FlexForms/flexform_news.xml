@@ -448,6 +448,16 @@
 							</config>
 						</TCEforms>
 					</settings.topNewsFirst>
+
+					<!-- disable overrideDemand -->
+					<settings.disableOverrideDemand>
+						<TCEforms>
+							<label>LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_additional.disableOverrideDemand</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.disableOverrideDemand>
 				</el>
 			</ROOT>
 		</additional>

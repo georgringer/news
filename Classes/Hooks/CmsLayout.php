@@ -81,6 +81,7 @@ class tx_News2_Hooks_CmsLayout {
 							$this->getCategorySettings($data) .
 							$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']) .
 							$this->getOffsetLimitSettings($data) .
+							$this->getOverrideDemandSettings($data) .
 						'</table>';
 			}
 		}
@@ -206,6 +207,25 @@ class tx_News2_Hooks_CmsLayout {
 						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.dateField'),
 						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.dateField.' . $dateMenuField)
 					);
+
+		return $content;
+	}
+
+	/**
+	 * Get information if override demand setting is disabled or not
+	 *
+	 * @param array $data flexform data
+	 * @return string
+	 */
+	private function getOverrideDemandSettings($data) {
+		$content = '';
+
+		$field = $this->getFieldFromFlexform($data, 'settings.disableOverrideDemand', 'additional');
+
+		if ($field == 1) {
+			$content = $this->renderLine($GLOBALS['LANG']->sL(
+					$this->llPath . ':flexforms_additional.disableOverrideDemand'), '');
+		}
 
 		return $content;
 	}

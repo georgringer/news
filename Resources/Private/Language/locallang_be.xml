@@ -68,6 +68,7 @@
 			<label index="flexforms_additional.limit">Max records displayed</label>
 			<label index="flexforms_additional.offset">Start with news item #</label>
 			<label index="flexforms_additional.topNewsFirst">Sort "Top news" before</label>
+			<label index="flexforms_additional.disableOverrideDemand">Disable override demand</label>
 
 			<!-- Page Module Record list -->
 			<label index="pagemodule_simple">Simple list</label>

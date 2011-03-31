@@ -39,7 +39,8 @@
 			<label index="settings.listPid.description">Select the page on which the list view is shown.</label>
 			<label index="settings.limit.description">Set the maximum amount of news records to be displayed</label>
 			<label index="settings.offset.description">Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</label>
-			<label index="settings.topNewsFirst.description">If checked: No matter which sorting is defined, top news are shown as first news records. </label>
+			<label index="settings.topNewsFirst.description">If checked: No matter which sorting is defined, top news are shown as first news records.</label>
+			<label index="settings.disableOverrideDemand.description">If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</label>
 
 			<!-- Tab Template -->
 			<label index="settings.media.maxWidth.description">Maximal width of media elements (images, videos, ...)</label>

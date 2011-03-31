@@ -105,7 +105,6 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 */
 	protected function overwriteDemandObject($demand, $overwriteDemand) {
 		foreach ($overwriteDemand as $propertyName => $propertyValue) {
-			 // @todo: consider adding an per mode access check
 			Tx_Extbase_Reflection_ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
 		}
 		return $demand;
@@ -120,7 +119,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	public function listAction(array $overwriteDemand = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
 
-		if ($overwriteDemand !== NULL) {
+		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
 			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
 		}
 
