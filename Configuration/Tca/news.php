@@ -506,7 +506,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 			// default news
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,bodytext;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css],content_elements,
+					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,
+					bodytext;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css],content_elements,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
@@ -555,7 +556,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'canNotCollapse' => FALSE
 		),
 		'access' => array(
-			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel,
+			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel,
+					endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel,
 					--linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel,
 					--linebreak--,editlock,',
 			'canNotCollapse' => TRUE,
@@ -576,6 +578,8 @@ if (isset($configurationArray['categoryRestriction'])) {
 		case 'siteroot':
 			$categoryRestriction = ' AND tx_news2_domain_model_category.pid IN (###SITEROOT###) ';
 			break;
+		default:
+			$categoryRestriction = '';
 	}
 
 		// prepend category restriction at the beginning of foreign_table_where

@@ -96,7 +96,7 @@ class Tx_News2_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbas
 	}
 
 	/**
-	 * Test createConstraintsFromDemandForDemandWithTopnewsSetting1QueriesForIsTopNews
+	 * Test create cronstraints from demand including topnews setting
 	 *
 	 * @test
 	 * @return void
