@@ -132,7 +132,7 @@
 			<label index="tx_news2_domain_model_news.tags.add">Neuen Tag hinzufügen</label>
 			<label index="tx_news2_domain_model_news.tags.list">Liste aller Tags</label>
 
-			<label index="tx_news2_domain_model_category">Kategorie</label>
+			<label index="tx_news2_domain_model_category">News Kategorie</label>
 			<label index="tx_news2_domain_model_category.title">Titel</label>
 			<label index="tx_news2_domain_model_category.description">Beschreibung</label>
 			<label index="tx_news2_domain_model_category.image">Bild</label>
@@ -140,7 +140,7 @@
 			<label index="tx_news2_domain_model_category.single_pid">Seite für Einzelansicht von News dieser Kategorie</label>
 			<label index="tx_news2_domain_model_category.shortcut">Verknüpfte Seite</label>
 
-			<label index="tx_news2_domain_model_media">Medienelement</label>
+			<label index="tx_news2_domain_model_media">News Medienelement</label>
 			<label index="tx_news2_domain_model_media.caption">Caption</label>
 			<label index="tx_news2_domain_model_media.media">Medientyp</label>
 			<label index="tx_news2_domain_model_media.type.I.0">Bild</label>
@@ -151,11 +151,12 @@
 			<label index="tx_news2_domain_model_media.show">Anzeigen</label>
 			<label index="tx_news2_domain_model_media.showinpreview">In Voransicht anzeigen</label>
 
-			<label index="tx_news2_domain_model_file">Dateielement</label>
+			<label index="tx_news2_domain_model_file">News Dateielement</label>
 			<label index="tx_news2_domain_model_file.title">Titel</label>
 			<label index="tx_news2_domain_model_file.description">Beschreibung</label>
 			<label index="tx_news2_domain_model_file.file">Datei</label>
 
+			<label index="tx_news2_domain_model_link">News Linkelement</label>
 			<label index="tx_news2_domain_model_link.title">Titel</label>
 			<label index="tx_news2_domain_model_link.description">Beschreibung</label>
 			<label index="tx_news2_domain_model_link.uri">URL</label>
