@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  (c) 2011 Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -33,6 +33,11 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 
 	protected $importSource = 'TT_NEWS_IMPORT';
 
+	/**
+	 * Get total record count
+	 *
+	 * @return integer
+	 */
 	public function getTotalRecordCount() {
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(*)',
 			'tt_news',
@@ -40,9 +45,16 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 		);
 
 		list($count) = $GLOBALS['TYPO3_DB']->sql_fetch_row($res);
-		return $count;
+		return (int)$count;
 	}
 
+	/**
+	 * Get the partial import data, based on offset + limit
+	 *
+	 * @param integer $offset offset
+	 * @param integer $limit limit
+	 * @return array
+	 */
 	public function getImportData($offset = 0, $limit = 50) {
 		$importData = array();
 
@@ -51,7 +63,7 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 			'deleted=0 AND t3ver_id=0 AND t3ver_wsid = 0',
 			'',
 			'',
-			$offset .',' . $limit
+			$offset . ',' . $limit
 		);
 
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
@@ -82,12 +94,18 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 		return $importData;
 	}
 
+	/**
+	 * Get correct categories of a news record
+	 *
+	 * @param integer $newsUid news uid
+	 * @return array
+	 */
 	protected function getCategories($newsUid) {
 		$categories = array();
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*',
 			'tt_news_cat_mm',
-			'uid_local=' .$newsUid);
+			'uid_local=' . $newsUid);
 
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$categories[] = $row['uid_foreign'];
@@ -98,7 +116,13 @@ class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_
 		return $categories;
 	}
 
-	protected function getMedia($row) {
+	/**
+	 * Get correct media elements to be imported
+	 *
+	 * @param array $row news record
+	 * @return array
+	 */
+	protected function getMedia(array $row) {
 		$media = array();
 
 		if (empty($row['image'])) {

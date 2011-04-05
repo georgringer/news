@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  (c) 2011 Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -33,6 +33,11 @@ class Tx_News2_Service_Import_TTNewsCategoryDataProviderService implements Tx_Ne
 
 	protected $importSource = 'TT_NEWS_CATEGORY_IMPORT';
 
+	/**
+	 * Get total count of category records
+	 *
+	 * @return integer
+	 */
 	public function getTotalRecordCount() {
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('count(*)',
 			'tt_news_cat',
@@ -40,9 +45,16 @@ class Tx_News2_Service_Import_TTNewsCategoryDataProviderService implements Tx_Ne
 		);
 
 		list($count) = $GLOBALS['TYPO3_DB']->sql_fetch_row($res);
-		return $count;
+		return (int)$count;
 	}
 
+	/**
+	 * Get the partial import data, based on offset + limit
+	 *
+	 * @param integer $offset offset
+	 * @param integer $limit limit
+	 * @return array
+	 */
 	public function getImportData($offset = 0, $limit = 200) {
 		$importData = array();
 
@@ -51,7 +63,7 @@ class Tx_News2_Service_Import_TTNewsCategoryDataProviderService implements Tx_Ne
 			'deleted=0',
 			'',
 			'',
-			$offset .',' . $limit
+			$offset . ',' . $limit
 		);
 
 		while ($row = mysql_fetch_array($res)) {
@@ -69,6 +81,8 @@ class Tx_News2_Service_Import_TTNewsCategoryDataProviderService implements Tx_Ne
 				'import_source' => $this->importSource
 			);
 		}
+		$GLOBALS['TYPO3_DB']->sql_free_result($res);
+
 		return $importData;
 	}
 }
