@@ -42,7 +42,7 @@ class Tx_News2_Controller_ImportController extends Tx_Extbase_MVC_Controller_Act
 		foreach ($registeredJobs as $registeredJob) {
 			$jobInstance = $this->objectManager->get($registeredJob['className']);
 			if ($jobInstance instanceof Tx_News2_Jobs_ImportJobInterface && $jobInstance->isEnabled()) {
-				$availableJobs[$registeredJob['className']] = $registeredJob['title'];
+				$availableJobs[$registeredJob['className']] = $GLOBALS['LANG']->sL($registeredJob['title']);
 			}
 		}
 
