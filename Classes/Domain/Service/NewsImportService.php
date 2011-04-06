@@ -179,26 +179,26 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 				}
 			}
 
-				// files
-			if (is_array($importItem['files'])) {
-				foreach ($importItem['files'] as $file) {
+				// related files
+			if (is_array($importItem['related_files'])) {
+				foreach ($importItem['related_files'] as $file) {
+					if (!$relatedFile = $this->getRelatedFileIfAlreadyExists($news, $file['file'])) {
 
-					/**
-					 * @var Tx_News2_Domain_Model_File
-					 */
-					$relatedFile = $this->objectManager->get('Tx_News2_Domain_Model_File');
-					$relatedFile->setTitle($file['title']);
-					$relatedFile->setDescription($file['description']);
-
-					$uniqueName = $basicFileFunctions->getUniqueName($file['file'],
+						$uniqueName = $basicFileFunctions->getUniqueName($file['file'],
 						PATH_site . self::UPLOAD_PATH);
 
-					copy(
-						PATH_site . $file['file'],
-						$uniqueName
-					);
+						copy(
+							PATH_site . $file['file'],
+							$uniqueName
+						);
 
-					$relatedFile->setFile(basename($uniqueName));
+						$relatedFile = $this->objectManager->get('Tx_News2_Domain_Model_File');
+						$news->addRelatedFile($relatedFile);
+
+						$relatedFile->setFile(basename($uniqueName));
+					}
+					$relatedFile->setTitle($file['title']);
+					$relatedFile->setDescription($file['description']);
 				}
 			}
 
@@ -226,6 +226,32 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 						PATH_site . self::UPLOAD_PATH . $mediaItem->getImage()
 					)) {
 					$result = $mediaItem;
+					break;
+				}
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * Get related file if it exists
+	 *
+	 * @param Tx_News2_Domain_Model_News $news
+	 * @param string $relatedFile
+	 * @return Boolean|Tx_News2_Domain_Model_File
+	 */
+	protected function getRelatedFileIfAlreadyExists(Tx_News2_Domain_Model_News $news, $relatedFile) {
+		$result = FALSE;
+		$relatedItems = $news->getRelatedFiles();
+
+		if ($relatedItems->count() !== 0) {
+			foreach ($relatedItems as $relatedItem) {
+				if ($relatedItem->getFile() == basename($relatedFile) &&
+					$this->filesAreEqual(
+						PATH_site. $relatedFile,
+						PATH_site . self::UPLOAD_PATH . $relatedItem->getFile()
+					)) {
+					$result = $relatedItem;
 					break;
 				}
 			}
