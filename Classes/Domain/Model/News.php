@@ -208,6 +208,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 */
 	public function __construct() {
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->relatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->media = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
@@ -470,6 +471,16 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	 */
 	public function setRelatedFiles($relatedFiles) {
 		$this->relatedFiles = $relatedFiles;
+	}
+
+	/**
+	 * Adds a file to this files.
+	 *
+	 * @param Tx_News2_Domain_Model_File $file
+	 * @return void
+	 */
+	public function addRelatedFile(Tx_News2_Domain_Model_File $file) {
+		$this->relatedFiles->attach($file);
 	}
 
 	/**

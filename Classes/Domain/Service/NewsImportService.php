@@ -135,44 +135,73 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 			$news->setImportid($importItem['import_id']);
 			$news->setImportSource($importItem['import_source']);
 
-			foreach ($importItem['categories'] as $categoryUid) {
-				if ($settings['findCategoriesByImportSource']) {
-					$category = $this->categoryRepository->findOneByImportSourceAndImportId(
-						$settings['findCategoriesByImportSource'], $categoryUid);
-				} else {
-					$category = $this->categoryRepository->findByUid($categoryUid);
-				}
+			if (is_array($importItem['categories'])) {
+				foreach ($importItem['categories'] as $categoryUid) {
+					if ($settings['findCategoriesByImportSource']) {
+						$category = $this->categoryRepository->findOneByImportSourceAndImportId(
+							$settings['findCategoriesByImportSource'], $categoryUid);
+					} else {
+						$category = $this->categoryRepository->findByUid($categoryUid);
+					}
 
-				if ($category) {
-					$news->addCategory($category);
+					if ($category) {
+						$news->addCategory($category);
+					}
 				}
 			}
 
 			$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions');
 
-			foreach ($importItem['media'] as $mediaItem) {
-				if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['image'])) {
+				// media relation
+			if (is_array($importItem['media'])) {
+				foreach ($importItem['media'] as $mediaItem) {
+					if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['image'])) {
 
-					$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['image'],
+						$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['image'],
+							PATH_site . self::UPLOAD_PATH);
+
+						copy(
+							PATH_site . $mediaItem['image'],
+							$uniqueName
+						);
+
+						$media = $this->objectManager->get('Tx_News2_Domain_Model_Media');
+						$news->addMedia($media);
+
+						$media->setImage(basename($uniqueName));
+					}
+
+					$media->setTitle($mediaItem['title']);
+					$media->setAlt($mediaItem['alt']);
+					$media->setCaption($mediaItem['caption']);
+					$media->setType($mediaItem['type']);
+					$media->setShowinpreview($mediaItem['showinpreview']);
+				}
+			}
+
+				// files
+			if (is_array($importItem['files'])) {
+				foreach ($importItem['files'] as $file) {
+
+					/**
+					 * @var Tx_News2_Domain_Model_File
+					 */
+					$relatedFile = $this->objectManager->get('Tx_News2_Domain_Model_File');
+					$relatedFile->setTitle($file['title']);
+					$relatedFile->setDescription($file['description']);
+
+					$uniqueName = $basicFileFunctions->getUniqueName($file['file'],
 						PATH_site . self::UPLOAD_PATH);
 
 					copy(
-						PATH_site . $mediaItem['image'],
+						PATH_site . $file['file'],
 						$uniqueName
 					);
 
-					$media = $this->objectManager->get('Tx_News2_Domain_Model_Media');
-					$news->addMedia($media);
-
-					$media->setImage(basename($uniqueName));
+					$relatedFile->setFile(basename($uniqueName));
 				}
-
-				$media->setTitle($mediaItem['title']);
-				$media->setAlt($mediaItem['alt']);
-				$media->setCaption($mediaItem['caption']);
-				$media->setType($mediaItem['type']);
-				$media->setShowinpreview($mediaItem['showinpreview']);
 			}
+
 		}
 
 		$this->persistenceManager->persistAll();
@@ -191,10 +220,10 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 		if ($mediaItems->count() !== 0) {
 			foreach ($mediaItems as $mediaItem) {
-				if ($mediaItem->getContent() == basename($mediaFile) &&
+				if ($mediaItem->getImage() == basename($mediaFile) &&
 					$this->filesAreEqual(
 						PATH_site. $mediaFile,
-						PATH_site . self::UPLOAD_PATH . $mediaItem->getContent()
+						PATH_site . self::UPLOAD_PATH . $mediaItem->getImage()
 					)) {
 					$result = $mediaItem;
 					break;
@@ -205,7 +234,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 	}
 
 	/**
-	 * Compares 2 files
+	 * Compares 2 files by using its filesize
 	 *
 	 * @param string $file1 Absolut path and filename to file1
 	 * @param string $file2 Absolut path and filename to file2

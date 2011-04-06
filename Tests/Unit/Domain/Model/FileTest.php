@@ -58,6 +58,18 @@ class Tx_News2_Tests_Unit_Domain_Model_FileTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
+	 * Test if description can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function descriptionCanBeSet() {
+		$description = 'File description';
+		$this->fileDomainModelInstance->setDescription($description);
+		$this->assertEquals($description, $this->fileDomainModelInstance->getDescription());
+	}
+
+	/**
 	 * Test if file can be set
 	 *
 	 * @test

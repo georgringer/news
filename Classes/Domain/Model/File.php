@@ -49,6 +49,11 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	/**
 	 * @var string
 	 */
+	protected $description;
+
+	/**
+	 * @var string
+	 */
 	protected $file;
 
 	/**
@@ -106,6 +111,25 @@ class Tx_News2_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueOb
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+	}
+
+	/**
+	 * Get description
+	 *
+	 * @return string
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
+
+	/**
+	 * Set description
+	 *
+	 * @param string $description description
+	 * @return void
+	 */
+	public function setDescription($description) {
+		$this->description = $description;
 	}
 
 	/**
