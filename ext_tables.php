@@ -306,8 +306,17 @@ if (TYPO3_MODE == 'BE' && $configurationArray['showImporter'] == 1) {
 		)
 	);
 
-	Tx_News2_Utility_ImportJob::register('Tx_News2_Jobs_TTNewsNewsImportJob', 'Import tt_news news records', '');
-	Tx_News2_Utility_ImportJob::register('Tx_News2_Jobs_TTNewsCategoryImportJob', 'Import tt_news category records', '');
+		// show tt_news importer only if tt_news is installed
+	if (t3lib_extMgm::isLoaded('tt_news')) {
+		Tx_News2_Utility_ImportJob::register(
+			'Tx_News2_Jobs_TTNewsNewsImportJob',
+			'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:ttnews_importer_title',
+			'');
+		Tx_News2_Utility_ImportJob::register(
+			'Tx_News2_Jobs_TTNewsCategoryImportJob',
+			'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:ttnewscategory_importer_title',
+			'');
+	}
 }
 
 /* ===========================================================================

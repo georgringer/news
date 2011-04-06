@@ -97,6 +97,8 @@
 			<label index="usersettings.no-languages-available">There are no languages available, so nothing to choose.</label>
 
 			<!-- BE Module -->
+			<label index="ttnews_importer_title">Import tt_news news records</label>
+			<label index="ttnewscategory_importer_title">Import tt_news category records</label>
 			<label index="start_import">Start import with %s record(s).</label>
 		</languageKey>
 
@@ -179,6 +181,10 @@
 
 		<languageKey index="de" type="array">
 
+			<!-- BE Module -->
+			<label index="ttnews_importer_title">Import von tt_news Datensätzen</label>
+			<label index="ttnewscategory_importer_title">Import von tt_news Kategorien</label>
+			<label index="start_import">Start import with %s record(s).</label>
 		</languageKey>
 	</data>
 </T3locallang>
