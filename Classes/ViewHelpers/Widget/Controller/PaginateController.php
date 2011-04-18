@@ -138,7 +138,12 @@ class Tx_News2_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid
 			// modify query
 		$itemsPerPage = (integer)$this->configuration['itemsPerPage'];
 		$query = $this->objects->getQuery();
-		$query->setLimit($itemsPerPage);
+
+			// limit should only be used if needed
+		if ($this->currentPage > 1 && $itemsPerPage > $query->getLimit()) {
+			$query->setLimit($itemsPerPage);
+		}
+
 		if ($this->currentPage > 1) {
 			$query->setOffset((integer)($itemsPerPage * ($this->currentPage - 1)));
 		}
