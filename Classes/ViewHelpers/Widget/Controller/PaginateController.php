@@ -27,9 +27,9 @@
  * Extended version from fluid core
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_Core_Widget_AbstractWidgetController {
+class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_Core_Widget_AbstractWidgetController {
 
 	/**
 	 * @var array

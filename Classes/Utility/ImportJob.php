@@ -26,10 +26,10 @@
  * Utilitiy class for import jobs
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Utility_ImportJob {
+class Tx_News_Utility_ImportJob {
 
 	/**
 	 * @var array

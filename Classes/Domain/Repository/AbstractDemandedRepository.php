@@ -25,37 +25,37 @@
  * Abstraced demanded repository
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_Extbase_Persistence_Repository implements Tx_News2_Domain_Repository_DemandedRepositoryInterface {
+abstract class Tx_News_Domain_Repository_AbstractDemandedRepository extends Tx_Extbase_Persistence_Repository implements Tx_News_Domain_Repository_DemandedRepositoryInterface {
 
 	/**
 	 * Returns an array of constraints created from a given demand object.
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
-	 * @param Tx_News2_Domain_Model_DemandInterface $demand
+	 * @param Tx_News_Domain_Model_DemandInterface $demand
 	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
 	 * @abstract
 	 */
-	abstract protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News2_Domain_Model_DemandInterface $demand);
+	abstract protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand);
 
 	/**
 	 * Returns an array of orderings created from a given demand object.
 	 *
-	 * @param Tx_News2_Domain_Model_DemandInterface $demand
+	 * @param Tx_News_Domain_Model_DemandInterface $demand
 	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
 	 * @abstract
 	 */
-	abstract protected function createOrderingsFromDemand(Tx_News2_Domain_Model_DemandInterface $demand);
+	abstract protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand);
 
 	/**
 	 * Returns the total number objects of this repository matching the demand.
 	 *
-	 * @param Tx_News2_Domain_Model_DemandInterface $demand
+	 * @param Tx_News_Domain_Model_DemandInterface $demand
 	 * @return Tx_Extbase_Persistence_QueryResultInterface
 	 */
-	public function findDemanded(Tx_News2_Domain_Model_DemandInterface $demand) {
+	public function findDemanded(Tx_News_Domain_Model_DemandInterface $demand) {
 
 		$query = $this->createQuery();
 
@@ -88,10 +88,10 @@ abstract class Tx_News2_Domain_Repository_AbstractDemandedRepository extends Tx_
 	/**
 	 * Returns the total number objects of this repository matching the demand.
 	 *
-	 * @param Tx_News2_Domain_Model_DemandInterface $demand
+	 * @param Tx_News_Domain_Model_DemandInterface $demand
 	 * @return Tx_Extbase_Persistence_QueryResultInterface
 	 */
-	public function countDemanded(Tx_News2_Domain_Model_DemandInterface $demand) {
+	public function countDemanded(Tx_News_Domain_Model_DemandInterface $demand) {
 		$query = $this->createQuery();
 
 		if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {

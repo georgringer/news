@@ -1,4 +1,4 @@
-{namespace n=Tx_News2_ViewHelpers}
+{namespace n=Tx_News_ViewHelpers}
 <f:layout name="General" />
 <!--
 	=====================
@@ -8,7 +8,7 @@
 <f:section name="content">
 <f:if condition="{news}">
 	<f:then>
-		<div class="news2 news2-list-view">
+		<div class="news news-list-view">
 			<n:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
 				<f:for each="{paginatedNews}" as="newsItem">
 					<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>

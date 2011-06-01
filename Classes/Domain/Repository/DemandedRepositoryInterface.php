@@ -25,11 +25,11 @@
  * Demand domain model interface
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-interface Tx_News2_Domain_Repository_DemandedRepositoryInterface {
-	public function findDemanded(Tx_News2_Domain_Model_DemandInterface $demand);
-	public function countDemanded(Tx_News2_Domain_Model_DemandInterface $demand);
+interface Tx_News_Domain_Repository_DemandedRepositoryInterface {
+	public function findDemanded(Tx_News_Domain_Model_DemandInterface $demand);
+	public function countDemanded(Tx_News_Domain_Model_DemandInterface $demand);
 }
 ?>

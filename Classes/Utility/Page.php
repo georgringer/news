@@ -26,10 +26,10 @@
  * Page Utitlity class
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Utility_Page {
+class Tx_News_Utility_Page {
 
 	/**
 	 * Find all ids from given ids and level

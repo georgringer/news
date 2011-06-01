@@ -37,9 +37,9 @@
  * width 300 and arial as font
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 	/**
 	 * @var	string
 	 */
@@ -71,12 +71,12 @@ class Tx_News2_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
 
 			// absolute urls are needed
-		$this->tag->addAttribute('href', Tx_News2_Utility_Url::prependDomain($this->arguments['href']));
+		$this->tag->addAttribute('href', Tx_News_Utility_Url::prependDomain($this->arguments['href']));
 
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
 			if (empty($this->arguments['javaScript'])) {
-				$pluginSettingsService = $this->objectManager->get('Tx_News2_Service_SettingsService');
+				$pluginSettingsService = $this->objectManager->get('Tx_News_Service_SettingsService');
 				$tsSettings = $pluginSettingsService->getSettings();
 
 				$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';

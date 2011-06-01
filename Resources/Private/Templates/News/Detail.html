@@ -1,4 +1,4 @@
-{namespace n=Tx_News2_ViewHelpers}
+{namespace n=Tx_News_ViewHelpers}
 
 <f:layout name="Detail.html" />
 
@@ -20,14 +20,14 @@
 			<div class="footer" role="contentinfo">
 				<p>
 					<!-- date -->
-					<span class="news2-list-date">
+					<span class="news-list-date">
 						<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
 					</span>
 
 					<!-- categories -->
 					<f:if condition="{newsItem.category}">
 						<span class="hidden">. </span>
-						<span class="news2-list-category">
+						<span class="news-list-category">
 							<f:for each="{newsItem.category}" as="category">
 								{category.title}
 							</f:for>
@@ -37,7 +37,7 @@
 					<!-- author -->
 					<f:if condition="{newsItem.author}">
 						<span class="hidden">. </span>
-						<span class="news2-list-author">
+						<span class="news-list-author">
 							<f:translate key="author" arguments="{0:newsItem.author}"></f:translate>
 						</span>
 					</f:if>
@@ -48,7 +48,7 @@
 			<div class="teaser-text">
 				{newsItem.teaser}
 				<f:if condition="{newsItem.contentElements">
-					<f:cObject typoscriptObjectPath="lib.tx_news2.contentElementRendering">{newsItem.contentElements}</f:cObject>
+					<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElements}</f:cObject>
 				</f:if>
 			</div>
 
@@ -56,13 +56,13 @@
 			<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}"/>
 
 			<!-- main text -->
-			<div class="news2-text-wrap">
+			<div class="news-text-wrap">
 				<f:format.html>{newsItem.bodytext}</f:format.html>
 			</div>
 
 			<!-- Link Back -->
 			<f:if condition="{settings.backPid}">
-				<div class="news2-backlink-wrap">
+				<div class="news-backlink-wrap">
 					<f:link.page pageUid="{settings.backPid}">
 						<f:translate key="back-link" />
 					</f:link.page>
@@ -82,18 +82,18 @@
 			</div>
 
 			<!-- related things -->
-			<div class="news2-related-wrap">
+			<div class="news-related-wrap">
 
 				<!-- Related news records -->
 				<f:if condition="{newsItem.relatedSorted}">
-					<div class="news2-related news2-related-news">
+					<div class="news-related news-related-news">
 						<h4><f:translate key="related-news" /></h4>
 						<ul>
 							<f:for each="{newsItem.relatedSorted}" as="related">
 								<li>
-									<span class="news2-related-news-date"><f:format.date format="d.m.Y">{related.datetime}</f:format.date></span>
+									<span class="news-related-news-date"><f:format.date format="d.m.Y">{related.datetime}</f:format.date></span>
 									<span class="hidden">. </span>
-									<n:link newsItem="{related}" settings="{settings}" class="news2-related-news-link">
+									<n:link newsItem="{related}" settings="{settings}" class="news-related-news-link">
 										{related.title}
 									</n:link>
 								</li>
@@ -105,13 +105,13 @@
 
 				<!-- Related files -->
 				<f:if condition="{newsItem.relatedFiles}">
-					<div class="news2-related news2-related-files">
+					<div class="news-related news-related-files">
 						<h4><f:translate key="related-files" /></h4>
 						<ul>
 							<f:for each="{newsItem.relatedFiles}" as="relatedFile">
 								<li>
-									<span class="news2-related-files-link">
-										<n:format.fileDownload file="uploads/tx_news2/{relatedFile.file}" configuration="{settings.relatedFiles.download}">
+									<span class="news-related-files-link">
+										<n:format.fileDownload file="uploads/tx_news/{relatedFile.file}" configuration="{settings.relatedFiles.download}">
 											<f:if condition="{relatedFile.title}">
 												<f:then>
 													{relatedFile.title}
@@ -123,8 +123,8 @@
 										</n:format.fileDownload>
 									</span>
 									<span class="hidden">. </span>
-									<span class="news2-related-files-size">
-										<n:format.fileSize file="uploads/tx_news2/{relatedFile.file}" format="{settings.relatedFiles.fileSizeLabels}" />
+									<span class="news-related-files-size">
+										<n:format.fileSize file="uploads/tx_news/{relatedFile.file}" format="{settings.relatedFiles.fileSizeLabels}" />
 									</span>
 								</li>
 							</f:for>
@@ -134,7 +134,7 @@
 
 				<!-- Related links -->
 				<f:if condition="{newsItem.relatedLinks}">
-					<div class="news2-related news2-related-links">
+					<div class="news-related news-related-links">
 						<h4><f:translate key="related-links" /></h4>
 						<ul>
 							<f:for each="{newsItem.relatedLinks}" as="relatedLink">

@@ -1,5 +1,5 @@
 <f:if condition="{media}">
-	<div class="news2-img-wrap">
+	<div class="news-img-wrap">
 		<f:for each="{media}" as="mediaElement">
 			<f:if condition="{mediaElement.type} == 0">
 				<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>

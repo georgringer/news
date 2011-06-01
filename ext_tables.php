@@ -11,29 +11,29 @@ t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hooks/Labels.p
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hooks/ItemsProcFunc.php');
 	// CSH - context sensitive help
 t3lib_extMgm::addLLrefForTCAdescr(
-		'tx_news2_domain_model_news', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_news.xml');
+		'tx_news_domain_model_news', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_news.xml');
 t3lib_extMgm::addLLrefForTCAdescr(
-		'tx_news2_domain_model_category', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_category.xml');
+		'tx_news_domain_model_category', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_category.xml');
 t3lib_extMgm::addLLrefForTCAdescr(
-		'tx_news2_domain_model_media', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_media.xml');
+		'tx_news_domain_model_media', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_media.xml');
 t3lib_extMgm::addLLrefForTCAdescr(
-		'tx_news2_domain_model_file', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_file.xml');
+		'tx_news_domain_model_file', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_file.xml');
 t3lib_extMgm::addLLrefForTCAdescr(
-		'tx_news2_domain_model_link', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_link.xml');
+		'tx_news_domain_model_link', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_link.xml');
 t3lib_extMgm::addLLrefForTCAdescr(
-		'tx_news2_domain_model_tag', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_tag.xml');
+		'tx_news_domain_model_tag', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_tag.xml');
 t3lib_extMgm::addLLrefForTCAdescr(
-		'tt_content.pi_flexform.news2_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
+		'tt_content.pi_flexform.news_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_news');
+t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_news');
 
-$TCA['tx_news2_domain_model_news'] = array(
+$TCA['tx_news_domain_model_news'] = array(
 	'ctrl' => array(
-		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_news',
+		'title'     => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news',
 		'label'     => 'title',
 		'label_alt' => 'categories',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'tx_News2_Hooks_Labels->getUserLabelNews',
+		'label_userFunc' => 'tx_News_Hooks_Labels->getUserLabelNews',
 		'prependAtCopy' => $configurationArray['prependAtCopy'] ? 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy' : '',
 		'hideAtCopy' => TRUE,
 		'tstamp'    => 'tstamp',
@@ -45,8 +45,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'type' => 'type',
 		'typeicon_column' => 'type',
 		'typeicons' => array (
-			'1' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_news_article.gif',
-			'2' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_news_external.gif',
+			'1' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news_article.gif',
+			'2' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news_external.gif',
 		),
 		'dividers2tabs' => TRUE,
 		'useColumnsForDefaultValues' => 'type',
@@ -63,19 +63,19 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'fe_group' => 'fe_group',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/news.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_news.gif',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news.gif',
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_category');
+t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_category');
 
-$TCA['tx_news2_domain_model_category'] = array(
+$TCA['tx_news_domain_model_category'] = array(
 	'ctrl' => array(
-		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_category',
+		'title'     => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_category',
 		'label'     => 'title',
 		'label_alt' => 'parentcategory,sys_language_uid',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'tx_News2_Hooks_Labels->getUserLabelCategory',
+		'label_userFunc' => 'tx_News_Hooks_Labels->getUserLabelCategory',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -93,20 +93,20 @@ $TCA['tx_news2_domain_model_category'] = array(
 			'fe_group' => 'fe_group',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/category.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_category.gif',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_category.gif',
 		'treeParentField' => 'parentcategory',
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_media');
+t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_media');
 
-$TCA['tx_news2_domain_model_media'] = array(
+$TCA['tx_news_domain_model_media'] = array(
 	'ctrl' => array(
-		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_media',
+		'title'     => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_media',
 		'label'     => 'caption',
 		'label_alt' => 'type, showinpreview',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'tx_News2_Hooks_Labels->getUserLabelMedia',
+		'label_userFunc' => 'tx_News_Hooks_Labels->getUserLabelMedia',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -122,16 +122,16 @@ $TCA['tx_news2_domain_model_media'] = array(
 			'disabled' => 'hidden',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/media.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_media.gif',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_media.gif',
 		'hideTable'			=> (boolean)$configurationArray['hideMediaTable']
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_media');
+t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_media');
 
-$TCA['tx_news2_domain_model_file'] = array(
+$TCA['tx_news_domain_model_file'] = array(
 	'ctrl' => array(
-		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_file',
+		'title'     => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_file',
 		'label'     => 'title',
 		'label_alt' => 'file',
 		'label_alt_force' => 1,
@@ -150,16 +150,16 @@ $TCA['tx_news2_domain_model_file'] = array(
 			'disabled' => 'hidden',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/file.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_file.gif',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_file.gif',
 		'hideTable'			=> (boolean)$configurationArray['hideFileTable']
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_file');
+t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_file');
 
-$TCA['tx_news2_domain_model_link'] = array(
+$TCA['tx_news_domain_model_link'] = array(
 	'ctrl' => array(
-		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_link',
+		'title'     => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_link',
 		'label'     => 'title',
 		'label_alt' => 'uri',
 		'label_alt_force' => 1,
@@ -178,16 +178,16 @@ $TCA['tx_news2_domain_model_link'] = array(
 			'disabled' => 'hidden',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/link.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_link.gif',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_link.gif',
 		'hideTable'			=> (boolean)$configurationArray['hideFileTable']
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_link');
+t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_link');
 
-$TCA['tx_news2_domain_model_tag'] = array(
+$TCA['tx_news_domain_model_tag'] = array(
 	'ctrl' => array(
-		'title'     => 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:tx_news2_domain_model_tag',
+		'title'     => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_tag',
 		'label'     => 'title',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
@@ -199,11 +199,11 @@ $TCA['tx_news2_domain_model_tag'] = array(
 			'disabled' => 'hidden',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tag.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news2_domain_model_tag.png',
+		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_tag.png',
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news2_domain_model_tag');
+t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_tag');
 
 /***************
  * Plugin
@@ -226,7 +226,7 @@ t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Co
 /***************
  * Default TypoScript
  */
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'News v2');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'News');
 
 /***************
  * Wizard pi1
@@ -241,7 +241,7 @@ if (TYPO3_MODE == 'BE') {
  */
 if (TYPO3_MODE == 'BE') {
 	unset($ICON_TYPES['news']);
-	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news2/Resources/Public/Icons/folder.gif');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news/Resources/Public/Icons/folder.gif');
 }
 
 
@@ -259,7 +259,7 @@ if (!empty($configurationArray['pageModuleFieldsNews'])) {
 		} else {
 			$fList = $split[0];
 		}
-		$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news2_domain_model_news'][] = array(
+		$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news_domain_model_news'][] = array(
 			'MENU' => $fTitle,
 			'fList' => $fList,
 			'icon' => TRUE,
@@ -269,7 +269,7 @@ if (!empty($configurationArray['pageModuleFieldsNews'])) {
 }
 
 if (!empty($configurationArray['pageModuleFieldsCategory'])) {
-	$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news2_domain_model_category'][0] = array(
+	$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news_domain_model_category'][0] = array(
 		'fList' => htmlspecialchars($configurationArray['pageModuleFieldsCategory']),
 		'icon' => TRUE
 	);
@@ -277,13 +277,13 @@ if (!empty($configurationArray['pageModuleFieldsCategory'])) {
 
 
 	// extend user settings
-$GLOBALS['TYPO3_USER_SETTINGS']['columns']['news2overlay'] = array(
-	'label'			=> 'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:usersettings.overlay',
+$GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = array(
+	'label'			=> 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:usersettings.overlay',
 	'type'			=> 'select',
-	'itemsProcFunc'	=> 'tx_News2_Hooks_ItemsProcFunc->user_categoryOverlay',
+	'itemsProcFunc'	=> 'tx_News_Hooks_ItemsProcFunc->user_categoryOverlay',
 );
 $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
-	--div--;LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:pi1_title,news2overlay';
+	--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pi1_title,newsoverlay';
 
 
 
@@ -294,7 +294,7 @@ if (TYPO3_MODE == 'BE' && $configurationArray['showImporter'] == 1) {
 	Tx_Extbase_Utility_Extension::registerModule(
 		$_EXTKEY,
 		'web',
-		'tx_news2_m1',
+		'tx_news_m1',
 		'',
 		array(
 			'Import' => 'index, runJob, jobInfo',
@@ -308,21 +308,29 @@ if (TYPO3_MODE == 'BE' && $configurationArray['showImporter'] == 1) {
 
 		// show tt_news importer only if tt_news is installed
 	if (t3lib_extMgm::isLoaded('tt_news')) {
-		Tx_News2_Utility_ImportJob::register(
-			'Tx_News2_Jobs_TTNewsNewsImportJob',
-			'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:ttnews_importer_title',
+		Tx_News_Utility_ImportJob::register(
+			'Tx_News_Jobs_TTNewsNewsImportJob',
+			'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:ttnews_importer_title',
 			'');
-		Tx_News2_Utility_ImportJob::register(
-			'Tx_News2_Jobs_TTNewsCategoryImportJob',
-			'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:ttnewscategory_importer_title',
+		Tx_News_Utility_ImportJob::register(
+			'Tx_News_Jobs_TTNewsCategoryImportJob',
+			'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:ttnewscategory_importer_title',
 			'');
 	}
+}
+
+
+/* ===========================================================================
+ 	Ajax call to save tags
+=========================================================================== */
+if (TYPO3_MODE == 'BE') {
+	$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = 'typo3conf/ext/news/Classes/Hooks/SuggestReceiverCall.php:tx_News_Hooks_SuggestReceiverCall->createTag';
 }
 
 /* ===========================================================================
  	Default configuration
 =========================================================================== */
-$GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByCategory'] = 'uid,title,tstamp,sorting';
-$GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByNews'] = 'tstamp,datetime,crdate,title';
+$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'] = 'uid,title,tstamp,sorting';
+$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] = 'tstamp,datetime,crdate,title';
 
 ?>

@@ -28,16 +28,16 @@
  *
  * Example
  * $pluginSettingsService =
- * $this->objectManager->get('Tx_News2_Service_SettingsService');
+ * $this->objectManager->get('Tx_News_Service_SettingsService');
  * t3lib_div::print_array($pluginSettingsService->getSettings());
  *
  * If objectManager is not available:
  * http://forge.typo3.org/projects/typo3v4-mvc/wiki/Dependency_Injection_%28DI%29#Creating-Prototype-Objects-through-the-Object-Manager
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Service_SettingsService implements t3lib_Singleton {
+class Tx_News_Service_SettingsService implements t3lib_Singleton {
 
 	/**
 	 * @var mixed

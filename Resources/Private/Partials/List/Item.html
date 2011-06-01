@@ -1,4 +1,4 @@
-{namespace n=Tx_News2_ViewHelpers}
+{namespace n=Tx_News_ViewHelpers}
 <!--
 	=====================
 		Partials/List/Item.html
@@ -16,14 +16,14 @@
 	<!-- media preview element -->
 	<f:if condition="{newsItem.media}">
 		<f:then>
-		<div class="news2-img-wrap">
+		<div class="news-img-wrap">
 			<n:link newsItem="{newsItem}" settings="{settings}">
 				<f:if condition="{newsItem.mediaPreviews}">
 					<f:then>
 						<f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
 							<f:if condition="{mediaElement.type} == 0">
 								<f:image
-									src="uploads/tx_news2/{mediaElement.image}"
+									src="uploads/tx_news/{mediaElement.image}"
 									title="{mediaElement.title}"
 									alt="{mediaElement.title}"
 									maxWidth="{settings.list.media.image.maxWidth}"
@@ -44,7 +44,7 @@
 					</f:then>
 					<f:else>
 						<span class="no-media-element">
-							<f:image src="typo3conf/ext/news2/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
+							<f:image src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
 						</span>
 					</f:else>
 				</f:if>
@@ -54,10 +54,10 @@
 		<f:else>
 			<f:if condition="{settings.displayDummyIfNoMedia}">
 				<f:then>
-					<div class="news2-img-wrap">
+					<div class="news-img-wrap">
 						<n:link newsItem="{newsItem}" settings="{settings}">
 							<span class="no-media-element">
-								<f:image src="typo3conf/ext/news2/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
+								<f:image src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
 							</span>
 						</n:link>
 					</div>
@@ -86,20 +86,20 @@
 	<div class="footer" role="contentinfo">
 		<p>
 			<!-- date -->
-			<span class="news2-list-date">
+			<span class="news-list-date">
 				<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
 			</span>
 
 			<!-- first category -->
 			<f:if condition="{newsItem.firstCategory}">
 				<span class="hidden">. </span>
-				<span class="news2-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
+				<span class="news-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
 			</f:if>
 
 			<!-- author -->
 			<f:if condition="{newsItem.author}">
 				<span class="hidden">. </span>
-				<span class="news2-list-author">
+				<span class="news-list-author">
 					<f:translate key="author" arguments="{0:newsItem.author}"/>
 				</span>
 			</f:if>

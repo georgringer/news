@@ -26,11 +26,11 @@
  * News Import Service
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
-	const UPLOAD_PATH = 'uploads/tx_news2/';
+class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
+	const UPLOAD_PATH = 'uploads/tx_news/';
 
 	/**
 	 * @var Tx_Extbase_Object_ObjectManager
@@ -43,12 +43,12 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 	protected $persistenceManager;
 
 	/**
-	 * @var Tx_News2_Domain_Repository_NewsRepository
+	 * @var Tx_News_Domain_Repository_NewsRepository
 	 */
 	protected $newsRepository;
 
 	/**
-	 * @var Tx_News2_Domain_Repository_CategoryRepository
+	 * @var Tx_News_Domain_Repository_CategoryRepository
 	 */
 	protected $categoryRepository;
 
@@ -76,20 +76,20 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 	/**
 	 * Inject the news repository
 	 *
-	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepository
+	 * @param Tx_News_Domain_Repository_NewsRepository $newsRepository
 	 * @return void
 	 */
-	public function injectNewsRepository(Tx_News2_Domain_Repository_NewsRepository $newsRepository) {
+	public function injectNewsRepository(Tx_News_Domain_Repository_NewsRepository $newsRepository) {
 		$this->newsRepository = $newsRepository;
 	}
 
 	/**
 	 * Inject the category repository
 	 *
-	 * @param Tx_News2_Domain_Repository_CategoryRepository $categoryRepository
+	 * @param Tx_News_Domain_Repository_CategoryRepository $categoryRepository
 	 * @return void
 	 */
-	public function injectCategoryRepository(Tx_News2_Domain_Repository_CategoryRepository $categoryRepository) {
+	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
 	}
 
@@ -103,7 +103,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 			}
 
 			if ($news === NULL) {
-				$news = $this->objectManager->get('Tx_News2_Domain_Model_News');
+				$news = $this->objectManager->get('Tx_News_Domain_Model_News');
 				$this->newsRepository->add($news);
 			}
 
@@ -165,7 +165,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 							$uniqueName
 						);
 
-						$media = $this->objectManager->get('Tx_News2_Domain_Model_Media');
+						$media = $this->objectManager->get('Tx_News_Domain_Model_Media');
 						$news->addMedia($media);
 
 						$media->setImage(basename($uniqueName));
@@ -192,7 +192,7 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 							$uniqueName
 						);
 
-						$relatedFile = $this->objectManager->get('Tx_News2_Domain_Model_File');
+						$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_File');
 						$news->addRelatedFile($relatedFile);
 
 						$relatedFile->setFile(basename($uniqueName));
@@ -210,11 +210,11 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 	/**
 	 * Get media file if it exists
 	 *
-	 * @param Tx_News2_Domain_Model_News $news
+	 * @param Tx_News_Domain_Model_News $news
 	 * @param string $mediaFile
-	 * @return Boolean|Tx_News2_Domain_Model_Media
+	 * @return Boolean|Tx_News_Domain_Model_Media
 	 */
-	protected function getMediaIfAlreadyExists(Tx_News2_Domain_Model_News $news, $mediaFile) {
+	protected function getMediaIfAlreadyExists(Tx_News_Domain_Model_News $news, $mediaFile) {
 		$result = FALSE;
 		$mediaItems = $news->getMedia();
 
@@ -236,11 +236,11 @@ class Tx_News2_Domain_Service_NewsImportService implements t3lib_Singleton {
 	/**
 	 * Get related file if it exists
 	 *
-	 * @param Tx_News2_Domain_Model_News $news
+	 * @param Tx_News_Domain_Model_News $news
 	 * @param string $relatedFile
-	 * @return Boolean|Tx_News2_Domain_Model_File
+	 * @return Boolean|Tx_News_Domain_Model_File
 	 */
-	protected function getRelatedFileIfAlreadyExists(Tx_News2_Domain_Model_News $news, $relatedFile) {
+	protected function getRelatedFileIfAlreadyExists(Tx_News_Domain_Model_News $news, $relatedFile) {
 		$result = FALSE;
 		$relatedItems = $news->getRelatedFiles();
 

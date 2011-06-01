@@ -26,14 +26,14 @@
  * Category repository with all callable functionality
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Domain_Repository_CategoryRepository extends Tx_News2_Domain_Repository_AbstractDemandedRepository {
+class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository {
 
 	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query,
-		Tx_News2_Domain_Model_DemandInterface $demand) {}
+		Tx_News_Domain_Model_DemandInterface $demand) {}
 
-	protected function createOrderingsFromDemand(Tx_News2_Domain_Model_DemandInterface $demand) {}
+	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {}
 
 	/**
 	 * Find category by import source and import id

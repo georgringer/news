@@ -26,10 +26,10 @@
  * Import job
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Jobs_TTNewsNewsImportJob extends Tx_News2_Jobs_AbstractImportJob {
+class Tx_News_Jobs_TTNewsNewsImportJob extends Tx_News_Jobs_AbstractImportJob {
 	/**
 	 * @var int
 	 */
@@ -42,10 +42,10 @@ class Tx_News2_Jobs_TTNewsNewsImportJob extends Tx_News2_Jobs_AbstractImportJob 
 	/**
 	 * Inject import dataprovider service
 	 *
-	 * @param Tx_News2_Service_Import_TTNewsNewsDataProviderService $importDataProviderService
+	 * @param Tx_News_Service_Import_TTNewsNewsDataProviderService $importDataProviderService
 	 * @return void
 	 */
-	public function injectImportDataProviderService(Tx_News2_Service_Import_TTNewsNewsDataProviderService
+	public function injectImportDataProviderService(Tx_News_Service_Import_TTNewsNewsDataProviderService
 		$importDataProviderService) {
 
 		$this->importDataProviderService = $importDataProviderService;
@@ -54,10 +54,10 @@ class Tx_News2_Jobs_TTNewsNewsImportJob extends Tx_News2_Jobs_AbstractImportJob 
 	/**
 	 * Inject import service
 	 *
-	 * @param Tx_News2_Domain_Service_NewsImportService $importService
+	 * @param Tx_News_Domain_Service_NewsImportService $importService
 	 * @return void
 	 */
-	public function injectImportService(Tx_News2_Domain_Service_NewsImportService $importService) {
+	public function injectImportService(Tx_News_Domain_Service_NewsImportService $importService) {
 		$this->importService = $importService;
 	}
 }

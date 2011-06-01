@@ -26,13 +26,13 @@
  * Tests for domains model News
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 	/**
-	 * @var Tx_News2_Domain_Model_News
+	 * @var Tx_News_Domain_Model_News
 	 */
 	protected $newsDomainModelInstance;
 
@@ -42,7 +42,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->newsDomainModelInstance = $this->objectManager->get('Tx_News2_Domain_Model_News');
+		$this->newsDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_News');
 	}
 
 	/**
@@ -148,7 +148,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Ba
 	 * @return void
 	 */
 	public function keywordsCanBeSet() {
-		$keywords = 'news1 keyword, news2 keyword';
+		$keywords = 'news1 keyword, news keyword';
 		$this->newsDomainModelInstance->setKeywords($keywords);
 		$this->assertEquals($keywords, $this->newsDomainModelInstance->getKeywords());
 	}

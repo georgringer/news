@@ -3,7 +3,7 @@
 	<meta type="array">
 		<description>CSH for flexforms</description>
 		<type>CSH</type>
-		<fileId>EXT:news2/locallang_csh_flexforms.xml</fileId>
+		<fileId>EXT:news/locallang_csh_flexforms.xml</fileId>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
@@ -13,7 +13,7 @@
 			<label index="switchableControllerActions.details">details</label>
 			<label index="switchableControllerActions.syntax">syntax</label>
 			<label index="switchableControllerActions.image_descr">image caption</label>
-			<label index="switchableControllerActions.image">EXT:news2/Resources/Public/Icons/icon_tx_news2_domain_model_category.gif</label>
+			<label index="switchableControllerActions.image">EXT:news/Resources/Public/Icons/icon_tx_news_domain_model_category.gif</label>
 			<label index="switchableControllerActions.seeAlso">pages:starttime</label>-->
 
 			<!-- Tab General -->

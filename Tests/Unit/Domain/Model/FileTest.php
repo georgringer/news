@@ -26,13 +26,13 @@
  * Tests for domains model File
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News2_Tests_Unit_Domain_Model_FileTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Model_FileTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
-	 * @var Tx_News2_Domain_Model_File
+	 * @var Tx_News_Domain_Model_File
 	 */
 	protected $fileDomainModelInstance;
 
@@ -42,7 +42,7 @@ class Tx_News2_Tests_Unit_Domain_Model_FileTest extends Tx_Extbase_Tests_Unit_Ba
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->fileDomainModelInstance = $this->objectManager->get('Tx_News2_Domain_Model_File');
+		$this->fileDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_File');
 	}
 
 	/**

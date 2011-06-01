@@ -26,9 +26,9 @@
  * Media model
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
 	 * @var DateTime

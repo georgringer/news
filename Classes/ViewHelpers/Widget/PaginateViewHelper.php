@@ -35,22 +35,22 @@
  * </code>
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_ViewHelpers_Widget_PaginateViewHelper extends Tx_Fluid_Core_Widget_AbstractWidgetViewHelper {
+class Tx_News_ViewHelpers_Widget_PaginateViewHelper extends Tx_Fluid_Core_Widget_AbstractWidgetViewHelper {
 
 	/**
-	 * @var Tx_News2_ViewHelpers_Widget_Controller_PaginateController
+	 * @var Tx_News_ViewHelpers_Widget_Controller_PaginateController
 	 */
 	protected $controller;
 
 	/**
 	 * Inject controller
 	 *
-	 * @param Tx_News2_ViewHelpers_Widget_Controller_PaginateController $controller
+	 * @param Tx_News_ViewHelpers_Widget_Controller_PaginateController $controller
 	 * @return void
 	 */
-	public function injectController(Tx_News2_ViewHelpers_Widget_Controller_PaginateController $controller) {
+	public function injectController(Tx_News_ViewHelpers_Widget_Controller_PaginateController $controller) {
 		$this->controller = $controller;
 	}
 
@@ -59,10 +59,10 @@ class Tx_News2_ViewHelpers_Widget_PaginateViewHelper extends Tx_Fluid_Core_Widge
 	 *
 	 * @param Tx_Extbase_Persistence_QueryResultInterface $objects
 	 * @param string $as
-	 * @param array $configuration
+	 * @param mixed $configuration
 	 * @return string
 	 */
-	public function render(Tx_Extbase_Persistence_QueryResultInterface $objects, $as, array $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE)) {
+	public function render(Tx_Extbase_Persistence_QueryResultInterface $objects, $as, $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE)) {
 		return $this->initiateSubRequest();
 	}
 }

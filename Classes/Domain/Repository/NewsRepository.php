@@ -26,9 +26,9 @@
  * News repository with all the callable functionality
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Repository_AbstractDemandedRepository  {
+class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository  {
 
 	/**
 	 * Returns a category contstrain created by a given list of categories and a junction string
@@ -71,10 +71,10 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	 * Returns an array of constraints created from a given demand object.
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
-	 * @param Tx_News2_Domain_Model_DemandInterface $demand
+	 * @param Tx_News_Domain_Model_DemandInterface $demand
 	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
 	 */
-	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News2_Domain_Model_DemandInterface $demand) {
+	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
 		$constraints = array();
 
 		if ($demand->getCategories() && $demand->getCategories() !== '0') {
@@ -154,7 +154,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 
 			// Search
 		if ($demand->getSearch() !== NULL) {
-			/** @var $searchObject Tx_News2_Domain_Model_Dto_Search */
+			/** @var $searchObject Tx_News_Domain_Model_Dto_Search */
 			$searchObject = $demand->getSearch();
 
 			$searchString = $searchObject->getSearchString();
@@ -169,10 +169,10 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	/**
 	 * Returns an array of orderings created from a given demand object.
 	 *
-	 * @param Tx_News2_Domain_Model_DemandInterface $demand
+	 * @param Tx_News_Domain_Model_DemandInterface $demand
 	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
 	 */
-	protected function createOrderingsFromDemand(Tx_News2_Domain_Model_DemandInterface $demand) {
+	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {
 		$orderings = array();
 		if ($demand->getTopNewsFirst()) {
 			$orderings['istopnews'] = Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING;
@@ -203,7 +203,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	 *
 	 * @param string $importSource import source
 	 * @param integer $importId import id
-	 * @return Tx_News2_Domain_Model_News
+	 * @return Tx_News_Domain_Model_News
 	 */
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();
@@ -223,7 +223,7 @@ class Tx_News2_Domain_Repository_NewsRepository extends Tx_News2_Domain_Reposito
 	 *
 	 * @param integer $uid id of record
 	 * @param boolean $respectEnableFields if set to false, also hidden records are shown
-	 * @return Tx_News2_Domain_Model_News
+	 * @return Tx_News_Domain_Model_News
 	 */
 	public function findByUid($uid, $respectEnableFields = TRUE) {
 		$query = $this->createQuery();

@@ -2,7 +2,7 @@
 <T3locallang>
 	<meta type="array">
 		<type>database</type>
-		<description>Language labels for backend of news2</description>
+		<description>Language labels for backend of news</description>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
@@ -100,6 +100,8 @@
 			<label index="ttnews_importer_title">Import tt_news news records</label>
 			<label index="ttnewscategory_importer_title">Import tt_news category records</label>
 			<label index="start_import">Start import with %s record(s).</label>
+
+			<label index="tag_suggest">Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</label>
 		</languageKey>
 
 		<languageKey index="es" type="array">
@@ -185,6 +187,7 @@
 			<label index="ttnews_importer_title">Import von tt_news Datensätzen</label>
 			<label index="ttnewscategory_importer_title">Import von tt_news Kategorien</label>
 			<label index="start_import">Start import with %s record(s).</label>
+			<label index="tag_suggest">Der Tag "%s" wurde nicht gefunden. Wollen Sie diesen erstellen? &lt;strong&gt;Klicken Sie hier&lt;/strong&gt;</label>
 		</languageKey>
 	</data>
 </T3locallang>

@@ -1,10 +1,10 @@
-plugin.tx_news2 {
+plugin.tx_news {
 	view {
-		 # cat=plugin.tx_news2/file; type=string; label=Path to template root (FE)
-		templateRootPath = EXT:news2/Resources/Private/Templates/
-		 # cat=plugin.tx_news2/file; type=string; label=Path to template partials (FE)
-		partialRootPath = EXT:news2/Resources/Private/Partials/
-		 # cat=plugin.tx_news2/file; type=string; label=Path to template layouts (FE)
-		layoutRootPath = EXT:news2/Resources/Private/Layouts/
+		 # cat=plugin.tx_news/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:news/Resources/Private/Templates/
+		 # cat=plugin.tx_news/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:news/Resources/Private/Partials/
+		 # cat=plugin.tx_news/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:news/Resources/Private/Layouts/
 	}
 }

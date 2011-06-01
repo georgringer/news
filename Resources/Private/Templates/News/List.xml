@@ -1,5 +1,5 @@
 <rss version="2.0">
-	{namespace n=Tx_News2_ViewHelpers}
+	{namespace n=Tx_News_ViewHelpers}
 	<title></title>
 	<link></link>
 	<description></description>
@@ -8,7 +8,7 @@
 	<pubDate></pubDate>
 	<lastBuildDate></lastBuildDate>
 	<category></category>
-	<generator>CMS TYPO3, EXT:news2</generator>
+	<generator>CMS TYPO3, EXT:news</generator>
 
 	<channel>
 		<f:if condition="{news}"><f:for each="{news}" as="newsItem">

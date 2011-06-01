@@ -26,9 +26,9 @@
  * Hook into tcemain which is used to show preview of news item
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class tx_News2_Hooks_Tcemain{
+class tx_News_Hooks_Tcemain{
 
 	/**
 	 * Generate a different preview link
@@ -41,7 +41,7 @@ class tx_News2_Hooks_Tcemain{
 	 * @return void
 	 */
 	public function processDatamap_afterDatabaseOperations($status, $table, $id, array $fieldArray, t3lib_TCEmain $parentObject) {
-		if ($table == 'tx_news2_domain_model_news') {
+		if ($table == 'tx_news_domain_model_news') {
 
 				// direct preview
 			if (!is_numeric($id)) {
@@ -52,12 +52,12 @@ class tx_News2_Hooks_Tcemain{
 					// if "savedokview" has been pressed and current article has "type" 0 (= normal news article)
 					// and the beUser works in the LIVE workspace open current record in single view
 				$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
-				if ($pagesTsConfig['tx_news2.']['singlePid']) {
+				if ($pagesTsConfig['tx_news.']['singlePid']) {
 					$GLOBALS['_POST']['popViewId_addParams'] = ($fieldArray['sys_language_uid'] > 0 ?
 						'&L=' . $fieldArray['sys_language_uid'] : '') . '&no_cache=1 ' .
-						'&tx_news2_pi1[controller]=News&tx_news2_pi1[action]=detail&tx_news2_pi1[news]=' . $id;
+						'&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=' . $id;
 
-					$GLOBALS['_POST']['popViewId'] = $pagesTsConfig['tx_news2.']['singlePid'];
+					$GLOBALS['_POST']['popViewId'] = $pagesTsConfig['tx_news.']['singlePid'];
 				}
 			}
 		}
@@ -66,8 +66,8 @@ class tx_News2_Hooks_Tcemain{
 }
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Tcemain.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Tcemain.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/Tcemain.php']) {
+	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/Tcemain.php']);
 }
 
 ?>

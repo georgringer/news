@@ -4,9 +4,9 @@
 $postvars = array(
 	'news' => array(
 		array(
-			'GETvar' => 'tx_news2_pi1[news]',
+			'GETvar' => 'tx_news_pi1[news]',
 			'lookUpTable' => array(
-				'table' => 'tx_news2_domain_model_news',
+				'table' => 'tx_news_domain_model_news',
 				'id_field' => 'uid',
 				'alias_field' => 'title',
 				'addWhereClause' => ' AND NOT deleted',
@@ -18,16 +18,16 @@ $postvars = array(
 			),
 		),
 		array(
-			'GETvar' => 'tx_news2_pi1[action]',
+			'GETvar' => 'tx_news_pi1[action]',
 		),
 		array(
-			'GETvar' => 'tx_news2_pi1[controller]',
+			'GETvar' => 'tx_news_pi1[controller]',
 		),
 		array(
-			'GETvar' => 'tx_news2_pi1[year]',
+			'GETvar' => 'tx_news_pi1[year]',
 		),
 		array(
-			'GETvar' => 'tx_news2_pi1[month]',
+			'GETvar' => 'tx_news_pi1[month]',
 		),
 	),
 

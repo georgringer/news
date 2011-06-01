@@ -3,15 +3,15 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 
-$TCA['tx_news2_domain_model_link'] = array(
-	'ctrl' => $TCA['tx_news2_domain_model_link']['ctrl'],
+$TCA['tx_news_domain_model_link'] = array(
+	'ctrl' => $TCA['tx_news_domain_model_link']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'hidden,title,description,uri'
 	),
-	'feInterface' => $TCA['tx_news2_domain_model_link']['feInterface'],
+	'feInterface' => $TCA['tx_news_domain_model_link']['feInterface'],
 	'columns' => array(
 		'pid' => array(
 			'config'  => array(
@@ -60,8 +60,8 @@ $TCA['tx_news2_domain_model_link'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table'       => 'tx_news2_domain_model_news',
-				'foreign_table_where' => 'AND tx_news2_domain_model_news.pid=###CURRENT_PID### AND tx_news2_domain_model_news.sys_language_uid IN (-1,0)',
+				'foreign_table'       => 'tx_news_domain_model_news',
+				'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
 			)
 		),
 		'l10n_diffsource' => array(
@@ -80,7 +80,7 @@ $TCA['tx_news2_domain_model_link'] = array(
 		'title' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_link.title',
+			'label' => $ll . 'tx_news_domain_model_link.title',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -89,7 +89,7 @@ $TCA['tx_news2_domain_model_link'] = array(
 		'description' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_link.description',
+			'label' => $ll . 'tx_news_domain_model_link.description',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 30,
@@ -99,7 +99,7 @@ $TCA['tx_news2_domain_model_link'] = array(
 		'uri' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_link.uri',
+			'label' => $ll . 'tx_news_domain_model_link.uri',
 			'config' => array(
 				'type' => 'input',
 				'eval' => 'required',

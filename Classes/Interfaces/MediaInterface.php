@@ -26,28 +26,28 @@
  * Interface to implement video views
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-interface Tx_News2_Interfaces_MediaInterface {
+interface Tx_News_Interfaces_MediaInterface {
 
 	/**
 	 * Render a media element
 	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @return string
 	 */
-	public function render(Tx_News2_Domain_Model_Media $element, $width, $height);
+	public function render(Tx_News_Domain_Model_Media $element, $width, $height);
 
 
 	/**
 	 * If enabled
 	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @return string
 	 */
-	public function enabled(Tx_News2_Domain_Model_Media $element);
+	public function enabled(Tx_News_Domain_Model_Media $element);
 
 
 }

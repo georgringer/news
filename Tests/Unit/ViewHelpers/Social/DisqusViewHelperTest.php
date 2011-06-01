@@ -26,10 +26,10 @@
  * Tests for DisqusSizeViewHelper
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News2_Tests_Unit_ViewHelpers_Format_DisqusViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_ViewHelpers_Format_DisqusViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * @var Tx_Phpunit_Framework
@@ -42,7 +42,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_DisqusViewHelperTest extends Tx_Ext
 	 * @return void
 	 */
 	public function setUp() {
-		$this->testingFramework = new Tx_Phpunit_Framework('tx_news2');
+		$this->testingFramework = new Tx_Phpunit_Framework('tx_news');
 	}
 
 	/**
@@ -52,13 +52,13 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_DisqusViewHelperTest extends Tx_Ext
 	 * @return void
 	 */
 	public function viewHelperReturnsCorrectJs() {
-		$newsRepository = $this->objectManager->get('Tx_News2_Domain_Repository_NewsRepository');
+		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
 		$newUid = $this->testingFramework->createRecord(
-			'tx_news2_domain_model_news', array('pid' => 98));
+			'tx_news_domain_model_news', array('pid' => 98));
 		$newsItem = $newsRepository->findByUid($newUid);
 
-		$viewHelper = new Tx_News2_ViewHelpers_Social_DisqusViewHelper();
+		$viewHelper = new Tx_News_ViewHelpers_Social_DisqusViewHelper();
 		$actualResult = $viewHelper->render($newsItem, 'abcdef', 'http://typo3.org/dummy/fobar.html');
 
 		$expectedCode = '<script type="text/javascript">

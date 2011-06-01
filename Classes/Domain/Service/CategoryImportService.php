@@ -26,17 +26,17 @@
  * Category Import Service
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Domain_Service_CategoryImportService implements t3lib_Singleton {
+class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 	/**
 	 * @var Tx_Extbase_Object_ObjectManager
 	 */
 	protected $objectManager;
 
 	/**
-	 * @var Tx_News2_Domain_Repository_NewsRepository
+	 * @var Tx_News_Domain_Repository_NewsRepository
 	 */
 	protected $categoryRepository;
 
@@ -73,10 +73,10 @@ class Tx_News2_Domain_Service_CategoryImportService implements t3lib_Singleton {
 	/**
 	 * Inject the category repository.
 	 *
-	 * @param Tx_News2_Domain_Repository_CategoryRepository $categoryRepository
+	 * @param Tx_News_Domain_Repository_CategoryRepository $categoryRepository
 	 * @return void
 	 */
-	public function injectCategoryRepository(Tx_News2_Domain_Repository_CategoryRepository $categoryRepository) {
+	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
 	}
 
@@ -85,7 +85,7 @@ class Tx_News2_Domain_Service_CategoryImportService implements t3lib_Singleton {
 			if (is_null($category = $this->categoryRepository->findOneByImportSourceAndImportId(
 				$importItem['import_source'], $importItem['import_id']))) {
 
-				$category = $this->objectManager->get('Tx_News2_Domain_Model_Category');
+				$category = $this->objectManager->get('Tx_News_Domain_Model_Category');
 				$this->categoryRepository->add($category);
 			}
 			$category->setPid($importItem['pid']);

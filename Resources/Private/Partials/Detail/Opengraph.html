@@ -1,4 +1,4 @@
-{namespace n=Tx_News2_ViewHelpers}
+{namespace n=Tx_News_ViewHelpers}
 
 
 <n:metaTag property="og:title" content="{newsItem.title}" />
@@ -8,7 +8,7 @@
 <f:if condition="{newsItem.firstImagePreview.image}">
 	<n:metaTag
 		property="og:image"
-		content="{f:uri.image(src:'uploads/tx_news2/{newsItem.firstImagePreview.image}' maxWidth:'100')}"
+		content="{f:uri.image(src:'uploads/tx_news/{newsItem.firstImagePreview.image}' maxWidth:'100')}"
 		forceAbsoluteUrl="1" />
 </f:if>
 <n:metaTag property="fb:admins" content="{settings.opengraph.admins}" />

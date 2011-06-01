@@ -26,11 +26,11 @@
  * Controller of news records
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_News_Controller_NewsController extends Tx_Extbase_MVC_Controller_ActionController {
 	/**
-	 * @var Tx_News2_Domain_Repository_NewsRepository
+	 * @var Tx_News_Domain_Repository_NewsRepository
 	 */
 	protected $newsRepository;
 
@@ -42,10 +42,10 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/**
 	 * Inject a news repository to enable DI
 	 *
-	 * @param Tx_News2_Domain_Repository_NewsRepository $newsRepository
+	 * @param Tx_News_Domain_Repository_NewsRepository $newsRepository
 	 * @return void
 	 */
-	public function injectNewsRepository(Tx_News2_Domain_Repository_NewsRepository $newsRepository) {
+	public function injectNewsRepository(Tx_News_Domain_Repository_NewsRepository $newsRepository) {
 		$this->newsRepository = $newsRepository;
 	}
 
@@ -64,13 +64,13 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	 * Create the demand object which define which records will get shown
 	 *
 	 * @param array $settings
-	 * @return Tx_News2_Domain_Model_NewsDemand
+	 * @return Tx_News_Domain_Model_NewsDemand
 	 */
 	protected function createDemandObjectFromSettings($settings) {
 		/**
-		 * @var $demand Tx_News2_Domain_Model_NewsDemand
+		 * @var $demand Tx_News_Domain_Model_NewsDemand
 		 */
-		$demand = $this->objectManager->get('Tx_News2_Domain_Model_NewsDemand');
+		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
 
 		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categories'], TRUE));
 		$demand->setCategoryConjunction($settings['categoryConjunction']);
@@ -91,7 +91,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 		$demand->setSearchFields($settings['search']['fields']);
 		$demand->setDateField($settings['dateField']);
 
-		$demand->setStoragePage(Tx_News2_Utility_Page::extendPidListByChildren($settings['startingpoint'],
+		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($settings['startingpoint'],
 			$settings['recursive']));
 		return $demand;
 	}
@@ -99,9 +99,9 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/**
 	 * Overwrites a given demand object by an propertyName =>  $propertyValue array
 	 *
-	 * @param Tx_News2_Domain_Model_NewsDemand $demand
+	 * @param Tx_News_Domain_Model_NewsDemand $demand
 	 * @param array $overwriteDemand
-	 * @return Tx_News2_Domain_Model_NewsDemand
+	 * @return Tx_News_Domain_Model_NewsDemand
 	 */
 	protected function overwriteDemandObject($demand, $overwriteDemand) {
 		foreach ($overwriteDemand as $propertyName => $propertyValue) {
@@ -134,10 +134,10 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/**
 	 * Single view of a news record
 	 *
-	 * @param Tx_News2_Domain_Model_News $news
+	 * @param Tx_News_Domain_Model_News $news
 	 * @return void
 	 */
-	public function detailAction(Tx_News2_Domain_Model_News $news = NULL) {
+	public function detailAction(Tx_News_Domain_Model_News $news = NULL) {
 		if (isset($this->settings['singleNews']) && (int)$this->settings['singleNews'] > 0) {
 			$news = $this->newsRepository->findByUid($this->settings['singleNews']);
 		} elseif($this->settings['previewHiddenRecords']) {
@@ -182,7 +182,7 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 	/**
 	 * Displays the news search result
 	 *
-	 * @param $search Tx_News2_Domain_Model_Dto_Search
+	 * @param $search Tx_News_Domain_Model_Dto_Search
 	 * @todo implement :)
 	 * @return void
 	 */
@@ -206,8 +206,8 @@ class Tx_News2_Controller_NewsController extends Tx_Extbase_MVC_Controller_Actio
 
 		$tsSettings = $this->configurationManager->getConfiguration(
 				Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
-				'news2',
-				'news2_pi1'
+				'news',
+				'news_pi1'
 			);
 		$originalSettings = $this->configurationManager->getConfiguration(
 				Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS

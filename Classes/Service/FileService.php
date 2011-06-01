@@ -26,9 +26,9 @@
  * Do some file infos
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Service_FileService {
+class Tx_News_Service_FileService {
 
 	/**
 	 * If it is an URL, nothing to do, if it is a file, check if path is allowed and prepend current url
@@ -65,10 +65,10 @@ class Tx_News2_Service_FileService {
 	/**
 	 * Get a unique container id
 	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @return string
 	 */
-	public static function getUniqueId(Tx_News2_Domain_Model_Media $element) {
+	public static function getUniqueId(Tx_News_Domain_Model_Media $element) {
 		return 'mediaelement-' . md5($element->getUid() . uniqid());
 	}
 

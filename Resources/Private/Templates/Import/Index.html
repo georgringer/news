@@ -5,10 +5,10 @@
 </f:section>
 
 <f:section name="content">
-	<h3 class="uppercase">News2 importer</h3>
+	<h3 class="uppercase">News importer</h3>
 	<p class="description">
-		This is the "News2 importer module". Within the select box below you find a list of all available import jobs.<br />
-		<strong>Note</strong>: It's strongly recommended to backup all news2 tables before running an import job.
+		This is the "News importer module". Within the select box below you find a list of all available import jobs.<br />
+		<strong>Note</strong>: It's strongly recommended to backup all news tables before running an import job.
 
 	</p>
 	<br />
@@ -23,11 +23,11 @@
 
 	<script type="text/javascript">
 	<![CDATA[
-		Ext.namespace('Tx_News2');
+		Ext.namespace('Tx_News');
 
-		Tx_News2.Common = function() {
+		Tx_News.Common = function() {
 			var pub = {};
-			var extKey = 'news2';
+			var extKey = 'news';
 
 			var underscoreToUpperCamelCase = function (subject) {
 				var matches = subject.match(/(_\w)/g);
@@ -70,7 +70,7 @@
 		}();
 
 
-		Tx_News2.Importer = function() {
+		Tx_News.Importer = function() {
 			var pub ={};
 			var jobInfo = {};
 			var progressBar;
@@ -78,7 +78,7 @@
 			var runCounter = 0;
 
 			var run = function () {
-				var request = Ext.apply(Tx_News2.Common.getBackendRequest('web', 'tx_news2_m1', 'import',
+				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'import',
 					'runJob', {jobClassName: jobInfo.jobClassName, offset: runCounter * jobInfo.increaseOffsetPerRunBy}));
 
 				Ext.apply(request, {
@@ -117,7 +117,7 @@
 			};
 
 			var loadJobInfo = function (jobClassName) {
-				var request = Ext.apply(Tx_News2.Common.getBackendRequest('web', 'tx_news2_m1', 'import',
+				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'import',
 					'jobInfo', {jobClassName: jobClassName}));
 
 				Ext.apply(request, {
@@ -145,7 +145,7 @@
 		}();
 
 		Ext.onReady(function() {
-			Tx_News2.Importer.init();
+			Tx_News.Importer.init();
 		});
 	]]>
 	</script>

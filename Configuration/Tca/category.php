@@ -5,17 +5,17 @@ if (!defined('TYPO3_MODE')) {
 }
 
 	// extension manager configuration
-$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news2']);
+$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
 
 
-$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
-$TCA['tx_news2_domain_model_category'] = array(
-	'ctrl' => $TCA['tx_news2_domain_model_category']['ctrl'],
+$TCA['tx_news_domain_model_category'] = array(
+	'ctrl' => $TCA['tx_news_domain_model_category']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'sorting,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,description,image,parentcategory,single_pid,shortcut,'
 	),
-	'feInterface' => $TCA['tx_news2_domain_model_category']['feInterface'],
+	'feInterface' => $TCA['tx_news_domain_model_category']['feInterface'],
 	'columns' => array(
 		'pid' => array(
 			'label'   => 'pid',
@@ -73,8 +73,8 @@ $TCA['tx_news2_domain_model_category'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table'       => 'tx_news2_domain_model_category',
-				'foreign_table_where' => 'AND tx_news2_domain_model_category.pid=###CURRENT_PID### AND tx_news2_domain_model_category.sys_language_uid IN (-1,0)',
+				'foreign_table'       => 'tx_news_domain_model_category',
+				'foreign_table_where' => 'AND tx_news_domain_model_category.pid=###CURRENT_PID### AND tx_news_domain_model_category.sys_language_uid IN (-1,0)',
 			)
 		),
 		'l10n_diffsource' => array(
@@ -140,7 +140,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 		),
 		'title' => array(
 			'exclude' => 0,
-			'label' => $ll . 'tx_news2_domain_model_category.title',
+			'label' => $ll . 'tx_news_domain_model_category.title',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -150,7 +150,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 		'description' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_category.description',
+			'label' => $ll . 'tx_news_domain_model_category.description',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 30,
@@ -160,13 +160,13 @@ $TCA['tx_news2_domain_model_category'] = array(
 		'image' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_category.image',
+			'label' => $ll . 'tx_news_domain_model_category.image',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'file',
 				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-				'uploadfolder' => 'uploads/tx_news2',
+				'uploadfolder' => 'uploads/tx_news',
 				'show_thumbs' => 1,
 				'size' => 3,
 				'minitems' => 0,
@@ -176,11 +176,11 @@ $TCA['tx_news2_domain_model_category'] = array(
 		'parentcategory' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'exclude',
-			'label' => $ll . 'tx_news2_domain_model_category.parentcategory',
+			'label' => $ll . 'tx_news_domain_model_category.parentcategory',
 			'config' => array(
 				'type' => 'select',
-				'foreign_table' => 'tx_news2_domain_model_category',
-				'foreign_table_where' => ' AND tx_news2_domain_model_category.pid = ###CURRENT_PID### AND tx_news2_domain_model_category.uid != ###THIS_UID### ORDER BY tx_news2_domain_model_category.sorting',
+				'foreign_table' => 'tx_news_domain_model_category',
+				'foreign_table_where' => ' AND tx_news_domain_model_category.pid = ###CURRENT_PID### AND tx_news_domain_model_category.uid != ###THIS_UID### ORDER BY tx_news_domain_model_category.sorting',
 				'renderMode' => 'tree',
 				'subType' => 'db',
 				'treeConfig' => array(
@@ -199,7 +199,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 		'single_pid' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_category.single_pid',
+			'label' => $ll . 'tx_news_domain_model_category.single_pid',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'db',
@@ -218,7 +218,7 @@ $TCA['tx_news2_domain_model_category'] = array(
 		'shortcut' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_category.shortcut',
+			'label' => $ll . 'tx_news_domain_model_category.shortcut',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'db',
@@ -235,14 +235,14 @@ $TCA['tx_news2_domain_model_category'] = array(
 			)
 		),
 		'import_id' => array(
-			'label'   => $ll . 'tx_news2_domain_model_news.import_id',
+			'label'   => $ll . 'tx_news_domain_model_news.import_id',
 			'config' => array(
 				'type' => 'none'
 			)
 		),
 
 		'import_source' => array(
-			'label'   => $ll . 'tx_news2_domain_model_news.import_source',
+			'label'   => $ll . 'tx_news_domain_model_news.import_source',
 			'config' => array(
 				'type' => 'none'
 			)

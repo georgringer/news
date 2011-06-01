@@ -26,21 +26,21 @@
  * Implementation of video portal support
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaInterface {
+class Tx_News_Interfaces_Video_Videosites implements Tx_News_Interfaces_MediaInterface {
 
 	/**
 	 * Render videos from various video portals
 	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @return string
 	 */
-	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
+	public function render(Tx_News_Domain_Model_Media $element, $width, $height) {
 		$content = $finalUrl = '';
-		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getContent());
+		$url = Tx_News_Service_FileService::getCorrectUrl($element->getContent());
 
 			// get the correct rewritten url
 		$mediaWizard = tslib_mediaWizardManager::getValidMediaWizardProvider($url);
@@ -55,7 +55,7 @@ class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaI
 		}
 
 		if (!empty($finalUrl)) {
-			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
+			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
 			$uniqueDivId = 'mediaelement' . md5($element->getUid() . uniqid());
 
 			$content .= '<div id="' . $uniqueDivId . '"></div>
@@ -73,10 +73,10 @@ class Tx_News2_Interfaces_Video_Videosites implements Tx_News2_Interfaces_MediaI
 	/**
 	 * Videosites implementation is always enabled as check is done in tslib_mediaWizardManager
 	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @return boolean
 	 */
-	public function enabled(Tx_News2_Domain_Model_Media $element) {
+	public function enabled(Tx_News_Domain_Model_Media $element) {
 		return TRUE;
 	}
 

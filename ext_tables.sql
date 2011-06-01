@@ -1,7 +1,7 @@
 #
-# Table structure for table 'tx_news2_domain_model_news'
+# Table structure for table 'tx_news_domain_model_news'
 #
-CREATE TABLE tx_news2_domain_model_news (
+CREATE TABLE tx_news_domain_model_news (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	tstamp int(11) DEFAULT '0' NOT NULL,
@@ -56,9 +56,9 @@ CREATE TABLE tx_news2_domain_model_news (
 );
 
 #
-# Table structure for table 'tx_news2_domain_model_category'
+# Table structure for table 'tx_news_domain_model_category'
 #
-CREATE TABLE tx_news2_domain_model_category (
+CREATE TABLE tx_news_domain_model_category (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	tstamp int(11) DEFAULT '0' NOT NULL,
@@ -93,10 +93,10 @@ CREATE TABLE tx_news2_domain_model_category (
 
 
 #
-# Table structure for table 'tx_news2_domain_model_news_category_mm'
+# Table structure for table 'tx_news_domain_model_news_category_mm'
 #
 #
-CREATE TABLE tx_news2_domain_model_news_category_mm (
+CREATE TABLE tx_news_domain_model_news_category_mm (
 	uid_local int(11) DEFAULT '0' NOT NULL,
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	tablenames varchar(30) DEFAULT '' NOT NULL,
@@ -109,10 +109,10 @@ CREATE TABLE tx_news2_domain_model_news_category_mm (
 
 
 #
-# Table structure for table 'tx_news2_domain_model_news_related_mm'
+# Table structure for table 'tx_news_domain_model_news_related_mm'
 #
 #
-CREATE TABLE tx_news2_domain_model_news_related_mm (
+CREATE TABLE tx_news_domain_model_news_related_mm (
 	uid_local int(11) DEFAULT '0' NOT NULL,
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	tablenames varchar(30) DEFAULT '' NOT NULL,
@@ -123,9 +123,9 @@ CREATE TABLE tx_news2_domain_model_news_related_mm (
 
 
 #
-# Table structure for table 'tx_news2_domain_model_media'
+# Table structure for table 'tx_news_domain_model_media'
 #
-CREATE TABLE tx_news2_domain_model_media (
+CREATE TABLE tx_news_domain_model_media (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	tstamp int(11) DEFAULT '0' NOT NULL,
@@ -157,10 +157,10 @@ CREATE TABLE tx_news2_domain_model_media (
 
 
 #
-# Table structure for table 'tx_news2_domain_model_news_file_mm'
+# Table structure for table 'tx_news_domain_model_news_file_mm'
 #
 #
-CREATE TABLE tx_news2_domain_model_news_file_mm (
+CREATE TABLE tx_news_domain_model_news_file_mm (
 	uid_local int(11) DEFAULT '0' NOT NULL,
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	tablenames varchar(30) DEFAULT '' NOT NULL,
@@ -171,9 +171,9 @@ CREATE TABLE tx_news2_domain_model_news_file_mm (
 
 
 #
-# Table structure for table 'tx_news2_domain_model_file'
+# Table structure for table 'tx_news_domain_model_file'
 #
-CREATE TABLE tx_news2_domain_model_file (
+CREATE TABLE tx_news_domain_model_file (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	tstamp int(11) DEFAULT '0' NOT NULL,
@@ -196,9 +196,9 @@ CREATE TABLE tx_news2_domain_model_file (
 
 
 #
-# Table structure for table 'tx_news2_domain_model_link'
+# Table structure for table 'tx_news_domain_model_link'
 #
-CREATE TABLE tx_news2_domain_model_link (
+CREATE TABLE tx_news_domain_model_link (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	tstamp int(11) DEFAULT '0' NOT NULL,
@@ -221,9 +221,9 @@ CREATE TABLE tx_news2_domain_model_link (
 );
 
 #
-# Table structure for table 'tx_news2_domain_model_tag'
+# Table structure for table 'tx_news_domain_model_tag'
 #
-CREATE TABLE tx_news2_domain_model_tag (
+CREATE TABLE tx_news_domain_model_tag (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	tstamp int(11) DEFAULT '0' NOT NULL,
@@ -239,9 +239,9 @@ CREATE TABLE tx_news2_domain_model_tag (
 );
 
 #
-# Table structure for table 'tx_news2_domain_model_news_tag_mm'
+# Table structure for table 'tx_news_domain_model_news_tag_mm'
 #
-CREATE TABLE tx_news2_domain_model_news_tag_mm (
+CREATE TABLE tx_news_domain_model_news_tag_mm (
 	uid_local int(11) DEFAULT '0' NOT NULL,
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	tablenames varchar(30) DEFAULT '' NOT NULL,

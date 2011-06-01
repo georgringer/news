@@ -27,9 +27,9 @@
  * news records.
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEntity implements Tx_News2_Domain_Model_DemandInterface {
+class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEntity implements Tx_News_Domain_Model_DemandInterface {
 	protected $categories;
 	protected $categoryConjunction;
 	protected $tags;
@@ -344,7 +344,7 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Get search object
 	 *
-	 * @return Tx_News2_Domain_Model_Dto_Search
+	 * @return Tx_News_Domain_Model_Dto_Search
 	 */
 	public function getSearch() {
 		return $this->search;
@@ -353,7 +353,7 @@ class Tx_News2_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractE
 	/**
 	 * Set search object
 	 *
-	 * @param Tx_News2_Domain_Model_Dto_Search $search search object
+	 * @param Tx_News_Domain_Model_Dto_Search $search search object
 	 * @return void
 	 */
 	public function setSearch($search) {

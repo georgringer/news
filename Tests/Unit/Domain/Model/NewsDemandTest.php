@@ -26,10 +26,10 @@
  * Tests for domains model News
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * Test if order can be set
@@ -38,7 +38,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function orderCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$order = 'Test order';
 		$domainModelInstance->setOrder($order);
 		$this->assertEquals($order, $domainModelInstance->getOrder());
@@ -51,7 +51,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function orderRespectTopNewsCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$orderRespectTopNews = 'Test topNewsFirst';
 		$domainModelInstance->setTopNewsFirst($orderRespectTopNews);
 		$this->assertEquals($orderRespectTopNews, $domainModelInstance->getTopNewsFirst());
@@ -64,7 +64,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function categoriesCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$categories = 'Test categories';
 		$domainModelInstance->setCategories($categories);
 		$this->assertEquals($categories, $domainModelInstance->getCategories());
@@ -77,7 +77,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function categorySettingCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$categorySetting = 'Test categoryConjunction';
 		$domainModelInstance->setCategoryConjunction($categorySetting);
 		$this->assertEquals($categorySetting, $domainModelInstance->getCategoryConjunction());
@@ -90,7 +90,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function archiveSettingCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$archiveSetting = 'Test archiveRestriction';
 		$domainModelInstance->setArchiveRestriction($archiveSetting);
 		$this->assertEquals($archiveSetting, $domainModelInstance->getArchiveRestriction());
@@ -103,7 +103,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function latestTimeLimitCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$latestTimeLimit = 'Test timeRestriction';
 		$domainModelInstance->setTimeRestriction($latestTimeLimit);
 		$this->assertEquals($latestTimeLimit, $domainModelInstance->getTimeRestriction());
@@ -116,7 +116,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function searchFieldsCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$searchFields = 'Test searchFields';
 		$domainModelInstance->setSearchFields($searchFields);
 		$this->assertEquals($searchFields, $domainModelInstance->getSearchFields());
@@ -129,7 +129,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function storagePageCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$storagePage = 'Test storagePage';
 		$domainModelInstance->setStoragePage($storagePage);
 		$this->assertEquals($storagePage, $domainModelInstance->getStoragePage());
@@ -142,7 +142,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function topNewsSettingCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$topNewsSetting = 'Test topNewsRestriction';
 		$domainModelInstance->setTopNewsRestriction($topNewsSetting);
 		$this->assertEquals($topNewsSetting, $domainModelInstance->getTopNewsRestriction());
@@ -155,7 +155,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function limitCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$limit = 10;
 		$domainModelInstance->setLimit($limit);
 		$this->assertEquals($limit, $domainModelInstance->getLimit());
@@ -168,7 +168,7 @@ class Tx_News2_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function offsetCanBeSet() {
-		$domainModelInstance = new Tx_News2_Domain_Model_NewsDemand();
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
 		$offset = 10;
 		$domainModelInstance->setOffset($offset);
 		$this->assertEquals($offset, $domainModelInstance->getOffset());

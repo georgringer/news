@@ -25,8 +25,8 @@
  * Demanded repository interface
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-interface Tx_News2_Domain_Model_DemandInterface {}
+interface Tx_News_Domain_Model_DemandInterface {}
 ?>

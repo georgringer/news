@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <T3locallang>
 	<meta type="array">
-		<description>CSH for table tx_news2_domain_model_media</description>
+		<description>CSH for table tx_news_domain_model_media</description>
 		<type>CSH</type>
-		<csh_table>tx_news2_domain_model_media</csh_table>
-		<fileId>EXT:news2/locallang_csh_media.xml</fileId>
+		<csh_table>tx_news_domain_model_media</csh_table>
+		<fileId>EXT:news/locallang_csh_media.xml</fileId>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index=".description">Media record</label>
 			<label index=".details">Relation to media records</label>
-			<label index="_.seeAlso">See also the website http://www.news2.com/</label>
+			<label index="_.seeAlso">See also the website http://www.news.com/</label>
 			<label index="hidden.description">Hidden elements are never shown in the frontend.</label>
 			<label index="caption.description">Caption of the media element</label>
 			<label index="title.description">Additional information for the title tag.</label>

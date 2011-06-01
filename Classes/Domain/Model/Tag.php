@@ -26,9 +26,9 @@
  * Tag model
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Domain_Model_Tag extends Tx_Extbase_DomainObject_AbstractValueObject {
+class Tx_News_Domain_Model_Tag extends Tx_Extbase_DomainObject_AbstractValueObject {
 
 	/**
 	 * @var DateTime

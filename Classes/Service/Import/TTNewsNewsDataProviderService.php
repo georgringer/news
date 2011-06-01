@@ -26,10 +26,10 @@
  * tt_news ImportService
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Service_Import_TTNewsNewsDataProviderService implements Tx_News2_Service_Import_DataProviderServiceInterface, t3lib_Singleton {
+class Tx_News_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Service_Import_DataProviderServiceInterface, t3lib_Singleton {
 
 	protected $importSource = 'TT_NEWS_IMPORT';
 

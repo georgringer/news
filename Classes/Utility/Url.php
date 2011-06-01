@@ -26,9 +26,9 @@
  * Url Utitlity class
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Utility_Url {
+class Tx_News_Utility_Url {
 
 	/**
 	 * Prepend current url if url is relative

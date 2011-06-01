@@ -32,9 +32,9 @@
  * Result: Facebook widget to comment an article
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_ViewHelpers_Facebook_CommentViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_News_ViewHelpers_Facebook_CommentViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
 	/**
 	 * @var	string
@@ -60,7 +60,7 @@ class Tx_News2_ViewHelpers_Facebook_CommentViewHelper extends Tx_Fluid_Core_View
 	 * @return string
 	 */
 	public function render($appId) {
-		$pluginSettingsService = $this->objectManager->get('Tx_News2_Service_SettingsService');
+		$pluginSettingsService = $this->objectManager->get('Tx_News_Service_SettingsService');
 		$tsSettings = $pluginSettingsService->getSettings();
 
 		$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';

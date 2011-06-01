@@ -26,12 +26,12 @@
  * Abstract Import job
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-abstract class Tx_News2_Jobs_AbstractImportJob implements Tx_News2_Jobs_ImportJobInterface {
+abstract class Tx_News_Jobs_AbstractImportJob implements Tx_News_Jobs_ImportJobInterface {
 	/**
-	 * @var Tx_News2_Service_Import_DataProviderServiceInterface
+	 * @var Tx_News_Service_Import_DataProviderServiceInterface
 	 */
 	protected $importDataProviderService;
 

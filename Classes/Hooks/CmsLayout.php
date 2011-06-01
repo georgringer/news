@@ -26,14 +26,14 @@
  * Hook to display verbose information about pi1 plugin in Web>Page module
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class tx_News2_Hooks_CmsLayout {
+class tx_News_Hooks_CmsLayout {
 	/**
 	 * Extension key
 	 * @var string
 	 */
-	protected $extKey = 'news2';
+	protected $extKey = 'news';
 
 	/**
 	 * Path to the locallang file
@@ -143,7 +143,7 @@ class tx_News2_Hooks_CmsLayout {
 				// Category records
 			$rawCategoryRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'title',
-				'tx_news2_domain_model_category',
+				'tx_news_domain_model_category',
 				'deleted=0 AND uid IN(' . implode(',', $categories) . ')'
 			);
 
@@ -298,8 +298,8 @@ class tx_News2_Hooks_CmsLayout {
 }
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Resources/Private/Backend/class.tx_news2_cms_layout.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Resources/Private/Backend/class.tx_news2_cms_layout.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Resources/Private/Backend/class.tx_news_cms_layout.php']) {
+	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Resources/Private/Backend/class.tx_news_cms_layout.php']);
 }
 
 ?>

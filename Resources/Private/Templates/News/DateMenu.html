@@ -1,4 +1,4 @@
-{namespace n=Tx_News2_ViewHelpers}
+{namespace n=Tx_News_ViewHelpers}
 <f:layout name="General" />
 <!--
 	=====================
@@ -8,7 +8,7 @@
 
 
 <f:section name="content">
-	<div class="news2 news2-menu-view">
+	<div class="news news-menu-view">
 		<ul>
 		<f:groupedFor each="{news}" as="newsByYear" groupBy="yearOf{dateField}" groupKey="year">
 			<li>{year}

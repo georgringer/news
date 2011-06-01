@@ -26,7 +26,7 @@
  * Update class for extmgr.
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
 class ext_update {
 	const STATUS_WARNING = -1;
@@ -34,6 +34,62 @@ class ext_update {
 	const STATUS_OK = 1;
 
 	protected $messageArray = array();
+
+	/**
+	 * Main update function called by the extension manager.
+	 *
+	 * @return string
+	 */
+	public function main() {
+		$this->processUpdates();
+		return $this->generateOutput();
+	}
+
+	/**
+	 * Called by the extension manager to determine if the update menu entry
+	 * should by showed.
+	 *
+	 * @return bool
+	 * @todo find a better way to determine if update is needed or not.
+	 */
+	public function access() {
+		return TRUE;
+	}
+
+	/**
+	 * The actual update function. Add your update task in here.
+	 *
+	 * @return void
+	 */
+	protected function processUpdates() {
+		$this->renameDatabaseTable('tx_news2_domain_model_news', 'tx_news_domain_model_news');
+		$this->renameDatabaseTable('tx_news2_domain_model_category', 'tx_news_domain_model_category');
+		$this->renameDatabaseTable('tx_news2_domain_model_news_category_mm', 'tx_news_domain_model_news_category_mm');
+		$this->renameDatabaseTable('tx_news2_domain_model_news_related_mm', 'tx_news_domain_model_news_related_mm');
+		$this->renameDatabaseTable('tx_news2_domain_model_media', 'tx_news_domain_model_media');
+		$this->renameDatabaseTable('tx_news2_domain_model_news_file_mm', 'tx_news_domain_model_news_file_mm');
+		$this->renameDatabaseTable('tx_news2_domain_model_file', 'tx_news_domain_model_file');
+		$this->renameDatabaseTable('tx_news2_domain_model_link', 'tx_news_domain_model_link');
+		$this->renameDatabaseTable('tx_news2_domain_model_tag', 'tx_news_domain_model_tag');
+		$this->renameDatabaseTable('tx_news2_domain_model_news_tag_mm', 'tx_news_domain_model_news_tag_mm');
+		$this->renameNews2toNews();
+
+
+		$this->renameDatabaseTableField('tx_news_domain_model_news', 'category', 'categories');
+
+		$this->renameFlexformField('news_pi1', array('sDEF', 'settings.category'), array('sDEF', 'settings.categories'));
+		$this->renameFlexformField('news_pi1', array('sDEF', 'settings.orderAscDesc'), array('sDEF', 'settings.orderDirection'));
+		$this->renameFlexformField('news_pi1', array('additional', 'settings.pidDetail'), array('additional', 'settings.detailPid'));
+		$this->renameFlexformField('news_pi1', array('sDEF', 'settings.categoryMode'), array('sDEF', 'settings.categoryConjunction'));
+		$this->renameFlexformField('news_pi1', array('sDEF', 'settings.archive'), array('sDEF', 'settings.archiveRestriction'));
+		$this->renameFlexformField('news_pi1', array('sDEF', 'settings.timeLimit'), array('sDEF', 'settings.timeRestriction'));
+		$this->renameFlexformField('news_pi1', array('sDEF', 'settings.topNews'), array('sDEF', 'settings.topNewsRestriction'));
+		$this->renameFlexformField('news_pi1', array('additional', 'settings.pidBack'), array('additional', 'settings.backPid'));
+		$this->renameFlexformField('news_pi1', array('additional', 'settings.orderByRespectTopNews'), array('additional', 'settings.topNewsFirst'));
+		$this->renameFlexformField('news_pi1', array('template', 'settings.cropLength'), array('template', 'settings.cropMaxCharacters'));
+
+		$this->renameDatabaseTableField('tx_news_domain_model_media', 'content', 'image');
+	}
 
 	/**
 	 * Renames a tabled field and does some plausibility checks.
@@ -45,28 +101,65 @@ class ext_update {
 	 */
 	protected function renameDatabaseTableField($table, $oldFieldName, $newFieldName) {
 		$title = 'Renaming "' . $table . ':' . $oldFieldName . '" to "' . $table . ':' . $newFieldName . '": ';
+		$message = '';
+		$status = NULL;
 
 		$currentTableFields = $GLOBALS['TYPO3_DB']->admin_get_fields($table);
 
 		if ($currentTableFields[$newFieldName]) {
 			$message = 'Field ' . $table . ':' . $newFieldName . ' already existing.';
-			$status = self::STATUS_WARNING;
+			$status = t3lib_FlashMessage::OK;
 		} else {
 			if (!$currentTableFields[$oldFieldName]) {
 				$message = 'Field ' . $table . ':' . $oldFieldName . ' not existing';
-				$status = self::STATUS_ERROR;
+				$status = t3lib_FlashMessage::ERROR;
 			} else {
 				$sql = 'ALTER TABLE ' . $table . ' CHANGE COLUMN ' . $oldFieldName . ' ' . $newFieldName . ' ' .
 					$currentTableFields[$oldFieldName]['Type'];
 
 				if ($GLOBALS['TYPO3_DB']->admin_query($sql) === FALSE) {
 					$message = ' SQL ERROR: ' .  $GLOBALS['TYPO3_DB']->sql_error();
-					$status = self::STATUS_ERROR;
+					$status = t3lib_FlashMessage::ERROR;
 				} else {
 					$message = 'OK!';
-					$status = self::STATUS_OK;
+					$status = t3lib_FlashMessage::OK;
 				}
 
+			}
+		}
+
+		$this->messageArray[] = array($status, $title, $message);
+		return $status;
+	}
+
+	/**
+	 * Rename a DB  table
+	 *
+	 * @param string $oldTableName old table name
+	 * @param string $newTableName new table name
+	 * @return boolean
+	 */
+	protected function renameDatabaseTable($oldTableName, $newTableName) {
+		$message = '';
+		$status = NULL;
+		$title = 'Renaming "' . $oldTableName . '" to "' . $newTableName . '" ';
+
+		$tables = $GLOBALS['TYPO3_DB']->admin_get_tables();
+		if (isset($tables[$newTableName])) {
+			$message = 'Table ' . $table . ' already exists';
+			$status = t3lib_FlashMessage::OK;
+		} elseif(!isset($tables[$oldTableName])) {
+			$message = 'Table ' . $table . ' does not exist';
+			$status = t3lib_FlashMessage::ERROR;
+		} else {
+			$sql = 'RENAME TABLE ' . $oldTableName .' TO ' . $newTableName . ';';
+
+			if ($GLOBALS['TYPO3_DB']->admin_query($sql) === FALSE) {
+				$message = ' SQL ERROR: ' .  $GLOBALS['TYPO3_DB']->sql_error();
+				$status = t3lib_FlashMessage::ERROR;
+			} else {
+				$message = 'OK!';
+				$status = t3lib_FlashMessage::OK;
 			}
 		}
 
@@ -98,7 +191,7 @@ class ext_update {
 			$xmlArray = t3lib_div::xml2array($row['pi_flexform']);
 
 			if (!$xmlArray['data'][$oldFieldPointer[0]]) {
-				$status = self::STATUS_WARNING;
+				$status = t3lib_FlashMessage::WARNING;
 				$message = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain ' .
 					'sheet: ' . $oldFieldPointer[0];
 			} else {
@@ -121,11 +214,12 @@ class ext_update {
 					));
 
 					$message = 'OK!';
-					$status = self::STATUS_OK;
+					$status = t3lib_FlashMessage::OK;
 				} else {
-					$status = self::STATUS_WARNING;
+					$status = t3lib_FlashMessage::NOTICE;
 					$message = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain ' .
-						'sheet: ' . $oldFieldPointer[0] . ', field: ' .  $oldFieldPointer[1];
+						'sheet: ' . $oldFieldPointer[0] . ', field: ' .  $oldFieldPointer[1] . '. This can
+						also be because field has been updated already...';
 				}
 			}
 
@@ -133,64 +227,101 @@ class ext_update {
 		}
 	}
 
-
 	/**
-	 * Main update function called by the extension manager.
-	 *
-	 * @return string
-	 */
-	public function main() {
-		$this->processUpdates();
-		return $this->generateOutput();
-	}
-
-	/**
-	 * The actual update function. Add your update task in here.
+	 * Rename news2 to news: Including tt_content & uploads tx_news2
 	 *
 	 * @return void
 	 */
-	protected function processUpdates() {
-		$this->renameDatabaseTableField('tx_news2_domain_model_news', 'category', 'categories');
+	protected function renameNews2toNews() {
+		$title = 'Renaming news2 to news';
+		$message = '';
+		$status = NULL;
 
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.category'), array('sDEF', 'settings.categories'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.orderAscDesc'), array('sDEF', 'settings.orderDirection'));
-		$this->renameFlexformField('news2_pi1', array('additional', 'settings.pidDetail'), array('additional', 'settings.detailPid'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.categoryMode'), array('sDEF', 'settings.categoryConjunction'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.archive'), array('sDEF', 'settings.archiveRestriction'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.timeLimit'), array('sDEF', 'settings.timeRestriction'));
-		$this->renameFlexformField('news2_pi1', array('sDEF', 'settings.topNews'), array('sDEF', 'settings.topNewsRestriction'));
-		$this->renameFlexformField('news2_pi1', array('additional', 'settings.pidBack'), array('additional', 'settings.backPid'));
-		$this->renameFlexformField('news2_pi1', array('additional', 'settings.orderByRespectTopNews'), array('additional', 'settings.topNewsFirst'));
-		$this->renameFlexformField('news2_pi1', array('template', 'settings.cropLength'), array('template', 'settings.cropMaxCharacters'));
+			// update tt_content to match list_type again
+		$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
+			'tt_content',
+			'list_type="news2_pi1"',
+			array(
+				'list_type' => 'news_pi1'
+			));
+		$affectedRows = $GLOBALS['TYPO3_DB']->sql_affected_rows();
+		if ($affectedRows == 0) {
+			$status = t3lib_FlashMessage::OK;
+			$message = 'No rows updated in tt_content, everything seems fine';
+		} else {
+			$status = t3lib_FlashMessage::OK;
+			$message = (int)$affectedRows . ' rows changed';
+		}
 
-		$this->renameDatabaseTableField('tx_news2_domain_model_media', 'content', 'image');
+		$this->messageArray[] = array($status, $title, $message);
+
+			// get affected news2 ts records
+		$affectedTsFiles = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			'*',
+			'sys_template',
+			'deleted=0 AND (include_static_file LIKE "%news2%" OR constants LIKE "%news2%" OR config LIKE "%news2%")'
+		);
+		if (count($affectedTsFiles) == 0) {
+			$status = t3lib_FlashMessage::OK;
+			$message = '"news" has not been found in the TS files *inside the database*. No search has been done in external TS files!';
+		} else {
+			$status = t3lib_FlashMessage::WARNING;
+			$messageTmp = array();
+			foreach($affectedTsFiles as $tsFile) {
+				$messageTmp[] = sprintf('"News2" found in TS record with title "%s" on page with uid "%s".', $tsFile['title'], $tsFile['pid']);
+			}
+			$message = implode('<br />', $messageTmp);
+		}
+
+		$this->messageArray[] = array($status, $title, $message);
+
+
+			// try to rename directory
+		if (is_dir('../uploads/tx_news2/')) {
+			if (is_dir('../uploads/tx_news/')) {
+				$status = t3lib_FlashMessage::ERROR;
+				$message = 'Directory uploads/tx_news/ already exists. Move all files from uploads/tx_news2/ to uploads/tx_news/ and delete the old directory.';
+			} else {
+					// try to rename directory
+				$renameStatus = rename('../uploads/tx_news2/', '../uploads/tx_news/');
+				if ($renameStatus) {
+					$status = t3lib_FlashMessage::OK;
+					$message = 'Directory uploads/tx_news2/ has been renamed';
+				} else {
+					$status = t3lib_FlashMessage::ERROR;
+					$message = 'Directory uploads/tx_news2/ coult not be renamed to uploads/tx_news/. Solve it manually!';
+				}
+			}
+
+		} elseif (is_dir('../uploads/tx_news/')) {
+				$status = t3lib_FlashMessage::OK;
+				$message = 'No action needed, directory uploads/tx_news exists and uploads/tx_news2 doesn\'t.';
+		} else {
+			$status = t3lib_FlashMessage::ERROR;
+			$message = 'None of the directories uploads/tx_news/ and uploads/tx_news/ exist. Data lost or just no diretory there? Solve it manually!';
+		}
+
+		$this->messageArray[] = array($status, $title, $message);
 	}
 
 	/**
-	 * Generates more or less readable output.
+	 * Generates output by using flash messages
 	 *
-	 * @todo: beautify output :)
 	 * @return string
 	 */
 	protected function generateOutput() {
 		$output = '';
 		foreach ($this->messageArray as $messageItem) {
-			$output .= '<strong>' . $messageItem[1] . '</strong><br />' .
-				'&nbsp;&nbsp;&nbsp;->' . $messageItem[2] . '<br /><br />';
+			$flashMessage = t3lib_div::makeInstance(
+					't3lib_FlashMessage',
+					$messageItem[2],
+					$messageItem[1],
+					$messageItem[0]);
+			$output .= $flashMessage->render();
 		}
 
 		return $output;
 	}
 
-	/**
-	 * Called by the extension manager to determine if the update menu entry
-	 * should by showed.
-	 *
-	 * @return bool
-	 * @todo find a better way to determine if update is needed or not.
-	 */
-	public function access() {
-		return TRUE;
-	}
 }
 ?>

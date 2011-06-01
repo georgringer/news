@@ -26,9 +26,9 @@
  * ViewHelper to show videos
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * If the escaping interceptor should be disabled inside this ViewHelper,
@@ -46,12 +46,12 @@ class Tx_News2_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelp
 	 * and get the videos
 	 *
 	 * @param string $classes
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @return string
 	 */
-	public function render($classes, Tx_News2_Domain_Model_Media $element, $width, $height) {
+	public function render($classes, Tx_News_Domain_Model_Media $element, $width, $height) {
 		$content = '';
 		$classList = t3lib_div::trimExplode(',', $classes, TRUE);
 
@@ -60,8 +60,8 @@ class Tx_News2_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelp
 			$videoObject = t3lib_div::makeInstance($classData);
 
 				// check interface implementation
-			if (!($videoObject instanceof Tx_News2_Interfaces_MediaInterface)) {
-				throw new UnexpectedValueException('$videoObject must implement interface Tx_News2_Interfaces_MediaInterface', 1295088673);
+			if (!($videoObject instanceof Tx_News_Interfaces_MediaInterface)) {
+				throw new UnexpectedValueException('$videoObject must implement interface Tx_News_Interfaces_MediaInterface', 1295088673);
 			}
 
 				// if no content found and the implementation is enabled, try to render

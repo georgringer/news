@@ -27,13 +27,13 @@
  * depending on action selection
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class tx_News2_Hooks_T3libBefunc {
+class tx_News_Hooks_T3libBefunc {
 
 	/**
 	 * Hook function of t3lib_befunc
-	 * It is used to change the flexform if it is about news2
+	 * It is used to change the flexform if it is about news
 	 *
 	 * @param array &$dataStructure Flexform structure
 	 * @param array $conf some strange configuration
@@ -43,7 +43,7 @@ class tx_News2_Hooks_T3libBefunc {
 	 * @return void
 	 */
 	public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table, $fieldName) {
-		if ($table === 'tt_content' && $row['list_type'] === 'news2_pi1' && is_array($dataStructure)) {
+		if ($table === 'tt_content' && $row['list_type'] === 'news_pi1' && is_array($dataStructure)) {
 			$this->updateFlexforms($dataStructure, $row);
 		}
 	}
@@ -181,8 +181,8 @@ class tx_News2_Hooks_T3libBefunc {
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/T3libBefunc.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/T3libBefunc.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/T3libBefunc.php']) {
+	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/T3libBefunc.php']);
 }
 
 ?>

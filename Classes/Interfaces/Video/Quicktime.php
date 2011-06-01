@@ -26,20 +26,20 @@
  * Implementation of quicktime support
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Interfaces_Video_Quicktime implements Tx_News2_Interfaces_MediaInterface {
+class Tx_News_Interfaces_Video_Quicktime implements Tx_News_Interfaces_MediaInterface {
 
 	/**
 	 * Render flv viles
 	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @return string
 	 */
-	public function render(Tx_News2_Domain_Model_Media $element, $width, $height) {
-		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getContent());
+	public function render(Tx_News_Domain_Model_Media $element, $width, $height) {
+		$url = Tx_News_Service_FileService::getCorrectUrl($element->getContent());
 		$url = htmlspecialchars($url);
 
 		$width = (int)$width;
@@ -65,10 +65,10 @@ class Tx_News2_Interfaces_Video_Quicktime implements Tx_News2_Interfaces_MediaIn
 	/**
 	 * Implementation is used if file extension is mov
 	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @return boolean
 	 */
-	public function enabled(Tx_News2_Domain_Model_Media $element) {
+	public function enabled(Tx_News_Domain_Model_Media $element) {
 		$url = $element->getMultimedia();
 		$fileEnding = strtolower(substr($url, -3));
 

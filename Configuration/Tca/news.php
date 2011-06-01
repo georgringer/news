@@ -3,17 +3,17 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 	// extension manager configuration
-$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news2']);
+$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
 
-$TCA['tx_news2_domain_model_news'] = array(
-	'ctrl' => $TCA['tx_news2_domain_model_news']['ctrl'],
+$TCA['tx_news_domain_model_news'] = array(
+	'ctrl' => $TCA['tx_news_domain_model_news']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements,tags'
 	),
-	'feInterface' => $TCA['tx_news2_domain_model_news']['feInterface'],
+	'feInterface' => $TCA['tx_news_domain_model_news']['feInterface'],
 	'columns' => array(
 		'sys_language_uid' => array(
 			'exclude' => 1,
@@ -37,8 +37,8 @@ $TCA['tx_news2_domain_model_news'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table'       => 'tx_news2_domain_model_news',
-				'foreign_table_where' => 'AND tx_news2_domain_model_news.pid=###CURRENT_PID### AND tx_news2_domain_model_news.sys_language_uid IN (-1,0)',
+				'foreign_table'       => 'tx_news_domain_model_news',
+				'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
 			)
 		),
 		'l10n_diffsource' => array(
@@ -155,7 +155,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'teaser' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.teaser',
+			'label' => $ll . 'tx_news_domain_model_news.teaser',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 30,
@@ -186,7 +186,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'datetime' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.datetime',
+			'label' => $ll . 'tx_news_domain_model_news.datetime',
 			'config' => array(
 				'type'     => 'input',
 				'size'     => 12,
@@ -198,7 +198,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'archive' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.archive',
+			'label' => $ll . 'tx_news_domain_model_news.archive',
 			'config' => array(
 				'type'     => 'input',
 				'size'     => 8,
@@ -228,7 +228,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'categories' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.categories',
+			'label' => $ll . 'tx_news_domain_model_news.categories',
 			'config' => array(
 				'type' => 'select',
 				'renderMode' => 'tree',
@@ -239,9 +239,9 @@ $TCA['tx_news2_domain_model_news'] = array(
 						'allowRecursiveMode' => TRUE,
 					),
 				),
-				'MM' => 'tx_news2_domain_model_news_category_mm',
-				'foreign_table' => 'tx_news2_domain_model_category',
-				'foreign_table_where' => ' AND (tx_news2_domain_model_category.sys_language_uid = 0 OR tx_news2_domain_model_category.l10n_parent = 0) ORDER BY tx_news2_domain_model_category.sorting',
+				'MM' => 'tx_news_domain_model_news_category_mm',
+				'foreign_table' => 'tx_news_domain_model_category',
+				'foreign_table_where' => ' AND (tx_news_domain_model_category.sys_language_uid = 0 OR tx_news_domain_model_category.l10n_parent = 0) ORDER BY tx_news_domain_model_category.sorting',
 				'size' => 10,
 				'autoSizeMax' => 20,
 				'minitems' => 0,
@@ -251,16 +251,16 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'related' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.related',
+			'label' => $ll . 'tx_news_domain_model_news.related',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'db',
-				'allowed' => 'tx_news2_domain_model_news',
-				'foreign_table' => 'tx_news2_domain_model_news',
+				'allowed' => 'tx_news_domain_model_news',
+				'foreign_table' => 'tx_news_domain_model_news',
 				'size' => 5,
 				'minitems' => 0,
 				'maxitems' => 10,
-				'MM' => 'tx_news2_domain_model_news_related_mm',
+				'MM' => 'tx_news_domain_model_news_related_mm',
 				'wizards' => array(
 					'suggest' => array(
 						'type' => 'suggest',
@@ -271,11 +271,11 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'related_files' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.related_files',
+			'label' => $ll . 'tx_news_domain_model_news.related_files',
 			'config' => array(
 				'type' => 'inline',
-				'allowed' => 'tx_news2_domain_model_file',
-				'foreign_table' => 'tx_news2_domain_model_file',
+				'allowed' => 'tx_news_domain_model_file',
+				'foreign_table' => 'tx_news_domain_model_file',
 				'size' => 5,
 				'minitems' => 0,
 				'maxitems' => 10,
@@ -297,11 +297,11 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'related_links' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.related_links',
+			'label' => $ll . 'tx_news_domain_model_news.related_links',
 			'config' => array(
 				'type' => 'inline',
-				'allowed' => 'tx_news2_domain_model_link',
-				'foreign_table' => 'tx_news2_domain_model_link',
+				'allowed' => 'tx_news_domain_model_link',
+				'foreign_table' => 'tx_news_domain_model_link',
 				'foreign_sortby' => 'sorting',
 				'foreign_field' => 'parent',
 				'size' => 5,
@@ -329,9 +329,9 @@ $TCA['tx_news2_domain_model_news'] = array(
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
-					array($ll . 'tx_news2_domain_model_news.type.I.0', 0),
-					array($ll . 'tx_news2_domain_model_news.type.I.1', 1),
-					array($ll . 'tx_news2_domain_model_news.type.I.2', 2),
+					array($ll . 'tx_news_domain_model_news.type.I.0', 0),
+					array($ll . 'tx_news_domain_model_news.type.I.1', 1),
+					array($ll . 'tx_news_domain_model_news.type.I.2', 2),
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -349,12 +349,12 @@ $TCA['tx_news2_domain_model_news'] = array(
 		),
 		'media' => array(
 			'exclude' => 0,
-			'label' => $ll . 'tx_news2_domain_model_news.media',
+			'label' => $ll . 'tx_news_domain_model_news.media',
 
 			'config' => array(
 				'type' => 'inline',
 				'foreign_sortby' => 'sorting',
-				'foreign_table' => 'tx_news2_domain_model_media',
+				'foreign_table' => 'tx_news_domain_model_media',
 				'foreign_field' => 'parent',
 				'size' => 5,
 				'minitems' => 0,
@@ -404,7 +404,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		),
 		'istopnews' => array(
 			'exclude' => 1,
-			'label'   => $ll . 'tx_news2_domain_model_news.istopnews',
+			'label'   => $ll . 'tx_news_domain_model_news.istopnews',
 			'config'  => array(
 				'type'    => 'check',
 				'default' => 0
@@ -421,7 +421,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'content_elements' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.content_elements',
+			'label' => $ll . 'tx_news_domain_model_news.content_elements',
 			'config' => array(
 				'type' => 'inline',
 				'allowed' => 'tt_content',
@@ -446,14 +446,14 @@ $TCA['tx_news2_domain_model_news'] = array(
 		'tags' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_news.tags',
+			'label' => $ll . 'tx_news_domain_model_news.tags',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'db',
-				'allowed' => 'tx_news2_domain_model_tag',
-				'MM' => 'tx_news2_domain_model_news_tag_mm',
-				'foreign_table' => 'tx_news2_domain_model_tag',
-				'foreign_table_where' => 'ORDER BY tx_news2_domain_model_tag.title',
+				'allowed' => 'tx_news_domain_model_tag',
+				'MM' => 'tx_news_domain_model_news_tag_mm',
+				'foreign_table' => 'tx_news_domain_model_tag',
+				'foreign_table_where' => 'ORDER BY tx_news_domain_model_tag.title',
 				'size' => 10,
 				'autoSizeMax' => 20,
 				'minitems' => 0,
@@ -463,24 +463,27 @@ $TCA['tx_news2_domain_model_news'] = array(
 					'_VERTICAL' => 1,
 					'suggest' => array(
 						'type' => 'suggest',
-					),
-					'add' => array(
-						'type'   => 'script',
-						'title'  => $ll . 'tx_news2_domain_model_news.tags.add',
-						'icon'   => 'add.gif',
-						'params' => array(
-							'table'    => 'tx_news2_domain_model_tag',
-							'pid'      => (int)$configurationArray['tagPid'],
-							'setValue' => 'prepend'
+						'default' => array(
+								'receiverClass' => 'tx_News_Hooks_SuggestReceiver'
 						),
-						'script' => 'wizard_add.php',
 					),
+//					'add' => array(
+//						'type'   => 'script',
+//						'title'  => $ll . 'tx_news_domain_model_news.tags.add',
+//						'icon'   => 'add.gif',
+//						'params' => array(
+//							'table'    => 'tx_news_domain_model_tag',
+//							'pid'      => (int)$configurationArray['tagPid'],
+//							'setValue' => 'prepend'
+//						),
+//						'script' => 'wizard_add.php',
+//					),
 					'list' => array(
 						'type'   => 'script',
-						'title'  => $ll . 'tx_news2_domain_model_news.tags.list',
+						'title'  => $ll . 'tx_news_domain_model_news.tags.list',
 						'icon'   => 'list.gif',
 						'params' => array(
-							'table' => 'tx_news2_domain_model_tag',
+							'table' => 'tx_news_domain_model_tag',
 							'pid'   => (int)$configurationArray['tagPid'],
 						),
 						'script' => 'wizard_list.php',
@@ -489,14 +492,14 @@ $TCA['tx_news2_domain_model_news'] = array(
 			),
 		),
 		'import_id' => array(
-			'label'   => $ll . 'tx_news2_domain_model_news.import_id',
+			'label'   => $ll . 'tx_news_domain_model_news.import_id',
 			'config' => array(
 				'type' => 'none'
 			)
 		),
 
 		'import_source' => array(
-			'label'   => $ll . 'tx_news2_domain_model_news.import_source',
+			'label'   => $ll . 'tx_news_domain_model_news.import_source',
 			'config' => array(
 				'type' => 'none'
 			)
@@ -513,7 +516,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,related,
+				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// internal url
@@ -525,7 +528,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,related,
+				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// external url
@@ -537,7 +540,7 @@ $TCA['tx_news2_domain_model_news'] = array(
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
-				--div--;' . $ll . 'tx_news2_domain_model_news.tabs.relations,media,related_files,related_links,related,
+				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 	),
@@ -570,13 +573,13 @@ if (isset($configurationArray['categoryRestriction'])) {
 	$categoryRestriction = '';
 	switch ($configurationArray['categoryRestriction']) {
 		case 'current_pid':
-			$categoryRestriction = ' AND tx_news2_domain_model_category.pid=###CURRENT_PID### ';
+			$categoryRestriction = ' AND tx_news_domain_model_category.pid=###CURRENT_PID### ';
 			break;
 		case 'storage_pid':
-			$categoryRestriction = ' AND tx_news2_domain_model_category.pid=###STORAGE_PID### ';
+			$categoryRestriction = ' AND tx_news_domain_model_category.pid=###STORAGE_PID### ';
 			break;
 		case 'siteroot':
-			$categoryRestriction = ' AND tx_news2_domain_model_category.pid IN (###SITEROOT###) ';
+			$categoryRestriction = ' AND tx_news_domain_model_category.pid IN (###SITEROOT###) ';
 			break;
 		default:
 			$categoryRestriction = '';
@@ -584,15 +587,15 @@ if (isset($configurationArray['categoryRestriction'])) {
 
 		// prepend category restriction at the beginning of foreign_table_where
 	if (!empty ($categoryRestriction)) {
-		$TCA['tx_news2_domain_model_news']['columns']['categories']
+		$TCA['tx_news_domain_model_news']['columns']['categories']
 			['config']['foreign_table_where'] = $categoryRestriction .
-		$TCA['tx_news2_domain_model_news']['columns']['categories']
+		$TCA['tx_news_domain_model_news']['columns']['categories']
 			['config']['foreign_table_where'];
 	}
 }
 
 if (!isset($configurationArray['contentElementRelation']) || $configurationArray['contentElementRelation'] == 0) {
-	unset($TCA['tx_news2_domain_model_news']['columns']['content_elements']);
+	unset($TCA['tx_news_domain_model_news']['columns']['content_elements']);
 }
 
 ?>

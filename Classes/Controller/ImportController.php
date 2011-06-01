@@ -23,12 +23,12 @@
 ***************************************************************/
 
 /**
- * Controller to import news records from tt_news2
+ * Controller to import news records from tt_news
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Controller_ImportController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_News_Controller_ImportController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
 	 * Retrieve all available import jobs by traversing trough registered import jobs and checking "isEnabled".
@@ -37,11 +37,11 @@ class Tx_News2_Controller_ImportController extends Tx_Extbase_MVC_Controller_Act
 	 */
 	protected function getAvailableJobs() {
 		$availableJobs = array();
-		$registeredJobs = Tx_News2_Utility_ImportJob::getRegisteredJobs();
+		$registeredJobs = Tx_News_Utility_ImportJob::getRegisteredJobs();
 
 		foreach ($registeredJobs as $registeredJob) {
 			$jobInstance = $this->objectManager->get($registeredJob['className']);
-			if ($jobInstance instanceof Tx_News2_Jobs_ImportJobInterface && $jobInstance->isEnabled()) {
+			if ($jobInstance instanceof Tx_News_Jobs_ImportJobInterface && $jobInstance->isEnabled()) {
 				$availableJobs[$registeredJob['className']] = $GLOBALS['LANG']->sL($registeredJob['title']);
 			}
 		}

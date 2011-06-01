@@ -1,17 +1,17 @@
 <div class="mediaelement mediaelement-image">
 	<f:if condition="{settings.detail.media.image.lightbox}">
 		<f:then>
-			<a rel="{settings.detail.media.image.lightbox}" title="{mediaElement.caption}" href="{f:uri.image(src:'uploads/tx_news2/{mediaElement.content}' maxWidth:'800')}">
-				<f:image src="uploads/tx_news2/{mediaElement.content}" title="{mediaElement.title}"  alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
+			<a rel="{settings.detail.media.image.lightbox}" title="{mediaElement.caption}" href="{f:uri.image(src:'uploads/tx_news/{mediaElement.content}' maxWidth:'800')}">
+				<f:image src="uploads/tx_news/{mediaElement.content}" title="{mediaElement.title}"  alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
 			</a>
 		</f:then>
 		<f:else>
-			<f:image src="uploads/tx_news2/{mediaElement.content}" title="{mediaElement.title}"  alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
+			<f:image src="uploads/tx_news/{mediaElement.content}" title="{mediaElement.title}"  alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
 		</f:else>
 	</f:if>
 </div>
 <f:if condition="{mediaElement.caption}">
-	<p class="news2-img-caption">
+	<p class="news-img-caption">
 		{mediaElement.caption}
 	</p>
 </f:if>

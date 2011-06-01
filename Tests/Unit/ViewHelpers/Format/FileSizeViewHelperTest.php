@@ -26,10 +26,10 @@
  * Tests for FileSizeViewHelper
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * Test if default file format works
@@ -38,8 +38,8 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 	 * @return void
 	 */
 	public function viewHelperReturnsFileSizeWithDefaultFormat() {
-		$viewHelper = new Tx_News2_ViewHelpers_Format_FileSizeViewHelper();
-		$actualResult = $viewHelper->render(t3lib_extMgm::extPath('news2', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt');
+		$viewHelper = new Tx_News_ViewHelpers_Format_FileSizeViewHelper();
+		$actualResult = $viewHelper->render(t3lib_extMgm::extPath('news', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt');
 		$this->assertEquals('14.4 K', $actualResult);
 	}
 
@@ -50,8 +50,8 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 	 * @return void
 	 */
 	public function viewHelperReturnsFileSizeWithGivenFormat() {
-		$viewHelper = new Tx_News2_ViewHelpers_Format_FileSizeViewHelper();
-		$actualResult = $viewHelper->render(t3lib_extMgm::extPath('news2', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt', '| A| B| C');
+		$viewHelper = new Tx_News_ViewHelpers_Format_FileSizeViewHelper();
+		$actualResult = $viewHelper->render(t3lib_extMgm::extPath('news', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt', '| A| B| C');
 		$this->assertEquals('14.4 A', $actualResult);
 	}
 
@@ -63,7 +63,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_E
 	 * @return void
 	 */
 	public function viewHelperThrowsExceptionIfFileNotFound() {
-		$viewHelper = new Tx_News2_ViewHelpers_Format_FileSizeViewHelper();
+		$viewHelper = new Tx_News_ViewHelpers_Format_FileSizeViewHelper();
 		$viewHelper->render('fo', 'bar');
 	}
 

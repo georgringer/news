@@ -1,12 +1,12 @@
 
 # ==============================================
-# FE-Plugin configuration for EXT:news2
+# FE-Plugin configuration for EXT:news
 # ==============================================
-plugin.tx_news2 {
+plugin.tx_news {
 	view {
-		templateRootPath = {$plugin.tx_news2.view.templateRootPath}
-		partialRootPath = {$plugin.tx_news2.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_news2.view.layoutRootPath}
+		templateRootPath = {$plugin.tx_news.view.templateRootPath}
+		partialRootPath = {$plugin.tx_news.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_news.view.layoutRootPath}
 	}
 	# Modify the translation
 	_LOCAL_LANG {
@@ -46,7 +46,7 @@ plugin.tx_news2 {
 		# Interface implemenations
 		interfaces {
 			media {
-				video = Tx_News2_Interfaces_Audio_Mp3,Tx_News2_Interfaces_Video_Quicktime,Tx_News2_Interfaces_Video_Flv,Tx_News2_Interfaces_Video_Videosites
+				video = Tx_News_Interfaces_Audio_Mp3,Tx_News_Interfaces_Video_Quicktime,Tx_News_Interfaces_Video_Flv,Tx_News_Interfaces_Video_Videosites
 			}
 		}
 
@@ -131,8 +131,8 @@ plugin.tx_news2 {
 }
 
 # Rendering of content elements in detail view
-lib.tx_news2.contentElementRendering = RECORDS
-lib.tx_news2.contentElementRendering {
+lib.tx_news.contentElementRendering = RECORDS
+lib.tx_news.contentElementRendering {
 	tables = tt_content
 	source.current = 1
 	dontCheckPid = 1

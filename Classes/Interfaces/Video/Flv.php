@@ -26,30 +26,30 @@
  * Implementation of flv support
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_MediaInterface {
+class Tx_News_Interfaces_Video_Flv implements Tx_News_Interfaces_MediaInterface {
 
 	/**
 	 * Render flv viles
 	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @param string $templateFile template file to override. Absolute path
 	 * @return string
 	 */
-	public function render(Tx_News2_Domain_Model_Media $element, $width, $height, $templateFile = '' ) {
+	public function render(Tx_News_Domain_Model_Media $element, $width, $height, $templateFile = '' ) {
 		$view = t3lib_div::makeInstance('Tx_Fluid_View_StandaloneView');
 		if (!$templateFile || !is_readable($templateFile)) {
-			$view->setTemplatePathAndFilename(t3lib_extMgm::extPath('news2').'Resources/Private/Templates/ViewHelpers/Flv.html');
+			$view->setTemplatePathAndFilename(t3lib_extMgm::extPath('news').'Resources/Private/Templates/ViewHelpers/Flv.html');
 		} else {
 			$view->setTemplatePathAndFilename($templateFile);
 		}
 
-		$url = Tx_News2_Service_FileService::getCorrectUrl($element->getContent());
+		$url = Tx_News_Service_FileService::getCorrectUrl($element->getContent());
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news2/Resources/Public/JavaScript/Contrib/flowplayer-3.2.4.min.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/flowplayer-3.2.4.min.js');
 
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
@@ -68,10 +68,10 @@ class Tx_News2_Interfaces_Video_Flv implements Tx_News2_Interfaces_MediaInterfac
 	/**
 	 * Files with extension flv are handled within this implementation
 	 *
-	 * @param Tx_News2_Domain_Model_Media $element
+	 * @param Tx_News_Domain_Model_Media $element
 	 * @return boolean
 	 */
-	public function enabled(Tx_News2_Domain_Model_Media $element) {
+	public function enabled(Tx_News_Domain_Model_Media $element) {
 		$url = $element->getMultimedia();
 		$fileEnding = strtolower(substr($url, -3));
 

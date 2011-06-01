@@ -3,15 +3,15 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 
-$TCA['tx_news2_domain_model_tag'] = array(
-	'ctrl' => $TCA['tx_news2_domain_model_tag']['ctrl'],
+$TCA['tx_news_domain_model_tag'] = array(
+	'ctrl' => $TCA['tx_news_domain_model_tag']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'hidden,title'
 	),
-	'feInterface' => $TCA['tx_news2_domain_model_tag']['feInterface'],
+	'feInterface' => $TCA['tx_news_domain_model_tag']['feInterface'],
 	'columns' => array(
 		'pid' => array(
 			'config'  => array(
@@ -49,7 +49,7 @@ $TCA['tx_news2_domain_model_tag'] = array(
 		'title' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_tag.title',
+			'label' => $ll . 'tx_news_domain_model_tag.title',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,

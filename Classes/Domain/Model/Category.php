@@ -26,9 +26,9 @@
  * Category Model
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * @var integer
 	 */
@@ -75,7 +75,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	protected $description;
 
 	/**
-	 * @var Tx_News2_Domain_Model_Category
+	 * @var Tx_News_Domain_Model_Category
 	 * @lazy
 	 */
 	protected $parentcategory;
@@ -290,7 +290,7 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	/**
 	 * Get parent category
 	 *
-	 * @return Tx_News2_Domain_Model_Category
+	 * @return Tx_News_Domain_Model_Category
 	 */
 	public function getParentcategory() {
 		return $this->parentcategory;
@@ -299,10 +299,10 @@ class Tx_News2_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnt
 	/**
 	 * Set parent category
 	 *
-	 * @param Tx_News2_Domain_Model_Category $category parent category
+	 * @param Tx_News_Domain_Model_Category $category parent category
 	 * @return void
 	 */
-	public function setParentcategory(Tx_News2_Domain_Model_Category $category) {
+	public function setParentcategory(Tx_News_Domain_Model_Category $category) {
 		$this->parentcategory = $category;
 	}
 

@@ -28,9 +28,9 @@
  *
  * @author	Georg Ringer <typo3@ringerge.org>
  * @package	TYPO3
- * @subpackage	tx_news2
+ * @subpackage	tx_news
  */
-class tx_News2_Hooks_Labels {
+class tx_News_Hooks_Labels {
 
 	/**
 	 * Labels of a news record
@@ -52,7 +52,7 @@ class tx_News2_Hooks_Labels {
 	 */
 	public function getUserLabelCategory(array $params) {
 			// new version shows translation of language set in user settings
-		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['news2overlay'];
+		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];
 
 			// in list view: show normal label
 		$listView = t3lib_div::isFirstPartOfStr(t3lib_div::getIndpEnv('REQUEST_URI'), '/typo3/sysext/list/mod1/db_list.php');
@@ -63,7 +63,7 @@ class tx_News2_Hooks_Labels {
 		} else {
 			$overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'*',
-				'tx_news2_domain_model_category',
+				'tx_news_domain_model_category',
 				'deleted=0 AND sys_language_uid=' . $overlayLanguage . ' AND l10n_parent=' . $params['row']['uid']
 			);
 			if (isset($overlayRecord[0]['title'])) {
@@ -81,10 +81,10 @@ class tx_News2_Hooks_Labels {
 	 * @return void
 	 */
 	public function getUserLabelMedia(array $params) {
-		$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+		$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 		$title = $typeInfo = '';
 
-		$type = $GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.type.I.' . $params['row']['type']);
+		$type = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.type.I.' . $params['row']['type']);
 
 			// Add additional info based on type
 		switch ($params['row']['type']) {
@@ -109,9 +109,14 @@ class tx_News2_Hooks_Labels {
 
 			// Preview
 		if ($params['row']['showinpreview']) {
-			$label = htmlspecialchars($GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.show'));
-			$icon = '../' . t3lib_extMgm::siteRelPath('news2') . 'Resources/Public/Icons/preview.gif';
+			$label = htmlspecialchars($GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.show'));
+			$icon = '../' . t3lib_extMgm::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
 			$title .= ' <img title="' . $label . '" src="' . $icon . '" />';
+		}
+
+			// Show the [No title] if empty
+		if (empty($title)) {
+			$title =  t3lib_befunc::getNoRecordTitle(TRUE);
 		}
 
 		$params['title'] = $title;
@@ -132,11 +137,11 @@ class tx_News2_Hooks_Labels {
 
 		$catTitles = array();
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query(
-			'tx_news2_domain_model_category.title as title',
-			'tx_news2_domain_model_news',
-			'tx_news2_domain_model_news_category_mm',
-			'tx_news2_domain_model_category',
-			' AND tx_news2_domain_model_news.uid=' . (int)$newsUid
+			'tx_news_domain_model_category.title as title',
+			'tx_news_domain_model_news',
+			'tx_news_domain_model_news_category_mm',
+			'tx_news_domain_model_category',
+			' AND tx_news_domain_model_news.uid=' . (int)$newsUid
 		);
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$catTitles[] = $row['title'];
@@ -148,8 +153,8 @@ class tx_News2_Hooks_Labels {
 
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Labels.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/Labels.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/Labels.php']) {
+	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/Labels.php']);
 }
 
 ?>

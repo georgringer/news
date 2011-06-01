@@ -26,9 +26,9 @@
  * News model
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * @var DateTime
 	 */
@@ -116,25 +116,25 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $authorEmail;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Category>
 	 * @lazy
 	 */
 	protected $categories;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_News>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News>
 	 * @lazy
 	 */
 	protected $related;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_File>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_File>
 	 * @lazy
 	 */
 	protected $relatedFiles;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Link>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Link>
 	 * @lazy
 	 */
 	protected $relatedLinks;
@@ -150,7 +150,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $keywords;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Media>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Media>
 	 * @lazy
 	 */
 	protected $media;
@@ -176,7 +176,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $contentElements;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Tag>
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Tag>
 	 * @lazy
 	 */
 	protected $tags;
@@ -384,7 +384,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Get categories
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Category>
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Category>
 	 */
 	public function getCategories() {
 		return $this->categories;
@@ -393,7 +393,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Get first category
 	 *
-	 * @return Tx_News2_Domain_Model_Category
+	 * @return Tx_News_Domain_Model_Category
 	 */
 	public function getFirstCategory() {
 		$categories = $this->getCategories();
@@ -415,17 +415,17 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Adds a category to this categories.
 	 *
-	 * @param Tx_News2_Domain_Model_Category $category
+	 * @param Tx_News_Domain_Model_Category $category
 	 * @return void
 	 */
-	public function addCategory(Tx_News2_Domain_Model_Category $category) {
+	public function addCategory(Tx_News_Domain_Model_Category $category) {
 		$this->categories->attach($category);
 	}
 
 	/**
 	 * Get related news
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_News>
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News>
 	 */
 	public function getRelated() {
 		return $this->related;
@@ -457,7 +457,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Get related files
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_File>
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_File>
 	 */
 	public function getRelatedFiles() {
 		return $this->relatedFiles;
@@ -476,17 +476,17 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Adds a file to this files.
 	 *
-	 * @param Tx_News2_Domain_Model_File $file
+	 * @param Tx_News_Domain_Model_File $file
 	 * @return void
 	 */
-	public function addRelatedFile(Tx_News2_Domain_Model_File $file) {
+	public function addRelatedFile(Tx_News_Domain_Model_File $file) {
 		$this->relatedFiles->attach($file);
 	}
 
 	/**
 	 * Get related links
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Link>
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Link>
 	 */
 	public function getRelatedLinks() {
 		return $this->relatedLinks;
@@ -495,7 +495,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Set related links
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News2_Domain_Model_Link> $relatedLinks related links relation
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Link> $relatedLinks related links relation
 	 * @return void
 	 */
 	public function setRelatedLinks($relatedLinks) {
@@ -596,10 +596,10 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Adds a media to this media.
 	 *
-	 * @param Tx_News2_Domain_Model_Media $media
+	 * @param Tx_News_Domain_Model_Media $media
 	 * @return void
 	 */
-	public function addMedia(Tx_News2_Domain_Model_Media $media) {
+	public function addMedia(Tx_News_Domain_Model_Media $media) {
 		$this->media->attach($media);
 
 	}
@@ -607,7 +607,7 @@ class Tx_News2_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity 
 	/**
 	 * Get first media element which is tagged as preview and is of type image
 	 *
-	 * @return Tx_News2_Domain_Model_Media
+	 * @return Tx_News_Domain_Model_Media
 	 */
 	public function getFirstImagePreview() {
 		$mediaElements = $this->getMedia();

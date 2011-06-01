@@ -26,10 +26,10 @@
  * Tests for NothingViewHelper
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News2_Tests_Unit_ViewHelpers_Format_NothingViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_ViewHelpers_Format_NothingViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * Test of strip tags viewhelper
@@ -38,7 +38,7 @@ class Tx_News2_Tests_Unit_ViewHelpers_Format_NothingViewHelperTest extends Tx_Ex
 	 * @return void
 	 */
 	public function noResultExpected() {
-		$viewHelper = $this->getMock('Tx_News2_ViewHelpers_Format_NothingViewHelper', array('renderChildren'));
+		$viewHelper = $this->getMock('Tx_News_ViewHelpers_Format_NothingViewHelper', array('renderChildren'));
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('whatever content'));
 		$actualResult = $viewHelper->render();
 		$this->assertEquals(NULL, $actualResult);

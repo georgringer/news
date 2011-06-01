@@ -3,15 +3,15 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 
-$TCA['tx_news2_domain_model_media'] = array(
-	'ctrl' => $TCA['tx_news2_domain_model_media']['ctrl'],
+$TCA['tx_news_domain_model_media'] = array(
+	'ctrl' => $TCA['tx_news_domain_model_media']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,html,video,showInPreview, width, height'
 	),
-	'feInterface' => $TCA['tx_news2_domain_model_media']['feInterface'],
+	'feInterface' => $TCA['tx_news_domain_model_media']['feInterface'],
 	'columns' => array(
 		'pid' => array(
 			'label'   => 'pid',
@@ -69,8 +69,8 @@ $TCA['tx_news2_domain_model_media'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table'       => 'tx_news2_domain_model_news',
-				'foreign_table_where' => 'AND tx_news2_domain_model_news.pid=###CURRENT_PID### AND tx_news2_domain_model_news.sys_language_uid IN (-1,0)',
+				'foreign_table'       => 'tx_news_domain_model_news',
+				'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
 			)
 		),
 		'l10n_diffsource' => array(
@@ -89,7 +89,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'caption' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_media.caption',
+			'label' => $ll . 'tx_news_domain_model_media.caption',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -116,13 +116,13 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'image' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_media.media',
+			'label' => $ll . 'tx_news_domain_model_media.media',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'file',
 				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-				'uploadfolder' => 'uploads/tx_news2',
+				'uploadfolder' => 'uploads/tx_news',
 				'show_thumbs' => 1,
 				'size' => 1,
 				'minitems' => 0,
@@ -132,7 +132,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'html' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_media.html',
+			'label' => $ll . 'tx_news_domain_model_media.html',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 30,
@@ -142,7 +142,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 		'multimedia' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_media.multimedia',
+			'label' => $ll . 'tx_news_domain_model_media.multimedia',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -171,7 +171,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 			'foreign_table'       => 'tx_dam',
 			'MM' => 'tx_dam_mm_ref',
 			'MM_opposite_field' => 'file_usage',
-			'MM_match_fields' => array('ident' => 'tx_news2_media'),
+			'MM_match_fields' => array('ident' => 'tx_news_media'),
 
 			'allowed_types' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
 
@@ -184,7 +184,7 @@ $TCA['tx_news2_domain_model_media'] = array(
 		),
 		'showinpreview' => array(
 			'exclude' => 1,
-			'label' => $ll . 'tx_news2_domain_model_media.showinpreview',
+			'label' => $ll . 'tx_news_domain_model_media.showinpreview',
 			'config'  => array(
 				'type'    => 'check',
 				'default' => 0
@@ -196,11 +196,11 @@ $TCA['tx_news2_domain_model_media'] = array(
 			'label' => 'LLL:EXT:cms/locallang_ttc.xml:media.type',
 			'config' => array(
 				'type' => 'select',
-				'itemsProcFunc' => 'tx_News2_Hooks_ItemsProcFunc->user_MediaType',
+				'itemsProcFunc' => 'tx_News_Hooks_ItemsProcFunc->user_MediaType',
 				'items' => array(
-					array($ll . 'tx_news2_domain_model_media.type.I.0', '0', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_image.png'),
-					array($ll . 'tx_news2_domain_model_media.type.I.1', '1', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_multimedia.png'),
-					array($ll . 'tx_news2_domain_model_media.type.I.2', '2', t3lib_extMgm::extRelPath('news2') . 'Resources/Public/Icons/media_type_html.png'),
+					array($ll . 'tx_news_domain_model_media.type.I.0', '0', t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_image.png'),
+					array($ll . 'tx_news_domain_model_media.type.I.1', '1', t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_multimedia.png'),
+					array($ll . 'tx_news_domain_model_media.type.I.2', '2', t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_html.png'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -254,11 +254,11 @@ $TCA['tx_news2_domain_model_media'] = array(
 );
 
 	// extension manager configuration
-$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news2']);
+$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
 
 	// Hide DAM field if not used to avoid errors
 if ($configurationArray['enableDam'] != 1) {
-	unset($TCA['tx_news2_domain_model_media']['columns']['dam']);
+	unset($TCA['tx_news_domain_model_media']['columns']['dam']);
 }
 
 ?>

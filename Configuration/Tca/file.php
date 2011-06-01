@@ -3,15 +3,15 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 
-$TCA['tx_news2_domain_model_file'] = array(
-	'ctrl' => $TCA['tx_news2_domain_model_file']['ctrl'],
+$TCA['tx_news_domain_model_file'] = array(
+	'ctrl' => $TCA['tx_news_domain_model_file']['ctrl'],
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,description,file'
 	),
-	'feInterface' => $TCA['tx_news2_domain_model_file']['feInterface'],
+	'feInterface' => $TCA['tx_news_domain_model_file']['feInterface'],
 	'columns' => array(
 		'pid' => array(
 			'label'   => 'pid',
@@ -63,8 +63,8 @@ $TCA['tx_news2_domain_model_file'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table'       => 'tx_news2_domain_model_news',
-				'foreign_table_where' => 'AND tx_news2_domain_model_news.pid=###CURRENT_PID### AND tx_news2_domain_model_news.sys_language_uid IN (-1,0)',
+				'foreign_table'       => 'tx_news_domain_model_news',
+				'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
 			)
 		),
 		'l10n_diffsource' => array(
@@ -83,7 +83,7 @@ $TCA['tx_news2_domain_model_file'] = array(
 		'title' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_file.title',
+			'label' => $ll . 'tx_news_domain_model_file.title',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -92,7 +92,7 @@ $TCA['tx_news2_domain_model_file'] = array(
 		'description' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_file.description',
+			'label' => $ll . 'tx_news_domain_model_file.description',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 30,
@@ -102,14 +102,14 @@ $TCA['tx_news2_domain_model_file'] = array(
 		'file' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news2_domain_model_file.file',
+			'label' => $ll . 'tx_news_domain_model_file.file',
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'file',
 				'allowed' => '',
 				'disallowed' => 'php,php3',
 				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-				'uploadfolder' => 'uploads/tx_news2',
+				'uploadfolder' => 'uploads/tx_news',
 				'show_thumbs' => 1,
 				'size' => 1,
 				'minitems' => 0,

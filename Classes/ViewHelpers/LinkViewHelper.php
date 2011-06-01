@@ -34,9 +34,9 @@
  * {n:link(newsItem:newsItem,settings:settings,linkOnly:1)}
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * @var array
@@ -50,7 +50,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 	/**
 	 * Render link to news item or internal/external pages
 	 *
-	 * @param Tx_News2_Domain_Model_News $newsItem
+	 * @param Tx_News_Domain_Model_News $newsItem
 	 * @param array $settings
 	 * @param boolean $renderTypeClass
 	 * @param string $class
@@ -58,7 +58,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 	 * @param boolean $hsc
 	 * @return string url
 	 */
-	public function render(Tx_News2_Domain_Model_News $newsItem, array $settings = array(), $renderTypeClass = TRUE, $class = '', $linkOnly = FALSE, $hsc = FALSE) {
+	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $renderTypeClass = TRUE, $class = '', $linkOnly = FALSE, $hsc = FALSE) {
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 		$linkConfiguration = array();
 
@@ -89,9 +89,9 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 
 			$linkConfiguration['useCacheHash'] = 1;
 			$linkConfiguration['parameter'] = $detailPid;
-			$linkConfiguration['additionalParams'] = '&tx_news2_pi1[controller]=News' .
-				'&tx_news2_pi1[action]=detail' .
-				'&tx_news2_pi1[news]=' . $newsItem->getUid();
+			$linkConfiguration['additionalParams'] = '&tx_news_pi1[controller]=News' .
+				'&tx_news_pi1[action]=detail' .
+				'&tx_news_pi1[news]=' . $newsItem->getUid();
 			// internal news
 		} elseif ($newsType == 1) {
 			$linkConfiguration['parameter'] = $newsItem->getInternalurl();
@@ -117,7 +117,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 	 * Gets detailPid from categories of the given news item. First will be return.
 	 *
 	 * @param  array $settings
-	 * @param  Tx_News2_Domain_Model_News $newsItem
+	 * @param  Tx_News_Domain_Model_News $newsItem
 	 * @return int
 	 */
 	protected function getDetailPidFromCategories($settings, $newsItem) {
@@ -134,7 +134,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 	 * Gets detailPid from defaultDetailPid setting
 	 *
 	 * @param  array $settings
-	 * @param  Tx_News2_Domain_Model_News $newsItem
+	 * @param  Tx_News_Domain_Model_News $newsItem
 	 * @return int
 	 */
 	protected function getDetailPidFromDefaultDetailPid($settings, $newsItem) {
@@ -145,7 +145,7 @@ class Tx_News2_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstr
 	 * Gets detailPid from flexfrom of current plugin.
 	 *
 	 * @param  array $settings
-	 * @param  Tx_News2_Domain_Model_News $newsItem
+	 * @param  Tx_News_Domain_Model_News $newsItem
 	 * @return int
 	 */
 	protected function getDetailPidFromFlexform($settings, $newsItem) {

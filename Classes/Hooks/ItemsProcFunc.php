@@ -26,9 +26,9 @@
  * Userfunc to render alternative label for media elements
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class tx_News2_Hooks_ItemsProcFunc {
+class tx_News_Hooks_ItemsProcFunc {
 
 	/**
 	 * Set DAM as an additional option. Changes are done in $config
@@ -40,13 +40,13 @@ class tx_News2_Hooks_ItemsProcFunc {
 	public function user_MediaType(array &$config, t3lib_TCEforms $parentObject) {
 			// if dam is loaded
 		if (t3lib_extMgm::isLoaded('dam')) {
-			$ll = 'LLL:EXT:news2/Resources/Private/Language/locallang_db.xml:';
+			$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 				// additional entry
 			$damEntry = array(
-				$GLOBALS['LANG']->sL($ll . 'tx_news2_domain_model_media.type.I.3'),
+				$GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.type.I.3'),
 				'3',
-				t3lib_extMgm::extRelPath('news2').'Resources/Public/Icons/media_type_dam.gif'
+				t3lib_extMgm::extRelPath('news').'Resources/Public/Icons/media_type_dam.gif'
 			);
 
 				// add entry to type list
@@ -63,11 +63,11 @@ class tx_News2_Hooks_ItemsProcFunc {
 	 */
 	public function user_templateLayout(array &$config, t3lib_TCEforms $parentObject) {
 			// check if the layouts are extended
-		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts'])
-				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts'])) {
+		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])
+				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])) {
 
 				// add every item
-			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['templateLayouts'] as $layouts) {
+			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] as $layouts) {
 				$additionalLayout = array(
 					$GLOBALS['LANG']->sL($layouts[0], TRUE),
 					$layouts[1]
@@ -99,9 +99,9 @@ class tx_News2_Hooks_ItemsProcFunc {
 
 					// check for selected action
 				if (t3lib_div::isFirstPartOfStr($selectedActionList, 'Category')) {
-					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByCategory'];
+					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
 				} else {
-					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['orderByNews'];
+					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'];
 				}
 			}
 		}
@@ -114,7 +114,7 @@ class tx_News2_Hooks_ItemsProcFunc {
 			array_push($config['items'], array('', ''));
 
 			$newItemArray = t3lib_div::trimExplode(',', $newItems, TRUE);
-			$languageKey = 'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.';
+			$languageKey = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.';
 			foreach ($newItemArray as $item) {
 					// label: if empty, key (=field) is used
 				$label = $GLOBALS['LANG']->sL($languageKey . $item, TRUE);
@@ -135,14 +135,14 @@ class tx_News2_Hooks_ItemsProcFunc {
 	 */
 	public function user_switchableControllerActions(array &$config, t3lib_TCEforms $parentObject) {
 			// remove the detail action from the listAction
-		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['listActionOnly'])) {
+		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['listActionOnly'])) {
 			$config['items'][0][1] = 'News->list;';
 		}
 
 			// add additional actions
-		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'])
-				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'])) {
-			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news2']['switchableControllerActions']['newItems'] as $key => $label) {
+		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
+				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])) {
+			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'] as $key => $label) {
 				array_push($config['items'], array($GLOBALS['LANG']->sL($label), $key, ''));
 			}
 		}
@@ -172,18 +172,18 @@ class tx_News2_Hooks_ItemsProcFunc {
 
 			// if any language is available
 		if (count($languages) > 0) {
-			$html = '<select name="data[news2overlay]">
+			$html = '<select name="data[newsoverlay]">
 						<option value="0">' . $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.default_value', TRUE) . '</option>';
 
 			foreach ($languages as $language) {
-				$selected = ($GLOBALS['BE_USER']->uc['news2overlay'] == $language['uid']) ? ' selected="selected" ' : '';
+				$selected = ($GLOBALS['BE_USER']->uc['newsoverlay'] == $language['uid']) ? ' selected="selected" ' : '';
 				$html .= '<option ' . $selected . 'value="' . $language['uid'] . '">' . htmlspecialchars($language['title']) . '</option>';
 			}
 
 			$html .= '</select>';
 		} else {
 			$html .= $GLOBALS['LANG']->sL(
-						'LLL:EXT:news2/Resources/Private/Language/locallang_be.xml:usersettings.no-languages-available', TRUE
+						'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:usersettings.no-languages-available', TRUE
 					);
 		}
 
@@ -192,8 +192,8 @@ class tx_News2_Hooks_ItemsProcFunc {
 
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/ItemsProcFunc.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news2/Classes/Hooks/ItemsProcFunc.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/ItemsProcFunc.php']) {
+	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/ItemsProcFunc.php']);
 }
 
 ?>

@@ -35,10 +35,10 @@
  * This is a test
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @see http://de.php.net/manual/de/function.strip-tags.php
  */
-class Tx_News2_ViewHelpers_Format_StriptagsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Format_StriptagsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 	protected $escapingInterceptorEnabled = FALSE;
 
 	/**

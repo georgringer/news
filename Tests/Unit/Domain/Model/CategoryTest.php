@@ -26,12 +26,12 @@
  * Tests for domains model News
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 	/**
-	 * @var Tx_News2_Domain_Model_Category
+	 * @var Tx_News_Domain_Model_Category
 	 */
 	protected $categoryDomainModelInstance;
 
@@ -41,7 +41,7 @@ class Tx_News2_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Uni
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->categoryDomainModelInstance = $this->objectManager->get('Tx_News2_Domain_Model_Category');
+		$this->categoryDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_Category');
 	}
 
 	/**

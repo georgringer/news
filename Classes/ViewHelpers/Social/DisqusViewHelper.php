@@ -32,21 +32,21 @@
  * <n:social.disqus newsItem="{newsItem}" shortName="derfilm" link="{n:link(newsItem:newsItem,settings:settings,linkOnly:1)}" />
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  */
-class Tx_News2_ViewHelpers_Social_DisqusViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Social_DisqusViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	protected $escapingInterceptorEnabled = FALSE;
 
 	/**
 	 * Render disqus thread
 	 *
-	 * @param Tx_News2_Domain_Model_News $newsItem news item
+	 * @param Tx_News_Domain_Model_News $newsItem news item
 	 * @param string $shortName shortname
 	 * @param string $link link
 	 * @return string
 	 */
-	public function render(Tx_News2_Domain_Model_News $newsItem, $shortName, $link) {
+	public function render(Tx_News_Domain_Model_News $newsItem, $shortName, $link) {
 		$code = '<script type="text/javascript">
 					var disqus_shortname = "' . htmlspecialchars($shortName) . '";
 					var disqus_identifier = "news_' . $newsItem->getUid() . '";

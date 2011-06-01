@@ -23,23 +23,23 @@
 ***************************************************************/
 
 /**
- * Testcase for the Tx_News2_Controller_NewsController class.
+ * Testcase for the Tx_News_Controller_NewsController class.
  *
  * @package TYPO3
- * @subpackage tx_news2
+ * @subpackage tx_news
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Georg Ringer <mail@ringerge.org>
  */
-class Tx_News2_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
+class Tx_News_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
 
 	/**
-	 * @var Tx_News2_Controller_NewsController
+	 * @var Tx_News_Controller_NewsController
 	 */
 	private $fixture = NULL;
 
 	/**
-	 * @var Tx_News2_Domain_Repository_NewsRepository
+	 * @var Tx_News_Domain_Repository_NewsRepository
 	 */
 	private $newsRepository = NULL;
 
@@ -49,10 +49,10 @@ class Tx_News2_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
 	 * @return void
 	 */
 	public function setUp() {
-		$this->fixture = new Tx_News2_Controller_NewsController();
+		$this->fixture = new Tx_News_Controller_NewsController();
 
 		$this->newsRepository = $this->getMock(
-			'Tx_News2_Domain_Repository_NewsRepository', array(), array(), '', FALSE
+			'Tx_News_Domain_Repository_NewsRepository', array(), array(), '', FALSE
 		);
 		$this->fixture->injectNewsRepository($this->newsRepository);
 	}
@@ -73,7 +73,7 @@ class Tx_News2_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
 	 * @return void
 	 */
 	public function listActionFindsDemandedNewsByDemandFromSettings() {
-		$demand = clone new Tx_News2_Domain_Model_NewsDemand();
+		$demand = clone new Tx_News_Domain_Model_NewsDemand();
 		$settings = array('list' => 'foo');
 
 		$configurationManager = $this->getMock(
@@ -83,7 +83,7 @@ class Tx_News2_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
 			->will($this->returnValue($settings));
 
 		$fixture = $this->getMock(
-			'Tx_News2_Controller_NewsController',
+			'Tx_News_Controller_NewsController',
 			array('createDemandObjectFromSettings')
 		);
 		$fixture->injectNewsRepository($this->newsRepository);
