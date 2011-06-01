@@ -45,7 +45,6 @@ class tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiv
 	 * @return mixed array of rows or FALSE if nothing found
 	 */
 	public function queryTable(&$params, $recursionCounter = 0) {
-//		$field = t3lib_div::_GP('field');
 		$uid = t3lib_div::_GP('uid');
 //		$pageId = t3lib_div::_GP('pid');
 
@@ -54,30 +53,20 @@ class tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiv
 		if (count($records) === 0) {
 			$text = htmlspecialchars($params['value']);
 $js = '
-
 var value=\'' . $text . '\';
 
 Ext.Ajax.request({
 	url : \'ajax.php\' ,
-	params : { ajaxID : \'News::createTag\', item:value,newsid:' . $uid . ' },
-	method: \'POST\',
+	params : { ajaxID : \'News::createTag\', item:value,newsid:\'' . $uid . '\' },
 	success: function ( result, request ) {
 		var arr = result.responseText.split(\'-\');
-		var formEl = \'data[tx_news_domain_model_news][' . $uid . '][tags]\';
-		var label = arr[1];
-		var ins_table = \'tx_news_domain_model_tag\';
-		var ins_uid = arr[0];
-		var rec_table = \'tx_news_domain_model_news\';
-		var rec_uid = ' . $uid . ';
-		var rec_field = \'tags\';
-		setFormValueFromBrowseWin(formEl, ins_table +  \'_\' + ins_uid, label);
-		TBE_EDITOR.fieldChanged(rec_table, rec_uid, rec_field, formEl);
+		setFormValueFromBrowseWin(arr[5], arr[2] +  \'_\' + arr[0], arr[1]);
+		TBE_EDITOR.fieldChanged(arr[3], arr[6], arr[4], arr[5]);
 	},
 	failure: function ( result, request) {
 		Ext.MessageBox.alert(\'Failed\', result.responseText);
 	}
 });
-
 ';
 
 $js = trim(str_replace('"', '\'', $js));
