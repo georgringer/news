@@ -30,7 +30,7 @@
  * @package	TYPO3
  * @subpackage	tx_news
  */
-class tx_News_Hooks_Labels {
+class Tx_News_Hooks_Labels {
 
 	/**
 	 * Labels of a news record

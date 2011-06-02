@@ -464,7 +464,7 @@ $TCA['tx_news_domain_model_news'] = array(
 					'suggest' => array(
 						'type' => 'suggest',
 						'default' => array(
-								'receiverClass' => 'tx_News_Hooks_SuggestReceiver'
+								'receiverClass' => 'Tx_News_Hooks_SuggestReceiver'
 						),
 					),
 //					'add' => array(

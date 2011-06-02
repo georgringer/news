@@ -24,7 +24,6 @@ $EM_CONF[$_EXTKEY] = array(
 	'state' => 'beta',
 	'internal' => '',
 	'uploadfolder' => 1,
-	'createDirs' => 'uploads/tx_news',
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
@@ -32,6 +31,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'version' => '0.0.0',
 	'constraints' => array(
 		'depends' => array(
+			'typo3' => '4.5.3',
 			'extbase' => '',
 			'fluid' => '',
 		),

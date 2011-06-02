@@ -33,7 +33,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		'label'     => 'title',
 		'label_alt' => 'categories',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'tx_News_Hooks_Labels->getUserLabelNews',
+		'label_userFunc' => 'Tx_News_Hooks_Labels->getUserLabelNews',
 		'prependAtCopy' => $configurationArray['prependAtCopy'] ? 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy' : '',
 		'hideAtCopy' => TRUE,
 		'tstamp'    => 'tstamp',
@@ -75,7 +75,7 @@ $TCA['tx_news_domain_model_category'] = array(
 		'label'     => 'title',
 		'label_alt' => 'parentcategory,sys_language_uid',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'tx_News_Hooks_Labels->getUserLabelCategory',
+		'label_userFunc' => 'Tx_News_Hooks_Labels->getUserLabelCategory',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -106,7 +106,7 @@ $TCA['tx_news_domain_model_media'] = array(
 		'label'     => 'caption',
 		'label_alt' => 'type, showinpreview',
 		'label_alt_force' => 1,
-		'label_userFunc' => 'tx_News_Hooks_Labels->getUserLabelMedia',
+		'label_userFunc' => 'Tx_News_Hooks_Labels->getUserLabelMedia',
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
@@ -280,7 +280,7 @@ if (!empty($configurationArray['pageModuleFieldsCategory'])) {
 $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = array(
 	'label'			=> 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:usersettings.overlay',
 	'type'			=> 'select',
-	'itemsProcFunc'	=> 'tx_News_Hooks_ItemsProcFunc->user_categoryOverlay',
+	'itemsProcFunc'	=> 'Tx_News_Hooks_ItemsProcFunc->user_categoryOverlay',
 );
 $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 	--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pi1_title,newsoverlay';
@@ -324,7 +324,7 @@ if (TYPO3_MODE == 'BE' && $configurationArray['showImporter'] == 1) {
  	Ajax call to save tags
 =========================================================================== */
 if (TYPO3_MODE == 'BE') {
-	$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = 'typo3conf/ext/news/Classes/Hooks/SuggestReceiverCall.php:tx_News_Hooks_SuggestReceiverCall->createTag';
+	$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = 'typo3conf/ext/news/Classes/Hooks/SuggestReceiverCall.php:Tx_News_Hooks_SuggestReceiverCall->createTag';
 }
 
 /* ===========================================================================

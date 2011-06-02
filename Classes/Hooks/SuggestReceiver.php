@@ -30,7 +30,7 @@
  * @package	TYPO3
  * @subpackage	tx_news
  */
-class tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiver{
+class Tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiver{
 
 	/**
 	 * Queries a table for records and completely processes them

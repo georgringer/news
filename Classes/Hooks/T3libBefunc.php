@@ -29,7 +29,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class tx_News_Hooks_T3libBefunc {
+class Tx_News_Hooks_T3libBefunc {
 
 	/**
 	 * Hook function of t3lib_befunc
