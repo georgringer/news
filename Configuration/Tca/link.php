@@ -120,15 +120,15 @@ $TCA['tx_news_domain_model_link'] = array(
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'uri;;1;;,title;;2,'
+			'showitem' => 'uri;;palettteCore,title;;palettteDescription,'
 		)
 	),
 	'palettes' => array(
-		'1' => array(
-			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, type, hidden',
+		'palettteCore' => array(
+			'showitem' => 'hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),
-		'2' => array(
+		'palettteDescription' => array(
 			'showitem' => 'description',
 			'canNotCollapse' => FALSE
 		)

@@ -509,11 +509,11 @@ $TCA['tx_news_domain_model_news'] = array(
 			// default news
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,
+					title;;paletteCore,;;;;2-2-2, teaser;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
 					bodytext;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css],content_elements,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
-					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,
@@ -522,10 +522,10 @@ $TCA['tx_news_domain_model_news'] = array(
 			// internal url
 		'1' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,internalurl,
+					title;;paletteCore,;;;;2-2-2, teaser;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,internalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
-					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,
@@ -534,10 +534,10 @@ $TCA['tx_news_domain_model_news'] = array(
 			// external url
 		'2' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;3,;;;;2-2-2, teaser;;;;3-3-3,author;;2,externalurl,
+					title;;paletteCore,;;;;2-2-2, teaser;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,externalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
-					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,
@@ -545,20 +545,19 @@ $TCA['tx_news_domain_model_news'] = array(
 		),
 	),
 	'palettes' => array(
-		'1' => array(
-			'showitem' => 'endtime, fe_group,',
+		'paletteAuthor' => array(
+			'showitem' => 'author_email,',
 			'canNotCollapse' => TRUE
 		),
-		'2' => array(
-			'showitem' => 'author_email,
-							--linebreak--, datetime, archive,',
+		'paletteArchive' => array(
+			'showitem' => 'archive,',
 			'canNotCollapse' => TRUE
 		),
-		'3' => array(
+		'paletteCore' => array(
 			'showitem' => 'istopnews, type, sys_language_uid, hidden,',
 			'canNotCollapse' => FALSE
 		),
-		'access' => array(
+		'paletteAccess' => array(
 			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel,
 					endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel,
 					--linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel,

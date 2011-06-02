@@ -59,16 +59,15 @@ $TCA['tx_news_domain_model_tag'] = array(
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'title;;1;;'
+			'showitem' => 'title;;palletteCore,'
 		)
 	),
 	'palettes' => array(
-		'1' => array(
-			'showitem' => 'hidden',
+		'palletteCore' => array(
+			'showitem' => 'hidden,',
 			'canNotCollapse' => TRUE
 		),
 	)
 );
-
 
 ?>

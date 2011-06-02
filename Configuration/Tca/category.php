@@ -7,7 +7,6 @@ if (!defined('TYPO3_MODE')) {
 	// extension manager configuration
 $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
 
-
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 $TCA['tx_news_domain_model_category'] = array(
@@ -251,20 +250,19 @@ $TCA['tx_news_domain_model_category'] = array(
 	'types' => array(
 		0 => array(
 			'showitem' =>
-				'title;;1, parentcategory, ;;;;3-3-3,
+				'title;;paletteCore, parentcategory, ;;;;3-3-3,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,shortcut,
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
-					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;access,
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,
-'
-		)
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
+		),
 	),
 	'palettes' => array(
-		'1' => array(
-			'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,hidden,',
+		'paletteCore' => array(
+			'showitem' => 'hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE,
 		),
-		'access' => array(
+		'paletteAccess' => array(
 			'showitem' => 'starttime;LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel, endtime;LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel,
 					--linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel',
 			'canNotCollapse' => TRUE,
