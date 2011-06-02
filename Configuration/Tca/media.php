@@ -229,26 +229,26 @@ $TCA['tx_news_domain_model_media'] = array(
 	),
 	'types' => array(
 			// Image
-		'0' => array('showitem' => 'type;;2,image,caption;;3'),
+		'0' => array('showitem' => 'type;;palettteCore,image;;paletteWidthHeight,caption;;paletteTitle,'),
 			// Multimedia (Video & Audio)
-		'1' => array('showitem' => 'type;;2,multimedia,caption;;3'),
+		'1' => array('showitem' => 'type;;palettteCore,multimedia,caption,'),
 			// HTML
-		'2' => array('showitem' => 'type;;2,html,caption;;3'),
+		'2' => array('showitem' => 'type;;palettteCore,html,caption,'),
 			// DAM
-		'3' => array('showitem' => 'type;;2,dam,caption;;3')
+		'3' => array('showitem' => 'type;;palettteCore,dam,caption;;paletteTitle,')
 	),
 	'palettes' => array(
-		'1' => array(
-			'showitem' => 'width,height',
+		'paletteWidthHeight' => array(
+			'showitem' => 'width,height,',
 			'canNotCollapse' => TRUE
 		),
-		'2' => array(
-			'showitem' => 'showinpreview, hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource',
+		'palettteCore' => array(
+			'showitem' => 'showinpreview, hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),
-		'3' => array(
-			'showitem' => 'title,alt,--linebreak--,',
-			'canNotCollapse' => TRUE
+		'paletteTitle' => array(
+			'showitem' => 'title,alt,',
+			'canNotCollapse' => FALSE
 		),
 	)
 );

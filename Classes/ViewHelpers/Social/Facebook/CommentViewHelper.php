@@ -66,7 +66,7 @@ class Tx_News_ViewHelpers_Facebook_CommentViewHelper extends Tx_Fluid_Core_ViewH
 		$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
 
 		$code = '<div id="fb-root"></div>
-					<script src="http://connect.facebook.net/' . $locale' . /all.js#appId=' . htmlspecialchars($appId) . '&amp;xfbml=1"></script>';
+					<script src="http://connect.facebook.net/' . $locale . '/all.js#appId=' . htmlspecialchars($appId) . '&amp;xfbml=1"></script>';
 		$code .= $this->tag->render();
 
 		return $code;
