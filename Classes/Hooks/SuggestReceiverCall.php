@@ -32,6 +32,10 @@
  */
 class Tx_News_Hooks_SuggestReceiverCall {
 
+	const tagTable = 'tx_news_domain_model_tag';
+	const newsTable = 'tx_news_domain_model_news';
+	const errorLangPath = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:tag_suggest_';
+
 	/**
 	 * Create a tag
 	 *
@@ -41,68 +45,87 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	 */
 	public function createTag(array $params, TYPO3AJAX $ajaxObj) {
 		$request = t3lib_div::_POST();
-		$newTagId = 0;
 
 		try {
 				// check if a tag is submitted
 			if (!isset($request['item']) || empty($request['item'])) {
-				throw new Exception('No tag submitted.');
+				throw new Exception('error_no-tag');
 			}
 
 			$newsUid = $request['newsid'];
-			if ((int)$newsUid === 0 && (strlen($request['newsid']) == 16 && !t3lib_div::isFirstPartOfStr($request['newsid'], 'NEW'))) {
-				throw new Exception('No news id given');
+			if ((int)$newsUid === 0 && (strlen($newsUid) == 16 && !t3lib_div::isFirstPartOfStr($newsUid, 'NEW'))) {
+				throw new Exception('error_no-newsid');
 			}
 
-				// get pid
-			$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
-			if (!is_array($configurationArray) || !isset($configurationArray['tagPid'])) {
-				throw new Exception('No pid for the tag record could be find by reading settings of Extension Manager!');
-			}
-
-			$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
-						'*',
-						'tx_news_domain_model_tag',
-						'deleted=0 AND pid=' . (int)$configurationArray['tagPid'] . ' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], 'tx_news_domain_model_tag')
-						);
-			if(isset($record['uid'])) {
-				$newTagId = $record['uid'];
-			} else {
-				$tcemainData = array(
-					'tx_news_domain_model_tag' => array(
-						'NEW' => array(
-							'pid' => (int)$configurationArray['tagPid'],
-							'title' => $request['item']
-						)
-					)
-				);
-				$tce = t3lib_div::makeInstance('t3lib_TCEmain');
-				$tce->start($tcemainData, array());
-				$tce->process_datamap();
-
-				$newTagId = $tce->substNEWwithIDs['NEW'];
-			}
-
-
-			if ($newTagId == 0) {
-				throw new Exception('No new tag created.');
-			}
+				// get tag uid
+			$newTagId = $this->getTagUid($request);
 
 			$ajaxObj->setContentFormat('javascript');
 			$ajaxObj->setContent('');
 			$response = array(
 				$newTagId,
 				$request['item'],
-				'tx_news_domain_model_tag',
-				'tx_news_domain_model_news',
+				self::tagTable,
+				self::newsTable,
 				'tags',
 				'data[tx_news_domain_model_news][' . $newsUid . '][tags]',
 				$newsUid
 			);
 			$ajaxObj->setJavascriptCallbackWrap(implode('-', $response));
 		} catch (Exception $e) {
-			$ajaxObj->setError($e->getMessage());
+			$errorMsg = $GLOBALS['LANG']->sL(self::errorLangPath . $e->getMessage());
+			$ajaxObj->setError($errorMsg);
 		}
+	}
+
+	/**
+	 * Get the uid of the tag, either bei inserting as new or get existing
+	 *
+	 * @param array $request ajax request
+	 * @return integer
+	 */
+	protected function getTagUid(array $request) {
+		$tagUid = 0;
+
+			// get configuration from EM
+		$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
+		if (!is_array($configurationArray) || !isset($configurationArray['tagPid'])) {
+			throw new Exception('error_no-pid-found');
+		}
+
+		$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
+					'*',
+					self::tagTable,
+					'deleted=0 AND pid=' . (int)$configurationArray['tagPid'] .
+						' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], self::tagTable)
+					);
+		if(isset($record['uid'])) {
+			$tagUid = $record['uid'];
+		} else {
+			$tcemainData = array(
+				self::tagTable => array(
+					'NEW' => array(
+						'pid' => (int)$configurationArray['tagPid'],
+						'title' => $request['item']
+					)
+				)
+			);
+
+			/**
+			 * @var t3lib_TCEmain
+			 */
+			$tce = t3lib_div::makeInstance('t3lib_TCEmain');
+			$tce->start($tcemainData, array());
+			$tce->process_datamap();
+
+			$tagUid = $tce->substNEWwithIDs['NEW'];
+		}
+
+		if ($tagUid == 0) {
+			throw new Exception('error_no-tag-created');
+		}
+
+		return $tagUid;
 	}
 
 }

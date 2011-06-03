@@ -102,6 +102,10 @@
 			<label index="start_import">Start import with %s record(s).</label>
 
 			<label index="tag_suggest">Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</label>
+			<label index="tag_suggest_error_no-tag">No tag submitted!</label>
+			<label index="tag_suggest_error_no-newsid">No news id given!</label>
+			<label index="tag_suggest_error_no-pid-found">No pid for the tag record could be find by reading settings of Extension Manager!</label>
+			<label index="tag_suggest_error_no-tag-created">No new tag created!</label>
 		</languageKey>
 
 		<languageKey index="es" type="array">
