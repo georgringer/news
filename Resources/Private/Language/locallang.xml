@@ -97,5 +97,104 @@
 
 			<label index="list_nonewsfound">Keine Artikel vorhanden.</label>
 		</languageKey>
+
+		<languageKey index="fi" type="array">
+
+			<label index="paginate_overall">Sivu %s / %s.</label>
+			<label index="paginate_next">Seuraava</label>
+			<label index="paginate_previous">Edellinen</label>
+
+			<label index="entry">Tieto</label>
+			<label index="entries">Tiedot</label>
+
+
+			<label index="search-noresult">Ei uutisia.</label>
+			<label index="list_nonewsfound">Ei artikkeleita.</label>
+		</languageKey>
+
+			<label index="paginate_overall">Página %s de %s.</label>
+			<label index="paginate_next">Seguinte</label>
+			<label index="paginate_previous">Anterior</label>
+
+			<label index="entry">Entrada</label>
+			<label index="entries">Entradas</label>
+
+
+			<label index="search-noresult">Não foram encontradas notícias.</label>
+			<label index="list_nonewsfound">Não há artigos disponíveis.</label>
+		</languageKey>
+		<languageKey index="pl" type="array">
+
+			<label index="paginate_overall">Strona %s z %s.</label>
+			<label index="paginate_next">Następna</label>
+			<label index="paginate_previous">Poprzednia</label>
+
+			<label index="entry">Wpis</label>
+			<label index="entries">Wpisy</label>
+
+			<label index="search-noresult">Nie znaleziono żadnych wiadomości.</label>
+			<label index="list_nonewsfound">Nie znaleziono żadnych artykułów.</label>
+		</languageKey>
+
+		<languageKey index="it" type="array">
+
+			<label index="paginate_overall">pagina %s di %s.</label>
+			<label index="paginate_next">successiva</label>
+			<label index="paginate_previous">precedente</label>
+
+			<label index="entry">voce</label>
+			<label index="entries">voci</label>
+
+			<label index="search-noresult">Non è stata trovata nessuna news.</label>
+			<label index="list_nonewsfound">Non sono presenti articoli.</label>
+		</languageKey>
+		<languageKey index="fr" type="array">
+
+			<label index="paginate_overall">Page %s sur %s.</label>
+			<label index="paginate_next">Suivante</label>
+			<label index="paginate_previous">Précédente</label>
+
+			<label index="entry">Entrée</label>
+			<label index="entries">Entrées</label>
+
+			<label index="search-noresult">Aucune actualité trouvée.</label>
+			<label index="list_nonewsfound">Aucun article existant.</label>
+		</languageKey>
+		<languageKey index="nl" type="array">
+
+			<label index="paginate_overall">Pagina %s van %s.</label>
+			<label index="paginate_next">Volgende</label>
+			<label index="paginate_previous">Vorige</label>
+
+			<label index="entry">Vermelding</label>
+			<label index="entries">Vermeldingen</label>
+
+			<label index="search-noresult">Geen nieuws gevonden.</label>
+			<label index="list_nonewsfound">Geen artikels aanwezig.</label>
+		</languageKey>
+		<languageKey index="cs" type="array">
+
+			<label index="paginate_overall">Strana %s z %s.</label>
+			<label index="paginate_next">Další</label>
+			<label index="paginate_previous">Následující</label>
+
+			<label index="entry">Záznam</label>
+			<label index="entries">Záznamy</label>
+
+			<label index="search-noresult">Nebyly nalezeny žádné novinky.</label>
+			<label index="list_nonewsfound">Žádné články k dipozici.</label>
+		</languageKey>
+		<languageKey index="el" type="array">
+
+			<label index="paginate_overall">Σελίδα %s από %s.</label>
+			<label index="paginate_next">Επόμενο</label>
+			<label index="paginate_previous">Προηγούμενο</label>
+
+			<label index="entry">Καταχώρηση</label>
+			<label index="entries">Καταχωρήσεις</label>
+
+			<label index="search-noresult">Δεν βρέθηκαν νέα.</label>
+			<label index="list_nonewsfound">Δεν υπάρχουν άρθρα.</label>
+		</languageKey>
 	</data>
 </T3locallang>
