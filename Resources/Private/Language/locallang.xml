@@ -112,6 +112,7 @@
 			<label index="list_nonewsfound">Ei artikkeleita.</label>
 		</languageKey>
 
+		<languageKey index="pt" type="array">
 			<label index="paginate_overall">Página %s de %s.</label>
 			<label index="paginate_next">Seguinte</label>
 			<label index="paginate_previous">Anterior</label>

@@ -172,7 +172,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 
 			// if any language is available
 		if (count($languages) > 0) {
-			$html = '<select name="data[newsoverlay]">
+			$html = '<select name="data[newsoverlay]" id="field_newsoverlay">
 						<option value="0">' . $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.default_value', TRUE) . '</option>';
 
 			foreach ($languages as $language) {
