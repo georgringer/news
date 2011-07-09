@@ -35,16 +35,19 @@ class Tx_News_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewHelper
 	 *
 	 * @param mixed $date either a DateTime object or a string that is accepted by DateTime constructor
 	 * @param string $format Format String which is taken to format the Date/Time
+	 * @param bool $currentDate if true, the current date is used
 	 * @return string Formatted date
 	 * @author Christopher Hlubek <hlubek@networkteam.com>
 	 * @author Bastian Waidelich <bastian@typo3.org>
 	 * @api
 	 */
-	public function render($date = NULL, $format = '%Y-%m-%d') {
+	public function render($date = NULL, $format = '%Y-%m-%d', $currentDate = FALSE) {
 		if ($date === NULL) {
 			$date = $this->renderChildren();
-			if ($date === NULL) {
+			if ($date === NULL && !$currentDate) {
 				return '';
+			} else {
+				return strftime($format, $GLOBALS['EXEC_TIME']);
 			}
 		}
 		if (!$date instanceof DateTime) {
