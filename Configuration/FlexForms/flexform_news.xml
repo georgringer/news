@@ -258,12 +258,6 @@
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
 								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<maxItemsInResultList>20</maxItemsInResultList>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.singleNews>
@@ -361,12 +355,6 @@
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
 								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<maxItemsInResultList>20</maxItemsInResultList>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.detailPid>
@@ -383,12 +371,6 @@
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
 								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<maxItemsInResultList>20</maxItemsInResultList>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.listPid>
@@ -405,12 +387,6 @@
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
 								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<maxItemsInResultList>20</maxItemsInResultList>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.backPid>
@@ -521,14 +497,6 @@
 									<numIndex index="0" type="array">
 										<numIndex index="0"></numIndex>
 										<numIndex index="1"></numIndex>
-									</numIndex>
-									<numIndex index="1">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.1</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-									<numIndex index="2">
-										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.2</numIndex>
-										<numIndex index="1">2</numIndex>
 									</numIndex>
 								</items>
 							</config>
