@@ -98,6 +98,17 @@ plugin.tx_news {
 				pagesBefore = 3
 				pagesAfter = 3
 			}
+			
+			rss {
+				channel {
+					title = {$plugin.tx_news.rss.channel.title}
+					description = {$plugin.tx_news.rss.channel.description}
+					language = {$plugin.tx_news.rss.channel.language}
+					copyright = {$plugin.tx_news.rss.channel.copyright}
+					generator = {$plugin.tx_news.rss.channel.generator}
+					link = {$plugin.tx_news.rss.channel.link}
+				}
+			}
 		}
 
 		# --------------
