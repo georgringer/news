@@ -61,10 +61,10 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbase
 
 		$resultQuery = $newsRepository->_call('createCategoryConstraint', $query, array(1, 2), $junctionName);
 
-		$this->assertType($outerConstraintType, $resultQuery);
+		$this->assertInstanceOf($outerConstraintType, $resultQuery);
 
 		if ($innerConstraintType !== NULL) {
-			$this->assertType($innerConstraintType, $resultQuery->getConstraint());
+			$this->assertInstanceOf($innerConstraintType, $resultQuery->getConstraint());
 		}
 	}
 
