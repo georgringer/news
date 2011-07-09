@@ -74,12 +74,12 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository extends Tx_E
 
 			// @todo consider moving this to a seperate function as well
 		if ($demand->getLimit() != NULL) {
-			$query->setLimit($demand->getLimit());
+			$query->setLimit((int) $demand->getLimit());
 		}
 
 			// @todo consider moving this to a seperate function as well
 		if ($demand->getOffset() != NULL) {
-			$query->setOffset($demand->getOffset());
+			$query->setOffset((int) $demand->getOffset());
 		}
 
 		return $query->execute();
