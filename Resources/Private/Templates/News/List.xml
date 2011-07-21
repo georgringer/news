@@ -23,7 +23,7 @@
 							<n:link newsItem="{newsItem}" settings="{settings}" linkOnly="TRUE" hsc="TRUE"></n:link>
 						</link>
 						<description>
-							<n:format.striptags>{newsItem.teaser}</n:format.striptags>
+							<n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc>
 						</description>
 					</item>
 				</f:for>
