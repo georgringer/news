@@ -52,7 +52,7 @@ class Tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiv
 
 		if (count($records) === 0) {
 			$text = htmlspecialchars($params['value']);
-$js = '
+$javaScriptCode = '
 var value=\'' . $text . '\';
 
 Ext.Ajax.request({
@@ -69,8 +69,8 @@ Ext.Ajax.request({
 });
 ';
 
-$js = trim(str_replace('"', '\'', $js));
-$link = implode(' ', explode(chr(10), $js));
+$javaScriptCode = trim(str_replace('"', '\'', $javaScriptCode));
+$link = implode(' ', explode(chr(10), $javaScriptCode));
 
 			$records['tx_news_domain_model_tag_' . strlen($text)] = array (
 				'text' => '<div onclick="' . $link . '">

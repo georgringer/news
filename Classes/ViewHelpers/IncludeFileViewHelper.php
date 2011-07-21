@@ -47,7 +47,7 @@ class Tx_News_ViewHelpers_IncludeFileViewHelper extends Tx_Fluid_Core_ViewHelper
 
 				// CSS
 			} elseif (strtolower(substr($path, -4)) === '.css') {
-				$GLOBALS['TSFE']->getPageRenderer()->addCssFile($path, $rel = 'stylesheet', $media = 'all', $title = '', $compress);
+				$GLOBALS['TSFE']->getPageRenderer()->addCssFile($path, 'stylesheet', 'all', '', $compress);
 			}
 		}
 	}

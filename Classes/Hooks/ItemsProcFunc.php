@@ -40,11 +40,11 @@ class Tx_News_Hooks_ItemsProcFunc {
 	public function user_MediaType(array &$config, t3lib_TCEforms $parentObject) {
 			// if dam is loaded
 		if (t3lib_extMgm::isLoaded('dam')) {
-			$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
+			$locallangFile = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 				// additional entry
 			$damEntry = array(
-				$GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.type.I.3'),
+				$GLOBALS['LANG']->sL($locallangFile . 'tx_news_domain_model_media.type.I.3'),
 				'3',
 				t3lib_extMgm::extRelPath('news').'Resources/Public/Icons/media_type_dam.gif'
 			);

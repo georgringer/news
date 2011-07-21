@@ -35,17 +35,17 @@ class Tx_News_Hooks_Tcemain{
 	 *
 	 * @param string $status status
 	 * @param string $table tablename
-	 * @param integer $id id of the record
+	 * @param integer $recordUid id of the record
 	 * @param array $fieldArray fieldArray
 	 * @param t3lib_TCEmain $parentObject parent Object
 	 * @return void
 	 */
-	public function processDatamap_afterDatabaseOperations($status, $table, $id, array $fieldArray, t3lib_TCEmain $parentObject) {
+	public function processDatamap_afterDatabaseOperations($status, $table, $recordUid, array $fieldArray, t3lib_TCEmain $parentObject) {
 		if ($table == 'tx_news_domain_model_news') {
 
 				// direct preview
-			if (!is_numeric($id)) {
-				$id = $parentObject->substNEWwithIDs[$id];
+			if (!is_numeric($recordUid)) {
+				$recordUid = $parentObject->substNEWwithIDs[$recordUid];
 			}
 
 			if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fieldArray['type'] && !$GLOBALS['BE_USER']->workspace) {
@@ -55,7 +55,7 @@ class Tx_News_Hooks_Tcemain{
 				if ($pagesTsConfig['tx_news.']['singlePid']) {
 					$GLOBALS['_POST']['popViewId_addParams'] = ($fieldArray['sys_language_uid'] > 0 ?
 						'&L=' . $fieldArray['sys_language_uid'] : '') . '&no_cache=1 ' .
-						'&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=' . $id;
+						'&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=' . $recordUid;
 
 					$GLOBALS['_POST']['popViewId'] = $pagesTsConfig['tx_news.']['singlePid'];
 				}
