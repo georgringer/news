@@ -42,6 +42,7 @@ plugin.tx_news {
 		orderByRespectTopNews = 0
 
 		facebookLocale = en_US
+		googlePlusLocale = de
 
 		# Interface implemenations
 		interfaces {
