@@ -67,20 +67,16 @@
 	</f:if>
 
 	<!-- teaser text -->
-	<div class="teaser-text">
-		<f:if condition="{newsItem.teaser}">
+	<f:if condition="{newsItem.teaser}">
+		<div class="teaser-text">
 			<f:then>
-				<f:format.html>
-					<f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop>
-			</f:format.html>
+				<f:format.html><f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop></f:format.html>
 			</f:then>
 			<f:else>
-				<f:format.html>
-					<f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop>
-				</f:format.html>
+				<f:format.html><f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop></f:format.html>
 			</f:else>
-		</f:if>
-	</div>
+		</div>
+	</f:if>
 
 	<!-- footer information -->
 	<div class="footer" role="contentinfo">
