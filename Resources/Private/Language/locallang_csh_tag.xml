@@ -14,5 +14,12 @@
 			<label index="hidden.description">Hidden elements are never shown in the frontend.</label>
 			<label index="title.description">Title of the tag.</label>
 		</languageKey>
+		<languageKey index="dk" type="array">
+			<label index=".description">Nyheds-tag</label>
+			<label index=".details">Nyheder kan tagges med denne type tag</label>
+			<label index="_.seeAlso">Se også http://www.news.com/</label>
+			<label index="hidden.description">Skjulte elementer vises aldrig i frontend.</label>
+			<label index="title.description">Taggets titel.</label>
+		</languageKey>
 	</data>
 </T3locallang>

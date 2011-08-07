@@ -21,5 +21,19 @@
 			<label index="media.description">Select the image itself.</label>
 			<label index="html.description">Insert plain HTML.</label>
 		</languageKey>
+		<languageKey index="dk" type="array">
+			<label index=".description">Medie-element</label>
+			<label index=".details">Relation til andre medie-elementer</label>
+			<label index="_.seeAlso">Se også http://www.news.com/</label>
+			<label index="hidden.description">Skjulte elementer vises aldrig i frontend.</label>
+			<label index="caption.description">Billedtekst på medie-elementer.</label>
+			<label index="title.description">Yderligere information til "title" attribut.</label>
+			<label index="alt.description">Yderligere information til "alt" attribut.</label>
+			<label index="type.description">Medie-type. Denne kan (som standard) være: Images, Video &amp; Audio, Plain Html.</label>
+			<label index="showinpreview.description">Hvis aktiv vises dette medie-element kun i liste-visninger.</label>
+			<label index="video.description">Angiv URL til video- eller audio-resource. Dette kan enten være en relativ sti (fx fileadmin/video.flv) eller en absolut sti (fx til en youtube video).</label>
+			<label index="media.description">Vælg selve billedet.</label>
+			<label index="html.description">Indsæt standard HTML.</label>
+		</languageKey>
 	</data>
 </T3locallang>
