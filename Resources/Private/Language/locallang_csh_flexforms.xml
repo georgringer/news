@@ -48,5 +48,38 @@
 			<label index="settings.cropMaxCharacters.description">Define the length of the teaser in chars. The teaser is typically cropped in the list view.</label>
 			<label index="settings.templateLayout.description">Select a special layout for displaying news records.</label>
 		</languageKey>
+		<languageKey index="dk" type="array">
+			<!-- Tab General -->
+			<label index="switchableControllerActions.description">Angiv visningstype</label>
+			<label index="switchableControllerActions.details">Listevisning viser alle nyheder. Nyeste bruger en tidsbegrænsning, resten burde være indlysende</label>
+			<label index="settings.orderBy.description">Angiv sorterings-felt</label>
+			<label index="settings.orderDirection.description">Angiv sorterings-retning</label>
+			<label index="settings.dateField.description">Vælg hvilket felt der skal anvendes for at bygge dato-menuen.</label>
+			<label index="settings.categories.description">Vælg hvilke kategorier af nyheder der skal vises</label>
+			<label index="settings.categoryConjunction.description">Angiv hvordan de valgte kategorier skal behandles</label>
+			<label index="settings.categoryConjunction.details">"Ligemeget": Ingen kategoribegrænsninger sat. "Vis nyheder med valgte kategorier (OR)": Nyheds-elementer skal være relateret til mindst én af de valgte kategorier. "Vis valgte kategorier (AND)". Nyheds-elementer skal være relateret til alle valgte kategorier. "Vis ikke" er det modsatte af ovenstående.</label>
+			<label index="settings.archiveRestriction.description">Vælg mellem: 1) Vis alle nyheder, 2) Vis kun aktive nyheder, 3) Vis kun arkiverede nyheder. Arkiv-datoen er defineret i hvert nyheds-element. Hvis der ikke er angivet en dato kan nyheden ikke blive arkiveret.</label>
+			<label index="settings.timeRestriction.description">Angiv tidsbegrænsning. Denne kan enten være et heltal lig med sekunder, fx 86400 er lig med 1 dag (60 * 60 * 24) eller en tekst som "-4 days" eller "-3 hours". Forsatsen - er vigtig!</label>
+			<label index="settings.topNewsRestriction.description">En nyhed kan sættes som Top-nyhed. Denne indstiling kan derfor begrænse valg af nyheder til kun Top-nyheder eller ingen Top-nyheder.</label>
+			<label index="settings.singleNews.description">Vis den valgte nyhed.</label>
+			<label index="settings.previewHiddenRecords.description">Hvis angivet bliver skjulte nyheder også vist. Dette er nødvendigt hvis du vil forhåndsvise skjulte nyheder.</label>
+			<label index="settings.startingpoint.description">Angiv sider/sysfolders der indeholder nyheder</label>
+			<label index="settings.recursive.description">Angiv dybden af søgning i de angivne sider/sysfoldere.</label>
+
+			<!-- Tab Additional -->
+			<label index="settings.detailPid.description">Vælg siden hvor enkeltvisning skal ske.</label>
+			<label index="settings.backPid.description">Vælg siden brugeren skal returneres til, som regel liste-visningen.</label>
+			<label index="settings.listPid.description">Vælg siden hvor liste-visningen er indsat.</label>
+			<label index="settings.limit.description">Angiv maksimum antal nyheder der kan vises</label>
+			<label index="settings.offset.description">Start ved denne nyhed - en værdi på 3 betyder at de to første nyheder springes over.</label>
+			<label index="settings.topNewsFirst.description">Hvis aktiv: Uanset hvilken sortering der vælges, bliver Top-nyheder vist øverst.</label>
+			<label index="settings.disableOverrideDemand.description">Hvis aktiv: dette plugin reagerer ikke på forespørgsler via URL-parametre.</label>
+
+			<!-- Tab Template -->
+			<label index="settings.media.maxWidth.description">Maksimum bredde på medie-elementer (billeder, videoer, ...)</label>
+			<label index="settings.media.maxHeight.description">Maksimum højde på medie-elemnter (billeder, videoer, ...)</label>
+			<label index="settings.cropMaxCharacters.description">Angiv længde på teaser-teksten i antal tegn. Typisk beskæres teaser-teksten i listevisningen.</label>
+			<label index="settings.templateLayout.description">Vælg et særligt layout for nyheds-visning.</label>
+		</languageKey>
 	</data>
 </T3locallang>

@@ -59,6 +59,60 @@
 			<label index="tx_news_domain_model_tag">News Tag</label>
 			<label index="tx_news_domain_model_tag.title">Title</label>
 		</languageKey>
+		<languageKey index="dk" type="array">
+			<label index="tx_news_domain_model_news.tabs.relations">Relationer</label>
+			<label index="tx_news_domain_model_news">Nyhed</label>
+			<label index="tx_news_domain_model_news.teaser">Teaser</label>
+			<label index="tx_news_domain_model_news.datetime">Dato &amp; tid</label>
+			<label index="tx_news_domain_model_news.archive">Arkiv</label>
+			<label index="tx_news_domain_model_news.categories">Kategorier</label>
+			<label index="tx_news_domain_model_news.related">Relaterede nyheder</label>
+			<label index="tx_news_domain_model_news.related_files">Relaterede filer</label>
+			<label index="tx_news_domain_model_news.related_links">Relaterede links</label>
+			<label index="tx_news_domain_model_news.type.I.0">Nyhed</label>
+			<label index="tx_news_domain_model_news.type.I.1">Intern side</label>
+			<label index="tx_news_domain_model_news.type.I.2">Ekstern side</label>
+			<label index="tx_news_domain_model_news.media">Medie-element</label>
+			<label index="tx_news_domain_model_news.istopnews">Top-nyhed</label>
+			<label index="tx_news_domain_model_news.content_elements">Indholdselementer</label>
+			<label index="tx_news_domain_model_news.tags">Tags</label>
+			<label index="tx_news_domain_model_news.tags.add">Tilføj tag</label>
+			<label index="tx_news_domain_model_news.tags.list">Vis alle tags</label>
+
+			<label index="tx_news_domain_model_category">Nyhedskategori</label>
+			<label index="tx_news_domain_model_category.title">Titel</label>
+			<label index="tx_news_domain_model_category.description">Beskrivelse</label>
+			<label index="tx_news_domain_model_category.image">Billede</label>
+			<label index="tx_news_domain_model_category.parentcategory">Overordnet kategori</label>
+			<label index="tx_news_domain_model_category.single_pid">Enkeltvisnings-side for nyheder fra denne kategori</label>
+			<label index="tx_news_domain_model_category.shortcut">Nyhedskategori-genvej</label>
+
+			<label index="tx_news_domain_model_media">Medie-element til nyhed</label>
+			<label index="tx_news_domain_model_media.caption">Mærkat</label>
+			<label index="tx_news_domain_model_media.media">Medie</label>
+			<label index="tx_news_domain_model_media.type.I.0">Billede</label>
+			<label index="tx_news_domain_model_media.type.I.1">Video &amp; Audio</label>
+			<label index="tx_news_domain_model_media.type.I.2">HTML</label>
+			<label index="tx_news_domain_model_media.type.I.3">DAM element</label>
+			<label index="tx_news_domain_model_media.html">HTML</label>
+			<label index="tx_news_domain_model_media.multimedia">Video- / Audio-URL</label>
+			<label index="tx_news_domain_model_media.dam">DAM-element</label>
+			<label index="tx_news_domain_model_media.show">Vis</label>
+			<label index="tx_news_domain_model_media.showinpreview">Vis alle i forhåndsvisning</label>
+
+			<label index="tx_news_domain_model_file">Fil-element til nyhed</label>
+			<label index="tx_news_domain_model_file.title">Titel</label>
+			<label index="tx_news_domain_model_file.description">Beskrivelse</label>
+			<label index="tx_news_domain_model_file.file">Fil</label>
+
+			<label index="tx_news_domain_model_link">Link-element til nyhed</label>
+			<label index="tx_news_domain_model_link.title">Titel</label>
+			<label index="tx_news_domain_model_link.description">Beskrivelse</label>
+			<label index="tx_news_domain_model_link.uri">URL</label>
+
+			<label index="tx_news_domain_model_tag">Nyheds-tag</label>
+			<label index="tx_news_domain_model_tag.title">Titel</label>
+		</languageKey>
 
 		<languageKey index="es" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relaciones</label>

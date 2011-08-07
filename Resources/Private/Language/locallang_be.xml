@@ -108,6 +108,109 @@
 			<label index="tag_suggest_error_no-tag-created">No new tag created!</label>
 		</languageKey>
 
+		<languageKey index="dk" type="array">
+			<label index="pi1_title">Nyhedssystem</label>
+			<label index="pi1_plus_wiz_description">Alsidigt nyhedssystem</label>
+
+			<!-- Flexforms -->
+			<label index="flexforms_tab.settings">Indstillinger</label>
+			<label index="flexforms_tab.additional">Yderligere</label>
+			<label index="flexforms_tab.template">Skabelon</label>
+
+			<label index="flexforms_general.mode">Visnings-valg</label>
+			<label index="flexforms_general.mode.news_list">Liste-visning</label>
+			<label index="flexforms_general.mode.news_latest">Nyeste-visning</label>
+			<label index="flexforms_general.mode.news_detail">Detalje-visning</label>
+			<label index="flexforms_general.mode.news_searchform">Søgeformular</label>
+			<label index="flexforms_general.mode.news_searchresult">Søgeresultater</label>
+			<label index="flexforms_general.mode.news_datemenu">Datovalgs-menu</label>
+			<label index="flexforms_general.mode.category_list">Kategori-menu</label>
+			<label index="flexforms_general.mode.not_configured">Ingen visning valgt</label>
+			<label index="flexforms_general.archiveRestriction">Arkiv</label>
+			<label index="flexforms_general.archiveRestriction.active">Kun aktive (ikke-arkiverede)</label>
+			<label index="flexforms_general.archiveRestriction.archived">Arkiverede</label>
+			<label index="flexforms_general.orderBy">Sortér efter</label>
+			<label index="flexforms_general.orderBy.uid">Uid</label>
+			<label index="flexforms_general.orderBy.sorting">Manual sortering</label>
+			<label index="flexforms_general.orderBy.tstamp">Sidst opdateret</label>
+			<label index="flexforms_general.orderBy.crdate">Oprettet</label>
+			<label index="flexforms_general.orderBy.datetime">Angiven dato/tid</label>
+			<label index="flexforms_general.orderBy.title">Titel</label>
+			<label index="flexforms_general.orderDirection">Sorterings-retning</label>
+			<label index="flexforms_general.orderDirection.asc">Stigende</label>
+			<label index="flexforms_general.orderDirection.desc">Faldende</label>
+
+			<label index="flexforms_general.dateField">Dato-felt der skal anvendes</label>
+			<label index="flexforms_general.dateField.datetime">Angivet dato/tid</label>
+			<label index="flexforms_general.dateField.archive">Arkiverings-dato</label>
+
+			<label index="flexforms_general.categories">Kategorivalg</label>
+			<label index="flexforms_general.categoryConjunction">Kategori-metode</label>
+			<label index="flexforms_general.categoryConjunction.all">Ligemeget; vis alle</label>
+			<label index="flexforms_general.categoryConjunction.or">Vis nyheder med én eller flere af kateogierne (OR)</label>
+			<label index="flexforms_general.categoryConjunction.and">Vis nyheder med alle kategorierne (AND)</label>
+			<label index="flexforms_general.categoryConjunction.notand">Vis IKKE nyheder med én eller flere af valgte kateogier (AND)</label>
+			<label index="flexforms_general.categoryConjunction.notor">Vis IKKE nyheder med alle valgte kategorier (OR)</label>
+			<label index="flexforms_general.timeRestriction">Tidsbegrænsning</label>
+			<label index="flexforms_general.topNewsRestriction">Top-nyheder</label>
+			<label index="flexforms_general.topNewsRestriction.1">kun Top-nyheder</label>
+			<label index="flexforms_general.topNewsRestriction.2">undtagen Top-nyheder</label>
+			<label index="flexforms_general.singleNews">Vis en enkelt nyhed</label>
+			<label index="flexforms_general.previewHiddenRecords">Tillad forhåndsvisning af skjulte nyheder</label>
+
+			<label index="flexforms_template.mediaMaxWidth">Max bredde på medie-elementer</label>
+			<label index="flexforms_template.mediaMaxHeight">Max højde på medie-elementer</label>
+			<label index="flexforms_template.cropMaxCharacters">Teaser-længde, antal tegn</label>
+			<label index="flexforms_template.templateLayout">Skabelonens layout</label>
+
+			<label index="flexforms_additional.templateSwitch.1">1</label>
+			<label index="flexforms_additional.templateSwitch.2">2</label>
+			<label index="flexforms_additional.detailPid">Side til enkeltvisning</label>
+			<label index="flexforms_additional.backPid">Side der returneres til</label>
+			<label index="flexforms_additional.listPid">Side til liste-visning</label>
+			<label index="flexforms_additional.limit">Max antal nyheder vist</label>
+			<label index="flexforms_additional.offset">Start med nyhed nr.</label>
+			<label index="flexforms_additional.topNewsFirst">Sortér "Top-nyhheder" øverst</label>
+			<label index="flexforms_additional.disableOverrideDemand">Deaktivér forespørgsler</label>
+
+			<!-- Page Module Record list -->
+			<label index="pagemodule_simple">Simpel liste</label>
+			<label index="pagemodule_advanced">Avanceret liste</label>
+			<label index="pagemodule_complex">Fuld liste</label>
+
+			<!-- Extension Manager Configuration -->
+			<label index="extmng.pageModuleFieldsNews">Nyheds-felter vist i side-modulet:Angiv felterne der skal vises i side-modulet i følgende syntaks: label=fieldlist;label=fieldlist</label>
+			<label index="extmng.pageModuleFieldsCategory">Kategori-felter der skal vises i side-modulet:Angive kategori-felter der skal vises i side-modulet.</label>
+			<label index="extmng.hideMediaTable">Skjule medie-elementer:Skjul medie-elementer i listevisning - de bør kun redigeres IRRE.</label>
+			<label index="extmng.hideFileTable">Skjul fil-elementer:Skjul fil-elementer i listevisning - de bør kun redigeres IRRE.</label>
+			<label index="extmng.enableDam">Aktivér DAM:Aktivér DAM hvis du ønsker at anvende dette</label>
+			<label index="extmng.showImporter">Vis tt_news importør:Backend-modul til import af elementer fra tt_news;tt_news skal være installeret.</label>
+			<label index="extmng.prependAtCopy">Forsats ved kopiering:Læg teksten til titlen på kopierede elementer før de gemmes.</label>
+			<label index="extmng.categoryRestriction">Kategori-restriktion:Begræns de tilgængelige kategorier for nyheds-elementer.</label>
+			<label index="extmng.categoryRestriction.current_pid">Kategorier fra denne side</label>
+			<label index="extmng.categoryRestriction.storage_pid">Kategorier fra side som er defineret under side-indstillinger</label>
+			<label index="extmng.categoryRestriction.siteroot">Kategorier fra websitets rod-side</label>
+			<label index="extmng.categoryRestriction.none">Ingen restriktion</label>
+			<label index="extmng.manualSorting">Aktivér manuel sortering af elementer</label>
+			<label index="extmng.contentElementRelation">Anvend indholdselement-relation:Hvis sat, kan indholdselementer anvendes i nyheds-elementer.</label>
+			<label index="extmng.tagPid">Angiv side-uid på tag-elementer:Tags bliver samlet på én central side.</label>
+
+			<!-- BE User Settings -->
+			<label index="usersettings.overlay">Anvend dette overlay til kategorier i backend</label>
+			<label index="usersettings.no-languages-available">Der er ikke nogen tilgængelige sprog, så ingenting blev valgt.</label>
+
+			<!-- BE Module -->
+			<label index="ttnews_importer_title">Import af tt_news news elementer</label>
+			<label index="ttnewscategory_importer_title">Import af tt_news kategori-elementer</label>
+			<label index="start_import">Start import med %s element(er).</label>
+
+			<label index="tag_suggest">Tag'et "%s" kunne ikke findes. &lt;strong&gt;Klik her for at oprette det nu&lt;/strong&gt;</label>
+			<label index="tag_suggest_error_no-tag">Intet tag angivet!</label>
+			<label index="tag_suggest_error_no-newsid">Ingen nyhed angivet!</label>
+			<label index="tag_suggest_error_no-pid-found">Der kunne ikke findes et side-uid for tag-elementer via Extension Manager-indstillingerne!</label>
+			<label index="tag_suggest_error_no-tag-created">Nyt tag blev ikke oprettet!</label>
+		</languageKey>
+
 		<languageKey index="es" type="array">
 			<label index="pi1_title">Sistema de noticias</label>
 			<label index="pi1_plus_wiz_description">Sistema de noticias versátil</label>

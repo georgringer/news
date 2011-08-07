@@ -34,6 +34,33 @@
 			<label index="related_files.description">Define related files, e.g. PDFs</label>
 			<label index="related_links.description">Define related links to internal and external pages.</label>
 		</languageKey>
+		<languageKey index="default" type="array">
+			<label index=".description">Nyhed</label>
+			<label index=".details">Alsidigt nyhedssystem.</label>
+			<label index="_.seeAlso">Se også @todo</label>
+			<label index="sys_language_uid.description">Sprog for nyhed.</label>
+			<label index="starttime.description">Angiv en dato hvorpå nyheden skal vises.</label>
+			<label index="endtime.description">Angiv en dato hvorpå nyheden skal skjules.</label>
+			<label index="fe_group.description">Vælg en brugergruppe som må se nyheden.</label>
+			<label index="editlock.description">Hvis aktiv kan nyheden kun redigeres af administratorer.</label>
+			<label index="hidden.description">Skjulte nyheder vises aldrig i frontend.</label>
+			<label index="title.description">Nyhedens titel</label>
+			<label index="teaser.description">Vær opmærksom på at denne kan blive beskåret.</label>
+			<label index="type.description">Vælg typen, der enten kan være en normal nyhed, et link til en intern side eller et link til en ekstern side.</label>
+			<label index="istopnews.description">Top-nyheder kan få særlig behandling ift. layout, sortering, etc.</label>
+			<label index="author.description">Forfatter/skribent</label>
+			<label index="author_email.description">Forfatter/skribents email-adresse</label>
+			<label index="datetime.description">Nyhedens dato</label>
+			<label index="archive.description">Arkiv-dato. En dato er påkrævet her før nyheden kan betragtes som arkivet (når denne dato overskrides).</label>
+			<label index="bodytext.description">Hovedindhold i nyheden</label>
+			<label index="categories.description">Vælg hvilke kategorier der er relateret til denne nyhed.</label>
+			<label index="tags.description">Angiv hvilke tags der passer på nyheden.</label>
+			<label index="content_elements.description">Indholdselementer kan bruges til at skabe alsidige nyheds-elementer.</label>
+			<label index="keywords.description">Angiv nøgleord der skal bruges i SEO (søgemaskine-optimering).</label>
+			<label index="related.description">Vælg relaterede nyheder.</label>
+			<label index="related_files.description">Angiv relaterede filer, fx PDF-filer.</label>
+			<label index="related_links.description">Angiv relaterede links til interne og eksterne sider.</label>
+		</languageKey>
 
 		<languageKey index="de" type="array">
 			<label index=".description">News Datensatz</label>
