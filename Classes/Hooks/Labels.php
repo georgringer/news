@@ -101,7 +101,7 @@ class Tx_News_Hooks_Labels {
 			case 3:
 				$config = $GLOBALS['TCA'][$params['table']]['columns']['dam']['config'];
 				$damItems = tx_dam_db::getReferencedFiles($params['table'], $params['row']['uid'], $config['MM_match_fields'], $config['MM'], 'tx_dam.*');
-				if (is_array($damItems['rows']) {
+				if (is_array($damItems['rows'])) {
 					$item = array_shift($damItems['rows']);
 					$typeInfo = (!empty($item['title']) ? $item['title'] : $item['file_name']);
 				}
