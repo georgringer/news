@@ -99,7 +99,10 @@ class Tx_News_Hooks_Labels {
 				break;
 				// DAM
 			case 3:
-				$typeInfo .= $params['row']['dam'];
+				$config = $GLOBALS['TCA'][$params['table']]['columns']['dam']['config'];
+				$damItems = tx_dam_db::getReferencedFiles($params['table'], $params['row']['uid'], $config['MM_match_fields'], $config['MM'], 'tx_dam.*');
+				$item = array_shift($damItems['rows']);
+				$typeInfo = (!empty($item['title']) ? $item['title'] : $item['file_name']);
 				break;
 			default:
 				$typeInfo .= $params['row']['caption'];
