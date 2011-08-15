@@ -139,8 +139,8 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 		$itemsPerPage = (integer)$this->configuration['itemsPerPage'];
 		$query = $this->objects->getQuery();
 
-			// limit should only be used if needed
-		if ($itemsPerPage > $query->getLimit()) {
+			// limit should only be used if needed and pagination only if results > itemsPerPage
+		if ($itemsPerPage > $query->getLimit() && $itemsPerPage < $query->count()) {
 			$query->setLimit($itemsPerPage);
 		}
 
