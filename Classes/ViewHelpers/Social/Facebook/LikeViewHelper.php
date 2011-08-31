@@ -42,9 +42,9 @@
 class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var Tx_News_Service_SettingsService
 	 */
-	protected $objectManager;
+	protected $pluginSettingsService;
 
 	/**
 	 * @var	string
@@ -52,10 +52,10 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 	protected $tagName = 'fb:like';
 
 	/**
-	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 * @var Tx_News_Service_SettingsService $pluginSettingsService
 	 */
-	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
-		$this->objectManager = $objectManager;
+	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+		$this->pluginSettingsService = $pluginSettingsService;
 	}
 
 	/**
@@ -89,8 +89,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
 			if (empty($this->arguments['javaScript'])) {
-				$pluginSettingsService = $this->objectManager->get('Tx_News_Service_SettingsService');
-				$tsSettings = $pluginSettingsService->getSettings();
+				$tsSettings = $this->pluginSettingsService->getSettings();
 
 				$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
 

@@ -41,9 +41,22 @@
 class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
 	/**
+	 * @var Tx_News_Service_SettingsService
+	 */
+	protected $pluginSettingsService;
+
+	/**
 	 * @var	string
 	 */
 	protected $tagName = 'g:plusone';
+
+	/**
+	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 */
+	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+		$this->pluginSettingsService = $pluginSettingsService;
+	}
+
 
 	/**
 	 * Arguments initialization
@@ -71,9 +84,7 @@ class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends Tx_Fluid_Core_View
 			$jsCode = htmlspecialchars($jsCode);
 		}
 
-		$this->objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
-		$pluginSettingsService = $this->objectManager->get('Tx_News_Service_SettingsService');
-		$tsSettings = $pluginSettingsService->getSettings();
+		$tsSettings = $this->pluginSettingsService->getSettings();
 		$locale = (!empty($tsSettings['googlePlusLocale'])) ? '{lang:\'' . $tsSettings['googlePlusLocale'] . '\'}' : '';
 
 		$code = '<script type="text/javascript" src="' . $jsCode . '">' . $locale . '</script>';
