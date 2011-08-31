@@ -415,6 +415,16 @@
 						</TCEforms>
 					</settings.offset>
 
+					<!-- Hide pagination -->
+					<settings.hidePagination>
+						<TCEforms>
+							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_additional.hidePagination</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.hidePagination>
+
 					<!-- topNewsFirst -->
 					<settings.topNewsFirst>
 						<TCEforms>

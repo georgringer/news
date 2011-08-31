@@ -176,12 +176,16 @@ class Tx_News_Hooks_CmsLayout {
 
 		$offset = $this->getFieldFromFlexform($data, 'settings.offset', 'additional');
 		$limit = $this->getFieldFromFlexform($data, 'settings.limit', 'additional');
+		$hidePagionation = $this->getFieldFromFlexform($data, 'settings.hidePagination', 'additional');
 
 		if ($offset) {
 			$content .= $this->renderLine($GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.offset'), $offset);
 		}
 		if ($limit) {
 			$content .= $this->renderLine($GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.limit'), $limit);
+		}
+		if ($hidePagionation) {
+			$content .= $this->renderLine($GLOBALS['LANG']->sL($this->llPath . ':flexforms_additional.hidePagination'), NULL);
 		}
 
 		return $content;

@@ -9,11 +9,20 @@
 <f:if condition="{news}">
 	<f:then>
 		<div class="news news-list-view">
-			<n:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
-				<f:for each="{paginatedNews}" as="newsItem">
-					<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
-				</f:for>
-			</n:widget.paginate>
+			<f:if condition="{settings.hidePagination}">
+				<f:then>
+					<f:for each="{news}" as="newsItem">
+						<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+					</f:for>
+				</f:then>
+				<f:else>
+					<n:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
+						<f:for each="{paginatedNews}" as="newsItem">
+							<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+						</f:for>
+					</n:widget.paginate>
+				</f:else>
+			</f:if>
 		</div>
 	</f:then>
 	<f:else>

@@ -121,7 +121,7 @@ class Tx_News_Hooks_T3libBefunc {
 			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
 						archiveRestriction,timeRestriction,topNewsRestriction,
 						startingpoint,recursive,dateField',
-			'additional' => 'limit,offset,topNewsFirst,listPid',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid',
 			'template' => 'cropMaxCharacters'
 		);
 
@@ -139,7 +139,7 @@ class Tx_News_Hooks_T3libBefunc {
 			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
 						archiveRestriction,timeRestriction,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
-			'additional' => 'limit,offset,topNewsFirst,listPid',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
@@ -155,7 +155,7 @@ class Tx_News_Hooks_T3libBefunc {
 	protected function updateForDateMenuAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
 			'sDEF' => 'orderBy,orderDirection,singleNews',
-			'additional' => 'limit,offset,topNewsFirst,detailPid,backPid,previewHiddenRecords',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
