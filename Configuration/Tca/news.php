@@ -203,7 +203,7 @@ $TCA['tx_news_domain_model_news'] = array(
 				'type'     => 'input',
 				'size'     => 8,
 				'max'      => 20,
-				'eval'     => 'date',
+				'eval'     => (!empty($configurationArray['archiveDate']) ? $configurationArray['archiveDate'] : 'date'),
 				'default'  => 0
 			)
 		),

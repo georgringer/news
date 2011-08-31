@@ -28,5 +28,8 @@ contentElementRelation = 0
 	# cat=basic/enable/120; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.manualSorting
 manualSorting = 0
 
+	# cat=basic/enable/121; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate.date=date,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate.datetime=datetime]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate
+archiveDate = date
+
  	# cat=basic/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showImporter
 showImporter = 0

@@ -91,6 +91,9 @@
 			<label index="extmng.manualSorting">Enable manual sorting of news records</label>
 			<label index="extmng.contentElementRelation">Use content element relation:If set, content elements can be added to news records.</label>
 			<label index="extmng.tagPid">Define pid of tag records:Tags are collected on one central page.</label>
+			<label index="extmng.archiveDate">Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</label>
+			<label index="extmng.archiveDate.date">Date</label>
+			<label index="extmng.archiveDate.datetime">Date &amp; Time</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>
