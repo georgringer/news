@@ -154,7 +154,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 */
 	protected function updateForDateMenuAction(array &$dataStructure) {
 		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderDirection,singleNews',
+			'sDEF' => 'orderBy,singleNews',
 			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
