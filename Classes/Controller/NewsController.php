@@ -158,7 +158,7 @@ class Tx_News_Controller_NewsController extends Tx_Extbase_MVC_Controller_Action
 		if (!$dateField = $this->settings['dateField']) {
 			$dateField = 'datetime';
 		}
-		$demand->setOrder($dateField . ' DESC');
+		$demand->setOrder($dateField . ' ' . $this->settings['orderDirection']);
 
 		$newsRecords = $this->newsRepository->findDemanded($demand);
 		$this->view->assignMultiple(array(
