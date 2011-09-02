@@ -82,6 +82,7 @@ class Tx_News_Hooks_CmsLayout {
 							$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']) .
 							$this->getOffsetLimitSettings($data) .
 							$this->getOverrideDemandSettings($data) .
+							$this->getTemplateLayoutSettings($data) .
 						'</table>';
 			}
 		}
@@ -210,6 +211,32 @@ class Tx_News_Hooks_CmsLayout {
 		$content .= $this->renderLine(
 						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.dateField'),
 						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_general.dateField.' . $dateMenuField)
+					);
+
+		return $content;
+	}
+
+	/**
+	 * Render template layout configuration
+	 *
+	 * @param array $data flexform data
+	 * @return string
+	 */
+	private function getTemplateLayoutSettings(array $data) {
+		$content = $title = '';
+
+		$field = $this->getFieldFromFlexform($data, 'settings.templateLayout', 'template');
+		if (!empty($field))
+				// find correct title by looping over all options
+			foreach($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] as $layouts) {
+				if ($layouts[1] === $field) {
+					$title = $layouts[0];
+				}
+			}
+
+		$content .= $this->renderLine(
+						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_template.templateLayout'),
+						$GLOBALS['LANG']->sL($title)
 					);
 
 		return $content;
