@@ -82,7 +82,7 @@
 			<label index="extmng.hideMediaTable">Hide Media records:As the media elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
 			<label index="extmng.hideFileTable">Hide File records:As the file elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
 			<label index="extmng.enableDam">Enable DAM:Enable DAM if you want to use it</label>
-			<label index="extmng.showImporter">Show tt_news Importer:Backend module to import records from tt_news;tt_news needs to be installed too.</label>
+			<label index="extmng.showImporter">Show import module: If set, the backend module to import records is shown.</label>
 			<label index="extmng.prependAtCopy">Prepend at copy: Prepend string "copy X".</label>
 			<label index="extmng.categoryRestriction">Category restriction: Restrict the available categories in news records.</label>
 			<label index="extmng.categoryRestriction.current_pid">Categories from current page</label>
@@ -188,7 +188,7 @@
 			<label index="extmng.hideMediaTable">Skjule medie-elementer:Skjul medie-elementer i listevisning - de bør kun redigeres IRRE.</label>
 			<label index="extmng.hideFileTable">Skjul fil-elementer:Skjul fil-elementer i listevisning - de bør kun redigeres IRRE.</label>
 			<label index="extmng.enableDam">Aktivér DAM:Aktivér DAM hvis du ønsker at anvende dette</label>
-			<label index="extmng.showImporter">Vis tt_news importør:Backend-modul til import af elementer fra tt_news;tt_news skal være installeret.</label>
+			<label index="extmng.showImporter">Vis importør:Backend-modul til import af elementer.</label>
 			<label index="extmng.prependAtCopy">Forsats ved kopiering:Læg teksten til titlen på kopierede elementer før de gemmes.</label>
 			<label index="extmng.categoryRestriction">Kategori-restriktion:Begræns de tilgængelige kategorier for nyheds-elementer.</label>
 			<label index="extmng.categoryRestriction.current_pid">Kategorier fra denne side</label>
