@@ -127,7 +127,8 @@ class Tx_News_Controller_NewsController extends Tx_Extbase_MVC_Controller_Action
 
 		$this->view->assignMultiple(array(
 			'news' => $newsRecords,
-			'overwriteDemand' => $overwriteDemand
+			'overwriteDemand' => $overwriteDemand,
+			'contentObjectData' => $this->request->getContentObjectData(),
 		));
 	}
 
@@ -143,7 +144,10 @@ class Tx_News_Controller_NewsController extends Tx_Extbase_MVC_Controller_Action
 		} elseif($this->settings['previewHiddenRecords']) {
 			$news = $this->newsRepository->findByUid($this->request->getArgument('news'), FALSE);
 		}
-		$this->view->assign('newsItem', $news);
+		$this->view->assignMultiple(array(
+			'newsItem' => $news,
+			'contentObjectData' => $this->request->getContentObjectData(),
+		));
 	}
 
 	/**
@@ -165,7 +169,8 @@ class Tx_News_Controller_NewsController extends Tx_Extbase_MVC_Controller_Action
 			'listPid' => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
 			'dateField' => $dateField,
 			'news' => $newsRecords,
-			'overwriteDemand' => $overwriteDemand
+			'overwriteDemand' => $overwriteDemand,
+			'contentObjectData' => $this->request->getContentObjectData(),
 		));
 	}
 
