@@ -234,10 +234,12 @@ class Tx_News_Hooks_CmsLayout {
 				}
 			}
 
-		$content .= $this->renderLine(
-						$GLOBALS['LANG']->sL($this->llPath . ':flexforms_template.templateLayout'),
-						$GLOBALS['LANG']->sL($title)
-					);
+		if (!empty($title)) {
+			$content .= $this->renderLine(
+							$GLOBALS['LANG']->sL($this->llPath . ':flexforms_template.templateLayout'),
+							$GLOBALS['LANG']->sL($title)
+						);
+		}
 
 		return $content;
 	}
