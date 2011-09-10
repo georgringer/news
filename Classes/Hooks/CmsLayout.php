@@ -63,7 +63,7 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return string Information about pi1 plugin
 	 */
 	public function getExtensionSummary(array $params, $pObj) {
-		$result = '';
+		$result = $actionTranslationKey = '';
 
 		if ($params['row']['list_type'] == self::extKey . '_pi1') {
 			$data = t3lib_div::xml2array($params['row']['pi_flexform']);
@@ -75,8 +75,6 @@ class Tx_News_Hooks_CmsLayout {
 
 					// translate the first action into its translation
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
-				$this->selectedAction = str_replace('news_', '', $actionTranslationKey);
-
 				$actionTranslation = $GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.mode.' . $actionTranslationKey);
 
 				$result = '<strong>' .
@@ -88,11 +86,25 @@ class Tx_News_Hooks_CmsLayout {
 			}
 
 			if (is_array($data)) {
-				$this->getDateMenuSettings($data);
-				$this->getArchiveSettings($data);
-				$this->getCategorySettings($data);
-				$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']);
-				$this->getOffsetLimitSettings($data);
+
+				switch ($actionTranslationKey) {
+					case 'news_list':
+						$this->getArchiveSettings($data);
+						$this->getCategorySettings($data);
+						$this->getOffsetLimitSettings($data);
+						$this->getStartingPoint($data);
+						break;
+					case 'news_detail':
+						$this->getSingleNewsSettings($data);
+						break;
+					case 'news_datemenu':
+						$this->getDateMenuSettings($data);
+						$this->getCategorySettings($data);
+						$this->getStartingPoint($data);
+						break;
+				}
+
+					// for all views
 				$this->getOverrideDemandSettings($data);
 				$this->getTemplateLayoutSettings($data);
 
@@ -113,10 +125,27 @@ class Tx_News_Hooks_CmsLayout {
 		$archive = $this->getFieldFromFlexform($data, 'settings.archiveRestriction');
 
 		if (!empty($archive)) {
-			$this->tableData['sDEF.archiveRestriction'] = array(
+			$this->tableData[] = array(
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.archiveRestriction'),
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.archiveRestriction.' . $archive)
 						);
+		}
+	}
+
+	/**
+	 * Render single news settings
+	 *
+	 * @param array $data
+	 * @return void
+	 */
+	private function getSingleNewsSettings(array $data) {
+		$singleNewsRecord = (int)$this->getFieldFromFlexform($data, 'settings.singleNews');
+
+		if ($singleNewsRecord > 0) {
+			$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . $singleNewsRecord);
+			$title = htmlspecialchars($record['title']) . ' <small>(' . $record['uid'] . ')</small>';
+
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.singleNews'), $title);
 		}
 	}
 
@@ -154,7 +183,7 @@ class Tx_News_Hooks_CmsLayout {
 				$categoriesOut[] = htmlspecialchars($record['title']);
 			}
 
-			$this->tableData['sDEF.categories'] = array(
+			$this->tableData[] = array(
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.categories') .
 								'<br /><span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>',
 							implode(', ', $categoriesOut)
@@ -174,13 +203,13 @@ class Tx_News_Hooks_CmsLayout {
 		$hidePagionation = $this->getFieldFromFlexform($data, 'settings.hidePagination', 'additional');
 
 		if ($offset) {
-			$this->tableData['additional.offset'] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.offset'), $offset);
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.offset'), $offset);
 		}
 		if ($limit) {
-			$this->tableData['additional.limit'] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.limit'), $limit);
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.limit'), $limit);
 		}
 		if ($hidePagionation) {
-			$this->tableData['additional.hidePagination'] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.hidePagination'), NULL);
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.hidePagination'), NULL);
 		}
 	}
 
@@ -199,7 +228,7 @@ class Tx_News_Hooks_CmsLayout {
 
 		$dateMenuField = $this->getFieldFromFlexform($data, 'settings.dateField');
 
-		$this->tableData['sDEF.dateField'] = array(
+		$this->tableData[] = array(
 						$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.dateField'),
 						$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.dateField.' . $dateMenuField)
 					);
@@ -224,7 +253,7 @@ class Tx_News_Hooks_CmsLayout {
 			}
 
 		if (!empty($title)) {
-			$this->tableData['template.templateLayout'] = array(
+			$this->tableData[] = array(
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_template.templateLayout'),
 							$GLOBALS['LANG']->sL($title)
 						);
@@ -241,7 +270,7 @@ class Tx_News_Hooks_CmsLayout {
 		$field = $this->getFieldFromFlexform($data, 'settings.disableOverrideDemand', 'additional');
 
 		if ($field == 1) {
-			$this->tableData['additional.disableOverrideDemand'] = array($GLOBALS['LANG']->sL(
+			$this->tableData[] = array($GLOBALS['LANG']->sL(
 					self::llPath . 'flexforms_additional.disableOverrideDemand'), '');
 		}
 	}
@@ -249,29 +278,29 @@ class Tx_News_Hooks_CmsLayout {
 	/**
 	 * Get the startingpoint
 	 *
-	 * @param string $startingpoint comma seperated list of pages
+	 * @param array $data flexform data
 	 * @return void
 	 */
-	private function getStartingPoint($startingpoint) {
-		if (empty($startingpoint)) {
-			return;
+	private function getStartingPoint(array $data) {
+		$value = $this->getFieldFromFlexform($data, 'settings.startingpoint');
+
+		if (!empty($value)) {
+			$pagesOut = array();
+			$rawPagesRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+				'title,uid',
+				'pages',
+				'deleted=0 AND uid IN(' . implode(',', t3lib_div::intExplode(',', $value, TRUE)) . ')'
+			);
+
+			foreach ($rawPagesRecords as $page) {
+				$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>';
+			}
+
+			$this->tableData[] = array(
+							$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
+							implode(', ', $pagesOut)
+						);
 		}
-
-		$pagesOut = array();
-		$rawPagesRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-			'title,uid',
-			'pages',
-			'deleted=0 AND uid IN(' . implode(',', t3lib_div::intExplode(',', $startingpoint, TRUE)) . ')'
-		);
-
-		foreach ($rawPagesRecords as $page) {
-			$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>';
-		}
-
-		$this->tableData['sDEF.startingpoint'] = array(
-						$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
-						implode(', ', $pagesOut)
-					);
 	}
 
 	/**
@@ -280,52 +309,25 @@ class Tx_News_Hooks_CmsLayout {
 	 */
 	protected function renderSettingsAsTable() {
 		$content = '';
-		$disallowedSettings = array();
 		if (count($this->tableData) == 0) {
 			return $content;
 		}
 
-			// Tx_News_Hooks_T3libBefunc saves which settings are not needed for which view
-		$t3libBefunc = t3lib_div::makeInstance('Tx_News_Hooks_T3libBefunc');
-		switch ($this->selectedAction) {
-			case 'list':
-				$disallowedSettings = $t3libBefunc->removedFieldsInListView;
-				break;
-			case 'detail':
-				$disallowedSettings = $t3libBefunc->removedFieldsInDetailView;
-				break;
-			case 'datemenu':
-				$disallowedSettings = $t3libBefunc->removedFieldsInDateMenuView;
-				break;
-		}
-
-			// The fields got some tabs which need to be filtered
-		foreach($disallowedSettings as $key => $value) {
-			$disallowedSettings[$key] = str_replace(array(CRLF, CR, LF, TAB), '', $value);
-		}
-
 		$i = 0;
-		foreach($this->tableData as $key => $line) {
+		foreach($this->tableData as $line) {
 			$allowedToBeRendered = TRUE;
 
 				// Check if the setting is in the list of diabled ones
-			$split = explode('.', $key);
-			if (isset($disallowedSettings[$split[0]]) && t3lib_div::inList($disallowedSettings[$split[0]], $split[1])) {
-				$allowedToBeRendered = FALSE;
-			}
+			$class = ($i++ % 2 == 0) ? 'bgColor4' : 'bgColor3';
+			$renderedLine = '';
 
-			if ($allowedToBeRendered) {
-				$class = ($i++ % 2 == 0) ? 'bgColor4' : 'bgColor3';
-				$renderedLine = '';
-
-				if (!empty($line[1])) {
-					$renderedLine = '<td style="font-weight:bold;width:40%;">' . $line[0] .	'</td>
-									<td>' . $line[1] . $key. '</td>';
-				} else {
-					$renderedLine = '<td style="font-weight:bold;" colspan="2">' . $line[0] .	'</td>';
-				}
-				$content .= '<tr class="' . $class . '">' . $renderedLine . '</tr>';
+			if (!empty($line[1])) {
+				$renderedLine = '<td style="font-weight:bold;width:40%;">' . $line[0] .	'</td>
+								<td>' . $line[1] . '</td>';
+			} else {
+				$renderedLine = '<td style="font-weight:bold;" colspan="2">' . $line[0] .	'</td>';
 			}
+			$content .= '<tr class="' . $class . '">' . $renderedLine . '</tr>';
 		}
 
 		if (!empty($content)) {
