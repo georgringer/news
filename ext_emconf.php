@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'News system',
-	'description' => '',
+	'description' => 'Versatile news extension, based on extbase & fluid. Editor friendly, default integreation of social websites and many other features',
 	'category' => 'fe',
 	'author' => 'Georg Ringer',
 	'author_email' => 'typo3@ringerge.org',
