@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Controller_NewsController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseController {
 	/**
 	 * @var Tx_News_Domain_Repository_NewsRepository
 	 */
@@ -128,7 +128,6 @@ class Tx_News_Controller_NewsController extends Tx_Extbase_MVC_Controller_Action
 		$this->view->assignMultiple(array(
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand,
-			'contentObjectData' => $this->request->getContentObjectData(),
 		));
 	}
 
@@ -146,7 +145,6 @@ class Tx_News_Controller_NewsController extends Tx_Extbase_MVC_Controller_Action
 		}
 		$this->view->assignMultiple(array(
 			'newsItem' => $news,
-			'contentObjectData' => $this->request->getContentObjectData(),
 		));
 	}
 
@@ -170,7 +168,6 @@ class Tx_News_Controller_NewsController extends Tx_Extbase_MVC_Controller_Action
 			'dateField' => $dateField,
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand,
-			'contentObjectData' => $this->request->getContentObjectData(),
 		));
 	}
 
