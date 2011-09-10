@@ -87,9 +87,7 @@ class Tx_News_Hooks_CmsLayout {
 				$this->getOverrideDemandSettings($data);
 				$this->getTemplateLayoutSettings($data);
 
-				if (!empty($this->tableData)) {
-					$result .= '<br /><br /><table>' . implode(LF, $this->tableData) . '</table>';
-				}
+				$result .= $this->renderSettingsAsTable();
 			}
 		}
 
@@ -106,7 +104,7 @@ class Tx_News_Hooks_CmsLayout {
 		$archive = $this->getFieldFromFlexform($data, 'settings.archiveRestriction');
 
 		if (!empty($archive)) {
-			$this->tableData[] = $this->renderLine(
+			$this->tableData[] = array(
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.archiveRestriction'),
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.archiveRestriction.' . $archive)
 						);
@@ -147,7 +145,7 @@ class Tx_News_Hooks_CmsLayout {
 				$categoriesOut[] = htmlspecialchars($record['title']);
 			}
 
-			$this->tableData[] = $this->renderLine(
+			$this->tableData[] = array(
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.categories') .
 								'<br /><span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>',
 							implode(', ', $categoriesOut)
@@ -167,13 +165,13 @@ class Tx_News_Hooks_CmsLayout {
 		$hidePagionation = $this->getFieldFromFlexform($data, 'settings.hidePagination', 'additional');
 
 		if ($offset) {
-			$this->tableData[] = $this->renderLine($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.offset'), $offset);
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.offset'), $offset);
 		}
 		if ($limit) {
-			$this->tableData[] = $this->renderLine($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.limit'), $limit);
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.limit'), $limit);
 		}
 		if ($hidePagionation) {
-			$this->tableData[] = $this->renderLine($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.hidePagination'), NULL);
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.hidePagination'), NULL);
 		}
 	}
 
@@ -193,7 +191,7 @@ class Tx_News_Hooks_CmsLayout {
 
 		$dateMenuField = $this->getFieldFromFlexform($data, 'settings.dateField');
 
-		$this->tableData[] = $this->renderLine(
+		$this->tableData[] = array(
 						$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.dateField'),
 						$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.dateField.' . $dateMenuField)
 					);
@@ -218,7 +216,7 @@ class Tx_News_Hooks_CmsLayout {
 			}
 
 		if (!empty($title)) {
-			$this->tableData[] = $this->renderLine(
+			$this->tableData[] = array(
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_template.templateLayout'),
 							$GLOBALS['LANG']->sL($title)
 						);
@@ -235,7 +233,7 @@ class Tx_News_Hooks_CmsLayout {
 		$field = $this->getFieldFromFlexform($data, 'settings.disableOverrideDemand', 'additional');
 
 		if ($field == 1) {
-			$this->tableData[] = $this->renderLine($GLOBALS['LANG']->sL(
+			$this->tableData[] = array($GLOBALS['LANG']->sL(
 					self::llPath . 'flexforms_additional.disableOverrideDemand'), '');
 		}
 	}
@@ -262,26 +260,36 @@ class Tx_News_Hooks_CmsLayout {
 			$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>';
 		}
 
-		$this->tableData[] = $this->renderLine(
+		$this->tableData[] = array(
 						$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
 						implode(', ', $pagesOut)
 					);
 	}
 
 	/**
-	 * Render a configuration line with a tr/td
-	 *
-	 * @param string $head
-	 * @param string $content
-	 * @return string rendered configuration
+	 * Render the settings as table
+	 * @return string
 	 */
-	protected function renderLine($head, $content) {
-		$content = '<tr>
-						<td style="font-weight:bold;width:200px;">' . $head .	'</td>
-						<td>' . $content . '</td>
-					</tr>';
+	protected function renderSettingsAsTable() {
+		$content = '';
+		if (count($this->tableData) == 0) {
+			return $content;
+		}
 
-		return $content;
+		$i = 0;
+		foreach($this->tableData as $line) {
+			$class = ($i++ % 2 == 0) ? 'bgColor4' : 'bgColor3';
+			$renderedLine = '';
+			if (!empty($line[1])) {
+				$renderedLine = '<td style="font-weight:bold;width:40%;">' . $line[0] .	'</td>
+								<td>' . $line[1] . '</td>';
+			} else {
+				$renderedLine = '<td style="font-weight:bold;" colspan="2">' . $line[0] .	'</td>';
+			}
+			$content .= '<tr class="' . $class . '">' . $renderedLine . '</tr>';
+		}
+
+		return  '<br /><table class="typo3-dblist">' . $content . '</table>';
 	}
 
 	/**
