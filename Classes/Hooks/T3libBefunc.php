@@ -32,6 +32,41 @@
 class Tx_News_Hooks_T3libBefunc {
 
 	/**
+	 * Fields which are removed in detail view
+	 *
+	 * @var array
+	 */
+	public $removedFieldsInDetailView = array(
+			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
+						archiveRestriction,timeRestriction,topNewsRestriction,
+						startingpoint,recursive,dateField',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid',
+			'template' => 'cropMaxCharacters'
+		);
+
+	/**
+	 * Fields which are removed in list view
+	 *
+	 * @var array
+	 */
+	public $removedFieldsInListView = array(
+			'sDEF' => 'dateField,singleNews,previewHiddenRecords',
+			'additional' => 'listPid',
+			'template' => ''
+		);
+
+	/**
+	 * Fields which are removed in dateMenu view
+	 *
+	 * @var array
+	 */
+	public $removedFieldsInDateMenuView = array(
+			'sDEF' => 'orderBy,singleNews',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords',
+			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
+		);
+
+	/**
 	 * Hook function of t3lib_befunc
 	 * It is used to change the flexform if it is about news
 	 *
@@ -101,11 +136,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @return void
 	 */
 	protected function updateForNewsListAction(array &$dataStructure) {
-		$fieldsToBeRemoved = array(
-			'sDEF' => 'dateField,singleNews,previewHiddenRecords',
-			'additional' => 'listPid',
-			'template' => ''
-		);
+		$fieldsToBeRemoved = $this->removedFieldsInListView;
 
 		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
 	}
@@ -117,13 +148,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @return void
 	 */
 	protected function updateForNewsDetailAction(array &$dataStructure) {
-		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
-						archiveRestriction,timeRestriction,topNewsRestriction,
-						startingpoint,recursive,dateField',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid',
-			'template' => 'cropMaxCharacters'
-		);
+		$fieldsToBeRemoved = $this->removedFieldsInDetailView;
 
 		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
 	}
@@ -153,11 +178,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @return void
 	 */
 	protected function updateForDateMenuAction(array &$dataStructure) {
-		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,singleNews',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords',
-			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
-		);
+		$fieldsToBeRemoved = $this->removedFieldsInDateMenuView;
 
 		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
 	}

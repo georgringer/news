@@ -48,7 +48,14 @@ class Tx_News_Hooks_CmsLayout {
 	 */
 	public $tableData = array();
 
-		/**
+	/**
+	 * Selected action
+	 *
+	 * @var string
+	 */
+	public $selectedAction = NULL;
+
+	/**
 	 * Returns information about this extension's pi1 plugin
 	 *
 	 * @param array $params Parameters to the hook
@@ -68,6 +75,8 @@ class Tx_News_Hooks_CmsLayout {
 
 					// translate the first action into its translation
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
+				$this->selectedAction = str_replace('news_', '', $actionTranslationKey);
+
 				$actionTranslation = $GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.mode.' . $actionTranslationKey);
 
 				$result = '<strong>' .
@@ -79,7 +88,7 @@ class Tx_News_Hooks_CmsLayout {
 			}
 
 			if (is_array($data)) {
-				$this->getDateMenuSettings($data, $actionTranslationKey);
+				$this->getDateMenuSettings($data);
 				$this->getArchiveSettings($data);
 				$this->getCategorySettings($data);
 				$this->getStartingPoint($data['data']['sDEF']['lDEF']['settings.startingpoint']['vDEF']);
@@ -104,7 +113,7 @@ class Tx_News_Hooks_CmsLayout {
 		$archive = $this->getFieldFromFlexform($data, 'settings.archiveRestriction');
 
 		if (!empty($archive)) {
-			$this->tableData[] = array(
+			$this->tableData['sDEF.archiveRestriction'] = array(
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.archiveRestriction'),
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.archiveRestriction.' . $archive)
 						);
@@ -145,7 +154,7 @@ class Tx_News_Hooks_CmsLayout {
 				$categoriesOut[] = htmlspecialchars($record['title']);
 			}
 
-			$this->tableData[] = array(
+			$this->tableData['sDEF.categories'] = array(
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.categories') .
 								'<br /><span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>',
 							implode(', ', $categoriesOut)
@@ -165,13 +174,13 @@ class Tx_News_Hooks_CmsLayout {
 		$hidePagionation = $this->getFieldFromFlexform($data, 'settings.hidePagination', 'additional');
 
 		if ($offset) {
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.offset'), $offset);
+			$this->tableData['additional.offset'] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.offset'), $offset);
 		}
 		if ($limit) {
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.limit'), $limit);
+			$this->tableData['additional.limit'] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.limit'), $limit);
 		}
 		if ($hidePagionation) {
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.hidePagination'), NULL);
+			$this->tableData['additional.hidePagination'] = array($GLOBALS['LANG']->sL(self::llPath . 'flexforms_additional.hidePagination'), NULL);
 		}
 	}
 
@@ -179,19 +188,18 @@ class Tx_News_Hooks_CmsLayout {
 	 * Render datemenu configuration
 	 *
 	 * @param array $data flexform data
-	 * @param string $actionKey current action
 	 * @return void
 	 */
-	private function getDateMenuSettings(array $data, $actionKey) {
+	private function getDateMenuSettings(array $data) {
 		$content = '';
 
-		if ($actionKey !== 'news_datemenu') {
+		if ($this->selectedAction !== 'datemenu') {
 			return $content;
 		}
 
 		$dateMenuField = $this->getFieldFromFlexform($data, 'settings.dateField');
 
-		$this->tableData[] = array(
+		$this->tableData['sDEF.dateField'] = array(
 						$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.dateField'),
 						$GLOBALS['LANG']->sL(self::llPath . 'flexforms_general.dateField.' . $dateMenuField)
 					);
@@ -216,7 +224,7 @@ class Tx_News_Hooks_CmsLayout {
 			}
 
 		if (!empty($title)) {
-			$this->tableData[] = array(
+			$this->tableData['template.templateLayout'] = array(
 							$GLOBALS['LANG']->sL(self::llPath . 'flexforms_template.templateLayout'),
 							$GLOBALS['LANG']->sL($title)
 						);
@@ -233,7 +241,7 @@ class Tx_News_Hooks_CmsLayout {
 		$field = $this->getFieldFromFlexform($data, 'settings.disableOverrideDemand', 'additional');
 
 		if ($field == 1) {
-			$this->tableData[] = array($GLOBALS['LANG']->sL(
+			$this->tableData['additional.disableOverrideDemand'] = array($GLOBALS['LANG']->sL(
 					self::llPath . 'flexforms_additional.disableOverrideDemand'), '');
 		}
 	}
@@ -260,7 +268,7 @@ class Tx_News_Hooks_CmsLayout {
 			$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>';
 		}
 
-		$this->tableData[] = array(
+		$this->tableData['sDEF.startingpoint'] = array(
 						$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
 						implode(', ', $pagesOut)
 					);
@@ -272,24 +280,59 @@ class Tx_News_Hooks_CmsLayout {
 	 */
 	protected function renderSettingsAsTable() {
 		$content = '';
+		$disallowedSettings = array();
 		if (count($this->tableData) == 0) {
 			return $content;
 		}
 
-		$i = 0;
-		foreach($this->tableData as $line) {
-			$class = ($i++ % 2 == 0) ? 'bgColor4' : 'bgColor3';
-			$renderedLine = '';
-			if (!empty($line[1])) {
-				$renderedLine = '<td style="font-weight:bold;width:40%;">' . $line[0] .	'</td>
-								<td>' . $line[1] . '</td>';
-			} else {
-				$renderedLine = '<td style="font-weight:bold;" colspan="2">' . $line[0] .	'</td>';
-			}
-			$content .= '<tr class="' . $class . '">' . $renderedLine . '</tr>';
+			// Tx_News_Hooks_T3libBefunc saves which settings are not needed for which view
+		$t3libBefunc = t3lib_div::makeInstance('Tx_News_Hooks_T3libBefunc');
+		switch ($this->selectedAction) {
+			case 'list':
+				$disallowedSettings = $t3libBefunc->removedFieldsInListView;
+				break;
+			case 'detail':
+				$disallowedSettings = $t3libBefunc->removedFieldsInDetailView;
+				break;
+			case 'datemenu':
+				$disallowedSettings = $t3libBefunc->removedFieldsInDateMenuView;
+				break;
 		}
 
-		return  '<br /><table class="typo3-dblist">' . $content . '</table>';
+			// The fields got some tabs which need to be filtered
+		foreach($disallowedSettings as $key => $value) {
+			$disallowedSettings[$key] = str_replace(array(CRLF, CR, LF, TAB), '', $value);
+		}
+
+		$i = 0;
+		foreach($this->tableData as $key => $line) {
+			$allowedToBeRendered = TRUE;
+
+				// Check if the setting is in the list of diabled ones
+			$split = explode('.', $key);
+			if (isset($disallowedSettings[$split[0]]) && t3lib_div::inList($disallowedSettings[$split[0]], $split[1])) {
+				$allowedToBeRendered = FALSE;
+			}
+
+			if ($allowedToBeRendered) {
+				$class = ($i++ % 2 == 0) ? 'bgColor4' : 'bgColor3';
+				$renderedLine = '';
+
+				if (!empty($line[1])) {
+					$renderedLine = '<td style="font-weight:bold;width:40%;">' . $line[0] .	'</td>
+									<td>' . $line[1] . $key. '</td>';
+				} else {
+					$renderedLine = '<td style="font-weight:bold;" colspan="2">' . $line[0] .	'</td>';
+				}
+				$content .= '<tr class="' . $class . '">' . $renderedLine . '</tr>';
+			}
+		}
+
+		if (!empty($content)) {
+			$content = '<br /><table class="typo3-dblist">' . $content . '</table>';
+		}
+
+		return $content;
 	}
 
 	/**
