@@ -112,6 +112,16 @@ class Tx_News_Hooks_Labels {
 
 		$title = (!empty($typeInfo)) ? $type . ': ' . $typeInfo : $type;
 
+			// Hook to modify the label, espescially useful when using custom media relations
+		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'])) {
+			$params = array('params' => $params, 'title' => $title);
+			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'] as $reference) {
+				$title = t3lib_div::callUserFunction($reference, $params, $this);
+			}
+		}
+
+		$title = htmlspecialchars($title);
+
 			// Preview
 		if ($params['row']['showinpreview']) {
 			$label = htmlspecialchars($GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.show'));
