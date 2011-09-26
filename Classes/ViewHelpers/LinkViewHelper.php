@@ -39,6 +39,11 @@
 class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
+	 * @var Tx_News_Service_SettingsService
+	 */
+	protected $pluginSettingsService;
+
+	/**
 	 * @var array
 	 */
 	protected $detailPidDeterminationCallbacks = array (
@@ -46,6 +51,13 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		'categories' => 'getDetailPidFromCategories',
 		'default' => 'getDetailPidFromDefaultDetailPid',
 	);
+
+	/**
+	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 */
+	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+		$this->pluginSettingsService = $pluginSettingsService;
+	}
 
 	/**
 	 * Render link to news item or internal/external pages
@@ -59,6 +71,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 * @return string url
 	 */
 	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $renderTypeClass = TRUE, $class = '', $linkOnly = FALSE, $hsc = FALSE) {
+		$tsSettings = $this->pluginSettingsService->getSettings();
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 		$linkConfiguration = array();
 
@@ -68,10 +81,10 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 			$linkConfiguration['ATagParams'] = 'class="' . $class . '"';
 		}
 
-		$newsType = $newsItem->getType();
+		$newsType = (int)$newsItem->getType();
 
 			// normal news record
-		if ($newsType == 0) {
+		if ($newsType === 0) {
 			$detailPid = 0;
 			$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $settings['detailPidDetermination']);
 
@@ -92,11 +105,28 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 			$linkConfiguration['additionalParams'] = '&tx_news_pi1[controller]=News' .
 				'&tx_news_pi1[action]=detail' .
 				'&tx_news_pi1[news]=' . $newsItem->getUid();
+
+
+				// Add date as human readable (30/04/2011)
+			if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
+				$dateTime = $newsItem->getDatetime();
+
+				if (!empty($tsSettings['link']['hrDate']['day'])) {
+					$linkConfiguration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
+				}
+				if (!empty($tsSettings['link']['hrDate']['month'])) {
+					$linkConfiguration['additionalParams'] .= '&tx_news_pi1[month]=' . $dateTime->format($tsSettings['link']['hrDate']['month']);
+				}
+				if (!empty($tsSettings['link']['hrDate']['year'])) {
+					$linkConfiguration['additionalParams'] .= '&tx_news_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
+				}
+			}
+
 			// internal news
-		} elseif ($newsType == 1) {
+		} elseif ($newsType === 1) {
 			$linkConfiguration['parameter'] = $newsItem->getInternalurl();
 			// external news
-		} elseif ($newsType == 2) {
+		} elseif ($newsType === 2) {
 			$linkConfiguration['parameter'] = $newsItem->getExternalurl();
 		}
 

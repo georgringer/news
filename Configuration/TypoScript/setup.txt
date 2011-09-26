@@ -33,8 +33,18 @@ plugin.tx_news {
 		}
 
 		detailPidDetermination = flexform, categories, default
+
 		defaultDetailPid = 0
 		dateField = datetime
+
+		link {
+			hrDate = 0
+			hrDate {
+				day = j
+				month = n
+				year = Y
+			}
+		}
 
 		cropMaxCharacters = 150
 		orderBy = datetime
