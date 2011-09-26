@@ -147,7 +147,7 @@ $TCA['tx_news_domain_model_category'] = array(
 			)
 		),
 		'description' => array(
-			'exclude' => 0,
+			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news_domain_model_category.description',
 			'config' => array(
@@ -157,7 +157,7 @@ $TCA['tx_news_domain_model_category'] = array(
 			)
 		),
 		'image' => array(
-			'exclude' => 0,
+			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news_domain_model_category.image',
 			'config' => array(

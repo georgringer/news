@@ -87,7 +87,7 @@ $TCA['tx_news_domain_model_link'] = array(
 			)
 		),
 		'description' => array(
-			'exclude' => 0,
+			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news_domain_model_link.description',
 			'config' => array(
