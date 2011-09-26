@@ -42,6 +42,11 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$constraint = NULL;
 		$categoryConstraints = array();
 
+			// If "ignore category selection" is used, nothing needs to be done
+		if (empty($conjunction)) {
+			return $constraint;
+		}
+
 		if (!is_array($categories)) {
 			$categories = t3lib_div::intExplode(',', $categories, TRUE);
 		}
@@ -160,6 +165,13 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			$searchString = $searchObject->getSearchString();
 			if (!empty($searchString)) {
 				$constraints[] = $query->like('title', '%' . $searchString . '%');
+			}
+		}
+
+			// Clean not used constraints
+		foreach($constraints as $key => $value) {
+			if (is_null($value)) {
+				unset($constraints[$key]);
 			}
 		}
 
