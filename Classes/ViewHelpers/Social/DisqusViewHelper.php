@@ -48,9 +48,10 @@ class Tx_News_ViewHelpers_Social_DisqusViewHelper extends Tx_Fluid_Core_ViewHelp
 	 */
 	public function render(Tx_News_Domain_Model_News $newsItem, $shortName, $link) {
 		$code = '<script type="text/javascript">
-					var disqus_shortname = "' . htmlspecialchars($shortName) . '";
-					var disqus_identifier = "news_' . $newsItem->getUid() . '";
-					var disqus_url = "' . htmlspecialchars($link) . '";
+					var disqus_shortname = ' . t3lib_div::quoteJSvalue($shortName, TRUE) . ';
+					var disqus_identifier = \'news_' . $newsItem->getUid() . '\';
+					var disqus_url = ' . t3lib_div::quoteJSvalue($link, TRUE) . ';
+					var disqus_title = ' . t3lib_div::quoteJSvalue($newsItem->getTitle(), TRUE) . ';
 
 					(function() {
 						var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
