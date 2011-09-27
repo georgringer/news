@@ -13,8 +13,8 @@
 		</h3>
 	</div>
 
-	<!-- media preview element -->
 	<f:if condition="{newsItem.media}">
+		<!-- media preview element -->
 		<f:then>
 		<div class="news-img-wrap">
 			<n:link newsItem="{newsItem}" settings="{settings}">
@@ -66,8 +66,8 @@
 		</f:else>
 	</f:if>
 
-	<!-- teaser text -->
 	<f:if condition="{newsItem.teaser}">
+		<!-- teaser text -->
 		<div class="teaser-text">
 			<f:then>
 				<f:format.html><f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="true">{newsItem.teaser}</f:format.crop></f:format.html>
@@ -89,7 +89,7 @@
 			<!-- first category -->
 			<f:if condition="{newsItem.firstCategory}">
 				<span class="hidden">. </span>
-				<span class="news-list-category"><a href="#">{newsItem.firstCategory.title}</a></span>
+				<span class="news-list-category">{newsItem.firstCategory.title}</span>
 			</f:if>
 
 			<!-- author -->
