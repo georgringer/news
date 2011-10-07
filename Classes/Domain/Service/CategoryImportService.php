@@ -110,7 +110,7 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 
 		$this->persistenceManager->persistAll();
 
-		foreach ($this->postPersistQueue as $originalPrimaryKey => $queueItem) {
+		foreach ($this->postPersistQueue as $queueItem) {
 			$category = $queueItem['category'];
 			$parentCategoryOriginUid = $queueItem['parentCategoryOriginUid'];
 

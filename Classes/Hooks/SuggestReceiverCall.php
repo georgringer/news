@@ -32,9 +32,9 @@
  */
 class Tx_News_Hooks_SuggestReceiverCall {
 
-	const tagTable = 'tx_news_domain_model_tag';
-	const newsTable = 'tx_news_domain_model_news';
-	const errorLangPath = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:tag_suggest_';
+	const TAG = 'tx_news_domain_model_tag';
+	const NEWS = 'tx_news_domain_model_news';
+	const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:tag_suggest_';
 
 	/**
 	 * Create a tag
@@ -65,15 +65,15 @@ class Tx_News_Hooks_SuggestReceiverCall {
 			$response = array(
 				$newTagId,
 				$request['item'],
-				self::tagTable,
-				self::newsTable,
+				self::TAG,
+				self::NEWS,
 				'tags',
 				'data[tx_news_domain_model_news][' . $newsUid . '][tags]',
 				$newsUid
 			);
 			$ajaxObj->setJavascriptCallbackWrap(implode('-', $response));
 		} catch (Exception $e) {
-			$errorMsg = $GLOBALS['LANG']->sL(self::errorLangPath . $e->getMessage());
+			$errorMsg = $GLOBALS['LANG']->sL(self::LLPATH . $e->getMessage());
 			$ajaxObj->setError($errorMsg);
 		}
 	}
@@ -95,15 +95,15 @@ class Tx_News_Hooks_SuggestReceiverCall {
 
 		$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
 					'*',
-					self::tagTable,
+					self::TAG,
 					'deleted=0 AND pid=' . (int)$configurationArray['tagPid'] .
-						' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], self::tagTable)
+						' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], self::TAG)
 					);
 		if(isset($record['uid'])) {
 			$tagUid = $record['uid'];
 		} else {
 			$tcemainData = array(
-				self::tagTable => array(
+				self::TAG => array(
 					'NEW' => array(
 						'pid' => (int)$configurationArray['tagPid'],
 						'title' => $request['item']

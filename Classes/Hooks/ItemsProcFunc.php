@@ -86,7 +86,6 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * @return void
 	 */
 	public function user_orderBy(array &$config, t3lib_TCEforms $parentObject) {
-		$defaultItems = 'tstmp,datetime,crdate,title';
 		$newItems = '';
 
 			// check if the record has been saved once
