@@ -64,22 +64,13 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 *
 	 * @param Tx_News_Domain_Model_News $newsItem
 	 * @param array $settings
-	 * @param boolean $renderTypeClass
-	 * @param string $class
-	 * @param boolean $linkOnly
-	 * @param boolean $hsc
+	 * @param boolean $hsc add htmlspecialchars() at the end
+	 * @param array $configuration optional typolink configuration
 	 * @return string url
 	 */
-	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $renderTypeClass = TRUE, $class = '', $linkOnly = FALSE, $hsc = FALSE) {
+	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $hsc = FALSE, $configuration = array()) {
 		$tsSettings = $this->pluginSettingsService->getSettings();
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
-		$linkConfiguration = array();
-
-		if ($renderTypeClass && !empty($class)) {
-			$linkConfiguration['ATagParams'] = 'class="list-item ' . $class . '"';
-		} elseif (!empty($class)) {
-			$linkConfiguration['ATagParams'] = 'class="' . $class . '"';
-		}
 
 		$newsType = (int)$newsItem->getType();
 
@@ -100,9 +91,9 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 				$detailPid = $GLOBALS['TSFE']->id;
 			}
 
-			$linkConfiguration['useCacheHash'] = 1;
-			$linkConfiguration['parameter'] = $detailPid;
-			$linkConfiguration['additionalParams'] = '&tx_news_pi1[controller]=News' .
+			$configuration['useCacheHash'] = 1;
+			$configuration['parameter'] = $detailPid;
+			$configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
 				'&tx_news_pi1[action]=detail' .
 				'&tx_news_pi1[news]=' . $newsItem->getUid();
 
@@ -112,35 +103,31 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 				$dateTime = $newsItem->getDatetime();
 
 				if (!empty($tsSettings['link']['hrDate']['day'])) {
-					$linkConfiguration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
+					$configuration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
 				}
 				if (!empty($tsSettings['link']['hrDate']['month'])) {
-					$linkConfiguration['additionalParams'] .= '&tx_news_pi1[month]=' . $dateTime->format($tsSettings['link']['hrDate']['month']);
+					$configuration['additionalParams'] .= '&tx_news_pi1[month]=' . $dateTime->format($tsSettings['link']['hrDate']['month']);
 				}
 				if (!empty($tsSettings['link']['hrDate']['year'])) {
-					$linkConfiguration['additionalParams'] .= '&tx_news_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
+					$configuration['additionalParams'] .= '&tx_news_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
 				}
 			}
 
 			// internal news
 		} elseif ($newsType === 1) {
-			$linkConfiguration['parameter'] = $newsItem->getInternalurl();
+			$configuration['parameter'] = $newsItem->getInternalurl();
 			// external news
 		} elseif ($newsType === 2) {
-			$linkConfiguration['parameter'] = $newsItem->getExternalurl();
+			$configuration['parameter'] = $newsItem->getExternalurl();
 		}
 
-		if ($linkOnly) {
-			$linkConfiguration['returnLast'] = 'url';
-		}
-
-		$finalLink = $cObj->typolink($this->renderChildren(), $linkConfiguration);
+		$link = $cObj->typolink($this->renderChildren(), $configuration);
 
 		if ($hsc) {
-			$finalLink = htmlspecialchars($finalLink);
+			$link = htmlspecialchars($link);
 		}
 
-		return $finalLink;
+		return $link;
 	}
 
 	/**
