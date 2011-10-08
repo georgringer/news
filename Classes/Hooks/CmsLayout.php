@@ -49,6 +49,12 @@ class Tx_News_Hooks_CmsLayout {
 	public $tableData = array();
 
 	/**
+	 * Flexform information
+	 * @var array
+	 */
+	public $flexformData = array();
+
+	/**
 	 * Selected action
 	 *
 	 * @var string
@@ -66,10 +72,10 @@ class Tx_News_Hooks_CmsLayout {
 		$result = $actionTranslationKey = '';
 
 		if ($params['row']['list_type'] == self::KEY . '_pi1') {
-			$data = t3lib_div::xml2array($params['row']['pi_flexform']);
+			$this->flexformData = t3lib_div::xml2array($params['row']['pi_flexform']);
 
 				// if flexform data is found
-			$actions = $this->getFieldFromFlexform($data, 'switchableControllerActions');
+			$actions = $this->getFieldFromFlexform($this->flexformData, 'switchableControllerActions');
 			if (!empty($actions)) {
 				$actionList = t3lib_div::trimExplode(';', $actions);
 
@@ -85,28 +91,33 @@ class Tx_News_Hooks_CmsLayout {
 				$result = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
 			}
 
-			if (is_array($data)) {
+			if (is_array($this->flexformData)) {
 
 				switch ($actionTranslationKey) {
 					case 'news_list':
-						$this->getArchiveSettings($data);
-						$this->getCategorySettings($data);
-						$this->getOffsetLimitSettings($data);
-						$this->getStartingPoint($data);
+						$this->getStartingPoint();
+						$this->getTimeRestrictionSetting();
+						$this->getTopNewsRestrictionSetting();
+						$this->getOrderSettings();
+						$this->getCategorySettings();
+						$this->getArchiveSettings();
+						$this->getOffsetLimitSettings();
 						break;
 					case 'news_detail':
-						$this->getSingleNewsSettings($data);
+						$this->getSingleNewsSettings();
 						break;
 					case 'news_datemenu':
-						$this->getDateMenuSettings($data);
-						$this->getCategorySettings($data);
-						$this->getStartingPoint($data);
+						$this->getStartingPoint();
+						$this->getTimeRestrictionSetting();
+						$this->getTopNewsRestrictionSetting();
+						$this->getDateMenuSettings();
+						$this->getCategorySettings();
 						break;
 				}
 
 					// for all views
-				$this->getOverrideDemandSettings($data);
-				$this->getTemplateLayoutSettings($data);
+				$this->getOverrideDemandSettings();
+				$this->getTemplateLayoutSettings();
 
 				$result .= $this->renderSettingsAsTable();
 			}
@@ -118,11 +129,10 @@ class Tx_News_Hooks_CmsLayout {
 	/**
 	 * Render archive settings
 	 *
-	 * @param array $data
 	 * @return void
 	 */
-	private function getArchiveSettings(array $data) {
-		$archive = $this->getFieldFromFlexform($data, 'settings.archiveRestriction');
+	private function getArchiveSettings() {
+		$archive = $this->getFieldFromFlexform($this->flexformData, 'settings.archiveRestriction');
 
 		if (!empty($archive)) {
 			$this->tableData[] = array(
@@ -135,11 +145,10 @@ class Tx_News_Hooks_CmsLayout {
 	/**
 	 * Render single news settings
 	 *
-	 * @param array $data
 	 * @return void
 	 */
-	private function getSingleNewsSettings(array $data) {
-		$singleNewsRecord = (int)$this->getFieldFromFlexform($data, 'settings.singleNews');
+	private function getSingleNewsSettings() {
+		$singleNewsRecord = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.singleNews');
 
 		if ($singleNewsRecord > 0) {
 			$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . $singleNewsRecord);
@@ -149,22 +158,50 @@ class Tx_News_Hooks_CmsLayout {
 		}
 	}
 
+	/**
+	 * Get order settings
+	 *
+	 * @return void
+	 */
+	private function getOrderSettings() {
+		$orderField = $this->getFieldFromFlexform($this->flexformData, 'settings.orderBy');
+		if (!empty($orderField)) {
+			$text = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderBy.' . $orderField);
+
+				// Order direction (asc, desc)
+			$orderDirection = $this->getFieldFromFlexform($this->flexformData, 'settings.orderDirection');
+			if (!empty($orderDirection)) {
+				$text .= ', ' . strtolower($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderDirection.' . $orderDirection));
+			}
+
+				// Top news first
+			$topNewsSetting = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.topNewsFirst', 'additional');
+			if ($topNewsSetting === 1) {
+				$text .= '<br />' . $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.topNewsFirst');
+			}
+
+			$this->tableData[] = array(
+				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderBy'),
+				$text
+			);
+		}
+	}
+
 
 	/**
 	 * Render category settings
 	 *
-	 * @param array $data
 	 * @return void
 	 */
-	private function getCategorySettings(array $data) {
+	private function getCategorySettings() {
 		$categoryMode = '';
 		$categoriesOut = array();
 
-		$categories = t3lib_div::intExplode(',', $this->getFieldFromFlexform($data, 'settings.categories'), TRUE);
+		$categories = t3lib_div::intExplode(',', $this->getFieldFromFlexform($this->flexformData, 'settings.categories'), TRUE);
 		if (count($categories) > 0) {
 
 				// Category mode
-			$categoryModeSelection = $this->getFieldFromFlexform($data, 'settings.categoryConjunction');
+			$categoryModeSelection = $this->getFieldFromFlexform($this->flexformData, 'settings.categoryConjunction');
 
 			if (empty($categoryModeSelection)) {
 				$categoryMode = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categoryConjunction.all');
@@ -194,13 +231,12 @@ class Tx_News_Hooks_CmsLayout {
 	/**
 	 * Render offset & limit configuration
 	 *
-	 * @param array $data
 	 * @return void
 	 */
-	private function getOffsetLimitSettings(array $data) {
-		$offset = $this->getFieldFromFlexform($data, 'settings.offset', 'additional');
-		$limit = $this->getFieldFromFlexform($data, 'settings.limit', 'additional');
-		$hidePagionation = $this->getFieldFromFlexform($data, 'settings.hidePagination', 'additional');
+	private function getOffsetLimitSettings() {
+		$offset = $this->getFieldFromFlexform($this->flexformData, 'settings.offset', 'additional');
+		$limit = $this->getFieldFromFlexform($this->flexformData, 'settings.limit', 'additional');
+		$hidePagionation = $this->getFieldFromFlexform($this->flexformData, 'settings.hidePagination', 'additional');
 
 		if ($offset) {
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.offset'), $offset);
@@ -216,17 +252,16 @@ class Tx_News_Hooks_CmsLayout {
 	/**
 	 * Render datemenu configuration
 	 *
-	 * @param array $data flexform data
 	 * @return void
 	 */
-	private function getDateMenuSettings(array $data) {
+	private function getDateMenuSettings() {
 		$content = '';
 
 		if ($this->selectedAction !== 'datemenu') {
 			return $content;
 		}
 
-		$dateMenuField = $this->getFieldFromFlexform($data, 'settings.dateField');
+		$dateMenuField = $this->getFieldFromFlexform($this->flexformData, 'settings.dateField');
 
 		$this->tableData[] = array(
 						$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.dateField'),
@@ -235,15 +270,43 @@ class Tx_News_Hooks_CmsLayout {
 	}
 
 	/**
-	 * Render template layout configuration
+	 * Render time restriction configuration
 	 *
-	 * @param array $data flexform data
 	 * @return void
 	 */
-	private function getTemplateLayoutSettings(array $data) {
+	private function getTimeRestrictionSetting() {
+		$timeRestriction = $this->getFieldFromFlexform($this->flexformData, 'settings.timeRestriction');
+
+		$this->tableData[] = array(
+						$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
+						htmlspecialchars($timeRestriction)
+					);
+	}
+
+	/**
+	 * Render top news restriction configuration
+	 *
+	 * @return void
+	 */
+	private function getTopNewsRestrictionSetting() {
+		$topNewsRestriction = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.topNewsRestriction');
+		if ($topNewsRestriction > 0) {
+			$this->tableData[] = array(
+							$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.topNewsRestriction'),
+							$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.topNewsRestriction.' . $topNewsRestriction)
+						);
+		}
+	}
+
+	/**
+	 * Render template layout configuration
+	 *
+	 * @return void
+	 */
+	private function getTemplateLayoutSettings() {
 		$title = '';
 
-		$field = $this->getFieldFromFlexform($data, 'settings.templateLayout', 'template');
+		$field = $this->getFieldFromFlexform($this->flexformData, 'settings.templateLayout', 'template');
 		if (!empty($field))
 				// find correct title by looping over all options
 			foreach($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] as $layouts) {
@@ -263,11 +326,10 @@ class Tx_News_Hooks_CmsLayout {
 	/**
 	 * Get information if override demand setting is disabled or not
 	 *
-	 * @param array $data flexform data
 	 * @return void
 	 */
-	private function getOverrideDemandSettings($data) {
-		$field = $this->getFieldFromFlexform($data, 'settings.disableOverrideDemand', 'additional');
+	private function getOverrideDemandSettings() {
+		$field = $this->getFieldFromFlexform($this->flexformData, 'settings.disableOverrideDemand', 'additional');
 
 		if ($field == 1) {
 			$this->tableData[] = array($GLOBALS['LANG']->sL(
@@ -278,11 +340,10 @@ class Tx_News_Hooks_CmsLayout {
 	/**
 	 * Get the startingpoint
 	 *
-	 * @param array $data flexform data
 	 * @return void
 	 */
-	private function getStartingPoint(array $data) {
-		$value = $this->getFieldFromFlexform($data, 'settings.startingpoint');
+	private function getStartingPoint() {
+		$value = $this->getFieldFromFlexform($this->flexformData, 'settings.startingpoint');
 
 		if (!empty($value)) {
 			$pagesOut = array();
@@ -296,9 +357,23 @@ class Tx_News_Hooks_CmsLayout {
 				$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>';
 			}
 
+			$recursiveLevel = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.recursive');
+			$recursiveLevelText = '';
+			if ($recursiveLevel === 250) {
+				$recursiveLevelText = $GLOBALS['LANG']->sL('LLL:EXT:cms/locallang_ttc.xml:recursive.I.5');
+			} elseif ($recursiveLevel > 0) {
+				$recursiveLevelText = $GLOBALS['LANG']->sL('LLL:EXT:cms/locallang_ttc.xml:recursive.I.' . $recursiveLevel);
+			}
+
+			if (!empty($recursiveLevelText)) {
+				$recursiveLevelText =  '<br /><small>' .
+							$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.recursive', TRUE)
+								. ': ' . $recursiveLevelText . '</small>';
+			}
+
 			$this->tableData[] = array(
 							$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
-							implode(', ', $pagesOut)
+							implode(', ', $pagesOut) . $recursiveLevelText
 						);
 		}
 	}
