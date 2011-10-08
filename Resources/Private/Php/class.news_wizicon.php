@@ -29,7 +29,8 @@
  * @subpackage tx_news
  */
 class news_pi1_wizicon {
-	protected $extKey = 'news';
+
+	const KEY = 'news';
 
 	/**
 	 * Processing the wizard items array
@@ -40,11 +41,11 @@ class news_pi1_wizicon {
 	public function proc($wizardItems) {
 		$locallang = $this->includeLocalLang();
 
-		$wizardItems['plugins_tx_' . $this->extKey] = array(
-			'icon'			=> t3lib_extMgm::extRelPath($this->extKey) . 'Resources/Public/Icons/ce_wiz.gif',
+		$wizardItems['plugins_tx_' . self::KEY] = array(
+			'icon'			=> t3lib_extMgm::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.gif',
 			'title'			=> $GLOBALS['LANG']->getLLL('pi1_title', $locallang),
 			'description'	=> $GLOBALS['LANG']->getLLL('pi1_plus_wiz_description', $locallang),
-			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=' . $this->extKey . '_pi1'
+			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=' . self::KEY . '_pi1'
 		);
 
 		return $wizardItems;
@@ -57,9 +58,9 @@ class news_pi1_wizicon {
 	 * @return	The array with language labels
 	 */
 	protected function includeLocalLang() {
-		$llFile = t3lib_extMgm::extPath($this->extKey) . 'Resources/Private/Language/locallang_be.xml';
+		$file = t3lib_extMgm::extPath(self::KEY) . 'Resources/Private/Language/locallang_be.xml';
 
-		return t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
+		return t3lib_div::readLLXMLfile($file, $GLOBALS['LANG']->lang);
 	}
 }
 
