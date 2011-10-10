@@ -19,12 +19,8 @@
 				<f:for each="{news}" as="newsItem">
 					<item>
 						<title><n:format.hsc>{newsItem.title}</n:format.hsc></title>
-						<link>
-							<n:link newsItem="{newsItem}" settings="{settings}" linkOnly="TRUE" hsc="TRUE"></n:link>
-						</link>
-						<description>
-							<n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc>
-						</description>
+						<link><n:link newsItem="{newsItem}" settings="{settings}" configuration="{returnLast:'url'}" hsc="TRUE"></n:link></link>
+						<description><n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc></description>
 					</item>
 				</f:for>
 			</f:if>
