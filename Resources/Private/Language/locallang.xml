@@ -112,6 +112,8 @@
 			<label index="paginate_next">Nächste</label>
 			<label index="paginate_previous">Vorherige</label>
 
+			<label index="more-link">mehr</label>
+			<label index="back-link">zurück</label>
 			<label index="entry">Eintrag</label>
 			<label index="entries">Einträge</label>
 
