@@ -1,0 +1,24 @@
+{namespace n=Tx_News_ViewHelpers}
+<f:layout name="General" />
+<!--
+	=====================
+		Templates/News/SearchResult.html
+-->
+
+<f:section name="content">
+	<f:if condition="{search}">
+		<f:if condition="{news}">
+			<f:then>
+				<div class="count-msg">
+					<f:translate key="search-text" arguments="{0:'{f:count(subject:news)}',1:search.subject}" />
+				</div>
+				<f:for each="{news}" as="newsItem">
+					<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+				</f:for>
+			</f:then>
+			<f:else>
+				<f:translate key="search-noresult" />
+			</f:else>
+		</f:if>
+	</f:if>
+</f:section>

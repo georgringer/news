@@ -161,11 +161,20 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		if ($demand->getSearch() !== NULL) {
 			/** @var $searchObject Tx_News_Domain_Model_Dto_Search */
 			$searchObject = $demand->getSearch();
+			$searchFields = t3lib_div::trimExplode(',', $searchObject->getFields(), TRUE);
+			$searchConstraints = array();
 
-			$searchString = $searchObject->getSearchString();
-			if (!empty($searchString)) {
-				$constraints[] = $query->like('title', '%' . $searchString . '%');
+			if (count($searchFields) === 0) {
+			    throw new UnexpectedValueException('No search fields defined', 1318497755);
 			}
+
+			$searchSubject = $searchObject->getSubject();
+			foreach($searchFields as $field) {
+			    if (!empty($searchSubject)) {
+				$searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
+			    }
+			}
+			$constraints[] = $query->logicalOr($searchConstraints);
 		}
 
 			// Clean not used constraints
