@@ -13,9 +13,6 @@ hideMediaTable = 1
  	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.hideFileTable
 hideFileTable = 1
 
- 	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.enableDam
-enableDam = 0
-
  	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.prependAtCopy
 prependAtCopy = 1
 
