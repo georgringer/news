@@ -83,9 +83,8 @@ class Tx_News_Hooks_CmsLayout {
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
 				$actionTranslation = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
 
-				$result = '<strong>' .
-							$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode', TRUE) .
-						': </strong>' . htmlspecialchars($actionTranslation);
+				$result = '<strong>' . $actionTranslation . '</strong>';
+				$result = '<h5>' . $actionTranslation . '</h5>';
 
 			} else {
 				$result = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
@@ -119,7 +118,7 @@ class Tx_News_Hooks_CmsLayout {
 				$this->getOverrideDemandSettings();
 				$this->getTemplateLayoutSettings();
 
-				$result .= $this->renderSettingsAsTable();
+				$result .= $this->renderSettingsAsTable($params['row']);
 			}
 		}
 
@@ -380,14 +379,17 @@ class Tx_News_Hooks_CmsLayout {
 
 	/**
 	 * Render the settings as table
+	 *
+	 * @param array $record content element record
 	 * @return string
 	 */
-	protected function renderSettingsAsTable() {
+	protected function renderSettingsAsTable(array $record) {
 		$content = '';
 		if (count($this->tableData) == 0) {
 			return $content;
 		}
 
+		$visible = ($record['hidden'] == 0);
 		$i = 0;
 		foreach($this->tableData as $line) {
 				// Check if the setting is in the list of diabled ones
@@ -395,16 +397,16 @@ class Tx_News_Hooks_CmsLayout {
 			$renderedLine = '';
 
 			if (!empty($line[1])) {
-				$renderedLine = '<td style="font-weight:bold;width:40%;">' . $line[0] .	'</td>
+				$renderedLine = '<td style="' . ($visible ? 'font-weight:bold;' : '') . 'width:40%;">' . $line[0] .	'</td>
 								<td>' . $line[1] . '</td>';
 			} else {
-				$renderedLine = '<td style="font-weight:bold;" colspan="2">' . $line[0] .	'</td>';
+				$renderedLine = '<td style="' . ($visible ? 'font-weight:bold;' : '') . '" colspan="2">' . $line[0] .	'</td>';
 			}
-			$content .= '<tr class="' . $class . '">' . $renderedLine . '</tr>';
+			$content .= '<tr class="' . ($visible ? $class : '') . '">' . $renderedLine . '</tr>';
 		}
 
 		if (!empty($content)) {
-			$content = '<br /><table class="typo3-dblist">' . $content . '</table>';
+			$content = '<table class="typo3-dblist">' . $content . '</table>';
 		}
 
 		return $content;
