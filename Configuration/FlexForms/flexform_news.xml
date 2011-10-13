@@ -29,6 +29,10 @@
 									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_list</numIndex>
 									<numIndex index="1">News->list;News->detail</numIndex>
 								</numIndex>
+								<numIndex index="2">
+									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_listOnly</numIndex>
+									<numIndex index="1">News->list</numIndex>
+								</numIndex>
 								<numIndex index="3">
 									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_detail</numIndex>
 									<numIndex index="1">News->detail</numIndex>

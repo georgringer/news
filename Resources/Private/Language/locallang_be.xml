@@ -16,7 +16,7 @@
 
 			<label index="flexforms_general.mode">What to display</label>
 			<label index="flexforms_general.mode.news_list">List view</label>
-			<label index="flexforms_general.mode.news_latest">Latest view</label>
+			<label index="flexforms_general.mode.news_listOnly">List view (without overloading detail view)</label>
 			<label index="flexforms_general.mode.news_detail">Detail view</label>
 			<label index="flexforms_general.mode.news_searchform">Search form</label>
 			<label index="flexforms_general.mode.news_searchresult">Search result</label>
@@ -123,7 +123,6 @@
 
 			<label index="flexforms_general.mode">Visnings-valg</label>
 			<label index="flexforms_general.mode.news_list">Liste-visning</label>
-			<label index="flexforms_general.mode.news_latest">Nyeste-visning</label>
 			<label index="flexforms_general.mode.news_detail">Detalje-visning</label>
 			<label index="flexforms_general.mode.news_searchform">Søgeformular</label>
 			<label index="flexforms_general.mode.news_searchresult">Søgeresultater</label>
@@ -226,7 +225,6 @@
 
 			<label index="flexforms_general.mode">Qué mostrar</label>
 			<label index="flexforms_general.mode.news_list">Vista de lista</label>
-			<label index="flexforms_general.mode.news_latest">Vista de últimas noticias</label>
 			<label index="flexforms_general.mode.news_detail">Vista de detalle</label>
 			<label index="flexforms_general.mode.news_searchform">Formulario de búsqueda</label>
 			<label index="flexforms_general.mode.news_searchresult">Resultados de búsqueda</label>

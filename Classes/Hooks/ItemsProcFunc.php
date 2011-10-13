@@ -133,12 +133,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * @return void
 	 */
 	public function user_switchableControllerActions(array &$config, t3lib_TCEforms $parentObject) {
-			// remove the detail action from the listAction
-		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['listActionOnly'])) {
-			$config['items'][0][1] = 'News->list;';
-		}
-
-			// add additional actions
+			// Add additional actions
 		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
 				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])) {
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'] as $key => $label) {
