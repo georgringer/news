@@ -172,23 +172,44 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	}
 
 
+
 	/**
-	 * Displays the news search form
+	 * Display the search form
 	 *
+	 * @param Tx_News_Domain_Model_Dto_Search $search
 	 * @return void
-	 * @todo implement :)
 	 */
-	public function searchFormAction() {
+	public function searchFormAction(Tx_News_Domain_Model_Dto_Search $search = NULL) {
+	    if (is_null($search)) {
+			$search = $this->objectManager->get('Tx_News_Domain_Model_Dto_Search');
+	    }
+
+	   $this->view->assign('search', $search);
 	}
 
 	/**
-	 * Displays the news search result
+	 * Displays the search result
 	 *
-	 * @param $search Tx_News_Domain_Model_Dto_Search
-	 * @todo implement :)
+	 * @param Tx_News_Domain_Model_Dto_Search $search
+	 * @param array $overwriteDemand
 	 * @return void
 	 */
-	public function searchResultAction() {
+	public function searchResultAction(Tx_News_Domain_Model_Dto_Search $search = NULL, array $overwriteDemand = array()) {
+		$demand = $this->createDemandObjectFromSettings($this->settings);
+		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
+			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
+		}
+
+		if (!is_null($search)) {
+			$search->setFields($this->settings['search']['fields']);
+		}
+		$demand->setSearch($search);
+
+		$this->view->assignMultiple(array(
+			'news' => $this->newsRepository->findDemanded($demand),
+			'overwriteDemand' => $overwriteDemand,
+			'search' => $search,
+		));
 	}
 
 
