@@ -16,6 +16,7 @@
 
 			<label index="flexforms_general.mode">What to display</label>
 			<label index="flexforms_general.mode.news_list">List view</label>
+			<label index="flexforms_general.mode.news_listOnly">List view (without overloading detail view)</label>
 			<label index="flexforms_general.mode.news_latest">Latest view</label>
 			<label index="flexforms_general.mode.news_detail">Detail view</label>
 			<label index="flexforms_general.mode.news_searchform">Search form</label>
