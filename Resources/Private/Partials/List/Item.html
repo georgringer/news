@@ -37,10 +37,11 @@
 								<f:render partial="Detail/MediaHtml" arguments="{mediaElement: mediaElement}"/>
 							</f:if>
 							<f:if condition="{mediaElement.type} == 3">
-								<f:render partial="Detail/MediaDam" arguments="{mediaElement: mediaElement}"/>
+								<n:format.dam as="dam" uid="{mediaElement.uid}">
+									<f:image src="{dam.file_path}{dam.file_name}" title="{dam.title}"  alt="{dam.alt_text}" maxWidth="{settings.detail.media.image.maxWidth}" />
+								</n:format.dam>
 							</f:if>
 						</f:alias>
-
 					</f:then>
 					<f:else>
 						<span class="no-media-element">
