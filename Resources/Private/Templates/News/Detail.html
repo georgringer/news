@@ -24,14 +24,8 @@
 						<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
 					</span>
 
-					<f:if condition="{newsItem.category}">
-						<!-- categories -->
-						<span class="hidden">. </span>
-						<span class="news-list-category">
-							<f:for each="{newsItem.categories}" as="category">
-								{category.title}
-							</f:for>
-						</span>
+					<f:if condition="{newsItem.categories}">
+						<f:render partial="Category/Items" arguments="{categories:newsItem.categories, settings:settings}"/>
 					</f:if>
 
 					<f:if condition="{newsItem.author}">
