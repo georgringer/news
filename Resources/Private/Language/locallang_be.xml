@@ -95,6 +95,10 @@
 			<label index="extmng.archiveDate">Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</label>
 			<label index="extmng.archiveDate.date">Date</label>
 			<label index="extmng.archiveDate.datetime">Date &amp; Time</label>
+			<label index="extmng.removeListActionFromFlexforms">List actions shown in Flexforms:There are 2 different list views: "List only" can only show the list view. This is for example neded if you need a list view at the same page as the detail view. "List+Detail" will show the same list view but will show the detail view if a news item is set via GET arguments. Be aware: If the setting is changed after news plugins have been created, all plugins need to be reconfigured by selecting the correct action!</label>
+			<label index="extmng.removeListActionFromFlexforms.0">Both views are shown</label>
+			<label index="extmng.removeListActionFromFlexforms.1">List &amp; Detail</label>
+			<label index="extmng.removeListActionFromFlexforms.2">List only</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>

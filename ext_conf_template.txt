@@ -1,3 +1,6 @@
+	# cat=basic/enable/106; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.0=0,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.1=1,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.2=2]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms
+removeListActionFromFlexforms = 2
+
 	# cat=basic/enable/100; type=input; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsNews
 pageModuleFieldsNews = LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pagemodule_simple=title,datetime;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pagemodule_advanced=title,datetime,teaser,category;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pagemodule_complex=title,datetime,teaser,category,archive;
 

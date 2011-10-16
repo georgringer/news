@@ -133,11 +133,39 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * @return void
 	 */
 	public function user_switchableControllerActions(array &$config, t3lib_TCEforms $parentObject) {
+		if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'])) {
+			$configuration = (int)$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'];
+				switch ($configuration) {
+					case 1:
+						$this->removeActionFromList($config, 'News->list');
+						break;
+					case 2:
+						$this->removeActionFromList($config, 'News->list;News->detail');
+						break;
+				}
+		}
+
 			// Add additional actions
 		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
 				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])) {
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'] as $key => $label) {
 				array_push($config['items'], array($GLOBALS['LANG']->sL($label), $key, ''));
+			}
+		}
+	}
+
+	/**
+	 * Remove given action from switchableControllerActions
+	 *
+	 * @param array $config available items
+	 * @param string $action action to be removed
+	 * @return void
+	 */
+	private function removeActionFromList(array &$config, $action) {
+		foreach($config['items'] as $key => $item) {
+			if ($item[1] === $action) {
+				unset($config['items'][$key]);
+				continue;
 			}
 		}
 	}
