@@ -332,5 +332,5 @@ if (TYPO3_MODE == 'BE') {
 =========================================================================== */
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'] = 'uid,title,tstamp,sorting';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] = 'tstamp,datetime,crdate,title';
-
+$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'] = (int)$configurationArray['removeListActionFromFlexforms'];
 ?>
