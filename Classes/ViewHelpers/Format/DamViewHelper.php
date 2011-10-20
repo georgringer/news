@@ -48,18 +48,22 @@ class Tx_News_ViewHelpers_Format_DamViewHelper extends Tx_Fluid_Core_ViewHelper_
 	/**
 	 * Return dam record
 	 *
-	 * @param integer $uid
-	 * @param string $as
+	 * @param integer $uid uid of media element.
+	 * @param string $as name of element which is used for the dam record
 	 * @return array
 	 */
 	public function render($uid, $as) {
-		$res = tx_dam_db::referencesQuery('tx_dam', '', 'tx_news_domain_model_media', (int)$uid, $MM_ident='', $MM_table='tx_dam_mm_ref', $fields='*');
-		$record = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+		if (t3lib_extMgm::isLoaded('dam')) {
+			$res = tx_dam_db::referencesQuery('tx_dam', '', 'tx_news_domain_model_media', (int)$uid, $MM_ident='', $MM_table='tx_dam_mm_ref', $fields='*');
+			$record = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
 
-		$this->templateVariableContainer->add($as, $record);
-		$output = $this->renderChildren();
-		$this->templateVariableContainer->remove($as);
-		return $output;
+			$this->templateVariableContainer->add($as, $record);
+			$output = $this->renderChildren();
+			$this->templateVariableContainer->remove($as);
+			return $output;
+		} else {
+			throw new Tx_Fluid_Core_ViewHelper_Exception('DamViewHelper needs a loaded DAM extension', 1318786684 );
+		}
 	}
 }
 ?>
