@@ -1,0 +1,43 @@
+#news-administration * {
+
+
+}
+
+.clear{
+	clear: both;
+}
+
+#news-administration .settings {
+	padding: 4px;
+	margin: 4px;
+	border: 1px solid #ccc;
+	background: #eee;
+}
+
+#news-administration .settings .field {
+	padding:2px 0;
+}
+
+#news-administration .settings input {
+}
+
+#news-administration .settings label {
+	display: block;
+	float:left;
+	width:150px;
+}
+
+#news-administration .settings .submit {
+	margin:5px 0 3px 10px;
+}
+
+#news-administration .result .item {
+	padding: 1px;
+}
+
+#news-administration .result .item a {
+	font-style: italic;
+}
+#news-administration .result .item a:hover {
+	text-decoration: underline;
+}

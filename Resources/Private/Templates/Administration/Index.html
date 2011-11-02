@@ -1,0 +1,69 @@
+<f:layout name="Backend/Default" />
+
+<f:section name="iconButtons">
+	<f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="actions-document-new" title="Create new news record" />
+</f:section>
+
+<f:section name="content">
+	<div id="news-administration">
+		<div class="settings">
+			<strong>Settings</strong><br />
+			<f:form name="demand" object="{demand}">
+				<div class="field">
+					<label for="timeRestriction">Time Restriction</label>
+					<f:form.textfield property="timeRestriction" id="timeRestriction" />
+					<div class="clear"></div>
+				</div>
+
+				<div class="field">
+					<label for="recursive">Recursive:</label>
+					<f:form.select property="recursive" options="{0:0,1:1,2:2,3:3,4:4,5:5}" id="recursive" />
+					<div class="clear"></div>
+				</div>
+
+				<div class="field">
+					<label for="categories">Categories:</label>
+					<f:form.textfield property="categories" id="categories" />
+					<div class="clear"></div>
+				</div>
+
+				<div class="field">
+					<label for="categories">Catconj:</label>
+					<f:form.select property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
+					<div class="clear"></div>
+				</div>
+
+				<f:form.submit value="submit" class="submit" />
+			</f:form>
+		</div>
+
+		<f:if condition="{news}">
+			<f:then>
+				<div class="result">
+					<table class="typo3-dblist">
+						<tr class="t3-row-header">
+							<td colspan="20">News found</td>
+						</tr>
+						<tr class="c-headLine">
+							<td colspan="2">Title</td>
+							<td>Datetime</td>
+							<td>Archive</td>
+							<td>last change</td>
+							<td>additional</td>
+						</tr>
+						<f:for each="{news}" as="newsItem">
+							<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem}"/>
+						</f:for>
+					</table>
+
+				</div>
+			</f:then>
+			<f:else>
+				<f:translate key="list_nonewsfound" />
+			</f:else>
+		</f:if>
+
+
+	</div>
+
+</f:section>
