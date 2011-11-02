@@ -319,6 +319,26 @@ if (TYPO3_MODE == 'BE' && $configurationArray['showImporter'] == 1) {
 	}
 }
 
+/* ===========================================================================
+ 	Register BE-Module for Administration
+=========================================================================== */
+if (TYPO3_MODE == 'BE') {
+	Tx_Extbase_Utility_Extension::registerModule(
+		$_EXTKEY,
+		'web',
+		'tx_news_m2',
+		'',
+		array(
+			'Administration' => 'index,new',
+		),
+		array(
+			'access' => 'user,group',
+			'icon'   => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/import_module.gif',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_modadministration.xml',
+		)
+	);
+}
+
 
 /* ===========================================================================
  	Ajax call to save tags

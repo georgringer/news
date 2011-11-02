@@ -1,0 +1,36 @@
+<f:layout name="Backend/Default" />
+
+<f:section name="iconButtons">
+	<f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="actions-document-new" title="Create new news record" />
+</f:section>
+
+<f:section name="content">
+	<div style="padding:4px;margin:4px;border:1px solid #ccc;background:#eee">
+		<strong>Settings</strong><br />
+		<f:form name="demand" object="{demand}">
+			Timerestr: <f:form.textfield property="timeRestriction" /><br />
+			Recursive: <f:form.select property="recursive" options="{0:0,1:1,2:2,3:3,4:4,5:5}" /><br />
+			Categories: <f:form.textfield property="categories" /><br />
+			Catconj<f:form.select property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" />
+
+			<br /><f:form.submit value="submit" />
+		</f:form>
+	</div>
+
+	<f:if condition="{news}">
+		<f:then>
+			<h3 class="uppercase">News found</h3>
+			<f:for each="{news}" as="newsItem">
+				<div>
+					{newsItem.title}
+				</div>
+			</f:for>
+		</f:then>
+		<f:else>
+			<f:translate key="list_nonewsfound" />
+		</f:else>
+	</f:if>
+
+
+
+</f:section>
