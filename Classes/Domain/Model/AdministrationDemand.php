@@ -3,10 +3,14 @@
 class Tx_News_Domain_Model_AdministrationDemand extends Tx_News_Domain_Model_NewsDemand {
 
 	/**
-	 *
 	 * @var string
 	 */
 	protected $recursive;
+
+	/**
+	 * @var array
+	 */
+	protected $selectedCategories = array();
 
 	public function getRecursive() {
 		return $this->recursive;
@@ -15,6 +19,16 @@ class Tx_News_Domain_Model_AdministrationDemand extends Tx_News_Domain_Model_New
 	public function setRecursive($recursive) {
 		$this->recursive = $recursive;
 	}
+
+	public function getSelectedCategories() {
+		return $this->selectedCategories;
+	}
+
+	public function setSelectedCategories($selectedCategories) {
+		$this->selectedCategories = $selectedCategories;
+	}
+
+
 
 
 }

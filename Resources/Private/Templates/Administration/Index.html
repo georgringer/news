@@ -1,14 +1,34 @@
+{namespace n=Tx_News_ViewHelpers}
+
 <f:layout name="Backend/Default" />
 
 <f:section name="iconButtons">
-	<f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="actions-document-new" title="Create new news record" />
+	<n:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="actions-document-new" title="Create new news record" />
+</f:section>
+
+
+<f:section name="categoryList">
+	<n:categoryChildren category="{list}" as="categories">
+		<f:if condition="{categories}"><ul>
+			<f:for each="{categories}" as="category"><li>
+				<f:render section="categoryListItem" arguments="{category: category}" />
+				<f:render section="categoryList" arguments="{list: category.uid}" />
+			</li></f:for>
+		</ul></f:if>
+	</n:categoryChildren>
+</f:section>
+
+<f:section name="categoryListItem">
+	<f:form.checkbox id="category-{category.uid}"property="selectedCategories" value="{category.uid}" />
+	<label for="category-{category.uid}" title="{category.uid}">{category.title}</label>
 </f:section>
 
 <f:section name="content">
 	<div id="news-administration">
+		<f:form name="demand" object="{demand}">
 		<div class="settings">
-			<strong>Settings</strong><br />
-			<f:form name="demand" object="{demand}">
+			<div class="form">
+				<h3>Settings</h3>
 				<div class="field">
 					<label for="timeRestriction">Time Restriction</label>
 					<f:form.textfield property="timeRestriction" id="timeRestriction" />
@@ -22,20 +42,26 @@
 				</div>
 
 				<div class="field">
-					<label for="categories">Categories:</label>
-					<f:form.textfield property="categories" id="categories" />
-					<div class="clear"></div>
-				</div>
-
-				<div class="field">
-					<label for="categories">Catconj:</label>
+					<label for="categoryConjunction">Catconj:</label>
 					<f:form.select property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
 					<div class="clear"></div>
 				</div>
 
-				<f:form.submit value="submit" class="submit" />
-			</f:form>
+				<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xlf:search')}" class="submit" />
+			</div>
+
+			<div class="category-tree">
+				<ul style="padding:10px;margin:5px;">
+					<f:for each="{categories}" as="category"><li>
+						<f:render section="categoryListItem" arguments="{category: category}" />
+						<f:render section="categoryList" arguments="{list: category.uid}" />
+					</li></f:for>
+				</ul>
+			</div>
+
+			<div class="clear"></div>
 		</div>
+		</f:form>
 
 		<f:if condition="{news}">
 			<f:then>
@@ -45,24 +71,25 @@
 							<td colspan="20">News found</td>
 						</tr>
 						<tr class="c-headLine">
-							<td colspan="2">Title</td>
-							<td>Datetime</td>
-							<td>Archive</td>
+							<td><f:translate key="LLL:EXT:cms/locallang_ttc.xml:header_formlabel" /></td>
+							<td><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" /></td>
+							<td><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" /></td>
 							<td>last change</td>
-							<td>additional</td>
+							<td></td>
 						</tr>
 						<f:for each="{news}" as="newsItem">
 							<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem}"/>
 						</f:for>
 					</table>
-
 				</div>
 			</f:then>
 			<f:else>
-				<f:translate key="list_nonewsfound" />
+				<div class="typo3-message message-notice">
+					<div class="message-body">
+						<f:translate key="list_nonewsfound" />
+					</div>
+				</div>
 			</f:else>
 		</f:if>
-
-
 	</div>
 </f:section>
