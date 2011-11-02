@@ -1,10 +1,18 @@
-#news-administration * {
-
-
-}
-
 .clear{
 	clear: both;
+}
+#news-administration .category-tree {
+	float:left;
+	border-right:1px solid #ccc;
+}
+
+#news-administration .category-tree ul {
+	margin:1px 0 1px 10px;
+}
+
+#news-administration .form {
+	float:left;
+	margin-left:10px;
 }
 
 #news-administration .settings {

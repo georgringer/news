@@ -29,10 +29,16 @@
  * @subpackage tx_news
  */
 class Tx_News_Controller_AdministrationController extends Tx_News_Controller_NewsController {
+
 	/**
 	 * @var Tx_News_Domain_Repository_NewsRepository
 	 */
 	protected $newsRepository;
+
+	/**
+	 * @var Tx_News_Domain_Repository_CategoryRepository
+	 */
+	protected $categoryRepository;
 
 	/**
 	 * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
@@ -50,6 +56,16 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	}
 
 	/**
+	 * Inject a news repository to enable DI
+	 *
+	 * @param Tx_News_Domain_Repository_NewsRepository $categoryRepository
+	 * @return void
+	 */
+	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
+		$this->categoryRepository = $categoryRepository;
+	}
+
+	/**
 	 *
 	 * @param Tx_News_Domain_Model_AdministrationDemand $demand
 	 * @dontvalidate  $demand
@@ -62,9 +78,11 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 
 		$demand = $this->createDemandObjectFromSettings($demand);
 		$newsRecords = $this->newsRepository->findDemanded($demand);
+		$categoryRecords = $this->categoryRepository->findByPid(t3lib_div::_GET('id'));
 
 		$this->view->assignMultiple(array(
 			'news' => $newsRecords,
+			'categories' => $categoryRecords,
 			'demand' => $demand,
 		));
 	}
@@ -115,7 +133,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 //		$demand->setSearchFields($settings['search']['fields']);
 //		$demand->setDateField($settings['dateField']);
 //
-		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren(t3lib_div::_GET('id'), $demand->getRecursive()));
+		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren(t3lib_div::_GET('id'), (int)$demand->getRecursive()));
 		return $demand;
 	}
 }
