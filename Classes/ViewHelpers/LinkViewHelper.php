@@ -31,7 +31,7 @@
  * </n:link>
  *
  * Inline notation:
- * {n:link(newsItem:newsItem,settings:settings,linkOnly:1)}
+ * {n:link(newsItem:newsItem,settings:settings,configuration:{returnLast:'url'})}
  *
  * @package TYPO3
  * @subpackage tx_news

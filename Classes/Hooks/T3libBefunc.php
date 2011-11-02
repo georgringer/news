@@ -67,6 +67,20 @@ class Tx_News_Hooks_T3libBefunc {
 		);
 
 	/**
+	 * Fields which are removed in search form view
+	 *
+	 * @var array
+	 */
+	public	$removedFieldsInSearchFormView = array(
+			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
+						archiveRestriction,timeRestriction,topNewsRestriction,
+						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,detailPid,backPid',
+			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
+		);
+
+
+	/**
 	 * Hook function of t3lib_befunc
 	 * It is used to change the flexform if it is about news
 	 *
@@ -114,75 +128,20 @@ class Tx_News_Hooks_T3libBefunc {
 			switch ($selectedView) {
 				case 'News->list':
 				case 'News->searchResult':
-					$this->updateForNewsListAction($dataStructure);
+					$this->deleteFromStructure($dataStructure, $this->removedFieldsInListView);
 					break;
 				case 'News->detail':
-					$this->updateForNewsDetailAction($dataStructure);
+					$this->deleteFromStructure($dataStructure, $this->removedFieldsInDetailView);
 					break;
 				case 'News->searchForm':
-					$this->updateForSearchFormAction($dataStructure);
+					$this->deleteFromStructure($dataStructure, $this->removedFieldsInSearchFormView);
 					break;
 				case 'News->dateMenu':
-					$this->updateForDateMenuAction($dataStructure);
+					$this->deleteFromStructure($dataStructure, $this->removedFieldsInDateMenuView);
 					break;
 			}
 		}
 	}
-
-	/**
-	 * Change flexform for News->list which is the overall used list view
-	 *
-	 * @param array &$dataStructure flexform structure
-	 * @return void
-	 */
-	protected function updateForNewsListAction(array &$dataStructure) {
-		$fieldsToBeRemoved = $this->removedFieldsInListView;
-
-		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
-	}
-
-	/**
-	 * Change flexform for News->detail which is the single view of a news record
-	 *
-	 * @param array &$dataStructure flexform structure
-	 * @return void
-	 */
-	protected function updateForNewsDetailAction(array &$dataStructure) {
-		$fieldsToBeRemoved = $this->removedFieldsInDetailView;
-
-		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
-	}
-
-	/**
-	 * Change flexform for News->detail which is the single view of a news record
-	 *
-	 * @param array &$dataStructure flexform structure
-	 * @return void
-	 */
-	protected function updateForSearchFormAction(array &$dataStructure) {
-		$fieldsToBeRemoved = array(
-			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
-						archiveRestriction,timeRestriction,topNewsRestriction,
-						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,detailPid,backPid',
-			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
-		);
-
-		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
-	}
-
-	/**
-	 * Change flexform for News->detail which is the single view of a news record
-	 *
-	 * @param array &$dataStructure flexform structure
-	 * @return void
-	 */
-	protected function updateForDateMenuAction(array &$dataStructure) {
-		$fieldsToBeRemoved = $this->removedFieldsInDateMenuView;
-
-		$this->deleteFromStructure($dataStructure, $fieldsToBeRemoved);
-	}
-
 
 	/**
 	 * Remove fields from flexform structure
