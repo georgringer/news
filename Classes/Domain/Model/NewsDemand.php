@@ -30,29 +30,81 @@
  * @subpackage tx_news
  */
 class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEntity implements Tx_News_Domain_Model_DemandInterface {
+	/**
+	 * @var string
+	 */
 	protected $categories;
+
+	/**
+	 * @var string
+	 */
 	protected $categoryConjunction;
 	protected $tags;
 
+	/**
+	 * @var string
+	 */
 	protected $archiveRestriction;
+
+	/**
+	 * @var string
+	 */
 	protected $timeRestriction = NULL;
+
+	/**
+	 * @var boolean
+	 */
 	protected $topNewsRestriction;
 
+	/**
+	 * @var string
+	 */
 	protected $dateField;
+
+	/**
+	 * @var integer
+	 */
 	protected $month;
+
+	/**
+	 * @var integer
+	 */
 	protected $year;
 
+	/**
+	 * @var string
+	 */
 	protected $searchFields;
 	protected $search;
 
+	/**
+	 * @var string
+	 */
 	protected $order;
+
+	/**
+	 * @var boolean
+	 */
 	protected $topNewsFirst;
 
+	/**
+	 * @var string
+	 */
 	protected $storagePage;
 
+	/**
+	 * @var integer
+	 */
 	protected $limit;
+
+	/**
+	 * @var integer
+	 */
 	protected $offset;
 
+	/**
+	 * @var boolean
+	 */
 	protected $isDummyRecord;
 
 	/**
