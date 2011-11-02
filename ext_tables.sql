@@ -52,7 +52,7 @@ CREATE TABLE tx_news_domain_model_news (
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
-	KEY import (import_id, import_source)
+	KEY import (import_id,import_source)
 );
 
 #
@@ -86,7 +86,7 @@ CREATE TABLE tx_news_domain_model_category (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY parentcategory (parentcategory),
-	KEY import (import_id, import_source)
+	KEY import (import_id,import_source)
 );
 
 
