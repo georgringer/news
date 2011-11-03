@@ -41,12 +41,6 @@
 					<div class="clear"></div>
 				</div>
 
-				<div class="field">
-					<label for="categoryConjunction">Catconj:</label>
-					<f:form.select property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
-					<div class="clear"></div>
-				</div>
-
 				<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xlf:search')}" class="submit" />
 			</div>
 
@@ -57,6 +51,12 @@
 						<f:render section="categoryList" arguments="{list: category.uid}" />
 					</li></f:for>
 				</ul>
+
+				<div class="field">
+					<label for="categoryConjunction">Catconj:</label>
+					<f:form.select property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
+					<div class="clear"></div>
+				</div>
 			</div>
 
 			<div class="clear"></div>
@@ -68,12 +68,22 @@
 				<div class="result">
 					<table class="typo3-dblist">
 						<tr class="t3-row-header">
-							<td colspan="20">News found</td>
-						</tr>
-						<tr class="c-headLine">
-							<td><f:translate key="LLL:EXT:cms/locallang_ttc.xml:header_formlabel" /></td>
-							<td><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" /></td>
-							<td><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" /></td>
+							<td>
+								<f:translate key="LLL:EXT:cms/locallang_ttc.xml:header_formlabel" />
+								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'header')}" icon="actions-document-open" />
+							</td>
+							<td>
+								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.istopnews" />
+								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'istopnews')}" icon="actions-document-open" />
+							</td>
+							<td>
+								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" />
+								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'datetime')}" icon="actions-document-open" />
+							</td>
+							<td>
+								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" />
+								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'archive')}" icon="actions-document-open" />
+							</td>
 							<td>last change</td>
 							<td></td>
 						</tr>

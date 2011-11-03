@@ -39,7 +39,7 @@
 	margin-right:2px;
 }
 
-#news-administration .settings .field label {
+#news-administration .settings .form .field label {
 	display: block;
 	float:left;
 	width:150px;
