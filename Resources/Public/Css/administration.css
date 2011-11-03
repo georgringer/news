@@ -2,8 +2,7 @@
 	clear: both;
 }
 #news-administration .category-tree {
-	float:left;
-	border-right:1px solid #ccc;
+	float: left;
 }
 
 #news-administration .category-tree ul {
@@ -12,7 +11,9 @@
 
 #news-administration .form {
 	float:left;
-	margin-left:10px;
+	border-right: 1px solid #ccc;
+/*	margin:0 10px;*/
+	padding-right: 10px;
 }
 
 #news-administration .settings {
@@ -26,10 +27,19 @@
 	padding:2px 0;
 }
 
-#news-administration .settings input {
+#news-administration .settings .category-tree li {
+	margin:3px 0;
 }
 
-#news-administration .settings label {
+#news-administration .settings .category-tree li label {
+	padding:0;
+	margin:0;
+}
+#news-administration .settings .category-tree input {
+	margin-right:2px;
+}
+
+#news-administration .settings .field label {
 	display: block;
 	float:left;
 	width:150px;

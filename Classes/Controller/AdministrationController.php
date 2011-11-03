@@ -77,13 +77,11 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		}
 
 		$demand = $this->createDemandObjectFromSettings($demand);
-		$newsRecords = $this->newsRepository->findDemanded($demand);
-		$categoryRecords = $this->categoryRepository->findByPid(t3lib_div::_GET('id'));
 
 		$this->view->assignMultiple(array(
-			'news' => $newsRecords,
-			'categories' => $categoryRecords,
 			'demand' => $demand,
+			'news' => $this->newsRepository->findDemanded($demand),
+			'categories' => $this->categoryRepository->findByPid(t3lib_div::_GET('id')),
 		));
 	}
 
@@ -105,16 +103,17 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	/**
 	 * Create the demand object which define which records will get shown
 	 *
-	 * @param array $settings
+	 * @param Tx_News_Domain_Model_AdministrationDemand $demand
 	 * @return Tx_News_Domain_Model_NewsDemand
 	 */
-	protected function createDemandObjectFromSettings($demand) {
+	protected function createDemandObjectFromSettings(Tx_News_Domain_Model_AdministrationDemand $demand) {
+
 		/**
 		 * @var $demand Tx_News_Domain_Model_NewsDemand
 		 */
 //		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
 //
-//		$demand->setCategories(t3lib_div::trimExplode(',', '1,2', TRUE));
+		$demand->setCategories($demand->getSelectedCategories());
 //		$demand->setCategoryConjunction('AND');
 //
 //		$demand->setTopNewsRestriction($settings['topNewsRestriction']);
