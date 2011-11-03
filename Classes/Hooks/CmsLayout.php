@@ -150,10 +150,14 @@ class Tx_News_Hooks_CmsLayout {
 		$singleNewsRecord = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.singleNews');
 
 		if ($singleNewsRecord > 0) {
-			$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . $singleNewsRecord);
-			$title = htmlspecialchars($record['title']) . ' <small>(' . $record['uid'] . ')</small>';
+			$newsRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . $singleNewsRecord);
+			$pageRecord = t3lib_BEfunc::getRecord('pages', $newsRecord['pid']);
 
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $title);
+			$content = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid'])) .
+						htmlspecialchars($pageRecord['title']) . ': ' .
+						htmlspecialchars($newsRecord['title']) . ' <small>(' . $newsRecord['uid'] . ')</small>';
+
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $content);
 		}
 	}
 
