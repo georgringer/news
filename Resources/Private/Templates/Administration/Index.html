@@ -66,31 +66,39 @@
 		<f:if condition="{news}">
 			<f:then>
 				<div class="result">
-					<table class="typo3-dblist">
-						<tr class="t3-row-header">
+					<table class="typo3-dblist" id="sortable_table">
+						<thead><tr class="t3-row-header">
 							<td>
-								<f:translate key="LLL:EXT:cms/locallang_ttc.xml:header_formlabel" />
-								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'header')}" icon="actions-document-open" />
+								<span><f:translate key="LLL:EXT:cms/locallang_ttc.xml:header_formlabel" /></span>
+								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'title')}" icon="actions-document-open" />
 							</td>
 							<td>
-								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.istopnews" />
+								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.istopnews" /></span>
 								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'istopnews')}" icon="actions-document-open" />
-							</td>
-							<td>
-								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" />
+							</t>
+							<th class="date">
+								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" /></span>
 								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'datetime')}" icon="actions-document-open" />
 							</td>
-							<td>
-								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" />
+							<th class="date">
+								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" /></span>
 								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'archive')}" icon="actions-document-open" />
 							</td>
 							<td>last change</td>
-							<td></td>
-						</tr>
-						<f:for each="{news}" as="newsItem">
-							<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem}"/>
-						</f:for>
+							<th class="nosort"></td>
+						</tr></thead>
+						<tbody>
+							<f:for each="{news}" as="newsItem">
+								<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem}"/>
+							</f:for>
+						</tbody>
 					</table>
+
+					<script type="text/javascript" src="../typo3conf/ext/news/Resources/Public/JavaScript/Contrib/table_sorter.js"></script>
+					<script type="text/javascript">
+						TableSortObserver.bindEventsToTableRow('sortable_table');
+					</script>
+
 				</div>
 			</f:then>
 			<f:else>

@@ -18,10 +18,8 @@
 		<f:if condition="{newsItem.categories}">
 			<strong><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.categories" />:</strong>
 			<f:for each="{newsItem.categories}" as="category" iteration="iterator">
-				{category.title} <small>[{category.uid}]</small><f:if condition="{iterator.isLast}"><f:then></f:then><f:else>, </f:else></f:if>
+				<span title="UID: {category.uid}">{category.title}</span><f:if condition="{iterator.isLast}"><f:then></f:then><f:else>, </f:else></f:if>
 			</f:for>
 		</f:if>
 	</td>
-
-
 </tr>
