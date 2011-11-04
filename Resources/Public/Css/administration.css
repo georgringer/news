@@ -59,3 +59,16 @@
 #news-administration .result .item a:hover {
 	text-decoration: underline;
 }
+
+#news-administration .page-tree td.icon {
+/*	width:100px;*/
+/*	font-size: 1px;*/
+/*	line-height: 1px;*/
+}
+
+#news-administration .page-tree td {
+	vertical-align: middle;
+}
+#news-administration table.page-tree {
+	width: auto;
+}

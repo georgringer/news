@@ -1,0 +1,29 @@
+{namespace n=Tx_News_ViewHelpers}
+
+<f:layout name="Backend/Default" />
+
+<f:section name="iconButtons">
+	<f:render partial="Administration/Buttons" />
+</f:section>
+
+
+<f:section name="content">
+
+	<table cellpadding="0" cellmargin="0" cellspacing="1" class="typo3-dblist page-tree">
+		<tr class="t3-row-header">
+			<td></td>
+			<td>News</td>
+			<td>Categories</td>
+		</tr>
+		<f:for each="{tree}" as="item">
+			<tr class="db_list_normal">
+				<td class="icon" nowrap="nowrap">
+					<f:format.html parseFuncTSPath="">{item.HTML}</f:format.html>
+					<f:link.action action="index" additionalParams="{id:item.row.uid}">{item.row.title}</f:link.action>
+				</td>
+				<td>{item.countNews}</td>
+				<td>{item.countCategories}</td>
+			</tr>
+		</f:for>
+	</table>
+</f:section>

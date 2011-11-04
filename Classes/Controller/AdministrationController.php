@@ -85,6 +85,51 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		));
 	}
 
+	public function newsPidListingAction()  {
+		$tree = $this->initializeTree();
+		$out = array();
+		foreach($tree->tree as $row)	{
+			$this->countRecordsOnPage($row);
+			$out[] = $row;
+		}
+
+		$this->view->assign('tree', $out);
+	}
+
+	private function countRecordsOnPage(array &$row) {
+		$pageUid = (int)$row['row']['uid'];
+
+		/* @var $db t3lib_DB */
+		$db = $GLOBALS['TYPO3_DB'];
+
+		$row['countNews'] = $db->exec_SELECTcountRows('*', 'tx_news_domain_model_news', 'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_news'));
+		$row['countCategories'] = $db->exec_SELECTcountRows('*', 'tx_news_domain_model_category', 'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_category'));
+	}
+
+	/**
+	 * Initializes the page tree.
+	 *
+	 * @return t3lib_pageTree
+	 */
+	protected function initializeTree() {
+		/* @var $tree t3lib_pageTree */
+		$tree = t3lib_div::makeInstance('t3lib_pageTree');
+		$tree->init('AND ' . $GLOBALS['BE_USER']->getPagePermsClause(1));
+
+		$treeStartingPoint = t3lib_div::_GET('id');
+		$treeStartingRecord = t3lib_BEfunc::getRecord('pages', $treeStartingPoint);
+		t3lib_BEfunc::workspaceOL('pages',$treeStartingRecord);
+
+			// Creating top icon; the current page
+		$tree->tree[] = array(
+			'row' => $treeStartingRecord,
+			'HTML' => t3lib_iconWorks::getIconImage('pages', $treeStartingRecord, $GLOBALS['BACK_PATH'], 'align="top"')
+		);
+
+		$tree->getTree($treeStartingPoint, 3, '');
+		return $tree;
+	}
+
 	/**
 	 * Redirect to form to create new news record which is
 	 * all done by tceforms.

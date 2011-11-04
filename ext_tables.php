@@ -322,14 +322,14 @@ if (TYPO3_MODE == 'BE' && $configurationArray['showImporter'] == 1) {
 /* ===========================================================================
  	Register BE-Module for Administration
 =========================================================================== */
-if (TYPO3_MODE == 'BE') {
+if (TYPO3_MODE === 'BE') {
 	Tx_Extbase_Utility_Extension::registerModule(
 		$_EXTKEY,
 		'web',
 		'tx_news_m2',
 		'',
 		array(
-			'Administration' => 'index,new',
+			'Administration' => 'index,new,newsPidListing,fo',
 		),
 		array(
 			'access' => 'user,group',

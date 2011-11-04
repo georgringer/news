@@ -3,7 +3,7 @@
 <f:layout name="Backend/Default" />
 
 <f:section name="iconButtons">
-	<n:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="actions-document-new" title="Create new news record" />
+	<f:render partial="Administration/Buttons" />
 </f:section>
 
 
@@ -24,90 +24,88 @@
 </f:section>
 
 <f:section name="content">
-	<div id="news-administration">
-		<f:form name="demand" object="{demand}">
-		<div class="settings">
-			<div class="form">
-				<h3>Settings</h3>
-				<div class="field">
-					<label for="timeRestriction">Time Restriction</label>
-					<f:form.textfield property="timeRestriction" id="timeRestriction" />
-					<div class="clear"></div>
-				</div>
-
-				<div class="field">
-					<label for="recursive">Recursive:</label>
-					<f:form.select property="recursive" options="{0:0,1:1,2:2,3:3,4:4,5:5}" id="recursive" />
-					<div class="clear"></div>
-				</div>
-
-				<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xlf:search')}" class="submit" />
+	<f:form name="demand" object="{demand}">
+	<div class="settings">
+		<div class="form">
+			<h3>Settings</h3>
+			<div class="field">
+				<label for="timeRestriction">Time Restriction</label>
+				<f:form.textfield property="timeRestriction" id="timeRestriction" />
+				<div class="clear"></div>
 			</div>
 
-			<div class="category-tree">
-				<ul style="padding:10px;margin:5px;">
-					<f:for each="{categories}" as="category"><li>
-						<f:render section="categoryListItem" arguments="{category: category}" />
-						<f:render section="categoryList" arguments="{list: category.uid}" />
-					</li></f:for>
-				</ul>
-
-				<div class="field">
-					<label for="categoryConjunction">Catconj:</label>
-					<f:form.select property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
-					<div class="clear"></div>
-				</div>
+			<div class="field">
+				<label for="recursive">Recursive:</label>
+				<f:form.select property="recursive" options="{0:0,1:1,2:2,3:3,4:4,5:5}" id="recursive" />
+				<div class="clear"></div>
 			</div>
 
-			<div class="clear"></div>
+			<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xlf:search')}" class="submit" />
 		</div>
-		</f:form>
 
-		<f:if condition="{news}">
-			<f:then>
-				<div class="result">
-					<table class="typo3-dblist" id="sortable_table">
-						<thead><tr class="t3-row-header">
-							<td>
-								<span><f:translate key="LLL:EXT:cms/locallang_ttc.xml:header_formlabel" /></span>
-								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'title')}" icon="actions-document-open" />
-							</td>
-							<td>
-								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.istopnews" /></span>
-								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'istopnews')}" icon="actions-document-open" />
-							</t>
-							<th class="date">
-								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" /></span>
-								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'datetime')}" icon="actions-document-open" />
-							</td>
-							<th class="date">
-								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" /></span>
-								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'archive')}" icon="actions-document-open" />
-							</td>
-							<td>last change</td>
-							<th class="nosort"></td>
-						</tr></thead>
-						<tbody>
-							<f:for each="{news}" as="newsItem">
-								<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem}"/>
-							</f:for>
-						</tbody>
-					</table>
+		<div class="category-tree">
+			<ul style="padding:10px;margin:5px;">
+				<f:for each="{categories}" as="category"><li>
+					<f:render section="categoryListItem" arguments="{category: category}" />
+					<f:render section="categoryList" arguments="{list: category.uid}" />
+				</li></f:for>
+			</ul>
 
-					<script type="text/javascript" src="../typo3conf/ext/news/Resources/Public/JavaScript/Contrib/table_sorter.js"></script>
-					<script type="text/javascript">
-						TableSortObserver.bindEventsToTableRow('sortable_table');
-					</script>
+			<div class="field">
+				<label for="categoryConjunction">Catconj:</label>
+				<f:form.select property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
+				<div class="clear"></div>
+			</div>
+		</div>
 
-				</div>
-			</f:then>
-			<f:else>
-				<div class="typo3-message message-notice">
-					<div class="message-body">
-						<f:translate key="list_nonewsfound" />
-					</div>
-				</div>
-			</f:else>
-		</f:if>
+		<div class="clear"></div>
 	</div>
+	</f:form>
+
+	<f:if condition="{news}">
+		<f:then>
+			<div class="result">
+				<table class="typo3-dblist" id="sortable_table">
+					<thead><tr class="t3-row-header">
+						<td>
+							<span><f:translate key="LLL:EXT:cms/locallang_ttc.xml:header_formlabel" /></span>
+							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'title')}" icon="actions-document-open" />
+						</td>
+						<td>
+							<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.istopnews" /></span>
+							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'istopnews')}" icon="actions-document-open" />
+						</t>
+						<th class="date">
+							<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" /></span>
+							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'datetime')}" icon="actions-document-open" />
+						</td>
+						<th class="date">
+							<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" /></span>
+							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'archive')}" icon="actions-document-open" />
+						</td>
+						<td>last change</td>
+						<th class="nosort"></td>
+					</tr></thead>
+					<tbody>
+						<f:for each="{news}" as="newsItem">
+							<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem}"/>
+						</f:for>
+					</tbody>
+				</table>
+
+				<script type="text/javascript" src="../typo3conf/ext/news/Resources/Public/JavaScript/Contrib/table_sorter.js"></script>
+				<script type="text/javascript">
+					TableSortObserver.bindEventsToTableRow('sortable_table');
+				</script>
+
+			</div>
+		</f:then>
+		<f:else>
+			<div class="typo3-message message-notice">
+				<div class="message-body">
+					<f:translate key="list_nonewsfound" />
+				</div>
+			</div>
+		</f:else>
+	</f:if>
 </f:section>
