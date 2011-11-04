@@ -29,14 +29,33 @@
 		<div class="form">
 			<h3>Settings</h3>
 			<div class="field">
-				<label for="timeRestriction">Time Restriction</label>
-				<f:form.textfield property="timeRestriction" id="timeRestriction" />
+				<label for="recursive">Recursive:</label>
+				<f:form.select property="recursive" options="{0:0,1:1,2:2,3:3,4:4,5:5}" id="recursive" />
 				<div class="clear"></div>
 			</div>
 
 			<div class="field">
-				<label for="recursive">Recursive:</label>
-				<f:form.select property="recursive" options="{0:0,1:1,2:2,3:3,4:4,5:5}" id="recursive" />
+				<label for="timeRestriction">Time Restriction</label>
+				<f:form.textfield property="timeRestriction" id="timeRestriction" />
+				<div class="clear"></div>
+			</div>
+			<div class="field">
+				<label for="offset">topNewsRestriction</label>
+				<f:form.select property="topNewsRestriction" options="{0:'-', 1:'only top news', 2:'no top news'}" id="topNewsRestriction" />
+				<div class="clear"></div>
+			</div>
+
+			<div class="field">
+				<label for="limit">limit / offset</label>
+				<f:form.textfield property="limit" id="limit" style="width:50px;" />
+				<f:form.textfield property="offset" id="offset" style="width:50px;" />
+				<div class="clear"></div>
+			</div>
+
+			<div class="field" style="margin-top:10px;">
+				<label for="sortingField">Order by</label>
+				<f:form.select property="sortingField" options="{title:'title',datetime:'datetime',tstamp:'tstamp',author:'author',archive:'archive'}" id="sortingField" />
+				<f:form.select property="sortingDirection" options="{asc:'asc',desc:'desc'}" id="sortingDirection" />
 				<div class="clear"></div>
 			</div>
 

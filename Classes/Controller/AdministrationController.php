@@ -137,31 +137,14 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 * @return Tx_News_Domain_Model_NewsDemand
 	 */
 	protected function createDemandObjectFromSettings(Tx_News_Domain_Model_AdministrationDemand $demand) {
-
-		/**
-		 * @var $demand Tx_News_Domain_Model_NewsDemand
-		 */
-//		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
-//
 		$demand->setCategories($demand->getSelectedCategories());
-//		$demand->setCategoryConjunction('AND');
 //
-//		$demand->setTopNewsRestriction($settings['topNewsRestriction']);
-//		$demand->setTimeRestriction($settings['timeRestriction']);
 //		$demand->setArchiveRestriction($settings['archiveRestriction']);
 //
-//		if ($settings['orderBy']) {
-//			$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
-//		}
-//
-//		$demand->setTopNewsFirst($settings['topNewsFirst']);
-//
-//		$demand->setLimit($settings['limit']);
-//		$demand->setOffset($settings['offset']);
 //
 //		$demand->setSearchFields($settings['search']['fields']);
-//		$demand->setDateField($settings['dateField']);
-//
+
+		$demand->setOrder($demand->getSortingField() . ' ' . $demand->getSortingDirection());
 		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));
 		return $demand;
 	}

@@ -12,6 +12,16 @@ class Tx_News_Domain_Model_AdministrationDemand extends Tx_News_Domain_Model_New
 	 */
 	protected $selectedCategories = array();
 
+	/**
+	 * @var string
+	 */
+	protected $sortingField;
+
+	/**
+	 * @var string
+	 */
+	protected $sortingDirection;
+
 	public function getRecursive() {
 		return $this->recursive;
 	}
@@ -28,8 +38,21 @@ class Tx_News_Domain_Model_AdministrationDemand extends Tx_News_Domain_Model_New
 		$this->selectedCategories = $selectedCategories;
 	}
 
+	public function getSortingField() {
+		return $this->sortingField;
+	}
 
+	public function setSortingField($sortingField) {
+		$this->sortingField = $sortingField;
+	}
 
+	public function getSortingDirection() {
+		return $this->sortingDirection;
+	}
 
+	public function setSortingDirection($sortingDirection) {
+		$this->sortingDirection = $sortingDirection;
+	}
 }
+
 ?>
