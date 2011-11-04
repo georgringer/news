@@ -76,5 +76,34 @@ class Tx_News_Utility_Page {
 			return $idList;
 		}
 	}
+
+	/**
+	 * Return a page tree
+	 *
+	 * @param integer $pageUid page to start with
+	 * @param integer $treeLevel count of levels
+	 * @return t3lib_pageTree
+	 */
+	public static function pageTree($pageUid, $treeLevel) {
+		if (TYPO3_MODE !== 'BE') {
+			throw new Exception('Page::pageTree does only work in the backend!');
+		}
+
+		/* @var $tree t3lib_pageTree */
+		$tree = t3lib_div::makeInstance('t3lib_pageTree');
+		$tree->init('AND ' . $GLOBALS['BE_USER']->getPagePermsClause(1));
+
+		$treeStartingRecord = t3lib_BEfunc::getRecord('pages', $pageUid);
+		t3lib_BEfunc::workspaceOL('pages',$treeStartingRecord);
+
+			// Creating top icon; the current page
+		$tree->tree[] = array(
+			'row' => $treeStartingRecord,
+			'HTML' => t3lib_iconWorks::getIconImage('pages', $treeStartingRecord, $GLOBALS['BACK_PATH'], 'align="top"')
+		);
+
+		$tree->getTree($pageUid, $treeLevel, '');
+		return $tree;
+	}
 }
 ?>
