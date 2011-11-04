@@ -46,17 +46,24 @@
  * @license http://www.gnu.org/copyleft/gpl.html
  */
 class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends Tx_Fluid_ViewHelpers_Be_AbstractBackendViewHelper {
+	
 	/**
 	 * Renders an icon link as known from the TYPO3 backend
 	 *
-	 * @param string $uri the target URI for the link. If you want to execute JavaScript here, prefix the URI with "javascript:"
 	 * @param string $icon Icon to be used. See self::allowedIcons for a list of allowed icon names
+	 * @param string $uri the target URI for the link. If you want to execute JavaScript here, prefix the URI with "javascript:"
 	 * @param string $title Title attribte of the resulting link
 	 * @param string $onclick onclick setting
 	 * @return string the rendered icon link
 	 */
-	public function render($uri, $icon = 'closedok', $title = '', $onclick = '') {
-		return '<a onclick="' . htmlspecialchars($onclick) . '" href="' . htmlspecialchars($uri) . '">' . t3lib_iconWorks::getSpriteIcon($icon, array('title' => $title)) . '</a>';
+	public function render($icon = 'closedok', $uri = '', $title = '', $onclick = '') {
+		$icon = t3lib_iconWorks::getSpriteIcon($icon, array('title' => $title));
+		if (empty($uri) && empty($onclick)) {
+			return $icon;
+		} else {
+			return '<a onclick="' . htmlspecialchars($onclick) . '" href="' . htmlspecialchars($uri) . '">' . $icon . '</a>';
+		}
 	}
 }
+
 ?>

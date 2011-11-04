@@ -329,7 +329,7 @@ if (TYPO3_MODE === 'BE') {
 		'tx_news_m2',
 		'',
 		array(
-			'Administration' => 'index,new,newsPidListing,fo',
+			'Administration' => 'index,newNews,newCategory,newsPidListing',
 		),
 		array(
 			'access' => 'user,group',

@@ -123,11 +123,17 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 *
 	 * @return void
 	 */
-	public function newAction() {
-		$returnUrl = 'mod.php?M=web_NewsTxNewsM2&id=' . $this->pageUid;
-		$url = 'alt_doc.php?edit[tx_news_domain_model_news][' . $this->pageUid . ']=new&returnUrl=' . urlencode($returnUrl);
-
-		t3lib_utility_Http::redirect($url);
+	public function newNewsAction() {
+		$this->redirectToCreateNewRecord('tx_news_domain_model_news');
+	}
+	/**
+	 * Redirect to form to create new news record which is
+	 * all done by tceforms.
+	 *
+	 * @return void
+	 */
+	public function newCategoryAction() {
+		$this->redirectToCreateNewRecord('tx_news_domain_model_category');
 	}
 
 	/**
@@ -138,14 +144,11 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 */
 	protected function createDemandObjectFromSettings(Tx_News_Domain_Model_AdministrationDemand $demand) {
 		$demand->setCategories($demand->getSelectedCategories());
-//
-//		$demand->setArchiveRestriction($settings['archiveRestriction']);
-//
-//
-//		$demand->setSearchFields($settings['search']['fields']);
-
 		$demand->setOrder($demand->getSortingField() . ' ' . $demand->getSortingDirection());
 		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));
+//
+//		$demand->setArchiveRestriction($settings['archiveRestriction']);
+//		$demand->setSearchFields($settings['search']['fields']);
 		return $demand;
 	}
 
@@ -163,6 +166,19 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 
 		$row['countNews'] = $db->exec_SELECTcountRows('*', 'tx_news_domain_model_news', 'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_news'));
 		$row['countCategories'] = $db->exec_SELECTcountRows('*', 'tx_news_domain_model_category', 'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_category'));
+	}
+
+	/**
+	 * Redirect to tceform creating a new record
+	 *
+	 * @param string $table
+	 * @return void
+	 */
+	private function redirectToCreateNewRecord($table) {
+		$returnUrl = 'mod.php?M=web_NewsTxNewsM2&id=' . $this->pageUid;
+		$url = 'alt_doc.php?edit[' . $table . '][' . $this->pageUid . ']=new&returnUrl=' . urlencode($returnUrl);
+
+		t3lib_utility_Http::redirect($url);
 	}
 }
 
