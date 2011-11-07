@@ -8,6 +8,7 @@
 		<languageKey index="default" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relations</label>
 			<label index="tx_news_domain_model_news">News</label>
+			<label index="tx_news_domain_model_news.alternative_title">Alternative title</label>
 			<label index="tx_news_domain_model_news.teaser">Teaser</label>
 			<label index="tx_news_domain_model_news.datetime">Date &amp; Time</label>
 			<label index="tx_news_domain_model_news.archive">Archive</label>
@@ -58,6 +59,7 @@
 
 			<label index="tx_news_domain_model_tag">News Tag</label>
 			<label index="tx_news_domain_model_tag.title">Title</label>
+			<label index="tx_news_domain_model_news.path_segment">Speaking URL path segment</label>
 		</languageKey>
 		<languageKey index="dk" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relationer</label>
@@ -169,6 +171,7 @@
 		<languageKey index="de" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relationen</label>
 			<label index="tx_news_domain_model_news">News</label>
+			<label index="tx_news_domain_model_news.alternative_title">Alternativer Titel</label>
 			<label index="tx_news_domain_model_news.teaser">Teaser</label>
 			<label index="tx_news_domain_model_news.datetime">Datum</label>
 			<label index="tx_news_domain_model_news.archive">Archivdatum</label>

@@ -1,7 +1,9 @@
 {namespace n=Tx_News_ViewHelpers}
 
-
-<n:metaTag property="og:title" content="{newsItem.title}" />
+<f:if condition="{newsItem.alternativeTitle}">
+	<f:then><n:metaTag property="og:title" content="{newsItem.alternativeTitle}" /></f:then>
+	<f:else><n:metaTag property="og:title" content="{newsItem.title}" /></f:else>
+</f:if>
 <n:metaTag property="og:type" content="{settings.opengraph.type}" />
 <n:metaTag property="og:url" content="" useCurrentDomain="1" />
 <n:metaTag property="og:site_name" content="{settings.opengraph.site_name}" />
