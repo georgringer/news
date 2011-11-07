@@ -11,7 +11,10 @@
 	<f:if condition="{newsItem}">
 		<f:then>
 			<n:format.nothing>
-				<n:titleTag>{newsItem.title}</n:titleTag>
+				<f:if condition="{newsItem.alternativeTitle}">
+					<f:then><n:titleTag>{newsItem.alternativeTitle}</n:titleTag></f:then>
+					<f:else><n:titleTag>{newsItem.title}</n:titleTag></f:else>
+				</f:if>
 				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}"/>
 			</n:format.nothing>
 			<div class="header">
