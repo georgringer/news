@@ -58,6 +58,7 @@
 
 			<label index="tx_news_domain_model_tag">News Tag</label>
 			<label index="tx_news_domain_model_tag.title">Title</label>
+			<label index="tx_news_domain_model_news.path_segment">Speaking URL path segment</label>
 		</languageKey>
 		<languageKey index="dk" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relationer</label>
