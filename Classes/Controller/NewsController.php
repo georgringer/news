@@ -67,9 +67,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * @return Tx_News_Domain_Model_NewsDemand
 	 */
 	protected function createDemandObjectFromSettings($settings) {
-		/**
-		 * @var $demand Tx_News_Domain_Model_NewsDemand
-		 */
+		/* @var $demand Tx_News_Domain_Model_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
 
 		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categories'], TRUE));

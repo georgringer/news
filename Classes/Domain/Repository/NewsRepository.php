@@ -159,8 +159,9 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 
 			// Search
 		if ($demand->getSearch() !== NULL) {
-			/** @var $searchObject Tx_News_Domain_Model_Dto_Search */
+			/* @var $searchObject Tx_News_Domain_Model_Dto_Search */
 			$searchObject = $demand->getSearch();
+
 			$searchFields = t3lib_div::trimExplode(',', $searchObject->getFields(), TRUE);
 			$searchConstraints = array();
 
