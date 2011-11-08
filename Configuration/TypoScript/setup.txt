@@ -32,6 +32,14 @@ plugin.tx_news {
 
 		}
 
+		analytics {
+			social {
+				facebookLike = 1
+				facebookShare = 1
+				twitter = 1
+			}
+		}
+
 		detailPidDetermination = flexform, categories, default
 
 		defaultDetailPid = 0
