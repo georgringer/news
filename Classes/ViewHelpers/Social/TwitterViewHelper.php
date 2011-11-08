@@ -40,6 +40,19 @@
  * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+
+	/**
+	 * @var Tx_News_Service_SettingsService
+	 */
+	protected $pluginSettingsService;
+
+	/**
+	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 */
+	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+		$this->pluginSettingsService = $pluginSettingsService;
+	}
+
 	/**
 	 * @var	string
 	 */
@@ -89,6 +102,22 @@ class Tx_News_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHel
 				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
 			}
 		}
+
+			// Social interaction Google Analytics
+		if ($this->pluginSettingsService->getByPath('analytics.social.twitter') == 1) {
+			$code .= t3lib_div::wrapJS("
+				twttr.events.bind('tweet', function(event) {
+				  if (event) {
+				    var targetUrl;
+				    if (event.target && event.target.nodeName == 'IFRAME') {
+				      targetUrl = extractParamFromUri(event.target.src, 'url');
+				    }
+				    _gaq.push(['_trackSocial', 'twitter', 'tweet', targetUrl]);
+				  }
+				});
+			");
+		}
+
 		$this->tag->removeAttribute('javaScript');
 		$this->tag->setContent($this->renderChildren());
 
