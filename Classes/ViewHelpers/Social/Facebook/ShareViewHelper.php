@@ -37,9 +37,21 @@
 class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 
 	/**
+	 * @var Tx_News_Service_SettingsService
+	 */
+	protected $pluginSettingsService;
+
+	/**
 	 * @var	string
 	 */
 	protected $tagName = 'a';
+
+	/**
+	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 */
+	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+		$this->pluginSettingsService = $pluginSettingsService;
+	}
 
 	/**
 	 * Arguments initialization
@@ -79,6 +91,15 @@ class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends Tx_Fluid_Core_
 
 		if ($loadJs) {
 			$code .= '<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>';
+		}
+
+			// Social interaction Google Analytics
+		if ($this->pluginSettingsService->getByPath('analytics.social.facebookShare') == 1) {
+			$code .= t3lib_div::wrapJS("
+				FB.Event.subscribe('message.send', function(targetUrl) {
+				  _gaq.push(['_trackSocial', 'facebook', 'send', targetUrl]);
+				});
+			");
 		}
 
 		return $code;
