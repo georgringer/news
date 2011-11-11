@@ -92,7 +92,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		$this->view->assignMultiple(array(
 			'demand' => $demand,
 			'news' => $this->newsRepository->findDemanded($demand),
-			'categories' => $this->categoryRepository->findByPid($this->pageUid),
+			'categories' => $this->categoryRepository->findParentCategoriesByPid($this->pageUid),
 		));
 	}
 

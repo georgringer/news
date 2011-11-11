@@ -59,10 +59,9 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 * @param integer $pid pid
 	 * @return Tx_Extbase_Persistence_QueryInterface
 	 */
-	public function findbyPid($pid) {
+	public function findParentCategoriesByPid($pid) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-//		$query->getQuerySettings()->setRespectEnableFields(FALSE);
 		return $query->matching(
 			$query->logicalAnd(
 				$query->equals('pid', (int)$pid),
@@ -79,7 +78,6 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	public function findChildren($parent) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-//		$query->getQuerySettings()->setRespectEnableFields(FALSE);
 		return $query->matching(
 			$query->logicalAnd(
 				$query->equals('parentcategory', (int)$parent)

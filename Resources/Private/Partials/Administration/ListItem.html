@@ -3,10 +3,10 @@
 <tr class="db_list_normal">
 	<td>
 		<n:be.clickmenu table="tx_news_domain_model_news" uid="{newsItem.uid}">
-			<n:be.buttons.icon icon="status-dialog-information" title="Info" />
+			<n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="" />
 		</n:be.clickmenu>
 
-		<n:be.buttons.icon uri="#" onclick="window.location.href='alt_doc.php?returnUrl='+T3_THIS_LOCATION+'&edit[tx_news_domain_model_news][{newsItem.uid}]=edit'; return false;" icon="actions-document-open" title="Info" />
+		<n:be.buttons.icon uri="#" onclick="window.location.href='alt_doc.php?returnUrl='+T3_THIS_LOCATION+'&edit[tx_news_domain_model_news][{newsItem.uid}]=edit'; return false;" icon="tcarecords-tx_news_domain_model_news-default" title="Info" />
 
 		<span title="UID: {newsItem.uid}">{newsItem.title}</span>
 	</td>

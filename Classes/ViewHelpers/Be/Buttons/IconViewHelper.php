@@ -46,7 +46,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html
  */
 class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends Tx_Fluid_ViewHelpers_Be_AbstractBackendViewHelper {
-	
+
 	/**
 	 * Renders an icon link as known from the TYPO3 backend
 	 *
@@ -58,6 +58,7 @@ class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends Tx_Fluid_ViewHelpers
 	 */
 	public function render($icon = 'closedok', $uri = '', $title = '', $onclick = '') {
 		$icon = t3lib_iconWorks::getSpriteIcon($icon, array('title' => $title));
+
 		if (empty($uri) && empty($onclick)) {
 			return $icon;
 		} else {

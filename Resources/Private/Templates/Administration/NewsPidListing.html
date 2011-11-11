@@ -8,15 +8,19 @@
 
 
 <f:section name="content">
+	<h3><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.newsPidListing.header" /></h3>
+	<p><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.newsPidListing.description" /></p>
+	<br />
 	<f:form action="newsPidListing">
-		<f:form.select name="treeLevel" options="{1:1,2:2,3:3,4:4,5:5,6:6,7:7}" value="{treeLevel}"/>
+		<label for="treeLevel"><f:translate key="LLL:EXT:lang/locallang_general.xml:LGL.recursive" /></label>
+		<f:form.select name="treeLevel" id="treeLevel" options="{1:1,2:2,3:3,4:4,5:5,6:6,7:7}" value="{treeLevel}"/>
 		<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xml:reload')}" />
 	</f:form>
 	<table cellpadding="0" cellmargin="0" cellspacing="1" class="typo3-dblist page-tree">
 		<tr class="t3-row-header">
-			<td></td>
-			<td>News</td>
-			<td>Categories</td>
+			<td><f:translate key="LLL:EXT:lang/locallang_tca.xml:pages" /></td>
+			<td style="padding-right:10px;"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news" /></td>
+			<td style="padding-right:10px;"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_category" /></td>
 		</tr>
 		<f:for each="{tree}" as="item">
 			<tr class="db_list_normal">

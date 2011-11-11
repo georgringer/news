@@ -40,22 +40,40 @@
 				<div class="clear"></div>
 			</div>
 			<div class="field">
-				<label for="offset">topNewsRestriction</label>
-				<f:form.select property="topNewsRestriction" options="{0:'-', 1:'only top news', 2:'no top news'}" id="topNewsRestriction" />
+				<label for="offset"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction" /></label>
+				<f:form.select property="topNewsRestriction" options="{
+					0:'',
+					1:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.1\')}',
+					2:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.2\')}'
+				}" id="topNewsRestriction" />
 				<div class="clear"></div>
 			</div>
 
 			<div class="field">
-				<label for="limit">limit / offset</label>
+				<label for="limit"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_additional.limit" /></label>
 				<f:form.textfield property="limit" id="limit" style="width:50px;" />
+				<div class="clear"></div>
+			</div>
+
+			<div class="field">
+				<label for="offset"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_additional.offset" /></label>
 				<f:form.textfield property="offset" id="offset" style="width:50px;" />
 				<div class="clear"></div>
 			</div>
 
 			<div class="field" style="margin-top:10px;">
-				<label for="sortingField">Order by</label>
-				<f:form.select property="sortingField" options="{title:'title',datetime:'datetime',tstamp:'tstamp',author:'author',archive:'archive'}" id="sortingField" />
-				<f:form.select property="sortingDirection" options="{asc:'asc',desc:'desc'}" id="sortingDirection" />
+				<label for="sortingField"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy" /></label>
+				<f:form.select property="sortingField" options="{
+					title:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.title\')}',
+					datetime:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.datetime\')}',
+					tstamp:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.tstamp\')}',
+					archive:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive\')}',
+					author:'{f:translate(key: \'LLL:EXT:cms/locallang_tca.xml:pages.author_formlabel\')}'
+				}" id="sortingField" />
+				<f:form.select property="sortingDirection" options="{
+					asc:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderDirection.asc\')}',
+					desc:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderDirection.desc\')}'
+				}" id="sortingDirection" />
 				<div class="clear"></div>
 			</div>
 
@@ -70,11 +88,15 @@
 				</li></f:for>
 			</ul>
 
-			<div class="field">
-				<label for="categoryConjunction">Catconj:</label>
-				<f:form.select property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
-				<div class="clear"></div>
-			</div>
+			<f:if condition="{categories}">
+				<div class="field">
+					<label for="categoryConjunction">
+						<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.categoryConjunction" />
+					</label>
+					<f:form.select property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
+					<div class="clear"></div>
+				</div>
+			</f:if>
 
 			<small><f:link.action action="newCategory">create new category</f:link.action></small>
 		</div>
@@ -104,7 +126,7 @@
 							<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" /></span>
 							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,column:'archive')}" icon="actions-document-open" />
 						</td>
-						<td>last change</td>
+						<td><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.tstamp" /></td>
 						<th class="nosort"></td>
 					</tr></thead>
 					<tbody>
@@ -114,10 +136,10 @@
 					</tbody>
 				</table>
 
-				<script type="text/javascript" src="../typo3conf/ext/news/Resources/Public/JavaScript/Contrib/table_sorter.js"></script>
+<!--				<script type="text/javascript" src="../typo3conf/ext/news/Resources/Public/JavaScript/Contrib/table_sorter.js"></script>
 				<script type="text/javascript">
 					TableSortObserver.bindEventsToTableRow('sortable_table');
-				</script>
+				</script>-->
 
 			</div>
 		</f:then>
