@@ -88,6 +88,11 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * @var string
 	 */
+	protected $alternativeTitle;
+
+	/**
+	 * @var string
+	 */
 	protected $teaser;
 
 	/**
@@ -182,6 +187,11 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $tags;
 
 	/**
+	 * @var string
+	 */
+	protected $pathSegment;
+
+	/**
 	 * @var integer
 	 */
 	protected $editlock;
@@ -229,6 +239,25 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+	}
+
+	/**
+	 * Get alternative title
+	 *
+	 * @return string
+	 */
+	public function getAlternativeTitle() {
+		return $this->alternativeTitle;
+	}
+
+	/**
+	 * Set alternative title
+	 *
+	 * @param string $alternativeTitle
+	 * @return void
+	 */
+	public function setAlternativeTitle($alternativeTitle) {
+		$this->alternativeTitle = $alternativeTitle;
 	}
 
 	/**
@@ -725,6 +754,24 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->tags = $tags;
 	}
 
+	/**
+	 * Get path segment
+	 *
+	 * @return string
+	 */
+	public function getPathSegment() {
+		return $this->pathSegment;
+	}
+
+	/**
+	 * Set path segment
+	 *
+	 * @param string $pathSegment
+	 * @return void
+	 */
+	public function setPathSegment($pathSegment) {
+		$this->pathSegment = $pathSegment;
+	}
 
 	/**
 	 * Get creation date

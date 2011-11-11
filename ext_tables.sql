@@ -45,6 +45,8 @@ CREATE TABLE tx_news_domain_model_news (
 	externalurl text,
 	istopnews int(11) DEFAULT '0' NOT NULL,
 	content_elements text,
+	path_segment tinytext,
+	alternative_title tinytext,
 
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
