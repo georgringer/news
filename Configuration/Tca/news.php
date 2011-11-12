@@ -590,6 +590,9 @@ if (isset($configurationArray['categoryRestriction'])) {
 		case 'siteroot':
 			$categoryRestriction = ' AND tx_news_domain_model_category.pid IN (###SITEROOT###) ';
 			break;
+		case 'page_tsconfig':
+			$categoryRestriction = ' AND tx_news_domain_model_category.pid IN (###PAGE_TSCONFIG_IDLIST###) ';
+			break;
 		default:
 			$categoryRestriction = '';
 	}
