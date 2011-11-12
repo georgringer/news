@@ -3,6 +3,30 @@
 # FE-Plugin configuration for EXT:news
 # ==============================================
 plugin.tx_news {
+	persistence {
+		classes {
+			Tx_News_Domain_Model_News {
+				subclasses {
+					1 = Tx_News_Domain_Model_NewsExternal
+					2 = Tx_News_Domain_Model_NewsInternal
+				}
+			}
+
+			Tx_News_Domain_Model_NewsExternal {
+				mapping {
+					recordType = 1
+					tableName = tx_news_domain_model_news
+				}
+			}
+
+			Tx_News_Domain_Model_NewsInternal {
+				mapping {
+					recordType = 2
+					tableName = tx_news_domain_model_news
+				}
+			}
+		}
+	}
 	view {
 		templateRootPath = {$plugin.tx_news.view.templateRootPath}
 		partialRootPath = {$plugin.tx_news.view.partialRootPath}
@@ -167,3 +191,9 @@ lib.tx_news.contentElementRendering {
 	source.current = 1
 	dontCheckPid = 1
 }
+
+
+# ==============================================
+# BE-module configuration for EXT:news
+# ==============================================
+module.tx_news < plugin.tx_news
