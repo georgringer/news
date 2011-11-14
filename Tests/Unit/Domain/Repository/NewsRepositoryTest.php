@@ -45,7 +45,8 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbase
 			'notor' => array('notor', Tx_Extbase_Persistence_QOM_LogicalNot, Tx_Extbase_Persistence_QOM_LogicalOr),
 			'notand' => array('notand', Tx_Extbase_Persistence_QOM_LogicalNot, Tx_Extbase_Persistence_QOM_LogicalAnd),
 			'and' => array('and', Tx_Extbase_Persistence_QOM_LogicalAnd , NULL),
-			'defaults to and' => array('', Tx_Extbase_Persistence_QOM_LogicalAnd , NULL));
+			'anything' => array('and', Tx_Extbase_Persistence_QOM_LogicalAnd , NULL),
+			'' => array('and', Tx_Extbase_Persistence_QOM_LogicalAnd , NULL));
 	}
 
 	/**
