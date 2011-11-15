@@ -31,4 +31,17 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFl
 	// Hide HTML by default as it is a possible security risk
 t3lib_extMgm::addPageTSConfig('TCEFORM.tx_news_domain_model_media.type.removeItems = 2');
 
+/* ===========================================================================
+	Custom cache, done with the caching framework
+=========================================================================== */
+$cachingTableName = 'news_categorycache';
+if (!is_array($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName])) {
+	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName] = array();
+}
+// Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
+// and overrides the default variable frontend of 4.6
+if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'])) {
+	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'] = 't3lib_cache_frontend_StringFrontend';
+}
+
 ?>

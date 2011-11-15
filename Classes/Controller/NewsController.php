@@ -72,6 +72,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categories'], TRUE));
 		$demand->setCategoryConjunction($settings['categoryConjunction']);
+		$demand->setIncludeSubCategories($settings['includeSubCategories']);
 
 		$demand->setTopNewsRestriction($settings['topNewsRestriction']);
 		$demand->setTimeRestriction($settings['timeRestriction']);

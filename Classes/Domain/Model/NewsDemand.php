@@ -32,6 +32,7 @@
 class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEntity implements Tx_News_Domain_Model_DemandInterface {
 	protected $categories;
 	protected $categoryConjunction;
+	protected $includeSubCategories = FALSE;
 	protected $tags;
 
 	protected $archiveRestriction;
@@ -111,6 +112,22 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 	public function getCategoryConjunction() {
 		return $this->categoryConjunction;
 	}
+
+	/**
+	 * Get include sub categories
+	 * @return boolean
+	 */
+	public function getIncludeSubCategories() {
+		return (boolean)$this->includeSubCategories;
+	}
+
+	/**
+	 * @param boolean $includeSubCategories
+	 */
+	public function setIncludeSubCategories($includeSubCategories) {
+		$this->includeSubCategories = $includeSubCategories;
+	}
+
 
 	/**
 	 * Get Tags
