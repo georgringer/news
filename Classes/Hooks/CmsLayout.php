@@ -283,10 +283,12 @@ class Tx_News_Hooks_CmsLayout {
 	private function getTimeRestrictionSetting() {
 		$timeRestriction = $this->getFieldFromFlexform($this->flexformData, 'settings.timeRestriction');
 
-		$this->tableData[] = array(
-						$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
-						htmlspecialchars($timeRestriction)
-					);
+		if (!empty($timeRestriction)) {
+			$this->tableData[] = array(
+							$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
+							htmlspecialchars($timeRestriction)
+						);
+		}
 	}
 
 	/**
