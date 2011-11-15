@@ -36,9 +36,10 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
 	 * @param  array $categories
 	 * @param  string $conjunction
+	 * @param  boolean $includeSubCategories
 	 * @return Tx_Extbase_Persistence_QOM_Constrain|null
 	 */
-	protected function createCategoryConstraint(Tx_Extbase_Persistence_QueryInterface $query, $categories, $conjunction) {
+	protected function createCategoryConstraint(Tx_Extbase_Persistence_QueryInterface $query, $categories, $conjunction, $includeSubCategories = FALSE) {
 		$constraint = NULL;
 		$categoryConstraints = array();
 
@@ -51,7 +52,14 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			$categories = t3lib_div::intExplode(',', $categories, TRUE);
 		}
 		foreach ($categories as $category) {
-			$categoryConstraints[] = $query->contains('categories', $category);
+			if ($includeSubCategories) {
+				$subCategories = explode(',', Tx_News_Service_CategoryService::getChildrenCategories($category));
+				if (count($subCategories) > 0) {
+					$categoryConstraints[] = $query->in('categories.uid', $subCategories);
+				}
+			} else {
+				$categoryConstraints[] = $query->contains('categories', $category);
+			}
 		}
 
 		switch(strtolower($conjunction)) {
@@ -83,8 +91,12 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$constraints = array();
 
 		if ($demand->getCategories() && $demand->getCategories() !== '0') {
-			$constraints[] = $this->createCategoryConstraint($query, $demand->getCategories(),
-				$demand->getCategoryConjunction());
+			$constraints[] = $this->createCategoryConstraint(
+										$query,
+										$demand->getCategories(),
+										$demand->getCategoryConjunction(),
+										$demand->getIncludeSubCategories()
+					);
 		}
 
 			// archived

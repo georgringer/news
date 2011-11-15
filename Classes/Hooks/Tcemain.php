@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  (c) 2011 Georg Ringer <typo3@ringerge.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -41,7 +41,14 @@ class Tx_News_Hooks_Tcemain{
 	 * @return void
 	 */
 	public function processDatamap_afterDatabaseOperations($status, $table, $recordUid, array $fieldArray, t3lib_TCEmain $parentObject) {
-		if ($table == 'tx_news_domain_model_news') {
+			// Clear category cache
+		if ($table === 'tx_news_domain_model_category') {
+			$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
+			$cache->flush();
+		}
+
+			// Preview link
+		if ($table === 'tx_news_domain_model_news') {
 
 				// direct preview
 			if (!is_numeric($recordUid)) {
