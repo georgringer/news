@@ -72,6 +72,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categories'], TRUE));
 		$demand->setCategoryConjunction($settings['categoryConjunction']);
+		$demand->setIncludeSubCategories($settings['includeSubCategories']);
 
 		$demand->setTopNewsRestriction($settings['topNewsRestriction']);
 		$demand->setTimeRestriction($settings['timeRestriction']);
@@ -115,6 +116,12 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * @return return string the Rendered view
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
+//		$out = Tx_News_Service_CategoryService::getChildrenCategories('14');
+//		t3lib_div::print_array($out);
+//		die();
+
+
+
 		$demand = $this->createDemandObjectFromSettings($this->settings);
 
 		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
