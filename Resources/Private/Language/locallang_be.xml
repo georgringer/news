@@ -85,7 +85,7 @@
 			<label index="extmng.hideFileTable">Hide File records:As the file elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
 			<label index="extmng.showImporter">Show import module: If set, the backend module to import records is shown.</label>
 			<label index="extmng.prependAtCopy">Prepend at copy: Prepend string "copy X".</label>
-			<label index="extmng.categoryRestriction">Category restriction: Restrict the available categories in news records. PageTsConfig: TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120</label>
+			<label index="extmng.categoryRestriction">Category restriction: Restrict the available categories in news records. PageTsConfig: TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120.</label>
 			<label index="extmng.categoryRestriction.current_pid">Categories from current page</label>
 			<label index="extmng.categoryRestriction.storage_pid">Categories from page which is defined in page properties</label>
 			<label index="extmng.categoryRestriction.siteroot">Categories from site root</label>
