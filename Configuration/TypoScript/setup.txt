@@ -56,7 +56,7 @@ plugin.tx_news {
 
 		}
 
-		includeSubCategories = 1
+		includeSubCategories = 0
 
 		analytics {
 			social {
