@@ -7,11 +7,19 @@ plugin.tx_news {
 		classes {
 			Tx_News_Domain_Model_News {
 				subclasses {
+					0 = Tx_News_Domain_Model_NewsDefault
 					1 = Tx_News_Domain_Model_NewsExternal
 					2 = Tx_News_Domain_Model_NewsInternal
 				}
 			}
 
+
+			Tx_News_Domain_Model_NewsDefault {
+				mapping {
+					recordType = 0
+					tableName = tx_news_domain_model_news
+				}
+			}
 			Tx_News_Domain_Model_NewsExternal {
 				mapping {
 					recordType = 1

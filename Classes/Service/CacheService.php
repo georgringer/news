@@ -96,7 +96,7 @@ class Tx_News_Service_CacheService {
 							$this->cacheName,
 							$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$this->cacheName]['frontend'],
 							$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$this->cacheName]['backend'],
-							$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$this->cacheName]['options']
+							(array)$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$this->cacheName]['options']
 			);
 		}
 	}
