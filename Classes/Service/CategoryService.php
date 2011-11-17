@@ -43,7 +43,7 @@ class Tx_News_Service_CategoryService {
 		$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
 		$cacheIdentifier = sha1($idList);
 
-//		$entry = $cache->get($cacheIdentifier);
+		$entry = $cache->get($cacheIdentifier);
 		if(!$entry) {
 			$entry = self::getChildrenCategoriesRecursive($idList, $counter, $additionalWhere);
 			$cache->set($cacheIdentifier, $entry);
