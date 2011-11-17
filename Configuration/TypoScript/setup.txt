@@ -114,6 +114,8 @@ plugin.tx_news {
 		#  Detail
 		# --------------
 		detail {
+			registerProperties = keywords,title
+
 			# media configuration
 			media {
 				image {

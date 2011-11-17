@@ -63,5 +63,28 @@ class Tx_News_Utility_Page {
 
 		return implode(',', $result);
 	}
+
+	/**
+	 * Set properties of an object/array in cobj->LOAD_REGISTER which can then
+	 * be used to be loaded via TS with register:name
+	 *
+	 * @param string $properties comma seperated list of properties
+	 * @param mixed $object object or array to get the properties
+	 * @param string $prefix optional prefix
+	 * @return void
+	 */
+	public static function setRegisterProperties($properties, $object, $prefix = 'news') {
+		if (!empty($properties)) {
+			$cObj = t3lib_div::makeInstance('tslib_cObj');
+			$items = t3lib_div::trimExplode(',', $properties, TRUE);
+
+			$register = array();
+			foreach ($items as $item) {
+				$key = $prefix . ucfirst($item);
+				$register[$key] = Tx_Extbase_Reflection_ObjectAccess::getProperty($object, $item);
+			}
+			$cObj->LOAD_REGISTER($register, '');
+		}
+	}
 }
 ?>
