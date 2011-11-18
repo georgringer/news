@@ -257,11 +257,11 @@ CREATE TABLE tx_news_domain_model_news_tag_mm (
 #
 # Table structure for table cf_news_categorycache
 CREATE TABLE cf_news_categorycache (
-    id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    id int(11) unsigned NOT NULL auto_increment,
     identifier varchar(250) DEFAULT '' NOT NULL,
-    crdate int(11) UNSIGNED DEFAULT '0' NOT NULL,
+    crdate int(11) unsigned DEFAULT '0' NOT NULL,
     content mediumblob,
-    lifetime int(11) UNSIGNED DEFAULT '0' NOT NULL,
+    lifetime int(11) unsigned DEFAULT '0' NOT NULL,
     PRIMARY KEY (id),
     KEY cache_id (identifier)
 ) ENGINE=InnoDB;
@@ -270,7 +270,7 @@ CREATE TABLE cf_news_categorycache (
 # Table structure for table cf_news_categorycache_tags
 #
 CREATE TABLE cf_news_categorycache_tags (
-    id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    id int(11) unsigned NOT NULL auto_increment,
     identifier varchar(250) DEFAULT '' NOT NULL,
     tag varchar(250) DEFAULT '' NOT NULL,
     PRIMARY KEY (id),
