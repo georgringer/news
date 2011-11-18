@@ -58,7 +58,7 @@ plugin.tx_news {
 		format = html
 
 		# general settings
-		overrideFlexformSettingsIfEmpty = cropMaxCharacters,dateField,timeRestriction
+		overrideFlexformSettingsIfEmpty = cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection
 
 		pidBackAdditionalParams {
 
