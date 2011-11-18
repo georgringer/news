@@ -78,7 +78,7 @@
 			var runCounter = 0;
 
 			var run = function () {
-				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'import',
+				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'Import',
 					'runJob', {jobClassName: jobInfo.jobClassName, offset: runCounter * jobInfo.increaseOffsetPerRunBy}));
 
 				Ext.apply(request, {
@@ -117,7 +117,7 @@
 			};
 
 			var loadJobInfo = function (jobClassName) {
-				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'import',
+				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'Import',
 					'jobInfo', {jobClassName: jobClassName}));
 
 				Ext.apply(request, {

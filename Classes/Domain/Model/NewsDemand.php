@@ -165,6 +165,22 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
+	 * Get include sub categories
+	 * @return boolean
+	 */
+	public function getIncludeSubCategories() {
+		return (boolean)$this->includeSubCategories;
+	}
+
+	/**
+	 * @param boolean $includeSubCategories
+	 */
+	public function setIncludeSubCategories($includeSubCategories) {
+		$this->includeSubCategories = $includeSubCategories;
+	}
+
+
+	/**
 	 * Get Tags
 	 *
 	 * @return Tx_Extbase_Persistence_ObjectStorage

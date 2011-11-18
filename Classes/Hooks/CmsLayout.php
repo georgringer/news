@@ -150,10 +150,17 @@ class Tx_News_Hooks_CmsLayout {
 		$singleNewsRecord = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.singleNews');
 
 		if ($singleNewsRecord > 0) {
-			$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . $singleNewsRecord);
-			$title = htmlspecialchars($record['title']) . ' <small>(' . $record['uid'] . ')</small>';
+			$newsRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . $singleNewsRecord);
+			$pageRecord = t3lib_BEfunc::getRecord('pages', $newsRecord['pid']);
 
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $title);
+			$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
+			$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
+
+			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
+							htmlspecialchars($pageRecord['title']) . ': ' .
+							htmlspecialchars($newsRecord['title']) . ' <small>(' . $newsRecord['uid'] . ')</small>';
+
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $content);
 		}
 	}
 
@@ -276,10 +283,12 @@ class Tx_News_Hooks_CmsLayout {
 	private function getTimeRestrictionSetting() {
 		$timeRestriction = $this->getFieldFromFlexform($this->flexformData, 'settings.timeRestriction');
 
-		$this->tableData[] = array(
-						$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
-						htmlspecialchars($timeRestriction)
-					);
+		if (!empty($timeRestriction)) {
+			$this->tableData[] = array(
+							$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
+							htmlspecialchars($timeRestriction)
+						);
+		}
 	}
 
 	/**

@@ -190,7 +190,12 @@ class ext_update {
 
 			$xmlArray = t3lib_div::xml2array($row['pi_flexform']);
 
-			if (!$xmlArray['data'][$oldFieldPointer[0]]) {
+			if (!is_array($xmlArray) || !isset($xmlArray['data'])) {
+				$status = t3lib_FlashMessage::ERROR;
+					// @todo: This will happen when trying to update news2 > news but pluginName is already set to news
+					// proposal for future: check for news2 somehow?
+				$message = 'Flexform data of plugin "' . $pluginName . '" not found.';
+			} elseif (!$xmlArray['data'][$oldFieldPointer[0]]) {
 				$status = t3lib_FlashMessage::WARNING;
 				$message = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain ' .
 					'sheet: ' . $oldFieldPointer[0];

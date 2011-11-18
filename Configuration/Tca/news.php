@@ -11,7 +11,7 @@ $configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][
 $TCA['tx_news_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news_domain_model_news']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements,tags'
+		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements,tags,path_segment,alternative_title'
 	),
 	'feInterface' => $TCA['tx_news_domain_model_news']['feInterface'],
 	'columns' => array(
@@ -150,6 +150,14 @@ $TCA['tx_news_domain_model_news'] = array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'required',
+			)
+		),
+		'alternative_title' => array(
+			'exclude' => 0,
+			'label' => $ll . 'tx_news_domain_model_news.alternative_title',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
 			)
 		),
 		'teaser' => array(
@@ -480,6 +488,15 @@ $TCA['tx_news_domain_model_news'] = array(
 				),
 			),
 		),
+		'path_segment' => array(
+			'exclude' => 0,
+			'label' => $ll . 'tx_news_domain_model_news.path_segment',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'nospace,alphanum_x,lower,unique',
+			)
+		),
 		'import_id' => array(
 			'label'   => $ll . 'tx_news_domain_model_news.import_id',
 			'config' => array(
@@ -498,7 +515,7 @@ $TCA['tx_news_domain_model_news'] = array(
 			// default news
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
+					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
 					bodytext;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css],content_elements,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
@@ -511,7 +528,7 @@ $TCA['tx_news_domain_model_news'] = array(
 			// internal url
 		'1' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,internalurl,
+					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,internalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
@@ -523,7 +540,7 @@ $TCA['tx_news_domain_model_news'] = array(
 			// external url
 		'2' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,externalurl,
+					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,externalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
@@ -544,6 +561,10 @@ $TCA['tx_news_domain_model_news'] = array(
 		),
 		'paletteCore' => array(
 			'showitem' => 'istopnews, type, sys_language_uid, hidden,',
+			'canNotCollapse' => FALSE
+		),
+		'paletteNavtitle' => array(
+			'showitem' => 'alternative_title,path_segment',
 			'canNotCollapse' => FALSE
 		),
 		'paletteAccess' => array(
@@ -568,6 +589,9 @@ if (isset($configurationArray['categoryRestriction'])) {
 			break;
 		case 'siteroot':
 			$categoryRestriction = ' AND tx_news_domain_model_category.pid IN (###SITEROOT###) ';
+			break;
+		case 'page_tsconfig':
+			$categoryRestriction = ' AND tx_news_domain_model_category.pid IN (###PAGE_TSCONFIG_IDLIST###) ';
 			break;
 		default:
 			$categoryRestriction = '';

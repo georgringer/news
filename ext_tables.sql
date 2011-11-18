@@ -45,6 +45,8 @@ CREATE TABLE tx_news_domain_model_news (
 	externalurl text,
 	istopnews int(11) DEFAULT '0' NOT NULL,
 	content_elements text,
+	path_segment tinytext,
+	alternative_title tinytext,
 
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
@@ -52,7 +54,7 @@ CREATE TABLE tx_news_domain_model_news (
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
-	KEY import (import_id, import_source)
+	KEY import (import_id,import_source)
 );
 
 #
@@ -86,7 +88,7 @@ CREATE TABLE tx_news_domain_model_category (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY parentcategory (parentcategory),
-	KEY import (import_id, import_source)
+	KEY import (import_id,import_source)
 );
 
 
@@ -249,3 +251,29 @@ CREATE TABLE tx_news_domain_model_news_tag_mm (
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
 );
+
+
+
+#
+# Table structure for table cf_news_categorycache
+CREATE TABLE cf_news_categorycache (
+    id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    identifier varchar(250) DEFAULT '' NOT NULL,
+    crdate int(11) UNSIGNED DEFAULT '0' NOT NULL,
+    content mediumblob,
+    lifetime int(11) UNSIGNED DEFAULT '0' NOT NULL,
+    PRIMARY KEY (id),
+    KEY cache_id (identifier)
+) ENGINE=InnoDB;
+
+#
+# Table structure for table cf_news_categorycache_tags
+#
+CREATE TABLE cf_news_categorycache_tags (
+    id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    identifier varchar(250) DEFAULT '' NOT NULL,
+    tag varchar(250) DEFAULT '' NOT NULL,
+    PRIMARY KEY (id),
+    KEY cache_id (identifier),
+    KEY cache_tag (tag)
+) ENGINE=InnoDB;

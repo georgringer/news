@@ -55,16 +55,17 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_DisqusViewHelperTest extends Tx_Extb
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
 		$newUid = $this->testingFramework->createRecord(
-			'tx_news_domain_model_news', array('pid' => 98));
+			'tx_news_domain_model_news', array('pid' => 98, 'title' => 'fobar'));
 		$newsItem = $newsRepository->findByUid($newUid);
 
 		$viewHelper = new Tx_News_ViewHelpers_Social_DisqusViewHelper();
 		$actualResult = $viewHelper->render($newsItem, 'abcdef', 'http://typo3.org/dummy/fobar.html');
 
 		$expectedCode = '<script type="text/javascript">
-					var disqus_shortname = "abcdef";
-					var disqus_identifier = "news_' . $newUid . '";
-					var disqus_url = "' . htmlspecialchars('http://typo3.org/dummy/fobar.html') . '";
+					var disqus_shortname = ' . t3lib_div::quoteJSvalue('abcdef', TRUE) . ';
+					var disqus_identifier = ' . t3lib_div::quoteJSvalue('news_' . $newUid, TRUE) . ';
+					var disqus_url = ' . t3lib_div::quoteJSvalue('http://typo3.org/dummy/fobar.html') . ';
+					var disqus_title = ' . t3lib_div::quoteJSvalue('fobar', TRUE) . ';
 
 					(function() {
 						var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
