@@ -85,6 +85,8 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 	protected $offset;
 
 	protected $isDummyRecord;
+	
+	protected $excludeAlreadyDisplayedNews;
 
 	/**
 	 * Set archive settings
@@ -425,7 +427,25 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 	public function setIsDummyRecord($isDummyRecord) {
 		$this->isDummyRecord = $isDummyRecord;
 	}
-
+	
+	/**
+	 * Get exclude already displayed flag
+	 * 
+	 * @return integer
+	 */
+	public function getExcludeAlreadyDisplayedNews() {
+		return $this->excludeAlreadyDisplayedNews;
+	}
+	
+	/**
+	 * Set exclude already displayed flag
+	 *
+	 * @param integer $excludeAlreadyDisplayedNews
+	 * @return void
+	 */
+	public function setExcludeAlreadyDisplayedNews($excludeAlreadyDisplayedNews) {
+		$this->excludeAlreadyDisplayedNews = (int) $excludeAlreadyDisplayedNews;
+	}
 }
 
 ?>
