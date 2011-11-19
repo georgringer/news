@@ -470,6 +470,16 @@
 							</config>
 						</TCEforms>
 					</settings.disableOverrideDemand>
+					
+					<!-- only not displayed news -->
+					<settings.excludeAlreadyDisplayedNews>
+						<TCEforms>
+							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_additional.excludeAlreadyDisplayedNews</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.excludeAlreadyDisplayedNews>
 				</el>
 			</ROOT>
 		</additional>

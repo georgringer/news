@@ -77,6 +77,8 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$demand->setTopNewsRestriction($settings['topNewsRestriction']);
 		$demand->setTimeRestriction($settings['timeRestriction']);
 		$demand->setArchiveRestriction($settings['archiveRestriction']);
+		
+		$demand->setExcludeAlreadyDisplayedNews($settings['excludeAlreadyDisplayedNews']);
 
 		if ($settings['orderBy']) {
 			$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
@@ -124,6 +126,8 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 		$newsRecords = $this->newsRepository->findDemanded($demand);
 
+		$this->storeAlreadyDisplayedNews($newsRecords->toArray());
+		
 		$this->view->assignMultiple(array(
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand,
@@ -142,6 +146,9 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		} elseif($this->settings['previewHiddenRecords']) {
 			$news = $this->newsRepository->findByUid($this->request->getArgument('news'), FALSE);
 		}
+		
+		$this->storeAlreadyDisplayedNews(array($news));
+		
 		$this->view->assignMultiple(array(
 			'newsItem' => $news,
 		));
@@ -261,6 +268,21 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 */
 	public function setView(Tx_Fluid_View_TemplateView $view) {
 		$this->view = $view;
+	}
+	
+	/**
+	 * Stores the already displayed news-ids in a global array
+	 * @param array $newsRecords
+	 * @return void
+	 */
+	protected function storeAlreadyDisplayedNews($newsRecords) {
+		if (empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {
+			$GLOBALS['EXT']['news']['alreadyDisplayed'] = array();
+		}
+		
+		foreach ($newsRecords as $newsRecord) {
+			$GLOBALS['EXT']['news']['alreadyDisplayed'][$newsRecord->getUid()] = $newsRecord->getUid();
+		}
 	}
 }
 ?>
