@@ -69,6 +69,7 @@ class Tx_News_Service_Import_TTNewsCategoryDataProviderService implements Tx_New
 		while ($row = mysql_fetch_array($res)) {
 			$importData[] = array(
 				'pid' => $row['pid'],
+				'hidden' => $row['hidden'],
 				'starttime' => $row['starttime'],
 				'endtime'  => $row['endtime'],
 				'title'	=>	$row['title'],

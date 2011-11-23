@@ -69,6 +69,7 @@ class Tx_News_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Se
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$importData[] = array(
 				'pid' => $row['pid'],
+				'hidden' => $row['hidden'],
 				'starttime' => $row['starttime'],
 				'endtime'  => $row['endtime'],
 				'title'	=>	$row['title'],

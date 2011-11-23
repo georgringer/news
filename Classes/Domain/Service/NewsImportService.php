@@ -112,6 +112,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 			}
 
 			$news->setPid($importItem['pid']);
+			$news->setHidden($importItem['hidden']);
 			$news->setStarttime($importItem['starttime']);
 			$news->setEndtime($importItem['endtime']);
 

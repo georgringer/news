@@ -89,6 +89,7 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 				$this->categoryRepository->add($category);
 			}
 			$category->setPid($importItem['pid']);
+			$category->setHidden($importItem['hidden']);
 			$category->setStarttime($importItem['starttime']);
 			$category->setEndtime($importItem['endtime']);
 			$category->setTitle($importItem['title']);
