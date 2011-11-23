@@ -60,10 +60,22 @@ class Tx_News_Hooks_Tcemain{
 					// and the beUser works in the LIVE workspace open current record in single view
 				$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
 				if ($pagesTsConfig['tx_news.']['singlePid']) {
-					$GLOBALS['_POST']['popViewId_addParams'] = ($fieldArray['sys_language_uid'] > 0 ?
-						'&L=' . $fieldArray['sys_language_uid'] : '') . '&no_cache=1 ' .
-						'&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=' . $recordUid;
+					$record = t3lib_BEfunc::getRecord('tx_news_domain_model_news', $recordUid);
 
+					$params = '&no_cache=1&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
+					if ($record['sys_language_uid'] > 0) {
+						if ($record['l10n_parent'] > 0) {
+							$params .= '&tx_news_pi1[news]=' . $record['l10n_parent'];
+						} else {
+							$params .= '&tx_news_pi1[news]=' . $record['uid'];
+						}
+
+						$params .= '&L=' . $record['sys_language_uid'];
+					} else {
+							$params .= '&tx_news_pi1[news]=' . $record['uid'];
+					}
+
+					$GLOBALS['_POST']['popViewId_addParams'] = $params;
 					$GLOBALS['_POST']['popViewId'] = $pagesTsConfig['tx_news.']['singlePid'];
 				}
 			}
