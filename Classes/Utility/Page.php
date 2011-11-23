@@ -74,7 +74,7 @@ class Tx_News_Utility_Page {
 	 * @return void
 	 */
 	public static function setRegisterProperties($properties, $object, $prefix = 'news') {
-		if (!empty($properties)) {
+		if (!empty($properties) && !is_null(($object))) {
 			$cObj = t3lib_div::makeInstance('tslib_cObj');
 			$items = t3lib_div::trimExplode(',', $properties, TRUE);
 
