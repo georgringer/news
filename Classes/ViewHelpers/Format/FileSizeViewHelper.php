@@ -36,11 +36,18 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHe
 	 *
 	 * @param string $file
 	 * @param string $format
+	 * @param boolean $hideError
 	 * @return string
 	 */
-	public function render($file, $format = '') {
+	public function render($file, $format = '', $hideError = FALSE) {
 		if (!is_file($file)) {
-			throw new Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException('Given file is not a valid file: ' . htmlspecialchars($file));
+			$errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
+			t3lib_div::devLog($errorMessage, 'news', t3lib_div::SYSLOG_SEVERITY_WARNING);
+
+			if (!$hideError) {
+				throw new Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException(
+					'Given file is not a valid file: ' . htmlspecialchars($file));
+			}
 		}
 
 		$fileSize = t3lib_div::formatSize(filesize($file), $format);
