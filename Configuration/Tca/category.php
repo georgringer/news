@@ -4,9 +4,6 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-	// extension manager configuration
-$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
-
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 $TCA['tx_news_domain_model_category'] = array(

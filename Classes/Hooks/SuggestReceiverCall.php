@@ -87,16 +87,13 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	protected function getTagUid(array $request) {
 		$tagUid = 0;
 
-			// get configuration from EM
-		$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
-		if (!is_array($configurationArray) || !isset($configurationArray['tagPid'])) {
-			throw new Exception('error_no-pid-found');
-		}
+			// Get configuration from EM
+		$configuration = Tx_News_Utility_EmConfiguration::getSettings();
 
 		$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
 					'*',
 					self::TAG,
-					'deleted=0 AND pid=' . (int)$configurationArray['tagPid'] .
+					'deleted=0 AND pid=' . $configuration->getTagPid() .
 						' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], self::TAG)
 					);
 		if(isset($record['uid'])) {
@@ -105,7 +102,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 			$tcemainData = array(
 				self::TAG => array(
 					'NEW' => array(
-						'pid' => (int)$configurationArray['tagPid'],
+						'pid' => $configuration->getTagPid(),
 						'title' => $request['item']
 					)
 				)
