@@ -81,7 +81,11 @@ class Tx_News_Utility_Page {
 			$register = array();
 			foreach ($items as $item) {
 				$key = $prefix . ucfirst($item);
-				$register[$key] = Tx_Extbase_Reflection_ObjectAccess::getProperty($object, $item);
+				try {
+					$register[$key] = Tx_Extbase_Reflection_ObjectAccess::getProperty($object, $item);
+				} catch (Exception $e) {
+					t3lib_div::devLog($e->getMessage(), 'news', t3lib_div::SYSLOG_SEVERITY_WARNING);
+				}
 			}
 			$cObj->LOAD_REGISTER($register, '');
 		}
