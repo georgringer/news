@@ -73,23 +73,24 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 
 		$newsType = (int)$newsItem->getType();
-
 		switch ($newsType) {
-
 				// internal news
 			case 1:
 				$configuration['parameter'] = $newsItem->getInternalurl();
 				break;
-
 				// external news
 			case 2:
 				$configuration['parameter'] = $newsItem->getExternalurl();
 				break;
-
 				// normal news record
 			default:
 				$detailPid = 0;
-				$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $settings['detailPidDetermination']);
+				$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $settings['detailPidDetermination'], TRUE);
+
+					// if TS is not set, prefer flexform setting
+				if (!isset($settings['detailPidDetermination'])) {
+					$detailPidDeterminationMethods[] = 'flexform';
+				}
 
 				foreach ($detailPidDeterminationMethods as $determinationMethod) {
 					if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
@@ -123,7 +124,6 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 						$configuration['additionalParams'] .= '&tx_news_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
 					}
 				}
-				break;
 		}
 
 		$link = $cObj->typolink($this->renderChildren(), $configuration);
