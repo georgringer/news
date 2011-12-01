@@ -55,13 +55,6 @@ class Tx_News_Hooks_CmsLayout {
 	public $flexformData = array();
 
 	/**
-	 * Selected action
-	 *
-	 * @var string
-	 */
-	public $selectedAction = NULL;
-
-	/**
 	 * Returns information about this extension's pi1 plugin
 	 *
 	 * @param array $params Parameters to the hook
@@ -256,17 +249,11 @@ class Tx_News_Hooks_CmsLayout {
 	}
 
 	/**
-	 * Render datemenu configuration
+	 * Render date menu configuration
 	 *
 	 * @return void
 	 */
 	private function getDateMenuSettings() {
-		$content = '';
-
-		if ($this->selectedAction !== 'datemenu') {
-			return $content;
-		}
-
 		$dateMenuField = $this->getFieldFromFlexform($this->flexformData, 'settings.dateField');
 
 		$this->tableData[] = array(
