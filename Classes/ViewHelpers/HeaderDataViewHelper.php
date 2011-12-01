@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2011 Georg Ringer <typo3@ringerge.org>
+*  (c) 2011 Josef Florian Glatz <typo3@josefglatz.at>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,19 +23,19 @@
 ***************************************************************/
 
 /**
- * ViewHelper to render Tags in Header of webpage
+ * ViewHelper to render Data in <head> section of website
  *
  * Example
- * <n:headerTag>
+ * <n:headerData>
  * <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<f:uri.page additionalParams="{type:9818}"/>" />
- * </n:headerTag>
+ * </n:headerData>
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_HeaderTagViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_HeaderDataViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 	/**
-	 * Renders a meta tag
+	 * Renders HeaderData
 	 *
 	 * @return void
 	*/
