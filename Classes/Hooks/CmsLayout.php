@@ -55,13 +55,6 @@ class Tx_News_Hooks_CmsLayout {
 	public $flexformData = array();
 
 	/**
-	 * Selected action
-	 *
-	 * @var string
-	 */
-	public $selectedAction = NULL;
-
-	/**
 	 * Returns information about this extension's pi1 plugin
 	 *
 	 * @param array $params Parameters to the hook
@@ -256,23 +249,17 @@ class Tx_News_Hooks_CmsLayout {
 	}
 
 	/**
-	 * Render datemenu configuration
+	 * Render date menu configuration
 	 *
 	 * @return void
 	 */
 	private function getDateMenuSettings() {
-		$content = '';
+        $dateMenuField = $this->getFieldFromFlexform($this->flexformData, 'settings.dateField');
 
-		if ($this->selectedAction !== 'datemenu') {
-			return $content;
-		}
-
-		$dateMenuField = $this->getFieldFromFlexform($this->flexformData, 'settings.dateField');
-
-		$this->tableData[] = array(
-						$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.dateField'),
-						$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.dateField.' . $dateMenuField)
-					);
+        $this->tableData[] = array(
+                        $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.dateField'),
+                        $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.dateField.' . $dateMenuField)
+                    );
 	}
 
 	/**
