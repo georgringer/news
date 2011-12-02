@@ -111,8 +111,9 @@ class Tx_News_Service_CategoryService {
 	 * Get rootline categories
 	 *
 	 * @param integer $id category id to start
+	 * @param integer $counter counter
 	 * @param string $additionalWhere additional where clause
-	 * @return string comma seperated list of category ids
+	 * @return string comma separated list of category ids
 	 */
 	public static function getRootlineRecursive($id, $counter=0, $additionalWhere = '') {
 		$id = (int)$id;

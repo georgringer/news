@@ -43,7 +43,7 @@ if (!is_array($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$caching
 if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'])) {
 	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'] = 't3lib_cache_frontend_StringFrontend';
 }
-if (t3lib_div::int_from_ver(TYPO3_version) < '4006000') {
+if (Tx_News_Utility_Compatibility::convertVersionNumberToInteger(TYPO3_version) < '4006000') {
     // Define database backend as backend for 4.5 and below (default in 4.6)
     if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['backend'])) {
         $TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['backend'] = 't3lib_cache_backend_DbBackend';

@@ -113,7 +113,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		if ($demand->getTimeRestriction()) {
 			$timeLimit = 0;
 				// integer = timestamp
-			if (t3lib_div::testInt($demand->getTimeRestriction())) {
+			if (Tx_News_Utility_Compatibility::canBeInterpretedAsInteger($demand->getTimeRestriction())) {
 				$timeLimit = $GLOBALS['EXEC_TIME'] - $demand->getTimeRestriction();
 			} else {
 					// try to check strtotime
