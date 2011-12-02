@@ -45,14 +45,14 @@ class Tx_News_Utility_Page {
 
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 
-		$recursive = t3lib_div::intInRange($recursive, 0);
+		$recursive = Tx_News_Utility_Compatibility::forceIntegerInRange($recursive, 0);
 
 		$pidList = array_unique(t3lib_div::trimExplode(',', $pidList, 1));
 
 		$result = array();
 
 		foreach ($pidList as $pid) {
-			$pid = t3lib_div::intInRange($pid, 0);
+			$pid = Tx_News_Utility_Compatibility::forceIntegerInRange($pid, 0);
 			if ($pid) {
 				$children = $cObj->getTreeList(-1 * $pid, $recursive);
 				if ($children) {

@@ -41,7 +41,7 @@ class Tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiv
 	 * this function itself
 	 *
 	 * @param array $params
-	 * @param object $ref The parent object
+	 * @param integer $recursionCounter recursion counter
 	 * @return mixed array of rows or FALSE if nothing found
 	 */
 	public function queryTable(&$params, $recursionCounter = 0) {
