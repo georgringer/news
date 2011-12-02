@@ -146,10 +146,10 @@ class ext_update {
 
 		$tables = $GLOBALS['TYPO3_DB']->admin_get_tables();
 		if (isset($tables[$newTableName])) {
-			$message = 'Table ' . $table . ' already exists';
+			$message = 'Table ' . $newTableName . ' already exists';
 			$status = t3lib_FlashMessage::OK;
 		} elseif(!isset($tables[$oldTableName])) {
-			$message = 'Table ' . $table . ' does not exist';
+			$message = 'Table ' . $oldTableName . ' does not exist';
 			$status = t3lib_FlashMessage::ERROR;
 		} else {
 			$sql = 'RENAME TABLE ' . $oldTableName .' TO ' . $newTableName . ';';
