@@ -57,8 +57,8 @@ class Tx_News_Interfaces_Video_Flv implements Tx_News_Interfaces_MediaInterface 
 			$height = $element->getHeight();
 		}
 
-		$view->assign('width', t3lib_div::intval_positive($width));
-		$view->assign('height', t3lib_div::intval_positive($height));
+		$view->assign('width', Tx_News_Utility_Compatibility::convertToPositiveInteger($width));
+		$view->assign('height', Tx_News_Utility_Compatibility::convertToPositiveInteger($height));
 		$view->assign('uniqueDivId', 'mediaelement-' . md5($element->getUid() . uniqid()));
 		$view->assign('url', htmlspecialchars($url));
 
