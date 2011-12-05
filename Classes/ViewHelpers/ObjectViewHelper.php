@@ -60,7 +60,7 @@ class Tx_News_ViewHelpers_ObjectViewHelper extends Tx_Fluid_Core_ViewHelper_Abst
 		$rawRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', $extendedTable, 'uid=' . (int)$newsItem->getUid());
 
 		$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
-		/* @var $dataMapper Tx_Extbase_Persistence_Mapper_DataMapper */
+		/** @var $dataMapper Tx_Extbase_Persistence_Mapper_DataMapper */
 		$dataMapper = $objectManager->get('Tx_Extbase_Persistence_Mapper_DataMapper');
 
 		$records = $dataMapper->map($className, array($rawRecord));

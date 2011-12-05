@@ -38,6 +38,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_NothingViewHelperTest extends Tx_Ext
 	 * @return void
 	 */
 	public function noResultExpected() {
+        /** @var $viewHelper Tx_News_ViewHelpers_Format_NothingViewHelper */
 		$viewHelper = $this->getMock('Tx_News_ViewHelpers_Format_NothingViewHelper', array('renderChildren'));
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('whatever content'));
 		$actualResult = $viewHelper->render();

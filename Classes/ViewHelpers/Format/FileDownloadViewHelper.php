@@ -50,6 +50,7 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 			}
 		}
 
+        /** @var $cObj tslib_cObj */
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 
 		$fileInformation = pathinfo($file);

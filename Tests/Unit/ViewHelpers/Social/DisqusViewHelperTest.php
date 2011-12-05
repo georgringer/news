@@ -52,6 +52,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_DisqusViewHelperTest extends Tx_Extb
 	 * @return void
 	 */
 	public function viewHelperReturnsCorrectJs() {
+        /** @var $newsRepository Tx_News_Domain_Repository_NewsRepository */
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
 		$newUid = $this->testingFramework->createRecord(

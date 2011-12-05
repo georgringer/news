@@ -51,6 +51,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 	 */
 	public function findTopNewsRecords() {
 		$pid = 2;
+        /** @var $newsRepository Tx_News_Domain_Repository_NewsRepository */
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
 		/** @var $demand Tx_News_Domain_Model_NewsDemand */
@@ -262,6 +263,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 	 * @return void
 	 */
 	public function findRecordsByStartingpointRestriction() {
+        /** @var $newsRepository Tx_News_Domain_Repository_NewsRepository */
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
 		/** @var $demand Tx_News_Domain_Model_NewsDemand */

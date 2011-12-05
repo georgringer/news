@@ -40,6 +40,7 @@ class Tx_News_Service_CategoryService {
 	 * @return string comma seperated list of category ids
 	 */
 	public static function getChildrenCategories($idList, $counter = 0, $additionalWhere = '') {
+        /** @var $cache Tx_News_Service_CacheService */
 		$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
 		$cacheIdentifier = sha1('children' . $idList);
 
@@ -60,6 +61,7 @@ class Tx_News_Service_CategoryService {
 	 * @return string comma seperated list of category ids
 	 */
 	public static function getRootline($id, $additionalWhere = '') {
+        /** @var $cache Tx_News_Service_CacheService */
 		$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
 		$cacheIdentifier = sha1('rootline' . $id);
 

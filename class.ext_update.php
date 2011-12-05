@@ -184,6 +184,7 @@ class ext_update {
 			'tt_content',
 			'CType=\'list\' AND list_type=\'' . $pluginName . '\'');
 
+        /** @var $flexformTools t3lib_flexformtools */
 		$flexformTools = t3lib_div::makeInstance('t3lib_flexformtools');
 
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
@@ -317,6 +318,7 @@ class ext_update {
 	protected function generateOutput() {
 		$output = '';
 		foreach ($this->messageArray as $messageItem) {
+            /** @var $flashMessage t3lib_FlashMessage */
 			$flashMessage = t3lib_div::makeInstance(
 					't3lib_FlashMessage',
 					$messageItem[2],

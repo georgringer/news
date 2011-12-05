@@ -38,6 +38,7 @@ class Tx_News_Tests_Unit_Jobs_TTNewsNewsImportJobTest extends Tx_Extbase_Tests_U
 	 * @return void
 	 */
 	public function getNumberOfRecordsPerRun_returns_expected_value() {
+        /** @var $jobInstance Tx_News_Jobs_TTNewsNewsImportJob */
 		$jobInstance = $this->objectManager->get('Tx_News_Jobs_TTNewsNewsImportJob');
 		$this->assertEquals($jobInstance->getNumberOfRecordsPerRun(), 30);
 

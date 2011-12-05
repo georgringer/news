@@ -43,6 +43,7 @@ class Tx_News_Utility_Page {
 			return $pidList;
 		}
 
+        /** @var $cObj tslib_cObj */
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 
 		$recursive = Tx_News_Utility_Compatibility::forceIntegerInRange($recursive, 0);

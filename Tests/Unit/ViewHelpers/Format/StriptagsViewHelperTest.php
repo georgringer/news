@@ -38,6 +38,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_StriptagsViewHelperTest extends Tx_E
 	 * @return void
 	 */
 	public function stripTagsFromContent() {
+        /** @var $viewHelper Tx_News_ViewHelpers_Format_StriptagsViewHelper */
 		$viewHelper = $this->getMock('Tx_News_ViewHelpers_Format_StriptagsViewHelper', array('renderChildren'));
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p>'));
 		$actualResult = $viewHelper->render();
@@ -51,6 +52,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_StriptagsViewHelperTest extends Tx_E
 	 * @return void
 	 */
 	public function stripTagsFromContentWithAllowedTags() {
+        /** @var $viewHelper Tx_News_ViewHelpers_Format_StriptagsViewHelper */
 		$viewHelper = $this->getMock('Tx_News_ViewHelpers_Format_StriptagsViewHelper', array('renderChildren'));
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p><strong>Bar</strong>'));
 		$actualResult = $viewHelper->render('<strong>');

@@ -60,6 +60,7 @@ class Tx_News_ViewHelpers_Facebook_CommentViewHelper extends Tx_Fluid_Core_ViewH
 	 * @return string
 	 */
 	public function render($appId) {
+        /** @var $pluginSettingsService Tx_News_Service_SettingsService */
 		$pluginSettingsService = $this->objectManager->get('Tx_News_Service_SettingsService');
 		$tsSettings = $pluginSettingsService->getSettings();
 
