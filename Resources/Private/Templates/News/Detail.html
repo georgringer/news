@@ -50,7 +50,7 @@
 
 			<f:if condition="{newsItem.contentElements}">
 				<!-- content elements -->
-				<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElements}</f:cObject>
+				<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
 			</f:if>
 
 			<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}"/>

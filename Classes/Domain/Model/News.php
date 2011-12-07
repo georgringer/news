@@ -176,7 +176,8 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $istopnews;
 
 	/**
-	 * @var string
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_External_TtContent>
+	 * @lazy
 	 */
 	protected $contentElements;
 
@@ -720,7 +721,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get content elements
 	 *
-	 * @return string
+	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getContentElements() {
 		return $this->contentElements;
@@ -734,6 +735,19 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setContentElements($contentElements) {
 		$this->contentElements = $contentElements;
+	}
+
+	/**
+	 * Get id list of content elements
+	 *
+	 * @return string
+	 */
+	public function getContentElementIdList() {
+		$idList = array();
+		foreach($this->contentElements as $contentElement) {
+			$idList[] = $contentElement->getUid();
+		}
+		return implode(',', $idList);
 	}
 
 	/**
