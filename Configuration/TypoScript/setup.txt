@@ -213,18 +213,14 @@ module.tx_news < plugin.tx_news
 # ==============================================
 # Mapping of tt_content and its properties
 # ==============================================
-config.tx_extbase {
-	persistence{
-		classes {
-			Tx_News_Domain_Model_External_TtContent {
-				mapping {
-					tableName = tt_content
-					columns {
-						altText.mapOnProperty = altText
-						titleText.mapOnProperty = titleText
-					}
-				}
+config.tx_extbase.persistence.classes {
+	Tx_News_Domain_Model_External_TtContent {
+		mapping {
+			tableName = tt_content
+			columns {
+				altText.mapOnProperty = altText
+				titleText.mapOnProperty = titleText
 			}
-
 		}
 	}
+}
