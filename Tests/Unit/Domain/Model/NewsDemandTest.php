@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  (c) 2011 Georg Ringer <typo3@ringerge.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -84,6 +84,38 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Un
 	}
 
 	/**
+	 * Test if includeSubCategories can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function includeSubCategoriesCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
+		$includeSubCategories = TRUE;
+		$domainModelInstance->setIncludeSubCategories($includeSubCategories);
+		$this->assertEquals($includeSubCategories, $domainModelInstance->getIncludeSubCategories());
+	}
+
+	/**
+	 * Test if tags can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function tagsCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
+		$tag1 = new Tx_News_Domain_Model_Tag();
+		$tag1->setTitle('Tag 1');
+		$tag2 = new Tx_News_Domain_Model_Tag();
+		$tag2->setTitle('Tag 2');
+		$tags = new Tx_Extbase_Persistence_ObjectStorage();
+		$tags->attach($tag1);
+		$tags->attach($tag2);
+		$domainModelInstance->setTags($tags);
+		$this->assertEquals($tags, $domainModelInstance->getTags());
+	}
+
+	/**
 	 * Test if archive can be set
 	 *
 	 * @test
@@ -97,6 +129,45 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Un
 	}
 
 	/**
+	 * Test if datefield can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function dateFieldCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
+		$dateField = 'datetime';
+		$domainModelInstance->setDateField($dateField);
+		$this->assertEquals($dateField, $domainModelInstance->getDateField());
+	}
+
+	/**
+	 * Test if year can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function yearCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
+		$year = '2011';
+		$domainModelInstance->setYear($year);
+		$this->assertEquals($year, $domainModelInstance->getYear());
+	}
+
+	/**
+	 * Test if month can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function monthCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
+		$month = '12';
+		$domainModelInstance->setMonth($month);
+		$this->assertEquals($month, $domainModelInstance->getMonth());
+	}
+
+	/**
 	 * Test if timelimit can be set
 	 *
 	 * @test
@@ -107,6 +178,21 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Un
 		$latestTimeLimit = 'Test timeRestriction';
 		$domainModelInstance->setTimeRestriction($latestTimeLimit);
 		$this->assertEquals($latestTimeLimit, $domainModelInstance->getTimeRestriction());
+	}
+
+	/**
+	 * Test if search can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function searchCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
+		$searchInstance = new Tx_News_Domain_Model_Dto_Search();
+		$searchInstance->setSubject('Fo');
+
+		$domainModelInstance->setSearch($searchInstance);
+		$this->assertEquals($searchInstance, $domainModelInstance->getSearch());
 	}
 
 	/**
@@ -172,6 +258,19 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Un
 		$offset = 10;
 		$domainModelInstance->setOffset($offset);
 		$this->assertEquals($offset, $domainModelInstance->getOffset());
+	}
+
+	/**
+	 * Test if isDummyRecord can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function isDummyRecordCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
+		$isDummyRecord = TRUE;
+		$domainModelInstance->setIsDummyRecord($isDummyRecord);
+		$this->assertEquals($isDummyRecord, $domainModelInstance->getIsDummyRecord());
 	}
 
 }
