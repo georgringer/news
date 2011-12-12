@@ -29,7 +29,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_Fluid_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * Disable the escaping interceptor because otherwise the child nodes would be escaped before this view helper
