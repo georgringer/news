@@ -38,9 +38,7 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 */
 	public function __construct(array $configuration) {
 		foreach($configuration as $key => $value) {
-			if (!empty($value)) {
-				$this->$key = $value;
-			}
+			$this->$key = $value;
 		}
 	}
 
@@ -57,7 +55,7 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	/**
 	 * @var string
 	 */
-	protected $pageModuleFieldsCategory;
+	protected $pageModuleFieldsCategory = '';
 
 	/**
 	 * @var integer
