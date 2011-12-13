@@ -258,9 +258,6 @@ $TCA['tx_news_domain_model_media'] = array(
 	)
 );
 
-	// extension manager configuration
-$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
-
 	// Hide DAM field if not used to avoid errors
 if (!t3lib_extMgm::isLoaded('dam')) {
 	unset($TCA['tx_news_domain_model_media']['columns']['dam']);

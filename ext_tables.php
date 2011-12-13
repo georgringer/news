@@ -4,7 +4,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 	// Extension manager configuration
-$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
+$configuration = Tx_News_Utility_EmConfiguration::getSettings();
 	// Alternative labels for news & category records
 t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hooks/Labels.php');
 	// Add additional media types like DAM
@@ -34,7 +34,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		'label_alt' => 'categories',
 		'label_alt_force' => 1,
 		'label_userFunc' => 'Tx_News_Hooks_Labels->getUserLabelNews',
-		'prependAtCopy' => $configurationArray['prependAtCopy'] ? 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy' : '',
+		'prependAtCopy' => $configuration->getPrependAtCopy() ? 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy' : '',
 		'hideAtCopy' => TRUE,
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
@@ -54,7 +54,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		'transOrigPointerField'    => 'l10n_parent',
 		'transOrigDiffSourceField' => 'l10n_diffsource',
 		'default_sortby' => 'ORDER BY crdate',
-		'sortby' => ($configurationArray['manualSorting'] == 1 ? 'sorting' : ''),
+		'sortby' => ($configuration->getManualSorting() ? 'sorting' : ''),
 		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
@@ -123,7 +123,7 @@ $TCA['tx_news_domain_model_media'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/media.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_media.gif',
-		'hideTable'			=> (boolean)$configurationArray['hideMediaTable']
+		'hideTable'			=> $configuration->getHideMediaTable(),
 	),
 );
 
@@ -151,7 +151,7 @@ $TCA['tx_news_domain_model_file'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/file.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_file.gif',
-		'hideTable'			=> (boolean)$configurationArray['hideFileTable']
+		'hideTable'			=> $configuration->getHideFileTable(),
 	),
 );
 
@@ -179,7 +179,7 @@ $TCA['tx_news_domain_model_link'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/link.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_link.gif',
-		'hideTable'			=> (boolean)$configurationArray['hideFileTable']
+		'hideTable'			=> $configuration->getHideFileTable(),
 	),
 );
 
@@ -248,8 +248,8 @@ if (TYPO3_MODE == 'BE') {
 /***************
  * Show news table in page module
  */
-if (!empty($configurationArray['pageModuleFieldsNews'])) {
-	$addTableItems = t3lib_div::trimExplode(';', $configurationArray['pageModuleFieldsNews'], TRUE);
+if ($configuration->getPageModuleFieldsNews()) {
+	$addTableItems = t3lib_div::trimExplode(';', $configuration->getPageModuleFieldsNews(), TRUE);
 	foreach ($addTableItems as $item) {
 		$split = t3lib_div::trimExplode('=', $item, TRUE);
 		$fList = $fTitle = '';
@@ -268,9 +268,9 @@ if (!empty($configurationArray['pageModuleFieldsNews'])) {
 
 }
 
-if (!empty($configurationArray['pageModuleFieldsCategory'])) {
+if ($configuration->getPageModuleFieldsCategory()) {
 	$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news_domain_model_category'][0] = array(
-		'fList' => htmlspecialchars($configurationArray['pageModuleFieldsCategory']),
+		'fList' => htmlspecialchars($configuration->getPageModuleFieldsCategory()),
 		'icon' => TRUE
 	);
 }
@@ -290,7 +290,7 @@ $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 /* ===========================================================================
  	Register BE-Modules
 =========================================================================== */
-if (TYPO3_MODE == 'BE' && $configurationArray['showImporter'] == 1) {
+if (TYPO3_MODE === 'BE' && $configuration->getShowImporter()) {
 	Tx_Extbase_Utility_Extension::registerModule(
 		$_EXTKEY,
 		'web',
@@ -332,5 +332,5 @@ if (TYPO3_MODE == 'BE') {
 =========================================================================== */
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'] = 'uid,title,tstamp,sorting';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] = 'tstamp,datetime,crdate,title';
-$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'] = (int)$configurationArray['removeListActionFromFlexforms'];
+$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'] = $configuration->getRemoveListActionFromFlexforms();
 ?>

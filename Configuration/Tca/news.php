@@ -5,8 +5,8 @@ if (!defined('TYPO3_MODE')) {
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
-	// extension manager configuration
-$configurationArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
+	// Extension manager configuration
+$configuration = Tx_News_Utility_EmConfiguration::getSettings();
 
 $TCA['tx_news_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news_domain_model_news']['ctrl'],
@@ -211,7 +211,7 @@ $TCA['tx_news_domain_model_news'] = array(
 				'type'     => 'input',
 				'size'     => 8,
 				'max'      => 20,
-				'eval'     => (!empty($configurationArray['archiveDate']) ? $configurationArray['archiveDate'] : 'date'),
+				'eval'     => $configuration->getArchiveDate(),
 				'default'  => 0
 			)
 		),
@@ -481,7 +481,7 @@ $TCA['tx_news_domain_model_news'] = array(
 						'icon'   => 'list.gif',
 						'params' => array(
 							'table' => 'tx_news_domain_model_tag',
-							'pid'   => (int)$configurationArray['tagPid'],
+							'pid'   => $configuration->getTagPid(),
 						),
 						'script' => 'wizard_list.php',
 					),
@@ -578,9 +578,10 @@ $TCA['tx_news_domain_model_news'] = array(
 );
 
 	// category restriction based on settings in extension manager
-if (isset($configurationArray['categoryRestriction'])) {
+$categoryRestrictionSetting = $configuration->getCategoryRestriction();
+if ($categoryRestrictionSetting) {
 	$categoryRestriction = '';
-	switch ($configurationArray['categoryRestriction']) {
+	switch ($categoryRestrictionSetting) {
 		case 'current_pid':
 			$categoryRestriction = ' AND tx_news_domain_model_category.pid=###CURRENT_PID### ';
 			break;
@@ -606,7 +607,7 @@ if (isset($configurationArray['categoryRestriction'])) {
 	}
 }
 
-if (!isset($configurationArray['contentElementRelation']) || $configurationArray['contentElementRelation'] == 0) {
+if (!$configuration->getContentElementRelation()) {
 	unset($TCA['tx_news_domain_model_news']['columns']['content_elements']);
 }
 
