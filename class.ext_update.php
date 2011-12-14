@@ -53,7 +53,7 @@ class ext_update {
 	 * @todo find a better way to determine if update is needed or not.
 	 */
 	public function access() {
-		return TRUE;
+		return FALSE;
 	}
 
 	/**
