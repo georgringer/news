@@ -1,0 +1,28 @@
+{namespace n=Tx_News_ViewHelpers}
+
+<tr class="db_list_normal">
+	<td>
+		<n:be.clickmenu table="tx_news_domain_model_news" uid="{newsItem.uid}">
+			<n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="" />
+		</n:be.clickmenu>
+
+		<n:be.buttons.icon uri="#" onclick="window.location.href='alt_doc.php?returnUrl='+T3_THIS_LOCATION+'&edit[tx_news_domain_model_news][{newsItem.uid}]=edit'; return false;" icon="tcarecords-tx_news_domain_model_news-default" title="Info" />
+
+		<span title="UID: {newsItem.uid}">{newsItem.title}</span>
+	</td>
+	<td><f:if condition="{newsItem.isTopNews}"><f:then>Yes</f:then><f:else>No</f:else></f:if></td>
+	<td><f:format.date>{newsItem.dateTime}</f:format.date></td>
+	<td><f:format.date>{newsItem.archive}</f:format.date></td>
+	<td><f:format.date>{newsItem.tstamp}</f:format.date></td>
+	<td>
+		<f:if condition="{newsItem.author}">
+			<strong><f:translate key="LLL:EXT:cms/locallang_tca.xml:pages.author_formlabel" />:</strong> {newsItem.author}<br />
+		</f:if>
+		<f:if condition="{newsItem.categories}">
+			<strong><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.categories" />:</strong>
+			<f:for each="{newsItem.categories}" as="category" iteration="iterator">
+				<span title="UID: {category.uid}">{category.title}</span><f:if condition="{iterator.isLast}"><f:then></f:then><f:else>, </f:else></f:if>
+			</f:for>
+		</f:if>
+	</td>
+</tr>

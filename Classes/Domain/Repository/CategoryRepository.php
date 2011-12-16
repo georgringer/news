@@ -52,6 +52,37 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 				$query->equals('importId', $importId)
 			))->execute()->getFirst();
 	}
+
+	/**
+	 * Find categories by a given pid
+	 *
+	 * @param integer $pid pid
+	 * @return Tx_Extbase_Persistence_QueryInterface
+	 */
+	public function findParentCategoriesByPid($pid) {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		return $query->matching(
+			$query->logicalAnd(
+				$query->equals('pid', (int)$pid),
+				$query->equals('parentcategory', 0)
+			))->execute();
+	}
+
+	/**
+	 * Find categories by a given parent
+	 *
+	 * @param integer $parent parent
+	 * @return Tx_Extbase_Persistence_QueryInterface
+	 */
+	public function findChildren($parent) {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		return $query->matching(
+			$query->logicalAnd(
+				$query->equals('parentcategory', (int)$parent)
+			))->execute();
+	}
 }
 
 ?>
