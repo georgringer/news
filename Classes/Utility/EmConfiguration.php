@@ -52,10 +52,9 @@ class Tx_News_Utility_EmConfiguration {
 	 */
 	private static function parseSettings() {
 		$settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
-		if(!$settings) {
-			throw new RuntimeException('Could not unserialize the configuration of EXT:news. Please check the ConfigurationOptions of the extension in the ExtensionManager.');
-		} elseif (!is_array($settings)) {
-			throw new RuntimeException('Configuration of EXT:news is no array after serializing, please check the configuration options');
+
+		if (!is_array($settings)) {
+			$settings = array();
 		}
 		return $settings;
 	}
