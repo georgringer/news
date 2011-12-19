@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  (c) 2011 Georg Ringer <typo3@ringerge.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,40 +23,39 @@
 ***************************************************************/
 
 /**
- * ViewHelper to include a css/js file
+ * ViewHelper to get childs of a category
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_IncludeFileViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_CategoryChildrenViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * Include a CSS/JS file
+	 * @var Tx_News_Domain_Repository_CategoryRepository
+	 */
+	protected $categoryRepository;
+
+	/**
+	 * Inject a news repository to enable DI
 	 *
-	 * @param string $path path to the file
-	 * @param boolean $compress if file should be compressed
+	 * @param Tx_News_Domain_Repository_NewsRepository $categoryRepository
 	 * @return void
 	 */
-	public function render($path, $compress = FALSE) {
-		if (TYPO3_MODE === 'FE') {
-			$path = $GLOBALS['TSFE']->tmpl->getFileName($path);
-		}
-
-		if ($path) {
-			$doc = t3lib_div::makeInstance('template');
-			$pageRenderer = $doc->getPageRenderer();
-
-			// JS
-			if (strtolower(substr($path, -3)) === '.js') {
-				$pageRenderer->addJsFile($path, NULL, $compress);
-
-				// CSS
-			} elseif (strtolower(substr($path, -4)) === '.css') {
-				$pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress);
-			}
-		}
+	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
+		$this->categoryRepository = $categoryRepository;
 	}
 
+	/**
+	 *
+	 * @param integer $category category uid
+	 * @param string $as
+	 */
+	public function render($category, $as) {
+		$this->templateVariableContainer->add($as, $this->categoryRepository->findChildren($category));
+		$output = $this->renderChildren();
+		$this->templateVariableContainer->remove($as);
+		return $output;
+	}
 }
 
 ?>

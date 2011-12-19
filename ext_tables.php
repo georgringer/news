@@ -321,6 +321,26 @@ if (TYPO3_MODE === 'BE' && $configuration->getShowImporter()) {
 
 
 /* ===========================================================================
+ 	Register BE-Module for Administration
+=========================================================================== */
+if (TYPO3_MODE === 'BE') {
+	Tx_Extbase_Utility_Extension::registerModule(
+		$_EXTKEY,
+		'web',
+		'tx_news_m2',
+		'',
+		array(
+			'Administration' => 'index,newNews,newCategory,newsPidListing',
+		),
+		array(
+			'access' => 'user,group',
+			'icon'   => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/import_module.gif',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_modadministration.xml',
+		)
+	);
+}
+
+/* ===========================================================================
  	Ajax call to save tags
 =========================================================================== */
 if (TYPO3_MODE == 'BE') {
