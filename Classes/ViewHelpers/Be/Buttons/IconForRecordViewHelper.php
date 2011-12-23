@@ -39,8 +39,11 @@ class Tx_News_ViewHelpers_Be_Buttons_IconForRecordViewHelper extends Tx_Fluid_Vi
 	 * @return string sprite icon
 	 */
 	public function render($table, $uid, $title) {
+		$icon = '';
 		$row = t3lib_BEfunc::getRecord($table, $uid);
-		$icon = t3lib_iconWorks::getSpriteIconForRecord($table, $row, array('title' => htmlspecialchars($title)));
+		if (is_array($row)) {
+			$icon = t3lib_iconWorks::getSpriteIconForRecord($table, $row, array('title' => htmlspecialchars($title)));
+		}
 
 		return $icon;
 	}

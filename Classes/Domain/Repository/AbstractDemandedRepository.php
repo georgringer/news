@@ -53,16 +53,24 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository extends Tx_E
 	 * Returns the total number objects of this repository matching the demand.
 	 *
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param boolean $respectEnableFields
 	 * @return Tx_Extbase_Persistence_QueryResultInterface
 	 */
-	public function findDemanded(Tx_News_Domain_Model_DemandInterface $demand) {
+	public function findDemanded(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
 
 		$query = $this->createQuery();
 
 			// @todo find a better place for setting respectStoragePage. Perhaps $this->createQuery().
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 
-		if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {
+		$constraints = $this->createConstraintsFromDemand($query, $demand);
+
+		if ($respectEnableFields === FALSE) {
+			$query->getQuerySettings()->setRespectEnableFields(FALSE);
+			$constraints[] = $query->equals('deleted', 0);
+		}
+
+		if (!empty($constraints)) {
 			$query->matching(
 				$query->logicalAnd($constraints)
 			);
