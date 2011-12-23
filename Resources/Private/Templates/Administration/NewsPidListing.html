@@ -13,8 +13,7 @@
 	<br />
 	<f:form action="newsPidListing">
 		<label for="treeLevel"><f:translate key="LLL:EXT:lang/locallang_general.xml:LGL.recursive" /></label>
-		<f:form.select name="treeLevel" id="treeLevel" options="{1:1,2:2,3:3,4:4,5:5,6:6,7:7}" value="{treeLevel}"/>
-		<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xml:reload')}" />
+		<f:form.select name="treeLevel" id="treeLevel" options="{1:1,2:2,3:3,4:4,5:5,6:6,7:7}" value="{treeLevel}" additionalAttributes="{onchange:'this.form.submit()'}"/>
 	</f:form>
 	<table cellpadding="0" cellmargin="0" cellspacing="1" class="typo3-dblist page-tree">
 		<tr class="t3-row-header">
@@ -26,10 +25,10 @@
 			<tr class="db_list_normal">
 				<td class="icon" nowrap="nowrap">
 					<f:format.html parseFuncTSPath="">{item.HTML}</f:format.html>
-					<f:link.action action="index" additionalParams="{id:item.row.uid}">{item.row.title}</f:link.action>
+					<f:link.action action="index" additionalParams="{id:item.row.uid}" title="UID: {item.row.uid}">{item.row.title}</f:link.action>
 				</td>
-				<td>{item.countNews}</td>
-				<td>{item.countCategories}</td>
+				<td style="text-align: center">{item.countNews}</td>
+				<td style="text-align: center">{item.countCategories}</td>
 			</tr>
 		</f:for>
 	</table>
