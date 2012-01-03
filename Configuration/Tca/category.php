@@ -184,6 +184,7 @@ $TCA['tx_news_domain_model_category'] = array(
 					'appearance' => array(
 						'expandAll' => TRUE,
 						'showHeader' => FALSE,
+						'maxLevels' => 99,
 					),
 				),
 				'size' => 10,
