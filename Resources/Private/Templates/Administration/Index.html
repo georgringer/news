@@ -7,20 +7,19 @@
 </f:section>
 
 
-<f:section name="categoryList">
-	<n:categoryChildren category="{list}" as="categories">
-		<f:if condition="{categories}"><ul>
-			<f:for each="{categories}" as="category"><li>
-				<f:render section="categoryListItem" arguments="{category: category}" />
-				<f:render section="categoryList" arguments="{list: category.uid}" />
-			</li></f:for>
-		</ul></f:if>
-	</n:categoryChildren>
-</f:section>
-
-<f:section name="categoryListItem">
-	<f:form.checkbox id="category-{category.uid}"property="selectedCategories" value="{category.uid}" />
-	<label for="category-{category.uid}" title="{category.uid}">{category.title}</label>
+<f:section name="categoryTree">
+	<ul>
+		<f:for each="{categories}" as="category">
+			<li>
+				<f:form.checkbox id="category-{category.item.uid}"property="selectedCategories" value="{category.item.uid}" />
+				<label for="category-{category.item.uid}" title="{category.item.uid}">{category.item.title}</label>
+				
+				<f:if condition="{category.children}">
+					<f:render section="categoryTree" arguments="{categories: category.children}" />
+				</f:if>
+			</li>
+		</f:for>
+	</ul>
 </f:section>
 
 <f:section name="content">
@@ -81,12 +80,7 @@
 		</div>
 
 		<div class="category-tree">
-			<ul style="padding:10px;margin:5px;">
-				<f:for each="{categories}" as="category"><li>
-					<f:render section="categoryListItem" arguments="{category: category}" />
-					<f:render section="categoryList" arguments="{list: category.uid}" />
-				</li></f:for>
-			</ul>
+			<f:render section="categoryTree" arguments="{categories: categories}" />
 
 			<f:if condition="{categories}">
 				<div class="field">
