@@ -89,10 +89,16 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		}
 		$demand = $this->createDemandObjectFromSettings($demand);
 
+		$categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
+		$idList = array();
+		foreach($categories as $c) {
+			$idList[] = $c->getUid();
+		}
+
 		$this->view->assignMultiple(array(
 			'demand' => $demand,
 			'news' => $this->newsRepository->findDemanded($demand, FALSE),
-			'categories' => $this->categoryRepository->findParentCategoriesByPid($this->pageUid),
+			'categories' => $this->categoryRepository->findTree($idList),
 		));
 	}
 

@@ -70,6 +70,51 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	}
 
 	/**
+	 * Find category tree
+	 *
+	 * @param array $rootIdList list of id s
+	 * @return Tx_Extbase_Persistence_QueryInterface
+	 */
+	public function findTree(array $rootIdList) {
+		$subCategories = Tx_News_Service_CategoryService::getChildrenCategories(implode(',',$rootIdList));
+
+		$categories = $this->findByIdList(explode(',',$subCategories));
+		$flatCategories = array();
+		foreach ($categories as $category) {
+			$flatCategories[$category->getUid()] = Array(
+				'item' =>  $category,
+				'parent' => ($category->getParentcategory()) ? $category->getParentcategory()->getUid() : NULL
+			);
+		}
+
+		$tree = array();
+		foreach ($flatCategories as $id=>&$node) {
+			if ($node['parent'] === NULL) {
+				$tree[$id] = &$node;
+			} else {
+				$flatCategories[$node['parent']]['children'][$id] = &$node;
+			}
+		}
+
+		return $tree;
+	}
+
+	/**
+	 * Find categories by a given pid
+	 *
+	 * @param array $idList list of id s
+	 * @return Tx_Extbase_Persistence_QueryInterface
+	 */
+	public function findByIdList(array $idList) {
+		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		return $query->matching(
+			$query->logicalAnd(
+				$query->in('uid', $idList)
+			))->execute();
+	}
+
+	/**
 	 * Find categories by a given parent
 	 *
 	 * @param integer $parent parent
