@@ -434,6 +434,7 @@ $TCA['tx_news_domain_model_news'] = array(
 				'type' => 'inline',
 				'allowed' => 'tt_content',
 				'foreign_table' => 'tt_content',
+				'MM' => 'tx_news_domain_model_news_ttcontent_mm',
 				'minitems' => 0,
 				'maxitems' => 10,
 				'appearance' => array(

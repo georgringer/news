@@ -53,7 +53,7 @@ class ext_update {
 	 * @todo find a better way to determine if update is needed or not.
 	 */
 	public function access() {
-		return FALSE;
+		return TRUE;
 	}
 
 	/**
@@ -62,6 +62,10 @@ class ext_update {
 	 * @return void
 	 */
 	protected function processUpdates() {
+
+		$this->updateContentRelationToMM();
+
+		/*
 		$this->renameDatabaseTable('tx_news2_domain_model_news', 'tx_news_domain_model_news');
 		$this->renameDatabaseTable('tx_news2_domain_model_category', 'tx_news_domain_model_category');
 		$this->renameDatabaseTable('tx_news2_domain_model_news_category_mm', 'tx_news_domain_model_news_category_mm');
@@ -89,6 +93,47 @@ class ext_update {
 		$this->renameFlexformField('news_pi1', array('template', 'settings.cropLength'), array('template', 'settings.cropMaxCharacters'));
 
 		$this->renameDatabaseTableField('tx_news_domain_model_media', 'content', 'image');
+		*/
+	}
+
+	/**
+	 * news records got a relation to content elements and the relation uses now a mm query
+	 * This method allows to update the mm table to got everything in sync again
+	 *
+	 * @return void
+	 */
+	protected function updateContentRelationToMM() {
+		$title = 'Update tt_content relation';
+
+		$countMmTable = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'tx_news_domain_model_news_ttcontent_mm', '1=1');
+		$countContentElementRelation = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'tx_news_domain_model_news', 'deleted=0 AND content_elements != ""');
+		if ($countMmTable === 0 && $countContentElementRelation > 0) {
+			$newsCount = 0;
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,content_elements', 'tx_news_domain_model_news', 'deleted=0 AND content_elements != ""');
+			while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+				$newsCount++;
+				$contentElementUids = explode(',', $row['content_elements']);
+				$i = 1;
+				foreach($contentElementUids as $contentElement) {
+						// Insert mm relation
+					$insert = array(
+						'uid_local' => $row['uid'],
+						'uid_foreign' => $contentElement,
+						'sorting' => $i++
+					);
+					$GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_news_domain_model_news_ttcontent_mm', $insert);
+				}
+
+					// Update new record
+				$update = array('content_elements' => count($contentElementUids));
+				$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_news_domain_model_news', 'uid=' . $row['uid'], $update);
+			}
+			$GLOBALS['TYPO3_DB']->sql_free_result($res);
+
+			$this->messageArray[] = array(t3lib_FlashMessage::OK, $title, $newsCount . ' news records have been updated!');
+		} else {
+			$this->messageArray[] = array(t3lib_FlashMessage::NOTICE, $title, 'Not needed/possible anymore as the mm table is already filled!');
+		}
 	}
 
 	/**
