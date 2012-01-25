@@ -69,6 +69,11 @@
 #news-administration .page-tree td {
 	vertical-align: middle;
 }
+
 #news-administration table.page-tree {
 	width: auto;
+}
+
+#news-administration table.page-tree .hide {
+	opacity: 0.5;
 }

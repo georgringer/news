@@ -22,7 +22,7 @@
 			<td style="padding-right:10px;"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_category" /></td>
 		</tr>
 		<f:for each="{tree}" as="item">
-			<tr class="db_list_normal">
+			<tr class="db_list_normal {f:if(condition: item.countNewsAndCategories, then: 'show', else: 'hide')}">
 				<td class="icon" nowrap="nowrap">
 					<f:format.html parseFuncTSPath="">{item.HTML}</f:format.html>
 					<f:link.action action="index" additionalParams="{id:item.row.uid}" title="UID: {item.row.uid}">{item.row.title}</f:link.action>

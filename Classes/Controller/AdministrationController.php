@@ -78,6 +78,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	}
 
 	/**
+	 * Main action for administration
 	 *
 	 * @param Tx_News_Domain_Model_AdministrationDemand $demand
 	 * @dontvalidate  $demand
@@ -103,7 +104,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	}
 
 	/**
-	 * Show a page tree including count of news + category records
+	 * Shows a page tree including count of news + category records
 	 *
 	 * @param integer $treeLevel
 	 * @return void
@@ -124,17 +125,16 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	}
 
 	/**
-	 * Redirect to form to create new news record which is
-	 * all done by tceforms.
+	 * Redirect to form to create a news record
 	 *
 	 * @return void
 	 */
 	public function newNewsAction() {
 		$this->redirectToCreateNewRecord('tx_news_domain_model_news');
 	}
+
 	/**
-	 * Redirect to form to create new news record which is
-	 * all done by tceforms.
+	 * Redirect to form to create a category record
 	 *
 	 * @return void
 	 */
@@ -172,12 +172,13 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 
 		$row['countNews'] = $db->exec_SELECTcountRows('*', 'tx_news_domain_model_news', 'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_news'));
 		$row['countCategories'] = $db->exec_SELECTcountRows('*', 'tx_news_domain_model_category', 'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_category'));
+		$row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
 	}
 
 	/**
 	 * Redirect to tceform creating a new record
 	 *
-	 * @param string $table
+	 * @param string $table table name
 	 * @return void
 	 */
 	private function redirectToCreateNewRecord($table) {
