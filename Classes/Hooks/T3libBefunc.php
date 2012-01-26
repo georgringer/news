@@ -79,7 +79,18 @@ class Tx_News_Hooks_T3libBefunc {
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
-
+	/**
+	 * Fields which are removed in category list viedw
+	 *
+	 * @var array
+	 */
+	public	$removedFieldsInCategoryListView = array(
+			'sDEF' => 'orderBy,orderDirection,categoryConjunction,
+						archiveRestriction,timeRestriction,topNewsRestriction,
+						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid',
+			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
+		);
 	/**
 	 * Hook function of t3lib_befunc
 	 * It is used to change the flexform if it is about news
@@ -138,6 +149,9 @@ class Tx_News_Hooks_T3libBefunc {
 					break;
 				case 'News->dateMenu':
 					$this->deleteFromStructure($dataStructure, $this->removedFieldsInDateMenuView);
+					break;
+				case 'Category->list':
+					$this->deleteFromStructure($dataStructure, $this->removedFieldsInCategoryListView);
 					break;
 			}
 		}

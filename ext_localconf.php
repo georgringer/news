@@ -9,6 +9,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Pi1',
 	array(
 		'News' => 'list,detail,dateMenu,seachForm,searchResult',
+		'Category' => 'list',
 	),
 	array(
 		'News' => 'seachForm,searchResult',

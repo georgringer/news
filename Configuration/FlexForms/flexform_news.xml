@@ -42,14 +42,18 @@
 									<numIndex index="1">News->dateMenu</numIndex>
 								</numIndex>
 								<numIndex index="7">
+									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.category_list</numIndex>
+									<numIndex index="1">Category->list</numIndex>
+								</numIndex>
+								<numIndex index="14">
 									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.optgroup_search</numIndex>
 									<numIndex index="1">--div--</numIndex>
 								</numIndex>
-								<numIndex index="8">
+								<numIndex index="15">
 									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_searchform</numIndex>
 									<numIndex index="1">News->searchForm</numIndex>
 								</numIndex>
-								<numIndex index="9">
+								<numIndex index="16">
 									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_searchresult</numIndex>
 									<numIndex index="1">News->searchResult</numIndex>
 								</numIndex>
