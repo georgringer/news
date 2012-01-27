@@ -54,7 +54,7 @@ class Tx_News_ViewHelpers_Format_DamViewHelper extends Tx_Fluid_Core_ViewHelper_
 	 */
 	public function render($uid, $as) {
 		if (t3lib_extMgm::isLoaded('dam')) {
-			$res = tx_dam_db::referencesQuery('tx_dam', '', 'tx_news_domain_model_media', (int)$uid, $MM_ident='', $MM_table='tx_dam_mm_ref', $fields='*');
+			$res = tx_dam_db::referencesQuery('tx_dam', '', 'tx_news_domain_model_media', (int)$uid, $MM_ident='', $MM_table='tx_dam_mm_ref', $fields='tx_dam.*');
 			$record = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
 
 			$this->templateVariableContainer->add($as, $record);
