@@ -389,7 +389,7 @@ class Tx_News_Hooks_CmsLayout {
 		$i = 0;
 		foreach($this->tableData as $line) {
 				// Check if the setting is in the list of diabled ones
-			$class = ($i++ % 2 == 0) ? 'bgColor4' : 'bgColor3';
+			$class = ($i++ % 2 === 0) ? 'bgColor4' : 'bgColor3';
 			$renderedLine = '';
 
 			if (!empty($line[1])) {
@@ -402,7 +402,8 @@ class Tx_News_Hooks_CmsLayout {
 		}
 
 		if (!empty($content)) {
-			$content = '<table class="typo3-dblist">' . $content . '</table>';
+			$styles = ($visible) ? '' : 'style="opacity:0.7;"';
+			$content = '<table ' . $styles . 'class="typo3-dblist">' . $content . '</table>';
 		}
 
 		return $content;
