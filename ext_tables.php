@@ -123,7 +123,7 @@ $TCA['tx_news_domain_model_media'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/media.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_media.gif',
-		'hideTable'			=> $configuration->getHideMediaTable(),
+		'hideTable'			=> TRUE,
 	),
 );
 
@@ -151,7 +151,7 @@ $TCA['tx_news_domain_model_file'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/file.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_file.gif',
-		'hideTable'			=> $configuration->getHideFileTable(),
+		'hideTable'			=> TRUE,
 	),
 );
 
@@ -179,7 +179,7 @@ $TCA['tx_news_domain_model_link'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/link.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_link.gif',
-		'hideTable'			=> $configuration->getHideFileTable(),
+		'hideTable'			=> TRUE,
 	),
 );
 
