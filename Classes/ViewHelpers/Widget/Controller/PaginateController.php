@@ -177,11 +177,16 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 			'pages' => $pages,
 			'current' => $this->currentPage,
 			'numberOfPages' => $this->numberOfPages,
+			'numberOfItems' => count($this->objects),
 			'pagesBefore' => $this->pagesBefore,
 			'pagesAfter' => $this->pagesAfter,
+			'firstPageItem' => ($this->currentPage - 1) * (int)$this->configuration['itemsPerPage'] + 1
 		);
 		if ($this->currentPage < $this->numberOfPages) {
 			$pagination['nextPage'] = $this->currentPage + 1;
+			$pagination['lastPageItem'] = $this->currentPage * (integer)$this->configuration['itemsPerPage'];
+		} else {
+			$pagination['lastPageItem'] = $pagination['numberOfItems'];
 		}
 		if ($this->currentPage > 1) {
 			$pagination['previousPage'] = $this->currentPage - 1;
