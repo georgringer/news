@@ -425,8 +425,10 @@ class Tx_News_Hooks_CmsLayout {
 		}
 
 		if (!empty($content)) {
-			$styles = ($visible) ? '' : 'style="opacity:0.7;"';
-			$content = '<table ' . $styles . 'class="typo3-dblist">' . $content . '</table>';
+			$styles = 'width:100%;';
+			$styles .= ($visible) ? '' : 'opacity:0.7;';
+
+			$content = '<table style="' . $styles . '" class="typo3-dblist">' . $content . '</table>';
 		}
 
 		return $content;
