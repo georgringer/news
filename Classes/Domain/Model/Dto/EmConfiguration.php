@@ -65,16 +65,6 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	/**
 	 * @var boolean;
 	 */
-	protected $hideMediaTable = TRUE;
-
-	/**
-	 * @var boolean;
-	 */
-	protected $hideFileTable = TRUE;
-
-	/**
-	 * @var boolean;
-	 */
 	protected $prependAtCopy = TRUE;
 
 	/**
@@ -128,20 +118,6 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 */
 	public function getTagPid() {
 		return (int)$this->tagPid;
-	}
-
-	/**
-	 * @return boolean
-	 */
-	public function getHideMediaTable() {
-		return (boolean)$this->hideMediaTable;
-	}
-
-	/**
-	 * @return boolean
-	 */
-	public function getHideFileTable() {
-		return (boolean)$this->hideFileTable;
 	}
 
 	/**

@@ -82,8 +82,6 @@
 			<!-- Extension Manager Configuration -->
 			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module by using the following syntax: label=fieldlist;label=fieldlist</label>
 			<label index="extmng.pageModuleFieldsCategory">Category fields shown in page module:Set the fields which should be shown in the page module.</label>
-			<label index="extmng.hideMediaTable">Hide Media records:As the media elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
-			<label index="extmng.hideFileTable">Hide File records:As the file elements should only be edited through the IRRE relation within a news record, they should be hidden in the list module.</label>
 			<label index="extmng.showImporter">Show import module: If set, the backend module to import records is shown.</label>
 			<label index="extmng.prependAtCopy">Prepend at copy: Prepend string "copy X".</label>
 			<label index="extmng.categoryRestriction">Category restriction: Restrict the available categories in news records. PageTsConfig: TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!</label>
@@ -196,8 +194,6 @@
 			<!-- Extension Manager Configuration -->
 			<label index="extmng.pageModuleFieldsNews">Nyheds-felter vist i side-modulet:Angiv felterne der skal vises i side-modulet i følgende syntaks: label=fieldlist;label=fieldlist</label>
 			<label index="extmng.pageModuleFieldsCategory">Kategori-felter der skal vises i side-modulet:Angive kategori-felter der skal vises i side-modulet.</label>
-			<label index="extmng.hideMediaTable">Skjule medie-elementer:Skjul medie-elementer i listevisning - de bør kun redigeres IRRE.</label>
-			<label index="extmng.hideFileTable">Skjul fil-elementer:Skjul fil-elementer i listevisning - de bør kun redigeres IRRE.</label>
 			<label index="extmng.showImporter">Vis importør:Backend-modul til import af elementer.</label>
 			<label index="extmng.prependAtCopy">Forsats ved kopiering:Læg teksten til titlen på kopierede elementer før de gemmes.</label>
 			<label index="extmng.categoryRestriction">Kategori-restriktion:Begræns de tilgængelige kategorier for nyheds-elementer.</label>
