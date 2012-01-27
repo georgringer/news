@@ -107,6 +107,9 @@ class Tx_News_Hooks_CmsLayout {
 						$this->getDateMenuSettings();
 						$this->getCategorySettings();
 						break;
+					case 'category_list':
+						$this->getCategorySettings(FALSE);
+						break;
 				}
 
 					// for all views
@@ -213,9 +216,10 @@ class Tx_News_Hooks_CmsLayout {
 	/**
 	 * Render category settings
 	 *
+	 * @param boolean $showCategoryMode show the category conjunction
 	 * @return void
 	 */
-	private function getCategorySettings() {
+	private function getCategorySettings($showCategoryMode = TRUE) {
 		$categoryMode = '';
 		$categoriesOut = array();
 
@@ -225,10 +229,15 @@ class Tx_News_Hooks_CmsLayout {
 				// Category mode
 			$categoryModeSelection = $this->getFieldFromFlexform($this->flexformData, 'settings.categoryConjunction');
 
-			if (empty($categoryModeSelection)) {
-				$categoryMode = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categoryConjunction.all');
-			} else {
-				$categoryMode = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categoryConjunction.' . $categoryModeSelection);
+
+			if ($showCategoryMode) {
+				if (empty($categoryModeSelection)) {
+					$categoryMode = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categoryConjunction.all');
+				} else {
+					$categoryMode = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categoryConjunction.' . $categoryModeSelection);
+				}
+
+				$categoryMode = '<span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>';
 			}
 
 				// Category records
@@ -244,7 +253,7 @@ class Tx_News_Hooks_CmsLayout {
 
 			$this->tableData[] = array(
 							$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categories') .
-								'<br /><span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>',
+								'<br />' . $categoryMode,
 							implode(', ', $categoriesOut)
 						);
 		}
