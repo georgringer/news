@@ -203,7 +203,7 @@
 								<type>select</type>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
+										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.no-constraint</numIndex>
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1">
@@ -240,7 +240,7 @@
 								<type>select</type>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0"></numIndex>
+										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.no-constraint</numIndex>
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1">
