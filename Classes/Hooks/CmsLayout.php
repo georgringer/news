@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  (c) 2011 Georg Ringer <typo3@ringerge.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -94,9 +94,11 @@ class Tx_News_Hooks_CmsLayout {
 						$this->getCategorySettings();
 						$this->getArchiveSettings();
 						$this->getOffsetLimitSettings();
+						$this->getDetailPidSetting();
 						break;
 					case 'news_detail':
 						$this->getSingleNewsSettings();
+						$this->getDetailPidSetting();
 						break;
 					case 'news_datemenu':
 						$this->getStartingPoint();
@@ -154,6 +156,27 @@ class Tx_News_Hooks_CmsLayout {
 							htmlspecialchars($newsRecord['title']) . ' <small>(' . $newsRecord['uid'] . ')</small>';
 
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $content);
+		}
+	}
+
+	/**
+	 * Render single news settings
+	 *
+	 * @return void
+	 */
+	private function getDetailPidSetting() {
+		$detailPid = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.detailPid', 'additional');
+
+		if ($detailPid > 0) {
+			$pageRecord = t3lib_BEfunc::getRecord('pages', $detailPid);
+
+			$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
+			$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'pages', $pageRecord['uid'], 1, '', '+info,edit', TRUE);
+
+			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
+							htmlspecialchars($pageRecord['title']);
+
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.detailPid'), $content);
 		}
 	}
 
