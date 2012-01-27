@@ -2,19 +2,11 @@
 <T3locallang>
 	<meta type="array">
 		<type>module</type>
-		<description>Language labels for module </description>
+		<description>Language labels for BE administration module of ext:news</description>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="mlang_tabs_tab">News Administration</label>
-			<label index="mlang_labels_tablabel">News Administration</label>
-		</languageKey>
-		<languageKey index="dk" type="array">
-			<label index="mlang_tabs_tab">News Administration</label>
-			<label index="mlang_labels_tablabel">News Administration</label>
-		</languageKey>
-		<languageKey index="es" type="array">
-			<label index="mlang_tabs_tab">News Administration</label>
+			<label index="mlang_tabs_tab">News</label>
 			<label index="mlang_labels_tablabel">News Administration</label>
 		</languageKey>
 	</data>
