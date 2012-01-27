@@ -807,6 +807,24 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Get year of crdate
+	 *
+	 * @return integer
+	 */
+	public function getYearOfCrdate() {
+		return $this->crdate->format('Y');
+	}
+
+	/**
+	 * Get month of crdate
+	 *
+	 * @return integer
+	 */
+	public function getMonthOfCrdate() {
+		return $this->crdate->format('m');
+	}
+
+	/**
 	 * Get timestamp
 	 *
 	 * @return integer
@@ -823,6 +841,24 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
+	}
+
+	/**
+	 * Get year of tstamp
+	 *
+	 * @return integer
+	 */
+	public function getYearOfTstamp() {
+		return $this->tstamp->format('Y');
+	}
+
+	/**
+	 * Get month of tstamp
+	 *
+	 * @return integer
+	 */
+	public function getMonthOfTstamp() {
+		return $this->tstamp->format('m');
 	}
 
 	/**
@@ -921,6 +957,24 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Get year of starttime
+	 *
+	 * @return integer
+	 */
+	public function getYearOfStarttime() {
+		return $this->starttime->format('Y');
+	}
+
+	/**
+	 * Get month of starttime
+	 *
+	 * @return integer
+	 */
+	public function getMonthOfStarttime() {
+		return $this->starttime->format('m');
+	}
+
+	/**
 	 * Get enddtime
 	 *
 	 * @return integer
@@ -937,6 +991,24 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setEndtime($endtime) {
 		$this->endtime = $endtime;
+	}
+
+	/**
+	 * Get year of endtime
+	 *
+	 * @return integer
+	 */
+	public function getYearOfEndtime() {
+		return $this->endtime->format('Y');
+	}
+
+	/**
+	 * Get month of endtime
+	 *
+	 * @return integer
+	 */
+	public function getMonthOfEndtime() {
+		return $this->endtime->format('m');
 	}
 
 	/**
