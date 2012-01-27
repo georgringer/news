@@ -241,7 +241,7 @@ if (TYPO3_MODE == 'BE') {
  */
 if (TYPO3_MODE == 'BE') {
 	unset($ICON_TYPES['news']);
-	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news/Resources/Public/Icons/folder.gif');
+	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news/Resources/Public/Icons/folder.png');
 }
 
 
