@@ -86,6 +86,7 @@ plugin.tx_news {
 				month = n
 				year = Y
 			}
+			dynamicGetVarsManipulation = 0
 		}
 
 		cropMaxCharacters = 150
