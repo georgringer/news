@@ -25,6 +25,7 @@
 			<label index="tx_news_domain_model_news.tags">Tags</label>
 			<label index="tx_news_domain_model_news.tags.add">Add a new tag</label>
 			<label index="tx_news_domain_model_news.tags.list">List all tags</label>
+			<label index="tx_news_domain_model_news.tags.edit">Edit tag</label>
 
 			<label index="tx_news_domain_model_category">News Category</label>
 			<label index="tx_news_domain_model_category.title">Title</label>
@@ -188,6 +189,7 @@
 			<label index="tx_news_domain_model_news.tags">Tags</label>
 			<label index="tx_news_domain_model_news.tags.add">Neuen Tag hinzufügen</label>
 			<label index="tx_news_domain_model_news.tags.list">Liste aller Tags</label>
+			<label index="tx_news_domain_model_news.tags.edit">Tag bearbeiten</label>
 
 			<label index="tx_news_domain_model_category">News Kategorie</label>
 			<label index="tx_news_domain_model_category.title">Titel</label>
