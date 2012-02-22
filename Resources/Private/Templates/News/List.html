@@ -12,13 +12,13 @@
 			<f:if condition="{settings.hidePagination}">
 				<f:then>
 					<f:for each="{news}" as="newsItem">
-						<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+						<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}"/>
 					</f:for>
 				</f:then>
 				<f:else>
 					<n:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
 						<f:for each="{paginatedNews}" as="newsItem">
-							<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+							<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}"/>
 						</f:for>
 					</n:widget.paginate>
 				</f:else>
