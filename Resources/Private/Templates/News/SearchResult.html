@@ -6,19 +6,23 @@
 -->
 
 <f:section name="content">
-	<f:if condition="{search}">
-		<f:if condition="{news}">
-			<f:then>
-				<div class="count-msg">
-					<f:translate key="search-text" arguments="{0:'{f:count(subject:news)}',1:search.subject}" />
-				</div>
-				<f:for each="{news}" as="newsItem">
-					<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
-				</f:for>
-			</f:then>
-			<f:else>
-				<f:translate key="search-noresult" />
-			</f:else>
+	<div class="news-search-result">
+		<f:if condition="{search}">
+			<f:if condition="{news}">
+				<f:then>
+					<div class="count-msg">
+						<f:translate key="search-text" arguments="{0:'{f:count(subject:news)}',1:search.subject}" />
+					</div>
+					<f:for each="{news}" as="newsItem">
+						<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+					</f:for>
+				</f:then>
+				<f:else>
+					<div class="no-news-found">
+						<f:translate key="search-noresult" />
+					</div>
+				</f:else>
+			</f:if>
 		</f:if>
-	</f:if>
+	</div>
 </f:section>

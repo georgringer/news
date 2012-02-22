@@ -6,10 +6,12 @@
 -->
 
 <f:section name="content">
-    <f:form object="{search}" name="search">
-		<fieldset>
-			<f:form.textfield property="subject" />
-			<f:form.submit value="{f:translate(key:'search-start')}"/>
-		</fieldset>
-    </f:form>
+	<div class="news-search-form">
+		<f:form object="{search}" name="search">
+			<fieldset>
+				<f:form.textfield property="subject" />
+				<f:form.submit value="{f:translate(key:'search-start')}"/>
+			</fieldset>
+		</f:form>
+	</div>
 </f:section>
