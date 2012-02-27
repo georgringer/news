@@ -37,7 +37,7 @@ CREATE TABLE tx_news_domain_model_news (
 	related int(11) DEFAULT '0' NOT NULL,
 	related_files tinytext,
 	related_links tinytext,
-	type int(11) DEFAULT '0' NOT NULL,
+	type tinytext,
 	keywords text,
 	tags int(11) DEFAULT '0' NOT NULL,
 	media text,
