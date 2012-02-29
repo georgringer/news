@@ -45,7 +45,13 @@
 					</f:then>
 					<f:else>
 						<span class="no-media-element">
-							<f:image src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
+								<f:image
+									src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png"
+									title=""
+									alt=""
+									maxWidth="{settings.list.media.image.maxWidth}"
+									maxHeight="{settings.list.media.image.maxHeight}"
+								/>
 						</span>
 					</f:else>
 				</f:if>
@@ -58,7 +64,13 @@
 					<div class="news-img-wrap">
 						<n:link newsItem="{newsItem}" settings="{settings}">
 							<span class="no-media-element">
-								<f:image src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png" title=""  alt="" />
+								<f:image
+									src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png"
+									title=""
+									alt=""
+									maxWidth="{settings.list.media.image.maxWidth}"
+									maxHeight="{settings.list.media.image.maxHeight}"
+								/>
 							</span>
 						</n:link>
 					</div>
