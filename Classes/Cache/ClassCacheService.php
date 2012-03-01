@@ -22,30 +22,56 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-
 /**
- * Hook into index_ts.php to manipulate get vars
+ * Service for category related stuff
  *
- * @author	Georg Ringer <typo3@ringerge.org>
- * @package	TYPO3
- * @subpackage	tx_news
+ * @package TYPO3
+ * @subpackage tx_news
  */
-class Tx_News_Hooks_PreprocessRequest {
+class Tx_News_Cache_ClassCacheService implements t3lib_Singleton{
 
-	public function user_start() {
-//		$parser->parse('Domain/Model/News');
+	/**
+	 * @var t3lib_cache_frontend_PhpFrontend
+	 */
+	protected $cache;
 
-//		$vars = t3lib_div::_GET('tx_news_pi1');
-//		if (isset($vars['news']) && !isset($vars['controller']) && !isset($vars['action'])) {
-//			$_GET['tx_news_pi1']['controller'] = 'News';
-//			$_GET['tx_news_pi1']['action'] = 'detail';
-//		}
+	/**
+	 * @param t3lib_cache_frontend_PhpFrontend $cache
+	 * @return void
+	 */
+	public function setCache(t3lib_cache_frontend_PhpFrontend $cache) {
+		$this->cache = $cache;
 	}
 
-}
+	/**
+	 * @param string $identifier
+	 * @return cache entry
+	 */
+	public function get($identifier) {
+		return $this->cache->get($identifier);
+	}
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/PreprocessRequest.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/PreprocessRequest.php']);
+	/**
+	 * @param string $identifier
+	 * @return boolean
+	 */
+	public function has($identifier) {
+		return $this->cache->has($identifier);
+	}
+
+	/**
+	 * @param string $identifier
+	 * @param string $code
+	 * @return void
+	 */
+	public function store($identifier, $code) {
+		$this->cache->set($identifier, $code);
+	}
+
+	public function requireOnce($identifier) {
+		$this->cache->requireOnce($identifier);
+	}
+
 }
 
 ?>

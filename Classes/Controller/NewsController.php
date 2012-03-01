@@ -116,6 +116,8 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * @return return string the Rendered view
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
+//		$parser = t3lib_div::makeInstance('Tx_News_Cache_ClassCacheParser');
+//		$parser->writeToCoreCache();die();
 		$demand = $this->createDemandObjectFromSettings($this->settings);
 
 		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
