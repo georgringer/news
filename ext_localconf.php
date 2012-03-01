@@ -31,10 +31,10 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['proc
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][$_EXTKEY] =
 	'EXT:' . $_EXTKEY. '/Classes/Hooks/T3libBefunc.php:Tx_News_Hooks_T3libBefunc';
 
-if ($configuration->getDynamicGetVarsManipulation()) {
+//if ($configuration->getDynamicGetVarsManipulation()) {
   $TYPO3_CONF_VARS['SC_OPTIONS']['tslib/index_ts.php']['preprocessRequest'][$_EXTKEY] =
 	'EXT:' . $_EXTKEY . '/Classes/Hooks/PreprocessRequest.php:Tx_News_Hooks_PreprocessRequest->user_start';
-}
+//}
 
 	// Hide HTML by default as it is a possible security risk
 t3lib_extMgm::addPageTSConfig('TCEFORM.tx_news_domain_model_media.type.removeItems = 2');
@@ -51,21 +51,12 @@ if (!is_array($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$caching
 if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'])) {
 	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'] = 't3lib_cache_frontend_StringFrontend';
 }
-if (Tx_News_Utility_Compatibility::convertVersionNumberToInteger(TYPO3_version) < '4006000') {
-    // Define database backend as backend for 4.5 and below (default in 4.6)
-    if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['backend'])) {
-        $TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['backend'] = 't3lib_cache_backend_DbBackend';
-    }
-    // Define data and tags table for 4.5 and below (obsolete in 4.6)
-    if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options'])) {
-        $TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options'] = array();
-    }
-    if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options']['cacheTable'])) {
-        $TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options']['cacheTable'] = 'cf_news_categorycache';
-    }
-    if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options']['tagsTable'])) {
-        $TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options']['tagsTable'] = 'cf_news_categorycache';
-    }
-}
 
+	// Register caches if not already done in localconf.php or a previously loaded extension.
+if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['class_cache'])) {
+	$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['class_cache'] = array(
+		'backend' => 't3lib_cache_backend_FileBackend',
+		'frontend' => 't3lib_cache_frontend_PhpFrontend',
+	);
+}
 ?>
