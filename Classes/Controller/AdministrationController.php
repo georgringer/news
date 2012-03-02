@@ -87,6 +87,15 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	public function indexAction(Tx_News_Domain_Model_AdministrationDemand $demand = NULL) {
 		if (is_null($demand)) {
 			$demand = $this->objectManager->get('Tx_News_Domain_Model_AdministrationDemand');
+
+				// Preselect by TsConfig (e.g. tx_news.module.preselect.topNewsRestriction = 1)
+			$tsConfig = t3lib_BEfunc::getPagesTSconfig($this->pageUid);
+			if (isset($tsConfig['tx_news.']['module.']['preselect.'])
+					&& is_array($tsConfig['tx_news.']['module.']['preselect.'])) {
+				foreach ($tsConfig['tx_news.']['module.']['preselect.'] as $propertyName => $propertyValue) {
+					Tx_Extbase_Reflection_ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+				}
+			}
 		}
 		$demand = $this->createDemandObjectFromSettings($demand);
 
