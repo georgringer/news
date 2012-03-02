@@ -103,6 +103,10 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * @return Tx_News_Domain_Model_NewsDemand
 	 */
 	protected function overwriteDemandObject($demand, $overwriteDemand) {
+		if (isset($overwriteDemand['order']) && !Tx_News_Utility_Validation::isValidOrdering($overwriteDemand['order'], $this->settings['orderByAllowed'])) {
+			unset($overwriteDemand['order']);
+		}
+
 		foreach ($overwriteDemand as $propertyName => $propertyValue) {
 			Tx_Extbase_Reflection_ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
 		}
