@@ -155,8 +155,8 @@ class Tx_News_Hooks_CmsLayout {
 			$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
 
 			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
-							htmlspecialchars($pageRecord['title']) . ': ' .
-							htmlspecialchars($newsRecord['title']) . ' <small>(' . $newsRecord['uid'] . ')</small>';
+							htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord)) . ': ' .
+							htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_news', $newsRecord)) . ' <small>(' . $newsRecord['uid'] . ')</small>';
 
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $content);
 		}
@@ -177,7 +177,7 @@ class Tx_News_Hooks_CmsLayout {
 			$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'pages', $pageRecord['uid'], 1, '', '+info,edit', TRUE);
 
 			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
-							htmlspecialchars($pageRecord['title']);
+							htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord));
 
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.detailPid'), $content);
 		}
@@ -242,13 +242,13 @@ class Tx_News_Hooks_CmsLayout {
 
 				// Category records
 			$rawCategoryRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-				'title',
+				'*',
 				'tx_news_domain_model_category',
 				'deleted=0 AND uid IN(' . implode(',', $categories) . ')'
 			);
 
 			foreach ($rawCategoryRecords as $record) {
-				$categoriesOut[] = htmlspecialchars($record['title']);
+				$categoriesOut[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_category', $record));
 			}
 
 			$this->tableData[] = array(
@@ -375,13 +375,13 @@ class Tx_News_Hooks_CmsLayout {
 		if (!empty($value)) {
 			$pagesOut = array();
 			$rawPagesRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-				'title,uid',
+				'*',
 				'pages',
 				'deleted=0 AND uid IN(' . implode(',', t3lib_div::intExplode(',', $value, TRUE)) . ')'
 			);
 
 			foreach ($rawPagesRecords as $page) {
-				$pagesOut[] = htmlspecialchars($page['title']) . '<small> (' . $page['uid'] . ')</small>';
+				$pagesOut[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $page)) . '<small> (' . $page['uid'] . ')</small>';
 			}
 
 			$recursiveLevel = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.recursive');
