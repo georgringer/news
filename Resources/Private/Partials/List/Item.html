@@ -44,15 +44,17 @@
 						</f:alias>
 					</f:then>
 					<f:else>
-						<span class="no-media-element">
-								<f:image
-									src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png"
-									title=""
-									alt=""
-									maxWidth="{settings.list.media.image.maxWidth}"
-									maxHeight="{settings.list.media.image.maxHeight}"
-								/>
-						</span>
+						<f:if condition="{settings.displayDummyIfNoMedia}">
+							<span class="no-media-element">
+									<f:image
+										src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png"
+										title=""
+										alt=""
+										maxWidth="{settings.list.media.image.maxWidth}"
+										maxHeight="{settings.list.media.image.maxHeight}"
+									/>
+							</span>
+						</f:if>
 					</f:else>
 				</f:if>
 			</n:link>
