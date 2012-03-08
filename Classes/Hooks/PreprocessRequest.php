@@ -31,13 +31,13 @@
  * @subpackage	tx_news
  */
 class Tx_News_Hooks_PreprocessRequest {
-	
+
 	public function user_start() {
 		$vars = t3lib_div::_GET('tx_news_pi1');
 		if (isset($vars['news']) && !isset($vars['controller']) && !isset($vars['action'])) {
 			$_GET['tx_news_pi1']['controller'] = 'News';
 			$_GET['tx_news_pi1']['action'] = 'detail';
-		}   
+		}
 	}
 
 }
