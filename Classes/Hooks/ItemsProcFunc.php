@@ -62,11 +62,11 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * @return void
 	 */
 	public function user_templateLayout(array &$config, t3lib_TCEforms $parentObject) {
-			// check if the layouts are extended
+			// Check if the layouts are extended by ext_tables
 		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])
 				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])) {
 
-				// add every item
+				// Add every item
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] as $layouts) {
 				$additionalLayout = array(
 					$GLOBALS['LANG']->sL($layouts[0], TRUE),
@@ -75,6 +75,23 @@ class Tx_News_Hooks_ItemsProcFunc {
 				array_push($config['items'], $additionalLayout);
 			}
 		}
+
+			// Add tsconfig values
+		if (is_numeric($config['row']['pid'])) {
+			$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($config['row']['pid']);
+			if (isset($pagesTsConfig['tx_news.']['templateLayouts.']) && is_array($pagesTsConfig['tx_news.']['templateLayouts.'])) {
+
+					// Add every item
+				foreach ($pagesTsConfig['tx_news.']['templateLayouts.'] as $key => $label) {
+					$additionalLayout = array(
+						$GLOBALS['LANG']->sL($label, TRUE),
+						$key
+					);
+					array_push($config['items'], $additionalLayout);
+				}
+			}
+		}
+
 	}
 
 	/**
