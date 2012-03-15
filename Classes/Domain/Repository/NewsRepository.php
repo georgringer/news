@@ -151,8 +151,13 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 				throw new InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
 			}
 			if ($demand->getMonth() > 0) {
-				$begin = mktime(0, 0, 0, $demand->getMonth(), 1, $demand->getYear());
-				$end = mktime(23, 59, 59, ($demand->getMonth() + 1), 0, $demand->getYear());
+				if ($demand->getDay()>0) {
+					$begin = mktime(0, 0, 0, $demand->getMonth(), $demand->getDay(), $demand->getYear());
+					$end = mktime(23, 59, 59, $demand->getMonth(), $demand->getDay(), $demand->getYear());
+				} else {
+					$begin = mktime(0, 0, 0, $demand->getMonth(), 1, $demand->getYear());
+					$end = mktime(23, 59, 59, ($demand->getMonth() + 1), 0, $demand->getYear());
+				}
 			} else {
 				$begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
 				$end = mktime(23, 59, 59, 12, 31, $demand->getYear());
