@@ -36,6 +36,14 @@
 			<label index="month.11">November</label>
 			<label index="month.12">December</label>
 
+			<label index="day.1">Monday</label>
+			<label index="day.2">Tuesday</label>
+			<label index="day.3">Wednesday</label>
+			<label index="day.4">Thursday</label>
+			<label index="day.5">Friday</label>
+			<label index="day.6">Saturday</label>
+			<label index="day.7">Sunday</label>
+
 			<label index="list_nonewsfound">No news available.</label>
 			<label index="list_nocategoriesfound">No categories available.</label>
 		</languageKey>
@@ -130,6 +138,14 @@
 			<label index="month.10">Oktober</label>
 			<label index="month.11">November</label>
 			<label index="month.12">Dezember</label>
+
+			<label index="day.1">Montag</label>
+			<label index="day.2">Dienstag</label>
+			<label index="day.3">Mittwoch</label>
+			<label index="day.4">Donnerstag</label>
+			<label index="day.5">Freitag</label>
+			<label index="day.6">Samstag</label>
+			<label index="day.7">Sonntag</label>
 
 			<label index="list_nonewsfound">Keine Artikel vorhanden.</label>
 			<label index="list_nocategoriesfound">Keine Kategorien vorhanden.</label>

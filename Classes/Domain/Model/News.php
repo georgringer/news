@@ -337,6 +337,15 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Get day of datetime
+	 *
+	 * @return integer
+	 */
+	public function getDayOfDatetime() {
+		return (int) $this->datetime->format('d');
+	}
+
+	/**
 	 * Get archive date
 	 *
 	 * @return DateTime
@@ -371,6 +380,15 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getMonthOfArchive() {
 		return $this->archive->format('m');
+	}
+
+	/**
+	 * Get day of archive date
+	 *
+	 * @return integer
+	 */
+	public function getDayOfArchive() {
+		return (int) $this->archive->format('d');
 	}
 
 	/**
@@ -825,6 +843,15 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Get day of crdate
+	 *
+	 * @return integer
+	 */
+	public function getDayOfCrdate() {
+		return (int) $this->crdate->format('d');
+	}
+
+	/**
 	 * Get timestamp
 	 *
 	 * @return integer
@@ -859,6 +886,15 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getMonthOfTstamp() {
 		return $this->tstamp->format('m');
+	}
+
+	/**
+	 * Get day of tstamp
+	 *
+	 * @return integer
+	 */
+	public function getDayOfTimestamp() {
+		return (int) $this->tstamp->format('d');
 	}
 
 	/**
@@ -975,6 +1011,15 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Get day of starttime
+	 *
+	 * @return integer
+	 */
+	public function getDayOfStarttime() {
+		return (int) $this->starttime->format('d');
+	}
+
+	/**
 	 * Get enddtime
 	 *
 	 * @return integer
@@ -1009,6 +1054,15 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getMonthOfEndtime() {
 		return $this->endtime->format('m');
+	}
+
+	/**
+	 * Get day of endtime
+	 *
+	 * @return integer
+	 */
+	public function getDayOfEndtime() {
+		return (int) $this->endtime->format('d');
 	}
 
 	/**

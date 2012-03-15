@@ -65,6 +65,7 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 	protected $dateField;
 	protected $month;
 	protected $year;
+	protected $day;
 
 	protected $searchFields;
 	protected $search;
@@ -291,6 +292,24 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 	 */
 	public function getStoragePage() {
 		return $this->storagePage;
+	}
+
+	/**
+	 * Get day restriction
+	 *
+	 * @return integer
+	 */
+	public function getDay() {
+		return $this->day;
+	}
+
+	/**
+	 * Set day restriction
+	 *
+	 * @param integer $day
+	 */
+	public function setDay($day) {
+		$this->day = $day;
 	}
 
 	/**
