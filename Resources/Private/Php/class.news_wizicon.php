@@ -39,31 +39,16 @@ class news_pi1_wizicon {
 	 * @return Modified array with wizard items
 	 */
 	public function proc($wizardItems) {
-		$locallang = $this->includeLocalLang();
-
 		$wizardItems['plugins_tx_' . self::KEY] = array(
 			'icon'			=> t3lib_extMgm::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.gif',
-			'title'			=> $GLOBALS['LANG']->getLLL('pi1_title', $locallang),
-			'description'	=> $GLOBALS['LANG']->getLLL('pi1_plus_wiz_description', $locallang),
+			'title'			=> $GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pi1_title'),
+			'description'	=> $GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pi1_plus_wiz_description'),
 			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=' . self::KEY . '_pi1'
 		);
 
 		return $wizardItems;
 	}
-
-	/**
-	 * Reads the [extDir]/locallang_be.xml and returns
-	 * the $LOCAL_LANG array found in that file.
-	 *
-	 * @return	The array with language labels
-	 */
-	protected function includeLocalLang() {
-		$file = t3lib_extMgm::extPath(self::KEY) . 'Resources/Private/Language/locallang_be.xml';
-
-		return t3lib_div::readLLXMLfile($file, $GLOBALS['LANG']->lang);
-	}
 }
-
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Resources/Private/Php/class.news_wizicon.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Resources/Private/Php/class.news_wizicon.php']);
