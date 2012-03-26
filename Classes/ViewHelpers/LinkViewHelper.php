@@ -33,6 +33,11 @@
  * Inline notation:
  * {n:link(newsItem:newsItem,settings:settings,configuration:{returnLast:'url'})}
  *
+ * Link with additional arguments
+ * <n:link newsItem="{newsItem}" settings="{settings}" configuration="{ATagParams:'class=\"fo\" id=\"bar\"'}">
+ *	{newsItem.title}
+ * </n:link>
+ *
  * @package TYPO3
  * @subpackage tx_news
  */
@@ -107,7 +112,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 				$configuration['useCacheHash'] = 1;
 				$configuration['parameter'] = $detailPid;
 				$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $newsItem->getUid();
-					
+
 				$emConfiguration = Tx_News_Utility_EmConfiguration::getSettings();
 				if ($emConfiguration->getDynamicGetVarsManipulation() === FALSE && $tsSettings['link']['dynamicGetVarsManipulation('] != 1) {
 					$configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
