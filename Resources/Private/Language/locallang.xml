@@ -191,16 +191,47 @@
 		</languageKey>
 
 		<languageKey index="it" type="array">
+			<!-- Commmon -->
+			<label index="search-text">There are %1$s results for "%2$s".</label>
+			<label index="search-start">Ricerca</label>
+			<label index="search-noresult">Nessun articolo trovato.</label>
+			<label index="more-link">Leggi</label>
+			<label index="back-link">Indietro</label>
+			<label index="related-news">Articoli correlate</label>
+			<label index="related-files">Allegati</label>
+			<label index="related-links">Links</label>
+			<label index="author">creata da %s</label>
+			<label index="paginate_overall">Pagina %s di %s</label>
+			<label index="paginate_next">Successiva</label>
+			<label index="paginate_previous">Precedente</label>
 
-			<label index="paginate_overall">pagina %s di %s.</label>
-			<label index="paginate_next">successiva</label>
-			<label index="paginate_previous">precedente</label>
+			<label index="entry">articolo</label>
+			<label index="entries">articoli</label>
 
-			<label index="entry">voce</label>
-			<label index="entries">voci</label>
+			<label index="month.01">Gennaio</label>
+			<label index="month.02">Febbraio</label>
+			<label index="month.03">Marzo</label>
+			<label index="month.04">Aprile</label>
+			<label index="month.05">Maggio</label>
+			<label index="month.06">Giugno</label>
+			<label index="month.07">Luglio</label>
+			<label index="month.08">Agosto</label>
+			<label index="month.09">Settembre</label>
+			<label index="month.10">Ottobre</label>
+			<label index="month.11">Novembre</label>
+			<label index="month.12">Dicembre</label>
+
+			<label index="day.1">Lunedì</label>
+			<label index="day.2">Martedì</label>
+			<label index="day.3">Mercoledì</label>
+			<label index="day.4">Giovedì</label>
+			<label index="day.5">Venerdì</label>
+			<label index="day.6">Sabato</label>
+			<label index="day.7">Domenica</label>
 
 			<label index="search-noresult">Non è stata trovata nessuna news.</label>
 			<label index="list_nonewsfound">Non sono presenti articoli.</label>
+			<label index="list_nocategoriesfound">Nessuna categoria disponibile.</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 
