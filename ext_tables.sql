@@ -200,6 +200,7 @@ CREATE TABLE tx_news_domain_model_file (
 	sorting int(10) DEFAULT '0' NOT NULL,
 	deleted tinyint(4) DEFAULT '0' NOT NULL,
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	fe_group varchar(100) DEFAULT '0' NOT NULL,
 	title tinytext,
 	description text,
 	file text,

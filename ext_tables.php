@@ -150,6 +150,7 @@ $TCA['tx_news_domain_model_file'] = array(
 		'delete' => 'deleted',
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
+			'fe_group' => 'fe_group',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/file.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_file.gif',
