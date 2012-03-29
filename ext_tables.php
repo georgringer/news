@@ -64,6 +64,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/news.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news.gif',
+		'searchFields' => 'uid,title',
 	),
 );
 
@@ -95,6 +96,7 @@ $TCA['tx_news_domain_model_category'] = array(
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/category.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_category.gif',
 		'treeParentField' => 'parentcategory',
+		'searchFields' => 'uid,title',
 	),
 );
 
@@ -200,6 +202,7 @@ $TCA['tx_news_domain_model_tag'] = array(
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tag.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_tag.png',
+		'searchFields' => 'uid,title',
 	),
 );
 
