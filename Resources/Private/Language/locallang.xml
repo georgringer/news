@@ -115,6 +115,14 @@
 		</languageKey>
 
 		<languageKey index="de" type="array">
+			<!-- Commmon -->
+			<label index="search-text">%1$s Ergebnisse für "%2$s".</label>
+			<label index="search-start">Suche starten</label>
+			<label index="search-noresult">Kein Ergebnis gefunden</label>
+			<label index="related-news">Verwandte Artikel</label>
+			<label index="related-files">Verwandte Dateien</label>
+			<label index="related-links">Verwandte Links</label>
+			<label index="author">erstellt von %s</label>
 
 			<label index="SearchResult">%1$s Treffer für die Suche nach "%2$s".</label>
 			<label index="paginate_overall">Seite %s von %s.</label>
