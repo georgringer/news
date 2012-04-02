@@ -30,7 +30,7 @@
 				</f:if>
 
 				<f:if condition="{category.children}">
-					<f:render section="categoryTree" arguments="{categories: category.children}" />
+					<f:render section="categoryTree" arguments="{categories: category.children,overwriteDemand:overwriteDemand}" />
 				</f:if>
 			</li>
 		</f:for>
