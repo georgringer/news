@@ -78,7 +78,9 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	public function findTree(array $rootIdList) {
 		$subCategories = Tx_News_Service_CategoryService::getChildrenCategories(implode(',',$rootIdList));
 
-		$categories = $this->findByIdList(explode(',',$subCategories));
+		$ordering = array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
+
+		$categories = $this->findByIdList(explode(',',$subCategories), $ordering);
 		$flatCategories = array();
 		foreach ($categories as $category) {
 			$flatCategories[$category->getUid()] = Array(
@@ -103,11 +105,17 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 * Find categories by a given pid
 	 *
 	 * @param array $idList list of id s
+	 * @param array $ordering ordering
 	 * @return Tx_Extbase_Persistence_QueryInterface
 	 */
-	public function findByIdList(array $idList) {
+	public function findByIdList(array $idList, array $ordering = array()) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+
+		if (count($ordering) > 0) {
+			$query->setOrderings($ordering);
+		}
+
 		return $query->matching(
 			$query->logicalAnd(
 				$query->in('uid', $idList)
