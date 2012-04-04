@@ -446,18 +446,18 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 	public function getContent() {
 		$content = NULL;
 
-		switch ($this->type) {
+		switch ($this->getType()) {
 			case 0:
-				$content = $this->image;
+				$content = $this->getImage();
 				break;
 			case 1:
-				$content = $this->multimedia;
+				$content = $this->getMultimedia();
 				break;
 			case 2:
-				$content = $this->html;
+				$content = $this->getHtml();
 				break;
 			case 3:
-				$content = $this->dam;
+				$content = $this->getDam();
 				break;
 		}
 

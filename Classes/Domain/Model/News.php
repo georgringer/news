@@ -325,7 +325,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getYearOfDatetime() {
-		return $this->datetime->format('Y');
+		return $this->getDatetime()->format('Y');
 	}
 
 	/**
@@ -334,7 +334,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getMonthOfDatetime() {
-		return $this->datetime->format('m');
+		return $this->getDatetime()->format('m');
 	}
 
 	/**
@@ -371,7 +371,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getYearOfArchive() {
-		return $this->archive->format('Y');
+		return $this->getArchive()->format('Y');
 	}
 
 	/**
@@ -380,7 +380,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getMonthOfArchive() {
-		return $this->archive->format('m');
+		return $this->getArchive()->format('m');
 	}
 
 	/**
@@ -468,7 +468,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function addCategory(Tx_News_Domain_Model_Category $category) {
-		$this->categories->attach($category);
+		$this->getCategories()->attach($category);
 	}
 
 	/**
@@ -529,10 +529,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function addRelatedFile(Tx_News_Domain_Model_File $file) {
-		if($this->relatedFiles === NULL) {
+		if($this->getRelatedFiles() === NULL) {
 			$this->relatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
 		}
-		$this->relatedFiles->attach($file);
+		$this->getRelatedFiles()->attach($file);
 	}
 
 	/**
@@ -607,7 +607,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return array
 	 */
 	public function getMediaPreviews() {
-		$mediaElements = $this->media;
+		$mediaElements = $this->getMedia();
 
 		$previewCollection = array();
 		foreach ($mediaElements as $mediaElement) {
@@ -629,7 +629,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return array
 	 */
 	public function getNonMediaPreviews() {
-		$mediaElements = $this->media;
+		$mediaElements = $this->getMedia();
 
 		$collection = array();
 		foreach ($mediaElements as $mediaElement) {
@@ -652,10 +652,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function addMedia(Tx_News_Domain_Model_Media $media) {
-		if($this->media === NULL) {
+		if($this->getMedia() === NULL) {
 			$this->media = new Tx_Extbase_Persistence_ObjectStorage();
 		}
-		$this->media->attach($media);
+		$this->getMedia()->attach($media);
 	}
 
 	/**
@@ -781,7 +781,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getContentElementIdList() {
 		$idList = array();
-		foreach($this->contentElements as $contentElement) {
+		foreach($this->getContentElements() as $contentElement) {
 			$idList[] = $contentElement->getUid();
 		}
 		return implode(',', $idList);
@@ -849,7 +849,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getYearOfCrdate() {
-		return $this->crdate->format('Y');
+		return $this->getCrdate()->format('Y');
 	}
 
 	/**
@@ -858,7 +858,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getMonthOfCrdate() {
-		return $this->crdate->format('m');
+		return $this->getCrdate()->format('m');
 	}
 
 	/**
@@ -895,7 +895,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getYearOfTstamp() {
-		return $this->tstamp->format('Y');
+		return $this->getTstamp()->format('Y');
 	}
 
 	/**
@@ -904,7 +904,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getMonthOfTstamp() {
-		return $this->tstamp->format('m');
+		return $this->getTstamp()->format('m');
 	}
 
 	/**
@@ -1017,7 +1017,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getYearOfStarttime() {
-		return $this->starttime->format('Y');
+		return $this->getStarttime()->format('Y');
 	}
 
 	/**
@@ -1026,7 +1026,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getMonthOfStarttime() {
-		return $this->starttime->format('m');
+		return $this->getStarttime()->format('m');
 	}
 
 	/**
@@ -1063,7 +1063,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getYearOfEndtime() {
-		return $this->endtime->format('Y');
+		return $this->getEndtime()->format('Y');
 	}
 
 	/**
@@ -1072,7 +1072,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getMonthOfEndtime() {
-		return $this->endtime->format('m');
+		return $this->getEndtime()->format('m');
 	}
 
 	/**
