@@ -100,6 +100,7 @@
 			<label index="extmng.removeListActionFromFlexforms.1">List &amp; Detail</label>
 			<label index="extmng.removeListActionFromFlexforms.2">List only</label>
 			<label index="extmng.dynamicGetVarsManipulation">Dynamic GETvar enhancement:If a news uid is found in GET vars, add automatically "tx_news_pi1[controller]=News&amp;tx_news_pi1[action]=detail". This makes it easier to build seo optimized urls.</label>
+			<label index="extmng.showImporter">Show importer:Backend module to import into news</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>
