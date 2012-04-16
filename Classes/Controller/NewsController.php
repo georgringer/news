@@ -138,9 +138,10 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * Single view of a news record
 	 *
 	 * @param Tx_News_Domain_Model_News $news
+	 * @param integer $currentPage current page for optional pagination
 	 * @return void
 	 */
-	public function detailAction(Tx_News_Domain_Model_News $news = NULL) {
+	public function detailAction(Tx_News_Domain_Model_News $news = NULL, $currentPage = 1) {
 		if (isset($this->settings['singleNews']) && (int)$this->settings['singleNews'] > 0) {
 			$news = $this->newsRepository->findByUid($this->settings['singleNews']);
 		} elseif($this->settings['previewHiddenRecords']) {
@@ -148,6 +149,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		}
 		$this->view->assignMultiple(array(
 			'newsItem' => $news,
+			'currentPage' => (int)$currentPage,
 		));
 
 		Tx_News_Utility_Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
