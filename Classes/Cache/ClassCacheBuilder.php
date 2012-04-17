@@ -96,7 +96,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 */
 	private static function writeFile($content, $identifier) {
 		if (!is_dir(PATH_site . 'typo3temp/Cache/Code/cache_phpcode/')) {
-			t3lib_div::mkdir_deep(PATH_site . 'typo3temp/Cache/Code/cache_phpcode/');
+			t3lib_div::mkdir_deep(PATH_site, 'typo3temp/Cache/Code/cache_phpcode/');
 		}
 
 		$content = '<?php ' . LF . $content . LF . '}' . LF . '?>';
