@@ -245,3 +245,8 @@
 .news-clear {
 	clear:both;
 }
+
+.news .no-news-found {
+	color: #DB0202;
+	font-style: italic;
+}
