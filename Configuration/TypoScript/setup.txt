@@ -51,6 +51,8 @@ plugin.tx_news {
 	# Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
 	# ====================================
 	settings {
+		cssFile = {$plugin.tx_news.settings.cssFile}
+
 		#Displays a dummy image if the news have no media items
 		displayDummyIfNoMedia = 1
 

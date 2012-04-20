@@ -16,4 +16,9 @@ plugin.tx_news {
 		 # cat=plugin.tx_news/file; type=string; label=Path to template layouts (FE)
 		layoutRootPath = EXT:news/Resources/Private/Layouts/
 	}
+
+		settings {
+			 # cat=plugin.tx_news/file; type=string; label=Path to CSS file
+	 		cssFile = EXT:news/Resources/Public/Css/news-basic.css
+		}
 }
