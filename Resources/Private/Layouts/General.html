@@ -1,6 +1,8 @@
 {namespace n=Tx_News_ViewHelpers}
 
-<n:includeFile path="EXT:news/Resources/Public/Css/news-basic.css" />
+<f:if condition="{settings.cssFile}">
+	<n:includeFile path="{settings.cssFile}" />
+</f:if>
 
 <div class="news">
 	<f:flashMessages class="tx-news-flash-message" />
