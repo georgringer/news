@@ -3,6 +3,8 @@
 # FE-Plugin configuration for EXT:news
 # ==============================================
 plugin.tx_news {
+	mvc.callDefaultActionIfActionCantBeResolved = 1
+
 	persistence {
 		classes {
 			Tx_News_Domain_Model_News {
