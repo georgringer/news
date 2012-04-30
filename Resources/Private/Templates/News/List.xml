@@ -9,8 +9,8 @@
 		<f:if condition="{settings.list.rss.channel.copyright}">
 			<copyright>{settings.list.rss.channel.copyright}</copyright>
 		</f:if>
-		<pubDate><n:format.date format="%a, %d %b %Y %T %z" currentDate="1" strftime="0" /></pubDate>
-		<lastBuildDate><n:format.date format="%a, %d %b %Y %T %z" currentDate="1" strftime="0" /></lastBuildDate>
+		<pubDate><n:format.date format="%a, %d %b %Y %T %z" currentDate="1" strftime="1" /></pubDate>
+		<lastBuildDate><n:format.date format="%a, %d %b %Y %T %z" currentDate="1" strftime="1" /></lastBuildDate>
 		<f:if condition="{settings.list.rss.channel.category}">
 			<category>{settings.list.rss.channel.category}</category>
 		</f:if>
@@ -19,7 +19,7 @@
 				<f:for each="{news}" as="newsItem">
 					<item>
 						<guid>news-{newsItem.uid}</guid>
-						<pubDate><n:format.date format="%a, %d %b %Y %T %z" currentDate="1" strftime="0">{newsItem.datetime}</n:format.date></pubDate>
+						<pubDate><n:format.date format="%a, %d %b %Y %T %z" currentDate="1" strftime="1">{newsItem.datetime}</n:format.date></pubDate>
 						<title><n:format.hsc>{newsItem.title}</n:format.hsc></title>
 						<link><n:link newsItem="{newsItem}" settings="{settings}" configuration="{returnLast:'url'}" hsc="TRUE"></n:link></link>
 						<description><n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc></description>
