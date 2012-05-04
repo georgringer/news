@@ -65,6 +65,19 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository extends Tx_E
 
 		$constraints = $this->createConstraintsFromDemand($query, $demand);
 
+			// Call hook functions for additional constraints
+		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'])) {
+			$params = array(
+				'demand' => $demand,
+				'respectEnableFields' => &$respectEnableFields,
+				'query' => $query,
+				'constraints' => &$constraints,
+			);
+			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] as $reference) {
+				t3lib_div::callUserFunction($reference, $params, $this);
+			}
+		}
+
 		if ($respectEnableFields === FALSE) {
 			$query->getQuerySettings()->setRespectEnableFields(FALSE);
 			$constraints[] = $query->equals('deleted', 0);
