@@ -58,6 +58,11 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 	protected $timeRestriction = NULL;
 
 	/**
+	 * @var string
+	 */
+	protected $timeRestrictionHigh = NULL;
+
+	/**
 	 * @var boolean
 	 */
 	protected $topNewsRestriction;
@@ -181,7 +186,7 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 
 
 	/**
-	 * Set latest time limit, either integer or string
+	 * Set time limit low, either integer or string
 	 *
 	 * @param mixed $timeRestriction
 	 * @return void
@@ -191,13 +196,33 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
-	 * Get latest time limit
+	 * Get time limit low
 	 *
 	 * @return mixed
 	 */
 	public function getTimeRestriction() {
 		return $this->timeRestriction;
 	}
+
+	/**
+	 * Get time limit high
+	 *
+	 * @return mixed
+	 */
+	public function getTimeRestrictionHigh() {
+		return $this->timeRestrictionHigh;
+	}
+
+	/**
+	 * Set time limit high
+	 *
+	 * @param mixed $timeRestrictionHigh
+	 * @return void
+	 */
+	public function setTimeRestrictionHigh($timeRestrictionHigh) {
+		$this->timeRestrictionHigh = $timeRestrictionHigh;
+	}
+
 
 	/**
 	 * Set order

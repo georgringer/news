@@ -308,6 +308,14 @@ class Tx_News_Hooks_CmsLayout {
 							htmlspecialchars($timeRestriction)
 						);
 		}
+
+		$timeRestrictionHigh = $this->getFieldFromFlexform($this->flexformData, 'settings.timeRestrictionHigh');
+		if (!empty($timeRestrictionHigh)) {
+			$this->tableData[] = array(
+							$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.timeRestrictionHigh'),
+							htmlspecialchars($timeRestrictionHigh)
+						);
+		}
 	}
 
 	/**

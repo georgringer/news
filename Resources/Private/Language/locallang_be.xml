@@ -50,7 +50,8 @@
 			<label index="flexforms_general.categoryConjunction.and">Show items with selected categories (AND)</label>
 			<label index="flexforms_general.categoryConjunction.notand">Do NOT show items with selected categories (AND)</label>
 			<label index="flexforms_general.categoryConjunction.notor">Do NOT show items with selected categories (OR)</label>
-			<label index="flexforms_general.timeRestriction">Time limit</label>
+			<label index="flexforms_general.timeRestriction">Time limit (LOW): higher than given time</label>
+			<label index="flexforms_general.timeRestrictionHigh">Time limit (HIGH): News less than given time</label>
 			<label index="flexforms_general.topNewsRestriction">Top News</label>
 			<label index="flexforms_general.topNewsRestriction.1">only Top News records</label>
 			<label index="flexforms_general.topNewsRestriction.2">except Top News records</label>
