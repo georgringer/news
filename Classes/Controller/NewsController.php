@@ -76,6 +76,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 		$demand->setTopNewsRestriction($settings['topNewsRestriction']);
 		$demand->setTimeRestriction($settings['timeRestriction']);
+		$demand->setTimeRestrictionHigh($settings['timeRestrictionHigh']);
 		$demand->setArchiveRestriction($settings['archiveRestriction']);
 
 		if ($settings['orderBy']) {

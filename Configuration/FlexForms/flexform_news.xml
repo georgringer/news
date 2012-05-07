@@ -223,7 +223,7 @@
 						</TCEforms>
 					</settings.archiveRestriction>
 
-					<!-- Time limit -->
+					<!-- Time limit Low -->
 					<settings.timeRestriction>
 						<TCEforms>
 						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.timeRestriction</label>
@@ -235,6 +235,19 @@
 							</config>
 						</TCEforms>
 					</settings.timeRestriction>
+
+					<!-- Time limit High -->
+					<settings.timeRestrictionHigh>
+						<TCEforms>
+						<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.timeRestrictionHigh</label>
+							<config>
+								<checkbox>1</checkbox>
+								<default></default>
+								<type>input</type>
+								<size>15</size>
+							</config>
+						</TCEforms>
+					</settings.timeRestrictionHigh>
 
 					<!-- Top News -->
 					<settings.topNewsRestriction>

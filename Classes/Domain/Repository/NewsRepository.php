@@ -109,7 +109,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			$constraints[] = $query->greaterThanOrEqual('archive', $GLOBALS['EXEC_TIME']);
 		}
 
-			// latest time
+			// Time restriction greater than or equal
 		if ($demand->getTimeRestriction()) {
 			$timeLimit = 0;
 				// integer = timestamp
@@ -122,11 +122,34 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 				if ($timeFromString) {
 					$timeLimit = $timeFromString;
 				} else {
-					throw new Exception('Latest time limit could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+					throw new Exception('Time limit Low could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
 				}
 			}
 
 			$constraints[] = $query->greaterThanOrEqual(
+				'datetime',
+				$timeLimit
+			);
+		}
+
+			// Time restriction less than or equal
+		if ($demand->getTimeRestrictionHigh()) {
+			$timeLimit = 0;
+				// integer = timestamp
+			if (Tx_News_Utility_Compatibility::canBeInterpretedAsInteger($demand->getTimeRestrictionHigh())) {
+				$timeLimit = $GLOBALS['EXEC_TIME'] + $demand->getTimeRestrictionHigh();
+			} else {
+					// try to check strtotime
+				$timeFromString = strtotime($demand->getTimeRestrictionHigh());
+
+				if ($timeFromString) {
+					$timeLimit = $timeFromString;
+				} else {
+					throw new Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+				}
+			}
+
+			$constraints[] = $query->lessThanOrEqual(
 				'datetime',
 				$timeLimit
 			);
