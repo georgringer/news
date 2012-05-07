@@ -4,7 +4,7 @@
 	<n:format.dam as="dam" uid="{mediaElement.uid}">
 		<f:if condition="{settings.detail.media.image.lightbox}">
 			<f:then>
-				<a rel="{settings.detail.media.image.lightbox}" title="{dam.caption}" href="{f:uri.image(src:{dam.file_path}{dam.file_name}' maxWidth:'800')}">
+				<a rel="{settings.detail.media.image.lightbox}" title="{dam.caption}" href="{f:uri.image(src:'{dam.file_path}{dam.file_name}' maxWidth:'800')}">
 					<f:image src="{dam.file_path}{dam.file_name}" title="{dam.title}"  alt="{dam.alt_text}" maxWidth="{settings.detail.media.image.maxWidth}" />
 				</a>
 			</f:then>
