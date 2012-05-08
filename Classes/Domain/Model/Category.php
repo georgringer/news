@@ -50,6 +50,11 @@ class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnti
 	protected $starttime;
 
 	/**
+	 * @var integer
+	 */
+	protected $hidden;
+
+	/**
 	 * @var DateTime
 	 */
 	protected $endtime;
@@ -190,6 +195,25 @@ class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnti
 	 */
 	public function setEndtime($endtime) {
 		$this->endtime = $endtime;
+	}
+
+	/**
+	 * Get Hidden
+	 *
+	 * @return integer
+	 */
+	public function getHidden() {
+		return $this->hidden;
+	}
+
+	/**
+	 * Set Hidden
+	 *
+	 * @param integer $hidden
+	 * @return void
+	 */
+	public function setHidden($hidden) {
+		$this->hidden = $hidden;
 	}
 
 	/**
