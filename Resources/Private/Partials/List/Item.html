@@ -81,17 +81,17 @@
 		</f:else>
 	</f:if>
 
-	<f:if condition="{newsItem.teaser}">
-		<!-- teaser text -->
-		<div class="teaser-text">
-			<f:then>
-				<f:format.html>{newsItem.teaser}</f:format.html>
-			</f:then>
-			<f:else>
-				<f:format.html><f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop></f:format.html>
-			</f:else>
-		</div>
-	</f:if>
+	<!-- teas=ser text -->
+	<div class="teaser-text">
+		<f:if condition="{newsItem.teaser}">
+				<f:then>
+					<f:format.html>{newsItem.teaser}</f:format.html>
+				</f:then>
+				<f:else>
+					<f:format.html><f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="true">{newsItem.bodytext}</f:format.crop></f:format.html>
+				</f:else>
+		</f:if>
+	</div>
 
 	<!-- footer information -->
 	<div class="footer" role="contentinfo">
