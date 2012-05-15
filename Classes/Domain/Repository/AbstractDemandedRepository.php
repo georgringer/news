@@ -121,7 +121,8 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository extends Tx_E
 			);
 		}
 
-		return $query->execute()->count();
+		$result = $query->execute();
+		return $result->count();
 	}
 }
 ?>
