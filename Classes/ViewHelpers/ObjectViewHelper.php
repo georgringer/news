@@ -58,6 +58,7 @@ class Tx_News_ViewHelpers_ObjectViewHelper extends Tx_Fluid_Core_ViewHelper_Abst
 	 */
 	public function render(Tx_News_Domain_Model_News $newsItem, $as, $className, $extendedTable = 'tx_news_domain_model_news') {
 		$rawRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', $extendedTable, 'uid=' . (int)$newsItem->getUid());
+		$rawRecord = $GLOBALS['TSFE']->sys_page->getRecordOverlay( $extendedTable, $rawRecord, $GLOBALS['TSFE']->sys_language_content, $GLOBALS['TSFE']->sys_language_contentOL);
 
 		$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
 		/* @var $dataMapper Tx_Extbase_Persistence_Mapper_DataMapper */
