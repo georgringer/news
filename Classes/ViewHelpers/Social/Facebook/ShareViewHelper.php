@@ -59,7 +59,7 @@ class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends Tx_Fluid_Core_
 	 * @return void
 	 */
 	public function initializeArguments() {
-		$this->registerTagAttribute('share_url', 'string', 'Shared url, default: http://www.facebook.com/sharer.php');
+		$this->registerTagAttribute('shareurl', 'string', 'Shared url, default: http://www.facebook.com/sharer.php');
 		$this->registerTagAttribute('name', 'string', 'default: fb_share');
 		$this->registerTagAttribute('type', 'string', 'default: button_count');
 	}
@@ -81,9 +81,10 @@ class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends Tx_Fluid_Core_
 		if (empty($this->arguments['type'])) {
 			$this->tag->addAttribute('type', 'button_count');
 		}
-		if (empty($this->arguments['share_url'])) {
-			$this->tag->addAttribute('share_url', t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
-		}
+
+		$shareUrl = empty($this->arguments['shareurl']) ? t3lib_div::getIndpEnv('TYPO3_REQUEST_URL') : $this->arguments['shareurl'];
+		$this->tag->addAttribute('share_url', $shareUrl);
+		$this->tag->removeAttribute('shareurl');
 
 		$this->tag->setContent($this->renderChildren());
 
