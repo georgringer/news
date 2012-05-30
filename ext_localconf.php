@@ -27,6 +27,10 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php'][
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][$_EXTKEY] =
 	'EXT:' . $_EXTKEY. '/Classes/Hooks/Tcemain.php:Tx_News_Hooks_Tcemain';
 
+	// Tceforms: Rendering of fields
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass'][$_EXTKEY] =
+	'EXT:' . $_EXTKEY. '/Classes/Hooks/Tceforms.php:Tx_News_Hooks_Tceforms';
+
 	// Modify flexform values
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][$_EXTKEY] =
 	'EXT:' . $_EXTKEY. '/Classes/Hooks/T3libBefunc.php:Tx_News_Hooks_T3libBefunc';
