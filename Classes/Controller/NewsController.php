@@ -126,7 +126,6 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
 			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
 		}
-
 		$newsRecords = $this->newsRepository->findDemanded($demand);
 
 		$this->view->assignMultiple(array(
@@ -252,6 +251,23 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 				if ((!isset($originalSettings[$key]) || empty($originalSettings[$key]))
 						&& isset($tsSettings['settings'][$key])) {
 					$originalSettings[$key] = $tsSettings['settings'][$key];
+				}
+			}
+		}
+
+
+
+			// Use stdWrap for given defined settings
+		if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
+			$typoScriptService = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService');
+			$originalSettings = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
+			$stdWrapProperties = t3lib_div::trimExplode(',', $originalSettings['useStdWrap'], TRUE);
+			foreach ($stdWrapProperties as $key) {
+				if (is_array($originalSettings[$key . '.'])) {
+					$originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
+							$originalSettings[$key],
+							$originalSettings[$key . '.']
+					);
 				}
 			}
 		}
