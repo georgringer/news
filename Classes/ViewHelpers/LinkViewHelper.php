@@ -112,8 +112,10 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 				$configuration['useCacheHash'] = 1;
 				$configuration['parameter'] = $detailPid;
 				$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $newsItem->getUid();
-				$configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
-					'&tx_news_pi1[action]=detail';
+				if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
+					$configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
+						'&tx_news_pi1[action]=detail';
+				}
 
 					// Add date as human readable (30/04/2011)
 				if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
