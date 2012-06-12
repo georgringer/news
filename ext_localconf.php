@@ -35,11 +35,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['get
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][$_EXTKEY] =
 	'EXT:' . $_EXTKEY. '/Classes/Hooks/T3libBefunc.php:Tx_News_Hooks_T3libBefunc';
 
-if ($configuration->getDynamicGetVarsManipulation()) {
-  $TYPO3_CONF_VARS['SC_OPTIONS']['tslib/index_ts.php']['preprocessRequest'][$_EXTKEY] =
-	'EXT:' . $_EXTKEY . '/Classes/Hooks/PreprocessRequest.php:Tx_News_Hooks_PreprocessRequest->user_start';
-}
-
 	// Hide HTML by default as it is a possible security risk
 t3lib_extMgm::addPageTSConfig('TCEFORM.tx_news_domain_model_media.type.removeItems = 2');
 
