@@ -289,5 +289,47 @@
 			<label index="search-noresult">Δεν βρέθηκαν νέα.</label>
 			<label index="list_nonewsfound">Δεν υπάρχουν άρθρα.</label>
 		</languageKey>
+		<languageKey index="ru" type="array">
+			<!-- Commmon -->
+			<label index="search-text">%1$s результатов из "%2$s".</label>
+			<label index="search-start">Искать</label>
+			<label index="search-noresult">Новостей не найдено.</label>
+			<label index="more-link">Читать далее</label>
+			<label index="back-link">Назад</label>
+			<label index="related-news">Связанные новости</label>
+			<label index="related-files">Связанные файлы</label>
+			<label index="related-links">Связанные ссылки</label>
+			<label index="author">автор %s</label>
+			<label index="paginate_overall">Старница %s из %s.</label>
+			<label index="paginate_next">Следующая</label>
+			<label index="paginate_previous">Предыдущая</label>
+
+			<label index="entry">запись</label>
+			<label index="entries">записи</label>
+
+			<label index="month.01">Январь</label>
+			<label index="month.02">Февраль</label>
+			<label index="month.03">Март</label>
+			<label index="month.04">Апрель</label>
+			<label index="month.05">Май</label>
+			<label index="month.06">Июнь</label>
+			<label index="month.07">Июль</label>
+			<label index="month.08">Август</label>
+			<label index="month.09">Сентябрь</label>
+			<label index="month.10">Октябрь</label>
+			<label index="month.11">Ноябрь</label>
+			<label index="month.12">Декабрь</label>
+
+			<label index="day.1">Понедельник</label>
+			<label index="day.2">Вторник</label>
+			<label index="day.3">Среда</label>
+			<label index="day.4">Четверг</label>
+			<label index="day.5">Пятница</label>
+			<label index="day.6">Суббота</label>
+			<label index="day.7">Воскресение</label>
+
+			<label index="list_nonewsfound">Нет новостей.</label>
+			<label index="list_nocategoriesfound">Нет категорий.</label>
+		</languageKey>
 	</data>
 </T3locallang>
