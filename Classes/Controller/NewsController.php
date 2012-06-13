@@ -260,13 +260,13 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			// Use stdWrap for given defined settings
 		if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
 			$typoScriptService = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService');
-			$originalSettings = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
+			$originalSettings_ts = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
 			$stdWrapProperties = t3lib_div::trimExplode(',', $originalSettings['useStdWrap'], TRUE);
 			foreach ($stdWrapProperties as $key) {
-				if (is_array($originalSettings[$key . '.'])) {
+				if (is_array($originalSettings_ts[$key . '.'])) {
 					$originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
-							$originalSettings[$key],
-							$originalSettings[$key . '.']
+							$originalSettings_ts[$key],
+							$originalSettings_ts[$key . '.']
 					);
 				}
 			}
