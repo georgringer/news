@@ -3,6 +3,8 @@
 *  Copyright notice
 *
 *  (c) 2011 Georg Ringer <typo3@ringerge.org>
+*      2012 Juerg Langhard <langhard@greenbanana.ch>
+ *
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -144,6 +146,12 @@ class Tx_News_Domain_Model_External_TtContent extends Tx_Extbase_DomainObject_Ab
 	 * @var string
 	 */
 	protected $listType;
+
+	/**
+	 * @var integer
+	 * @author Juerg Langhard <langhard@greenbanana.ch>
+	 */
+	protected $colPos;
 
 
 	public function getCrdate() {
@@ -330,7 +338,21 @@ class Tx_News_Domain_Model_External_TtContent extends Tx_Extbase_DomainObject_Ab
 		$this->listType = $listType;
 	}
 
+	/**
+	 * @param $colPos
+	 * @author Juerg Langhard <langhard@greenbanana.ch>
+	 */
+	public function setColPos($colPos) {
+		$this->colPos = $colPos;
+	}
 
+	/**
+	 * @return int
+	 * @author Juerg Langhard <langhard@greenbanana.ch>
+	 */
+	public function getColPos() {
+		return $this->colPos;
+	}
 
 }
 
