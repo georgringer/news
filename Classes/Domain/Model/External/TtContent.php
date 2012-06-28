@@ -61,6 +61,11 @@ class Tx_News_Domain_Model_External_TtContent extends Tx_Extbase_DomainObject_Ab
 	protected $bodytext;
 
 	/**
+	 * @var integer
+	 */
+	protected $colPos;
+
+	/**
 	 * @var string
 	 */
 	protected $image;
@@ -192,6 +197,25 @@ class Tx_News_Domain_Model_External_TtContent extends Tx_Extbase_DomainObject_Ab
 
 	public function setBodytext($bodytext) {
 		$this->bodytext = $bodytext;
+	}
+
+	/**
+	 * Get the colpos
+	 *
+	 * @return integer
+	 */
+	public function getColPos() {
+		return (int)$this->colPos;
+	}
+
+	/**
+	 * Set colpos
+	 *
+	 * @param type $colPos
+	 * @return void
+	 */
+	public function setColPos($colPos) {
+		$this->colPos = $colPos;
 	}
 
 	public function getImage() {

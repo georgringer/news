@@ -102,6 +102,15 @@ class Tx_News_Tests_Unit_Domain_Model_External_TtContentTest extends Tx_Extbase_
 	/**
 	 * @test
 	 */
+	public function colPosCanBeSet() {
+		$fieldValue = 1;
+		$this->ttContentDomainModelInstance->setColPos($fieldValue);
+		$this->assertEquals($fieldValue, $this->ttContentDomainModelInstance->getColPos());
+	}
+
+	/**
+	 * @test
+	 */
 	public function imageCanBeSet() {
 		$fieldValue = 'fo123';
 		$this->ttContentDomainModelInstance->setImage($fieldValue);

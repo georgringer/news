@@ -224,6 +224,7 @@ config.tx_extbase.persistence.classes {
 			columns {
 				altText.mapOnProperty = altText
 				titleText.mapOnProperty = titleText
+				colPos.mapOnProperty = colPos
 			}
 		}
 	}
