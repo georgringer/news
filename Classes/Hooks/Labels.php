@@ -51,13 +51,13 @@ class Tx_News_Hooks_Labels {
 	 * @return void
 	 */
 	public function getUserLabelCategory(array $params) {
-			// new version shows translation of language set in user settings
+			// New version shows translation of language set in user settings
 		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];
 
-			// in list view: show normal label
+			// In list view: show normal label
 		$listView = t3lib_div::isFirstPartOfStr(t3lib_div::getIndpEnv('REQUEST_URI'), '/typo3/sysext/list/mod1/db_list.php');
 
-			// no overlay if language of category is not base or no language yet selected
+			// No overlay if language of category is not base or no language yet selected
 		if ((int)$params['row']['uid'] == 0 || $listView || ($overlayLanguage == 0 && $params['row']['sys_language_uid'] > 0)) {
 			$params['title'] = $params['row']['title'];
 		} else {
@@ -94,7 +94,7 @@ class Tx_News_Hooks_Labels {
 				break;
 				// HTML
 			case 2:
-					// don't show html value as this could get a XSS
+					// Don't show html value as this could get a XSS
 				$typeInfo .= $params['row']['caption'];
 				break;
 				// DAM
@@ -113,16 +113,15 @@ class Tx_News_Hooks_Labels {
 		}
 
 		$title = (!empty($typeInfo)) ? $type . ': ' . $typeInfo : $type;
+		$title = htmlspecialchars($title);
 
-			// Hook to modify the label, espescially useful when using custom media relations
+			// Hook to modify the label, especially useful when using custom media relations
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'])) {
 			$params = array('params' => $params, 'title' => $title);
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'] as $reference) {
 				$title = t3lib_div::callUserFunction($reference, $params, $this);
 			}
 		}
-
-		$title = htmlspecialchars($title);
 
 			// Preview
 		if ($params['row']['showinpreview']) {
