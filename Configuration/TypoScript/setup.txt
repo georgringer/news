@@ -156,6 +156,7 @@ plugin.tx_news {
 				forcedNumberOfLinks = 5
 				pagesBefore = 3
 				pagesAfter = 3
+				templatePath =
 			}
 
 			rss {

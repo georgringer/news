@@ -34,7 +34,8 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 	/**
 	 * @var array
 	 */
-	protected $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE, 'pagesAfter' => 3, 'pagesBefore' => 3, 'lessPages' => TRUE, 'forcedNumberOfLinks' => 5);
+	protected $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE, 'pagesAfter' => 3, 'pagesBefore' => 3, 'lessPages' => TRUE, 'forcedNumberOfLinks' => 5, 'templatePath' => '');
+
 	/**
 	 * @var Tx_Extbase_Persistence_QueryResultInterface
 	 */
@@ -66,6 +67,11 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 	protected $forcedNumberOfLinks = 10;
 
 	/**
+	 * @var string
+	 */
+	protected $templatePath = '';
+
+	/**
 	 * @var integer
 	 */
 	protected $numberOfPages = 1;
@@ -85,6 +91,7 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 		$this->pagesAfter = (integer)$this->configuration['pagesAfter'];
 		$this->lessPages = (boolean)$this->configuration['lessPages'];
 		$this->forcedNumberOfLinks = (integer)$this->configuration['forcedNumberOfLinks'];
+		$this->templatePath = (string)$this->configuration['templatePath'];
 	}
 
 	/**
@@ -154,6 +161,10 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 		));
 		$this->view->assign('configuration', $this->configuration);
 		$this->view->assign('pagination', $this->buildPagination());
+
+		if (!empty($this->templatePath)) {
+			$this->view->setTemplatePathAndFilename($this->templatePath);
+		}
 	}
 
 	/**
