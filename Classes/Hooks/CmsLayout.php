@@ -342,8 +342,8 @@ class Tx_News_Hooks_CmsLayout {
 		$title = '';
 
 		$field = $this->getFieldFromFlexform($this->flexformData, 'settings.templateLayout', 'template');
-		if (!empty($field))
-				// find correct title by looping over all options
+		if (!empty($field) && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']))
+				// Find correct title by looping over all options
 			foreach($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] as $layouts) {
 				if ($layouts[1] === $field) {
 					$title = $layouts[0];
