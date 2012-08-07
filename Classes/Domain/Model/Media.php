@@ -76,7 +76,7 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 	protected $type;
 
 	/**
-	 * @var boolean
+	 * @var integer
 	 */
 	protected $showinpreview;
 
