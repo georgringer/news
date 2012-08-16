@@ -28,7 +28,7 @@ CREATE TABLE tx_news_domain_model_news (
 	fe_group varchar(100) DEFAULT '0' NOT NULL,
 	title tinytext,
 	teaser text,
-	bodytext text,
+	bodytext mediumtext,
 	datetime int(11) DEFAULT '0' NOT NULL,
 	archive int(11) DEFAULT '0' NOT NULL,
 	author tinytext,
