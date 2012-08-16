@@ -161,7 +161,11 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		$demand->setCategories($demand->getSelectedCategories());
 		$demand->setOrder($demand->getSortingField() . ' ' . $demand->getSortingDirection());
 		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));
-//
+
+		if ((int)$demand->getLimit() === 0) {
+			$demand->setLimit(50);
+		}
+
 //		$demand->setArchiveRestriction($settings['archiveRestriction']);
 //		$demand->setSearchFields($settings['search']['fields']);
 		return $demand;
