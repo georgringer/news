@@ -30,13 +30,17 @@
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
+
+	const ACTION_SET_PARENT_CATEGORY = 1;
+	const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
+
 	/**
 	 * @var Tx_Extbase_Object_ObjectManager
 	 */
 	protected $objectManager;
 
 	/**
-	 * @var Tx_News_Domain_Repository_NewsRepository
+	 * @var Tx_News_Domain_Repository_CategoryRepository
 	 */
 	protected $categoryRepository;
 
@@ -81,29 +85,25 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 	}
 
 	public function import(array $importArray) {
+
+			// Sort import array to import the default language first
+
 		foreach ($importArray as $importItem) {
-			if (is_null($category = $this->categoryRepository->findOneByImportSourceAndImportId(
-				$importItem['import_source'], $importItem['import_id']))) {
+			$category = $this->hydrateCategory($importItem);
 
-				$category = $this->objectManager->get('Tx_News_Domain_Model_Category');
-				$this->categoryRepository->add($category);
+			if (trim($importItem['title_lang_ol']) !== '') {
+				$this->postPersistQueue[$importItem['import_id']] = array(
+					'category' => $category,
+					'importItem' => $importItem,
+					'action' => self::ACTION_CREATE_L10N_CHILDREN_CATEGORY,
+					'titleLanguageOverlay' => $importItem['title_lang_ol']
+				);
 			}
-			$category->setPid($importItem['pid']);
-			$category->setHidden($importItem['hidden']);
-			$category->setStarttime($importItem['starttime']);
-			$category->setEndtime($importItem['endtime']);
-			$category->setTitle($importItem['title']);
-			$category->setDescription($importItem['description']);
-			$category->setImage($importItem['image']);
-			$category->setShortcut($importItem['shortcut']);
-			$category->setSinglePid($importItem['single_pid']);
-
-			$category->setImportId($importItem['import_id']);
-			$category->setImportSource($importItem['import_source']);
 
 			if ($importItem['parentcategory']) {
 				$this->postPersistQueue[$importItem['import_id']] = array(
 					'category' => $category,
+					'action' => self::ACTION_SET_PARENT_CATEGORY,
 					'parentCategoryOriginUid' => $importItem['parentcategory']
 				);
 			}
@@ -112,23 +112,87 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 		$this->persistenceManager->persistAll();
 
 		foreach ($this->postPersistQueue as $queueItem) {
-			$category = $queueItem['category'];
-			$parentCategoryOriginUid = $queueItem['parentCategoryOriginUid'];
-
-			if (is_null($parentCategory = $this->postPersistQueue[$parentCategoryOriginUid]['category'])) {
-				$parentCategory = $this->categoryRepository->findOneByImportSourceAndImportId(
-					$category->getImportSource(),
-					$parentCategoryOriginUid
-				);
-			}
-
-			if ($parentCategory !== NULL) {
-				$category->setParentcategory($parentCategory);
+			switch ($queueItem['action']) {
+				case self::ACTION_SET_PARENT_CATEGORY:
+					$this->setParentCategory($queueItem);
+					break;
+				case self::ACTION_CREATE_L10N_CHILDREN_CATEGORY:
+					$this->createL10nChildrenCategory($queueItem);
+					break;
 			}
 
 		}
 
 		$this->persistenceManager->persistAll();
+	}
+
+	/**
+	 * Hydrate a category record with the given array
+	 *
+	 * @param array $importItem
+	 * @return Tx_News_Domain_Model_Category
+	 */
+	protected function hydrateCategory(array $importItem) {
+		if (is_null($category = $this->categoryRepository->findOneByImportSourceAndImportId(
+			$importItem['import_source'], $importItem['import_id']))) {
+
+			/** @var $category Tx_News_Domain_Model_Category */
+			$category = $this->objectManager->get('Tx_News_Domain_Model_Category');
+			$this->categoryRepository->add($category);
+		}
+		$category->setPid($importItem['pid']);
+		$category->setHidden($importItem['hidden']);
+		$category->setStarttime($importItem['starttime']);
+		$category->setEndtime($importItem['endtime']);
+		$category->setTitle($importItem['title']);
+		$category->setDescription($importItem['description']);
+		$category->setImage($importItem['image']);
+		$category->setShortcut($importItem['shortcut']);
+		$category->setSinglePid($importItem['single_pid']);
+
+		$category->setImportId($importItem['import_id']);
+		$category->setImportSource($importItem['import_source']);
+
+		return $category;
+	}
+
+	protected function setParentCategory(array $queueItem) {
+		/** @var $category Tx_News_Domain_Model_Category */
+		$category = $queueItem['category'];
+		$parentCategoryOriginUid = $queueItem['parentCategoryOriginUid'];
+
+		if (is_null($parentCategory = $this->postPersistQueue[$parentCategoryOriginUid]['category'])) {
+			$parentCategory = $this->categoryRepository->findOneByImportSourceAndImportId(
+				$category->getImportSource(),
+				$parentCategoryOriginUid
+			);
+		}
+
+		if ($parentCategory !== NULL) {
+			$category->setParentcategory($parentCategory);
+		}
+	}
+
+	protected function createL10nChildrenCategory(array $queueItem) {
+		/** @var $category Tx_News_Domain_Model_Category */
+		$category = $queueItem['category'];
+		$titleLanguageOverlay = t3lib_div::trimExplode('|', $queueItem['titleLanguageOverlay']);
+
+		foreach ($titleLanguageOverlay as $key => $title) {
+			$sysLanguageUid = $key + 1;
+
+			$importItem = $queueItem['importItem'];
+			$importItem['import_id'] = $importItem['import_id'] . '|L:' . $sysLanguageUid;
+
+			/** @var $l10nChildrenCategory Tx_News_Domain_Model_Category */
+			$l10nChildrenCategory = $this->hydrateCategory($importItem);;
+			$this->categoryRepository->add($l10nChildrenCategory);
+
+			$l10nChildrenCategory->setTitle($title);
+			$l10nChildrenCategory->setL10nParent((int)$category->getUid());
+			$l10nChildrenCategory->setSysLanguageUid((int)$sysLanguageUid);
+		}
+
 	}
 
 }
