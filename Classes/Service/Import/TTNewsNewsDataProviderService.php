@@ -70,6 +70,8 @@ class Tx_News_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Se
 			$importData[] = array(
 				'pid' => $row['pid'],
 				'hidden' => $row['hidden'],
+				'l10n_parent' => $row['l18n_parent'],
+				'sys_language_uid' => $row['sys_language_uid'],
 				'starttime' => $row['starttime'],
 				'endtime'  => $row['endtime'],
 				'title'	=>	$row['title'],

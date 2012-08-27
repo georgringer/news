@@ -901,6 +901,34 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * @param int $sysLanguageUid
+	 */
+	public function setSysLanguageUid($sysLanguageUid) {
+		$this->_languageUid = $sysLanguageUid;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getSysLanguageUid() {
+		return $this->_languageUid;
+	}
+
+	/**
+	 * @param int $l10nParent
+	 */
+	public function setL10nParent($l10nParent) {
+		$this->l10nParent = $l10nParent;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getL10nParent() {
+		return $this->l10nParent;
+	}
+
+	/**
 	 * Get year of tstamp
 	 *
 	 * @return integer
