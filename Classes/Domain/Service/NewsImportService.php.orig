@@ -54,6 +54,11 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	protected $categoryRepository;
 
 	/**
+	 * @var Tx_News_Domain_Repository_TtContentRepository
+	 */
+	protected $ttContentRepository;
+
+	/*
 	 * @var array
 	 */
 	protected $postPersistQueue = array();
@@ -62,7 +67,6 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	 * @var array
 	 */
 	protected $settings = array();
-
 
 	/**
 	 * Inject the object manager
@@ -105,11 +109,34 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	}
 
 	/**
+<<<<<<< HEAD
+	 * Inject the tt_content repository
+	 *
+	 * @param Tx_News_Domain_Repository_TtContentRepository $ttContentRepository
+	 * @return void
+	 */
+	public function injectExternalTtContentRepository(Tx_News_Domain_Repository_TtContentRepository $ttContentRepository) {
+		$this->ttContentRepository = $ttContentRepository;
+	}
+
+	/**
+	 * Do the import
+	 *
+	 * @param array $importData
+	 * @param array $importItemOverwrite
+	 * @param array $settings
+	 * @return void
+	 */
+	public function import(array $importData, array $importItemOverwrite = array(), $settings = array()) {
+		foreach ($importData as $importItem) {
+			$news = NULL;
+=======
 	 * @param array $importItem
 	 * @return null|Tx_News_Domain_Model_News
 	 */
 	protected function initializeNewsRecord(array $importItem) {
 		$news = NULL;
+>>>>>>> 9c9112d... [TASK] News import must support record translation
 
 		if ($importItem['import_source'] && $importItem['import_id']) {
 			$news = $this->newsRepository->findOneByImportSourceAndImportId($importItem['import_source'],
@@ -145,24 +172,27 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		$news->setTeaser($importItem['teaser']);
 		$news->setBodytext($importItem['bodytext']);
 
-		$news->setType($importItem['type']);
-		$news->setKeywords($importItem['keywords']);
 		$news->setDatetime(new DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
 		$news->setArchive(new DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
 
-		$contentElementUidArray = Tx_Extbase_Utility_Arrays::trimExplode(',', $importItem['content_elements'], TRUE);
-		foreach($contentElementUidArray as $contentElementUid){
-			if(is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))){
-				$news->addContentElement($contentElement);
+		$news->setAuthor($importItem['author']);
+		$news->setAuthorEmail($importItem['author_email']);
+
+<<<<<<< HEAD
+			$news->setType($importItem['type']);
+			$news->setKeywords($importItem['keywords']);
+
+			$contentElementUidArray = Tx_Extbase_Utility_Arrays::trimExplode(',', $importItem['content_elements'], TRUE);
+			foreach($contentElementUidArray as $contentElementUid){
+				if(is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))){
+					$news->addContentElement($contentElement);
+				}
 			}
-		}
-
-		$news->setInternalurl($importItem['internalurl']);
-		$news->setExternalurl($importItem['externalurl']);
-
+=======
 		$news->setType($importItem['type']);
 		$news->setKeywords($importItem['keywords']);
 		$news->setContentElements($importItem['content_elements']);
+>>>>>>> 9c9112d... [TASK] News import must support record translation
 
 		$news->setInternalurl($importItem['internalurl']);
 		$news->setExternalurl($importItem['externalurl']);
