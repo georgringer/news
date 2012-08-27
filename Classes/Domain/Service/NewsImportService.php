@@ -31,6 +31,7 @@
  */
 class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	const UPLOAD_PATH = 'uploads/tx_news/';
+	const ACTION_IMPORT_L10N_OVERLAY = 1;
 
 	/**
 	 * @var Tx_Extbase_Object_ObjectManager
@@ -51,6 +52,16 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	 * @var Tx_News_Domain_Repository_CategoryRepository
 	 */
 	protected $categoryRepository;
+
+	/**
+	 * @var array
+	 */
+	protected $postPersistQueue = array();
+
+	/**
+	 * @var array
+	 */
+	protected $settings = array();
 
 
 	/**
@@ -93,119 +104,191 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		$this->categoryRepository = $categoryRepository;
 	}
 
-	public function import(array $importData, array $importItemOverwrite = array(), $settings = array()) {
-		foreach ($importData as $importItem) {
-			$news = NULL;
+	/**
+	 * @param array $importItem
+	 * @return null|Tx_News_Domain_Model_News
+	 */
+	protected function initializeNewsRecord(array $importItem) {
+		$news = NULL;
 
-			if ($importItem['import_source'] && $importItem['import_id']) {
-				$news = $this->newsRepository->findOneByImportSourceAndImportId($importItem['import_source'],
-					$importItem['import_id']);
-			}
+		if ($importItem['import_source'] && $importItem['import_id']) {
+			$news = $this->newsRepository->findOneByImportSourceAndImportId($importItem['import_source'],
+				$importItem['import_id']);
+		}
 
-			if ($news === NULL) {
-				$news = $this->objectManager->get('Tx_News_Domain_Model_News');
-				$this->newsRepository->add($news);
-			}
+		if ($news === NULL) {
+			$news = $this->objectManager->get('Tx_News_Domain_Model_News');
+			$this->newsRepository->add($news);
+		}
 
-			if (!empty($importItemOverwrite)) {
-				$importItem = array_merge($importItem, $importItemOverwrite);
-			}
+		return $news;
+	}
 
-			$news->setPid($importItem['pid']);
-			$news->setHidden($importItem['hidden']);
-			$news->setStarttime($importItem['starttime']);
-			$news->setEndtime($importItem['endtime']);
+	/**
+	 * @param Tx_News_Domain_Model_News $news
+	 * @param array $importItem
+	 * @param array $importItemOverwrite
+	 * @return Tx_News_Domain_Model_News
+	 */
+	protected function hydrateNewsRecord(Tx_News_Domain_Model_News $news, array $importItem, array $importItemOverwrite) {
 
-			$news->setTitle($importItem['title']);
-			$news->setTeaser($importItem['teaser']);
-			$news->setBodytext($importItem['bodytext']);
+		if (!empty($importItemOverwrite)) {
+			$importItem = array_merge($importItem, $importItemOverwrite);
+		}
 
-			$news->setDatetime(new DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
-			$news->setArchive(new DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
+		$news->setPid($importItem['pid']);
+		$news->setHidden($importItem['hidden']);
+		$news->setStarttime($importItem['starttime']);
+		$news->setEndtime($importItem['endtime']);
 
-			$news->setAuthor($importItem['author']);
-			$news->setAuthorEmail($importItem['author_email']);
+		$news->setTitle($importItem['title']);
+		$news->setTeaser($importItem['teaser']);
+		$news->setBodytext($importItem['bodytext']);
 
-			$news->setType($importItem['type']);
-			$news->setKeywords($importItem['keywords']);
-			$news->setContentElements($importItem['content_elements']);
+		$news->setDatetime(new DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
+		$news->setArchive(new DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
 
-			$news->setInternalurl($importItem['internalurl']);
-			$news->setExternalurl($importItem['externalurl']);
+		$news->setAuthor($importItem['author']);
+		$news->setAuthorEmail($importItem['author_email']);
 
-			$news->setImportid($importItem['import_id']);
-			$news->setImportSource($importItem['import_source']);
+		$news->setType($importItem['type']);
+		$news->setKeywords($importItem['keywords']);
+		$news->setContentElements($importItem['content_elements']);
 
-			if (is_array($importItem['categories'])) {
-				foreach ($importItem['categories'] as $categoryUid) {
-					if ($settings['findCategoriesByImportSource']) {
-						$category = $this->categoryRepository->findOneByImportSourceAndImportId(
-							$settings['findCategoriesByImportSource'], $categoryUid);
-					} else {
-						$category = $this->categoryRepository->findByUid($categoryUid);
-					}
+		$news->setInternalurl($importItem['internalurl']);
+		$news->setExternalurl($importItem['externalurl']);
 
-					if ($category) {
-						$news->addCategory($category);
-					}
+		$news->setImportid($importItem['import_id']);
+		$news->setImportSource($importItem['import_source']);
+
+		if (is_array($importItem['categories'])) {
+			foreach ($importItem['categories'] as $categoryUid) {
+				if ($this->settings['findCategoriesByImportSource']) {
+					$category = $this->categoryRepository->findOneByImportSourceAndImportId(
+						$this->settings['findCategoriesByImportSource'], $categoryUid);
+				} else {
+					$category = $this->categoryRepository->findByUid($categoryUid);
+				}
+
+				if ($category) {
+					$news->addCategory($category);
 				}
 			}
+		}
 
-			$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions');
+		/** @var $basicFileFunctions t3lib_basicFileFunctions */
+		$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions');
 
-				// media relation
-			if (is_array($importItem['media'])) {
-				foreach ($importItem['media'] as $mediaItem) {
-					if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['image'])) {
+		// media relation
+		if (is_array($importItem['media'])) {
+			foreach ($importItem['media'] as $mediaItem) {
+				if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['image'])) {
 
-						$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['image'],
-							PATH_site . self::UPLOAD_PATH);
-
-						copy(
-							PATH_site . $mediaItem['image'],
-							$uniqueName
-						);
-
-						$media = $this->objectManager->get('Tx_News_Domain_Model_Media');
-						$news->addMedia($media);
-
-						$media->setImage(basename($uniqueName));
-					}
-
-					$media->setTitle($mediaItem['title']);
-					$media->setAlt($mediaItem['alt']);
-					$media->setCaption($mediaItem['caption']);
-					$media->setType($mediaItem['type']);
-					$media->setShowinpreview($mediaItem['showinpreview']);
-				}
-			}
-
-				// related files
-			if (is_array($importItem['related_files'])) {
-				foreach ($importItem['related_files'] as $file) {
-					if (!$relatedFile = $this->getRelatedFileIfAlreadyExists($news, $file['file'])) {
-
-						$uniqueName = $basicFileFunctions->getUniqueName($file['file'],
+					$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['image'],
 						PATH_site . self::UPLOAD_PATH);
 
-						copy(
-							PATH_site . $file['file'],
-							$uniqueName
-						);
+					copy(
+						PATH_site . $mediaItem['image'],
+						$uniqueName
+					);
 
-						$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_File');
-						$news->addRelatedFile($relatedFile);
+					$media = $this->objectManager->get('Tx_News_Domain_Model_Media');
+					$news->addMedia($media);
 
-						$relatedFile->setFile(basename($uniqueName));
-					}
-					$relatedFile->setTitle($file['title']);
-					$relatedFile->setDescription($file['description']);
+					$media->setImage(basename($uniqueName));
 				}
+
+				$media->setTitle($mediaItem['title']);
+				$media->setAlt($mediaItem['alt']);
+				$media->setCaption($mediaItem['caption']);
+				$media->setType($mediaItem['type']);
+				$media->setShowinpreview($mediaItem['showinpreview']);
+			}
+		}
+
+		// related files
+		if (is_array($importItem['related_files'])) {
+			foreach ($importItem['related_files'] as $file) {
+				if (!$relatedFile = $this->getRelatedFileIfAlreadyExists($news, $file['file'])) {
+
+					$uniqueName = $basicFileFunctions->getUniqueName($file['file'],
+						PATH_site . self::UPLOAD_PATH);
+
+					copy(
+						PATH_site . $file['file'],
+						$uniqueName
+					);
+
+					$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_File');
+					$news->addRelatedFile($relatedFile);
+
+					$relatedFile->setFile(basename($uniqueName));
+				}
+				$relatedFile->setTitle($file['title']);
+				$relatedFile->setDescription($file['description']);
+			}
+		}
+
+		return $news;
+	}
+
+	public function import(array $importData, array $importItemOverwrite = array(), $settings = array()) {
+		$this->settings = $settings;
+
+		foreach ($importData as $importItem) {
+
+				// Store language overlay in post persit queue
+			if ($importItem['sys_language_uid']) {
+				$this->postPersistQueue[$importItem['import_id']] = array(
+					'action' => self::ACTION_IMPORT_L10N_OVERLAY,
+					'category' => NULL,
+					'importItem' => $importItem
+				);
+				continue;
+			}
+
+			$news = $this->initializeNewsRecord($importItem);
+
+			$this->hydrateNewsRecord($news, $importItem, $importItemOverwrite);
+
+		}
+
+		$this->persistenceManager->persistAll();
+
+		foreach ($this->postPersistQueue as $queueItem) {
+			switch ($queueItem['action']) {
+				case self::ACTION_IMPORT_L10N_OVERLAY:
+					$this->importL10nOverlay($queueItem, $importItemOverwrite);
+					break;
 			}
 
 		}
 
 		$this->persistenceManager->persistAll();
+	}
+
+	/**
+	 * @param array $importItem
+	 * @param array $importItemOverwrite
+	 */
+	protected function importL10nOverlay(array $queueItem, array $importItemOverwrite) {
+		$importItem = $queueItem['importItem'];
+		$parentNews = $this->newsRepository->findOneByImportSourceAndImportId(
+			$importItem['import_source'],
+			$importItem['l10n_parent']
+		);
+
+		if ($parentNews !== NULL) {
+			$importItem['import_id'] .= '|L:' . $importItem['sys_language_uid'];
+
+			$news = $this->initializeNewsRecord($importItem);
+
+			$this->hydrateNewsRecord($news, $importItem, $importItemOverwrite);
+
+			$news->setSysLanguageUid($importItem['sys_language_uid']);
+			$news->setL10nParent($parentNews->getUid());
+		}
+
 	}
 
 	/**
