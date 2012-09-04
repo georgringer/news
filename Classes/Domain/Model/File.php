@@ -31,125 +31,149 @@
  */
 class Tx_News_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueObject {
 
-	/**
-	 * @var DateTime
-	 */
-	protected $crdate;
+  /**
+   * @var DateTime
+   */
+  protected $crdate;
 
-	/**
-	 * @var DateTime
-	 */
-	protected $tstamp;
+  /**
+   * @var DateTime
+   */
+  protected $tstamp;
 
-	/**
-	 * @var string
-	 */
-	protected $title;
+  /**
+   * @var string
+   */
+  protected $title;
 
-	/**
-	 * @var string
-	 */
-	protected $description;
+  /**
+   * @var string
+   */
+  protected $description;
 
-	/**
-	 * @var string
-	 */
-	protected $file;
+  /**
+   * @var string
+   */
+  protected $file;
 
-	/**
-	 * Get crdate
-	 *
-	 * @return DateTime
-	 */
-	public function getCrdate() {
-		return $this->crdate;
-	}
+  /**
+   * @var integer
+   */
+  protected $sorting;
 
-	/**
-	 * Set crdate
-	 *
-	 * @param DateTime $crdate crdate
-	 * @return void
-	 */
-	public function setCrdate($crdate) {
-		$this->crdate = $crdate;
-	}
+  /**
+   * Get crdate
+   *
+   * @return DateTime
+   */
+  public function getCrdate() {
+    return $this->crdate;
+  }
 
-	/**
-	 * Get Tstamp
-	 *
-	 * @return DateTime
-	 */
-	public function getTstamp() {
-		return $this->tstamp;
-	}
+  /**
+   * Set crdate
+   *
+   * @param DateTime $crdate crdate
+   * @return void
+   */
+  public function setCrdate($crdate) {
+    $this->crdate = $crdate;
+  }
 
-	/**
-	 * Set tstamp
-	 *
-	 * @param DateTime $tstamp tstamp
-	 * @return void
-	 */
-	public function setTstamp($tstamp) {
-		$this->tstamp = $tstamp;
-	}
+  /**
+   * Get sorting
+   *
+   * @return integer
+   */
+  public function getSorting() {
+      return $this->sorting;
+  }
 
-	/**
-	 * Get title
-	 *
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
+  /**
+   * Set tstamp
+   *
+   * @param DateTime $sorting sorting
+   * @return void
+   */
+  public function setSorting($sorting) {
+      $this->sorting = $sorting;
+  }
 
-	/**
-	 * Set title
-	 *
-	 * @param string $title title
-	 * @return void
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
+  /**
+   * Get Tstamp
+   *
+   * @return DateTime
+   */
+  public function getTstamp() {
+    return $this->tstamp;
+  }
 
-	/**
-	 * Get description
-	 *
-	 * @return string
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
+  /**
+   * Set tstamp
+   *
+   * @param DateTime $tstamp tstamp
+   * @return void
+   */
+  public function setTstamp($tstamp) {
+    $this->tstamp = $tstamp;
+  }
 
-	/**
-	 * Set description
-	 *
-	 * @param string $description description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
+  /**
+   * Get title
+   *
+   * @return string
+   */
+  public function getTitle() {
+    return $this->title;
+  }
 
-	/**
-	 * Get file
-	 *
-	 * @return string
-	 */
-	public function getFile() {
-		return $this->file;
-	}
+  /**
+   * Set title
+   *
+   * @param string $title title
+   * @return void
+   */
+  public function setTitle($title) {
+    $this->title = $title;
+  }
 
-	/**
-	 * Set File
-	 *
-	 * @param string $file file
-	 * @return void
-	 */
-	public function setFile($file) {
-		$this->file = $file;
-	}
+  /**
+   * Get description
+   *
+   * @return string
+   */
+  public function getDescription() {
+    return $this->description;
+  }
+
+  /**
+   * Set description
+   *
+   * @param string $description description
+   * @return void
+   */
+  public function setDescription($description) {
+    $this->description = $description;
+  }
+
+  /**
+   * Get file
+   *
+   * @return string
+   */
+  public function getFile() {
+    return $this->file;
+  }
+
+  /**
+   * Set File
+   *
+   * @param string $file file
+   * @return void
+   */
+  public function setFile($file) {
+    $this->file = $file;
+  }
 
 }
 
