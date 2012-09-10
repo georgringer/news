@@ -91,15 +91,15 @@ class Tx_News_Utility_Compatibility {
 	}
 
 	/**
-	 * Gets list of required extensions.
+	 * Gets list of loaded extensions.
 	 *
-	 * @return string List of required extensions
+	 * @return string List of loaded extensions
 	 */
-	public static function getRequiredExtensionList() {
+	public static function getLoadedExtensionList() {
 		if (self::convertVersionNumberToInteger(TYPO3_version) <  '6000000') {
-			return t3lib_extMgm::getRequiredExtensionList();
+			return t3lib_extMgm::getEnabledExtensionList();
 		} else {
-			return implode(',', t3lib_extMgm::getRequiredExtensionListArray());
+			return implode(',', t3lib_extMgm::getLoadedExtensionListArray());
 		}
 	}
 }

@@ -42,7 +42,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 			require_once($t3libUtilityVersionNumber);
 		}
 		require_once(t3lib_extMgm::extPath('news', 'Classes/Utility/Compatibility.php'));
-		$loadedExtensions = array_unique(t3lib_div::trimExplode(',', Tx_News_Utility_Compatibility::getRequiredExtensionList(), TRUE));
+		$loadedExtensions = array_unique(t3lib_div::trimExplode(',', Tx_News_Utility_Compatibility::getLoadedExtensionList(), TRUE));
 
 			// Get the extensions which want to extend news
 		$extensibleExtensions = array();
