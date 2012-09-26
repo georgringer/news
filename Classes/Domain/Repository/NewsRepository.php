@@ -106,7 +106,10 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 				$query->greaterThan('archive', 0)
 			);
 		} elseif ($demand->getArchiveRestriction() == 'active') {
-			$constraints[] = $query->greaterThanOrEqual('archive', $GLOBALS['EXEC_TIME']);
+			$constraints[] = $query->logicalOr(
+				$query->greaterThanOrEqual('archive', $GLOBALS['EXEC_TIME']),
+				$query->equals('archive', 0)
+			);
 		}
 
 			// Time restriction greater than or equal
