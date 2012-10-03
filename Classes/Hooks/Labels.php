@@ -38,7 +38,7 @@ class Tx_News_Hooks_Labels {
 	 * @param array $params
 	 * @return void
 	 */
-	public function getUserLabelNews(array $params) {
+	public function getUserLabelNews(array &$params) {
 		$params['title'] = $params['row']['title'];
 	}
 
