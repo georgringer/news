@@ -42,7 +42,7 @@ class Tx_News_Interfaces_Video_Flv implements Tx_News_Interfaces_MediaInterface 
 	public function render(Tx_News_Domain_Model_Media $element, $width, $height, $templateFile = '' ) {
 		$view = t3lib_div::makeInstance('Tx_Fluid_View_StandaloneView');
 		if (!$templateFile || !is_readable($templateFile)) {
-			$view->setTemplatePathAndFilename(t3lib_extMgm::extPath('news').'Resources/Private/Templates/ViewHelpers/Flv.html');
+			$view->setTemplatePathAndFilename(t3lib_extMgm::extPath('news') . 'Resources/Private/Templates/ViewHelpers/Flv.html');
 		} else {
 			$view->setTemplatePathAndFilename($templateFile);
 		}

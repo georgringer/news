@@ -95,7 +95,7 @@ abstract class Tx_News_Jobs_AbstractImportJob implements Tx_News_Jobs_ImportJobI
 			'runsToComplete' => ceil($totalRecordCount / $this->getNumberOfRecordsPerRun()),
 			'increaseOffsetPerRunBy' => $this->getNumberOfRecordsPerRun(),
 		);
-//		print_r($info);
+
 		return $info;
 	}
 

@@ -46,7 +46,6 @@ class Tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiv
 	 */
 	public function queryTable(&$params, $recursionCounter = 0) {
 		$uid = t3lib_div::_GP('uid');
-//		$pageId = t3lib_div::_GP('pid');
 
 		$records = parent::queryTable($params, $recursionCounter);
 

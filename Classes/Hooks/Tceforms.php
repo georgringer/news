@@ -41,6 +41,7 @@ class Tx_News_Hooks_Tceforms {
 	 * @param string $extra
 	 * @param string $pal
 	 * @param t3lib_TCEforms $parentObject
+	 * @return void
 	 */
 	public function getSingleField_preProcess($table, $field, array &$row, $altName, $palette, $extra, $pal, t3lib_TCEforms $parentObject) {
 			// Predefine the archive date

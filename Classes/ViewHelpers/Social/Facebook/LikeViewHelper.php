@@ -53,6 +53,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 
 	/**
 	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 * @return void
 	 */
 	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
 		$this->pluginSettingsService = $pluginSettingsService;

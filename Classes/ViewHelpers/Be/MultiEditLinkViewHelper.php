@@ -35,11 +35,11 @@ class Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper extends Tx_Fluid_Core_ViewH
 	 *
 	 * @param object $items news items
 	 * @param string $column column name
-	 * @return void
+	 * @return stromg
 	 */
 	public function render($items, $column) {
 		$idList = array();
-		foreach($items as $item) {
+		foreach ($items as $item) {
 			$idList[] = $item->getUid();
 		}
 

@@ -52,7 +52,7 @@ class Tx_News_Controller_ImportController extends Tx_Extbase_MVC_Controller_Acti
 	/**
 	 * Shows the import jobs selection .
 	 *
-	 * @return string The rendered view
+	 * @return void
 	 */
 	public function indexAction() {
 		$this->view->assign('availableJobs', array_merge(array(0 => ''), $this->getAvailableJobs()));

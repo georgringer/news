@@ -22,22 +22,21 @@
 /**
  * View helper which returns save button with icon
  * Note: This view helper is experimental!
- *
  * = Examples =
- *
  * <code title="Default">
  * <f:be.buttons.icon uri="{f:uri.action()}" />
  * </code>
  * <output>
- * An icon button as known from the TYPO3 backend, skinned and linked with the default action of the current controller.
+ * An icon button as known from the TYPO3 backend, skinned and linked with the default
+ * action of the current controller.
  * Note: By default the "close" icon is used as image
  * </output>
- *
  * <code title="Default">
  * <f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="new_el" title="Create new Foo" />
  * </code>
  * <output>
- * This time the "new_el" icon is returned, the button has the title attribute set and links to the "new" action of the current controller.
+ * This time the "new_el" icon is returned, the button has the title attribute set and
+ * links to the "new" action of the current controller.
  * </output>
  *
  * @author Steffen Kamper <info@sk-typo3.de>

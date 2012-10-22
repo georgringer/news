@@ -158,7 +158,8 @@ class Tx_News_ViewHelpers_PaginateBodytextViewHelper extends Tx_Fluid_Core_ViewH
 	 */
 	protected function extractTag($html) {
 		$tag = '';
-		for ($i = 0; $i < mb_strlen($html); $i++) {
+		$length = mb_strlen($html);
+		for ($i = 0; $i < $length; $i++) {
 			$char = mb_substr($html, $i, 1);
 			$tag .= $char;
 			if ($char === '>') {

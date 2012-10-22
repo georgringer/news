@@ -36,7 +36,7 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 * @param array $configuration em configuration
 	 */
 	public function __construct(array $configuration) {
-		foreach($configuration as $key => $value) {
+		foreach ($configuration as $key => $value) {
 			$this->$key = $value;
 		}
 	}

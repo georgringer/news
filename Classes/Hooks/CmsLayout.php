@@ -229,7 +229,6 @@ class Tx_News_Hooks_CmsLayout {
 				// Category mode
 			$categoryModeSelection = $this->getFieldFromFlexform($this->flexformData, 'settings.categoryConjunction');
 
-
 			if ($showCategoryMode) {
 				if (empty($categoryModeSelection)) {
 					$categoryMode = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categoryConjunction.all');
@@ -344,7 +343,7 @@ class Tx_News_Hooks_CmsLayout {
 		$field = $this->getFieldFromFlexform($this->flexformData, 'settings.templateLayout', 'template');
 		if (!empty($field) && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']))
 				// Find correct title by looping over all options
-			foreach($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] as $layouts) {
+			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] as $layouts) {
 				if ($layouts[1] === $field) {
 					$title = $layouts[0];
 				}
@@ -427,7 +426,7 @@ class Tx_News_Hooks_CmsLayout {
 
 		$visible = ($record['hidden'] == 0);
 		$i = 0;
-		foreach($this->tableData as $line) {
+		foreach ($this->tableData as $line) {
 				// Check if the setting is in the list of diabled ones
 			$class = ($i++ % 2 === 0) ? 'bgColor4' : 'bgColor3';
 			$renderedLine = '';

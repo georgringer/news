@@ -1,41 +1,33 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *  (c) 2010 Georg Ringer <typo3@ringerge.org>
+ *  All rights reserved
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * ViewHelper to render links from news records to detail view or page
- *
  * Example
  * <n:link newsItem="{newsItem}" settings="{settings}">
  * {newsItem.title}
  * </n:link>
- *
  * Inline notation:
  * {n:link(newsItem:newsItem,settings:settings,configuration:{returnLast:'url'})}
- *
  * Link with additional arguments
  * <n:link newsItem="{newsItem}" settings="{settings}" configuration="{ATagParams:'class=\"fo\" id=\"bar\"'}">
- *	{newsItem.title}
+ *    {newsItem.title}
  * </n:link>
  *
  * @package TYPO3
@@ -51,7 +43,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	/**
 	 * @var array
 	 */
-	protected $detailPidDeterminationCallbacks = array (
+	protected $detailPidDeterminationCallbacks = array(
 		'flexform' => 'getDetailPidFromFlexform',
 		'categories' => 'getDetailPidFromCategories',
 		'default' => 'getDetailPidFromDefaultDetailPid',
@@ -79,20 +71,20 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 
 		$newsType = (int)$newsItem->getType();
 		switch ($newsType) {
-				// internal news
+			// internal news
 			case 1:
 				$configuration['parameter'] = $newsItem->getInternalurl();
 				break;
-				// external news
+			// external news
 			case 2:
 				$configuration['parameter'] = $newsItem->getExternalurl();
 				break;
-				// normal news record
+			// normal news record
 			default:
 				$detailPid = 0;
 				$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $settings['detailPidDetermination'], TRUE);
 
-					// if TS is not set, prefer flexform setting
+				// if TS is not set, prefer flexform setting
 				if (!isset($settings['detailPidDetermination'])) {
 					$detailPidDeterminationMethods[] = 'flexform';
 				}
@@ -100,7 +92,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 				foreach ($detailPidDeterminationMethods as $determinationMethod) {
 					if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
 						if ($detailPid = call_user_func(array($this, $callback), $settings, $newsItem)) {
-						  break;
+							break;
 						}
 					}
 				}
@@ -118,7 +110,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 						'&tx_news_pi1[action]=detail';
 				}
 
-					// Add date as human readable (30/04/2011)
+				// Add date as human readable (30/04/2011)
 				if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
 					$dateTime = $newsItem->getDatetime();
 
@@ -183,4 +175,5 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 
 	}
 }
+
 ?>

@@ -529,7 +529,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function addRelatedFile(Tx_News_Domain_Model_File $file) {
-		if($this->getRelatedFiles() === NULL) {
+		if ($this->getRelatedFiles() === NULL) {
 			$this->relatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
 		}
 		$this->getRelatedFiles()->attach($file);
@@ -652,7 +652,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function addMedia(Tx_News_Domain_Model_Media $media) {
-		if($this->getMedia() === NULL) {
+		if ($this->getMedia() === NULL) {
 			$this->media = new Tx_Extbase_Persistence_ObjectStorage();
 		}
 		$this->getMedia()->attach($media);
@@ -665,7 +665,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function addRelatedLink(Tx_News_Domain_Model_Link $relatedLink) {
-		if($this->relatedLinks === NULL) {
+		if ($this->relatedLinks === NULL) {
 			$this->relatedLinks = new Tx_Extbase_Persistence_ObjectStorage();
 		}
 		$this->relatedLinks->attach($relatedLink);
@@ -781,7 +781,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getContentElementIdList() {
 		$idList = array();
-		foreach($this->getContentElements() as $contentElement) {
+		foreach ($this->getContentElements() as $contentElement) {
 			$idList[] = $contentElement->getUid();
 		}
 		return implode(',', $idList);

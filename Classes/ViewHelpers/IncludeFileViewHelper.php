@@ -53,7 +53,7 @@ class Tx_News_ViewHelpers_IncludeFileViewHelper extends Tx_Fluid_Core_ViewHelper
 			$doc = t3lib_div::makeInstance('template');
 			$pageRenderer = $doc->getPageRenderer();
 
-			// JS
+				// JS
 			if (strtolower(substr($path, -3)) === '.js') {
 				$pageRenderer->addJsFile($path, NULL, $compress);
 

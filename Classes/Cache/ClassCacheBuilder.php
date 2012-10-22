@@ -51,7 +51,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 			if (file_exists($extensionInfoFile)) {
 				$info = t3lib_div::getUrl($extensionInfoFile);
 				$classes = t3lib_div::trimExplode(LF, $info, TRUE);
-				foreach($classes as $class) {
+				foreach ($classes as $class) {
 					$extensibleExtensions[$class][$extensionKey] = 1;
 				}
 			}
@@ -68,7 +68,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 			$code = self::parseSingleFile($path, FALSE);
 
 				// Get the files from all other extensions
-			foreach ($extensionsWithThisClass as $extension => $_value) {
+			foreach ($extensionsWithThisClass as $extension => $value) {
 				$path = t3lib_extMgm::extPath($extension) . 'Classes/' . $key . '.php';
 				if (is_file($path)) {
 					$extendingClassFound = TRUE;

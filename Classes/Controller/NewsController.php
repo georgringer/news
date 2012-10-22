@@ -118,7 +118,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * Output a list view of news
 	 *
 	 * @param array $overwriteDemand
-	 * @return return string the Rendered view
+	 * @return void
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
@@ -193,11 +193,11 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * @return void
 	 */
 	public function searchFormAction(Tx_News_Domain_Model_Dto_Search $search = NULL) {
-	    if (is_null($search)) {
+		if (is_null($search)) {
 			$search = $this->objectManager->get('Tx_News_Domain_Model_Dto_Search');
-	    }
+		}
 
-	   $this->view->assign('search', $search);
+		$this->view->assign('search', $search);
 	}
 
 	/**

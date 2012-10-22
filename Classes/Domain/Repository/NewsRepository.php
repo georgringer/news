@@ -213,20 +213,20 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			$searchConstraints = array();
 
 			if (count($searchFields) === 0) {
-			    throw new UnexpectedValueException('No search fields defined', 1318497755);
+				throw new UnexpectedValueException('No search fields defined', 1318497755);
 			}
 
 			$searchSubject = $searchObject->getSubject();
-			foreach($searchFields as $field) {
-			    if (!empty($searchSubject)) {
+			foreach ($searchFields as $field) {
+			if (!empty($searchSubject)) {
 				$searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
-			    }
+			}
 			}
 			$constraints[] = $query->logicalOr($searchConstraints);
 		}
 
 			// Clean not used constraints
-		foreach($constraints as $key => $value) {
+		foreach ($constraints as $key => $value) {
 			if (is_null($value)) {
 				unset($constraints[$key]);
 			}

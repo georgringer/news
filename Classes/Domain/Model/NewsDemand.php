@@ -159,6 +159,7 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 
 	/**
 	 * @param boolean $includeSubCategories
+	 * @return void
 	 */
 	public function setIncludeSubCategories($includeSubCategories) {
 		$this->includeSubCategories = $includeSubCategories;
@@ -332,6 +333,7 @@ class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEn
 	 * Set day restriction
 	 *
 	 * @param integer $day
+	 * @return void
 	 */
 	public function setDay($day) {
 		$this->day = $day;

@@ -609,10 +609,8 @@ if ($categoryRestrictionSetting) {
 
 		// prepend category restriction at the beginning of foreign_table_where
 	if (!empty ($categoryRestriction)) {
-		$TCA['tx_news_domain_model_news']['columns']['categories']
-			['config']['foreign_table_where'] = $categoryRestriction .
-		$TCA['tx_news_domain_model_news']['columns']['categories']
-			['config']['foreign_table_where'];
+		$TCA['tx_news_domain_model_news']['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction .
+		$TCA['tx_news_domain_model_news']['columns']['categories']['config']['foreign_table_where'];
 	}
 }
 

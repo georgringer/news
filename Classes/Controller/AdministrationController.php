@@ -52,6 +52,11 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 */
 	protected $configurationManager;
 
+	/**
+	 * Function will be called before every other action
+	 *
+	 * @return void
+	 */
 	public function initializeAction() {
 		$this->pageUid = (int)t3lib_div::_GET('id');
 		parent::initializeAction();
@@ -101,7 +106,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 
 		$categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
 		$idList = array();
-		foreach($categories as $c) {
+		foreach ($categories as $c) {
 			$idList[] = $c->getUid();
 		}
 
@@ -122,7 +127,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		$tree = Tx_News_Utility_Page::pageTree($this->pageUid, $treeLevel);
 
 		$rawTree = array();
-		foreach($tree->tree as $row) {
+		foreach ($tree->tree as $row) {
 			$this->countRecordsOnPage($row);
 			$rawTree[] = $row;
 		}
@@ -166,8 +171,6 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 			$demand->setLimit(50);
 		}
 
-//		$demand->setArchiveRestriction($settings['archiveRestriction']);
-//		$demand->setSearchFields($settings['search']['fields']);
 		return $demand;
 	}
 

@@ -44,7 +44,7 @@ class Tx_News_Service_CategoryService {
 		$cacheIdentifier = sha1('children' . $idList);
 
 		$entry = $cache->get($cacheIdentifier);
-		if(!$entry) {
+		if (!$entry) {
 			$entry = self::getChildrenCategoriesRecursive($idList, $counter, $additionalWhere);
 			$cache->set($cacheIdentifier, $entry);
 		}
@@ -64,7 +64,7 @@ class Tx_News_Service_CategoryService {
 		$cacheIdentifier = sha1('rootline' . $id);
 
 		$entry = $cache->get($cacheIdentifier);
-		if(!$entry) {
+		if (!$entry) {
 			$entry = self::getRootlineRecursive($id, $additionalWhere);
 			$cache->set($cacheIdentifier, $entry);
 		}
@@ -115,7 +115,7 @@ class Tx_News_Service_CategoryService {
 	 * @param string $additionalWhere additional where clause
 	 * @return string comma separated list of category ids
 	 */
-	public static function getRootlineRecursive($id, $counter=0, $additionalWhere = '') {
+	public static function getRootlineRecursive($id, $counter = 0, $additionalWhere = '') {
 		$id = (int)$id;
 		$result = array();
 

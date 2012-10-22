@@ -63,7 +63,7 @@ class Tx_News_Interfaces_Video_Videosites implements Tx_News_Interfaces_MediaInt
 							var params = { allowScriptAccess: "always" };
 							var atts = { id: "' . $uniqueDivId . '" };
 							swfobject.embedSWF("' . htmlspecialchars($finalUrl) . '",
-							"' . $uniqueDivId . '", "' . (int)$width .'", "' . (int)$height .'", "8", null, null, params, atts);
+							"' . $uniqueDivId . '", "' . (int)$width . '", "' . (int)$height . '", "8", null, null, params, atts);
 						</script>';
 		}
 

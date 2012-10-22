@@ -1,26 +1,21 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2011 Georg Ringer <typo3@ringerge.org>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *  (c) 2011 Georg Ringer <typo3@ringerge.org>
+ *  All rights reserved
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * ViewHelper to create the clickmenu
@@ -42,10 +37,20 @@ class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends Tx_Fluid_Core_ViewHelpe
 		return $this->wrapClickMenuOnIcon($this->renderChildren(), $table, $uid);
 	}
 
-	private function wrapClickMenuOnIcon($str,$table,$uid='',$listFr=1,$addParams='',$enDisItems='', $returnOnClick=FALSE)	{
-		$backPath = rawurlencode($GLOBALS['BACK_PATH']).'|'.t3lib_div::shortMD5($this->backPath.'|'.$GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']);
-		$onClick = 'showClickmenu("'.$table.'","'.$uid.'","'.$listFr.'","'.str_replace('+','%2B',$enDisItems).'","'.str_replace('&','&amp;',addcslashes($backPath,'"')).'","'.str_replace('&','&amp;',addcslashes($addParams,'"')).'");return false;';
-		return $returnOnClick ? $onClick : '<a href="#" onclick="'.htmlspecialchars($onClick).'" oncontextmenu="'.htmlspecialchars($onClick).'">'.$str.'</a>';
+	/**
+	 * @param $str
+	 * @param $table
+	 * @param string $uid
+	 * @param int $listFr
+	 * @param string $addParams
+	 * @param string $enDisItems
+	 * @param bool $returnOnClick
+	 * @return string
+	 */
+	private function wrapClickMenuOnIcon($str, $table, $uid = '', $listFr = 1, $addParams = '', $enDisItems = '', $returnOnClick = FALSE) {
+		$backPath = rawurlencode($GLOBALS['BACK_PATH']) . '|' . t3lib_div::shortMD5($this->backPath . '|' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']);
+		$onClick = 'showClickmenu("' . $table . '","' . $uid . '","' . $listFr . '","' . str_replace('+', '%2B', $enDisItems) . '","' . str_replace('&', '&amp;', addcslashes($backPath, '"')) . '","' . str_replace('&', '&amp;', addcslashes($addParams, '"')) . '");return false;';
+		return $returnOnClick ? $onClick : '<a href="#" onclick="' . htmlspecialchars($onClick) . '" oncontextmenu="' . htmlspecialchars($onClick) . '">' . $str . '</a>';
 	}
 }
 

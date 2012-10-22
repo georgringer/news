@@ -100,9 +100,9 @@ class Tx_News_Utility_Page {
 		$tree->init('AND ' . $GLOBALS['BE_USER']->getPagePermsClause(1));
 
 		$treeStartingRecord = t3lib_BEfunc::getRecord('pages', $pageUid);
-		t3lib_BEfunc::workspaceOL('pages',$treeStartingRecord);
+		t3lib_BEfunc::workspaceOL('pages', $treeStartingRecord);
 
-		// Creating top icon; the current page
+			// Creating top icon; the current page
 		$tree->tree[] = array(
 			'row' => $treeStartingRecord,
 			'HTML' => t3lib_iconWorks::getIconImage('pages', $treeStartingRecord, $GLOBALS['BACK_PATH'], 'align="top"')

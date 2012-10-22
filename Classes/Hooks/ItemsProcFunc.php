@@ -46,7 +46,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 			$damEntry = array(
 				$GLOBALS['LANG']->sL($locallangFile . 'tx_news_domain_model_media.type.I.3'),
 				'3',
-				t3lib_extMgm::extRelPath('news').'Resources/Public/Icons/media_type_dam.gif'
+				t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_dam.gif'
 			);
 
 				// add entry to type list
@@ -179,7 +179,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * @return void
 	 */
 	private function removeActionFromList(array &$config, $action) {
-		foreach($config['items'] as $key => $item) {
+		foreach ($config['items'] as $key => $item) {
 			if ($item[1] === $action) {
 				unset($config['items'][$key]);
 				continue;

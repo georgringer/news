@@ -96,7 +96,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 					'deleted=0 AND pid=' . $configuration->getTagPid() .
 						' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], self::TAG)
 					);
-		if(isset($record['uid'])) {
+		if (isset($record['uid'])) {
 			$tagUid = $record['uid'];
 		} else {
 			$tcemainData = array(

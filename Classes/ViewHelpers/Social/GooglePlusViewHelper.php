@@ -52,6 +52,7 @@ class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends Tx_Fluid_Core_View
 
 	/**
 	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 * @return void
 	 */
 	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
 		$this->pluginSettingsService = $pluginSettingsService;
@@ -80,7 +81,7 @@ class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends Tx_Fluid_Core_View
 		$code = '';
 		if (empty($jsCode)) {
 			$jsCode = 'https://apis.google.com/js/plusone.js';
-		} elseif($jsCode != '-1') {
+		} elseif ($jsCode != '-1') {
 			$jsCode = htmlspecialchars($jsCode);
 		}
 
