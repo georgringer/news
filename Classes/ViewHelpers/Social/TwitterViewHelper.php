@@ -69,7 +69,7 @@ class Tx_News_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHel
 		$this->registerTagAttribute('datacount', 'string', 'Button style. Can be "horizontal", "vertical" or "none"');
 		$this->registerTagAttribute('datavia', 'string', 'Preferred twitter account.');
 		$this->registerTagAttribute('datarelated', 'string', 'Related twitter account.');
-		$this->registerTagAttribute('datatext', 'string', 'This is the text that people will include in their Tweet when they share from your website. Default is title of the page');
+		$this->registerTagAttribute('datatext', 'string', 'Text included in tweet when shared. Default is title of the page');
 		$this->registerTagAttribute('dataurl', 'string', 'Suggest a4 default Tweet for users. Default is current page title.');
 		$this->registerTagAttribute('datalang', 'string', 'Language of the twitter button. Can either be fr, it, de, es, ko or ja');
 		$this->registerTagAttribute('javaScript', 'string', 'JS URL. If not set, default is used, if set to -1 no Js is loaded');

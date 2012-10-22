@@ -59,8 +59,7 @@ class Tx_News_Utility_Validation {
 						break;
 					case 2:
 						if ((strtolower($split[1]) !== 'desc' && strtolower($split[1]) !== 'asc') ||
-							!t3lib_div::inList($allowedSettings, $split[0])
-								) {
+							!t3lib_div::inList($allowedSettings, $split[0])) {
 							$isValid = FALSE;
 						}
 						break;

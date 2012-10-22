@@ -36,11 +36,11 @@ class Tx_News_Hooks_Tcemain {
 	 * @param string $status status
 	 * @param string $table tablename
 	 * @param integer $recordUid id of the record
-	 * @param array $fieldArray fieldArray
+	 * @param array $fields fieldArray
 	 * @param t3lib_TCEmain $parentObject parent Object
 	 * @return void
 	 */
-	public function processDatamap_afterDatabaseOperations($status, $table, $recordUid, array $fieldArray, t3lib_TCEmain $parentObject) {
+	public function processDatamap_afterDatabaseOperations($status, $table, $recordUid, array $fields, t3lib_TCEmain $parentObject) {
 			// Clear category cache
 		if ($table === 'tx_news_domain_model_category') {
 			$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
@@ -55,7 +55,7 @@ class Tx_News_Hooks_Tcemain {
 				$recordUid = $parentObject->substNEWwithIDs[$recordUid];
 			}
 
-			if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fieldArray['type'] && !$GLOBALS['BE_USER']->workspace) {
+			if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fields['type'] && !$GLOBALS['BE_USER']->workspace) {
 					// if "savedokview" has been pressed and current article has "type" 0 (= normal news article)
 					// and the beUser works in the LIVE workspace open current record in single view
 				$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($GLOBALS['_POST']['popViewId']);

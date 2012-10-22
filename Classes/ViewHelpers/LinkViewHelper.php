@@ -26,7 +26,9 @@
  * Inline notation:
  * {n:link(newsItem:newsItem,settings:settings,configuration:{returnLast:'url'})}
  * Link with additional arguments
- * <n:link newsItem="{newsItem}" settings="{settings}" configuration="{ATagParams:'class=\"fo\" id=\"bar\"'}">
+ * <n:link newsItem="{newsItem}"
+ * 		settings="{settings}"
+ * 		configuration="{ATagParams:'class=\"fo\" id=\"bar\"'}">
  *    {newsItem.title}
  * </n:link>
  *
@@ -51,6 +53,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 
 	/**
 	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 * @return void
 	 */
 	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
 		$this->pluginSettingsService = $pluginSettingsService;
@@ -71,20 +74,20 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 
 		$newsType = (int)$newsItem->getType();
 		switch ($newsType) {
-			// internal news
+				// internal news
 			case 1:
 				$configuration['parameter'] = $newsItem->getInternalurl();
 				break;
-			// external news
+				// external news
 			case 2:
 				$configuration['parameter'] = $newsItem->getExternalurl();
 				break;
-			// normal news record
+				// normal news record
 			default:
 				$detailPid = 0;
 				$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $settings['detailPidDetermination'], TRUE);
 
-				// if TS is not set, prefer flexform setting
+					// if TS is not set, prefer flexform setting
 				if (!isset($settings['detailPidDetermination'])) {
 					$detailPidDeterminationMethods[] = 'flexform';
 				}
@@ -110,7 +113,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 						'&tx_news_pi1[action]=detail';
 				}
 
-				// Add date as human readable (30/04/2011)
+					// Add date as human readable (30/04/2011)
 				if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
 					$dateTime = $newsItem->getDatetime();
 

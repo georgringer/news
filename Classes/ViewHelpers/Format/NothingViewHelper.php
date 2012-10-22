@@ -29,7 +29,7 @@
  *
  * <n:format.nothing>
  * <n:titleTag>{newsItem.title}</n:titleTag>
- * <f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}"/>
+ * Fobar
  * </n:format.nothing>
  *
  * Output:

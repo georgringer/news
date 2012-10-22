@@ -110,6 +110,8 @@ class Tx_News_Hooks_CmsLayout {
 					case 'category_list':
 						$this->getCategorySettings(FALSE);
 						break;
+					default:
+						// nothing to do
 				}
 
 					// for all views
@@ -156,7 +158,8 @@ class Tx_News_Hooks_CmsLayout {
 
 			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
 							htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord)) . ': ' .
-							htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_news', $newsRecord)) . ' <small>(' . $newsRecord['uid'] . ')</small>';
+							htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
+							' <small>(' . $newsRecord['uid'] . ')</small>';
 
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $content);
 		}
@@ -401,8 +404,8 @@ class Tx_News_Hooks_CmsLayout {
 
 			if (!empty($recursiveLevelText)) {
 				$recursiveLevelText =  '<br /><small>' .
-							$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.recursive', TRUE)
-								. ': ' . $recursiveLevelText . '</small>';
+							$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.recursive', TRUE).
+							': ' . $recursiveLevelText . '</small>';
 			}
 
 			$this->tableData[] = array(

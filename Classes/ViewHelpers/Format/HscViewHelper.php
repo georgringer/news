@@ -38,7 +38,10 @@ class Tx_News_ViewHelpers_Format_HscViewHelper extends Tx_Fluid_Core_ViewHelper_
 	 */
 	public function render() {
 		if (class_exists('Tx_Fluid_ViewHelpers_Format_HtmlspecialcharsViewHelper')) {
-			t3lib_div::deprecationLog('EXT:news Since TYPO3 4.6.0, a native ViewHelper for htmlspecialchars() is available, use f:format.htmlspecialchars instead of n:format.hsc');
+			$message = 'EXT:news: Since TYPO3 4.6.0, a native ViewHelper for htmlspecialchars() ' .
+			'is available, use f:format.htmlspecialchars instead of n:format.hsc';
+
+			t3lib_div::deprecationLog($message);
 		}
 		return htmlspecialchars($this->renderChildren());
 	}

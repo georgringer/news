@@ -32,7 +32,8 @@
 class Tx_News_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * Disable the escaping interceptor because otherwise the child nodes would be escaped before this view helper
+	 * Disable the escaping interceptor because otherwise the
+	 * child nodes would be escaped before this view helper
 	 * can decode the text's entities.
 	 *
 	 * @var boolean
@@ -40,16 +41,20 @@ class Tx_News_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends Tx_Fluid_C
 	protected $escapingInterceptorEnabled = FALSE;
 
 	/**
-	 * Converts all HTML entities to their applicable characters as needed using PHPs html_entity_decode() function.
+	 * Converts all HTML entities to their applicable characters as needed
+	 * using PHPs html_entity_decode() function.
 	 *
 	 * @param string $value string to format
-	 * @param boolean $keepQuotes if TRUE, single and double quotes won't be replaced (sets ENT_NOQUOTES flag)
+	 * @param boolean $keepQuotes if TRUE, single and double quotes won't be replaced
 	 * @return string the altered string
 	 * @see http://www.php.net/html_entity_decode
 	 */
 	public function render($value = NULL, $keepQuotes = FALSE) {
 		if (class_exists('Tx_Fluid_ViewHelpers_Format_HtmlentitiesDecodeViewHelper')) {
-			t3lib_div::deprecationLog('EXT:news Since TYPO3 4.6.0, a native ViewHelper for html_entity_decode() is available, use f:format.htmlEntityDecode instead of n:format.htmlEntityDecode');
+			$message = 'EXT:news: Since TYPO3 4.6.0, a native ViewHelper for html_entity_decode() ' .
+				'is available, use f:format.htmlEntityDecode instead of n:format.htmlEntityDecode';
+
+			t3lib_div::deprecationLog($message);
 		}
 
 		if ($value === NULL) {

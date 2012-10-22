@@ -30,6 +30,7 @@
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
+
 	/**
 	 * @var Tx_Extbase_Object_ObjectManager
 	 */
@@ -80,6 +81,12 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 		$this->categoryRepository = $categoryRepository;
 	}
 
+	/**
+	 * Do the import
+	 *
+	 * @param array $importArray array of to be imported categories
+	 * @return void
+	 */
 	public function import(array $importArray) {
 		foreach ($importArray as $importItem) {
 			if (is_null($category = $this->categoryRepository->findOneByImportSourceAndImportId(

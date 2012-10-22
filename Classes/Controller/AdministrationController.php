@@ -186,8 +186,15 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		/* @var $db t3lib_DB */
 		$db = $GLOBALS['TYPO3_DB'];
 
-		$row['countNews'] = $db->exec_SELECTcountRows('*', 'tx_news_domain_model_news', 'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_news'));
-		$row['countCategories'] = $db->exec_SELECTcountRows('*', 'tx_news_domain_model_category', 'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_category'));
+		$row['countNews'] = $db->exec_SELECTcountRows(
+			'*',
+			'tx_news_domain_model_news',
+			'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_news'));
+		$row['countCategories'] = $db->exec_SELECTcountRows(
+			'*',
+			'tx_news_domain_model_category',
+			'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_category'));
+
 		$row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
 	}
 

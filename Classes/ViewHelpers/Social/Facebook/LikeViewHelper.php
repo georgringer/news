@@ -32,7 +32,10 @@
  * <n:social.facebook.like />
  * Result: Facebook widget to share the current URL
  *
- * <n:social.facebook.like href="http://www.typo3.org" width="300" font="arial" />
+ * <n:social.facebook.like
+ * 		href="http://www.typo3.org"
+ * 		width="300"
+ * 		font="arial" />
  * Result: Facebook widget to share www.typo3.org within a plugin styled with
  * width 300 and arial as font
  *
@@ -68,7 +71,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 		$this->registerTagAttribute('href', 'string', 'Given url, if empty, current url is used');
 		$this->registerTagAttribute('layout', 'string', 'Either: standard, button_count or box_count');
 		$this->registerTagAttribute('width', 'integer', 'With of widget, default 450');
-		$this->registerTagAttribute('font', 'string', 'Font, options are: arial, lucidia grande, segoe ui, tahoma, trebuchet ms, verdana');
+		$this->registerTagAttribute('font', 'string', 'Font, options are: arial,lucidia grande,segoe ui,tahoma,trebuchet ms,verdana');
 		$this->registerTagAttribute('javaScript', 'string', 'JS URL. If not set, default is used, if set to -1 no Js is loaded');
 	}
 

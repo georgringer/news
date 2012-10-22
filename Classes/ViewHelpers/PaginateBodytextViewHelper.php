@@ -28,7 +28,8 @@
  *
  * Example
  * ----------
- * <n:paginateBodytext object="{newsItem}" as="bodytext" currentPage="{currentPage}">
+ * <n:paginateBodytext object="{newsItem}"
+ * 		as="bodytext" currentPage="{currentPage}">
  * 	<div class="articleBodyText">
  * 		<f:format.html>{bodytext}</f:format.html>
  * 	</div>
@@ -47,10 +48,14 @@
  * 							<li>
  * 								<f:if condition="{page.number} == 1">
  * 									<f:then>
- * 										<f:link.action action="detail" arguments="{news: newsItem}">{page.number}</f:link.action>
+ * 										<f:link.action action="detail" arguments="{news: newsItem}">
+ * 											{page.number}
+ * 										</f:link.action>
  * 									</f:then>
  * 									<f:else>
- * 										<f:link.action action="detail" arguments="{news: newsItem, currentPage: page.number}">{page.number}</f:link.action>
+ * 										<f:link.action action="detail" arguments="{news: newsItem, currentPage: page.number}">
+ * 											{page.number}
+ * 										</f:link.action>
  * 									</f:else>
  * 								</f:if>
  * 							</li>

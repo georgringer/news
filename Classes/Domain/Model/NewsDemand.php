@@ -29,7 +29,8 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_NewsDemand extends Tx_Extbase_DomainObject_AbstractEntity implements Tx_News_Domain_Model_DemandInterface {
+class Tx_News_Domain_Model_NewsDemand
+	extends Tx_Extbase_DomainObject_AbstractEntity implements Tx_News_Domain_Model_DemandInterface {
 
 	/**
 	 * @var string

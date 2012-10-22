@@ -93,6 +93,14 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		$this->categoryRepository = $categoryRepository;
 	}
 
+	/**
+	 * Do the import
+	 *
+	 * @param array $importData
+	 * @param array $importItemOverwrite
+	 * @param array $settings
+	 * @return void
+	 */
 	public function import(array $importData, array $importItemOverwrite = array(), $settings = array()) {
 		foreach ($importData as $importItem) {
 			$news = NULL;
@@ -222,10 +230,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		if ($mediaItems->count() !== 0) {
 			foreach ($mediaItems as $mediaItem) {
 				if ($mediaItem->getImage() == basename($mediaFile) &&
-					$this->filesAreEqual(
-						PATH_site. $mediaFile,
-						PATH_site . self::UPLOAD_PATH . $mediaItem->getImage()
-					)) {
+					$this->filesAreEqual(PATH_site . $mediaFile, PATH_site . self::UPLOAD_PATH . $mediaItem->getImage())) {
 					$result = $mediaItem;
 					break;
 				}

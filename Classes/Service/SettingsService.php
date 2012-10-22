@@ -32,7 +32,8 @@
  * t3lib_div::print_array($pluginSettingsService->getSettings());
  *
  * If objectManager is not available:
- * http://forge.typo3.org/projects/typo3v4-mvc/wiki/Dependency_Injection_%28DI%29#Creating-Prototype-Objects-through-the-Object-Manager
+ * http://forge.typo3.org/projects/typo3v4-mvc/wiki/
+ * Dependency_Injection_%28DI%29#Creating-Prototype-Objects-through-the-Object-Manager
  *
  * @package TYPO3
  * @subpackage tx_news

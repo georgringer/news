@@ -33,7 +33,7 @@ class Tx_News_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewHelper
 	/**
 	 * Render the supplied DateTime object as a formatted date.
 	 *
-	 * @param mixed $date either a DateTime object or a string that is accepted by DateTime constructor
+	 * @param mixed $date DateTime object or a string that is accepted by DateTime constructor
 	 * @param string $format Format String which is taken to format the Date/Time
 	 * @param bool $currentDate if true, the current date is used
 	 * @param bool $strftime if true, the strftime is used instead of date()
@@ -62,11 +62,14 @@ class Tx_News_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewHelper
 			}
 		}
 
+		$formattedDate = '';
 		if ($strftime) {
-			return strftime($format, $date->format('U'));
+			$formattedDate = strftime($format, $date->format('U'));
 		} else {
-			return date($format, $date->format('U'));
+			$formattedDate = date($format, $date->format('U'));
 		}
+
+		return $formattedDate;
 	}
 }
 ?>

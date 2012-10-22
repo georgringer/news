@@ -31,7 +31,8 @@
 class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository  {
 
 	/**
-	 * Returns a category contstrain created by a given list of categories and a junction string
+	 * Returns a category contstraint created by
+	 * a given list of categories and a junction string
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
 	 * @param  array $categories
@@ -291,7 +292,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 * the enableField setting
 	 *
 	 * @param integer $uid id of record
-	 * @param boolean $respectEnableFields if set to false, also hidden records are shown
+	 * @param boolean $respectEnableFields if set to false, hidden records are shown
 	 * @return Tx_News_Domain_Model_News
 	 */
 	public function findByUid($uid, $respectEnableFields = TRUE) {

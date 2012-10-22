@@ -30,8 +30,10 @@
  */
 class Tx_News_Interfaces_Audio_Mp3 implements Tx_News_Interfaces_MediaInterface {
 
+	const PATH_TO_JS = 'typo3conf/ext/news/Resources/Public/JavaScript/Contrib/';
+
 	/**
-	 * Render flv viles
+	 * Render flv files
 	 *
 	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
@@ -44,11 +46,11 @@ class Tx_News_Interfaces_Audio_Mp3 implements Tx_News_Interfaces_MediaInterface 
 		$url = htmlspecialchars($url);
 		$uniqueId = Tx_News_Service_FileService::getUniqueId($element);
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/audioplayer-noswfobject.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'swfobject-2-2.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'audioplayer-noswfobject.js');
 
 		$inlineJs = '
-			AudioPlayer.setup("' . t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 'typo3conf/ext/news/Resources/Public/JavaScript/Contrib/audioplayer-player.swf", {
+			AudioPlayer.setup("' . t3lib_div::getIndpEnv('TYPO3_SITE_URL') . self::PATH_TO_JS . 'audioplayer-player.swf", {
 				width: ' . (int)$width . '
 			});';
 

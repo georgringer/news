@@ -29,7 +29,9 @@
  * Example
  * ==============
  * <div id="disqus_thread"></div>
- * <n:social.disqus newsItem="{newsItem}" shortName="derfilm" link="{n:link(newsItem:newsItem,settings:settings,configuration:{returnLast:'url'})}" />
+ * <n:social.disqus newsItem="{newsItem}"
+ * 		shortName="demo123"
+ * 		link="{n:link(newsItem:newsItem,settings:settings,configuration:{returnLast:'url'})}" />
  *
  * @package TYPO3
  * @subpackage tx_news

@@ -28,7 +28,9 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-abstract class Tx_News_Domain_Repository_AbstractDemandedRepository extends Tx_Extbase_Persistence_Repository implements Tx_News_Domain_Repository_DemandedRepositoryInterface {
+abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
+	extends Tx_Extbase_Persistence_Repository
+	implements Tx_News_Domain_Repository_DemandedRepositoryInterface {
 
 	/**
 	 * Returns an array of constraints created from a given demand object.
@@ -60,7 +62,8 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository extends Tx_E
 
 		$query = $this->createQuery();
 
-			// @todo find a better place for setting respectStoragePage. Perhaps $this->createQuery().
+			// @todo find a better place for setting respectStoragePage.
+			// Perhaps $this->createQuery().
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 
 		$constraints = $this->createConstraintsFromDemand($query, $demand);

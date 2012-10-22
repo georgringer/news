@@ -71,7 +71,8 @@ class Tx_News_Interfaces_Video_Videosites implements Tx_News_Interfaces_MediaInt
 	}
 
 	/**
-	 * Videosites implementation is always enabled as check is done in tslib_mediaWizardManager
+	 * Videosites implementation is always enabled,
+	 * the check is done in tslib_mediaWizardManager
 	 *
 	 * @param Tx_News_Domain_Model_Media $element
 	 * @return boolean

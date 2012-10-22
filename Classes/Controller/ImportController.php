@@ -31,7 +31,8 @@
 class Tx_News_Controller_ImportController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * Retrieve all available import jobs by traversing trough registered import jobs and checking "isEnabled".
+	 * Retrieve all available import jobs by traversing trough registered
+	 * import jobs and checking "isEnabled".
 	 *
 	 * @return array
 	 */

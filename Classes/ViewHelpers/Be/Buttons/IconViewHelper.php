@@ -27,16 +27,9 @@
  * <f:be.buttons.icon uri="{f:uri.action()}" />
  * </code>
  * <output>
- * An icon button as known from the TYPO3 backend, skinned and linked with the default
- * action of the current controller.
+ * An icon button as known from the TYPO3 backend, skinned and linked
+ * with the default action of the current controller.
  * Note: By default the "close" icon is used as image
- * </output>
- * <code title="Default">
- * <f:be.buttons.icon uri="{f:uri.action(action:'new')}" icon="new_el" title="Create new Foo" />
- * </code>
- * <output>
- * This time the "new_el" icon is returned, the button has the title attribute set and
- * links to the "new" action of the current controller.
  * </output>
  *
  * @author Steffen Kamper <info@sk-typo3.de>
@@ -49,20 +42,23 @@ class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends Tx_Fluid_ViewHelpers
 	/**
 	 * Renders an icon link as known from the TYPO3 backend
 	 *
-	 * @param string $icon Icon to be used. See self::allowedIcons for a list of allowed icon names
-	 * @param string $uri the target URI for the link. If you want to execute JavaScript here, prefix the URI with "javascript:"
-	 * @param string $title Title attribte of the resulting link
+	 * @param string $icon Icon to be used
+	 * @param string $uri the target URI for the link
+	 * @param string $title Title attribute of the resulting link
 	 * @param string $onclick onclick setting
 	 * @return string the rendered icon link
 	 */
 	public function render($icon = 'closedok', $uri = '', $title = '', $onclick = '') {
 		$icon = t3lib_iconWorks::getSpriteIcon($icon, array('title' => $title));
+		$cotent = '';
 
 		if (empty($uri) && empty($onclick)) {
-			return $icon;
+			$content = $icon;
 		} else {
-			return '<a onclick="' . htmlspecialchars($onclick) . '" href="' . htmlspecialchars($uri) . '">' . $icon . '</a>';
+			$content = '<a onclick="' . htmlspecialchars($onclick) . '" href="' . htmlspecialchars($uri) . '">' . $icon . '</a>';
 		}
+
+		return $content;
 	}
 }
 

@@ -90,7 +90,8 @@ class Tx_News_Service_CategoryService {
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'uid',
 			'tx_news_domain_model_category',
-			'tx_news_domain_model_category.parentcategory IN (' . $GLOBALS['TYPO3_DB']->cleanIntList($idList) . ') AND deleted=0 ' . $additionalWhere);
+			'tx_news_domain_model_category.parentcategory IN (' . $GLOBALS['TYPO3_DB']->cleanIntList($idList) . ')
+				AND deleted=0 ' . $additionalWhere);
 
 		while (($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
 			$counter++;

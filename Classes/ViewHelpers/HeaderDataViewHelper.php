@@ -27,7 +27,10 @@
  *
  * Example
  * <n:headerData>
- * <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<f:uri.page additionalParams="{type:9818}"/>" />
+ * 		<link rel="alternate"
+ * 			type="application/rss+xml"
+ * 			title="RSS 2.0"
+ * 			href="<f:uri.page additionalParams="{type:9818}"/>" />
  * </n:headerData>
  *
  * @package TYPO3

@@ -30,6 +30,8 @@
  */
 class Tx_News_Interfaces_Video_Flv implements Tx_News_Interfaces_MediaInterface {
 
+	const PATH_TO_JS = 'typo3conf/ext/news/Resources/Public/JavaScript/Contrib/';
+
 	/**
 	 * Render flv viles
 	 *
@@ -49,7 +51,7 @@ class Tx_News_Interfaces_Video_Flv implements Tx_News_Interfaces_MediaInterface 
 
 		$url = Tx_News_Service_FileService::getCorrectUrl($element->getContent());
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/flowplayer-3.2.4.min.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'flowplayer-3.2.4.min.js');
 
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {

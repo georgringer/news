@@ -47,7 +47,7 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends Tx_Fluid_Cor
 	 * @return void
 	 */
 	public function initializeArguments() {
-		$this->registerTagAttribute('xid', 'string', 'An id associated with the comments object (defaults to URL-encoded page URL)', TRUE);
+		$this->registerTagAttribute('xid', 'string', 'An id associated with the comments object, Default: URL-encoded page URL', TRUE);
 		$this->registerTagAttribute('numposts', 'integer', 'the number of comments to display, or 0 to hide all comments');
 		$this->registerTagAttribute('width', 'integer', 'The width of the plugin in px, default = 425');
 		$this->registerTagAttribute('publishFeed', 'boolean', 'Whether the publish feed story checkbox is checked., default = TRUE');
@@ -66,7 +66,8 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends Tx_Fluid_Cor
 		$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
 
 		$code = '<div id="fb-root"></div>
-					<script src="http://connect.facebook.net/' . $locale . '/all.js#appId=' . htmlspecialchars($appId) . '&amp;xfbml=1"></script>';
+					<script src="http://connect.facebook.net/' . $locale . '/all.js#appId=' . htmlspecialchars($appId) .
+			'&amp;xfbml=1"></script>';
 		$code .= $this->tag->render();
 
 		return $code;

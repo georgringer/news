@@ -32,8 +32,10 @@
  * <n:social.googlePlus></n:social.googlePlus>
  * Result: Google Plus Button
  *
- * <n:social.googlePlus size="small"  href="http://www.mydomain.tld" count="false"></n:social.googlePlus>
- * Result: Small Google Plus Button to share www.mydomain.tld without showing the counter
+ * <n:social.googlePlus size="small"
+ * 		href="http://www.mydomain.tld" count="false"></n:social.googlePlus>
+ * Result: Small Google Plus Button to share www.mydomain.tld
+ * 	without showing the counter
  *
  * @package TYPO3
  * @subpackage tx_news

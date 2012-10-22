@@ -137,7 +137,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	/**
 	 * Single view of a news record
 	 *
-	 * @param Tx_News_Domain_Model_News $news
+	 * @param Tx_News_Domain_Model_News $news news item
 	 * @param integer $currentPage current page for optional pagination
 	 * @return void
 	 */
@@ -234,7 +234,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	/**
 	 * Injects the Configuration Manager and is initializing the framework settings
 	 *
-	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
 	 * @return void
 	 */
 	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
@@ -260,8 +260,6 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 				}
 			}
 		}
-
-
 
 			// Use stdWrap for given defined settings
 		if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {

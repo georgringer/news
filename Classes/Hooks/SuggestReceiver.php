@@ -35,10 +35,8 @@ class Tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiv
 	/**
 	 * Queries a table for records and completely processes them
 	 *
-	 * Returns a two-dimensional array of almost finished records; the only need to be put into a <li>-structure
-	 *
-	 * If you subclass this class, you will most likely only want to overwrite the functions called from here, but not
-	 * this function itself
+	 * Returns a two-dimensional array of almost finished records;
+	 * they only need to be put into a <li>-structure
 	 *
 	 * @param array $params
 	 * @param integer $recursionCounter recursion counter

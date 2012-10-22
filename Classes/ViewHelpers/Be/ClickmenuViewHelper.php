@@ -47,7 +47,12 @@ class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 * @param bool $returnOnClick
 	 * @return string
 	 */
-	private function wrapClickMenuOnIcon($str, $table, $uid = '', $listFr = 1, $addParams = '', $enDisItems = '', $returnOnClick = FALSE) {
+	private function wrapClickMenuOnIcon($str, $table, $uid = '') {
+		$listFr = 1;
+		$addParams = '';
+		$enDisItems = '';
+		$returnOnClick = FALSE;
+
 		$backPath = rawurlencode($GLOBALS['BACK_PATH']) . '|' . t3lib_div::shortMD5($this->backPath . '|' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']);
 		$onClick = 'showClickmenu("' . $table . '","' . $uid . '","' . $listFr . '","' . str_replace('+', '%2B', $enDisItems) . '","' . str_replace('&', '&amp;', addcslashes($backPath, '"')) . '","' . str_replace('&', '&amp;', addcslashes($addParams, '"')) . '");return false;';
 		return $returnOnClick ? $onClick : '<a href="#" onclick="' . htmlspecialchars($onClick) . '" oncontextmenu="' . htmlspecialchars($onClick) . '">' . $str . '</a>';

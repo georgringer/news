@@ -43,7 +43,9 @@ class Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper extends Tx_Fluid_Core_ViewH
 			$idList[] = $item->getUid();
 		}
 
-		$text = 'window.location.href=\'alt_doc.php?returnUrl=\'+T3_THIS_LOCATION+\'&edit[tx_news_domain_model_news][' . implode(',', $idList) . ']=edit&columnsOnly=' . $column . '&disHelp=1\';return false;';
+		$text = 'window.location.href=\'alt_doc.php?returnUrl=\'+T3_THIS_LOCATION+\'&edit[tx_news_domain_model_news][' .
+			implode(',', $idList) .
+			']=edit&columnsOnly=' . $column . '&disHelp=1\';return false;';
 		return $text;
 	}
 }

@@ -135,7 +135,7 @@ class Tx_News_Hooks_T3libBefunc {
 		}
 
 		if (!empty($selectedView)) {
-				// modify the flexform structure depending on the first found action
+				// Modify the flexform structure depending on the first found action
 			switch ($selectedView) {
 				case 'News->list':
 				case 'News->searchResult':
@@ -153,6 +153,8 @@ class Tx_News_Hooks_T3libBefunc {
 				case 'Category->list':
 					$this->deleteFromStructure($dataStructure, $this->removedFieldsInCategoryListView);
 					break;
+				default:
+					// @todo: Implement a hook here
 			}
 		}
 	}
