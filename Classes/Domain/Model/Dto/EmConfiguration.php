@@ -34,7 +34,6 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 * Fill the properties properly
 	 *
 	 * @param array $configuration em configuration
-	 * @return void
 	 */
 	public function __construct(array $configuration) {
 		foreach($configuration as $key => $value) {

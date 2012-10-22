@@ -37,7 +37,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 * @param  array $categories
 	 * @param  string $conjunction
 	 * @param  boolean $includeSubCategories
-	 * @return Tx_Extbase_Persistence_QOM_Constrain|null
+	 * @return Tx_Extbase_Persistence_QOM_Constraint|null
 	 */
 	protected function createCategoryConstraint(Tx_Extbase_Persistence_QueryInterface $query, $categories, $conjunction, $includeSubCategories = FALSE) {
 		$constraint = NULL;
@@ -85,7 +85,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
-	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
+	 * @return array<Tx_Extbase_Persistence_QOM_Constraint>
 	 */
 	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
 		$constraints = array();
@@ -239,7 +239,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 * Returns an array of orderings created from a given demand object.
 	 *
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
-	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
+	 * @return array<Tx_Extbase_Persistence_QOM_Constraint>
 	 */
 	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {
 		$orderings = array();
