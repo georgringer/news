@@ -236,5 +236,17 @@ class Tx_News_Tests_Unit_Domain_Model_MediaTest extends Tx_Extbase_Tests_Unit_Ba
 		$this->mediaDomainModelInstance->setDam($dam);
 		$this->assertEquals($dam, $this->mediaDomainModelInstance->getDam());
 	}
+
+	/**
+	 * Test if copyright can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function copyrightCanBeSet() {
+		$copyright = 'by Creative Commons';
+		$this->mediaDomainModelInstance->setCopyright($copyright);
+		$this->assertEquals($copyright, $this->mediaDomainModelInstance->getCopyright());
+	}
 }
 ?>

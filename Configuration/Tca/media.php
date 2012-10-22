@@ -231,16 +231,25 @@ $TCA['tx_news_domain_model_media'] = array(
 				'eval' => 'int',
 			)
 		),
+		'copyright' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news_domain_model_media.copyright',
+			'config' => array(
+				'type' => 'input',
+				'size' => 20,
+			)
+		),
 	),
 	'types' => array(
 			// Image
-		'0' => array('showitem' => 'type;;palettteCore,image;;paletteWidthHeight,caption;;paletteTitle,'),
+		'0' => array('showitem' => 'type;;palettteCore,image;;paletteWidthHeight,caption;;paletteTitle,copyright,'),
 			// Multimedia (Video & Audio)
-		'1' => array('showitem' => 'type;;palettteCore,multimedia,caption,'),
+		'1' => array('showitem' => 'type;;palettteCore,multimedia,caption,copyright,'),
 			// HTML
-		'2' => array('showitem' => 'type;;palettteCore,html,caption,'),
+		'2' => array('showitem' => 'type;;palettteCore,html,caption,copyright,'),
 			// DAM
-		'3' => array('showitem' => 'type;;palettteCore,dam,caption;;paletteTitle,')
+		'3' => array('showitem' => 'type;;palettteCore,dam,caption;;paletteTitle,copyright,')
 	),
 	'palettes' => array(
 		'paletteWidthHeight' => array(

@@ -47,6 +47,7 @@
 			<label index="tx_news_domain_model_media.dam">DAM record</label>
 			<label index="tx_news_domain_model_media.show">Show</label>
 			<label index="tx_news_domain_model_media.showinpreview">Show in preview views</label>
+			<label index="tx_news_domain_model_media.copyright">Copyright</label>
 
 			<label index="tx_news_domain_model_file">News File Element</label>
 			<label index="tx_news_domain_model_file.title">Title</label>
