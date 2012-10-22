@@ -12,10 +12,18 @@
 		<f:then>
 			<n:format.nothing>
 				<f:if condition="{newsItem.alternativeTitle}">
-					<f:then><n:titleTag><n:format.htmlentitiesDecode>{newsItem.alternativeTitle}</n:format.htmlentitiesDecode></n:titleTag></f:then>
-					<f:else><n:titleTag><n:format.htmlentitiesDecode>{newsItem.title}</n:format.htmlentitiesDecode></n:titleTag></f:else>
+					<f:then>
+						<n:titleTag>
+							<n:format.htmlentitiesDecode>{newsItem.alternativeTitle}</n:format.htmlentitiesDecode>
+						</n:titleTag>
+					</f:then>
+					<f:else>
+						<n:titleTag>
+							<n:format.htmlentitiesDecode>{newsItem.title}</n:format.htmlentitiesDecode>
+						</n:titleTag>
+					</f:else>
 				</f:if>
-				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}"/>
+				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
 			</n:format.nothing>
 			<div class="header">
 				<h3>{newsItem.title}</h3>
@@ -28,7 +36,7 @@
 					</span>
 
 					<f:if condition="{newsItem.categories}">
-						<f:render partial="Category/Items" arguments="{categories:newsItem.categories, settings:settings}"/>
+						<f:render partial="Category/Items" arguments="{categories:newsItem.categories, settings:settings}" />
 					</f:if>
 
 					<f:if condition="{newsItem.author}">
@@ -53,7 +61,7 @@
 				<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
 			</f:if>
 
-			<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}"/>
+			<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}" />
 
 			<!-- main text -->
 			<div class="news-text-wrap">
@@ -87,7 +95,9 @@
 				<f:if condition="{newsItem.relatedSorted}">
 					<!-- Related news records -->
 					<div class="news-related news-related-news">
-						<h4><f:translate key="related-news" /></h4>
+						<h4>
+							<f:translate key="related-news" />
+						</h4>
 						<ul>
 							<f:for each="{newsItem.relatedSorted}" as="related">
 								<li>
@@ -106,7 +116,9 @@
 				<f:if condition="{newsItem.relatedFiles}">
 					<!-- Related files -->
 					<div class="news-related news-related-files">
-						<h4><f:translate key="related-files" /></h4>
+						<h4>
+							<f:translate key="related-files" />
+						</h4>
 						<ul>
 							<f:for each="{newsItem.relatedFiles}" as="relatedFile">
 								<li>
@@ -135,7 +147,9 @@
 				<f:if condition="{newsItem.relatedLinks}">
 					<!-- Related links -->
 					<div class="news-related news-related-links">
-						<h4><f:translate key="related-links" /></h4>
+						<h4>
+							<f:translate key="related-links" />
+						</h4>
 						<ul>
 							<f:for each="{newsItem.relatedLinks}" as="relatedLink">
 								<li>

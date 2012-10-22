@@ -6,61 +6,64 @@
 
 <f:section name="content">
 	<h3 class="uppercase">News importer</h3>
+
 	<p class="description">
 		This is the "News importer module". Within the select box below you find a list of all available import jobs.<br />
 		<strong>Note</strong>: It's strongly recommended to backup all news tables before running an import job.
 
 	</p>
 	<br />
-	Choose a job: 	<f:form.select id="jobSelector" options="{availableJobs}" />
+	Choose a job:
+	<f:form.select id="jobSelector" options="{availableJobs}" />
 	<br /><br />
 
 	<div id="job" style="display:none;">
 		<div id="progressBar" style="width:300px;"></div>
-		<button id="startButton">Start</button><br />
+		<button id="startButton">Start</button>
+		<br />
 	</div>
 
 
 	<script type="text/javascript">
-	<![CDATA[
+		<![CDATA[
 		Ext.namespace('Tx_News');
 
-		Tx_News.Common = function() {
+		Tx_News.Common = function () {
 			var pub = {};
 			var extKey = 'news';
 
 			var underscoreToUpperCamelCase = function (subject) {
 				var matches = subject.match(/(_\w)/g);
-					if (matches) {
-						matches.each(function(m) {
-							subject = subject.replace(m, m.charAt(1).toUpperCase());
-						});
-					}
-					return subject.charAt(0).toUpperCase() + subject.substr(1);
+				if (matches) {
+					matches.each(function (m) {
+						subject = subject.replace(m, m.charAt(1).toUpperCase());
+					});
+				}
+				return subject.charAt(0).toUpperCase() + subject.substr(1);
 			};
 
 			var getParameterPrefix = function (mainModuleName, subModuleName) {
 				return  'tx_' + extKey + '_' + mainModuleName + '_' + extKey + subModuleName.replace(/_/g, '');
 			};
 
-			pub.getExtKey = function() {
+			pub.getExtKey = function () {
 				return extKey;
 			};
 
 			pub.getBackendRequest = function (mainModuleName, subModuleName, controller, action, parameters) {
 				var parameterPrefix = getParameterPrefix(mainModuleName, subModuleName);
-			    var params = {};
+				var params = {};
 
-				Ext.apply(parameters, {controller: controller, action: action});
+				Ext.apply(parameters, {controller:controller, action:action});
 
-				Ext.iterate(parameters, function(key,value) {
-					params[parameterPrefix + '[' + key + ']']  = value;
+				Ext.iterate(parameters, function (key, value) {
+					params[parameterPrefix + '[' + key + ']'] = value;
 				});
 
 				var request = {
-					'url' : 'mod.php?' + 'M=' + mainModuleName + '_' +  Ext.util.Format.capitalize(extKey) +
+					'url':'mod.php?' + 'M=' + mainModuleName + '_' + Ext.util.Format.capitalize(extKey) +
 						underscoreToUpperCamelCase(subModuleName),
-					'params' : params
+					'params':params
 				};
 
 				return request;
@@ -70,8 +73,8 @@
 		}();
 
 
-		Tx_News.Importer = function() {
-			var pub ={};
+		Tx_News.Importer = function () {
+			var pub = {};
 			var jobInfo = {};
 			var progressBar;
 
@@ -79,14 +82,14 @@
 
 			var run = function () {
 				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'Import',
-					'runJob', {jobClassName: jobInfo.jobClassName, offset: runCounter * jobInfo.increaseOffsetPerRunBy}));
+					'runJob', {jobClassName:jobInfo.jobClassName, offset:runCounter * jobInfo.increaseOffsetPerRunBy}));
 
 				Ext.apply(request, {
-					success: function(){
-						var progress =  runCounter / jobInfo.runsToComplete;
+					success:function () {
+						var progress = runCounter / jobInfo.runsToComplete;
 
-						progressBar.updateProgress(progress, Math.round(100*progress)+'%');
-						runCounter ++;
+						progressBar.updateProgress(progress, Math.round(100 * progress) + '%');
+						runCounter++;
 
 						if (runCounter <= jobInfo.runsToComplete) {
 							run();
@@ -96,7 +99,7 @@
 							runCounter = 1;
 						}
 					},
-					failure: function() {
+					failure:function () {
 						alert('error');
 					}
 				});
@@ -104,26 +107,26 @@
 				Ext.Ajax.request(request);
 			};
 
-			var initJob = function() {
+			var initJob = function () {
 				Ext.get('job').show();
 
 				progressBar = new Ext.ProgressBar({
-					renderTo: 'progressBar'
+					renderTo:'progressBar'
 				});
 
-				Ext.get('startButton').on('click', function() {
+				Ext.get('startButton').on('click', function () {
 					run();
 				});
 			};
 
 			var loadJobInfo = function (jobClassName) {
 				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'Import',
-					'jobInfo', {jobClassName: jobClassName}));
+					'jobInfo', {jobClassName:jobClassName}));
 
 				Ext.apply(request, {
-					success: function(response) {
+					success:function (response) {
 						jobInfo = (Ext.decode(response.responseText));
-						Ext.apply(jobInfo, {jobClassName: jobClassName});
+						Ext.apply(jobInfo, {jobClassName:jobClassName});
 						initJob();
 					}
 				});
@@ -131,8 +134,8 @@
 				Ext.Ajax.request(request);
 			};
 
-			pub.init = function() {
-				Ext.get('jobSelector').on('change', function() {
+			pub.init = function () {
+				Ext.get('jobSelector').on('change', function () {
 					var jobClassName = this.getValue();
 					if (jobClassName != '0') {
 						loadJobInfo(jobClassName);
@@ -144,9 +147,9 @@
 			return pub;
 		}();
 
-		Ext.onReady(function() {
+		Ext.onReady(function () {
 			Tx_News.Importer.init();
 		});
-	]]>
+		]]>
 	</script>
 </f:section>

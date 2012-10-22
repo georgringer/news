@@ -14,7 +14,7 @@
 						<f:translate key="search-text" arguments="{0:'{f:count(subject:news)}',1:search.subject}" />
 					</div>
 					<f:for each="{news}" as="newsItem">
-						<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+						<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}" />
 					</f:for>
 				</f:then>
 				<f:else>
