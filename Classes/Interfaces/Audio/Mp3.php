@@ -43,7 +43,6 @@ class Tx_News_Interfaces_Audio_Mp3 implements Tx_News_Interfaces_MediaInterface 
 	 */
 	public function render(Tx_News_Domain_Model_Media $element, $width, $height, $template = '') {
 		$url = Tx_News_Service_FileService::getCorrectUrl($element->getMultimedia());
-		$url = htmlspecialchars($url);
 		$uniqueId = Tx_News_Service_FileService::getUniqueId($element);
 
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'swfobject-2-2.js');
@@ -56,9 +55,9 @@ class Tx_News_Interfaces_Audio_Mp3 implements Tx_News_Interfaces_MediaInterface 
 
 		$GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode('news_audio', $inlineJs);
 
-		$content = '<p id="' . $uniqueId . '">' . htmlspecialchars($element->getCaption()) . '</p>
+		$content = '<p id="' . htmlspecialchars($uniqueId) . '">' . htmlspecialchars($element->getCaption()) . '</p>
 					<script type="text/javascript">
-						AudioPlayer.embed("' . $uniqueId . '", {soundFile: "' . $url . '"});
+						AudioPlayer.embed(' . t3lib_div::quoteJSvalue($uniqueId) . ', {soundFile: ' . t3lib_div::quoteJSvalue($url) . '});
 					</script> ';
 
 		return $content;

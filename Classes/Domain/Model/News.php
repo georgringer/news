@@ -680,7 +680,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 		$mediaElements = $this->getMedia();
 
 		foreach ($mediaElements as $mediaElement) {
-			if ($mediaElement->getShowinpreview() && $mediaElement->getType() == 0) {
+			if ($mediaElement->getShowinpreview() && $mediaElement->getType() === Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE) {
 				return $mediaElement;
 			}
 		}

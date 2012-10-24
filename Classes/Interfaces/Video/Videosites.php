@@ -56,14 +56,14 @@ class Tx_News_Interfaces_Video_Videosites implements Tx_News_Interfaces_MediaInt
 
 		if (!empty($finalUrl)) {
 			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
-			$uniqueDivId = 'mediaelement' . md5($element->getUid() . uniqid());
+			$uniqueDivId = 'mediaelement' . Tx_News_Service_FileService::getUniqueId($element);
 
-			$content .= '<div id="' . $uniqueDivId . '"></div>
+			$content .= '<div id="' . htmlspecialchars($uniqueDivId) . '"></div>
 						<script type="text/javascript">
 							var params = { allowScriptAccess: "always" };
-							var atts = { id: "' . $uniqueDivId . '" };
-							swfobject.embedSWF("' . htmlspecialchars($finalUrl) . '",
-							"' . $uniqueDivId . '", "' . (int)$width . '", "' . (int)$height . '", "8", null, null, params, atts);
+							var atts = { id: ' . t3lib_div::quoteJSvalue($uniqueDivId) . ' };
+							swfobject.embedSWF(' . t3lib_div::quoteJSvalue($finalUrl) . ',
+							' . t3lib_div::quoteJSvalue($uniqueDivId) . ', "' . (int)$width .'", "' . (int)$height .'", "8", null, null, params, atts);
 						</script>';
 		}
 

@@ -40,10 +40,6 @@ class Tx_News_Interfaces_Video_Quicktime implements Tx_News_Interfaces_MediaInte
 	 */
 	public function render(Tx_News_Domain_Model_Media $element, $width, $height) {
 		$url = Tx_News_Service_FileService::getCorrectUrl($element->getContent());
-		$url = htmlspecialchars($url);
-
-		$width = (int)$width;
-		$height = (int)$height;
 
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
@@ -52,11 +48,11 @@ class Tx_News_Interfaces_Video_Quicktime implements Tx_News_Interfaces_MediaInte
 		}
 
 		$content =
-				'<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="' . $width . '" height="' . $height . '" >
-					<param name="src" value="' . $url . '">
+				'<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="' . (int)$width . '" height="' . (int)$height . '" >
+					<param name="src" value="' . htmlspecialchars($url) . '">
 					<param name="autoplay" value="true">
-					<param name="type" value="video/quicktime" width="' . $width . '" height="' . $height . '">
-					<embed src="' . $url . '" width="' . $width . '" height="' . $height . '" autoplay="false" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
+					<param name="type" value="video/quicktime" width="' . (int)$width . '" height="' . (int)$height . '">
+					<embed src="' . htmlspecialchars($url) . '" width="' . (int)$width . '" height="' . (int)$height . '" autoplay="false" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
 				</object>';
 
 		return $content;
@@ -69,7 +65,7 @@ class Tx_News_Interfaces_Video_Quicktime implements Tx_News_Interfaces_MediaInte
 	 * @return boolean
 	 */
 	public function enabled(Tx_News_Domain_Model_Media $element) {
-		$url = $element->getMultimedia();
+		$url = $element->getContent();
 		$fileEnding = strtolower(substr($url, -3));
 
 		return ($fileEnding === 'mov');

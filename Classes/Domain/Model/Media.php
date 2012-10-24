@@ -30,6 +30,11 @@
  */
 class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity {
 
+	const MEDIA_TYPE_IMAGE = 0;
+	const MEDIA_TYPE_MULTIMEDIA = 1;
+	const MEDIA_TYPE_HTML = 2;
+	const MEDIA_TYPE_DAM = 3;
+
 	/**
 	 * @var DateTime
 	 */
@@ -471,16 +476,16 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 		$content = NULL;
 
 		switch ($this->getType()) {
-			case 1:
+			case self::MEDIA_TYPE_MULTIMEDIA:
 				$content = $this->getMultimedia();
 				break;
-			case 2:
+			case self::MEDIA_TYPE_HTML:
 				$content = $this->getHtml();
 				break;
-			case 3:
+			case self::MEDIA_TYPE_DAM:
 				$content = $this->getDam();
 				break;
-			case 0:
+			case self::MEDIA_TYPE_IMAGE:
 			default:
 				$content = $this->getImage();
 				break;
