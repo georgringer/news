@@ -129,16 +129,6 @@ $TCA['tx_news_domain_model_media'] = array(
 				'maxitems' => 1,
 			)
 		),
-		'html' => array(
-			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news_domain_model_media.html',
-			'config' => array(
-				'type' => 'text',
-				'cols' => 30,
-				'rows' => 5,
-			)
-		),
 		'multimedia' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
@@ -205,7 +195,6 @@ $TCA['tx_news_domain_model_media'] = array(
 				'items' => array(
 					array($ll . 'tx_news_domain_model_media.type.I.0', '0', t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_image.png'),
 					array($ll . 'tx_news_domain_model_media.type.I.1', '1', t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_multimedia.png'),
-					array($ll . 'tx_news_domain_model_media.type.I.2', '2', t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_html.png'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -246,8 +235,6 @@ $TCA['tx_news_domain_model_media'] = array(
 		'0' => array('showitem' => 'type;;palettteCore,image;;paletteWidthHeight,caption;;paletteTitle,copyright,'),
 			// Multimedia (Video & Audio)
 		'1' => array('showitem' => 'type;;palettteCore,multimedia,caption,copyright,'),
-			// HTML
-		'2' => array('showitem' => 'type;;palettteCore,html,caption,copyright,'),
 			// DAM
 		'3' => array('showitem' => 'type;;palettteCore,dam,caption;;paletteTitle,copyright,')
 	),

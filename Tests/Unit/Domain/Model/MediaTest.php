@@ -214,18 +214,6 @@ class Tx_News_Tests_Unit_Domain_Model_MediaTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 	/**
-	 * Test if html can be set
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function htmlCanBeSet() {
-		$html = '<div>123</div>';
-		$this->mediaDomainModelInstance->setHtml($html);
-		$this->assertEquals($html, $this->mediaDomainModelInstance->getHtml());
-	}
-
-	/**
 	 * Test if dam can be set
 	 *
 	 * @test
