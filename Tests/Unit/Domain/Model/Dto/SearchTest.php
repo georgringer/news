@@ -44,6 +44,19 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_SearchTest extends Tx_Extbase_Tests_Un
 		$this->assertEquals($subject, $domainModelInstance->getSubject());
 	}
 
+	/**
+	 * Test if fields can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function fieldsCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_Dto_Search();
+		$fields = 'field1,field2';
+		$domainModelInstance->setFields($fields);
+		$this->assertEquals($fields, $domainModelInstance->getFields());
+	}
+
 }
 
 ?>
