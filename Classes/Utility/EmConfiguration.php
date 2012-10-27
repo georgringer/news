@@ -24,7 +24,7 @@
 ***************************************************************/
 
 /**
- * Utilitiy class to get the settings from Extension Manager
+ * Utility class to get the settings from Extension Manager
  *
  * @package TYPO3
  * @subpackage tx_news
@@ -50,7 +50,7 @@ class Tx_News_Utility_EmConfiguration {
 	 *
 	 * @return array unserialized extconf settings
 	 */
-	private static function parseSettings() {
+	public static function parseSettings() {
 		$settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
 
 		if (!is_array($settings)) {

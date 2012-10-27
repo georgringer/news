@@ -37,7 +37,9 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 */
 	public function __construct(array $configuration) {
 		foreach ($configuration as $key => $value) {
-			$this->$key = $value;
+			if (property_exists(__CLASS__, $key)) {
+				$this->$key = $value;
+			}
 		}
 	}
 
