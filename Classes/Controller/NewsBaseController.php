@@ -36,7 +36,7 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 	 * Override this method to solve assign variables common for all actions
 	 * or prepare the view in another way before the action is called.
 	 *
-	 * @param Tx_Extbase_View_ViewInterface $view The view to be initialized
+	 * @param Tx_Extbase_MVC_View_ViewInterface $view The view to be initialized
 	 * @return void
 	 */
 	protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {

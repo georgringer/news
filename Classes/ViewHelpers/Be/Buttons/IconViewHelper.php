@@ -50,7 +50,7 @@ class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends Tx_Fluid_ViewHelpers
 	 */
 	public function render($icon = 'closedok', $uri = '', $title = '', $onclick = '') {
 		$icon = t3lib_iconWorks::getSpriteIcon($icon, array('title' => $title));
-		$cotent = '';
+		$content = '';
 
 		if (empty($uri) && empty($onclick)) {
 			$content = $icon;

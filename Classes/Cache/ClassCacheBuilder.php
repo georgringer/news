@@ -63,7 +63,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 				// Get the file from news itself, this needs to be loaded as first
 			$path = t3lib_extMgm::extPath('news') . 'Classes/' . $key . '.php';
 			if (!is_file($path)) {
-				throw new Exception('given file "' . $path . '" doesnt exist');
+				throw new Exception('given file "' . $path . '" does not exist');
 			}
 			$code = self::parseSingleFile($path, FALSE);
 

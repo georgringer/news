@@ -50,7 +50,7 @@ class Tx_News_Controller_CategoryController extends Tx_News_Controller_NewsContr
 	/**
 	 * Inject a category repository to enable DI
 	 *
-	 * @param Tx_News_Domain_Repository_NewsRepository $categoryRepository
+	 * @param Tx_News_Domain_Repository_CategoryRepository $categoryRepository
 	 * @return void
 	 */
 	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {

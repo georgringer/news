@@ -37,7 +37,7 @@ class Tx_News_Service_CategoryService {
 	 * @param string $idList list of category ids to start
 	 * @param integer $counter
 	 * @param string $additionalWhere additional where clause
-	 * @return string comma seperated list of category ids
+	 * @return string comma separated list of category ids
 	 */
 	public static function getChildrenCategories($idList, $counter = 0, $additionalWhere = '') {
 		$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
@@ -77,7 +77,7 @@ class Tx_News_Service_CategoryService {
 	 * @param string $idList list of category ids to start
 	 * @param integer $counter
 	 * @param string $additionalWhere additional where clause
-	 * @return string comma seperated list of category ids
+	 * @return string comma separated list of category ids
 	 */
 	private static function getChildrenCategoriesRecursive($idList, $counter, $additionalWhere) {
 		$result = array();

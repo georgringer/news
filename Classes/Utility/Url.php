@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Url Utitlity class
+ * Url Utility class
  *
  * @package TYPO3
  * @subpackage tx_news

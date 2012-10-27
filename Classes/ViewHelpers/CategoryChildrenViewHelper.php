@@ -38,7 +38,7 @@ class Tx_News_ViewHelpers_CategoryChildrenViewHelper extends Tx_Fluid_Core_ViewH
 	/**
 	 * Inject a news repository to enable DI
 	 *
-	 * @param Tx_News_Domain_Repository_NewsRepository $categoryRepository
+	 * @param Tx_News_Domain_Repository_CategoryRepository $categoryRepository
 	 * @return void
 	 */
 	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
@@ -49,6 +49,7 @@ class Tx_News_ViewHelpers_CategoryChildrenViewHelper extends Tx_Fluid_Core_ViewH
 	 *
 	 * @param integer $category category uid
 	 * @param string $as
+	 * @return string rendered content
 	 */
 	public function render($category, $as) {
 		$this->templateVariableContainer->add($as, $this->categoryRepository->findChildren($category));

@@ -268,8 +268,8 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	/**
 	 * Compares 2 files by using its filesize
 	 *
-	 * @param string $file1 Absolut path and filename to file1
-	 * @param string $file2 Absolut path and filename to file2
+	 * @param string $file1 Absolute path and filename to file1
+	 * @param string $file2 Absolute path and filename to file2
 	 * @return boolean
 	 */
 	protected function filesAreEqual($file1, $file2) {

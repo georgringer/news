@@ -99,7 +99,7 @@ class Tx_News_ViewHelpers_PaginateBodytextViewHelper extends Tx_Fluid_Core_ViewH
 			$tagsToClose = array();
 
 			for ($j = 0; $j < $currentPage; $j++) {
-				$chunk = $parts[$j] = $parts[$j];
+				$chunk = $parts[$j];
 
 				while (($chunk = mb_strstr($chunk, '<'))) {
 					$tag = $this->extractTag($chunk);

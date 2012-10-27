@@ -41,10 +41,6 @@ class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 * @param $str
 	 * @param $table
 	 * @param string $uid
-	 * @param int $listFr
-	 * @param string $addParams
-	 * @param string $enDisItems
-	 * @param bool $returnOnClick
 	 * @return string
 	 */
 	private function wrapClickMenuOnIcon($str, $table, $uid = '') {

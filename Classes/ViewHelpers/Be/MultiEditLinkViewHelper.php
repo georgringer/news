@@ -35,7 +35,7 @@ class Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper extends Tx_Fluid_Core_ViewH
 	 *
 	 * @param object $items news items
 	 * @param string $column column name
-	 * @return stromg
+	 * @return string
 	 */
 	public function render($items, $column) {
 		$idList = array();

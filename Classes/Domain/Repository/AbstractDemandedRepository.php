@@ -22,7 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * Abstraced demanded repository
+ * Abstract demanded repository
  *
  * @package TYPO3
  * @subpackage tx_news
@@ -101,7 +101,7 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 			$query->setLimit((int) $demand->getLimit());
 		}
 
-			// @todo consider moving this to a seperate function as well
+			// @todo consider moving this to a separate function as well
 		if ($demand->getOffset() != NULL) {
 			$query->setOffset((int) $demand->getOffset());
 		}

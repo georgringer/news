@@ -1096,7 +1096,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set fe group
 	 *
-	 * @param string $feGroup comma seperated list
+	 * @param string $feGroup comma separated list
 	 * @return void
 	 */
 	public function setFeGroup($feGroup) {

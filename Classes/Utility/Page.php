@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Page Utitlity class
+ * Page Utility class
  *
  * @package TYPO3
  * @subpackage tx_news
@@ -34,9 +34,9 @@ class Tx_News_Utility_Page {
 	/**
 	 * Find all ids from given ids and level
 	 *
-	 * @param string $pidList comma seperated list of ids
+	 * @param string $pidList comma separated list of ids
 	 * @param integer $recursive recursive levels
-	 * @return string comma seperated list of ids
+	 * @return string comma separated list of ids
 	 */
 	public static function extendPidListByChildren($pidList = '', $recursive = 0) {
 		$recursive = (int)$recursive;
@@ -60,7 +60,7 @@ class Tx_News_Utility_Page {
 	 * Set properties of an object/array in cobj->LOAD_REGISTER which can then
 	 * be used to be loaded via TS with register:name
 	 *
-	 * @param string $properties comma seperated list of properties
+	 * @param string $properties comma separated list of properties
 	 * @param mixed $object object or array to get the properties
 	 * @param string $prefix optional prefix
 	 * @return void
