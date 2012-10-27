@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
+*  (c) 2012 Georg Ringer <typo3@ringerge.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,44 +23,40 @@
 ***************************************************************/
 
 /**
- * Utility class for import jobs
+ * Test class for Tx_News_Utility_ImportJob
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
+ * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Utility_ImportJob {
+class Tx_News_Tests_Unit_Utility_ImportJobTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
-	 * @var array
+ 	 * @test
 	 */
-	protected static $registeredJobs = array();
+	public function classCanBeRegistered() {
+		$importJobInstance = new Tx_News_Utility_ImportJob();
 
-	/**
-	 * Register an import job.
-	 *
-	 * @param string $className class name
-	 * @param string $title title
-	 * @param string $description description
-	 * @return void
-	 * @static
-	 */
-	public static function register($className, $title, $description) {
-		self::$registeredJobs[] = array(
-			'className' => $className,
-			'title' => $title,
-			'description' => $description
+		$jobs = array();
+		$this->assertEquals($importJobInstance->getRegisteredJobs(),  $jobs);
+
+		// Add job #1
+		$jobs[] = array(
+			'className' => 'Class 1',
+			'title' => 'Some title',
+			'description' => ''
 		);
-	}
+		$importJobInstance->register('Class 1', 'Some title', '');
+		$this->assertEquals($importJobInstance->getRegisteredJobs(),  $jobs);
 
-	/**
-	 * Get all registered import jobs
-	 *
-	 * @static
-	 * @return array
-	 */
-	public static function getRegisteredJobs() {
-		return self::$registeredJobs;
+		// Add job #2
+		$jobs[] = array(
+			'className' => 'Class 2',
+			'title' => '',
+			'description' => 'Some description'
+		);
+		$importJobInstance->register('Class 2', '', 'Some description');
+		$this->assertEquals($importJobInstance->getRegisteredJobs(),  $jobs);
 	}
 }
 ?>
