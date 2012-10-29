@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2011 Georg Ringer <typo3@ringerge.org>
+*  (c) 2012 Georg Ringer <typo3@ringerge.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,31 +23,41 @@
 ***************************************************************/
 
 /**
- * ViewHelper to create javascript to edit fields of multiple records
+ * Tests for Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper
  *
  * @package TYPO3
  * @subpackage tx_news
+ * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_Tests_Unit_ViewHelpers_Be_MultiEditLinkViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
-	 * Render the onclick JavaScript for editing given fields of given news records
+	 * Test if default file format works
 	 *
-	 * @param object $items news items
-	 * @param string $columns column names
-	 * @return string
+	 * @test
+	 * @return void
 	 */
-	public function render($items, $columns) {
-		$idList = array();
-		foreach ($items as $item) {
-			$idList[] = $item->getUid();
-		}
+	public function viewHelperReturnsCorrectJavaScriptLink() {
+		$viewHelper = new Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper();
+
+		$newsItem1 = new Tx_News_Domain_Model_News();
+		$newsItem1->setTitle('Item 1');
+		$newsItem1->_setProperty('uid', 3);
+		$newsItem2 = new Tx_News_Domain_Model_News();
+		$newsItem2->setTitle('Item 2');
+		$newsItem2->_setProperty('uid', 9);
+		$newsItems = array($newsItem1, $newsItem2);
+
+		$columns = 'title,description';
+		$actualResult = $viewHelper->render($newsItems, $columns);
 
 		$content = 'window.location.href=\'alt_doc.php?returnUrl=\'+T3_THIS_LOCATION+\'&edit[tx_news_domain_model_news][' .
-			implode(',', $idList) .
-			']=edit&columnsOnly=' . $columns . '&disHelp=1\';return false;';
-		return $content;
-	}
-}
+			'3,9' .
+			']=edit&columnsOnly=title,description&disHelp=1\';return false;';
 
+		$this->assertEquals($content, $actualResult);
+	}
+
+
+}
 ?>
