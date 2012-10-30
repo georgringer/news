@@ -353,7 +353,7 @@ if (TYPO3_MODE === 'BE') {
 		),
 		array(
 			'access' => 'user,group',
-			'icon'   => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/administration_module.png',
+			'icon'   => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/folder.gif',
 			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_modadministration.xml',
 		)
 	);
