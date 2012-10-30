@@ -120,6 +120,10 @@
 			<!-- BE Modoule Administration -->
 			<label index="administration.newsPidListing.header">List pages with count of news &amp; category records</label>
 			<label index="administration.newsPidListing.description">Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.</label>
+
+
+			<!-- News sys folder -->
+			<label index="news-folder">News</label>
 		</languageKey>
 
 		<languageKey index="dk" type="array">

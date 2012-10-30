@@ -246,6 +246,21 @@ if (TYPO3_MODE == 'BE') {
 if (TYPO3_MODE == 'BE') {
 	unset($ICON_TYPES['news']);
 	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news/Resources/Public/Icons/folder.gif');
+
+	$addNewsToModuleSelection = TRUE;
+	foreach($GLOBALS['TCA']['pages']['columns']['module']['config']['items'] as $item) {
+		if ($item[1] === 'news') {
+			$addNewsToModuleSelection = FALSE;
+			continue;
+		}
+	}
+	if ($addNewsToModuleSelection) {
+		$GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = array(
+			0 => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:news-folder',
+			1 => 'news',
+			2 => '../typo3conf/ext/news/Resources/Public/Icons/folder.gif'
+		);
+	}
 }
 
 
