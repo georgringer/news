@@ -372,4 +372,44 @@ if (TYPO3_MODE == 'BE') {
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'] = 'uid,title,tstamp,sorting';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] = 'tstamp,datetime,crdate,title';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'] = $configuration->getRemoveListActionFromFlexforms();
+
+
+
+/* ===========================================================================
+ 	Extend be_user/be_groups table by a category restriction
+=========================================================================== */
+$tempColumns = array(
+	'tx_news_categorymounts' => array(
+		'exclude' => 1,
+		'label' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_db.xml:be_user.tx_news_categorymounts',
+		'config' => array(
+			'type' => 'select',
+			'foreign_table' => 'tx_news_domain_model_category',
+			'foreign_table_where' => ' AND (tx_news_domain_model_category.sys_language_uid = 0 OR tx_news_domain_model_category.l10n_parent = 0) ORDER BY tx_news_domain_model_category.sorting',
+			'renderMode' => 'tree',
+			'subType' => 'db',
+			'treeConfig' => array(
+				'parentField' => 'parentcategory',
+				'appearance' => array(
+					'expandAll' => TRUE,
+					'showHeader' => FALSE,
+					'maxLevels' => 99,
+				),
+			),
+			'size' => 10,
+			'autoSizeMax' => 20,
+			'minitems' => 0,
+			'maxitems' => 99
+		)
+	)
+);
+
+
+t3lib_div::loadTCA('be_groups');
+t3lib_extMgm::addTCAcolumns('be_groups', $tempColumns, 1);
+t3lib_extMgm::addToAllTCAtypes('be_groups', 'tx_news_categorymounts;;;;1-1-1');
+
+t3lib_div::loadTCA('be_users');
+t3lib_extMgm::addTCAcolumns('be_users', $tempColumns, 1);
+t3lib_extMgm::addToAllTCAtypes('be_users', 'tx_news_categorymounts;;;;1-1-1');
 ?>

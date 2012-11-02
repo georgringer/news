@@ -241,6 +241,7 @@ $TCA['tx_news_domain_model_news'] = array(
 				'type' => 'select',
 				'renderMode' => 'tree',
 				'treeConfig' => array(
+					'dataProvider' => 'Tx_News_TreeProvider_DatabaseTreeDataProvider',
 					'parentField' => 'parentcategory',
 					'appearance' => array(
 						'showHeader' => TRUE,
