@@ -292,3 +292,18 @@ CREATE TABLE cf_news_categorycache_tags (
     KEY cache_id (identifier),
     KEY cache_tag (tag)
 ) ENGINE=InnoDB;
+
+#
+# Table structure for table 'be_groups'
+#
+CREATE TABLE be_groups (
+	tx_news_categorymounts varchar(255) DEFAULT '' NOT NULL,
+
+);
+
+#
+# Table structure for table 'be_users'
+#
+CREATE TABLE be_users (
+	tx_news_categorymounts varchar(255) DEFAULT '' NOT NULL,
+);
