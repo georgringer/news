@@ -184,7 +184,7 @@ $TCA['tx_news_domain_model_news'] = array(
 						'notNewRecords' => 1,
 						'RTEonly'       => 1,
 						'type'          => 'script',
-						'title'         => 'Full screen Rich Text Editing|Formatteret redigering i hele vinduet',
+						'title'         => 'Full screen Rich Text Editing',
 						'icon'          => 'wizard_rte2.gif',
 						'script'        => 'wizard_rte.php',
 					),

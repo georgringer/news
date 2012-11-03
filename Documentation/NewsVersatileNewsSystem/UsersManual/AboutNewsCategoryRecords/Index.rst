@@ -216,7 +216,7 @@ The following table describes the main fields of a news record.
          Keywords
 
    :Description:
-         Set keywords of this news record, seperated with a comma (',')
+         Set keywords of this news record, separated with a comma (',')
 
 
  - :Field:

@@ -36,7 +36,7 @@ class news_pi1_wizicon {
 	 * Processing the wizard items array
 	 *
 	 * @param array $wizardItems The wizard items
-	 * @return Modified array with wizard items
+	 * @return array array with wizard items
 	 */
 	public function proc($wizardItems) {
 		$wizardItems['plugins_tx_' . self::KEY] = array(

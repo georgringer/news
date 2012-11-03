@@ -70,7 +70,7 @@ created.
    course you can also use an existing sysfolder or normal page).
 
 #. Use the icon in the topbar “Create new record” and search for “News
-   system” and its recors. You should see “News”, “News category” and
+   system” and its records. You should see “News”, “News category” and
    “News Tag”.
 
    #. Click on “News category” to create a new category. Insert as many

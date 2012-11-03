@@ -31,7 +31,7 @@ view plugin. To create a RSS feed all you need to do is:
 
       page = PAGE
       page.10 < styles.content.get
-   
+
       config {
               # deactivate Standard-Header
              disableAllHeaderCode = 1
@@ -54,7 +54,7 @@ If your output still contains HTML code, please check your TypoScript
 Rss feeds by embedding the plugin with TypoScript
 """""""""""""""""""""""""""""""""""""""""""""""""
 
-If you feel more comfortable by using plain TypoScript to embedd the
+If you feel more comfortable by using plain TypoScript to embed the
 plugin, you can use this code ::
 
    lib.news < tt_content.list.20.news_pi1

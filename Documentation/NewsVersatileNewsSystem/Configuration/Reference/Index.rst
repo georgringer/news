@@ -130,7 +130,7 @@ General properties
          TS by the one of the flexforms. This is even valid if the setting is
          left empty in the flexforms.
 
-         Set a comma seperated list of fields which get the value of the TS
+         Set a comma separated list of fields which get the value of the TS
          setting if the setting is not defined in the plugin configuration.
 
    :Default:
@@ -177,7 +177,7 @@ General properties
          domain.tld/news/2011/8/news-title.html). If enabled, the date is added
          to the url.
 
-         Each parameter (day, month, year) can be seperatly configured by using
+         Each parameter (day, month, year) can be separately configured by using
          the full options of the `php function date()
          <http://at2.php.net/manual/en/function.date.php>`_ . This example will
          add the day as a number without leading zeros, the month with leading
@@ -516,7 +516,7 @@ TypoScript configuration is used to render those. This look like this::
 If you need to extend this, you can either change the TypoScript (e.g.
 using a UserFunc) or the maybe easier way would be to change it in the
 template where the content elements are included by using the
-cObjectViewHellper of Fluid::
+cObjectViewHelper of Fluid::
 
    <f:if condition="{newsItem.contentElements">
            <f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElements}</f:cObject>

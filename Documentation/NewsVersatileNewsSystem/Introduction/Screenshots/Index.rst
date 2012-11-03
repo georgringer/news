@@ -17,5 +17,5 @@ Screenshots
 **Image 2:** Part of the plugin when “List view” is selected
 
 |img-5|  **Image 3:** Plugin when “Detail view” is selected.Only those
-settings are visible which are neded for this view!
+settings are visible which are needed for this view!
 

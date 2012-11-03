@@ -83,7 +83,7 @@ Templates/<Model>/<ActionName>.html
 Partials
 ~~~~~~~~
 
-Partials are usied within templates to be able to reuse code snippets.
+Partials are used within templates to be able to reuse code snippets.
 If you open the template News/List.html you will see the partial ::
 
    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>

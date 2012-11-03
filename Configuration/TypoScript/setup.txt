@@ -103,7 +103,7 @@ plugin.tx_news {
 		facebookLocale = en_US
 		googlePlusLocale = en
 
-		# Interface implemenations
+		# Interface implementations
 		interfaces {
 			media {
 				video = Tx_News_Interfaces_Audio_Mp3,Tx_News_Interfaces_Video_Quicktime,Tx_News_Interfaces_Video_Flv,Tx_News_Interfaces_Video_Videosites

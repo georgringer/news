@@ -6,7 +6,7 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<!-- Commmon -->
+			<!-- Common -->
 			<label index="search-text">There are %1$s results for "%2$s".</label>
 			<label index="search-start">Start search</label>
 			<label index="search-noresult">No news found.</label>
@@ -48,7 +48,7 @@
 			<label index="list_nocategoriesfound">No categories available.</label>
 		</languageKey>
 		<languageKey index="dk" type="array">
-			<!-- Commmon -->
+			<!-- Common -->
 			<label index="search-text">Der er %1$s resultater for "%2$s".</label>
 			<label index="search-start">Start søgning</label>
 			<label index="search-noresult">Ingen nyheder fundet.</label>
@@ -81,7 +81,7 @@
 			<label index="list_nonewsfound">Ingen tilgængelige nyheder.</label>
 		</languageKey>
 		<languageKey index="es" type="array">
-			<!-- Commmon -->
+			<!-- Common -->
 			<label index="search-text">Hay %1$s resultados de "%2$s".</label>
 			<label index="search-start">Comenzar búsqueda</label>
 			<label index="search-noresult">No se encontraron noticias.</label>
@@ -115,7 +115,7 @@
 		</languageKey>
 
 		<languageKey index="de" type="array">
-			<!-- Commmon -->
+			<!-- Common -->
 			<label index="search-text">%1$s Ergebnisse für "%2$s".</label>
 			<label index="search-start">Suche starten</label>
 			<label index="search-noresult">Kein Ergebnis gefunden</label>
@@ -199,7 +199,7 @@
 		</languageKey>
 
 		<languageKey index="it" type="array">
-			<!-- Commmon -->
+			<!-- Common -->
 			<label index="search-text">There are %1$s results for "%2$s".</label>
 			<label index="search-start">Ricerca</label>
 			<label index="search-noresult">Nessun articolo trovato.</label>
@@ -290,7 +290,7 @@
 			<label index="list_nonewsfound">Δεν υπάρχουν άρθρα.</label>
 		</languageKey>
 		<languageKey index="ru" type="array">
-			<!-- Commmon -->
+			<!-- Common -->
 			<label index="search-text">%1$s результатов из "%2$s".</label>
 			<label index="search-start">Искать</label>
 			<label index="search-noresult">Новостей не найдено.</label>
