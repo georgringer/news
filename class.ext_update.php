@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Update class for extmgr.
+ * Update class for the extension manager.
  *
  * @package TYPO3
  * @subpackage tx_news
@@ -339,7 +339,7 @@ class ext_update {
 					$message = 'Directory uploads/tx_news2/ has been renamed';
 				} else {
 					$status = t3lib_FlashMessage::ERROR;
-					$message = 'Directory uploads/tx_news2/ coult not be renamed to uploads/tx_news/. Solve it manually!';
+					$message = 'Directory uploads/tx_news2/ could not be renamed to uploads/tx_news/. Solve it manually!';
 				}
 			}
 
@@ -348,7 +348,7 @@ class ext_update {
 				$message = 'No action needed, directory uploads/tx_news exists and uploads/tx_news2 doesn\'t.';
 		} else {
 			$status = t3lib_FlashMessage::ERROR;
-			$message = 'None of the directories uploads/tx_news/ and uploads/tx_news/ exist. Data lost or just no diretory there? Solve it manually!';
+			$message = 'None of the directories uploads/tx_news/ and uploads/tx_news/ exist. Data lost or just no directory there? Solve it manually!';
 		}
 
 		$this->messageArray[] = array($status, $title, $message);

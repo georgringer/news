@@ -12,11 +12,11 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'News' => 'list,detail,dateMenu,seachForm,searchResult',
+		'News' => 'list,detail,dateMenu,searchForm,searchResult',
 		'Category' => 'list',
 	),
 	array(
-		'News' => 'seachForm,searchResult',
+		'News' => 'searchForm,searchResult',
 	)
 );
 
