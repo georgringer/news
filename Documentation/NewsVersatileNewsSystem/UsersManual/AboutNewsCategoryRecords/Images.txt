@@ -1,0 +1,7 @@
+﻿.. |img-6|      image:: ../../Images/manual_html_m6c4904d6.gif
+.. :align: left
+.. :border: 0
+.. :height: 430
+.. :name: Grafik1
+.. :width: 357
+

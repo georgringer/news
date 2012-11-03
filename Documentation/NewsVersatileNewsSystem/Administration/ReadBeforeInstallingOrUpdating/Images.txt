@@ -1,0 +1,7 @@
+﻿.. |img-7|      image:: ../../Images/manual_html_m543552d2.png
+.. :align: left
+.. :border: 0
+.. :height: 286
+.. :name: Grafik10
+.. :width: 669
+
