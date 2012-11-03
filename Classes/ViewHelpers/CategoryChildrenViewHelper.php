@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * ViewHelper to get childs of a category
+ * ViewHelper to get children of a category
  *
  * @package TYPO3
  * @subpackage tx_news

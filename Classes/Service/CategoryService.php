@@ -57,7 +57,7 @@ class Tx_News_Service_CategoryService {
 	 *
 	 * @param integer $id category id to start
 	 * @param string $additionalWhere additional where clause
-	 * @return string comma seperated list of category ids
+	 * @return string comma separated list of category ids
 	 */
 	public static function getRootline($id, $additionalWhere = '') {
 		$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');

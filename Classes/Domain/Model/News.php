@@ -412,7 +412,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
-	 * Gett author's email
+	 * Get author's email
 	 *
 	 * @return string
 	 */
@@ -710,11 +710,11 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set internal url
 	 *
-	 * @param string $internalurl internal url
+	 * @param string $internalUrl internal url
 	 * @return void
 	 */
-	public function setInternalurl($internalurl) {
-		$this->internalurl = $internalurl;
+	public function setInternalurl($internalUrl) {
+		$this->internalurl = $internalUrl;
 	}
 
 	/**
@@ -729,11 +729,11 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set external url
 	 *
-	 * @param string $externalurl external url
+	 * @param string $externalUrl external url
 	 * @return void
 	 */
-	public function setExternalurl($externalurl) {
-		$this->externalurl = $externalurl;
+	public function setExternalurl($externalUrl) {
+		$this->externalurl = $externalUrl;
 	}
 
 	/**
@@ -1039,7 +1039,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
-	 * Get enddtime
+	 * Get endtime
 	 *
 	 * @return integer
 	 */

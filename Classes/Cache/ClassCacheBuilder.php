@@ -96,7 +96,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 *
 	 * @param string $content
 	 * @param string $identifier identifier of the file
-	 * @return path of the written file
+	 * @return string path of the written file
 	 */
 	private static function writeFile($content, $identifier) {
 		if (!is_dir(PATH_site . 'typo3temp/Cache/Code/cache_phpcode/')) {
@@ -125,7 +125,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 * @throws Exception
 	 */
 	public static function parseSingleFile($filePath, $removeClassDefinition = TRUE) {
-		if (!is_file) {
+		if (!is_file($filePath)) {
 			throw new Exception(sprintf('File "%s" could not be found', $filePath));
 		}
 		$code = t3lib_div::getUrl($filePath);

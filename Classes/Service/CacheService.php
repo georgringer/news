@@ -41,7 +41,7 @@ class Tx_News_Service_CacheService {
 	protected $cacheName;
 
 	/**
-	 * @param $cacheName cache name
+	 * @param $cacheName string cache name
 	 */
 	public function __construct($cacheName) {
 		$this->cacheName = $cacheName;

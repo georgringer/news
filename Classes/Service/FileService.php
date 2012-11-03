@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Do some file infos
+ * File utility
  *
  * @package TYPO3
  * @subpackage tx_news

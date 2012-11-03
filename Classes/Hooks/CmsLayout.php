@@ -430,7 +430,7 @@ class Tx_News_Hooks_CmsLayout {
 		$visible = ($record['hidden'] == 0);
 		$i = 0;
 		foreach ($this->tableData as $line) {
-				// Check if the setting is in the list of diabled ones
+				// Check if the setting is in the list of disabled ones
 			$class = ($i++ % 2 === 0) ? 'bgColor4' : 'bgColor3';
 			$renderedLine = '';
 

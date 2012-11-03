@@ -162,7 +162,7 @@ class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnti
 	/**
 	 * Get starttime
 	 *
-	 * @return type
+	 * @return DateTime
 	 */
 	public function getStarttime() {
 		return $this->starttime;

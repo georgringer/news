@@ -85,7 +85,7 @@ class Tx_News_Domain_Model_Link extends Tx_Extbase_DomainObject_AbstractValueObj
 	/**
 	 * Set timestamp
 	 *
-	 * @param type $tstamp timestamp
+	 * @param integer $tstamp timestamp
 	 * @return void
 	 */
 	public function setTstamp($tstamp) {

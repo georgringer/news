@@ -95,7 +95,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 	}
 
 	/**
-	 * Modifies the selectbox of orderby-options as a categorymenu
+	 * Modifies the select box of orderBy-options as a category menu
 	 * needs different ones then a news action
 	 *
 	 * @param array &$config configuration array

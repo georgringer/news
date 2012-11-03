@@ -34,7 +34,7 @@ class Tx_News_Hooks_Tcemain {
 	 * Generate a different preview link
 	 *
 	 * @param string $status status
-	 * @param string $table tablename
+	 * @param string $table table name
 	 * @param integer $recordUid id of the record
 	 * @param array $fields fieldArray
 	 * @param t3lib_TCEmain $parentObject parent Object

@@ -96,7 +96,7 @@ class Tx_News_Domain_Model_NewsDemand
 	/**
 	 * Set archive settings
 	 *
-	 * @param string $archiveRestriction archivesetting
+	 * @param string $archiveRestriction archive setting
 	 * @return void
 	 */
 	public function setArchiveRestriction($archiveRestriction) {

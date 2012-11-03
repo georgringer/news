@@ -167,7 +167,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	}
 
 	/**
-	 * Gets detailPid from flexfrom of current plugin.
+	 * Gets detailPid from flexform of current plugin.
 	 *
 	 * @param  array $settings
 	 * @param  Tx_News_Domain_Model_News $newsItem

@@ -116,7 +116,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 		}
 
 			// seems as if a div with id fb-root is needed this is just a dirty
-			// workarround to make things work again Perhaps we should
+			// workaround to make things work again Perhaps we should
 			// use the iframe variation.
 		$code .= '<div id="fb-root"></div>' . $this->tag->render();
 		return $code;

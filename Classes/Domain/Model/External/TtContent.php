@@ -253,7 +253,7 @@ class Tx_News_Domain_Model_External_TtContent extends Tx_Extbase_DomainObject_Ab
 	/**
 	 * Set colpos
 	 *
-	 * @param type $colPos
+	 * @param integer $colPos
 	 * @return void
 	 */
 	public function setColPos($colPos) {

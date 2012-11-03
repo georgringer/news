@@ -96,7 +96,7 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 			$query->setOrderings($orderings);
 		}
 
-			// @todo consider moving this to a seperate function as well
+			// @todo consider moving this to a separate function as well
 		if ($demand->getLimit() != NULL) {
 			$query->setLimit((int) $demand->getLimit());
 		}

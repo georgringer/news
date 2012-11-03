@@ -80,7 +80,7 @@ class Tx_News_Hooks_T3libBefunc {
 		);
 
 	/**
-	 * Fields which are removed in category list viedw
+	 * Fields which are removed in category list view
 	 *
 	 * @var array
 	 */
@@ -98,7 +98,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @param array &$dataStructure Flexform structure
 	 * @param array $conf some strange configuration
 	 * @param array $row row of current record
-	 * @param string $table table anme
+	 * @param string $table table name
 	 * @param string $fieldName some strange field name
 	 * @return void
 	 */
@@ -111,7 +111,7 @@ class Tx_News_Hooks_T3libBefunc {
 	/**
 	 * Update flexform configuration if a action is selected
 	 *
-	 * @param array|string &$dataStructure flexform structur
+	 * @param array|string &$dataStructure flexform structure
 	 * @param array $row row of current record
 	 * @return void
 	 */

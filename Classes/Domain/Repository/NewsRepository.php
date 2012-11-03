@@ -31,7 +31,7 @@
 class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository  {
 
 	/**
-	 * Returns a category contstraint created by
+	 * Returns a category constraint created by
 	 * a given list of categories and a junction string
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
