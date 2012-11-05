@@ -304,7 +304,10 @@ $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = array(
 $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 	--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pi1_title,newsoverlay';
 
-
+// Add tables to livesearch (e.g. "#news:fo" or "#newscat:fo")
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['news'] = 'tx_news_domain_model_news';
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['newscat'] = 'tx_news_domain_model_category';
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['newstag'] = 'tx_news_domain_model_tag';
 
 /* ===========================================================================
  	Register BE-Modules
@@ -372,4 +375,5 @@ if (TYPO3_MODE == 'BE') {
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'] = 'uid,title,tstamp,sorting';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] = 'tstamp,datetime,crdate,title';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'] = $configuration->getRemoveListActionFromFlexforms();
+
 ?>
