@@ -115,14 +115,13 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 
 	/**
 	 * By setting "tx_news.singleCategoryAcl = 1" in UserTsConfig
-	 * every category needs to be acticated, no recursive enabling
+	 * every category needs to be activated, no recursive enabling
 	 *
 	 * @return bool
 	 */
 	protected function isSingleCategoryAclActivated() {
 		if (is_array($GLOBALS['BE_USER']->userTS['tx_news.'])
-			&& is_array($GLOBALS['BE_USER']->userTS['tx_news.']['category.'])
-			&& $GLOBALS['BE_USER']->userTS['tx_news.']['category.']['singleAcl'] === '1'
+			&& $GLOBALS['BE_USER']->userTS['tx_news.']['singleCategoryAcl'] === '1'
 		) {
 			return TRUE;
 		}
