@@ -68,7 +68,7 @@ class Tx_News_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 			}
 		}
 
-		if (isset($this->arguments['content']) && !empty($this->arguments['content'])) {
+		if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag($this->tag->render());
 		}
 	}
