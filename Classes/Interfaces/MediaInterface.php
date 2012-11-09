@@ -24,9 +24,6 @@
 
 /**
  * Interface to implement video views
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 interface Tx_News_Interfaces_MediaInterface {
 

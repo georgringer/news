@@ -30,9 +30,6 @@
  * ==============
  * <n:facebook.comment appId="165193833530000" xid="news-{newsItem.uid}" />
  * Result: Facebook widget to comment an article
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 

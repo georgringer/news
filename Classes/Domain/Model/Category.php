@@ -24,9 +24,6 @@
 
 /**
  * Category Model
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**

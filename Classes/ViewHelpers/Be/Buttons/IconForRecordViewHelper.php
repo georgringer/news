@@ -24,9 +24,6 @@
 
 /**
  * ViewHelper to show sprite icon for a record
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_Be_Buttons_IconForRecordViewHelper extends Tx_Fluid_ViewHelpers_Be_AbstractBackendViewHelper {
 

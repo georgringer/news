@@ -24,9 +24,6 @@
 
 /**
  * Hook into tcemain which is used to show preview of news item
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Hooks_Tcemain {
 

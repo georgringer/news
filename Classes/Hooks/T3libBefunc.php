@@ -25,9 +25,6 @@
 /**
  * Hook into t3lib_befunc to change flexform behaviour
  * depending on action selection
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Hooks_T3libBefunc {
 

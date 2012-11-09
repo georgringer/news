@@ -24,9 +24,6 @@
 
 /**
  * Tests for domains model News
- *
- * @package TYPO3
- * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends Tx_Extbase_Tests_Unit_BaseTestCase {

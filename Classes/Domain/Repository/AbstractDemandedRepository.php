@@ -23,9 +23,6 @@
 ***************************************************************/
 /**
  * Abstract demanded repository
- *
- * @package TYPO3
- * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 abstract class Tx_News_Domain_Repository_AbstractDemandedRepository

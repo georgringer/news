@@ -24,9 +24,6 @@
 
 /**
  * File model
- *
- * @package TYPO3
- * @subpackage tx_news
  * @version $Id$
  */
 class Tx_News_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueObject {

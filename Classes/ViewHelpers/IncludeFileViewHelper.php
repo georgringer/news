@@ -24,9 +24,6 @@
 
 /**
  * ViewHelper to include a css/js file
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_IncludeFileViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 

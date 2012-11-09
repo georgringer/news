@@ -25,9 +25,6 @@
 /**
  * Tests for domain repository newsRepository
  *
- * @package TYPO3
- * @subpackage tx_news
- *
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Georg Ringer <mail@ringerge.org>

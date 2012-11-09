@@ -24,9 +24,6 @@
 
 /**
  * Tests for domains model News
- *
- * @package TYPO3
- * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */

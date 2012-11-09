@@ -36,9 +36,6 @@
  * 		href="http://www.mydomain.tld" count="false"></n:social.googlePlus>
  * Result: Small Google Plus Button to share www.mydomain.tld
  * 	without showing the counter
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 

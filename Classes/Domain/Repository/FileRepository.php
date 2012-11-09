@@ -23,9 +23,6 @@
 ***************************************************************/
 /**
  * Repository for file objects
- *
- * @package TYPO3
- * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
 class Tx_News_Domain_Repository_FileRepository extends Tx_Extbase_Persistence_Repository {

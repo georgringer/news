@@ -24,9 +24,6 @@
 
 /**
  * Add news extension to the wizard in page module
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class news_pi1_wizicon {
 

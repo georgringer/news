@@ -24,9 +24,6 @@
 
 /**
  * Controller to import news records from tt_news
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Controller_ImportController extends Tx_Extbase_MVC_Controller_ActionController {
 

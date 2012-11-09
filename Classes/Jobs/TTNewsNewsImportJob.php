@@ -24,9 +24,6 @@
 
 /**
  * Import job
- *
- * @package TYPO3
- * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News_Jobs_TTNewsNewsImportJob extends Tx_News_Jobs_AbstractImportJob {

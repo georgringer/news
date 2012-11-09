@@ -32,9 +32,6 @@
  * 			title="RSS 2.0"
  * 			href="<f:uri.page additionalParams="{type:9818}"/>" />
  * </n:headerData>
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_HeaderDataViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 

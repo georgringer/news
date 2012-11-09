@@ -25,9 +25,6 @@
 /**
  * Testcase for the Tx_News_Controller_NewsController class.
  *
- * @package TYPO3
- * @subpackage tx_news
- *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Georg Ringer <mail@ringerge.org>
  */

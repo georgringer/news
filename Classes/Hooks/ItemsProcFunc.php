@@ -24,9 +24,6 @@
 
 /**
  * Userfunc to render alternative label for media elements
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Hooks_ItemsProcFunc {
 
