@@ -24,9 +24,6 @@
 
 /**
  * Base controller
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_ActionController {
 

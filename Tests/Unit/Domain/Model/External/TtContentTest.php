@@ -25,9 +25,7 @@
 /**
  * Tests for tt_content model
  *
- * @package TYPO3
- * @subpackage tx_news
- * @author Georg Ringer <typo3@ringerge.org>
+ * * @author Georg Ringer <typo3@ringerge.org>
  */
 class Tx_News_Tests_Unit_Domain_Model_External_TtContentTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 

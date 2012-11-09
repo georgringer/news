@@ -24,9 +24,6 @@
 
 /**
  * Class Cache builder
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Cache_ClassCacheBuilder {
 

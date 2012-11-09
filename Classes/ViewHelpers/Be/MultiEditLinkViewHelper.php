@@ -24,9 +24,6 @@
 
 /**
  * ViewHelper to create javascript to edit fields of multiple records
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 

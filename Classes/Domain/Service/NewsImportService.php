@@ -25,9 +25,7 @@
 /**
  * News Import Service
  *
- * @package TYPO3
- * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
+ * * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	const UPLOAD_PATH = 'uploads/tx_news/';

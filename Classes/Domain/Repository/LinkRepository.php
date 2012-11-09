@@ -24,9 +24,7 @@
 /**
  * Repository for link objects
  *
- * @package TYPO3
- * @subpackage tx_news
- * @author Georg Ringer <typo3@ringerge.org>
+ * * @author Georg Ringer <typo3@ringerge.org>
  */
 class Tx_News_Domain_Repository_LinkRepository extends Tx_Extbase_Persistence_Repository {
 

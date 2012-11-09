@@ -33,9 +33,6 @@
  *   // a <f:for> loop.
  * </f:widget.paginate>
  * </code>
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_Widget_PaginateViewHelper extends Tx_Fluid_Core_Widget_AbstractWidgetViewHelper {
 

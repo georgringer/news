@@ -25,9 +25,7 @@
 /**
  * Tests for domains model News
  *
- * @package TYPO3
- * @subpackage tx_news
- * @author Georg Ringer <typo3@ringerge.org>
+ * * @author Georg Ringer <typo3@ringerge.org>
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_BaseTestCase {

@@ -24,9 +24,6 @@
 
 /**
  * Category repository with all callable functionality
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository {
 

@@ -24,9 +24,6 @@
 
 /**
  * News model for external news
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Domain_Model_NewsExternal extends Tx_News_Domain_Model_News {
 

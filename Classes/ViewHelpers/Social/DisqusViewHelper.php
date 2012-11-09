@@ -32,9 +32,6 @@
  * <n:social.disqus newsItem="{newsItem}"
  * 		shortName="demo123"
  * 		link="{n:link(newsItem:newsItem,settings:settings,configuration:{returnLast:'url'})}" />
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_Social_DisqusViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 

@@ -24,9 +24,6 @@
 
 /**
  * Update class for the extension manager.
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ext_update {
 	const STATUS_WARNING = -1;

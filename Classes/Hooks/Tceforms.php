@@ -24,9 +24,6 @@
 
 /**
  * Hook into tceforms
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Hooks_Tceforms {
 

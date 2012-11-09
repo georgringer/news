@@ -24,9 +24,6 @@
 
 /**
  * Category controller
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Controller_CategoryController extends Tx_News_Controller_NewsController {
 

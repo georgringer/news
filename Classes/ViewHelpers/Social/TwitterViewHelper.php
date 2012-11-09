@@ -35,9 +35,6 @@
  * <n:social.twitter datacount="vertical" datalang="de"
  * dataurl="http://www.mydomain.tld">Twitter</n:social.twitter>
  * Result: Twitter widget to share www.mydomain.tld with a german twitter text
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 

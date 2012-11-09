@@ -26,9 +26,7 @@
 /**
  * Utility class to get the settings from Extension Manager
  *
- * @package TYPO3
- * @subpackage tx_news
- * @author Alexander Buchgeher
+ * * @author Alexander Buchgeher
  * @author Georg Ringer <typo3@ringerge.org>
  */
 class Tx_News_Utility_EmConfiguration {

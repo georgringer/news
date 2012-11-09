@@ -24,9 +24,7 @@
 /**
  * Import job interface
  *
- * @package TYPO3
- * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
+ * * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 interface Tx_News_Jobs_ImportJobInterface {
 	public function getNumberOfRecordsPerRun();

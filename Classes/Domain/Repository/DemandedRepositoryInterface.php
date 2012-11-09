@@ -24,9 +24,7 @@
 /**
  * Demand domain model interface
  *
- * @package TYPO3
- * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
+ * * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 interface Tx_News_Domain_Repository_DemandedRepositoryInterface {
 	public function findDemanded(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE);

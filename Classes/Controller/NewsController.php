@@ -24,9 +24,6 @@
 
 /**
  * Controller of news records
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseController {
 	/**

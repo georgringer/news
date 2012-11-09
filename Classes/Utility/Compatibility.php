@@ -24,9 +24,6 @@
 
 /**
  * Compatibility class which is used as wrapper for deprecated functions
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Utility_Compatibility {
 

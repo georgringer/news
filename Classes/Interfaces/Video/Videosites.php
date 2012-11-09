@@ -24,9 +24,6 @@
 
 /**
  * Implementation of video portal support
- *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_Interfaces_Video_Videosites implements Tx_News_Interfaces_MediaInterface {
 
