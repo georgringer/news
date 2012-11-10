@@ -38,7 +38,7 @@ class Tx_News_Tests_Unit_Utility_ImportJobTest extends Tx_Extbase_Tests_Unit_Bas
 		$importJobInstance = new Tx_News_Utility_ImportJob();
 
 		$jobs = array();
-		$this->assertEquals($importJobInstance->getRegisteredJobs(),  $jobs);
+		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
 
 		// Add job #1
 		$jobs[] = array(
@@ -47,7 +47,7 @@ class Tx_News_Tests_Unit_Utility_ImportJobTest extends Tx_Extbase_Tests_Unit_Bas
 			'description' => ''
 		);
 		$importJobInstance->register('Class 1', 'Some title', '');
-		$this->assertEquals($importJobInstance->getRegisteredJobs(),  $jobs);
+		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
 
 		// Add job #2
 		$jobs[] = array(
@@ -56,7 +56,7 @@ class Tx_News_Tests_Unit_Utility_ImportJobTest extends Tx_Extbase_Tests_Unit_Bas
 			'description' => 'Some description'
 		);
 		$importJobInstance->register('Class 2', '', 'Some description');
-		$this->assertEquals($importJobInstance->getRegisteredJobs(),  $jobs);
+		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
 	}
 }
 ?>

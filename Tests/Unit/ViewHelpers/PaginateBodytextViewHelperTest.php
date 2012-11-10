@@ -59,16 +59,16 @@ class Tx_News_Tests_ViewHelpers_PaginateBodytextViewHelperTest extends Tx_Extbas
 	 * Test if given tag is a self closing tag
 	 *
 	 * @test
-	 * @dataProvider givenTagIsASelfClosingTagDataProvider
+	 * @dataProvider givenTagIsSelfClosingTagDataProvider
 	 * @return void
 	 */
-	public function givenTagIsASelfClosingTag($tag, $expectedResult) {
+	public function givenTagIsSelfClosingTag($tag, $expectedResult) {
 		$mockTemplateParser = $this->getAccessibleMock('Tx_News_ViewHelpers_PaginateBodytextViewHelper', array('dummy'));
 		$result = $mockTemplateParser->_call('isSelfClosingTag', $tag);
 		$this->assertEquals($expectedResult, $result);
 	}
 
-	public function givenTagIsASelfClosingTagDataProvider() {
+	public function givenTagIsSelfClosingTagDataProvider() {
 		return array(
 			'working example 1' => array(
 				'<hr />', TRUE

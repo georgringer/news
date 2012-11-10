@@ -90,7 +90,7 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 				}
 				// Change in custom TreeDataProvider end
 			}
-//			$restriction = FALSE;
+
 			if ($foundSomeChild) {
 				$node->setChildNodes ($childNodes);
 			}

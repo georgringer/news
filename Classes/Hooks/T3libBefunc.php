@@ -153,8 +153,8 @@ class Tx_News_Hooks_T3libBefunc {
 				case 'Category->list':
 					$this->deleteFromStructure($dataStructure, $this->removedFieldsInCategoryListView);
 					break;
-				default:
 					// @todo: Implement a hook here
+				default:
 			}
 		}
 	}

@@ -32,12 +32,12 @@
 class Tx_News_Tests_Unit_Jobs_TTNewsNewsImportJobTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
-	 * Test getNumberOfRecordsPerRun_returns_expected_value
+	 * Test getNumberOfRecordsPerRunReturnsExpectedValue
 	 *
 	 * @test
 	 * @return void
 	 */
-	public function getNumberOfRecordsPerRun_returns_expected_value() {
+	public function getNumberOfRecordsPerRunReturnsExpectedValue() {
 		$jobInstance = $this->objectManager->get('Tx_News_Jobs_TTNewsNewsImportJob');
 		$this->assertEquals($jobInstance->getNumberOfRecordsPerRun(), 30);
 

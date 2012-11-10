@@ -111,7 +111,6 @@ class Tx_News_Hooks_CmsLayout {
 						$this->getCategorySettings(FALSE);
 						break;
 					default:
-						// nothing to do
 				}
 
 					// for all views

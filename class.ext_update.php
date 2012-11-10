@@ -63,7 +63,7 @@ class ext_update {
 	 */
 	protected function processUpdates() {
 
-		$this->updateContentRelationToMM();
+		$this->updateContentRelationToMm();
 
 		/*
 		$this->renameDatabaseTable('tx_news2_domain_model_news', 'tx_news_domain_model_news');
@@ -102,7 +102,7 @@ class ext_update {
 	 *
 	 * @return void
 	 */
-	protected function updateContentRelationToMM() {
+	protected function updateContentRelationToMm() {
 		$title = 'Update tt_content relation';
 
 		$countMmTable = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'tx_news_domain_model_news_ttcontent_mm', '1=1');

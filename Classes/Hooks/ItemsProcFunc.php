@@ -159,6 +159,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 					case 2:
 						$this->removeActionFromList($config, 'News->list;News->detail');
 						break;
+					default:
 				}
 		}
 
