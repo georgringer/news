@@ -90,7 +90,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 		}
 
 		$tree = array();
-		foreach ($flatCategories as $id=>&$node) {
+		foreach ($flatCategories as $id => &$node) {
 			if ($node['parent'] === NULL) {
 				$tree[$id] = &$node;
 			} else {
