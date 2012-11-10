@@ -114,7 +114,7 @@ class ext_update {
 				$newsCount++;
 				$contentElementUids = explode(',', $row['content_elements']);
 				$i = 1;
-				foreach($contentElementUids as $contentElement) {
+				foreach ($contentElementUids as $contentElement) {
 						// Insert mm relation
 					$insert = array(
 						'uid_local' => $row['uid'],
@@ -317,14 +317,13 @@ class ext_update {
 		} else {
 			$status = t3lib_FlashMessage::WARNING;
 			$messageTmp = array();
-			foreach($affectedTsFiles as $tsFile) {
+			foreach ($affectedTsFiles as $tsFile) {
 				$messageTmp[] = sprintf('"News2" found in TS record with title "%s" on page with uid "%s".', $tsFile['title'], $tsFile['pid']);
 			}
 			$message = implode('<br />', $messageTmp);
 		}
 
 		$this->messageArray[] = array($status, $title, $message);
-
 
 			// try to rename directory
 		if (is_dir('../uploads/tx_news2/')) {

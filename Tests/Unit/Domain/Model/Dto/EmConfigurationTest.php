@@ -54,7 +54,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends Tx_Extbase
 
 		$configurationInstance = new Tx_News_Domain_Model_Dto_EmConfiguration($configuration);
 
-		foreach($configuration as $key => $value) {
+		foreach ($configuration as $key => $value) {
 			$functionName = 'get' . ucwords($key);
 			$this->assertEquals($value, $configurationInstance->$functionName());
 		}
@@ -83,7 +83,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends Tx_Extbase
 
 		$configurationInstance = new Tx_News_Domain_Model_Dto_EmConfiguration(array());
 
-		foreach($configuration as $key => $value) {
+		foreach ($configuration as $key => $value) {
 			$functionName = 'get' . ucwords($key);
 			$this->assertEquals($value, $configurationInstance->$functionName());
 		}

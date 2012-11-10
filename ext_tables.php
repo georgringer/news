@@ -248,7 +248,7 @@ if (TYPO3_MODE == 'BE') {
 	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news/Resources/Public/Icons/folder.gif');
 
 	$addNewsToModuleSelection = TRUE;
-	foreach($GLOBALS['TCA']['pages']['columns']['module']['config']['items'] as $item) {
+	foreach ($GLOBALS['TCA']['pages']['columns']['module']['config']['items'] as $item) {
 		if ($item[1] === 'news') {
 			$addNewsToModuleSelection = FALSE;
 			continue;
