@@ -245,9 +245,9 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 		$demand->setArchiveRestriction('archived');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 2);
 
-			// Active means: archive date must be in future
+			// Active means: archive date must be in future or no archive date
 		$demand->setArchiveRestriction('active');
-		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 3);
+		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
 
 			// no value means: give all
 		$demand->setArchiveRestriction('');
