@@ -25,5 +25,14 @@
 			<label index="description.description">Valgfri beskrivelse af fil.</label>
 			<label index="file.description">Enhver (tilladt) filtype.</label>
 		</languageKey>
+		<languageKey index="nl" type="array">
+			<label index=".description">Bestandsrecord</label>
+			<label index=".details">Relatie met bestanden</label>
+			<label index="_.seeAlso">Zie ook de website http://www.news.com/</label>
+			<label index="hidden.description">Verborgen elementen worden nooit getoond aan de voorkant.</label>
+			<label index="title.description">Optionele titel van het geselecteerde bestand.</label>
+			<label index="description.description">Optionele beschrijving van het geselecteerde bestand.</label>
+			<label index="file.description">Ieder (toegestaan) bestand.</label>
+		</languageKey>
 	</data>
 </T3locallang>

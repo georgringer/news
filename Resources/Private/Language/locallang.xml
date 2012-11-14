@@ -253,18 +253,48 @@
 			<label index="search-noresult">Aucune actualité trouvée.</label>
 			<label index="list_nonewsfound">Aucun article existant.</label>
 		</languageKey>
-		<languageKey index="nl" type="array">
-
+        <languageKey index="nl" type="array">
+			<!-- Common -->
+			<label index="search-text">Er zijn %1$s resultaten voor "%2$s".</label>
+			<label index="search-start">Zoeken starten</label>
+			<label index="search-noresult">Geen nieuws gevonden.</label>
+			<label index="more-link">Lees meer</label>
+			<label index="back-link">Terug</label>
+			<label index="related-news">Gerelateerd nieuws</label>
+			<label index="related-files">Gerelateerde bestanden</label>
+			<label index="related-links">Gerelateerde links</label>
+			<label index="author">door %s</label>
 			<label index="paginate_overall">Pagina %s van %s.</label>
 			<label index="paginate_next">Volgende</label>
 			<label index="paginate_previous">Vorige</label>
 
-			<label index="entry">Vermelding</label>
-			<label index="entries">Vermeldingen</label>
+			<label index="entry">item</label>
+			<label index="entries">items</label>
 
-			<label index="search-noresult">Geen nieuws gevonden.</label>
-			<label index="list_nonewsfound">Geen artikels aanwezig.</label>
-		</languageKey>
+			<label index="month.01">Januari</label>
+			<label index="month.02">Februari</label>
+			<label index="month.03">Maart</label>
+			<label index="month.04">April</label>
+			<label index="month.05">Mei</label>
+			<label index="month.06">Juni</label>
+			<label index="month.07">Juli</label>
+			<label index="month.08">Augustus</label>
+			<label index="month.09">September</label>
+			<label index="month.10">Oktober</label>
+			<label index="month.11">November</label>
+			<label index="month.12">December</label>
+
+			<label index="day.1">Maandag</label>
+			<label index="day.2">Dinsdag</label>
+			<label index="day.3">Woensdag</label>
+			<label index="day.4">Donderdag</label>
+			<label index="day.5">Vrijdag</label>
+			<label index="day.6">Zaterdag</label>
+			<label index="day.7">Zondag</label>
+
+			<label index="list_nonewsfound">Geen nieuws beschikbaar.</label>
+			<label index="list_nocategoriesfound">Geen categorieën beschikbaar.</label>
+        </languageKey>
 		<languageKey index="cs" type="array">
 
 			<label index="paginate_overall">Strana %s z %s.</label>

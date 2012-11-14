@@ -33,5 +33,18 @@
 			<label index="single_pid.description">Vælg hvilken side der indeholder detaljevisning af nyheder med denne kategori. Denne indstilling ignoreres hvis der er angivet en opbevaringsside i plugin-indstillingerne.</label>
 			<label index="shortcut.description">Valgfrit link tilhørende kategori.</label>
 		</languageKey>
+		<languageKey index="nl" type="array">
+			<label index=".description">Categorie record</label>
+			<label index=".details">Categorie voor nieuws records.</label>
+			<label index="_.seeAlso">Zie ook de website http://www.news.com/</label>
+			<label index="sys_language_uid.description">Taal van de categorie</label>
+			<label index="hidden.description">Verborgen categoriën worden nooit getoond aan de voorkant.</label>
+			<label index="title.description">Titel van de categorie</label>
+			<label index="parentcategory.description">Selecteer een bovenliggende categorie om een categorieboom te maken.</label>
+			<label index="image.description">Optionele afbeelding voor de categorie.</label>
+			<label index="description.description">Optionele beschrijving van de categorie.</label>
+			<label index="single_pid.description">Kies een pagina die wordt gebruikt om de detailweergave van nieuws records te tonen die gerelateerd zijn aan deze categorie. Deze instelling wordt overschreven met een geconfigureerde pagina in de instellingen van de plugin.</label>
+			<label index="shortcut.description">Optionele link van een categorie.</label>
+		</languageKey>
 	</data>
 </T3locallang>

@@ -81,10 +81,14 @@
 			<label index="pagemodule_complex">Full list</label>
 
 			<!-- Extension Manager Configuration -->
-			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module by using the following syntax: label=fieldlist;label=fieldlist</label>
+			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module by using the following syntax:
+				label=fieldlist;label=fieldlist
+			</label>
 			<label index="extmng.pageModuleFieldsCategory">Category fields shown in page module:Set the fields which should be shown in the page module.</label>
 			<label index="extmng.prependAtCopy">Prepend at copy: Prepend string "copy X".</label>
-			<label index="extmng.categoryRestriction">Category restriction: Restrict the available categories in news records. PageTsConfig: TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!</label>
+			<label index="extmng.categoryRestriction">Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+			</label>
 			<label index="extmng.categoryRestriction.current_pid">Categories from current page</label>
 			<label index="extmng.categoryRestriction.storage_pid">Categories from page which is defined in page properties</label>
 			<label index="extmng.categoryRestriction.siteroot">Categories from site root</label>
@@ -96,7 +100,11 @@
 			<label index="extmng.archiveDate">Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</label>
 			<label index="extmng.archiveDate.date">Date</label>
 			<label index="extmng.archiveDate.datetime">Date &amp; Time</label>
-			<label index="extmng.removeListActionFromFlexforms">List actions shown in Flexforms:There are 2 different list views: "List only" can only show the list view. This is for example neded if you need a list view at the same page as the detail view. "List+Detail" will show the same list view but will show the detail view if a news item is set via GET arguments. Be aware: If the setting is changed after news plugins have been created, all plugins need to be reconfigured by selecting the correct action!</label>
+			<label index="extmng.removeListActionFromFlexforms">List actions shown in Flexforms:There are 2 different list views: "List only" can only show the list view. This is
+				for example neded if you need a list view at the same page as the detail view. "List+Detail" will show the same list view but will show the detail view if a news
+				item is set via GET arguments. Be aware: If the setting is changed after news plugins have been created, all plugins need to be reconfigured by selecting the
+				correct action!
+			</label>
 			<label index="extmng.removeListActionFromFlexforms.0">Both views are shown</label>
 			<label index="extmng.removeListActionFromFlexforms.1">List &amp; Detail</label>
 			<label index="extmng.removeListActionFromFlexforms.2">List only</label>
@@ -120,7 +128,9 @@
 
 			<!-- BE Modoule Administration -->
 			<label index="administration.newsPidListing.header">List pages with count of news &amp; category records</label>
-			<label index="administration.newsPidListing.description">Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.</label>
+			<label index="administration.newsPidListing.description">Choose a recursive level to display your page tree with the related entries. Click on the page title to show
+				the news entries of the page.
+			</label>
 
 
 			<!-- News sys folder -->
@@ -198,7 +208,9 @@
 			<label index="pagemodule_complex">Fuld liste</label>
 
 			<!-- Extension Manager Configuration -->
-			<label index="extmng.pageModuleFieldsNews">Nyheds-felter vist i side-modulet:Angiv felterne der skal vises i side-modulet i følgende syntaks: label=fieldlist;label=fieldlist</label>
+			<label index="extmng.pageModuleFieldsNews">Nyheds-felter vist i side-modulet:Angiv felterne der skal vises i side-modulet i følgende syntaks:
+				label=fieldlist;label=fieldlist
+			</label>
 			<label index="extmng.pageModuleFieldsCategory">Kategori-felter der skal vises i side-modulet:Angive kategori-felter der skal vises i side-modulet.</label>
 			<label index="extmng.showImporter">Vis importør:Backend-modul til import af elementer.</label>
 			<label index="extmng.prependAtCopy">Forsats ved kopiering:Læg teksten til titlen på kopierede elementer før de gemmes.</label>
@@ -313,6 +325,135 @@
 			<label index="ttnewscategory_importer_title">Import von tt_news Kategorien</label>
 			<label index="start_import">Start import with %s record(s).</label>
 			<label index="tag_suggest">Der Tag "%s" wurde nicht gefunden. Wollen Sie diesen erstellen? &lt;strong&gt;Klicken Sie hier&lt;/strong&gt;</label>
+		</languageKey>
+
+		<languageKey index="nl" type="array">
+			<label index="pi1_title">Nieuws systeem</label>
+			<label index="pi1_plus_wiz_description">Veelzijdig nieuws systeem</label>
+
+			<!-- Flexforms -->
+			<label index="flexforms_tab.settings">Instellingen</label>
+			<label index="flexforms_tab.additional">Extra</label>
+			<label index="flexforms_tab.template">Template</label>
+
+			<label index="flexforms_general.mode">Wat te tonen</label>
+			<label index="flexforms_general.mode.news_list">Lijst weergave</label>
+			<label index="flexforms_general.mode.news_listOnly">Lijst weergave (zonder overloading detail weergave)</label>
+			<label index="flexforms_general.mode.news_latest">Laatste weergave</label>
+			<label index="flexforms_general.mode.news_detail">Detail weergave</label>
+			<label index="flexforms_general.mode.news_searchform">Zoek formulier</label>
+			<label index="flexforms_general.mode.news_searchresult">Zoek resultaat</label>
+			<label index="flexforms_general.mode.news_datemenu">Datum menu</label>
+			<label index="flexforms_general.mode.category_list">Categorie menu</label>
+			<label index="flexforms_general.mode.not_configured">Weergave nog niet geconfigureerd</label>
+			<label index="flexforms_general.mode.optgroup_search">Zoek</label>
+			<label index="flexforms_general.archiveRestriction">Archief</label>
+			<label index="flexforms_general.archiveRestriction.active">Alleen actief (niet gearchiveerd)</label>
+			<label index="flexforms_general.archiveRestriction.archived">Gearchiveerd</label>
+			<label index="flexforms_general.orderBy">Sorteren op</label>
+			<label index="flexforms_general.orderBy.uid">Uid</label>
+			<label index="flexforms_general.orderBy.sorting">Handmatige sortering</label>
+			<label index="flexforms_general.orderBy.tstamp">Laatst bewerkt</label>
+			<label index="flexforms_general.orderBy.crdate">Aangemaakt</label>
+			<label index="flexforms_general.orderBy.datetime">Opgegeven datum/tijd</label>
+			<label index="flexforms_general.orderBy.title">Titel</label>
+			<label index="flexforms_general.orderDirection">Sorteervolgorde</label>
+			<label index="flexforms_general.orderDirection.asc">Oplopend</label>
+			<label index="flexforms_general.orderDirection.desc">Aflopend</label>
+
+			<label index="flexforms_general.dateField">Datum veld gebruiken</label>
+			<label index="flexforms_general.dateField.datetime">Opgegeven datum/tijd</label>
+			<label index="flexforms_general.dateField.archive">Archiveer datum</label>
+
+			<label index="flexforms_general.categories">Categorie selectie</label>
+			<label index="flexforms_general.categoryConjunction">Categorie modus</label>
+			<label index="flexforms_general.categoryConjunction.all">Maakt niet uit, alles tonen</label>
+			<label index="flexforms_general.categoryConjunction.or">Items tonen met geselecteerde categorieën (OR)</label>
+			<label index="flexforms_general.categoryConjunction.and">Items tonen met geselecteerde categorieën (AND)</label>
+			<label index="flexforms_general.categoryConjunction.notand">Items NIET tonen met geselecteerde categorieën (AND)</label>
+			<label index="flexforms_general.categoryConjunction.notor">Items NIET tonen met geselecteerde categorieën (OR)</label>
+			<label index="flexforms_general.timeRestriction">Tijdslimiet (LOW): groter dan opgegeven tijd</label>
+			<label index="flexforms_general.timeRestrictionHigh">Tijdslimiet (HIGH): lager dan opgegeven tijd</label>
+			<label index="flexforms_general.topNewsRestriction">Top nieuws</label>
+			<label index="flexforms_general.topNewsRestriction.1">alleen Top nieuws records</label>
+			<label index="flexforms_general.topNewsRestriction.2">behalve Top Nieuws records</label>
+			<label index="flexforms_general.singleNews">Toon een single nieuws record</label>
+			<label index="flexforms_general.previewHiddenRecords">Sta preview toe van verborgen records</label>
+			<label index="flexforms_general.no-constraint">[no constraint]</label>
+
+			<label index="flexforms_template.mediaMaxWidth">Max breedte voor media elementen</label>
+			<label index="flexforms_template.mediaMaxHeight">Max hoogte voor media elementen</label>
+			<label index="flexforms_template.cropMaxCharacters">Lengte van teaser (in karakters)</label>
+			<label index="flexforms_template.templateLayout">Template Layout</label>
+
+			<label index="flexforms_additional.templateSwitch.1">1</label>
+			<label index="flexforms_additional.templateSwitch.2">2</label>
+			<label index="flexforms_additional.detailPid">PaginaId voor tonen van single nieuws</label>
+			<label index="flexforms_additional.backPid">PaginaId om naar terug te keren</label>
+			<label index="flexforms_additional.listPid">PaginaId voor lijst weergave</label>
+			<label index="flexforms_additional.limit">Max records weergeven</label>
+			<label index="flexforms_additional.offset">Start met nieuws item #</label>
+			<label index="flexforms_additional.hidePagination">Paginanummering verbergen</label>
+			<label index="flexforms_additional.topNewsFirst">Sorteer "Top nieuws" voor</label>
+			<label index="flexforms_additional.disableOverrideDemand">Schakel override demand uit</label>
+
+			<!-- Page Module Record list -->
+			<label index="pagemodule_simple">Simpele lijst</label>
+			<label index="pagemodule_advanced">Geavanceerde lijst</label>
+			<label index="pagemodule_complex">Volledige lijst</label>
+
+			<!-- Extension Manager Configuration -->
+			<label index="extmng.pageModuleFieldsNews">Nieuws velden weergegeven in paginamodule: Stel de velden in die in de pagina-module moeten worden weergegeven met behulp van
+				de volgende syntax: label = fieldlist;label = fieldlist
+			</label>
+			<label index="extmng.pageModuleFieldsCategory">Categorie velden tonen in pagina module:Kies de velden die getoond moeten worden in de pagina module.</label>
+			<label index="extmng.prependAtCopy">Prepend bij kopiëren: Prepend string "copy X".</label>
+			<label index="extmng.categoryRestriction">Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+			</label>
+			<label index="extmng.categoryRestriction.current_pid">Categorieën van de huidige pagina</label>
+			<label index="extmng.categoryRestriction.storage_pid">Categorieën vanaf de pagina die is gedefinieerd in de pagina-eigenschappen</label>
+			<label index="extmng.categoryRestriction.siteroot">Categorieën van de site root</label>
+			<label index="extmng.categoryRestriction.pages_tsconfig">Page TsConfig</label>
+			<label index="extmng.categoryRestriction.none">Geen restrictie</label>
+			<label index="extmng.manualSorting">Handmatig sorteren inschakelen van nieuwsrecords</label>
+			<label index="extmng.contentElementRelation">Gebruik de content element relatie:Indien ingesteld, kunnen content-elementen worden toegevoegd aan nieuws records.</label>
+			<label index="extmng.tagPid">Definieer pid van tag records:Tags worden verzameld op een centrale pagina.</label>
+			<label index="extmng.archiveDate">Archief Datum: Bepaal of de archiefdatum ​​"Datum" of "Datum &amp; tijd" is</label>
+			<label index="extmng.archiveDate.date">Datum</label>
+			<label index="extmng.archiveDate.datetime">Datum &amp; tijd</label>
+			<label index="extmng.removeListActionFromFlexforms">Lijst akties tonen in flexforms: Er zijn 2 verschillende lijstweergaven: "Alleen lijst" toont alleen de
+				lijstweergave. Dit is bijvoorbeeld benodigd als men een lijstweergave op dezelfde pagina als de detailweergave wil. "Lijst + Detail" toont dezelfde lijstweergave,
+				maar zal de detailweergave zien als een nieuws-item is ingesteld via GET argumenten. Let op: Als de instelling wordt gewijzigd nadat nieuws plugins zijn aangemaakt,
+				worden alle plugins opnieuw geconfigureerd door het selecteren van de juiste actie!
+			</label>
+			<label index="extmng.removeListActionFromFlexforms.0">Beide weergaven worden getoond</label>
+			<label index="extmng.removeListActionFromFlexforms.1">Lijst &amp; Detail</label>
+			<label index="extmng.removeListActionFromFlexforms.2">Alleen lijst</label>
+			<label index="extmng.showImporter">Toon importer:Backend module om in nieuws te importeren</label>
+
+			<!-- BE User Settings -->
+			<label index="usersettings.overlay">Gebruik deze overlay voor nieuws categorieën in de Backend</label>
+			<label index="usersettings.no-languages-available">Er zijn geen talen beschikbaar, dus niets te kiezen.</label>
+
+			<!-- BE Module -->
+			<label index="ttnews_importer_title">Importeer tt_news records</label>
+			<label index="ttnewscategory_importer_title">Importeer tt_news categorie records</label>
+			<label index="start_import">Start importeren met %s record(s).</label>
+
+			<label index="tag_suggest">Tag "%s" kon niet gevonden worden, deze aanmaken? &lt;strong&gt;Klik hier&lt;/strong&gt;</label>
+			<label index="tag_suggest_error_no-tag">Geen tag ingediend!</label>
+			<label index="tag_suggest_error_no-newsid">Geen nieuws id opgegeven!</label>
+			<label index="tag_suggest_error_no-pid-found">De pid voor de tag record kon niet gevonden worden in de instellingen van de Extensie Manager!</label>
+			<label index="tag_suggest_error_no-tag-created">Geen nieuwe tag aangemaakt!</label>
+
+			<!-- BE Modoule Administration -->
+			<label index="administration.newsPidListing.header">Toon pagina's met count van nieuws &amp; categorie records</label>
+			<label index="administration.newsPidListing.description">Kies een recursief niveau om de pagina boom te tonen met gerelateerde items. Klik op de pagina titel om de nieuws items te tonen van de pagina.
+			</label>
+
+			<!-- News sys folder -->
+			<label index="news-folder">Nieuws</label>
 		</languageKey>
 	</data>
 </T3locallang>
