@@ -21,5 +21,12 @@
 			<label index="hidden.description">Skjulte elementer vises aldrig i frontend.</label>
 			<label index="title.description">Taggets titel.</label>
 		</languageKey>
+        <languageKey index="nl" type="array">
+            <label index=".description">Tag record</label>
+            <label index=".details">Nieuws records kunnen worden getagged door die records</label>
+            <label index="_.seeAlso">Zie ook de website http://www.news.com/</label>
+            <label index="hidden.description">Verborgen elementen worden nooit getoond aan de voorkant.</label>
+            <label index="title.description">Titel van de tag.</label>
+        </languageKey>
 	</data>
 </T3locallang>

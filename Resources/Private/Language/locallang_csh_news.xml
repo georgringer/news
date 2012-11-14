@@ -61,7 +61,6 @@
 			<label index="related_files.description">Angiv relaterede filer, fx PDF-filer.</label>
 			<label index="related_links.description">Angiv relaterede links til interne og eksterne sider.</label>
 		</languageKey>
-
 		<languageKey index="de" type="array">
 			<label index=".description">News Datensatz</label>
 			<label index=".details">Versatile news system.</label>
@@ -87,5 +86,32 @@
 			<label index="related_files.description">Zu dem Newsdatensatz gehörige Dateien</label>
 			<label index="related_links.description">Zu dem Newsdatensatz gehörige Links</label>
 		</languageKey>
+        <languageKey index="nl" type="array">
+            <label index=".description">Nieuws record</label>
+            <label index=".details">Veelzijdig nieuws systeem.</label>
+            <label index="_.seeAlso">Zie ook de website @todo</label>
+            <label index="sys_language_uid.description">Taal van het nieuws record.</label>
+            <label index="starttime.description">Bepaal een datum waarop het nieuwsrecord getoond moet worden.</label>
+            <label index="endtime.description">Bepaal een datum waarop het nieuwsrecord verborgen moet worden.</label>
+            <label index="fe_group.description">Kies gebruikersgroepen die het nieuwsrecord mogen zien.</label>
+            <label index="editlock.description">Indien aangevinkt kan het nieuwsrecord alleen door admins worden bewerkt.</label>
+            <label index="hidden.description">Verborgen records worden niet getoond aan de voorkant.</label>
+            <label index="title.description">Nieuws titel</label>
+            <label index="teaser.description">Let op dat dit kan worden gecropped.</label>
+            <label index="type.description">Selecteer het type dat kan zijn ofwel een normaal nieuwsrecord, een link naar een interne pagina of een link naar een externe pagina.</label>
+            <label index="istopnews.description">Top nieuws records kunnen speciaal worden behandeld ten aanzien van layout, sortering, ...</label>
+            <label index="author.description">Auteur van het nieuwsrecord</label>
+            <label index="author_email.description">E-mail adres van de auteur</label>
+            <label index="datetime.description">Datum van het nieuws record</label>
+            <label index="archive.description">Archiefdatum. Een datum is benodigd als het nieuwsrecord (later) behandeld moet worden als gearchiveerd nieuws.</label>
+            <label index="bodytext.description">Hoofdcontent van het nieuws record</label>
+            <label index="categories.description">Selecteer de categorieën die gerelateerd zijn aan dit record.</label>
+            <label index="tags.description">Definieer en selecteer tags die bij dit artikel passen.</label>
+            <label index="content_elements.description">Content elementen kunnen gebruikt worden om nieuwsartikelen te maken met uitgebreide mogelijkheden.</label>
+            <label index="keywords.description">Bepaal keywords die kunnen worden gebruikt voor SEO optimalisaties.</label>
+            <label index="related.description">Kies gerelateerde nieuws records.</label>
+            <label index="related_files.description">Kies gerelateerde bestanden, bijvoorbeeld PDFs</label>
+            <label index="related_links.description">Kies gerelateerde links naar interne en externe pagina's.</label>
+        </languageKey>
 	</data>
 </T3locallang>

@@ -168,7 +168,6 @@
 			<label index="tx_news_domain_model_link.description">Descripción</label>
 			<label index="tx_news_domain_model_link.uri">URL</label>
 		</languageKey>
-
 		<languageKey index="de" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relationen</label>
 			<label index="tx_news_domain_model_news">News</label>
@@ -220,5 +219,64 @@
 			<label index="tx_news_domain_model_link.description">Beschreibung</label>
 			<label index="tx_news_domain_model_link.uri">URL</label>
 		</languageKey>
+        <languageKey index="nl" type="array">
+            <label index="tx_news_domain_model_news.tabs.relations">Relaties</label>
+            <label index="tx_news_domain_model_news">Nieuws</label>
+            <label index="tx_news_domain_model_news.alternative_title">Alternatieve titel</label>
+            <label index="tx_news_domain_model_news.teaser">Teaser</label>
+            <label index="tx_news_domain_model_news.datetime">Datum &amp; Tijd</label>
+            <label index="tx_news_domain_model_news.archive">Archief</label>
+            <label index="tx_news_domain_model_news.categories">Categorieën</label>
+            <label index="tx_news_domain_model_news.related">Gerelateerd Nieuws</label>
+            <label index="tx_news_domain_model_news.related_files">Gerelateerde Bestanden</label>
+            <label index="tx_news_domain_model_news.related_links">Gerelateerde Links</label>
+            <label index="tx_news_domain_model_news.type.I.0">Nieuws</label>
+            <label index="tx_news_domain_model_news.type.I.1">Interne Pagina</label>
+            <label index="tx_news_domain_model_news.type.I.2">Externe Pagina</label>
+            <label index="tx_news_domain_model_news.media">Media Element</label>
+            <label index="tx_news_domain_model_news.istopnews">Top nieuws</label>
+            <label index="tx_news_domain_model_news.content_elements">Content elementen</label>
+            <label index="tx_news_domain_model_news.tags">Tags</label>
+            <label index="tx_news_domain_model_news.tags.add">Voeg een nieuwe tag toe</label>
+            <label index="tx_news_domain_model_news.tags.list">Toon lijst van alle tags</label>
+            <label index="tx_news_domain_model_news.tags.edit">Wijzig tag</label>
+
+            <label index="tx_news_domain_model_category">Nieuws Categorie</label>
+            <label index="tx_news_domain_model_category.title">Titel</label>
+            <label index="tx_news_domain_model_category.description">Beschrijving</label>
+            <label index="tx_news_domain_model_category.image">Afbeelding</label>
+            <label index="tx_news_domain_model_category.parentcategory">Bovenliggende Categorie</label>
+            <label index="tx_news_domain_model_category.single_pid">Detail weergave pagina voor nieuws uit deze categorie</label>
+            <label index="tx_news_domain_model_category.shortcut">Nieuws categorie snelkoppeling</label>
+
+            <label index="tx_news_domain_model_media">News Media Element</label>
+            <label index="tx_news_domain_model_media.caption">Onderschrift</label>
+            <label index="tx_news_domain_model_media.media">Afbeelding</label>
+            <label index="tx_news_domain_model_media.type.I.0">Afbeelding</label>
+            <label index="tx_news_domain_model_media.type.I.1">Video &amp; Audio</label>
+            <label index="tx_news_domain_model_media.type.I.2">HTML</label>
+            <label index="tx_news_domain_model_media.type.I.3">DAM record</label>
+            <label index="tx_news_domain_model_media.multimedia">Video- / Audio-URL</label>
+            <label index="tx_news_domain_model_media.dam">DAM record</label>
+            <label index="tx_news_domain_model_media.show">Toon</label>
+            <label index="tx_news_domain_model_media.showinpreview">Toon in voorvertoning weergaven</label>
+            <label index="tx_news_domain_model_media.copyright">Copyright</label>
+
+            <label index="tx_news_domain_model_file">Nieuws bestandselement</label>
+            <label index="tx_news_domain_model_file.title">Titel</label>
+            <label index="tx_news_domain_model_file.description">Description</label>
+            <label index="tx_news_domain_model_file.file">File</label>
+
+            <label index="tx_news_domain_model_link">News Link Element</label>
+            <label index="tx_news_domain_model_link.title">Title</label>
+            <label index="tx_news_domain_model_link.description">Beschrijving</label>
+            <label index="tx_news_domain_model_link.uri">URL</label>
+
+            <label index="tx_news_domain_model_tag">Nieuws Tag</label>
+            <label index="tx_news_domain_model_tag.title">Titel</label>
+            <label index="tx_news_domain_model_news.path_segment">Speaking URL path segment</label>
+
+            <label index="be_user.tx_news_categorymounts">Nieuws: Categorie restrictie</label>
+        </languageKey>
 	</data>
 </T3locallang>

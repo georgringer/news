@@ -34,6 +34,20 @@
 			<label index="video.description">Angiv URL til video- eller audio-resource. Dette kan enten være en relativ sti (fx fileadmin/video.flv) eller en absolut sti (fx til en youtube video).</label>
 			<label index="media.description">Vælg selve billedet.</label>
 			<label index="html.description">Indsæt standard HTML.</label>
+        </languageKey>
+        <languageKey index="nl" type="array">
+            <label index=".description">Media record</label>
+            <label index=".details">Relatie naar media records</label>
+            <label index="_.seeAlso">Zie ook de website http://www.news.com/</label>
+            <label index="hidden.description">Verborgen elementen worden nooit getoond aan de voorzijde.</label>
+            <label index="caption.description">Onderschrift van het media element</label>
+            <label index="title.description">Extra informatie voor de titel tag.</label>
+            <label index="alt.description">Extra informatie voor de alt tag.</label>
+            <label index="type.description">Type media element. Dit kan zijn (default): Afbeeldingen, Video &amp; Audio, Platte Html.</label>
+            <label index="showinpreview.description">Indien aangevinkt is het media-element ook beschikbaar in de lijstweergave.</label>
+            <label index="video.description">Definieer de URL van de video of audio bron. Dit kan een relatief pad (bv. fileadmin/Video.flv) of een absoluut pad (bv. naar een youtube video) zijn.</label>
+            <label index="media.description">Selecteer de afbeelding zelf.</label>
+            <label index="html.description">Plaats platte HTML.</label>
 		</languageKey>
 	</data>
 </T3locallang>
