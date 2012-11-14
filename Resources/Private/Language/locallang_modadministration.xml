@@ -9,5 +9,9 @@
 			<label index="mlang_tabs_tab">News</label>
 			<label index="mlang_labels_tablabel">News Administration</label>
 		</languageKey>
+		<languageKey index="nl" type="array">
+			<label index="mlang_tabs_tab">Nieuws</label>
+			<label index="mlang_labels_tablabel">Nieuws Beheer</label>
+		</languageKey>
 	</data>
 </T3locallang>
