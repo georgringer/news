@@ -20,9 +20,14 @@
  ***************************************************************/
 
 /**
- * TCA tree data provider which considers
+ * TCA tree data provider which considers the current be_users access rights for Tx_News_Domain_Model_Category objects
  */
 class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_DatabaseTreeDataProvider {
+
+	/**
+	 * @var Tx_News_Domain_Model_Dto_EmConfiguration
+	 */
+	protected $emConfiguration;
 
 	/**
 	 * Required constructor
@@ -30,103 +35,65 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 	 * @param array $configuration TCA configuration
 	 */
 	public function __construct (array $configuration) {
+		$this->emConfiguration = Tx_News_Utility_EmConfiguration::getSettings();
 	}
 
 	/**
-	 * Builds a complete node including children
+	 * Starts resolving of unselectable categories additionally to the default behaviour
 	 *
-	 * @param \TYPO3\CMS\Backend\Tree\TreeNode $basicNode
-	 * @param NULL|t3lib_tree_tca_DatabaseNode $parent
-	 * @param integer $level
-	 * @return t3lib_tree_tca_DatabaseNode node
+	 * @return void
 	 */
-	protected function buildRepresentationForNode (t3lib_tree_Node $basicNode, t3lib_tree_tca_DatabaseNode $parent = NULL, $level = 0, $restriction = FALSE) {
-		/**@param $node t3lib_tree_tca_DatabaseNode */
-		$node = t3lib_div::makeInstance ('t3lib_tree_tca_DatabaseNode');
-		$row = array();
-		if ($basicNode->getId () == 0) {
-			$node->setSelected (FALSE);
-			$node->setExpanded (TRUE);
-			$node->setLabel ($GLOBALS['LANG']->sL ($GLOBALS['TCA'][$this->tableName]['ctrl']['title']));
-		} else {
-			$row = t3lib_BEfunc::getRecordWSOL ($this->tableName, $basicNode->getId (), '*', '', FALSE);
+	public function initializeTreeData() {
+		parent::initializeTreeData();
+		$this->treeData = $this->resolveUnselectableCategories($this->treeData);
+	}
 
-			if ($this->getLabelField () !== '') {
-				$node->setLabel ($row[$this->getLabelField ()]);
-			} else {
-				$node->setLabel ($basicNode->getId ());
-			}
-			$node->setSelected (t3lib_div::inList ($this->getSelectedList (), $basicNode->getId ()));
-			$node->setExpanded ($this->isExpanded ($basicNode));
-			$node->setLabel ($node->getLabel ());
+	/**
+	 * Checks if the current be_user is allowed to access this category or a subcategory. If
+	 * he's not and the extension configuration removeInaccessibleCategorySubtrees is set to TRUE,
+	 * the category will be deleted. If he has only access to a subcategory, the
+	 * assigned category will be added to $this->itemUnselectableList.
+	 *
+	 * @param t3lib_tree_AbstractNode $basicNode
+	 * @return t3lib_tree_AbstractNode
+	 */
+	protected function resolveUnselectableCategories(&$basicNode) {
+		if (Tx_News_Utility_TreeNode::isCategoryInAcl($basicNode)) {
+			// If singleCategoryAcl is deactivated stop resolving because this node gives access to all child nodes.
+			if (!Tx_News_Utility_TreeNode::isSingleCategoryAclActivated()) return $basicNode;
+		}
+		else {
+			$this->addItemUnselectableList($basicNode);
 		}
 
-		$node->setId ($basicNode->getId ());
-
-		// Break to force single category activation
-		if ($parent != NULL && $level != 0 && $this->isSingleCategoryAclActivated() && !$this->isCategoryAllowed ($node)) {
-			return NULL;
-		}
-		$node->setSelectable (!t3lib_div::inList ($this->getNonSelectableLevelList (), $level) && !in_array ($basicNode->getId (), $this->getItemUnselectableList ()));
-		$node->setSortValue ($this->nodeSortValues[$basicNode->getId ()]);
-		$node->setIcon (t3lib_iconWorks::mapRecordTypeToSpriteIconClass ($this->tableName, $row));
-		$node->setParentNode ($parent);
-		if ($basicNode->hasChildNodes ()) {
-			$node->setHasChildren (TRUE);
-			$childNodes = t3lib_div::makeInstance ('t3lib_tree_SortedNodeCollection');
-			$foundSomeChild = FALSE;
-			foreach ($basicNode->getChildNodes () as $child) {
-				// Change in custom TreeDataProvider by adding the if clause
-				if ($restriction || $this->isCategoryAllowed ($child)) {
-					$returnedChild = $this->buildRepresentationForNode ($child, $node, $level + 1, TRUE);
-
-					if (!is_null ($returnedChild)) {
-						$foundSomeChild = TRUE;
-						$childNodes->append ($returnedChild);
-					} else {
-						$node->setParentNode (NULL);
-						$node->setHasChildren (FALSE);
-					}
+		if ($basicNode->hasChildNodes()) {
+			$newChildNodesArray = array('serializeClassName' => 't3lib_tree_NodeCollection');
+			foreach ($basicNode->getChildNodes() as $child) {
+				if (!$this->emConfiguration->getRemoveInaccessibleCategorySubtrees() || !Tx_News_Utility_TreeNode::canNodeBeRemoved($child)) {
+					$newChildNodesArray[] = $this->resolveUnselectableCategories($child)->toArray();
 				}
-				// Change in custom TreeDataProvider end
 			}
-
-			if ($foundSomeChild) {
-				$node->setChildNodes ($childNodes);
+			if (count($newChildNodesArray) === 1) {
+				$basicNode->removeChildNodes();
+			}
+			else {
+				$newChildNodes = t3lib_div::makeInstance('t3lib_tree_NodeCollection', $newChildNodesArray);
+				$basicNode->setChildNodes($newChildNodes);
 			}
 		}
-		return $node;
+		return $basicNode;
 	}
 
 	/**
-	 * Check if given category is allowed by the access rights
+	 * Adds an unselectable item uid to $this->itemUnselectableList
 	 *
-	 * @param \TYPO3\CMS\Backend\Tree\TreeNode $child
-	 * @return bool
+	 * @param t3lib_tree_AbstractNode $unselectableItem
+	 * @return void
 	 */
-	protected function isCategoryAllowed ($child) {
-		$mounts = Tx_News_Utility_CategoryProvider::getUserMounts ();
-		if (empty($mounts)) {
-			return TRUE;
+	public function addItemUnselectableList($unselectableItem) {
+		if (!in_array ($unselectableItem->getId(), $this->itemUnselectableList)) {
+			$this->itemUnselectableList[] = $unselectableItem->getId();
 		}
-
-		return t3lib_div::inList ($mounts, $child->getId ());
-	}
-
-	/**
-	 * By setting "tx_news.singleCategoryAcl = 1" in UserTsConfig
-	 * every category needs to be activated, no recursive enabling
-	 *
-	 * @return bool
-	 */
-	protected function isSingleCategoryAclActivated() {
-		if (is_array($GLOBALS['BE_USER']->userTS['tx_news.'])
-			&& $GLOBALS['BE_USER']->userTS['tx_news.']['singleCategoryAcl'] === '1'
-		) {
-			return TRUE;
-		}
-
-		return FALSE;
 	}
 
 }

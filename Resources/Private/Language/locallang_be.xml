@@ -101,6 +101,7 @@
 			<label index="extmng.removeListActionFromFlexforms.1">List &amp; Detail</label>
 			<label index="extmng.removeListActionFromFlexforms.2">List only</label>
 			<label index="extmng.showImporter">Show importer:Backend module to import into news</label>
+			<label index="extmng.removeInaccessibleCategorySubtrees">Remove inaccessible category subtrees:If set, be_users will only see accessible parts of the category tree in the news edit form.</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>

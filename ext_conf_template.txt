@@ -27,3 +27,6 @@ archiveDate = date
 
  	# cat=basic/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showImporter
 showImporter = 0
+
+	# cat=basic/enable/130; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeInaccessibleCategorySubtrees
+removeInaccessibleCategorySubtrees = 1
