@@ -20,7 +20,7 @@
  ***************************************************************/
 
 /**
- * TCA tree data provider which considers
+ * TCA tree data provider which considers the current be_users access rights for Tx_News_Domain_Model_Category objects
  */
 class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_DatabaseTreeDataProvider {
 
@@ -33,69 +33,55 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 	}
 
 	/**
-	 * Builds a complete node including children
+	 * Starts resolving of unselectable categories additionally to the default behaviour
 	 *
-	 * @param \TYPO3\CMS\Backend\Tree\TreeNode $basicNode
-	 * @param NULL|t3lib_tree_tca_DatabaseNode $parent
-	 * @param integer $level
-	 * @return t3lib_tree_tca_DatabaseNode node
+	 * @return void
 	 */
-	protected function buildRepresentationForNode (t3lib_tree_Node $basicNode, t3lib_tree_tca_DatabaseNode $parent = NULL, $level = 0, $restriction = FALSE) {
-		/**@param $node t3lib_tree_tca_DatabaseNode */
-		$node = t3lib_div::makeInstance ('t3lib_tree_tca_DatabaseNode');
-		$row = array();
-		if ($basicNode->getId () == 0) {
-			$node->setSelected (FALSE);
-			$node->setExpanded (TRUE);
-			$node->setLabel ($GLOBALS['LANG']->sL ($GLOBALS['TCA'][$this->tableName]['ctrl']['title']));
+	public function initializeTreeData() {
+		parent::initializeTreeData();
+		$this->resolveUnselectableCategories($this->treeData);
+	}
+
+	/**
+	 * Checks if the current be_user is allowed to set this node and all child nodes
+	 * and adds the nodes uids to $this->itemUnselectableList if necessary.
+	 *
+	 * @param t3lib_tree_AbstractNode $basicNode
+	 * @param boolean $parentAllowed Is set to FALSE if the user has no access rights for the parent category 
+	 * @return void
+	 */
+	protected function resolveUnselectableCategories($basicNode, $parentAllowed = TRUE) {
+		if ($basicNode === $this->treeData) {
+			// Catch root object
+			$categoryAllowed = FALSE;
+		} elseif ($this->isCategoryInAcl($basicNode)) {
+			// Category is allowed in user settings
+			$categoryAllowed = TRUE;
+		} elseif ($parentAllowed && !$this->isSingleCategoryAclActivated()) {
+			// Parent category is allowed in user settings and category restriction inheritance is activated in UserTsConfig
+			$categoryAllowed = TRUE;
 		} else {
-			$row = t3lib_BEfunc::getRecordWSOL ($this->tableName, $basicNode->getId (), '*', '', FALSE);
-
-			if ($this->getLabelField () !== '') {
-				$node->setLabel ($row[$this->getLabelField ()]);
-			} else {
-				$node->setLabel ($basicNode->getId ());
-			}
-			$node->setSelected (t3lib_div::inList ($this->getSelectedList (), $basicNode->getId ()));
-			$node->setExpanded ($this->isExpanded ($basicNode));
-			$node->setLabel ($node->getLabel ());
+			$categoryAllowed = FALSE;
 		}
 
-		$node->setId ($basicNode->getId ());
-
-		// Break to force single category activation
-		if ($parent != NULL && $level != 0 && $this->isSingleCategoryAclActivated() && !$this->isCategoryAllowed ($node)) {
-			return NULL;
+		if (!$categoryAllowed) {
+			$this->addItemUnselectableList($basicNode);
 		}
-		$node->setSelectable (!t3lib_div::inList ($this->getNonSelectableLevelList (), $level) && !in_array ($basicNode->getId (), $this->getItemUnselectableList ()));
-		$node->setSortValue ($this->nodeSortValues[$basicNode->getId ()]);
-		$node->setIcon (t3lib_iconWorks::mapRecordTypeToSpriteIconClass ($this->tableName, $row));
-		$node->setParentNode ($parent);
-		if ($basicNode->hasChildNodes ()) {
-			$node->setHasChildren (TRUE);
-			$childNodes = t3lib_div::makeInstance ('t3lib_tree_SortedNodeCollection');
-			$foundSomeChild = FALSE;
-			foreach ($basicNode->getChildNodes () as $child) {
-				// Change in custom TreeDataProvider by adding the if clause
-				if ($restriction || $this->isCategoryAllowed ($child)) {
-					$returnedChild = $this->buildRepresentationForNode ($child, $node, $level + 1, TRUE);
-
-					if (!is_null ($returnedChild)) {
-						$foundSomeChild = TRUE;
-						$childNodes->append ($returnedChild);
-					} else {
-						$node->setParentNode (NULL);
-						$node->setHasChildren (FALSE);
-					}
-				}
-				// Change in custom TreeDataProvider end
-			}
-
-			if ($foundSomeChild) {
-				$node->setChildNodes ($childNodes);
-			}
+		foreach ($basicNode->getChildNodes() as $child) {
+			$this->resolveUnselectableCategories($child, $categoryAllowed);
 		}
-		return $node;
+	}
+
+	/**
+	 * Adds an unselectable items uid to $this->itemUnselectableList
+	 *
+	 * @param t3lib_tree_AbstractNode $unselectableItem
+	 * @return void
+	 */
+	public function addItemUnselectableList($unselectableItem) {
+		if (!in_array ($unselectableItem->getId(), $this->itemUnselectableList)) {
+			$this->itemUnselectableList[] = $unselectableItem->getId();
+		}
 	}
 
 	/**
@@ -104,7 +90,7 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 	 * @param \TYPO3\CMS\Backend\Tree\TreeNode $child
 	 * @return bool
 	 */
-	protected function isCategoryAllowed ($child) {
+	protected function isCategoryInAcl ($child) {
 		$mounts = Tx_News_Utility_CategoryProvider::getUserMounts ();
 		if (empty($mounts)) {
 			return TRUE;
