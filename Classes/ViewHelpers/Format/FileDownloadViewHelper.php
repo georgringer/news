@@ -30,6 +30,17 @@
  */
 class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
+	/**
+	 * @var Tx_Extbase_Service_TypoScriptService
+	 */
+	protected $typoScriptService;
+
+	/**
+	 * @param Tx_Extbase_Service_TypoScriptService $typoScriptService
+	 */
+	public function injectTypoScriptService(Tx_Extbase_Service_TypoScriptService $typoScriptService) {
+		$this->typoScriptService = $typoScriptService;
+	}
 
 	/**
 	 * Download a file
@@ -66,7 +77,11 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 
 		);
 
-		$configuration = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($configuration);
+		if (class_exists('Tx_Extbase_Utility_TypoScript')) {
+			$configuration = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($configuration);
+		} else {
+			$configuration = $this->typoScriptService->convertPlainArrayToTypoScriptArray($configuration);
+		}
 
 			// merge default configuration with optional configuration
 		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration, $configuration);
