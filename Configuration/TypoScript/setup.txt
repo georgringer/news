@@ -122,6 +122,7 @@ plugin.tx_news {
 		# --------------
 		detail {
 			registerProperties = keywords,title
+			showSocialShareButtons = 1
 
 			# media configuration
 			media {
