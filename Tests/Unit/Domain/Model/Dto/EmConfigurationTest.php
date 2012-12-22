@@ -50,6 +50,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends Tx_Extbase
 			'manualSorting' => FALSE,
 			'archiveDate' => 'bar',
 			'showImporter' => TRUE,
+			'showAdministrationModule' => FALSE,
 		);
 
 		$configurationInstance = new Tx_News_Domain_Model_Dto_EmConfiguration($configuration);
@@ -79,6 +80,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends Tx_Extbase
 			'manualSorting' => FALSE,
 			'archiveDate' => 'date',
 			'showImporter' => FALSE,
+			'showAdministrationModule' => TRUE,
 		);
 
 		$configurationInstance = new Tx_News_Domain_Model_Dto_EmConfiguration(array());

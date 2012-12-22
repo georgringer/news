@@ -101,6 +101,7 @@
 			<label index="extmng.removeListActionFromFlexforms.1">List &amp; Detail</label>
 			<label index="extmng.removeListActionFromFlexforms.2">List only</label>
 			<label index="extmng.showImporter">Show importer:Backend module to import into news</label>
+			<label index="extmng.showAdministrationModule">Show administration module:Backend module to administrate news records</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>
