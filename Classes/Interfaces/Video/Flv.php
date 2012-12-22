@@ -77,7 +77,12 @@ class Tx_News_Interfaces_Video_Flv implements Tx_News_Interfaces_MediaInterface 
 		$url = $element->getMultimedia();
 		$fileEnding = strtolower(substr($url, -3));
 
-		return ($fileEnding === 'flv');
+		$enabled = FALSE;
+		if ($fileEnding === 'flv' || $fileEnding === 'mp4') {
+			$enabled = TRUE;
+		}
+
+		return $enabled;
 	}
 
 }
