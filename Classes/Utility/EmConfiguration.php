@@ -36,7 +36,7 @@ class Tx_News_Utility_EmConfiguration {
 	/**
 	 * Parses the extension settings.
 	 *
-	 * @return Tx_News_Utility_EmConfiguration
+	 * @return Tx_News_Domain_Model_Dto_EmConfiguration
 	 * @throws Exception If the configuration is invalid.
 	 */
 	public static function getSettings() {

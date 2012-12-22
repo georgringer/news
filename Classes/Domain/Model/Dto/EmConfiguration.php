@@ -94,6 +94,11 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	protected $showImporter = FALSE;
 
 	/**
+	 * @var boolean
+	 */
+	protected $showAdministrationModule = TRUE;
+
+	/**
 	 * @return integer
 	 */
 	public function getRemoveListActionFromFlexforms() {
@@ -163,6 +168,21 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	public function getShowImporter() {
 		return (boolean)$this->showImporter;
 	}
+
+	/**
+	 * @param boolean $showAdministrationModule
+	 */
+	public function setShowAdministrationModule($showAdministrationModule) {
+		$this->showAdministrationModule = $showAdministrationModule;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getShowAdministrationModule() {
+		return $this->showAdministrationModule;
+	}
+
 
 }
 ?>

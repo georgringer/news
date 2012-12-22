@@ -345,7 +345,7 @@ if (TYPO3_MODE === 'BE' && $configuration->getShowImporter()) {
 /* ===========================================================================
  	Register BE-Module for Administration
 =========================================================================== */
-if (TYPO3_MODE === 'BE') {
+if (TYPO3_MODE === 'BE' && $configuration->getShowAdministrationModule()) {
 	Tx_Extbase_Utility_Extension::registerModule(
 		$_EXTKEY,
 		'web',
