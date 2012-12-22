@@ -77,17 +77,19 @@
 				</div>
 			</f:if>
 
-			<div class="facebook">
-				<div class="like">
-					<n:social.facebook.like></n:social.facebook.like>
+			<f:if condition="{settings.detail.showSocialShareButtons}">
+				<div class="facebook">
+					<div class="like">
+						<n:social.facebook.like></n:social.facebook.like>
+					</div>
+					<div class="share">
+						<n:social.facebook.share>Share</n:social.facebook.share>
+					</div>
+					<div class="twitter">
+						<n:social.twitter>Twitter</n:social.twitter>
+					</div>
 				</div>
-				<div class="share">
-					<n:social.facebook.share>Share</n:social.facebook.share>
-				</div>
-				<div class="twitter">
-					<n:social.twitter>Twitter</n:social.twitter>
-				</div>
-			</div>
+			</f:if>
 
 			<!-- related things -->
 			<div class="news-related-wrap">
