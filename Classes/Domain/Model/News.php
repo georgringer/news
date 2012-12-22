@@ -145,7 +145,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $relatedLinks;
 
 	/**
-	 * @var integer
+	 * @var string
 	 */
 	protected $type;
 
@@ -557,7 +557,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get type of news
 	 *
-	 * @return integer
+	 * @return string
 	 */
 	public function getType() {
 		return $this->type;
