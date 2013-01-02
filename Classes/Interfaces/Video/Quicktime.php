@@ -31,7 +31,7 @@
 class Tx_News_Interfaces_Video_Quicktime implements Tx_News_Interfaces_MediaInterface {
 
 	/**
-	 * Render flv files
+	 * Render quicktime files
 	 *
 	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
