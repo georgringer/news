@@ -23,17 +23,17 @@
 ***************************************************************/
 
 /**
- * Implementation of flv support
+ * Implementation of file support
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Interfaces_Video_Flv implements Tx_News_Interfaces_MediaInterface {
+class Tx_News_Interfaces_Video_File implements Tx_News_Interfaces_MediaInterface {
 
 	const PATH_TO_JS = 'typo3conf/ext/news/Resources/Public/JavaScript/Contrib/';
 
 	/**
-	 * Render flv files
+	 * Render a video player
 	 *
 	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
@@ -68,7 +68,7 @@ class Tx_News_Interfaces_Video_Flv implements Tx_News_Interfaces_MediaInterface 
 	}
 
 	/**
-	 * Files with extension flv are handled within this implementation
+	 * Files with extension flv|mp4 are handled within this implementation
 	 *
 	 * @param Tx_News_Domain_Model_Media $element
 	 * @return boolean

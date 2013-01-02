@@ -33,7 +33,7 @@ class Tx_News_Interfaces_Audio_Mp3 implements Tx_News_Interfaces_MediaInterface 
 	const PATH_TO_JS = 'typo3conf/ext/news/Resources/Public/JavaScript/Contrib/';
 
 	/**
-	 * Render flv files
+	 * Render mp3 files
 	 *
 	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
