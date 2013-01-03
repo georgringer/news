@@ -33,6 +33,18 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	implements Tx_News_Domain_Repository_DemandedRepositoryInterface {
 
 	/**
+	 * @var Tx_Extbase_Persistence_Storage_BackendInterface
+	 */
+	protected $storageBackend;
+	/**
+	 * @param Tx_Extbase_Persistence_Storage_BackendInterface $storageBackend
+	 * @return void
+	 */
+	public function injectStorageBackend(Tx_Extbase_Persistence_Storage_BackendInterface $storageBackend) {
+		$this->storageBackend = $storageBackend;
+	}
+
+	/**
 	 * Returns an array of constraints created from a given demand object.
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
@@ -52,23 +64,57 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	abstract protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand);
 
 	/**
-	 * Returns the total number objects of this repository matching the demand.
+	 * Returns the objects of this repository matching the demand.
 	 *
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
 	 * @param boolean $respectEnableFields
 	 * @return Tx_Extbase_Persistence_QueryResultInterface
 	 */
 	public function findDemanded(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
+		$query = $this->generateQuery($demand, $respectEnableFields);
 
+		return $query->execute();
+	}
+
+	/**
+	 * Returns the database query to get the matching result
+	 *
+	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param boolean $respectEnableFields
+	 * @return string
+	 */
+	public function findDemandedRaw(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
+		$query = $this->generateQuery($demand, $respectEnableFields);
+		$statement = $query->statement();
+
+		$dbStorage = $this->storageBackend;
+
+		if ($statement instanceof \TYPO3\CMS\Extbase\Persistence\Generic\Qom\Statement) {
+			$sql = $statement->getStatement();
+			$parameters = $statement->getBoundVariables();
+		} else {
+			$parameters = array();
+			$statementParts = $dbStorage->parseQuery($query, $parameters);
+			$sql = $dbStorage->buildQuery($statementParts, $parameters);
+		}
+		$tableName = 'foo';
+		if (is_array($statementParts && !empty($statementParts['tables'][0]))) {
+			$tableName = $statementParts['tables'][0];
+		}
+
+		$this->replacePlaceholders($sql, $parameters, $tableName);
+
+		return $sql;
+	}
+
+	protected function generateQuery(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
 		$query = $this->createQuery();
 
-			// @todo find a better place for setting respectStoragePage.
-			// Perhaps $this->createQuery().
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 
 		$constraints = $this->createConstraintsFromDemand($query, $demand);
 
-			// Call hook functions for additional constraints
+		// Call hook functions for additional constraints
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'])) {
 			$params = array(
 				'demand' => $demand,
@@ -96,17 +142,17 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 			$query->setOrderings($orderings);
 		}
 
-			// @todo consider moving this to a separate function as well
+		// @todo consider moving this to a separate function as well
 		if ($demand->getLimit() != NULL) {
 			$query->setLimit((int) $demand->getLimit());
 		}
 
-			// @todo consider moving this to a separate function as well
+		// @todo consider moving this to a separate function as well
 		if ($demand->getOffset() != NULL) {
 			$query->setOffset((int) $demand->getOffset());
 		}
 
-		return $query->execute();
+		return $query;
 	}
 
 	/**
@@ -126,6 +172,43 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 
 		$result = $query->execute();
 		return $result->count();
+	}
+
+	/**
+	 * Copy of the one from Typo3DbBackend
+	 * Replace query placeholders in a query part by the given
+	 * parameters.
+	 *
+	 * @param string $sqlString The query part with placeholders
+	 * @param array $parameters The parameters
+	 * @param string $tableName
+	 *
+	 * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+	 * @return string The query part with replaced placeholders
+	 */
+	protected function replacePlaceholders(&$sqlString, array $parameters, $tableName = 'foo') {
+		if (substr_count($sqlString, '?') !== count($parameters)) {
+			throw new \TYPO3\CMS\Extbase\Persistence\Generic\Exception('The number of question marks to replace must be equal to the number of parameters.', 1242816074);
+		}
+		$offset = 0;
+		foreach ($parameters as $parameter) {
+			$markPosition = strpos($sqlString, '?', $offset);
+			if ($markPosition !== FALSE) {
+				if ($parameter === NULL) {
+					$parameter = 'NULL';
+				} elseif (is_array($parameter) || $parameter instanceof \ArrayAccess || $parameter instanceof \Traversable) {
+					$items = array();
+					foreach ($parameter as $item) {
+						$items[] = $GLOBALS['TYPO3_DB']->fullQuoteStr($item, $tableName);
+					}
+					$parameter = '(' . implode(',', $items) . ')';
+				} else {
+					$parameter = $GLOBALS['TYPO3_DB']->fullQuoteStr($parameter, $tableName);
+				}
+				$sqlString = substr($sqlString, 0, $markPosition) . $parameter . substr($sqlString, ($markPosition + 1));
+			}
+			$offset = $markPosition + strlen($parameter);
+		}
 	}
 }
 ?>
