@@ -86,7 +86,7 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 		$this->configuration = t3lib_div::array_merge_recursive_overrule(
 								$this->configuration,
 								(array)$this->widgetConfiguration['configuration'], TRUE);
-		$this->numberOfPages = ceil(count($this->objects) / (integer)$this->configuration['itemsPerPage']);
+		$this->numberOfPages = (integer)ceil(count($this->objects) / (integer)$this->configuration['itemsPerPage']);
 		$this->pagesBefore = (integer)$this->configuration['pagesBefore'];
 		$this->pagesAfter = (integer)$this->configuration['pagesAfter'];
 		$this->lessPages = (boolean)$this->configuration['lessPages'];
