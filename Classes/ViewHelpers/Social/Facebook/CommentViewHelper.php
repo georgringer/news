@@ -28,7 +28,7 @@
  *
  * Examples
  * ==============
- * <n:facebook.comment appId="165193833530000" xid="news-{newsItem.uid}" />
+ * <social.facebook.comment appId="165193833530000" xid="news-{newsItem.uid}" />
  * Result: Facebook widget to comment an article
  *
  * @package TYPO3
@@ -40,6 +40,19 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends Tx_Fluid_Cor
 	 * @var	string
 	 */
 	protected $tagName = 'fb:comments';
+
+	/**
+	 * @var Tx_News_Service_SettingsService
+	 */
+	protected $pluginSettingsService;
+
+	/**
+	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 * @return void
+	 */
+	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+		$this->pluginSettingsService = $pluginSettingsService;
+	}
 
 	/**
 	 * Arguments initialization
@@ -60,8 +73,8 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends Tx_Fluid_Cor
 	 * @return string
 	 */
 	public function render($appId) {
-		$pluginSettingsService = $this->objectManager->get('Tx_News_Service_SettingsService');
-		$tsSettings = $pluginSettingsService->getSettings();
+		$tsSettings = $this->pluginSettingsService->getSettings();
+		$this->tag->addAttribute('data-href', t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
 
 		$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
 
