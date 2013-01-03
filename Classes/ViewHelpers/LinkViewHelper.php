@@ -23,19 +23,18 @@
  * <n:link newsItem="{newsItem}" settings="{settings}">
  * {newsItem.title}
  * </n:link>
- * Inline notation:
- * {n:link(newsItem:newsItem,settings:settings,configuration:{returnLast:'url'})}
- * Link with additional arguments
- * <n:link newsItem="{newsItem}"
- * 		settings="{settings}"
- * 		configuration="{ATagParams:'class=\"fo\" id=\"bar\"'}">
- *    {newsItem.title}
- * </n:link>
  *
- * @package TYPO3
- * @subpackage tx_news
+ * As the AbstractTagBasedViewHelper is extended, it is simple to add an
+ * additional class to the link, e.g. by using
+ * <n:link newsItem="{newsItem}" settings="{settings}" class="a-link-class">fo</n:link>
+ *
  */
-class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+
+	/**
+	 * @var string
+	 */
+	protected $tagName = 'a';
 
 	/**
 	 * @var Tx_News_Service_SettingsService
@@ -60,16 +59,28 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	}
 
 	/**
+	 * Initialize arguments of this view helper
+	 *
+	 * @return void
+	 */
+	public function initializeArguments() {
+		parent::initializeArguments();
+		$this->registerUniversalTagAttributes();
+	}
+
+	/**
 	 * Render link to news item or internal/external pages
 	 *
 	 * @param Tx_News_Domain_Model_News $newsItem
 	 * @param array $settings
-	 * @param boolean $hsc add htmlspecialchars() at the end
+	 * @param boolean $uriOnly return only the url without the a-tag
 	 * @param array $configuration optional typolink configuration
-	 * @return string url
+	 * @return string link
 	 */
-	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $hsc = FALSE, $configuration = array()) {
+	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $uriOnly = FALSE, $configuration = array()) {
 		$tsSettings = $this->pluginSettingsService->getSettings();
+
+		/** @var $cObj tslib_cObj */
 		$cObj = t3lib_div::makeInstance('tslib_cObj');
 
 		$newsType = (int)$newsItem->getType();
@@ -105,6 +116,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 				}
 
 				$configuration['useCacheHash'] = 1;
+				$configuration['returnLast'] = 'url';
 				$configuration['parameter'] = $detailPid;
 				$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $newsItem->getUid();
 
@@ -130,12 +142,13 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 		}
 
 		$link = $cObj->typolink($this->renderChildren(), $configuration);
-
-		if ($hsc) {
-			$link = htmlspecialchars($link);
+		if ($uriOnly) {
+			return $link;
 		}
 
-		return $link;
+		$this->tag->addAttribute('href', $link);
+		$this->tag->setContent($this->renderChildren());
+		return $this->tag->render();
 	}
 
 	/**
