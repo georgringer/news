@@ -97,6 +97,8 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 			$tsConfig = t3lib_BEfunc::getPagesTSconfig($this->pageUid);
 			if (isset($tsConfig['tx_news.']['module.']['preselect.'])
 					&& is_array($tsConfig['tx_news.']['module.']['preselect.'])) {
+				unset($tsConfig['tx_news.']['module.']['preselect.']['orderByAllowed']);
+
 				foreach ($tsConfig['tx_news.']['module.']['preselect.'] as $propertyName => $propertyValue) {
 					Tx_Extbase_Reflection_ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
 				}
@@ -166,6 +168,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		$demand->setCategories($demand->getSelectedCategories());
 		$demand->setOrder($demand->getSortingField() . ' ' . $demand->getSortingDirection());
 		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));
+		$demand->setOrderByAllowed($this->settings['orderByAllowed']);
 
 		if ((int)$demand->getLimit() === 0) {
 			$demand->setLimit(50);
