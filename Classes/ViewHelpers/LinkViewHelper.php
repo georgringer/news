@@ -140,6 +140,11 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 				}
 		}
 		$configuration['returnLast'] = 'url';
+		if (isset($tsSettings['link']['typesOpeningInNewWindow'])) {
+			if (t3lib_div::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
+				$this->tag->addAttribute('target', '_blank');
+			}
+		}
 
 		$link = $cObj->typolink($this->renderChildren(), $configuration);
 		if ($uriOnly) {
