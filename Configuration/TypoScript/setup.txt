@@ -84,6 +84,7 @@ plugin.tx_news {
 		dateField = datetime
 
 		link {
+			typesOpeningInNewWindow = 2
 			hrDate = 0
 			hrDate {
 				day = j

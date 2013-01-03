@@ -195,6 +195,19 @@ General properties
    :Default:
          0
 
+ - :Property:
+         link.typesOpeningInNewWindow
+
+   :Data type:
+         string
+
+   :Description:
+         Comma separated list of news types which open with target="_blank"
+         Default is 2 which is the type "Link to external page"
+
+   :Default:
+         2
+
 
  - :Property:
          cropMaxCharacters
