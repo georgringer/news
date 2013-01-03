@@ -177,11 +177,15 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			$dateField = 'datetime';
 		}
 		$demand->setOrder($dateField . ' ' . $this->settings['orderDirection']);
-
 		$newsRecords = $this->newsRepository->findDemanded($demand);
+
+		$demand->setOrder(NULL);
+		$statistics = $this->newsRepository->countByDate($demand);
+
 		$this->view->assignMultiple(array(
 			'listPid' => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
 			'dateField' => $dateField,
+			'data' => $statistics,
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand,
 			'demand' => $demand,
