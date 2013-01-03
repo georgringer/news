@@ -21,7 +21,7 @@
 						<guid>news-{newsItem.uid}</guid>
 						<pubDate><n:format.date format="%a, %d %b %Y %T %z" currentDate="1" strftime="1">{newsItem.datetime}</n:format.date></pubDate>
 						<title><n:format.hsc>{newsItem.title}</n:format.hsc></title>
-						<link><n:link newsItem="{newsItem}" settings="{settings}" configuration="{returnLast:'url'}" hsc="TRUE"></n:link></link>
+						<link><n:format.hsc><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></n:format.hsc></link>
 						<description><n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc></description>
 					</item>
 				</f:for>
