@@ -64,6 +64,10 @@ class Tx_News_Hooks_CmsLayout {
 	public function getExtensionSummary(array $params, $pObj) {
 		$result = $actionTranslationKey = '';
 
+		if ($this->showExtensionTitle()) {
+			$result .= '<strong>' . $GLOBALS['LANG']->sL(self::LLPATH . 'pi1_title', TRUE) . '</strong>';
+		}
+
 		if ($params['row']['list_type'] == self::KEY . '_pi1') {
 			$this->flexformData = t3lib_div::xml2array($params['row']['pi_flexform']);
 
@@ -76,8 +80,7 @@ class Tx_News_Hooks_CmsLayout {
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
 				$actionTranslation = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
 
-				$result = '<strong>' . $actionTranslation . '</strong>';
-				$result = '<h5>' . $actionTranslation . '</h5>';
+				$result .= '<h5>' . $actionTranslation . '</h5>';
 
 			} else {
 				$result = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
@@ -470,6 +473,18 @@ class Tx_News_Hooks_CmsLayout {
 		}
 
 		return NULL;
+	}
+
+	/**
+	 * Because of changes since TYPO3 CMS version 6.0,
+	 * the extension name needs to be shown additionally
+	 *
+	 * @return boolean
+	 */
+	protected function showExtensionTitle() {
+		$majorVersion = intval(substr(TYPO3_branch, 0, 1));
+
+		return ($majorVersion >= 6);
 	}
 }
 
