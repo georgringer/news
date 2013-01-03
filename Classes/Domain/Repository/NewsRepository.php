@@ -309,6 +309,48 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			))->execute()->getFirst();
 	}
 
+	/**
+	 * Get the count of news records by month/year and
+	 * returns the result compiled as array
+	 *
+	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @return array
+	 */
+	public function countByDate(Tx_News_Domain_Model_DemandInterface $demand) {
+		$data = array();
+		$sql = $this->findDemandedRaw($demand);
+
+		// Get the month/year into the result
+		$sql = 'SELECT FROM_UNIXTIME(datetime, "%m") AS "_Month",' .
+		' FROM_UNIXTIME(datetime, "%Y") AS "_Year" ,' .
+		' count(FROM_UNIXTIME(datetime, "%m")) as count_month,' .
+		' count(FROM_UNIXTIME(datetime, "%y")) as count_year' .
+		' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
+
+		// strip unwanted order by
+		$sql = $GLOBALS['TYPO3_DB']->stripOrderBy($sql);
+
+		// group by custom month/year fields
+		$sql .= ' GROUP BY _Month, _Year ORDER BY _Year ASC, _Month ASC';
+
+		$res = $GLOBALS['TYPO3_DB']->sql_query($sql);
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+			$data['single'][$row['_Year']][$row['_Month']] = $row['count_month'];
+		}
+		$GLOBALS['TYPO3_DB']->sql_free_result($res);
+
+		// Add totals
+		foreach ($data['single'] as $year => $months) {
+			$countOfYear = 0;
+			foreach ($months as $month) {
+				$countOfYear += $month;
+			}
+			$data['total'][$year] = $countOfYear;
+		}
+
+		return $data;
+	}
+
 }
 
 ?>

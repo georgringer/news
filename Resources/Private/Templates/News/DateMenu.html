@@ -5,30 +5,29 @@
 		Templates/News/DateMenu.html
 -->
 
-
-
 <f:section name="content">
 	<div class="news-menu-view">
 		<ul>
-		<f:groupedFor each="{news}" as="newsByYear" groupBy="yearOf{dateField}" groupKey="year">
-			<li>{year}
-				<ul>
-				<f:groupedFor each="{newsByYear}" as="newsByMonth" groupBy="monthOf{dateField}" groupKey="month">
-						<f:if condition="{0:year, 1:month} == {0:overwriteDemand.year, 1:overwriteDemand.month}">
-							<f:then>
-								<li class="item itemactive">
-							</f:then>
-							<f:else>
-								<li class="item">
-							</f:else>
-						</f:if>
-						<f:link.action pageUid="{listPid}" arguments="{overwriteDemand:{year: year, month: month}}"><f:translate key="month.{month}" /> {year}</f:link.action>
-						(<f:count subject="{newsByMonth}" /> <f:translate key="{f:if(condition: '{f:count(subject: newsByMonth)} == 1', then: 'entry', else: 'entries')}" />)
-					</li>
-				</f:groupedFor>
-				</ul>
-			</li>
-		</f:groupedFor>
+			<f:for each="{data.single}" key="year" as="months">
+				<li>
+					{year}
+					<ul>
+						<f:for each="{months}" key="month" as="count">
+							<f:if condition="{0:year, 1:month} == {0:overwriteDemand.year, 1:overwriteDemand.month}">
+								<f:then>
+									<li class="item itemactive">
+								</f:then>
+								<f:else>
+									<li class="item">
+								</f:else>
+							</f:if>
+								<f:link.action pageUid="{listPid}" arguments="{overwriteDemand:{year: year, month: month}}"><f:translate key="month.{month}" /> {year}</f:link.action>
+								({count} <f:translate key="{f:if(condition: '{count} == 1', then: 'entry', else: 'entries')}" />)
+							</li>
+						</f:for>
+					</ul>
+				</li>
+			</f:for>
 		</ul>
 	</div>
 </f:section>
