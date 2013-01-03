@@ -52,6 +52,10 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	 */
 	protected $categoryRepository;
 
+	/**
+	 * @var Tx_News_Domain_Repository_TtContentRepository
+	 */
+	protected $ttContentRepository;
 
 	/**
 	 * Inject the object manager
@@ -91,6 +95,16 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	 */
 	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
+	}
+
+	/**
+	 * Inject the tt_content repository
+	 *
+	 * @param Tx_News_Domain_Repository_TtContentRepository $ttContentRepository
+	 * @return void
+	 */
+	public function injectExternalTtContentRepository(Tx_News_Domain_Repository_TtContentRepository $ttContentRepository) {
+		$this->ttContentRepository = $ttContentRepository;
 	}
 
 	/**
@@ -136,7 +150,13 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 			$news->setType($importItem['type']);
 			$news->setKeywords($importItem['keywords']);
-			$news->setContentElements($importItem['content_elements']);
+
+			$contentElementUidArray = Tx_Extbase_Utility_Arrays::trimExplode(',', $importItem['content_elements'], TRUE);
+			foreach($contentElementUidArray as $contentElementUid){
+				if(is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))){
+					$news->addContentElement($contentElement);
+				}
+			}
 
 			$news->setInternalurl($importItem['internalurl']);
 			$news->setExternalurl($importItem['externalurl']);
