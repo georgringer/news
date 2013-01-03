@@ -116,7 +116,6 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 				}
 
 				$configuration['useCacheHash'] = 1;
-				$configuration['returnLast'] = 'url';
 				$configuration['parameter'] = $detailPid;
 				$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $newsItem->getUid();
 
@@ -140,6 +139,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 					}
 				}
 		}
+		$configuration['returnLast'] = 'url';
 
 		$link = $cObj->typolink($this->renderChildren(), $configuration);
 		if ($uriOnly) {
