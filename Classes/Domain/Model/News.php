@@ -219,6 +219,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function __construct() {
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->contentElements = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->relatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->relatedLinks = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->media = new Tx_Extbase_Persistence_ObjectStorage();
@@ -772,6 +773,16 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setContentElements($contentElements) {
 		$this->contentElements = $contentElements;
+	}
+
+	/**
+	 * Adds a content element to the record
+	 *
+	 * @param Tx_News_Domain_Model_External_TtContent $contentElement
+	 * @return void
+	*/
+	public function addContentElement(Tx_News_Domain_Model_External_TtContent $contentElement) {
+		$this->contentElements->attach($contentElement);
 	}
 
 	/**
