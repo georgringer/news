@@ -77,6 +77,11 @@ class Tx_News_Domain_Model_NewsDemand
 	protected $search;
 
 	protected $order;
+
+	/**
+	 * @var string
+	 */
+	protected $orderByAllowed;
 	protected $topNewsFirst;
 
 	protected $storagePage;
@@ -243,6 +248,25 @@ class Tx_News_Domain_Model_NewsDemand
 	 */
 	public function getOrder() {
 		return $this->order;
+	}
+
+	/**
+	 * Set order allowed
+	 *
+	 * @param string $orderByAllowed allowed fields for ordering
+	 * @return void
+	 */
+	public function setOrderByAllowed($orderByAllowed) {
+		$this->orderByAllowed = $orderByAllowed;
+	}
+
+	/**
+	 * Get allowed order fields
+	 *
+	 * @return string
+	 */
+	public function getOrderByAllowed() {
+		return $this->orderByAllowed;
 	}
 
 	/**

@@ -1,26 +1,26 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2010 Georg Ringer <typo3@ringerge.org>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * News repository with all the callable functionality
@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository  {
+class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository {
 
 	/**
 	 * Returns a category constraint created by
@@ -44,7 +44,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$constraint = NULL;
 		$categoryConstraints = array();
 
-			// If "ignore category selection" is used, nothing needs to be done
+		// If "ignore category selection" is used, nothing needs to be done
 		if (empty($conjunction)) {
 			return $constraint;
 		}
@@ -63,12 +63,12 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			}
 		}
 
-		switch(strtolower($conjunction)) {
+		switch (strtolower($conjunction)) {
 			case 'or':
 				$constraint = $query->logicalOr($categoryConstraints);
 				break;
 			case 'notor':
-				$constraint =  $query->logicalNot($query->logicalOr($categoryConstraints));
+				$constraint = $query->logicalNot($query->logicalOr($categoryConstraints));
 				break;
 			case 'notand':
 				$constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
@@ -93,14 +93,14 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 
 		if ($demand->getCategories() && $demand->getCategories() !== '0') {
 			$constraints[] = $this->createCategoryConstraint(
-										$query,
-										$demand->getCategories(),
-										$demand->getCategoryConjunction(),
-										$demand->getIncludeSubCategories()
-					);
+				$query,
+				$demand->getCategories(),
+				$demand->getCategoryConjunction(),
+				$demand->getIncludeSubCategories()
+			);
 		}
 
-			// archived
+		// archived
 		if ($demand->getArchiveRestriction() == 'archived') {
 			$constraints[] = $query->logicalAnd(
 				$query->lessThan('archive', $GLOBALS['EXEC_TIME']),
@@ -113,14 +113,14 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			);
 		}
 
-			// Time restriction greater than or equal
+		// Time restriction greater than or equal
 		if ($demand->getTimeRestriction()) {
 			$timeLimit = 0;
-				// integer = timestamp
+			// integer = timestamp
 			if (Tx_News_Utility_Compatibility::canBeInterpretedAsInteger($demand->getTimeRestriction())) {
 				$timeLimit = $GLOBALS['EXEC_TIME'] - $demand->getTimeRestriction();
 			} else {
-					// try to check strtotime
+				// try to check strtotime
 				$timeFromString = strtotime($demand->getTimeRestriction());
 
 				if ($timeFromString) {
@@ -136,14 +136,14 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			);
 		}
 
-			// Time restriction less than or equal
+		// Time restriction less than or equal
 		if ($demand->getTimeRestrictionHigh()) {
 			$timeLimit = 0;
-				// integer = timestamp
+			// integer = timestamp
 			if (Tx_News_Utility_Compatibility::canBeInterpretedAsInteger($demand->getTimeRestrictionHigh())) {
 				$timeLimit = $GLOBALS['EXEC_TIME'] + $demand->getTimeRestrictionHigh();
 			} else {
-					// try to check strtotime
+				// try to check strtotime
 				$timeFromString = strtotime($demand->getTimeRestrictionHigh());
 
 				if ($timeFromString) {
@@ -159,20 +159,20 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			);
 		}
 
-			// top news
+		// top news
 		if ($demand->getTopNewsRestriction() == 1) {
 			$constraints[] = $query->equals('istopnews', 1);
 		} elseif ($demand->getTopNewsRestriction() == 2) {
 			$constraints[] = $query->equals('istopnews', 0);
 		}
 
-			// storage page
+		// storage page
 		if ($demand->getStoragePage() != 0) {
 			$pidList = t3lib_div::intExplode(',', $demand->getStoragePage(), TRUE);
-			$constraints[]  = $query->in('pid', $pidList);
+			$constraints[] = $query->in('pid', $pidList);
 		}
 
-			// month & year OR year only
+		// month & year OR year only
 		if ($demand->getYear() > 0) {
 			if (is_null($demand->getDateField())) {
 				throw new InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
@@ -190,22 +190,22 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 				$end = mktime(23, 59, 59, 12, 31, $demand->getYear());
 			}
 			$constraints[] = $query->logicalAnd(
-					$query->greaterThanOrEqual($demand->getDateField(), $begin),
-					$query->lessThanOrEqual($demand->getDateField(), $end)
-				);
+				$query->greaterThanOrEqual($demand->getDateField(), $begin),
+				$query->lessThanOrEqual($demand->getDateField(), $end)
+			);
 		}
 
-			// Tags
+		// Tags
 		if ($demand->getTags()) {
 			$constraints[] = $query->contains('tags', $demand->getTags());
 		}
 
-			// dummy records, used for UnitTests only!
+		// dummy records, used for UnitTests only!
 		if ($demand->getIsDummyRecord()) {
 			$constraints[] = $query->equals('isDummyRecord', 1);
 		}
 
-			// Search
+		// Search
 		if ($demand->getSearch() !== NULL) {
 			/* @var $searchObject Tx_News_Domain_Model_Dto_Search */
 			$searchObject = $demand->getSearch();
@@ -219,14 +219,14 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 
 			$searchSubject = $searchObject->getSubject();
 			foreach ($searchFields as $field) {
-			if (!empty($searchSubject)) {
-				$searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
-			}
+				if (!empty($searchSubject)) {
+					$searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
+				}
 			}
 			$constraints[] = $query->logicalOr($searchConstraints);
 		}
 
-			// Clean not used constraints
+		// Clean not used constraints
 		foreach ($constraints as $key => $value) {
 			if (is_null($value)) {
 				unset($constraints[$key]);
@@ -248,19 +248,21 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			$orderings['istopnews'] = Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING;
 		}
 
-		$orderList = t3lib_div::trimExplode(',', $demand->getOrder(), TRUE);
+		if (Tx_News_Utility_Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
+			$orderList = t3lib_div::trimExplode(',', $demand->getOrder(), TRUE);
 
-		if (!empty($orderList)) {
+			if (!empty($orderList)) {
 				// go through every order statement
-			foreach ($orderList as $orderItem) {
-				list($orderField, $ascDesc) = t3lib_div::trimExplode(' ', $orderItem, TRUE);
+				foreach ($orderList as $orderItem) {
+					list($orderField, $ascDesc) = t3lib_div::trimExplode(' ', $orderItem, TRUE);
 					// count == 1 means that no direction is given
-				if ($ascDesc) {
-					$orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
-						Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING :
-						Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
-				} else {
-					$orderings[$orderField] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
+					if ($ascDesc) {
+						$orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
+							Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING :
+							Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
+					} else {
+						$orderings[$orderField] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
+					}
 				}
 			}
 		}
@@ -308,4 +310,5 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	}
 
 }
+
 ?>
