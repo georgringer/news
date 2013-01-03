@@ -57,7 +57,7 @@ class Tx_News_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 
 			// set current domain
 		if ($useCurrentDomain) {
-			$this->tag->addAttribute('content', t3lib_div::getIndpEnv('TYPO3_SITE_URL'));
+			$this->tag->addAttribute('content', t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
 		}
 
 			// prepend current domain
