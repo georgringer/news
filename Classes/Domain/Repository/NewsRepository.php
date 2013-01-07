@@ -226,6 +226,16 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			$constraints[] = $query->logicalOr($searchConstraints);
 		}
 
+		// Exclude already displayed
+		if ($demand->getExcludeAlreadyDisplayedNews() && isset($GLOBALS['EXT']['news']['alreadyDisplayed']) && !empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {
+			$constraints[] = $query->logicalNot(
+				$query->in(
+					'uid',
+					$GLOBALS['EXT']['news']['alreadyDisplayed']
+				)
+			);
+		}
+
 		// Clean not used constraints
 		foreach ($constraints as $key => $value) {
 			if (is_null($value)) {

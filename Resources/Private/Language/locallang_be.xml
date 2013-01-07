@@ -75,6 +75,7 @@
 			<label index="flexforms_additional.hidePagination">Hide the pagination</label>
 			<label index="flexforms_additional.topNewsFirst">Sort "Top news" before</label>
 			<label index="flexforms_additional.disableOverrideDemand">Disable override demand</label>
+			<label index="flexforms_additional.excludeAlreadyDisplayedNews">Exclude already displayed news</label>
 
 			<!-- Page Module Record list -->
 			<label index="pagemodule_simple">Simple list</label>

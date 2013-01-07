@@ -261,6 +261,19 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Un
 	}
 
 	/**
+	 * Test if excludeAlreadyDisplayedNews setting can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function excludeAlreadyDisplayedNewsSettingCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_NewsDemand();
+		$setting = TRUE;
+		$domainModelInstance->setExcludeAlreadyDisplayedNews($setting);
+		$this->assertEquals($setting, $domainModelInstance->getExcludeAlreadyDisplayedNews());
+	}
+
+	/**
 	 * Test if isDummyRecord can be set
 	 *
 	 * @test
