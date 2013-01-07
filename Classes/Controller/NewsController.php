@@ -78,6 +78,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$demand->setTimeRestriction($settings['timeRestriction']);
 		$demand->setTimeRestrictionHigh($settings['timeRestrictionHigh']);
 		$demand->setArchiveRestriction($settings['archiveRestriction']);
+		$demand->setExcludeAlreadyDisplayedNews($settings['excludeAlreadyDisplayedNews']);
 
 		if ($settings['orderBy']) {
 			$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
@@ -290,5 +291,6 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	public function setView(Tx_Fluid_View_TemplateView $view) {
 		$this->view = $view;
 	}
+
 }
 ?>

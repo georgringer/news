@@ -417,7 +417,22 @@ Tab “Additional”
          the others, no matter which sorting configuration is used.
 
    :Key:
-         orderByRespectTopNews
+         topNewsFirst
+
+
+ - :Property:
+         Exclude already displayed news
+
+   :View:
+         All
+
+   :Description:
+         If checked, news items which are already rendered are excluded in the current plugin.
+         To exclude news items, the viewHelper <n:excludeDisplayedNews newsItem="{newsItem}" />
+         needs to be added to the template.
+
+   :Key:
+         excludeAlreadyDisplayedNews
 
 
  - :Property:
