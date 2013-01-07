@@ -62,7 +62,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 */
 	public $removedFieldsInDateMenuView = array(
 			'sDEF' => 'orderBy,singleNews',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords,excludeAlreadyDisplayedNews',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
@@ -75,7 +75,7 @@ class Tx_News_Hooks_T3libBefunc {
 			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,detailPid,backPid',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,detailPid,backPid,excludeAlreadyDisplayedNews',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
@@ -88,7 +88,7 @@ class Tx_News_Hooks_T3libBefunc {
 			'sDEF' => 'orderBy,orderDirection,categoryConjunction,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 	/**

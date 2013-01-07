@@ -96,6 +96,11 @@ class Tx_News_Domain_Model_NewsDemand
 	 */
 	protected $offset;
 
+	/**
+	 * @var boolean
+	 */
+	protected $excludeAlreadyDisplayedNews;
+
 	protected $isDummyRecord;
 
 	/**
@@ -476,6 +481,24 @@ class Tx_News_Domain_Model_NewsDemand
 	 */
 	public function setSearch($search) {
 		$this->search = $search;
+	}
+
+	/**
+	 * Set flag if displayed news records should be excluded
+	 *
+	 * @param boolean $excludeAlreadyDisplayedNews
+	 */
+	public function setExcludeAlreadyDisplayedNews($excludeAlreadyDisplayedNews) {
+		$this->excludeAlreadyDisplayedNews = (bool)$excludeAlreadyDisplayedNews;
+	}
+
+	/**
+	 * Get flag if displayed news records should be excluded
+	 *
+	 * @return boolean
+	 */
+	public function getExcludeAlreadyDisplayedNews() {
+		return $this->excludeAlreadyDisplayedNews;
 	}
 
 	/**

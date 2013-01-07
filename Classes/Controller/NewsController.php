@@ -78,6 +78,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$demand->setTimeRestriction($settings['timeRestriction']);
 		$demand->setTimeRestrictionHigh($settings['timeRestrictionHigh']);
 		$demand->setArchiveRestriction($settings['archiveRestriction']);
+		$demand->setExcludeAlreadyDisplayedNews($settings['excludeAlreadyDisplayedNews']);
 
 		if ($settings['orderBy']) {
 			$demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
@@ -152,6 +153,10 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			} else {
 				$news = $this->newsRepository->findByUid($previewNewsId);
 			}
+		}
+
+		if (!is_null($news)) {
+			$this->storeAlreadyDisplayedNews($news->getUid());
 		}
 
 		$this->view->assignMultiple(array(
@@ -290,5 +295,20 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	public function setView(Tx_Fluid_View_TemplateView $view) {
 		$this->view = $view;
 	}
+
+	/**
+	 * Stores the already displayed news-id in a global array
+	 *
+	 * @param ineger $newsUid
+	 * @return void
+	 */
+	protected function storeAlreadyDisplayedNews($newsUid) {
+		if (empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {
+			$GLOBALS['EXT']['news']['alreadyDisplayed'] = array();
+		}
+
+		$GLOBALS['EXT']['news']['alreadyDisplayed'][$newsUid] = $newsUid;
+	}
+
 }
 ?>
