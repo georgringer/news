@@ -50,7 +50,7 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 	 * @param boolean $hideError
 	 * @return string
 	 */
-	public function render($file, array $configuration = array(), $hideError = FALSE) {
+	public function render($file, $configuration = array(), $hideError = FALSE) {
 		if (!is_file($file)) {
 			$errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
 			t3lib_div::devLog($errorMessage, 'news', t3lib_div::SYSLOG_SEVERITY_WARNING);
@@ -77,10 +77,15 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 
 		);
 
-		if (class_exists('Tx_Extbase_Utility_TypoScript')) {
-			$configuration = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($configuration);
+		// Fallback if no configuration given
+		if (!is_array($configuration)) {
+			$configuration = array('labelStdWrap.' => array('cObject' => 'TEXT'));
 		} else {
-			$configuration = $this->typoScriptService->convertPlainArrayToTypoScriptArray($configuration);
+			if (class_exists('Tx_Extbase_Utility_TypoScript')) {
+				$configuration = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($configuration);
+			} else {
+				$configuration = $this->typoScriptService->convertPlainArrayToTypoScriptArray($configuration);
+			}
 		}
 
 			// merge default configuration with optional configuration
