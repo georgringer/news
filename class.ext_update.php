@@ -71,7 +71,6 @@ class ext_update {
 		$this->renameDatabaseTable('tx_news2_domain_model_news_category_mm', 'tx_news_domain_model_news_category_mm');
 		$this->renameDatabaseTable('tx_news2_domain_model_news_related_mm', 'tx_news_domain_model_news_related_mm');
 		$this->renameDatabaseTable('tx_news2_domain_model_media', 'tx_news_domain_model_media');
-		$this->renameDatabaseTable('tx_news2_domain_model_news_file_mm', 'tx_news_domain_model_news_file_mm');
 		$this->renameDatabaseTable('tx_news2_domain_model_file', 'tx_news_domain_model_file');
 		$this->renameDatabaseTable('tx_news2_domain_model_link', 'tx_news_domain_model_link');
 		$this->renameDatabaseTable('tx_news2_domain_model_tag', 'tx_news_domain_model_tag');
