@@ -55,9 +55,8 @@ class Tx_News_Hooks_Tcemain {
 				$recordUid = $parentObject->substNEWwithIDs[$recordUid];
 			}
 
-			if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fields['type'] && !$GLOBALS['BE_USER']->workspace) {
-					// if "savedokview" has been pressed and current article has "type" 0 (= normal news article)
-					// and the beUser works in the LIVE workspace open current record in single view
+			if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fields['type']) {
+				// If "savedokview" has been pressed and current article has "type" 0 (= normal news article)
 				$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
 				if ($pagesTsConfig['tx_news.']['singlePid']) {
 					$record = t3lib_BEfunc::getRecord('tx_news_domain_model_news', $recordUid);
