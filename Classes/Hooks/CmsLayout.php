@@ -255,6 +255,11 @@ class Tx_News_Hooks_CmsLayout {
 				$categoriesOut[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_category', $record));
 			}
 
+			$includeSubcategories = $this->getFieldFromFlexform($this->flexformData, 'settings.includeSubCategories');
+			if ($includeSubcategories) {
+				$categoryMode .= '<br />+ ' . $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.includeSubCategories', TRUE);
+			}
+
 			$this->tableData[] = array(
 							$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categories') .
 								'<br />' . $categoryMode,

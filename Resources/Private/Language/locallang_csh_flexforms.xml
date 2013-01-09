@@ -24,6 +24,7 @@
 			<label index="settings.dateField.description">Select the field which is used to build the date menu.</label>
 			<label index="settings.categories.description">Choose the categories to define which news items are displayed</label>
 			<label index="settings.categoryConjunction.description">Define how the selected categories are used</label>
+			<label index="settings.includeSubCategories.description">Include all subcategories of the selected categories too.</label>
 			<label index="settings.categoryConjunction.details">"Don't care": No category restriction is set. "Show items with selected categories OR": A news records need to be related with at least one of the selected categories. "Show selected categories AND". A news record need to be related to all selected categories. "Do not show" is the opposite of above.</label>
 			<label index="settings.archiveRestriction.description">Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</label>
 			<label index="settings.timeRestriction.description">Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items after the given time are shown.</label>

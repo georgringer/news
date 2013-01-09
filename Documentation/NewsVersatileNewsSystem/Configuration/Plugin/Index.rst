@@ -144,6 +144,19 @@ Tab “Settings”
 
 
  - :Property:
+         Include subcategories
+
+   :View:
+         List view, Search result, Date menu
+
+   :Description:
+         Include subcategories in the category selection
+
+   :Key:
+         includeSubCategories
+
+
+ - :Property:
          Archive
 
    :View:

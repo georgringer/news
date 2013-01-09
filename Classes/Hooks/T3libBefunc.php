@@ -37,7 +37,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @var array
 	 */
 	public $removedFieldsInDetailView = array(
-			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
+			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField',
 			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid',
@@ -72,7 +72,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @var array
 	 */
 	public	$removedFieldsInSearchFormView = array(
-			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,
+			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
 			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,detailPid,backPid',
@@ -85,7 +85,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @var array
 	 */
 	public	$removedFieldsInCategoryListView = array(
-			'sDEF' => 'orderBy,orderDirection,categoryConjunction,
+			'sDEF' => 'orderBy,orderDirection,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
 			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid',
