@@ -199,6 +199,17 @@
 						</TCEforms>
 					</settings.categoryConjunction>
 
+					<!-- Include sub categories -->
+					<settings.includeSubCategories>
+						<TCEforms>
+							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.includeSubCategories</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.includeSubCategories>
+
+
 					<!-- Archive -->
 					<settings.archiveRestriction>
 						<TCEforms>
