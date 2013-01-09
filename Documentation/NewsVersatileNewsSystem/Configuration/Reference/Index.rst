@@ -363,6 +363,12 @@ The following table describes the settings concerning the list view.
          If pages are skipped in the pagination you can define how many pages
          after the actual one should be still shown.
 
+         **prevNextHeaderTags**
+
+         Add additional header tags <link rel="prev" href"" /> and
+         <link rel="next" href"" /> to tell google about the pagination.
+         Read more at http://googlewebmastercentral.blogspot.co.at/2011/09/pagination-with-relnext-and-relprev.html
+
    :Default:
          itemsPerPage = 10
 
@@ -377,6 +383,8 @@ The following table describes the settings concerning the list view.
          pagesBefore = 3
 
          pagesAfter = 3
+
+         prevNextHeaderTags = 1
 
 
  - :Property:
