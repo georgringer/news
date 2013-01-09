@@ -162,6 +162,7 @@ plugin.tx_news {
 				pagesBefore = 3
 				pagesAfter = 3
 				templatePath =
+				prevNextHeaderTags = 1
 			}
 
 			rss {
