@@ -89,6 +89,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 
 			// absolute urls are needed
 		$this->tag->addAttribute('href', Tx_News_Utility_Url::prependDomain($url));
+		$this->tag->forceClosingTag(TRUE);
 
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
