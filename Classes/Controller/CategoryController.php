@@ -64,10 +64,17 @@ class Tx_News_Controller_CategoryController extends Tx_News_Controller_NewsContr
 	 * @return void
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
+		$demand = $this->createDemandObjectFromSettings($this->settings);
+
+		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
+			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
+		}
+
 		$idList = explode(',', $this->settings['categories']);
 		$this->view->assignMultiple(array(
 			'categories' => $this->categoryRepository->findTree($idList),
-			'overwriteDemand' => $overwriteDemand
+			'overwriteDemand' => $overwriteDemand,
+			'demand' => $demand,
 		));
 	}
 
