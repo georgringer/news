@@ -41,7 +41,6 @@
 
 					<f:if condition="{newsItem.author}">
 						<!-- author -->
-						<span class="hidden">. </span>
 						<span class="news-list-author">
 							<f:translate key="author" arguments="{0:newsItem.author}"></f:translate>
 						</span>
@@ -104,7 +103,6 @@
 							<f:for each="{newsItem.relatedSorted}" as="related">
 								<li>
 									<span class="news-related-news-date"><f:format.date format="d.m.Y">{related.datetime}</f:format.date></span>
-									<span class="hidden">. </span>
 									<n:link newsItem="{related}" settings="{settings}">
 										{related.title}
 									</n:link>
@@ -136,7 +134,6 @@
 											</f:if>
 										</n:format.fileDownload>
 									</span>
-									<span class="hidden">. </span>
 									<span class="news-related-files-size">
 										<n:format.fileSize file="uploads/tx_news/{relatedFile.file}" format="{settings.relatedFiles.fileSizeLabels}" />
 									</span>

@@ -1,22 +1,6 @@
 /**************************************/
-/* default styles for news extension */
+/* Default styles for news extension */
 /**************************************/
-
-/* global styles */
-.news {
-	font-size: 12px;
-	font-family: Arial, sans-serif;
-}
-
-.news .hidden {
-	position: absolute;
-	left: -9999px;
-	top: 0;
-	width: 1px;
-	height: 1px;
-	margin: 0;
-	overflow: hidden;
-}
 
 .news .clear {
 	clear: both;
@@ -30,14 +14,11 @@
 
 .news .nav li {
 	float: left;
-	list-style: none;
-	line-height: 1em;
 }
 
 .news .nav a {
 	float: left;
 	display: block;
-	line-height: 1em;
 }
 
 .news .nav:after {
@@ -48,11 +29,6 @@
 	visibility: hidden;
 }
 
-.news .nav {
-	zoom: 1;
-}
-
-/* list + search + latest view */
 .news .article {
 	padding-bottom: 15px;
 	margin-bottom: 15px;
@@ -71,16 +47,11 @@
 	visibility: hidden;
 }
 
-.news .article {
-	zoom: 1;
-}
-
 .news .article .news-img-wrap {
 	float: left;
 	width: 128px;
 	margin: 3px 12px 5px 0;
 	background: #fff;
-
 }
 
 .news .article .news-img-wrap a {
@@ -131,7 +102,6 @@
 
 .news .footer .news-category a {
 	text-transform: uppercase;
-	color: #888;
 }
 
 /* category menu view */
@@ -141,7 +111,6 @@
 
 .news-category-view ul li li {
 	padding: 2px 8px 2px 12px;
-
 }
 
 .news-category-view > ul > li:nth-child(even) {
@@ -154,14 +123,6 @@
 	padding-left: 10px;
 	margin-left: 10px;
 	border-left: 1px solid #ddd;
-	color: #888;
-}
-
-/* search view */
-.news-whatis {
-	margin: 15px 0;
-	padding-bottom: 3px;
-	border-bottom: 1px solid #eee;
 }
 
 .news-browsebox {
@@ -254,12 +215,6 @@
 .news-related ul li span:last-child {
 	border-right: 0;
 	padding-right: 0;
-}
-
-.news-related-files .news-related-files-link a {
-	background-image: url(../img/background/file-icon-sprites.gif);
-	background-repeat: no-repeat;
-	padding: 6px 0 6px 38px;
 }
 
 .news-related-files ul li {

@@ -106,13 +106,11 @@
 
 			<!-- first category -->
 			<f:if condition="{newsItem.firstCategory}">
-				<span class="hidden">. </span>
 				<span class="news-list-category">{newsItem.firstCategory.title}</span>
 			</f:if>
 
 			<!-- author -->
 			<f:if condition="{newsItem.author}">
-				<span class="hidden">. </span>
 				<span class="news-list-author">
 					<f:translate key="author" arguments="{0:newsItem.author}" />
 				</span>
