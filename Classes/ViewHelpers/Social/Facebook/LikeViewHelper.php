@@ -110,6 +110,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
 			}
 		}
+		$this->tag->forceClosingTag(TRUE);
 
 			// seems as if a div with id fb-root is needed this is just a dirty
 			// workarround to make things work again Perhaps we should

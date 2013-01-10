@@ -67,6 +67,8 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends Tx_Fluid_Cor
 
 		$code = '<div id="fb-root"></div>
 					<script src="http://connect.facebook.net/' . $locale . '/all.js#appId=' . htmlspecialchars($appId) . '&amp;xfbml=1"></script>';
+
+		$this->tag->forceClosingTag(TRUE);
 		$code .= $this->tag->render();
 
 		return $code;
