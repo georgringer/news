@@ -75,6 +75,7 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends Tx_Fluid_Cor
 	public function render($appId) {
 		$tsSettings = $this->pluginSettingsService->getSettings();
 		$this->tag->addAttribute('data-href', t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
+		$this->tag->forceClosingTag(TRUE);
 
 		$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
 
