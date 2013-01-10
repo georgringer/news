@@ -133,6 +133,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$this->view->assignMultiple(array(
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand,
+			'demand' => $demand,
 		));
 	}
 
@@ -183,6 +184,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			'dateField' => $dateField,
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand,
+			'demand' => $demand,
 		));
 	}
 
@@ -224,6 +226,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			'news' => $this->newsRepository->findDemanded($demand),
 			'overwriteDemand' => $overwriteDemand,
 			'search' => $search,
+			'demand' => $demand,
 		));
 	}
 
