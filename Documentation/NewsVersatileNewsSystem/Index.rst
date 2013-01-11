@@ -11,7 +11,8 @@ News: Versatile news system
 
 Extension Key: news
 
-Language: en
+:Language: en
+:Rendered: |today|
 
 Keywords: forEditors, forAdmins, forBeginners, forIntermediates
 
