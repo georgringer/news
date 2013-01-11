@@ -164,7 +164,7 @@ detail page.
          Define pid of tag records
 
    :Description:
-         Set the Ids of pages which are used for getting the tags
+         Set the Ids of pages which are used for getting the tags. The pid can also be set in TsConfig using tx_news.tagPid = 123
 
 
  - :Property:
