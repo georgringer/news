@@ -45,6 +45,8 @@ class Tx_News_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Se
 		);
 
 		list($count) = $GLOBALS['TYPO3_DB']->sql_fetch_row($res);
+		$GLOBALS['TYPO3_DB']->sql_free_result($res);
+
 		return (int)$count;
 	}
 
