@@ -17,8 +17,8 @@ News: Versatile news system
 :Changed by:
       Georg Ringer
 
-:Changed:
-      2012-05-29 19::1:8:
+:Rendered:
+      |today|
 
 :Classification:
       news
@@ -32,14 +32,14 @@ News: Versatile news system
 :Email:
       typo3@ringerge.org
 
-:Info 4:
+
 
 
 :Language:
       en
 
 
-|img-1| |img-2| News: Versatile news system -news
+|img-1| |img-2| News: Versatile news system
 
 
 .. toctree::
