@@ -90,10 +90,19 @@ class Tx_News_Hooks_SuggestReceiverCall {
 			// Get configuration from EM
 		$configuration = Tx_News_Utility_EmConfiguration::getSettings();
 
+		$pid = $configuration->getTagPid();
+		if ($pid === 0) {
+			$pid = $this->getTagPidFromTsConfig($request['newsid']);
+		}
+
+		if ($pid === 0) {
+			throw new Exception('error_no-pid-defined');
+		}
+
 		$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
 					'*',
 					self::TAG,
-					'deleted=0 AND pid=' . $configuration->getTagPid() .
+					'deleted=0 AND pid=' . $pid .
 						' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], self::TAG)
 					);
 		if (isset($record['uid'])) {
@@ -102,7 +111,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 			$tcemainData = array(
 				self::TAG => array(
 					'NEW' => array(
-						'pid' => $configuration->getTagPid(),
+						'pid' => $pid,
 						'title' => $request['item']
 					)
 				)
@@ -123,6 +132,25 @@ class Tx_News_Hooks_SuggestReceiverCall {
 		}
 
 		return $tagUid;
+	}
+
+	/**
+	 * Get pid for tags from TsConfig
+	 *
+	 * @param integer $newsUid uid of current news record
+	 * @return int
+	 */
+	protected function getTagPidFromTsConfig($newsUid) {
+		$pid = 0;
+
+		$newsRecord = t3lib_BEfunc::getRecord('tx_news_domain_model_news', (int)$newsUid);
+
+		$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($newsRecord['pid']);
+		if (isset($pagesTsConfig['tx_news.']) && isset($pagesTsConfig['tx_news.']['tagPid'])) {
+			$pid = (int)$pagesTsConfig['tx_news.']['tagPid'];
+		}
+
+		return $pid;
 	}
 
 }
