@@ -74,6 +74,7 @@ class Tx_News_Service_Import_TTNewsCategoryDataProviderService implements Tx_New
 				'hidden' => $row['hidden'],
 				'starttime' => $row['starttime'],
 				'endtime'  => $row['endtime'],
+				'title_lang_ol'  => $row['title_lang_ol'],
 				'title'	=>	$row['title'],
 				'description' => $row['description'],
 				'image' => $row['image'],

@@ -222,7 +222,7 @@ class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnti
 	 * @return integer
 	 */
 	public function getSysLanguageUid() {
-		return $this->sysLanguageUid;
+		return $this->_languageUid;
 	}
 
 	/**
@@ -232,7 +232,7 @@ class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnti
 	 * @return void
 	 */
 	public function setSysLanguageUid($sysLanguageUid) {
-		$this->sysLanguageUid = $sysLanguageUid;
+		$this->_languageUid = $sysLanguageUid;
 	}
 
 	/**
