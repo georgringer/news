@@ -15,6 +15,7 @@ Tutorial
    :titlesonly:
    :glob:
 
+   IntegrationWithTs/Index
    HowToAddASimpleNewsSystemToYourSite/Index
    ChangingEditingTemplates/Index
    MigrationFromTtNews/Index
