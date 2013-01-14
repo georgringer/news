@@ -45,7 +45,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		'type' => 'type',
 		'typeicon_column' => 'type',
 		'typeicons' => array (
-			'1' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news_article.gif',
+			'1' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news_internal.gif',
 			'2' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news_external.gif',
 		),
 		'dividers2tabs' => TRUE,
