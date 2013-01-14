@@ -18,6 +18,6 @@ Introduction
    WhatDoesItDo/Index
    Screenshots/Index
    SponsoringBugfixing/Index
-   SayThanksVoteForIt/Index
+   SayThanks/Index
    NeedHelp/Index
 
