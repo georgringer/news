@@ -87,18 +87,22 @@ class Tx_News_Hooks_Labels {
 		$type = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.type.I.' . $params['row']['type']);
 
 			// Add additional info based on type
-		switch ($params['row']['type']) {
+		switch ((int)$params['row']['type']) {
+			// Image
+			case Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE:
+				$typeInfo .= $this->getTitleFromFields('title,alt,caption,image', $params['row']);
+				break;
 				// Audio & Video
-			case 1:
-				$typeInfo .= $params['row']['multimedia'];
+			case Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA:
+				$typeInfo .= $this->getTitleFromFields('caption,multimedia', $params['row']);
 				break;
 				// HTML
-			case 2:
+			case Tx_News_Domain_Model_Media::MEDIA_TYPE_HTML:
 					// Don't show html value as this could get a XSS
 				$typeInfo .= $params['row']['caption'];
 				break;
 				// DAM
-			case 3:
+			case Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM:
 				if (intval($params['row']['uid']) > 0) {
 					$config = $GLOBALS['TCA'][$params['table']]['columns']['dam']['config'];
 					$damItems = tx_dam_db::getReferencedFiles(
@@ -109,7 +113,7 @@ class Tx_News_Hooks_Labels {
 						'tx_dam.*');
 					if (is_array($damItems['rows'])) {
 						$item = array_shift($damItems['rows']);
-						$typeInfo = (!empty($item['title']) ? $item['title'] : $item['file_name']);
+						$typeInfo = $this->getTitleFromFields('title,file_name', $item);
 					}
 				}
 				break;
@@ -170,6 +174,35 @@ class Tx_News_Hooks_Labels {
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 
 		return implode(', ', $catTitles);
+	}
+
+	/**
+	 * Get the first filled field of a record
+	 *
+	 * @param string $fieldList comma separated list of fields
+	 * @param array $record record
+	 * @return string 1st used field
+	 */
+	protected function getTitleFromFields($fieldList, array $record) {
+		$title = '';
+		$fields = t3lib_div::trimExplode(',', $fieldList, TRUE);
+
+		foreach ($fields as $fieldName) {
+			if (empty($title) && isset($record[$fieldName]) && !empty($record[$fieldName])) {
+				$title = $record[$fieldName];
+			}
+		}
+
+		// Since 6.0 the image information looks like someImage.jpg|someImage.jpg
+		$typo3Version = TYPO3_branch;
+		if ((int)$typo3Version{0} >= 6) {
+			$split = explode('|', $title);
+			if (count($split) === 2 && $split[0] === $split[1]) {
+				$title = $split[0];
+			}
+		}
+
+		return $title;
 	}
 
 }
