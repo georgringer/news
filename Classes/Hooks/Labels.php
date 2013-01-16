@@ -183,9 +183,13 @@ class Tx_News_Hooks_Labels {
 	 * @param array $record record
 	 * @return string 1st used field
 	 */
-	protected function getTitleFromFields($fieldList, array $record) {
+	protected function getTitleFromFields($fieldList, $record = array()) {
 		$title = '';
 		$fields = t3lib_div::trimExplode(',', $fieldList, TRUE);
+
+		if (!is_array($record) || empty($record)) {
+			return $title;
+		}
 
 		foreach ($fields as $fieldName) {
 			if (empty($title) && isset($record[$fieldName]) && !empty($record[$fieldName])) {
