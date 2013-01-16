@@ -89,6 +89,7 @@ class Tx_News_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Se
 				'internalurl' => $row['page'],
 				'categories' => $this->getCategories($row['uid']),
 				'media' => $this->getMedia($row),
+				'related_files' => $this->getFiles($row),
 				'content_elements' => $row['tx_rgnewsce_ce'],
 				'import_id' => $row['uid'],
 				'import_source' => $this->importSource
@@ -97,6 +98,30 @@ class Tx_News_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Se
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 
 		return $importData;
+	}
+
+	/**
+	 * Parses the related files
+	 *
+	 * @param array $row
+	 * @return array
+	 */
+	protected function getFiles(array $row) {
+		if (empty($row['news_files'])) {
+			return FALSE;
+		}
+
+		$relatedFiles = array();
+
+		$files = t3lib_div::trimExplode(',', $row['news_files']);
+
+		foreach ($files as $file) {
+			$relatedFiles[] = array(
+				'file' => 'uploads/media/' . $file
+			);
+		}
+
+		return $relatedFiles;
 	}
 
 	/**
