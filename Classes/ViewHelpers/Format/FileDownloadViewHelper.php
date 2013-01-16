@@ -31,18 +31,6 @@
 class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * @var Tx_Extbase_Service_TypoScriptService
-	 */
-	protected $typoScriptService;
-
-	/**
-	 * @param Tx_Extbase_Service_TypoScriptService $typoScriptService
-	 */
-	public function injectTypoScriptService(Tx_Extbase_Service_TypoScriptService $typoScriptService) {
-		$this->typoScriptService = $typoScriptService;
-	}
-
-	/**
 	 * Download a file
 	 *
 	 * @param string $file file
@@ -84,7 +72,9 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 			if (class_exists('Tx_Extbase_Utility_TypoScript')) {
 				$configuration = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($configuration);
 			} else {
-				$configuration = $this->typoScriptService->convertPlainArrayToTypoScriptArray($configuration);
+				/** @var $typoscriptService Tx_Extbase_Service_TypoScriptService */
+				$typoscriptService = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService');
+				$configuration = $typoscriptService->convertPlainArrayToTypoScriptArray($configuration);
 			}
 		}
 
