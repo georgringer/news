@@ -85,13 +85,13 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	/**
 	 * Main action for administration
 	 *
-	 * @param Tx_News_Domain_Model_AdministrationDemand $demand
+	 * @param Tx_News_Domain_Model_Dto_AdministrationDemand $demand
 	 * @dontvalidate  $demand
 	 * @return void
 	 */
-	public function indexAction(Tx_News_Domain_Model_AdministrationDemand $demand = NULL) {
+	public function indexAction(Tx_News_Domain_Model_Dto_AdministrationDemand $demand = NULL) {
 		if (is_null($demand)) {
-			$demand = $this->objectManager->get('Tx_News_Domain_Model_AdministrationDemand');
+			$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_AdministrationDemand');
 
 				// Preselect by TsConfig (e.g. tx_news.module.preselect.topNewsRestriction = 1)
 			$tsConfig = t3lib_BEfunc::getPagesTSconfig($this->pageUid);
@@ -161,10 +161,10 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	/**
 	 * Create the demand object which define which records will get shown
 	 *
-	 * @param Tx_News_Domain_Model_AdministrationDemand $demand
-	 * @return Tx_News_Domain_Model_NewsDemand
+	 * @param Tx_News_Domain_Model_Dto_AdministrationDemand $demand
+	 * @return Tx_News_Domain_Model_Dto_NewsDemand
 	 */
-	protected function createDemandObjectFromSettings(Tx_News_Domain_Model_AdministrationDemand $demand) {
+	protected function createDemandObjectFromSettings(Tx_News_Domain_Model_Dto_AdministrationDemand $demand) {
 		$demand->setCategories($demand->getSelectedCategories());
 		$demand->setOrder($demand->getSortingField() . ' ' . $demand->getSortingDirection());
 		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));

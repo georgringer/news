@@ -64,11 +64,11 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * Create the demand object which define which records will get shown
 	 *
 	 * @param array $settings
-	 * @return Tx_News_Domain_Model_NewsDemand
+	 * @return Tx_News_Domain_Model_Dto_NewsDemand
 	 */
 	protected function createDemandObjectFromSettings($settings) {
-		/* @var $demand Tx_News_Domain_Model_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
+		/* @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 
 		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categories'], TRUE));
 		$demand->setCategoryConjunction($settings['categoryConjunction']);
@@ -103,9 +103,9 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	/**
 	 * Overwrites a given demand object by an propertyName =>  $propertyValue array
 	 *
-	 * @param Tx_News_Domain_Model_NewsDemand $demand
+	 * @param Tx_News_Domain_Model_Dto_NewsDemand $demand
 	 * @param array $overwriteDemand
-	 * @return Tx_News_Domain_Model_NewsDemand
+	 * @return Tx_News_Domain_Model_Dto_NewsDemand
 	 */
 	protected function overwriteDemandObject($demand, $overwriteDemand) {
 		unset($overwriteDemand['orderByAllowed']);

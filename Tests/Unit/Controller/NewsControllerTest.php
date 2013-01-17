@@ -73,7 +73,7 @@ class Tx_News_Controller_NewsControllerTest extends Tx_Phpunit_TestCase {
 	 * @return void
 	 */
 	public function listActionFindsDemandedNewsByDemandFromSettings() {
-		$demand = clone new Tx_News_Domain_Model_NewsDemand();
+		$demand = clone new Tx_News_Domain_Model_Dto_AdministrationDemand();
 		$settings = array('list' => 'foo');
 
 		$configurationManager = $this->getMock(
