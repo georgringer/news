@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_AdministrationDemand extends Tx_News_Domain_Model_NewsDemand {
+class Tx_News_Domain_Model_Dto_AdministrationDemand extends Tx_News_Domain_Model_Dto_NewsDemand {
 
 	/**
 	 * @var string

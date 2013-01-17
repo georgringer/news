@@ -53,8 +53,8 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 		$pid = 2;
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
-		/** @var $demand Tx_News_Domain_Model_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
+		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setIsDummyRecord(1);
 		$demand->setStoragePage($pid);
 
@@ -93,8 +93,8 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 		$pid = 91;
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
-		/** @var $demand Tx_News_Domain_Model_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
+		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setIsDummyRecord(1);
 		$demand->setStoragePage($pid);
 
@@ -141,8 +141,8 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 		$pid = 92;
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
-		/** @var $demand Tx_News_Domain_Model_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
+		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setIsDummyRecord(1);
 		$demand->setStoragePage($pid);
 
@@ -197,8 +197,8 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 		$pid = 92;
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
-		/** @var $demand Tx_News_Domain_Model_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
+		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setIsDummyRecord(1);
 		$demand->setStoragePage($pid);
 		$demand->setMonth(4);
@@ -216,8 +216,8 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 		$pid = 93;
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
-		/** @var $demand Tx_News_Domain_Model_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
+		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setIsDummyRecord(1);
 		$demand->setStoragePage($pid);
 
@@ -264,8 +264,8 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 	public function findRecordsByStartingpointRestriction() {
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
-		/** @var $demand Tx_News_Domain_Model_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_NewsDemand');
+		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
+		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setIsDummyRecord(1);
 
 		$pidList = array(94,94,95,96,96,97);
