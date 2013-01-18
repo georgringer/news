@@ -50,7 +50,7 @@ class Tx_News_Hooks_Labels {
 	 * @param array $params
 	 * @return void
 	 */
-	public function getUserLabelCategory(array $params) {
+	public function getUserLabelCategory(array &$params) {
 			// New version shows translation of language set in user settings
 		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];
 
@@ -80,7 +80,7 @@ class Tx_News_Hooks_Labels {
 	 * @param array $params configuration
 	 * @return void
 	 */
-	public function getUserLabelMedia(array $params) {
+	public function getUserLabelMedia(array &$params) {
 		$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 		$title = $typeInfo = '';
 
