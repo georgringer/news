@@ -103,6 +103,7 @@ plugin.tx_news {
 
 		facebookLocale = en_US
 		googlePlusLocale = en
+		disqusLocale = en
 
 		# Interface implementations
 		interfaces {
