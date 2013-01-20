@@ -56,7 +56,7 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 			// set a basic configuration for cObj->filelink
 		$tsConfiguration = array(
 			'path' => $fileInformation['dirname'] . '/',
-			'ATagParams' => 'class="download-link basic-class ' . $fileInformation['extension'] . '"',
+			'ATagParams' => 'class="download-link basic-class ' . strtolower($fileInformation['extension']) . '"',
 			'labelStdWrap.' => array(
 				'cObject.' => array(
 					'value' => $this->renderChildren()
