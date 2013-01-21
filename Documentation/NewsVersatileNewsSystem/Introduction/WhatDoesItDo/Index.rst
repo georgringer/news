@@ -10,28 +10,39 @@ What does it do?
 ^^^^^^^^^^^^^^^^
 
 This extension implements a versatile news system based on the latest
-technologies of TYPO3. Therefore the latest TYPO3 version is required
-(currently TYPO3 4.5.3).
+technologies of TYPO3.
 
-**Features for developers**
+**Best practise from the scratch**
 
-- Based on extbase and fluid
+- Support for opengraph in default template
 
-- Sophisticated structured fields, e.g. Relations for media files
+- Support of social websites (facebook, twitter) in default template, ViewHelpers for disqus, google+ & co
 
-- Importer for tt\_news
+- Checkbox "Top news" to flag important news
 
-- Ready to use for Web 2.0 with Facebook & Twitter integration
+- Easy to use/understand for editors
 
-**Features for editors**
+- Built in support for content elements (like extension rgnewsce)
 
-- Simple to use
+- Support for multiple types of media elements (Images, Videos, DAM), based on relations
 
-- Latest usability techniques like the tcaTree
+- Category tree
+
+- Tags
+
+**Background**
+
+- Based on Extbase and fluid: Therefore very easy to style, understand
+
+- Using unit tests
+
+- Following the TYPO3 coding guidelines
+
+- Documentation based on reST
 
 
-Before updating to the latest version
-"""""""""""""""""""""""""""""""""""""
+!! Before updating to the latest version
+"""""""""""""""""""""""""""""""""""""""""
 
 Before updating any version of the extension to the latest one, always
 check out the release notes in the wiki:
