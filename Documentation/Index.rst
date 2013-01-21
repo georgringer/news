@@ -11,12 +11,6 @@
 News: Versatile news system
 ===========================
 
-:Created:
-      2010-02-18 17::3:3:
-
-:Changed by:
-      Georg Ringer
-
 :Rendered:
       |today|
 
