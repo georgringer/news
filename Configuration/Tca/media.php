@@ -16,35 +16,25 @@ $TCA['tx_news_domain_model_media'] = array(
 		'pid' => array(
 			'label'   => 'pid',
 			'config'  => array(
-				'type'    => 'input'
+				'type'    => 'passthrough'
 			)
 		),
 		'sorting' => array(
 			'label'   => 'pid',
 			'config'  => array(
-				'type'    => 'input'
+				'type'    => 'passthrough'
 			)
 		),
 		'crdate' => array(
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+				'type'     => 'passthrough',
 			)
 		),
 		'tstamp' => array(
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'tstamp',
 			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+				'type'     => 'passthrough',
 			)
 		),
 		'sys_language_uid' => array(

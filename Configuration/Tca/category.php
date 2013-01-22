@@ -16,35 +16,25 @@ $TCA['tx_news_domain_model_category'] = array(
 		'pid' => array(
 			'label'   => 'pid',
 			'config'  => array(
-				'type'    => 'input'
+				'type'    => 'passthrough'
 			)
 		),
 		'sorting' => array(
 			'label'   => 'sorting',
 			'config'  => array(
-				'type'    => 'input'
+				'type'    => 'passthrough'
 			)
 		),
 		'crdate' => array(
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+				'type'     => 'passthrough',
 			)
 		),
 		'tstamp' => array(
-			'l10n_mode' => 'mergeIfNotBlank',
-			'label'   => 'crdate',
+			'label'   => 'passthrough',
 			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+				'type'     => 'passthrough',
 			)
 		),
 		'sys_language_uid' => array(
@@ -234,14 +224,14 @@ $TCA['tx_news_domain_model_category'] = array(
 		'import_id' => array(
 			'label'   => $ll . 'tx_news_domain_model_news.import_id',
 			'config' => array(
-				'type' => 'none'
+				'type' => 'passthrough'
 			)
 		),
 
 		'import_source' => array(
 			'label'   => $ll . 'tx_news_domain_model_news.import_source',
 			'config' => array(
-				'type' => 'none'
+				'type' => 'passthrough'
 			)
 		),
 	),
