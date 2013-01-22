@@ -57,40 +57,30 @@ $TCA['tx_news_domain_model_news'] = array(
 		'cruser_id' => array(
 			'label'   => 'cruser_id',
 			'config'  => array(
-				'type'    => 'input'
+				'type'    => 'passthrough'
 			)
 		),
 		'is_dummy_record' => array(
 			'config'  => array(
-				'type'    => 'check'
+				'type'    => 'passthrough'
 			)
 		),
 		'pid' => array(
 			'label'   => 'pid',
 			'config'  => array(
-				'type'    => 'input'
+				'type'    => 'passthrough'
 			)
 		),
 		'crdate' => array(
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+				'type'     => 'passthrough',
 			)
 		),
 		'tstamp' => array(
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label'   => 'crdate',
 			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+				'type'     => 'passthrough',
 			)
 		),
 		'starttime' => array(
@@ -511,14 +501,14 @@ $TCA['tx_news_domain_model_news'] = array(
 		'import_id' => array(
 			'label'   => $ll . 'tx_news_domain_model_news.import_id',
 			'config' => array(
-				'type' => 'none'
+				'type' => 'passthrough'
 			)
 		),
 
 		'import_source' => array(
 			'label'   => $ll . 'tx_news_domain_model_news.import_source',
 			'config' => array(
-				'type' => 'none'
+				'type' => 'passthrough'
 			)
 		)
 	),
