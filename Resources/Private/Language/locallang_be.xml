@@ -77,6 +77,8 @@
 			<label index="flexforms_additional.disableOverrideDemand">Disable override demand</label>
 			<label index="flexforms_additional.excludeAlreadyDisplayedNews">Exclude already displayed news</label>
 
+			<label index="pagemodule.pageNotAvailable">Page with uid "%s" is not available anymore!</label>
+			<label index="pagemodule.newsNotAvailable">News record with uid "%s" is not available anymore!</label>
 			<!-- Page Module Record list -->
 			<label index="pagemodule_simple">Simple list</label>
 			<label index="pagemodule_advanced">Advanced list</label>
