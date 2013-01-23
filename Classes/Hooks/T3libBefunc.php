@@ -166,7 +166,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @param array $fieldsToBeRemoved fields which need to be removed
 	 * @return void
 	 */
-	private function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved) {
+	protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved) {
 		foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
 			$fieldsInSheet = t3lib_div::trimExplode(',', $sheetFields, TRUE);
 
