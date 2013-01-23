@@ -172,6 +172,10 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 */
 	public function dateMenuAction(array $overwriteDemand = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
+
+		// It might be that those are set, @see http://forge.typo3.org/issues/44759
+		$demand->setLimit(0);
+		$demand->setOffset(0);
 			// @todo: find a better way to do this related to #13856
 		if (!$dateField = $this->settings['dateField']) {
 			$dateField = 'datetime';
