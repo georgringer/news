@@ -260,7 +260,7 @@ CREATE TABLE tx_news_domain_model_news_tag_mm (
 CREATE TABLE cf_news_categorycache (
     id int(11) unsigned NOT NULL auto_increment,
     identifier varchar(250) DEFAULT '' NOT NULL,
-    crdate int(11) unsigned DEFAULT '0' NOT NULL,
+    expires int(11) unsigned DEFAULT '0' NOT NULL,
     content mediumblob,
     lifetime int(11) unsigned DEFAULT '0' NOT NULL,
     PRIMARY KEY (id),
