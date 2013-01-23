@@ -149,19 +149,37 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return void
 	 */
 	private function getSingleNewsSettings() {
+		$content = '';
 		$singleNewsRecord = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.singleNews');
 
 		if ($singleNewsRecord > 0) {
-			$newsRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . $singleNewsRecord);
-			$pageRecord = t3lib_BEfunc::getRecord('pages', $newsRecord['pid']);
+			$newsRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'deleted=0 AND uid=' . $singleNewsRecord);
 
-			$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
-			$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
+			if (is_array($newsRecord)) {
+				$pageRecord = t3lib_BEfunc::getRecord('pages', $newsRecord['pid']);
 
-			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
-							htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord)) . ': ' .
-							htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
-							' <small>(' . $newsRecord['uid'] . ')</small>';
+				if (is_array($pageRecord)) {
+					$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
+					$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
+
+					$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
+						htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord)) . ': ' .
+						htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
+						' <small>(' . $newsRecord['uid'] . ')</small>';
+				} else {
+					/** @var $message t3lib_FlashMessage */
+					$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $newsRecord['pid']);
+					$message = t3lib_div::makeInstance('t3lib_FlashMessage', $text, '', t3lib_FlashMessage::WARNING);
+					$content = $message->render();
+				}
+			} else {
+				/** @var $message t3lib_FlashMessage */
+				$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.newsNotAvailable', TRUE), $singleNewsRecord);
+				$message = t3lib_div::makeInstance('t3lib_FlashMessage', $text, '', t3lib_FlashMessage::WARNING);
+				$content = $message->render();
+			}
+
+
 
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $content);
 		}
@@ -173,16 +191,24 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return void
 	 */
 	private function getDetailPidSetting() {
+		$content = '';
 		$detailPid = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.detailPid', 'additional');
 
 		if ($detailPid > 0) {
 			$pageRecord = t3lib_BEfunc::getRecord('pages', $detailPid);
 
-			$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
-			$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'pages', $pageRecord['uid'], 1, '', '+info,edit', TRUE);
+			if (is_array($pageRecord)) {
+				$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
+				$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'pages', $pageRecord['uid'], 1, '', '+info,edit', TRUE);
 
-			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
-							htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord));
+				$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
+					htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord));
+			} else {
+				/** @var $message t3lib_FlashMessage */
+				$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $detailPid);
+				$message = t3lib_div::makeInstance('t3lib_FlashMessage', $text, '', t3lib_FlashMessage::WARNING);
+				$content = $message->render();
+			}
 
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.detailPid'), $content);
 		}
