@@ -145,7 +145,7 @@ detail page.
 
             <LIST-TITLE-1>=<FIELD1>,<FIELD2>;<LIST-TITLE-2>=<FIELD2>,<FIELD3>,<FIELD4>;
 
-         You can use a normal string as title or a translateable string from a
+         You can use a normal string as title or a translatable string from a
          locallang file by using the common syntax
          LLL:path/to/file/locallang.xml:key.
 
