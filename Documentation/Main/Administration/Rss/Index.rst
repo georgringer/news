@@ -83,7 +83,7 @@ This will change the URL to /feed.rss
 RSS feeds by using a normal plugin
 """"""""""""""""""""""""""""""""""
 
-Sometimes it is more convinient to generate the RSS feed using the normal plugin.
+Sometimes it is more convenient to generate the RSS feed using the normal plugin.
 The biggest advantage is that the complete configuration can be done within the backend without touching TypoScript.
 
 To create a RSS feed based on a plugin follow this steps:

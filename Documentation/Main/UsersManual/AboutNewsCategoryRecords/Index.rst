@@ -171,7 +171,7 @@ The following table describes the main fields of a news record.
 
    :Description:
          Main content of the news record. This field is only shown with the
-         txype “News”.
+         type “News”.
 
 
  - :Field:
@@ -362,18 +362,6 @@ A media element can be one of the following types:
    :Description:
          It is possible to decide which media can be shown in the list view. If
          not checked, it will only be displayed in the single view.
-
-
- - :Field:
-         HTML
-
-   :Description:
-         Use any HTML codea.
-
-         As this is a potential security risk, HTML is disabled by default by
-         using Page TsConfig
-
-         TCEFORM.tx\_news\_domain\_model\_media.type.removeItems = 2
 
 
  - :Field:

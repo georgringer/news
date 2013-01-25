@@ -521,7 +521,7 @@ The following table describes the settings concerning the list view.
    :Default:
 
 
-Reference for rendering content elmements
+Reference for rendering content elements
 """""""""""""""""""""""""""""""""""""""""
 
 If news is configured to use relations to content elements, a basic
