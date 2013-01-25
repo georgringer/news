@@ -1,7 +1,7 @@
-﻿.. |img-1|      image:: NewsVersatileNewsSystem/Images/manual_html_11cdfe72.gif
+﻿.. |img-1|      image:: Main/Images/manual_html_11cdfe72.gif
 .. :align: left
 
-.. |img-2|      image:: NewsVersatileNewsSystem/Images/manual_html_3c9c2593.png
+.. |img-2|      image:: Main/Images/manual_html_3c9c2593.png
 .. :border: 0
 .. :height: 21
 .. :hspace: 9
