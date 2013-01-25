@@ -17,6 +17,5 @@ Tutorial
 
    IntegrationWithTs/Index
    HowToAddASimpleNewsSystemToYourSite/Index
-   ChangingEditingTemplates/Index
    MigrationFromTtNews/Index
 
