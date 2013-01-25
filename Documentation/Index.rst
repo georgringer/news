@@ -41,5 +41,5 @@ News: Versatile news system
    :titlesonly:
    :glob:
 
-   NewsVersatileNewsSystem/Index
+   Main/Index
 
