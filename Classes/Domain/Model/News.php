@@ -488,9 +488,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getRelatedSorted() {
 		$items = $this->getRelated();
-		$items = $items->toArray();
-
-		usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+		if ($items) {
+			$items = $items->toArray();
+			usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+		}
 		return $items;
 	}
 
