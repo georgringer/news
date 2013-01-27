@@ -145,7 +145,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $relatedLinks;
 
 	/**
-	 * @var string
+	 * @var integer
 	 */
 	protected $type;
 
@@ -219,7 +219,6 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function __construct() {
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->contentElements = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->relatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->relatedLinks = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->media = new Tx_Extbase_Persistence_ObjectStorage();
@@ -413,7 +412,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
-	 * Get author's email
+	 * Gett author's email
 	 *
 	 * @return string
 	 */
@@ -488,9 +487,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getRelatedSorted() {
 		$items = $this->getRelated();
-		$items = $items->toArray();
-
-		usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+		if ($items) {
+			$items = $items->toArray();
+			usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+		}
 		return $items;
 	}
 
@@ -530,7 +530,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function addRelatedFile(Tx_News_Domain_Model_File $file) {
-		if ($this->getRelatedFiles() === NULL) {
+		if($this->getRelatedFiles() === NULL) {
 			$this->relatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
 		}
 		$this->getRelatedFiles()->attach($file);
@@ -558,7 +558,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get type of news
 	 *
-	 * @return string
+	 * @return integer
 	 */
 	public function getType() {
 		return $this->type;
@@ -653,7 +653,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function addMedia(Tx_News_Domain_Model_Media $media) {
-		if ($this->getMedia() === NULL) {
+		if($this->getMedia() === NULL) {
 			$this->media = new Tx_Extbase_Persistence_ObjectStorage();
 		}
 		$this->getMedia()->attach($media);
@@ -666,7 +666,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return void
 	 */
 	public function addRelatedLink(Tx_News_Domain_Model_Link $relatedLink) {
-		if ($this->relatedLinks === NULL) {
+		if($this->relatedLinks === NULL) {
 			$this->relatedLinks = new Tx_Extbase_Persistence_ObjectStorage();
 		}
 		$this->relatedLinks->attach($relatedLink);
@@ -681,7 +681,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 		$mediaElements = $this->getMedia();
 
 		foreach ($mediaElements as $mediaElement) {
-			if ($mediaElement->getShowinpreview()) {
+			if ($mediaElement->getShowinpreview() && $mediaElement->getType() == 0) {
 				return $mediaElement;
 			}
 		}
@@ -711,11 +711,11 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set internal url
 	 *
-	 * @param string $internalUrl internal url
+	 * @param string $internalurl internal url
 	 * @return void
 	 */
-	public function setInternalurl($internalUrl) {
-		$this->internalurl = $internalUrl;
+	public function setInternalurl($internalurl) {
+		$this->internalurl = $internalurl;
 	}
 
 	/**
@@ -730,11 +730,11 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set external url
 	 *
-	 * @param string $externalUrl external url
+	 * @param string $externalurl external url
 	 * @return void
 	 */
-	public function setExternalurl($externalUrl) {
-		$this->externalurl = $externalUrl;
+	public function setExternalurl($externalurl) {
+		$this->externalurl = $externalurl;
 	}
 
 	/**
@@ -776,23 +776,13 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
-	 * Adds a content element to the record
-	 *
-	 * @param Tx_News_Domain_Model_External_TtContent $contentElement
-	 * @return void
-	*/
-	public function addContentElement(Tx_News_Domain_Model_External_TtContent $contentElement) {
-		$this->contentElements->attach($contentElement);
-	}
-
-	/**
 	 * Get id list of content elements
 	 *
 	 * @return string
 	 */
 	public function getContentElementIdList() {
 		$idList = array();
-		foreach ($this->getContentElements() as $contentElement) {
+		foreach($this->getContentElements() as $contentElement) {
 			$idList[] = $contentElement->getUid();
 		}
 		return implode(',', $idList);
@@ -898,34 +888,6 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setTstamp($tstamp) {
 		$this->tstamp = $tstamp;
-	}
-
-	/**
-	 * @param int $sysLanguageUid
-	 */
-	public function setSysLanguageUid($sysLanguageUid) {
-		$this->_languageUid = $sysLanguageUid;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getSysLanguageUid() {
-		return $this->_languageUid;
-	}
-
-	/**
-	 * @param int $l10nParent
-	 */
-	public function setL10nParent($l10nParent) {
-		$this->l10nParent = $l10nParent;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getL10nParent() {
-		return $this->l10nParent;
 	}
 
 	/**
@@ -1078,7 +1040,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
-	 * Get endtime
+	 * Get enddtime
 	 *
 	 * @return integer
 	 */
@@ -1135,7 +1097,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set fe group
 	 *
-	 * @param string $feGroup comma separated list
+	 * @param string $feGroup comma seperated list
 	 * @return void
 	 */
 	public function setFeGroup($feGroup) {
