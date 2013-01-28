@@ -1,2 +1,5 @@
-Format/NothingViewHelper
-^^^^^^^^^^^^^^^^^^^^^^^^
+Format / NothingViewHelper
+-------------------------------
+
+**Type:** Basic
+
