@@ -10,48 +10,43 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name: Name:
+   :Type: Type:
+   :Description: Description:
+   :Default value: Default value:
 
-	:Type:
-		Type:
+ - :Name:
+         \* classes
+   :Type:
+         string
+   :Description:
+         
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         \* element
+   :Type:
+         Tx\_News\_Domain\_Model\_Media
+   :Description:
+         
+   :Default value:
+         
 
+ - :Name:
+         \* height
+   :Type:
+         integer
+   :Description:
+         
+   :Default value:
+         
 
-	- :Name:
-		* classes
-		
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* element
-		
-	:Type:
-		Tx_News_Domain_Model_Media
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* height
-		
-	:Type:
-		integer
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* width
-		
-	:Type:
-		integer
-	:Default value:
-		NULL
+ - :Name:
+         \* width
+   :Type:
+         integer
+   :Description:
+         
+   :Default value:
 

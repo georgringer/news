@@ -10,138 +10,133 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name: Name:
+   :Type: Type:
+   :Description: Description:
+   :Default value: Default value:
 
-	:Type:
-		Type:
+ - :Name:
+         accesskey
+   :Type:
+         string
+   :Description:
+         Keyboard shortcut to access this element
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         additionalAttributes
+   :Type:
+         array
+   :Description:
+         Additional tag attributes. They will be added directly to the resulting HTML tag.
+   :Default value:
+         
 
+ - :Name:
+         class
+   :Type:
+         string
+   :Description:
+         CSS class(es) for this element
+   :Default value:
+         
 
-	- :Name:
-		accesskey
-		Keyboard shortcut to access this element
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         configuration
+   :Type:
+         array
+   :Description:
+         optional typolink configuration
+   :Default value:
+         Array
 
+ - :Name:
+         dir
+   :Type:
+         string
+   :Description:
+         Text direction for this HTML element. Allowed strings\: "ltr" (left to right), "rtl" (right to left)
+   :Default value:
+         
 
-	- :Name:
-		additionalAttributes
-		Additional tag attributes. They will be added directly to the resulting HTML tag.
-	:Type:
-		array
-	:Default value:
-		NULL
+ - :Name:
+         id
+   :Type:
+         string
+   :Description:
+         Unique (in this file) identifier for this HTML element.
+   :Default value:
+         
 
+ - :Name:
+         lang
+   :Type:
+         string
+   :Description:
+         Language for this element. Use short names specified in RFC 1766
+   :Default value:
+         
 
-	- :Name:
-		class
-		CSS class(es) for this element
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         \* newsItem
+   :Type:
+         Tx\_News\_Domain\_Model\_News
+   :Description:
+         
+   :Default value:
+         
 
+ - :Name:
+         onclick
+   :Type:
+         string
+   :Description:
+         JavaScript evaluated for the onclick event
+   :Default value:
+         
 
-	- :Name:
-		configuration
-		optional typolink configuration
-	:Type:
-		array
-	:Default value:
-		array(empty)
+ - :Name:
+         settings
+   :Type:
+         array
+   :Description:
+         
+   :Default value:
+         Array
 
+ - :Name:
+         style
+   :Type:
+         string
+   :Description:
+         Individual CSS styles for this element
+   :Default value:
+         
 
-	- :Name:
-		dir
-		Text direction for this HTML element. Allowed strings: "ltr" (left to right), "rtl" (right to left)
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         tabindex
+   :Type:
+         integer
+   :Description:
+         Specifies the tab order of this element
+   :Default value:
+         
 
+ - :Name:
+         title
+   :Type:
+         string
+   :Description:
+         Tooltip text of element
+   :Default value:
+         
 
-	- :Name:
-		id
-		Unique (in this file) identifier for this HTML element.
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		lang
-		Language for this element. Use short names specified in RFC 1766
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* newsItem
-		
-	:Type:
-		Tx_News_Domain_Model_News
-	:Default value:
-		NULL
-
-
-	- :Name:
-		onclick
-		JavaScript evaluated for the onclick event
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		settings
-		
-	:Type:
-		array
-	:Default value:
-		array(empty)
-
-
-	- :Name:
-		style
-		Individual CSS styles for this element
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		tabindex
-		Specifies the tab order of this element
-	:Type:
-		integer
-	:Default value:
-		NULL
-
-
-	- :Name:
-		title
-		Tooltip text of element
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		uriOnly
-		return only the url without the a-tag
-	:Type:
-		boolean
-	:Default value:
-		FALSE
+ - :Name:
+         uriOnly
+   :Type:
+         boolean
+   :Description:
+         return only the url without the a-tag
+   :Default value:
 

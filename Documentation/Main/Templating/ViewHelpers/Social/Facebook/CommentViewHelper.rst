@@ -10,66 +10,61 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name: Name:
+   :Type: Type:
+   :Description: Description:
+   :Default value: Default value:
 
-	:Type:
-		Type:
+ - :Name:
+         additionalAttributes
+   :Type:
+         array
+   :Description:
+         Additional tag attributes. They will be added directly to the resulting HTML tag.
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         \* appId
+   :Type:
+         string
+   :Description:
+         
+   :Default value:
+         
 
+ - :Name:
+         numposts
+   :Type:
+         integer
+   :Description:
+         the number of comments to display, or 0 to hide all comments
+   :Default value:
+         
 
-	- :Name:
-		additionalAttributes
-		Additional tag attributes. They will be added directly to the resulting HTML tag.
-	:Type:
-		array
-	:Default value:
-		NULL
+ - :Name:
+         publishFeed
+   :Type:
+         boolean
+   :Description:
+         Whether the publish feed story checkbox is checked., default = TRUE
+   :Default value:
+         
 
+ - :Name:
+         width
+   :Type:
+         integer
+   :Description:
+         The width of the plugin in px, default = 425
+   :Default value:
+         
 
-	- :Name:
-		* appId
-		
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		numposts
-		the number of comments to display, or 0 to hide all comments
-	:Type:
-		integer
-	:Default value:
-		NULL
-
-
-	- :Name:
-		publishFeed
-		Whether the publish feed story checkbox is checked., default = TRUE
-	:Type:
-		boolean
-	:Default value:
-		NULL
-
-
-	- :Name:
-		width
-		The width of the plugin in px, default = 425
-	:Type:
-		integer
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* xid
-		An id associated with the comments object, Default: URL-encoded page URL
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         \* xid
+   :Type:
+         string
+   :Description:
+         An id associated with the comments object, Default\: URL-encoded page URL
+   :Default value:
 

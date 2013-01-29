@@ -10,57 +10,52 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name: Name:
+   :Type: Type:
+   :Description: Description:
+   :Default value: Default value:
 
-	:Type:
-		Type:
+ - :Name:
+         additionalAttributes
+   :Type:
+         array
+   :Description:
+         Additional tag attributes. They will be added directly to the resulting HTML tag.
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         loadJs
+   :Type:
+         boolean
+   :Description:
+         
+   :Default value:
+         1
 
+ - :Name:
+         name
+   :Type:
+         string
+   :Description:
+         default\: fb\_share
+   :Default value:
+         
 
-	- :Name:
-		additionalAttributes
-		Additional tag attributes. They will be added directly to the resulting HTML tag.
-	:Type:
-		array
-	:Default value:
-		NULL
+ - :Name:
+         shareurl
+   :Type:
+         string
+   :Description:
+         Shared url, default\: http\://www.facebook.com/sharer.php
+   :Default value:
+         
 
-
-	- :Name:
-		loadJs
-		
-	:Type:
-		boolean
-	:Default value:
-		TRUE
-
-
-	- :Name:
-		name
-		default: fb_share
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		shareurl
-		Shared url, default: http://www.facebook.com/sharer.php
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		type
-		default: button_count
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         type
+   :Type:
+         string
+   :Description:
+         default\: button\_count
+   :Default value:
 

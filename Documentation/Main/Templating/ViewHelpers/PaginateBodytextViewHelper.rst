@@ -10,48 +10,44 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name: Name:
+   :Type: Type:
+   :Description: Description:
+   :Default value: Default value:
 
-	:Type:
-		Type:
+ - :Name:
+         \* as
+   :Type:
+         string
+   :Description:
+         
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         \* currentPage
+   :Type:
+         integer
+   :Description:
+         
+   :Default value:
+         
 
+ - :Name:
+         \* object
+   :Type:
+         Tx\_News\_Domain\_Model\_News
+   :Description:
+         
+   :Default value:
+         
 
-	- :Name:
-		* as
-		
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* currentPage
-		
-	:Type:
-		integer
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* object
-		
-	:Type:
-		Tx_News_Domain_Model_News
-	:Default value:
-		NULL
-
-
-	- :Name:
-		token
-		
-	:Type:
-		string
-	:Default value:
-		"###more###" (10 chars)
+ - :Name:
+         token
+   :Type:
+         string
+   :Description:
+         
+   :Default value:
+         ###more###
 

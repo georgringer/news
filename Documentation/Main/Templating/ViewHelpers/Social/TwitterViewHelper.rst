@@ -10,93 +10,88 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name: Name:
+   :Type: Type:
+   :Description: Description:
+   :Default value: Default value:
 
-	:Type:
-		Type:
+ - :Name:
+         additionalAttributes
+   :Type:
+         array
+   :Description:
+         Additional tag attributes. They will be added directly to the resulting HTML tag.
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         class
+   :Type:
+         string
+   :Description:
+         Class of link
+   :Default value:
+         
 
+ - :Name:
+         datacount
+   :Type:
+         string
+   :Description:
+         Button style. Can be "horizontal", "vertical" or "none"
+   :Default value:
+         
 
-	- :Name:
-		additionalAttributes
-		Additional tag attributes. They will be added directly to the resulting HTML tag.
-	:Type:
-		array
-	:Default value:
-		NULL
+ - :Name:
+         datalang
+   :Type:
+         string
+   :Description:
+         Language of the twitter button. Can either be fr, it, de, es, ko or ja
+   :Default value:
+         
 
+ - :Name:
+         datarelated
+   :Type:
+         string
+   :Description:
+         Related twitter account.
+   :Default value:
+         
 
-	- :Name:
-		class
-		Class of link
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         datatext
+   :Type:
+         string
+   :Description:
+         Text included in tweet when shared. Default is title of the page
+   :Default value:
+         
 
+ - :Name:
+         dataurl
+   :Type:
+         string
+   :Description:
+         Suggest a4 default Tweet for users. Default is current page title.
+   :Default value:
+         
 
-	- :Name:
-		datacount
-		Button style. Can be "horizontal", "vertical" or "none"
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         datavia
+   :Type:
+         string
+   :Description:
+         Preferred twitter account.
+   :Default value:
+         
 
-
-	- :Name:
-		datalang
-		Language of the twitter button. Can either be fr, it, de, es, ko or ja
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		datarelated
-		Related twitter account.
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		datatext
-		Text included in tweet when shared. Default is title of the page
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		dataurl
-		Suggest a4 default Tweet for users. Default is current page title.
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		datavia
-		Preferred twitter account.
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		javaScript
-		JS URL. If not set, default is used, if set to -1 no Js is loaded
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         javaScript
+   :Type:
+         string
+   :Description:
+         JS URL. If not set, default is used, if set to -1 no Js is loaded
+   :Default value:
 
