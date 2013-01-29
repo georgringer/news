@@ -104,10 +104,20 @@
 				<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
 			</span>
 
-			<!-- first category -->
 			<f:if condition="{newsItem.firstCategory}">
+				<!-- first category -->
 				<span class="news-list-category">{newsItem.firstCategory.title}</span>
 			</f:if>
+
+			<f:if condition="{newsItem.tags}">
+				<!-- Tags -->
+				<span class="news-list-tags">
+				<f:for each="{newsItem.tags}" as="tag">
+					{tag.title}
+				</f:for>
+				</span>
+			</f:if>
+
 
 			<!-- author -->
 			<f:if condition="{newsItem.author}">
