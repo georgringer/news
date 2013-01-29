@@ -52,7 +52,7 @@ class Tx_News_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends Tx_Fluid_C
 	public function render($value = NULL, $keepQuotes = FALSE) {
 		if (class_exists('Tx_Fluid_ViewHelpers_Format_HtmlentitiesDecodeViewHelper')) {
 			$message = 'EXT:news: Since TYPO3 4.6.0, a native ViewHelper for html_entity_decode() ' .
-				'is available, use f:format.htmlEntityDecode instead of n:format.htmlEntityDecode';
+				'is available, use f:format.htmlentitiesDecode instead of n:format.htmlEntityDecode';
 
 			t3lib_div::deprecationLog($message);
 		}
