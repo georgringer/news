@@ -10,66 +10,56 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name:
+         additionalAttributes
+   :Type:
+         array
+   :Description:
+         Additional tag attributes. They will be added directly to the resulting HTML tag.
+   :Default value:
+         
 
-	:Type:
-		Type:
+ - :Name:
+         font
+   :Type:
+         string
+   :Description:
+         Font, options are\: arial,lucidia grande,segoe ui,tahoma,trebuchet ms,verdana
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         href
+   :Type:
+         string
+   :Description:
+         Given url, if empty, current url is used
+   :Default value:
+         
 
+ - :Name:
+         javaScript
+   :Type:
+         string
+   :Description:
+         JS URL. If not set, default is used, if set to -1 no Js is loaded
+   :Default value:
+         
 
-	- :Name:
-		additionalAttributes
-		Additional tag attributes. They will be added directly to the resulting HTML tag.
-	:Type:
-		array
-	:Default value:
-		NULL
+ - :Name:
+         layout
+   :Type:
+         string
+   :Description:
+         Either\: standard, button\_count or box\_count
+   :Default value:
+         
 
-
-	- :Name:
-		font
-		Font, options are: arial,lucidia grande,segoe ui,tahoma,trebuchet ms,verdana
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		href
-		Given url, if empty, current url is used
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		javaScript
-		JS URL. If not set, default is used, if set to -1 no Js is loaded
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		layout
-		Either: standard, button_count or box_count
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		width
-		With of widget, default 450
-	:Type:
-		integer
-	:Default value:
-		NULL
+ - :Name:
+         width
+   :Type:
+         integer
+   :Description:
+         With of widget, default 450
+   :Default value:
 

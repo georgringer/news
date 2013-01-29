@@ -10,66 +10,56 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name:
+         additionalAttributes
+   :Type:
+         array
+   :Description:
+         Additional tag attributes. They will be added directly to the resulting HTML tag.
+   :Default value:
+         
 
-	:Type:
-		Type:
+ - :Name:
+         callback
+   :Type:
+         string
+   :Description:
+         Callback function
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         count
+   :Type:
+         string
+   :Description:
+         Set it to false to hide counter
+   :Default value:
+         
 
+ - :Name:
+         href
+   :Type:
+         string
+   :Description:
+         URL to be +1, default is current URL
+   :Default value:
+         
 
-	- :Name:
-		additionalAttributes
-		Additional tag attributes. They will be added directly to the resulting HTML tag.
-	:Type:
-		array
-	:Default value:
-		NULL
+ - :Name:
+         jsCode
+   :Type:
+         string
+   :Description:
+         
+   :Default value:
+         
 
-
-	- :Name:
-		callback
-		Callback function
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		count
-		Set it to false to hide counter
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		href
-		URL to be +1, default is current URL
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		jsCode
-		
-	:Type:
-		string
-	:Default value:
-		"" (0 chars)
-
-
-	- :Name:
-		size
-		Size of the icon. Can be small,medium,tall.
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         size
+   :Type:
+         string
+   :Description:
+         Size of the icon. Can be small,medium,tall.
+   :Default value:
 

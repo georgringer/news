@@ -10,30 +10,20 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name:
+         keepQuotes
+   :Type:
+         boolean
+   :Description:
+         if TRUE, single and double quotes won't be replaced
+   :Default value:
+         
 
-	:Type:
-		Type:
-
-	:Default value:
-		Default value:
-
-
-	- :Name:
-		keepQuotes
-		if TRUE, single and double quotes won't be replaced
-	:Type:
-		boolean
-	:Default value:
-		FALSE
-
-
-	- :Name:
-		value
-		string to format
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         value
+   :Type:
+         string
+   :Description:
+         string to format
+   :Default value:
 

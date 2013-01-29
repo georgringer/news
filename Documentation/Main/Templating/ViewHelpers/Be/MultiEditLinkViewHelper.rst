@@ -10,30 +10,20 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name:
+         \* columns
+   :Type:
+         string
+   :Description:
+         column names
+   :Default value:
+         
 
-	:Type:
-		Type:
-
-	:Default value:
-		Default value:
-
-
-	- :Name:
-		* columns
-		column names
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* items
-		news items
-	:Type:
-		object
-	:Default value:
-		NULL
+ - :Name:
+         \* items
+   :Type:
+         object
+   :Description:
+         news items
+   :Default value:
 

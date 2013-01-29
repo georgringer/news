@@ -10,48 +10,38 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name:
+         icon
+   :Type:
+         string
+   :Description:
+         Icon to be used
+   :Default value:
+         closedok
 
-	:Type:
-		Type:
+ - :Name:
+         onclick
+   :Type:
+         string
+   :Description:
+         onclick setting
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         title
+   :Type:
+         string
+   :Description:
+         Title attribute of the resulting link
+   :Default value:
+         
 
-
-	- :Name:
-		icon
-		Icon to be used
-	:Type:
-		string
-	:Default value:
-		"closedok" (8 chars)
-
-
-	- :Name:
-		onclick
-		onclick setting
-	:Type:
-		string
-	:Default value:
-		"" (0 chars)
-
-
-	- :Name:
-		title
-		Title attribute of the resulting link
-	:Type:
-		string
-	:Default value:
-		"" (0 chars)
-
-
-	- :Name:
-		uri
-		the target URI for the link
-	:Type:
-		string
-	:Default value:
-		"" (0 chars)
+ - :Name:
+         uri
+   :Type:
+         string
+   :Description:
+         the target URI for the link
+   :Default value:
 

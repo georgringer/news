@@ -10,39 +10,29 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name:
+         configuration
+   :Type:
+         array
+   :Description:
+         
+   :Default value:
+         Array
 
-	:Type:
-		Type:
+ - :Name:
+         \* file
+   :Type:
+         string
+   :Description:
+         file
+   :Default value:
+         
 
-	:Default value:
-		Default value:
-
-
-	- :Name:
-		configuration
-		
-	:Type:
-		array
-	:Default value:
-		array(empty)
-
-
-	- :Name:
-		* file
-		file
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		hideError
-		
-	:Type:
-		boolean
-	:Default value:
-		FALSE
+ - :Name:
+         hideError
+   :Type:
+         boolean
+   :Description:
+         
+   :Default value:
 

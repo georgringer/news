@@ -10,57 +10,47 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name:
+         additionalAttributes
+   :Type:
+         array
+   :Description:
+         Additional tag attributes. They will be added directly to the resulting HTML tag.
+   :Default value:
+         
 
-	:Type:
-		Type:
+ - :Name:
+         content
+   :Type:
+         string
+   :Description:
+         Content of meta tag
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         forceAbsoluteUrl
+   :Type:
+         boolean
+   :Description:
+         If set, absolute url is forced
+   :Default value:
+         
 
+ - :Name:
+         property
+   :Type:
+         string
+   :Description:
+         Property of meta tag
+   :Default value:
+         
 
-	- :Name:
-		additionalAttributes
-		Additional tag attributes. They will be added directly to the resulting HTML tag.
-	:Type:
-		array
-	:Default value:
-		NULL
-
-
-	- :Name:
-		content
-		Content of meta tag
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		forceAbsoluteUrl
-		If set, absolute url is forced
-	:Type:
-		boolean
-	:Default value:
-		FALSE
-
-
-	- :Name:
-		property
-		Property of meta tag
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		useCurrentDomain
-		If set, current domain is used
-	:Type:
-		boolean
-	:Default value:
-		FALSE
+ - :Name:
+         useCurrentDomain
+   :Type:
+         boolean
+   :Description:
+         If set, current domain is used
+   :Default value:
 

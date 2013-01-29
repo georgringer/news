@@ -10,39 +10,29 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name:
+         \* link
+   :Type:
+         string
+   :Description:
+         link
+   :Default value:
+         
 
-	:Type:
-		Type:
+ - :Name:
+         \* newsItem
+   :Type:
+         Tx\_News\_Domain\_Model\_News
+   :Description:
+         news item
+   :Default value:
+         
 
-	:Default value:
-		Default value:
-
-
-	- :Name:
-		* link
-		link
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* newsItem
-		news item
-	:Type:
-		Tx_News_Domain_Model_News
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* shortName
-		shortname
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         \* shortName
+   :Type:
+         string
+   :Description:
+         shortname
+   :Default value:
 

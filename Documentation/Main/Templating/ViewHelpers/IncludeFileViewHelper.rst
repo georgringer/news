@@ -10,30 +10,20 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name:
+         compress
+   :Type:
+         boolean
+   :Description:
+         if file should be compressed
+   :Default value:
+         
 
-	:Type:
-		Type:
-
-	:Default value:
-		Default value:
-
-
-	- :Name:
-		compress
-		if file should be compressed
-	:Type:
-		boolean
-	:Default value:
-		FALSE
-
-
-	- :Name:
-		* path
-		path to the file
-	:Type:
-		string
-	:Default value:
-		NULL
+ - :Name:
+         \* path
+   :Type:
+         string
+   :Description:
+         path to the file
+   :Default value:
 
