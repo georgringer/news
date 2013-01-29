@@ -10,39 +10,34 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name: Name:
+   :Type: Type:
+   :Description: Description:
+   :Default value: Default value:
 
-	:Type:
-		Type:
+ - :Name:
+         \* table
+   :Type:
+         string
+   :Description:
+         table name
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         \* title
+   :Type:
+         string
+   :Description:
+         title
+   :Default value:
+         
 
-
-	- :Name:
-		* table
-		table name
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* title
-		title
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* uid
-		uid of record
-	:Type:
-		integer
-	:Default value:
-		NULL
+ - :Name:
+         \* uid
+   :Type:
+         integer
+   :Description:
+         uid of record
+   :Default value:
 

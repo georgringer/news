@@ -10,42 +10,34 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name: Name:
+   :Type: Type:
+   :Description: Description:
+   :Default value: Default value:
 
-	:Type:
-		Type:
+ - :Name:
+         \* as
+   :Type:
+         string
+   :Description:
+         
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         configuration
+   :Type:
+         mixed
+   :Description:
+         
+   :Default value:
+         Array
 
-
-	- :Name:
-		* as
-		
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		configuration
-		
-	:Type:
-		mixed
-	:Default value:
-		array(3 items)
-   itemsPerPage => 10 (integer)
-   insertAbove => FALSE
-   insertBelow => TRUE
-
-
-	- :Name:
-		* objects
-		
-	:Type:
-		TYPO3\CMS\Extbase\Persistence\QueryResultInterface
-	:Default value:
-		NULL
+ - :Name:
+         \* objects
+   :Type:
+         TYPO3\\CMS\\Extbase\\Persistence\\QueryResultInterface
+   :Description:
+         
+   :Default value:
 

@@ -10,48 +10,43 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
-	- :Name:
-		Name:
+ - :Name: Name:
+   :Type: Type:
+   :Description: Description:
+   :Default value: Default value:
 
-	:Type:
-		Type:
+ - :Name:
+         \* as
+   :Type:
+         string
+   :Description:
+         output variable
+   :Default value:
+         
 
-	:Default value:
-		Default value:
+ - :Name:
+         \* className
+   :Type:
+         string
+   :Description:
+         custom class which handles the new objects
+   :Default value:
+         
 
+ - :Name:
+         extendedTable
+   :Type:
+         string
+   :Description:
+         table which is extended
+   :Default value:
+         tx\_news\_domain\_model\_news
 
-	- :Name:
-		* as
-		output variable
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		* className
-		custom class which handles the new objects
-	:Type:
-		string
-	:Default value:
-		NULL
-
-
-	- :Name:
-		extendedTable
-		table which is extended
-	:Type:
-		string
-	:Default value:
-		"tx_news_domain_model_news" (25 chars)
-
-
-	- :Name:
-		* newsItem
-		current newsitem
-	:Type:
-		Tx_News_Domain_Model_News
-	:Default value:
-		NULL
+ - :Name:
+         \* newsItem
+   :Type:
+         Tx\_News\_Domain\_Model\_News
+   :Description:
+         current newsitem
+   :Default value:
 
