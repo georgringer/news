@@ -384,7 +384,7 @@ $TCA['tx_news_domain_model_news'] = array(
 				'allowed' => 'pages',
 				'size' => 1,
 				'maxitems' => 1,
-				'minitems' => 0,
+				'minitems' => 1,
 				'show_thumbs' => 1,
 				'wizards' => array(
 					'suggest' => array(
@@ -400,6 +400,7 @@ $TCA['tx_news_domain_model_news'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 50,
+				'eval' => 'required'
 			)
 		),
 		'istopnews' => array(
