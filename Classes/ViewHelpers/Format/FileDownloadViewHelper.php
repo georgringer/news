@@ -33,9 +33,9 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 	/**
 	 * Download a file
 	 *
-	 * @param string $file file
-	 * @param array $configuration
-	 * @param boolean $hideError
+	 * @param string $file Path to the file
+	 * @param array $configuration configuration used to render the filelink cObject
+	 * @param boolean $hideError define if an error should be displayed if file not found
 	 * @return string
 	 */
 	public function render($file, $configuration = array(), $hideError = FALSE) {

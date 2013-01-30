@@ -43,12 +43,12 @@ class Tx_News_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelpe
 
 	/**
 	 * Go through all given classes which implement the mediainterface
-	 * and get the videos
+	 * and use the proper ones to render the media element
 	 *
-	 * @param string $classes
-	 * @param Tx_News_Domain_Model_Media $element
-	 * @param integer $width
-	 * @param integer $height
+	 * @param string $classes comma separated list of classes which can be used to render the media object
+	 * @param Tx_News_Domain_Model_Media $element Current media object
+	 * @param integer $width width
+	 * @param integer $height height
 	 * @return string
 	 */
 	public function render($classes, Tx_News_Domain_Model_Media $element, $width, $height) {
