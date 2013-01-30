@@ -75,10 +75,10 @@ class Tx_News_ViewHelpers_PaginateBodytextViewHelper extends Tx_Fluid_Core_ViewH
 	/**
 	 * Render everything
 	 *
-	 * @param Tx_News_Domain_Model_News $object
-	 * @param string $as
-	 * @param integer $currentPage
-	 * @param string $token
+	 * @param Tx_News_Domain_Model_News $object current news object
+	 * @param string $as name of property which holds the text
+	 * @param integer $currentPage Selected page
+	 * @param string $token Token used to split the text
 	 * @return string
 	 */
 	public function render(Tx_News_Domain_Model_News $object, $as, $currentPage, $token = '###more###') {

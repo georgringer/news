@@ -46,9 +46,10 @@ class Tx_News_ViewHelpers_CategoryChildrenViewHelper extends Tx_Fluid_Core_ViewH
 	}
 
 	/**
+	 * Render the viewhelper
 	 *
 	 * @param integer $category category uid
-	 * @param string $as
+	 * @param string $as name of the new object
 	 * @return string rendered content
 	 */
 	public function render($category, $as) {

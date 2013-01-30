@@ -76,7 +76,7 @@ class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends Tx_Fluid_Core_View
 	/**
 	 * Render the Google+ button
 	 *
-	 * @param string $jsCode
+	 * @param string $jsCode Alternative JavaScript code which is used
 	 * @return string
 	 */
 	public function render($jsCode = '') {

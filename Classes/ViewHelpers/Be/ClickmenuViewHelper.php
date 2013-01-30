@@ -29,8 +29,8 @@ class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends Tx_Fluid_Core_ViewHelpe
 	/**
 	 * Render the clickmenu
 	 *
-	 * @param string $table
-	 * @param integer $uid
+	 * @param string $table Name of the table
+	 * @param integer $uid uid of the record
 	 * @return string
 	 */
 	public function render($table, $uid) {

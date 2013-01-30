@@ -34,9 +34,9 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHe
 	/**
 	 * Renders the size of a file using t3lib_div::formatSize
 	 *
-	 * @param string $file
-	 * @param string $format
-	 * @param boolean $hideError
+	 * @param string $file Path to the file
+	 * @param string $format  Labels for bytes, kilo, mega and giga separated by vertical bar (|) and possibly encapsulated in "". Eg: " | K| M| G" (which is the default value)
+	 * @param boolean $hideError Define if an error should be displayed if file not found
 	 * @return string
 	 */
 	public function render($file, $format = '', $hideError = FALSE) {

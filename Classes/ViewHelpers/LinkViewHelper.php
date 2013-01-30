@@ -71,7 +71,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	/**
 	 * Render link to news item or internal/external pages
 	 *
-	 * @param Tx_News_Domain_Model_News $newsItem
+	 * @param Tx_News_Domain_Model_News $newsItem current news object
 	 * @param array $settings
 	 * @param boolean $uriOnly return only the url without the a-tag
 	 * @param array $configuration optional typolink configuration
