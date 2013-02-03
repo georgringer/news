@@ -82,7 +82,7 @@ class Tx_News_Hooks_Labels {
 	 */
 	public function getUserLabelMedia(array &$params) {
 		$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
-		$title = $typeInfo = '';
+		$title = $typeInfo = $additionalHtmlContent = '';
 
 		$type = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.type.I.' . $params['row']['type']);
 
@@ -91,6 +91,11 @@ class Tx_News_Hooks_Labels {
 			// Image
 			case Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE:
 				$typeInfo .= $this->getTitleFromFields('title,alt,caption,image', $params['row']);
+
+				if (!empty($params['row']['image'])) {
+					$params['row']['image'] = $this->splitFileName($params['row']['image']);
+					$additionalHtmlContent = '<br />' . t3lib_BEfunc::thumbCode($params['row'],'tx_news_domain_model_media','image', $GLOBALS['BACK_PATH'], '', NULL, 0, '', '', FALSE);
+				}
 				break;
 				// Audio & Video
 			case Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA:
@@ -122,7 +127,7 @@ class Tx_News_Hooks_Labels {
 		}
 
 		$title = (!empty($typeInfo)) ? $type . ': ' . $typeInfo : $type;
-		$title = htmlspecialchars($title);
+		$title = htmlspecialchars($title) . $additionalHtmlContent;
 
 			// Hook to modify the label, especially useful when using custom media relations
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'])) {
@@ -197,13 +202,21 @@ class Tx_News_Hooks_Labels {
 			}
 		}
 
-		// Since 6.0 the image information looks like someImage.jpg|someImage.jpg
-		$typo3Version = TYPO3_branch;
-		if ((int)$typo3Version{0} >= 6) {
-			$split = explode('|', $title);
-			if (count($split) === 2 && $split[0] === $split[1]) {
-				$title = $split[0];
-			}
+		$title = $this->splitFileName($title);
+
+		return $title;
+	}
+
+	/**
+	 * Split the filename
+	 *
+	 * @param string $title
+	 * @return string
+	 */
+	protected function splitFileName($title) {
+		$split = explode('|', $title);
+		if (count($split) === 2 && $split[0] === $split[1]) {
+			$title = $split[0];
 		}
 
 		return $title;
