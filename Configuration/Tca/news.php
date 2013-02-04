@@ -181,6 +181,19 @@ $TCA['tx_news_domain_model_news'] = array(
 				),
 			)
 		),
+		'rte_disabled' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:cms/locallang_ttc.xml:rte_enabled',
+			'config' => array(
+				'type' => 'check',
+				'showIfRTE' => 1,
+				'items' => array(
+					'1' => array(
+						'0' => 'LLL:EXT:cms/locallang_ttc.xml:rte_enabled.I.0'
+					)
+				)
+			)
+		),
 		'datetime' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
@@ -518,7 +531,9 @@ $TCA['tx_news_domain_model_news'] = array(
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
 					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
-					bodytext;;;richtext::rte_transform[flag=rte_enabled|mode=ts_css],content_elements,
+					bodytext;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],
+					rte_disabled;LLL:EXT:cms/locallang_ttc.xml:rte_enabled_formlabel,
+					content_elements,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
