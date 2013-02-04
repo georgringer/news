@@ -29,7 +29,7 @@
 class Tx_News_ViewHelpers_ExcludeDisplayedNewsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * Add the news uid to a global variable to be able to exlude it later
+	 * Add the news uid to a global variable to be able to exclude it later
 	 *
 	 * @param Tx_News_Domain_Model_News $newsItem current news item
 	 * @return void
