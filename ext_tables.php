@@ -65,6 +65,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/news.php',
 		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news.gif',
 		'searchFields' => 'uid,title',
+		'requestUpdate' => 'rte_disabled',
 	),
 );
 
