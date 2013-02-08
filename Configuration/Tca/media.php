@@ -115,7 +115,7 @@ $TCA['tx_news_domain_model_media'] = array(
 				'uploadfolder' => 'uploads/tx_news',
 				'show_thumbs' => 1,
 				'size' => 1,
-				'minitems' => 0,
+				'minitems' => 1,
 				'maxitems' => 1,
 			)
 		),
@@ -126,7 +126,7 @@ $TCA['tx_news_domain_model_media'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim',
+				'eval' => 'trim,required',
 				'wizards' => array(
 					'_PADDING' => 2,
 					'link' => array(
