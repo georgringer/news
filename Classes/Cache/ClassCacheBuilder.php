@@ -134,13 +134,14 @@ class Tx_News_Cache_ClassCacheBuilder {
 		}
 		$code = str_replace(array('<?php', '?>'), '', $code);
 
+			// Remove everything before 'class Tx_', including namespaces,
+			// comments and require-statements.
 		if ($removeClassDefinition) {
 			$pos = strpos($code, 'class Tx_');
-			$pos2 = strpos($code, LF, $pos);
+			$pos2 = strpos($code, '{', $pos);
 
-			$code = substr($code, 0, $pos) . substr($code, $pos2, strlen($code));
+			$code = substr($code, $pos2 + 1);
 		}
-		$code = trim($code);
 
 			// Add some information for each partial
 		$code =  LF . LF . chr(10) . chr(10) . '/*' . str_repeat('*', 70) . LF . TAB .
