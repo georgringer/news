@@ -223,7 +223,10 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 					$searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
 				}
 			}
-			$constraints[] = $query->logicalOr($searchConstraints);
+
+			if (count($searchConstraints)) {
+				$constraints[] = $query->logicalOr($searchConstraints);
+			}
 		}
 
 		// Exclude already displayed
