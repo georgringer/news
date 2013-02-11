@@ -47,7 +47,7 @@ class Tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiv
 
 		$records = parent::queryTable($params, $recursionCounter);
 
-		if (count($records) === 0) {
+		if ($this->checkIfTagIsNotFound($records)) {
 			$text = htmlspecialchars($params['value']);
 $javaScriptCode = '
 var value=\'' . $text . '\';
@@ -73,7 +73,7 @@ $link = implode(' ', explode(chr(10), $javaScriptCode));
 				'text' => '<div onclick="' . $link . '">
 							<span class="suggest-path">
 								<a>' .
-									sprintf($GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xml:tag_suggest'), $text) .
+									sprintf($GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xml:tag_suggest', TRUE), $text) .
 								'</a>
 							</span></div>',
 				'table' => 'tx_news_domain_model_tag',
@@ -83,7 +83,26 @@ $link = implode(' ', explode(chr(10), $javaScriptCode));
 		}
 
 		return $records;
+	}
 
+	/**
+	 * Check if current tag is found.
+	 *
+	 * @param array $tags returned tags
+	 * @return boolean
+	 */
+	protected function checkIfTagIsNotFound(array $tags) {
+		if (count($tags) === 0) {
+			return TRUE;
+		}
+
+		foreach($tags as $tag) {
+			if ($tag['label'] === $this->params['value']) {
+				return FALSE;
+			}
+		}
+
+		return TRUE;
 	}
 
 	private function getDummyIconPath() {
