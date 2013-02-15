@@ -30,12 +30,11 @@
  */
 class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
-
 	/**
 	 * Renders the size of a file using t3lib_div::formatSize
 	 *
 	 * @param string $file Path to the file
-	 * @param string $format  Labels for bytes, kilo, mega and giga separated by vertical bar (|) and possibly encapsulated in "". Eg: " | K| M| G" (which is the default value)
+	 * @param string $format Labels for bytes, kilo, mega and giga separated by vertical bar (|) and possibly encapsulated in "". Eg: " | K| M| G" (which is the default value)
 	 * @param boolean $hideError Define if an error should be displayed if file not found
 	 * @return string
 	 */

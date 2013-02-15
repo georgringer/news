@@ -115,8 +115,7 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 					// Too little from the right to adjust
 				$this->pagesAfter = $forcedNumberOfLinks - $this->currentPage - 1;
 				$this->pagesBefore = $forcedNumberOfLinks - $this->pagesAfter - 1;
-			}
-			elseif ($this->currentPage + ($this->pagesAfter + $delta) >= $this->numberOfPages) {
+			} elseif ($this->currentPage + ($this->pagesAfter + $delta) >= $this->numberOfPages) {
 				$this->pagesBefore = $forcedNumberOfLinks - ($this->numberOfPages - $this->currentPage);
 				$this->pagesAfter = $forcedNumberOfLinks - $this->pagesBefore - 1;
 			} else {
