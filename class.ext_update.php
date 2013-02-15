@@ -196,7 +196,7 @@ class ext_update {
 			$message = 'Table ' . $oldTableName . ' does not exist';
 			$status = t3lib_FlashMessage::ERROR;
 		} else {
-			$sql = 'RENAME TABLE ' . $oldTableName .' TO ' . $newTableName . ';';
+			$sql = 'RENAME TABLE ' . $oldTableName . ' TO ' . $newTableName . ';';
 
 			if ($GLOBALS['TYPO3_DB']->admin_query($sql) === FALSE) {
 				$message = ' SQL ERROR: ' .  $GLOBALS['TYPO3_DB']->sql_error();

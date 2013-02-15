@@ -487,6 +487,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	 * Set flag if displayed news records should be excluded
 	 *
 	 * @param boolean $excludeAlreadyDisplayedNews
+	 * @return void
 	 */
 	public function setExcludeAlreadyDisplayedNews($excludeAlreadyDisplayedNews) {
 		$this->excludeAlreadyDisplayedNews = (bool)$excludeAlreadyDisplayedNews;

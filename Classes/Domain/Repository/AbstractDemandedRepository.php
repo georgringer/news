@@ -184,7 +184,7 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	 * @param string $tableName
 	 *
 	 * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
-	 * @return string The query part with replaced placeholders
+	 * @return void
 	 */
 	protected function replacePlaceholders(&$sqlString, array $parameters, $tableName = 'foo') {
 		if (substr_count($sqlString, '?') !== count($parameters)) {

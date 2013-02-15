@@ -902,13 +902,18 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Set sys language
+	 *
 	 * @param int $sysLanguageUid
+	 * @return void
 	 */
 	public function setSysLanguageUid($sysLanguageUid) {
 		$this->_languageUid = $sysLanguageUid;
 	}
 
 	/**
+	 * Get sys language
+	 *
 	 * @return int
 	 */
 	public function getSysLanguageUid() {
@@ -916,13 +921,18 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Set l10n parent
+	 *
 	 * @param int $l10nParent
+	 * @return void
 	 */
 	public function setL10nParent($l10nParent) {
 		$this->l10nParent = $l10nParent;
 	}
 
 	/**
+	 * Get l10n parent
+	 *
 	 * @return int
 	 */
 	public function getL10nParent() {
