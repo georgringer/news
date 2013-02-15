@@ -151,8 +151,8 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		$news->setArchive(new DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
 
 		$contentElementUidArray = Tx_Extbase_Utility_Arrays::trimExplode(',', $importItem['content_elements'], TRUE);
-		foreach($contentElementUidArray as $contentElementUid){
-			if(is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))){
+		foreach ($contentElementUidArray as $contentElementUid) {
+			if (is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))) {
 				$news->addContentElement($contentElement);
 			}
 		}
@@ -241,6 +241,14 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		return $news;
 	}
 
+	/**
+	 * Import
+	 *
+	 * @param array $importData
+	 * @param array $importItemOverwrite
+	 * @param array $settings
+	 * @return void
+	 */
 	public function import(array $importData, array $importItemOverwrite = array(), $settings = array()) {
 		$this->settings = $settings;
 
@@ -265,12 +273,9 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		$this->persistenceManager->persistAll();
 
 		foreach ($this->postPersistQueue as $queueItem) {
-			switch ($queueItem['action']) {
-				case self::ACTION_IMPORT_L10N_OVERLAY:
-					$this->importL10nOverlay($queueItem, $importItemOverwrite);
-					break;
+			if ($queueItem['action'] == self::ACTION_IMPORT_L10N_OVERLAY) {
+				$this->importL10nOverlay($queueItem, $importItemOverwrite);
 			}
-
 		}
 
 		$this->persistenceManager->persistAll();
@@ -279,6 +284,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	/**
 	 * @param array $importItem
 	 * @param array $importItemOverwrite
+	 * @return void
 	 */
 	protected function importL10nOverlay(array $queueItem, array $importItemOverwrite) {
 		$importItem = $queueItem['importItem'];
@@ -338,7 +344,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 			foreach ($relatedItems as $relatedItem) {
 				if ($relatedItem->getFile() == basename($relatedFile) &&
 					$this->filesAreEqual(
-						PATH_site. $relatedFile,
+						PATH_site . $relatedFile,
 						PATH_site . self::UPLOAD_PATH . $relatedItem->getFile()
 					)) {
 					$result = $relatedItem;

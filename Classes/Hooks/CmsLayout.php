@@ -179,8 +179,6 @@ class Tx_News_Hooks_CmsLayout {
 				$content = $message->render();
 			}
 
-
-
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $content);
 		}
 	}
@@ -437,7 +435,7 @@ class Tx_News_Hooks_CmsLayout {
 
 			if (!empty($recursiveLevelText)) {
 				$recursiveLevelText =  '<br /><small>' .
-							$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.recursive', TRUE).
+							$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.recursive', TRUE) .
 							': ' . $recursiveLevelText . '</small>';
 			}
 

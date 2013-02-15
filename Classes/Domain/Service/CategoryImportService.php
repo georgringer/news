@@ -84,6 +84,10 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 		$this->categoryRepository = $categoryRepository;
 	}
 
+	/**
+	 * @param array $importArray
+	 * @return void
+	 */
 	public function import(array $importArray) {
 		// Sort import array to import the default language first
 		foreach ($importArray as $importItem) {
@@ -116,6 +120,9 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 					break;
 				case self::ACTION_CREATE_L10N_CHILDREN_CATEGORY:
 					$this->createL10nChildrenCategory($queueItem);
+					break;
+				default:
+					// do nothing
 					break;
 			}
 
@@ -154,6 +161,12 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 		return $category;
 	}
 
+	/**
+	 * Set parent category
+	 *
+	 * @param array $queueItem
+	 * @return void
+	 */
 	protected function setParentCategory(array $queueItem) {
 		/** @var $category Tx_News_Domain_Model_Category */
 		$category = $queueItem['category'];
@@ -171,6 +184,12 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 		}
 	}
 
+	/**
+	 * Create l10n relation
+	 *
+	 * @param array $queueItem
+	 * @return void
+	 */
 	protected function createL10nChildrenCategory(array $queueItem) {
 		/** @var $category Tx_News_Domain_Model_Category */
 		$category = $queueItem['category'];
@@ -183,7 +202,7 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 			$importItem['import_id'] = $importItem['import_id'] . '|L:' . $sysLanguageUid;
 
 			/** @var $l10nChildrenCategory Tx_News_Domain_Model_Category */
-			$l10nChildrenCategory = $this->hydrateCategory($importItem);;
+			$l10nChildrenCategory = $this->hydrateCategory($importItem);
 			$this->categoryRepository->add($l10nChildrenCategory);
 
 			$l10nChildrenCategory->setTitle($title);

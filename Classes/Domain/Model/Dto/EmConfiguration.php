@@ -171,6 +171,7 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 
 	/**
 	 * @param boolean $showAdministrationModule
+	 * @return void
 	 */
 	public function setShowAdministrationModule($showAdministrationModule) {
 		$this->showAdministrationModule = $showAdministrationModule;

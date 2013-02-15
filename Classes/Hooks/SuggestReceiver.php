@@ -96,7 +96,7 @@ $link = implode(' ', explode(chr(10), $javaScriptCode));
 			return TRUE;
 		}
 
-		foreach($tags as $tag) {
+		foreach ($tags as $tag) {
 			if ($tag['label'] === $this->params['value']) {
 				return FALSE;
 			}

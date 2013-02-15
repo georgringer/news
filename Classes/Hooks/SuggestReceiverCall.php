@@ -47,7 +47,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 		$request = t3lib_div::_POST();
 
 		try {
-				// check if a tag is submitted
+				// Check if a tag is submitted
 			if (!isset($request['item']) || empty($request['item'])) {
 				throw new Exception('error_no-tag');
 			}
@@ -57,7 +57,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 				throw new Exception('error_no-newsid');
 			}
 
-				// get tag uid
+				// Get tag uid
 			$newTagId = $this->getTagUid($request);
 
 			$ajaxObj->setContentFormat('javascript');
