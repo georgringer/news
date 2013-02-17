@@ -108,7 +108,7 @@ plugin.tx_news {
 		# Interface implementations
 		interfaces {
 			media {
-				video = Tx_News_Interfaces_Audio_Mp3,Tx_News_Interfaces_Video_Quicktime,Tx_News_Interfaces_Video_File,Tx_News_Interfaces_Video_Videosites
+				video = Tx_News_Interfaces_Audio_Mp3,Tx_News_Interfaces_Video_Quicktime,Tx_News_Interfaces_Video_File,Tx_News_Interfaces_Video_Youtube,Tx_News_Interfaces_Video_Videosites
 			}
 		}
 
