@@ -6,7 +6,7 @@
 .. include:: ../../Includes.txt
 
 
-Tutorial
+Templating
 --------
 
 
