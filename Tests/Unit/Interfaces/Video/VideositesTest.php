@@ -25,7 +25,7 @@
 /**
  * Tests for Tx_News_Interfaces_Video_Videosites
  */
-class Tx_News_Tests_Interfaces_Video_VideositesTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Interfaces_Video_VideositesTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * @test

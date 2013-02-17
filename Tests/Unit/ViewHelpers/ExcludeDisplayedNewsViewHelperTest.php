@@ -29,7 +29,7 @@
 	 * @subpackage tx_news
 	 * @author Georg Ringer <typo3@ringerge.org>
 	 */
-class Tx_News_Tests_ViewHelpers_ExcludeDisplayedNewsViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_ViewHelpers_ExcludeDisplayedNewsViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * @test
