@@ -36,8 +36,8 @@ and call the ViewHelper like
     <something:NameOfTheViewHelper />
 
 
-Overview
-^^^^^^^^^^^^^^^^^^^^^^
+ViewHelpers of EXT:news
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 5
@@ -54,13 +54,13 @@ Overview
    ObjectViewHelper
    PaginateBodytextViewHelper
    TitleTagViewHelper
-   
+
    Be/ClickmenuViewHelper
    Be/MultiEditLinkViewHelper
-   
+
    Be/Buttons/IconForRecordViewHelper
    Be/Buttons/IconViewHelper
-   
+
    Format/DamViewHelper
    Format/DateViewHelper
    Format/FileDownloadViewHelper
@@ -69,13 +69,13 @@ Overview
    Format/HtmlentitiesDecodeViewHelper
    Format/NothingViewHelper
    Format/StriptagsViewHelper
-   
+
    Social/DisqusViewHelper
    Social/GooglePlusViewHelper
    Social/TwitterViewHelper
-   
+
    Social/Facebook/CommentViewHelper
    Social/Facebook/LikeViewHelper
    Social/Facebook/ShareViewHelper
-   
+
    Widget/PaginateViewHelper
