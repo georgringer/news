@@ -16,6 +16,6 @@ Templating
    :glob:
 
    Start/Index
-   Extend/Index
+   Additional/Index
    ViewHelpers/Index
 
