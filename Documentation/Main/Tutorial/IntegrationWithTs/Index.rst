@@ -11,6 +11,35 @@ Integrations with TypoScript
 
 This section gives you same examples which you can use when integrating EXT:news into a website.
 
+Add news by TypoScript
+"""""""""""""""""""""""""""""
+
+If EXT:news should be integrated by using TypoScript only, you can use this code snippet: ::
+
+	lib.news < USER
+	lib.news {
+	  userFunc = tx_extbase_core_bootstrap->run
+	  extensionName = News
+	  pluginName = Pi1
+
+	  switchableControllerActions {
+		News {
+		  1 = list
+		}
+	  }
+
+	  settings < plugin.tx_news.settings
+	  settings {
+		//categories = 49
+		limit = 30
+		detailPid = 31
+		overrideFlexformSettingsIfEmpty := addToList(detailPid)
+		startingpoint = 13
+	  }
+	}
+
+Now you can use the object lib.news.
+
 Add news to breadcrumb menu
 """""""""""""""""""""""""""""
 
