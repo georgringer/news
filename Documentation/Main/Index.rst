@@ -37,6 +37,7 @@ The content of this document is related to TYPO3
    Administration/Index
    Configuration/Index
    Tutorial/Index
+   Templating/Index
    ExtendNews/Index
    KnownProblems/Index
    Changelog/Index

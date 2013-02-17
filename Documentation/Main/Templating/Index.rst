@@ -16,5 +16,6 @@ Tutorial
    :glob:
 
    Start/Index
+   Extend/Index
    ViewHelpers/Index
 
