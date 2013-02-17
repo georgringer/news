@@ -37,9 +37,10 @@ class Tx_News_Service_CategoryService {
 	 * @param string $idList list of category ids to start
 	 * @param integer $counter
 	 * @param string $additionalWhere additional where clause
+	 * @param boolean $removeGivenIdListFromResult remove the given id list from result
 	 * @return string comma separated list of category ids
 	 */
-	public static function getChildrenCategories($idList, $counter = 0, $additionalWhere = '') {
+	public static function getChildrenCategories($idList, $counter = 0, $additionalWhere = '', $removeGivenIdListFromResult = FALSE) {
 		$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
 		$cacheIdentifier = sha1('children' . $idList);
 
@@ -48,7 +49,27 @@ class Tx_News_Service_CategoryService {
 			$entry = self::getChildrenCategoriesRecursive($idList, $counter, $additionalWhere);
 			$cache->set($cacheIdentifier, $entry);
 		}
+
+		if ($removeGivenIdListFromResult) {
+			$entry = self::removeValuesFromString($entry, $idList);
+		}
+
 		return $entry;
+	}
+
+	/**
+	 * Remove values of a comma separated list from another comma separated list
+	 *
+	 * @param string $result comma separated list
+	 * @param $toBeRemoved comma separated list
+	 * @return string
+	 */
+	public static function removeValuesFromString($result, $toBeRemoved) {
+		$resultAsArray = t3lib_div::trimExplode(',', $result, TRUE);
+		$idListAsArray = t3lib_div::trimExplode(',', $toBeRemoved, TRUE);
+
+		$result = implode(',', array_diff($resultAsArray, $idListAsArray));
+		return $result;
 	}
 
 	/**
