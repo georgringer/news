@@ -23,9 +23,9 @@
 ***************************************************************/
 
 /**
- * Tests for Tx_News_Interfaces_Video_Quicktime
+ * Tests for Tx_News_MediaRenderer_Video_Quicktime
  */
-class Tx_News_Tests_Unit_Interfaces_Video_QuicktimeTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_MediaRenderer_Video_QuicktimeTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * @test
@@ -37,7 +37,7 @@ class Tx_News_Tests_Unit_Interfaces_Video_QuicktimeTest extends Tx_Extbase_Tests
 		$mediaElement->setMultimedia($expected);
 		$mediaElement->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
 
-		$renderer = new Tx_News_Interfaces_Video_Quicktime();
+		$renderer = new Tx_News_MediaRenderer_Video_Quicktime();
 		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
 	}
 

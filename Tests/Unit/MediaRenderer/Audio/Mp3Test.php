@@ -23,9 +23,9 @@
 ***************************************************************/
 
 /**
- * Tests for Tx_News_Interfaces_Audio_Mp3
+ * Tests for Tx_News_MediaRenderer_Audio_Mp3
  */
-class Tx_News_Tests_Unit_Interfaces_Audio_Mp3Test extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_MediaRenderer_Audio_Mp3Test extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * @test
@@ -37,7 +37,7 @@ class Tx_News_Tests_Unit_Interfaces_Audio_Mp3Test extends Tx_Extbase_Tests_Unit_
 		$mediaElement->setMultimedia($expected);
 		$mediaElement->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
 
-		$renderer = new Tx_News_Interfaces_Audio_Mp3();
+		$renderer = new Tx_News_MediaRenderer_Audio_Mp3();
 		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
 	}
 

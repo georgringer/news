@@ -23,15 +23,15 @@
 ***************************************************************/
 
 /**
- * Implementation of video portal support
+ * Implementation of quicktime support
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Interfaces_Video_Videosites implements Tx_News_Interfaces_MediaInterface {
+class Tx_News_MediaRenderer_Video_Quicktime implements Tx_News_MediaRenderer_MediaInterface {
 
 	/**
-	 * Render videos from various video portals
+	 * Render quicktime files
 	 *
 	 * @param Tx_News_Domain_Model_Media $element
 	 * @param integer $width
@@ -39,14 +39,7 @@ class Tx_News_Interfaces_Video_Videosites implements Tx_News_Interfaces_MediaInt
 	 * @return string
 	 */
 	public function render(Tx_News_Domain_Model_Media $element, $width, $height) {
-		$content = $finalUrl = '';
 		$url = Tx_News_Service_FileService::getCorrectUrl($element->getContent());
-
-			// get the correct rewritten url
-		$mediaWizard = tslib_mediaWizardManager::getValidMediaWizardProvider($url);
-		if ($mediaWizard !== NULL) {
-			$finalUrl = $mediaWizard->rewriteUrl($url);
-		}
 
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
@@ -54,36 +47,28 @@ class Tx_News_Interfaces_Video_Videosites implements Tx_News_Interfaces_MediaInt
 			$height = $element->getHeight();
 		}
 
-		if (!empty($finalUrl)) {
-			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
-			$uniqueDivId = 'mediaelement' . Tx_News_Service_FileService::getUniqueId($element);
-
-			$content .= '<div id="' . htmlspecialchars($uniqueDivId) . '"></div>
-						<script type="text/javascript">
-							var params = { allowScriptAccess: "always" };
-							var atts = { id: ' . t3lib_div::quoteJSvalue($uniqueDivId) . ' };
-							swfobject.embedSWF(' . t3lib_div::quoteJSvalue($finalUrl) . ',
-							' . t3lib_div::quoteJSvalue($uniqueDivId) . ', "' . (int)$width . '", "' . (int)$height . '", "8", null, null, params, atts);
-						</script>';
-		}
+		$content =
+				'<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="' . (int)$width . '" height="' . (int)$height . '" >
+					<param name="src" value="' . htmlspecialchars($url) . '">
+					<param name="autoplay" value="true">
+					<param name="type" value="video/quicktime" width="' . (int)$width . '" height="' . (int)$height . '">
+					<embed src="' . htmlspecialchars($url) . '" width="' . (int)$width . '" height="' . (int)$height . '" autoplay="false" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
+				</object>';
 
 		return $content;
 	}
 
 	/**
-	 * Videosites implementation is always enabled if any file given,
-	 * the check is done in tslib_mediaWizardManager
+	 * Implementation is used if file extension is mov
 	 *
 	 * @param Tx_News_Domain_Model_Media $element
 	 * @return boolean
 	 */
 	public function enabled(Tx_News_Domain_Model_Media $element) {
-		$result = TRUE;
-		$file = $element->getContent();
-		if (empty($file)) {
-			$result = FALSE;
-		}
-		return $result;
+		$url = $element->getContent();
+		$fileEnding = strtolower(substr($url, -3));
+
+		return ($fileEnding === 'mov');
 	}
 
 }

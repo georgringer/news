@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2013 Georg Ringer <typo3@ringerge.org>
+*  (c) 2012 Georg Ringer <typo3@ringerge.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,46 +23,42 @@
 ***************************************************************/
 
 /**
- * Tests for Tx_News_Interfaces_Video_Youtube
+ * Tests for Tx_News_Tests_Interfaces_Video_FileTest
  */
-class Tx_News_Tests_Unit_Interfaces_Video_YoutubeTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_MediaRenderer_Video_FileTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * @test
-	 * @dataProvider fileIsRecognizedDataProvider
+	 * @dataProvider flvFileIsRecognizedDataProvider
 	 * @return void
 	 */
 	public function flvFileIsRecognized($expected, $expectedOutput) {
 		$mediaElement = new Tx_News_Domain_Model_Media();
 		$mediaElement->setMultimedia($expected);
-		$mediaElement->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
 
-		$renderer = new Tx_News_Interfaces_Video_Youtube();
+		$renderer = new Tx_News_MediaRenderer_Video_File();
 		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
 	}
 
 	/**
 	 * @return array
 	 */
-	public function fileIsRecognizedDataProvider() {
+	public function flvFileIsRecognizedDataProvider() {
 		return array(
-			'defaultUrl' => array(
-				'http://www.youtube.com/watch?v=IGX2dXpTyns', TRUE
+			'workingFlv' => array(
+				'fileadmin/fo/bar.flv', TRUE
 			),
-			'shortUrl' => array(
-				'http://youtu.be/ko5CCSomDMY', TRUE
+			'workingFlvWithUpperCaseFileType' => array(
+				'fileadmin/fo/bar.FLV', TRUE
+			),
+			'otherFileType' => array(
+				'fileadmin/someMusic.mp3', FALSE
 			),
 			'noMediaFileGiven' => array(
 				NULL, FALSE
 			),
 			'emptyMediaFileGiven' => array(
 				'', FALSE
-			),
-			'localFileGiven' => array(
-				'fileadmin/fobar.flv', FALSE
-			),
-			'wrongDomainGiven' => array(
-				'http://www.somedomain.com/watch/1234', FALSE
 			),
 		);
 	}

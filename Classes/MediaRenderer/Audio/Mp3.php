@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Interfaces_Audio_Mp3 implements Tx_News_Interfaces_MediaInterface {
+class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInterface {
 
 	const PATH_TO_JS = 'typo3conf/ext/news/Resources/Public/JavaScript/Contrib/';
 

@@ -23,7 +23,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Interfaces_Video_Youtube implements Tx_News_Interfaces_MediaInterface {
+class Tx_News_MediaRenderer_Video_Youtube implements Tx_News_MediaRenderer_MediaInterface {
 
 	/**
 	 * Render videos from youtube

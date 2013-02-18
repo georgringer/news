@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2012 Georg Ringer <typo3@ringerge.org>
+*  (c) 2013 Georg Ringer <typo3@ringerge.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,42 +23,46 @@
 ***************************************************************/
 
 /**
- * Tests for Tx_News_Tests_Interfaces_Video_FileTest
+ * Tests for Tx_News_MediaRenderer_Video_Youtube
  */
-class Tx_News_Tests_Unit_Interfaces_Video_FileTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_MediaRenderer_Video_YoutubeTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * @test
-	 * @dataProvider flvFileIsRecognizedDataProvider
+	 * @dataProvider fileIsRecognizedDataProvider
 	 * @return void
 	 */
 	public function flvFileIsRecognized($expected, $expectedOutput) {
 		$mediaElement = new Tx_News_Domain_Model_Media();
 		$mediaElement->setMultimedia($expected);
+		$mediaElement->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
 
-		$renderer = new Tx_News_Interfaces_Video_File();
+		$renderer = new Tx_News_MediaRenderer_Video_Youtube();
 		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
 	}
 
 	/**
 	 * @return array
 	 */
-	public function flvFileIsRecognizedDataProvider() {
+	public function fileIsRecognizedDataProvider() {
 		return array(
-			'workingFlv' => array(
-				'fileadmin/fo/bar.flv', TRUE
+			'defaultUrl' => array(
+				'http://www.youtube.com/watch?v=IGX2dXpTyns', TRUE
 			),
-			'workingFlvWithUpperCaseFileType' => array(
-				'fileadmin/fo/bar.FLV', TRUE
-			),
-			'otherFileType' => array(
-				'fileadmin/someMusic.mp3', FALSE
+			'shortUrl' => array(
+				'http://youtu.be/ko5CCSomDMY', TRUE
 			),
 			'noMediaFileGiven' => array(
 				NULL, FALSE
 			),
 			'emptyMediaFileGiven' => array(
 				'', FALSE
+			),
+			'localFileGiven' => array(
+				'fileadmin/fobar.flv', FALSE
+			),
+			'wrongDomainGiven' => array(
+				'http://www.somedomain.com/watch/1234', FALSE
 			),
 		);
 	}

@@ -23,9 +23,9 @@
 ***************************************************************/
 
 /**
- * Tests for Tx_News_Interfaces_Video_Videosites
+ * Tests for Tx_News_MediaRenderer_Video_Videosites
  */
-class Tx_News_Tests_Unit_Interfaces_Video_VideositesTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_MediaRenderer_Video_VideositesTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
 	 * @test
@@ -37,7 +37,7 @@ class Tx_News_Tests_Unit_Interfaces_Video_VideositesTest extends Tx_Extbase_Test
 		$mediaElement->setMultimedia($expected);
 		$mediaElement->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
 
-		$renderer = new Tx_News_Interfaces_Video_Videosites();
+		$renderer = new Tx_News_MediaRenderer_Video_Videosites();
 		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
 	}
 

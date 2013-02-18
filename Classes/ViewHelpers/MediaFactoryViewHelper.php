@@ -60,8 +60,8 @@ class Tx_News_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelpe
 			$videoObject = t3lib_div::makeInstance($classData);
 
 				// check interface implementation
-			if (!($videoObject instanceof Tx_News_Interfaces_MediaInterface)) {
-				throw new UnexpectedValueException('$videoObject must implement interface Tx_News_Interfaces_MediaInterface', 1295088673);
+			if (!($videoObject instanceof Tx_News_MediaRenderer_MediaInterface)) {
+				throw new UnexpectedValueException('$videoObject must implement interface Tx_News_MediaRenderer_MediaInterface', 1295088673);
 			}
 
 				// if no content found and the implementation is enabled, try to render
