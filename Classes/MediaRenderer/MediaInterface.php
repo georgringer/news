@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-interface Tx_News_Interfaces_MediaInterface {
+interface Tx_News_MediaRenderer_MediaInterface {
 
 	/**
 	 * Render a media element
@@ -40,7 +40,6 @@ interface Tx_News_Interfaces_MediaInterface {
 	 */
 	public function render(Tx_News_Domain_Model_Media $element, $width, $height);
 
-
 	/**
 	 * If enabled
 	 *
@@ -49,8 +48,6 @@ interface Tx_News_Interfaces_MediaInterface {
 	 */
 	public function enabled(Tx_News_Domain_Model_Media $element);
 
-
 }
-
 
 ?>
