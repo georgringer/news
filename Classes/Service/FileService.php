@@ -38,7 +38,7 @@ class Tx_News_Service_FileService {
 	 */
 	public static function getCorrectUrl($url) {
 		if (empty($url)) {
-			throw new Exception('An empty url is given');
+			throw new UnexpectedValueException('An empty url is given');
 		}
 			// check URL
 		$urlInfo = parse_url($url);
@@ -52,7 +52,7 @@ class Tx_News_Service_FileService {
 				// absolute path is used to check path
 			$absoluteUrl = t3lib_div::getFileAbsFileName($url);
 			if (!t3lib_div::isAllowedAbsPath($absoluteUrl)) {
-				throw new Exception('The path "' . $url . '" is not allowed.');
+				throw new UnexpectedValueException('The path "' . $url . '" is not allowed.');
 			}
 
 				// append current domain
