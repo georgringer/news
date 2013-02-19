@@ -16,7 +16,7 @@ Add news by TypoScript
 
 If EXT:news should be integrated by using TypoScript only, you can use this code snippet: ::
 
-	lib.news < USER
+	lib.news = USER
 	lib.news {
 	  userFunc = tx_extbase_core_bootstrap->run
 	  extensionName = News

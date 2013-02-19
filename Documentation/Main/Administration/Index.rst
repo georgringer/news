@@ -17,4 +17,5 @@ Administration
 
    ReadBeforeInstallingOrUpdating/Index
    Rss/Index
+   Realurl/Index
 
