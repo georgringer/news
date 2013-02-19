@@ -58,7 +58,15 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends Tx_Extb
 			'tx_news_domain_model_news', array('pid' => 98, 'title' => 'fobar'));
 		$newsItem = $newsRepository->findByUid($newUid);
 
+		$language = 'en';
+
 		$viewHelper = new Tx_News_ViewHelpers_Social_DisqusViewHelper();
+		$settingsService = $this->getAccessibleMock('Tx_News_Service_SettingsService');
+		$settingsService->expects($this->any())
+			->method('getSettings')
+			->will($this->returnValue(array('disqusLang' => $language)));
+
+		$viewHelper->injectSettingsService($settingsService);
 		$actualResult = $viewHelper->render($newsItem, 'abcdef', 'http://typo3.org/dummy/fobar.html');
 
 		$expectedCode = '<script type="text/javascript">
@@ -66,6 +74,9 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends Tx_Extb
 					var disqus_identifier = ' . t3lib_div::quoteJSvalue('news_' . $newUid, TRUE) . ';
 					var disqus_url = ' . t3lib_div::quoteJSvalue('http://typo3.org/dummy/fobar.html') . ';
 					var disqus_title = ' . t3lib_div::quoteJSvalue('fobar', TRUE) . ';
+					var disqus_config = function () {
+						this.language = ' . t3lib_div::quoteJSvalue($language) . ';
+					};
 
 					(function() {
 						var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
