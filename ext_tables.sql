@@ -35,6 +35,7 @@ CREATE TABLE tx_news_domain_model_news (
 	author_email tinytext,
 	categories int(11) DEFAULT '0' NOT NULL,
 	related int(11) DEFAULT '0' NOT NULL,
+	related_from int(11) DEFAULT '0' NOT NULL,
 	related_files tinytext,
 	related_links tinytext,
 	type tinytext,
@@ -133,6 +134,7 @@ CREATE TABLE tx_news_domain_model_news_related_mm (
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	tablenames varchar(30) DEFAULT '' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
 );

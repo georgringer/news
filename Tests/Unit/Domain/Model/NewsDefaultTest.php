@@ -301,6 +301,20 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDefaultTest extends Tx_Extbase_Tests_U
 	}
 
 	/**
+	 * Test if relatedFrom can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function relatedFromCanBeSet() {
+		$related = new Tx_Extbase_Persistence_ObjectStorage();
+		$related->attach('test2');
+		$this->newsDomainModelInstance->setRelatedFrom($related);
+		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedFrom());
+	}
+
+
+	/**
 	 * Test if related files can be set
 	 *
 	 * @test

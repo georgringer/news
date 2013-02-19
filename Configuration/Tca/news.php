@@ -269,15 +269,29 @@ $TCA['tx_news_domain_model_news'] = array(
 				'internal_type' => 'db',
 				'allowed' => 'tx_news_domain_model_news',
 				'foreign_table' => 'tx_news_domain_model_news',
+				'MM_opposite_field' => 'related_from',
 				'size' => 5,
 				'minitems' => 0,
-				'maxitems' => 10,
+				'maxitems' => 100,
 				'MM' => 'tx_news_domain_model_news_related_mm',
 				'wizards' => array(
 					'suggest' => array(
 						'type' => 'suggest',
 					),
 				),
+			)
+		),
+		'related_from' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => $ll . 'tx_news_domain_model_news.related_from',
+			'config' => array(
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'tx_news_domain_model_news',
+				'size' => 5,
+				'maxitems' => 100,
+				'MM' => 'tx_news_domain_model_news_related_mm'
 			)
 		),
 		'related_files' => array(
@@ -540,7 +554,7 @@ $TCA['tx_news_domain_model_news'] = array(
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
-				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,
+				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// internal url
@@ -552,7 +566,7 @@ $TCA['tx_news_domain_model_news'] = array(
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
-				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,
+				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 			// external url
@@ -564,7 +578,7 @@ $TCA['tx_news_domain_model_news'] = array(
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
-				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,
+				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 	),

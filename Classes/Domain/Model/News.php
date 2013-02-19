@@ -29,6 +29,7 @@
  * @subpackage tx_news
  */
 class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
+
 	/**
 	 * @var DateTime
 	 */
@@ -131,6 +132,12 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @lazy
 	 */
 	protected $related;
+
+	/**
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News>
+	 * @lazy
+	 */
+	protected $relatedFrom;
 
 	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_File>
@@ -479,6 +486,25 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getRelated() {
 		return $this->related;
+	}
+
+	/**
+	 * Set related from
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News> $relatedFrom
+	 * @return void
+	 */
+	public function setRelatedFrom($relatedFrom) {
+		$this->relatedFrom = $relatedFrom;
+	}
+
+	/**
+	 * Get related from
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News>
+	 */
+	public function getRelatedFrom() {
+		return $this->relatedFrom;
 	}
 
 	/**
