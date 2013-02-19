@@ -116,3 +116,21 @@ If you want to create a condition based on a spefic category, you can use someth
 	</f:for>
 
 It is of course also possible to write a custom ViewHelper.
+
+Change template of pagination
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you want to customize the Paginate ViewHelper Template you can customize it by following this example: ::
+
+	plugin.tx_news {
+		view {
+			widget.Tx_News_ViewHelpers_Widget_PaginateViewHelper.templateRootPath = fileadmin/pathtocustomnews/Templates/
+		}
+	}
+
+The template needs to be then saved in this place: ::
+
+	fileadmin/pathtocustomnews/Templates/ViewHelpers/Widget/Paginate/Index.html
+
+**Attention:**: This works since TYPO3 4.6 (see http://forge.typo3.org/issues/10823)
+
