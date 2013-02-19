@@ -102,3 +102,15 @@ or ::
 
 	{newsItem.workshopTitle}
 
+
+Extend the sorting properties in the plugin settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Default values in "Sort by" are: **tstamp,datetime,crdate,title**.
+
+Add a new value (e.g. starttime in the below example): ::
+
+	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] .= ',starttime';
+
+Add this in ext_tables.php of a custom extension.
+
