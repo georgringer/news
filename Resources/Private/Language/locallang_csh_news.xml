@@ -31,6 +31,7 @@
 			<label index="content_elements.description">Content elements can be used to generate feature rich news articles.</label>
 			<label index="keywords.description">Define keywords which can be used for SEO optimizations.</label>
 			<label index="related.description">Select related news records.</label>
+			<label index="related_from.description">Show news which select current news record as related.</label>
 			<label index="related_files.description">Define related files, e.g. PDFs</label>
 			<label index="related_links.description">Define related links to internal and external pages.</label>
 		</languageKey>
