@@ -50,6 +50,19 @@ class Tx_News_ViewHelpers_Format_DamViewHelper extends Tx_Fluid_Core_ViewHelper_
 			throw new Tx_Fluid_Core_ViewHelper_Exception('DamViewHelper needs a loaded DAM extension', 1318786684);
 		}
 
+		if ($GLOBALS['TSFE']->sys_language_content > 0) {
+			$media = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_media', 'deleted=0 AND uid =' . $uid);
+			$media = $GLOBALS['TSFE']->sys_page->getRecordOverlay('tx_news_domain_model_media', $media, $GLOBALS['TSFE']->sys_language_content);
+			if ($media['_LOCALIZED_UID'] > 0) {
+				// Does this localized media has dam record?
+				$where = 'uid_foreign =' . (int)$media['_LOCALIZED_UID'] . ' AND tablenames =\'tx_news_domain_model_media\' AND ident = \'tx_news_media\'';
+				$damRec = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('uid_local', 'tx_dam_mm_ref', $where);
+				if (is_array($damRec) && $damRec['uid_local']) {
+					$uid = $media['_LOCALIZED_UID'];
+				}
+			}
+		}
+
 		$res = tx_dam_db::referencesQuery(
 			'tx_dam',
 			'',
