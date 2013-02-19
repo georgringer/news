@@ -56,7 +56,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_Ex
 	}
 
 	/**
-	 * Tetst if exception handling works
+	 * Test if exception handling works
 	 *
 	 * @test
 	 * @expectedException Tx_Fluid_Core_ViewHelper_Exception
