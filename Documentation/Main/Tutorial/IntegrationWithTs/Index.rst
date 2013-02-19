@@ -40,6 +40,47 @@ If EXT:news should be integrated by using TypoScript only, you can use this code
 
 Now you can use the object lib.news.
 
+List and detail on the same page using TypoScript
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+This is the example of how to display list and detail view on the same page.
+
+Base plugin settings: ::
+
+	lib.news = USER
+	lib.news {
+			userFunc = tx_extbase_core_bootstrap->run
+			pluginName = Pi1
+			extensionName = News
+			controller = News
+			settings =< plugin.tx_news.settings
+			persistence =< plugin.tx_news.persistence
+			view =< plugin.tx_news.view
+	}
+
+Configure list and detail actions: ::
+
+	lib.news_list < lib.news
+	lib.news_list {
+			action = list
+			switchableControllerActions.News.1 = list
+	}
+	lib.news_detail < lib.news
+	lib.news_detail {
+			action = detail
+			switchableControllerActions.News.1 = detail
+	}
+
+Insert configured objects to wherever you want to use them, depending on the GET parameter of detail view: ::
+
+	[globalVar = GP:tx_news_pi1|news > 0]
+		page.10.marks.content < lib.news_detail
+	[else]
+		page.10.marks.content < lib.news_list
+	[end]
+
+
+
 Add news to breadcrumb menu
 """""""""""""""""""""""""""""
 
