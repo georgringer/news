@@ -192,6 +192,7 @@ CREATE TABLE tx_news_domain_model_file (
 	title tinytext,
 	description text,
 	file text,
+	parent int(11) DEFAULT '0' NOT NULL,
 	is_dummy_record tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),

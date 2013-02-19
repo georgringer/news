@@ -289,6 +289,7 @@ $TCA['tx_news_domain_model_news'] = array(
 				'allowed' => 'tx_news_domain_model_file',
 				'foreign_table' => 'tx_news_domain_model_file',
 				'foreign_sortby' => 'sorting',
+				'foreign_field' => 'parent',
 				'size' => 5,
 				'minitems' => 0,
 				'maxitems' => 10,
