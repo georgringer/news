@@ -288,6 +288,7 @@ $TCA['tx_news_domain_model_news'] = array(
 			'config' => array(
 				'type' => 'group',
 				'internal_type' => 'db',
+				'foreign_table' => 'tx_news_domain_model_news',
 				'allowed' => 'tx_news_domain_model_news',
 				'size' => 5,
 				'maxitems' => 100,
