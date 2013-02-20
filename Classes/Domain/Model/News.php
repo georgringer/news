@@ -508,6 +508,44 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Return related from items sorted by datetime
+	 *
+	 * @return array
+	 */
+	public function getRelatedFromSorted() {
+		$items = $this->getRelatedFrom();
+		if ($items) {
+			$items = $items->toArray();
+			usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+		}
+		return $items;
+	}
+
+	/**
+	 * Return related from items sorted by datetime
+	 *
+	 * @return array
+	 */
+	public function getAllRelatedSorted() {
+		$all = array();
+		$itemsRelated = $this->getRelated();
+		if ($itemsRelated) {
+			$all = array_merge($all, $itemsRelated->toArray());
+		}
+
+		$itemsRelatedFrom = $this->getRelatedFrom();
+		if ($itemsRelatedFrom) {
+			$all = array_merge($all, $itemsRelatedFrom->toArray());
+		}
+
+		if (count($all) > 0) {
+			usort($all, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+		}
+		return $all;
+	}
+
+
+	/**
 	 * Return related items sorted by datetime
 	 *
 	 * @return array
