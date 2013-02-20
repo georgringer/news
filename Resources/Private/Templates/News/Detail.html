@@ -102,14 +102,14 @@
 			<!-- related things -->
 			<div class="news-related-wrap">
 
-				<f:if condition="{newsItem.relatedSorted}">
+				<f:if condition="{newsItem.allRelatedSorted}">
 					<!-- Related news records -->
 					<div class="news-related news-related-news">
 						<h4>
 							<f:translate key="related-news" />
 						</h4>
 						<ul>
-							<f:for each="{newsItem.relatedSorted}" as="related">
+							<f:for each="{newsItem.allRelatedSorted}" as="related">
 								<li>
 									<span class="news-related-news-date"><f:format.date format="d.m.Y">{related.datetime}</f:format.date></span>
 									<n:link newsItem="{related}" settings="{settings}">

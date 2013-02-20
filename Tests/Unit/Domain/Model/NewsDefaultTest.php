@@ -283,6 +283,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDefaultTest extends Tx_Extbase_Tests_U
 	public function mediaCanBeSet() {
 		$media = new Tx_Extbase_Persistence_ObjectStorage();
 		$media->attach('test');
+
 		$this->newsDomainModelInstance->setMedia($media);
 		$this->assertEquals($media, $this->newsDomainModelInstance->getMedia());
 	}
@@ -298,6 +299,59 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDefaultTest extends Tx_Extbase_Tests_U
 		$related->attach('test');
 		$this->newsDomainModelInstance->setRelated($related);
 		$this->assertEquals($related, $this->newsDomainModelInstance->getRelated());
+	}
+
+	/**
+	 * @test
+	 */
+	public function relatedCanBeFetchedFromRelatedAndRelatedFrom() {
+		$relatedFrom = NULL;
+		$related = NULL;
+
+		$this->newsDomainModelInstance->setRelated($related);
+		$this->newsDomainModelInstance->setRelatedFrom($relatedFrom);
+
+		// 1st: Empty relations
+		$this->assertEquals(array(), $this->newsDomainModelInstance->getAllRelatedSorted());
+
+		$related = new Tx_Extbase_Persistence_ObjectStorage();
+		$item1 = $this->getNewsRecordForRelated('title2', '20.01.2013');
+		$item2 = $this->getNewsRecordForRelated('title1', '20.02.2013');
+		$item3 = $this->getNewsRecordForRelated('title3', '10.01.2013');
+		$item4 = $this->getNewsRecordForRelated('title4', '1.01.2013');
+		$item5 = $this->getNewsRecordForRelated('title5', '12.10.2013');
+
+		$related->attach($item1);
+		$related->attach($item2);
+		$this->newsDomainModelInstance->setRelated($related);
+		$result = array($item2, $item1);
+
+		// 2nd: + 2 Relations in related
+		$this->assertEquals($result, $this->newsDomainModelInstance->getAllRelatedSorted(), t3lib_utility_Debug::viewArray($debug)) ;
+
+		// 3rd: + 1 relation in relatedFrom
+		$relatedFrom = new Tx_Extbase_Persistence_ObjectStorage();
+		$relatedFrom->attach($item3);
+		$result = array($item2, $item1, $item3);
+		$this->newsDomainModelInstance->setRelatedFrom($relatedFrom);
+		$this->assertEquals($result, $this->newsDomainModelInstance->getAllRelatedSorted(), t3lib_utility_Debug::viewArray($debug)) ;
+
+		// 4th: + 1 relation in relatedFrom, + 1 relation in related
+		$relatedFrom->attach($item4);
+		$this->newsDomainModelInstance->setRelatedFrom($relatedFrom);
+		$related->attach($item5);
+		$this->newsDomainModelInstance->setRelated($related);
+
+		$result = array($item5, $item2, $item1, $item3, $item4);
+		$this->assertEquals($result, $this->newsDomainModelInstance->getAllRelatedSorted(), t3lib_utility_Debug::viewArray($debug)) ;
+	}
+
+	protected function getNewsRecordForRelated($title, $date) {
+		$record = new Tx_News_Domain_Model_News();
+		$record->setTitle($title);
+		$record->setDatetime(new DateTime($date));
+
+		return $record;
 	}
 
 	/**
