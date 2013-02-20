@@ -152,7 +152,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		),
 		'teaser' => array(
 			'exclude' => 1,
-			'l10n_mode' => 'mergeIfNotBlank',
+			'l10n_mode' => 'noCopy',
 			'label' => $ll . 'tx_news_domain_model_news.teaser',
 			'config' => array(
 				'type' => 'text',
@@ -162,7 +162,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		),
 		'bodytext' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
+			'l10n_mode' => 'noCopy',
 			'label' => 'LLL:EXT:cms/locallang_ttc.xml:bodytext_formlabel',
 			'config' => array(
 				'type' => 'text',
