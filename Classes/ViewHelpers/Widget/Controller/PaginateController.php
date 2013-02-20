@@ -177,8 +177,8 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 		$this->adjustForForcedNumberOfLinks();
 
 		$pages = array();
-		$start = max($this->currentPage - $this->pagesBefore, 0);
-		$end = min($this->numberOfPages, $this->currentPage + $this->pagesAfter + 1);
+		$start = max($this->currentPage - $this->pagesBefore - 1, 0);
+		$end = min($this->numberOfPages, $this->currentPage + $this->pagesAfter);
 		for ($i = $start; $i < $end; $i++) {
 			$j = $i + 1;
 			$pages[] = array('number' => $j, 'isCurrent' => ($j === $this->currentPage));
