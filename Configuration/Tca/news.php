@@ -283,7 +283,6 @@ $TCA['tx_news_domain_model_news'] = array(
 		),
 		'related_from' => array(
 			'exclude' => 1,
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news_domain_model_news.related_from',
 			'config' => array(
 				'type' => 'group',
@@ -292,7 +291,8 @@ $TCA['tx_news_domain_model_news'] = array(
 				'allowed' => 'tx_news_domain_model_news',
 				'size' => 5,
 				'maxitems' => 100,
-				'MM' => 'tx_news_domain_model_news_related_mm'
+				'MM' => 'tx_news_domain_model_news_related_mm',
+				'readOnly' => 1,
 			)
 		),
 		'related_files' => array(
