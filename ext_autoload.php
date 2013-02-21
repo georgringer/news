@@ -11,7 +11,9 @@ $default = array(
 	'tx_news_utility_emconfiguration' => $extensionClassesPath . 'Utility/EmConfiguration.php',
 	'tx_news_service_cacheservice' => $extensionClassesPath . 'Service/CacheService.php',
 );
-$mergedClasses = array_merge($default, Tx_News_Cache_ClassCacheBuilder::build());
+
+$classCacheBuilder = t3lib_div::makeInstance('Tx_News_Cache_ClassCacheBuilder');
+$mergedClasses = array_merge($default, $classCacheBuilder->build());
 return $mergedClasses;
 
 ?>
