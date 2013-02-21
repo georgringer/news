@@ -156,9 +156,9 @@ plugin.tx_news {
 			# Paginate configuration.
 			paginate {
 				itemsPerPage = 10
-				insertAbove = TRUE
-				insertBelow = TRUE
-				lessPages = TRUE
+				insertAbove = 1
+				insertBelow = 1
+				lessPages = 1
 				forcedNumberOfLinks = 5
 				pagesBefore = 3
 				pagesAfter = 3
