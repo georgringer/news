@@ -279,5 +279,65 @@
 
 			<label index="be_user.tx_news_categorymounts">Nieuws: Categorie restrictie</label>
 		</languageKey>
+
+		<languageKey index="pl" type="array">
+			<label index="tx_news_domain_model_news.tabs.relations">Relacje</label>
+			<label index="tx_news_domain_model_news">Aktualności</label>
+			<label index="tx_news_domain_model_news.alternative_title">Alternatywny tytuł</label>
+			<label index="tx_news_domain_model_news.teaser">Wstęp</label>
+			<label index="tx_news_domain_model_news.datetime">Data &amp; czas</label>
+			<label index="tx_news_domain_model_news.archive">Archiwum</label>
+			<label index="tx_news_domain_model_news.categories">Kategorie</label>
+			<label index="tx_news_domain_model_news.related">Powiązane wpisy</label>
+			<label index="tx_news_domain_model_news.related_files">Powiązane pliki</label>
+			<label index="tx_news_domain_model_news.related_links">Powiązane linki</label>
+			<label index="tx_news_domain_model_news.type.I.0">Aktualność</label>
+			<label index="tx_news_domain_model_news.type.I.1">Strona wewnętrzna</label>
+			<label index="tx_news_domain_model_news.type.I.2">Strona zewnętrzna</label>
+			<label index="tx_news_domain_model_news.media">Element multimedialny</label>
+			<label index="tx_news_domain_model_news.istopnews">Topowy wpis</label>
+			<label index="tx_news_domain_model_news.content_elements">Elementy zawartości</label>
+			<label index="tx_news_domain_model_news.tags">Tagi</label>
+			<label index="tx_news_domain_model_news.tags.add">Dodaj nowy tag</label>
+			<label index="tx_news_domain_model_news.tags.list">Lista wszystkich tagów</label>
+			<label index="tx_news_domain_model_news.tags.edit">Edytuj tag</label>
+
+			<label index="tx_news_domain_model_category">Kategoria aktualności</label>
+			<label index="tx_news_domain_model_category.title">Tytuł</label>
+			<label index="tx_news_domain_model_category.description">Opis</label>
+			<label index="tx_news_domain_model_category.image">Obraz</label>
+			<label index="tx_news_domain_model_category.parentcategory">Nadrzędna kategoria</label>
+			<label index="tx_news_domain_model_category.single_pid">Strona z widokiem szczegółów aktualności z tej kategorii</label>
+			<label index="tx_news_domain_model_category.shortcut">Skrót kategorii aktualności</label>
+
+			<label index="tx_news_domain_model_media">Element multimedialny wpisu</label>
+			<label index="tx_news_domain_model_media.caption">Podpis</label>
+			<label index="tx_news_domain_model_media.media">Obraz</label>
+			<label index="tx_news_domain_model_media.type.I.0">Obraz</label>
+			<label index="tx_news_domain_model_media.type.I.1">Wideo &amp; audio</label>
+			<label index="tx_news_domain_model_media.type.I.2">HTML</label>
+			<label index="tx_news_domain_model_media.type.I.3">Rekord DAM</label>
+			<label index="tx_news_domain_model_media.multimedia">Wideo- / Audio-URL</label>
+			<label index="tx_news_domain_model_media.dam">Rekord DAM</label>
+			<label index="tx_news_domain_model_media.show">Pokaż</label>
+			<label index="tx_news_domain_model_media.showinpreview">Show in preview views</label>
+			<label index="tx_news_domain_model_media.copyright">Prawa autorskie</label>
+
+			<label index="tx_news_domain_model_file">Plik wpisu</label>
+			<label index="tx_news_domain_model_file.title">Tytuł</label>
+			<label index="tx_news_domain_model_file.description">Opis</label>
+			<label index="tx_news_domain_model_file.file">Plik</label>
+
+			<label index="tx_news_domain_model_link">Link wpisu</label>
+			<label index="tx_news_domain_model_link.title">Tytuł</label>
+			<label index="tx_news_domain_model_link.description">Opis</label>
+			<label index="tx_news_domain_model_link.uri">URL</label>
+
+			<label index="tx_news_domain_model_tag">Tag wpisu</label>
+			<label index="tx_news_domain_model_tag.title">Tytuł</label>
+			<label index="tx_news_domain_model_news.path_segment">Segment ścieżki gadającego URL</label>
+
+			<label index="be_user.tx_news_categorymounts">Aktualności: ograniczenia kategorii</label>
+		</languageKey>
 	</data>
 </T3locallang>

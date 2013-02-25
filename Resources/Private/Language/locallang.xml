@@ -186,18 +186,47 @@
 			<label index="list_nonewsfound">Não há artigos disponíveis.</label>
 		</languageKey>
 		<languageKey index="pl" type="array">
-
+			<!-- Common -->
+			<label index="search-text">Znaleziono %1$s wyników dla frazy "%2$s".</label>
+			<label index="search-start">Wyszukaj</label>
+			<label index="search-noresult">Nie znaleziono aktualności.</label>
+			<label index="more-link">Czytaj całość</label>
+			<label index="back-link">Wróć</label>
+			<label index="related-news">Powiązane aktualności</label>
+			<label index="related-files">Powiązane pliki</label>
+			<label index="related-links">Powiązane linki</label>
+			<label index="author">utworzony przez %s</label>
 			<label index="paginate_overall">Strona %s z %s.</label>
 			<label index="paginate_next">Następna</label>
 			<label index="paginate_previous">Poprzednia</label>
 
-			<label index="entry">Wpis</label>
-			<label index="entries">Wpisy</label>
+			<label index="entry">wpis</label>
+			<label index="entries">wpisy</label>
 
-			<label index="search-noresult">Nie znaleziono żadnych wiadomości.</label>
-			<label index="list_nonewsfound">Nie znaleziono żadnych artykułów.</label>
+			<label index="month.01">Styczeń</label>
+			<label index="month.02">Luty</label>
+			<label index="month.03">Marzec</label>
+			<label index="month.04">Kwiecień</label>
+			<label index="month.05">Maj</label>
+			<label index="month.06">Czerwiec</label>
+			<label index="month.07">Lipiec</label>
+			<label index="month.08">Sierpień</label>
+			<label index="month.09">Wrzesień</label>
+			<label index="month.10">Październik</label>
+			<label index="month.11">Listopad</label>
+			<label index="month.12">Grudzień</label>
+
+			<label index="day.1">Poniedziałek</label>
+			<label index="day.2">Wtorek</label>
+			<label index="day.3">Środa</label>
+			<label index="day.4">Czwartek</label>
+			<label index="day.5">Piątek</label>
+			<label index="day.6">Sobota</label>
+			<label index="day.7">Niedziela</label>
+
+			<label index="list_nonewsfound">Brak dostępnych aktualności.</label>
+			<label index="list_nocategoriesfound">Brak dostępnych kategorii.</label>
 		</languageKey>
-
 		<languageKey index="it" type="array">
 			<!-- Common -->
 			<label index="search-text">There are %1$s results for "%2$s".</label>
