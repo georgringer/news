@@ -212,6 +212,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 				$media->setCaption($mediaItem['caption']);
 				$media->setType($mediaItem['type']);
 				$media->setShowinpreview($mediaItem['showinpreview']);
+				$media->setPid($importItem['pid']);
 			}
 		}
 
@@ -235,6 +236,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 				}
 				$relatedFile->setTitle($file['title']);
 				$relatedFile->setDescription($file['description']);
+				$relatedFile->setPid($importItem['pid']);
 			}
 		}
 
