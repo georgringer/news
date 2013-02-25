@@ -176,7 +176,7 @@
 			<label index="tx_news_domain_model_news.teaser">Teaser</label>
 			<label index="tx_news_domain_model_news.datetime">Datum</label>
 			<label index="tx_news_domain_model_news.archive">Archivdatum</label>
-			<label index="tx_news_domain_model_news.category">Kategorie</label>
+			<label index="tx_news_domain_model_news.categories">Kategorien</label>
 			<label index="tx_news_domain_model_news.related">Verwandte Artikel</label>
 			<label index="tx_news_domain_model_news.related_files">Verwandte Dateien</label>
 			<label index="tx_news_domain_model_news.related_links">Verwandte Links</label>
