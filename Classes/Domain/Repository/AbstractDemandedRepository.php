@@ -85,18 +85,12 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	 */
 	public function findDemandedRaw(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
 		$query = $this->generateQuery($demand, $respectEnableFields);
-		$statement = $query->statement();
 
 		$dbStorage = $this->storageBackend;
 
-		if ($statement instanceof \TYPO3\CMS\Extbase\Persistence\Generic\Qom\Statement) {
-			$sql = $statement->getStatement();
-			$parameters = $statement->getBoundVariables();
-		} else {
-			$parameters = array();
-			$statementParts = $dbStorage->parseQuery($query, $parameters);
-			$sql = $dbStorage->buildQuery($statementParts, $parameters);
-		}
+		$parameters = array();
+		$statementParts = $dbStorage->parseQuery($query, $parameters);
+		$sql = $dbStorage->buildQuery($statementParts, $parameters);
 		$tableName = 'foo';
 		if (is_array($statementParts && !empty($statementParts['tables'][0]))) {
 			$tableName = $statementParts['tables'][0];
