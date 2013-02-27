@@ -35,17 +35,6 @@ t3lib_div::requireOnce(t3lib_extMgm::extPath('news', 'Classes/Domain/Model/Media
 class Tx_News_Hooks_Labels {
 
 	/**
-	 * Labels of a news record
-	 *
-	 * @param array $params
-	 * @return void
-	 */
-	public function getUserLabelNews(array &$params) {
-		$params['title'] = $params['row']['title'];
-	}
-
-
-	/**
 	 * Generate additional label for category records
 	 * including the title of the parent category
 	 *
@@ -153,7 +142,6 @@ class Tx_News_Hooks_Labels {
 
 		$params['title'] = $title;
 	}
-
 
 	/**
 	 * Get news categories based on the news id
