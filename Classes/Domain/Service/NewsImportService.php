@@ -240,6 +240,17 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 			}
 		}
 
+		if (is_array($importItem['related_links'])) {
+			foreach ($importItem['related_links'] as $link) {
+				/** @var $relatedLink Tx_News_Domain_Model_Link */
+				$relatedLink = $this->objectManager->get('Tx_News_Domain_Model_Link');
+				$relatedLink->setUri($link['uri']);
+				$relatedLink->setTitle($link['title']);
+				$relatedLink->setDescription($link['description']);
+				$relatedLink->setPid($importItem['pid']);
+				$news->addRelatedLink($relatedLink);
+			}
+		}
 		return $news;
 	}
 

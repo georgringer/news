@@ -90,6 +90,7 @@ class Tx_News_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Se
 				'categories' => $this->getCategories($row['uid']),
 				'media' => $this->getMedia($row),
 				'related_files' => $this->getFiles($row),
+				'related_links' => $this->getRelatedLinks($row['links']),
 				'content_elements' => $row['tx_rgnewsce_ce'],
 				'import_id' => $row['uid'],
 				'import_source' => $this->importSource
@@ -180,5 +181,37 @@ class Tx_News_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Se
 		return $media;
 	}
 
+	/**
+	 * Get link elements to be imported
+	 *
+	 * @param string $newsLinks
+	 * @return array
+	 */
+	protected function getRelatedLinks($newsLinks) {
+		$links = array();
+
+		if (empty($newsLinks)) {
+			return $links;
+		}
+
+		$newsLinks = str_replace(array('<link ', '</link>'), array('<LINK ', '</LINK>'), $newsLinks);
+
+		$linkList = t3lib_div::trimExplode('</LINK>', $newsLinks, TRUE);
+		foreach ($linkList as $singleLink) {
+			if (strpos($singleLink, '<LINK') === FALSE) {
+				continue;
+			}
+			$title = substr(strrchr($singleLink, '>'), 1);
+			$uri = str_replace('>' . $title, '', substr(strrchr($singleLink, '<link '), 6));
+			$links[] = array(
+				'uri' => $uri,
+				'title' => $title,
+				'description' => '',
+			);
+		}
+		return $links;
+	}
+
 }
+
 ?>
