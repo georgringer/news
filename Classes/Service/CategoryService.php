@@ -60,8 +60,8 @@ class Tx_News_Service_CategoryService {
 	/**
 	 * Remove values of a comma separated list from another comma separated list
 	 *
-	 * @param string $result comma separated list
-	 * @param $toBeRemoved comma separated list
+	 * @param string $result string comma separated list
+	 * @param $toBeRemoved string comma separated list
 	 * @return string
 	 */
 	public static function removeValuesFromString($result, $toBeRemoved) {
