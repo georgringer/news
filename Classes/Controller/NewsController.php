@@ -183,7 +183,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$demand->setOrder($dateField . ' ' . $this->settings['orderDirection']);
 		$newsRecords = $this->newsRepository->findDemanded($demand);
 
-		$demand->setOrder(NULL);
+		$demand->setOrder($this->settings['orderDirection']);
 		$statistics = $this->newsRepository->countByDate($demand);
 
 		$this->view->assignMultiple(array(

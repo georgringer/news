@@ -352,7 +352,11 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$sql = $GLOBALS['TYPO3_DB']->stripOrderBy($sql);
 
 		// group by custom month/year fields
-		$sql .= ' GROUP BY _Month, _Year ORDER BY _Year ASC, _Month ASC';
+		$orderDirection = strtolower($demand->getOrder());
+		if ($orderDirection !== 'desc' && $orderDirection != 'asc') {
+			$orderDirection = 'asc';
+		}
+		$sql .= ' GROUP BY _Month, _Year ORDER BY _Year ' . $orderDirection . ', _Month ' . $orderDirection;
 
 		$res = $GLOBALS['TYPO3_DB']->sql_query($sql);
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
