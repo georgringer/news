@@ -29,6 +29,12 @@
  * @subpackage tx_news
  */
 class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseController {
+
+	/**
+	 * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
+	 */
+	protected $typoScriptFrontendController;
+
 	/**
 	 * @var Tx_News_Domain_Repository_NewsRepository
 	 */
@@ -58,6 +64,20 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		if (isset($this->settings['format'])) {
 			$this->request->setFormat($this->settings['format']);
 		}
+		// Only do this in Frontend Context
+		if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+			// We only want to set the tag once in one request, so we have to cache that statically if it has been done
+			static $cacheTagsSet = FALSE;
+
+			/** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController  */
+			$typoScriptFrontendController = $GLOBALS['TSFE'];
+			if (!$cacheTagsSet) {
+				$typoScriptFrontendController->addCacheTags(array('tx_news'));
+				$cacheTagsSet = TRUE;
+			}
+			$this->typoScriptFrontendController = $typoScriptFrontendController;
+		}
+
 	}
 
 	/**
