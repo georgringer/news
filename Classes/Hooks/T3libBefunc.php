@@ -51,7 +51,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 */
 	public $removedFieldsInListView = array(
 			'sDEF' => 'dateField,singleNews,previewHiddenRecords',
-			'additional' => 'listPid',
+			'additional' => '',
 			'template' => ''
 		);
 
