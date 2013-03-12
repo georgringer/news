@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
-	// Extension manager configuration
+// Extension manager configuration
 $configuration = Tx_News_Utility_EmConfiguration::getSettings();
 
 $TCA['tx_news_domain_model_news'] = array(
@@ -17,10 +17,10 @@ $TCA['tx_news_domain_model_news'] = array(
 	'columns' => array(
 		'sys_language_uid' => array(
 			'exclude' => 1,
-			'label'  => 'LLL:EXT:cms/locallang_ttc.xml:sys_language_uid_formlabel',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xml:sys_language_uid_formlabel',
 			'config' => array(
-				'type'                => 'select',
-				'foreign_table'       => 'sys_language',
+				'type' => 'select',
+				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
 					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
@@ -30,14 +30,14 @@ $TCA['tx_news_domain_model_news'] = array(
 		),
 		'l10n_parent' => array(
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude'     => 1,
-			'label'       => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
-			'config'      => array(
-				'type'  => 'select',
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+			'config' => array(
+				'type' => 'select',
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table'       => 'tx_news_domain_model_news',
+				'foreign_table' => 'tx_news_domain_model_news',
 				'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
 			)
 		),
@@ -48,63 +48,63 @@ $TCA['tx_news_domain_model_news'] = array(
 		),
 		'hidden' => array(
 			'exclude' => 1,
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-			'config'  => array(
-				'type'    => 'check',
+			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+			'config' => array(
+				'type' => 'check',
 				'default' => 0
 			)
 		),
 		'cruser_id' => array(
-			'label'   => 'cruser_id',
-			'config'  => array(
-				'type'    => 'passthrough'
+			'label' => 'cruser_id',
+			'config' => array(
+				'type' => 'passthrough'
 			)
 		),
 		'is_dummy_record' => array(
-			'config'  => array(
-				'type'    => 'passthrough'
+			'config' => array(
+				'type' => 'passthrough'
 			)
 		),
 		'pid' => array(
-			'label'   => 'pid',
-			'config'  => array(
-				'type'    => 'passthrough'
+			'label' => 'pid',
+			'config' => array(
+				'type' => 'passthrough'
 			)
 		),
 		'crdate' => array(
-			'label'   => 'crdate',
-			'config'  => array(
-				'type'     => 'passthrough',
+			'label' => 'crdate',
+			'config' => array(
+				'type' => 'passthrough',
 			)
 		),
 		'tstamp' => array(
-			'label'   => 'crdate',
-			'config'  => array(
-				'type'     => 'passthrough',
+			'label' => 'crdate',
+			'config' => array(
+				'type' => 'passthrough',
 			)
 		),
 		'starttime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label'   => 'LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel',
-			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+			'label' => 'LLL:EXT:cms/locallang_ttc.xml:starttime_formlabel',
+			'config' => array(
+				'type' => 'input',
+				'size' => 8,
+				'max' => 20,
+				'eval' => 'date',
+				'default' => 0,
 			)
 		),
 		'endtime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label'   => 'LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel',
-			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+			'label' => 'LLL:EXT:cms/locallang_ttc.xml:endtime_formlabel',
+			'config' => array(
+				'type' => 'input',
+				'size' => 8,
+				'max' => 20,
+				'eval' => 'date',
+				'default' => 0,
 			)
 		),
 		'fe_group' => array(
@@ -172,11 +172,11 @@ $TCA['tx_news_domain_model_news'] = array(
 					'_PADDING' => 2,
 					'RTE' => array(
 						'notNewRecords' => 1,
-						'RTEonly'       => 1,
-						'type'          => 'script',
-						'title'         => 'Full screen Rich Text Editing',
-						'icon'          => 'wizard_rte2.gif',
-						'script'        => 'wizard_rte.php',
+						'RTEonly' => 1,
+						'type' => 'script',
+						'title' => 'Full screen Rich Text Editing',
+						'icon' => 'wizard_rte2.gif',
+						'script' => 'wizard_rte.php',
 					),
 				),
 			)
@@ -199,11 +199,11 @@ $TCA['tx_news_domain_model_news'] = array(
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news_domain_model_news.datetime',
 			'config' => array(
-				'type'     => 'input',
-				'size'     => 12,
-				'max'      => 20,
-				'eval'     => 'datetime,required',
-				'default'  => mktime(date('H'), date('i'), 0, date('m'), date('d'), date('Y'))
+				'type' => 'input',
+				'size' => 12,
+				'max' => 20,
+				'eval' => 'datetime,required',
+				'default' => mktime(date('H'), date('i'), 0, date('m'), date('d'), date('Y'))
 			)
 		),
 		'archive' => array(
@@ -211,11 +211,11 @@ $TCA['tx_news_domain_model_news'] = array(
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news_domain_model_news.archive',
 			'config' => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => $configuration->getArchiveDate(),
-				'default'  => 0
+				'type' => 'input',
+				'size' => 8,
+				'max' => 20,
+				'eval' => $configuration->getArchiveDate(),
+				'default' => 0
 			)
 		),
 		'author' => array(
@@ -434,9 +434,9 @@ $TCA['tx_news_domain_model_news'] = array(
 		),
 		'istopnews' => array(
 			'exclude' => 1,
-			'label'   => $ll . 'tx_news_domain_model_news.istopnews',
-			'config'  => array(
-				'type'    => 'check',
+			'label' => $ll . 'tx_news_domain_model_news.istopnews',
+			'config' => array(
+				'type' => 'check',
 				'default' => 0
 			)
 		),
@@ -490,27 +490,27 @@ $TCA['tx_news_domain_model_news'] = array(
 				'minitems' => 0,
 				'maxitems' => 20,
 				'wizards' => array(
-					'_PADDING'  => 2,
+					'_PADDING' => 2,
 					'_VERTICAL' => 1,
 					'suggest' => array(
 						'type' => 'suggest',
 						'default' => array(
-								'receiverClass' => 'Tx_News_Hooks_SuggestReceiver'
+							'receiverClass' => 'Tx_News_Hooks_SuggestReceiver'
 						),
 					),
 					'list' => array(
-						'type'   => 'script',
-						'title'  => $ll . 'tx_news_domain_model_news.tags.list',
-						'icon'   => 'list.gif',
+						'type' => 'script',
+						'title' => $ll . 'tx_news_domain_model_news.tags.list',
+						'icon' => 'list.gif',
 						'params' => array(
 							'table' => 'tx_news_domain_model_tag',
-							'pid'   => $configuration->getTagPid(),
+							'pid' => $configuration->getTagPid(),
 						),
 						'script' => 'wizard_list.php',
 					),
 					'edit' => array(
 						'type' => 'popup',
-						'title'  => $ll . 'tx_news_domain_model_news.tags.edit',
+						'title' => $ll . 'tx_news_domain_model_news.tags.edit',
 						'script' => 'wizard_edit.php',
 						'popup_onlyOpenIfSelected' => 1,
 						'icon' => 'edit2.gif',
@@ -529,21 +529,21 @@ $TCA['tx_news_domain_model_news'] = array(
 			)
 		),
 		'import_id' => array(
-			'label'   => $ll . 'tx_news_domain_model_news.import_id',
+			'label' => $ll . 'tx_news_domain_model_news.import_id',
 			'config' => array(
 				'type' => 'passthrough'
 			)
 		),
 
 		'import_source' => array(
-			'label'   => $ll . 'tx_news_domain_model_news.import_source',
+			'label' => $ll . 'tx_news_domain_model_news.import_source',
 			'config' => array(
 				'type' => 'passthrough'
 			)
 		)
 	),
 	'types' => array(
-			// default news
+		// default news
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
 					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
@@ -558,7 +558,7 @@ $TCA['tx_news_domain_model_news'] = array(
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
-			// internal url
+		// internal url
 		'1' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
 					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,internalurl,
@@ -570,7 +570,7 @@ $TCA['tx_news_domain_model_news'] = array(
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
-			// external url
+		// external url
 		'2' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
 					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,externalurl,
@@ -610,7 +610,7 @@ $TCA['tx_news_domain_model_news'] = array(
 	)
 );
 
-	// category restriction based on settings in extension manager
+// category restriction based on settings in extension manager
 $categoryRestrictionSetting = $configuration->getCategoryRestriction();
 if ($categoryRestrictionSetting) {
 	$categoryRestriction = '';
@@ -631,10 +631,10 @@ if ($categoryRestrictionSetting) {
 			$categoryRestriction = '';
 	}
 
-		// prepend category restriction at the beginning of foreign_table_where
+	// prepend category restriction at the beginning of foreign_table_where
 	if (!empty ($categoryRestriction)) {
 		$TCA['tx_news_domain_model_news']['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction .
-		$TCA['tx_news_domain_model_news']['columns']['categories']['config']['foreign_table_where'];
+			$TCA['tx_news_domain_model_news']['columns']['categories']['config']['foreign_table_where'];
 	}
 }
 

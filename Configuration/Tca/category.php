@@ -14,35 +14,35 @@ $TCA['tx_news_domain_model_category'] = array(
 	'feInterface' => $TCA['tx_news_domain_model_category']['feInterface'],
 	'columns' => array(
 		'pid' => array(
-			'label'   => 'pid',
-			'config'  => array(
-				'type'    => 'passthrough'
+			'label' => 'pid',
+			'config' => array(
+				'type' => 'passthrough'
 			)
 		),
 		'sorting' => array(
-			'label'   => 'sorting',
-			'config'  => array(
-				'type'    => 'passthrough'
+			'label' => 'sorting',
+			'config' => array(
+				'type' => 'passthrough'
 			)
 		),
 		'crdate' => array(
-			'label'   => 'crdate',
-			'config'  => array(
-				'type'     => 'passthrough',
+			'label' => 'crdate',
+			'config' => array(
+				'type' => 'passthrough',
 			)
 		),
 		'tstamp' => array(
-			'label'   => 'passthrough',
-			'config'  => array(
-				'type'     => 'passthrough',
+			'label' => 'passthrough',
+			'config' => array(
+				'type' => 'passthrough',
 			)
 		),
 		'sys_language_uid' => array(
 			'exclude' => 1,
-			'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
 			'config' => array(
-				'type'                => 'select',
-				'foreign_table'       => 'sys_language',
+				'type' => 'select',
+				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
 					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
@@ -52,14 +52,14 @@ $TCA['tx_news_domain_model_category'] = array(
 		),
 		'l10n_parent' => array(
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude'     => 1,
-			'label'       => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
-			'config'      => array(
-				'type'  => 'select',
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+			'config' => array(
+				'type' => 'select',
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table'       => 'tx_news_domain_model_category',
+				'foreign_table' => 'tx_news_domain_model_category',
 				'foreign_table_where' => 'AND tx_news_domain_model_category.pid=###CURRENT_PID### AND tx_news_domain_model_category.sys_language_uid IN (-1,0)',
 			)
 		),
@@ -70,32 +70,32 @@ $TCA['tx_news_domain_model_category'] = array(
 		),
 		'hidden' => array(
 			'exclude' => 1,
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-			'config'  => array(
-				'type'    => 'check',
+			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+			'config' => array(
+				'type' => 'check',
 				'default' => 0
 			)
 		),
 		'starttime' => array(
 			'exclude' => 1,
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
-			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
+			'config' => array(
+				'type' => 'input',
+				'size' => 8,
+				'max' => 20,
+				'eval' => 'date',
+				'default' => 0,
 			)
 		),
 		'endtime' => array(
 			'exclude' => 1,
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
-			'config'  => array(
-				'type'     => 'input',
-				'size'     => 8,
-				'max'      => 20,
-				'eval'     => 'date',
-				'default'  => 0,
+			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
+			'config' => array(
+				'type' => 'input',
+				'size' => 8,
+				'max' => 20,
+				'eval' => 'date',
+				'default' => 0,
 			)
 		),
 		'fe_group' => array(
@@ -222,14 +222,14 @@ $TCA['tx_news_domain_model_category'] = array(
 			)
 		),
 		'import_id' => array(
-			'label'   => $ll . 'tx_news_domain_model_news.import_id',
+			'label' => $ll . 'tx_news_domain_model_news.import_id',
 			'config' => array(
 				'type' => 'passthrough'
 			)
 		),
 
 		'import_source' => array(
-			'label'   => $ll . 'tx_news_domain_model_news.import_source',
+			'label' => $ll . 'tx_news_domain_model_news.import_source',
 			'config' => array(
 				'type' => 'passthrough'
 			)
@@ -238,11 +238,11 @@ $TCA['tx_news_domain_model_category'] = array(
 	'types' => array(
 		0 => array(
 			'showitem' =>
-				'title;;paletteCore, parentcategory, ;;;;3-3-3,
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,shortcut,
-				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
-					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
+			'title;;paletteCore, parentcategory, ;;;;3-3-3,
+			--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,shortcut,
+			--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
+				--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
+			--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 	),
 	'palettes' => array(
