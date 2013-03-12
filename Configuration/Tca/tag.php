@@ -14,25 +14,25 @@ $TCA['tx_news_domain_model_tag'] = array(
 	'feInterface' => $TCA['tx_news_domain_model_tag']['feInterface'],
 	'columns' => array(
 		'pid' => array(
-			'config'  => array(
-				'type'    => 'passthrough'
+			'config' => array(
+				'type' => 'passthrough'
 			)
 		),
 		'crdate' => array(
-			'config'  => array(
-				'type'     => 'passthrough',
+			'config' => array(
+				'type' => 'passthrough',
 			)
 		),
 		'tstamp' => array(
-			'config'  => array(
-				'type'     => 'passthrough',
+			'config' => array(
+				'type' => 'passthrough',
 			)
 		),
 		'hidden' => array(
 			'exclude' => 1,
-			'label'   => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
-			'config'  => array(
-				'type'    => 'check',
+			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+			'config' => array(
+				'type' => 'check',
 				'default' => 0
 			)
 		),
