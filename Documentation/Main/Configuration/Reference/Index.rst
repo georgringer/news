@@ -369,6 +369,11 @@ The following table describes the settings concerning the list view.
          <link rel="next" href"" /> to tell google about the pagination.
          Read more at http://googlewebmastercentral.blogspot.co.at/2011/09/pagination-with-relnext-and-relprev.html
 
+         **templatePath**
+
+         Set a custom template file for the paginate widget.
+         The path has to point to the template file, for example :code:`EXT:foobar/Resources/Private/Templates/ViewHelpers/Widget/Paginate/Index.html`
+
    :Default:
          itemsPerPage = 10
 
@@ -545,4 +550,3 @@ cObjectViewHelper of Fluid::
 
 You could use your own ViewHelper to render those content elements as
 you need it.
-
