@@ -91,7 +91,7 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 		$this->pagesAfter = (integer)$this->configuration['pagesAfter'];
 		$this->lessPages = (boolean)$this->configuration['lessPages'];
 		$this->forcedNumberOfLinks = (integer)$this->configuration['forcedNumberOfLinks'];
-		$this->templatePath = (string)$this->configuration['templatePath'];
+		$this->templatePath = t3lib_div::getFileAbsFileName($this->configuration['templatePath']);
 	}
 
 	/**
