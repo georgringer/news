@@ -98,7 +98,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @var array
 	 */
 	public $removedFieldsInTagListView = array(
-			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
+			'sDEF' => 'categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						dateField,singleNews,previewHiddenRecords',
 			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews',
