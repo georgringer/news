@@ -71,7 +71,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 *
 	 * @var array
 	 */
-	public	$removedFieldsInSearchFormView = array(
+	public $removedFieldsInSearchFormView = array(
 			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
@@ -84,7 +84,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 *
 	 * @var array
 	 */
-	public	$removedFieldsInCategoryListView = array(
+	public $removedFieldsInCategoryListView = array(
 			'sDEF' => 'orderBy,orderDirection,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
@@ -97,7 +97,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 *
 	 * @var array
 	 */
-	public	$removedFieldsInTagListView = array(
+	public $removedFieldsInTagListView = array(
 			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						dateField,singleNews,previewHiddenRecords',
