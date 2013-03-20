@@ -113,6 +113,9 @@ class Tx_News_Hooks_CmsLayout {
 					case 'category_list':
 						$this->getCategorySettings(FALSE);
 						break;
+					case 'tag_list':
+						$this->getStartingPoint(FALSE);
+						break;
 					default:
 				}
 
