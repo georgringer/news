@@ -57,6 +57,10 @@ Tab “Settings”
 
          - Date menu: Menu based on the dates of news records
 
+         - Category menu: A category tree
+
+         - Tag list: List all tags
+
    :Key:
          -
 
