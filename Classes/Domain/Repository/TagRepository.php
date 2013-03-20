@@ -54,7 +54,28 @@ class Tx_News_Domain_Repository_TagRepository extends Tx_News_Domain_Repository_
 	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
 	 */
 	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {
-		// TODO: Implement createOrderingsFromDemand() method.
+		$orderings = array();
+
+		if (Tx_News_Utility_Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
+			$orderList = t3lib_div::trimExplode(',', $demand->getOrder(), TRUE);
+
+			if (!empty($orderList)) {
+				// go through every order statement
+				foreach ($orderList as $orderItem) {
+					list($orderField, $ascDesc) = t3lib_div::trimExplode(' ', $orderItem, TRUE);
+					// count == 1 means that no direction is given
+					if ($ascDesc) {
+						$orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
+							Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING :
+							Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
+					} else {
+						$orderings[$orderField] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
+					}
+				}
+			}
+		}
+
+		return $orderings;
 	}
 
 }
