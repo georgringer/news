@@ -38,6 +38,12 @@ the *postVarSets/Default* section: ::
 					'strtolower' => 1,
 					'spaceCharacter' => '-',
 				),
+				'languageGetVar' => 'L',
+				'languageExceptionUids' => '',
+				'languageField' => 'sys_language_uid',
+				'transOrigPointerField' => 'l10n_parent',
+				'autoUpdate' => 1,
+				'expireDays' => 180,
 			),
 		),
 	),
@@ -100,7 +106,13 @@ Here is a full RealURL configuration with the explanation below. ::
 						'useUniqueCache_conf' => array(
 							'strtolower' => 1,
 							'spaceCharacter' => '-'
-						)
+						),
+						'languageGetVar' => 'L',
+						'languageExceptionUids' => '',
+						'languageField' => 'sys_language_uid',
+						'transOrigPointerField' => 'l10n_parent',
+						'autoUpdate' => 1,
+						'expireDays' => 180,
 					)
 				)
 			),
