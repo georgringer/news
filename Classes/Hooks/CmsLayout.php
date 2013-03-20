@@ -98,6 +98,7 @@ class Tx_News_Hooks_CmsLayout {
 						$this->getArchiveSettings();
 						$this->getOffsetLimitSettings();
 						$this->getDetailPidSetting();
+						$this->getListPidSetting();
 						break;
 					case 'news_detail':
 						$this->getSingleNewsSettings();
@@ -115,6 +116,7 @@ class Tx_News_Hooks_CmsLayout {
 						break;
 					case 'tag_list':
 						$this->getStartingPoint(FALSE);
+						$this->getListPidSetting();
 						break;
 					default:
 				}
@@ -135,7 +137,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getArchiveSettings() {
+	protected function getArchiveSettings() {
 		$archive = $this->getFieldFromFlexform($this->flexformData, 'settings.archiveRestriction');
 
 		if (!empty($archive)) {
@@ -151,7 +153,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getSingleNewsSettings() {
+	protected function getSingleNewsSettings() {
 		$content = '';
 		$singleNewsRecord = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.singleNews');
 
@@ -191,28 +193,57 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getDetailPidSetting() {
+	protected function getDetailPidSetting() {
 		$content = '';
 		$detailPid = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.detailPid', 'additional');
 
 		if ($detailPid > 0) {
-			$pageRecord = t3lib_BEfunc::getRecord('pages', $detailPid);
-
-			if (is_array($pageRecord)) {
-				$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
-				$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'pages', $pageRecord['uid'], 1, '', '+info,edit', TRUE);
-
-				$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
-					htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord));
-			} else {
-				/** @var $message t3lib_FlashMessage */
-				$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $detailPid);
-				$message = t3lib_div::makeInstance('t3lib_FlashMessage', $text, '', t3lib_FlashMessage::WARNING);
-				$content = $message->render();
-			}
+			$content = $this->getPageRecordData($detailPid);
 
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.detailPid'), $content);
 		}
+	}
+
+	/**
+	 * Render listPid news settings
+	 *
+	 * @return void
+	 */
+	protected function getListPidSetting() {
+		$content = '';
+		$listPid = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.listPid', 'additional');
+
+		if ($listPid > 0) {
+			$content = $this->getPageRecordData($listPid);
+
+			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.listPid'), $content);
+		}
+	}
+
+	/**
+	 * Get the rendered page title including onclick menu
+	 *
+	 * @param $detailPid
+	 * @return string
+	 */
+	protected function getPageRecordData($detailPid) {
+		$content = '';
+		$pageRecord = t3lib_BEfunc::getRecord('pages', $detailPid);
+
+		if (is_array($pageRecord)) {
+			$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
+			$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'pages', $pageRecord['uid'], 1, '', '+info,edit', TRUE);
+
+			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
+				htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord));
+		} else {
+			/** @var $message t3lib_FlashMessage */
+			$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $detailPid);
+			$message = t3lib_div::makeInstance('t3lib_FlashMessage', $text, '', t3lib_FlashMessage::WARNING);
+			$content = $message->render();
+		}
+
+		return $content;
 	}
 
 	/**
@@ -220,7 +251,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getOrderSettings() {
+	protected function getOrderSettings() {
 		$orderField = $this->getFieldFromFlexform($this->flexformData, 'settings.orderBy');
 		if (!empty($orderField)) {
 			$text = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderBy.' . $orderField);
@@ -251,7 +282,7 @@ class Tx_News_Hooks_CmsLayout {
 	 * @param boolean $showCategoryMode show the category conjunction
 	 * @return void
 	 */
-	private function getCategorySettings($showCategoryMode = TRUE) {
+	protected function getCategorySettings($showCategoryMode = TRUE) {
 		$categoryMode = '';
 		$categoriesOut = array();
 
@@ -300,7 +331,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getOffsetLimitSettings() {
+	protected function getOffsetLimitSettings() {
 		$offset = $this->getFieldFromFlexform($this->flexformData, 'settings.offset', 'additional');
 		$limit = $this->getFieldFromFlexform($this->flexformData, 'settings.limit', 'additional');
 		$hidePagionation = $this->getFieldFromFlexform($this->flexformData, 'settings.hidePagination', 'additional');
@@ -321,7 +352,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getDateMenuSettings() {
+	protected function getDateMenuSettings() {
 		$dateMenuField = $this->getFieldFromFlexform($this->flexformData, 'settings.dateField');
 
 		$this->tableData[] = array(
@@ -335,7 +366,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getTimeRestrictionSetting() {
+	protected function getTimeRestrictionSetting() {
 		$timeRestriction = $this->getFieldFromFlexform($this->flexformData, 'settings.timeRestriction');
 
 		if (!empty($timeRestriction)) {
@@ -359,7 +390,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getTopNewsRestrictionSetting() {
+	protected function getTopNewsRestrictionSetting() {
 		$topNewsRestriction = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.topNewsRestriction');
 		if ($topNewsRestriction > 0) {
 			$this->tableData[] = array(
@@ -374,7 +405,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getTemplateLayoutSettings() {
+	protected function getTemplateLayoutSettings() {
 		$title = '';
 
 		$field = $this->getFieldFromFlexform($this->flexformData, 'settings.templateLayout', 'template');
@@ -399,7 +430,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getOverrideDemandSettings() {
+	protected function getOverrideDemandSettings() {
 		$field = $this->getFieldFromFlexform($this->flexformData, 'settings.disableOverrideDemand', 'additional');
 
 		if ($field == 1) {
@@ -413,7 +444,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	private function getStartingPoint() {
+	protected function getStartingPoint() {
 		$value = $this->getFieldFromFlexform($this->flexformData, 'settings.startingpoint');
 
 		if (!empty($value)) {
