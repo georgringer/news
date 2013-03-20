@@ -41,10 +41,6 @@
 									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_datemenu</numIndex>
 									<numIndex index="1">News->dateMenu</numIndex>
 								</numIndex>
-								<numIndex index="7">
-									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.category_list</numIndex>
-									<numIndex index="1">Category->list</numIndex>
-								</numIndex>
 								<numIndex index="14">
 									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.optgroup_search</numIndex>
 									<numIndex index="1">--div--</numIndex>
@@ -56,6 +52,18 @@
 								<numIndex index="16">
 									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.news_searchresult</numIndex>
 									<numIndex index="1">News->searchResult</numIndex>
+								</numIndex>
+								<numIndex index="20">
+									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.optgroup_others</numIndex>
+									<numIndex index="1">--div--</numIndex>
+								</numIndex>
+								<numIndex index="7">
+									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.category_list</numIndex>
+									<numIndex index="1">Category->list</numIndex>
+								</numIndex>
+								<numIndex index="21">
+									<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.mode.tag_list</numIndex>
+									<numIndex index="1">Tag->list</numIndex>
 								</numIndex>
 							</items>
 						</config>
