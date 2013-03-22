@@ -388,8 +388,7 @@ Tab “Additional”
 
    :Description:
          Define the maximum records shown. This is not about the pagination
-         which can be configured by TypoScript @todo: link to chapter >
-         configuration > paginator
+         which can be configured by TypoScript
 
    :Key:
          limit
@@ -519,11 +518,7 @@ Tab “Template”
          All
 
    :Description:
-         Select different layouts. @todo: link to chapter Extend news >
-         Flexforms.
-
-         **Important:** There is no difference in the default configuration, so
-         changing here something doesn't change anything in the output.
+         Select different layouts. See the section Templating > Custom Templates by using the Layout selector
 
    :Key:
          templateLayout

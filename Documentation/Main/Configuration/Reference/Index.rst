@@ -138,19 +138,6 @@ General properties
 
 
  - :Property:
-         pidBackAdditionalParams
-
-   :Data type:
-         array
-
-   :Description:
-         Define optional arguments for links back. @todo: move this into list
-         view?
-
-   :Default:
-
-
- - :Property:
          pidDetailFromCategories
 
    :Data type:
@@ -270,7 +257,7 @@ General properties
          string
 
    :Description:
-         @todo pending change?
+         List of classes which are considered for rendering media elements
 
    :Default:
 

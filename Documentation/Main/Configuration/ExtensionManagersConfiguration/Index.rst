@@ -14,5 +14,4 @@ Those are described in this chapter. To be able to set this
 configuration, switch to the Extension Manager and search for the
 extension news. Click on it to see the available settings.
 
-@todo. general screenshot
 

@@ -184,14 +184,6 @@ detail page.
 
 
  - :Property:
-         Enable DAM
-
-   :Description:
-         If set, news is working with news. @todo: should be DAM disabled for
-         1.0.0?
-
-
- - :Property:
          Show tt\_news importer
 
    :Description:
