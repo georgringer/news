@@ -26,10 +26,20 @@ Default values are: tstamp,datetime,crdate,title
 Additional Actions
 """"""""""""""""""
 
-If you need an additional action to select, you can extend it by using ::
+If you need an additional action to select, you can extend it by using: ::
 
-    // add an additional action: Key is "Controller->action", value is label
-   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems']['News->byFobar'] = 'A fobar action';
+	// Add an additional action: Key is "Controller->action", value is label
+	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems']['News->byFobar'] = 'A fobar action';
+
+
+Remove fields in additional actions
+"""""""""""""""""""""""""""""""""""""
+
+If you define an additional action, you won't need all available fields which are available inside the Flexforms. If you want to hide some fields,
+take a look at the hook inside the class Hooks/T3libBefunc.php: ::
+
+	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/T3libBefunc.php']['updateFlexforms']
+
 
 
 Additional Template Selector
