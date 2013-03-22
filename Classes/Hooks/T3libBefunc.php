@@ -143,7 +143,6 @@ class Tx_News_Hooks_T3libBefunc {
 			// new plugin element
 		} elseif (t3lib_div::isFirstPartOfStr($row['uid'], 'NEW')) {
 				// use List as starting view
-				// @todo dynamic check, getting view from $flexformSelection
 			$selectedView = 'News->list';
 		}
 
