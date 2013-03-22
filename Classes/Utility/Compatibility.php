@@ -40,7 +40,10 @@ class Tx_News_Utility_Compatibility {
 	 */
 	public static function convertVersionNumberToInteger($verNumberStr) {
 		$result = '';
-		if (class_exists('t3lib_utility_VersionNumber')) {
+
+		if (self::isEqualOrHigherSixZero()) {
+			$result = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger($verNumberStr);
+		} elseif (class_exists('t3lib_utility_VersionNumber')) {
 			$result = t3lib_utility_VersionNumber::convertVersionNumberToInteger($verNumberStr);
 		} else {
 			$result = t3lib_div::int_from_ver($verNumberStr);
@@ -61,7 +64,9 @@ class Tx_News_Utility_Compatibility {
 	 */
 	public static function forceIntegerInRange($theInt, $min, $max = 2000000000, $zeroValue = 0) {
 		$result = '';
-		if (class_exists('t3lib_utility_Math')) {
+		if (self::isEqualOrHigherSixZero()) {
+			$result = \TYPO3\CMS\Core\Utility\MathUtility::forceIntegerInRange($theInt, $min, $max, $zeroValue);
+		} elseif (class_exists('t3lib_utility_Math')) {
 			$result = t3lib_utility_Math::forceIntegerInRange($theInt, $min, $max, $zeroValue);
 		} else {
 			$result = t3lib_div::intInRange($theInt, $min, $max, $zeroValue);
@@ -78,7 +83,9 @@ class Tx_News_Utility_Compatibility {
 	 */
 	public static function canBeInterpretedAsInteger($var) {
 		$result = '';
-		if (class_exists('t3lib_utility_Math')) {
+		if (self::isEqualOrHigherSixZero()) {
+			$result = \TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($var);
+		} elseif (class_exists('t3lib_utility_Math')) {
 			$result = t3lib_utility_Math::canBeInterpretedAsInteger($var);
 		} else {
 			$result = t3lib_div::testInt($var);
@@ -95,7 +102,9 @@ class Tx_News_Utility_Compatibility {
 	 */
 	public static function convertToPositiveInteger($theInt) {
 		$result = '';
-		if (class_exists('t3lib_utility_Math')) {
+		if (self::isEqualOrHigherSixZero()) {
+			$result = \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($theInt);
+		} elseif (class_exists('t3lib_utility_Math')) {
 			$result = t3lib_utility_Math::convertToPositiveInteger($theInt);
 		} else {
 			$result = t3lib_div::intval_positive($theInt);
@@ -118,6 +127,18 @@ class Tx_News_Utility_Compatibility {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Simple method to check if current TYPO3 version is equal or higher than 6.0
+	 *
+	 * @return boolean
+	 */
+	public static function isEqualOrHigherSixZero() {
+		$version = TYPO3_version;
+		$firstNumber = (int)$version{0};
+
+		return ($firstNumber >= 6);
 	}
 }
 ?>
