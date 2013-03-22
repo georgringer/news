@@ -10,7 +10,6 @@
 		<languageKey index="default" type="array">
 			<label index=".description">News record</label>
 			<label index=".details">Versatile news system.</label>
-			<label index="_.seeAlso">See also the website @todo</label>
 			<label index="sys_language_uid.description">Language of the news record.</label>
 			<label index="starttime.description">Define a date on which the news record should be shown.</label>
 			<label index="endtime.description">Define a date on which the news record should be hidden.</label>
@@ -38,7 +37,6 @@
 		<languageKey index="dk" type="array">
 			<label index=".description">Nyhed</label>
 			<label index=".details">Alsidigt nyhedssystem.</label>
-			<label index="_.seeAlso">Se også @todo</label>
 			<label index="sys_language_uid.description">Sprog for nyhed.</label>
 			<label index="starttime.description">Angiv en dato hvorpå nyheden skal vises.</label>
 			<label index="endtime.description">Angiv en dato hvorpå nyheden skal skjules.</label>
@@ -65,7 +63,6 @@
 		<languageKey index="de" type="array">
 			<label index=".description">News Datensatz</label>
 			<label index=".details">Versatile news system.</label>
-			<label index="_.seeAlso">See also the website @todo</label>
 			<label index="sys_language_uid.description">Spraches des Newsdatensatz</label>
 			<label index="starttime.description">Datum ab dem der Newsdatensatz angezeigt werden soll.</label>
 			<label index="endtime.description">Datum bis zu dem der Newsdatensatz angezeigt werden soll.</label>
@@ -90,7 +87,6 @@
 		<languageKey index="nl" type="array">
 			<label index=".description">Nieuws record</label>
 			<label index=".details">Veelzijdig nieuws systeem.</label>
-			<label index="_.seeAlso">Zie ook de website @todo</label>
 			<label index="sys_language_uid.description">Taal van het nieuws record.</label>
 			<label index="starttime.description">Bepaal een datum waarop het nieuwsrecord getoond moet worden.</label>
 			<label index="endtime.description">Bepaal een datum waarop het nieuwsrecord verborgen moet worden.</label>

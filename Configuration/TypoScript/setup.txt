@@ -64,10 +64,6 @@ plugin.tx_news {
 		# general settings
 		overrideFlexformSettingsIfEmpty = cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid
 
-		pidBackAdditionalParams {
-
-		}
-
 		includeSubCategories = 0
 
 		analytics {
