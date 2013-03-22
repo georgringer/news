@@ -169,8 +169,17 @@ class Tx_News_Hooks_T3libBefunc {
 				case 'Tag->list':
 					$this->deleteFromStructure($dataStructure, $this->removedFieldsInTagListView);
 					break;
-					// @todo: Implement a hook here
 				default:
+			}
+
+			if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/T3libBefunc.php']['updateFlexforms'])) {
+				$params = array(
+					'selectedView' => $selectedView,
+					'dataStructure' => &$dataStructure,
+				);
+				foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/T3libBefunc.php']['updateFlexforms'] as $reference) {
+					t3lib_div::callUserFunction($reference, $params, $this);
+				}
 			}
 		}
 	}
