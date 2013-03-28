@@ -93,7 +93,7 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 		foreach ($importArray as $importItem) {
 			$category = $this->hydrateCategory($importItem);
 
-			if (trim($importItem['title_lang_ol']) !== '') {
+			if (!empty($importItem['title_lang_ol'])) {
 				$this->postPersistQueue[$importItem['import_id']] = array(
 					'category' => $category,
 					'importItem' => $importItem,
