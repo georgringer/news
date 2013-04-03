@@ -163,7 +163,7 @@ $TCA['tx_news_domain_model_media'] = array(
 				'show_thumbs' => 1,
 				'size' => 1,
 				'maxitems' => 1,
-				'minitems' => 0,
+				'minitems' => 1,
 				'autoSizeMax' => 1,
 			)
 		),
