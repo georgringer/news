@@ -65,14 +65,14 @@ The TypoScript could look like: ::
 
 And then you can use a condition like this: ::
 
-	<f:if condition="{settings.isLatest">
+	<f:if condition="{settings.isLatest}">
 		<f:then>
 			do something if it is set
 		</f:then>
 		<f:else>
 			do something if it is not set
 		</f:else>
-	</:if>
+	<f/:if>
 
 
 
