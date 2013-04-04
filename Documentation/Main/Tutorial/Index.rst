@@ -19,4 +19,5 @@ Tutorial
    HowToAddASimpleNewsSystemToYourSite/Index
    ExtendingNews/Index
    MigrationFromTtNews/Index
+   ExternalTutorials/Index
 
