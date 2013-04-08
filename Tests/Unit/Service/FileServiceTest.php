@@ -36,7 +36,7 @@ class Tx_News_Tests_Unit_Service_FileServiceTest extends Tx_Extbase_Tests_Unit_B
 	 * @expectedException UnexpectedValueException
 	 */
 	public function emptyUrlThrowsException() {
-		$result = Tx_News_Service_FileService::getCorrectUrl('');
+		Tx_News_Service_FileService::getCorrectUrl('');
 	}
 
 	/**
@@ -44,7 +44,7 @@ class Tx_News_Tests_Unit_Service_FileServiceTest extends Tx_Extbase_Tests_Unit_B
 	 * @expectedException UnexpectedValueException
 	 */
 	public function notAllowedPathThrowsException() {
-		$result = Tx_News_Service_FileService::getCorrectUrl('../../fo.mp3');
+		Tx_News_Service_FileService::getCorrectUrl('../../fo.mp3');
 	}
 
 	/**
