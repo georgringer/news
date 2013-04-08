@@ -39,7 +39,6 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends Tx_Extbase
 	 */
 	public function settingsCanBeRead() {
 		$configuration = array(
-			'removeListActionFromFlexforms' => '1',
 			'removeListActionFromFlexforms' => '2',
 			'pageModuleFieldsNews' => 'test',
 			'pageModuleFieldsCategory' => 'test',
