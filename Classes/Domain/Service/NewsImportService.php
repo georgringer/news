@@ -49,6 +49,11 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	protected $newsRepository;
 
 	/**
+	 * @var Tx_News_Domain_Repository_TtContentRepository
+	 */
+	protected $ttContentRepository;
+
+	/**
 	 * @var Tx_News_Domain_Repository_CategoryRepository
 	 */
 	protected $categoryRepository;
@@ -103,6 +108,18 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
 	}
+
+
+	/**
+	 * Inject the ttcontent repository
+	 *
+	 * @param Tx_News_Domain_Repository_CategoryRepository $ttContentRepository
+	 * @return void
+	 */
+	public function injectTtContentRepository(Tx_News_Domain_Repository_TtContentRepository $ttContentRepository) {
+		$this->ttContentRepository = $ttContentRepository;
+	}
+
 
 	/**
 	 * @param array $importItem
