@@ -53,7 +53,7 @@ class Tx_News_Service_CacheService {
 	 * Get entry from caching framework
 	 *
 	 * @param string $cacheIdentifier cache identifier
-	 * @return entry or NULL if not found
+	 * @return mixed or NULL if not found
 	 */
 	public function get($cacheIdentifier) {
 		$entry = $GLOBALS['typo3CacheManager']->getCache($this->cacheName)->get($cacheIdentifier);
