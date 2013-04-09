@@ -406,6 +406,17 @@ The following table describes the settings concerning the list view.
    :Default:
          100
 
+ - :Property:
+         media.dummyImage
+
+   :Data type:
+         string
+
+   :Description:
+         Path to the used dummy image
+
+   :Default:
+         typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png
 
 Reference for detail view
 """""""""""""""""""""""""
