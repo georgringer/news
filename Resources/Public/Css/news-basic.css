@@ -123,30 +123,6 @@
 	border-left: 1px solid #ddd;
 }
 
-.news-browsebox {
-	margin: 15px 0;
-	padding-top: 10px;
-	border-top: 1px solid #eee;
-}
-
-.news-browsebox ul li {
-	margin: 0 5px;
-}
-
-.news-browsebox ul .prev {
-	margin-right: 20px;
-	margin-left: 0;
-}
-
-.news-browsebox ul .current-page a {
-	font-weight: bold;
-}
-
-.news-browsebox ul .next {
-	margin-left: 20px;
-	margin-right: 0;
-}
-
 /* single view */
 .news-single .footer {
 	margin-bottom: 20px;
