@@ -4,6 +4,7 @@
 
 #news-administration .category-tree {
 	float: left;
+	margin: 5px;
 }
 
 #news-administration .category-tree ul {
