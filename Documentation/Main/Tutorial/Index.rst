@@ -18,6 +18,7 @@ Tutorial
    IntegrationWithTs/Index
    HowToAddASimpleNewsSystemToYourSite/Index
    ExtendingNews/Index
+   PredefineFields/Index
    MigrationFromTtNews/Index
    ExternalTutorials/Index
 
