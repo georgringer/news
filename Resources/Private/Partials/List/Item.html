@@ -48,7 +48,7 @@
 							<f:if condition="{settings.displayDummyIfNoMedia}">
 							<span class="no-media-element">
 									<f:image
-										src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png"
+										src="{settings.list.media.dummyImage}"
 										title=""
 										alt=""
 										maxWidth="{settings.list.media.image.maxWidth}"
@@ -68,7 +68,7 @@
 						<n:link newsItem="{newsItem}" settings="{settings}">
 							<span class="no-media-element">
 								<f:image
-									src="typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png"
+									src="{settings.list.media.dummyImage}"
 									title=""
 									alt=""
 									maxWidth="{settings.list.media.image.maxWidth}"
