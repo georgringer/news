@@ -63,6 +63,8 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 						$subCategoryConstraint[] = $query->contains('categories', $subCategory);
 					}
 					$mixedConstraint[] = $query->logicalOr($subCategoryConstraint);
+				} else {
+					$mixedConstraint[] = $subCategoryConstraint;
 				}
 
 				$categoryConstraints[] = $query->logicalAnd($mixedConstraint);
@@ -71,19 +73,21 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			}
 		}
 
-		switch (strtolower($conjunction)) {
-			case 'or':
-				$constraint = $query->logicalOr($categoryConstraints);
-				break;
-			case 'notor':
-				$constraint = $query->logicalNot($query->logicalOr($categoryConstraints));
-				break;
-			case 'notand':
-				$constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
-				break;
-			case 'and':
-			default:
-				$constraint = $query->logicalAnd($categoryConstraints);
+		if(count($categoryConstraints) > 0){
+			switch (strtolower($conjunction)) {
+				case 'or':
+					$constraint = $query->logicalOr($categoryConstraints);
+					break;
+				case 'notor':
+					$constraint = $query->logicalNot($query->logicalOr($categoryConstraints));
+					break;
+				case 'notand':
+					$constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
+					break;
+				case 'and':
+				default:
+					$constraint = $query->logicalAnd($categoryConstraints);
+			}
 		}
 
 		return $constraint;
