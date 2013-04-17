@@ -168,6 +168,7 @@ CREATE TABLE tx_news_domain_model_media (
 	showinpreview tinyint(4) DEFAULT '0' NOT NULL,
 	width int(11) DEFAULT '0' NOT NULL,
 	height int(11) DEFAULT '0' NOT NULL,
+	description mediumtext,
 	is_dummy_record tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),

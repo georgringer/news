@@ -125,6 +125,11 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 	 */
 	protected $copyright;
 
+	/**
+	 * @var string
+	 */
+	protected $description;
+
 		/**
 	 * Get title
 	 *
@@ -493,6 +498,21 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 
 		return $content;
 	}
+
+	/**
+	 * @param string $description
+	 */
+	public function setDescription($description) {
+		$this->description = $description;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
+
 
 }
 

@@ -9,7 +9,7 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 $TCA['tx_news_domain_model_media'] = array(
 	'ctrl' => $TCA['tx_news_domain_model_media']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,html,video,showInPreview, width, height'
+		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,html,video,showInPreview, width, height, description'
 	),
 	'feInterface' => $TCA['tx_news_domain_model_media']['feInterface'],
 	'columns' => array(
@@ -219,12 +219,33 @@ $TCA['tx_news_domain_model_media'] = array(
 				'size' => 20,
 			)
 		),
+		'description' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'noCopy',
+			'label' => $ll.'tx_news_domain_model_file.description',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 30,
+				'rows' => 5,
+				'wizards' => array(
+					'_PADDING' => 2,
+					'RTE' => array(
+						'notNewRecords' => 1,
+						'RTEonly' => 1,
+						'type' => 'script',
+						'title' => 'Full screen Rich Text Editing',
+						'icon' => 'wizard_rte2.gif',
+						'script' => 'wizard_rte.php',
+					),
+				),
+			)
+		),
 	),
 	'types' => array(
 		// Image
-		'0' => array('showitem' => 'type;;palettteCore,image;;paletteWidthHeight,caption;;paletteTitle,copyright,'),
+		'0' => array('showitem' => 'type;;palettteCore,image;;paletteWidthHeight,caption;;paletteTitle,copyright,description;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],'),
 		// Multimedia (Video & Audio)
-		'1' => array('showitem' => 'type;;palettteCore,multimedia,caption,copyright,'),
+		'1' => array('showitem' => 'type;;palettteCore,multimedia,caption,copyright,description,'),
 		// DAM
 		'3' => array('showitem' => 'type;;palettteCore,dam,caption;;paletteTitle,copyright,')
 	),
