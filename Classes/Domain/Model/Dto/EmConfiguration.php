@@ -98,6 +98,9 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 */
 	protected $showAdministrationModule = TRUE;
 
+	/** @var boolean  */
+	protected $showMediaDescriptionField = FALSE;
+
 	/**
 	 * @return integer
 	 */
@@ -182,6 +185,21 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 */
 	public function getShowAdministrationModule() {
 		return $this->showAdministrationModule;
+	}
+
+	/**
+	 * @param boolean $showMediaDescriptionField
+	 * @return void
+	 */
+	public function setShowMediaDescriptionField($showMediaDescriptionField) {
+		$this->showMediaDescriptionField = $showMediaDescriptionField;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getShowMediaDescriptionField() {
+		return $this->showMediaDescriptionField;
 	}
 
 

@@ -30,3 +30,6 @@ showImporter = 0
 
 	# cat=basic/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showAdministrationModule
 showAdministrationModule = 1
+
+	# cat=basic/enable/25; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showMediaDescriptionField
+showMediaDescriptionField = 0

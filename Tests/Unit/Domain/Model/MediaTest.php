@@ -236,5 +236,17 @@ class Tx_News_Tests_Unit_Domain_Model_MediaTest extends Tx_Extbase_Tests_Unit_Ba
 		$this->mediaDomainModelInstance->setCopyright($copyright);
 		$this->assertEquals($copyright, $this->mediaDomainModelInstance->getCopyright());
 	}
+
+	/**
+	 * Test if description can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function descriptionCanBeSet() {
+		$description = 'Some words';
+		$this->mediaDomainModelInstance->setDescription($description);
+		$this->assertEquals($description, $this->mediaDomainModelInstance->getDescription());
+	}
 }
 ?>

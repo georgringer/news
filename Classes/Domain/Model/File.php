@@ -151,6 +151,25 @@ class Tx_News_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueObj
 		$this->file = $file;
 	}
 
+	/**
+	 * Get file extension
+	 *
+	 * @return string
+	 */
+	public function getFileExtension() {
+		return pathinfo($this->file, PATHINFO_EXTENSION);
+	}
+
+	/**
+	 * Get boolean if file ending is registered as image type
+	 *
+	 * @return boolean
+	 */
+	public function getIsImageFile() {
+		$fileEndings = t3lib_div::trimExplode(',', $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], TRUE);
+		return in_array($this->getFileExtension(), $fileEndings);
+	}
+
 }
 
 ?>
