@@ -105,5 +105,38 @@ class Tx_News_Tests_Unit_Domain_Model_FileTest extends Tx_Extbase_Tests_Unit_Bas
 		$this->assertEquals($time, $this->fileDomainModelInstance->getTstamp());
 	}
 
+	/**
+	 * Test for getFileExtension
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function getFileExtensionGetsCorrectFileExtension() {
+		$this->fileDomainModelInstance->setFile('fileadmin/fo.jpg');
+		$this->assertEquals('jpg', $this->fileDomainModelInstance->getFileExtension());
+	}
+
+	/**
+	 * Test if file is an image
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function jpgIsAnImage() {
+		$this->fileDomainModelInstance->setFile('fileadmin/fo.jpg');
+		$this->assertEquals(TRUE, $this->fileDomainModelInstance->getIsImageFile());
+	}
+
+	/**
+	 * Test if doc is not an image
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function wordFileIsNotAnImage() {
+		$this->fileDomainModelInstance->setFile('fileadmin/fo.docx');
+		$this->assertEquals(FALSE, $this->fileDomainModelInstance->getIsImageFile());
+	}
+
 }
 ?>
