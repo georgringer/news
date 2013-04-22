@@ -74,7 +74,7 @@ class Tx_News_MediaRenderer_Video_File implements Tx_News_MediaRenderer_MediaInt
 	 * @return boolean
 	 */
 	public function enabled(Tx_News_Domain_Model_Media $element) {
-		$url = $element->getMultimedia();
+		$url = Tx_News_Service_FileService::getFalFilename($element->getMultimedia());
 		$fileEnding = strtolower(substr($url, -3));
 
 		$enabled = FALSE;
