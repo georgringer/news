@@ -40,6 +40,8 @@ class Tx_News_Service_FileService {
 		if (empty($url)) {
 			throw new UnexpectedValueException('An empty url is given');
 		}
+
+		$url = self::getFalFilename($url);
 			// check URL
 		$urlInfo = parse_url($url);
 
@@ -70,6 +72,28 @@ class Tx_News_Service_FileService {
 	 */
 	public static function getUniqueId(Tx_News_Domain_Model_Media $element) {
 		return 'mediaelement-' . md5($element->getUid() . uniqid());
+	}
+
+	/**
+	 * If filename starts with file:, return de real path.
+	 *
+	 * @param @param string $url
+	 * @return string
+	 */
+
+	public static function getFalFilename($url) {
+		if (substr($url, 0, 5) === 'file:') {
+			$fileUid = substr($url, 5);
+
+			if (\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($fileUid)) {
+				$fileObject = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getFileObject($fileUid);
+
+				if ($fileObject instanceof \TYPO3\CMS\Core\Resource\FileInterface) {
+					$url = $fileObject->getPublicUrl();
+				}
+			}
+		}
+		return $url;
 	}
 
 }

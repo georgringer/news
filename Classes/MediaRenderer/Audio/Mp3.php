@@ -70,7 +70,7 @@ class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInte
 	 * @return boolean
 	 */
 	public function enabled(Tx_News_Domain_Model_Media $element) {
-		$url = $element->getContent();
+		$url = Tx_News_Service_FileService::getFalFilename($element->getContent());
 		$fileEnding = strtolower(substr($url, -3));
 
 		return ($fileEnding === 'mp3');
