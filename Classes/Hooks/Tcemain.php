@@ -61,20 +61,20 @@ class Tx_News_Hooks_Tcemain {
 				if ($pagesTsConfig['tx_news.']['singlePid']) {
 					$record = t3lib_BEfunc::getRecord('tx_news_domain_model_news', $recordUid);
 
-					$params = '&no_cache=1&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
+					$parameters = array(
+						'no_cache' => 1,
+						'tx_news_pi1[controller]' => 'News',
+						'tx_news_pi1[action]' => 'detail',
+						'tx_news_pi1[news_preview]' => $record['uid'],
+					);
 					if ($record['sys_language_uid'] > 0) {
 						if ($record['l10n_parent'] > 0) {
-							$params .= '&tx_news_pi1[news]=' . $record['l10n_parent'];
-						} else {
-							$params .= '&tx_news_pi1[news]=' . $record['uid'];
+							$parameters['tx_news_pi1[news_preview]'] = $record['l10n_parent'];
 						}
-
-						$params .= '&L=' . $record['sys_language_uid'];
-					} else {
-							$params .= '&tx_news_pi1[news]=' . $record['uid'];
+						$parameters['L'] = $record['sys_language_uid'];
 					}
 
-					$GLOBALS['_POST']['popViewId_addParams'] = $params;
+					$GLOBALS['_POST']['popViewId_addParams'] = t3lib_div::implodeArrayForUrl('', $parameters, '', FALSE, TRUE);
 					$GLOBALS['_POST']['popViewId'] = $pagesTsConfig['tx_news.']['singlePid'];
 				}
 			}
