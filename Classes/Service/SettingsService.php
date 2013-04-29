@@ -68,7 +68,9 @@ class Tx_News_Service_SettingsService implements t3lib_Singleton {
 	public function getSettings() {
 		if ($this->settings === NULL) {
 			$this->settings = $this->configurationManager->getConfiguration(
-					Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+					Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
+					'News',
+					'Pi1'
 			);
 		}
 		return $this->settings;
