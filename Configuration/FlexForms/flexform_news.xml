@@ -312,8 +312,24 @@
 					<settings.previewHiddenRecords>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.previewHiddenRecords</label>
-							<config>
-								<type>check</type>
+							<config type="array">
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.previewHiddenRecords.I.2</numIndex>
+										<numIndex index="1">2</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.previewHiddenRecords.I.1</numIndex>
+										<numIndex index="1">1</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.previewHiddenRecords.I.0</numIndex>
+										<numIndex index="1">0</numIndex>
+									</numIndex>
+								</items>
+								<size type="integer">1</size>
+								<maxitems type="integer">1</maxitems>
 							</config>
 						</TCEforms>
 					</settings.previewHiddenRecords>

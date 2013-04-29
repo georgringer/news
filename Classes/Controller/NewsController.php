@@ -169,7 +169,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		if (is_null($news)) {
 			$previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : $this->request->getArgument('news');
 
-			if ($this->settings['previewHiddenRecords']) {
+			if ($this->isPreviewOfHiddenRecordsEnabled()) {
 				$news = $this->newsRepository->findByUid($previewNewsId, FALSE);
 			} else {
 				$news = $this->newsRepository->findByUid($previewNewsId);
@@ -182,6 +182,20 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		));
 
 		Tx_News_Utility_Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
+	}
+
+	/**
+	 * Checks if preview is enabled either in TS or FlexForm
+	 *
+	 * @return bool
+	 */
+	protected function isPreviewOfHiddenRecordsEnabled() {
+		if (!empty($this->settings['previewHiddenRecords']) && $this->settings['previewHiddenRecords'] == 2) {
+			$previewEnabled = !empty($this->settings['enablePreviewOfHiddenRecords']);
+		} else {
+			$previewEnabled = !empty($this->settings['previewHiddenRecords']);
+		}
+		return $previewEnabled;
 	}
 
 	/**
