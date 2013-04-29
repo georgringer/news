@@ -167,7 +167,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	public function detailAction(Tx_News_Domain_Model_News $news = NULL, $currentPage = 1) {
 
 		if (is_null($news)) {
-			$previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : $this->request->getArgument('news');
+			$previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : $this->request->getArgument('news_preview');
 
 			if ($this->isPreviewOfHiddenRecordsEnabled()) {
 				$news = $this->newsRepository->findByUid($previewNewsId, FALSE);
