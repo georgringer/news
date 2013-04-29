@@ -300,7 +300,7 @@ Tab “Settings”
          called by anyone using any news record uid to see its content.
 
    :Key:
-         previewHiddenRecords
+         enablePreviewOfHiddenRecords
 
 
  - :Property:
