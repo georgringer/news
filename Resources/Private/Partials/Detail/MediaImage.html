@@ -2,11 +2,11 @@
 	<f:if condition="{settings.detail.media.image.lightbox}">
 		<f:then>
 			<a rel="{settings.detail.media.image.lightbox}" title="{mediaElement.caption}" href="{f:uri.image(src:'uploads/tx_news/{mediaElement.content}' maxWidth:'800')}">
-				<f:image src="uploads/tx_news/{mediaElement.content}" title="{mediaElement.title}" alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
+				<f:image src="uploads/tx_news/{mediaElement.content}" title="{mediaElement.title}" alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" maxHeight="{settings.detail.media.image.maxHeight}" />
 			</a>
 		</f:then>
 		<f:else>
-			<f:image src="uploads/tx_news/{mediaElement.content}" title="{mediaElement.title}" alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" />
+			<f:image src="uploads/tx_news/{mediaElement.content}" title="{mediaElement.title}" alt="{mediaElement.alt}" maxWidth="{settings.detail.media.image.maxWidth}" maxHeight="{settings.detail.media.image.maxHeight}" />
 		</f:else>
 	</f:if>
 </div>

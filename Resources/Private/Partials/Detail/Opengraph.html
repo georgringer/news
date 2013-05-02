@@ -12,7 +12,7 @@
 	<f:then>
 		<n:metaTag
 				property="og:image"
-				content="{f:uri.image(src:'uploads/tx_news/{newsItem.firstImagePreview.image}' maxWidth:'100')}"
+				content="{f:uri.image(src:'uploads/tx_news/{newsItem.firstImagePreview.image}' maxWidth:'500')}"
 				forceAbsoluteUrl="1" />
 	</f:then>
 	<f:else>
@@ -20,7 +20,7 @@
 			<n:format.dam as="dam" uid="{newsItem.firstImagePreview.uid}">
 				<n:metaTag
 						property="og:image"
-						content="{f:uri.image(src:'{dam.file_path}{dam.file_name}' maxWidth:'100')}"
+						content="{f:uri.image(src:'{dam.file_path}{dam.file_name}' maxWidth:'500')}"
 						forceAbsoluteUrl="1" />
 			</n:format.dam>
 		</f:if>
