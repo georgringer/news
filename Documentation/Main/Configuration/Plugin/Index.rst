@@ -249,8 +249,7 @@ Tab “Settings”
 
    :Description:
          If a startingpoint is set, all news records which are saved on one of
-         the selected pages are shown, otherwise the current page is uses as
-         startingpoint.
+         the selected pages are shown, otherwise news of all pages are shown.
 
    :Key:
          startingpoint
