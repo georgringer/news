@@ -20,7 +20,7 @@
 			<label index="single_pid.description">Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</label>
 			<label index="shortcut.description">Optional link of a category.</label>
 		</languageKey>
-		<languageKey index="dk" type="array">
+		<languageKey index="da" type="array">
 			<label index=".description">Kategori-element</label>
 			<label index=".details">Kategori til nyheder.</label>
 			<label index="_.seeAlso">Se også http://www.news.com/</label>

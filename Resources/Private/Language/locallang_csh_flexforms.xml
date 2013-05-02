@@ -50,7 +50,7 @@
 			<label index="settings.cropMaxCharacters.description">Define the length of the teaser in chars. The teaser is typically cropped in the list view.</label>
 			<label index="settings.templateLayout.description">Select a special layout for displaying news records.</label>
 		</languageKey>
-		<languageKey index="dk" type="array">
+		<languageKey index="da" type="array">
 			<!-- Tab General -->
 			<label index="switchableControllerActions.description">Angiv visningstype</label>
 			<label index="switchableControllerActions.details">Listevisning viser alle nyheder. Nyeste bruger en tidsbegrænsning, resten burde være indlysende</label>

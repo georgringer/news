@@ -9,7 +9,7 @@
 			<label index="mlang_tabs_tab">News Import</label>
 			<label index="mlang_labels_tablabel">News Import</label>
 		</languageKey>
-		<languageKey index="dk" type="array">
+		<languageKey index="da" type="array">
 			<label index="mlang_tabs_tab">Nyhedsimport</label>
 			<label index="mlang_labels_tablabel">Nyhedsimport</label>
 		</languageKey>

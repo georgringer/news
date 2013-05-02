@@ -34,7 +34,7 @@
 			<label index="related_files.description">Define related files, e.g. PDFs</label>
 			<label index="related_links.description">Define related links to internal and external pages.</label>
 		</languageKey>
-		<languageKey index="dk" type="array">
+		<languageKey index="da" type="array">
 			<label index=".description">Nyhed</label>
 			<label index=".details">Alsidigt nyhedssystem.</label>
 			<label index="sys_language_uid.description">Sprog for nyhed.</label>
