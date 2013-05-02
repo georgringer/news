@@ -65,7 +65,7 @@
 
 			<label index="be_user.tx_news_categorymounts">News: Category restriction</label>
 		</languageKey>
-		<languageKey index="dk" type="array">
+		<languageKey index="da" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relationer</label>
 			<label index="tx_news_domain_model_news">Nyhed</label>
 			<label index="tx_news_domain_model_news.teaser">Teaser</label>

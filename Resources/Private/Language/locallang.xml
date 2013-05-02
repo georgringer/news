@@ -47,7 +47,7 @@
 			<label index="list_nonewsfound">No news available.</label>
 			<label index="list_nocategoriesfound">No categories available.</label>
 		</languageKey>
-		<languageKey index="dk" type="array">
+		<languageKey index="da" type="array">
 			<!-- Common -->
 			<label index="search-text">Der er %1$s resultater for "%2$s".</label>
 			<label index="search-start">Start søgning</label>

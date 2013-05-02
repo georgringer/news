@@ -16,7 +16,7 @@
 			<label index="description.description">Optional description of selected file.</label>
 			<label index="file.description">Any (allowed) file.</label>
 		</languageKey>
-		<languageKey index="dk" type="array">
+		<languageKey index="da" type="array">
 			<label index=".description">Fil-element</label>
 			<label index=".details">Relation til filer</label>
 			<label index="_.seeAlso">Se også http://www.news.com/</label>

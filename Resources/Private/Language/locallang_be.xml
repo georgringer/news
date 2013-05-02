@@ -149,7 +149,7 @@
 			<label index="news-folder">News</label>
 		</languageKey>
 
-		<languageKey index="dk" type="array">
+		<languageKey index="da" type="array">
 			<label index="pi1_title">Nyhedssystem</label>
 			<label index="pi1_plus_wiz_description">Alsidigt nyhedssystem</label>
 
