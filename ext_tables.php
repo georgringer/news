@@ -403,12 +403,15 @@ $tempColumns = array(
 	)
 );
 
-
-t3lib_div::loadTCA('be_groups');
+if (version_compare(TYPO3_branch, '6.1', '<')) {
+	t3lib_div::loadTCA('be_groups');
+}
 t3lib_extMgm::addTCAcolumns('be_groups', $tempColumns, 1);
 t3lib_extMgm::addToAllTCAtypes('be_groups', 'tx_news_categorymounts;;;;1-1-1');
 
-t3lib_div::loadTCA('be_users');
+if (version_compare(TYPO3_branch, '6.1', '<')) {
+	t3lib_div::loadTCA('be_users');
+}
 t3lib_extMgm::addTCAcolumns('be_users', $tempColumns, 1);
 t3lib_extMgm::addToAllTCAtypes('be_users', 'tx_news_categorymounts;;;;1-1-1');
 ?>
