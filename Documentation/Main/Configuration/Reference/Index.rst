@@ -421,7 +421,7 @@ The following table describes the settings concerning the list view.
 Reference for detail view
 """""""""""""""""""""""""
 
-The following table describes the settings concerning the list view.
+The following table describes the settings concerning the detail view.
 
 **Important:** Those are set by using plugin.tx\_news.settings.detail!
 
@@ -442,15 +442,19 @@ The following table describes the settings concerning the list view.
 
 
  - :Property:
-
+         errorHandling
 
    :Data type:
-
+         string
 
    :Description:
-
+         If no news entry is found, it is possible to use various types of error handling.
+         * **redirectToListViev**: This will redirect to the list view on the same page.
+         * **redirectToPage**: Redirect to any page by using the syntax redirectToPage,<pageid>,<status>. This means e.g. redirectToPage,123,404 to redirect to the page with UID 123 and error code 404.
+         * **pageNotFoundHandler**: The default page not found handler will be called.
 
    :Default:
+
 
 
 Reference for searchform view

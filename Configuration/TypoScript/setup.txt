@@ -119,6 +119,7 @@ plugin.tx_news {
 		#  Detail
 		# --------------
 		detail {
+			errorHandling = pageNotFoundHandler
 			registerProperties = keywords,title
 			showSocialShareButtons = 1
 
@@ -128,7 +129,7 @@ plugin.tx_news {
 						# choose the rel tag like gallery[fo]
 					lightbox = lightbox[myImageSet]
 					maxWidth = 282
-					maxHeight = 
+					maxHeight =
 				}
 
 				video {
