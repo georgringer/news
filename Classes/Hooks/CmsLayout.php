@@ -164,13 +164,17 @@ class Tx_News_Hooks_CmsLayout {
 				$pageRecord = t3lib_BEfunc::getRecord('pages', $newsRecord['pid']);
 
 				if (is_array($pageRecord)) {
-					$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
-					$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
+					$iconPage = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
+					$iconNews = t3lib_iconWorks::getSpriteIconForRecord('tx_news_domain_model_news', $newsRecord, array('title' => 'Uid: ' . $newsRecord['uid']));
 
-					$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
+					$onClickPage = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'], 1, '', '+info,edit,view', TRUE);
+					$onClickNews = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($iconNews, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
+
+					$content = '<a href="#" onclick="' . htmlspecialchars($onClickPage) . '">' . $iconPage . '</a>' .
 						htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord)) . ': ' .
-						htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
-						' <small>(' . $newsRecord['uid'] . ')</small>';
+						'<a href="#" onclick="' . htmlspecialchars($onClickNews) . '">' .
+							$iconNews . htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
+						'</a>';
 				} else {
 					/** @var $message t3lib_FlashMessage */
 					$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $newsRecord['pid']);
