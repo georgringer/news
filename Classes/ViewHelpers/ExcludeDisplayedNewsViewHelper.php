@@ -18,7 +18,7 @@
  ***************************************************************/
 
 /**
- * ViewHelper to exlude news items in other plugins
+ * ViewHelper to exclude news items in other plugins
  *
  * Example
  * <n:excludeDisplayedNews newsItem="{newsItem}" />

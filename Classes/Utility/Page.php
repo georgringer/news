@@ -89,6 +89,7 @@ class Tx_News_Utility_Page {
 	 * @param integer $pageUid page to start with
 	 * @param integer $treeLevel count of levels
 	 * @return t3lib_pageTree
+	 * @throws Exception
 	 */
 	public static function pageTree($pageUid, $treeLevel) {
 		if (TYPO3_MODE !== 'BE') {

@@ -198,7 +198,7 @@ plugin.tx_news {
 			fax_number =
 			latitude =
 			longitude =
-			street-adress =
+			street-address =
 			locality =
 			region =
 			postal-code =

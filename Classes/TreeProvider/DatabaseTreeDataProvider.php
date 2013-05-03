@@ -35,9 +35,10 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 	/**
 	 * Builds a complete node including children
 	 *
-	 * @param \TYPO3\CMS\Backend\Tree\TreeNode $basicNode
+	 * @param \t3lib_tree_Node|\TYPO3\CMS\Backend\Tree\TreeNode $basicNode
 	 * @param NULL|t3lib_tree_tca_DatabaseNode $parent
 	 * @param integer $level
+	 * @param bool $restriction
 	 * @return t3lib_tree_tca_DatabaseNode node
 	 */
 	protected function buildRepresentationForNode (t3lib_tree_Node $basicNode, t3lib_tree_tca_DatabaseNode $parent = NULL, $level = 0, $restriction = FALSE) {

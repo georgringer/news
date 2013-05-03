@@ -343,7 +343,7 @@ class ext_update {
 
 		} elseif (is_dir('../uploads/tx_news/')) {
 				$status = t3lib_FlashMessage::OK;
-				$message = 'No action needed, directory uploads/tx_news exists and uploads/tx_news2 doesn\'t.';
+				$message = 'No action needed, directory uploads/tx_news exists and uploads/tx_news2 does not.';
 		} else {
 			$status = t3lib_FlashMessage::ERROR;
 			$message = 'None of the directories uploads/tx_news/ and uploads/tx_news/ exist. Data lost or just no directory there? Solve it manually!';

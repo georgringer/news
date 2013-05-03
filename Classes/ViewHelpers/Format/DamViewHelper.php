@@ -44,6 +44,7 @@ class Tx_News_ViewHelpers_Format_DamViewHelper extends Tx_Fluid_Core_ViewHelper_
 	 * @param integer $uid uid of media element.
 	 * @param string $as name of element which is used for the dam record
 	 * @return string
+	 * @throws Tx_Fluid_Core_ViewHelper_Exception
 	 */
 	public function render($uid, $as) {
 		if (!t3lib_extMgm::isLoaded('dam')) {

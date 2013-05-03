@@ -113,7 +113,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	/**
 	 * Inject the ttcontent repository
 	 *
-	 * @param Tx_News_Domain_Repository_CategoryRepository $ttContentRepository
+	 * @param Tx_News_Domain_Repository_TtContentRepository $ttContentRepository
 	 * @return void
 	 */
 	public function injectTtContentRepository(Tx_News_Domain_Repository_TtContentRepository $ttContentRepository) {
@@ -312,7 +312,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	}
 
 	/**
-	 * @param array $importItem
+	 * @param array $queueItem
 	 * @param array $importItemOverwrite
 	 * @return void
 	 */
