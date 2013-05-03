@@ -103,8 +103,10 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 */
 	protected function init() {
 		$t3libUtilityVersionNumber = PATH_t3lib . 'utility/class.t3lib_utility_versionnumber.php';
-		if (is_file($t3libUtilityVersionNumber)) {
+		if (@is_file($t3libUtilityVersionNumber)) {
 			require_once($t3libUtilityVersionNumber);
+		} else {
+			require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('core') . 'Classes/Utility/VersionNumberUtility.php';
 		}
 		require_once(t3lib_extMgm::extPath('news', 'Classes/Utility/Compatibility.php'));
 	}
