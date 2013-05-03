@@ -38,6 +38,7 @@ class Tx_News_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewHelper
 	 * @param bool $currentDate if true, the current date is used
 	 * @param bool $strftime if true, the strftime is used instead of date()
 	 * @return string Formatted date
+	 * @throws Tx_Fluid_Core_ViewHelper_Exception
 	 */
 	public function render($date = NULL, $format = '%Y-%m-%d', $currentDate = FALSE, $strftime = TRUE) {
 		if ($currentDate) {

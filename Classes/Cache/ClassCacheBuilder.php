@@ -116,6 +116,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 *
 	 * @param string $content
 	 * @param string $identifier identifier of the file
+	 * @throws RuntimeException
 	 * @return string path of the written file
 	 */
 	protected function writeFile($content, $identifier) {
@@ -140,6 +141,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 *
 	 * @param string $identifier identifier
 	 * @return string
+	 * @throws InvalidArgumentException
 	 */
 	protected function generateFileNameFromIdentifier($identifier) {
 		if (!is_string($identifier) || empty($identifier)) {
@@ -178,6 +180,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 * @param boolean $renderPartialInfo
 	 * @return string
 	 * @throws Exception
+	 * @throws InvalidArgumentException
 	 */
 	protected function changeCode($code, $filePath, $removeClassDefinition = TRUE, $renderPartialInfo = TRUE) {
 		if (empty($code)) {

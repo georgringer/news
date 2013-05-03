@@ -94,6 +94,9 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 *
 	 * @param Tx_Extbase_Persistence_QueryInterface $query
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @throws UnexpectedValueException
+	 * @throws InvalidArgumentException
+	 * @throws Exception
 	 * @return array<Tx_Extbase_Persistence_QOM_Constraint>
 	 */
 	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {

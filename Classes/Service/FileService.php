@@ -35,6 +35,7 @@ class Tx_News_Service_FileService {
 	 *
 	 * @param string $url
 	 * @return string
+	 * @throws UnexpectedValueException
 	 */
 	public static function getCorrectUrl($url) {
 		if (empty($url)) {

@@ -50,6 +50,7 @@ class Tx_News_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 * @param integer $width width
 	 * @param integer $height height
 	 * @return string
+	 * @throws UnexpectedValueException
 	 */
 	public function render($classes, Tx_News_Domain_Model_Media $element, $width, $height) {
 		$content = '';

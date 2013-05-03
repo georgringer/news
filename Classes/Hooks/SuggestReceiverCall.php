@@ -42,6 +42,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	 * @param array $params
 	 * @param TYPO3AJAX $ajaxObj
 	 * @return void
+	 * @throws Exception
 	 */
 	public function createTag(array $params, TYPO3AJAX $ajaxObj) {
 		$request = t3lib_div::_POST();
@@ -83,6 +84,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	 *
 	 * @param array $request ajax request
 	 * @return integer
+	 * @throws Exception
 	 */
 	protected function getTagUid(array $request) {
 		$tagUid = 0;

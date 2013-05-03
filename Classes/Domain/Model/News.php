@@ -222,7 +222,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Initialize categories and media relation
 	 *
-	 * @return void
+	 * @return \Tx_News_Domain_Model_News
 	 */
 	public function __construct() {
 		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
@@ -1109,7 +1109,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get start time
 	 *
-	 * @return integer
+	 * @return DateTime
 	 */
 	public function getStarttime() {
 		return $this->starttime;
@@ -1155,7 +1155,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get endtime
 	 *
-	 * @return integer
+	 * @return DateTime
 	 */
 	public function getEndtime() {
 		return $this->endtime;
