@@ -1,26 +1,26 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2011 Georg Ringer <typo3@ringerge.org>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2011 Georg Ringer <typo3@ringerge.org>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * Compatibility class which is used as wrapper for deprecated functions
@@ -42,7 +42,7 @@ class Tx_News_Utility_Compatibility {
 		$result = '';
 
 		if (self::isEqualOrHigherSixZero()) {
-			$result = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger($verNumberStr);
+			$result = eval('\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger($verNumberStr);');
 		} elseif (class_exists('t3lib_utility_VersionNumber')) {
 			$result = t3lib_utility_VersionNumber::convertVersionNumberToInteger($verNumberStr);
 		} else {
@@ -65,7 +65,7 @@ class Tx_News_Utility_Compatibility {
 	public static function forceIntegerInRange($theInt, $min, $max = 2000000000, $zeroValue = 0) {
 		$result = '';
 		if (self::isEqualOrHigherSixZero()) {
-			$result = \TYPO3\CMS\Core\Utility\MathUtility::forceIntegerInRange($theInt, $min, $max, $zeroValue);
+			$result = eval('\TYPO3\CMS\Core\Utility\MathUtility::forceIntegerInRange($theInt, $min, $max, $zeroValue);');
 		} elseif (class_exists('t3lib_utility_Math')) {
 			$result = t3lib_utility_Math::forceIntegerInRange($theInt, $min, $max, $zeroValue);
 		} else {
@@ -84,7 +84,7 @@ class Tx_News_Utility_Compatibility {
 	public static function canBeInterpretedAsInteger($var) {
 		$result = '';
 		if (self::isEqualOrHigherSixZero()) {
-			$result = \TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($var);
+			$result = eval('\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($var);');
 		} elseif (class_exists('t3lib_utility_Math')) {
 			$result = t3lib_utility_Math::canBeInterpretedAsInteger($var);
 		} else {
@@ -103,7 +103,7 @@ class Tx_News_Utility_Compatibility {
 	public static function convertToPositiveInteger($theInt) {
 		$result = '';
 		if (self::isEqualOrHigherSixZero()) {
-			$result = \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($theInt);
+			$result = eval('\TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($theInt);');
 		} elseif (class_exists('t3lib_utility_Math')) {
 			$result = t3lib_utility_Math::convertToPositiveInteger($theInt);
 		} else {
