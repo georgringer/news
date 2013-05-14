@@ -112,10 +112,12 @@ class Tx_News_Hooks_ItemsProcFunc {
 				// check if there is a flexform configuration
 			if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
 				$selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
-
 					// check for selected action
 				if (t3lib_div::isFirstPartOfStr($selectedActionList, 'Category')) {
 					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
+				} elseif (t3lib_div::isFirstPartOfStr($selectedActionList, 'Tag')) {
+					$this->removeNonValidOrderFields($config, 'tx_news_domain_model_tag');
+					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'];
 				} else {
 					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'];
 				}
@@ -138,6 +140,23 @@ class Tx_News_Hooks_ItemsProcFunc {
 					$label = htmlspecialchars($item);
 				}
 				array_push($config['items'], array($label, $item));
+			}
+		}
+	}
+
+	/**
+	 * Remove not valid fields from ordering
+	 *
+	 * @param array $config tca items
+	 * @param string $tableName table name
+	 * @return void
+	 */
+	protected function removeNonValidOrderFields(array &$config, $tableName) {
+		$allowedFields = array_keys($GLOBALS['TCA'][$tableName]['columns']);
+
+		foreach($config['items'] as $key => $item) {
+			if ($item[1] != '' && !in_array($item[1], $allowedFields)) {
+				unset($config['items'][$key]);
 			}
 		}
 	}
