@@ -64,8 +64,8 @@ class Tx_News_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 		}
 
 		if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
-			if ($useNameAttribute) {
-				$attributesContent = $this->tag->getAttribute('property');
+			if ($useNameAttribute && $this->arguments['property'] !== '') {
+				$attributesContent = $this->arguments['property'];
 				$this->tag->removeAttribute('property');
 				$this->tag->addAttribute('name', $attributesContent);
 			}
