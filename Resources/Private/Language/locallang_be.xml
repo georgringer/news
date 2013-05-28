@@ -137,6 +137,10 @@
 			<label index="tag_suggest_error_no-tag-created">No new tag created!</label>
 			<label index="tag_suggest_error_no-pid-defined">No page defined to save tag. Please add the id in the settings of the extension manager.</label>
 
+			<label index="module.headline">Settings</label>
+			<label index="module.recursive">Recursive</label>
+			<label index="module.timeRestriction">Time Restriction</label>
+			<label index="module.createNewCategory">Create a new category</label>
 
 			<!-- BE Module Administration -->
 			<label index="administration.newsPidListing.header">List pages with count of news &amp; category records</label>
@@ -249,6 +253,11 @@
 			<label index="tag_suggest_error_no-newsid">Ingen nyhed angivet!</label>
 			<label index="tag_suggest_error_no-pid-found">Der kunne ikke findes et side-uid for tag-elementer via Extension Manager-indstillingerne!</label>
 			<label index="tag_suggest_error_no-tag-created">Nyt tag blev ikke oprettet!</label>
+
+			<label index="module.headline">Indstillinger</label>
+			<label index="module.recursive">Rekursiv</label>
+			<label index="module.timeRestriction">Tidsbegrænsning</label>
+			<label index="module.createNewCategory">Opret ny kategori</label>
 		</languageKey>
 
 		<languageKey index="es" type="array">
