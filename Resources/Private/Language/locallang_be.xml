@@ -254,6 +254,11 @@
 			<label index="tag_suggest_error_no-pid-found">Der kunne ikke findes et side-uid for tag-elementer via Extension Manager-indstillingerne!</label>
 			<label index="tag_suggest_error_no-tag-created">Nyt tag blev ikke oprettet!</label>
 
+			<label index="administration.newsPidListing.header">Liste sider med antallet af nyheder og kategorier</label>
+			<label index="administration.newsPidListing.description">Vælg en rekursiv niveau til at vise din side træ med de relaterede poster.
+				Klik på sidens titel for at vise nyhederne på siden.
+			</label>
+
 			<label index="module.headline">Indstillinger</label>
 			<label index="module.recursive">Rekursiv</label>
 			<label index="module.timeRestriction">Tidsbegrænsning</label>
