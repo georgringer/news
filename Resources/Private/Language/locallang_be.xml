@@ -141,6 +141,11 @@
 			<label index="module.recursive">Recursive</label>
 			<label index="module.timeRestriction">Time Restriction</label>
 			<label index="module.createNewCategory">Create a new category</label>
+			<label index="module.topNewsYes">Yes</label>
+			<label index="module.topNewsNo">No</label>
+			<label index="module.createNewNewsRecord">Create new news record</label>
+			<label index="module.newsListing">News Listing</label>
+			<label index="module.newsPidListing">News Pid listing</label>
 
 			<!-- BE Module Administration -->
 			<label index="administration.newsPidListing.header">List pages with count of news &amp; category records</label>
@@ -263,6 +268,11 @@
 			<label index="module.recursive">Rekursiv</label>
 			<label index="module.timeRestriction">Tidsbegrænsning</label>
 			<label index="module.createNewCategory">Opret ny kategori</label>
+			<label index="module.topNewsYes">Ja</label>
+			<label index="module.topNewsNo">Nej</label>
+			<label index="module.createNewNewsRecord">Opret ny nyhed</label>
+			<label index="module.newsListing">Nyheder oversigt</label>
+			<label index="module.newsPidListing">Nyheder Pid liste</label>
 		</languageKey>
 
 		<languageKey index="es" type="array">
