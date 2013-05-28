@@ -26,16 +26,20 @@
 	<f:form name="demand" object="{demand}">
 		<div class="settings">
 			<div class="form">
-				<h3>Settings</h3>
+				<h3><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.headline" /></h3>
 
 				<div class="field">
-					<label for="recursive">Recursive:</label>
+					<label for="recursive">
+						<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.recursive" />
+					</label>
 					<f:form.select property="recursive" options="{0:0,1:1,2:2,3:3,4:4,5:5}" id="recursive" />
 					<div class="clear"></div>
 				</div>
 
 				<div class="field">
-					<label for="timeRestriction">Time Restriction</label>
+					<label for="timeRestriction">
+						<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.timeRestriction" />
+					</label>
 					<f:form.textfield property="timeRestriction" id="timeRestriction" />
 					<div class="clear"></div>
 				</div>
@@ -101,7 +105,9 @@
 					</div>
 				</f:if>
 
-				<f:link.action action="newCategory">create new category</f:link.action>
+				<f:link.action action="newCategory">
+					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewCategory" />
+				</f:link.action>
 			</div>
 
 			<div class="clear"></div>
@@ -123,13 +129,13 @@
 							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'istopnews')}" icon="actions-document-open" />
 						</td>
 						<td class="date">
-								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" /></span>
-								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'datetime')}" icon="actions-document-open" />
+							<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" /></span>
+							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'datetime')}" icon="actions-document-open" />
 						</td>
 						<td class="date">
 							<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" /></span>
 							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'archive')}" icon="actions-document-open" />
-							</td>
+						</td>
 						<td>
 							<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.tstamp" />
 						</td>
