@@ -146,7 +146,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 			}
 		}
 
-		$link = $cObj->typolink($this->renderChildren(), $configuration);
+		$link = $cObj->typolink('', $configuration);
 		if ($uriOnly) {
 			return $link;
 		}
