@@ -174,6 +174,11 @@ Here is a full RealURL configuration with the explanation below. ::
 						'GETvar' => 'tx_news_pi1[overwriteDemand][month]',
 					),
 				),
+				'pag' => array(
+					array(
+						'GETvar' => 'tx_news_pi1[@widget_0][currentPage]',
+					),
+				),
 			),
 		),
 
