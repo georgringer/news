@@ -92,6 +92,8 @@
 				<f:format.html><f:format.crop maxCharacters="{settings.cropMaxCharacters}" respectWordBoundaries="1">{newsItem.bodytext}</f:format.crop></f:format.html>
 			</f:else>
 		</f:if>
+
+		<n:link newsItem="{newsItem}" settings="{settings}" class="more"><f:translate key="more-link" /></n:link>
 	</div>
 
 	<!-- footer information -->
