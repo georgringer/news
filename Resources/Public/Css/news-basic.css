@@ -63,7 +63,8 @@
 
 .news .article .news-img-wrap img {
 	float: left;
-	height: auto;
+	height: 100%;
+	width: auto;
 }
 
 .news .article h3 {
