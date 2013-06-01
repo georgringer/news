@@ -56,16 +56,14 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			if ($includeSubCategories) {
 				$subCategories = t3lib_div::trimExplode(',', Tx_News_Service_CategoryService::getChildrenCategories($category, 0, '', TRUE), TRUE);
 				$subCategoryConstraint = array();
-				$mixedConstraint = array();
 				$subCategoryConstraint[] = $query->contains('categories', $category);
 				if (count($subCategories) > 0) {
 					foreach ($subCategories as $subCategory) {
 						$subCategoryConstraint[] = $query->contains('categories', $subCategory);
 					}
-					$mixedConstraint[] = $query->logicalOr($subCategoryConstraint);
 				}
+				$categoryConstraints[] = $query->logicalOr($subCategoryConstraint);
 
-				$categoryConstraints[] = $query->logicalAnd($mixedConstraint);
 			} else {
 				$categoryConstraints[] = $query->contains('categories', $category);
 			}
