@@ -99,6 +99,9 @@ Every configuration starts with tx\_news.
          will set the archive date on the the next friday.
 
 
+Reference TsConfig for the Administration Module (Backend)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 All configuration can happen either in  **Page TsConfig** but can also
 be overridden by the  **User TsConfig** by prefixing the setting with
 **page.** . As an example: Placing the following snippet in Page
@@ -121,6 +124,17 @@ Having something like ::
 
 inside the User TsConfig of a backend user will override any Page
 TsConfig.
+
+The possible fields for the preselection are:
+
+* recursive
+* timeRestriction
+* topNewsRestriction
+* limit
+* offset
+* sortingField
+* sortingDirection
+* categoryConjunction
 
 
 Clear caches if a news record changes
