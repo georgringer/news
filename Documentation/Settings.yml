@@ -4,8 +4,8 @@
 
 ---
 conf.py:
-  copyright: 1992-2099
-  project: Title
-  version: 0.0(.0)
-  release: 0.0.0
+  copyright: 1992-2013
+  project: TYPO3 Extension "news"
+  version: 2.2.0
+  release: 2.2.0
 ...
