@@ -207,8 +207,13 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		}
 
 		// Tags
-		if ($demand->getTags()) {
-			$constraints[] = $query->contains('tags', $demand->getTags());
+		$tags = $demand->getTags();
+		if ($tags) {
+			$tagList = explode(',', $tags);
+
+			foreach ($tagList as $singleTag) {
+				$constraints[] =  $query->contains('tags', $singleTag);
+			}
 		}
 
 		// dummy records, used for UnitTests only!
