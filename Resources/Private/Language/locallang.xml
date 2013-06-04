@@ -19,6 +19,8 @@
 			<label index="paginate_overall">Page %s from %s.</label>
 			<label index="paginate_next">Next</label>
 			<label index="paginate_previous">Previous</label>
+			<label index="categories">Categories</label>
+			<label index="tags">Tags</label>
 
 			<label index="entry">entry</label>
 			<label index="entries">entries</label>
@@ -123,6 +125,8 @@
 			<label index="related-files">Verwandte Dateien</label>
 			<label index="related-links">Verwandte Links</label>
 			<label index="author">erstellt von %s</label>
+			<label index="categories">Kategorien</label>
+			<label index="tags">Tags</label>
 
 			<label index="SearchResult">%1$s Treffer für die Suche nach "%2$s".</label>
 			<label index="paginate_overall">Seite %s von %s.</label>
