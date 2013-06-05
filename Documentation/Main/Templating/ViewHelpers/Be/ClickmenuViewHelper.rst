@@ -1,6 +1,8 @@
 Be / ClickmenuViewHelper
 -----------------------------
 
+ViewHelper to create the clickmenu
+
 **Type:** Basic
 
 
@@ -20,7 +22,7 @@ General properties
    :Type:
          string
    :Description:
-         
+         Name of the table
    :Default value:
          
 
@@ -29,6 +31,6 @@ General properties
    :Type:
          integer
    :Description:
-         
+         uid of the record
    :Default value:
 

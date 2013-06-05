@@ -1,6 +1,8 @@
 ObjectViewHelper
 ---------------------
 
+ViewHelper to render extended objects
+
 **Type:** Basic
 
 

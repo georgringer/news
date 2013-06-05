@@ -1,6 +1,8 @@
 Social / Facebook / LikeViewHelper
 ---------------------------------------
 
+ViewHelper to add a like button
+
 **Type:** Tag Based
 
 

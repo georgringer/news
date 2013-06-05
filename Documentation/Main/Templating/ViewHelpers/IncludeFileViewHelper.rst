@@ -1,6 +1,8 @@
 IncludeFileViewHelper
 --------------------------
 
+ViewHelper to include a css/js file
+
 **Type:** Basic
 
 
@@ -20,7 +22,7 @@ General properties
    :Type:
          boolean
    :Description:
-         if file should be compressed
+         Define if file should be compressed
    :Default value:
          
 
@@ -29,6 +31,6 @@ General properties
    :Type:
          string
    :Description:
-         path to the file
+         Path to the CSS/JS file which should be included
    :Default value:
 

@@ -1,6 +1,8 @@
 Be / MultiEditLinkViewHelper
 ---------------------------------
 
+ViewHelper to create javascript to edit fields of multiple records
+
 **Type:** Basic
 
 

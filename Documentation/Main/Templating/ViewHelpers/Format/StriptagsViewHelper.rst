@@ -1,6 +1,8 @@
 Format / StriptagsViewHelper
 ---------------------------------
 
+ViewHelper to download a file
+
 **Type:** Basic
 
 

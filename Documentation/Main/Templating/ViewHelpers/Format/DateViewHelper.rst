@@ -1,6 +1,8 @@
 Format / DateViewHelper
 ----------------------------
 
+ViewHelper to format a date, using strftime
+
 **Type:** Basic
 
 

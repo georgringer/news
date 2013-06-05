@@ -1,6 +1,8 @@
 Be / Buttons / IconForRecordViewHelper
 -------------------------------------------
 
+ViewHelper to show sprite icon for a record
+
 **Type:** Basic
 
 

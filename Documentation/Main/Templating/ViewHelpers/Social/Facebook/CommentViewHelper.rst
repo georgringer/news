@@ -1,6 +1,8 @@
 Social / Facebook / CommentViewHelper
 ------------------------------------------
 
+ViewHelper to comment content
+
 **Type:** Tag Based
 
 

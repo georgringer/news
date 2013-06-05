@@ -1,6 +1,8 @@
 Social / Facebook / ShareViewHelper
 ----------------------------------------
 
+ViewHelper to share content
+
 **Type:** Tag Based
 
 

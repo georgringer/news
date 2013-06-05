@@ -1,6 +1,8 @@
 Social / GooglePlusViewHelper
 ----------------------------------
 
+ViewHelper to add a google+ button
+
 **Type:** Tag Based
 
 
@@ -56,7 +58,7 @@ General properties
    :Type:
          string
    :Description:
-         
+         Alternative JavaScript code which is used
    :Default value:
          
 

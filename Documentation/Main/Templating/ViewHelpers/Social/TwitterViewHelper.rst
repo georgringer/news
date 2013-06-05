@@ -1,6 +1,8 @@
 Social / TwitterViewHelper
 -------------------------------
 
+ViewHelper to add a twitter button
+
 **Type:** Tag Based
 
 

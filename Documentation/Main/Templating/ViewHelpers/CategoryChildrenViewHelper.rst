@@ -1,6 +1,8 @@
 CategoryChildrenViewHelper
 -------------------------------
 
+ViewHelper to get children of a category
+
 **Type:** Basic
 
 
@@ -20,7 +22,7 @@ General properties
    :Type:
          string
    :Description:
-         
+         name of the new object
    :Default value:
          
 
