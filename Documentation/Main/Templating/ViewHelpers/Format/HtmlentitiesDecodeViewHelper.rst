@@ -1,6 +1,8 @@
 Format / HtmlentitiesDecodeViewHelper
 ------------------------------------------
 
+ViewHelper for html_entity_decode
+
 **Type:** Basic
 
 

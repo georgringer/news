@@ -1,6 +1,8 @@
 Widget / PaginateViewHelper
 --------------------------------
 
+This ViewHelper renders a Pagination of objects.
+
 **Type:** Widget
 
 

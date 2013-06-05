@@ -1,6 +1,8 @@
 Format / FileDownloadViewHelper
 ------------------------------------
 
+ViewHelper to download a file
+
 **Type:** Basic
 
 
@@ -20,7 +22,7 @@ General properties
    :Type:
          array
    :Description:
-         
+         configuration used to render the filelink cObject
    :Default value:
          Array
 
@@ -29,7 +31,7 @@ General properties
    :Type:
          string
    :Description:
-         file
+         Path to the file
    :Default value:
          
 
@@ -38,6 +40,6 @@ General properties
    :Type:
          boolean
    :Description:
-         
+         define if an error should be displayed if file not found
    :Default value:
 

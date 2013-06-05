@@ -1,6 +1,8 @@
 Format / DamViewHelper
 ---------------------------
 
+ViewHelper to get full dam record
+
 **Type:** Basic
 
 

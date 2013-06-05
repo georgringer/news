@@ -1,6 +1,8 @@
 Social / DisqusViewHelper
 ------------------------------
 
+ViewHelper to add disqus thread
+
 **Type:** Basic
 
 

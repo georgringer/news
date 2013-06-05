@@ -1,6 +1,8 @@
 Format / FileSizeViewHelper
 --------------------------------
 
+ViewHelper to render the filesize
+
 **Type:** Basic
 
 
@@ -20,7 +22,7 @@ General properties
    :Type:
          string
    :Description:
-         
+         Path to the file
    :Default value:
          
 
@@ -29,7 +31,7 @@ General properties
    :Type:
          string
    :Description:
-         
+         Labels for bytes, kilo, mega and giga separated by vertical bar (\|) and possibly encapsulated in "". Eg\: " \| K\| M\| G" (which is the default value)
    :Default value:
          
 
@@ -38,6 +40,6 @@ General properties
    :Type:
          boolean
    :Description:
-         
+         Define if an error should be displayed if file not found
    :Default value:
 

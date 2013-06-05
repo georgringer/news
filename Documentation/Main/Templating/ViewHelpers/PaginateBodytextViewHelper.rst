@@ -1,6 +1,8 @@
 PaginateBodytextViewHelper
 -------------------------------
 
+Paginate the bodytext which is very useful for longer texts or to increase
+
 **Type:** Basic
 
 
@@ -20,7 +22,7 @@ General properties
    :Type:
          string
    :Description:
-         
+         name of property which holds the text
    :Default value:
          
 
@@ -29,7 +31,7 @@ General properties
    :Type:
          integer
    :Description:
-         
+         Selected page
    :Default value:
          
 
@@ -38,7 +40,7 @@ General properties
    :Type:
          Tx\_News\_Domain\_Model\_News
    :Description:
-         
+         current news object
    :Default value:
          
 
@@ -47,7 +49,7 @@ General properties
    :Type:
          string
    :Description:
-         
+         Token used to split the text
    :Default value:
          ###more###
 

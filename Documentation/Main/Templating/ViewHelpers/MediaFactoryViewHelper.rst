@@ -1,6 +1,8 @@
 MediaFactoryViewHelper
 ---------------------------
 
+ViewHelper to show videos
+
 **Type:** Basic
 
 
@@ -20,7 +22,7 @@ General properties
    :Type:
          string
    :Description:
-         
+         list of classes which are used to render the media object
    :Default value:
          
 
@@ -29,7 +31,7 @@ General properties
    :Type:
          Tx\_News\_Domain\_Model\_Media
    :Description:
-         
+         Current media object
    :Default value:
          
 
@@ -38,7 +40,7 @@ General properties
    :Type:
          integer
    :Description:
-         
+         height
    :Default value:
          
 
@@ -47,6 +49,6 @@ General properties
    :Type:
          integer
    :Description:
-         
+         width
    :Default value:
 

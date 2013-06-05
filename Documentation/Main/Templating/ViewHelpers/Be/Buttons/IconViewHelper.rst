@@ -1,6 +1,8 @@
 Be / Buttons / IconViewHelper
 ----------------------------------
 
+View helper which returns save button with icon
+
 **Type:** Basic
 
 

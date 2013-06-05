@@ -1,6 +1,8 @@
 ExcludeDisplayedNewsViewHelper
 -----------------------------------
 
+ViewHelper to exclude news items in other plugins
+
 **Type:** Basic
 
 

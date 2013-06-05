@@ -1,7 +1,7 @@
-LinkViewHelper
--------------------
+Social / GravatarViewHelper
+--------------------------------
 
-ViewHelper to render links from news records to detail view or page
+Hashes an email-address and fetches the image from gravatar
 
 **Type:** Tag Based
 
@@ -36,6 +36,15 @@ General properties
          
 
  - :Name:
+         alt
+   :Type:
+         string
+   :Description:
+         alt-text
+   :Default value:
+         
+
+ - :Name:
          class
    :Type:
          string
@@ -45,20 +54,20 @@ General properties
          
 
  - :Name:
-         configuration
-   :Type:
-         array
-   :Description:
-         optional typolink configuration
-   :Default value:
-         Array
-
- - :Name:
          dir
    :Type:
          string
    :Description:
          Text direction for this HTML element. Allowed strings\: "ltr" (left to right), "rtl" (right to left)
+   :Default value:
+         
+
+ - :Name:
+         email
+   :Type:
+         string
+   :Description:
+         e-mail address of the user
    :Default value:
          
 
@@ -81,15 +90,6 @@ General properties
          
 
  - :Name:
-         \* newsItem
-   :Type:
-         Tx\_News\_Domain\_Model\_News
-   :Description:
-         current news object
-   :Default value:
-         
-
- - :Name:
          onclick
    :Type:
          string
@@ -99,13 +99,13 @@ General properties
          
 
  - :Name:
-         settings
+         size
    :Type:
-         array
+         integer
    :Description:
-         
+         size since the images are square
    :Default value:
-         Array
+         
 
  - :Name:
          style
@@ -131,14 +131,5 @@ General properties
          string
    :Description:
          Tooltip text of element
-   :Default value:
-         
-
- - :Name:
-         uriOnly
-   :Type:
-         boolean
-   :Description:
-         return only the url without the a-tag
    :Default value:
 

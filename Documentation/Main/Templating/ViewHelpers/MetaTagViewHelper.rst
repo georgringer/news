@@ -1,6 +1,8 @@
 MetaTagViewHelper
 ----------------------
 
+ViewHelper to render meta tags
+
 **Type:** Tag Based
 
 
@@ -57,5 +59,14 @@ General properties
          boolean
    :Description:
          If set, current domain is used
+   :Default value:
+         
+
+ - :Name:
+         useNameAttribute
+   :Type:
+         boolean
+   :Description:
+         If set, the meta tag is built by using the attribute name="" instead of property
    :Default value:
 
