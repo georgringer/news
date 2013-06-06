@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+{namespace n=Tx_News_ViewHelpers}<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>{settings.list.rss.channel.title}</title>
+	<link href="{settings.list.rss.channel.link}"/>
+	<link rel="self" href="<f:uri.page pageType="9818"/>"/>
+	<id><f:uri.page/></id>
+	<updated><n:format.date format="c" currentDate="1" strftime="0"/></updated>
+	<f:if condition="{news}">
+		<f:for each="{news}" as="newsItem">
+			<entry>
+				<id>{settings.list.rss.channel.link}news-{newsItem.uid}.atom</id>
+				<title><n:format.hsc>{newsItem.title}</n:format.hsc></title>
+				<author>
+					<name>{newsItem.author}</name>
+					<f:if condition="{newsItem.author_email}"><email>{newsItem.author_email}</email></f:if>
+				</author>
+				<published><n:format.date format="c" strftime="0">{newsItem.crdate}</n:format.date></published>
+				<updated><n:format.date format="c" strftime="0">{newsItem.datetime}</n:format.date></updated>
+				<link rel="alternate" type="text/html" href="<n:format.hsc><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></n:format.hsc>"/>
+				<summary><n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc></summary>
+				<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+					<f:format.html>{newsItem.bodytext}</f:format.html>
+				</div></content>
+			</entry>
+		</f:for>
+	</f:if>
+</feed>
