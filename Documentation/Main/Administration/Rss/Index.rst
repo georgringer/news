@@ -17,6 +17,14 @@ The "magic" which uses the List.xml template instead of the List.html is the fol
 
    plugin.tx_news.settings.format = xml
 
+Support for Atom
+******************
+
+The **Atom** format is supported since version 2.2.0. All you need to do is change the format to *atom*: ::
+
+   plugin.tx_news.settings.format = atom
+
+
 
 RSS feed by TypoScript
 """"""""""""""""""""""
