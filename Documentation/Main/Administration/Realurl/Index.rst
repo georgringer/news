@@ -149,6 +149,7 @@ Here is a full RealURL configuration with the explanation below. ::
 				)
 			),
 			'70' => 'newsDetailConfiguration',
+			'701' => 'newsDetailConfiguration', // For additional detail pages, add their uid as well
 			'71' => 'newsTagConfiguration',
 			'72' => 'newsCategoryConfiguration',
 
