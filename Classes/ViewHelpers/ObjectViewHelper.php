@@ -19,13 +19,16 @@
 
 /**
  * ViewHelper to render extended objects
- * Example
+ *
+ * # Example: Basic example
+ * <code>
  * <n:object newsItem="{newsItem}"
  * 		as="out"
  * 		className="Tx_Myext_Domain_Model_CustomModel" >
  * {out.fo}
  * </n:link>
- * Output:
+ * </code>
+ * <output>
  * Property "fo" from model Tx_Myext_Domain_Model_CustomModel
  * which extends the table tx_news_domain_model_news
  *
@@ -37,6 +40,7 @@
  *            }
  *        }
  *    }
+ * </output>
  *
  * @package TYPO3
  * @subpackage tx_news

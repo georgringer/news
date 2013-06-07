@@ -23,16 +23,17 @@
 ***************************************************************/
 
 /**
- * ViewHelper to meta tags
- * 
- * Example
- * <n:titleTag>{newsItem.title}</n:titleTag>
- * 
- * Result
- * Renders the title of the news record as title tag
+ * ViewHelper to render the page title
  *
- * @package TYPO3
- * @subpackage tx_news
+ * # Example: Basic Example
+ * # Description: Render the content of the VH as page title
+ * <code>
+ *	<n:titleTag>{newsItem.title}</n:titleTag>
+ * </code>
+ * <output>
+ *	<title>TYPO3 is awesome</title>
+ * </output>
+ *
  */
 class Tx_News_ViewHelpers_TitleTagViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 

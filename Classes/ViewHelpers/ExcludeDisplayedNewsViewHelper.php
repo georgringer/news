@@ -20,8 +20,14 @@
 /**
  * ViewHelper to exclude news items in other plugins
  *
- * Example
+ * # Example: Basic example
+ *
+ * <code>
  * <n:excludeDisplayedNews newsItem="{newsItem}" />
+ * </code>
+ * <output>
+ * None
+ * </output>
  *
  * @package TYPO3
  * @subpackage tx_news
