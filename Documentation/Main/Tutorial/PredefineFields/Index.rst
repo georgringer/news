@@ -15,7 +15,10 @@ This tutorial will show you how you can predefine values of fields in records in
 Default values
 """""""""""""""""
 
-**Good to know:** This is a feature from the TYPO3 core, so you can use this also for all other tables and fields.
+.. tip::
+
+	This is a feature from the TYPO3 core, so you can use this also for all other tables and fields.
+
 
 If you want to use some default values, you can use this code inside the TsConfig: ::
 
