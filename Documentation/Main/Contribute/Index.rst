@@ -46,6 +46,17 @@ Create a change in your local git repository and push it to gerrit. Please use t
 
 If everything is ok, the change will be merged.
 
+Improve documentation
+*************************
+
+This documentation is the first place where people expect to find the needed information. Therefore it is improved all the time.
+
+However, if you still miss things, please open an issue at Forge. As this documentation is based on reST it is very easy to improve it.
+The documentation is located in the directory **Documentation/Main/** of the extension.
+
+If you want to know more about reST, see http://wiki.typo3.org/Rest.
+
+
 Further reading
 """"""""""""""""""""""""""""""""""
 
