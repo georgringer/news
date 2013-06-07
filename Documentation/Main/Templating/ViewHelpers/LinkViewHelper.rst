@@ -141,4 +141,51 @@ General properties
    :Description:
          return only the url without the a-tag
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic link
+"""""""""""""""
+
+
+
+Code: ::
+
+	 <n:link newsItem="{newsItem}" settings="{settings}">	 	{newsItem.title}	 </n:link>
+
+Output: ::
+
+	 A link to the given news record using the news title as link text
+
+
+Set an additional attribute
+""""""""""""""""""""""""""""""""
+
+Available: class, dir, id, lang, style, title, accesskey, tabindex, onclick
+
+Code: ::
+
+	 <n:link newsItem="{newsItem}" settings="{settings}" class="a-link-class">fo</n:link>
+
+Output: ::
+
+	 <a href="link" class="a-link-class">fo</n:link>
+
+
+Return the link only
+"""""""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" />
+
+Output: ::
+
+	 The uri is returned
 

@@ -69,4 +69,37 @@ General properties
    :Description:
          If set, the meta tag is built by using the attribute name="" instead of property
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic Example: News title as og:title meta tag
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:metaTag property="og:title" content="{newsItem.title}" />
+
+Output: ::
+
+	 <meta property="og:title" content="TYPO3 is awesome" />
+
+
+Force the attribute "name"
+"""""""""""""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:metaTag property="keywords" content="{newsItem.keywords}" useNameAttribute="1" />
+
+Output: ::
+
+	 <meta name="keywords" content="news 1, news 2" />
 
