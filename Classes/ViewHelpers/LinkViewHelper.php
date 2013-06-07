@@ -19,14 +19,33 @@
 
 /**
  * ViewHelper to render links from news records to detail view or page
- * Example
- * <n:link newsItem="{newsItem}" settings="{settings}">
- * {newsItem.title}
- * </n:link>
  *
- * As the AbstractTagBasedViewHelper is extended, it is simple to add an
- * additional class to the link, e.g. by using
+ * # Example: Basic link
+ * <code>
+ * <n:link newsItem="{newsItem}" settings="{settings}">
+ * 	{newsItem.title}
+ * </n:link>
+ * </code>
+ * <output>
+ * A link to the given news record using the news title as link text
+ * </output>
+ *
+ * # Example: Set an additional attribute
+ * # Description: Available: class, dir, id, lang, style, title, accesskey, tabindex, onclick
+ * <code>
  * <n:link newsItem="{newsItem}" settings="{settings}" class="a-link-class">fo</n:link>
+ * </code>
+ * <output>
+ * <a href="link" class="a-link-class">fo</n:link>
+ * </output>
+ *
+ * # Example: Return the link only
+ * <code>
+ * <n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" />
+ * </code>
+ * <output>
+ * The uri is returned
+ * </output>
  *
  */
 class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {

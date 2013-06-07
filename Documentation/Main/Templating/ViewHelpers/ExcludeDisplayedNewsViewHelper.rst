@@ -24,4 +24,24 @@ General properties
    :Description:
          current news item
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example
+""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:excludeDisplayedNews newsItem="{newsItem}" />
+
+
+Output: ::
+
+	 None
 
