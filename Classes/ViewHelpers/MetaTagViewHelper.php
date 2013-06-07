@@ -20,8 +20,21 @@
 /**
  * ViewHelper to render meta tags
  *
- * @package TYPO3
- * @subpackage tx_news
+ * # Example: Basic Example: News title as og:title meta tag
+ * <code>
+ * <n:metaTag property="og:title" content="{newsItem.title}" />
+ * </code>
+ * <output>
+ * <meta property="og:title" content="TYPO3 is awesome" />
+ * </output>
+ *
+ * # Example: Force the attribute "name"
+ * <code>
+ * <n:metaTag property="keywords" content="{newsItem.keywords}" useNameAttribute="1" />
+ * </code>
+ * <output>
+ * <meta name="keywords" content="news 1, news 2" />
+ * </output>
  */
 class Tx_News_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
 

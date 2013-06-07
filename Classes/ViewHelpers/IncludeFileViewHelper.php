@@ -25,6 +25,14 @@
 /**
  * ViewHelper to include a css/js file
  *
+ * # Example: Basic example
+ * <code>
+ * <n:includeFile path="{settings.cssFile}" />
+ * </code>
+ * <output>
+ * This will include the file provided by {settings} in the header
+ * </output>
+ *
  * @package TYPO3
  * @subpackage tx_news
  */

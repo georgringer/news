@@ -25,16 +25,19 @@
 /**
  * ViewHelper to render data in <head> section of website
  *
- * Example
+ * # Example: Basic example
+ * <code>
  * <n:headerData>
  * 		<link rel="alternate"
  * 			type="application/rss+xml"
  * 			title="RSS 2.0"
  * 			href="<f:uri.page additionalParams="{type:9818}"/>" />
  * </n:headerData>
+ * </code>
+ * <output>
+ * Added to the header: <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="uri to this page and type 9818" />
+ * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_HeaderDataViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 

@@ -33,4 +33,23 @@ General properties
    :Description:
          Path to the CSS/JS file which should be included
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example
+""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:includeFile path="{settings.cssFile}" />
+
+Output: ::
+
+	 This will include the file provided by {settings} in the header
 
