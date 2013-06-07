@@ -72,6 +72,7 @@ ViewHelpers of EXT:news
 
    Social/DisqusViewHelper
    Social/GooglePlusViewHelper
+   Social/GravatarViewHelper
    Social/TwitterViewHelper
 
    Social/Facebook/CommentViewHelper

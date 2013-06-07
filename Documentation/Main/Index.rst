@@ -39,6 +39,7 @@ The content of this document is related to TYPO3
    Tutorial/Index
    Templating/Index
    ExtendNews/Index
+   Contribute/Index
    KnownProblems/Index
    Changelog/Index
    BreakingChanges/Index
