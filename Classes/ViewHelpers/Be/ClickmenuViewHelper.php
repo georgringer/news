@@ -18,13 +18,22 @@
  ***************************************************************/
 
 /**
- * ViewHelper to create the clickmenu
+ * ViewHelper to create a clickmenu
+ *
+ * # Example: Basic example
+ * <code>
+ * <n:be.clickmenu table="tx_news_domain_model_news" uid="{newsItem.uid}">
+ *	<n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="" />
+ * </n:be.clickmenu>
+ * </code>
+ * <output>
+ * Linked icon (<n:be.button.iconForRecord /> with a click menu for the given record (table + uid)
+ * </output>
  *
  * @package TYPO3
  * @subpackage tx_news
  */
 class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
-
 
 	/**
 	 * Render the clickmenu

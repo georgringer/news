@@ -23,22 +23,30 @@
 ***************************************************************/
 
 /**
- * ViewHelper to download a file
+ * ViewHelper for the php function strip_tags
  *
- * = Examples =
- *
- * <code title="Defaults">
+ * # Example: Basic example
+ * <code>
  * <n:format.striptags><p>This is a test</p></n:format.striptags>
  * </code>
- *
- * Output:
+ * <output>
  * This is a test
+ * </output>
+ *
+ * # Example: Allow tags
+ * <code>
+ * <n:format.striptags allowTags="<a>"><p>This is a <a href="">test</a></p></n:format.striptags>
+ * </code>
+ * <output>
+ * This is a <a href="">test</a>
+ * </output>
  *
  * @package TYPO3
  * @subpackage tx_news
  * @see http://de.php.net/manual/de/function.strip-tags.php
  */
 class Tx_News_ViewHelpers_Format_StriptagsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
 	protected $escapingInterceptorEnabled = FALSE;
 
 	/**

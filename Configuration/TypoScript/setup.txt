@@ -181,6 +181,7 @@ plugin.tx_news {
 		#  Common
 		# --------------
 		relatedFiles {
+			fileSizeLabels =
 			download {
 				labelStdWrap {
 					cObject = TEXT

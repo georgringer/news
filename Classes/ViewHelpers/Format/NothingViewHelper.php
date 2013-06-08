@@ -25,15 +25,16 @@
 /**
  * ViewHelper to render children which don't print out any actual content
  *
- * = Examples =
- *
+ * # Example: Basic example
+ * <code>
  * <n:format.nothing>
- * <n:titleTag>{newsItem.title}</n:titleTag>
- * Fobar
+ *	<n:titleTag>{newsItem.title}</n:titleTag>
+ *	Fobar
  * </n:format.nothing>
- *
- * Output:
+ * </code>
+ * <output>
  * nothing
+ * </output>
  *
  * @package TYPO3
  * @subpackage tx_news

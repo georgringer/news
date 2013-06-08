@@ -42,4 +42,24 @@ General properties
    :Description:
          Define if an error should be displayed if file not found
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example
+""""""""""""""""""
+
+If format is empty, the default from t3lib_div:::formatSize() is taken.
+
+Code: ::
+
+	 <n:format.fileSize file="uploads/tx_news/{relatedFile.file}" format="' | K| M| G'" />
+
+
+Output: ::
+
+	  3 M
 

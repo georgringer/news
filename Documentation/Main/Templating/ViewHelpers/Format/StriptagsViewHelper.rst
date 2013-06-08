@@ -1,7 +1,7 @@
 Format / StriptagsViewHelper
 ---------------------------------
 
-ViewHelper to download a file
+ViewHelper for the php function strip_tags
 
 **Type:** Basic
 
@@ -24,4 +24,40 @@ General properties
    :Description:
          Allowed tags
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example
+""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:format.striptags><p>This is a test</p></n:format.striptags>
+
+
+Output: ::
+
+	 This is a test
+
+
+
+Allow tags
+"""""""""""""""
+
+
+
+Code: ::
+
+	 <n:format.striptags allowTags="<a>"><p>This is a <a href="">test</a></p></n:format.striptags>
+
+
+Output: ::
+
+	 This is a <a href="">test</a>
 

@@ -25,6 +25,30 @@
 /**
  * ViewHelper to format a date, using strftime
  *
+ * # Example: Basic example using strftime
+ * <code>
+ * <n:format.date>{newsItem.dateTime}</b:format.date>
+ * </code>
+ * <output>
+ * 2013-06-08
+ * </output>
+ *
+ * # Example: Basic example using datetime
+ * <code>
+ * <n:format.date format="c" strftime="0">{newsItem.crdate}</n:format.date>
+ * </code>
+ * <output>
+ * 2004-02-12T15:19:21+00:00
+ * </output>
+ *
+ * # Example: Render current time
+ * <code>
+ * <n:format.date format="c" strftime="0" currentDate="1">{newsItem.crdate}</n:format.date>
+ * </code>
+ * <output>
+ * 2013-06-12T15:19:21+00:00
+ * </output>
+ *
  * @package TYPO3
  * @subpackage tx_news
  */

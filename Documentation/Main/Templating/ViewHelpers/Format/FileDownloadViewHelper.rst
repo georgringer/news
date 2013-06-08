@@ -1,7 +1,7 @@
 Format / FileDownloadViewHelper
 ------------------------------------
 
-ViewHelper to download a file
+ViewHelper to render a download link of a file using $cObj->filelink()
 
 **Type:** Basic
 
@@ -42,4 +42,26 @@ General properties
    :Description:
          define if an error should be displayed if file not found
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example
+""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:format.fileDownload file="uploads/tx_news/{relatedFile.file}" configuration="{settings.relatedFiles.download}">
+	 	{relatedFile.title}
+	 </n:format.fileDownload>
+
+
+Output: ::
+
+	  Link to download the file "uploads/tx_news/{relatedFile.file}"
 
