@@ -1,7 +1,7 @@
 Be / ClickmenuViewHelper
 -----------------------------
 
-ViewHelper to create the clickmenu
+ViewHelper to create a clickmenu
 
 **Type:** Basic
 
@@ -33,4 +33,26 @@ General properties
    :Description:
          uid of the record
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example
+""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:be.clickmenu table="tx_news_domain_model_news" uid="{newsItem.uid}">
+	 	<n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="" />
+	 </n:be.clickmenu>
+
+
+Output: ::
+
+	 Linked icon (<n:be.button.iconForRecord /> with a click menu for the given record (table + uid)
 

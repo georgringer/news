@@ -33,4 +33,47 @@ General properties
    :Description:
          uid of media element.
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example
+""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:format.dam as="dam" uid="123">
+	    <f:image src="{dam.file_path}{dam.file_name}"
+	 		title="{dam.title}"
+	 		alt="{dam.alt_text}"
+	 		maxWidth="200" />
+	 </n:format.dam>
+
+
+Output: ::
+
+	 Will output the dam record with uid 123 by using the image ViewHelper
+	 Be aware that the file could be anything, e.g. a doc file or video,
+	 so also check {dam.file_mime_type}
+
+
+
+Debug the whole record
+"""""""""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <f:debug>{dam}</f:debug>
+
+
+Output: ::
+
+	 Will output the whole record
 

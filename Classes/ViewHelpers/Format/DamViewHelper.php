@@ -19,19 +19,29 @@
 
 /**
  * ViewHelper to get full dam record
- * Example
+ *
+ * # Example: Basic example
+ * <code>
  * <n:format.dam as="dam" uid="123">
- *    <f:image src="{dam.file_path}{dam.file_name}"
- * 		title="{dam.title}"
- * 		alt="{dam.alt_text}"
- * 		maxWidth="200" />
+ *	<f:image src="{dam.file_path}{dam.file_name}"
+ *		title="{dam.title}"
+ *		alt="{dam.alt_text}"
+ *		maxWidth="200" />
  * </n:format.dam>
+ * </code>
+ * <output>
  * Will output the dam record with uid 123 by using the image ViewHelper
  * Be aware that the file could be anything, e.g. a doc file or video,
  * so also check {dam.file_mime_type}
- * Example II
+ * </output>
+ *
+ * # Example: Debug the whole record
+ * <code>
  * <f:debug>{dam}</f:debug>
+ * </code>
+ * <output>
  * Will output the whole record
+ * </output>
  *
  * @package TYPO3
  * @subpackage tx_news

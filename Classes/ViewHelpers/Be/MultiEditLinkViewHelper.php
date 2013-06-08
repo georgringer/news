@@ -25,6 +25,14 @@
 /**
  * ViewHelper to create javascript to edit fields of multiple records
  *
+ * # Example: Basic example
+ * <code>
+ * <n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'title')}" icon="actions-document-open" />
+ * </code>
+ * <output>
+ * Onclick event which can be used to create a link to edit all title fields of given news records
+ * </output>
+ *
  * @package TYPO3
  * @subpackage tx_news
  */

@@ -1,7 +1,7 @@
 Be / Buttons / IconViewHelper
 ----------------------------------
 
-View helper which returns save button with icon
+Viewhelper which returns save button with icon
 
 **Type:** Basic
 
@@ -51,4 +51,42 @@ General properties
    :Description:
          the target URI for the link
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example
+""""""""""""""""""
+
+
+
+Code: ::
+
+	 <f:be.buttons.icon uri="{f:uri.action()}" />
+
+
+Output: ::
+
+	 An icon button as known from the TYPO3 backend, skinned and linked
+	 with the default action of the current controller.
+
+
+
+Basic example II
+"""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:be.buttons.icon uri="{f:uri.action(action:'index')}" icon="tcarecords-tx_news_domain_model_news-default"
+	 title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.newsListing')}" />
+
+
+Output: ::
+
+	 A linked button with the icon of a news record which is linked to the index action
 

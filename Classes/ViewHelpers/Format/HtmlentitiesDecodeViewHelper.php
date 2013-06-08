@@ -28,6 +28,7 @@
  *
  * @package TYPO3
  * @subpackage tx_news
+ * @deprecated use Tx_Fluid_ViewHelpers_Format_HtmlentitiesDecodeViewHelper
  */
 class Tx_News_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 

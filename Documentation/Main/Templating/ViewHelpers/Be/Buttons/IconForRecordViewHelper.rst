@@ -42,4 +42,24 @@ General properties
    :Description:
          uid of record
    :Default value:
+         
+
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example
+""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="" />
+
+
+Output: ::
+
+	 Icon of the news record with the given uid
 

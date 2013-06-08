@@ -23,7 +23,17 @@
 ***************************************************************/
 
 /**
- * ViewHelper to download a file
+ * ViewHelper to render a download link of a file using $cObj->filelink()
+ *
+ * # Example: Basic example
+ * <code>
+ * <n:format.fileDownload file="uploads/tx_news/{relatedFile.file}" configuration="{settings.relatedFiles.download}">
+ *	{relatedFile.title}
+ * </n:format.fileDownload>
+ * </code>
+ * <output>
+ *  Link to download the file "uploads/tx_news/{relatedFile.file}"
+ * </output>
  *
  * @package TYPO3
  * @subpackage tx_news
@@ -85,10 +95,10 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 			// merge default configuration with optional configuration
 		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration, $configuration);
 
-			// generate file
-		$file = $cObj->filelink($fileInformation['basename'], $tsConfiguration);
+			// generate link
+		$link = $cObj->filelink($fileInformation['basename'], $tsConfiguration);
 
-		return $file;
+		return $link;
 	}
 }
 

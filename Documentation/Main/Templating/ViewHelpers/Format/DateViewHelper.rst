@@ -53,3 +53,54 @@ General properties
    :Default value:
          1
 
+
+
+Examples
+^^^^^^^^^^^^^
+
+Basic example using strftime
+"""""""""""""""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:format.date>{newsItem.dateTime}</b:format.date>
+
+
+Output: ::
+
+	 2013-06-08
+
+
+
+Basic example using datetime
+"""""""""""""""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:format.date format="c" strftime="0">{newsItem.crdate}</n:format.date>
+
+
+Output: ::
+
+	 2004-02-12T15:19:21+00:00
+
+
+
+Render current time
+""""""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:format.date format="c" strftime="0" currentDate="1">{newsItem.crdate}</n:format.date>
+
+
+Output: ::
+
+	 2013-06-12T15:19:21+00:00
+

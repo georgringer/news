@@ -25,6 +25,14 @@
 /**
  * ViewHelper to show sprite icon for a record
  *
+ * # Example: Basic example
+ * <code>
+ * <n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="" />
+ * </code>
+ * <output>
+ * Icon of the news record with the given uid
+ * </output>
+ *
  * @package TYPO3
  * @subpackage tx_news
  */

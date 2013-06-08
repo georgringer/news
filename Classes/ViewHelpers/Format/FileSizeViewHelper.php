@@ -25,6 +25,15 @@
 /**
  * ViewHelper to render the filesize
  *
+ * # Example: Basic example
+ * # Description: If format is empty, the default from t3lib_div:::formatSize() is taken.
+ * <code>
+ * <n:format.fileSize file="uploads/tx_news/{relatedFile.file}" format="' | K| M| G'" />
+ * </code>
+ * <output>
+ *  3 M
+ * </output>
+ *
  * @package TYPO3
  * @subpackage tx_news
  */

@@ -20,16 +20,24 @@
  *                                                                        */
 
 /**
- * View helper which returns save button with icon
- * Note: This view helper is experimental!
- * = Examples =
- * <code title="Default">
+ * Viewhelper which returns save button with icon
+ *
+ * # Example: Basic example
+ * <code>
  * <f:be.buttons.icon uri="{f:uri.action()}" />
  * </code>
  * <output>
  * An icon button as known from the TYPO3 backend, skinned and linked
  * with the default action of the current controller.
- * Note: By default the "close" icon is used as image
+ * </output>
+ *
+ * # Example: Basic example II
+ * <code>
+ * <n:be.buttons.icon uri="{f:uri.action(action:'index')}" icon="tcarecords-tx_news_domain_model_news-default"
+ * title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.newsListing')}" />
+ * </code>
+ * <output>
+ * A linked button with the icon of a news record which is linked to the index action
  * </output>
  *
  * @author Steffen Kamper <info@sk-typo3.de>
