@@ -331,6 +331,8 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	public function findByUid($uid, $respectEnableFields = TRUE) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
+
 		if (Tx_News_Utility_Compatibility::isEqualOrHigherSixZero()) {
 			$query->getQuerySettings()->setIgnoreEnableFields(!$respectEnableFields);
 		} else {
