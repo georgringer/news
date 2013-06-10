@@ -81,7 +81,6 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 */
 	public function findTree(array $rootIdList) {
 		$subCategories = Tx_News_Service_CategoryService::getChildrenCategories(implode(',',$rootIdList));
-
 		$ordering = array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
 
 		$categories = $this->findByIdList(explode(',',$subCategories), $ordering);
@@ -119,6 +118,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 		if (count($ordering) > 0) {
 			$query->setOrderings($ordering);
 		}
+		$this->overlayTranslatedCategoryIds($idList);
 
 		return $query->matching(
 			$query->logicalAnd(
@@ -139,6 +139,61 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 			$query->logicalAnd(
 				$query->equals('parentcategory', (int)$parent)
 			))->execute();
+	}
+
+	/**
+	 * Overlay the category ids with the ones from current language
+	 *
+	 * @param array $idList
+	 * return void
+	 */
+	protected function overlayTranslatedCategoryIds(array &$idList) {
+		$language = $this->getSysLanguageUid();
+
+		if ($language > 0) {
+			if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+				$whereClause = 'sys_language_uid=' . $language .' AND l10n_parent IN(' . implode(',', $idList) .')' . $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_category');
+				$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'tx_news_domain_model_category', $whereClause);
+
+				$idList = $this->replaceCategoryIds($idList, $rows);
+			} else {
+				// @todo currently only implemented for the frontend
+			}
+		}
+	}
+
+	/**
+	 * Get the current sys language uid
+	 *
+	 * @return integer
+	 */
+	protected function getSysLanguageUid() {
+		$sysLanguage = 0;
+		if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+			$sysLanguage = $GLOBALS['TSFE']->sys_language_content;
+		} elseif (intval(t3lib_div::_GP('L'))) {
+			$sysLanguage = intval(t3lib_div::_GP('L'));
+		}
+
+		return $sysLanguage;
+	}
+
+	/**
+	 * Replace ids in array by the given ones
+	 *
+	 * @param array $idList
+	 * @param array $rows
+	 * @return array
+	 */
+	protected function replaceCategoryIds(array $idList, array $rows) {
+		foreach ($rows as $row) {
+			$pos = array_search($row['l10n_parent'], $idList);
+			if ($pos !== FALSE) {
+				$idList[$pos] = (int)$row['uid'];
+			}
+		}
+
+		return $idList;
 	}
 }
 
