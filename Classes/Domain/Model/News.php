@@ -833,7 +833,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set content element list
 	 *
-	 * @param string $contentElements list of ce uids
+	 * @param Tx_Extbase_Persistence_ObjectStorage $contentElements content elements
 	 * @return void
 	 */
 	public function setContentElements($contentElements) {
