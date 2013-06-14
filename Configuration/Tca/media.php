@@ -108,7 +108,7 @@ $TCA['tx_news_domain_model_media'] = array(
 		),
 		'image' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
+			'l10n_mode' => 'copy',
 			'label' => $ll . 'tx_news_domain_model_media.media',
 			'config' => array(
 				'type' => 'group',
@@ -124,7 +124,7 @@ $TCA['tx_news_domain_model_media'] = array(
 		),
 		'multimedia' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
+			'l10n_mode' => 'copy',
 			'label' => $ll . 'tx_news_domain_model_media.multimedia',
 			'config' => array(
 				'type' => 'input',

@@ -379,7 +379,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		'media' => array(
 			'exclude' => 1,
 			'label' => $ll . 'tx_news_domain_model_news.media',
-
+			'l10n_mode' => 'mergeIfNotBlank',
 			'config' => array(
 				'type' => 'inline',
 				'foreign_sortby' => 'sorting',
