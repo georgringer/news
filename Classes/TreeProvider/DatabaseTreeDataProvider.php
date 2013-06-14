@@ -53,7 +53,8 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 			$row = t3lib_BEfunc::getRecordWSOL ($this->tableName, $basicNode->getId (), '*', '', FALSE);
 
 			if ($this->getLabelField () !== '') {
-				$node->setLabel ($row[$this->getLabelField ()]);
+				$label = Tx_News_Service_CategoryService::translateCategoryRecord($row[$this->getLabelField()], $row);
+				$node->setLabel($label);
 			} else {
 				$node->setLabel ($basicNode->getId ());
 			}

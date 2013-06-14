@@ -42,26 +42,15 @@ class Tx_News_Hooks_Labels {
 	 * @return void
 	 */
 	public function getUserLabelCategory(array &$params) {
-			// New version shows translation of language set in user settings
-		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];
-
 			// In list view: show normal label
-		$listView = t3lib_div::isFirstPartOfStr(t3lib_div::getIndpEnv('REQUEST_URI'), '/typo3/sysext/list/mod1/db_list.php');
+		$listView = strpos(t3lib_div::getIndpEnv('REQUEST_URI'), '/typo3/sysext/list/mod1/db_list.php') !== FALSE
+					||  strpos(t3lib_div::getIndpEnv('REQUEST_URI'), '/typo3/mod.php?M=web_list') !== FALSE;
 
 			// No overlay if language of category is not base or no language yet selected
-		if ((int)$params['row']['uid'] == 0 || $listView || ($overlayLanguage == 0 && $params['row']['sys_language_uid'] > 0)) {
+		if ($listView) {
 			$params['title'] = $params['row']['title'];
 		} else {
-			$overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-				'*',
-				'tx_news_domain_model_category',
-				'deleted=0 AND sys_language_uid=' . $overlayLanguage . ' AND l10n_parent=' . $params['row']['uid']
-			);
-			if (isset($overlayRecord[0]['title'])) {
-				$params['title'] = $overlayRecord[0]['title'] . ' (' . $params['row']['title'] . ')';
-			} else {
-				$params['title'] = $params['row']['title'];
-			}
+			$params['title'] = Tx_News_Service_CategoryService::translateCategoryRecord($params['title'], $params['row']);
 		}
 	}
 

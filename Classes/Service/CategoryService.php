@@ -1,26 +1,21 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2011 Georg Ringer <typo3@ringerge.org>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *  (c) 2011 Georg Ringer <typo3@ringerge.org>
+ *  All rights reserved
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * Service for category related stuff
@@ -103,7 +98,7 @@ class Tx_News_Service_CategoryService {
 	private static function getChildrenCategoriesRecursive($idList, $counter, $additionalWhere) {
 		$result = array();
 
-			// add idlist to the output too
+		// add idlist to the output too
 		if ($counter === 0) {
 			$result[] = $GLOBALS['TYPO3_DB']->cleanIntList($idList);
 		}
@@ -161,6 +156,40 @@ class Tx_News_Service_CategoryService {
 
 		$result = implode(',', $result);
 		return $result;
+	}
+
+
+	/**
+	 * Translate a category record in the backend
+	 *
+	 * @param string $default default label
+	 * @param array $row category record
+	 * @return string
+	 * @throws UnexpectedValueException
+	 */
+	public static function translateCategoryRecord($default, array $row) {
+		if (TYPO3_MODE != 'BE') {
+			throw new UnexpectedValueException('TYPO3 Mode must be BE');
+		}
+
+		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];
+
+		$title = '';
+
+		if ($row['uid'] > 0 && $overlayLanguage > 0 && $row['sys_language_uid'] == 0) {
+			$overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+				'*',
+				'tx_news_domain_model_category',
+				'deleted=0 AND sys_language_uid=' . $overlayLanguage . ' AND l10n_parent=' . $row['uid']
+			);
+			if (isset($overlayRecord[0]['title'])) {
+				$title = $overlayRecord[0]['title'] . ' (' . $row['title'] . ')';
+			}
+		}
+
+		$title = ($title ? $title : $default);
+
+		return $title;
 	}
 
 }
