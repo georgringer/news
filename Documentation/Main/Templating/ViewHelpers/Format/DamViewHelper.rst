@@ -48,10 +48,10 @@ Basic example
 Code: ::
 
 	 <n:format.dam as="dam" uid="123">
-	    <f:image src="{dam.file_path}{dam.file_name}"
-	 		title="{dam.title}"
-	 		alt="{dam.alt_text}"
-	 		maxWidth="200" />
+	<f:image src="{dam.file_path}{dam.file_name}"
+		title="{dam.title}"
+		alt="{dam.alt_text}"
+		maxWidth="200" />
 	 </n:format.dam>
 
 

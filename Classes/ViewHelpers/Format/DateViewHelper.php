@@ -25,12 +25,20 @@
 /**
  * ViewHelper to format a date, using strftime
  *
- * # Example: Basic example using strftime
+ * # Example: Basic example using default strftime
  * <code>
  * <n:format.date>{newsItem.dateTime}</b:format.date>
  * </code>
  * <output>
  * 2013-06-08
+ * </output>
+ *
+ * # Example: Basic example using default strftime and a format
+ * <code>
+ * <n:format.date format="%B">{newsItem.dateTime}</b:format.date>
+ * </code>
+ * <output>
+ * June
  * </output>
  *
  * # Example: Basic example using datetime
