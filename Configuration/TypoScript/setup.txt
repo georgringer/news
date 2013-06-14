@@ -226,7 +226,7 @@ module.tx_news < plugin.tx_news
 # Mapping of tt_content and its properties
 # ==============================================
 config.tx_extbase.persistence.classes {
-	Tx_News_Domain_Model_External_TtContent {
+	Tx_News_Domain_Model_TtContent {
 		mapping {
 			tableName = tt_content
 			columns {

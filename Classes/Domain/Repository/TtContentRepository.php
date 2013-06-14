@@ -30,6 +30,7 @@
  */
 class Tx_News_Domain_Repository_TtContentRepository extends Tx_Extbase_Persistence_Repository {
 
+	protected $objectType = 'Tx_News_Domain_Model_TtContent';
 }
 
 ?>

@@ -29,10 +29,10 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Domain_Model_External_TtContentTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Model_TtContentTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
-	 * @var Tx_News_Domain_Model_External_TtContent
+	 * @var Tx_News_Domain_Model_TtContent
 	 */
 	protected $ttContentDomainModelInstance;
 
@@ -42,7 +42,8 @@ class Tx_News_Tests_Unit_Domain_Model_External_TtContentTest extends Tx_Extbase_
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->ttContentDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_External_TtContent');
+		/** @var Tx_News_Domain_Model_TtContent ttContentDomainModelInstance */
+		$this->ttContentDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_TtContent');
 	}
 
 	/**
