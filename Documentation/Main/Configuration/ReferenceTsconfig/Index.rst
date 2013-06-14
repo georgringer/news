@@ -140,27 +140,28 @@ Reference TsConfig for the Administration Module (Backend)
 
          Example: ::
 
-		   tx_news.module {
-				   preselect {
-						   topNewsRestriction = 1
-				   }
-		   }
+           tx_news.module {
+           	preselect {
+           		topNewsRestriction = 1
+           	}
+           }
 
-	 - :Property:
-	         defaultPid
+ - :Property:
+		 defaultPid
 
-	   :Data type:
-	         integer
+   :Data type:
+		 integer
 
-	   :Description:
-	         If no page is selected in the page tree, any record created in the administration module would be saved on the root page.
-	         If this is not desired, the pid can be defined by using defaultPid.<tablename>
+   :Description:
+		 If no page is selected in the page tree, any record created in the administration module would be saved on the root page.
+		 If this is not desired, the pid can be defined by using defaultPid.<tablename>
 
-	         Example: ::
+		 Example: ::
 
-	         	tx_news.module.defaultPid.tx_news_domain_model_news = 123
+           tx_news.module.defaultPid.tx_news_domain_model_news = 123
 
-	         News records will be saved on page with ID 123
+		 News records will be saved on page with ID 123
+
 
 
 Clear caches if a news record changes
