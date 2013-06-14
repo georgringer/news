@@ -1,7 +1,2 @@
-Format / HscViewHelper
----------------------------
-
-ViewHelper for htmlspecialchars
-
-**Type:** Basic
-
+Format/HscViewHelper
+^^^^^^^^^^^^^^^^^^^^This is a test

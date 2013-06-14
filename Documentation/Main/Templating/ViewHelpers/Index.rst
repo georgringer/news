@@ -53,6 +53,7 @@ ViewHelpers of EXT:news
    MetaTagViewHelper
    ObjectViewHelper
    PaginateBodytextViewHelper
+   TargetLinkViewHelper
    TitleTagViewHelper
 
    Be/ClickmenuViewHelper
