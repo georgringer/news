@@ -17,8 +17,8 @@ Basic example
 Code: ::
 
 	 <n:format.nothing>
-	 	<n:titleTag>{newsItem.title}</n:titleTag>
-	 	Fobar
+	<n:titleTag>{newsItem.title}</n:titleTag>
+	Fobar
 	 </n:format.nothing>
 
 

@@ -57,7 +57,7 @@ Basic example
 Code: ::
 
 	 <n:format.fileDownload file="uploads/tx_news/{relatedFile.file}" configuration="{settings.relatedFiles.download}">
-	 	{relatedFile.title}
+	{relatedFile.title}
 	 </n:format.fileDownload>
 
 

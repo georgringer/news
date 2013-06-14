@@ -48,7 +48,7 @@ Basic example
 Code: ::
 
 	 <n:be.clickmenu table="tx_news_domain_model_news" uid="{newsItem.uid}">
-	 	<n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="" />
+	<n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="" />
 	 </n:be.clickmenu>
 
 

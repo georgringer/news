@@ -58,8 +58,8 @@ General properties
 Examples
 ^^^^^^^^^^^^^
 
-Basic example using strftime
-"""""""""""""""""""""""""""""""""
+Basic example using default strftime
+"""""""""""""""""""""""""""""""""""""""""
 
 
 
@@ -71,6 +71,22 @@ Code: ::
 Output: ::
 
 	 2013-06-08
+
+
+
+Basic example using default strftime and a format
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:format.date format="%B">{newsItem.dateTime}</b:format.date>
+
+
+Output: ::
+
+	 June
 
 
 
