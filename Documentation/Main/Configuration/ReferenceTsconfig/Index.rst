@@ -102,39 +102,65 @@ Every configuration starts with tx\_news.
 Reference TsConfig for the Administration Module (Backend)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-All configuration can happen either in  **Page TsConfig** but can also
-be overridden by the  **User TsConfig** by prefixing the setting with
-**page.** . As an example: Placing the following snippet in Page
-TsConfig will define the preselections for every user on the page
-where it is defined ::
+.. tip::
 
-   tx_news.module {
-           preselect {
-                   topNewsRestriction = 1
-           }
-   }
+	All configuration can happen either in  **Page TsConfig** but can also
+	be overridden by the  **User TsConfig** by prefixing the setting with
+	**page.** .
 
-Having something like ::
 
-   page.tx_news.module {
-           preselect {
-                   topNewsRestriction = 2
-           }
-   }
+.. t3-field-list-table::
+ :header-rows: 1
+ - :Property:
+         Property:
 
-inside the User TsConfig of a backend user will override any Page
-TsConfig.
+   :Data type:
+         Data type:
 
-The possible fields for the preselection are:
+   :Description:
+         Description:
 
-* recursive
-* timeRestriction
-* topNewsRestriction
-* limit
-* offset
-* sortingField
-* sortingDirection
-* categoryConjunction
+ - :Property:
+         preselect:
+
+   :Data type:
+         array
+
+   :Description:
+         Predefine the form in the administration module. The possible fields for the preselection are:
+
+         * recursive
+         * timeRestriction
+         * topNewsRestriction
+         * limit
+         * offset
+         * sortingField
+         * sortingDirection
+         * categoryConjunction
+
+         Example: ::
+
+		   tx_news.module {
+				   preselect {
+						   topNewsRestriction = 1
+				   }
+		   }
+
+	 - :Property:
+	         defaultPid
+
+	   :Data type:
+	         integer
+
+	   :Description:
+	         If no page is selected in the page tree, any record created in the administration module would be saved on the root page.
+	         If this is not desired, the pid can be defined by using defaultPid.<tablename>
+
+	         Example: ::
+
+	         	tx_news.module.defaultPid.tx_news_domain_model_news = 123
+
+	         News records will be saved on page with ID 123
 
 
 Clear caches if a news record changes
