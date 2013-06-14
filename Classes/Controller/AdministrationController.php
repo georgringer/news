@@ -208,8 +208,19 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 * @return void
 	 */
 	private function redirectToCreateNewRecord($table) {
+		$pid = $this->pageUid;
+		if ($pid === 0) {
+			$tsConfig = t3lib_BEfunc::getPagesTSconfig($this->pageUid);
+			if (isset($tsConfig['tx_news.']['module.']['defaultPid.'])
+				&& is_array($tsConfig['tx_news.']['module.']['defaultPid.'])
+				&& isset($tsConfig['tx_news.']['module.']['defaultPid.'][$table])
+			) {
+				$pid = (int)$tsConfig['tx_news.']['module.']['defaultPid.'][$table];
+			}
+		}
+
 		$returnUrl = 'mod.php?M=web_NewsTxNewsM2&id=' . $this->pageUid;
-		$url = 'alt_doc.php?edit[' . $table . '][' . $this->pageUid . ']=new&returnUrl=' . urlencode($returnUrl);
+		$url = 'alt_doc.php?edit[' . $table . '][' . $pid . ']=new&returnUrl=' . urlencode($returnUrl);
 
 		t3lib_utility_Http::redirect($url);
 	}
