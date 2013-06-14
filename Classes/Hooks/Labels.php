@@ -43,11 +43,12 @@ class Tx_News_Hooks_Labels {
 	 */
 	public function getUserLabelCategory(array &$params) {
 			// In list view: show normal label
-		$listView = strpos(t3lib_div::getIndpEnv('REQUEST_URI'), '/typo3/sysext/list/mod1/db_list.php') !== FALSE
-					||  strpos(t3lib_div::getIndpEnv('REQUEST_URI'), '/typo3/mod.php?M=web_list') !== FALSE;
+		$listView = strpos(t3lib_div::getIndpEnv('REQUEST_URI'), 'typo3/sysext/list/mod1/db_list.php')
+					||  strpos(t3lib_div::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?&M=web_list')
+					||  strpos(t3lib_div::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?M=web_list');
 
 			// No overlay if language of category is not base or no language yet selected
-		if ($listView) {
+		if ($listView || !is_array($params['row'])) {
 			$params['title'] = $params['row']['title'];
 		} else {
 			$params['title'] = Tx_News_Service_CategoryService::translateCategoryRecord($params['title'], $params['row']);
