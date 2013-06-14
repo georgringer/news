@@ -167,7 +167,7 @@ class Tx_News_Service_CategoryService {
 	 * @return string
 	 * @throws UnexpectedValueException
 	 */
-	public static function translateCategoryRecord($default, array $row) {
+	public static function translateCategoryRecord($default, array $row = array()) {
 		if (TYPO3_MODE != 'BE') {
 			throw new UnexpectedValueException('TYPO3 Mode must be BE');
 		}

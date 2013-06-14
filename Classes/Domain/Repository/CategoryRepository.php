@@ -93,6 +93,14 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 		}
 
 		$tree = array();
+
+		// If leaves are selected without its parents selected, those are shown as parent
+		foreach($flatCategories as $id => &$flatCategory) {
+			if (!isset($flatCategories[$flatCategory['parent']])) {
+				$flatCategory['parent'] = NULL;
+			}
+		}
+
 		foreach ($flatCategories as $id => &$node) {
 			if ($node['parent'] === NULL) {
 				$tree[$id] = &$node;
