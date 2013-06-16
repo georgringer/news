@@ -352,7 +352,7 @@ $TCA['tx_news_domain_model_news'] = array(
 			)
 		),
 		'type' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.doktype_formlabel',
 			'config' => array(
