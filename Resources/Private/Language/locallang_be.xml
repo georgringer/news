@@ -128,6 +128,8 @@
 			<!-- BE Module -->
 			<label index="ttnews_importer_title">Import tt_news news records</label>
 			<label index="ttnewscategory_importer_title">Import tt_news category records</label>
+			<label index="t3blog_importer_title">Import t3blog blog/news records</label>
+			<label index="t3blogcategory_importer_title">Import t3blog category records</label>
 			<label index="start_import">Start import with %s record(s).</label>
 
 			<label index="tag_suggest">Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</label>
