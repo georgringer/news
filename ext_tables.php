@@ -343,6 +343,17 @@ if (TYPO3_MODE === 'BE' && $configuration->getShowImporter()) {
 			'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:ttnewscategory_importer_title',
 			'');
 	}
+
+	if (t3lib_extMgm::isLoaded('t3blog')) {
+		Tx_News_Utility_ImportJob::register(
+			'Tx_News_Jobs_T3BlogNewsImportJob',
+			'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:t3blog_importer_title',
+			'');
+		Tx_News_Utility_ImportJob::register(
+			'Tx_News_Jobs_T3BlogCategoryImportJob',
+			'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:t3blogcategory_importer_title',
+			'');
+	}
 }
 
 
