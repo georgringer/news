@@ -23,6 +23,11 @@
 </f:section>
 
 <f:section name="content">
+	<f:if condition="{page} == 0">
+		<div class="typo3-message message-information">
+			<div class="message-body"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.nopageselected" /></div>
+		</div>
+	</f:if>
 	<f:form name="demand" object="{demand}">
 		<div class="settings">
 			<div class="form">
