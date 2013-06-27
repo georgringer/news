@@ -17,7 +17,6 @@
 			<label index="flexforms_general.mode">What to display</label>
 			<label index="flexforms_general.mode.news_list">List view</label>
 			<label index="flexforms_general.mode.news_listOnly">List view (without overloading detail view)</label>
-			<label index="flexforms_general.mode.news_latest">Latest view</label>
 			<label index="flexforms_general.mode.news_detail">Detail view</label>
 			<label index="flexforms_general.mode.news_searchform">Search form</label>
 			<label index="flexforms_general.mode.news_searchresult">Search result</label>
@@ -133,7 +132,7 @@
 			<label index="tag_suggest">Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</label>
 			<label index="tag_suggest_error_no-tag">No tag submitted!</label>
 			<label index="tag_suggest_error_no-newsid">No news id given!</label>
-			<label index="tag_suggest_error_no-pid-found">No pid for the tag record could be find by reading settings of Extension Manager!</label>
+			<label index="tag_suggest_error_no-pid-found">No pid for the tag record could be found by reading settings of Extension Manager!</label>
 			<label index="tag_suggest_error_no-tag-created">No new tag created!</label>
 			<label index="tag_suggest_error_no-pid-defined">No page defined to save tag. Please add the id in the settings of the extension manager.</label>
 
@@ -169,7 +168,6 @@
 
 			<label index="flexforms_general.mode">Visnings-valg</label>
 			<label index="flexforms_general.mode.news_list">Liste-visning</label>
-			<label index="flexforms_general.mode.news_latest">Nyeste-visning</label>
 			<label index="flexforms_general.mode.news_detail">Detalje-visning</label>
 			<label index="flexforms_general.mode.news_searchform">Søgeformular</label>
 			<label index="flexforms_general.mode.news_searchresult">Søgeresultater</label>
@@ -286,7 +284,6 @@
 
 			<label index="flexforms_general.mode">Qué mostrar</label>
 			<label index="flexforms_general.mode.news_list">Vista de lista</label>
-			<label index="flexforms_general.mode.news_latest">Vista de últimas noticias</label>
 			<label index="flexforms_general.mode.news_detail">Vista de detalle</label>
 			<label index="flexforms_general.mode.news_searchform">Formulario de búsqueda</label>
 			<label index="flexforms_general.mode.news_searchresult">Resultados de búsqueda</label>
@@ -353,14 +350,152 @@
 		</languageKey>
 
 		<languageKey index="de" type="array">
+			<label index="pi1_title">News system</label>
+			<label index="pi1_plus_wiz_description">Vielfältiges Artikel Plugin</label>
 
+			<!-- Flexforms -->
+			<label index="flexforms_tab.settings">Einstellungen</label>
+			<label index="flexforms_tab.additional">Zusätzlich</label>
+			<label index="flexforms_tab.template">Template</label>
+
+			<label index="flexforms_general.mode">Modus // Ansicht</label>
+			<label index="flexforms_general.mode.news_list">Liste</label>
+			<label index="flexforms_general.mode.news_listOnly">Liste (ohne Möglichkeit Detailansicht anzuzeigen)</label>
+			<label index="flexforms_general.mode.news_detail">Detail</label>
+			<label index="flexforms_general.mode.news_searchform">Suchformular</label>
+			<label index="flexforms_general.mode.news_searchresult">Suchergebnis</label>
+			<label index="flexforms_general.mode.news_datemenu">Datumsmenü</label>
+			<label index="flexforms_general.mode.category_list">Kategoriemenü</label>
+			<label index="flexforms_general.mode.not_configured">Es wurde kein Modus ausgewählt</label>
+			<label index="flexforms_general.mode.optgroup_search">Suche</label>
+			<label index="flexforms_general.mode.optgroup_others">Andere</label>
+			<label index="flexforms_general.mode.tag_list">Liste von Tags</label>
+			<label index="flexforms_general.archiveRestriction">Archiv</label>
+			<label index="flexforms_general.archiveRestriction.active">Nur aktive (nicht archivierte)</label>
+			<label index="flexforms_general.archiveRestriction.archived">Archivierte</label>
+			<label index="flexforms_general.orderBy">Sortierung</label>
+			<label index="flexforms_general.orderBy.uid">Uid</label>
+			<label index="flexforms_general.orderBy.sorting">Manuelle Sortierung</label>
+			<label index="flexforms_general.orderBy.tstamp">Letzte Bearbeitung</label>
+			<label index="flexforms_general.orderBy.crdate">Erstellungsdatum</label>
+			<label index="flexforms_general.orderBy.datetime">Angegebene Zeit</label>
+			<label index="flexforms_general.orderBy.title">Title</label>
+			<label index="flexforms_general.orderDirection">Sortierrichtung</label>
+			<label index="flexforms_general.orderDirection.asc">Aufsteigend</label>
+			<label index="flexforms_general.orderDirection.desc">Absteigend</label>
+
+			<label index="flexforms_general.dateField">Verwendetes Datumsfeld</label>
+			<label index="flexforms_general.dateField.datetime">Datum</label>
+			<label index="flexforms_general.dateField.archive">Archivdatum</label>
+
+			<label index="flexforms_general.categories">Kategorien</label>
+			<label index="flexforms_general.categoryConjunction">Kategoriemodus</label>
+			<label index="flexforms_general.categoryConjunction.all">Auswahl ignorieren</label>
+			<label index="flexforms_general.categoryConjunction.or">Anzeige der Artikel mit ausgewählten Kategorien (OR)</label>
+			<label index="flexforms_general.categoryConjunction.and">Anzeige der Artikel mit ausgewählten Kategorien (AND)</label>
+			<label index="flexforms_general.categoryConjunction.notand">Do NOT show items with selected categories (AND)</label>
+			<label index="flexforms_general.categoryConjunction.notor">Do NOT show items with selected categories (OR)</label>
+			<label index="flexforms_general.includeSubCategories">Subkategorien inkludieren</label>
+			<label index="flexforms_general.timeRestriction">Untere Datumsbeschränkung: Älter als angegebene Zeit</label>
+			<label index="flexforms_general.timeRestrictionHigh">Obere Datumsbeschränkung: Jünger als angegebene Zeit</label>
+			<label index="flexforms_general.topNewsRestriction">Top Artikel</label>
+			<label index="flexforms_general.topNewsRestriction.1">ausschließlich Top Artikel</label>
+			<label index="flexforms_general.topNewsRestriction.2">keine Top Artikel</label>
+			<label index="flexforms_general.singleNews">Anzeige eines einzelnen Artikels</label>
+			<label index="flexforms_general.previewHiddenRecords">Vorschau von versteckten Artikeln erlauben</label>
+			<label index="flexforms_general.previewHiddenRecords.I.0">Nein</label>
+			<label index="flexforms_general.previewHiddenRecords.I.1">Ja</label>
+			<label index="flexforms_general.previewHiddenRecords.I.2">Im TypoScript definiert</label>
 			<label index="flexforms_general.no-constraint">[keine Einschränkung]</label>
+
+			<label index="flexforms_template.mediaMaxWidth">Maximale Breite für Medienelemente</label>
+			<label index="flexforms_template.mediaMaxHeight">Maximale Höhe für Medienelemente</label>
+			<label index="flexforms_template.cropMaxCharacters">Länge des Teasers (Anzahl Buchstaben)</label>
+			<label index="flexforms_template.templateLayout">Template Layout</label>
+
+			<label index="flexforms_additional.templateSwitch.1">1</label>
+			<label index="flexforms_additional.templateSwitch.2">2</label>
+			<label index="flexforms_additional.detailPid">Seite für Detailansicht</label>
+			<label index="flexforms_additional.backPid">Seite für den Link zurück</label>
+			<label index="flexforms_additional.listPid">Seite für Listenansicht</label>
+			<label index="flexforms_additional.limit">Maximale Anzahl an Artikeln</label>
+			<label index="flexforms_additional.offset">Starte mit Artikel Nummer </label>
+			<label index="flexforms_additional.hidePagination">Pagination verbergen</label>
+			<label index="flexforms_additional.topNewsFirst">Top Artikel vorreihen</label>
+			<label index="flexforms_additional.disableOverrideDemand">"Override demand" deaktivieren</label>
+			<label index="flexforms_additional.excludeAlreadyDisplayedNews">Bereits angezeigte Artikel verbergen</label>
+
+			<label index="pagemodule.pageNotAvailable">Die Seite mit der ID "%s" ist nicht mehr verfügbar!</label>
+			<label index="pagemodule.newsNotAvailable">Der Artikel mit der ID "%s" ist nicht mehr verfügbar!</label>
+			<!-- Page Module Record list -->
+			<label index="pagemodule_simple">Einfache Ansicht</label>
+			<label index="pagemodule_advanced">Erweiterte Ansicht</label>
+			<label index="pagemodule_complex">Volle Ansicht</label>
+
+			<!-- Extension Manager Configuration -->
+			<label index="extmng.pageModuleFieldsNews">News fields shown in page module:Set the fields which should be shown in the page module by using the following syntax:
+				label=fieldlist;label=fieldlist
+			</label>
+			<label index="extmng.pageModuleFieldsCategory">Category fields shown in page module:Set the fields which should be shown in the page module.</label>
+			<label index="extmng.prependAtCopy">Prepend at copy: Prepend string "copy X".</label>
+			<label index="extmng.categoryRestriction">Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+			</label>
+			<label index="extmng.categoryRestriction.current_pid">Categories from current page</label>
+			<label index="extmng.categoryRestriction.storage_pid">Categories from page which is defined in page properties</label>
+			<label index="extmng.categoryRestriction.siteroot">Categories from site root</label>
+			<label index="extmng.categoryRestriction.pages_tsconfig">Page TsConfig</label>
+			<label index="extmng.categoryRestriction.none">No restriction</label>
+			<label index="extmng.manualSorting">Enable manual sorting of news records</label>
+			<label index="extmng.contentElementRelation">Use content element relation:If set, content elements can be added to news records.</label>
+			<label index="extmng.tagPid">Define pid of tag records:Tags are collected on one central page.</label>
+			<label index="extmng.archiveDate">Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</label>
+			<label index="extmng.archiveDate.date">Date</label>
+			<label index="extmng.archiveDate.datetime">Date &amp; Time</label>
+			<label index="extmng.removeListActionFromFlexforms">List actions shown in Flexforms:There are 2 different list views: "List only" can only show the list view. This is
+				for example neded if you need a list view at the same page as the detail view. "List+Detail" will show the same list view but will show the detail view if a news
+				item is set via GET arguments. Be aware: If the setting is changed after news plugins have been created, all plugins need to be reconfigured by selecting the
+				correct action!
+			</label>
+			<label index="extmng.removeListActionFromFlexforms.0">Both views are shown</label>
+			<label index="extmng.removeListActionFromFlexforms.1">List &amp; Detail</label>
+			<label index="extmng.removeListActionFromFlexforms.2">List only</label>
+			<label index="extmng.showImporter">Show importer:Backend module to import into news</label>
+			<label index="extmng.showAdministrationModule">Show administration module:Backend module to administrate news records</label>
+			<label index="extmng.showMediaDescriptionField">Show description for media elements:If set you get an additional description field for media elements.</label>
+
+			<!-- BE User Settings -->
+			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>
+			<label index="usersettings.no-languages-available">There are no languages available, so nothing to choose.</label>
 
 			<!-- BE Module -->
 			<label index="ttnews_importer_title">Import von tt_news Datensätzen</label>
 			<label index="ttnewscategory_importer_title">Import von tt_news Kategorien</label>
-			<label index="start_import">Start import with %s record(s).</label>
-			<label index="tag_suggest">Der Tag "%s" wurde nicht gefunden. Wollen Sie diesen erstellen? &lt;strong&gt;Klicken Sie hier&lt;/strong&gt;</label>
+			<label index="start_import">Import mit %s Datensätzen starten.</label>
+
+			<label index="tag_suggest">Der Tag "%s" wurde nicht gefunden. Zum erstellen &lt;strong&gt;hier klicken&lt;/strong&gt;</label>
+			<label index="tag_suggest_error_no-tag">Kein Tag übermittelt!</label>
+			<label index="tag_suggest_error_no-newsid">Keine Artikel-ID angegeben!</label>
+			<label index="tag_suggest_error_no-pid-found">No pid for the tag record could be found by reading settings of Extension Manager!</label>
+			<label index="tag_suggest_error_no-tag-created">Es wurde kein neuer Tag erstellt!</label>
+			<label index="tag_suggest_error_no-pid-defined">Es wurde keine Seite angegeben auf der Tags gespeichert werden können. Bitte im Extension Manager setzen</label>
+
+			<label index="module.headline">Einstellungen</label>
+			<label index="module.recursive">Rekursive</label>
+			<label index="module.timeRestriction">Einschränkung nach Zeit</label>
+			<label index="module.createNewCategory">Neue Kategorie erstellen</label>
+			<label index="module.topNewsYes">Ja</label>
+			<label index="module.topNewsNo">Nein</label>
+			<label index="module.createNewNewsRecord">Neuen Artikel erstellen</label>
+			<label index="module.newsListing">Artikelliste</label>
+			<label index="module.newsPidListing">Liste aller Seiten mit Artikeln</label>
+
+			<!-- BE Module Administration -->
+			<label index="administration.newsPidListing.header">List der Seiten mit Anzahl an Artikel &amp; Kategoriedatensätzen</label>
+			<label index="administration.newsPidListing.description">Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.</label>
+
+			<!-- News sys folder -->
+			<label index="news-folder">News</label>
 		</languageKey>
 
 		<languageKey index="nl" type="array">
@@ -375,7 +510,6 @@
 			<label index="flexforms_general.mode">Wat te tonen</label>
 			<label index="flexforms_general.mode.news_list">Lijst weergave</label>
 			<label index="flexforms_general.mode.news_listOnly">Lijst weergave (zonder overloading detail weergave)</label>
-			<label index="flexforms_general.mode.news_latest">Laatste weergave</label>
 			<label index="flexforms_general.mode.news_detail">Detail weergave</label>
 			<label index="flexforms_general.mode.news_searchform">Zoek formulier</label>
 			<label index="flexforms_general.mode.news_searchresult">Zoek resultaat</label>
