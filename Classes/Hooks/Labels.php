@@ -51,7 +51,7 @@ class Tx_News_Hooks_Labels {
 		if ($listView || !is_array($params['row'])) {
 			$params['title'] = $params['row']['title'];
 		} else {
-			$params['title'] = Tx_News_Service_CategoryService::translateCategoryRecord($params['title'], $params['row']);
+			$params['title'] = Tx_News_Service_CategoryService::translateCategoryRecord($params['row']['title'], $params['row']);
 		}
 	}
 
