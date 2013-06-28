@@ -210,7 +210,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	/**
 	 * Render a menu by dates, e.g. years, months or dates
 	 *
-	 * @param array|null $overwriteDemand
+	 * @param array $overwriteDemand
 	 * @return void
 	 */
 	public function dateMenuAction(array $overwriteDemand = NULL) {
