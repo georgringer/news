@@ -101,7 +101,7 @@
 		<p>
 			<!-- date -->
 			<span class="news-list-date">
-				<f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
+				<f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
 			</span>
 
 			<f:if condition="{newsItem.firstCategory}">
