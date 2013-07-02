@@ -17,6 +17,7 @@
 			<label index="editlock.description">If checked, this news record can only be edited by administrators.</label>
 			<label index="hidden.description">Hidden records are not shown in the frontend.</label>
 			<label index="title.description">News title</label>
+			<label index="alternative_title.description">Alternative Title will be used as the title for the browser window / tab</label>
 			<label index="teaser.description">Be aware that it can be cropped.</label>
 			<label index="type.description">Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</label>
 			<label index="istopnews.description">Top news records can get a special treated concerning layout, sorting, ...</label>
@@ -61,28 +62,34 @@
 			<label index="related_links.description">Angiv relaterede links til interne og eksterne sider.</label>
 		</languageKey>
 		<languageKey index="de" type="array">
-			<label index=".description">News Datensatz</label>
+			<label index=".description">News Beitrag</label>
 			<label index=".details">Versatile news system.</label>
-			<label index="sys_language_uid.description">Spraches des Newsdatensatz</label>
-			<label index="starttime.description">Datum ab dem der Newsdatensatz angezeigt werden soll.</label>
-			<label index="endtime.description">Datum bis zu dem der Newsdatensatz angezeigt werden soll.</label>
-			<label index="fe_group.description">Benutzergruppen, die den Newsdatensatz sehen dürfen.</label>
-			<label index="editlock.description">Falls aktiviert können nur Benutzer mit Administratorrechten den Datensatz bearbeiten.</label>
-			<label index="hidden.description">Ein versteckter Datensatz wird im Frontend nicht angezeigt.</label>
-			<label index="title.description">Titel des Newsdatensatz</label>
-			<label index="teaser.description">Teaser des Newsdatensatz</label>
-			<label index="type.description">Der Typ eines Newsdatensatz kann neben einem regulären Datensatz auch ein Link zu einer internen TYPO3-Seite oder zu einer externen Seite sein.</label>
+			<label index="sys_language_uid.description">Sprache des Newsbeitrags</label>
+			<label index="starttime.description">Datum ab dem der Newsbeitrag angezeigt werden soll.</label>
+			<label index="endtime.description">Datum bis zu dem der Newsbeitrag angezeigt werden soll.</label>
+			<label index="fe_group.description">Benutzergruppen, die den Newsbeitrag sehen dürfen.</label>
+			<label index="editlock.description">Falls aktiviert können nur Benutzer mit Administratorrechten den Newsbeitrag bearbeiten.</label>
+			<label index="hidden.description">Ein versteckter Newsbeitrag wird im Frontend nicht angezeigt.</label>
+			<label index="title.description">Titel des Newsbeitrags</label>
+			<label index="alternative_title.description">Der Alternative Titel wird als Titel für das Browser Fenster / den Browser Tab verwendet</label>
+			<label index="path_segment.description">Hier können Sie das Pfadsegment in der URL anpassen</label>
+			<label index="teaser.description">Teaser / Untertitel des Newsbeitrags</label>
+			<label index="type.description">Der Typ eines Newsbeitrags kann neben einem regulären Newsbeitrags auch ein Link zu einer internen TYPO3-Seite oder zu einer externen Seite sein.</label>
 			<label index="istopnews.description">Mit der Checkbox "Top news" können bestimmte Datensätze hervorgehoben werden.</label>
-			<label index="author.description">Autor eines Datensatz</label>
+			<label index="author.description">Autor des Newsbeitrags</label>
 			<label index="author_email.description">Emailadresse des Autors</label>
-			<label index="datetime.description">Datum des Newsdatensatz</label>
-			<label index="archive.description">Archivdatum. Falls der Newsdatensatz über ein Archivmenü angezeigt werden soll, muss das Datum ausgefüllt werden.</label>
-			<label index="bodytext.description">Hauptinhalt des Newsdatensatz</label>
-			<label index="categories.description">Kategorien zu denen der Newsdatensatz gehört</label>
-			<label index="keywords.description">Keywords eines Newsdatensatz, besonders für Suchmaschinenoptimierung zu verwenden.</label>
+			<label index="datetime.description">Datum des Newsbeitrags</label>
+			<label index="archive.description">Archivdatum. Falls der Newsbeitrag über ein Archivmenü angezeigt werden soll, muss das Datum ausgefüllt werden.</label>
+			<label index="bodytext.description">Hauptinhalt des Newsbeitrags</label>
+			<label index="categories.description">Kategorien zu denen der Newsbeitrag gehört</label>
+			<label index="tags.description">Bestimmen und wählen Sie Tags aus, die zu diesem Artikel passen.</label>
+			<label index="content_elements.description">Inhaltselemente können verwendet werden, um komplexe News-Artikel zu erstellen.</label>
+			<label index="keywords.description">Schlüsselwörter eines Newsbeitrags, besonders für die Suchmaschinenoptimierung zu verwenden.</label>
 			<label index="related.description">Verwandte Newsdatensätze</label>
-			<label index="related_files.description">Zu dem Newsdatensatz gehörige Dateien</label>
-			<label index="related_links.description">Zu dem Newsdatensatz gehörige Links</label>
+			<label index="related_from.description">Zeigt die News, bei der die aktuelle News als verwandt angegeben ist.</label>
+			<label index="related_files.description">Zum Newsbeitrag gehörige Dateien</label>
+			<label index="related_links.description">Zum Newsbeitrag gehörige Links</label>
+			<label index="copyright.description">Zum Newsbeitrag gehörige Links</label>
 		</languageKey>
 		<languageKey index="nl" type="array">
 			<label index=".description">Nieuws record</label>
