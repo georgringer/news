@@ -1,35 +1,40 @@
-	# cat=basic/enable/106; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.0=0,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.1=1,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.2=2]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms
+	# cat=basic/enable/1; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.0=0,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.1=1,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.2=2]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms
 removeListActionFromFlexforms = 2
 
-	# cat=basic/enable/100; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsNews
+	# cat=basic/enable/40; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsNews
 pageModuleFieldsNews = LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pagemodule_simple=title,datetime;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pagemodule_advanced=title,datetime,teaser,category;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pagemodule_complex=title,datetime,teaser,category,archive;
 
-	# cat=basic/enable/101; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsCategory
+	# cat=basic/enable/30; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsCategory
 pageModuleFieldsCategory = title,description
 
- 	# cat=basic/enable/101; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.tagPid
-tagPid = 1
-
-	# cat=basic/enable/103; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.prependAtCopy
-prependAtCopy = 1
-
-	# cat=basic/enable/106; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.none=none,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.pages_tsconfig=page_tsconfig,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.current_pid=current_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.storage_pid=storage_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.siteroot=siteroot]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction
-categoryRestriction =
-
-	# cat=basic/enable/110; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.contentElementRelation
-contentElementRelation = 0
-
-	# cat=basic/enable/120; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.manualSorting
-manualSorting = 0
-
-	# cat=basic/enable/121; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate.date=date,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate.datetime=datetime]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate
+	# cat=basic/enable/2; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate.date=date,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate.datetime=datetime]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate
 archiveDate = date
 
-	# cat=basic/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showImporter
+# Records
+###########################
+	# cat=records/enable/103; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.prependAtCopy
+prependAtCopy = 1
+
+ 	# cat=records/enable/101; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.tagPid
+tagPid = 1
+
+	# cat=records/enable/25; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showMediaDescriptionField
+showMediaDescriptionField = 0
+
+	# cat=records/enable/110; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.contentElementRelation
+contentElementRelation = 0
+
+	# cat=records/enable/120; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.manualSorting
+manualSorting = 0
+
+	# cat=records/enable/106; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.none=none,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.pages_tsconfig=page_tsconfig,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.current_pid=current_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.storage_pid=storage_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.siteroot=siteroot]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction
+categoryRestriction =
+
+
+# Backend modules
+###########################
+	# cat=backend modules/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showImporter
 showImporter = 0
 
-	# cat=basic/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showAdministrationModule
+	# cat=backend modules/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showAdministrationModule
 showAdministrationModule = 1
-
-	# cat=basic/enable/25; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showMediaDescriptionField
-showMediaDescriptionField = 0
