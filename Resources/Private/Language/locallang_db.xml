@@ -170,7 +170,7 @@
 			<label index="tx_news_domain_model_link.uri">URL</label>
 		</languageKey>
 		<languageKey index="de" type="array">
-			<label index="tx_news_domain_model_news.tabs.relations">Relationen</label>
+			<label index="tx_news_domain_model_news.tabs.relations">Beziehungen</label>
 			<label index="tx_news_domain_model_news">News</label>
 			<label index="tx_news_domain_model_news.alternative_title">Alternativer Titel</label>
 			<label index="tx_news_domain_model_news.teaser">Teaser</label>
@@ -178,6 +178,7 @@
 			<label index="tx_news_domain_model_news.archive">Archivdatum</label>
 			<label index="tx_news_domain_model_news.categories">Kategorien</label>
 			<label index="tx_news_domain_model_news.related">Verwandte Artikel</label>
+			<label index="tx_news_domain_model_news.related_from">Verwandte Artikel (von)</label>
 			<label index="tx_news_domain_model_news.related_files">Verwandte Dateien</label>
 			<label index="tx_news_domain_model_news.related_links">Verwandte Links</label>
 			<label index="tx_news_domain_model_news.type.I.0">News</label>
@@ -185,8 +186,8 @@
 			<label index="tx_news_domain_model_news.type.I.2">Externe Seite/URL</label>
 			<label index="tx_news_domain_model_news.media">Medienelement</label>
 			<label index="tx_news_domain_model_news.istopnews">Top news</label>
-			<label index="tx_news_domain_model_news.content_elements">Content elements</label>
-			<label index="tx_news_domain_model_news.tags">Tags</label>
+			<label index="tx_news_domain_model_news.content_elements">Inhaltselemente</label>
+			<label index="tx_news_domain_model_news.tags">Schlagworte (Tags)</label>
 			<label index="tx_news_domain_model_news.tags.add">Neuen Tag hinzufügen</label>
 			<label index="tx_news_domain_model_news.tags.list">Liste aller Tags</label>
 			<label index="tx_news_domain_model_news.tags.edit">Tag bearbeiten</label>
@@ -200,12 +201,12 @@
 			<label index="tx_news_domain_model_category.shortcut">Verknüpfte Seite</label>
 
 			<label index="tx_news_domain_model_media">News Medienelement</label>
-			<label index="tx_news_domain_model_media.caption">Caption</label>
+			<label index="tx_news_domain_model_media.caption">Beschriftung / Legende</label>
 			<label index="tx_news_domain_model_media.media">Medientyp</label>
 			<label index="tx_news_domain_model_media.type.I.0">Bild</label>
 			<label index="tx_news_domain_model_media.type.I.2">HTML</label>
 			<label index="tx_news_domain_model_media.type.I.3">DAM</label>
-			<label index="tx_news_domain_model_media.html">HTML</label>
+			<label index="tx_news_domain_model_media.dam">DAM Element</label>
 			<label index="tx_news_domain_model_media.multimedia">Video URL</label>
 			<label index="tx_news_domain_model_media.show">Anzeigen</label>
 			<label index="tx_news_domain_model_media.showinpreview">In Voransicht anzeigen</label>
@@ -219,6 +220,12 @@
 			<label index="tx_news_domain_model_link.title">Titel</label>
 			<label index="tx_news_domain_model_link.description">Beschreibung</label>
 			<label index="tx_news_domain_model_link.uri">URL</label>
+
+			<label index="tx_news_domain_model_tag">Schlagwort (Tag)</label>
+			<label index="tx_news_domain_model_tag.title">Titel</label>
+			<label index="tx_news_domain_model_news.path_segment">Pfadsegment für sprechende URL</label>
+
+			<label index="be_user.tx_news_categorymounts">Kategorie Mounts</label>
 		</languageKey>
 		<languageKey index="nl" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relaties</label>

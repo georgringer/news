@@ -19,7 +19,6 @@
 			<label index="showinpreview.description">If checked, this media element is also available in the list view.</label>
 			<label index="video.description">Define the URL to the video or audio resource. This can be either a relative path (e.g. fileadmin/video.flv) or an absolute path (e.g. to a youtube video).</label>
 			<label index="media.description">Select the image itself.</label>
-			<label index="html.description">Insert plain HTML.</label>
 		</languageKey>
 		<languageKey index="da" type="array">
 			<label index=".description">Medie-element</label>
@@ -33,8 +32,21 @@
 			<label index="showinpreview.description">Hvis aktiv vises dette medie-element kun i liste-visninger.</label>
 			<label index="video.description">Angiv URL til video- eller audio-resource. Dette kan enten være en relativ sti (fx fileadmin/video.flv) eller en absolut sti (fx til en youtube video).</label>
 			<label index="media.description">Vælg selve billedet.</label>
-			<label index="html.description">Indsæt standard HTML.</label>
         </languageKey>
+		<languageKey index="de" type="array">
+			<label index=".description">Medienelement</label>
+			<label index=".details">Beziehung zu Medienelementen</label>
+			<label index="_.seeAlso">Siehe auch die Website http://www.news.com/</label>
+			<label index="hidden.description">Verborgene Elemente werden nie im Frontend angezeigt.</label>
+			<label index="caption.description">Legende (Unterschrift) des Medienelements</label>
+			<label index="title.description">Zusätzliche Informationen (sichtbar beim darüberfahren mit der Maus).</label>
+			<label index="alt.description">Zusätzliche alternative Informationen (wird anstelle von Bildern verwendet, die nicht dargestellt werden können). Bitte unbedingt befüllen um Barrierefreiheit zu gewährleisten.</label>
+			<label index="copyright.description">Geben Sie hier ggf. Urheberrechtsinformationen ein.</label>
+			<label index="type.description">Typ des Medienelements: Dies kann sein: Bilder, Video &amp; Audio, oder DAM.</label>
+			<label index="showinpreview.description">Wenn gewählt wird das Medienelement auch in der Listenansicht ausgegeben.</label>
+			<label index="video.description">Geben Sie bitte die URL zum Video oder Audio an. Dies kann entweder ein relativer Pfad (z.B. fileadmin/video.mp4) oder ein absoluter Pfad (z.B. zu einem Youtube Video) sein.</label>
+			<label index="media.description">Wählen Sie bitte das Bild aus.</label>
+		</languageKey>
 		<languageKey index="nl" type="array">
 			<label index=".description">Media record</label>
 			<label index=".details">Relatie naar media records</label>
@@ -47,7 +59,6 @@
 			<label index="showinpreview.description">Indien aangevinkt is het media-element ook beschikbaar in de lijstweergave.</label>
 			<label index="video.description">Definieer de URL van de video of audio bron. Dit kan een relatief pad (bv. fileadmin/Video.flv) of een absoluut pad (bv. naar een youtube video) zijn.</label>
 			<label index="media.description">Selecteer de afbeelding zelf.</label>
-			<label index="html.description">Plaats platte HTML.</label>
 		</languageKey>
 	</data>
 </T3locallang>
