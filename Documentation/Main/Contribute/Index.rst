@@ -9,10 +9,18 @@
 Contribute to EXT:news
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you would like to contribute to this extension, it would be simply awesome!
+Contributions are essential for the success of open-source projects but certainly not limited to contribute code.
+There are plenty of things you can do to make this extension even better:
+
+* Share the great experience you got while using this extension
+* Improve the documentation
+* Help others who got questions in mailinglists, ...
 
 Step by Step instructions
 """"""""""""""""""""""""""""""
+
+If you would like to contribute code for bugfixes, features or documentation, please follow the next sections.
+
 
 Get the latest version from git
 *********************************

@@ -111,6 +111,7 @@ Reference TsConfig for the Administration Module (Backend)
 
 .. t3-field-list-table::
  :header-rows: 1
+
  - :Property:
          Property:
 
@@ -147,20 +148,20 @@ Reference TsConfig for the Administration Module (Backend)
            }
 
  - :Property:
-		 defaultPid
+         defaultPid
 
    :Data type:
-		 integer
+         integer
 
    :Description:
-		 If no page is selected in the page tree, any record created in the administration module would be saved on the root page.
-		 If this is not desired, the pid can be defined by using defaultPid.<tablename>
+         If no page is selected in the page tree, any record created in the administration module would be saved on the root page.
+         If this is not desired, the pid can be defined by using defaultPid.<tablename>
 
-		 Example: ::
+         Example: ::
 
            tx_news.module.defaultPid.tx_news_domain_model_news = 123
 
-		 News records will be saved on page with ID 123
+         News records will be saved on page with ID 123
 
 
 
