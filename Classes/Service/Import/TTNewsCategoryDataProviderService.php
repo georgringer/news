@@ -68,7 +68,7 @@ class Tx_News_Service_Import_TTNewsCategoryDataProviderService implements Tx_New
 			$offset . ',' . $limit
 		);
 
-		while ($row = mysql_fetch_array($res)) {
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$importData[] = array(
 				'pid' => $row['pid'],
 				'hidden' => $row['hidden'],
