@@ -175,6 +175,11 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 			$demand->setLimit(50);
 		}
 
+		// Ensure that always a storage page is set
+		if ((int)$demand->getStoragePage() === 0) {
+			$demand->setStoragePage('-3');
+		}
+
 		return $demand;
 	}
 
