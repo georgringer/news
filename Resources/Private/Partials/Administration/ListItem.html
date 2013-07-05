@@ -22,13 +22,13 @@
 		</f:if>
 	</td>
 	<td>
-		<f:format.date>{newsItem.dateTime}</f:format.date>
+		<f:format.date format="{dateformat}">{newsItem.dateTime}</f:format.date>
 	</td>
 	<td>
-		<f:format.date>{newsItem.archive}</f:format.date>
+		<f:format.date format="{dateformat}">{newsItem.archive}</f:format.date>
 	</td>
 	<td>
-		<f:format.date>{newsItem.tstamp}</f:format.date>
+		<f:format.date format="{dateformat}">{newsItem.tstamp}</f:format.date>
 	</td>
 	<td>
 		<f:if condition="{newsItem.author}">

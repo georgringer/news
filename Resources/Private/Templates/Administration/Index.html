@@ -23,16 +23,19 @@
 </f:section>
 
 <f:section name="content">
+	<h2>News administration</h2>
+
 	<f:if condition="{page} == 0">
 		<div class="typo3-message message-information">
 			<div class="message-body"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.nopageselected" /></div>
 		</div>
 	</f:if>
+	<f:flashMessages class="tx-extbase-flash-message" />
+
 	<f:form name="demand" object="{demand}">
+		<h3><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.headline" /></h3>
 		<div class="settings">
 			<div class="form">
-				<h3><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.headline" /></h3>
-
 				<div class="field">
 					<label for="recursive">
 						<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.recursive" />
@@ -122,7 +125,7 @@
 	<f:if condition="{news}">
 		<f:then>
 			<div class="result">
-				<table class="typo3-dblist" id="sortable_table">
+				<table cellpadding="0" cellmargin="0" cellspacing="0" class="typo3-dblist" id="sortable_table">
 					<thead>
 					<tr class="t3-row-header">
 						<td>
@@ -149,7 +152,7 @@
 					</thead>
 					<tbody>
 					<f:for each="{news}" as="newsItem">
-						<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem}" />
+						<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem, dateformat:dateformat}" />
 					</f:for>
 					</tbody>
 				</table>
