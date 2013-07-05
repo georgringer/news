@@ -8,9 +8,10 @@
 
 
 <f:section name="content">
-	<h3>
+	<h2>
 		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.newsPidListing.header" />
-	</h3>
+	</h2>
+	<f:flashMessages class="tx-extbase-flash-message" />
 	<p>
 		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.newsPidListing.description" />
 	</p>
@@ -21,15 +22,15 @@
 		</label>
 		<f:form.select name="treeLevel" id="treeLevel" options="{1:1,2:2,3:3,4:4,5:5,6:6,7:7}" value="{treeLevel}" additionalAttributes="{onchange:'this.form.submit()'}" />
 	</f:form>
-	<table cellpadding="0" cellspacing="1" class="typo3-dblist page-tree">
+	<table cellpadding="0" cellmargin="0" cellspacing="0" class="typo3-dblist">
 		<tr class="t3-row-header">
 			<td>
 				<f:translate key="LLL:EXT:lang/locallang_tca.xml:pages" />
 			</td>
-			<td style="padding-right:10px;">
+			<td>
 				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news" />
 			</td>
-			<td style="padding-right:10px;">
+			<td>
 				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_category" />
 			</td>
 		</tr>
@@ -39,8 +40,8 @@
 					<f:format.html parseFuncTSPath="">{item.HTML}</f:format.html>
 					<f:link.action action="index" additionalParams="{id:item.row.uid}" title="UID: {item.row.uid}">{item.row.title}</f:link.action>
 				</td>
-				<td style="text-align: center">{item.countNews}</td>
-				<td style="text-align: center">{item.countCategories}</td>
+				<td>{item.countNews}</td>
+				<td>{item.countCategories}</td>
 			</tr>
 		</f:for>
 	</table>
