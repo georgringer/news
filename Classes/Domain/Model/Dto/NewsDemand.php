@@ -46,6 +46,8 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	 * @var boolean
 	 */
 	protected $includeSubCategories = FALSE;
+
+	/** @var Tx_Extbase_Persistence_ObjectStorage */
 	protected $tags;
 
 	/**
@@ -58,49 +60,52 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	 */
 	protected $timeRestriction = NULL;
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	protected $timeRestrictionHigh = NULL;
 
-	/**
-	 * @var boolean
-	 */
+	/** @var boolean */
 	protected $topNewsRestriction;
 
+	/** @var string */
 	protected $dateField;
+
+	/** @var integer */
 	protected $month;
+
+	/** @var integer */
 	protected $year;
+
+	/** @var integer */
 	protected $day;
 
+	/** @var string */
 	protected $searchFields;
+
+	/** @var Tx_News_Domain_Model_Dto_Search */
 	protected $search;
 
+	/** @var string */
 	protected $order;
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	protected $orderByAllowed;
+
+	/** @var boolean */
 	protected $topNewsFirst;
 
+	/** @var integer */
 	protected $storagePage;
 
-	/**
-	 * @var integer
-	 */
+	/** @var integer */
 	protected $limit;
 
-	/**
-	 * @var integer
-	 */
+	/** @var integer */
 	protected $offset;
 
-	/**
-	 * @var boolean
-	 */
+	/** @var boolean */
 	protected $excludeAlreadyDisplayedNews;
 
+	/** @var boolean */
 	protected $isDummyRecord;
 
 	/**
