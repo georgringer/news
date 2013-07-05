@@ -1,9 +1,9 @@
 
 
 2.2.0 - 2013/07/06
----------------------
+----------------------------------
 
-This release has been done during the TYPO3 Developer Days 2013.
+This version has been released during the TYPO3 Developer Days 2013 in Hamburg.
 
 
 .. tip::
@@ -12,7 +12,7 @@ This release has been done during the TYPO3 Developer Days 2013.
 
 
 Breaking/Important changes
-============================
+=================================
 
 ::
 
@@ -22,11 +22,10 @@ Breaking/Important changes
 		- Add fields for enabling basic workspace support
 
 Features
-===========
+=================================
 
 ::
 
-	* Import from t3blog, thx Ingo Renner
 	* Path to dummy images is configurable
 	* ViewHelper for Gravatar, thx Philipp Bergsmann
 	* Description field for media elements
@@ -40,13 +39,14 @@ Features
 	* Full text RSS feed
 	* ViewHelper to set target of links: Tx_News_ViewHelpers_TargetLinkViewHelper
 	* More options 	for FileDownloadViewHelper: class, target, alt, title
+	* Import from t3blog, thx Ingo Renner
 	* Dateformat is now translateable by using <f:translate key="dateFormat" />
 
 
 
 
 Important bugfixes / tasks
-======================
+=================================
 
 ::
 
@@ -57,8 +57,8 @@ Important bugfixes / tasks
 	* Configuration in Extension Manager uses tabs to group the settings
 
 
-Misc
-=======================
+Miscellaneous
+=================================
 
 ::
 
