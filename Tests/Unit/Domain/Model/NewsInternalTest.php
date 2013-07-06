@@ -268,8 +268,10 @@ class Tx_News_Tests_Unit_Domain_Model_NewsInternalTest extends Tx_Extbase_Tests_
 	 * @return void
 	 */
 	public function categoryCanBeSet() {
+		$category = new Tx_News_Domain_Model_Category();
+		$category->setTitle('fo');
 		$categories = new Tx_Extbase_Persistence_ObjectStorage();
-		$categories->attach('test');
+		$categories->attach($category);
 		$this->newsDomainModelInstance->setCategories($categories);
 		$this->assertEquals($categories, $this->newsDomainModelInstance->getCategories());
 	}
@@ -281,10 +283,13 @@ class Tx_News_Tests_Unit_Domain_Model_NewsInternalTest extends Tx_Extbase_Tests_
 	 * @return void
 	 */
 	public function mediaCanBeSet() {
-		$media = new Tx_Extbase_Persistence_ObjectStorage();
-		$media->attach('test');
-		$this->newsDomainModelInstance->setMedia($media);
-		$this->assertEquals($media, $this->newsDomainModelInstance->getMedia());
+		$media = new Tx_News_Domain_Model_Media();
+		$media->setTitle('fo');
+		$mediaElements = new Tx_Extbase_Persistence_ObjectStorage();
+		$mediaElements->attach($media);
+
+		$this->newsDomainModelInstance->setMedia($mediaElements);
+		$this->assertEquals($mediaElements, $this->newsDomainModelInstance->getMedia());
 	}
 
 	/**
@@ -294,8 +299,10 @@ class Tx_News_Tests_Unit_Domain_Model_NewsInternalTest extends Tx_Extbase_Tests_
 	 * @return void
 	 */
 	public function relatedCanBeSet() {
+		$news = new Tx_News_Domain_Model_News();
+		$news->setTitle('fo');
 		$related = new Tx_Extbase_Persistence_ObjectStorage();
-		$related->attach('test');
+		$related->attach($news);
 		$this->newsDomainModelInstance->setRelated($related);
 		$this->assertEquals($related, $this->newsDomainModelInstance->getRelated());
 	}
@@ -307,8 +314,10 @@ class Tx_News_Tests_Unit_Domain_Model_NewsInternalTest extends Tx_Extbase_Tests_
 	 * @return void
 	 */
 	public function relatedFilesCanBeSet() {
+		$file = new Tx_News_Domain_Model_File();
+		$file->setTitle('fo');
 		$related = new Tx_Extbase_Persistence_ObjectStorage();
-		$related->attach('test');
+		$related->attach($file);
 		$this->newsDomainModelInstance->setRelatedFiles($related);
 		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedFiles());
 	}
@@ -320,8 +329,11 @@ class Tx_News_Tests_Unit_Domain_Model_NewsInternalTest extends Tx_Extbase_Tests_
 	 * @return void
 	 */
 	public function relatedLinksCanBeSet() {
+		$link = new Tx_News_Domain_Model_Link();
+		$link->setTitle('fo');
+
 		$related = new Tx_Extbase_Persistence_ObjectStorage();
-		$related->attach('test');
+		$related->attach($link);
 		$this->newsDomainModelInstance->setRelatedLinks($related);
 		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedLinks());
 	}

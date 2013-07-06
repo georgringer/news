@@ -56,6 +56,12 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends Tx_Ext
 		// Default value
 		$this->assertEquals(0, $result);
 
+		if (!is_object($GLOBALS['TSFE'])) {
+			$vars = array();
+			$pageId = 123;
+			$type = 1;
+			$GLOBALS['TSFE'] = new tslib_fe($vars, 123, $type);
+		}
 		$GLOBALS['TSFE']->sys_language_content = 9;
 
 		$result = $mockTemplateParser->_call('getSysLanguageUid');
