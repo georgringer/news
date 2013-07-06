@@ -17,5 +17,6 @@ Administration
 
    ReadBeforeInstallingOrUpdating/Index
    Rss/Index
+   ICalendar/Index
    Realurl/Index
 
