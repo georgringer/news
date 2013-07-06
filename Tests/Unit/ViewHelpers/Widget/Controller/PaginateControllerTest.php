@@ -57,7 +57,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Widget_Controller_PaginateControllerTest ex
 		$this->assertEquals($controller->_get('pagesAfter'), 3);
 		$this->assertEquals($controller->_get('lessPages'), FALSE);
 		$this->assertEquals($controller->_get('forcedNumberOfLinks'), 9);
-		$this->assertEquals($controller->_get('templatePath'), 'fo/bar');
+		$this->assertEquals($controller->_get('templatePath'), PATH_site . 'fo/bar');
 	}
 
 }
