@@ -119,8 +119,11 @@ To create a RSS feed based on a plugin follow this steps:
              disablePrefixComment = 1
       }
 
-   # set the format
-   plugin.tx_news.settings.format = xml
+      # set the format
+      plugin.tx_news.settings.format = xml
+
+      # delete content wrap
+      tt_content.stdWrap >
 
 **Important:** If your output still contains HTML code, please check your TypoScript
 (especially from css\_styled\_content) as this HTML is produced there!
