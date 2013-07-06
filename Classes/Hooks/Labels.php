@@ -71,6 +71,10 @@ class Tx_News_Hooks_Labels {
 		switch ((int)$params['row']['type']) {
 			// Image
 			case Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE:
+				// fix rawurlencoded image field data
+				if ($params['row']['image'] !== rawurldecode($params['row']['image'])) {
+					$params['row']['image'] = rawurldecode($params['row']['image']);
+				}
 				$typeInfo .= $this->getTitleFromFields('title,alt,caption,image', $params['row']);
 
 				if (!empty($params['row']['image'])) {
