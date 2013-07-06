@@ -1,0 +1,11 @@
+{namespace n=Tx_News_ViewHelpers}BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TYPO3/NONSGML News system (news)//EN
+<f:if condition="{news}"><f:for each="{news}" as="newsItem">BEGIN:VEVENT
+UID:news-{newsItem.uid}@{settings.domain}
+DTSTAMP:<n:format.date format="%Y%m%dT%H%M%S%Z" strftime="1">{newsItem.tstamp}</n:format.date>
+DTSTART:<n:format.date format="%Y%m%dT%H%M%S%Z" strftime="1">{newsItem.datetime}</n:format.date>
+DTEND:<n:format.date format="%Y%m%dT%H%M%S%Z" strftime="1"><f:if condition="{newsItem.archive}"><f:then>{newsItem.archive}</f:then><f:else>{newsItem.datetime}</f:else></f:if></n:format.date>
+SUMMARY:<n:format.hsc>{newsItem.title}</n:format.hsc>
+END:VEVENT
+</f:for></f:if>END:VCALENDAR
