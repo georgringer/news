@@ -11,6 +11,11 @@ env:
   - DB=mysql TYPO3=TYPO3_4-6 INTEGRATION=TYPO3_4-7
   - DB=mysql TYPO3=TYPO3_4-5 INTEGRATION=TYPO3_4-7
 
+matrix:
+  include:
+    - php: 5.5
+      env: DB=mysql TYPO3=master INTEGRATION=master
+
 services:
   - memcached
 
