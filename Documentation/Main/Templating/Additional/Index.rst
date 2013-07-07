@@ -14,7 +14,7 @@ Using the following Page TsConfig the editor can select the layouts in the news 
 
 	tx_news.templateLayouts {
 		1 = A custom layout
-		99 = fileadmin/somelocallang/locallang.xml:someTranslation
+		99 = LLL:fileadmin/somelocallang/locallang.xml:someTranslation
 	}
 
 You can use any number to identify your layout and any label to describe it.
