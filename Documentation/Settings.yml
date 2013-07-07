@@ -6,6 +6,6 @@
 conf.py:
   copyright: 1992-2013
   project: TYPO3 Extension "news"
-  version: 2.2.0
-  release: 2.2.0
+  version: 2.3.0
+  release: 2.3.0
 ...
