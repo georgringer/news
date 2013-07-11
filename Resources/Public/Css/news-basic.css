@@ -1,7 +1,6 @@
 /**************************************/
 /* Default styles for news extension */
 /**************************************/
-
 .news .clear {
 	clear: both;
 }
@@ -21,7 +20,7 @@
 	display: block;
 }
 
-.news .nav:after {
+.news .nav :after {
 	content: ".";
 	display: block;
 	height: 0;
@@ -34,12 +33,12 @@
 	margin-bottom: 15px;
 }
 
-.news .article:last-child {
+.news .article :last-child {
 	padding-bottom: 0;
 	margin-bottom: 0;
 }
 
-.news .article:after {
+.news .article :after {
 	content: ".";
 	display: block;
 	height: 0;
@@ -67,13 +66,12 @@
 	width: auto;
 }
 
-.news .article h3 {
-	font-size: 1.25em;
-	margin-bottom: 0;
-}
-
 .news .article .teaser-text {
 	margin: 0 0 10px 0;
+}
+
+.news .article h3 {
+	margin-bottom: 0;
 }
 
 .news .footer {
@@ -95,12 +93,37 @@
 	border-right: 1px solid #ddd;
 }
 
-.news .footer span:last-child {
+.news .footer span :last-child {
 	border-right: 0;
 }
 
 .news .footer .news-category a {
 	text-transform: uppercase;
+}
+
+.news .no-news-found {
+	color: #DB0202;
+	font-style: italic;
+}
+
+.news .page-navigation p {
+	float: left;
+}
+
+.news .page-navigation ul {
+	float: right;
+}
+
+.news .page-navigation ul li {
+	float: left;
+	display: block;
+	padding: 0 1px;
+	background: none;
+}
+
+.news .page-navigation ul li a {
+	display: block;
+	padding: 1px 2px;
 }
 
 /* category menu view */
@@ -139,6 +162,10 @@
 	margin: 0 0 0 25px;
 }
 
+.news-single .article .news-img-wrap img {
+	float: none;
+}
+
 .news-single .teaser-text {
 	font-size: 15px;
 	color: #888;
@@ -146,10 +173,6 @@
 
 .news-text-wrap {
 	margin-bottom: 10px;
-}
-
-.news-single .article .news-img-wrap img {
-	float: none;
 }
 
 .news-img-caption {
@@ -175,10 +198,6 @@
 	margin-bottom: 12px;
 }
 
-.news-related h4 {
-	margin-bottom: 10px;
-}
-
 .news-related ul li span {
 	border-right: 1px solid #DDDDDD;
 	display: inline-block;
@@ -187,9 +206,13 @@
 	color: #888;
 }
 
-.news-related ul li span:last-child {
+.news-related ul li span :last-child {
 	border-right: 0;
 	padding-right: 0;
+}
+
+.news-related h4 {
+	margin-bottom: 10px;
 }
 
 .news-related-files ul li {
@@ -200,31 +223,6 @@
 	background-position: 0 0;
 }
 
-.news .page-navigation p {
-	float: left;
-}
-
-.news .page-navigation ul {
-	float: right;
-}
-
-.news .page-navigation ul li {
-	float: left;
-	display: block;
-	padding: 0 1px;
-	background: none;
-}
-
-.news .page-navigation ul li a {
-	display: block;
-	padding: 1px 2px;
-}
-
 .news-clear {
 	clear: both;
-}
-
-.news .no-news-found {
-	color: #DB0202;
-	font-style: italic;
 }
