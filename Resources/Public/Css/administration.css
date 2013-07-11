@@ -1,4 +1,4 @@
-.clear {
+.news-administration .clear {
 	clear: both;
 }
 
@@ -14,7 +14,6 @@
 .news-administration .form {
 	float: left;
 	border-right: 1px solid #ccc;
-	/*	margin:0 10px;*/
 	padding-right: 10px;
 }
 
@@ -61,10 +60,9 @@
 	font-style: italic;
 }
 
-.news-administration .result .item a:hover {
+.news-administration .result .item a :hover {
 	text-decoration: underline;
 }
-
 
 .news-administration .hide {
 	opacity: 0.5;
