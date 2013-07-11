@@ -249,6 +249,8 @@ $TCA['tx_news_domain_model_news'] = array(
 					'appearance' => array(
 						'showHeader' => TRUE,
 						'allowRecursiveMode' => TRUE,
+						'expandAll' => TRUE,
+						'maxLevels' => 99,
 					),
 				),
 				'MM' => 'tx_news_domain_model_news_category_mm',
