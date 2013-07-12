@@ -6,6 +6,20 @@
 -->
 
 <f:section name="content">
+	<f:if condition="{filters}">
+		<h4><f:translate key="filter-headline" /></h4>
+
+		<ul>
+			<f:if condition="{filters.tags}">
+				<li><strong><f:translate key="tags" />:</strong>
+				<f:for each="{filters.tags}" as="tag" iteration="i">
+					{f:if(condition: i.index, then: ', ')}{tag.title}
+				</f:for>
+				</li>
+			</f:if>
+		</ul>
+	</f:if>
+
 	<f:if condition="{news}">
 		<f:then>
 			<div class="news-list-view">

@@ -21,6 +21,7 @@
 			<label index="paginate_previous">Previous</label>
 			<label index="categories">Categories</label>
 			<label index="tags">Tags</label>
+			<label index="filter-headline">Filered by</label>
 
 			<label index="entry">entry</label>
 			<label index="entries">entries</label>

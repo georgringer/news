@@ -81,6 +81,31 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 		}
 	}
 
+	/**
+	 * Apply possible properties of filter. Currently only tags are added
+	 *
+	 * @param Tx_News_Domain_Model_Dto_NewsDemand $demand
+	 * @return void
+	 */
+	protected function addFilters(Tx_News_Domain_Model_Dto_NewsDemand $demand) {
+		$filters = array();
+
+		// Tags
+		$tags = $demand->getTags();
+		if ($tags) {
+			$tagItems = explode(',', $tags);
+			/** @var Tx_News_Domain_Repository_TagRepository $tagRepository */
+			$tagRepository = t3lib_div::makeInstance('Tx_News_Domain_Repository_TagRepository');
+			foreach ($tagItems as $tag) {
+				$filters['tags'][] = $tagRepository->findByUid((int)$tag);
+			}
+		}
+
+		// @todo Categories
+
+		$this->view->assign('filters', $filters);
+	}
+
 }
 
 ?>
