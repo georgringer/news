@@ -149,6 +149,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
 		}
 		$newsRecords = $this->newsRepository->findDemanded($demand);
+		$this->addFilters($demand);
 
 		$this->view->assignMultiple(array(
 			'news' => $newsRecords,
