@@ -16,7 +16,7 @@
 			<label index="related-files">Related files</label>
 			<label index="related-links">Related links</label>
 			<label index="author">created by %s</label>
-			<label index="paginate_overall">Page %s from %s.</label>
+			<label index="paginate_overall">Page %s of %s.</label>
 			<label index="paginate_next">Next</label>
 			<label index="paginate_previous">Previous</label>
 			<label index="categories">Categories</label>
