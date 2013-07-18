@@ -22,9 +22,6 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-
-t3lib_div::requireOnce(t3lib_extMgm::extPath('news', 'Classes/Domain/Model/Media.php'));
-
 /**
  * Userfunc to get alternative label
  *
