@@ -181,6 +181,7 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 
 		if ($parentCategory !== NULL) {
 			$category->setParentcategory($parentCategory);
+			$this->categoryRepository->update($category);
 		}
 	}
 
