@@ -43,7 +43,7 @@ class Tx_News_ViewHelpers_TitleTagViewHelper extends Tx_Fluid_Core_ViewHelper_Ab
 	 * @return void
 	 */
 	public function render() {
-		$content = $this->renderChildren();
+		$content = trim($this->renderChildren());
 		if (!empty($content)) {
 			$GLOBALS['TSFE']->page['title'] = $content;
 			$GLOBALS['TSFE']->indexedDocTitle = $content;
