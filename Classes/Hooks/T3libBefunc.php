@@ -75,7 +75,7 @@ class Tx_News_Hooks_T3libBefunc {
 			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,detailPid,backPid,excludeAlreadyDisplayedNews',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
