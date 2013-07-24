@@ -62,26 +62,30 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 						$subCategoryConstraint[] = $query->contains('categories', $subCategory);
 					}
 				}
-				$categoryConstraints[] = $query->logicalOr($subCategoryConstraint);
+				if ($subCategoryConstraint) {
+					$categoryConstraints[] = $query->logicalOr($subCategoryConstraint);
+				}
 
 			} else {
 				$categoryConstraints[] = $query->contains('categories', $category);
 			}
 		}
 
-		switch (strtolower($conjunction)) {
-			case 'or':
-				$constraint = $query->logicalOr($categoryConstraints);
-				break;
-			case 'notor':
-				$constraint = $query->logicalNot($query->logicalOr($categoryConstraints));
-				break;
-			case 'notand':
-				$constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
-				break;
-			case 'and':
-			default:
-				$constraint = $query->logicalAnd($categoryConstraints);
+		if ($categoryConstraints) {
+			switch (strtolower($conjunction)) {
+				case 'or':
+					$constraint = $query->logicalOr($categoryConstraints);
+					break;
+				case 'notor':
+					$constraint = $query->logicalNot($query->logicalOr($categoryConstraints));
+					break;
+				case 'notand':
+					$constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
+					break;
+				case 'and':
+				default:
+					$constraint = $query->logicalAnd($categoryConstraints);
+			}
 		}
 
 		return $constraint;
