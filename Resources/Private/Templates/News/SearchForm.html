@@ -7,7 +7,7 @@
 
 <f:section name="content">
 	<div class="news-search-form">
-		<f:form object="{search}" name="search">
+		<f:form object="{search}" name="search" pageUid="{settings.listPid}">
 			<fieldset>
 				<f:form.textfield property="subject" />
 				<f:form.submit value="{f:translate(key:'search-start')}" />
