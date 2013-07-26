@@ -1,0 +1,3 @@
+mod.linkvalidator.searchFields {
+	tx_news_domain_model_news = bodytext,internalurl
+}

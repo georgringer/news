@@ -77,4 +77,12 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
 		'frontend' => 't3lib_cache_frontend_PhpFrontend',
 	);
 }
+
+/* ===========================================================================
+	Add TSconfig
+=========================================================================== */
+	// For linkvalidator
+if (t3lib_extMgm::isLoaded('linkvalidator')) {
+	t3lib_extMgm::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/TSconfig/Page/mod.linkvalidator.txt">');
+}
 ?>
