@@ -1,4 +1,4 @@
-﻿.. |img-1|      image:: Main/Images/manual_html_11cdfe72.gif
+﻿.. |img-1|      image:: Main/Images/manual_html_11cdfe72.png
 .. :align: left
 
 .. |img-2|      image:: Main/Images/manual_html_3c9c2593.png

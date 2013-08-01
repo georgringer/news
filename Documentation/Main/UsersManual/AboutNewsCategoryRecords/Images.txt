@@ -1,4 +1,4 @@
-﻿.. |img-6|      image:: ../../Images/manual_html_m6c4904d6.gif
+﻿.. |img-6|      image:: ../../Images/manual_html_m6c4904d6.png
 .. :align: left
 .. :border: 0
 .. :height: 430
