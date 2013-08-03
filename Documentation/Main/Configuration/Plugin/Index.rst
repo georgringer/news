@@ -6,8 +6,8 @@
 .. include:: ../../../Includes.txt
 
 
-Plugin­
-^^^^^^^
+Plugin
+^^^^^^^^^
 
 The most important configuration settings can be done through the
 settings of a plugin. As not every configuration is needed for every
