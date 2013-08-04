@@ -113,9 +113,11 @@
 					</div>
 				</f:if>
 
-				<f:link.action action="newCategory">
-					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewCategory" />
-				</f:link.action>
+				<n:be.security.ifAccessToTableIsAllowed table="tx_news_domain_model_category">
+					<f:link.action action="newCategory">
+						<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewCategory" />
+					</f:link.action>
+				</n:be.security.ifAccessToTableIsAllowed>
 			</div>
 
 			<div class="clear"></div>
