@@ -175,3 +175,33 @@ Use a viewHelper of EXT:news to write any code into the header part. The code co
 If you want to set the title tag, you can use a specific viewHelper: ::
     <n:titleTag>{newsItem.title}</n:titleTag>
 
+
+Fallback in Detail view if no news found
+"""""""""""""""""""""""""""""""""""""""""""
+
+If the detail view is called without a news uid given, an error is thrown (depending on the setting **settings.errorHandling**).
+If the desired behaviour is to show a different news record this can be set in the plugin with the field "singleNews".
+
+The drawback would be that the alternative news record would be always the same. If this should be kind of dynamic, take a
+look at the given TypoScript snippet: ::
+
+	plugin.tx_news.settings {
+		overrideFlexformSettingsIfEmpty = singleNews,cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint
+		useStdWrap = singleNews
+
+		singleNews.stdWrap.cObject = CONTENT
+		singleNews.stdWrap.cObject {
+			table = tx_news_domain_model_news
+			select {
+				max = 1
+				orderBy = datetime
+				pidInList = 3
+			}
+			renderObj = TEXT
+			renderObj.field = uid
+		}
+	}
+
+By using the field *useStdWrap* it is possible to call the full range of stdWrap on any setting. In this case the first news record
+from the page with uid 3 is used as fallback.
+
