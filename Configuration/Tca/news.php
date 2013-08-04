@@ -213,7 +213,8 @@ $TCA['tx_news_domain_model_news'] = array(
 			'label' => $ll . 'tx_news_domain_model_news.archive',
 			'config' => array(
 				'type' => 'input',
-				'size' => 8,
+				'placeholder' => $ll . 'tx_news_domain_model_news.archive.placeholder',
+				'size' => 30,
 				'max' => 20,
 				'eval' => $configuration->getArchiveDate(),
 				'default' => 0
@@ -375,6 +376,7 @@ $TCA['tx_news_domain_model_news'] = array(
 			'label' => $TCA['pages']['columns']['keywords']['label'],
 			'config' => array(
 				'type' => 'text',
+				'placeholder' => $ll . 'tx_news_domain_model_news.keywords.placeholder',
 				'cols' => 30,
 				'rows' => 5,
 			)
