@@ -79,6 +79,11 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
 }
 
 /* ===========================================================================
+	Add soft reference parser
+=========================================================================== */
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['softRefParser']['news_externalurl'] = 'EXT:' . $_EXTKEY . '/Classes/Database/SoftReferenceIndex.php:&Tx_News_Database_SoftReferenceIndex';
+
+/* ===========================================================================
 	Add TSconfig
 =========================================================================== */
 	// For linkvalidator
