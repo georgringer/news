@@ -435,7 +435,8 @@ $TCA['tx_news_domain_model_news'] = array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 50,
-				'eval' => 'required'
+				'eval' => 'required',
+				'softref' => 'news_externalurl'
 			)
 		),
 		'istopnews' => array(

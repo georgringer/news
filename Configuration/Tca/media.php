@@ -130,6 +130,7 @@ $TCA['tx_news_domain_model_media'] = array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim,required',
+				'softref' => 'news_externalurl',
 				'wizards' => array(
 					'_PADDING' => 2,
 					'link' => array(

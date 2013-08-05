@@ -95,6 +95,7 @@ $TCA['tx_news_domain_model_link'] = array(
 				'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
 				'size' => 30,
 				'eval' => 'trim,required',
+				'softref' => 'news_externalurl',
 				'wizards' => array(
 					'_PADDING' => 2,
 					'link' => array(
