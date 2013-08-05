@@ -748,6 +748,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getFirstImagePreview() {
 		$mediaElements = $this->getMedia();
 
+		if ($mediaElements->count() === 0) {
+			return NULL;
+		}
+
 		foreach ($mediaElements as $mediaElement) {
 			if ($mediaElement->getShowinpreview()) {
 				return $mediaElement;
