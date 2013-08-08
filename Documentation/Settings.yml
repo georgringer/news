@@ -8,4 +8,14 @@ conf.py:
   project: TYPO3 Extension "news"
   version: 2.3.0
   release: 2.3.0
+  latex_documents:
+  - - Index
+    - news.tex
+    - News: Versatile news system
+    - Georg Ringer
+    - manual
+  latex_elements:
+    papersize: a4paper
+    pointsize: 10pt
+    preamble: \usepackage{typo3}
 ...
