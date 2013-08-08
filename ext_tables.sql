@@ -55,7 +55,7 @@ CREATE TABLE tx_news_domain_model_news (
 	is_dummy_record tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
-	KEY parent (pid)
+	KEY parent (pid),
 	KEY import (import_id,import_source)
 );
 
