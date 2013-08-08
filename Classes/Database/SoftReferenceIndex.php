@@ -74,14 +74,21 @@ class Tx_News_Database_SoftReferenceIndex {
 			// Traverse the links now:
 		$elements = array();
 		foreach ($linkElement as $k => $typolinkValue) {
-				//Add http as default schema for external urls if none given
-			if (strpos($typolinkValue, '://') === FALSE) {
-				$typolinkValue = 'http://' . $typolinkValue;
-			}
 			$typolinkProperties = array();
+			list($linkUrl, $browserTarget, $cssClass) = t3lib_div::trimExplode(' ', $typolinkValue, 1);
+				//Add http as default schema for external urls if none given
+			if (strpos($linkUrl, '://') === FALSE) {
+				$linkUrl = 'http://' . $linkUrl;
+			}
+			if (strlen($browserTarget)) {
+				$typolinkProperties['target'] = $browserTarget;
+			}
+			if (strlen($cssClass)) {
+				$typolinkProperties['class'] = $cssClass;
+			}
 			$typolinkProperties['LINK_TYPE'] = 'url';
-			$typolinkProperties['url'] = $typolinkValue;
-			$linkElement[$k] = $this->setTypoLinkPartsElement($typolinkProperties, $elements, $typolinkValue, $k);
+			$typolinkProperties['url'] = $linkUrl;
+			$linkElement[$k] = $this->setTypoLinkPartsElement($typolinkProperties, $elements, $linkUrl, $k);
 		}
 			// Return output:
 		if (count($elements)) {
