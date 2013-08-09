@@ -81,7 +81,7 @@ class Tx_News_MediaRenderer_Video_Youtube implements Tx_News_MediaRenderer_Media
 			$videoId = $matches[2];
 		}
 		if ($videoId) {
-			$youtubeUrl = 'http://www.youtube.com/embed/' . $videoId . '?fs=1';
+			$youtubeUrl = 'http://www.youtube.com/embed/' . $videoId . '?fs=1&wmode=opaque';
 		}
 
 		return $youtubeUrl;
