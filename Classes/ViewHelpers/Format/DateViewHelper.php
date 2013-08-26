@@ -27,7 +27,7 @@
  *
  * # Example: Basic example using default strftime
  * <code>
- * <n:format.date>{newsItem.dateTime}</b:format.date>
+ * <n:format.date>{newsItem.dateTime}</n:format.date>
  * </code>
  * <output>
  * 2013-06-08
@@ -35,7 +35,7 @@
  *
  * # Example: Basic example using default strftime and a format
  * <code>
- * <n:format.date format="%B">{newsItem.dateTime}</b:format.date>
+ * <n:format.date format="%B">{newsItem.dateTime}</n:format.date>
  * </code>
  * <output>
  * June
