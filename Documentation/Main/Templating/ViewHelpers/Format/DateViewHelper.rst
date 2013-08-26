@@ -24,7 +24,7 @@ General properties
    :Description:
          if true, the current date is used
    :Default value:
-         
+
 
  - :Name:
          date
@@ -33,7 +33,7 @@ General properties
    :Description:
          DateTime object or a string that is accepted by DateTime constructor
    :Default value:
-         
+
 
  - :Name:
          format
@@ -65,7 +65,7 @@ Basic example using default strftime
 
 Code: ::
 
-	 <n:format.date>{newsItem.dateTime}</b:format.date>
+	 <n:format.date>{newsItem.dateTime}</n:format.date>
 
 
 Output: ::
@@ -81,7 +81,7 @@ Basic example using default strftime and a format
 
 Code: ::
 
-	 <n:format.date format="%B">{newsItem.dateTime}</b:format.date>
+	 <n:format.date format="%B">{newsItem.dateTime}</n:format.date>
 
 
 Output: ::
