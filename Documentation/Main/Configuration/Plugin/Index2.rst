@@ -53,7 +53,7 @@ Define the sorting direction which can either be "asc" for ascending or "desc" d
 .. _settings-categories::
 
 categories
-""""""""""""""
+""""""""""
 
 :typoscript:`plugin.tx_news.settings.categories =` 1,2,3
 
