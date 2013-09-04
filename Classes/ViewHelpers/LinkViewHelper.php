@@ -48,12 +48,7 @@
  * </output>
  *
  */
-class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
-
-	/**
-	 * @var string
-	 */
-	protected $tagName = 'a';
+class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_ViewHelpers_Link_PageViewHelper {
 
 	/**
 	 * @var Tx_News_Service_SettingsService
@@ -75,16 +70,6 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 	 */
 	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
 		$this->pluginSettingsService = $pluginSettingsService;
-	}
-
-	/**
-	 * Initialize arguments of this view helper
-	 *
-	 * @return void
-	 */
-	public function initializeArguments() {
-		parent::initializeArguments();
-		$this->registerUniversalTagAttributes();
 	}
 
 	/**
@@ -158,19 +143,18 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_Core_ViewHelper_Abstra
 					}
 				}
 		}
-		$configuration['returnLast'] = 'url';
 		if (isset($tsSettings['link']['typesOpeningInNewWindow'])) {
 			if (t3lib_div::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
 				$this->tag->addAttribute('target', '_blank');
 			}
 		}
 
-		$link = $cObj->typolink('', $configuration);
+		$url = $cObj->typoLink_URL($configuration);
 		if ($uriOnly) {
-			return $link;
+			return $url;
 		}
 
-		$this->tag->addAttribute('href', $link);
+		$this->tag->addAttribute('href', $url);
 		$this->tag->setContent($this->renderChildren());
 		return $this->tag->render();
 	}
