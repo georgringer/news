@@ -170,7 +170,7 @@
 								<size>10</size>
 								<autoSizeMax>20</autoSizeMax>
 								<minitems>0</minitems>
-								<maxitems>20</maxitems>
+								<maxitems>99</maxitems>
 							</config>
 						</TCEforms>
 					</settings.categories>
