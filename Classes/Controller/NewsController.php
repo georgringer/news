@@ -245,14 +245,25 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * Display the search form
 	 *
 	 * @param Tx_News_Domain_Model_Dto_Search $search
+	 * @param array $overwriteDemand
 	 * @return void
 	 */
-	public function searchFormAction(Tx_News_Domain_Model_Dto_Search $search = NULL) {
+	public function searchFormAction(Tx_News_Domain_Model_Dto_Search $search = NULL, array $overwriteDemand = array()) {
+		$demand = $this->createDemandObjectFromSettings($this->settings);
+		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
+			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
+		}
+
 		if (is_null($search)) {
 			$search = $this->objectManager->get('Tx_News_Domain_Model_Dto_Search');
 		}
+		$demand->setSearch($search);
 
-		$this->view->assign('search', $search);
+		$this->view->assignMultiple(array(
+			'search' => $search,
+			'overwriteDemand' => $overwriteDemand,
+			'demand' => $demand,
+		));
 	}
 
 	/**
