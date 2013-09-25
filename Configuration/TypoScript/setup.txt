@@ -95,7 +95,7 @@ plugin.tx_news {
 		orderBy = datetime
 		orderDirection = desc
 		orderByRespectTopNews = 0
-		orderByAllowed = author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
+		orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
 
 		facebookLocale = en_US
 		googlePlusLocale = en
