@@ -8,6 +8,9 @@ plugin.tx_news {
 		category =
 		generator = TYPO3 EXT:news
 	}
+	opengraph {
+		site_name =
+	}
 	view {
 		 # cat=plugin.tx_news/file; type=string; label=Path to template root (FE)
 		templateRootPath = EXT:news/Resources/Private/Templates/
@@ -17,8 +20,8 @@ plugin.tx_news {
 		layoutRootPath = EXT:news/Resources/Private/Layouts/
 	}
 
-		settings {
-			 # cat=plugin.tx_news/file; type=string; label=Path to CSS file
-	 		cssFile = EXT:news/Resources/Public/Css/news-basic.css
-		}
+	settings {
+		# cat=plugin.tx_news/file; type=string; label=Path to CSS file
+		cssFile = EXT:news/Resources/Public/Css/news-basic.css
+	}
 }

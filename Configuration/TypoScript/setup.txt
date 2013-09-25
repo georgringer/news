@@ -191,8 +191,8 @@ plugin.tx_news {
 
 		# Opengraph implementation
 		opengraph {
-		    site_name = Perfect test site
-		    type = article
+			site_name =  {$plugin.tx_news.opengraph.site_name}
+			type = article
 			admins =
 			email =
 			phone_number =
