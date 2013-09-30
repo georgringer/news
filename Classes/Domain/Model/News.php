@@ -1,26 +1,26 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2010 Georg Ringer <typo3@ringerge.org>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * News model
@@ -62,6 +62,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
 	 * keep it as string as it should be only used during imports
+	 *
 	 * @var string
 	 */
 	protected $feGroup;
@@ -351,7 +352,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getDayOfDatetime() {
-		return (int) $this->datetime->format('d');
+		return (int)$this->datetime->format('d');
 	}
 
 	/**
@@ -397,7 +398,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getDayOfArchive() {
-		return (int) $this->archive->format('d');
+		return (int)$this->archive->format('d');
 	}
 
 	/**
@@ -715,6 +716,33 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Get all media elements of type image
+	 *
+	 * @return array|null
+	 */
+	public function getMediaTypeImage() {
+		return $this->getMediaSelection(Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE);
+	}
+
+	/**
+	 * Get all media elements of type multimedia
+	 *
+	 * @return array|null
+	 */
+	public function getMediaTypeMultimedia() {
+		return $this->getMediaSelection(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
+	}
+
+	/**
+	 * Get all media elements of type dam
+	 *
+	 * @return array|null
+	 */
+	public function getMediaTypeDam() {
+		return $this->getMediaSelection(Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM);
+	}
+
+	/**
 	 * Adds a media to this media.
 	 *
 	 * @param Tx_News_Domain_Model_Media $media
@@ -848,7 +876,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 *
 	 * @param Tx_News_Domain_Model_TtContent $contentElement
 	 * @return void
-	*/
+	 */
 	public function addContentElement(Tx_News_Domain_Model_TtContent $contentElement) {
 		if ($this->getContentElements() === NULL) {
 			$this->contentElements = new Tx_Extbase_Persistence_ObjectStorage();
@@ -880,6 +908,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
 	 * Set Tags
+	 *
 	 * @param Tx_Extbase_Persistence_ObjectStorage $tags tags
 	 * @return void
 	 */
@@ -949,7 +978,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getDayOfCrdate() {
-		return (int) $this->crdate->format('d');
+		return (int)$this->crdate->format('d');
 	}
 
 	/**
@@ -1033,7 +1062,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getDayOfTimestamp() {
-		return (int) $this->tstamp->format('d');
+		return (int)$this->tstamp->format('d');
 	}
 
 	/**
@@ -1155,7 +1184,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getDayOfStarttime() {
-		return (int) $this->starttime->format('d');
+		return (int)$this->starttime->format('d');
 	}
 
 	/**
@@ -1201,7 +1230,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return integer
 	 */
 	public function getDayOfEndtime() {
-		return (int) $this->endtime->format('d');
+		return (int)$this->endtime->format('d');
 	}
 
 	/**
@@ -1279,5 +1308,29 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getImportSource() {
 		return $this->importSource;
 	}
+
+	/**
+	 * Get a sub selection of media elements
+	 *
+	 * @param $type
+	 * @return array|null
+	 */
+	protected function getMediaSelection($type) {
+		$mediaElements = $this->getMedia();
+
+		$collection = array();
+		foreach ($mediaElements as $mediaElement) {
+			if ((int)$mediaElement->getType() === $type) {
+				$collection[] = $mediaElement;
+			}
+		}
+
+		if (count($collection) > 0) {
+			return $collection;
+		}
+
+		return NULL;
+	}
 }
+
 ?>

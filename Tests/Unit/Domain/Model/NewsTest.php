@@ -1,26 +1,26 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2010 Georg Ringer <typo3@ringerge.org>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * Tests for domains model News
@@ -322,5 +322,41 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Bas
 		$this->newsDomainModelInstance->setRelatedLinks($related);
 		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedLinks());
 	}
+
+	/**
+	 * Test if correct sub selection is returned
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function correctMediaSelectionIsReturned() {
+		$imageElement1 = new Tx_News_Domain_Model_Media();
+		$imageElement1->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE);
+		$imageElement2 = new Tx_News_Domain_Model_Media();
+		$imageElement2->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE);
+		$imageElement3 = new Tx_News_Domain_Model_Media();
+		$imageElement3->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE);
+		$multimediaElement1 = new Tx_News_Domain_Model_Media();
+		$multimediaElement1->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
+		$damElement1 = new Tx_News_Domain_Model_Media();
+		$damElement1->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM);
+		$damElement2 = new Tx_News_Domain_Model_Media();
+		$damElement2->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM);
+
+		$news = new Tx_News_Domain_Model_News();
+		$news->addMedia($imageElement1);
+		$news->addMedia($imageElement2);
+		$news->addMedia($imageElement3);
+		$news->addMedia($imageElement3);
+		$news->addMedia($multimediaElement1);
+		$news->addMedia($damElement1);
+		$news->addMedia($damElement2);
+
+		$this->assertEquals(3, count($news->getMediaTypeImage()));
+		$this->assertEquals(1, count($news->getMediaTypeMultimedia()));
+		$this->assertEquals(2, count($news->getMediaTypeDam()));
+		$this->assertEquals(6, count($news->getMedia()));
+	}
 }
+
 ?>
