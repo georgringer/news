@@ -132,7 +132,11 @@ class Tx_News_Hooks_T3libBefunc {
 		$selectedView = '';
 
 			// get the first selected action
-		$flexformSelection = t3lib_div::xml2array($row['pi_flexform']);
+		if (is_string($row['pi_flexform'])) {
+			$flexformSelection = t3lib_div::xml2array($row['pi_flexform']);
+		} else {
+			$flexformSelection = $row['pi_flexform'];
+		}
 		if (is_array($flexformSelection) && is_array($flexformSelection['data'])) {
 			$selectedView = $flexformSelection['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
 			if (!empty($selectedView)) {
