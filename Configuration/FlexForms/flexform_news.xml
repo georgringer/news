@@ -337,7 +337,6 @@
 					<!-- startingpoint -->
 					<settings.startingpoint>
 						<TCEforms>
-							<exclude>1</exclude>
 							<label>LLL:EXT:lang/locallang_general.xml:LGL.startingpoint</label>
 							<config>
 								<type>group</type>
@@ -359,7 +358,6 @@
 					<!-- recursive -->
 					<settings.recursive>
 						<TCEforms>
-							<exclude>1</exclude>
 							<label>LLL:EXT:lang/locallang_general.xml:LGL.recursive</label>
 							<config>
 								<type>select</type>
