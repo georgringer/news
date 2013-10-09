@@ -14,16 +14,19 @@ $TCA['tx_news_domain_model_tag'] = array(
 	'feInterface' => $TCA['tx_news_domain_model_tag']['feInterface'],
 	'columns' => array(
 		'pid' => array(
+			'label' => 'pid',
 			'config' => array(
 				'type' => 'passthrough'
 			)
 		),
 		'crdate' => array(
+			'label' => 'crdate',
 			'config' => array(
 				'type' => 'passthrough',
 			)
 		),
 		'tstamp' => array(
+			'label' => 'tstamp',
 			'config' => array(
 				'type' => 'passthrough',
 			)

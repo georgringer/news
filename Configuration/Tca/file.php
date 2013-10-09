@@ -26,7 +26,7 @@ $TCA['tx_news_domain_model_file'] = array(
 			)
 		),
 		'tstamp' => array(
-			'label' => 'crdate',
+			'label' => 'tstamp',
 			'config' => array(
 				'type' => 'passthrough',
 			)

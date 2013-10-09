@@ -32,7 +32,7 @@ $TCA['tx_news_domain_model_category'] = array(
 			)
 		),
 		'tstamp' => array(
-			'label' => 'passthrough',
+			'label' => 'tstamp',
 			'config' => array(
 				'type' => 'passthrough',
 			)
