@@ -45,11 +45,6 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	protected $tsConfiguration = array();
 
 	/**
-	 * @var Tx_News_Domain_Repository_NewsRepository
-	 */
-	protected $newsRepository;
-
-	/**
 	 * @var Tx_News_Domain_Repository_CategoryRepository
 	 */
 	protected $categoryRepository;
@@ -68,16 +63,6 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		$this->pageUid = (int)t3lib_div::_GET('id');
 		$this->setTsConfig();
 		parent::initializeAction();
-	}
-
-	/**
-	 * Inject a news repository to enable DI
-	 *
-	 * @param Tx_News_Domain_Repository_NewsRepository $newsRepository
-	 * @return void
-	 */
-	public function injectNewsRepository(Tx_News_Domain_Repository_NewsRepository $newsRepository) {
-		$this->newsRepository = $newsRepository;
 	}
 
 	/**
