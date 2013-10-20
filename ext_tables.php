@@ -128,6 +128,10 @@ $TCA['tx_news_domain_model_media'] = array(
 		'hideTable'			=> TRUE,
 	),
 );
+if (version_compare(TYPO3_branch, '6.2', '>=')) {
+	unset($TCA['tx_news_domain_model_news']['ctrl']['label_userFunc']);
+	$TCA['tx_news_domain_model_news']['ctrl']['formattedLabel_userFunc'] = 'Tx_News_Hooks_Labels->getUserLabelMedia';
+}
 
 t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_media');
 
