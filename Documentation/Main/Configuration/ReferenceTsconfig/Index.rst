@@ -161,8 +161,22 @@ Reference TsConfig for the Administration Module (Backend)
 
            tx_news.module.defaultPid.tx_news_domain_model_news = 123
 
-         News records will be saved on page with ID 123
+         News records will be saved on page with ID 123.
 
+ - :Property:
+         redirectToPageOnStart
+
+   :Data type:
+         integer
+
+   :Description:
+         If no page is selected, the user will be redirected to the given page
+
+         Example: ::
+
+           tx_news.module.redirectToPageOnStart = 456
+
+         The user will be redirected to the page with the uid 456.
 
 
 Clear caches if a news record changes
