@@ -679,6 +679,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	public function getMediaPreviews() {
 		$mediaElements = $this->getMedia();
 
+		if (is_null($mediaElements)) {
+			return NULL;
+		}
+
 		$previewCollection = array();
 		foreach ($mediaElements as $mediaElement) {
 			if ($mediaElement->getShowinpreview()) {
@@ -700,6 +704,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getNonMediaPreviews() {
 		$mediaElements = $this->getMedia();
+
+		if (is_null($mediaElements)) {
+			return NULL;
+		}
 
 		$collection = array();
 		foreach ($mediaElements as $mediaElement) {
@@ -775,6 +783,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function getFirstImagePreview() {
 		$mediaElements = $this->getMedia();
+
+		if (is_null($mediaElements)) {
+			return NULL;
+		}
 
 		foreach ($mediaElements as $mediaElement) {
 			if ($mediaElement->getShowinpreview()) {
