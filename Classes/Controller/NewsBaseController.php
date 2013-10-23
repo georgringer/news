@@ -35,6 +35,7 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 	 */
 	protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
 		$view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+		$view->assign('emConfiguration', Tx_News_Utility_EmConfiguration::getSettings());
 	}
 
 
