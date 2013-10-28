@@ -161,6 +161,7 @@
 								<treeConfig>
 									<parentField>parentcategory</parentField>
 									<appearance>
+										<maxLevels>99</maxLevels>
 										<expandAll>TRUE</expandAll>
 										<showHeader>TRUE</showHeader>
 									</appearance>
