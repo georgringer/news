@@ -84,13 +84,18 @@ class Tx_News_Cache_ClassCacheBuilder {
 		// Get the extensions which want to extend news
 		$extensibleExtensions = array();
 		foreach ($loadedExtensions as $extensionKey) {
-			$extensionInfoFile = t3lib_extMgm::extPath($extensionKey, 'Resources/Private/extend-news.txt');
-			if (file_exists($extensionInfoFile)) {
-				$info = t3lib_div::getUrl($extensionInfoFile);
-				$classes = t3lib_div::trimExplode(LF, $info, TRUE);
-				foreach ($classes as $class) {
-					$extensibleExtensions[$class][$extensionKey] = 1;
+			try {
+				$extensionInfoFile = t3lib_extMgm::extPath($extensionKey, 'Resources/Private/extend-news.txt');
+				if (file_exists($extensionInfoFile)) {
+					$info = t3lib_div::getUrl($extensionInfoFile);
+					$classes = t3lib_div::trimExplode(LF, $info, TRUE);
+					foreach ($classes as $class) {
+						$extensibleExtensions[$class][$extensionKey] = 1;
+					}
 				}
+			} catch(Exception $e) {
+				// This exception can be thrown if an extension key is somehow registered
+				// but the extension is not loaded. Nothing to do
 			}
 		}
 		return $extensibleExtensions;
