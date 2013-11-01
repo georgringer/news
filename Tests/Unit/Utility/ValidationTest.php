@@ -86,4 +86,3 @@ class Tx_News_Tests_Unit_Utility_ValidationTest extends Tx_Extbase_Tests_Unit_Ba
 	}
 
 }
-?>

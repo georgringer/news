@@ -60,5 +60,3 @@ class Tx_News_ViewHelpers_Format_StriptagsViewHelper extends Tx_Fluid_Core_ViewH
 		return $content;
 	}
 }
-
-?>

@@ -88,5 +88,3 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends Tx_Fluid_Cor
 	}
 
 }
-
-?>

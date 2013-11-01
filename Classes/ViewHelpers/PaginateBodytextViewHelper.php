@@ -218,5 +218,3 @@ class Tx_News_ViewHelpers_PaginateBodytextViewHelper extends Tx_Fluid_Core_ViewH
 		return '</' . $tag . '>';
 	}
 }
-
-?>

@@ -51,4 +51,3 @@ class Tx_News_Jobs_T3BlogCategoryImportJob extends Tx_News_Jobs_AbstractImportJo
 		$this->importService = $importService;
 	}
 }
-?>

@@ -87,5 +87,3 @@ class Tx_News_MediaRenderer_Video_Videosites implements Tx_News_MediaRenderer_Me
 	}
 
 }
-
-?>

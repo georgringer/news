@@ -518,5 +518,3 @@ class Tx_News_Domain_Model_TtContent extends Tx_Extbase_DomainObject_AbstractEnt
 
 
 }
-
-?>

@@ -98,5 +98,3 @@ class Tx_News_Tests_Unit_ViewHelpers_TargetLinkViewHelperTest extends Tx_Extbase
 	}
 
 }
-
-?>

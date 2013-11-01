@@ -287,4 +287,3 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Un
 	}
 
 }
-?>

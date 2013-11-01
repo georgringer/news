@@ -50,5 +50,3 @@ class Tx_News_ViewHelpers_ExcludeDisplayedNewsViewHelper extends Tx_Fluid_Core_V
 		$GLOBALS['EXT']['news']['alreadyDisplayed'][$uid] = $uid;
 	}
 }
-
-?>

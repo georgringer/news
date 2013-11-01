@@ -57,4 +57,3 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_StriptagsViewHelperTest extends Tx_E
 		$this->assertEquals('TestFo<strong>Bar</strong>', $actualResult);
 	}
 }
-?>

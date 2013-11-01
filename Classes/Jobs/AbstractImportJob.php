@@ -110,4 +110,3 @@ abstract class Tx_News_Jobs_AbstractImportJob implements Tx_News_Jobs_ImportJobI
 		$this->importService->import($importData, $this->importItemOverwrite, $this->importServiceSettings);
 	}
 }
-?>

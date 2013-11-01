@@ -132,5 +132,3 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 	}
 
 }
-
-?>

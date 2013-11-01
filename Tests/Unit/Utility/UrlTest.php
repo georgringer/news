@@ -59,4 +59,3 @@ class Tx_News_Tests_Unit_Utility_UrlTest extends Tx_Extbase_Tests_Unit_BaseTestC
 		);
 	}
 }
-?>

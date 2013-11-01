@@ -83,5 +83,3 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 	}
 
 }
-
-?>

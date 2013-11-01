@@ -60,5 +60,3 @@ class Tx_News_Utility_EmConfiguration {
 	}
 
 }
-
-?>

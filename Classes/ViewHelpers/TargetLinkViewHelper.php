@@ -49,5 +49,3 @@ class Tx_News_ViewHelpers_TargetLinkViewHelper extends Tx_Fluid_Core_ViewHelper_
 	}
 
 }
-
-?>

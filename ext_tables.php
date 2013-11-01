@@ -438,4 +438,3 @@ if (version_compare(TYPO3_branch, '6.0', '>=') || t3lib_extMgm::isLoaded('tcatre
 	t3lib_extMgm::addTCAcolumns('be_users', $tempColumns, 1);
 	t3lib_extMgm::addToAllTCAtypes('be_users', 'tx_news_categorymounts;;;;1-1-1');
 }
-?>

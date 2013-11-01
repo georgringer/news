@@ -395,4 +395,3 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		return (filesize($file1) === filesize($file2));
 	}
 }
-?>

@@ -124,5 +124,3 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 	}
 
 }
-
-?>

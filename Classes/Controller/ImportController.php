@@ -84,4 +84,3 @@ class Tx_News_Controller_ImportController extends Tx_Extbase_MVC_Controller_Acti
 		return json_encode($job->getInfo());
 	}
 }
-?>

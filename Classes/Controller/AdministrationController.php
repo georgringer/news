@@ -250,5 +250,3 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		}
 	}
 }
-
-?>

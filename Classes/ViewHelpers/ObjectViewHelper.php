@@ -77,5 +77,3 @@ class Tx_News_ViewHelpers_ObjectViewHelper extends Tx_Fluid_Core_ViewHelper_Abst
 		return $output;
 	}
 }
-
-?>

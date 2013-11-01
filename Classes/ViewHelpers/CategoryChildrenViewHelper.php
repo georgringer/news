@@ -59,5 +59,3 @@ class Tx_News_ViewHelpers_CategoryChildrenViewHelper extends Tx_Fluid_Core_ViewH
 		return $output;
 	}
 }
-
-?>

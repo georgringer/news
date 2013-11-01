@@ -72,4 +72,3 @@ class Tx_News_ViewHelpers_Social_GravatarViewHelper extends Tx_Fluid_Core_ViewHe
 		return $this->tag->render();
 	}
 }
-?>

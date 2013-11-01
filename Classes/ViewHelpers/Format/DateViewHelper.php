@@ -105,4 +105,3 @@ class Tx_News_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewHelper
 		return $formattedDate;
 	}
 }
-?>

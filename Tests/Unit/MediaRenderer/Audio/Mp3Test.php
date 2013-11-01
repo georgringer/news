@@ -65,5 +65,3 @@ class Tx_News_Tests_Unit_MediaRenderer_Audio_Mp3Test extends Tx_Extbase_Tests_Un
 	}
 
 }
-
-?>

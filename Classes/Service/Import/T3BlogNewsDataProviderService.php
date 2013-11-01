@@ -134,5 +134,3 @@ class Tx_News_Service_Import_T3BlogNewsDataProviderService implements Tx_News_Se
 	}
 
 }
-
-?>

@@ -153,5 +153,3 @@ class Tx_News_Database_SoftReferenceIndex {
 		return md5($this->tokenID_basePrefix . ':' . $index);
 	}
 }
-
-?>

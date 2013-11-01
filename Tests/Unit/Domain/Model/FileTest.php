@@ -139,4 +139,3 @@ class Tx_News_Tests_Unit_Domain_Model_FileTest extends Tx_Extbase_Tests_Unit_Bas
 	}
 
 }
-?>

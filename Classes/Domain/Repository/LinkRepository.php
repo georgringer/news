@@ -31,4 +31,3 @@
 class Tx_News_Domain_Repository_LinkRepository extends Tx_Extbase_Persistence_Repository {
 
 }
-?>

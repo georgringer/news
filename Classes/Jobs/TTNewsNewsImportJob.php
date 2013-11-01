@@ -61,4 +61,3 @@ class Tx_News_Jobs_TTNewsNewsImportJob extends Tx_News_Jobs_AbstractImportJob {
 		$this->importService = $importService;
 	}
 }
-?>

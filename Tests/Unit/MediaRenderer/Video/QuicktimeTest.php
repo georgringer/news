@@ -65,5 +65,3 @@ class Tx_News_Tests_Unit_MediaRenderer_Video_QuicktimeTest extends Tx_Extbase_Te
 	}
 
 }
-
-?>

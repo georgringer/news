@@ -90,4 +90,3 @@ class Tx_News_Service_Import_TTNewsCategoryDataProviderService implements Tx_New
 		return $importData;
 	}
 }
-?>

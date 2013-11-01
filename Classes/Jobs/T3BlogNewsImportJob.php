@@ -60,4 +60,3 @@ class Tx_News_Jobs_T3BlogNewsImportJob extends Tx_News_Jobs_AbstractImportJob {
 		$this->importService = $importService;
 	}
 }
-?>

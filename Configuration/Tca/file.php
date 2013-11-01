@@ -142,4 +142,3 @@ $TCA['tx_news_domain_model_file'] = array(
 );
 
 
-?>

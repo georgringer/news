@@ -58,5 +58,3 @@ class Tx_News_Controller_TagController extends Tx_News_Controller_NewsController
 	}
 
 }
-
-?>

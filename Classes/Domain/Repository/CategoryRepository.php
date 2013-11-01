@@ -204,5 +204,3 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 		return $idList;
 	}
 }
-
-?>

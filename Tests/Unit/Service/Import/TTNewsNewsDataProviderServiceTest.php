@@ -66,4 +66,3 @@ class Tx_News_Tests_Unit_Service_Import_TTNewsNewsDataProviderServiceTest extend
 	}
 }
 
-?>

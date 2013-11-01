@@ -81,4 +81,3 @@ class Tx_News_Service_Import_T3BlogCategoryDataProviderService implements Tx_New
 		return $importData;
 	}
 }
-?>

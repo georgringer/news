@@ -298,4 +298,3 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends Tx_E
 		unset($this->testingFramework);
 	}
 }
-?>

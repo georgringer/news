@@ -107,5 +107,3 @@ class Tx_News_Domain_Model_Dto_AdministrationDemand extends Tx_News_Domain_Model
 		$this->sortingDirection = $sortingDirection;
 	}
 }
-
-?>

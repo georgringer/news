@@ -76,5 +76,3 @@ class Tx_News_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelpe
 	}
 
 }
-
-?>

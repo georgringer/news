@@ -89,4 +89,3 @@ class Tx_News_MediaRenderer_Video_Youtube implements Tx_News_MediaRenderer_Media
 
 }
 
-?>

@@ -111,4 +111,3 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbase
 		$newsRepository->_call('createConstraintsFromDemand', $query, $demand);
 	}
 }
-?>

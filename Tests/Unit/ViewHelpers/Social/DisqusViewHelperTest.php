@@ -99,4 +99,3 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends Tx_Extb
 	}
 
 }
-?>

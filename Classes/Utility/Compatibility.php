@@ -141,4 +141,3 @@ class Tx_News_Utility_Compatibility {
 		return ($firstNumber >= 6);
 	}
 }
-?>

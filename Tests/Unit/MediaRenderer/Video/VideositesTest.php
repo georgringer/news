@@ -62,5 +62,3 @@ class Tx_News_Tests_Unit_MediaRenderer_Video_VideositesTest extends Tx_Extbase_T
 	}
 
 }
-
-?>

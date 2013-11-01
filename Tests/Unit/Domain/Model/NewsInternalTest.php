@@ -338,4 +338,3 @@ class Tx_News_Tests_Unit_Domain_Model_NewsInternalTest extends Tx_Extbase_Tests_
 		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedLinks());
 	}
 }
-?>

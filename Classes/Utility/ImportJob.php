@@ -63,4 +63,3 @@ class Tx_News_Utility_ImportJob {
 		return self::$registeredJobs;
 	}
 }
-?>

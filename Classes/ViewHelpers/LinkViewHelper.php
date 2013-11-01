@@ -199,5 +199,3 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_ViewHelpers_Link_PageV
 
 	}
 }
-
-?>

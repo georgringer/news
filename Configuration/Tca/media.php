@@ -279,4 +279,3 @@ if (!$configuration->getShowMediaDescriptionField()) {
 	unset($TCA['tx_news_domain_model_media']['columns']['description']);
 }
 
-?>

@@ -77,5 +77,3 @@ class Tx_News_ViewHelpers_Social_DisqusViewHelper extends Tx_Fluid_Core_ViewHelp
 		return $code;
 	}
 }
-
-?>

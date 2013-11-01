@@ -69,5 +69,3 @@ class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends Tx_Fluid_ViewHelpers
 		return $content;
 	}
 }
-
-?>

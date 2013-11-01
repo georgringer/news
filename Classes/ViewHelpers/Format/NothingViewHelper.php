@@ -50,5 +50,3 @@ class Tx_News_ViewHelpers_Format_NothingViewHelper extends Tx_Fluid_Core_ViewHel
 		$this->renderChildren();
 	}
 }
-
-?>

@@ -32,4 +32,3 @@ interface Tx_News_Service_Import_DataProviderServiceInterface {
 	public function getTotalRecordCount();
 	public function getImportData();
 }
-?>

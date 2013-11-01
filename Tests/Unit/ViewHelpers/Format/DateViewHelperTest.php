@@ -79,5 +79,3 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_DateViewHelperTest extends Tx_Extbas
 		);
 	}
 }
-
-?>

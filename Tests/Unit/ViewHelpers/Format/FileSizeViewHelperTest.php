@@ -68,4 +68,3 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends Tx_Ex
 	}
 
 }
-?>

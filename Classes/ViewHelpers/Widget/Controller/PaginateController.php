@@ -214,5 +214,3 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 		return $pagination;
 	}
 }
-
-?>

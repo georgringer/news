@@ -156,5 +156,3 @@ $default = array(
 $classCacheBuilder = t3lib_div::makeInstance('Tx_News_Cache_ClassCacheBuilder');
 $mergedClasses = array_merge($default, $classCacheBuilder->build());
 return $mergedClasses;
-
-?>

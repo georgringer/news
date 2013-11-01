@@ -358,5 +358,3 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Bas
 		$this->assertEquals(6, count($news->getMedia()));
 	}
 }
-
-?>

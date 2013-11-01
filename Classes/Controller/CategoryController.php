@@ -79,5 +79,3 @@ class Tx_News_Controller_CategoryController extends Tx_News_Controller_NewsContr
 	}
 
 }
-
-?>

@@ -65,5 +65,3 @@ class Tx_News_Tests_Unit_Service_CategoryServiceTest extends Tx_Extbase_Tests_Un
 		);
 	}
 }
-
-?>

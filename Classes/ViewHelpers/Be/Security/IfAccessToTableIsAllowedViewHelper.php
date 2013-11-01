@@ -49,5 +49,3 @@ class Tx_News_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHelper extends
 		return $this->renderElseChild();
 	}
 }
-
-?>

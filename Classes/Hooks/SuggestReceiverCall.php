@@ -156,5 +156,3 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	}
 
 }
-
-?>

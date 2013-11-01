@@ -44,4 +44,3 @@ class Tx_News_Utility_Url {
 		return $url;
 	}
 }
-?>

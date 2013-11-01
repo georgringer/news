@@ -249,4 +249,3 @@ class Tx_News_Tests_Unit_Domain_Model_MediaTest extends Tx_Extbase_Tests_Unit_Ba
 		$this->assertEquals($description, $this->mediaDomainModelInstance->getDescription());
 	}
 }
-?>

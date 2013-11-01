@@ -45,4 +45,3 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_NothingViewHelperTest extends Tx_Ext
 	}
 
 }
-?>

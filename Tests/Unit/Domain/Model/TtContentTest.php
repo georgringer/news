@@ -264,4 +264,3 @@ class Tx_News_Tests_Unit_Domain_Model_TtContentTest extends Tx_Extbase_Tests_Uni
 
 
 }
-?>

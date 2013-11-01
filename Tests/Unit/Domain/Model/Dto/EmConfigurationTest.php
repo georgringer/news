@@ -92,5 +92,3 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends Tx_Extbase
 		}
 	}
 }
-
-?>

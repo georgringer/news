@@ -112,5 +112,3 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 		return $link;
 	}
 }
-
-?>

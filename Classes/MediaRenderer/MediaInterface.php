@@ -49,5 +49,3 @@ interface Tx_News_MediaRenderer_MediaInterface {
 	public function enabled(Tx_News_Domain_Model_Media $element);
 
 }
-
-?>

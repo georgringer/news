@@ -86,5 +86,3 @@ class Tx_News_Tests_Unit_Hooks_LabelsTest extends Tx_Extbase_Tests_Unit_BaseTest
 		);
 	}
 }
-
-?>

@@ -31,4 +31,3 @@
 class Tx_News_Domain_Model_NewsDefault extends Tx_News_Domain_Model_News {
 
 }
-?>

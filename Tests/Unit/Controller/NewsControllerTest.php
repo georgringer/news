@@ -99,4 +99,3 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends Tx_Phpunit_TestCa
 		$fixture->listAction();
 	}
 }
-?>

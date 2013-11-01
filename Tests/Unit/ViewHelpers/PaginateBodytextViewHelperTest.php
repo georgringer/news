@@ -125,4 +125,3 @@ class Tx_News_Tests_Unit_ViewHelpers_PaginateBodytextViewHelperTest extends Tx_E
 
 
 }
-?>

@@ -118,5 +118,3 @@ class Tx_News_Tests_Unit_Utility_EmConfigurationTest extends Tx_Extbase_Tests_Un
 	}
 
 }
-
-?>

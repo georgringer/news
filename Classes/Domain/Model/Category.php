@@ -444,4 +444,3 @@ class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnti
 		return $this->importSource;
 	}
 }
-?>

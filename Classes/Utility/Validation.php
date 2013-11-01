@@ -72,5 +72,3 @@ class Tx_News_Utility_Validation {
 		return $isValid;
 	}
 }
-
-?>

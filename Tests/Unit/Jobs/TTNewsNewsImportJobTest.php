@@ -43,5 +43,3 @@ class Tx_News_Tests_Unit_Jobs_TTNewsNewsImportJobTest extends Tx_Extbase_Tests_U
 
 	}
 }
-
-?>

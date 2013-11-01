@@ -31,5 +31,3 @@
 class Tx_News_Domain_Repository_NewsDefaultRepository extends Tx_News_Domain_Repository_NewsRepository  {
 
 }
-
-?>

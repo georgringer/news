@@ -79,5 +79,3 @@ class Tx_News_Domain_Model_Dto_Search extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 }
-
-?>

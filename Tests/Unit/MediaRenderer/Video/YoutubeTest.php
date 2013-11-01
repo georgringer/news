@@ -68,5 +68,3 @@ class Tx_News_Tests_Unit_MediaRenderer_Video_YoutubeTest extends Tx_Extbase_Test
 	}
 
 }
-
-?>

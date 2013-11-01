@@ -111,4 +111,3 @@ $link = implode(' ', explode(chr(10), $javaScriptCode));
 	}
 
 }
-?>

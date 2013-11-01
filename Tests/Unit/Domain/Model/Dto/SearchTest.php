@@ -58,5 +58,3 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_SearchTest extends Tx_Extbase_Tests_Un
 	}
 
 }
-
-?>

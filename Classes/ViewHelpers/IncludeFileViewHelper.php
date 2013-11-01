@@ -73,5 +73,3 @@ class Tx_News_ViewHelpers_IncludeFileViewHelper extends Tx_Fluid_Core_ViewHelper
 	}
 
 }
-
-?>

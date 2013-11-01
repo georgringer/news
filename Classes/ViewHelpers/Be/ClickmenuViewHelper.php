@@ -63,5 +63,3 @@ class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends Tx_Fluid_Core_ViewHelpe
 		return $returnOnClick ? $onClick : '<a href="#" onclick="' . htmlspecialchars($onClick) . '" oncontextmenu="' . htmlspecialchars($onClick) . '">' . $str . '</a>';
 	}
 }
-
-?>

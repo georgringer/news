@@ -49,5 +49,3 @@ class Tx_Fo_Domain_Model_News {
 
 
 }
-
-?>

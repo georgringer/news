@@ -86,5 +86,3 @@ class Tx_News_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 		}
 	}
 }
-
-?>

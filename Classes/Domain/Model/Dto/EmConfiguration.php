@@ -204,4 +204,3 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 
 
 }
-?>

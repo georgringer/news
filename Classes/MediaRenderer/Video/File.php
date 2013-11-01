@@ -87,4 +87,3 @@ class Tx_News_MediaRenderer_Video_File implements Tx_News_MediaRenderer_MediaInt
 
 }
 
-?>

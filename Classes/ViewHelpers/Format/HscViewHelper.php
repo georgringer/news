@@ -47,4 +47,3 @@ class Tx_News_ViewHelpers_Format_HscViewHelper extends Tx_Fluid_Core_ViewHelper_
 		return htmlspecialchars($this->renderChildren());
 	}
 }
-?>

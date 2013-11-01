@@ -57,5 +57,3 @@ class Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper extends Tx_Fluid_Core_ViewH
 		return $content;
 	}
 }
-
-?>

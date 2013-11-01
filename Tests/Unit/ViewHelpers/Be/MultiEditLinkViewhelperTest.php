@@ -60,4 +60,3 @@ class Tx_News_Tests_Unit_ViewHelpers_Be_MultiEditLinkViewHelperTest extends Tx_E
 
 
 }
-?>

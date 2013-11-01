@@ -68,5 +68,3 @@ class Tx_News_Tests_Unit_TreeProvider_DatabaseTreeDataProviderTest extends Tx_Ex
 	}
 
 }
-
-?>

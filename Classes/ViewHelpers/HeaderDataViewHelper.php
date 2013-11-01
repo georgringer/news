@@ -50,4 +50,3 @@ class Tx_News_ViewHelpers_HeaderDataViewHelper extends Tx_Fluid_Core_ViewHelper_
 		$GLOBALS['TSFE']->getPageRenderer()->addHeaderData($this->renderChildren());
 	}
 }
-?>

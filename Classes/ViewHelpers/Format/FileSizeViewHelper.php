@@ -64,5 +64,3 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHe
 		return $fileSize;
 	}
 }
-
-?>

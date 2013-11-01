@@ -78,4 +78,3 @@ class Tx_News_Tests_Unit_Service_FileServiceTest extends Tx_Extbase_Tests_Unit_B
 	}
 }
 
-?>

@@ -37,4 +37,3 @@ interface Tx_News_Jobs_ImportJobInterface {
 
 	public function run($offset);
 }
-?>

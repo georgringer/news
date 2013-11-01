@@ -77,5 +77,3 @@ class Tx_News_ViewHelpers_Widget_PaginateViewHelper extends Tx_Fluid_Core_Widget
 		return $this->initiateSubRequest();
 	}
 }
-
-?>

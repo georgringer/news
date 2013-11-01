@@ -105,4 +105,3 @@ class Tx_News_Tests_Unit_Domain_Model_LinkTest extends Tx_Extbase_Tests_Unit_Bas
 		$this->assertEquals($uri, $this->linkDomainModelInstance->getUri());
 	}
 }
-?>

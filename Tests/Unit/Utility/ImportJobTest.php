@@ -59,4 +59,3 @@ class Tx_News_Tests_Unit_Utility_ImportJobTest extends Tx_Extbase_Tests_Unit_Bas
 		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
 	}
 }
-?>

@@ -213,5 +213,3 @@ class Tx_News_Service_Import_TTNewsNewsDataProviderService implements Tx_News_Se
 	}
 
 }
-
-?>

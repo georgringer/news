@@ -32,4 +32,3 @@ interface Tx_News_Domain_Repository_DemandedRepositoryInterface {
 	public function findDemanded(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE);
 	public function countDemanded(Tx_News_Domain_Model_DemandInterface $demand);
 }
-?>

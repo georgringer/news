@@ -69,4 +69,3 @@ class Tx_News_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends Tx_Fluid_C
 	}
 
 }
-?>

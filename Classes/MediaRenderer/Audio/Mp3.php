@@ -77,5 +77,3 @@ class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInte
 	}
 
 }
-
-?>

@@ -184,5 +184,3 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends Tx_Ext
 	}
 
 }
-
-?>

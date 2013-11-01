@@ -79,5 +79,3 @@ class Tx_News_Domain_Repository_TagRepository extends Tx_News_Domain_Repository_
 	}
 
 }
-
-?>

@@ -91,5 +91,3 @@ class Tx_News_Service_SettingsService implements t3lib_Singleton {
 	}
 
 }
-
-?>

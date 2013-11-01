@@ -360,4 +360,3 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	}
 
 }
-?>

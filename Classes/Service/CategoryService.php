@@ -193,5 +193,3 @@ class Tx_News_Service_CategoryService {
 	}
 
 }
-
-?>

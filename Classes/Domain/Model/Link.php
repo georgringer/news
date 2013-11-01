@@ -150,5 +150,3 @@ class Tx_News_Domain_Model_Link extends Tx_Extbase_DomainObject_AbstractValueObj
 	}
 
 }
-
-?>
