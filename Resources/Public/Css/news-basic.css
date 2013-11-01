@@ -20,7 +20,7 @@
 	display: block;
 }
 
-.news .nav :after {
+.news .nav:after {
 	content: ".";
 	display: block;
 	height: 0;
@@ -33,12 +33,12 @@
 	margin-bottom: 15px;
 }
 
-.news .article :last-child {
+.news .article:last-child {
 	padding-bottom: 0;
 	margin-bottom: 0;
 }
 
-.news .article :after {
+.news .article:after {
 	content: ".";
 	display: block;
 	height: 0;
@@ -93,7 +93,7 @@
 	border-right: 1px solid #ddd;
 }
 
-.news .footer span :last-child {
+.news .footer span:last-child {
 	border-right: 0;
 }
 
@@ -206,7 +206,7 @@
 	color: #888;
 }
 
-.news-related ul li span :last-child {
+.news-related ul li span:last-child {
 	border-right: 0;
 	padding-right: 0;
 }
