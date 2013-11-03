@@ -191,6 +191,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		));
 
 		Tx_News_Utility_Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
+		Tx_News_Utility_Cache::addCacheTagsByNewsRecords(array($news), FALSE);
 	}
 
 	/**
@@ -238,8 +239,6 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			'demand' => $demand,
 		));
 	}
-
-
 
 	/**
 	 * Display the search form

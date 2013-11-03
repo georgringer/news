@@ -29,8 +29,12 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php'][
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][$_EXTKEY] =
 	'EXT:' . $_EXTKEY . '/Classes/Hooks/Tcemain.php:Tx_News_Hooks_Tcemain';
 
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][$_EXTKEY] =
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][$_EXTKEY . '_classcache'] =
 	'EXT:' . $_EXTKEY . '/Classes/Cache/ClassCacheBuilder.php:Tx_News_Cache_ClassCacheBuilder->build';
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][$_EXTKEY . '_clearcache'] =
+	'EXT:' . $_EXTKEY . '/Classes/Hooks/Tcemain.php:Tx_News_Hooks_Tcemain->clearCachePostProc';
+
 
 	// Tceforms: Rendering of fields
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass'][$_EXTKEY] =
