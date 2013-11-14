@@ -154,6 +154,18 @@ class Tx_News_Tests_Unit_Domain_Model_NewsExternalTest extends Tx_Extbase_Tests_
 	}
 
 	/**
+	 * Test if description can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function descriptionCanBeSet() {
+		$description = 'lorem ipsum';
+		$this->newsDomainModelInstance->setDescription($description);
+		$this->assertEquals($description, $this->newsDomainModelInstance->getDescription());
+	}
+
+	/**
 	 * Test if internalurl can be set
 	 *
 	 * @test

@@ -381,6 +381,16 @@ $TCA['tx_news_domain_model_news'] = array(
 				'rows' => 5,
 			)
 		),
+		'description' => array(
+			'exclude' => 1,
+			'l10n_mode' => 'mergeIfNotBlank',
+			'label' => 'LLL:EXT:cms/locallang_tca.xlf:pages.description_formlabel',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 30,
+				'rows' => 5,
+			)
+		),
 		'media' => array(
 			'exclude' => 1,
 			'label' => $ll . 'tx_news_domain_model_news.media',
@@ -553,7 +563,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		// default news
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
+					title;;paletteCore,;;;;2-2-2, teaser,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
 					bodytext;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],
 					rte_disabled;LLL:EXT:cms/locallang_ttc.xml:rte_enabled_formlabel,
 					content_elements,
@@ -561,32 +571,41 @@ $TCA['tx_news_domain_model_news'] = array(
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
+				--div--;LLL:EXT:cms/locallang_tca.xlf:pages.tabs.metadata,
+					--palette--;LLL:EXT:cms/locallang_tca.xlf:pages.palettes.metatags;metatags,
+					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 		// internal url
 		'1' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,internalurl,
+					title;;paletteCore,;;;;2-2-2, teaser,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,internalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
+				--div--;LLL:EXT:cms/locallang_tca.xlf:pages.tabs.metadata,
+					--palette--;LLL:EXT:cms/locallang_tca.xlf:pages.palettes.metatags;metatags,
+					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 		// external url
 		'2' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser;;paletteNavtitle,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,externalurl,
+					title;;paletteCore,;;;;2-2-2, teaser,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,externalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
 
-				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,keywords,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
+				--div--;LLL:EXT:cms/locallang_tca.xlf:pages.tabs.metadata,
+					--palette--;LLL:EXT:cms/locallang_tca.xlf:pages.palettes.metatags;metatags,
+					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 	),
@@ -613,6 +632,14 @@ $TCA['tx_news_domain_model_news'] = array(
 					--linebreak--, fe_group;LLL:EXT:cms/locallang_ttc.xml:fe_group_formlabel,
 					--linebreak--,editlock,',
 			'canNotCollapse' => TRUE,
+		),
+		'metatags' => array(
+			'showitem' => 'keywords,--linebreak--,description,',
+			'canNotCollapse' => 1
+		),
+		'alternativeTitles' => array(
+			'showitem' => 'alternative_title,--linebreak--,path_segment',
+			'canNotCollapse' => 1
 		),
 	)
 );

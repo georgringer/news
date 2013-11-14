@@ -163,6 +163,11 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $keywords;
 
 	/**
+	 * @var string
+	 */
+	protected $description;
+
+	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Media>
 	 * @lazy
 	 */
@@ -660,6 +665,26 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setKeywords($keywords) {
 		$this->keywords = $keywords;
+	}
+
+
+	/**
+	 * Get description
+	 *
+	 * @return string
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
+
+	/**
+	 * Set description
+	 *
+	 * @param string $description description
+	 * @return void
+	 */
+	public function setDescription($description) {
+		$this->description = $description;
 	}
 
 	/**

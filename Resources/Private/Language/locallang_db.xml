@@ -7,6 +7,7 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relations</label>
+			<label index="tx_news_domain_model_news.palettes.alternativeTitles">Alternative Titles</label>
 			<label index="tx_news_domain_model_news">News</label>
 			<label index="tx_news_domain_model_news.alternative_title">Alternative title</label>
 			<label index="tx_news_domain_model_news.teaser">Teaser</label>
