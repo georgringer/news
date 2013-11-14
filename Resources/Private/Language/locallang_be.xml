@@ -119,6 +119,7 @@
 			<label index="extmng.showImporter">Show importer:Backend module to import into news</label>
 			<label index="extmng.showAdministrationModule">Show administration module:Backend module to administrate news records</label>
 			<label index="extmng.showMediaDescriptionField">Show description for media elements:If set you get an additional description field for media elements.</label>
+			<label index="extmng.rteForTeaser">Enable a RTE for the teaser field.</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Use this overlay for news categories in the Backend</label>

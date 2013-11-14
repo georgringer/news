@@ -51,6 +51,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends Tx_Extbase
 			'showImporter' => TRUE,
 			'showAdministrationModule' => FALSE,
 			'showMediaDescriptionField' => FALSE,
+			'rteForTeaser' => FALSE,
 		);
 
 		$configurationInstance = new Tx_News_Domain_Model_Dto_EmConfiguration($configuration);
@@ -82,6 +83,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends Tx_Extbase
 			'showImporter' => FALSE,
 			'showAdministrationModule' => TRUE,
 			'showMediaDescriptionField' => FALSE,
+			'rteForTeaser' => FALSE,
 		);
 
 		$configurationInstance = new Tx_News_Domain_Model_Dto_EmConfiguration(array());

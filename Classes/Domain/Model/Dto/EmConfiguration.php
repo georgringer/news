@@ -93,6 +93,9 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 */
 	protected $showImporter = FALSE;
 
+	/** @var boolean */
+	protected $rteForTeaser = FALSE;
+
 	/**
 	 * @var boolean
 	 */
@@ -200,6 +203,13 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 */
 	public function getShowMediaDescriptionField() {
 		return $this->showMediaDescriptionField;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getRteForTeaser() {
+		return $this->rteForTeaser;
 	}
 
 

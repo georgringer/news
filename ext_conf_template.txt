@@ -21,6 +21,9 @@ tagPid = 1
 	# cat=records/enable/25; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showMediaDescriptionField
 showMediaDescriptionField = 0
 
+	# cat=records/enable/26; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.rteForTeaser
+rteForTeaser = 0
+
 	# cat=records/enable/110; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.contentElementRelation
 contentElementRelation = 0
 

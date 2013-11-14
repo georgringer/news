@@ -8,6 +8,8 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 // Extension manager configuration
 $configuration = Tx_News_Utility_EmConfiguration::getSettings();
 
+$teaserRteConfiguration = $configuration->getRteForTeaser() ? ';;;richtext::rte_transform[flag=rte_disabled|mode=ts_css]' : '';
+
 $TCA['tx_news_domain_model_news'] = array(
 	'ctrl' => $TCA['tx_news_domain_model_news']['ctrl'],
 	'interface' => array(
@@ -563,7 +565,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		// default news
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
+					title;;paletteCore,;;;;2-2-2, teaser' . $teaserRteConfiguration . ',;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
 					bodytext;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],
 					rte_disabled;LLL:EXT:cms/locallang_ttc.xml:rte_enabled_formlabel,
 					content_elements,
@@ -581,7 +583,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		// internal url
 		'1' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,internalurl,
+					title;;paletteCore,;;;;2-2-2, teaser' . $teaserRteConfiguration . ',;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,internalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
@@ -596,7 +598,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		// external url
 		'2' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser,;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,externalurl,
+					title;;paletteCore,;;;;2-2-2, teaser' . $teaserRteConfiguration . ',;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,externalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
