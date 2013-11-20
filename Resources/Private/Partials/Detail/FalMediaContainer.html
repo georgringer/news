@@ -1,0 +1,17 @@
+<f:if condition="{media}">
+	<!-- fal media files -->
+	<div class="news-img-wrap">
+		<f:for each="{media}" as="mediaElement">
+			<div class="outer">
+				<f:if condition="{mediaElement.originalResource.type} == 2">
+					<f:render partial="Detail/FalMediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
+				</f:if>
+				<f:if condition="{mediaElement.originalResource.type} == 4">
+					<f:render partial="Detail/FalMediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
+				</f:if>
+			</div>
+		</f:for>
+	</div>
+</f:if>
+
+

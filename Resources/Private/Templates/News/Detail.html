@@ -69,6 +69,7 @@
 				<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
 			</f:if>
 
+			<f:render partial="Detail/FalMediaContainer" arguments="{media: newsItem.falMedia, settings:settings}" />
 			<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}" />
 
 			<!-- main text -->
@@ -145,6 +146,36 @@
 									</span>
 									<span class="news-related-files-size">
 										<n:format.fileSize file="uploads/tx_news/{relatedFile.file}" format="{settings.relatedFiles.fileSizeLabels}" />
+									</span>
+								</li>
+							</f:for>
+						</ul>
+					</div>
+				</f:if>
+
+				<f:if condition="{newsItem.falRelatedFiles}">
+					<!-- FAL related files -->
+					<div class="news-related news-related-files">
+						<h4>
+							<f:translate key="related-files" />
+						</h4>
+						<ul>
+							<f:for each="{newsItem.falRelatedFiles}" as="relatedFile">
+								<li>
+									<span class="news-related-files-link">
+										<n:format.fileDownload file="{relatedFile.originalResource.publicUrl}" configuration="{settings.relatedFiles.download}">
+											<f:if condition="{relatedFile.originalResource.title}">
+												<f:then>
+													{relatedFile.originalResource.title}
+												</f:then>
+												<f:else>
+													{relatedFile.originalResource.name}
+												</f:else>
+											</f:if>
+										</n:format.fileDownload>
+									</span>
+									<span class="news-related-files-size">
+										<n:format.fileSize fileSize="{relatedFile.originalResource.size}" format="{settings.relatedFiles.fileSizeLabels}" />
 									</span>
 								</li>
 							</f:for>

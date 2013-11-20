@@ -13,27 +13,19 @@
 		</h3>
 	</div>
 
-	<f:if condition="{newsItem.media}">
-		<!-- media preview element -->
+	<f:if condition="{newsItem.falMedia}">
+		<!-- fal media preview element -->
 		<f:then>
 			<div class="news-img-wrap">
-				<f:if condition="{newsItem.mediaPreviews}">
+				<f:if condition="{newsItem.falMediaPreviews}">
 					<f:then>
 						<n:link newsItem="{newsItem}" settings="{settings}">
-							<f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
-								<f:if condition="{mediaElement.type} == 0">
-									<f:image src="uploads/tx_news/{mediaElement.image}" title="{mediaElement.title}" alt="{mediaElement.alt}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}" />
+							<f:alias map="{mediaElement: newsItem.falMediaPreviews.0}">
+								<f:if condition="{mediaElement.originalResource.type} == 2">
+									<f:image src="{mediaElement.uid}" treatIdAsReference="1" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}" />
 								</f:if>
-								<f:if condition="{mediaElement.type} == 1">
-									<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}" />
-								</f:if>
-								<f:if condition="{mediaElement.type} == 2">
-									<f:render partial="Detail/MediaHtml" arguments="{mediaElement: mediaElement}" />
-								</f:if>
-								<f:if condition="{mediaElement.type} == 3">
-									<n:format.dam as="dam" uid="{mediaElement.uid}">
-										<f:image src="{dam.file_path}{dam.file_name}" title="{dam.title}" alt="{dam.alt_text}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}" />
-									</n:format.dam>
+								<f:if condition="{mediaElement.originalResource.type} == 4">
+									<f:render partial="Detail/FalMediaVideo" arguments="{mediaElement: mediaElement}" />
 								</f:if>
 							</f:alias>
 						</n:link>
@@ -52,19 +44,63 @@
 			</div>
 		</f:then>
 		<f:else>
-			<f:if condition="{settings.displayDummyIfNoMedia}">
+
+			<f:if condition="{newsItem.media}">
+				<!-- media preview element -->
 				<f:then>
 					<div class="news-img-wrap">
-						<n:link newsItem="{newsItem}" settings="{settings}">
+						<f:if condition="{newsItem.mediaPreviews}">
+							<f:then>
+								<n:link newsItem="{newsItem}" settings="{settings}">
+									<f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+										<f:if condition="{mediaElement.type} == 0">
+											<f:image src="uploads/tx_news/{mediaElement.image}" title="{mediaElement.title}" alt="{mediaElement.alt}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}" />
+										</f:if>
+										<f:if condition="{mediaElement.type} == 1">
+											<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement}" />
+										</f:if>
+										<f:if condition="{mediaElement.type} == 2">
+											<f:render partial="Detail/MediaHtml" arguments="{mediaElement: mediaElement}" />
+										</f:if>
+										<f:if condition="{mediaElement.type} == 3">
+											<n:format.dam as="dam" uid="{mediaElement.uid}">
+												<f:image src="{dam.file_path}{dam.file_name}" title="{dam.title}" alt="{dam.alt_text}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}" />
+											</n:format.dam>
+										</f:if>
+									</f:alias>
+								</n:link>
+							</f:then>
+							<f:else>
+								<f:if condition="{settings.displayDummyIfNoMedia}">
+							<span class="no-media-element">
+								<n:link newsItem="{newsItem}" settings="{settings}">
+									<f:image src="{settings.list.media.dummyImage}" title="" alt="" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}" />
+								</n:link>
+							</span>
+								</f:if>
+							</f:else>
+						</f:if>
+
+					</div>
+				</f:then>
+				<f:else>
+					<f:if condition="{settings.displayDummyIfNoMedia}">
+						<f:then>
+							<div class="news-img-wrap">
+								<n:link newsItem="{newsItem}" settings="{settings}">
 							<span class="no-media-element">
 								<f:image src="{settings.list.media.dummyImage}" title="" alt="" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}" />
 							</span>
-						</n:link>
-					</div>
-				</f:then>
+								</n:link>
+							</div>
+						</f:then>
+					</f:if>
+				</f:else>
 			</f:if>
+
 		</f:else>
 	</f:if>
+
 
 	<!-- teas=ser text -->
 	<div class="teaser-text">

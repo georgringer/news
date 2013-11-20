@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  (c) 2013 Frans Saris <frans@beech.it>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_FalMediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * If the escaping interceptor should be disabled inside this ViewHelper,
@@ -46,13 +46,13 @@ class Tx_News_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 * and use the proper ones to render the media element
 	 *
 	 * @param string $classes list of classes which are used to render the media object
-	 * @param Tx_News_Domain_Model_Media $element Current media object
+	 * @param Tx_News_Domain_Model_FileReference $element Current media object
 	 * @param integer $width width
 	 * @param integer $height height
 	 * @return string
 	 * @throws UnexpectedValueException
 	 */
-	public function render($classes, Tx_News_Domain_Model_Media $element, $width, $height) {
+	public function render($classes, Tx_News_Domain_Model_FileReference $element, $width, $height) {
 		$content = '';
 		$classList = t3lib_div::trimExplode(',', $classes, TRUE);
 
@@ -61,8 +61,8 @@ class Tx_News_ViewHelpers_MediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelpe
 			$videoObject = t3lib_div::makeInstance($classData);
 
 				// check interface implementation
-			if (!($videoObject instanceof Tx_News_MediaRenderer_MediaInterface)) {
-				throw new UnexpectedValueException('$videoObject must implement interface Tx_News_MediaRenderer_MediaInterface', 1295088673);
+			if (!($videoObject instanceof Tx_News_MediaRenderer_FalMediaInterface)) {
+				throw new UnexpectedValueException('$videoObject must implement interface Tx_News_MediaRenderer_FalMediaInterface', 1385297020);
 			}
 
 				// if no content found and the implementation is enabled, try to render

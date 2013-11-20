@@ -18,11 +18,15 @@
 			<label index="tx_news_domain_model_news.related">Related News</label>
 			<label index="tx_news_domain_model_news.related_from">Related News (from)</label>
 			<label index="tx_news_domain_model_news.related_files">Related Files</label>
+			<label index="tx_news_domain_model_news.fal_related_files">Related Files</label>
+			<label index="tx_news_domain_model_news.fal_related_files.add">Add releated file</label>
 			<label index="tx_news_domain_model_news.related_links">Related Links</label>
 			<label index="tx_news_domain_model_news.type.I.0">News</label>
 			<label index="tx_news_domain_model_news.type.I.1">Internal Page</label>
 			<label index="tx_news_domain_model_news.type.I.2">External Page</label>
 			<label index="tx_news_domain_model_news.media">Media Element</label>
+			<label index="tx_news_domain_model_news.fal_media">Media file</label>
+			<label index="tx_news_domain_model_news.fal_media.add">Add media file</label>
 			<label index="tx_news_domain_model_news.istopnews">Top news</label>
 			<label index="tx_news_domain_model_news.content_elements">Content elements</label>
 			<label index="tx_news_domain_model_news.tags">Tags</label>

@@ -147,6 +147,14 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $relatedFiles;
 
 	/**
+	 * Fal related files
+	 *
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_FileReference>
+	 * @lazy
+	 */
+	protected $falRelatedFiles;
+
+	/**
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Link>
 	 * @lazy
 	 */
@@ -172,6 +180,22 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @lazy
 	 */
 	protected $media;
+
+	/**
+	 * Fal media items
+	 *
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_MediaFileReference>
+	 * @lazy
+	 */
+	protected $falMedia;
+
+	/**
+	 * Fal media items with showinpreview set
+	 *
+	 * @var array
+	 * @transient
+	 */
+	protected $falMediaPreviews;
 
 	/**
 	 * @var string
@@ -236,6 +260,8 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 		$this->relatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->relatedLinks = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->media = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->falMedia = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->falRelatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
 	/**
@@ -620,6 +646,38 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
+	 * Get FAL related files
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_FileReference>
+	 */
+	public function getFalRelatedFiles() {
+		return $this->falRelatedFiles;
+	}
+
+	/**
+	 * Set FAL related files
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $falRelatedFiles FAL related files
+	 * @return void
+	 */
+	public function setFalRelatedFiles($falRelatedFiles) {
+		$this->falRelatedFiles = $falRelatedFiles;
+	}
+
+	/**
+	 * Adds a file to this files.
+	 *
+	 * @param Tx_News_Domain_Model_FileReference $file
+	 * @return void
+	 */
+	public function addFalRelatedFile(Tx_News_Domain_Model_FileReference $file) {
+		if ($this->getFalRelatedFiles() === NULL) {
+			$this->falRelatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
+		}
+		$this->getFalRelatedFiles()->attach($file);
+	}
+
+	/**
 	 * Set related links
 	 *
 	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Link> $relatedLinks related links relation
@@ -830,6 +888,71 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function setMedia(Tx_Extbase_Persistence_ObjectStorage $media) {
 		$this->media = $media;
+	}
+
+	/**
+	 * Get the Fal media items
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage
+	 */
+	public function getFalMedia() {
+		return $this->falMedia;
+	}
+
+	/**
+	 * Set Fal media relation
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage $media
+	 * @return void
+	 */
+	public function setFalMedia(Tx_Extbase_Persistence_ObjectStorage $falMedia) {
+		$this->falMedia = $falMedia;
+	}
+
+	/**
+	 * Add a Fal media file reference
+	 *
+	 * @param Tx_News_Domain_Model_MediaFileReference $falMedia
+	 */
+	public function addFalMedia(Tx_News_Domain_Model_MediaFileReference $falMedia) {
+		if ($this->getFalMedia() === NULL) {
+			$this->falMedia = new Tx_Extbase_Persistence_ObjectStorage();
+		}
+		$this->falMedia->attach($falMedia);
+	}
+
+	/**
+	 * Get the Fal media items
+	 *
+	 * @var array
+	 */
+	public function getFalMediaPreviews() {
+		if ($this->falMediaPreviews === NULL && $this->getFalMedia()) {
+			$this->falMediaPreviews = array();
+			/** @var $mediaItem Tx_News_Domain_Model_MediaFileReference */
+			foreach ($this->getFalMedia() as $mediaItem) {
+				if ($mediaItem->getOriginalResource()->getProperty('showinpreview')) {
+					$this->falMediaPreviews[] = $mediaItem;
+				}
+			}
+		}
+		return $this->falMediaPreviews;
+	}
+
+	/**
+	 * Get first media element which is tagged as preview and is of type image
+	 *
+	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
+	 */
+	public function getFirstFalImagePreview() {
+
+		$mediaElements = $this->getFalMediaPreviews();
+		if (is_array($mediaElements)) {
+			foreach ($mediaElements as $mediaElement) {
+				return $mediaElement;
+			}
+		}
+		return NULL;
 	}
 
 	/**

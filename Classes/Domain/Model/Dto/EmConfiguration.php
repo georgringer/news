@@ -101,8 +101,25 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 */
 	protected $showAdministrationModule = TRUE;
 
-	/** @var boolean  */
+	/**
+	 * @var boolean
+	 */
 	protected $showMediaDescriptionField = FALSE;
+
+	/**
+	 * @var int
+	 */
+	protected $useFal;
+
+	/**
+	 * @var int
+	 */
+	protected $storageUidImporter = 1;
+
+	/**
+	 * @var string
+	 */
+	protected $resourceFolderImporter = '/news_import';
 
 	/**
 	 * @return integer
@@ -212,5 +229,24 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 		return $this->rteForTeaser;
 	}
 
+	/**
+	 * @return int
+	 */
+	public function getUseFal() {
+		return version_compare(TYPO3_branch, '6.0', '>=') ? (int) $this->useFal : 0;
+	}
 
+	/**
+	 * @return string
+	 */
+	public function getResourceFolderImporter() {
+		return $this->resourceFolderImporter;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getStorageUidImporter() {
+		return $this->storageUidImporter;
+	}
 }

@@ -68,6 +68,22 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	 */
 	protected $settings = array();
 
+	/**
+	 * @var Tx_News_Domain_Model_Dto_EmConfiguration
+	 */
+	protected $emSettings;
+
+	/**
+	 * @var \TYPO3\CMS\Core\Resource\Folder
+	 */
+	protected $importFolder;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->emSettings = Tx_News_Utility_EmConfiguration::getSettings();
+	}
 
 	/**
 	 * Inject the object manager
@@ -136,6 +152,8 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		if ($news === NULL) {
 			$news = $this->objectManager->get('Tx_News_Domain_Model_News');
 			$this->newsRepository->add($news);
+		} else {
+			$this->newsRepository->update($news);
 		}
 
 		return $news;
@@ -206,65 +224,193 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 
 		// media relation
 		if (is_array($importItem['media'])) {
+
 			foreach ($importItem['media'] as $mediaItem) {
-				if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['image'])) {
 
-					$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['image'],
-						PATH_site . self::UPLOAD_PATH);
+				// multi media
+				if ($mediaItem['type'] === Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA) {
 
-					copy(
-						PATH_site . $mediaItem['image'],
-						$uniqueName
-					);
+					if (($media = $this->getMultiMediaIfAlreadyExists($news, $mediaItem['multimedia'])) === FALSE) {
+						$media = $this->objectManager->get('Tx_News_Domain_Model_Media');
+						$media->setMultimedia($mediaItem['multimedia']);
+						$news->addMedia($media);
+					}
 
-					$media = $this->objectManager->get('Tx_News_Domain_Model_Media');
-					$news->addMedia($media);
+					if (isset($mediaItem['caption'])) {
+						$media->setDescription($mediaItem['caption']);
+					}
+					if (isset($mediaItem['copyright'])) {
+						$media->setCopyright($mediaItem['copyright']);
+					}
+					if (isset($mediaItem['showinpreview'])) {
+						$media->setShowinpreview($mediaItem['showinpreview']);
+					}
+					$media->setType($mediaItem['type']);
+					$media->setPid($importItem['pid']);
 
-					$media->setImage(basename($uniqueName));
+				// Images FAL enabled
+				} elseif($this->emSettings->getUseFal() > 0) {
+
+					// get fileobject by given identifier (file UID, combined identifier or path/filename)
+					try {
+						$file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
+					} catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+						$file = FALSE;
+					}
+
+					// no file found skip processing of this item
+					if ($file === FALSE) {
+						continue;
+					}
+
+					/** @var $media Tx_News_Domain_Model_MediaFileReference */
+					if (!$media = $this->getIfFalRelationIfAlreadyExists($news->getFalMedia(), $file)) {
+
+						// file not inside a storage then search for existing file or copy the one form storage 0 to the import folder
+						if ($file->getStorage()->getUid() === 0) {
+
+							// search DB for same file based on hash (to prevent duplicates)
+							$existingFile = $this->findFileByHash($file->getSha1());
+
+							// no exciting file then copy file to import folder
+							if ($existingFile === NULL) {
+								$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
+
+								// temp work around (uid is not correctly set in $file, fixed in https://review.typo3.org/#/c/26520/)
+								$file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier($this->emSettings->getStorageUidImporter(), $file->getIdentifier());
+							} else {
+								$file = $existingFile;
+							}
+						}
+
+						$media = $this->objectManager->get('Tx_News_Domain_Model_MediaFileReference');
+						$news->addFalMedia($media);
+						$media->setFileUid($file->getUid());
+					}
+
+					if ($media) {
+						$media->setTitle($mediaItem['title']);
+						$media->setAlternative($mediaItem['alt']);
+						$media->setDescription($mediaItem['caption']);
+						$media->setShowinpreview($mediaItem['showinpreview']);
+						$media->setPid($importItem['pid']);
+					}
+				} else {
+
+					if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['image'])) {
+
+						$uniqueName = $basicFileFunctions->getUniqueName($mediaItem['image'],
+							PATH_site . self::UPLOAD_PATH);
+
+						copy(
+							PATH_site . $mediaItem['image'],
+							$uniqueName
+						);
+
+						$media = $this->objectManager->get('Tx_News_Domain_Model_Media');
+						$news->addMedia($media);
+
+						$media->setImage(basename($uniqueName));
+					}
+
+					$media->setTitle($mediaItem['title']);
+					$media->setAlt($mediaItem['alt']);
+					$media->setCaption($mediaItem['caption']);
+					$media->setType($mediaItem['type']);
+					$media->setShowinpreview($mediaItem['showinpreview']);
+					$media->setPid($importItem['pid']);
 				}
-
-				$media->setTitle($mediaItem['title']);
-				$media->setAlt($mediaItem['alt']);
-				$media->setCaption($mediaItem['caption']);
-				$media->setType($mediaItem['type']);
-				$media->setShowinpreview($mediaItem['showinpreview']);
-				$media->setPid($importItem['pid']);
 			}
 		}
 
 		// related files
 		if (is_array($importItem['related_files'])) {
-			foreach ($importItem['related_files'] as $file) {
-				if (!$relatedFile = $this->getRelatedFileIfAlreadyExists($news, $file['file'])) {
 
-					$uniqueName = $basicFileFunctions->getUniqueName($file['file'],
-						PATH_site . self::UPLOAD_PATH);
+			// FAL enabled
+			if ($this->emSettings->getUseFal() > 0) {
 
-					copy(
-						PATH_site . $file['file'],
-						$uniqueName
-					);
+				foreach ($importItem['related_files'] as $fileItem) {
 
-					$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_File');
-					$news->addRelatedFile($relatedFile);
+					// get fileObject by given identifier (file UID, combined identifier or path/filename)
+					try {
+						$file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
+					} catch(\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+						$file = FALSE;
+					}
 
-					$relatedFile->setFile(basename($uniqueName));
+					// no file found skip processing of this item
+					if ($file === FALSE) {
+						continue;
+					}
+
+					/** @var $relatedFile Tx_News_Domain_Model_FileReference */
+					if (!$relatedFile = $this->getIfFalRelationIfAlreadyExists($news->getFalRelatedFiles(), $file)) {
+
+						// file not inside a storage then search for existing file or copy the one form storage 0 to the import folder
+						if ($file->getStorage()->getUid() === 0) {
+
+							// search DB for same file based on hash (to prevent duplicates)
+							$existingFile = $this->findFileByHash($file->getSha1());
+
+							// no exciting file then copy file to import folder
+							if ($existingFile === NULL) {
+								$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
+
+								// temp work around (uid is not correctly set in $file, fixed in https://review.typo3.org/#/c/26520/)
+								$file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier($this->emSettings->getStorageUidImporter(), $file->getIdentifier());
+							} else {
+								$file = $existingFile;
+							}
+						}
+
+						$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
+						$news->addFalRelatedFile($relatedFile);
+						$relatedFile->setFileUid($file->getUid());
+					}
+
+					if ($relatedFile) {
+						$relatedFile->setTitle($fileItem['title']);
+						$relatedFile->setDescription($fileItem['description']);
+						$relatedFile->setPid($importItem['pid']);
+					}
 				}
-				$relatedFile->setTitle($file['title']);
-				$relatedFile->setDescription($file['description']);
-				$relatedFile->setPid($importItem['pid']);
+
+			} else {
+
+				foreach ($importItem['related_files'] as $file) {
+					if (!$relatedFile = $this->getRelatedFileIfAlreadyExists($news, $file['file'])) {
+
+						$uniqueName = $basicFileFunctions->getUniqueName($file['file'],
+							PATH_site . self::UPLOAD_PATH);
+
+						copy(
+							PATH_site . $file['file'],
+							$uniqueName
+						);
+
+						$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_File');
+						$news->addRelatedFile($relatedFile);
+
+						$relatedFile->setFile(basename($uniqueName));
+					}
+					$relatedFile->setTitle($file['title']);
+					$relatedFile->setDescription($file['description']);
+					$relatedFile->setPid($importItem['pid']);
+				}
 			}
 		}
 
 		if (is_array($importItem['related_links'])) {
 			foreach ($importItem['related_links'] as $link) {
 				/** @var $relatedLink Tx_News_Domain_Model_Link */
-				$relatedLink = $this->objectManager->get('Tx_News_Domain_Model_Link');
-				$relatedLink->setUri($link['uri']);
+				if (($relatedLink = $this->getRelatedLinkIfAlreadyExists($news, $link['uri'])) === FALSE) {
+					$relatedLink = $this->objectManager->get('Tx_News_Domain_Model_Link');
+					$relatedLink->setUri($link['uri']);
+					$news->addRelatedLink($relatedLink);
+				}
 				$relatedLink->setTitle($link['title']);
 				$relatedLink->setDescription($link['description']);
 				$relatedLink->setPid($importItem['pid']);
-				$news->addRelatedLink($relatedLink);
 			}
 		}
 		return $news;
@@ -359,6 +505,28 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	}
 
 	/**
+	 * Get multimedia object if it exists
+	 *
+	 * @param Tx_News_Domain_Model_News $news
+	 * @param string $url
+	 * @return Boolean|Tx_News_Domain_Model_Media
+	 */
+	protected function getMultiMediaIfAlreadyExists(Tx_News_Domain_Model_News $news, $url) {
+		$result = FALSE;
+		$mediaItems = $news->getMedia();
+
+		if ($mediaItems->count() !== 0) {
+			foreach ($mediaItems as $mediaItem) {
+				if ($mediaItem->getMultimedia() === $url) {
+					$result = $mediaItem;
+					break;
+				}
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Get related file if it exists
 	 *
 	 * @param Tx_News_Domain_Model_News $news
@@ -385,6 +553,85 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	}
 
 	/**
+	 * Get an existing items from the references that matches the file
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_FileReference> $items
+	 * @param \TYPO3\CMS\Core\Resource\File $file
+	 * @return bool|Tx_News_Domain_Model_FileReference
+	 */
+	protected function getIfFalRelationIfAlreadyExists(Tx_Extbase_Persistence_ObjectStorage $items, \TYPO3\CMS\Core\Resource\File $file) {
+		$result = FALSE;
+		if ($items->count() !== 0) {
+			/** @var $item Tx_News_Domain_Model_FileReference */
+			foreach ($items as $item) {
+				// only check already persisted items
+				if ($item->getFileUid() === (int)$file->getUid()
+					||
+					($item->getUid() &&
+					$item->getOriginalResource()->getName() === $file->getName() &&
+					$item->getOriginalResource()->getSize() === (int)$file->getSize())
+					) {
+					$result = $item;
+					break;
+				}
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * Find a existing file by its hash
+	 *
+	 * @param string $hash
+	 * @return NULL|\TYPO3\CMS\Core\Resource\File
+	 */
+	protected function findFileByHash($hash) {
+		$file = NULL;
+
+		/**
+		 * As of 6.2 we can use
+		 * $files = FileIndexRepository->findByContentHash($hash);
+		 * Until then a direct DB query
+		 */
+		$files = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			'storage,identifier',
+			'sys_file',
+			'sha1=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($hash, 'sys_file')
+		);
+		if (count($files)) {
+			foreach ($files as $fileInfo) {
+				if ($fileInfo['storage'] > 0) {
+					$file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier($fileInfo['storage'], $fileInfo['identifier']);
+					break;
+				}
+			}
+		}
+		return $file;
+	}
+
+	/**
+	 * Get an existing related link object
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_FileReference> $items
+	 * @param string $uri
+	 * @return bool|Tx_News_Domain_Model_Link
+	 */
+	protected function getRelatedLinkIfAlreadyExists(Tx_News_Domain_Model_News $news, $uri) {
+		$result = FALSE;
+		$links = $news->getRelatedLinks();
+
+		if ($links->count() !== 0) {
+			foreach ($links as $link) {
+				if ($link->getUri() === $uri) {
+					$result = $link;
+					break;
+				}
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Compares 2 files by using its filesize
 	 *
 	 * @param string $file1 Absolute path and filename to file1
@@ -393,5 +640,35 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	 */
 	protected function filesAreEqual($file1, $file2) {
 		return (filesize($file1) === filesize($file2));
+	}
+
+	/**
+	 * Get import Folder
+	 *
+	 * TODO: catch exception when storage/folder doesn't exist and return readable message to the user
+	 *
+	 * @return \TYPO3\CMS\Core\Resource\Folder
+	 */
+	protected function getImportFolder() {
+		if ($this->importFolder === NULL) {
+			$this->importFolder = $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter().':'.$this->emSettings->getResourceFolderImporter());
+		}
+		return $this->importFolder;
+	}
+
+	/**
+	 * Get resource storage
+	 *
+	 * @return \TYPO3\CMS\Core\Resource\ResourceStorage
+	 */
+	protected function getResourceStorage() {
+		return $this->getResourceFactory()->getStorageObject($this->emSettings->getStorageUidImporter());
+	}
+
+	/**
+	 * @return \TYPO3\CMS\Core\Resource\ResourceFactory
+	 */
+	protected function getResourceFactory() {
+		return \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();;
 	}
 }

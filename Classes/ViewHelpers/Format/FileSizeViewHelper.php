@@ -34,6 +34,15 @@
  *  3 M
  * </output>
  *
+ * # Example: FAL example
+ * # Description: If format is empty, the default from t3lib_div:::formatSize() is taken.
+ * <code>
+ * <n:format.fileSize fileSize="{falRelatedFile.originalResource.size}" format="' | K| M| G'" />
+ * </code>
+ * <output>
+ *  3 M
+ * </output>
+ *
  * @package TYPO3
  * @subpackage tx_news
  */
@@ -43,13 +52,15 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHe
 	 * Renders the size of a file using t3lib_div::formatSize
 	 *
 	 * @param string $file Path to the file
+	 * @param integer $fileSize File size
 	 * @param string $format Labels for bytes, kilo, mega and giga separated by vertical bar (|) and possibly encapsulated in "". Eg: " | K| M| G" (which is the default value)
 	 * @param boolean $hideError Define if an error should be displayed if file not found
 	 * @return string
 	 * @throws Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException
 	 */
-	public function render($file, $format = '', $hideError = FALSE) {
-		if (!is_file($file)) {
+	public function render($file = NULL, $fileSize = NULL, $format = '', $hideError = FALSE) {
+
+		if ($fileSize === NULL && !is_file($file)) {
 			$errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
 			t3lib_div::devLog($errorMessage, 'news', t3lib_div::SYSLOG_SEVERITY_WARNING);
 
@@ -58,9 +69,14 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHe
 					'Given file is not a valid file: ' . htmlspecialchars($file));
 			}
 		}
+		$result = '';
 
-		$fileSize = t3lib_div::formatSize(filesize($file), $format);
+		if ($fileSize === NULL) {
+			$result = t3lib_div::formatSize(filesize($file), $format);
+		} else {
+			$result = t3lib_div::formatSize($fileSize, $format);
+		}
 
-		return $fileSize;
+		return $result;
 	}
 }

@@ -35,6 +35,18 @@ plugin.tx_news {
 					tableName = tx_news_domain_model_news
 				}
 			}
+
+			Tx_News_Domain_Model_FileReference {
+				mapping {
+					tableName = sys_file_reference
+				}
+			}
+
+			Tx_News_Domain_Model_MediaFileReference {
+				mapping {
+					tableName = sys_file_reference
+				}
+			}
 		}
 	}
 	view {
@@ -105,6 +117,9 @@ plugin.tx_news {
 		interfaces {
 			media {
 				video = Tx_News_MediaRenderer_Audio_Mp3,Tx_News_MediaRenderer_Video_Quicktime,Tx_News_MediaRenderer_Video_File,Tx_News_MediaRenderer_Video_Youtube,Tx_News_MediaRenderer_Video_Videosites
+			}
+			falMedia {
+				video = Tx_News_MediaRenderer_Video_Fal
 			}
 		}
 

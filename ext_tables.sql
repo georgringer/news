@@ -37,12 +37,14 @@ CREATE TABLE tx_news_domain_model_news (
 	related int(11) DEFAULT '0' NOT NULL,
 	related_from int(11) DEFAULT '0' NOT NULL,
 	related_files tinytext,
+	fal_related_files int(11) unsigned DEFAULT '0',
 	related_links tinytext,
 	type varchar(100) NOT NULL DEFAULT '0',
 	keywords text,
 	description text,
 	tags int(11) DEFAULT '0' NOT NULL,
 	media text,
+	fal_media int(11) unsigned DEFAULT '0',
 	internalurl text,
 	externalurl text,
 	istopnews int(11) DEFAULT '0' NOT NULL,
@@ -326,4 +328,10 @@ CREATE TABLE be_groups (
 #
 CREATE TABLE be_users (
 	tx_news_categorymounts varchar(255) DEFAULT '' NOT NULL,
+);
+
+#
+# Add show in preview to file reference
+CREATE TABLE sys_file_reference (
+	showinpreview tinyint(4) DEFAULT '0' NOT NULL
 );

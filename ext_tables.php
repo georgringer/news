@@ -218,6 +218,11 @@ $TCA['tx_news_domain_model_tag'] = array(
 
 t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_tag');
 
+// Add extra options to sys_file_reference when using FAL
+if ($configuration->getUseFal()) {
+	\TYPO3\CMS\Core\Utility\GeneralUtility::requireOnce(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/Tca/sys_file_reference.php');
+}
+
 /***************
  * Plugin
  */

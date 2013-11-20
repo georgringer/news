@@ -103,6 +103,9 @@
 			<label index="extmng.categoryRestriction.siteroot">Categories from site root</label>
 			<label index="extmng.categoryRestriction.pages_tsconfig">Page TsConfig</label>
 			<label index="extmng.categoryRestriction.none">No restriction</label>
+			<label index="extmng.useFal">Use FAL relations instead of news media elements</label>
+			<label index="extmng.useFal.both">Both</label>
+			<label index="extmng.useFal.addMultimedia">FAL + Multimedia</label>
 			<label index="extmng.manualSorting">Enable manual sorting of news records</label>
 			<label index="extmng.contentElementRelation">Use content element relation:If set, content elements can be added to news records.</label>
 			<label index="extmng.tagPid">Define pid of tag records:Tags are collected on one central page.</label>
@@ -118,6 +121,8 @@
 			<label index="extmng.removeListActionFromFlexforms.1">List &amp; Detail</label>
 			<label index="extmng.removeListActionFromFlexforms.2">List only</label>
 			<label index="extmng.showImporter">Show importer:Backend module to import into news</label>
+			<label index="extmng.storageUidImporter">UID of storage to use when importing files/images:Default (fileadmin) storage is 1</label>
+			<label index="extmng.resourceFolderImporter">In which folder should the importer save files/images (has to exist)</label>
 			<label index="extmng.showAdministrationModule">Show administration module:Backend module to administrate news records</label>
 			<label index="extmng.showMediaDescriptionField">Show description for media elements:If set you get an additional description field for media elements.</label>
 			<label index="extmng.rteForTeaser">Enable a RTE for the teaser field.</label>
@@ -592,6 +597,8 @@
 			<label index="extmng.categoryRestriction.siteroot">Categorieën van de site root</label>
 			<label index="extmng.categoryRestriction.pages_tsconfig">Page TsConfig</label>
 			<label index="extmng.categoryRestriction.none">Geen restrictie</label>
+			<label index="extmng.useFal">Gebruik FAL relaties in plaats van news media elementen</label>
+			<label index="extmng.useFal.both">Beide</label>
 			<label index="extmng.manualSorting">Handmatig sorteren inschakelen van nieuwsrecords</label>
 			<label index="extmng.contentElementRelation">Gebruik de content element relatie:Indien ingesteld, kunnen content-elementen worden toegevoegd aan nieuws records.</label>
 			<label index="extmng.tagPid">Definieer pid van tag records:Tags worden verzameld op een centrale pagina.</label>
@@ -607,6 +614,8 @@
 			<label index="extmng.removeListActionFromFlexforms.1">Lijst &amp; Detail</label>
 			<label index="extmng.removeListActionFromFlexforms.2">Alleen lijst</label>
 			<label index="extmng.showImporter">Toon importer:Backend module om in nieuws te importeren</label>
+			<label index="extmng.storageUidImporter">UID van storage voor het importeren van bestanden/afbeeldingen:Default (fileadmin) storage is 1</label>
+			<label index="extmng.resourceFolderImporter">Map waar de importer de bestanden/afbeeldingen opslaat (moet bestaan)</label>
 
 			<!-- BE User Settings -->
 			<label index="usersettings.overlay">Gebruik deze overlay voor nieuws categorieën in de Backend</label>

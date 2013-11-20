@@ -269,6 +269,12 @@ $TCA['tx_news_domain_model_media'] = array(
 	)
 );
 
+// Hide image type when FAL + Multimedia is set
+if ($configuration->getUseFal() === 3) {
+	unset($TCA['tx_news_domain_model_media']['columns']['type']['config']['items'][0]);
+	$TCA['tx_news_domain_model_media']['columns']['type']['config']['default'] = '1';
+}
+
 // Hide DAM field if not used to avoid errors
 if (!t3lib_extMgm::isLoaded('dam')) {
 	unset($TCA['tx_news_domain_model_media']['columns']['dam']);

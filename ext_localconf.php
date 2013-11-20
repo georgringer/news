@@ -44,6 +44,12 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['get
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][$_EXTKEY] =
 	'EXT:' . $_EXTKEY . '/Classes/Hooks/T3libBefunc.php:Tx_News_Hooks_T3libBefunc';
 
+	// Inline records hook
+if ($configuration->getUseFal()) {
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook'][$_EXTKEY] =
+		'EXT:' . $_EXTKEY . '/Classes/Hooks/InlineElementHook.php:Tx_News_InlineElementHook';
+}
+
 /* ===========================================================================
 	Custom cache, done with the caching framework
 =========================================================================== */

@@ -1,0 +1,17 @@
+{namespace n=Tx_News_ViewHelpers}
+
+<div class="mediaelement">
+	<div class="mediaelement-video">
+		<n:mediaFactory classes="{settings.interfaces.falMedia.video}" element="{mediaElement}" width="{settings.detail.media.video.width}"
+			height="{settings.detail.media.video.height}" />
+	</div>
+
+
+	<f:if condition="{mediaElement.originalResource.description}">
+		<div class="medialement-alternative-content">
+			<p class="news-img-caption">
+				{mediaElement.originalResource.description}
+			</p>
+		</div>
+	</f:if>
+</div>
