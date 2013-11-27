@@ -27,16 +27,26 @@
 class Tx_News_Tests_Unit_ViewHelpers_Widget_Controller_PaginateControllerTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
 	/**
+	 * @var Tx_News_ViewHelpers_Widget_Controller_PaginateController
+	 */
+	protected $controller;
+
+	/**
+	 * Sets up this test case
+	 *
+	 * @return void
+	 */
+	public function setUp() {
+		$this->controller = $this->getAccessibleMock('Tx_News_ViewHelpers_Widget_Controller_PaginateController', array('dummy'), array(), '', FALSE);
+	}
+
+	/**
 	 * @test
 	 */
 	public function initializationIsCorrect() {
 		$controller = $this->getAccessibleMock('Tx_News_ViewHelpers_Widget_Controller_PaginateController', array('dummy'));
 		$objects = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
 		$configuration = array(
-			'pagesBefore' => '10',
-			'pagesAfter' => '3x',
-			'forcedNumberOfLinks' => '9fo',
-			'lessPages' => 0,
 			'templatePath' => 'fo/bar',
 			'itemsPerPage' => '3',
 		);
@@ -53,11 +63,80 @@ class Tx_News_Tests_Unit_ViewHelpers_Widget_Controller_PaginateControllerTest ex
 		$this->assertEquals($controller->_get('objects'), $objects);
 		$this->assertEquals($controller->_get('configuration'), t3lib_div::array_merge_recursive_overrule($configuration, $widgetConfiguration, TRUE));
 		$this->assertEquals($controller->_get('numberOfPages'), 5);
-		$this->assertEquals($controller->_get('pagesBefore'), 10);
-		$this->assertEquals($controller->_get('pagesAfter'), 3);
-		$this->assertEquals($controller->_get('lessPages'), FALSE);
-		$this->assertEquals($controller->_get('forcedNumberOfLinks'), 9);
 		$this->assertEquals($controller->_get('templatePath'), PATH_site . 'fo/bar');
+	}
+
+
+	/**
+	 * @test
+	 */
+	public function calculateDisplayRangeDeterminesCorrectDisplayRangeStartAndEndForEvenMaximumNumberOfLinks() {
+		$this->controller->_set('maximumNumberOfLinks', 8);
+		$this->controller->_set('numberOfPages', 100);
+		$this->controller->_set('currentPage', 50);
+		$this->controller->_call('calculateDisplayRange');
+		$this->assertSame(46, $this->controller->_get('displayRangeStart'));
+		$this->assertSame(53, $this->controller->_get('displayRangeEnd'));
+	}
+
+	/**
+	 * @test
+	 */
+	public function calculateDisplayRangeDeterminesCorrectDisplayRangeStartAndEndForOddMaximumNumberOfLinks() {
+		$this->controller->_set('maximumNumberOfLinks', 7);
+		$this->controller->_set('numberOfPages', 100);
+		$this->controller->_set('currentPage', 50);
+		$this->controller->_call('calculateDisplayRange');
+		$this->assertSame(47, $this->controller->_get('displayRangeStart'));
+		$this->assertSame(53, $this->controller->_get('displayRangeEnd'));
+	}
+
+	/**
+	 * @test
+	 */
+	public function calculateDisplayRangeDeterminesCorrectDisplayRangeStartAndEndForEvenMaximumNumberOfLinksWhenOnFirstPage() {
+		$this->controller->_set('maximumNumberOfLinks', 8);
+		$this->controller->_set('numberOfPages', 100);
+		$this->controller->_set('currentPage', 1);
+		$this->controller->_call('calculateDisplayRange');
+		$this->assertSame(1, $this->controller->_get('displayRangeStart'));
+		$this->assertSame(8, $this->controller->_get('displayRangeEnd'));
+	}
+
+	/**
+	 * @test
+	 */
+	public function calculateDisplayRangeDeterminesCorrectDisplayRangeStartAndEndForOddMaximumNumberOfLinksWhenOnFirstPage() {
+		$this->controller->_set('maximumNumberOfLinks', 7);
+		$this->controller->_set('numberOfPages', 100);
+		$this->controller->_set('currentPage', 1);
+		$this->controller->_call('calculateDisplayRange');
+		$this->assertSame(1, $this->controller->_get('displayRangeStart'));
+		$this->assertSame(7, $this->controller->_get('displayRangeEnd'));
+	}
+
+	/**
+	 * @test
+	 */
+	public function calculateDisplayRangeDeterminesCorrectDisplayRangeStartAndEndForEvenMaximumNumberOfLinksWhenOnLastPage() {
+		$this->controller->_set('maximumNumberOfLinks', 8);
+		$this->controller->_set('numberOfPages', 100);
+		$this->controller->_set('currentPage', 100);
+		$this->controller->_call('calculateDisplayRange');
+		$this->assertSame(93, $this->controller->_get('displayRangeStart'));
+		$this->assertSame(100, $this->controller->_get('displayRangeEnd'));
+	}
+
+	/**
+	 * @test
+	 */
+	public function calculateDisplayRangeDeterminesCorrectDisplayRangeStartAndEndForOddMaximumNumberOfLinksWhenOnLastPage() {
+		$this->controller->_set('maximumNumberOfLinks', 7);
+		$this->controller->_set('numberOfPages', 100);
+		$this->controller->_set('currentPage', 100);
+		$this->controller->_call('calculateDisplayRange');
+		$this->assertSame(94, $this->controller->_get('displayRangeStart'));
+		$this->assertSame(100, $this->controller->_get('displayRangeEnd'));
 	}
 
 }

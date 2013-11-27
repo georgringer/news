@@ -55,25 +55,15 @@ class Tx_News_ViewHelpers_Widget_PaginateViewHelper extends Tx_Fluid_Core_Widget
 	}
 
 	/**
-	 * Override the default initialize functionality
-	 * This function can be used to e.g. override the itemsPerPage by using
-	 * $this->arguments['configuration']['itemsPerPage'] = 3;
-	 *
-	 * @return void
-	 */
-	public function initialize() {
-		parent::initialize();
-	}
-
-	/**
 	 * Render everything
 	 *
 	 * @param Tx_Extbase_Persistence_QueryResultInterface $objects
 	 * @param string $as
 	 * @param mixed $configuration
+	 * @param array $inital
 	 * @return string
 	 */
-	public function render(Tx_Extbase_Persistence_QueryResultInterface $objects, $as, $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE)) {
+	public function render(Tx_Extbase_Persistence_QueryResultInterface $objects, $as, $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE), $initial = array()) {
 		return $this->initiateSubRequest();
 	}
 }

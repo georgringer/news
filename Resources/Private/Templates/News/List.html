@@ -16,7 +16,7 @@
 						</f:for>
 					</f:then>
 					<f:else>
-						<n:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
+						<n:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}" initial="{offset:settings.offset,limit:settings.limit}">
 							<f:for each="{paginatedNews}" as="newsItem">
 								<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}" />
 							</f:for>

@@ -42,7 +42,12 @@
 						</f:if>
 					</li>
 				</f:if>
-				<f:if condition="{pagination.lessPages}">
+				<f:if condition="{pagination.displayRangeStart} > 1">
+					<li class="first">
+						<f:widget.link>1</f:widget.link>
+					</li>
+				</f:if>
+				<f:if condition="{pagination.hasLessPages}">
 					<li>....</li>
 				</f:if>
 				<f:for each="{pagination.pages}" as="page">
@@ -64,8 +69,13 @@
 						</f:else>
 					</f:if>
 				</f:for>
-				<f:if condition="{pagination.morePages}">
+				<f:if condition="{pagination.hasMorePages}">
 					<li>....</li>
+				</f:if>
+				<f:if condition="{pagination.displayRangeEnd} < {pagination.numberOfPages}">
+					<li class="last">
+						<f:widget.link arguments="{currentPage: pagination.numberOfPages}">{pagination.numberOfPages}</f:widget.link>
+					</li>
 				</f:if>
 				<f:if condition="{pagination.nextPage}">
 					<li class="last next">

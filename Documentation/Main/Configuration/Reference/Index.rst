@@ -328,27 +328,11 @@ The following table describes the settings concerning the list view.
          Set it to TRUE or FALSE to either show or hide the pagination after
          the actual news items.
 
-         **lessPages**
+         **maximumNumberOfLinks**
 
-         If set to TRUE, not all pages of the pagination are shown. Imagine
+         If set, not all pages of the pagination are shown but only the given amount. Imagine
          1000 news records and 10 items per page. This would result in 100
          links in the frontend.
-
-         All the next options are only available when lessPages = TRUE:
-
-         **forcedNumberOfLinks**
-
-         Define the maximum number of pages shown in the pagination.
-
-         **pagesBefore**
-
-         If pages are skipped in the pagination you can define how many pages
-         before the actual one should be still shown.
-
-         **pagesAfter**
-
-         If pages are skipped in the pagination you can define how many pages
-         after the actual one should be still shown.
 
          **prevNextHeaderTags**
 
