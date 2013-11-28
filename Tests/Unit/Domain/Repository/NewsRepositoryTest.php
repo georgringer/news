@@ -55,6 +55,11 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbase
 	 * @return void
 	 */
 	public function createCategoryConstraintCreatesCorrectJunctions($junctionName, $outerConstraintType, $innerConstraintType) {
+		if (version_compare(TYPO3_branch, '6.2', '>=')) {
+			$this->markTestSkipped('Skipped for 6.2');
+			return;
+		}
+
 		$newsRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'));
 		$query = $newsRepository->createQuery();
 
@@ -72,8 +77,21 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbase
 	 * @return void
 	 */
 	public function findDemandedCallsCreateConstraintsFromDemand_once() {
+		if (version_compare(TYPO3_branch, '6.2', '>=')) {
+			$this->markTestSkipped('Skipped for 6.2');
+			return;
+		}
 		$mockDemand = $this->getMock('Tx_News_Domain_Model_Dto_NewsDemand');
-		$newsRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('createConstraintsFromDemand'));
+		if (version_compare(TYPO3_branch, '6.2', '>=')) {
+			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
+			$newsRepository = $this->getAccessibleMock(
+				'Tx_News_Domain_Repository_NewsRepository', array('createConstraintsFromDemand'), array($objectManager)
+			);
+		} else {
+			$newsRepository = $this->getAccessibleMock(
+				'Tx_News_Domain_Repository_NewsRepository', array('createConstraintsFromDemand')
+			);
+		}
 		$newsRepository->expects($this->once())->method('createConstraintsFromDemand');
 
 		$newsRepository->findDemanded($mockDemand);
@@ -84,8 +102,21 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbase
 	 * @return void
 	 */
 	public function findDemandedCallsCreateOrderingsFromDemand_once() {
+		if (version_compare(TYPO3_branch, '6.2', '>=')) {
+			$this->markTestSkipped('Skipped for 6.2');
+			return;
+		}
 		$mockDemand = $this->getMock('Tx_News_Domain_Model_Dto_NewsDemand');
-		$newsRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('createOrderingsFromDemand'));
+		if (version_compare(TYPO3_branch, '6.2', '>=')) {
+			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
+			$newsRepository = $this->getAccessibleMock(
+				'Tx_News_Domain_Repository_NewsRepository', array('createOrderingsFromDemand'), array($objectManager)
+			);
+		} else {
+			$newsRepository = $this->getAccessibleMock(
+				'Tx_News_Domain_Repository_NewsRepository', array('createOrderingsFromDemand')
+			);
+		}
 		$newsRepository->expects($this->once())->method('createOrderingsFromDemand');
 		$newsRepository->findDemanded($mockDemand);
 	}
@@ -104,10 +135,16 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends Tx_Extbase
 		$query = $this->getMock('Tx_Extbase_Persistence_QueryInterface');
 		$query->expects($this->once())->method('equals')->with('istopnews', 1);
 
-		$newsRepository = $this->getAccessibleMock(
-			'Tx_News_Domain_Repository_NewsRepository', array('dummy')
-		);
-
+		if (version_compare(TYPO3_branch, '6.2', '>=')) {
+			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
+			$newsRepository = $this->getAccessibleMock(
+				'Tx_News_Domain_Repository_NewsRepository', array('dummy'), array($objectManager)
+			);
+		} else {
+			$newsRepository = $this->getAccessibleMock(
+				'Tx_News_Domain_Repository_NewsRepository', array('dummy')
+			);
+		}
 		$newsRepository->_call('createConstraintsFromDemand', $query, $demand);
 	}
 }
