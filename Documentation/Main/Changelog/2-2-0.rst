@@ -20,7 +20,7 @@ Breaking/Important changes
 	* Changes in database structure, an update in Extension Manager / Compare in Install Tool is needed
 		- Default value '0' for type field of news record
 		- Add fields for enabling basic workspace support
-	* EXT:news is using travis to check all UnitTests in all major TYPO3 releases. You can get the status at https://travis-ci.org/georgringer/news
+	* EXT:news is using travis to check all UnitTests in all major TYPO3 releases. You can get the status at https://travis-ci.org/TYPO3-extensions/news
 
 Features
 =================================
