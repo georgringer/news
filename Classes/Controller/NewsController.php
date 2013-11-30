@@ -318,7 +318,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			$overrideIfEmpty = t3lib_div::trimExplode(',', $tsSettings['settings']['overrideFlexformSettingsIfEmpty'], TRUE);
 			foreach ($overrideIfEmpty as $key) {
 					// if flexform setting is empty and value is available in TS
-				if ((!isset($originalSettings[$key]) || empty($originalSettings[$key]))
+				if ((!isset($originalSettings[$key]) || (strlen($originalSettings[$key]) === 0))
 						&& isset($tsSettings['settings'][$key])) {
 					$originalSettings[$key] = $tsSettings['settings'][$key];
 				}

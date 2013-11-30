@@ -62,6 +62,7 @@
 			<label index="flexforms_general.previewHiddenRecords.I.0">No</label>
 			<label index="flexforms_general.previewHiddenRecords.I.1">Yes</label>
 			<label index="flexforms_general.previewHiddenRecords.I.2">Defined in TypoScript</label>
+			<label index="flexforms_general.recursive.I.inherit">Defined in TypoScript</label>
 			<label index="flexforms_general.no-constraint">[no constraint]</label>
 
 			<label index="flexforms_template.mediaMaxWidth">Max width for media elements</label>
@@ -410,6 +411,7 @@
 			<label index="flexforms_general.previewHiddenRecords.I.0">Nein</label>
 			<label index="flexforms_general.previewHiddenRecords.I.1">Ja</label>
 			<label index="flexforms_general.previewHiddenRecords.I.2">Im TypoScript definiert</label>
+			<label index="flexforms_general.recursive.I.inherit">Im TypoScript definiert</label>
 			<label index="flexforms_general.no-constraint">[keine Einschränkung]</label>
 
 			<label index="flexforms_template.mediaMaxWidth">Maximale Breite für Medienelemente</label>
