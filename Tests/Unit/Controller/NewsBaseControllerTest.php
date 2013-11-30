@@ -41,7 +41,7 @@ class Tx_News_Tests_Unit_Controller_NewsBaseControllerTest extends Tx_Extbase_Te
 	 * Set up
 	 */
 	public function setUp() {
-		$this->tsfe = $this->getAccessibleMock('tslib_fe', array('dummy'), array(), '', FALSE);
+		$this->tsfe = $this->getAccessibleMock('tslib_fe', array('pageNotFoundAndExit'), array(), '', FALSE);
 		$GLOBALS['TSFE'] = $this->tsfe;
 	}
 
@@ -84,6 +84,26 @@ class Tx_News_Tests_Unit_Controller_NewsBaseControllerTest extends Tx_Extbase_Te
 		$this->tsfe->expects($this->once())
 			->method('pageNotFoundAndExit');
 		$mock->_call('handleNoNewsFoundError', 'pageNotFoundHandler');
+	}
+
+	/**
+	 * @test
+	 * @expectedException InvalidArgumentException
+	 */
+	public function NoNewsFoundConfigurationThrowsExceptionWithTooLessRedirectToPageOptions() {
+		$mock = $this->getAccessibleMock('Tx_News_Controller_NewsBaseController',
+			array('dummy'));
+		$mock->_call('handleNoNewsFoundError', 'redirectToPage');
+	}
+
+	/**
+	 * @test
+	 * @expectedException InvalidArgumentException
+	 */
+	public function NoNewsFoundConfigurationThrowsExceptionWithTooManyRedirectToPageOptions() {
+		$mock = $this->getAccessibleMock('Tx_News_Controller_NewsBaseController',
+			array('dummy'));
+		$mock->_call('handleNoNewsFoundError', 'redirectToPage,argumentOne,argumentTwo,argumentThree');
 	}
 
 
