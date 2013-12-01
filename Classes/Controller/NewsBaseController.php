@@ -62,15 +62,18 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 					$msg = sprintf('If error handling "%s" is used, either 2 or 3 arguments, splitted by "," must be used', $configuration[0]);
 					throw new InvalidArgumentException($msg);
 				}
-				/** @var $cObj tslib_cObj */
-				$cObj = t3lib_div::makeInstance('tslib_cObj');
-				$url = $cObj->typoLink_URL(array('parameter' => $configuration[1]));
+				$this->uriBuilder->reset();
+				$this->uriBuilder->setTargetPageUid($configuration[1]);
+				$this->uriBuilder->setCreateAbsoluteUri(TRUE);
+				if (\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SSL')) {
+					$this->uriBuilder->setAbsoluteUriScheme('https');
+				}
+				$url = $this->uriBuilder->build();
 
 				if (isset($configuration[2])) {
-					$header = 'HTTP_STATUS_' . $configuration[2];
-					t3lib_utility_Http::redirect($url, $header);
+					$this->redirectToUri($url, 0, $configuration[2]);
 				} else {
-					t3lib_utility_Http::redirect($url);
+					$this->redirectToUri($url);
 				}
 
 				break;

@@ -106,5 +106,41 @@ class Tx_News_Tests_Unit_Controller_NewsBaseControllerTest extends Tx_Extbase_Te
 		$mock->_call('handleNoNewsFoundError', 'redirectToPage,argumentOne,argumentTwo,argumentThree');
 	}
 
+	/**
+	 * @test
+	 */
+	public function NoNewsFoundConfigurationRedirectsToCorrectPage() {
+		$mockController = $this->getAccessibleMock('Tx_News_Controller_NewsBaseController', array('redirectToUri'));
+
+		$mockUriBuilder = $this->getAccessibleMock('Tx_Extbase_MVC_Web_Routing_UriBuilder');
+			$mockController->_set('uriBuilder', $mockUriBuilder);
+
+		$mockUriBuilder->expects($this->once())
+			->method('setTargetPageUid')->with('123');
+		$mockUriBuilder->expects($this->once())
+			->method('build');
+
+		$mockController->_call('handleNoNewsFoundError', 'redirectToPage,123');
+	}
+
+	/**
+	 * @test
+	 */
+	public function NoNewsFoundConfigurationRedirectsToCorrectPageAndStatus() {
+		$mockController = $this->getAccessibleMock('Tx_News_Controller_NewsBaseController', array('redirectToUri'));
+
+		$mockUriBuilder = $this->getAccessibleMock('Tx_Extbase_MVC_Web_Routing_UriBuilder');
+		$mockController->_set('uriBuilder', $mockUriBuilder);
+
+		$mockUriBuilder->expects($this->once())
+			->method('setTargetPageUid')->with('456');
+		$mockUriBuilder->expects($this->once())
+			->method('build');
+		$mockController->expects($this->once())
+			->method('redirectToUri')->with(NULL, 0, 301);
+		$mockController->_call('handleNoNewsFoundError', 'redirectToPage,456,301');
+	}
+
+
 
 }
