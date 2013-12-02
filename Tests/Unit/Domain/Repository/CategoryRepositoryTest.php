@@ -87,9 +87,6 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends Tx_Ext
 		}
 		$result = $mockTemplateParser->_call('getSysLanguageUid');
 
-		// Default value
-		$this->assertEquals(0, $result);
-
 		// GET
 		$_GET['L'] = 11;
 		$result = $mockTemplateParser->_call('getSysLanguageUid');
