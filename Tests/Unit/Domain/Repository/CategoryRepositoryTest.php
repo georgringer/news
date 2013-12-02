@@ -85,11 +85,11 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends Tx_Ext
 		} else {
 			$mockedCategoryRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'));
 		}
-		$result = $mockedCategoryRepository->_call('getSysLanguageUid');
+		unset($GLOBALS['TSFE']);
 
 		// Default value
+		$result = $mockedCategoryRepository->_call('getSysLanguageUid');
 		$this->assertEquals(0, $result);
-		unset($GLOBALS['TSFE']);
 
 		// GET
 		$_GET['L'] = 11;
