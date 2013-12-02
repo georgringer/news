@@ -65,7 +65,7 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 				$this->uriBuilder->reset();
 				$this->uriBuilder->setTargetPageUid($configuration[1]);
 				$this->uriBuilder->setCreateAbsoluteUri(TRUE);
-				if (\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SSL')) {
+				if (t3lib_div::getIndpEnv('TYPO3_SSL')) {
 					$this->uriBuilder->setAbsoluteUriScheme('https');
 				}
 				$url = $this->uriBuilder->build();
