@@ -78,23 +78,27 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends Tx_Ext
 	 * @return void
 	 */
 	public function correctSysLanguageIsReturnedUsingGetAndPostRequest() {
-		/** @var Tx_News_Domain_Repository_CategoryRepository $mockTemplateParser */
+		/** @var Tx_News_Domain_Repository_CategoryRepository $mockedCategoryRepository */
 		if (version_compare(TYPO3_branch, '6.2', '>=')) {
 			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
-			$mockTemplateParser = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'), array($objectManager));
+			$mockedCategoryRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'), array($objectManager));
 		} else {
-			$mockTemplateParser = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'));
+			$mockedCategoryRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'));
 		}
-		$result = $mockTemplateParser->_call('getSysLanguageUid');
+		$result = $mockedCategoryRepository->_call('getSysLanguageUid');
+
+		// Default value
+		$this->assertEquals(0, $result);
+		unset($GLOBALS['TSFE']);
 
 		// GET
 		$_GET['L'] = 11;
-		$result = $mockTemplateParser->_call('getSysLanguageUid');
+		$result = $mockedCategoryRepository->_call('getSysLanguageUid');
 		$this->assertEquals(11, $result);
 
 		// POST
 		$_POST['L'] = 13;
-		$result = $mockTemplateParser->_call('getSysLanguageUid');
+		$result = $mockedCategoryRepository->_call('getSysLanguageUid');
 		$this->assertEquals(13, $result);
 
 		// POST overrules GET
