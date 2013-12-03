@@ -98,7 +98,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 
 				$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
 
-				$code = '<script src="http://connect.facebook.net/' . $locale . '/all.js#xfbml=1"></script>';
+				$code = '<script src="https://connect.facebook.net/' . $locale . '/all.js#xfbml=1"></script>';
 
 					// Social interaction Google Analytics
 				if ($this->pluginSettingsService->getByPath('analytics.social.facebookLike') == 1) {

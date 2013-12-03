@@ -82,7 +82,7 @@ class Tx_News_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHel
 	 */
 	public function render() {
 		$code = '';
-		$this->tag->addAttribute('href', 'http://twitter.com/share');
+		$this->tag->addAttribute('href', 'https://twitter.com/share');
 		$this->tag->addAttribute('class', (!empty($this->arguments['class'])) ? $this->arguments['class'] : 'twitter-share-button');
 
 			// rewrite tags as it seems that it is not possible to have tags with a '-'.
@@ -98,7 +98,7 @@ class Tx_News_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHel
 			// -1 means no JS
 		if ($this->arguments['javaScript'] != '-1') {
 			if (empty($this->arguments['javaScript'])) {
-				$code = '<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>';
+				$code = '<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>';
 			} else {
 				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
 			}

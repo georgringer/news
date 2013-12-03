@@ -46,7 +46,7 @@ class Tx_News_ViewHelpers_Social_GravatarViewHelper extends Tx_Fluid_Core_ViewHe
 	/**
 	 * Gravatar request-url
 	 */
-	const GRAVATAR_IMAGE_REQUEST_URL = 'http://www.gravatar.com/avatar/';
+	const GRAVATAR_IMAGE_REQUEST_URL = 'https://www.gravatar.com/avatar/';
 
 	/**
 	 * initializes the arguments
