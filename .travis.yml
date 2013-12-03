@@ -19,6 +19,10 @@ matrix:
 services:
   - memcached
 
+notifications:
+  email:
+    - georg.ringer@gmail.com
+
 before_script:
 # Install build dependencies
   - cd ..
