@@ -83,7 +83,7 @@ $TCA['tx_news_domain_model_category'] = array(
 				'type' => 'input',
 				'size' => 8,
 				'max' => 20,
-				'eval' => 'date',
+				'eval' => 'datetime',
 				'default' => 0,
 			)
 		),
@@ -94,7 +94,7 @@ $TCA['tx_news_domain_model_category'] = array(
 				'type' => 'input',
 				'size' => 8,
 				'max' => 20,
-				'eval' => 'date',
+				'eval' => 'datetime',
 				'default' => 0,
 			)
 		),
