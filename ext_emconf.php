@@ -17,7 +17,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'author' => 'Georg Ringer',
 	'author_email' => 'typo3@ringerge.org',
 	'shy' => '',
-	'dependencies' => 'extbase,fluid',
+	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
 	'module' => '',
@@ -28,13 +28,10 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
 	'author_company' => '',
-	'version' => '2.3.0',
+	'version' => '3.0.0-dev',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '4.5.5-6.1.99',
-			'php' => '5.3.0-0.0.0',
-			'extbase' => '',
-			'fluid' => '',
+			'typo3' => '6.0.0-6.2.99',
 		),
 		'conflicts' => array(
 		),
