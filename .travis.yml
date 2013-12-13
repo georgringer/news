@@ -24,6 +24,8 @@ notifications:
     - georg.ringer@gmail.com
 
 before_script:
+  # Get latest git version cause of travis issues (https://github.com/travis-ci/travis-ci/issues/1710)
+  - sudo apt-get update && sudo apt-get install git
 # Install build dependencies
   - cd ..
   - git clone --single-branch --branch $INTEGRATION --depth 1 git://github.com/georgringer/TYPO3-Travis-Integration.git build-environment
