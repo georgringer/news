@@ -45,7 +45,12 @@ class Tx_News_MediaRenderer_Video_Youtube implements Tx_News_MediaRenderer_Media
 				$height = $element->getHeight();
 			}
 
-			$content = '<iframe width="' . (int)$width . '" height="' . (int)$height . '" src="' . htmlspecialchars($url) . '" frameborder="0"></iframe>';
+			$frameBorderAttribute = '';
+			if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->config['config']['doctype'] !== 'html5') {
+				$frameBorderAttribute = ' frameborder="0"';
+			}
+
+			$content = '<iframe width="' . (int)$width . '" height="' . (int)$height . '" src="' . htmlspecialchars($url) . '"' . $frameBorderAttribute . '></iframe>';
 		}
 
 		return $content;
