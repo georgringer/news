@@ -64,7 +64,7 @@ class Tx_News_ViewHelpers_Social_DisqusViewHelper extends Tx_Fluid_Core_ViewHelp
 					var disqus_url = ' . t3lib_div::quoteJSvalue($link, TRUE) . ';
 					var disqus_title = ' . t3lib_div::quoteJSvalue($newsItem->getTitle(), TRUE) . ';
 					var disqus_config = function () {
-						this.language = ' . t3lib_div::quoteJSvalue($tsSettings['disqusLang']) . ';
+						this.language = ' . t3lib_div::quoteJSvalue($tsSettings['disqusLocale']) . ';
 					};
 
 					(function() {
