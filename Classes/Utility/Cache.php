@@ -45,7 +45,7 @@ class Tx_News_Utility_Cache {
 	 */
 	public function markContentRecordAsProcessed(tslib_cObj $cObj) {
 		$key = 'tt_content_' . $cObj->data['uid'];
-		self::$processedContentRecords[$key] = true;
+		self::$processedContentRecords[$key] = TRUE;
 	}
 
 	/**

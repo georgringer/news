@@ -345,14 +345,14 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDefaultTest extends Tx_Extbase_Tests_U
 		$result = array($item2, $item1);
 
 		// 2nd: + 2 Relations in related
-		$this->assertEquals($result, $this->newsDomainModelInstance->getAllRelatedSorted(), t3lib_utility_Debug::viewArray($debug)) ;
+		$this->assertEquals($result, $this->newsDomainModelInstance->getAllRelatedSorted());
 
 		// 3rd: + 1 relation in relatedFrom
 		$relatedFrom = new Tx_Extbase_Persistence_ObjectStorage();
 		$relatedFrom->attach($item3);
 		$result = array($item2, $item1, $item3);
 		$this->newsDomainModelInstance->setRelatedFrom($relatedFrom);
-		$this->assertEquals($result, $this->newsDomainModelInstance->getAllRelatedSorted(), t3lib_utility_Debug::viewArray($debug)) ;
+		$this->assertEquals($result, $this->newsDomainModelInstance->getAllRelatedSorted());
 
 		// 4th: + 1 relation in relatedFrom, + 1 relation in related
 		$relatedFrom->attach($item4);
@@ -361,7 +361,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDefaultTest extends Tx_Extbase_Tests_U
 		$this->newsDomainModelInstance->setRelated($related);
 
 		$result = array($item5, $item2, $item1, $item3, $item4);
-		$this->assertEquals($result, $this->newsDomainModelInstance->getAllRelatedSorted(), t3lib_utility_Debug::viewArray($debug)) ;
+		$this->assertEquals($result, $this->newsDomainModelInstance->getAllRelatedSorted());
 	}
 
 	protected function getNewsRecordForRelated($title, $date) {
