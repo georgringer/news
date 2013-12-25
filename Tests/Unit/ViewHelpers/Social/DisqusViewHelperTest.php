@@ -64,7 +64,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends Tx_Extb
 		$settingsService = $this->getAccessibleMock('Tx_News_Service_SettingsService');
 		$settingsService->expects($this->any())
 			->method('getSettings')
-			->will($this->returnValue(array('disqusLang' => $language)));
+			->will($this->returnValue(array('disqusLocale' => $language)));
 
 		$viewHelper->injectSettingsService($settingsService);
 		$actualResult = $viewHelper->render($newsItem, 'abcdef', 'http://typo3.org/dummy/fobar.html');
