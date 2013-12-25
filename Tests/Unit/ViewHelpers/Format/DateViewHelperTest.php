@@ -54,7 +54,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_DateViewHelperTest extends Tx_Extbas
 		return array(
 			'stfTimeDateGiven' => array(
 				'08 2012', array(
-					'date' => new DateTime("2012-07-08 11:14:15"),
+					'date' => new DateTime('2012-07-08 11:14:15'),
 					'format' => '%d %Y',
 					'currentDate' => FALSE,
 					'strftime' => TRUE
@@ -62,7 +62,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_DateViewHelperTest extends Tx_Extbas
 			),
 			'dateTimeGiven' => array(
 				'2012', array(
-					'date' => new DateTime("2012-07-08 11:14:15"),
+					'date' => new DateTime('2012-07-08 11:14:15'),
 					'format' => 'Y',
 					'currentDate' => FALSE,
 					'strftime' => FALSE

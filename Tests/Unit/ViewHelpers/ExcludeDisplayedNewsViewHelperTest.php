@@ -41,17 +41,17 @@ class Tx_News_Tests_Unit_ViewHelpers_ExcludeDisplayedNewsViewHelperTest extends 
 		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], NULL);
 
 		$newsItem1 = new Tx_News_Domain_Model_News();
-		$newsItem1->_setProperty('uid','123');
+		$newsItem1->_setProperty('uid', '123');
 
 		$viewHelper->render($newsItem1);
 		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], array('123' => '123'));
 
 		$newsItem1 = new Tx_News_Domain_Model_News();
-		$newsItem1->_setProperty('uid','123');
+		$newsItem1->_setProperty('uid', '123');
 		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], array('123' => '123'));
 
 		$newsItem2 = new Tx_News_Domain_Model_News();
-		$newsItem2->_setProperty('uid','12');
+		$newsItem2->_setProperty('uid', '12');
 		$viewHelper->render($newsItem2);
 		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], array('123' => '123', '12' => '12'));
 	}

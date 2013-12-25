@@ -26,9 +26,9 @@
 /**
  * AutoConfiguration-Hook for RealURL
  *
- * @author	WOLTER, Christoph <typo3@chrinet.de>
- * @package	TYPO3
- * @subpackage	tx_news
+ * @author WOLTER, Christoph <typo3@chrinet.de>
+ * @package TYPO3
+ * @subpackage tx_news
  */
 class Tx_News_Hooks_RealUrlAutoConfiguration {
 
@@ -39,9 +39,9 @@ class Tx_News_Hooks_RealUrlAutoConfiguration {
 	 * @param       tx_realurl_autoconfgen $pObj parent object
 	 * @return      array Updated configuration
 	 */
-	function addNewsConfig($params, &$pObj) {
+	public function addNewsConfig($params, &$pObj) {
 
-		/* Pr�fen ob tt_news verwendet wird und dann sicherheitshalber "tx_news" als uniqe postVar verwenden */
+		// Check for proper unique key
 		$postVar = (t3lib_extMgm::isLoaded('tt_news') ? 'tx_news' : 'news');
 
 		return array_merge_recursive($params['config'], array(
@@ -67,8 +67,4 @@ class Tx_News_Hooks_RealUrlAutoConfiguration {
 			)
 		);
 	}
-}
-
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/RealUrlAutoconf.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/RealUrlAutoconf.php']);
 }
