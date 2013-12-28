@@ -19,6 +19,7 @@ Tutorial
    HowToAddASimpleNewsSystemToYourSite/Index
    ExtendingNews/Index
    GroupNewsRecords/Index
+   Snippets/Index
    PredefineFields/Index
    MigrationFromTtNews/Index
    ExternalTutorials/Index
