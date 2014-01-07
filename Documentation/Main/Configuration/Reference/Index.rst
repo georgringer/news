@@ -370,8 +370,7 @@ The following table describes the settings concerning the list view.
          integer/string
 
    :Description:
-         Maximum width of images. The cropping feature can also be used (e.g.
-         30c)
+         Maximum width of images. If you need to crop the images, you need to use the attribute "width" instead of "maxWidth" and a value like "120c". See http://docs.typo3.org/typo3cms/TyposcriptReference/Functions/Imgresource/Index.html?highlight=width for more information.
 
    :Default:
          100
@@ -384,8 +383,7 @@ The following table describes the settings concerning the list view.
          integer/string
 
    :Description:
-         Maximum height of images. The cropping feature can also be used (e.g.
-         30c)
+         Maximum height of images. The cropping feature can also be used, see the property media.image.maxHeight
 
    :Default:
          100
