@@ -1355,6 +1355,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected function getMediaSelection($type) {
 		$mediaElements = $this->getMedia();
 
+		if ($mediaElements === NULL) {
+			return NULL;
+		}
+
 		$collection = array();
 		foreach ($mediaElements as $mediaElement) {
 			if ((int)$mediaElement->getType() === $type) {
