@@ -26,6 +26,7 @@ t3lib_extMgm::addLLrefForTCAdescr(
 		'tt_content.pi_flexform.news_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
 
 t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_news');
+t3lib_extMgm::addToInsertRecords('tx_news_domain_model_news');
 
 $TCA['tx_news_domain_model_news'] = array(
 	'ctrl' => array(
