@@ -32,3 +32,43 @@ A nice solution would be to use this JavaScript jQuery snippet: ::
 
 
 This snippet has been provided by d.ros at http://forge.typo3.org/issues/51966. Thanks!
+
+Float news items next to each other
+"""""""""""""""""""""""""""""""""""""""
+
+If you need to list news next to each other and need some additional CSS classes, you can use the modulo operator to achieve this. ::
+
+	<f:for each="{paginatedNews}" as="newsItem" iteration="iterator">
+		<f:if condition="{iterator.isFirst}">
+			<div class="row-fluid">
+		</f:if>
+
+		<f:if condition="{iterator.cycle} % 3">
+			<f:then>
+				<div class="span4">
+					<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+				</div>
+			</f:then>
+
+			<f:else>
+				<div class="span4">
+					<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}"/>
+				</div>
+
+				<f:if condition="{iterator.isLast}">
+					<f:then></f:then>
+					<f:else>
+						</div><div class="row-fluid">
+					</f:else>
+				</f:if>
+			</f:else>
+		</f:if>
+
+		<f:if condition="{iterator.isLast}">
+			</div>
+		</f:if>
+	</f:for>
+
+
+The provided example will wrap 3 items into a div with the class "row-fluid".
+
