@@ -52,15 +52,15 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHe
 	 * Renders the size of a file using t3lib_div::formatSize
 	 *
 	 * @param string $file Path to the file
-	 * @param integer $fileSize File size
 	 * @param string $format Labels for bytes, kilo, mega and giga separated by vertical bar (|) and possibly encapsulated in "". Eg: " | K| M| G" (which is the default value)
 	 * @param boolean $hideError Define if an error should be displayed if file not found
+	 * @param integer $fileSize File size
 	 * @return string
 	 * @throws Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException
 	 */
-	public function render($file = NULL, $fileSize = NULL, $format = '', $hideError = FALSE) {
+	public function render($file = NULL, $format = '', $hideError = FALSE, $fileSize = NULL) {
 
-		if ($fileSize === NULL && !is_file($file)) {
+		if (!is_file($file)) {
 			$errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
 			t3lib_div::devLog($errorMessage, 'news', t3lib_div::SYSLOG_SEVERITY_WARNING);
 
