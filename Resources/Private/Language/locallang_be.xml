@@ -156,6 +156,7 @@
 			<label index="module.newsPidListing">News Pid listing</label>
 
 			<!-- BE Module Administration -->
+			<label index="administration.title">News administration</label>
 			<label index="administration.nopageselected">Please click the page title in the page tree to the left to show the records on that page.</label>
 			<label index="administration.newsPidListing.header">List pages with count of news &amp; category records</label>
 			<label index="administration.newsPidListing.description">Choose a recursive level to display your page tree with the related entries. Click on the page title to show
