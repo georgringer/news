@@ -31,7 +31,7 @@
 class Tx_News_Domain_Model_MediaFileReference extends Tx_News_Domain_Model_FileReference {
 
 	/**
-	 * Obsolute when https://review.typo3.org/#/c/21120/ is in
+	 * Obsolete when https://review.typo3.org/#/c/21120/ is in
 	 * @var string
 	 */
 	protected $fieldname = 'media';

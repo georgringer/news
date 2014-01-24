@@ -38,12 +38,14 @@ class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model
 	/**
 	 * Obsolete when https://review.typo3.org/#/c/21120/
 	 * or http://forge.typo3.org/issues/47694 is in
+	 *
 	 * @var string
 	 */
 	protected $fieldname = 'related_files';
 
 	/**
 	 * Obsolete when foreign_selector is supported by ExtBase persistence layer
+	 *
 	 * @var integer
 	 */
 	protected $uidLocal;
@@ -74,9 +76,10 @@ class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model
 	protected $showinpreview;
 
 	/**
-	 * Set File UID
+	 * Set File uid
 	 *
 	 * @param integer $fileUid
+	 * @return void
 	 */
 	public function setFileUid($fileUid) {
 		$this->uidLocal = $fileUid;
@@ -95,6 +98,7 @@ class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model
 	 * Set alternative
 	 *
 	 * @param string $alternative
+	 * @return void
 	 */
 	public function setAlternative($alternative) {
 		$this->alternative = $alternative;
@@ -113,6 +117,7 @@ class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model
 	 * Set description
 	 *
 	 * @param string $description
+	 * @return void
 	 */
 	public function setDescription($description) {
 		$this->description = $description;
@@ -130,7 +135,8 @@ class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model
 	/**
 	 * Set link
 	 *
-	 * @param mixed $link
+	 * @param string $link
+	 * @return void
 	 */
 	public function setLink($link) {
 		$this->link = $link;
@@ -140,6 +146,7 @@ class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model
 	 * Get link
 	 *
 	 * @return mixed
+	 * @return void
 	 */
 	public function getLink() {
 		return $this->link !== NULL ? $this->link : $this->getOriginalResource()->getLink();
@@ -149,6 +156,7 @@ class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model
 	 * Set title
 	 *
 	 * @param string $title
+	 * @return void
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
@@ -167,6 +175,7 @@ class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model
 	 * Set showinpreview
 	 *
 	 * @param boolean $showinpreview
+	 * @return void
 	 */
 	public function setShowinpreview($showinpreview) {
 		$this->showinpreview = $showinpreview;
