@@ -8,7 +8,7 @@ This version has been released during the TYPO3 Developer Days 2013 in Hamburg.
 
 .. tip::
 
-	To get a full list of changes, take either a look at http://git.typo3.org/TYPO3v4/Extensions/news.git or use *git log*.
+	To get a full list of changes, take either a look at http://git.typo3.org/TYPO3CMS/Extensions/news.git or use *git log*.
 
 
 Breaking/Important changes

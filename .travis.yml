@@ -37,11 +37,11 @@ before_script:
   - if [[ "$TRAVIS_PHP_VERSION" == "5.3" ]]; then installPhpModule -y apc; fi
 
 # Install rudimentary TYPO3
-  - git clone --single-branch --branch $TYPO3 --depth 1 git://git.typo3.org/TYPO3v4/Distributions/Introduction.git build-environment/Introduction
+  - git clone --single-branch --branch $TYPO3 --depth 1 git://git.typo3.org/TYPO3CMS/Distributions/Introduction.git build-environment/Introduction
   - mv core/typo3 .
   - if [[ -d core/t3lib ]]; then mv core/t3lib . ; fi
   - mv build-environment/typo3conf .
-  - git clone --single-branch --branch master --depth 1 git://git.typo3.org/TYPO3v4/Extensions/phpunit.git typo3conf/ext/phpunit/
+  - git clone --single-branch --branch master --depth 1 git://git.typo3.org/TYPO3CMS/Extensions/phpunit.git typo3conf/ext/phpunit/
   - mv news ./typo3conf/ext
   - mkdir fileadmin
   - mkdir uploads
