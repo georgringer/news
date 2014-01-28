@@ -43,7 +43,7 @@ Latest version from git
 
 You can get the latest version from git by using the git command::
 
-   git clone git://git.typo3.org/TYPO3v4/Extensions/news.git
+   git clone git://git.typo3.org/TYPO3CMS/Extensions/news.git
 
 
 Preparation: Include static TypoScript

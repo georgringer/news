@@ -4,7 +4,7 @@ Versatile news extension, based on extbase & fluid. Editor friendly, default int
 
 ## If you read this on GitHub.com
 
-If you read this on GitHub, please be aware that this repository is just a mirror of the original one, hosted on git://git.typo3.org/TYPO3v4/Extensions/news.git!
+If you read this on GitHub, please be aware that this repository is just a mirror of the original one, hosted on git://git.typo3.org/TYPO3CMS/Extensions/news.git!
 
 ## More information
 

@@ -28,7 +28,7 @@ Get the latest version from git
 It is assumed you have set up ssh (username and port) and git (username and email) already. You can copy and paste the following commands directly: ::
 
 	# Clone the news repository into the folder extension_builder.
-	git clone git://git.typo3.org/TYPO3v4/Extensions/news.git
+	git clone git://git.typo3.org/TYPO3CMS/Extensions/news.git
 	cd news
 	# Install the gerrit commit-msg hook for the distribution clone
 	scp -p -P 29418 <USERNAME>@review.typo3.org:hooks/commit-msg .git/hooks/
