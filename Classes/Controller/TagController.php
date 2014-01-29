@@ -44,6 +44,11 @@ class Tx_News_Controller_TagController extends Tx_News_Controller_NewsController
 	 * @return void
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
+		// Default value is wrong for tags
+		if ($this->settings['orderBy'] === 'datetime') {
+			unset($this->settings['orderBy']);
+		}
+
 		$demand = $this->createDemandObjectFromSettings($this->settings);
 
 		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
