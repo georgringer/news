@@ -117,6 +117,7 @@ class Tx_News_Hooks_CmsLayout {
 					case 'tag_list':
 						$this->getStartingPoint(FALSE);
 						$this->getListPidSetting();
+						$this->getOrderSettings();
 						break;
 					default:
 				}
