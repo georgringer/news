@@ -119,8 +119,13 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 			} else {
 				$query->setLimit($itemsPerPage);
 			}
+
 			if ($this->currentPage > 1) {
-				$query->setOffset((integer)($itemsPerPage * ($this->currentPage - 1)));
+				$offset = (integer)($itemsPerPage * ($this->currentPage - 1));
+				$offset = $offset + $this->initialOffset;
+				$query->setOffset($offset);
+			} elseif($this->initialOffset > 0) {
+				$query->setOffset($this->initialOffset);
 			}
 			$modifiedObjects = $query->execute();
 		}
