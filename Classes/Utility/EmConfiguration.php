@@ -41,6 +41,7 @@ class Tx_News_Utility_EmConfiguration {
 	 */
 	public static function getSettings() {
 		$configuration = self::parseSettings();
+		t3lib_div::requireOnce(t3lib_extMgm::extPath('news') . 'Classes/Domain/Model/Dto/EmConfiguration.php');
 		$settings = new Tx_News_Domain_Model_Dto_EmConfiguration($configuration);
 		return $settings;
 	}

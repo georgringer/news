@@ -8,7 +8,7 @@ if (!defined ('TYPO3_MODE')) {
 require_once(t3lib_extMgm::extPath('news') . 'Classes/Utility/EmConfiguration.php');
 $configuration = Tx_News_Utility_EmConfiguration::getSettings();
 
-Tx_Extbase_Utility_Extension::configurePlugin(
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
@@ -63,22 +63,6 @@ if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTab
 	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'] = 't3lib_cache_frontend_StringFrontend';
 }
 
-if (Tx_News_Utility_Compatibility::convertVersionNumberToInteger(TYPO3_version) < '4006000') {
-	// Define database backend as backend for 4.5 and below (default in 4.6)
-	if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['backend'])) {
-		$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['backend'] = 't3lib_cache_backend_DbBackend';
-	}
-	// Define data and tags table for 4.5 and below (obsolete in 4.6)
-	if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options'])) {
-		$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options'] = array();
-	}
-	if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options']['cacheTable'])) {
-		$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options']['cacheTable'] = 'cf_news_categorycache';
-	}
-	if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options']['tagsTable'])) {
-		$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['options']['tagsTable'] = 'cf_news_categorycache';
-	}
-}
 
 	// Class cache
 if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['class_cache'])) {
@@ -97,14 +81,14 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['softRefParser']['news_exter
 	Add TSconfig
 =========================================================================== */
 	// For linkvalidator
-if (t3lib_extMgm::isLoaded('linkvalidator')) {
-	t3lib_extMgm::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/TSconfig/Page/mod.linkvalidator.txt">');
+if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('linkvalidator')) {
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/TSconfig/Page/mod.linkvalidator.txt">');
 }
 
 /* ===========================================================================
 	Hooks
 =========================================================================== */
-if (t3lib_extMgm::isLoaded('realurl')) {
+if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration'][$_EXTKEY] =
 		'EXT:' . $_EXTKEY . '/Classes/Hooks/RealUrlAutoConfiguration.php:Tx_News_Hooks_RealUrlAutoConfiguration->addNewsConfig';
 }
