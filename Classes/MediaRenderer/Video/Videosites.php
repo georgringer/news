@@ -60,7 +60,7 @@ class Tx_News_MediaRenderer_Video_Videosites implements Tx_News_MediaRenderer_Me
 
 			$content .= '<div id="' . htmlspecialchars($uniqueDivId) . '"></div>
 						<script type="text/javascript">
-							var params = { allowScriptAccess: "always" };
+							var params = { allowScriptAccess: "always", allowfullscreen : "true" };
 							var atts = { id: ' . t3lib_div::quoteJSvalue($uniqueDivId) . ' };
 							swfobject.embedSWF(' . t3lib_div::quoteJSvalue($finalUrl) . ',
 							' . t3lib_div::quoteJSvalue($uniqueDivId) . ', "' . (int)$width . '", "' . (int)$height . '", "8", null, null, params, atts);
