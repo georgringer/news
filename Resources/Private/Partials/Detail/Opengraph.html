@@ -28,11 +28,16 @@
 </f:if>
 
 <f:if condition="{newsItem.description}">
-	<f:then><n:metaTag property="description" content="{newsItem.description}" useNameAttribute="1" /></f:then>
-	<f:else><n:metaTag property="description" content="{newsItem.teaser}" useNameAttribute="1" /></f:else>
+	<f:then>
+		<n:metaTag property="description" content="{newsItem.description}" useNameAttribute="1" />
+		<n:metaTag property="og:description" content="{newsItem.description}" />
+	</f:then>
+	<f:else>
+		<n:metaTag property="description" content="{newsItem.teaser}" useNameAttribute="1" />
+		<n:metaTag property="og:description" content="{newsItem.teaser}" />
+	</f:else>
 </f:if>
 <n:metaTag property="keywords" content="{newsItem.keywords}" useNameAttribute="1" />
-<n:metaTag property="og:description" content="{newsItem.teaser}" />
 <n:metaTag property="fb:admins" content="{settings.opengraph.admins}" />
 <n:metaTag property="fb:admins" content="{settings.opengraph.admins}" />
 <n:metaTag property="og:email" content="{settings.opengraph.email}" />
