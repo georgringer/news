@@ -72,7 +72,11 @@ class Tx_News_Hooks_Labels {
 
 				if (!empty($params['row']['image'])) {
 					$params['row']['image'] = $this->splitFileName($params['row']['image']);
-					$additionalHtmlContent = '<br />' . t3lib_BEfunc::thumbCode($params['row'], 'tx_news_domain_model_media', 'image', $GLOBALS['BACK_PATH'], '', NULL, 0, '', '', FALSE);
+					try {
+						$additionalHtmlContent = '<br />' . t3lib_BEfunc::thumbCode($params['row'], 'tx_news_domain_model_media', 'image', $GLOBALS['BACK_PATH'], '', NULL, 0, '', '', FALSE);
+					} catch(\TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException $exception) {
+
+					}
 				}
 				break;
 				// Audio & Video
