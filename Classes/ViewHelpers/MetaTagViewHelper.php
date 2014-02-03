@@ -30,7 +30,7 @@
  *
  * # Example: Force the attribute "name"
  * <code>
- * <n:metaTag property="keywords" content="{newsItem.keywords}" useNameAttribute="1" />
+ * <n:metaTag name="keywords" content="{newsItem.keywords}" />
  * </code>
  * <output>
  * <meta name="keywords" content="news 1, news 2" />
@@ -50,6 +50,7 @@ class Tx_News_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 	 */
 	public function initializeArguments() {
 		$this->registerTagAttribute('property', 'string', 'Property of meta tag');
+		$this->registerTagAttribute('name', 'string', 'Content of meta tag using the name attribute');
 		$this->registerTagAttribute('content', 'string', 'Content of meta tag');
 	}
 
@@ -59,10 +60,9 @@ class Tx_News_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 	 *
 	 * @param boolean $useCurrentDomain If set, current domain is used
 	 * @param boolean $forceAbsoluteUrl If set, absolute url is forced
-	 * @param boolean $useNameAttribute If set, the meta tag is built by using the attribute name="" instead of property
 	 * @return void
 	 */
-	public function render($useCurrentDomain = FALSE, $forceAbsoluteUrl = FALSE, $useNameAttribute = FALSE) {
+	public function render($useCurrentDomain = FALSE, $forceAbsoluteUrl = FALSE) {
 		// set current domain
 		if ($useCurrentDomain) {
 			$this->tag->addAttribute('content', t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
@@ -77,11 +77,6 @@ class Tx_News_ViewHelpers_MetaTagViewHelper extends Tx_Fluid_Core_ViewHelper_Abs
 		}
 
 		if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
-			if ($useNameAttribute && $this->arguments['property'] !== '') {
-				$attributesContent = $this->arguments['property'];
-				$this->tag->removeAttribute('property');
-				$this->tag->addAttribute('name', $attributesContent);
-			}
 			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag($this->tag->render());
 		}
 	}

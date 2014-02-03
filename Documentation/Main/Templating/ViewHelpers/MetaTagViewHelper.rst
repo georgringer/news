@@ -24,7 +24,7 @@ General properties
    :Description:
          Additional tag attributes. They will be added directly to the resulting HTML tag.
    :Default value:
-         
+
 
  - :Name:
          content
@@ -33,7 +33,7 @@ General properties
    :Description:
          Content of meta tag
    :Default value:
-         
+
 
  - :Name:
          forceAbsoluteUrl
@@ -42,7 +42,7 @@ General properties
    :Description:
          If set, absolute url is forced
    :Default value:
-         
+
 
  - :Name:
          property
@@ -51,7 +51,7 @@ General properties
    :Description:
          Property of meta tag
    :Default value:
-         
+
 
  - :Name:
          useCurrentDomain
@@ -60,16 +60,16 @@ General properties
    :Description:
          If set, current domain is used
    :Default value:
-         
+
 
  - :Name:
-         useNameAttribute
+         name
    :Type:
-         boolean
+         string
    :Description:
          If set, the meta tag is built by using the attribute name="" instead of property
    :Default value:
-         
+
 
 
 
@@ -99,7 +99,7 @@ Force the attribute "name"
 
 Code: ::
 
-	 <n:metaTag property="keywords" content="{newsItem.keywords}" useNameAttribute="1" />
+	 <n:metaTag name="keywords" content="{newsItem.keywords}" />
 
 
 Output: ::
