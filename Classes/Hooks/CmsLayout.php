@@ -517,7 +517,7 @@ class Tx_News_Hooks_CmsLayout {
 			$styles = 'width:100%;';
 			$styles .= ($visible) ? '' : 'opacity:0.7;';
 
-			$content = '<table style="' . $styles . '" class="typo3-dblist">' . $content . '</table>';
+			$content = '<table style="' . $styles . '" class="t3-table">' . $content . '</table>';
 		}
 
 		return $content;
