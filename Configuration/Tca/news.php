@@ -140,7 +140,7 @@ $TCA['tx_news_domain_model_news'] = array(
 			'label' => 'LLL:EXT:cms/locallang_ttc.xml:header_formlabel',
 			'config' => array(
 				'type' => 'input',
-				'size' => 30,
+				'size' => 60,
 				'eval' => 'required',
 			)
 		),
@@ -158,7 +158,7 @@ $TCA['tx_news_domain_model_news'] = array(
 			'label' => $ll . 'tx_news_domain_model_news.teaser',
 			'config' => array(
 				'type' => 'text',
-				'cols' => 30,
+				'cols' => 60,
 				'rows' => 5,
 			)
 		),
