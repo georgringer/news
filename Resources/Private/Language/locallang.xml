@@ -413,5 +413,51 @@
 			<label index="list_nonewsfound">Нет новостей.</label>
 			<label index="list_nocategoriesfound">Нет категорий.</label>
 		</languageKey>
+		<languageKey index="he" type="array">
+			<!-- Common -->
+			<label index="search-text">%1$s תוצאות חיפוש עבור   "%2$s".</label>
+			<label index="search-start">התחל חיפוש</label>
+			<label index="search-noresult">אין חדשות.</label>
+			<label index="more-link">קרא עוד</label>
+			<label index="back-link">חזור</label>
+			<label index="related-news">חדשות קשורות</label>
+			<label index="related-files">קבצים קשורים</label>
+			<label index="related-links">קישורים קשורים</label>
+			<label index="author">ע"י %s</label>
+			<label index="paginate_overall">עמוד %s מ-%s.</label>
+			<label index="paginate_next">הבא</label>
+			<label index="paginate_previous">הקודם</label>
+			<label index="categories">קטגוריות</label>
+			<label index="tags">טגיות</label>
+
+			<label index="entry">הודעה</label>
+			<label index="entries">הודעות</label>
+
+			<label index="month.01">ינואר</label>
+			<label index="month.02">פברואר</label>
+			<label index="month.03">מרס</label>
+			<label index="month.04">אפריל</label>
+			<label index="month.05">מאי</label>
+			<label index="month.06">יוני</label>
+			<label index="month.07">יולי</label>
+			<label index="month.08">אוגוסט</label>
+			<label index="month.09">ספטמבר</label>
+			<label index="month.10">אורטובר</label>
+			<label index="month.11">נובמבר</label>
+			<label index="month.12">דצמבר</label>
+
+			<label index="day.1">יום שני</label>
+			<label index="day.2">יום שלישי</label>
+			<label index="day.3">יום רביעי</label>
+			<label index="day.4">יום חמישי</label>
+			<label index="day.5">יום שישי</label>
+			<label index="day.6">שבת</label>
+			<label index="day.7">יום ראשון</label>
+
+			<label index="dateFormat">%d/%m/%Y</label>
+
+			<label index="list_nonewsfound">אין חדשות.</label>
+			<label index="list_nocategoriesfound">אין קטגוריות.</label>
+		</languageKey>
 	</data>
 </T3locallang>
