@@ -354,5 +354,73 @@
 
 			<label index="be_user.tx_news_categorymounts">Aktualności: ograniczenia kategorii</label>
 		</languageKey>
+		<languageKey index="he" type="array">
+			<label index="tx_news_domain_model_news.tabs.relations">Relations</label>
+			<label index="tx_news_domain_model_news.palettes.alternativeTitles">Alternative Titles</label>
+			<label index="tx_news_domain_model_news">חדשות</label>
+			<label index="tx_news_domain_model_news.alternative_title">כותרת חלופית</label>
+			<label index="tx_news_domain_model_news.teaser">תקציר</label>
+			<label index="tx_news_domain_model_news.datetime">תאריך &amp; זמן</label>
+			<label index="tx_news_domain_model_news.archive">ארכיון</label>
+			<label index="tx_news_domain_model_news.archive.placeholder">Define when the news should be listed in the archive</label>
+			<label index="tx_news_domain_model_news.categories">קטגוריות</label>
+			<label index="tx_news_domain_model_news.related">Related News</label>
+			<label index="tx_news_domain_model_news.related_from">Related News (from)</label>
+			<label index="tx_news_domain_model_news.related_files">Related Files</label>
+			<label index="tx_news_domain_model_news.fal_related_files">קבצים מקושרים</label>
+			<label index="tx_news_domain_model_news.fal_related_files.add">הוסף קובץ מקושר</label>
+			<label index="tx_news_domain_model_news.related_links">קישורים קרובים</label>
+			<label index="tx_news_domain_model_news.type.I.0">חדשות</label>
+			<label index="tx_news_domain_model_news.type.I.1">דף פנימי</label>
+			<label index="tx_news_domain_model_news.type.I.2">דף חיצוני</label>
+			<label index="tx_news_domain_model_news.media">פריט מדיה</label>
+			<label index="tx_news_domain_model_news.fal_media">קובץ מדיה</label>
+			<label index="tx_news_domain_model_news.fal_media.add">הוסף קובץ מדיה</label>
+			<label index="tx_news_domain_model_news.istopnews">Top news</label>
+			<label index="tx_news_domain_model_news.content_elements">פריטי תוכן</label>
+			<label index="tx_news_domain_model_news.tags">תגיות</label>
+			<label index="tx_news_domain_model_news.tags.add">הוסף תגית</label>
+			<label index="tx_news_domain_model_news.tags.list">List all tags</label>
+			<label index="tx_news_domain_model_news.tags.edit">ערוך תגית</label>
+			<label index="tx_news_domain_model_news.keywords.placeholder">מילת מפתח 1, מילת מפתח 2,....</label>
+
+			<label index="tx_news_domain_model_category">קטגוריית חדשות</label>
+			<label index="tx_news_domain_model_category.title">כותרת</label>
+			<label index="tx_news_domain_model_category.description">תאור</label>
+			<label index="tx_news_domain_model_category.image">תמונה</label>
+			<label index="tx_news_domain_model_category.parentcategory">קטגורית אב</label>
+			<label index="tx_news_domain_model_category.single_pid">Single-view page for news from this category</label>
+			<label index="tx_news_domain_model_category.shortcut">News category shortcut</label>
+
+			<label index="tx_news_domain_model_media">News Media Element</label>
+			<label index="tx_news_domain_model_media.caption">Caption</label>
+			<label index="tx_news_domain_model_media.media">תמונה</label>
+			<label index="tx_news_domain_model_media.type.I.0">תמונה</label>
+			<label index="tx_news_domain_model_media.type.I.1">וידאו &amp; שמע</label>
+			<label index="tx_news_domain_model_media.type.I.2">HTML</label>
+			<label index="tx_news_domain_model_media.type.I.3">DAM שורת</label>
+			<label index="tx_news_domain_model_media.multimedia">וידוא- / שמע-URL</label>
+			<label index="tx_news_domain_model_media.dam">DAM שורת</label>
+			<label index="tx_news_domain_model_media.show">הצג</label>
+			<label index="tx_news_domain_model_media.showinpreview">Show in preview views</label>
+			<label index="tx_news_domain_model_media.copyright">זכויות יוצרים</label>
+
+			<label index="tx_news_domain_model_file">News File Element</label>
+			<label index="tx_news_domain_model_file.title">כותרת</label>
+			<label index="tx_news_domain_model_file.description">תאור</label>
+			<label index="tx_news_domain_model_file.file">קובץ</label>
+
+			<label index="tx_news_domain_model_link">News Link Element</label>
+			<label index="tx_news_domain_model_link.title">כותרת</label>
+			<label index="tx_news_domain_model_link.description">תאור</label>
+			<label index="tx_news_domain_model_link.uri">URL</label>
+			<label index="tx_news_domain_model_link.uri.placeholder">www.domain.org</label>
+
+			<label index="tx_news_domain_model_tag">News Tag</label>
+			<label index="tx_news_domain_model_tag.title">כותרת</label>
+			<label index="tx_news_domain_model_news.path_segment">Speaking URL path segment</label>
+
+			<label index="be_user.tx_news_categorymounts">חדשות: הגבלת קטגוריה</label>
+		</languageKey>
 	</data>
 </T3locallang>

@@ -641,5 +641,20 @@
 			<!-- News sys folder -->
 			<label index="news-folder">Nieuws</label>
 		</languageKey>
+		<languageKey index="he" type="array">
+			<label index="pi1_title">ניהול חדשות</label>
+			<label index="pi1_plus_wiz_description">מערכת גמישה לניהול חדשות</label>
+
+			<!-- Flexforms -->
+			<label index="flexforms_tab.settings">הגדרות</label>
+			<label index="flexforms_tab.additional">Additional</label>
+			<label index="flexforms_tab.template">תבנית</label>
+
+			<!-- Page Module Record list -->
+			<label index="pagemodule_simple">רשימה</label>
+			<label index="pagemodule_advanced">רשימה מתקדמת</label>
+			<label index="pagemodule_complex">רשימה מלאה</label>
+
+		</languageKey>
 	</data>
 </T3locallang>
