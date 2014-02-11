@@ -387,12 +387,14 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 
 		// Add totals
-		foreach ($data['single'] as $year => $months) {
-			$countOfYear = 0;
-			foreach ($months as $month) {
-				$countOfYear += $month;
+		if (is_array($data['single'])) {
+			foreach ($data['single'] as $year => $months) {
+				$countOfYear = 0;
+				foreach ($months as $month) {
+					$countOfYear += $month;
+				}
+				$data['total'][$year] = $countOfYear;
 			}
-			$data['total'][$year] = $countOfYear;
 		}
 
 		return $data;
