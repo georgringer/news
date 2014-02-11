@@ -681,7 +681,7 @@ if ($configuration->getUseFal()) {
 		'l10n_mode' => 'mergeIfNotBlank',
 		'label' => $ll . 'tx_news_domain_model_news.fal_media',
 		'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-			'media',
+			'fal_media',
 			array(
 				'appearance' => array(
 					'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add'
@@ -735,7 +735,7 @@ if ($configuration->getUseFal()) {
 		'l10n_mode' => 'mergeIfNotBlank',
 		'label' => '' . $ll . 'tx_news_domain_model_news.fal_related_files',
 		'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-			'related_files',
+			'fal_related_files',
 			array(
 				'appearance' => array(
 					'createNewRelationLinkTitle' => $ll.'tx_news_domain_model_news.fal_related_files.add'
