@@ -364,10 +364,13 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$sql = $this->findDemandedRaw($demand);
 
 		// Get the month/year into the result
-		$sql = 'SELECT FROM_UNIXTIME(datetime, "%m") AS "_Month",' .
-		' FROM_UNIXTIME(datetime, "%Y") AS "_Year" ,' .
-		' count(FROM_UNIXTIME(datetime, "%m")) as count_month,' .
-		' count(FROM_UNIXTIME(datetime, "%y")) as count_year' .
+		$field = $demand->getDateField();
+		$field = empty($field) ? 'datetime' : $field;
+
+		$sql = 'SELECT FROM_UNIXTIME(' . $field . ', "%m") AS "_Month",' .
+		' FROM_UNIXTIME(' . $field . ', "%Y") AS "_Year" ,' .
+		' count(FROM_UNIXTIME(' . $field . ', "%m")) as count_month,' .
+		' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
 		' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
 		// strip unwanted order by
