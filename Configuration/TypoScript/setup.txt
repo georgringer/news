@@ -62,7 +62,7 @@ plugin.tx_news {
 		cropMaxCharacters = 150
 		orderBy = datetime
 		orderDirection = desc
-		orderByRespectTopNews = 0
+		topNewsFirst = 0
 		orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
 
 		facebookLocale = en_US
