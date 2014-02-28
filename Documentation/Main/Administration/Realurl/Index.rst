@@ -96,6 +96,20 @@ Here is a full RealURL configuration with the explanation below. ::
 		'fixedPostVars' => array(
 			'newsDetailConfiguration' => array(
 				array(
+					'GETvar' => 'tx_news_pi1[action]',
+					'valueMap' => array(
+						'detail' => '',
+					),
+					'noMatch' => 'bypass'
+				),
+				array(
+					'GETvar' => 'tx_news_pi1[controller]',
+					'valueMap' => array(
+						'News' => '',
+					),
+					'noMatch' => 'bypass'
+				),
+				array(
 					'GETvar' => 'tx_news_pi1[news]',
 					'lookUpTable' => array(
 						'table' => 'tx_news_domain_model_news',
