@@ -117,7 +117,7 @@ If you want to show the news title in the breadcrumb menu if the single view is 
         # Add news title if on single view
         20 = RECORDS
         20 {
-            if.isTrue.data = GP:tx_news_pi1|news
+            stdWrap.if.isTrue.data = GP:tx_news_pi1|news
             dontCheckPid = 1
             tables = tx_news_domain_model_news
             source.data = GP:tx_news_pi1|news
