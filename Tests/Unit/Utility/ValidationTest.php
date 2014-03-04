@@ -31,7 +31,7 @@
  */
 class Tx_News_Tests_Unit_Utility_ValidationTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
 
-	const allowedFields = 'author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title';
+	const ALLOWED_FIELDS = 'author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title';
 
 	/**
 	 * Test if default file format works
@@ -41,7 +41,7 @@ class Tx_News_Tests_Unit_Utility_ValidationTest extends Tx_Extbase_Tests_Unit_Ba
 	 * @return void
 	 */
 	public function testForValidOrdering($expectedFields, $expected) {
-		$validation = Tx_News_Utility_Validation::isValidOrdering($expectedFields, self::allowedFields);
+		$validation = Tx_News_Utility_Validation::isValidOrdering($expectedFields, self::ALLOWED_FIELDS);
 		$this->assertEquals($validation, $expected);
 
 	}
