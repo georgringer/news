@@ -164,9 +164,8 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 				$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'tx_news_domain_model_category', $whereClause);
 
 				$idList = $this->replaceCategoryIds($idList, $rows);
-			} else {
-				// @todo currently only implemented for the frontend
 			}
+			// @todo currently only implemented for the frontend
 		}
 	}
 

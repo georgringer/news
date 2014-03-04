@@ -261,16 +261,16 @@ class Tx_News_Hooks_CmsLayout {
 		if (!empty($orderField)) {
 			$text = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderBy.' . $orderField);
 
-				// Order direction (asc, desc)
-			$orderDirection = $this->getFieldFromFlexform($this->flexformData, 'settings.orderDirection');
-			if (!empty($orderDirection)) {
-				$text .= ', ' . strtolower($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderDirection.' . $orderDirection));
+			// Order direction (asc, desc)
+			$orderDirection = $this->getOrderDirectionSetting();
+			if ($orderDirection) {
+				$text .= ', ' . strtolower($orderDirection);
 			}
 
-				// Top news first
-			$topNewsSetting = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.topNewsFirst', 'additional');
-			if ($topNewsSetting === 1) {
-				$text .= '<br />' . $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.topNewsFirst');
+			// Top news first
+			$topNews = $this->getTopNewsFirstSetting();
+			if ($topNews) {
+				$text .= '<br />' . $topNews;
 			}
 
 			$this->tableData[] = array(
@@ -278,6 +278,36 @@ class Tx_News_Hooks_CmsLayout {
 				$text
 			);
 		}
+	}
+
+	/**
+	 * Get order direction
+	 *
+	 * @return string
+	 */
+	protected function getOrderDirectionSetting() {
+		$text = '';
+
+		$orderDirection = $this->getFieldFromFlexform($this->flexformData, 'settings.orderDirection');
+		if (!empty($orderDirection)) {
+			$text = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderDirection.' . $orderDirection);
+		}
+
+		return $text;
+	}
+
+	/**
+	 * Get topNewsFirst setting
+	 * @return string
+	 */
+	protected function getTopNewsFirstSetting() {
+		$text = '';
+		$topNewsSetting = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.topNewsFirst', 'additional');
+		if ($topNewsSetting === 1) {
+			$text = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.topNewsFirst');
+		}
+
+		return $text;
 	}
 
 
@@ -339,7 +369,7 @@ class Tx_News_Hooks_CmsLayout {
 	protected function getOffsetLimitSettings() {
 		$offset = $this->getFieldFromFlexform($this->flexformData, 'settings.offset', 'additional');
 		$limit = $this->getFieldFromFlexform($this->flexformData, 'settings.limit', 'additional');
-		$hidePagionation = $this->getFieldFromFlexform($this->flexformData, 'settings.hidePagination', 'additional');
+		$hidePagination = $this->getFieldFromFlexform($this->flexformData, 'settings.hidePagination', 'additional');
 
 		if ($offset) {
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.offset'), $offset);
@@ -347,7 +377,7 @@ class Tx_News_Hooks_CmsLayout {
 		if ($limit) {
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.limit'), $limit);
 		}
-		if ($hidePagionation) {
+		if ($hidePagination) {
 			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.hidePagination'), NULL);
 		}
 	}
@@ -556,9 +586,4 @@ class Tx_News_Hooks_CmsLayout {
 
 		return ($majorVersion >= 6);
 	}
-}
-
-
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/CmsLayout.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/CmsLayout.php']);
 }

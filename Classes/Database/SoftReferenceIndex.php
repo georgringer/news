@@ -111,6 +111,8 @@ class Tx_News_Database_SoftReferenceIndex {
 	 * @see getTypoLinkParts()
 	 */
 	private function setTypoLinkPartsElement($typolinkProperties, &$elements, $content, $idx) {
+		$errorFound = FALSE;
+
 			// Initialize, set basic values. In any case a link will be shown
 		$tokenId = $this->makeTokenID('setTypoLinkPartsElement:' . $idx);
 		$elements[$tokenId . ':' . $idx] = array();
@@ -128,10 +130,15 @@ class Tx_News_Database_SoftReferenceIndex {
 				$content = '{softref:' . $tokenId . '}';
 				break;
 			default:
-				$elements[$tokenId . ':' . $idx]['error'] = 'Couldn\\t decide typolink mode.';
-				return $content;
+				$elements[$tokenId . ':' . $idx]['error'] = 'Could not decide typolink mode.';
+				$errorFound = TRUE;
 				break;
 		}
+
+		if ($errorFound) {
+			return $content;
+		}
+
 			// Finally, for all entries that was rebuild with tokens, add target and class in the end:
 		if (strlen($content) && strlen($typolinkProperties['target'])) {
 			$content .= ' ' . $typolinkProperties['target'];

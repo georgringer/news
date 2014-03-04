@@ -94,8 +94,8 @@ class Tx_News_Cache_ClassCacheBuilder {
 					}
 				}
 			} catch(Exception $e) {
-				// This exception can be thrown if an extension key is somehow registered
-				// but the extension is not loaded. Nothing to do
+				$message = sprintf('Class cache could not been been build. Error "%s" with extension "%s"!', $e->getMessage(), $extensionKey);
+				t3lib_div::devLog($message, 'news');
 			}
 		}
 		return $extensibleExtensions;

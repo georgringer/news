@@ -75,7 +75,7 @@ class Tx_News_Hooks_Labels {
 					try {
 						$additionalHtmlContent = '<br />' . t3lib_BEfunc::thumbCode($params['row'], 'tx_news_domain_model_media', 'image', $GLOBALS['BACK_PATH'], '', NULL, 0, '', '', FALSE);
 					} catch(\TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException $exception) {
-
+						$additionalHtmlContent = '<br />' . htmlspecialchars($params['row']['image']);
 					}
 				}
 				break;
@@ -203,8 +203,4 @@ class Tx_News_Hooks_Labels {
 		return $title;
 	}
 
-}
-
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/Labels.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/news/Classes/Hooks/Labels.php']);
 }

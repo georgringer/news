@@ -99,49 +99,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_ViewHelpers_Link_PageV
 				break;
 				// normal news record
 			default:
-				$detailPid = 0;
-				$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $settings['detailPidDetermination'], TRUE);
-
-					// if TS is not set, prefer flexform setting
-				if (!isset($settings['detailPidDetermination'])) {
-					$detailPidDeterminationMethods[] = 'flexform';
-				}
-
-				foreach ($detailPidDeterminationMethods as $determinationMethod) {
-					if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
-						if ($detailPid = call_user_func(array($this, $callback), $settings, $newsItem)) {
-							break;
-						}
-					}
-				}
-
-				if (!$detailPid) {
-					$detailPid = $GLOBALS['TSFE']->id;
-				}
-
-				$configuration['useCacheHash'] = 1;
-				$configuration['parameter'] = $detailPid;
-				$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $newsItem->getUid();
-
-				if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
-					$configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
-						'&tx_news_pi1[action]=detail';
-				}
-
-					// Add date as human readable (30/04/2011)
-				if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
-					$dateTime = $newsItem->getDatetime();
-
-					if (!empty($tsSettings['link']['hrDate']['day'])) {
-						$configuration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
-					}
-					if (!empty($tsSettings['link']['hrDate']['month'])) {
-						$configuration['additionalParams'] .= '&tx_news_pi1[month]=' . $dateTime->format($tsSettings['link']['hrDate']['month']);
-					}
-					if (!empty($tsSettings['link']['hrDate']['year'])) {
-						$configuration['additionalParams'] .= '&tx_news_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
-					}
-				}
+				$configuration = $this->getLinkToNewsItem($newsItem, $tsSettings);
 		}
 		if (isset($tsSettings['link']['typesOpeningInNewWindow'])) {
 			if (t3lib_div::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
@@ -157,6 +115,61 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_ViewHelpers_Link_PageV
 		$this->tag->addAttribute('href', $url);
 		$this->tag->setContent($this->renderChildren());
 		return $this->tag->render();
+	}
+
+	/**
+	 * Generate the link configuration for the link to the news item
+	 *
+	 * @param Tx_News_Domain_Model_News $newsItem
+	 * @param $tsSettings
+	 * @return array
+	 */
+	protected function getLinkToNewsItem(Tx_News_Domain_Model_News $newsItem, $tsSettings) {
+		$detailPid = 0;
+		$configuration = array();
+		$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $tsSettings['detailPidDetermination'], TRUE);
+
+		// if TS is not set, prefer flexform setting
+		if (!isset($tsSettings['detailPidDetermination'])) {
+			$detailPidDeterminationMethods[] = 'flexform';
+		}
+
+		foreach ($detailPidDeterminationMethods as $determinationMethod) {
+			if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
+				if ($detailPid = call_user_func(array($this, $callback), $tsSettings, $newsItem)) {
+					break;
+				}
+			}
+		}
+
+		if (!$detailPid) {
+			$detailPid = $GLOBALS['TSFE']->id;
+		}
+
+		$configuration['useCacheHash'] = 1;
+		$configuration['parameter'] = $detailPid;
+		$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $newsItem->getUid();
+
+		if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
+			$configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
+				'&tx_news_pi1[action]=detail';
+		}
+
+		// Add date as human readable (30/04/2011)
+		if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
+			$dateTime = $newsItem->getDatetime();
+
+			if (!empty($tsSettings['link']['hrDate']['day'])) {
+				$configuration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
+			}
+			if (!empty($tsSettings['link']['hrDate']['month'])) {
+				$configuration['additionalParams'] .= '&tx_news_pi1[month]=' . $dateTime->format($tsSettings['link']['hrDate']['month']);
+			}
+			if (!empty($tsSettings['link']['hrDate']['year'])) {
+				$configuration['additionalParams'] .= '&tx_news_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
+			}
+		}
+		return $configuration;
 	}
 
 	/**
@@ -196,6 +209,5 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_ViewHelpers_Link_PageV
 	 */
 	protected function getDetailPidFromFlexform($settings, $newsItem) {
 		return (int)$settings['detailPid'];
-
 	}
 }
