@@ -113,6 +113,10 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			);
 		}
 
+		if ($demand->getAuthor()) {
+			$constraints[] = $query->equals('author',$demand->getAuthor());
+		}
+
 		// archived
 		if ($demand->getArchiveRestriction() == 'archived') {
 			$constraints[] = $query->logicalAnd(

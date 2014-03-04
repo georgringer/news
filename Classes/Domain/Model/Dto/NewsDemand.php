@@ -47,6 +47,11 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	 */
 	protected $includeSubCategories = FALSE;
 
+	/**
+	 * @var string
+	 */
+	protected $author;
+
 	/** @var Tx_Extbase_Persistence_ObjectStorage */
 	protected $tags;
 
@@ -181,6 +186,24 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 		$this->includeSubCategories = $includeSubCategories;
 	}
 
+	/**
+	 * Set author
+	 *
+	 * @param string $author
+	 * @return void
+	 */
+	public function setAuthor($author) {
+		$this->author = $author;
+	}
+
+	/**
+	 * Get author
+	 *
+	 * @return string
+	 */
+	public function getAuthor() {
+		return $this->author;
+	}
 
 	/**
 	 * Get Tags

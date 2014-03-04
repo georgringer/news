@@ -97,6 +97,19 @@ class Tx_News_Tests_Unit_Domain_Model_NewsDemandTest extends Tx_Extbase_Tests_Un
 	}
 
 	/**
+	 * Test if author can be set
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function authorCanBeSet() {
+		$domainModelInstance = new Tx_News_Domain_Model_Dto_NewsDemand();
+		$authorSetting = 'John Doe';
+		$domainModelInstance->setAuthor($authorSetting);
+		$this->assertEquals($authorSetting, $domainModelInstance->getAuthor());
+	}
+
+	/**
 	 * Test if tags can be set
 	 *
 	 * @test
