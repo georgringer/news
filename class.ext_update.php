@@ -145,8 +145,6 @@ class ext_update {
 	 */
 	protected function renameDatabaseTableField($table, $oldFieldName, $newFieldName) {
 		$title = 'Renaming "' . $table . ':' . $oldFieldName . '" to "' . $table . ':' . $newFieldName . '": ';
-		$message = '';
-		$status = NULL;
 
 		$currentTableFields = $GLOBALS['TYPO3_DB']->admin_get_fields($table);
 
@@ -184,8 +182,6 @@ class ext_update {
 	 * @return boolean
 	 */
 	protected function renameDatabaseTable($oldTableName, $newTableName) {
-		$message = '';
-		$status = NULL;
 		$title = 'Renaming "' . $oldTableName . '" to "' . $newTableName . '" ';
 
 		$tables = $GLOBALS['TYPO3_DB']->admin_get_tables();
@@ -283,8 +279,6 @@ class ext_update {
 	 */
 	protected function renameNews2toNews() {
 		$title = 'Renaming news2 to news';
-		$message = '';
-		$status = NULL;
 
 			// update tt_content to match list_type again
 		$GLOBALS['TYPO3_DB']->exec_UPDATEquery(

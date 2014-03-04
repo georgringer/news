@@ -478,8 +478,6 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @return mixed content of media element
 	 */
 	public function getContent() {
-		$content = NULL;
-
 		switch ($this->getType()) {
 			case self::MEDIA_TYPE_MULTIMEDIA:
 				$content = $this->getMultimedia();

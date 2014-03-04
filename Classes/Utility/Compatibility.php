@@ -39,8 +39,6 @@ class Tx_News_Utility_Compatibility {
 	 * @return boolean Returns TRUE if compatible with the provided version number
 	 */
 	public static function convertVersionNumberToInteger($verNumberStr) {
-		$result = '';
-
 		if (self::isEqualOrHigherSixZero()) {
 			$result = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger($verNumberStr);
 		} elseif (class_exists('t3lib_utility_VersionNumber')) {
@@ -63,7 +61,6 @@ class Tx_News_Utility_Compatibility {
 	 * @return integer The input value forced into the boundaries of $min and $max
 	 */
 	public static function forceIntegerInRange($theInt, $min, $max = 2000000000, $zeroValue = 0) {
-		$result = '';
 		if (self::isEqualOrHigherSixZero()) {
 			$result = \TYPO3\CMS\Core\Utility\MathUtility::forceIntegerInRange($theInt, $min, $max, $zeroValue);
 		} elseif (class_exists('t3lib_utility_Math')) {
@@ -82,7 +79,6 @@ class Tx_News_Utility_Compatibility {
 	 * @return boolean Returns TRUE if string is an integer
 	 */
 	public static function canBeInterpretedAsInteger($var) {
-		$result = '';
 		if (self::isEqualOrHigherSixZero()) {
 			$result = \TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($var);
 		} elseif (class_exists('t3lib_utility_Math')) {
@@ -101,7 +97,6 @@ class Tx_News_Utility_Compatibility {
 	 * @return integer
 	 */
 	public static function convertToPositiveInteger($theInt) {
-		$result = '';
 		if (self::isEqualOrHigherSixZero()) {
 			$result = \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($theInt);
 		} elseif (class_exists('t3lib_utility_Math')) {
@@ -119,7 +114,6 @@ class Tx_News_Utility_Compatibility {
 	 * @return string List of loaded extensions
 	 */
 	public static function getLoadedExtensionList() {
-		$result = '';
 		if (self::convertVersionNumberToInteger(TYPO3_version) <  '6000000') {
 			$result = t3lib_extMgm::getEnabledExtensionList();
 		} else {

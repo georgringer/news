@@ -115,7 +115,7 @@ class Tx_News_Hooks_CmsLayout {
 						$this->getCategorySettings(FALSE);
 						break;
 					case 'tag_list':
-						$this->getStartingPoint(FALSE);
+						$this->getStartingPoint();
 						$this->getListPidSetting();
 						$this->getOrderSettings();
 						break;
@@ -155,7 +155,6 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return void
 	 */
 	protected function getSingleNewsSettings() {
-		$content = '';
 		$singleNewsRecord = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.singleNews');
 
 		if ($singleNewsRecord > 0) {
@@ -199,7 +198,6 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return void
 	 */
 	protected function getDetailPidSetting() {
-		$content = '';
 		$detailPid = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.detailPid', 'additional');
 
 		if ($detailPid > 0) {
@@ -215,7 +213,6 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return void
 	 */
 	protected function getListPidSetting() {
-		$content = '';
 		$listPid = (int)$this->getFieldFromFlexform($this->flexformData, 'settings.listPid', 'additional');
 
 		if ($listPid > 0) {
@@ -232,7 +229,6 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return string
 	 */
 	protected function getPageRecordData($detailPid) {
-		$content = '';
 		$pageRecord = t3lib_BEfunc::getRecord('pages', $detailPid);
 
 		if (is_array($pageRecord)) {
@@ -532,7 +528,6 @@ class Tx_News_Hooks_CmsLayout {
 		foreach ($this->tableData as $line) {
 				// Check if the setting is in the list of disabled ones
 			$class = ($i++ % 2 === 0) ? 'bgColor4' : 'bgColor3';
-			$renderedLine = '';
 
 			if (!empty($line[1])) {
 				$renderedLine = '<td style="' . ($visible ? 'font-weight:bold;' : '') . 'width:40%;">' . $line[0] .	'</td>

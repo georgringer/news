@@ -87,8 +87,6 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	 * @throws Exception
 	 */
 	protected function getTagUid(array $request) {
-		$tagUid = 0;
-
 			// Get configuration from EM
 		$configuration = Tx_News_Utility_EmConfiguration::getSettings();
 
