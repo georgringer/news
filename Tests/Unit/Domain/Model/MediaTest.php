@@ -64,7 +64,7 @@ class Tx_News_Tests_Unit_Domain_Model_MediaTest extends Tx_Extbase_Tests_Unit_Ba
 	 * @return void
 	 */
 	public function crdateCanBeSet() {
-		$time = time();
+		$time = new DateTime('now');
 		$this->mediaDomainModelInstance->setCrdate($time);
 		$this->assertEquals($time, $this->mediaDomainModelInstance->getCrdate());
 	}
@@ -76,7 +76,7 @@ class Tx_News_Tests_Unit_Domain_Model_MediaTest extends Tx_Extbase_Tests_Unit_Ba
 	 * @return void
 	 */
 	public function tstampCanBeSet() {
-		$time = time();
+		$time = new DateTime('now');
 		$this->mediaDomainModelInstance->setTstamp($time);
 		$this->assertEquals($time, $this->mediaDomainModelInstance->getTstamp());
 	}

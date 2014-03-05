@@ -88,7 +88,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileTest extends Tx_Extbase_Tests_Unit_Bas
 	 * @return void
 	 */
 	public function crdateCanBeSet() {
-		$time = time();
+		$time = new DateTime('now');
 		$this->fileDomainModelInstance->setCrdate($time);
 		$this->assertEquals($time, $this->fileDomainModelInstance->getCrdate());
 	}
@@ -100,7 +100,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileTest extends Tx_Extbase_Tests_Unit_Bas
 	 * @return void
 	 */
 	public function tstampCanBeSet() {
-		$time = time();
+		$time = new DateTime('now');
 		$this->fileDomainModelInstance->setTstamp($time);
 		$this->assertEquals($time, $this->fileDomainModelInstance->getTstamp());
 	}

@@ -510,7 +510,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * Get dummy record flag, used for unit tests
 	 *
-	 * @return integer
+	 * @return boolean
 	 */
 	public function getIsDummyRecord() {
 		return $this->isDummyRecord;
@@ -519,7 +519,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * Set dummy record flag, used for unit tests
 	 *
-	 * @param integer $isDummyRecord dummy record flag
+	 * @param boolean $isDummyRecord dummy record flag
 	 * @return void
 	 */
 	public function setIsDummyRecord($isDummyRecord) {

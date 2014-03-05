@@ -996,7 +996,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get top news flag
 	 *
-	 * @return integer
+	 * @return boolean
 	 */
 	public function getIstopnews() {
 		return $this->istopnews;
@@ -1005,7 +1005,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set top news flag
 	 *
-	 * @param integer $istopnews top news flag
+	 * @param boolean $istopnews top news flag
 	 * @return void
 	 */
 	public function setIstopnews($istopnews) {

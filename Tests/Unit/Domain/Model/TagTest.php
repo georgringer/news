@@ -64,7 +64,7 @@ class Tx_News_Tests_Unit_Domain_Model_TagTest extends Tx_Extbase_Tests_Unit_Base
 	 * @return void
 	 */
 	public function crdateCanBeSet() {
-		$time = time();
+		$time = new DateTime('now');
 		$this->tagDomainModelInstance->setCrdate($time);
 		$this->assertEquals($time, $this->tagDomainModelInstance->getCrdate());
 	}
@@ -76,7 +76,7 @@ class Tx_News_Tests_Unit_Domain_Model_TagTest extends Tx_Extbase_Tests_Unit_Base
 	 * @return void
 	 */
 	public function tstampCanBeSet() {
-		$time = time();
+		$time = new DateTime('now');
 		$this->tagDomainModelInstance->setTstamp($time);
 		$this->assertEquals($time, $this->tagDomainModelInstance->getTstamp());
 	}

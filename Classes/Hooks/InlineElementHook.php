@@ -69,7 +69,7 @@ class Tx_News_InlineElementHook implements t3lib_tceformsInlineHook  {
 				$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 				$label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinpreview', TRUE);
 				$icon = '../' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
-				$extraItem['showinpreview'] = ' <img title="' . $label . '" src="' . $icon . '" />';
+				$extraItem = array('showinpreview' => ' <img title="' . $label . '" src="' . $icon . '" />');
 				$controlItems = $extraItem+$controlItems;
 		}
 	}

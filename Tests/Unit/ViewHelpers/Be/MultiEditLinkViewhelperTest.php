@@ -46,7 +46,10 @@ class Tx_News_Tests_Unit_ViewHelpers_Be_MultiEditLinkViewHelperTest extends Tx_E
 		$newsItem2 = new Tx_News_Domain_Model_News();
 		$newsItem2->setTitle('Item 2');
 		$newsItem2->_setProperty('uid', 9);
-		$newsItems = array($newsItem1, $newsItem2);
+
+		$newsItems = new SplObjectStorage();
+		$newsItems->attach($newsItem1);
+		$newsItems->attach($newsItem2);
 
 		$columns = 'title,description';
 		$actualResult = $viewHelper->render($newsItems, $columns);
