@@ -357,4 +357,57 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_Bas
 		$this->assertEquals(2, count($news->getMediaTypeDam()));
 		$this->assertEquals(6, count($news->getMedia()));
 	}
+
+	/**
+	 * @test
+	 */
+	public function falMediaCanBeAdded() {
+		$mediaItem = new Tx_News_Domain_Model_MediaFileReference();
+		$mediaItem->setTitle('Fo');
+
+		$news = new Tx_News_Domain_Model_News();
+		$news->addFalMedia($mediaItem);
+
+		$this->assertEquals($news->getFalMedia()->current(), $mediaItem);
+	}
+
+	/**
+	 * @test
+	 */
+	public function falMediaPreviewsAreReturned() {
+		$news = new Tx_News_Domain_Model_News();
+
+		$mockedElement1 = $this->getAccessibleMock('Tx_News_Domain_Model_FileReference', array('getProperty'));
+		$mockedElement1->_set('uid', 1);
+		$mockedElement1->_set('showinpreview', TRUE);
+		$mockedElement1->expects($this->any())->method('getProperty')->will($this->returnValue(TRUE));
+
+		$mediaItem1 = new Tx_News_Domain_Model_MediaFileReference();
+		$mediaItem1->_setProperty('originalResource', $mockedElement1);
+		$news->addFalMedia($mediaItem1);
+
+		$mockedElement2 = $this->getAccessibleMock('Tx_News_Domain_Model_FileReference', array('getProperty'));
+		$mockedElement2->_set('uid', 2);
+		$mockedElement2->_set('showinpreview', TRUE);
+		$mockedElement2->expects($this->any())->method('getProperty')->will($this->returnValue(FALSE));
+
+		$mediaItem2 = new Tx_News_Domain_Model_MediaFileReference();
+		$mediaItem2->_setProperty('originalResource', $mockedElement2);
+		$news->addFalMedia($mediaItem2);
+
+		$mockedElement3 = $this->getAccessibleMock('Tx_News_Domain_Model_FileReference', array('getProperty'));
+		$mockedElement3->_set('uid', 3);
+		$mockedElement3->_set('showinpreview', TRUE);
+		$mockedElement3->expects($this->any())->method('getProperty')->will($this->returnValue(TRUE));
+
+		$mediaItem3 = new Tx_News_Domain_Model_MediaFileReference();
+		$mediaItem3->_setProperty('originalResource', $mockedElement3);
+		$news->addFalMedia($mediaItem3);
+
+		$this->assertEquals(2, count($news->getFalMediaPreviews()));
+		$this->assertEquals(1, count($news->getNonFalMediaPreviews()));
+		$this->assertEquals(3, count($news->getFalMedia()));
+	}
+
+
 }

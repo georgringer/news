@@ -198,6 +198,14 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $falMediaPreviews;
 
 	/**
+	 * Fal media items with showinpreview not set
+	 *
+	 * @var array
+	 * @transient
+	 */
+	protected $falMediaNonPreviews;
+
+	/**
 	 * @var string
 	 */
 	protected $internalurl;
@@ -937,6 +945,25 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 			}
 		}
 		return $this->falMediaPreviews;
+	}
+
+
+	/**
+	 * Get all media elements which are not tagged as preview
+	 *
+	 * @return array
+	 */
+	public function getNonFalMediaPreviews() {
+		if ($this->falMediaNonPreviews === NULL && $this->getFalMedia()) {
+			$this->falMediaNonPreviews = array();
+			/** @var $mediaItem Tx_News_Domain_Model_MediaFileReference */
+			foreach ($this->getFalMedia() as $mediaItem) {
+				if (!$mediaItem->getOriginalResource()->getProperty('showinpreview')) {
+					$this->falMediaNonPreviews[] = $mediaItem;
+				}
+			}
+		}
+		return $this->falMediaNonPreviews;
 	}
 
 	/**
