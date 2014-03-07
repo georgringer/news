@@ -59,7 +59,7 @@ class Tx_News_Hooks_Tcemain {
 	 */
 	public function processDatamap_afterDatabaseOperations($status, $table, $recordUid, array $fields, t3lib_TCEmain $parentObject) {
 		// Clear category cache
-		if ($table === 'tx_news_domain_model_category') {
+		if ($table === 'sys_category') {
 			$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
 			$cache->flush();
 		}

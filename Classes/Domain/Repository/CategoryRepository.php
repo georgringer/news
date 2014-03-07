@@ -157,8 +157,8 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 
 		if ($language > 0) {
 			if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-				$whereClause = 'sys_language_uid=' . $language .' AND l10n_parent IN(' . implode(',', $idList) .')' . $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_category');
-				$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'tx_news_domain_model_category', $whereClause);
+				$whereClause = 'sys_language_uid=' . $language .' AND l10n_parent IN(' . implode(',', $idList) .')' . $GLOBALS['TSFE']->sys_page->enableFields('sys_category');
+				$rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'sys_category', $whereClause);
 
 				$idList = $this->replaceCategoryIds($idList, $rows);
 			}

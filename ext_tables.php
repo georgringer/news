@@ -13,8 +13,6 @@ $configuration = Tx_News_Utility_EmConfiguration::getSettings();
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tx_news_domain_model_news', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_news.xml');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-		'tx_news_domain_model_category', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_category.xml');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tx_news_domain_model_media', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_media.xml');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tx_news_domain_model_file', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_file.xml');
@@ -26,7 +24,6 @@ $configuration = Tx_News_Utility_EmConfiguration::getSettings();
 		'tt_content.pi_flexform.news_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_news');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_category');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_media');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_file');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_link');
@@ -112,7 +109,7 @@ if ($configuration->getPageModuleFieldsNews()) {
 }
 
 if ($configuration->getPageModuleFieldsCategory()) {
-	$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news_domain_model_category'][0] = array(
+	$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['sys_category'][0] = array(
 		'fList' => htmlspecialchars($configuration->getPageModuleFieldsCategory()),
 		'icon' => TRUE
 	);
@@ -130,7 +127,6 @@ $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 
 // Add tables to livesearch (e.g. "#news:fo" or "#newscat:fo")
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['news'] = 'tx_news_domain_model_news';
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['newscat'] = 'tx_news_domain_model_category';
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['newstag'] = 'tx_news_domain_model_tag';
 
 /* ===========================================================================
@@ -211,46 +207,3 @@ $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'] = 'uid,title,tstam
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] = 'tstamp,datetime,crdate,title';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'] = 'tstamp,crdate,title';
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'] = $configuration->getRemoveListActionFromFlexforms();
-
-/* ===========================================================================
- 	Extend be_user/be_groups table by a category restriction
-=========================================================================== */
-if (version_compare(TYPO3_branch, '6.0', '>=') || \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tcatreeprovider')) {
-	$tempColumns = array(
-		'tx_news_categorymounts' => array(
-			'exclude' => 1,
-			'label' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_db.xml:be_user.tx_news_categorymounts',
-			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'tx_news_domain_model_category',
-				'foreign_table_where' => ' AND (tx_news_domain_model_category.sys_language_uid = 0 OR tx_news_domain_model_category.l10n_parent = 0) ORDER BY tx_news_domain_model_category.sorting',
-				'renderMode' => 'tree',
-				'subType' => 'db',
-				'treeConfig' => array(
-					'parentField' => 'parentcategory',
-					'appearance' => array(
-						'expandAll' => TRUE,
-						'showHeader' => FALSE,
-						'maxLevels' => 99,
-					),
-				),
-				'size' => 10,
-				'autoSizeMax' => 20,
-				'minitems' => 0,
-				'maxitems' => 99
-			)
-		)
-	);
-
-	if (version_compare(TYPO3_branch, '6.1', '<')) {
-		\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA('be_groups');
-	}
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('be_groups', $tempColumns, 1);
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('be_groups', 'tx_news_categorymounts;;;;1-1-1');
-
-	if (version_compare(TYPO3_branch, '6.1', '<')) {
-		\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA('be_users');
-	}
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('be_users', $tempColumns, 1);
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('be_users', 'tx_news_categorymounts;;;;1-1-1');
-}

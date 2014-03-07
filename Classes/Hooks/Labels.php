@@ -148,10 +148,10 @@ class Tx_News_Hooks_Labels {
 
 		$catTitles = array();
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query(
-			'tx_news_domain_model_category.title as title',
+			'sys_category.title as title',
 			'tx_news_domain_model_news',
-			'tx_news_domain_model_news_category_mm',
-			'tx_news_domain_model_category',
+			'sys_category_mm',
+			'sys_category',
 			' AND tx_news_domain_model_news.uid=' . (int)$newsUid
 		);
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {

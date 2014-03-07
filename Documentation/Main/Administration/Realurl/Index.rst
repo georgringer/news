@@ -134,7 +134,7 @@ Here is a full RealURL configuration with the explanation below. ::
 				array(
 					'GETvar' => 'tx_news_pi1[overwriteDemand][categories]',
 					'lookUpTable' => array(
-						'table' => 'tx_news_domain_model_category',
+						'table' => 'sys_category',
 						'id_field' => 'uid',
 						'alias_field' => 'title',
 						'addWhereClause' => ' AND NOT deleted',

@@ -105,8 +105,8 @@ class Tx_News_Service_CategoryService {
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'uid',
-			'tx_news_domain_model_category',
-			'tx_news_domain_model_category.parentcategory IN (' . $GLOBALS['TYPO3_DB']->cleanIntList($idList) . ')
+			'sys_category',
+			'sys_category.parent IN (' . $GLOBALS['TYPO3_DB']->cleanIntList($idList) . ')
 				AND deleted=0 ' . $additionalWhere);
 
 		while (($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
@@ -137,8 +137,8 @@ class Tx_News_Service_CategoryService {
 		$result = array();
 
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-			'uid,parentcategory',
-			'tx_news_domain_model_category',
+			'uid,parent',
+			'sys_category',
 			'uid=' . $id . ' AND deleted=0 ' . $additionalWhere);
 
 		$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
@@ -148,8 +148,8 @@ class Tx_News_Service_CategoryService {
 			return $id;
 		}
 
-		$parent = self::getRootlineRecursive($row['parentcategory'], $counter, $additionalWhere);
-		$result[] = $row['parentcategory'];
+		$parent = self::getRootlineRecursive($row['parent'], $counter, $additionalWhere);
+		$result[] = $row['parent'];
 		if ($parent > 0) {
 			$result[] = $parent;
 		}
@@ -179,7 +179,7 @@ class Tx_News_Service_CategoryService {
 		if ($row['uid'] > 0 && $overlayLanguage > 0 && $row['sys_language_uid'] == 0) {
 			$overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'*',
-				'tx_news_domain_model_category',
+				'sys_category',
 				'deleted=0 AND sys_language_uid=' . $overlayLanguage . ' AND l10n_parent=' . $row['uid']
 			);
 			if (isset($overlayRecord[0]['title'])) {

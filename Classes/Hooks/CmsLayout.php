@@ -342,12 +342,12 @@ class Tx_News_Hooks_CmsLayout {
 			// Category records
 			$rawCategoryRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'*',
-				'tx_news_domain_model_category',
+				'sys_category',
 				'deleted=0 AND uid IN(' . implode(',', $categories) . ')'
 			);
 
 			foreach ($rawCategoryRecords as $record) {
-				$categoriesOut[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_category', $record));
+				$categoriesOut[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('sys_category', $record));
 			}
 
 			$includeSubcategories = $this->getFieldFromFlexform('settings.includeSubCategories');

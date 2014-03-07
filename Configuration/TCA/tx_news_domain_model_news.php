@@ -284,7 +284,7 @@ $tx_news_domain_model_news = array(
 				'renderMode' => 'tree',
 				'treeConfig' => array(
 					'dataProvider' => 'Tx_News_TreeProvider_DatabaseTreeDataProvider',
-					'parentField' => 'parentcategory',
+					'parentField' => 'parent',
 					'appearance' => array(
 						'showHeader' => TRUE,
 						'allowRecursiveMode' => TRUE,
@@ -292,9 +292,14 @@ $tx_news_domain_model_news = array(
 						'maxLevels' => 99,
 					),
 				),
-				'MM' => 'tx_news_domain_model_news_category_mm',
-				'foreign_table' => 'tx_news_domain_model_category',
-				'foreign_table_where' => ' AND (tx_news_domain_model_category.sys_language_uid = 0 OR tx_news_domain_model_category.l10n_parent = 0) ORDER BY tx_news_domain_model_category.sorting',
+				'MM' => 'sys_category_record_mm',
+				'MM_match_fields' => array(
+					'fieldname' => 'categories',
+					'tablenames' => 'tx_news_domain_model_news',
+				),
+				'MM_opposite_field' => 'items',
+				'foreign_table' => 'sys_category',
+				'foreign_table_where' => ' AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting',
 				'size' => 10,
 				'autoSizeMax' => 20,
 				'minitems' => 0,
@@ -687,16 +692,16 @@ if ($categoryRestrictionSetting) {
 	$categoryRestriction = '';
 	switch ($categoryRestrictionSetting) {
 		case 'current_pid':
-			$categoryRestriction = ' AND tx_news_domain_model_category.pid=###CURRENT_PID### ';
+			$categoryRestriction = ' AND sys_category.pid=###CURRENT_PID### ';
 			break;
 		case 'storage_pid':
-			$categoryRestriction = ' AND tx_news_domain_model_category.pid=###STORAGE_PID### ';
+			$categoryRestriction = ' AND sys_category.pid=###STORAGE_PID### ';
 			break;
 		case 'siteroot':
-			$categoryRestriction = ' AND tx_news_domain_model_category.pid IN (###SITEROOT###) ';
+			$categoryRestriction = ' AND sys_category.pid IN (###SITEROOT###) ';
 			break;
 		case 'page_tsconfig':
-			$categoryRestriction = ' AND tx_news_domain_model_category.pid IN (###PAGE_TSCONFIG_IDLIST###) ';
+			$categoryRestriction = ' AND sys_category.pid IN (###PAGE_TSCONFIG_IDLIST###) ';
 			break;
 		default:
 			$categoryRestriction = '';

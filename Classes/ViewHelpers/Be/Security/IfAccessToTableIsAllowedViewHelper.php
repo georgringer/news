@@ -22,7 +22,7 @@
  *
  * # Example: Basic example
  * <code>
- * <n:be.security.ifAccessToTableIsAllowed table="tx_news_domain_model_category">
+ * <n:be.security.ifAccessToTableIsAllowed table="tx_news_domain_model_news">
  *	Do something
  * </n:be.security.ifAccessToTableIsAllowed>
  * </code>

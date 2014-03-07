@@ -151,7 +151,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 * @return void
 	 */
 	public function newCategoryAction() {
-		$this->redirectToCreateNewRecord('tx_news_domain_model_category');
+		$this->redirectToCreateNewRecord('sys_category');
 	}
 
 	/**
@@ -201,8 +201,8 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 			'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_news'));
 		$row['countCategories'] = $db->exec_SELECTcountRows(
 			'*',
-			'tx_news_domain_model_category',
-			'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_category'));
+			'sys_category',
+			'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('sys_category'));
 
 		$row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
 	}

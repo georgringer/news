@@ -35,6 +35,7 @@ class Tx_News_Utility_CategoryProvider {
 	 * Get a comma separated list of allowed categories
 	 *
 	 * @return string
+	 * @deprecated use backendUserAuthentication->getCategoryMountPoints()
 	 */
 	public static function getUserMounts() {
 		$categoryMounts = '';
@@ -42,15 +43,15 @@ class Tx_News_Utility_CategoryProvider {
 		// Mounts of the groups
 		if (is_array($GLOBALS['BE_USER']->userGroups)) {
 			foreach ($GLOBALS['BE_USER']->userGroups as $group) {
-				if ($group['tx_news_categorymounts']) {
-					$categoryMounts .=  ',' . $group['tx_news_categorymounts'];
+				if ($group['category_perms']) {
+					$categoryMounts .=  ',' . $group['category_perms'];
 				}
 			}
 		}
 
 		// Mounts of the user record
-		if ($GLOBALS['BE_USER']->user['tx_news_categorymounts']) {
-			$categoryMounts .= ',' . $GLOBALS['BE_USER']->user['tx_news_categorymounts'];
+		if ($GLOBALS['BE_USER']->user['category_perms']) {
+			$categoryMounts .= ',' . $GLOBALS['BE_USER']->user['category_perms'];
 		}
 
 		// Make the ids unique

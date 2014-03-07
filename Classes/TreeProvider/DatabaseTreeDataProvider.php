@@ -25,11 +25,17 @@
 class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_DatabaseTreeDataProvider {
 
 	/**
+	 * @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+	 */
+	protected $backendUserAuthentication;
+
+	/**
 	 * Required constructor
 	 *
 	 * @param array $configuration TCA configuration
 	 */
 	public function __construct (array $configuration) {
+		$this->backendUserAuthentication = $GLOBALS['BE_USER'];
 	}
 
 	/**
@@ -107,12 +113,12 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 	 * @return bool
 	 */
 	protected function isCategoryAllowed ($child) {
-		$mounts = Tx_News_Utility_CategoryProvider::getUserMounts ();
+		$mounts = $this->backendUserAuthentication->getCategoryMountPoints();
 		if (empty($mounts)) {
 			return TRUE;
 		}
 
-		return t3lib_div::inList ($mounts, $child->getId ());
+		return in_array($mounts, $child->getId ());
 	}
 
 	/**

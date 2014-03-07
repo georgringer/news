@@ -264,4 +264,13 @@ config.tx_extbase.persistence.classes {
 			}
 		}
 	}
+
+	Tx_News_Domain_Model_Category {
+		mapping {
+			tableName = sys_category
+			columns {
+				parent.mapOnProperty = parentcategory
+			}
+		}
+	}
 }
