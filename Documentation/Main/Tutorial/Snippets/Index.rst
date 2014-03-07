@@ -72,3 +72,27 @@ If you need to list news next to each other and need some additional CSS classes
 
 The provided example will wrap 3 items into a div with the class "row-fluid".
 
+
+Render category rootline in the Detail view
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+If you want to show not only the title of a single category which is related to the news item but the complete category rootline use this snippets. ::
+
+
+	<f:if condition="{category:newsItem.firstCategory}">
+		<ul class="category-breadcrumb">
+			<f:render section="categoryBreadcrumb" arguments="{category:newsItem.firstCategory}" />
+		</ul>
+	</f:if>
+
+and ::
+
+	<f:section name="categoryBreadcrumb">
+		<f:if condition="{category}">
+			<f:if condition="{category.parentCategory}">
+				<f:render section="categoryBreadcrumb" arguments="{category:category.parentCategory}" />
+			</f:if>
+			<li>{category.title}</li>
+		</f:if>
+	</f:section>
+
