@@ -6,16 +6,51 @@ if (!defined('TYPO3_MODE')) {
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
 // Extension manager configuration
-$configuration = Tx_News_Utility_EmConfiguration::getSettings();
+$configuration = \Tx_News_Utility_EmConfiguration::getSettings();
 
 $teaserRteConfiguration = $configuration->getRteForTeaser() ? ';;;richtext::rte_transform[flag=rte_disabled|mode=ts_css]' : '';
 
-$TCA['tx_news_domain_model_news'] = array(
-	'ctrl' => $TCA['tx_news_domain_model_news']['ctrl'],
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
+
+$tx_news_domain_model_news = array(
+	'ctrl' => array(
+		'title' => $ll . 'tx_news_domain_model_news',
+		'label' => 'title',
+		'prependAtCopy' => $configuration->getPrependAtCopy() ? 'LLL:EXT:lang/locallang_general.xml:LGL.prependAtCopy' : '',
+		'hideAtCopy' => TRUE,
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'versioningWS' => TRUE,
+		'origUid' => 't3_origuid',
+		'editlock' => 'editlock',
+		'type' => 'type',
+		'typeicon_column' => 'type',
+		'typeicons' => array(
+			'1' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_news_internal.gif',
+			'2' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_news_external.gif',
+		),
+		'dividers2tabs' => TRUE,
+		'useColumnsForDefaultValues' => 'type',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'default_sortby' => 'ORDER BY datetime DESC',
+		'sortby' => ($configuration->getManualSorting() ? 'sorting' : ''),
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+			'fe_group' => 'fe_group',
+		),
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_news.gif',
+		'searchFields' => 'uid,title',
+		'requestUpdate' => 'rte_disabled',
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements,tags,path_segment,alternative_title,fal_related_files'
 	),
-	'feInterface' => $TCA['tx_news_domain_model_news']['feInterface'],
 	'columns' => array(
 		'sys_language_uid' => array(
 			'exclude' => 1,
@@ -375,7 +410,7 @@ $TCA['tx_news_domain_model_news'] = array(
 		'keywords' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $TCA['pages']['columns']['keywords']['label'],
+			'label' => $GLOBALS['TCA']['pages']['columns']['keywords']['label'],
 			'config' => array(
 				'type' => 'text',
 				'placeholder' => $ll . 'tx_news_domain_model_news.keywords.placeholder',
@@ -669,108 +704,110 @@ if ($categoryRestrictionSetting) {
 
 	// prepend category restriction at the beginning of foreign_table_where
 	if (!empty ($categoryRestriction)) {
-		$TCA['tx_news_domain_model_news']['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction .
-			$TCA['tx_news_domain_model_news']['columns']['categories']['config']['foreign_table_where'];
+		$tx_news_domain_model_news['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction .
+			$tx_news_domain_model_news['columns']['categories']['config']['foreign_table_where'];
 	}
 }
 
 if ($configuration->getUseFal()) {
 
-	$TCA['tx_news_domain_model_news']['columns']['fal_media'] = array(
+	$tx_news_domain_model_news['columns']['fal_media'] = array(
 		'exclude' => 1,
 		'l10n_mode' => 'mergeIfNotBlank',
 		'label' => $ll . 'tx_news_domain_model_news.fal_media',
 		'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-			'fal_media',
-			array(
-				'appearance' => array(
-					'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add'
-				),
-				// custom configuration for displaying fields in the overlay/reference table
-				// to use the newsPalette and imageoverlayPalette instead of the basicoverlayPalette
-				'foreign_types' => array(
-					'0' => array(
-						'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
+				'fal_media',
+				array(
+					'appearance' => array(
+						'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add'
 					),
-					\TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => array(
-						'showitem' => '
+					// custom configuration for displaying fields in the overlay/reference table
+					// to use the newsPalette and imageoverlayPalette instead of the basicoverlayPalette
+					'foreign_types' => array(
+						'0' => array(
+							'showitem' => '
 						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
 						--palette--;;imageoverlayPalette,
 						--palette--;;filePalette'
-					),
-					\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => array(
-						'showitem' => '
+						),
+						\TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => array(
+							'showitem' => '
 						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
 						--palette--;;imageoverlayPalette,
 						--palette--;;filePalette'
-					),
-					\TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => array(
-						'showitem' => '
+						),
+						\TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => array(
+							'showitem' => '
 						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
 						--palette--;;imageoverlayPalette,
 						--palette--;;filePalette'
-					),
-					\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => array(
-						'showitem' => '
+						),
+						\TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => array(
+							'showitem' => '
 						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
 						--palette--;;imageoverlayPalette,
 						--palette--;;filePalette'
-					),
-					\TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => array(
-						'showitem' => '
+						),
+						\TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => array(
+							'showitem' => '
 						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
 						--palette--;;imageoverlayPalette,
 						--palette--;;filePalette'
+						),
+						\TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => array(
+							'showitem' => '
+						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+						--palette--;;imageoverlayPalette,
+						--palette--;;filePalette'
+						)
 					)
-				)
-			),
-			$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'].',flv,mp4'
-		)
+				),
+				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'] . ',flv,mp4'
+			)
 	);
-	$TCA['tx_news_domain_model_news']['columns']['fal_related_files'] = array(
+	$tx_news_domain_model_news['columns']['fal_related_files'] = array(
 		'exclude' => 1,
 		'l10n_mode' => 'mergeIfNotBlank',
 		'label' => '' . $ll . 'tx_news_domain_model_news.fal_related_files',
 		'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-			'fal_related_files',
-			array(
-				'appearance' => array(
-					'createNewRelationLinkTitle' => $ll.'tx_news_domain_model_news.fal_related_files.add'
-				),
+				'fal_related_files',
+				array(
+					'appearance' => array(
+						'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_related_files.add'
+					),
+				)
 			)
-		)
 	);
 
 	// only use FAL
 	if ($configuration->getUseFal() === 1) {
-		foreach ($TCA['tx_news_domain_model_news']['types'] as $key => $config) {
-			$TCA['tx_news_domain_model_news']['types'][$key]['showitem'] = str_replace(array(',media,', ',related_files,'), array(',fal_media,', ',fal_related_files,'), $config['showitem']);
+		foreach ($tx_news_domain_model_news['types'] as $key => $config) {
+			$tx_news_domain_model_news['types'][$key]['showitem'] = str_replace(array(',media,', ',related_files,'), array(',fal_media,', ',fal_related_files,'), $config['showitem']);
 		}
-		unset($TCA['tx_news_domain_model_news']['columns']['media']);
-		unset($TCA['tx_news_domain_model_news']['columns']['related_files']);
+		unset($tx_news_domain_model_news['columns']['media']);
+		unset($tx_news_domain_model_news['columns']['related_files']);
 
-	// use FAL and media multimedia
+		// use FAL and media multimedia
 	} elseif ($configuration->getUseFal() === 3) {
 
-		foreach ($TCA['tx_news_domain_model_news']['types'] as $key => $config) {
-			$TCA['tx_news_domain_model_news']['types'][$key]['showitem'] = str_replace(array(',media,', ',related_files,'), array(',fal_media,media,', ',fal_related_files,'), $config['showitem']);
+		foreach ($tx_news_domain_model_news['types'] as $key => $config) {
+			$tx_news_domain_model_news['types'][$key]['showitem'] = str_replace(array(',media,', ',related_files,'), array(',fal_media,media,', ',fal_related_files,'), $config['showitem']);
 		}
-		unset($TCA['tx_news_domain_model_news']['columns']['related_files']);
+		unset($tx_news_domain_model_news['columns']['related_files']);
 
 		// change media label
-		$TCA['tx_news_domain_model_news']['columns']['media']['label'] = $ll . 'tx_news_domain_model_media.type.I.1';
+		$tx_news_domain_model_news['columns']['media']['label'] = $ll . 'tx_news_domain_model_media.type.I.1';
 
-	// use both
+		// use both
 	} else {
-		foreach ($TCA['tx_news_domain_model_news']['types'] as $key => $config) {
-			$TCA['tx_news_domain_model_news']['types'][$key]['showitem'] = str_replace(array(',media,', ',related_files,'), array(',fal_media,media,', ',fal_related_files,related_files,'), $config['showitem']);
+		foreach ($tx_news_domain_model_news['types'] as $key => $config) {
+			$tx_news_domain_model_news['types'][$key]['showitem'] = str_replace(array(',media,', ',related_files,'), array(',fal_media,media,', ',fal_related_files,related_files,'), $config['showitem']);
 		}
 	}
 }
 
 if (!$configuration->getContentElementRelation()) {
-	unset($TCA['tx_news_domain_model_news']['columns']['content_elements']);
+	unset($tx_news_domain_model_news['columns']['content_elements']);
 }
+
+return $tx_news_domain_model_news;

@@ -5,13 +5,34 @@ if (!defined('TYPO3_MODE')) {
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
-
-$TCA['tx_news_domain_model_file'] = array(
-	'ctrl' => $TCA['tx_news_domain_model_file']['ctrl'],
-	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,description,file'
+return array(
+	'ctrl' => array(
+		'title' => $ll . 'tx_news_domain_model_link',
+		'label' => 'title',
+		'label_alt' => 'uri',
+		'label_alt_force' => 1,
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'type' => 'type',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'versioningWS' => TRUE,
+		'origUid' => 't3_origuid',
+		'dividers2tabs' => TRUE,
+		'default_sortby' => 'ORDER BY sorting',
+		'sortby' => 'sorting',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+		),
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_link.gif',
+		'hideTable' => TRUE,
 	),
-	'feInterface' => $TCA['tx_news_domain_model_file']['feInterface'],
+	'interface' => array(
+		'showRecordFieldList' => 'hidden,title,description,uri'
+	),
 	'columns' => array(
 		'pid' => array(
 			'label' => 'pid',
@@ -53,8 +74,8 @@ $TCA['tx_news_domain_model_file'] = array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_news_domain_model_news',
-				'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_news_domain_model_link',
+				'foreign_table_where' => 'AND tx_news_domain_model_link.pid=###CURRENT_PID### AND tx_news_domain_model_link.sys_language_uid IN (-1,0)',
 			)
 		),
 		'l10n_diffsource' => array(
@@ -73,7 +94,7 @@ $TCA['tx_news_domain_model_file'] = array(
 		'title' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news_domain_model_file.title',
+			'label' => $ll . 'tx_news_domain_model_link.title',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -82,51 +103,39 @@ $TCA['tx_news_domain_model_file'] = array(
 		'description' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news_domain_model_file.description',
+			'label' => $ll . 'tx_news_domain_model_link.description',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 30,
 				'rows' => 5,
 			)
 		),
-		'file' => array(
+		'uri' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news_domain_model_file.file',
+			'label' => $ll . 'tx_news_domain_model_link.uri',
 			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'file',
-				'allowed' => '',
-				'disallowed' => 'php,php3',
-				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-				'uploadfolder' => 'uploads/tx_news',
-				'show_thumbs' => 1,
-				'size' => 1,
-				'minitems' => 0,
-				'maxitems' => 1,
+				'type' => 'input',
+				'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
+				'size' => 30,
+				'eval' => 'trim,required',
+				'softref' => 'news_externalurl',
+				'wizards' => array(
+					'_PADDING' => 2,
+					'link' => array(
+						'type' => 'popup',
+						'title' => 'Link',
+						'icon' => 'link_popup.gif',
+						'script' => 'browse_links.php?mode=wizard',
+						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
+					)
+				)
 			)
-		),
-		'fe_group' => array(
-			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.fe_group',
-			'config' => array(
-				'type' => 'select',
-				'size' => 5,
-				'maxitems' => 20,
-				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xml:LGL.hide_at_login', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.any_login', -2),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.usergroups', '--div--',),
-				),
-				'exclusiveKeys' => '-1,-2',
-				'foreign_table' => 'fe_groups',
-				'foreign_table_where' => 'ORDER BY fe_groups.title',
-			),
 		),
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'file;;palettteCore,title;;palettteDescription,fe_group'
+			'showitem' => 'uri;;palettteCore,title;;palettteDescription,'
 		)
 	),
 	'palettes' => array(
@@ -140,5 +149,3 @@ $TCA['tx_news_domain_model_file'] = array(
 		)
 	)
 );
-
-

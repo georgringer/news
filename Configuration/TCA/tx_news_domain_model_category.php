@@ -6,12 +6,36 @@ if (!defined('TYPO3_MODE')) {
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
-$TCA['tx_news_domain_model_category'] = array(
-	'ctrl' => $TCA['tx_news_domain_model_category']['ctrl'],
+return array(
+	'ctrl' => array(
+		'title' => $ll . 'tx_news_domain_model_category',
+		'label' => 'title',
+		'label_alt' => 'parentcategory,sys_language_uid',
+		'label_alt_force' => 1,
+		'label_userFunc' => 'Tx_News_Hooks_Labels->getUserLabelCategory',
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'default_sortby' => 'ORDER BY crdate',
+		'sortby' => 'sorting',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+			'fe_group' => 'fe_group',
+		),
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_category.gif',
+		'treeParentField' => 'parentcategory',
+		'searchFields' => 'uid,title',
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'sorting,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,description,image,parentcategory,single_pid,shortcut,'
 	),
-	'feInterface' => $TCA['tx_news_domain_model_category']['feInterface'],
 	'columns' => array(
 		'pid' => array(
 			'label' => 'pid',
@@ -238,11 +262,11 @@ $TCA['tx_news_domain_model_category'] = array(
 	'types' => array(
 		0 => array(
 			'showitem' =>
-			'title;;paletteCore, parentcategory, ;;;;3-3-3,
-			--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,shortcut,
-			--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
-				--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
-			--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
+				'title;;paletteCore, parentcategory, ;;;;3-3-3,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options, image, description;;;;3-3-3,single_pid;;;;3-3-3,shortcut,
+				--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,
+					--palette--;LLL:EXT:cms/locallang_ttc.xml:palette.access;paletteAccess,
+				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
 	),
 	'palettes' => array(

@@ -5,13 +5,25 @@ if (!defined('TYPO3_MODE')) {
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
-
-$TCA['tx_news_domain_model_tag'] = array(
-	'ctrl' => $TCA['tx_news_domain_model_tag']['ctrl'],
+return array(
+	'ctrl' => array(
+		'title' => $ll . 'tx_news_domain_model_tag',
+		'label' => 'title',
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+		'default_sortby' => 'ORDER BY title',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+		),
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_tag.png',
+		'searchFields' => 'uid,title',
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'hidden,title'
 	),
-	'feInterface' => $TCA['tx_news_domain_model_tag']['feInterface'],
 	'columns' => array(
 		'pid' => array(
 			'label' => 'pid',

@@ -17,10 +17,12 @@ $newSysFileReferenceColumns = array(
 	),
 );
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_file_reference', $newSysFileReferenceColumns, 1);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_file_reference', $newSysFileReferenceColumns);
 
 // add special news palette
 $GLOBALS['TCA']['sys_file_reference']['palettes']['newsPalette'] = array(
 	'showitem' => 'showinpreview',
 	'canNotCollapse' => TRUE
 );
+
+return $GLOBALS['TCA']['sys_file_reference'];

@@ -5,16 +5,38 @@ if (!defined('TYPO3_MODE')) {
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
 
-
 // Extension manager configuration
-$configuration = Tx_News_Utility_EmConfiguration::getSettings();
+$configuration = \Tx_News_Utility_EmConfiguration::getSettings();
 
-$TCA['tx_news_domain_model_media'] = array(
-	'ctrl' => $TCA['tx_news_domain_model_media']['ctrl'],
+$tx_news_domain_model_media = array(
+	'ctrl' => array(
+		'title' => $ll . 'tx_news_domain_model_media',
+		'label' => 'caption',
+		'label_alt' => 'type, showinpreview',
+		'label_alt_force' => 1,
+		'formattedLabel_userFunc' => 'Tx_News_Hooks_Labels->getUserLabelMedia',
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'type' => 'type',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'versioningWS' => TRUE,
+		'origUid' => 't3_origuid',
+		'dividers2tabs' => TRUE,
+		'default_sortby' => 'ORDER BY sorting',
+		'sortby' => 'sorting',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+		),
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_media.gif',
+		'hideTable' => TRUE,
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,video,showInPreview, width, height, description'
 	),
-	'feInterface' => $TCA['tx_news_domain_model_media']['feInterface'],
 	'columns' => array(
 		'pid' => array(
 			'label' => 'pid',
@@ -187,8 +209,8 @@ $TCA['tx_news_domain_model_media'] = array(
 				'type' => 'select',
 				'itemsProcFunc' => 'Tx_News_Hooks_ItemsProcFunc->user_MediaType',
 				'items' => array(
-					array($ll . 'tx_news_domain_model_media.type.I.0', '0', t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_image.png'),
-					array($ll . 'tx_news_domain_model_media.type.I.1', '1', t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_multimedia.png'),
+					array($ll . 'tx_news_domain_model_media.type.I.0', '0', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/media_type_image.png'),
+					array($ll . 'tx_news_domain_model_media.type.I.1', '1', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/media_type_multimedia.png'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -271,17 +293,18 @@ $TCA['tx_news_domain_model_media'] = array(
 
 // Hide image type when FAL + Multimedia is set
 if ($configuration->getUseFal() === 3) {
-	unset($TCA['tx_news_domain_model_media']['columns']['type']['config']['items'][0]);
-	$TCA['tx_news_domain_model_media']['columns']['type']['config']['default'] = '1';
+	unset($tx_news_domain_model_media['columns']['type']['config']['items'][0]);
+	$tx_news_domain_model_media['columns']['type']['config']['default'] = '1';
 }
 
 // Hide DAM field if not used to avoid errors
-if (!t3lib_extMgm::isLoaded('dam')) {
-	unset($TCA['tx_news_domain_model_media']['columns']['dam']);
+if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('dam')) {
+	unset($tx_news_domain_model_media['columns']['dam']);
 }
 
 // Hide RTE description field
 if (!$configuration->getShowMediaDescriptionField()) {
-	unset($TCA['tx_news_domain_model_media']['columns']['description']);
+	unset($tx_news_domain_model_media['columns']['description']);
 }
 
+return $tx_news_domain_model_media;
