@@ -377,7 +377,7 @@ if (TYPO3_MODE === 'BE' && $configuration->getShowAdministrationModule()) {
 		'tx_news_m2',
 		'',
 		array(
-			'Administration' => 'index,newNews,newCategory,newsPidListing',
+			'Administration' => 'index,newNews,newCategory,newTag,newsPidListing',
 		),
 		array(
 			'access' => 'user,group',

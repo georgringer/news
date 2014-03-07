@@ -21,7 +21,19 @@
 
 			<div class="typo3-docheader-buttons">
 				<div class="left">
-					<n:be.buttons.icon uri="{f:uri.action(action:'newNews')}" icon="actions-document-new" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewNewsRecord')}" />
+					<f:link.action action="newNews" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewNewsRecord')}">
+						<f:image src="{f:uri.resource(path:'Icons/news_domain_model_news_add.png')}" />
+					</f:link.action>
+					<n:be.security.ifAccessToTableIsAllowed table="tx_news_domain_model_category">
+						<f:link.action action="newCategory" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewCategory')}">
+							<f:image src="{f:uri.resource(path:'Icons/news_domain_model_category_add.png')}" />
+						</f:link.action>
+					</n:be.security.ifAccessToTableIsAllowed>
+					<n:be.security.ifAccessToTableIsAllowed table="tx_news_domain_model_tag">
+						<f:link.action action="newTag" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewTag')}">
+							<f:image src="{f:uri.resource(path:'Icons/news_domain_model_tag_add.png')}" />
+						</f:link.action>
+					</n:be.security.ifAccessToTableIsAllowed>
 				</div>
 				<div class="right">
 					<f:be.buttons.shortcut />

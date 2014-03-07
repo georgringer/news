@@ -155,6 +155,15 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	}
 
 	/**
+	 * Redirect to form to create a tag record
+	 *
+	 * @return void
+	 */
+	public function newTagAction() {
+		$this->redirectToCreateNewRecord('tx_news_domain_model_tag');
+	}
+
+	/**
 	 * Create the demand object which define which records will get shown
 	 *
 	 * @param Tx_News_Domain_Model_Dto_AdministrationDemand $demand
