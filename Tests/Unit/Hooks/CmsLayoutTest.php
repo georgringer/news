@@ -59,6 +59,22 @@ class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Extbase\Tests\Un
 		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
 	}
 
+
+	/**
+	 * @test
+	 * @return void
+	 */
+	public function getTagRestrictionSettingAddsValueIfFilled() {
+		$flexform = array();
+		$this->addContentToFlexform($flexform, 'settings.tags', '9999999999', 'additional');
+
+		$this->cmsLayout->_set('flexformData', $flexform);
+		$this->cmsLayout->_call('getTagRestrictionSetting');
+		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+	}
+
+
+
 	/**
 	 * @test
 	 * @return void

@@ -93,6 +93,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categories'], TRUE));
 		$demand->setCategoryConjunction($settings['categoryConjunction']);
 		$demand->setIncludeSubCategories($settings['includeSubCategories']);
+		$demand->setTags($settings['tags']);
 
 		$demand->setTopNewsRestriction($settings['topNewsRestriction']);
 		$demand->setTimeRestriction($settings['timeRestriction']);
@@ -114,6 +115,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$demand->setDateField($settings['dateField']);
 		$demand->setMonth($settings['month']);
 		$demand->setYear($settings['year']);
+
 
 		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($settings['startingpoint'],
 			$settings['recursive']));

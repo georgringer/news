@@ -81,6 +81,7 @@
 			<label index="flexforms_additional.topNewsFirst">Sort "Top news" before</label>
 			<label index="flexforms_additional.disableOverrideDemand">Disable override demand</label>
 			<label index="flexforms_additional.excludeAlreadyDisplayedNews">Exclude already displayed news</label>
+			<label index="flexforms_additional.tags">Tags</label>
 
 			<label index="pagemodule.pageNotAvailable">Page with uid "%s" is not available anymore!</label>
 			<label index="pagemodule.newsNotAvailable">News record with uid "%s" is not available anymore!</label>
