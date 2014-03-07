@@ -2,11 +2,6 @@
 
 <f:layout name="Backend/Default" />
 
-<f:section name="iconButtons">
-	<f:render partial="Administration/Buttons" />
-</f:section>
-
-
 <f:section name="content">
 	<h2>
 		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.newsPidListing.header" />
@@ -23,17 +18,19 @@
 		<f:form.select name="treeLevel" id="treeLevel" options="{1:1,2:2,3:3,4:4,5:5,6:6,7:7}" value="{treeLevel}" additionalAttributes="{onchange:'this.form.submit()'}" />
 	</f:form>
 	<table cellpadding="0" cellmargin="0" cellspacing="0" class="t3-table">
-		<tr class="t3-row-header">
-			<td>
-				<f:translate key="LLL:EXT:lang/locallang_tca.xml:pages" />
-			</td>
-			<td>
-				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news" />
-			</td>
-			<td>
-				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_category" />
-			</td>
-		</tr>
+		<thead>
+			<tr class="t3-row-header">
+				<td>
+					<f:translate key="LLL:EXT:lang/locallang_tca.xml:pages" />
+				</td>
+				<td>
+					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news" />
+				</td>
+				<td>
+					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_category" />
+				</td>
+			</tr>
+		</thead>
 		<f:for each="{tree}" as="item">
 			<tr class="db_list_normal {f:if(condition: item.countNewsAndCategories, then: 'show', else: 'hide')}">
 				<td class="icon" nowrap="nowrap">

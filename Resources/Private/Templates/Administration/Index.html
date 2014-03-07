@@ -2,13 +2,8 @@
 
 <f:layout name="Backend/Default" />
 
-<f:section name="iconButtons">
-	<f:render partial="Administration/Buttons" />
-</f:section>
-
-
 <f:section name="categoryTree">
-	<ul>
+	<ul class="list-unstyled">
 		<f:for each="{categories}" as="category">
 			<li>
 				<f:form.checkbox id="category-{category.item.uid}" property="selectedCategories" value="{category.item.uid}" />
