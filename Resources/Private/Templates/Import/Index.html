@@ -25,6 +25,7 @@
 
 
 	<script type="text/javascript">
+		var moduleUrl = '{f:format.raw(value: moduleUrl)}';
 		<![CDATA[
 		Ext.namespace('Tx_News');
 
@@ -61,8 +62,7 @@
 				});
 
 				var request = {
-					'url':'mod.php?' + 'M=' + mainModuleName + '_' + Ext.util.Format.capitalize(extKey) +
-						underscoreToUpperCamelCase(subModuleName),
+					'url':moduleUrl,
 					'params':params
 				};
 
