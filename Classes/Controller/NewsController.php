@@ -193,7 +193,9 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		));
 
 		Tx_News_Utility_Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
-		Tx_News_Utility_Cache::addCacheTagsByNewsRecords(array($news), FALSE);
+		if (is_a($news, 'Tx_News_Domain_Model_News')) {
+			Tx_News_Utility_Cache::addCacheTagsByNewsRecords(array($news), FALSE);
+		}
 	}
 
 	/**
