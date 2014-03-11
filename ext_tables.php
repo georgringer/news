@@ -6,27 +6,27 @@ if (!defined('TYPO3_MODE')) {
 	// Extension manager configuration
 $configuration = Tx_News_Utility_EmConfiguration::getSettings();
 	// Alternative labels for news & category records
-t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hooks/Labels.php');
+\TYPO3\CMS\Core\Utility\GeneralUtility::requireOnce(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Hooks/Labels.php');
 	// Add additional media types like DAM
-t3lib_div::requireOnce(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Hooks/ItemsProcFunc.php');
+\TYPO3\CMS\Core\Utility\GeneralUtility::requireOnce(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Hooks/ItemsProcFunc.php');
 	// CSH - context sensitive help
-t3lib_extMgm::addLLrefForTCAdescr(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tx_news_domain_model_news', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_news.xml');
-t3lib_extMgm::addLLrefForTCAdescr(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tx_news_domain_model_category', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_category.xml');
-t3lib_extMgm::addLLrefForTCAdescr(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tx_news_domain_model_media', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_media.xml');
-t3lib_extMgm::addLLrefForTCAdescr(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tx_news_domain_model_file', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_file.xml');
-t3lib_extMgm::addLLrefForTCAdescr(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tx_news_domain_model_link', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_link.xml');
-t3lib_extMgm::addLLrefForTCAdescr(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tx_news_domain_model_tag', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_tag.xml');
-t3lib_extMgm::addLLrefForTCAdescr(
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tt_content.pi_flexform.news_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_news');
-t3lib_extMgm::addToInsertRecords('tx_news_domain_model_news');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_news');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
 
 $TCA['tx_news_domain_model_news'] = array(
 	'ctrl' => array(
@@ -43,8 +43,8 @@ $TCA['tx_news_domain_model_news'] = array(
 		'type' => 'type',
 		'typeicon_column' => 'type',
 		'typeicons' => array (
-			'1' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news_internal.gif',
-			'2' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news_external.gif',
+			'1' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news_internal.gif',
+			'2' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news_external.gif',
 		),
 		'dividers2tabs' => TRUE,
 		'useColumnsForDefaultValues' => 'type',
@@ -60,14 +60,14 @@ $TCA['tx_news_domain_model_news'] = array(
 			'endtime' => 'endtime',
 			'fe_group' => 'fe_group',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/news.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news.gif',
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/Tca/news.php',
+		'iconfile'          => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_news.gif',
 		'searchFields' => 'uid,title',
 		'requestUpdate' => 'rte_disabled',
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_category');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_category');
 
 $TCA['tx_news_domain_model_category'] = array(
 	'ctrl' => array(
@@ -92,14 +92,14 @@ $TCA['tx_news_domain_model_category'] = array(
 			'endtime' => 'endtime',
 			'fe_group' => 'fe_group',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/category.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_category.gif',
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/Tca/category.php',
+		'iconfile'          => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_category.gif',
 		'treeParentField' => 'parentcategory',
 		'searchFields' => 'uid,title',
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_media');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_media');
 
 $TCA['tx_news_domain_model_media'] = array(
 	'ctrl' => array(
@@ -124,8 +124,8 @@ $TCA['tx_news_domain_model_media'] = array(
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/media.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_media.gif',
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/Tca/media.php',
+		'iconfile'          => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_media.gif',
 		'hideTable'			=> TRUE,
 	),
 );
@@ -134,7 +134,7 @@ if (version_compare(TYPO3_branch, '6.2', '>=')) {
 	$TCA['tx_news_domain_model_news']['ctrl']['formattedLabel_userFunc'] = 'Tx_News_Hooks_Labels->getUserLabelMedia';
 }
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_media');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_media');
 
 $TCA['tx_news_domain_model_file'] = array(
 	'ctrl' => array(
@@ -159,13 +159,13 @@ $TCA['tx_news_domain_model_file'] = array(
 			'disabled' => 'hidden',
 			'fe_group' => 'fe_group',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/file.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_file.gif',
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/Tca/file.php',
+		'iconfile'          => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_file.gif',
 		'hideTable'			=> TRUE,
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_file');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_file');
 
 $TCA['tx_news_domain_model_link'] = array(
 	'ctrl' => array(
@@ -189,13 +189,13 @@ $TCA['tx_news_domain_model_link'] = array(
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/link.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_link.gif',
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/Tca/link.php',
+		'iconfile'          => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_link.gif',
 		'hideTable'			=> TRUE,
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_link');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_link');
 
 $TCA['tx_news_domain_model_tag'] = array(
 	'ctrl' => array(
@@ -210,13 +210,13 @@ $TCA['tx_news_domain_model_tag'] = array(
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/Tca/tag.php',
-		'iconfile'          => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_tag.png',
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/Tca/tag.php',
+		'iconfile'          => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/news_domain_model_tag.png',
 		'searchFields' => 'uid,title',
 	),
 );
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_tag');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_tag');
 
 // Add extra options to sys_file_reference when using FAL
 if ($configuration->getUseFal()) {
@@ -226,32 +226,32 @@ if ($configuration->getUseFal()) {
 /***************
  * Plugin
  */
-Tx_Extbase_Utility_Extension::registerPlugin(
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	$_EXTKEY,
 	'Pi1',
 		'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_be.xml:pi1_title'
 );
 
 
-$extensionName = t3lib_div::underscoredToUpperCamelCase($_EXTKEY);
+$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName) . '_pi1';
 
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,recursive,select_key,pages';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_news.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_news.xml');
 
 
 /***************
  * Default TypoScript
  */
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'News');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'News');
 
 /***************
  * Wizard pi1
  */
 if (TYPO3_MODE == 'BE') {
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses'][$pluginSignature . '_wizicon'] =
-		t3lib_extMgm::extPath($_EXTKEY) . 'Resources/Private/Php/class.' . $_EXTKEY . '_wizicon.php';
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Resources/Private/Php/class.' . $_EXTKEY . '_wizicon.php';
 }
 
 /***************
@@ -259,7 +259,7 @@ if (TYPO3_MODE == 'BE') {
  */
 if (TYPO3_MODE == 'BE') {
 	unset($ICON_TYPES['news']);
-	t3lib_SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news/Resources/Public/Icons/folder.gif');
+	\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news/Resources/Public/Icons/folder.gif');
 
 	$addNewsToModuleSelection = TRUE;
 	foreach ($GLOBALS['TCA']['pages']['columns']['module']['config']['items'] as $item) {
@@ -282,9 +282,9 @@ if (TYPO3_MODE == 'BE') {
  * Show news table in page module
  */
 if ($configuration->getPageModuleFieldsNews()) {
-	$addTableItems = t3lib_div::trimExplode(';', $configuration->getPageModuleFieldsNews(), TRUE);
+	$addTableItems = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(';', $configuration->getPageModuleFieldsNews(), TRUE);
 	foreach ($addTableItems as $item) {
-		$split = t3lib_div::trimExplode('=', $item, TRUE);
+		$split = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode('=', $item, TRUE);
 		$fList = $fTitle = '';
 		if (count($split) == 2) {
 			$fTitle = $split[0];
@@ -327,7 +327,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['newstag'] = 'tx_news_domain_mo
  	Register BE-Modules
 =========================================================================== */
 if (TYPO3_MODE === 'BE' && $configuration->getShowImporter()) {
-	Tx_Extbase_Utility_Extension::registerModule(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
 		$_EXTKEY,
 		'web',
 		'tx_news_m1',
@@ -343,7 +343,7 @@ if (TYPO3_MODE === 'BE' && $configuration->getShowImporter()) {
 	);
 
 		// show tt_news importer only if tt_news is installed
-	if (t3lib_extMgm::isLoaded('tt_news')) {
+	if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tt_news')) {
 		Tx_News_Utility_ImportJob::register(
 			'Tx_News_Jobs_TTNewsNewsImportJob',
 			'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:ttnews_importer_title',
@@ -354,7 +354,7 @@ if (TYPO3_MODE === 'BE' && $configuration->getShowImporter()) {
 			'');
 	}
 
-	if (t3lib_extMgm::isLoaded('t3blog')) {
+	if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('t3blog')) {
 		Tx_News_Utility_ImportJob::register(
 			'Tx_News_Jobs_T3BlogNewsImportJob',
 			'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:t3blog_importer_title',
@@ -371,7 +371,7 @@ if (TYPO3_MODE === 'BE' && $configuration->getShowImporter()) {
  	Register BE-Module for Administration
 =========================================================================== */
 if (TYPO3_MODE === 'BE' && $configuration->getShowAdministrationModule()) {
-	Tx_Extbase_Utility_Extension::registerModule(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
 		$_EXTKEY,
 		'web',
 		'tx_news_m2',
@@ -405,7 +405,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'
 /* ===========================================================================
  	Extend be_user/be_groups table by a category restriction
 =========================================================================== */
-if (version_compare(TYPO3_branch, '6.0', '>=') || t3lib_extMgm::isLoaded('tcatreeprovider')) {
+if (version_compare(TYPO3_branch, '6.0', '>=') || \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tcatreeprovider')) {
 	$tempColumns = array(
 		'tx_news_categorymounts' => array(
 			'exclude' => 1,
@@ -433,14 +433,14 @@ if (version_compare(TYPO3_branch, '6.0', '>=') || t3lib_extMgm::isLoaded('tcatre
 	);
 
 	if (version_compare(TYPO3_branch, '6.1', '<')) {
-		t3lib_div::loadTCA('be_groups');
+		\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA('be_groups');
 	}
-	t3lib_extMgm::addTCAcolumns('be_groups', $tempColumns, 1);
-	t3lib_extMgm::addToAllTCAtypes('be_groups', 'tx_news_categorymounts;;;;1-1-1');
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('be_groups', $tempColumns, 1);
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('be_groups', 'tx_news_categorymounts;;;;1-1-1');
 
 	if (version_compare(TYPO3_branch, '6.1', '<')) {
-		t3lib_div::loadTCA('be_users');
+		\TYPO3\CMS\Core\Utility\GeneralUtility::loadTCA('be_users');
 	}
-	t3lib_extMgm::addTCAcolumns('be_users', $tempColumns, 1);
-	t3lib_extMgm::addToAllTCAtypes('be_users', 'tx_news_categorymounts;;;;1-1-1');
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('be_users', $tempColumns, 1);
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('be_users', 'tx_news_categorymounts;;;;1-1-1');
 }

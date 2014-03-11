@@ -5,7 +5,7 @@ if (!defined ('TYPO3_MODE')) {
 }
 
 	// Extension manager configuration
-require_once(t3lib_extMgm::extPath('news') . 'Classes/Utility/EmConfiguration.php');
+require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news') . 'Classes/Utility/EmConfiguration.php');
 $configuration = Tx_News_Utility_EmConfiguration::getSettings();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
