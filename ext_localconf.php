@@ -60,15 +60,15 @@ if (!is_array($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$caching
 // Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
 // and overrides the default variable frontend of 4.6
 if (!isset($TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'])) {
-	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'] = 't3lib_cache_frontend_StringFrontend';
+	$TYPO3_CONF_VARS['SYS']['caching']['cacheConfigurations'][$cachingTableName]['frontend'] = 'TYPO3\CMS\Core\Cache\Frontend\StringFrontend';
 }
 
 
 	// Class cache
 if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['class_cache'])) {
 	$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['class_cache'] = array(
-		'backend' => 't3lib_cache_backend_FileBackend',
-		'frontend' => 't3lib_cache_frontend_PhpFrontend',
+		'backend' => 'TYPO3\\CMS\\Core\\Cache\\Backend\\FileBackend',
+		'frontend' => 'TYPO3\\CMS\\Core\\Cache\\Frontend\\PhpFrontend',
 	);
 }
 
