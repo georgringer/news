@@ -22,6 +22,8 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Controller of news records
  *
@@ -167,7 +169,6 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * @return void
 	 */
 	public function detailAction(Tx_News_Domain_Model_News $news = NULL, $currentPage = 1) {
-
 		if (is_null($news)) {
 			$previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
 			if ($this->request->hasArgument('news_preview')) {
@@ -183,6 +184,10 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			}
 		}
 
+		if (is_a($news, 'Tx_News_Domain_Model_News')) {
+			$news = $this->checkPidOfNewsRecord($news);
+		}
+
 		if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
 			$this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
 		}
@@ -196,6 +201,36 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		if (!is_null($news) && is_a($news, 'Tx_News_Domain_Model_News')) {
 			Tx_News_Utility_Cache::addCacheTagsByNewsRecords(array($news), FALSE);
 		}
+	}
+
+	/**
+	 * Checks if the news pid could be found in the startingpoint settings of the detail plugin and
+	 * if the pid could not be found it return NULL instead of the news object.
+	 *
+	 * @param Tx_News_Domain_Model_News $news
+	 * @return NULL|Tx_News_Domain_Model_News
+	 */
+	protected function checkPidOfNewsRecord(Tx_News_Domain_Model_News $news) {
+		$allowedStoragePages = GeneralUtility::trimExplode(
+			',',
+			Tx_News_Utility_Page::extendPidListByChildren(
+				$this->settings['startingpoint'],
+				$this->settings['recursive']
+			),
+			TRUE
+		);
+		if (count($allowedStoragePages) > 0 && !in_array($news->getPid(), $allowedStoragePages)) {
+			$this->signalSlotDispatcher->dispatch(
+				__CLASS__,
+				'checkPidOfNewsRecordFailedInDetailAction',
+				array(
+					'news' => $news,
+					'newsController' => $this
+				)
+			);
+			$news = NULL;
+		}
+		return $news;
 	}
 
 	/**

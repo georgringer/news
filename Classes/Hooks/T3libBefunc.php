@@ -39,7 +39,7 @@ class Tx_News_Hooks_T3libBefunc {
 	public $removedFieldsInDetailView = array(
 			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
-						startingpoint,recursive,dateField',
+						dateField',
 			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid',
 			'template' => 'cropMaxCharacters'
 		);

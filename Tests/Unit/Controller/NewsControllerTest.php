@@ -98,4 +98,36 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 
 		$fixture->listAction();
 	}
+
+
+	/**
+	 * @test
+	 */
+	public function checkPidOfNewsRecordWorks() {
+		$mockedSignalDispatcher = $this->getAccessibleMock('\TYPO3\CMS\Extbase\SignalSlot\Dispatcher', array('dummy'));
+		$mockedController = $this->getAccessibleMock('Tx_News_Controller_NewsController',
+			array('dummy'));
+		$mockedController->_set('signalSlotDispatcher', $mockedSignalDispatcher);
+
+		$news = new Tx_News_Domain_Model_News();
+
+		// No startingpoint
+		$mockedController->_set('settings', array('startingpoint' => ''));
+		$news->setPid(45);
+
+		$this->assertEquals($news, $mockedController->_call('checkPidOfNewsRecord', $news));
+
+		// startingpoint defined
+		$mockedController->_set('settings', array('startingpoint' => '1,2,123,456'));
+		$news->setPid(123);
+
+		$this->assertEquals($news, $mockedController->_call('checkPidOfNewsRecord', $news));
+
+		// startingpoint is different
+		$mockedController->_set('settings', array('startingpoint' => '123,456'));
+		$news->setPid(45);
+
+		$this->assertEquals(NULL, $mockedController->_call('checkPidOfNewsRecord', $news));
+	}
+
 }
