@@ -175,10 +175,6 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));
 		$demand->setOrderByAllowed($this->settings['orderByAllowed']);
 
-		if ((int)$demand->getLimit() === 0) {
-			$demand->setLimit(50);
-		}
-
 		// Ensure that always a storage page is set
 		if ((int)$demand->getStoragePage() === 0) {
 			$demand->setStoragePage('-3');

@@ -18,17 +18,23 @@
 </f:section>
 
 <f:section name="content">
-	<h1><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.title" /></h1>
+	<h1>
+		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.title" />
+	</h1>
 
 	<f:if condition="{page} == 0">
 		<div class="typo3-message message-information">
-			<div class="message-body"><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.nopageselected" /></div>
+			<div class="message-body">
+				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.nopageselected" />
+			</div>
 		</div>
 	</f:if>
 	<f:flashMessages class="tx-extbase-flash-message" />
 
 	<f:form name="demand" object="{demand}">
-		<h2><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.headline" /></h2>
+		<h2>
+			<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.headline" />
+		</h2>
 		<div class="settings">
 			<div class="form">
 				<div class="field">
@@ -47,7 +53,7 @@
 					<div class="clear"></div>
 				</div>
 				<div class="field">
-					<label for="offset">
+					<label for="topNewsRestriction">
 						<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction" />
 					</label>
 					<f:form.select property="topNewsRestriction" options="{
@@ -55,22 +61,6 @@
 					1:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.1\')}',
 					2:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.topNewsRestriction.2\')}'
 				}" id="topNewsRestriction" />
-					<div class="clear"></div>
-				</div>
-
-				<div class="field">
-					<label for="limit">
-						<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_additional.limit" />
-					</label>
-					<f:form.textfield property="limit" id="limit" style="width:50px;" />
-					<div class="clear"></div>
-				</div>
-
-				<div class="field">
-					<label for="offset">
-						<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_additional.offset" />
-					</label>
-					<f:form.textfield property="offset" id="offset" style="width:50px;" />
 					<div class="clear"></div>
 				</div>
 
@@ -116,37 +106,39 @@
 	<f:if condition="{news}">
 		<f:then>
 			<div class="result">
-				<table cellpadding="0" cellmargin="0" cellspacing="0" class="t3-table" id="sortable_table">
-					<thead>
-					<tr class="t3-row-header">
-						<td>
-							<span><f:translate key="LLL:EXT:cms/locallang_ttc.xml:header_formlabel" /></span>
-							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'title')}" icon="actions-document-open" />
-						</td>
-						<td>
-							<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.istopnews" /></span>
-							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'istopnews')}" icon="actions-document-open" />
-						</td>
-						<td class="date">
-							<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" /></span>
-							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'datetime')}" icon="actions-document-open" />
-						</td>
-						<td class="date">
-							<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" /></span>
-							<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'archive')}" icon="actions-document-open" />
-						</td>
-						<td>
-							<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.tstamp" />
-						</td>
-						<td class="nosort"></td>
-					</tr>
-					</thead>
-					<tbody>
-					<f:for each="{news}" as="newsItem">
-						<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem, dateformat:dateformat}" />
-					</f:for>
-					</tbody>
-				</table>
+				<f:be.widget.paginate objects="{news}" as="paginatedNews" configuration="{itemsPerPage: settings.list.paginate.itemsPerPage}">
+					<table cellpadding="0" cellmargin="0" cellspacing="0" class="t3-table">
+						<thead>
+						<tr class="t3-row-header">
+							<td>
+								<span><f:translate key="LLL:EXT:cms/locallang_ttc.xml:header_formlabel" /></span>
+								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'title')}" icon="actions-document-open" />
+							</td>
+							<td>
+								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.istopnews" /></span>
+								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'istopnews')}" icon="actions-document-open" />
+							</td>
+							<td class="date">
+								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.datetime" /></span>
+								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'datetime')}" icon="actions-document-open" />
+							</td>
+							<td class="date">
+								<span><f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.archive" /></span>
+								<n:be.buttons.icon uri="#" onclick="{n:be.multiEditLink(items:news,columns:'archive')}" icon="actions-document-open" />
+							</td>
+							<td>
+								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.tstamp" />
+							</td>
+							<td class="nosort"></td>
+						</tr>
+						</thead>
+						<tbody>
+						<f:for each="{paginatedNews}" as="newsItem">
+							<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem, dateformat:dateformat}" />
+						</f:for>
+						</tbody>
+					</table>
+				</f:be.widget.paginate>
 			</div>
 		</f:then>
 		<f:else>
