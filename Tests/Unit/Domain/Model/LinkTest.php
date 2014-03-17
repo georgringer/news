@@ -29,7 +29,7 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Domain_Model_LinkTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Model_LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var Tx_News_Domain_Model_Link

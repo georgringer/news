@@ -25,7 +25,7 @@
 /**
  * Tests for Tx_News_Utility_CategoryProvider
  */
-class Tx_News_Tests_Unit_Utility_CategoryProviderTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Utility_CategoryProviderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var array

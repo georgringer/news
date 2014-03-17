@@ -25,7 +25,7 @@
 /**
  * Tests for Tx_News_MediaRenderer_Audio_Mp3
  */
-class Tx_News_Tests_Unit_MediaRenderer_Audio_Mp3Test extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_MediaRenderer_Audio_Mp3Test extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test

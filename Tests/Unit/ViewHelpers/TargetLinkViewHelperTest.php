@@ -25,7 +25,7 @@
 /**
  * Test for Tx_News_ViewHelpers_TargetLinkViewHelper
  */
-class Tx_News_Tests_Unit_ViewHelpers_TargetLinkViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_ViewHelpers_TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var $objectManager Tx_Extbase_Object_ObjectManagerInterface

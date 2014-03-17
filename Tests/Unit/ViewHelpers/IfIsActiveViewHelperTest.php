@@ -25,7 +25,7 @@
 /**
  * Tests for Tx_News_ViewHelpers_IfIsActiveViewHelper
  */
-class Tx_News_Tests_Unit_ViewHelpers_IfIsActiveViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_ViewHelpers_IfIsActiveViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var Tx_News_ViewHelpers_IfIsActiveViewHelper

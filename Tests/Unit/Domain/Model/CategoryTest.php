@@ -29,7 +29,7 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @var Tx_News_Domain_Model_Category
 	 */
@@ -41,7 +41,7 @@ class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends Tx_Extbase_Tests_Unit
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->categoryDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_Category');
+		$this->categoryDomainModelInstance = t3lib_div::makeInstance('Tx_News_Domain_Model_Category');
 	}
 
 	/**

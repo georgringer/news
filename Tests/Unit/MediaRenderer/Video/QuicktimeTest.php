@@ -25,7 +25,7 @@
 /**
  * Tests for Tx_News_MediaRenderer_Video_Quicktime
  */
-class Tx_News_Tests_Unit_MediaRenderer_Video_QuicktimeTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_MediaRenderer_Video_QuicktimeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test

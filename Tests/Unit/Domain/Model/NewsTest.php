@@ -30,7 +30,7 @@
  * @author Georg Ringer <typo3@ringerge.org>
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Tests_Unit_Domain_Model_NewsTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @var Tx_News_Domain_Model_News
 	 */

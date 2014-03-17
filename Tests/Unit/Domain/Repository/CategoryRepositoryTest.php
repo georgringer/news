@@ -23,7 +23,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var array

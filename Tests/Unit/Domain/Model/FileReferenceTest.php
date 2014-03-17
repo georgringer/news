@@ -25,7 +25,7 @@
 /**
  * Tests for Tx_News_Domain_Model_FileReference
  */
-class Tx_News_Tests_Unit_Domain_Model_FileReferenceTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Domain_Model_FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if fileUid can be set

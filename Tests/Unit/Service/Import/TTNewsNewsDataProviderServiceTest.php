@@ -25,7 +25,7 @@
 /**
  * Test class for Tx_News_Service_Import_TTNewsNewsDataProviderService
  */
-class Tx_News_Tests_Unit_Service_Import_TTNewsNewsDataProviderServiceTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Service_Import_TTNewsNewsDataProviderServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test

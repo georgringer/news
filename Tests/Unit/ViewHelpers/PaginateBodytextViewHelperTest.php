@@ -29,7 +29,7 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_ViewHelpers_PaginateBodytextViewHelperTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_ViewHelpers_PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if given tag is a closing tag

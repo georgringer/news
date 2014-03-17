@@ -30,7 +30,7 @@
  *
  * @author Georg Ringer <mail@ringerge.org>
  */
-class Tx_News_Tests_Unit_Controller_NewsBaseControllerTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Controller_NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface

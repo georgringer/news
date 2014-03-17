@@ -29,7 +29,7 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Utility_ValidationTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_Utility_ValidationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	const ALLOWED_FIELDS = 'author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title';
 

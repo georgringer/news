@@ -25,7 +25,7 @@
 /**
  * Tests for Tx_News_Tests_Interfaces_Video_FileTest
  */
-class Tx_News_Tests_Unit_MediaRenderer_Video_FileTest extends Tx_Extbase_Tests_Unit_BaseTestCase {
+class Tx_News_Tests_Unit_MediaRenderer_Video_FileTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
