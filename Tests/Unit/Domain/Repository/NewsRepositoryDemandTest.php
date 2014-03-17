@@ -39,8 +39,12 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 	 */
 	protected $testingFramework;
 
+	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
+	protected $objectManager;
+
 	public function setUp() {
 		$this->testingFramework = new Tx_Phpunit_Framework('tx_news');
+		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 	}
 
 	/**
