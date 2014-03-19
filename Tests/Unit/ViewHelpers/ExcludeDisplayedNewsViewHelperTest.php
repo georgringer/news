@@ -54,5 +54,11 @@ class Tx_News_Tests_Unit_ViewHelpers_ExcludeDisplayedNewsViewHelperTest extends 
 		$newsItem2->_setProperty('uid', '12');
 		$viewHelper->render($newsItem2);
 		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], array('123' => '123', '12' => '12'));
+
+		$newsItem3 = new Tx_News_Domain_Model_News();
+		$newsItem3->_setProperty('uid', '12');
+		$newsItem3->_setProperty('_localizedUid', '456');
+		$viewHelper->render($newsItem3);
+		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], array('123' => '123', '12' => '12', '456' => '456'));
 	}
 }
