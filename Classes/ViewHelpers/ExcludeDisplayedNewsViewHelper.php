@@ -46,7 +46,12 @@ class Tx_News_ViewHelpers_ExcludeDisplayedNewsViewHelper extends Tx_Fluid_Core_V
 		if (empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {
 			$GLOBALS['EXT']['news']['alreadyDisplayed'] = array();
 		}
-
 		$GLOBALS['EXT']['news']['alreadyDisplayed'][$uid] = $uid;
+
+		// Add localized uid as well
+		$originalUid = (int)$newsItem->_getProperty('_localizedUid');
+		if ($originalUid > 0) {
+			$GLOBALS['EXT']['news']['alreadyDisplayed'][$originalUid] = $originalUid;
+		}
 	}
 }
