@@ -36,14 +36,6 @@ class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model
 	protected $tableLocal = 'sys_file';
 
 	/**
-	 * Obsolete when https://review.typo3.org/#/c/21120/
-	 * or http://forge.typo3.org/issues/47694 is in
-	 *
-	 * @var string
-	 */
-	protected $fieldname = 'related_files';
-
-	/**
 	 * Obsolete when foreign_selector is supported by ExtBase persistence layer
 	 *
 	 * @var integer
