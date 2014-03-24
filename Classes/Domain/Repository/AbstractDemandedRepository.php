@@ -86,17 +86,62 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	public function findDemandedRaw(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
 		$query = $this->generateQuery($demand, $respectEnableFields);
 
-		$dbStorage = $this->storageBackend;
+		$queryParser = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Typo3DbQueryParser');
+		list($hash, $parameters) = $queryParser->preparseQuery($query);
+		$statementParts = $queryParser->parseQuery($query);
 
-		$parameters = array();
-		$statementParts = $dbStorage->parseQuery($query, $parameters);
-		$sql = $dbStorage->buildQuery($statementParts, $parameters);
-		$tableName = 'foo';
-		if (is_array($statementParts && !empty($statementParts['tables'][0]))) {
-			$tableName = $statementParts['tables'][0];
+		// Limit and offset are not cached to allow caching of pagebrowser queries.
+		$statementParts['limit'] = ((int)$query->getLimit() ?: NULL);
+		$statementParts['offset'] = ((int)$query->getOffset() ?: NULL);
+
+		$tableNameForEscape = (reset($statementParts['tables']) ?: 'foo');
+		foreach ($parameters as $parameterPlaceholder => $parameter) {
+			if ($parameter instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+				$parameter = $parameter->_loadRealInstance();
+			}
+
+			if ($parameter instanceof \DateTime) {
+				$parameter = $parameter->format('U');
+			} elseif ($parameter instanceof \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface) {
+				$parameter = (int)$parameter->getUid();
+			} elseif (is_array($parameter)) {
+				$subParameters = array();
+				foreach ($parameter as $subParameter) {
+					$subParameters[] = $GLOBALS['TYPO3_DB']->fullQuoteStr($subParameter, $tableNameForEscape);
+				}
+				$parameter = implode(',', $subParameters);
+			} elseif ($parameter === NULL) {
+				$parameter = 'NULL';
+			} elseif (is_bool($parameter)) {
+				return ($parameter === TRUE ? 1 : 0);
+			} else {
+				$parameter = $GLOBALS['TYPO3_DB']->fullQuoteStr((string)$parameter, $tableNameForEscape);
+			}
+
+			$statementParts['where'] = str_replace($parameterPlaceholder, $parameter, $statementParts['where']);
 		}
 
-		$this->replacePlaceholders($sql, $parameters, $tableName);
+		$statementParts = array(
+			'selectFields' => implode(' ', $statementParts['keywords']) . ' ' . implode(',', $statementParts['fields']),
+			'fromTable'    => implode(' ', $statementParts['tables']) . ' ' . implode(' ', $statementParts['unions']),
+			'whereClause'  => (!empty($statementParts['where']) ? implode('', $statementParts['where']) : '1')
+				. (!empty($statementParts['additionalWhereClause'])
+					? ' AND ' . implode(' AND ', $statementParts['additionalWhereClause'])
+					: ''
+			),
+			'orderBy'      => (!empty($statementParts['orderings']) ? implode(', ', $statementParts['orderings']) : ''),
+			'limit'        => ($statementParts['offset'] ? $statementParts['offset'] . ', ' : '')
+				. ($statementParts['limit'] ? $statementParts['limit'] : '')
+		);
+
+		$sql = $GLOBALS['TYPO3_DB']->SELECTquery(
+			$statementParts['selectFields'],
+			$statementParts['fromTable'],
+			$statementParts['whereClause'],
+			'',
+			$statementParts['orderBy'],
+			$statementParts['limit']
+		);
 
 		return $sql;
 	}
