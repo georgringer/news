@@ -68,7 +68,7 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 		// set a basic configuration for cObj->filelink
 		$tsConfiguration = array(
 			'path' => $fileInformation['dirname'] . '/',
-			'ATagParams' => 'class="download-link basic-class ' . strtolower($fileInformation['extension']) . '"',
+			'ATagParams' => 'class="download-link basic-class ' . strtolower($fileInformation['extension']) . (!empty($class) ? ' ' . $class : '') . '"',
 			'labelStdWrap.' => array(
 				'cObject.' => array(
 					'value' => $this->renderChildren()
@@ -93,9 +93,6 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 		// merge default configuration with optional configuration
 		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration, $configuration);
 
-		if (!empty($class)) {
-			$tsConfiguration['ATagParams'] .= ' class="' . $class . '"';
-		}
 		if (!empty($target)) {
 			$tsConfiguration['target'] = $target;
 		}
