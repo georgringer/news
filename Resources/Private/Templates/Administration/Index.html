@@ -106,6 +106,13 @@
 	<f:if condition="{news}">
 		<f:then>
 			<div class="result">
+				<f:if condition="{settings.list.paginate.itemsPerPage} == 0">
+					<div class="typo3-message message-warning">
+						<div class="message-body">
+							<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:administration.nolimit" arguments="{0:'settings.list.paginate.itemsPerPage'}"/>
+						</div>
+					</div>
+				</f:if>
 				<f:be.widget.paginate objects="{news}" as="paginatedNews" configuration="{itemsPerPage: settings.list.paginate.itemsPerPage}">
 					<table cellpadding="0" cellmargin="0" cellspacing="0" class="t3-table">
 						<thead>

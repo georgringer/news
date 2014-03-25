@@ -163,6 +163,7 @@
 			<label index="administration.newsPidListing.description">Choose a recursive level to display your page tree with the related entries. Click on the page title to show
 				the news entries of the page.
 			</label>
+			<label index="administration.nolimit">No limit defined in setting "%s"! Include the default TypoScript in the root page.</label>
 
 
 			<!-- News sys folder -->
