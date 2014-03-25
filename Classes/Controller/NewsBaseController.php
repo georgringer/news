@@ -71,7 +71,7 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 				$url = $this->uriBuilder->build();
 
 				if (isset($configuration[2])) {
-					$this->redirectToUri($url, 0, $configuration[2]);
+					$this->redirectToUri($url, 0, (int)$configuration[2]);
 				} else {
 					$this->redirectToUri($url);
 				}
