@@ -79,7 +79,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 * @return array
 	 */
 	protected function getExtensibleExtensions() {
-		$loadedExtensions = array_unique(t3lib_div::trimExplode(',', Tx_News_Utility_Compatibility::getLoadedExtensionList(), TRUE));
+		$loadedExtensions = t3lib_extMgm::getLoadedExtensionListArray();
 
 		// Get the extensions which want to extend news
 		$extensibleExtensions = array();

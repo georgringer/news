@@ -45,11 +45,8 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		if (Tx_News_Utility_Compatibility::isEqualOrHigherSixZero()) {
-			$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
-		} else {
-			$query->getQuerySettings()->setRespectEnableFields(FALSE);
-		}
+		$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
+
 		return $query->matching(
 			$query->logicalAnd(
 				$query->equals('importSource', $importSource),

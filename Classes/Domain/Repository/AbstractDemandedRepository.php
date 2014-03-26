@@ -167,11 +167,7 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 		}
 
 		if ($respectEnableFields === FALSE) {
-			if (Tx_News_Utility_Compatibility::isEqualOrHigherSixZero()) {
-				$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
-			} else {
-				$query->getQuerySettings()->setRespectEnableFields(FALSE);
-			}
+			$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
 
 			$constraints[] = $query->equals('deleted', 0);
 		}

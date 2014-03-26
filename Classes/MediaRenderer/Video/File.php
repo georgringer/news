@@ -59,8 +59,8 @@ class Tx_News_MediaRenderer_Video_File implements Tx_News_MediaRenderer_MediaInt
 			$height = $element->getHeight();
 		}
 
-		$view->assign('width', Tx_News_Utility_Compatibility::convertToPositiveInteger($width));
-		$view->assign('height', Tx_News_Utility_Compatibility::convertToPositiveInteger($height));
+		$view->assign('width', \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($width));
+		$view->assign('height', \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($height));
 		$view->assign('uniqueDivId', 'mediaelement-' . Tx_News_Service_FileService::getUniqueId($element));
 		$view->assign('url', $url);
 

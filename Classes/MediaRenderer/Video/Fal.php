@@ -57,8 +57,8 @@ class Tx_News_MediaRenderer_Video_Fal implements Tx_News_MediaRenderer_FalMediaI
 			$height = $element->getHeight();
 		}
 
-		$view->assign('width', Tx_News_Utility_Compatibility::convertToPositiveInteger($width));
-		$view->assign('height', Tx_News_Utility_Compatibility::convertToPositiveInteger($height));
+		$view->assign('width', \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($width));
+		$view->assign('height', \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($height));
 		$view->assign('uniqueDivId', 'mediaelement-' . md5($element->getUid() . uniqid()));
 		$view->assign('url', $element->getOriginalResource()->getPublicUrl());
 

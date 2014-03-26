@@ -134,7 +134,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		if ($demand->getTimeRestriction()) {
 			$timeLimit = 0;
 			// integer = timestamp
-			if (Tx_News_Utility_Compatibility::canBeInterpretedAsInteger($demand->getTimeRestriction())) {
+			if (\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($demand->getTimeRestriction())) {
 				$timeLimit = $GLOBALS['EXEC_TIME'] - $demand->getTimeRestriction();
 			} else {
 				// try to check strtotime
@@ -157,7 +157,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		if ($demand->getTimeRestrictionHigh()) {
 			$timeLimit = 0;
 			// integer = timestamp
-			if (Tx_News_Utility_Compatibility::canBeInterpretedAsInteger($demand->getTimeRestrictionHigh())) {
+			if (\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($demand->getTimeRestrictionHigh())) {
 				$timeLimit = $GLOBALS['EXEC_TIME'] + $demand->getTimeRestrictionHigh();
 			} else {
 				// try to check strtotime
@@ -316,12 +316,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
-
-		if (Tx_News_Utility_Compatibility::isEqualOrHigherSixZero()) {
-			$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
-		} else {
-			$query->getQuerySettings()->setRespectEnableFields(FALSE);
-		}
+		$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
 
 		return $query->matching(
 			$query->logicalAnd(
@@ -342,12 +337,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
 		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
-
-		if (Tx_News_Utility_Compatibility::isEqualOrHigherSixZero()) {
-			$query->getQuerySettings()->setIgnoreEnableFields(!$respectEnableFields);
-		} else {
-			$query->getQuerySettings()->setRespectEnableFields(FALSE);
-		}
+		$query->getQuerySettings()->setIgnoreEnableFields(!$respectEnableFields);
 
 		return $query->matching(
 			$query->logicalAnd(

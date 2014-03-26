@@ -72,7 +72,6 @@ $default = array(
 	'tx_news_service_import_ttnewsnewsdataproviderservice' => $extensionClassesPath . 'Service/Import/TTNewsNewsDataProviderService.php',
 	'tx_news_treeprovider_databasetreedataprovider' => $extensionClassesPath . 'TreeProvider/DatabaseTreeDataProvider.php',
 	'tx_news_utility_categoryprovider' => $extensionClassesPath . 'Utility/CategoryProvider.php',
-	'tx_news_utility_compatibility' => $extensionClassesPath . 'Utility/Compatibility.php',
 	'tx_news_utility_emconfiguration' => $extensionClassesPath . 'Utility/EmConfiguration.php',
 	'tx_news_utility_importjob' => $extensionClassesPath . 'Utility/ImportJob.php',
 	'tx_news_utility_page' => $extensionClassesPath . 'Utility/Page.php',
