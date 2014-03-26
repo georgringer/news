@@ -1,6 +1,5 @@
 filter:
     excluded_paths:
-        - 'doc/*'
         - 'Resources/Public/JavaScript/Contrib/*'
 
 tools:
