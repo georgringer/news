@@ -25,12 +25,12 @@ $configuration = Tx_News_Utility_EmConfiguration::getSettings();
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 		'tt_content.pi_flexform.news_pi1.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_flexforms.xml');
 
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_news');
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_category');
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_media');
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_file');
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_link');
-t3lib_extMgm::allowTableOnStandardPages('tx_news_domain_model_tag');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_news');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_category');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_media');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_file');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_link');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_tag');
 
 
 /***************
