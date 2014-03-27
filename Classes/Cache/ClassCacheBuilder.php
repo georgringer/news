@@ -113,7 +113,6 @@ class Tx_News_Cache_ClassCacheBuilder {
 		} else {
 			require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('core') . 'Classes/Utility/VersionNumberUtility.php';
 		}
-		require_once(t3lib_extMgm::extPath('news', 'Classes/Utility/Compatibility.php'));
 	}
 
 	/**
