@@ -371,14 +371,9 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 					// start override
 		if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
-			$overrideIfEmpty = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $tsSettings['settings']['overrideFlexformSettingsIfEmpty'], TRUE);
-			foreach ($overrideIfEmpty as $key) {
-					// if flexform setting is empty and value is available in TS
-				if ((!isset($originalSettings[$key]) || (strlen($originalSettings[$key]) === 0))
-						&& isset($tsSettings['settings'][$key])) {
-					$originalSettings[$key] = $tsSettings['settings'][$key];
-				}
-			}
+			/** @var Tx_News_Utility_TypoScript $typoScriptUtility */
+			$typoScriptUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Utility_TypoScript');
+			$originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
 		}
 
 		$this->settings = $originalSettings;

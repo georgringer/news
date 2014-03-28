@@ -78,6 +78,7 @@
 			<label index="flexforms_additional.limit">Max records displayed</label>
 			<label index="flexforms_additional.offset">Start with news item #</label>
 			<label index="flexforms_additional.hidePagination">Hide the pagination</label>
+			<label index="flexforms_additional.itemsPerPage">Items per Page</label>
 			<label index="flexforms_additional.topNewsFirst">Sort "Top news" before</label>
 			<label index="flexforms_additional.disableOverrideDemand">Disable override demand</label>
 			<label index="flexforms_additional.excludeAlreadyDisplayedNews">Exclude already displayed news</label>
@@ -432,6 +433,7 @@
 			<label index="flexforms_additional.limit">Maximale Anzahl an Artikeln</label>
 			<label index="flexforms_additional.offset">Starte mit Artikel Nummer </label>
 			<label index="flexforms_additional.hidePagination">Pagination verbergen</label>
+			<label index="flexforms_additional.itemsPerPage">Anzahl der Artikel pro Seite</label>
 			<label index="flexforms_additional.topNewsFirst">Top Artikel vorreihen</label>
 			<label index="flexforms_additional.disableOverrideDemand">"Override demand" deaktivieren</label>
 			<label index="flexforms_additional.excludeAlreadyDisplayedNews">Bereits angezeigte Artikel verbergen</label>

@@ -76,7 +76,13 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends \TYPO3\CM
 		\TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule(
 			$this->configuration,
 			(array)$this->widgetConfiguration['configuration'], TRUE);
-		$this->numberOfPages = intval(ceil(count($this->objects) / (integer)$this->configuration['itemsPerPage']));
+
+		$itemsPerPage = (integer)$this->configuration['itemsPerPage'];
+		if ($itemsPerPage === 0) {
+			throw new RuntimeException('The itemsPerPage is 0 which is not allowed. Please also add "list.paginate.itemsPerPage" to the TS setting settings.overrideFlexformSettingsIfEmpty!', 1400741142);
+		}
+
+		$this->numberOfPages = intval(ceil(count($this->objects) / $itemsPerPage));
 		$this->maximumNumberOfLinks = (integer)$this->configuration['maximumNumberOfLinks'];
 		$this->templatePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->configuration['templatePath']);
 

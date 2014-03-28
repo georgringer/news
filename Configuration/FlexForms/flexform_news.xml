@@ -526,6 +526,16 @@
 						</TCEforms>
 					</settings.hidePagination>
 
+					<settings.list.paginate.itemsPerPage>
+						<TCEforms>
+							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_additional.itemsPerPage</label>
+							<config>
+								<type>input</type>
+								<size>2</size>
+							</config>
+						</TCEforms>
+					</settings.list.paginate.itemsPerPage>
+
 					<!-- topNewsFirst -->
 					<settings.topNewsFirst>
 						<TCEforms>

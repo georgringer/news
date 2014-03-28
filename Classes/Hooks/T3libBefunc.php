@@ -40,7 +40,7 @@ class Tx_News_Hooks_T3libBefunc {
 			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						dateField',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,list.paginate.itemsPerPage',
 			'template' => 'cropMaxCharacters'
 		);
 
@@ -62,7 +62,8 @@ class Tx_News_Hooks_T3libBefunc {
 	 */
 	public $removedFieldsInDateMenuView = array(
 			'sDEF' => 'orderBy,singleNews',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords,excludeAlreadyDisplayedNews',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords,excludeAlreadyDisplayedNews,
+								list.paginate.itemsPerPage',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
@@ -75,7 +76,8 @@ class Tx_News_Hooks_T3libBefunc {
 			'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
+								list.paginate.itemsPerPage',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
@@ -88,7 +90,8 @@ class Tx_News_Hooks_T3libBefunc {
 			'sDEF' => 'orderBy,orderDirection,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
+								list.paginate.itemsPerPage',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
@@ -101,7 +104,8 @@ class Tx_News_Hooks_T3libBefunc {
 			'sDEF' => 'categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						dateField,singleNews,previewHiddenRecords',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
+								list.paginate.itemsPerPage',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 	/**
