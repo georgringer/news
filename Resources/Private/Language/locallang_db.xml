@@ -35,11 +35,7 @@
 			<label index="tx_news_domain_model_news.tags.edit">Edit tag</label>
 			<label index="tx_news_domain_model_news.keywords.placeholder">Keyword1, keyword2, keyword3</label>
 
-			<label index="tx_news_domain_model_category">News Category</label>
-			<label index="tx_news_domain_model_category.title">Title</label>
-			<label index="tx_news_domain_model_category.description">Description</label>
 			<label index="tx_news_domain_model_category.image">Image</label>
-			<label index="tx_news_domain_model_category.parentcategory">Parent Category</label>
 			<label index="tx_news_domain_model_category.single_pid">Single-view page for news from this category</label>
 			<label index="tx_news_domain_model_category.shortcut">News category shortcut</label>
 
@@ -93,11 +89,7 @@
 			<label index="tx_news_domain_model_news.tags.add">Tilføj tag</label>
 			<label index="tx_news_domain_model_news.tags.list">Vis alle tags</label>
 
-			<label index="tx_news_domain_model_category">Nyhedskategori</label>
-			<label index="tx_news_domain_model_category.title">Titel</label>
-			<label index="tx_news_domain_model_category.description">Beskrivelse</label>
 			<label index="tx_news_domain_model_category.image">Billede</label>
-			<label index="tx_news_domain_model_category.parentcategory">Overordnet kategori</label>
 			<label index="tx_news_domain_model_category.single_pid">Enkeltvisnings-side for nyheder fra denne kategori</label>
 			<label index="tx_news_domain_model_category.shortcut">Nyhedskategori-genvej</label>
 
@@ -147,11 +139,7 @@
 			<label index="tx_news_domain_model_news.tags.add">Add a new tag</label>
 			<label index="tx_news_domain_model_news.tags.list">List all tags</label>
 
-			<label index="tx_news_domain_model_category">Categoría de noticias</label>
-			<label index="tx_news_domain_model_category.title">Título</label>
-			<label index="tx_news_domain_model_category.description">Descripción</label>
 			<label index="tx_news_domain_model_category.image">Imágen</label>
-			<label index="tx_news_domain_model_category.parentcategory">Categoría padre</label>
 			<label index="tx_news_domain_model_category.single_pid">Página de vista individual para noticas de esta categoría</label>
 			<label index="tx_news_domain_model_category.shortcut">Atajo de categoría</label>
 
@@ -200,11 +188,7 @@
 			<label index="tx_news_domain_model_news.tags.list">Liste aller Tags</label>
 			<label index="tx_news_domain_model_news.tags.edit">Tag bearbeiten</label>
 
-			<label index="tx_news_domain_model_category">News Kategorie</label>
-			<label index="tx_news_domain_model_category.title">Titel</label>
-			<label index="tx_news_domain_model_category.description">Beschreibung</label>
 			<label index="tx_news_domain_model_category.image">Bild</label>
-			<label index="tx_news_domain_model_category.parentcategory">Elternkategorie</label>
 			<label index="tx_news_domain_model_category.single_pid">Seite für Einzelansicht von News dieser Kategorie</label>
 			<label index="tx_news_domain_model_category.shortcut">Verknüpfte Seite</label>
 
@@ -257,11 +241,7 @@
 			<label index="tx_news_domain_model_news.tags.list">Toon lijst van alle tags</label>
 			<label index="tx_news_domain_model_news.tags.edit">Wijzig tag</label>
 
-			<label index="tx_news_domain_model_category">Nieuws Categorie</label>
-			<label index="tx_news_domain_model_category.title">Titel</label>
-			<label index="tx_news_domain_model_category.description">Beschrijving</label>
 			<label index="tx_news_domain_model_category.image">Afbeelding</label>
-			<label index="tx_news_domain_model_category.parentcategory">Bovenliggende Categorie</label>
 			<label index="tx_news_domain_model_category.single_pid">Detail weergave pagina voor nieuws uit deze categorie</label>
 			<label index="tx_news_domain_model_category.shortcut">Nieuws categorie snelkoppeling</label>
 
@@ -317,11 +297,7 @@
 			<label index="tx_news_domain_model_news.tags.list">Lista wszystkich tagów</label>
 			<label index="tx_news_domain_model_news.tags.edit">Edytuj tag</label>
 
-			<label index="tx_news_domain_model_category">Kategoria aktualności</label>
-			<label index="tx_news_domain_model_category.title">Tytuł</label>
-			<label index="tx_news_domain_model_category.description">Opis</label>
 			<label index="tx_news_domain_model_category.image">Obraz</label>
-			<label index="tx_news_domain_model_category.parentcategory">Nadrzędna kategoria</label>
 			<label index="tx_news_domain_model_category.single_pid">Strona z widokiem szczegółów aktualności z tej kategorii</label>
 			<label index="tx_news_domain_model_category.shortcut">Skrót kategorii aktualności</label>
 

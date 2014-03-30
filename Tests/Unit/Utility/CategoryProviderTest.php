@@ -54,7 +54,7 @@ class Tx_News_Tests_Unit_Utility_CategoryProviderTest extends \TYPO3\CMS\Core\Te
 	 */
 	public function testForValidOrdering($expectedFields, $expected) {
 		$categoryMountProvider = new Tx_News_Utility_CategoryProvider();
-		$GLOBALS['BE_USER']->user['tx_news_categorymounts'] = $expectedFields['user'];
+		$GLOBALS['BE_USER']->user['category_perms'] = $expectedFields['user'];
 		$GLOBALS['BE_USER']->userGroups = $expectedFields['group'];
 
 		$this->assertEquals($expected, $categoryMountProvider::getUserMounts());
@@ -69,19 +69,19 @@ class Tx_News_Tests_Unit_Utility_CategoryProviderTest extends \TYPO3\CMS\Core\Te
 				array('user' => '1,2,3,4', 'group' => array()), '1,2,3,4'
 			),
 			'emptyUserDataAndFilledGroup' => array(
-				array('user' => NULL, 'group' => array(1 => array('tx_news_categorymounts' => '1,2,3,4'))), '1,2,3,4'
+				array('user' => NULL, 'group' => array(1 => array('category_perms' => '1,2,3,4'))), '1,2,3,4'
 			),
 			'allDataGiven' => array(
-				array('user' => '1,2,3', 'group' => array(1 => array('tx_news_categorymounts' => '4,5,6'))), '4,5,6,1,2,3'
+				array('user' => '1,2,3', 'group' => array(1 => array('category_perms' => '4,5,6'))), '4,5,6,1,2,3'
 			),
 			'identDoubleKeysGiven' => array(
-				array('user' => '1,2,3', 'group' => array(1 => array('tx_news_categorymounts' => '1,2,3'))), '1,2,3'
+				array('user' => '1,2,3', 'group' => array(1 => array('category_perms' => '1,2,3'))), '1,2,3'
 			),
 			'someDoubleKeysGiven' => array(
-				array('user' => '1,2,3', 'group' => array(1 => array('tx_news_categorymounts' => '3,4,5'))), '3,4,5,1,2'
+				array('user' => '1,2,3', 'group' => array(1 => array('category_perms' => '3,4,5'))), '3,4,5,1,2'
 			),
 			'multipleGroupsGiven' => array(
-				array('user' => '1,7', 'group' => array(1 => array('tx_news_categorymounts' => '2,3'), 2 => array('tx_news_categorymounts' => '1,3,4'))), '2,3,1,4,7'
+				array('user' => '1,7', 'group' => array(1 => array('category_perms' => '2,3'), 2 => array('category_perms' => '1,3,4'))), '2,3,1,4,7'
 			),
 
 		);
