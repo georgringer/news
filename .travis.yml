@@ -5,8 +5,8 @@ php:
 
 env:
   - DB=mysql TYPO3=master INTEGRATION=master COVERAGE=0
-  - DB=mysql TYPO3=TYPO3_6-1 INTEGRATION=master COVERAGE=0
-  - DB=mysql TYPO3=TYPO3_6-0 INTEGRATION=master COVERAGE=0
+#  - DB=mysql TYPO3=TYPO3_6-1 INTEGRATION=master COVERAGE=0
+#  - DB=mysql TYPO3=TYPO3_6-0 INTEGRATION=master COVERAGE=0
 
 matrix:
   include:
