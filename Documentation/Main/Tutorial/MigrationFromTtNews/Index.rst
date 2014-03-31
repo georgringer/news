@@ -11,13 +11,12 @@ Migration from tt_news to news
 
 This tutorial will help you to migrate records from tt_news to news.
 
-**Important:** The implementation of the importer is rather basic, please look at the `Bugtracker <http://forge.typo3.org/projects/extension-news/issues>`_ for open issues with the category "*Importer*".
-
 Requirements
 """""""""""""
 
 * Installed extension tt_news
-* Installed extension news (at least version 2.0.0)
+* Installed extension news
+* Installed extension news_ttnewsimport
 
 Migration
 """"""""""

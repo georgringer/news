@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Controller to import news records from tt_news
+ * Controller to import news records
  *
  * @package TYPO3
  * @subpackage tx_news

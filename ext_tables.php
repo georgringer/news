@@ -147,18 +147,6 @@ if (TYPO3_MODE === 'BE' && $configuration->getShowImporter()) {
 		)
 	);
 
-		// show tt_news importer only if tt_news is installed
-	if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tt_news')) {
-		Tx_News_Utility_ImportJob::register(
-			'Tx_News_Jobs_TTNewsNewsImportJob',
-			'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:ttnews_importer_title',
-			'');
-		Tx_News_Utility_ImportJob::register(
-			'Tx_News_Jobs_TTNewsCategoryImportJob',
-			'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:ttnewscategory_importer_title',
-			'');
-	}
-
 	if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('t3blog')) {
 		Tx_News_Utility_ImportJob::register(
 			'Tx_News_Jobs_T3BlogNewsImportJob',

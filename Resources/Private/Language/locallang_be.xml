@@ -133,8 +133,6 @@
 			<label index="usersettings.no-languages-available">There are no languages available, so nothing to choose.</label>
 
 			<!-- BE Module -->
-			<label index="ttnews_importer_title">Import tt_news news records</label>
-			<label index="ttnewscategory_importer_title">Import tt_news category records</label>
 			<label index="t3blog_importer_title">Import t3blog blog/news records</label>
 			<label index="t3blogcategory_importer_title">Import t3blog category records</label>
 			<label index="start_import">Start import with %s record(s).</label>
@@ -260,8 +258,6 @@
 			<label index="usersettings.no-languages-available">Der er ikke nogen tilgængelige sprog, så ingenting blev valgt.</label>
 
 			<!-- BE Module -->
-			<label index="ttnews_importer_title">Import af tt_news news elementer</label>
-			<label index="ttnewscategory_importer_title">Import af tt_news kategori-elementer</label>
 			<label index="start_import">Start import med %s element(er).</label>
 
 			<label index="tag_suggest">Tag'et "%s" kunne ikke findes. &lt;strong&gt;Klik her for at oprette det nu&lt;/strong&gt;</label>
@@ -483,8 +479,6 @@
 			<label index="usersettings.no-languages-available">There are no languages available, so nothing to choose.</label>
 
 			<!-- BE Module -->
-			<label index="ttnews_importer_title">Import von tt_news Datensätzen</label>
-			<label index="ttnewscategory_importer_title">Import von tt_news Kategorien</label>
 			<label index="start_import">Import mit %s Datensätzen starten.</label>
 
 			<label index="tag_suggest">Der Tag "%s" wurde nicht gefunden. Zum erstellen &lt;strong&gt;hier klicken&lt;/strong&gt;</label>
@@ -625,8 +619,6 @@
 			<label index="usersettings.no-languages-available">Er zijn geen talen beschikbaar, dus niets te kiezen.</label>
 
 			<!-- BE Module -->
-			<label index="ttnews_importer_title">Importeer tt_news records</label>
-			<label index="ttnewscategory_importer_title">Importeer tt_news categorie records</label>
 			<label index="start_import">Start importeren met %s record(s).</label>
 
 			<label index="tag_suggest">Tag "%s" kon niet gevonden worden, deze aanmaken? &lt;strong&gt;Klik hier&lt;/strong&gt;</label>

@@ -39,6 +39,7 @@ Changes which should be mentioned are:
 * Add more snippets to the documentation
 * Improve Administration module
 * Use Scrutinizer to document the code quality, see http://scrutinizer-ci.com/g/TYPO3-extensions/news/
+* If you want to migrate from EXT:tt_news, install EXT:news_ttnewsimport
 
 
 All Changes
