@@ -112,10 +112,9 @@ class Tx_News_Hooks_T3libBefunc {
 	 * @param array $conf some strange configuration
 	 * @param array $row row of current record
 	 * @param string $table table name
-	 * @param string $fieldName some strange field name
 	 * @return void
 	 */
-	public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table, $fieldName) {
+	public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table) {
 		if ($table === 'tt_content' && $row['list_type'] === 'news_pi1' && is_array($dataStructure)) {
 			$this->updateFlexforms($dataStructure, $row);
 		}

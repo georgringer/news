@@ -183,11 +183,9 @@ class Tx_News_Hooks_ItemsProcFunc {
 	/**
 	 * Generate a select box of languages to choose an overlay
 	 *
-	 * @param array $config
-	 * @param \TYPO3\CMS\Setup\Controller\SetupModuleController $parentObject
 	 * @return string select box
 	 */
-	public function user_categoryOverlay(array $config, \TYPO3\CMS\Setup\Controller\SetupModuleController $parentObject) {
+	public function user_categoryOverlay() {
 		$html = '';
 
 		$orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ?

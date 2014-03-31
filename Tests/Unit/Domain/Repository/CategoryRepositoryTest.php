@@ -63,7 +63,6 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends \TYPO3
 
 		if (!is_object($GLOBALS['TSFE'])) {
 			$vars = array();
-			$pageId = 123;
 			$type = 1;
 			$GLOBALS['TSFE'] = new \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController($vars, 123, $type);
 		}

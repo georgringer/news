@@ -208,7 +208,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 		$demand->setStoragePage($pid);
 		$demand->setMonth(4);
 		$demand->setYear(2011);
-		$count = $newsRepository->findDemanded($demand)->count();
+		$newsRepository->findDemanded($demand)->count();
 	}
 
 	/**

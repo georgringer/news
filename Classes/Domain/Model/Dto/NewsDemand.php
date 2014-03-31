@@ -33,7 +33,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implements Tx_News_Domain_Model_DemandInterface {
 
 	/**
-	 * @var string
+	 * @var array
 	 */
 	protected $categories;
 
@@ -135,7 +135,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * List of allowed categories
 	 *
-	 * @param string $categories categories
+	 * @param array $categories categories
 	 * @return void
 	 */
 	public function setCategories($categories) {
@@ -145,7 +145,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * Get allowed categories
 	 *
-	 * @return string
+	 * @return array
 	 */
 	public function getCategories() {
 		return $this->categories;

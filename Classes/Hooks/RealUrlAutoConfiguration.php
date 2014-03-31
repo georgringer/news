@@ -36,10 +36,9 @@ class Tx_News_Hooks_RealUrlAutoConfiguration {
 	 * Generates additional RealURL configuration and merges it with provided configuration
 	 *
 	 * @param       array $params Default configuration
-	 * @param       tx_realurl_autoconfgen $pObj parent object
 	 * @return      array Updated configuration
 	 */
-	public function addNewsConfig($params, &$pObj) {
+	public function addNewsConfig($params) {
 
 		// Check for proper unique key
 		$postVar = (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tt_news') ? 'tx_news' : 'news');

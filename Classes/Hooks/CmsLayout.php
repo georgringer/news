@@ -62,10 +62,9 @@ class Tx_News_Hooks_CmsLayout {
 	 * Returns information about this extension's pi1 plugin
 	 *
 	 * @param array $params Parameters to the hook
-	 * @param mixed $pObj A reference to calling object
 	 * @return string Information about pi1 plugin
 	 */
-	public function getExtensionSummary(array $params, $pObj) {
+	public function getExtensionSummary(array $params) {
 		$result = $actionTranslationKey = '';
 
 		if ($this->showExtensionTitle()) {

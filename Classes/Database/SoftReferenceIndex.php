@@ -41,7 +41,6 @@ class Tx_News_Database_SoftReferenceIndex {
 	 * @return array|boolean Result array on positive matches, see description above. Otherwise FALSE
 	 */
 	public function findRef($table, $field, $uid, $content, $spKey, $spParams, $structurePath = '') {
-		$retVal = FALSE;
 		$this->tokenID_basePrefix = $table . ':' . $uid . ':' . $field . ':' . $structurePath . ':' . $spKey;
 		switch ($spKey) {
 			case 'news_externalurl':
