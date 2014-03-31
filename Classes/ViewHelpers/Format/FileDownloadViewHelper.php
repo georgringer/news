@@ -87,7 +87,7 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends \TYPO3\CMS\Fluid
 		}
 
 		// merge default configuration with optional configuration
-		$tsConfiguration = \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($tsConfiguration, $configuration);
+		\TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($tsConfiguration, $configuration);
 
 		if (!empty($target)) {
 			$tsConfiguration['target'] = $target;

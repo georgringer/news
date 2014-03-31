@@ -60,8 +60,9 @@ class Tx_News_Tests_Unit_ViewHelpers_Widget_Controller_PaginateControllerTest ex
 			));
 
 		$controller->initializeAction();
+		\TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($configuration, $widgetConfiguration, TRUE);
 		$this->assertEquals($controller->_get('objects'), $objects);
-		$this->assertEquals($controller->_get('configuration'), \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule($configuration, $widgetConfiguration, TRUE));
+		$this->assertEquals($controller->_get('configuration'), $configuration);
 		$this->assertEquals($controller->_get('numberOfPages'), 5);
 		$this->assertEquals($controller->_get('templatePath'), PATH_site . 'fo/bar');
 	}
