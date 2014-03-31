@@ -42,5 +42,4 @@ The content of this document is related to TYPO3
    Contribute/Index
    KnownProblems/Index
    Changelog/Index
-   BreakingChanges/Index
 

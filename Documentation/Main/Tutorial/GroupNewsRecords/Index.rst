@@ -11,7 +11,7 @@ Group news records
 
 .. tip::
 
-This is a feature deliverd by fluid, so you can use it also in other extensions and projects.
+This is a feature delivered by fluid, so you can use it also in other extensions and projects.
 
 
 This tutorial will show you how you can group news records by any given field in the frontend.

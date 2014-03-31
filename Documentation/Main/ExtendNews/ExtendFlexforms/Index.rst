@@ -10,7 +10,7 @@ Extend flexforms
 ^^^^^^^^^^^^^^^^
 
 Following fields of the plugin configuration can be extended without
-overrwriting the complete flexform configuration.
+overriding the complete flexform configuration.
 
 
 Selectbox “Sort by”

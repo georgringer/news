@@ -11,6 +11,8 @@ Extending EXT:news
 
 This tutorial will help you to extend the extension "news".
 
+TODO: add example exts
+
 Custom ViewHelpers
 """"""""""""""""""""
 It is very easy to adopt the output of EXT:news by using custom ViewHelpers. There you can use the full power of PHP to
@@ -41,7 +43,7 @@ the news record with one text field.
 Extend the database table
 **************************
 
-Use extension kickstarter or extension_builder to extend the news record with one field.
+Use extension kickstarter or extension_builder or extension_builder to extend the news record with one field.
 In this tutorial the extension will be called workshop and the field will therefore be *tx_workshop_title*.
 You are finished with this step if you can add content to the new field in the backend.
 

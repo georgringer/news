@@ -107,7 +107,7 @@ This examples shows how you can cycle through 3 css classes and repeat those. ::
 FLUID Condition for categories
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you want to create a condition based on a spefic category, you can use something like this: ::
+If you want to create a condition based on a specific category, you can use something like this: ::
 
 	<f:for each="{newsItem.categories}" as="category">
 		<f:if condition="{category.uid} == 1">

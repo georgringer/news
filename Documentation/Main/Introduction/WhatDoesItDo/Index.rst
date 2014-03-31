@@ -10,23 +10,21 @@ What does it do?
 ^^^^^^^^^^^^^^^^
 
 This extension implements a versatile news system based on the latest
-technologies of TYPO3.
+technologies which are provided by the TYPO3 CMS.
 
 **Best practise from the scratch**
+
+- Easy to use/understand for editors
+
+- Using as many elements from the core as possible, e.g. FAL and sys categories
+
+- Checkbox "Top news" to flag important news
+
+- Built in support for content elements (like extension rgnewsce)
 
 - Support for opengraph in default template
 
 - Support of social websites (facebook, twitter) in default template, ViewHelpers for disqus, google+ & co
-
-- Checkbox "Top news" to flag important news
-
-- Easy to use/understand for editors
-
-- Built in support for content elements (like extension rgnewsce)
-
-- Support for multiple types of media elements (Images, Videos, DAM), based on relations
-
-- Category tree
 
 - Tags
 
@@ -34,18 +32,13 @@ technologies of TYPO3.
 
 - Based on Extbase and fluid: Therefore very easy to style, understand
 
-- Using unit tests
+- Unit tests which are executed automatically for every change
 
 - Following the TYPO3 coding guidelines
-
-- Documentation based on reST
 
 
 !! Before updating to the latest version
 """""""""""""""""""""""""""""""""""""""""
 
 Before updating any version of the extension to the latest one, always
-check out the release notes in the wiki:
-`http://forge.typo3.org/projects/extension-news/wiki/Release\_Notes
-<http://forge.typo3.org/projects/extension-news/wiki/Release_Notes>`_
-
+check out the documentation about breaking and other important changes.

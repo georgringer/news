@@ -10,12 +10,39 @@
 Screenshots
 ^^^^^^^^^^^
 
-|img-3|  **Image 1:** Show all important settings in the page module.
+**For a best experience, install the extension and take a look at the various options.**
 
-|img-4|
+|img-record-news-start|
 
-**Image 2:** Part of the plugin when “List view” is selected
+First tab of a news record. Especially useful is the field "Top news" to flag news records as important.
 
-|img-5|  **Image 3:** Plugin when “Detail view” is selected.Only those
-settings are visible which are needed for this view!
+|img-record-news-options|
 
+Add categories and tags to a news record.
+
+|img-record-news-relations|
+
+Multiple relations can be added to a news record:
+
+* Media files, using FAL
+* Related files, using FAL
+* Related links
+* Related news
+
+|img-record-news-meta|
+
+Additional meta fields cover the basic needs for search engine optimization (SEO).
+Open graph tags are also added to the frontend by default.
+
+
+|img-plugin-page-module|
+
+To improve the user experience, the page modules shows the most important configuration defined in the plugin
+
+|img-plugin-tab1|
+
+1st tab of the plugin
+
+|img-plugin-tab2|
+
+2nd tab of the plugin

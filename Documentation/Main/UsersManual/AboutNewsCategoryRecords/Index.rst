@@ -19,9 +19,11 @@ Category
 
 Categories are not required but can be used to structure news records
 in the frontend (e.g. show only news records which belong to category
-A and B).
+A and B). Since version 3.0 the core table "System category" is used and enhanced.
 
 |img-6|
+
+TODO
 
 The following table describes the main fields of a category record.
 
@@ -46,7 +48,7 @@ The following table describes the main fields of a category record.
          Parent category
 
    :Description:
-         The parent category can be used to build a category tree. Therefore
+         The parent category is used to build a category tree. Therefore
          select the parent of the current category. If nothing selected, the
          category is used as a root category.
 
@@ -108,7 +110,7 @@ The following table describes the main fields of a news record.
          Top news
 
    :Description:
-         News records can be marked as top news if it is an important one.
+         News records can be marked as top news if it is an important one. This field can be used for filtering and ordering.
 
 
  - :Field:
@@ -119,9 +121,9 @@ The following table describes the main fields of a news record.
 
          - “News”: Default news record
 
-         - “Internal Page”: The news record is linked to a regular page
+         - “Internal Page”: The news record is linked to a regular page.
 
-         - “External Page”: The news record is linked to an external page
+         - “External Page”: The news record is linked to an external URL.
 
          Some fields are depending on the selection.
 
@@ -173,12 +175,18 @@ The following table describes the main fields of a news record.
          Main content of the news record. This field is only shown with the
          type “News”.
 
+ - :Field:
+         Rich Text Editor Disable
+
+   :Description:
+         If set, the RTE is hidden and the field "Text" is shown as plain textarea.
+
 
  - :Field:
          Content Elements
 
    :Description:
-         Add normal content elements to a news records. This field can be
+         Add content elements to a news records. This field can be
          hidden by disabling the setting in extension manager's settings.
 
 
@@ -206,17 +214,10 @@ The following table describes the main fields of a news record.
 
 
  - :Field:
-         Related News
+         Tags
 
    :Description:
-         Define news records which are related to the current one.
-
-
- - :Field:
-         Keywords
-
-   :Description:
-         Set keywords of this news record, separated with a comma (',')
+         Add tags to the news record. Use the suggest wizard to search for existing tags and to insert new tags.
 
 
  - :Field:
@@ -231,14 +232,79 @@ The following table describes the main fields of a news record.
          Related Files
 
    :Description:
-         Related files, described below too.
+         Related files, described below.
 
 
  - :Field:
          Related Links
 
    :Description:
-         Related links, described below too.
+         Related links, described below.
+
+
+ - :Field:
+         Related News
+
+   :Description:
+         Define news records which are related to the current one.
+
+
+ - :Field:
+         Related News (from)
+
+   :Description:
+         This field is not editable and shows those news records which are related to the current one.
+
+
+ - :Field:
+         Meta Tags Keywords
+
+   :Description:
+         Set keywords of this news record, separated with a comma (',')
+
+ - :Field:
+         Meta Tags Description
+
+   :Description:
+         Define an additional description
+
+
+ - :Field:
+         Alternative title
+
+   :Description:
+         If used, this field is used instead of the default tile.
+
+
+ - :Field:
+         Speaking URL path segment
+
+   :Description:
+         This field can be used for various scenarios, e.g. in your realurl configuration to set up the URL to the news record.
+
+
+Media element FAL
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since version 3.0.0, FAL is used for media elements which is consistent with the default core.
+It is enhanced with the following fields.
+
+.. t3-field-list-table::
+ :header-rows: 1
+
+ - :Field:
+         Field:
+
+   :Description:
+             Description:
+
+
+ - :Field:
+         Show in preview views
+
+   :Description:
+         It is possible to decide which media can be shown in the list view. If
+         not checked, it will only be displayed in the single view.
 
 
 Media element
@@ -308,68 +374,12 @@ A media element can be one of the following types:
          Further description which is used for the alt attribute
 
 
-**Video & Audio**
-
-.. t3-field-list-table::
- :header-rows: 1
-
- - :Field:
-         Field:
-
-   :Description:
-         Description:
 
 
- - :Field:
-         Show in preview views
+Related Files (FAL)
+~~~~~~~~~~~~~~~~~~~~~~~
 
-   :Description:
-         It is possible to decide which media can be shown in the list view. If
-         not checked, it will only be displayed in the single view.
-
-
- - :Field:
-         Video & Audio URL
-
-   :Description:
-         Set the url to the media element. This can either be a relative path
-         like fileadmin/song.mp3 or an url like
-         `http://www.example.com/song.mp3 <http://www.example.com/song.mp3>`_
-
-
- - :Field:
-         Caption
-
-   :Description:
-         Caption
-
-
-**HTML**
-
-.. t3-field-list-table::
- :header-rows: 1
-
- - :Field:
-         Field:
-
-   :Description:
-         Description:
-
-
- - :Field:
-         Show in preview views
-
-   :Description:
-         It is possible to decide which media can be shown in the list view. If
-         not checked, it will only be displayed in the single view.
-
-
- - :Field:
-         Caption
-
-   :Description:
-         Caption
-
+Since version 3.0.0 FAL is used for related files.
 
 Related Files
 ~~~~~~~~~~~~~

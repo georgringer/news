@@ -137,7 +137,7 @@ If set and a news record is copied, the news record will be prepended with the s
 categoryRestriction:
 """"""""""""""""""""""""""""""""
 
-TODO, sorry
+TODO
 
 
 .. _settings-contentElementRelation::

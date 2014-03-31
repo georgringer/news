@@ -36,6 +36,28 @@ is fileadmin/template/ext/news/. The difference between those items
 will be explained in the next section.
 
 
+**Nice to know:** Since TYPO3 6.2 it is possible to just override a single template file.
+Multiple fallbacks can be defined which makes it far easier to customize the templates.
+
+The syntax looks like this: ::
+
+		templateRootPath >
+		templateRootPaths {
+			0 = EXT:news/Resources/Private/Templates/
+			1 = EXT:fileadmin/templates/ext/news/Templates/
+		}
+		partialRootPath >
+		partialRootPaths {
+			0 = EXT:news/Resources/Private/Partials/
+			1 = fileadmin/templates/ext/news/Partials/
+		}
+		layoutRootPath >
+		layoutRootPaths {
+			0 = EXT:news/Resources/Private/Layouts/
+			1 = fileadmin/templates/ext/news/Layouts/
+		}
+
+
 Change the templates using TypoScript constants
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -68,7 +90,7 @@ You can use the following TypoScript in the Setup to change the paths::
 Layouts, Templates & Partials
 """""""""""""""""""""""""""""
 
-If you are using fluid, the templates are better structured and you
+If using fluid, the templates are better structured and you
 will get used to those structures very fast, I promise.
 
 

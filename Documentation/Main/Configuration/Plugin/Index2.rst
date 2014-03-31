@@ -133,16 +133,16 @@ archiveRestriction
 
 News records can hold an optional archive date. 2 modes are available:
 
- **active: Only active (non archived)**
+**active: Only active (non archived)**
 
- All news records with an archive date before the current date are
- shown.
+All news records with an archive date before the current date are
+shown.
 
- **archived: Archived**
+**archived: Archived**
 
- All news records with an archive date in the past are shown.
+All news records with an archive date in the past are shown.
 
- .. hint:: Records with no archive date aren't shown in any of the selected modes.
+.. hint:: Records with no archive date aren't shown in any of the selected modes.
 
 
 .. _settings-timeRestriction::
@@ -335,7 +335,7 @@ disableOverrideDemand
 
 :typoscript:`plugin.tx_news.settings.disableOverrideDemand =1`
 
-If set, the settings of the plugin can't be overriden by arguments in the URL. The override is used, e.g. to show only news of a given category (category given in the URL).
+If set, the settings of the plugin can't be overridden by arguments in the URL. The override is used, e.g. to show only news of a given category (category given in the URL).
 
 
 .. _settings-cropMaxCharacters::

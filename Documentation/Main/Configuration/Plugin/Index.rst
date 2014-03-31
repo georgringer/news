@@ -444,7 +444,7 @@ Tab “Additional”
          All
 
    :Description:
-         If set, the settings of the plugin can't be overriden by arguments in
+         If set, the settings of the plugin can't be overridden by arguments in
          the URL. The override is used, e.g. to show only news of a given
          category (category given in the URL).
 

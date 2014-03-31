@@ -30,7 +30,7 @@ Now you can use a ViewHelper of news with a code like ::
 If you want to know what a ViewHelper does, it is very easy to find the related PHP class by looking at the namespace and the name of the ViewHelper.
 Having e.g. **Tx_News_ViewHelpers** and **headerData** you will find the class at **news\\Classes\ViewHelpers\\HeaderDataViewHelper.php**.
 
-The most of awesome thing is that you can use ViewHelpers of any extension in any other template by just adding another namespace delcaration like ::
+The most of awesome thing is that you can use ViewHelpers of any extension in any other template by just adding another namespace declaration like ::
     {namespace something=Tx_AnotherExtension_ViewHelpers}
 and call the ViewHelper like
     <something:NameOfTheViewHelper />
