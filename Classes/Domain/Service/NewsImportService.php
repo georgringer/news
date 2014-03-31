@@ -613,7 +613,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	/**
 	 * Get an existing related link object
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_FileReference> $items
+	 * @param Tx_News_Domain_Model_News $news
 	 * @param string $uri
 	 * @return bool|Tx_News_Domain_Model_Link
 	 */
@@ -670,6 +670,6 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	 * @return \TYPO3\CMS\Core\Resource\ResourceFactory
 	 */
 	protected function getResourceFactory() {
-		return \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();;
+		return \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
 	}
 }

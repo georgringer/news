@@ -81,13 +81,9 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 		if (!is_array($configuration)) {
 			$configuration = array('labelStdWrap.' => array('cObject' => 'TEXT'));
 		} else {
-			if (class_exists('Tx_Extbase_Utility_TypoScript')) {
-				$configuration = Tx_Extbase_Utility_TypoScript::convertPlainArrayToTypoScriptArray($configuration);
-			} else {
-				/** @var $typoscriptService Tx_Extbase_Service_TypoScriptService */
-				$typoscriptService = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService');
-				$configuration = $typoscriptService->convertPlainArrayToTypoScriptArray($configuration);
-			}
+			/** @var $typoscriptService Tx_Extbase_Service_TypoScriptService */
+			$typoscriptService = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService');
+			$configuration = $typoscriptService->convertPlainArrayToTypoScriptArray($configuration);
 		}
 
 		// merge default configuration with optional configuration

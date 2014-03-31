@@ -4,7 +4,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 /**
- * Add extra field showinpreview and some special news controlls to sys_file_reference record
+ * Add extra field showinpreview and some special news controls to sys_file_reference record
  */
 $newSysFileReferenceColumns = array(
 	'showinpreview' => array(

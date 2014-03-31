@@ -114,7 +114,7 @@ class Tx_News_Service_Import_T3BlogNewsDataProviderService implements Tx_News_Se
 	/**
 	 * Gets the content elements associated to a blog post
 	 *
-	 * @param $postUid blog post uid
+	 * @param int $postUid blog post uid
 	 * @return array content element uids associated to the blog post
 	 */
 	protected function getContentElements($postUid) {

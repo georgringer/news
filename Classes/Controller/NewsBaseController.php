@@ -59,7 +59,7 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 				break;
 			case 'redirectToPage':
 				if (count($configuration) === 1 || count($configuration) > 3) {
-					$msg = sprintf('If error handling "%s" is used, either 2 or 3 arguments, splitted by "," must be used', $configuration[0]);
+					$msg = sprintf('If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used', $configuration[0]);
 					throw new InvalidArgumentException($msg);
 				}
 				$this->uriBuilder->reset();

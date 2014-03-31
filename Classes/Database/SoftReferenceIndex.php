@@ -98,6 +98,8 @@ class Tx_News_Database_SoftReferenceIndex {
 			);
 			return $resultArray;
 		}
+
+		return FALSE;
 	}
 
 	/**

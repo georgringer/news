@@ -901,7 +901,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get the Fal media items
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage
+	 * @return Tx_Extbase_Persistence_ObjectStorage
 	 */
 	public function getFalMedia() {
 		return $this->falMedia;
@@ -910,7 +910,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set Fal media relation
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $media
+	 * @param Tx_Extbase_Persistence_ObjectStorage $falMedia
 	 * @return void
 	 */
 	public function setFalMedia(Tx_Extbase_Persistence_ObjectStorage $falMedia) {
@@ -932,7 +932,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get the Fal media items
 	 *
-	 * @var array
+	 * @return array
 	 */
 	public function getFalMediaPreviews() {
 		if ($this->falMediaPreviews === NULL && $this->getFalMedia()) {

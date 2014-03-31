@@ -60,7 +60,8 @@ class Tx_News_ViewHelpers_Widget_PaginateViewHelper extends Tx_Fluid_Core_Widget
 	 * @param Tx_Extbase_Persistence_QueryResultInterface $objects
 	 * @param string $as
 	 * @param mixed $configuration
-	 * @param array $inital
+	 * @param array $initial
+	 * @internal param array $initial
 	 * @return string
 	 */
 	public function render(Tx_Extbase_Persistence_QueryResultInterface $objects, $as, $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE), $initial = array()) {
