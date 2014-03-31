@@ -171,7 +171,6 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 */
 	protected function createDemandObjectFromSettings(Tx_News_Domain_Model_Dto_AdministrationDemand $demand) {
 		$demand->setCategories($demand->getSelectedCategories());
-		print_r($demand);
 		$demand->setOrder($demand->getSortingField() . ' ' . $demand->getSortingDirection());
 		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));
 		$demand->setOrderByAllowed($this->settings['orderByAllowed']);
