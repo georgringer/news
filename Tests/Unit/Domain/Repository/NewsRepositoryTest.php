@@ -132,7 +132,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends \TYPO3\CMS
 		$demand->expects($this->atLeastOnce())->method('getTopNewsRestriction')
 			->will($this->returnValue(1));
 
-		$query = $this->getMock('Tx_Extbase_Persistence_QueryInterface');
+		$query = $this->getMock('\TYPO3\CMS\Extbase\Persistence\QueryInterface');
 		$query->expects($this->once())->method('equals')->with('istopnews', 1);
 
 		if (version_compare(TYPO3_branch, '6.2', '>=')) {

@@ -24,16 +24,16 @@ class Tx_News_Domain_Repository_TagRepository extends Tx_News_Domain_Repository_
 	/**
 	 * Returns an array of constraints created from a given demand object.
 	 *
-	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
-	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
+	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 */
-	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
+	protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
 		$constraints = array();
 
 		// Storage page
 		if ($demand->getStoragePage() != 0) {
-			$pidList = t3lib_div::intExplode(',', $demand->getStoragePage(), TRUE);
+			$pidList = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $demand->getStoragePage(), TRUE);
 			$constraints[] = $query->in('pid', $pidList);
 		}
 
@@ -51,25 +51,25 @@ class Tx_News_Domain_Repository_TagRepository extends Tx_News_Domain_Repository_
 	 * Returns an array of orderings created from a given demand object.
 	 *
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
-	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
+	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 */
 	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {
 		$orderings = array();
 
 		if (Tx_News_Utility_Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
-			$orderList = t3lib_div::trimExplode(',', $demand->getOrder(), TRUE);
+			$orderList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $demand->getOrder(), TRUE);
 
 			if (!empty($orderList)) {
 				// go through every order statement
 				foreach ($orderList as $orderItem) {
-					list($orderField, $ascDesc) = t3lib_div::trimExplode(' ', $orderItem, TRUE);
+					list($orderField, $ascDesc) = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $orderItem, TRUE);
 					// count == 1 means that no direction is given
 					if ($ascDesc) {
 						$orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
-							Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING :
-							Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
+							\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
+							\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING);
 					} else {
-						$orderings[$orderField] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
+						$orderings[$orderField] = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 					}
 				}
 			}

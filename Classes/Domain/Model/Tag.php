@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_Tag extends Tx_Extbase_DomainObject_AbstractValueObject {
+class Tx_News_Domain_Model_Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 
 	/**
 	 * @var DateTime

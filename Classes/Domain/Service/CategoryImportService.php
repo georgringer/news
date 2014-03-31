@@ -29,13 +29,13 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
+class Tx_News_Domain_Service_CategoryImportService implements \TYPO3\CMS\Core\SingletonInterface {
 
 	const ACTION_SET_PARENT_CATEGORY = 1;
 	const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
 	protected $objectManager;
 
@@ -45,7 +45,7 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 	protected $categoryRepository;
 
 	/**
-	 * @var Tx_Extbase_Persistence_Manager
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
 	 */
 	protected $persistenceManager;
 
@@ -57,20 +57,20 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 	/**
 	 * Inject the object manager
 	 *
-	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
 	 * @return void
 	 */
-	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager) {
 		$this->objectManager = $objectManager;
 	}
 
 	/**
 	 * Inject Persistence Manager
 	 *
-	 * @param Tx_Extbase_Persistence_Manager $persistenceManager
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
 	 * @return void
 	 */
-	public function injectPersistenceManager(Tx_Extbase_Persistence_Manager $persistenceManager) {
+	public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager) {
 		$this->persistenceManager = $persistenceManager;
 	}
 
@@ -194,7 +194,7 @@ class Tx_News_Domain_Service_CategoryImportService implements t3lib_Singleton {
 	protected function createL10nChildrenCategory(array $queueItem) {
 		/** @var $category Tx_News_Domain_Model_Category */
 		$category = $queueItem['category'];
-		$titleLanguageOverlay = t3lib_div::trimExplode('|', $queueItem['titleLanguageOverlay']);
+		$titleLanguageOverlay = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode('|', $queueItem['titleLanguageOverlay']);
 
 		foreach ($titleLanguageOverlay as $key => $title) {
 			$sysLanguageUid = $key + 1;

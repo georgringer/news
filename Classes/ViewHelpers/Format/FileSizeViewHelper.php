@@ -26,7 +26,7 @@
  * ViewHelper to render the filesize
  *
  * # Example: Basic example
- * # Description: If format is empty, the default from t3lib_div:::formatSize() is taken.
+ * # Description: If format is empty, the default from \TYPO3\CMS\Core\Utility\GeneralUtility:::formatSize() is taken.
  * <code>
  * <n:format.fileSize file="uploads/tx_news/{relatedFile.file}" format="' | K| M| G'" />
  * </code>
@@ -35,7 +35,7 @@
  * </output>
  *
  * # Example: FAL example
- * # Description: If format is empty, the default from t3lib_div:::formatSize() is taken.
+ * # Description: If format is empty, the default from \TYPO3\CMS\Core\Utility\GeneralUtility:::formatSize() is taken.
  * <code>
  * <n:format.fileSize fileSize="{falRelatedFile.originalResource.size}" format="' | K| M| G'" />
  * </code>
@@ -46,10 +46,10 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
-	 * Renders the size of a file using t3lib_div::formatSize
+	 * Renders the size of a file using \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize
 	 *
 	 * @param string $file Path to the file
 	 * @param string $format Labels for bytes, kilo, mega and giga separated by vertical bar (|) and possibly encapsulated in "". Eg: " | K| M| G" (which is the default value)
@@ -62,18 +62,18 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHe
 
 		if (!is_file($file)) {
 			$errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
-			t3lib_div::devLog($errorMessage, 'news', t3lib_div::SYSLOG_SEVERITY_WARNING);
+			\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($errorMessage, 'news', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
 
 			if (!$hideError) {
-				throw new Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException(
+				throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException(
 					'Given file is not a valid file: ' . htmlspecialchars($file));
 			}
 		}
 
 		if ($fileSize === NULL) {
-			$result = t3lib_div::formatSize(filesize($file), $format);
+			$result = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize(filesize($file), $format);
 		} else {
-			$result = t3lib_div::formatSize($fileSize, $format);
+			$result = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize($fileSize, $format);
 		}
 
 		return $result;

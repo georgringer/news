@@ -75,7 +75,7 @@ class Tx_News_Database_SoftReferenceIndex {
 		$elements = array();
 		foreach ($linkElement as $k => $typolinkValue) {
 			$typolinkProperties = array();
-			list($linkUrl, $browserTarget, $cssClass) = t3lib_div::trimExplode(' ', $typolinkValue, 1);
+			list($linkUrl, $browserTarget, $cssClass) = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $typolinkValue, 1);
 				//Add http as default schema for external urls if none given
 			if (strpos($linkUrl, '://') === FALSE) {
 				$linkUrl = 'http://' . $linkUrl;

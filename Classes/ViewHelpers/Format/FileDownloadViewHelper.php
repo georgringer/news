@@ -32,7 +32,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Download a file
@@ -50,15 +50,15 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 	public function render($file, $configuration = array(), $hideError = FALSE, $class = '', $target = '', $alt = '', $title = '') {
 		if (!is_file($file)) {
 			$errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
-			t3lib_div::devLog($errorMessage, 'news', t3lib_div::SYSLOG_SEVERITY_WARNING);
+			\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($errorMessage, 'news', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
 
 			if (!$hideError) {
-				throw new Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException(
+				throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException(
 					'Given file is not a valid file: ' . htmlspecialchars($file));
 			}
 		}
 
-		$cObj = t3lib_div::makeInstance('tslib_cObj');
+		$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
 
 		$fileInformation = pathinfo($file);
 		$fileInformation['file'] = $file;
@@ -81,13 +81,13 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends Tx_Fluid_Core_Vi
 		if (!is_array($configuration)) {
 			$configuration = array('labelStdWrap.' => array('cObject' => 'TEXT'));
 		} else {
-			/** @var $typoscriptService Tx_Extbase_Service_TypoScriptService */
-			$typoscriptService = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService');
+			/** @var $typoscriptService \TYPO3\CMS\Extbase\Service\TypoScriptService */
+			$typoscriptService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService');
 			$configuration = $typoscriptService->convertPlainArrayToTypoScriptArray($configuration);
 		}
 
 		// merge default configuration with optional configuration
-		$tsConfiguration = t3lib_div::array_merge_recursive_overrule($tsConfiguration, $configuration);
+		$tsConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule($tsConfiguration, $configuration);
 
 		if (!empty($target)) {
 			$tsConfiguration['target'] = $target;

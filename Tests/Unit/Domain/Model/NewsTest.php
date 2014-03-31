@@ -248,7 +248,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function tagsCanBeSet() {
-		$tags = new Tx_Extbase_Persistence_ObjectStorage();
+		$tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 
 		$tag = new Tx_News_Domain_Model_Tag();
 		$tag->setTitle('Tag');
@@ -264,7 +264,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function contentElementsCanBeSet() {
-		$ce = new Tx_Extbase_Persistence_ObjectStorage();
+		$ce = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 
 		$item = new SplObjectStorage();
 		$ce->attach($item);
@@ -282,7 +282,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	public function categoryCanBeSet() {
 		$category = new Tx_News_Domain_Model_Category();
 		$category->setTitle('fo');
-		$categories = new Tx_Extbase_Persistence_ObjectStorage();
+		$categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$categories->attach($category);
 		$this->newsDomainModelInstance->setCategories($categories);
 		$this->assertEquals($categories, $this->newsDomainModelInstance->getCategories());
@@ -297,7 +297,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	public function mediaCanBeSet() {
 		$media = new Tx_News_Domain_Model_Media();
 		$media->setTitle('fo');
-		$mediaElements = new Tx_Extbase_Persistence_ObjectStorage();
+		$mediaElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$mediaElements->attach($media);
 
 		$this->newsDomainModelInstance->setMedia($mediaElements);
@@ -313,7 +313,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	public function relatedFilesCanBeSet() {
 		$file = new Tx_News_Domain_Model_File();
 		$file->setTitle('fo');
-		$related = new Tx_Extbase_Persistence_ObjectStorage();
+		$related = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$related->attach($file);
 		$this->newsDomainModelInstance->setRelatedFiles($related);
 		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedFiles());
@@ -329,7 +329,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 		$link = new Tx_News_Domain_Model_Link();
 		$link->setTitle('fo');
 
-		$related = new Tx_Extbase_Persistence_ObjectStorage();
+		$related = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$related->attach($link);
 		$this->newsDomainModelInstance->setRelatedLinks($related);
 		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedLinks());

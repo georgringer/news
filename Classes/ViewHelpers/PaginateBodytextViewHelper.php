@@ -70,7 +70,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_PaginateBodytextViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Render everything
@@ -82,7 +82,7 @@ class Tx_News_ViewHelpers_PaginateBodytextViewHelper extends Tx_Fluid_Core_ViewH
 	 * @return string
 	 */
 	public function render(Tx_News_Domain_Model_News $object, $as, $currentPage, $token = '###more###') {
-		$parts = t3lib_div::trimExplode($token, $object->getBodytext(), TRUE);
+		$parts = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode($token, $object->getBodytext(), TRUE);
 		$numberOfPages = count($parts);
 
 		if ($numberOfPages === 1) {

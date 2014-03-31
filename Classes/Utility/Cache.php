@@ -43,7 +43,7 @@ class Tx_News_Utility_Cache {
 	 * @param tslib_cObj $cObj
 	 * @return void
 	 */
-	public function markContentRecordAsProcessed(tslib_cObj $cObj) {
+	public function markContentRecordAsProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj) {
 		$key = 'tt_content_' . $cObj->data['uid'];
 		self::$processedContentRecords[$key] = TRUE;
 	}
@@ -51,10 +51,10 @@ class Tx_News_Utility_Cache {
 	/**
 	 * Checks if a cObj has already added cache tags.
 	 *
-	 * @param tslib_cObj $cObj
+	 * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
 	 * @return boolean
 	 */
-	public function isContentRecordAlreadyProcessed(tslib_cObj $cObj) {
+	public function isContentRecordAlreadyProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj) {
 		$key = 'tt_content_' . $cObj->data['uid'];
 		return array_key_exists($key, self::$processedContentRecords);
 	}
@@ -102,7 +102,7 @@ class Tx_News_Utility_Cache {
 
 		// Add cache tags for each storage page
 		if ($demand->getStoragePage()) {
-			foreach (t3lib_div::trimExplode(',', $demand->getStoragePage()) as $pageId) {
+			foreach (\TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
 				$cacheTags[] = 'pageId_' . $pageId;
 			}
 			$GLOBALS['TSFE']->addCacheTags($cacheTags);

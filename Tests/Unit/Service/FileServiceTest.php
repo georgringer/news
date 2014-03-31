@@ -63,7 +63,7 @@ class Tx_News_Tests_Unit_Service_FileServiceTest extends \TYPO3\CMS\Core\Tests\U
 	 * @return array
 	 */
 	public function validUrlIsReturnedDataProvider() {
-		$siteURL = t3lib_div::getIndpEnv('TYPO3_SITE_URL');
+		$siteURL = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
 		return array(
 			'validUrl' => array(
 				'http://www.domain.com/file.flv', 'http://www.domain.com/file.flv'

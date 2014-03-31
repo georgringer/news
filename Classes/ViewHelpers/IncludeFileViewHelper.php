@@ -36,7 +36,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_IncludeFileViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Include a CSS/JS file
@@ -58,7 +58,7 @@ class Tx_News_ViewHelpers_IncludeFileViewHelper extends Tx_Fluid_Core_ViewHelper
 				$GLOBALS['TSFE']->getPageRenderer()->addCssFile($path, 'stylesheet', 'all', '', $compress);
 			}
 		} else {
-			$doc = t3lib_div::makeInstance('template');
+			$doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('template');
 			$pageRenderer = $doc->getPageRenderer();
 
 				// JS

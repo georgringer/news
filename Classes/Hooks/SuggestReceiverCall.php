@@ -40,12 +40,12 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	 * Create a tag
 	 *
 	 * @param array $params
-	 * @param TYPO3AJAX $ajaxObj
+	 * @param \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj
 	 * @return void
 	 * @throws Exception
 	 */
-	public function createTag(array $params, TYPO3AJAX $ajaxObj) {
-		$request = t3lib_div::_POST();
+	public function createTag(array $params, \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj) {
+		$request = \TYPO3\CMS\Core\Utility\GeneralUtility::_POST();
 
 		try {
 				// Check if a tag is submitted
@@ -54,7 +54,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 			}
 
 			$newsUid = $request['newsid'];
-			if ((int)$newsUid === 0 && (strlen($newsUid) == 16 && !t3lib_div::isFirstPartOfStr($newsUid, 'NEW'))) {
+			if ((int)$newsUid === 0 && (strlen($newsUid) == 16 && !\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($newsUid, 'NEW'))) {
 				throw new Exception('error_no-newsid');
 			}
 
@@ -117,10 +117,8 @@ class Tx_News_Hooks_SuggestReceiverCall {
 				)
 			);
 
-			/**
-			 * @var t3lib_TCEmain
-			 */
-			$tce = t3lib_div::makeInstance('t3lib_TCEmain');
+			/** @var \TYPO3\CMS\Core\DataHandling\DataHandler $tce */
+			$tce = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\DataHandling\\DataHandler');
 			$tce->start($tcemainData, array());
 			$tce->process_datamap();
 
@@ -143,9 +141,9 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	protected function getTagPidFromTsConfig($newsUid) {
 		$pid = 0;
 
-		$newsRecord = t3lib_BEfunc::getRecord('tx_news_domain_model_news', (int)$newsUid);
+		$newsRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tx_news_domain_model_news', (int)$newsUid);
 
-		$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($newsRecord['pid']);
+		$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($newsRecord['pid']);
 		if (isset($pagesTsConfig['tx_news.']) && isset($pagesTsConfig['tx_news.']['tagPid'])) {
 			$pid = (int)$pagesTsConfig['tx_news.']['tagPid'];
 		}

@@ -23,7 +23,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
+class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/** @var  \TYPO3\CMS\Core\Tests\AccessibleObjectInterface */
 	protected $cmsLayout;

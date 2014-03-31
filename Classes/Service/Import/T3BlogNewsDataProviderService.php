@@ -28,7 +28,7 @@
  * @package TYPO3
  * @author Ingo Renner <ingo@typo3.org>
  */
-class Tx_News_Service_Import_T3BlogNewsDataProviderService implements Tx_News_Service_Import_DataProviderServiceInterface, t3lib_Singleton {
+class Tx_News_Service_Import_T3BlogNewsDataProviderService implements Tx_News_Service_Import_DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface {
 
 	protected $importSource = 'TX_T3BLOG_IMPORT';
 

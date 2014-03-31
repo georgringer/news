@@ -41,7 +41,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	protected $newsRepository;
 
 	/**
-	 * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+	 * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
 	 */
 	protected $configurationManager;
 
@@ -90,7 +90,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		/* @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 
-		$demand->setCategories(t3lib_div::trimExplode(',', $settings['categories'], TRUE));
+		$demand->setCategories(\TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $settings['categories'], TRUE));
 		$demand->setCategoryConjunction($settings['categoryConjunction']);
 		$demand->setIncludeSubCategories($settings['includeSubCategories']);
 		$demand->setTags($settings['tags']);
@@ -133,7 +133,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		unset($overwriteDemand['orderByAllowed']);
 
 		foreach ($overwriteDemand as $propertyName => $propertyValue) {
-			Tx_Extbase_Reflection_ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+			\TYPO3\CMS\Extbase\Reflection\ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
 		}
 		return $demand;
 	}
@@ -302,30 +302,27 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	/**
 	 * Injects the Configuration Manager and is initializing the framework settings
 	 *
-	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
+	 * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
 	 * @return void
 	 */
-	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+	public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager) {
 		$this->configurationManager = $configurationManager;
 
 		$tsSettings = $this->configurationManager->getConfiguration(
-				Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
+			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
 				'news',
 				'news_pi1'
 			);
 		$originalSettings = $this->configurationManager->getConfiguration(
-				Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
 			);
 
 			// Use stdWrap for given defined settings
 		if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
-			if (class_exists('Tx_Extbase_Service_TypoScriptService')) {
-				$typoScriptService = t3lib_div::makeInstance('Tx_Extbase_Service_TypoScriptService');
-			} else {
-				$typoScriptService = t3lib_div::makeInstance('Tx_Extbase_Utility_TypoScript');
-			}
+			/** @var  \TYPO3\CMS\Extbase\Service\TypoScriptService $typoScriptService */
+			$typoScriptService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService');
 			$typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
-			$stdWrapProperties = t3lib_div::trimExplode(',', $originalSettings['useStdWrap'], TRUE);
+			$stdWrapProperties = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], TRUE);
 			foreach ($stdWrapProperties as $key) {
 				if (is_array($typoScriptArray[$key . '.'])) {
 					$originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
@@ -338,7 +335,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 					// start override
 		if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
-			$overrideIfEmpty = t3lib_div::trimExplode(',', $tsSettings['settings']['overrideFlexformSettingsIfEmpty'], TRUE);
+			$overrideIfEmpty = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $tsSettings['settings']['overrideFlexformSettingsIfEmpty'], TRUE);
 			foreach ($overrideIfEmpty as $key) {
 					// if flexform setting is empty and value is available in TS
 				if ((!isset($originalSettings[$key]) || (strlen($originalSettings[$key]) === 0))
@@ -355,10 +352,10 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * Injects a view.
 	 * This function is for testing purposes only.
 	 *
-	 * @param Tx_Fluid_View_TemplateView $view the view to inject
+	 * @param \TYPO3\CMS\Fluid\View\TemplateView $view the view to inject
 	 * @return void
 	 */
-	public function setView(Tx_Fluid_View_TemplateView $view) {
+	public function setView(\TYPO3\CMS\Fluid\View\TemplateView $view) {
 		$this->view = $view;
 	}
 

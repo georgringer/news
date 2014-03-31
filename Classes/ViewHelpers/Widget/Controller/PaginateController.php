@@ -29,7 +29,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_Core_Widget_AbstractWidgetController {
+class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController {
 
 	/**
 	 * @var array
@@ -37,7 +37,7 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 	protected $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE, 'maximumNumberOfLinks' => 99, 'templatePath' => '');
 
 	/**
-	 * @var Tx_Extbase_Persistence_QueryResultInterface
+	 * @var \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
 	protected $objects;
 
@@ -73,12 +73,12 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends Tx_Fluid_
 	 */
 	public function initializeAction() {
 		$this->objects = $this->widgetConfiguration['objects'];
-		$this->configuration = t3lib_div::array_merge_recursive_overrule(
+		$this->configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule(
 			$this->configuration,
 			(array)$this->widgetConfiguration['configuration'], TRUE);
 		$this->numberOfPages = intval(ceil(count($this->objects) / (integer)$this->configuration['itemsPerPage']));
 		$this->maximumNumberOfLinks = (integer)$this->configuration['maximumNumberOfLinks'];
-		$this->templatePath = t3lib_div::getFileAbsFileName($this->configuration['templatePath']);
+		$this->templatePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->configuration['templatePath']);
 
 		if (isset($this->widgetConfiguration['initial']['offset'])) {
 			$this->initialOffset = (int)$this->widgetConfiguration['initial']['offset'];

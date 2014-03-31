@@ -48,7 +48,7 @@
  * </output>
  *
  */
-class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_ViewHelpers_Link_PageViewHelper {
+class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper {
 
 	/**
 	 * @var Tx_News_Service_SettingsService
@@ -85,7 +85,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_ViewHelpers_Link_PageV
 		$tsSettings = $this->pluginSettingsService->getSettings();
 
 		/** @var $cObj tslib_cObj */
-		$cObj = t3lib_div::makeInstance('tslib_cObj');
+		$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
 
 		$newsType = (int)$newsItem->getType();
 		switch ($newsType) {
@@ -102,7 +102,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_ViewHelpers_Link_PageV
 				$configuration = $this->getLinkToNewsItem($newsItem, $tsSettings);
 		}
 		if (isset($tsSettings['link']['typesOpeningInNewWindow'])) {
-			if (t3lib_div::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
+			if (\TYPO3\CMS\Core\Utility\GeneralUtility::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
 				$this->tag->addAttribute('target', '_blank');
 			}
 		}
@@ -127,7 +127,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends Tx_Fluid_ViewHelpers_Link_PageV
 	protected function getLinkToNewsItem(Tx_News_Domain_Model_News $newsItem, $tsSettings) {
 		$detailPid = 0;
 		$configuration = array();
-		$detailPidDeterminationMethods = t3lib_div::trimExplode(',', $tsSettings['detailPidDetermination'], TRUE);
+		$detailPidDeterminationMethods = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'], TRUE);
 
 		// if TS is not set, prefer flexform setting
 		if (!isset($tsSettings['detailPidDetermination'])) {

@@ -45,7 +45,7 @@ class Tx_News_Tests_Unit_Utility_UrlTest extends \TYPO3\CMS\Core\Tests\UnitTestC
 	 * @return array
 	 */
 	public function correctUrlIsDeliveredDataProvider() {
-		$currentDomain = t3lib_div::getIndpEnv('TYPO3_SITE_URL');
+		$currentDomain = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
 		return array(
 			'absoluteUrlIsUsed' => array(
 				$currentDomain . 'index.php?id=123', $currentDomain . 'index.php?id=123'

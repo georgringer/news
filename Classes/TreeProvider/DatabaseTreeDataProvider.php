@@ -22,7 +22,7 @@
 /**
  * TCA tree data provider which considers
  */
-class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_DatabaseTreeDataProvider {
+class Tx_News_TreeProvider_DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeDataProvider {
 
 	/**
 	 * @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
@@ -41,22 +41,22 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 	/**
 	 * Builds a complete node including children
 	 *
-	 * @param \t3lib_tree_Node|\TYPO3\CMS\Backend\Tree\TreeNode $basicNode
-	 * @param NULL|t3lib_tree_tca_DatabaseNode $parent
+	 * @param \TYPO3\CMS\Backend\Tree\TreeNode|\TYPO3\CMS\Backend\Tree\TreeNode $basicNode
+	 * @param NULL|\TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode $parent
 	 * @param integer $level
 	 * @param bool $restriction
-	 * @return t3lib_tree_tca_DatabaseNode node
+	 * @return \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode node
 	 */
-	protected function buildRepresentationForNode (t3lib_tree_Node $basicNode, t3lib_tree_tca_DatabaseNode $parent = NULL, $level = 0, $restriction = FALSE) {
-		/**@param $node t3lib_tree_tca_DatabaseNode */
-		$node = t3lib_div::makeInstance ('t3lib_tree_tca_DatabaseNode');
+	protected function buildRepresentationForNode (\TYPO3\CMS\Backend\Tree\TreeNode $basicNode, \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode $parent = NULL, $level = 0, $restriction = FALSE) {
+		/**@param $node \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode */
+		$node = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance ('TYPO3\\CMS\\Core\\Tree\\TableConfiguration\\DatabaseTreeNode');
 		$row = array();
 		if ($basicNode->getId () == 0) {
 			$node->setSelected (FALSE);
 			$node->setExpanded (TRUE);
 			$node->setLabel ($GLOBALS['LANG']->sL ($GLOBALS['TCA'][$this->tableName]['ctrl']['title']));
 		} else {
-			$row = t3lib_BEfunc::getRecordWSOL ($this->tableName, $basicNode->getId (), '*', '', FALSE);
+			$row = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecordWSOL ($this->tableName, $basicNode->getId (), '*', '', FALSE);
 
 			if ($this->getLabelField () !== '') {
 				$label = Tx_News_Service_CategoryService::translateCategoryRecord($row[$this->getLabelField()], $row);
@@ -64,7 +64,7 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 			} else {
 				$node->setLabel ($basicNode->getId ());
 			}
-			$node->setSelected (t3lib_div::inList ($this->getSelectedList (), $basicNode->getId ()));
+			$node->setSelected (\TYPO3\CMS\Core\Utility\GeneralUtility::inList ($this->getSelectedList (), $basicNode->getId ()));
 			$node->setExpanded ($this->isExpanded ($basicNode));
 			$node->setLabel ($node->getLabel ());
 		}
@@ -75,13 +75,14 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends t3lib_tree_Tca_Datab
 		if ($parent != NULL && $level != 0 && $this->isSingleCategoryAclActivated() && !$this->isCategoryAllowed ($node)) {
 			return NULL;
 		}
-		$node->setSelectable (!t3lib_div::inList ($this->getNonSelectableLevelList (), $level) && !in_array ($basicNode->getId (), $this->getItemUnselectableList ()));
+		$node->setSelectable (!\TYPO3\CMS\Core\Utility\GeneralUtility::inList ($this->getNonSelectableLevelList (), $level) && !in_array ($basicNode->getId (), $this->getItemUnselectableList ()));
 		$node->setSortValue ($this->nodeSortValues[$basicNode->getId ()]);
-		$node->setIcon (t3lib_iconWorks::mapRecordTypeToSpriteIconClass ($this->tableName, $row));
+		$node->setIcon (\TYPO3\CMS\Backend\Utility\IconUtility::mapRecordTypeToSpriteIconClass ($this->tableName, $row));
 		$node->setParentNode ($parent);
 		if ($basicNode->hasChildNodes ()) {
 			$node->setHasChildren (TRUE);
-			$childNodes = t3lib_div::makeInstance ('t3lib_tree_SortedNodeCollection');
+			/** @var \TYPO3\CMS\Backend\Tree\SortedTreeNodeCollection $childNodes */
+			$childNodes = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance ('TYPO3\\CMS\\Backend\\Tree\\SortedTreeNodeCollection');
 			$foundSomeChild = FALSE;
 			foreach ($basicNode->getChildNodes () as $child) {
 				// Change in custom TreeDataProvider by adding the if clause

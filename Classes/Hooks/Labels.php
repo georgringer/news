@@ -40,9 +40,9 @@ class Tx_News_Hooks_Labels {
 	 */
 	public function getUserLabelCategory(array &$params) {
 			// In list view: show normal label
-		$listView = strpos(t3lib_div::getIndpEnv('REQUEST_URI'), 'typo3/sysext/list/mod1/db_list.php')
-					||  strpos(t3lib_div::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?&M=web_list')
-					||  strpos(t3lib_div::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?M=web_list');
+		$listView = strpos(\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/sysext/list/mod1/db_list.php')
+					||  strpos(\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?&M=web_list')
+					||  strpos(\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?M=web_list');
 
 			// No overlay if language of category is not base or no language yet selected
 		if ($listView || !is_array($params['row'])) {
@@ -73,7 +73,7 @@ class Tx_News_Hooks_Labels {
 				if (!empty($params['row']['image'])) {
 					$params['row']['image'] = $this->splitFileName($params['row']['image']);
 					try {
-						$additionalHtmlContent = '<br />' . t3lib_BEfunc::thumbCode($params['row'], 'tx_news_domain_model_media', 'image', $GLOBALS['BACK_PATH'], '', NULL, 0, '', '', FALSE);
+						$additionalHtmlContent = '<br />' . \TYPO3\CMS\Backend\Utility\BackendUtility::thumbCode($params['row'], 'tx_news_domain_model_media', 'image', $GLOBALS['BACK_PATH'], '', NULL, 0, '', '', FALSE);
 					} catch(\TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException $exception) {
 						$additionalHtmlContent = '<br />' . htmlspecialchars($params['row']['image']);
 					}
@@ -99,20 +99,20 @@ class Tx_News_Hooks_Labels {
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'])) {
 			$params = array('params' => $params, 'title' => $title);
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'] as $reference) {
-				$title = t3lib_div::callUserFunction($reference, $params, $this);
+				$title = \TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
 			}
 		}
 
 			// Preview
 		if ($params['row']['showinpreview']) {
 			$label = htmlspecialchars($GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.show'));
-			$icon = '../' . t3lib_extMgm::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
+			$icon = '../' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
 			$title .= ' <img title="' . $label . '" src="' . $icon . '" />';
 		}
 
 			// Show the [No title] if empty
 		if (empty($title)) {
-			$title =  t3lib_befunc::getNoRecordTitle(TRUE);
+			$title =  \TYPO3\CMS\Backend\Utility\BackendUtility::getNoRecordTitle(TRUE);
 		}
 
 		$params['title'] = $title;
@@ -155,7 +155,7 @@ class Tx_News_Hooks_Labels {
 	 */
 	protected function getTitleFromFields($fieldList, $record = array()) {
 		$title = '';
-		$fields = t3lib_div::trimExplode(',', $fieldList, TRUE);
+		$fields = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $fieldList, TRUE);
 
 		if (!is_array($record) || empty($record)) {
 			return $title;

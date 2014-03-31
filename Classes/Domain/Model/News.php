@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * @var DateTime
@@ -123,25 +123,25 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $authorEmail;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Category>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Category>
 	 * @lazy
 	 */
 	protected $categories;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News>
 	 * @lazy
 	 */
 	protected $related;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News>
 	 * @lazy
 	 */
 	protected $relatedFrom;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_File>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_File>
 	 * @lazy
 	 */
 	protected $relatedFiles;
@@ -149,13 +149,13 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Fal related files
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_FileReference>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference>
 	 * @lazy
 	 */
 	protected $falRelatedFiles;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Link>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Link>
 	 * @lazy
 	 */
 	protected $relatedLinks;
@@ -176,7 +176,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $description;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Media>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Media>
 	 * @lazy
 	 */
 	protected $media;
@@ -184,7 +184,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Fal media items
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_MediaFileReference>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_MediaFileReference>
 	 * @lazy
 	 */
 	protected $falMedia;
@@ -221,13 +221,13 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	protected $istopnews;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_TtContent>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_TtContent>
 	 * @lazy
 	 */
 	protected $contentElements;
 
 	/**
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Tag>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Tag>
 	 * @lazy
 	 */
 	protected $tags;
@@ -263,13 +263,13 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 * @return \Tx_News_Domain_Model_News
 	 */
 	public function __construct() {
-		$this->categories = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->contentElements = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->relatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->relatedLinks = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->media = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->falMedia = new Tx_Extbase_Persistence_ObjectStorage();
-		$this->falRelatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->media = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->falRelatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
@@ -481,7 +481,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get categories
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Category>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Category>
 	 */
 	public function getCategories() {
 		return $this->categories;
@@ -505,7 +505,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set categories
 	 *
-	 * @param  Tx_Extbase_Persistence_ObjectStorage $categories
+	 * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories
 	 * @return void
 	 */
 	public function setCategories($categories) {
@@ -525,7 +525,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get related news
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News>
 	 */
 	public function getRelated() {
 		return $this->related;
@@ -534,7 +534,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set related from
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News> $relatedFrom
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News> $relatedFrom
 	 * @return void
 	 */
 	public function setRelatedFrom($relatedFrom) {
@@ -544,7 +544,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get related from
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_News>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News>
 	 */
 	public function getRelatedFrom() {
 		return $this->relatedFrom;
@@ -605,7 +605,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set related news
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $related related news
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $related related news
 	 * @return void
 	 */
 	public function setRelated($related) {
@@ -615,7 +615,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get related files
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_File>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_File>
 	 */
 	public function getRelatedFiles() {
 		return $this->relatedFiles;
@@ -624,7 +624,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set related files
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $relatedFiles related files
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $relatedFiles related files
 	 * @return void
 	 */
 	public function setRelatedFiles($relatedFiles) {
@@ -639,7 +639,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function addRelatedFile(Tx_News_Domain_Model_File $file) {
 		if ($this->getRelatedFiles() === NULL) {
-			$this->relatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
+			$this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
 		$this->getRelatedFiles()->attach($file);
 	}
@@ -647,7 +647,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get related links
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Link>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Link>
 	 */
 	public function getRelatedLinks() {
 		return $this->relatedLinks;
@@ -656,7 +656,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get FAL related files
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_FileReference>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference>
 	 */
 	public function getFalRelatedFiles() {
 		return $this->falRelatedFiles;
@@ -665,7 +665,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set FAL related files
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $falRelatedFiles FAL related files
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $falRelatedFiles FAL related files
 	 * @return void
 	 */
 	public function setFalRelatedFiles($falRelatedFiles) {
@@ -680,7 +680,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function addFalRelatedFile(Tx_News_Domain_Model_FileReference $file) {
 		if ($this->getFalRelatedFiles() === NULL) {
-			$this->falRelatedFiles = new Tx_Extbase_Persistence_ObjectStorage();
+			$this->falRelatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
 		$this->getFalRelatedFiles()->attach($file);
 	}
@@ -688,7 +688,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set related links
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_Link> $relatedLinks related links relation
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Link> $relatedLinks related links relation
 	 * @return void
 	 */
 	public function setRelatedLinks($relatedLinks) {
@@ -756,7 +756,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Load Media elements
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
 	public function getMedia() {
 		return $this->media;
@@ -840,7 +840,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function addMedia(Tx_News_Domain_Model_Media $media) {
 		if ($this->getMedia() === NULL) {
-			$this->media = new Tx_Extbase_Persistence_ObjectStorage();
+			$this->media = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
 		$this->getMedia()->attach($media);
 	}
@@ -853,7 +853,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function addRelatedLink(Tx_News_Domain_Model_Link $relatedLink) {
 		if ($this->relatedLinks === NULL) {
-			$this->relatedLinks = new Tx_Extbase_Persistence_ObjectStorage();
+			$this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
 		$this->relatedLinks->attach($relatedLink);
 	}
@@ -882,17 +882,17 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set media relation
 	 *
-	 * @param   Tx_Extbase_Persistence_ObjectStorage $media
+	 * @param   \TYPO3\CMS\Extbase\Persistence\ObjectStorage $media
 	 * @return void
 	 */
-	public function setMedia(Tx_Extbase_Persistence_ObjectStorage $media) {
+	public function setMedia(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $media) {
 		$this->media = $media;
 	}
 
 	/**
 	 * Get the Fal media items
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
 	public function getFalMedia() {
 		return $this->falMedia;
@@ -901,10 +901,10 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set Fal media relation
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $falMedia
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $falMedia
 	 * @return void
 	 */
-	public function setFalMedia(Tx_Extbase_Persistence_ObjectStorage $falMedia) {
+	public function setFalMedia(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $falMedia) {
 		$this->falMedia = $falMedia;
 	}
 
@@ -915,7 +915,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function addFalMedia(Tx_News_Domain_Model_MediaFileReference $falMedia) {
 		if ($this->getFalMedia() === NULL) {
-			$this->falMedia = new Tx_Extbase_Persistence_ObjectStorage();
+			$this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
 		$this->falMedia->attach($falMedia);
 	}
@@ -1033,7 +1033,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get content elements
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
 	public function getContentElements() {
 		return $this->contentElements;
@@ -1042,7 +1042,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set content element list
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $contentElements content elements
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $contentElements content elements
 	 * @return void
 	 */
 	public function setContentElements($contentElements) {
@@ -1057,7 +1057,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	 */
 	public function addContentElement(Tx_News_Domain_Model_TtContent $contentElement) {
 		if ($this->getContentElements() === NULL) {
-			$this->contentElements = new Tx_Extbase_Persistence_ObjectStorage();
+			$this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
 		$this->contentElements->attach($contentElement);
 	}
@@ -1078,7 +1078,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Get Tags
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
 	public function getTags() {
 		return $this->tags;
@@ -1087,7 +1087,7 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	/**
 	 * Set Tags
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $tags tags
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags tags
 	 * @return void
 	 */
 	public function setTags($tags) {

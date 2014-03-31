@@ -29,7 +29,7 @@
  * @subpackage tx_news
  * @version $Id$
  */
-class Tx_News_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueObject {
+class Tx_News_Domain_Model_File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 
 	/**
 	 * @var DateTime
@@ -166,7 +166,7 @@ class Tx_News_Domain_Model_File extends Tx_Extbase_DomainObject_AbstractValueObj
 	 * @return boolean
 	 */
 	public function getIsImageFile() {
-		$fileEndings = t3lib_div::trimExplode(',', $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], TRUE);
+		$fileEndings = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], TRUE);
 		return in_array($this->getFileExtension(), $fileEndings);
 	}
 

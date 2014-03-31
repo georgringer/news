@@ -24,7 +24,7 @@ General properties
    :Description:
          Path to the file
    :Default value:
-         
+
 
  - :Name:
          format
@@ -33,7 +33,7 @@ General properties
    :Description:
          Labels for bytes, kilo, mega and giga separated by vertical bar (\|) and possibly encapsulated in "". Eg\: " \| K\| M\| G" (which is the default value)
    :Default value:
-         
+
 
  - :Name:
          hideError
@@ -42,7 +42,7 @@ General properties
    :Description:
          Define if an error should be displayed if file not found
    :Default value:
-         
+
 
 
 
@@ -52,7 +52,7 @@ Examples
 Basic example
 """"""""""""""""""
 
-If format is empty, the default from t3lib_div:::formatSize() is taken.
+If format is empty, the default from \TYPO3\CMS\Core\Utility\GeneralUtility:::formatSize() is taken.
 
 Code: ::
 

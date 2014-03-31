@@ -42,7 +42,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
 	 * @var Tx_News_Service_SettingsService
@@ -85,7 +85,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 
 		$url = (!empty($this->arguments['href'])) ?
 				$this->arguments['href'] :
-			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
+			\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
 
 			// absolute urls are needed
 		$this->tag->addAttribute('href', Tx_News_Utility_Url::prependDomain($url));
@@ -102,7 +102,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends Tx_Fluid_Core_V
 
 					// Social interaction Google Analytics
 				if ($this->pluginSettingsService->getByPath('analytics.social.facebookLike') == 1) {
-					$code .= t3lib_div::wrapJS("
+					$code .= \TYPO3\CMS\Core\Utility\GeneralUtility::wrapJS("
 						FB.Event.subscribe('edge.create', function(targetUrl) {
 						 	_gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
 						});

@@ -29,7 +29,7 @@
  * Example
  * $pluginSettingsService =
  * $this->objectManager->get('Tx_News_Service_SettingsService');
- * t3lib_div::print_array($pluginSettingsService->getSettings());
+ * \TYPO3\CMS\Core\Utility\GeneralUtility::print_array($pluginSettingsService->getSettings());
  *
  * If objectManager is not available:
  * http://forge.typo3.org/projects/typo3v4-mvc/wiki/
@@ -38,7 +38,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Service_SettingsService implements t3lib_Singleton {
+class Tx_News_Service_SettingsService implements \TYPO3\CMS\Core\SingletonInterface {
 
 	/**
 	 * @var mixed
@@ -46,17 +46,17 @@ class Tx_News_Service_SettingsService implements t3lib_Singleton {
 	protected $settings = NULL;
 
 	/**
-	 * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+	 * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
 	 */
 	protected $configurationManager;
 
 	/**
 	 * Injects the Configuration Manager and loads the settings
 	 *
-	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
+	 * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
 	 * @return void
 	 */
-	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+	public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager) {
 		$this->configurationManager = $configurationManager;
 	}
 
@@ -68,7 +68,7 @@ class Tx_News_Service_SettingsService implements t3lib_Singleton {
 	public function getSettings() {
 		if ($this->settings === NULL) {
 			$this->settings = $this->configurationManager->getConfiguration(
-					Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
+				\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
 					'News',
 					'Pi1'
 			);
@@ -87,7 +87,7 @@ class Tx_News_Service_SettingsService implements t3lib_Singleton {
 	 * @return mixed
 	 */
 	public function getByPath($path) {
-		return Tx_Extbase_Reflection_ObjectAccess::getPropertyPath($this->getSettings(), $path);
+		return \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getPropertyPath($this->getSettings(), $path);
 	}
 
 }

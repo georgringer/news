@@ -42,7 +42,7 @@ class Tx_News_Hooks_RealUrlAutoConfiguration {
 	public function addNewsConfig($params, &$pObj) {
 
 		// Check for proper unique key
-		$postVar = (t3lib_extMgm::isLoaded('tt_news') ? 'tx_news' : 'news');
+		$postVar = (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tt_news') ? 'tx_news' : 'news');
 
 		return array_merge_recursive($params['config'], array(
 				'postVarSets' => array(

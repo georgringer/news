@@ -43,7 +43,7 @@ class Tx_News_MediaRenderer_Video_Videosites implements Tx_News_MediaRenderer_Me
 		$url = Tx_News_Service_FileService::getCorrectUrl($element->getContent());
 
 			// get the correct rewritten url
-		$mediaWizard = tslib_mediaWizardManager::getValidMediaWizardProvider($url);
+		$mediaWizard = \TYPO3\CMS\Frontend\MediaWizard\MediaWizardProviderManager::getValidMediaWizardProvider($url);
 		if ($mediaWizard !== NULL) {
 			$finalUrl = $mediaWizard->rewriteUrl($url);
 		}
@@ -61,9 +61,9 @@ class Tx_News_MediaRenderer_Video_Videosites implements Tx_News_MediaRenderer_Me
 			$content .= '<div id="' . htmlspecialchars($uniqueDivId) . '"></div>
 						<script type="text/javascript">
 							var params = { allowScriptAccess: "always", allowfullscreen : "true" };
-							var atts = { id: ' . t3lib_div::quoteJSvalue($uniqueDivId) . ' };
-							swfobject.embedSWF(' . t3lib_div::quoteJSvalue($finalUrl) . ',
-							' . t3lib_div::quoteJSvalue($uniqueDivId) . ', "' . (int)$width . '", "' . (int)$height . '", "8", null, null, params, atts);
+							var atts = { id: ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($uniqueDivId) . ' };
+							swfobject.embedSWF(' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($finalUrl) . ',
+							' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($uniqueDivId) . ', "' . (int)$width . '", "' . (int)$height . '", "8", null, null, params, atts);
 						</script>';
 		}
 

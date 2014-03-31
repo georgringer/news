@@ -28,12 +28,12 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_InlineElementHook implements t3lib_tceformsInlineHook  {
+class Tx_News_InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface  {
 
 	/**
 	 * Initializes this hook object.
 	 *
-	 * @param t3lib_TCEforms_inline $parentObject
+	 * @param \TYPO3\CMS\Backend\Form\Element\InlineElement $parentObject
 	 * @return void
 	 */
 	public function init(&$parentObject) {}

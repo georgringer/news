@@ -30,7 +30,7 @@
  * @package	TYPO3
  * @subpackage	tx_news
  */
-class Tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiver{
+class Tx_News_Hooks_SuggestReceiver extends \TYPO3\CMS\Backend\Form\Element\SuggestDefaultReceiver{
 
 	/**
 	 * Queries a table for records and completely processes them
@@ -43,7 +43,7 @@ class Tx_News_Hooks_SuggestReceiver extends t3lib_TCEforms_Suggest_DefaultReceiv
 	 * @return mixed array of rows or FALSE if nothing found
 	 */
 	public function queryTable(&$params, $recursionCounter = 0) {
-		$uid = t3lib_div::_GP('uid');
+		$uid = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('uid');
 
 		$records = parent::queryTable($params, $recursionCounter);
 
@@ -106,8 +106,8 @@ $link = implode(' ', explode(chr(10), $javaScriptCode));
 	}
 
 	private function getDummyIconPath() {
-		$icon = t3lib_iconWorks::getIcon('tx_news_domain_model_tag');
-		return t3lib_iconWorks::skinImg('', $icon, '', 1);
+		$icon = \TYPO3\CMS\Backend\Utility\IconUtility::getIcon('tx_news_domain_model_tag');
+		return \TYPO3\CMS\Backend\Utility\IconUtility::skinImg('', $icon, '', 1);
 	}
 
 }

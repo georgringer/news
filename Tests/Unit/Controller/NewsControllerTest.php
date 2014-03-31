@@ -77,7 +77,7 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 		$settings = array('list' => 'foo');
 
 		$configurationManager = $this->getMock(
-			'Tx_Extbase_Configuration_ConfigurationManagerInterface'
+			'TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'
 		);
 		$configurationManager->expects($this->any())->method('getConfiguration')
 			->will($this->returnValue($settings));

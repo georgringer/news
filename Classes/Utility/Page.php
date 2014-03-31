@@ -44,9 +44,9 @@ class Tx_News_Utility_Page {
 			return $pidList;
 		}
 
-		$queryGenerator = t3lib_div::makeInstance('t3lib_queryGenerator');
+		$queryGenerator = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Tree\\View\\PageTreeView');
 		$recursiveStoragePids = $pidList;
-		$storagePids = t3lib_div::intExplode(',', $pidList);
+		$storagePids = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $pidList);
 		foreach ($storagePids as $startPid) {
 			$pids = $queryGenerator->getTreeList($startPid, $recursive, 0, 1);
 			if (strlen($pids) > 0) {
@@ -67,16 +67,16 @@ class Tx_News_Utility_Page {
 	 */
 	public static function setRegisterProperties($properties, $object, $prefix = 'news') {
 		if (!empty($properties) && !is_null(($object))) {
-			$cObj = t3lib_div::makeInstance('tslib_cObj');
-			$items = t3lib_div::trimExplode(',', $properties, TRUE);
+			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
+			$items = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $properties, TRUE);
 
 			$register = array();
 			foreach ($items as $item) {
 				$key = $prefix . ucfirst($item);
 				try {
-					$register[$key] = Tx_Extbase_Reflection_ObjectAccess::getProperty($object, $item);
+					$register[$key] = \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getProperty($object, $item);
 				} catch (Exception $e) {
-					t3lib_div::devLog($e->getMessage(), 'news', t3lib_div::SYSLOG_SEVERITY_WARNING);
+					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($e->getMessage(), 'news', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
 				}
 			}
 			$cObj->LOAD_REGISTER($register, '');
@@ -88,7 +88,7 @@ class Tx_News_Utility_Page {
 	 *
 	 * @param integer $pageUid page to start with
 	 * @param integer $treeLevel count of levels
-	 * @return t3lib_pageTree
+	 * @return \TYPO3\CMS\Backend\Tree\View\PageTreeView
 	 * @throws Exception
 	 */
 	public static function pageTree($pageUid, $treeLevel) {
@@ -96,17 +96,17 @@ class Tx_News_Utility_Page {
 			throw new Exception('Page::pageTree does only work in the backend!');
 		}
 
-		/* @var $tree t3lib_pageTree */
-		$tree = t3lib_div::makeInstance('t3lib_pageTree');
+		/* @var $tree \TYPO3\CMS\Backend\Tree\View\PageTreeView */
+		$tree = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Tree\\View\\PageTreeView');
 		$tree->init('AND ' . $GLOBALS['BE_USER']->getPagePermsClause(1));
 
-		$treeStartingRecord = t3lib_BEfunc::getRecord('pages', $pageUid);
-		t3lib_BEfunc::workspaceOL('pages', $treeStartingRecord);
+		$treeStartingRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('pages', $pageUid);
+		\TYPO3\CMS\Backend\Utility\BackendUtility::workspaceOL('pages', $treeStartingRecord);
 
 			// Creating top icon; the current page
 		$tree->tree[] = array(
 			'row' => $treeStartingRecord,
-			'HTML' => t3lib_iconWorks::getIconImage('pages', $treeStartingRecord, $GLOBALS['BACK_PATH'], 'align="top"')
+			'HTML' => \TYPO3\CMS\Backend\Utility\IconUtility::getIconImage('pages', $treeStartingRecord, $GLOBALS['BACK_PATH'], 'align="top"')
 		);
 
 		$tree->getTree($pageUid, $treeLevel, '');

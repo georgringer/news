@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_FalMediaFactoryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * If the escaping interceptor should be disabled inside this ViewHelper,
@@ -54,11 +54,11 @@ class Tx_News_ViewHelpers_FalMediaFactoryViewHelper extends Tx_Fluid_Core_ViewHe
 	 */
 	public function render($classes, Tx_News_Domain_Model_FileReference $element, $width, $height) {
 		$content = '';
-		$classList = t3lib_div::trimExplode(',', $classes, TRUE);
+		$classList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $classes, TRUE);
 
 			// go through every class provided by argument
 		foreach ($classList as $classData) {
-			$videoObject = t3lib_div::makeInstance($classData);
+			$videoObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($classData);
 
 				// check interface implementation
 			if (!($videoObject instanceof Tx_News_MediaRenderer_FalMediaInterface)) {

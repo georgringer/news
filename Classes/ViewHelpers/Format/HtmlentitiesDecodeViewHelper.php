@@ -30,7 +30,7 @@
  * @subpackage tx_news
  * @deprecated use Tx_Fluid_ViewHelpers_Format_HtmlentitiesDecodeViewHelper
  */
-class Tx_News_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Disable the escaping interceptor because otherwise the
@@ -55,7 +55,7 @@ class Tx_News_ViewHelpers_Format_HtmlentitiesDecodeViewHelper extends Tx_Fluid_C
 			$message = 'EXT:news: Since TYPO3 4.6.0, a native ViewHelper for html_entity_decode() ' .
 				'is available, use f:format.htmlentitiesDecode instead of n:format.htmlEntityDecode';
 
-			t3lib_div::deprecationLog($message);
+			\TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog($message);
 		}
 
 		if ($value === NULL) {

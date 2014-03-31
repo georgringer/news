@@ -99,7 +99,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHel
 	 * @api
 	 */
 	public function render($table) {
-		if ($GLOBALS['BE_USER']->isAdmin() || t3lib_div::inList($GLOBALS['BE_USER']->groupData['tables_modify'], $table)) {
+		if ($GLOBALS['BE_USER']->isAdmin() || \TYPO3\CMS\Core\Utility\GeneralUtility::inList($GLOBALS['BE_USER']->groupData['tables_modify'], $table)) {
 			return $this->renderThenChild();
 		}
 		return $this->renderElseChild();

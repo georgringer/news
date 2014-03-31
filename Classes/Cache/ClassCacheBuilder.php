@@ -43,7 +43,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 			$extendingClassFound = FALSE;
 
 			// Get the file from news itself, this needs to be loaded as first
-			$path = t3lib_extMgm::extPath('news') . 'Classes/' . $key . '.php';
+			$path = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news') . 'Classes/' . $key . '.php';
 			if (!is_file($path)) {
 				throw new Exception('given file "' . $path . '" does not exist');
 			}
@@ -51,7 +51,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 
 			// Get the files from all other extensions
 			foreach ($extensionsWithThisClass as $extension => $value) {
-				$path = t3lib_extMgm::extPath($extension) . 'Classes/' . $key . '.php';
+				$path = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($extension) . 'Classes/' . $key . '.php';
 				if (is_file($path)) {
 					$extendingClassFound = TRUE;
 					$code .= $this->parseSingleFile($path);
@@ -79,23 +79,23 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 * @return array
 	 */
 	protected function getExtensibleExtensions() {
-		$loadedExtensions = t3lib_extMgm::getLoadedExtensionListArray();
+		$loadedExtensions = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getLoadedExtensionListArray();
 
 		// Get the extensions which want to extend news
 		$extensibleExtensions = array();
 		foreach ($loadedExtensions as $extensionKey) {
 			try {
-				$extensionInfoFile = t3lib_extMgm::extPath($extensionKey, 'Resources/Private/extend-news.txt');
+				$extensionInfoFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($extensionKey, 'Resources/Private/extend-news.txt');
 				if (file_exists($extensionInfoFile)) {
-					$info = t3lib_div::getUrl($extensionInfoFile);
-					$classes = t3lib_div::trimExplode(LF, $info, TRUE);
+					$info = \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl($extensionInfoFile);
+					$classes = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(LF, $info, TRUE);
 					foreach ($classes as $class) {
 						$extensibleExtensions[$class][$extensionKey] = 1;
 					}
 				}
 			} catch(Exception $e) {
 				$message = sprintf('Class cache could not been been build. Error "%s" with extension "%s"!', $e->getMessage(), $extensionKey);
-				t3lib_div::devLog($message, 'news');
+				\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($message, 'news');
 			}
 		}
 		return $extensibleExtensions;
@@ -121,14 +121,14 @@ class Tx_News_Cache_ClassCacheBuilder {
 	protected function writeFile($content, $identifier) {
 		$path = PATH_site . self::CACHE_FILE_LOCATION;
 		if (!is_dir($path)) {
-			t3lib_div::mkdir_deep(PATH_site, self::CACHE_FILE_LOCATION);
+			\TYPO3\CMS\Core\Utility\GeneralUtility::mkdir_deep(PATH_site, self::CACHE_FILE_LOCATION);
 		}
 
 		$content = '<?php ' . LF . $content . LF . '}' . LF . '?>';
 
 		$path .= $this->generateFileNameFromIdentifier($identifier);
 
-		$success = t3lib_div::writeFile($path, $content);
+		$success = \TYPO3\CMS\Core\Utility\GeneralUtility::writeFile($path, $content);
 		if (!$success) {
 			throw new RuntimeException('File "' . $path . '" could not be written');
 		}
@@ -168,7 +168,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 		if (!is_file($filePath)) {
 			throw new InvalidArgumentException(sprintf('File "%s" could not be found', $filePath));
 		}
-		$code = t3lib_div::getUrl($filePath);
+		$code = \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl($filePath);
 		return $this->changeCode($code, $filePath, $removeClassDefinition);
 	}
 

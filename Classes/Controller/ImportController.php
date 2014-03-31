@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Controller_ImportController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_News_Controller_ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * Retrieve all available import jobs by traversing trough registered
@@ -57,7 +57,7 @@ class Tx_News_Controller_ImportController extends Tx_Extbase_MVC_Controller_Acti
 	 */
 	public function indexAction() {
 		$this->view->assign('availableJobs', array_merge(array(0 => ''), $this->getAvailableJobs()));
-		$this->view->assign('moduleUrl', t3lib_BEfunc::getModuleUrl($this->request->getPluginName()));
+		$this->view->assign('moduleUrl', \TYPO3\CMS\Backend\Utility\BackendUtility::getModuleUrl($this->request->getPluginName()));
 	}
 
 	/**

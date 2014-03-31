@@ -53,7 +53,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 
 			// Add tsconfig values
 		if (is_numeric($config['row']['pid'])) {
-			$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($config['row']['pid']);
+			$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($config['row']['pid']);
 			if (isset($pagesTsConfig['tx_news.']['templateLayouts.']) && is_array($pagesTsConfig['tx_news.']['templateLayouts.'])) {
 
 					// Add every item
@@ -81,15 +81,15 @@ class Tx_News_Hooks_ItemsProcFunc {
 
 			// check if the record has been saved once
 		if (is_array($config['row']) && !empty($config['row']['pi_flexform'])) {
-			$flexformConfig = t3lib_div::xml2array($config['row']['pi_flexform']);
+			$flexformConfig = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($config['row']['pi_flexform']);
 
 				// check if there is a flexform configuration
 			if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
 				$selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
 					// check for selected action
-				if (t3lib_div::isFirstPartOfStr($selectedActionList, 'Category')) {
+				if (\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($selectedActionList, 'Category')) {
 					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
-				} elseif (t3lib_div::isFirstPartOfStr($selectedActionList, 'Tag')) {
+				} elseif (\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($selectedActionList, 'Tag')) {
 					$this->removeNonValidOrderFields($config, 'tx_news_domain_model_tag');
 					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'];
 				} else {
@@ -105,7 +105,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 				// empty default line
 			array_push($config['items'], array('', ''));
 
-			$newItemArray = t3lib_div::trimExplode(',', $newItems, TRUE);
+			$newItemArray = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $newItems, TRUE);
 			$languageKey = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.';
 			foreach ($newItemArray as $item) {
 					// label: if empty, key (=field) is used
@@ -184,10 +184,10 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * Generate a select box of languages to choose an overlay
 	 *
 	 * @param array $config
-	 * @param SC_mod_user_setup_index $parentObject
+	 * @param \TYPO3\CMS\Setup\Controller\SetupModuleController $parentObject
 	 * @return string select box
 	 */
-	public function user_categoryOverlay(array $config, SC_mod_user_setup_index $parentObject) {
+	public function user_categoryOverlay(array $config, \TYPO3\CMS\Setup\Controller\SetupModuleController $parentObject) {
 		$html = '';
 
 		$orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ?
@@ -197,7 +197,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 		$languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'*',
 			'sys_language',
-			'1=1 ' . t3lib_BEfunc::deleteClause('sys_language'),
+			'1=1 ' . \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause('sys_language'),
 			'',
 			$orderBy
 		);

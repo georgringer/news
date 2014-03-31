@@ -39,7 +39,7 @@ class Tx_News_Tests_Unit_Cache_ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tes
 		$classCacheBuilder->_call('writeFile', $content, $identifier);
 
 		$cacheFileContent = '<?php ' . LF . $content . LF . '}' . LF . '?>';
-		$this->assertEquals($cacheFileContent, t3lib_div::getUrl($writtenCacheFile));
+		$this->assertEquals($cacheFileContent, \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl($writtenCacheFile));
 		unlink($writtenCacheFile);
 	}
 
@@ -148,9 +148,9 @@ class Tx_News_Tests_Unit_Cache_ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tes
 	 * @return string
 	 */
 	protected function getClassExampleFileContent($file) {
-		$exampleFileDir = t3lib_extMgm::extPath('news') . 'Tests/Unit/Cache/ClassExamples/';
+		$exampleFileDir = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news') . 'Tests/Unit/Cache/ClassExamples/';
 
-		$content = t3lib_div::getUrl($exampleFileDir . $file);
+		$content = \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl($exampleFileDir . $file);
 		$content = trim($content);
 		$content = str_replace("\r", '', $content);
 		$content = str_replace("\n", '', $content);

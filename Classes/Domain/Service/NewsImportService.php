@@ -29,17 +29,17 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
+class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\SingletonInterface {
 	const UPLOAD_PATH = 'uploads/tx_news/';
 	const ACTION_IMPORT_L10N_OVERLAY = 1;
 
 	/**
-	 * @var Tx_Extbase_Object_ObjectManager
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
 	 */
 	protected $objectManager;
 
 	/**
-	 * @var Tx_Extbase_Persistence_Manager
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
 	 */
 	protected $persistenceManager;
 
@@ -88,20 +88,20 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	/**
 	 * Inject the object manager
 	 *
-	 * @param Tx_Extbase_Object_ObjectManager $objectManager
+	 * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
 	 * @return void
 	 */
-	public function injectObjectManager(Tx_Extbase_Object_ObjectManager $objectManager) {
+	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager) {
 		$this->objectManager = $objectManager;
 	}
 
 	/**
 	 * Inject Persistence Manager
 	 *
-	 * @param Tx_Extbase_Persistence_Manager $persistenceManager
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
 	 * @return void
 	 */
-	public function injectPersistenceManager(Tx_Extbase_Persistence_Manager $persistenceManager) {
+	public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager) {
 		$this->persistenceManager = $persistenceManager;
 	}
 
@@ -186,7 +186,7 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 		$news->setDatetime(new DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
 		$news->setArchive(new DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
 
-		$contentElementUidArray = Tx_Extbase_Utility_Arrays::trimExplode(',', $importItem['content_elements'], TRUE);
+		$contentElementUidArray = \TYPO3\CMS\Extbase\Utility\ArrayUtility::trimExplode(',', $importItem['content_elements'], TRUE);
 		foreach ($contentElementUidArray as $contentElementUid) {
 			if (is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))) {
 				$news->addContentElement($contentElement);
@@ -220,8 +220,8 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 			}
 		}
 
-		/** @var $basicFileFunctions t3lib_basicFileFunctions */
-		$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions');
+		/** @var $basicFileFunctions \TYPO3\CMS\Core\Utility\File\BasicFileUtility */
+		$basicFileFunctions = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Utility\\File\\BasicFileUtility');
 
 		// media relation
 		if (is_array($importItem['media'])) {
@@ -556,11 +556,11 @@ class Tx_News_Domain_Service_NewsImportService implements t3lib_Singleton {
 	/**
 	 * Get an existing items from the references that matches the file
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_News_Domain_Model_FileReference> $items
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference> $items
 	 * @param \TYPO3\CMS\Core\Resource\File $file
 	 * @return bool|Tx_News_Domain_Model_FileReference
 	 */
-	protected function getIfFalRelationIfAlreadyExists(Tx_Extbase_Persistence_ObjectStorage $items, \TYPO3\CMS\Core\Resource\File $file) {
+	protected function getIfFalRelationIfAlreadyExists(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $items, \TYPO3\CMS\Core\Resource\File $file) {
 		$result = FALSE;
 		if ($items->count() !== 0) {
 			/** @var $item Tx_News_Domain_Model_FileReference */

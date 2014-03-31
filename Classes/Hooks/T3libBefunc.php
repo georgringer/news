@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Hook into t3lib_befunc to change flexform behaviour
+ * Hook into \TYPO3\CMS\Backend\Utility\BackendUtility to change flexform behaviour
  * depending on action selection
  *
  * @package TYPO3
@@ -105,7 +105,7 @@ class Tx_News_Hooks_T3libBefunc {
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 	/**
-	 * Hook function of t3lib_befunc
+	 * Hook function of \TYPO3\CMS\Backend\Utility\BackendUtility
 	 * It is used to change the flexform if it is about news
 	 *
 	 * @param array &$dataStructure Flexform structure
@@ -133,19 +133,19 @@ class Tx_News_Hooks_T3libBefunc {
 
 			// get the first selected action
 		if (is_string($row['pi_flexform'])) {
-			$flexformSelection = t3lib_div::xml2array($row['pi_flexform']);
+			$flexformSelection = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($row['pi_flexform']);
 		} else {
 			$flexformSelection = $row['pi_flexform'];
 		}
 		if (is_array($flexformSelection) && is_array($flexformSelection['data'])) {
 			$selectedView = $flexformSelection['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
 			if (!empty($selectedView)) {
-				$actionParts = t3lib_div::trimExplode(';', $selectedView, TRUE);
+				$actionParts = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(';', $selectedView, TRUE);
 				$selectedView = $actionParts[0];
 			}
 
 			// new plugin element
-		} elseif (t3lib_div::isFirstPartOfStr($row['uid'], 'NEW')) {
+		} elseif (\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($row['uid'], 'NEW')) {
 				// use List as starting view
 			$selectedView = 'News->list';
 		}
@@ -181,7 +181,7 @@ class Tx_News_Hooks_T3libBefunc {
 					'dataStructure' => &$dataStructure,
 				);
 				foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/T3libBefunc.php']['updateFlexforms'] as $reference) {
-					t3lib_div::callUserFunction($reference, $params, $this);
+					\TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
 				}
 			}
 		}
@@ -196,7 +196,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 */
 	protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved) {
 		foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
-			$fieldsInSheet = t3lib_div::trimExplode(',', $sheetFields, TRUE);
+			$fieldsInSheet = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sheetFields, TRUE);
 
 			foreach ($fieldsInSheet as $fieldName) {
 				unset($dataStructure['sheets'][$sheetName]['ROOT']['el']['settings.' . $fieldName]);

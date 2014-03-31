@@ -53,13 +53,13 @@ class Tx_News_Hooks_Tcemain {
 	 * @param string $table table name
 	 * @param integer $recordUid id of the record
 	 * @param array $fields fieldArray
-	 * @param t3lib_TCEmain $parentObject parent Object
+	 * @param \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject parent Object
 	 * @return void
 	 */
-	public function processDatamap_afterDatabaseOperations($status, $table, $recordUid, array $fields, t3lib_TCEmain $parentObject) {
+	public function processDatamap_afterDatabaseOperations($status, $table, $recordUid, array $fields, \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject) {
 		// Clear category cache
 		if ($table === 'sys_category') {
-			$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
+			$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
 			$cache->flush();
 		}
 
@@ -73,9 +73,9 @@ class Tx_News_Hooks_Tcemain {
 
 			if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fields['type']) {
 				// If "savedokview" has been pressed and current article has "type" 0 (= normal news article)
-				$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
+				$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
 				if ($pagesTsConfig['tx_news.']['singlePid']) {
-					$record = t3lib_BEfunc::getRecord('tx_news_domain_model_news', $recordUid);
+					$record = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tx_news_domain_model_news', $recordUid);
 
 					$parameters = array(
 						'no_cache' => 1,
@@ -90,7 +90,7 @@ class Tx_News_Hooks_Tcemain {
 						$parameters['L'] = $record['sys_language_uid'];
 					}
 
-					$GLOBALS['_POST']['popViewId_addParams'] = t3lib_div::implodeArrayForUrl('', $parameters, '', FALSE, TRUE);
+					$GLOBALS['_POST']['popViewId_addParams'] = \TYPO3\CMS\Core\Utility\GeneralUtility::implodeArrayForUrl('', $parameters, '', FALSE, TRUE);
 					$GLOBALS['_POST']['popViewId'] = $pagesTsConfig['tx_news.']['singlePid'];
 				}
 			}

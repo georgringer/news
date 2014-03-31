@@ -1,6 +1,6 @@
 <?php
-$extensionClassesPath = t3lib_extMgm::extPath('news') . 'Classes/';
-require_once(t3lib_extMgm::extPath('news') . 'Classes/Cache/ClassCacheBuilder.php');
+$extensionClassesPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news') . 'Classes/';
+require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news') . 'Classes/Cache/ClassCacheBuilder.php');
 
 $default = array(
 	'tx_news_cache_classcachebuilder' => $extensionClassesPath . 'Cache/ClassCacheBuilder.php',
@@ -150,6 +150,6 @@ $default = array(
 );
 
 /** @var Tx_News_Cache_ClassCacheBuilder $classCacheBuilder */
-$classCacheBuilder = t3lib_div::makeInstance('Tx_News_Cache_ClassCacheBuilder');
+$classCacheBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Cache_ClassCacheBuilder');
 $mergedClasses = array_merge($default, $classCacheBuilder->build());
 return $mergedClasses;

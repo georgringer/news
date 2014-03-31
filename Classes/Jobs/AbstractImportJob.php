@@ -36,7 +36,7 @@ abstract class Tx_News_Jobs_AbstractImportJob implements Tx_News_Jobs_ImportJobI
 	protected $importDataProviderService;
 
 	/**
-	 * @var t3lib_singleton
+	 * @var \TYPO3\CMS\Core\SingletonInterface
 	 */
 	protected $importService;
 

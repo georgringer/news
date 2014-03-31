@@ -34,13 +34,13 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 * Returns a category constraint created by
 	 * a given list of categories and a junction string
 	 *
-	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
 	 * @param  array $categories
 	 * @param  string $conjunction
 	 * @param  boolean $includeSubCategories
-	 * @return Tx_Extbase_Persistence_QOM_Constraint|null
+	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
 	 */
-	protected function createCategoryConstraint(Tx_Extbase_Persistence_QueryInterface $query, $categories, $conjunction, $includeSubCategories = FALSE) {
+	protected function createCategoryConstraint(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, $categories, $conjunction, $includeSubCategories = FALSE) {
 		$constraint = NULL;
 		$categoryConstraints = array();
 
@@ -50,11 +50,11 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		}
 
 		if (!is_array($categories)) {
-			$categories = t3lib_div::intExplode(',', $categories, TRUE);
+			$categories = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $categories, TRUE);
 		}
 		foreach ($categories as $category) {
 			if ($includeSubCategories) {
-				$subCategories = t3lib_div::trimExplode(',', Tx_News_Service_CategoryService::getChildrenCategories($category, 0, '', TRUE), TRUE);
+				$subCategories = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', Tx_News_Service_CategoryService::getChildrenCategories($category, 0, '', TRUE), TRUE);
 				$subCategoryConstraint = array();
 				$subCategoryConstraint[] = $query->contains('categories', $category);
 				if (count($subCategories) > 0) {
@@ -94,14 +94,14 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	/**
 	 * Returns an array of constraints created from a given demand object.
 	 *
-	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
 	 * @throws UnexpectedValueException
 	 * @throws InvalidArgumentException
 	 * @throws Exception
-	 * @return array<Tx_Extbase_Persistence_QOM_Constraint>
+	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 */
-	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
+	protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
 		$constraints = array();
 
 		if ($demand->getCategories() && $demand->getCategories() !== '0') {
@@ -185,7 +185,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 
 		// storage page
 		if ($demand->getStoragePage() != 0) {
-			$pidList = t3lib_div::intExplode(',', $demand->getStoragePage(), TRUE);
+			$pidList = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $demand->getStoragePage(), TRUE);
 			$constraints[] = $query->in('pid', $pidList);
 		}
 
@@ -232,7 +232,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			/* @var $searchObject Tx_News_Domain_Model_Dto_Search */
 			$searchObject = $demand->getSearch();
 
-			$searchFields = t3lib_div::trimExplode(',', $searchObject->getFields(), TRUE);
+			$searchFields = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $searchObject->getFields(), TRUE);
 			$searchConstraints = array();
 
 			if (count($searchFields) === 0) {
@@ -275,28 +275,28 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 * Returns an array of orderings created from a given demand object.
 	 *
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
-	 * @return array<Tx_Extbase_Persistence_QOM_Constraint>
+	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 */
 	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {
 		$orderings = array();
 		if ($demand->getTopNewsFirst()) {
-			$orderings['istopnews'] = Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING;
+			$orderings['istopnews'] = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING;
 		}
 
 		if (Tx_News_Utility_Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
-			$orderList = t3lib_div::trimExplode(',', $demand->getOrder(), TRUE);
+			$orderList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $demand->getOrder(), TRUE);
 
 			if (!empty($orderList)) {
 				// go through every order statement
 				foreach ($orderList as $orderItem) {
-					list($orderField, $ascDesc) = t3lib_div::trimExplode(' ', $orderItem, TRUE);
+					list($orderField, $ascDesc) = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $orderItem, TRUE);
 					// count == 1 means that no direction is given
 					if ($ascDesc) {
 						$orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
-							Tx_Extbase_Persistence_QueryInterface::ORDER_DESCENDING :
-							Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
+							\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
+							\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING);
 					} else {
-						$orderings[$orderField] = Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING;
+						$orderings[$orderField] = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 					}
 				}
 			}

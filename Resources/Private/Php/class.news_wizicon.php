@@ -40,7 +40,7 @@ class news_pi1_wizicon {
 	 */
 	public function proc($wizardItems) {
 		$wizardItems['plugins_tx_' . self::KEY] = array(
-			'icon'			=> t3lib_extMgm::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.gif',
+			'icon'			=> \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath(self::KEY) . 'Resources/Public/Icons/ce_wiz.gif',
 			'title'			=> $GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pi1_title'),
 			'description'	=> $GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pi1_plus_wiz_description'),
 			'params'		=> '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=' . self::KEY . '_pi1'

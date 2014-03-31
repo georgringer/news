@@ -112,7 +112,7 @@ class Tx_News_Tests_Unit_Controller_NewsBaseControllerTest extends \TYPO3\CMS\Co
 	public function NoNewsFoundConfigurationRedirectsToCorrectPage() {
 		$mockController = $this->getAccessibleMock('Tx_News_Controller_NewsBaseController', array('redirectToUri'));
 
-		$mockUriBuilder = $this->getAccessibleMock('Tx_Extbase_MVC_Web_Routing_UriBuilder');
+		$mockUriBuilder = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder');
 			$mockController->_set('uriBuilder', $mockUriBuilder);
 
 		$mockUriBuilder->expects($this->once())
@@ -129,7 +129,7 @@ class Tx_News_Tests_Unit_Controller_NewsBaseControllerTest extends \TYPO3\CMS\Co
 	public function NoNewsFoundConfigurationRedirectsToCorrectPageAndStatus() {
 		$mockController = $this->getAccessibleMock('Tx_News_Controller_NewsBaseController', array('redirectToUri'));
 
-		$mockUriBuilder = $this->getAccessibleMock('Tx_Extbase_MVC_Web_Routing_UriBuilder');
+		$mockUriBuilder = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder');
 		$mockController->_set('uriBuilder', $mockUriBuilder);
 
 		$mockUriBuilder->expects($this->once())

@@ -49,7 +49,7 @@ class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInte
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'audioplayer-noswfobject.js');
 
 		$inlineJs = '
-			AudioPlayer.setup("' . t3lib_div::getIndpEnv('TYPO3_SITE_URL') . self::PATH_TO_JS . 'audioplayer-player.swf", {
+			AudioPlayer.setup("' . \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . self::PATH_TO_JS . 'audioplayer-player.swf", {
 				width: ' . (int)$width . '
 			});';
 
@@ -57,7 +57,7 @@ class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInte
 
 		$content = '<p id="' . htmlspecialchars($uniqueId) . '">' . htmlspecialchars($element->getCaption()) . '</p>
 					<script type="text/javascript">
-						AudioPlayer.embed(' . t3lib_div::quoteJSvalue($uniqueId) . ', {soundFile: ' . t3lib_div::quoteJSvalue($url) . '});
+						AudioPlayer.embed(' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($uniqueId) . ', {soundFile: ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($url) . '});
 					</script> ';
 
 		return $content;

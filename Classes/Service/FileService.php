@@ -50,16 +50,16 @@ class Tx_News_Service_FileService {
 		if (!isset($urlInfo['scheme'])) {
 
 				// resolve paths like ../
-			$url = t3lib_div::resolveBackPath($url);
+			$url = \TYPO3\CMS\Core\Utility\GeneralUtility::resolveBackPath($url);
 
 				// absolute path is used to check path
-			$absoluteUrl = t3lib_div::getFileAbsFileName($url);
-			if (!t3lib_div::isAllowedAbsPath($absoluteUrl)) {
+			$absoluteUrl = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($url);
+			if (!\TYPO3\CMS\Core\Utility\GeneralUtility::isAllowedAbsPath($absoluteUrl)) {
 				throw new UnexpectedValueException('The path "' . $url . '" is not allowed.');
 			}
 
 				// append current domain
-			$url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $url;
+			$url = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $url;
 		}
 
 		return $url;

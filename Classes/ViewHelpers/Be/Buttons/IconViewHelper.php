@@ -45,7 +45,7 @@
  * @author Georg Ringer <typo3@ringerge.org>
  * @license http://www.gnu.org/copyleft/gpl.html
  */
-class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends Tx_Fluid_ViewHelpers_Be_AbstractBackendViewHelper {
+class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper {
 
 	/**
 	 * Renders an icon link as known from the TYPO3 backend
@@ -57,7 +57,7 @@ class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends Tx_Fluid_ViewHelpers
 	 * @return string the rendered icon link
 	 */
 	public function render($icon = 'closedok', $uri = '', $title = '', $onclick = '') {
-		$icon = t3lib_iconWorks::getSpriteIcon($icon, array('title' => $title));
+		$icon = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIcon($icon, array('title' => $title));
 
 		if (empty($uri) && empty($onclick)) {
 			$content = $icon;

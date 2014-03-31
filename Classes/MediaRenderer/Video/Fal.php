@@ -42,9 +42,9 @@ class Tx_News_MediaRenderer_Video_Fal implements Tx_News_MediaRenderer_FalMediaI
 	 * @return string
 	 */
 	public function render(Tx_News_Domain_Model_FileReference $element, $width, $height, $templateFile = '' ) {
-		$view = t3lib_div::makeInstance('Tx_Fluid_View_StandaloneView');
+		$view = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Fluid_View_StandaloneView');
 		if (!$templateFile || !is_readable($templateFile)) {
-			$view->setTemplatePathAndFilename(t3lib_extMgm::extPath('news') . 'Resources/Private/Templates/ViewHelpers/Flv.html');
+			$view->setTemplatePathAndFilename(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news') . 'Resources/Private/Templates/ViewHelpers/Flv.html');
 		} else {
 			$view->setTemplatePathAndFilename($templateFile);
 		}

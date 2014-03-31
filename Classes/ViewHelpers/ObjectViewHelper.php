@@ -45,7 +45,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_ObjectViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Output different objects
@@ -64,9 +64,9 @@ class Tx_News_ViewHelpers_ObjectViewHelper extends Tx_Fluid_Core_ViewHelper_Abst
 			$GLOBALS['TSFE']->sys_language_content,
 			$GLOBALS['TSFE']->sys_language_contentOL);
 
-		$objectManager = t3lib_div::makeInstance('Tx_Extbase_Object_ObjectManager');
-		/* @var $dataMapper Tx_Extbase_Persistence_Mapper_DataMapper */
-		$dataMapper = $objectManager->get('Tx_Extbase_Persistence_Mapper_DataMapper');
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		/* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
+		$dataMapper = $objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Mapper\\DataMapper');
 
 		$records = $dataMapper->map($className, array($rawRecord));
 		$record = array_shift($records);

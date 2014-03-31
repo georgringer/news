@@ -74,12 +74,12 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\
 		$actualResult = $viewHelper->render($newsItem, 'abcdef', 'http://typo3.org/dummy/fobar.html');
 
 		$expectedCode = '<script type="text/javascript">
-					var disqus_shortname = ' . t3lib_div::quoteJSvalue('abcdef', TRUE) . ';
-					var disqus_identifier = ' . t3lib_div::quoteJSvalue('news_' . $newUid, TRUE) . ';
-					var disqus_url = ' . t3lib_div::quoteJSvalue('http://typo3.org/dummy/fobar.html') . ';
-					var disqus_title = ' . t3lib_div::quoteJSvalue('fobar', TRUE) . ';
+					var disqus_shortname = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue('abcdef', TRUE) . ';
+					var disqus_identifier = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue('news_' . $newUid, TRUE) . ';
+					var disqus_url = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue('http://typo3.org/dummy/fobar.html') . ';
+					var disqus_title = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue('fobar', TRUE) . ';
 					var disqus_config = function () {
-						this.language = ' . t3lib_div::quoteJSvalue($language) . ';
+						this.language = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($language) . ';
 					};
 
 					(function() {

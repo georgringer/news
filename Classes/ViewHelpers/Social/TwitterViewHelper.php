@@ -39,7 +39,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_News_ViewHelpers_Social_TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
 	 * @var Tx_News_Service_SettingsService
@@ -106,7 +106,7 @@ class Tx_News_ViewHelpers_Social_TwitterViewHelper extends Tx_Fluid_Core_ViewHel
 
 			// Social interaction Google Analytics
 		if ($this->pluginSettingsService->getByPath('analytics.social.twitter') == 1) {
-			$code .= t3lib_div::wrapJS("
+			$code .= \TYPO3\CMS\Core\Utility\GeneralUtility::wrapJS("
 				twttr.events.bind('tweet', function(event) {
 				  if (event) {
 				    var targetUrl;

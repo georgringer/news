@@ -29,7 +29,7 @@
  * @subpackage tx_news
  * @deprecated Use Tx_Fluid_ViewHelpers_Format_HtmlspecialcharsViewHelper
  */
-class Tx_News_ViewHelpers_Format_HscViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Format_HscViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Render content with htmlspecialchars
@@ -42,7 +42,7 @@ class Tx_News_ViewHelpers_Format_HscViewHelper extends Tx_Fluid_Core_ViewHelper_
 			$message = 'EXT:news: Since TYPO3 4.6.0, a native ViewHelper for htmlspecialchars() ' .
 			'is available, use f:format.htmlspecialchars instead of n:format.hsc';
 
-			t3lib_div::deprecationLog($message);
+			\TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog($message);
 		}
 		return htmlspecialchars($this->renderChildren());
 	}

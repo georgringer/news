@@ -45,7 +45,7 @@
  * @subpackage tx_news
  * @see http://de.php.net/manual/de/function.strip-tags.php
  */
-class Tx_News_ViewHelpers_Format_StriptagsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Format_StriptagsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	protected $escapingInterceptorEnabled = FALSE;
 

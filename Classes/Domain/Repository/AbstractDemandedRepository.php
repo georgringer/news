@@ -29,36 +29,36 @@
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
-	extends Tx_Extbase_Persistence_Repository
+	extends \TYPO3\CMS\Extbase\Persistence\Repository
 	implements Tx_News_Domain_Repository_DemandedRepositoryInterface {
 
 	/**
-	 * @var Tx_Extbase_Persistence_Storage_BackendInterface
+	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface
 	 */
 	protected $storageBackend;
 	/**
-	 * @param Tx_Extbase_Persistence_Storage_BackendInterface $storageBackend
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
 	 * @return void
 	 */
-	public function injectStorageBackend(Tx_Extbase_Persistence_Storage_BackendInterface $storageBackend) {
+	public function injectStorageBackend(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend) {
 		$this->storageBackend = $storageBackend;
 	}
 
 	/**
 	 * Returns an array of constraints created from a given demand object.
 	 *
-	 * @param Tx_Extbase_Persistence_QueryInterface $query
+	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
-	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
+	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 * @abstract
 	 */
-	abstract protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand);
+	abstract protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand);
 
 	/**
 	 * Returns an array of orderings created from a given demand object.
 	 *
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
-	 * @return array<Tx_Extbase_Persistence_QOM_Constrain>
+	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 * @abstract
 	 */
 	abstract protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand);
@@ -68,7 +68,7 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	 *
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
 	 * @param boolean $respectEnableFields
-	 * @return Tx_Extbase_Persistence_QueryResultInterface
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
 	public function findDemanded(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
 		$query = $this->generateQuery($demand, $respectEnableFields);
@@ -162,7 +162,7 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 				'constraints' => &$constraints,
 			);
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] as $reference) {
-				t3lib_div::callUserFunction($reference, $params, $this);
+				\TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
 			}
 		}
 
@@ -199,7 +199,7 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	 * Returns the total number objects of this repository matching the demand.
 	 *
 	 * @param Tx_News_Domain_Model_DemandInterface $demand
-	 * @return Tx_Extbase_Persistence_QueryResultInterface
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
 	public function countDemanded(Tx_News_Domain_Model_DemandInterface $demand) {
 		$query = $this->createQuery();

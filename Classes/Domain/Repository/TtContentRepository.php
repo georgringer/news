@@ -28,7 +28,7 @@
  * @subpackage tx_news
  * @author Juerg Langhard <langhard@greenbanana.ch>
  */
-class Tx_News_Domain_Repository_TtContentRepository extends Tx_Extbase_Persistence_Repository {
+class Tx_News_Domain_Repository_TtContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	protected $objectType = 'Tx_News_Domain_Model_TtContent';
 }

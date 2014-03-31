@@ -31,7 +31,7 @@
 class Tx_News_Service_CacheService {
 
 	/**
-	 * @var t3lib_cache_frontend_AbstractFrontend
+	 * @var \TYPO3\CMS\Core\Cache\Frontend\AbstractFrontend
 	 */
 	protected $cacheInstance;
 
@@ -88,10 +88,10 @@ class Tx_News_Service_CacheService {
 	 * @return void
 	 */
 	protected function initializeCache() {
-		t3lib_cache::initializeCachingFramework();
+		\TYPO3\CMS\Core\Cache\Cache::initializeCachingFramework();
 		try {
 			$this->cacheInstance = $GLOBALS['typo3CacheManager']->getCache($this->cacheName);
-		} catch (t3lib_cache_exception_NoSuchCache $e) {
+		} catch (\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
 			$this->cacheInstance = $GLOBALS['typo3CacheFactory']->create(
 							$this->cacheName,
 							$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$this->cacheName]['frontend'],

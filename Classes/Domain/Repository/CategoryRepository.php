@@ -30,7 +30,7 @@
  */
 class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository {
 
-	protected function createConstraintsFromDemand(Tx_Extbase_Persistence_QueryInterface $query,
+	protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query,
 		Tx_News_Domain_Model_DemandInterface $demand) {}
 
 	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {}
@@ -40,7 +40,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 *
 	 * @param string $importSource import source
 	 * @param integer $importId import id
-	 * @return Tx_Extbase_Persistence_QueryInterface
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
 	 */
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();
@@ -58,7 +58,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 * Find categories by a given pid
 	 *
 	 * @param integer $pid pid
-	 * @return Tx_Extbase_Persistence_QueryInterface
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
 	 */
 	public function findParentCategoriesByPid($pid) {
 		$query = $this->createQuery();
@@ -74,11 +74,11 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 * Find category tree
 	 *
 	 * @param array $rootIdList list of id s
-	 * @return Tx_Extbase_Persistence_QueryInterface
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
 	 */
 	public function findTree(array $rootIdList) {
 		$subCategories = Tx_News_Service_CategoryService::getChildrenCategories(implode(',',$rootIdList));
-		$ordering = array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING);
+		$ordering = array('sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING);
 
 		$categories = $this->findByIdList(explode(',',$subCategories), $ordering);
 		$flatCategories = array();
@@ -114,7 +114,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 *
 	 * @param array $idList list of id s
 	 * @param array $ordering ordering
-	 * @return Tx_Extbase_Persistence_QueryInterface
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
 	 */
 	public function findByIdList(array $idList, array $ordering = array()) {
 		$query = $this->createQuery();
@@ -135,7 +135,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 * Find categories by a given parent
 	 *
 	 * @param integer $parent parent
-	 * @return Tx_Extbase_Persistence_QueryInterface
+	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
 	 */
 	public function findChildren($parent) {
 		$query = $this->createQuery();
@@ -175,8 +175,8 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 		$sysLanguage = 0;
 		if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
 			$sysLanguage = $GLOBALS['TSFE']->sys_language_content;
-		} elseif (intval(t3lib_div::_GP('L'))) {
-			$sysLanguage = intval(t3lib_div::_GP('L'));
+		} elseif (intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('L'))) {
+			$sysLanguage = intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('L'));
 		}
 
 		return $sysLanguage;

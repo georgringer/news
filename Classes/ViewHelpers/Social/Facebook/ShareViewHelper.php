@@ -34,7 +34,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
 	 * @var Tx_News_Service_SettingsService
@@ -83,7 +83,7 @@ class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends Tx_Fluid_Core_
 			$this->tag->addAttribute('type', 'button_count');
 		}
 
-		$shareUrl = empty($this->arguments['shareurl']) ? t3lib_div::getIndpEnv('TYPO3_REQUEST_URL') : $this->arguments['shareurl'];
+		$shareUrl = empty($this->arguments['shareurl']) ? \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL') : $this->arguments['shareurl'];
 		$this->tag->addAttribute('share_url', $shareUrl);
 		$this->tag->removeAttribute('shareurl');
 
@@ -97,7 +97,7 @@ class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends Tx_Fluid_Core_
 
 			// Social interaction Google Analytics
 		if ($this->pluginSettingsService->getByPath('analytics.social.facebookShare') == 1) {
-			$code .= t3lib_div::wrapJS("
+			$code .= \TYPO3\CMS\Core\Utility\GeneralUtility::wrapJS("
 				FB.Event.subscribe('message.send', function(targetUrl) {
 				  _gaq.push(['_trackSocial', 'facebook', 'send', targetUrl]);
 				});

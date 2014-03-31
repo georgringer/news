@@ -37,8 +37,8 @@ class Tx_News_Utility_Url {
 	 * @return string
 	 */
 	public static function prependDomain($url) {
-		if (!t3lib_div::isFirstPartOfStr($url, t3lib_div::getIndpEnv('TYPO3_SITE_URL'))) {
-			$url =  t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $url;
+		if (!\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($url, \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
+			$url =  \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $url;
 		}
 
 		return $url;

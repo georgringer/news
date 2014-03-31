@@ -46,20 +46,20 @@ class Tx_News_Utility_Validation {
 			return FALSE;
 		}
 
-		$fields = t3lib_div::trimExplode(',', $fieldToCheck, TRUE);
+		$fields = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $fieldToCheck, TRUE);
 		foreach ($fields as $field) {
 			if ($isValid === TRUE) {
-				$split = t3lib_div::trimExplode(' ', $field, TRUE);
+				$split = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $field, TRUE);
 				$count = count($split);
 				switch ($count) {
 					case 1:
-						if (!t3lib_div::inList($allowedSettings, $split[0])) {
+						if (!\TYPO3\CMS\Core\Utility\GeneralUtility::inList($allowedSettings, $split[0])) {
 							$isValid = FALSE;
 						}
 						break;
 					case 2:
 						if ((strtolower($split[1]) !== 'desc' && strtolower($split[1]) !== 'asc') ||
-							!t3lib_div::inList($allowedSettings, $split[0])) {
+							!\TYPO3\CMS\Core\Utility\GeneralUtility::inList($allowedSettings, $split[0])) {
 							$isValid = FALSE;
 						}
 						break;

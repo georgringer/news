@@ -73,12 +73,12 @@ class Tx_News_Hooks_CmsLayout {
 		}
 
 		if ($params['row']['list_type'] == self::KEY . '_pi1') {
-			$this->flexformData = t3lib_div::xml2array($params['row']['pi_flexform']);
+			$this->flexformData = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($params['row']['pi_flexform']);
 
 			// if flexform data is found
 			$actions = $this->getFieldFromFlexform('switchableControllerActions');
 			if (!empty($actions)) {
-				$actionList = t3lib_div::trimExplode(';', $actions);
+				$actionList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(';', $actions);
 
 				// translate the first action into its translation
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
@@ -166,30 +166,30 @@ class Tx_News_Hooks_CmsLayout {
 			$newsRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'deleted=0 AND uid=' . $singleNewsRecord);
 
 			if (is_array($newsRecord)) {
-				$pageRecord = t3lib_BEfunc::getRecord('pages', $newsRecord['pid']);
+				$pageRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('pages', $newsRecord['pid']);
 
 				if (is_array($pageRecord)) {
-					$iconPage = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
-					$iconNews = t3lib_iconWorks::getSpriteIconForRecord('tx_news_domain_model_news', $newsRecord, array('title' => 'Uid: ' . $newsRecord['uid']));
+					$iconPage = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
+					$iconNews = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord('tx_news_domain_model_news', $newsRecord, array('title' => 'Uid: ' . $newsRecord['uid']));
 
 					$onClickPage = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'], 1, '', '+info,edit,view', TRUE);
 					$onClickNews = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($iconNews, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
 
 					$content = '<a href="#" onclick="' . htmlspecialchars($onClickPage) . '">' . $iconPage . '</a>' .
-						htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord)) . ': ' .
+						htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('pages', $pageRecord)) . ': ' .
 						'<a href="#" onclick="' . htmlspecialchars($onClickNews) . '">' .
-						$iconNews . htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
+						$iconNews . htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
 						'</a>';
 				} else {
-					/** @var $message t3lib_FlashMessage */
+					/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
 					$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $newsRecord['pid']);
-					$message = t3lib_div::makeInstance('t3lib_FlashMessage', $text, '', t3lib_FlashMessage::WARNING);
+					$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 					$content = $message->render();
 				}
 			} else {
-				/** @var $message t3lib_FlashMessage */
+				/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
 				$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.newsNotAvailable', TRUE), $singleNewsRecord);
-				$message = t3lib_div::makeInstance('t3lib_FlashMessage', $text, '', t3lib_FlashMessage::WARNING);
+				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 				$content = $message->render();
 			}
 
@@ -234,18 +234,18 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return string
 	 */
 	protected function getPageRecordData($detailPid) {
-		$pageRecord = t3lib_BEfunc::getRecord('pages', $detailPid);
+		$pageRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('pages', $detailPid);
 
 		if (is_array($pageRecord)) {
-			$icon = t3lib_iconWorks::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
+			$icon = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
 			$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'pages', $pageRecord['uid'], 1, '', '+info,edit', TRUE);
 
 			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
-				htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $pageRecord));
+				htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('pages', $pageRecord));
 		} else {
-			/** @var $message t3lib_FlashMessage */
+			/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
 			$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $detailPid);
-			$message = t3lib_div::makeInstance('t3lib_FlashMessage', $text, '', t3lib_FlashMessage::WARNING);
+			$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 			$content = $message->render();
 		}
 
@@ -323,7 +323,7 @@ class Tx_News_Hooks_CmsLayout {
 		$categoryMode = '';
 		$categoriesOut = array();
 
-		$categories = t3lib_div::intExplode(',', $this->getFieldFromFlexform('settings.categories'), TRUE);
+		$categories = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.categories'), TRUE);
 		if (count($categories) > 0) {
 
 			// Category mode
@@ -347,7 +347,7 @@ class Tx_News_Hooks_CmsLayout {
 			);
 
 			foreach ($rawCategoryRecords as $record) {
-				$categoriesOut[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('sys_category', $record));
+				$categoriesOut[] = htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('sys_category', $record));
 			}
 
 			$includeSubcategories = $this->getFieldFromFlexform('settings.includeSubCategories');
@@ -369,7 +369,7 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return void
 	 */
 	protected function getTagRestrictionSetting() {
-		$tags = t3lib_div::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'additional'), TRUE);
+		$tags = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'additional'), TRUE);
 		if (count($tags) === 0) {
 			return;
 		}
@@ -381,7 +381,7 @@ class Tx_News_Hooks_CmsLayout {
 			'deleted=0 AND uid IN(' . implode(',', $tags) . ')'
 		);
 		foreach ($rawTagRecords as $record) {
-			$categoryTitles[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('tx_news_domain_model_tag', $record));
+			$categoryTitles[] = htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('tx_news_domain_model_tag', $record));
 		}
 
 		$this->tableData[] = array(
@@ -517,11 +517,11 @@ class Tx_News_Hooks_CmsLayout {
 			$rawPagesRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 				'*',
 				'pages',
-				'deleted=0 AND uid IN(' . implode(',', t3lib_div::intExplode(',', $value, TRUE)) . ')'
+				'deleted=0 AND uid IN(' . implode(',', \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $value, TRUE)) . ')'
 			);
 
 			foreach ($rawPagesRecords as $page) {
-				$pagesOut[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $page)) . '<small> (' . $page['uid'] . ')</small>';
+				$pagesOut[] = htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('pages', $page)) . '<small> (' . $page['uid'] . ')</small>';
 			}
 
 			$recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');

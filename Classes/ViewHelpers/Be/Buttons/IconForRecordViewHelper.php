@@ -36,7 +36,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Be_Buttons_IconForRecordViewHelper extends Tx_Fluid_ViewHelpers_Be_AbstractBackendViewHelper {
+class Tx_News_ViewHelpers_Be_Buttons_IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper {
 
 	/**
 	 * Render the sprite icon
@@ -48,9 +48,9 @@ class Tx_News_ViewHelpers_Be_Buttons_IconForRecordViewHelper extends Tx_Fluid_Vi
 	 */
 	public function render($table, $uid, $title) {
 		$icon = '';
-		$row = t3lib_BEfunc::getRecord($table, $uid);
+		$row = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord($table, $uid);
 		if (is_array($row)) {
-			$icon = t3lib_iconWorks::getSpriteIconForRecord($table, $row, array('title' => htmlspecialchars($title)));
+			$icon = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord($table, $row, array('title' => htmlspecialchars($title)));
 		}
 
 		return $icon;

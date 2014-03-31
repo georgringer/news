@@ -30,7 +30,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Social_DisqusViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Social_DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	protected $escapingInterceptorEnabled = FALSE;
 
@@ -59,12 +59,12 @@ class Tx_News_ViewHelpers_Social_DisqusViewHelper extends Tx_Fluid_Core_ViewHelp
 		$tsSettings = $this->pluginSettingsService->getSettings();
 
 		$code = '<script type="text/javascript">
-					var disqus_shortname = ' . t3lib_div::quoteJSvalue($shortName, TRUE) . ';
+					var disqus_shortname = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($shortName, TRUE) . ';
 					var disqus_identifier = \'news_' . $newsItem->getUid() . '\';
-					var disqus_url = ' . t3lib_div::quoteJSvalue($link, TRUE) . ';
-					var disqus_title = ' . t3lib_div::quoteJSvalue($newsItem->getTitle(), TRUE) . ';
+					var disqus_url = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($link, TRUE) . ';
+					var disqus_title = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($newsItem->getTitle(), TRUE) . ';
 					var disqus_config = function () {
-						this.language = ' . t3lib_div::quoteJSvalue($tsSettings['disqusLocale']) . ';
+						this.language = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($tsSettings['disqusLocale']) . ';
 					};
 
 					(function() {

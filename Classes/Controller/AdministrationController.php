@@ -50,7 +50,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	protected $categoryRepository;
 
 	/**
-	 * @var Tx_Extbase_Configuration_ConfigurationManagerInterface
+	 * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
 	 */
 	protected $configurationManager;
 
@@ -60,7 +60,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 * @return void
 	 */
 	public function initializeAction() {
-		$this->pageUid = (int)t3lib_div::_GET('id');
+		$this->pageUid = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id');
 		$this->setTsConfig();
 		parent::initializeAction();
 	}
@@ -94,7 +94,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 				unset($this->tsConfiguration['preselect.']['orderByAllowed']);
 
 				foreach ($this->tsConfiguration['preselect.'] as $propertyName => $propertyValue) {
-					Tx_Extbase_Reflection_ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+					\TYPO3\CMS\Extbase\Reflection\ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
 				}
 			}
 		}
@@ -192,17 +192,17 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	private function countRecordsOnPage(array &$row) {
 		$pageUid = (int)$row['row']['uid'];
 
-		/* @var $db t3lib_DB */
+		/* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
 		$db = $GLOBALS['TYPO3_DB'];
 
 		$row['countNews'] = $db->exec_SELECTcountRows(
 			'*',
 			'tx_news_domain_model_news',
-			'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('tx_news_domain_model_news'));
+			'pid=' . $pageUid . \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('tx_news_domain_model_news'));
 		$row['countCategories'] = $db->exec_SELECTcountRows(
 			'*',
 			'sys_category',
-			'pid=' . $pageUid . t3lib_BEfunc::BEenableFields('sys_category'));
+			'pid=' . $pageUid . \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('sys_category'));
 
 		$row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
 	}
@@ -227,7 +227,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		$returnUrl = 'mod.php?M=web_NewsTxNewsM2&id=' . $this->pageUid;
 		$url = 'alt_doc.php?edit[' . $table . '][' . $pid . ']=new&returnUrl=' . urlencode($returnUrl);
 
-		t3lib_utility_Http::redirect($url);
+		\TYPO3\CMS\Core\Utility\HttpUtility::redirect($url);
 	}
 
 	/**
@@ -236,7 +236,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 * @return void
 	 */
 	protected function setTsConfig() {
-		$tsConfig = t3lib_BEfunc::getPagesTSconfig($this->pageUid);
+		$tsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($this->pageUid);
 		if (isset($tsConfig['tx_news.']['module.']) && is_array($tsConfig['tx_news.']['module.'])) {
 			$this->tsConfiguration = $tsConfig['tx_news.']['module.'];
 		}
@@ -251,7 +251,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	protected function redirectToPageOnStart() {
 		if ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
 			$url = 'mod.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'];
-			t3lib_utility_Http::redirect($url);
+			\TYPO3\CMS\Core\Utility\HttpUtility::redirect($url);
 		}
 	}
 }

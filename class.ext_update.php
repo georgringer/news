@@ -229,7 +229,8 @@ class ext_update {
 			'tt_content',
 			'CType=\'list\' AND list_type=\'' . $pluginName . '\'');
 
-		$flexformTools = GeneralUtility::makeInstance('t3lib_flexformtools');
+		/** @var \TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools $flexformTools */
+		$flexformTools = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\FlexForm\\FlexFormTools');
 
 		while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
 

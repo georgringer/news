@@ -34,10 +34,10 @@
  * </output>
  *
  */
-class Tx_News_ViewHelpers_IfIsActiveViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractConditionViewHelper {
+class Tx_News_ViewHelpers_IfIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
 
 	public function render(Tx_News_Domain_Model_News $newsItem) {
-		$vars = t3lib_div::_GET('tx_news_pi1');
+		$vars = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('tx_news_pi1');
 
 		if (isset($vars['news']) && (int)$newsItem->getUid() === (int)$vars['news']) {
 			return $this->renderThenChild();

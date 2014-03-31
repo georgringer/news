@@ -24,7 +24,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_Dto_Search extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_News_Domain_Model_Dto_Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Basic search word

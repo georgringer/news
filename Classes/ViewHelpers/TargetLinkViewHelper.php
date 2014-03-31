@@ -29,7 +29,7 @@
  * A link to the page with uid 123 and target set to "_blank"
  * </output>
  */
-class Tx_News_ViewHelpers_TargetLinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_TargetLinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns the correct target of a typolink

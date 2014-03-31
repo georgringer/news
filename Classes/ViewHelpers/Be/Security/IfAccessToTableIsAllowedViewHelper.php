@@ -33,7 +33,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractConditionViewHelper {
+class Tx_News_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
 
 	/**
 	 * Renders <f:then> child if BE user is allowed to edit given table, otherwise renders <f:else> child.
@@ -43,7 +43,7 @@ class Tx_News_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHelper extends
 	 * @api
 	 */
 	public function render($table) {
-		if ($GLOBALS['BE_USER']->isAdmin() || t3lib_div::inList($GLOBALS['BE_USER']->groupData['tables_modify'], $table)) {
+		if ($GLOBALS['BE_USER']->isAdmin() || \TYPO3\CMS\Core\Utility\GeneralUtility::inList($GLOBALS['BE_USER']->groupData['tables_modify'], $table)) {
 			return $this->renderThenChild();
 		}
 		return $this->renderElseChild();

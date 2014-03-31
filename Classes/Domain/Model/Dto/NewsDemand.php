@@ -30,7 +30,7 @@
  * @subpackage tx_news
  */
 class Tx_News_Domain_Model_Dto_NewsDemand
-	extends Tx_Extbase_DomainObject_AbstractEntity implements Tx_News_Domain_Model_DemandInterface {
+	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implements Tx_News_Domain_Model_DemandInterface {
 
 	/**
 	 * @var string
@@ -52,7 +52,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	 */
 	protected $author;
 
-	/** @var Tx_Extbase_Persistence_ObjectStorage */
+	/** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage */
 	protected $tags;
 
 	/**
@@ -208,7 +208,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * Get Tags
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
 	public function getTags() {
 		return $this->tags;
@@ -217,7 +217,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * Set Tags
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage $tags tags
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags tags
 	 * @return void
 	 */
 	public function setTags($tags) {

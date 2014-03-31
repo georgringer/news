@@ -23,17 +23,17 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_News_Controller_NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * Initializes the view before invoking an action method.
 	 * Override this method to solve assign variables common for all actions
 	 * or prepare the view in another way before the action is called.
 	 *
-	 * @param Tx_Extbase_MVC_View_ViewInterface $view The view to be initialized
+	 * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view The view to be initialized
 	 * @return void
 	 */
-	protected function initializeView(Tx_Extbase_MVC_View_ViewInterface $view) {
+	protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view) {
 		$view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
 		$view->assign('emConfiguration', Tx_News_Utility_EmConfiguration::getSettings());
 	}
@@ -51,7 +51,7 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 			return;
 		}
 
-		$configuration = t3lib_div::trimExplode(',', $configuration, TRUE);
+		$configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $configuration, TRUE);
 
 		switch ($configuration[0]) {
 			case 'redirectToListView':
@@ -65,7 +65,7 @@ class Tx_News_Controller_NewsBaseController extends Tx_Extbase_MVC_Controller_Ac
 				$this->uriBuilder->reset();
 				$this->uriBuilder->setTargetPageUid($configuration[1]);
 				$this->uriBuilder->setCreateAbsoluteUri(TRUE);
-				if (t3lib_div::getIndpEnv('TYPO3_SSL')) {
+				if (\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SSL')) {
 					$this->uriBuilder->setAbsoluteUriScheme('https');
 				}
 				$url = $this->uriBuilder->build();

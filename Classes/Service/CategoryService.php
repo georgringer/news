@@ -36,7 +36,7 @@ class Tx_News_Service_CategoryService {
 	 * @return string comma separated list of category ids
 	 */
 	public static function getChildrenCategories($idList, $counter = 0, $additionalWhere = '', $removeGivenIdListFromResult = FALSE) {
-		$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
+		$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
 		$cacheIdentifier = sha1('children' . $idList);
 
 		$entry = $cache->get($cacheIdentifier);
@@ -60,8 +60,8 @@ class Tx_News_Service_CategoryService {
 	 * @return string
 	 */
 	public static function removeValuesFromString($result, $toBeRemoved) {
-		$resultAsArray = t3lib_div::trimExplode(',', $result, TRUE);
-		$idListAsArray = t3lib_div::trimExplode(',', $toBeRemoved, TRUE);
+		$resultAsArray = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $result, TRUE);
+		$idListAsArray = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $toBeRemoved, TRUE);
 
 		$result = implode(',', array_diff($resultAsArray, $idListAsArray));
 		return $result;
@@ -76,7 +76,7 @@ class Tx_News_Service_CategoryService {
 	 * @return string comma separated list of category ids
 	 */
 	public static function getRootline($id, $additionalWhere = '') {
-		$cache = t3lib_div::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
+		$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
 		$cacheIdentifier = sha1('rootline' . $id);
 
 		$entry = $cache->get($cacheIdentifier);

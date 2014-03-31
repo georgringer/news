@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity {
+class Tx_News_Domain_Model_Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	const MEDIA_TYPE_IMAGE = 0;
 	const MEDIA_TYPE_MULTIMEDIA = 1;

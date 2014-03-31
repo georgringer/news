@@ -109,7 +109,7 @@ class Tx_News_Tests_Unit_ViewHelpers_MetaTagViewHelperTest extends \TYPO3\CMS\Fl
 		$this->viewHelper->_set('tag', $mockTagBuilder);
 		$this->viewHelper->initialize();
 		$this->viewHelper->render(TRUE);
-		$this->assertEquals($this->pageRenderer->_get('metaTags'), array('<meta property="title" content="' . t3lib_div::getIndpEnv('TYPO3_REQUEST_URL') . '" />'));
+		$this->assertEquals($this->pageRenderer->_get('metaTags'), array('<meta property="title" content="' . \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL') . '" />'));
 	}
 
 	/**
@@ -123,6 +123,6 @@ class Tx_News_Tests_Unit_ViewHelpers_MetaTagViewHelperTest extends \TYPO3\CMS\Fl
 		$this->viewHelper->_set('tag', $mockTagBuilder);
 		$this->viewHelper->initialize();
 		$this->viewHelper->render(TRUE, TRUE);
-		$this->assertEquals($this->pageRenderer->_get('metaTags'), array('<meta property="title" content="' . t3lib_div::getIndpEnv('TYPO3_SITE_URL') . '" />'));
+		$this->assertEquals($this->pageRenderer->_get('metaTags'), array('<meta property="title" content="' . \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . '" />'));
 	}
 }

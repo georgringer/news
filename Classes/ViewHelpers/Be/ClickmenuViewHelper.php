@@ -33,7 +33,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Render the clickmenu
@@ -58,7 +58,7 @@ class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends Tx_Fluid_Core_ViewHelpe
 		$enDisItems = '';
 		$returnOnClick = FALSE;
 
-		$backPath = rawurlencode($GLOBALS['BACK_PATH']) . '|' . t3lib_div::shortMD5($GLOBALS['BACK_PATH'] . '|' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']);
+		$backPath = rawurlencode($GLOBALS['BACK_PATH']) . '|' . \TYPO3\CMS\Core\Utility\GeneralUtility::shortMD5($GLOBALS['BACK_PATH'] . '|' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']);
 		$onClick = 'showClickmenu("' . $table . '","' . $uid . '","' . $listFr . '","' . str_replace('+', '%2B', $enDisItems) . '","' . str_replace('&', '&amp;', addcslashes($backPath, '"')) . '","' . str_replace('&', '&amp;', addcslashes($addParams, '"')) . '");return false;';
 		return $returnOnClick ? $onClick : '<a href="#" onclick="' . htmlspecialchars($onClick) . '" oncontextmenu="' . htmlspecialchars($onClick) . '">' . $str . '</a>';
 	}

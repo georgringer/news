@@ -37,7 +37,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Widget_PaginateViewHelper extends Tx_Fluid_Core_Widget_AbstractWidgetViewHelper {
+class Tx_News_ViewHelpers_Widget_PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper {
 
 	/**
 	 * @var Tx_News_ViewHelpers_Widget_Controller_PaginateController
@@ -57,14 +57,14 @@ class Tx_News_ViewHelpers_Widget_PaginateViewHelper extends Tx_Fluid_Core_Widget
 	/**
 	 * Render everything
 	 *
-	 * @param Tx_Extbase_Persistence_QueryResultInterface $objects
+	 * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects
 	 * @param string $as
 	 * @param mixed $configuration
 	 * @param array $initial
 	 * @internal param array $initial
 	 * @return string
 	 */
-	public function render(Tx_Extbase_Persistence_QueryResultInterface $objects, $as, $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE), $initial = array()) {
+	public function render(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects, $as, $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE), $initial = array()) {
 		return $this->initiateSubRequest();
 	}
 }
