@@ -60,7 +60,7 @@ class Tx_News_Hooks_Labels {
 	 */
 	public function getUserLabelMedia(array &$params) {
 		$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
-		$title = $typeInfo = $additionalHtmlContent = '';
+		$typeInfo = $additionalHtmlContent = '';
 
 		$type = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.type.I.' . $params['row']['type']);
 

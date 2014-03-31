@@ -33,7 +33,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ext_update {
 
-	const FOLDER_CategoryImages = '/_migrated/news_categories';
+	const FOLDER_CATEGORY_IMAGES = '/_migrated/news_categories';
 
 	/**
 	 * Array of flash messages (params) array[][status,title,message]
@@ -576,9 +576,9 @@ class ext_update {
 				throw new \Exception('No default storage set!');
 			}
 			try {
-				$this->categoryImageFolder = $storage->getFolder(self::FOLDER_CategoryImages);
+				$this->categoryImageFolder = $storage->getFolder(self::FOLDER_CATEGORY_IMAGES);
 			} catch (\TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException $exception) {
-				$this->categoryImageFolder = $storage->createFolder(self::FOLDER_CategoryImages);
+				$this->categoryImageFolder = $storage->createFolder(self::FOLDER_CATEGORY_IMAGES);
 			}
 		}
 		return $this->categoryImageFolder;

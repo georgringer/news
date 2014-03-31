@@ -507,7 +507,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	 * @param Tx_News_Domain_Model_Dto_Search $search search object
 	 * @return void
 	 */
-	public function setSearch($search) {
+	public function setSearch($search = NULL) {
 		$this->search = $search;
 	}
 

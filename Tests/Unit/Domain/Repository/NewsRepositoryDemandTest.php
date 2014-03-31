@@ -60,7 +60,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 
 		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
-		$demand->setIsDummyRecord(1);
+		$demand->setIsDummyRecord(TRUE);
 		$demand->setStoragePage($pid);
 
 			// create some dummy records
@@ -100,7 +100,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 
 		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
-		$demand->setIsDummyRecord(1);
+		$demand->setIsDummyRecord(TRUE);
 		$demand->setStoragePage($pid);
 
 			// create some dummy records
@@ -148,7 +148,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 
 		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
-		$demand->setIsDummyRecord(1);
+		$demand->setIsDummyRecord(TRUE);
 		$demand->setStoragePage($pid);
 
 			// create some dummy records
@@ -204,7 +204,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 
 		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
-		$demand->setIsDummyRecord(1);
+		$demand->setIsDummyRecord(TRUE);
 		$demand->setStoragePage($pid);
 		$demand->setMonth(4);
 		$demand->setYear(2011);
@@ -223,7 +223,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 
 		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
-		$demand->setIsDummyRecord(1);
+		$demand->setIsDummyRecord(TRUE);
 		$demand->setStoragePage($pid);
 
 			// create some dummy records
@@ -271,7 +271,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 
 		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
-		$demand->setIsDummyRecord(1);
+		$demand->setIsDummyRecord(TRUE);
 
 		$pidList = array(94,94,95,96,96,97);
 		foreach ($pidList as $pid) {

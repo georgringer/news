@@ -248,7 +248,11 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function tagsCanBeSet() {
-		$tags = '123';
+		$tags = new Tx_Extbase_Persistence_ObjectStorage();
+
+		$tag = new Tx_News_Domain_Model_Tag();
+		$tag->setTitle('Tag');
+		$tags->attach($tags);
 		$this->newsDomainModelInstance->setTags($tags);
 		$this->assertEquals($tags, $this->newsDomainModelInstance->getTags());
 	}
@@ -260,7 +264,11 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function contentElementsCanBeSet() {
-		$ce = '12,34';
+		$ce = new Tx_Extbase_Persistence_ObjectStorage();
+
+		$item = new SplObjectStorage();
+		$ce->attach($item);
+
 		$this->newsDomainModelInstance->setContentElements($ce);
 		$this->assertEquals($ce, $this->newsDomainModelInstance->getContentElements());
 	}

@@ -200,7 +200,7 @@ class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnti
 	/**
 	 * Get Hidden
 	 *
-	 * @return integer
+	 * @return boolean
 	 */
 	public function getHidden() {
 		return $this->hidden;
@@ -209,7 +209,7 @@ class Tx_News_Domain_Model_Category extends Tx_Extbase_DomainObject_AbstractEnti
 	/**
 	 * Set Hidden
 	 *
-	 * @param integer $hidden
+	 * @param boolean $hidden
 	 * @return void
 	 */
 	public function setHidden($hidden) {

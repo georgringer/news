@@ -34,10 +34,9 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * Set DAM as an additional option. Changes are done in $config
 	 *
 	 * @param array $config configuration of TCA field
-	 * @param t3lib_TCEforms $parentObject parent object
 	 * @return void
 	 */
-	public function user_MediaType(array &$config, t3lib_TCEforms $parentObject) {
+	public function user_MediaType(array &$config) {
 			// if dam is loaded
 		if (t3lib_extMgm::isLoaded('dam')) {
 			$locallangFile = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
@@ -58,10 +57,9 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * Itemsproc function to extend the selection of templateLayouts in the plugin
 	 *
 	 * @param array &$config configuration array
-	 * @param t3lib_TCEforms $parentObject parent object
 	 * @return void
 	 */
-	public function user_templateLayout(array &$config, t3lib_TCEforms $parentObject) {
+	public function user_templateLayout(array &$config) {
 			// Check if the layouts are extended by ext_tables
 		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])
 				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])) {
@@ -99,10 +97,9 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * needs different ones then a news action
 	 *
 	 * @param array &$config configuration array
-	 * @param t3lib_TCEforms $parentObject parent object
 	 * @return void
 	 */
-	public function user_orderBy(array &$config, t3lib_TCEforms $parentObject) {
+	public function user_orderBy(array &$config) {
 		$newItems = '';
 
 			// check if the record has been saved once
@@ -165,10 +162,9 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * Modifies the selectbox of available actions
 	 *
 	 * @param array &$config
-	 * @param t3lib_TCEforms $parentObject
 	 * @return void
 	 */
-	public function user_switchableControllerActions(array &$config, t3lib_TCEforms $parentObject) {
+	public function user_switchableControllerActions(array &$config) {
 		if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'])) {
 			$configuration = (int)$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'];
 				switch ($configuration) {

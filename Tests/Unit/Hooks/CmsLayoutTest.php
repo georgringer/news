@@ -25,7 +25,7 @@
  */
 class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 
-	/** @var  Tx_News_Hooks_CmsLayout */
+	/** @var  \TYPO3\CMS\Core\Tests\AccessibleObjectInterface */
 	protected $cmsLayout;
 
 	public function setUp() {

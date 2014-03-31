@@ -69,7 +69,6 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends Tx_Fluid_Core_ViewHe
 					'Given file is not a valid file: ' . htmlspecialchars($file));
 			}
 		}
-		$result = '';
 
 		if ($fileSize === NULL) {
 			$result = t3lib_div::formatSize(filesize($file), $format);

@@ -34,10 +34,9 @@ class Tx_News_Hooks_Tcemain {
 	 * Flushes the cache if a news record was edited.
 	 *
 	 * @param array $params
-	 * @param t3lib_TCEmain $parentObject
 	 * @return void
 	 */
-	public function clearCachePostProc(array $params, t3lib_TCEmain $parentObject) {
+	public function clearCachePostProc(array $params) {
 		if (isset($params['table']) && $params['table'] === 'tx_news_domain_model_news' && isset($params['uid'])) {
 			$cacheTag = $params['table'] . '_' . $params['uid'];
 

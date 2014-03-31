@@ -36,14 +36,9 @@ class Tx_News_Hooks_Tceforms {
 	 * @param string $table table name
 	 * @param string $field field name
 	 * @param array $row record row
-	 * @param string $altName
-	 * @param string $palette
-	 * @param string $extra
-	 * @param string $pal
-	 * @param t3lib_TCEforms $parentObject
 	 * @return void
 	 */
-	public function getSingleField_preProcess($table, $field, array &$row, $altName, $palette, $extra, $pal, t3lib_TCEforms $parentObject) {
+	public function getSingleField_preProcess($table, $field, array &$row) {
 			// Predefine the archive date
 		if ($table === 'tx_news_domain_model_news' && empty($row['archive']) && is_numeric($row['pid'])) {
 			$pagesTsConfig = t3lib_BEfunc::getPagesTSconfig($row['pid']);

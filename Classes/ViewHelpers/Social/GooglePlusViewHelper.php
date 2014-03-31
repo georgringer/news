@@ -80,7 +80,6 @@ class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends Tx_Fluid_Core_View
 	 * @return string
 	 */
 	public function render($jsCode = '') {
-		$code = '';
 		if (empty($jsCode)) {
 			$jsCode = 'https://apis.google.com/js/plusone.js';
 		} elseif ($jsCode != '-1') {
