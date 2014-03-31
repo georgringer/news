@@ -218,18 +218,6 @@ class Tx_News_Tests_Unit_Domain_Model_MediaTest extends \TYPO3\CMS\Core\Tests\Un
 	}
 
 	/**
-	 * Test if dam can be set
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function damCanBeSet() {
-		$dam = 123;
-		$this->mediaDomainModelInstance->setDam($dam);
-		$this->assertEquals($dam, $this->mediaDomainModelInstance->getDam());
-	}
-
-	/**
 	 * Test if copyright can be set
 	 *
 	 * @test

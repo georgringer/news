@@ -165,34 +165,6 @@ $tx_news_domain_model_media = array(
 				)
 			)
 		),
-		'dam' => array(
-			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => $ll . 'tx_news_domain_model_media.dam',
-			'config' => array(
-				'form_type' => 'user',
-				'userFunc' => 'EXT:dam/lib/class.tx_dam_tcefunc.php:&tx_dam_tceFunc->getSingleField_typeMedia',
-				'userProcessClass' => 'EXT:mmforeign/class.tx_mmforeign_tce.php:tx_mmforeign_tce',
-				'type' => 'group',
-				'internal_type' => 'db',
-				'allowed' => 'tx_dam',
-				'prepend_tname' => 1,
-				'foreign_table' => 'tx_dam',
-				'MM' => 'tx_dam_mm_ref',
-				'MM_opposite_field' => 'file_usage',
-				'MM_match_fields' => array(
-					'ident' => 'tx_news_media'
-				),
-				'allowed_types' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
-
-				'max_size' => 1,
-				'show_thumbs' => 1,
-				'size' => 1,
-				'maxitems' => 1,
-				'minitems' => 1,
-				'autoSizeMax' => 1,
-			)
-		),
 		'showinpreview' => array(
 			'exclude' => 1,
 			'label' => $ll . 'tx_news_domain_model_media.showinpreview',
@@ -272,8 +244,6 @@ $tx_news_domain_model_media = array(
 		'0' => array('showitem' => '--palette--;;palettteCore,image;;paletteWidthHeight,caption,title;;paletteAlt,copyright,description;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],'),
 		// Multimedia (Video & Audio)
 		'1' => array('showitem' => '--palette--;;palettteCore,multimedia,caption,copyright,description,'),
-		// DAM
-		'3' => array('showitem' => '--palette--;;palettteCore,dam,caption,title;;paletteAlt,copyright,')
 	),
 	'palettes' => array(
 		'paletteWidthHeight' => array(
@@ -295,11 +265,6 @@ $tx_news_domain_model_media = array(
 if ($configuration->getUseFal() === 3) {
 	unset($tx_news_domain_model_media['columns']['type']['config']['items'][0]);
 	$tx_news_domain_model_media['columns']['type']['config']['default'] = '1';
-}
-
-// Hide DAM field if not used to avoid errors
-if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('dam')) {
-	unset($tx_news_domain_model_media['columns']['dam']);
 }
 
 // Hide RTE description field

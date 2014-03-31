@@ -350,10 +350,6 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 		$imageElement3->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE);
 		$multimediaElement1 = new Tx_News_Domain_Model_Media();
 		$multimediaElement1->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
-		$damElement1 = new Tx_News_Domain_Model_Media();
-		$damElement1->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM);
-		$damElement2 = new Tx_News_Domain_Model_Media();
-		$damElement2->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM);
 
 		$news = new Tx_News_Domain_Model_News();
 		$news->addMedia($imageElement1);
@@ -361,13 +357,10 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 		$news->addMedia($imageElement3);
 		$news->addMedia($imageElement3);
 		$news->addMedia($multimediaElement1);
-		$news->addMedia($damElement1);
-		$news->addMedia($damElement2);
 
 		$this->assertEquals(3, count($news->getMediaTypeImage()));
 		$this->assertEquals(1, count($news->getMediaTypeMultimedia()));
-		$this->assertEquals(2, count($news->getMediaTypeDam()));
-		$this->assertEquals(6, count($news->getMedia()));
+		$this->assertEquals(4, count($news->getMedia()));
 	}
 
 	/**

@@ -7,7 +7,6 @@ if (!defined('TYPO3_MODE')) {
 $configuration = Tx_News_Utility_EmConfiguration::getSettings();
 	// Alternative labels for news & category records
 \TYPO3\CMS\Core\Utility\GeneralUtility::requireOnce(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Hooks/Labels.php');
-	// Add additional media types like DAM
 \TYPO3\CMS\Core\Utility\GeneralUtility::requireOnce(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Hooks/ItemsProcFunc.php');
 	// CSH - context sensitive help
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(

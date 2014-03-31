@@ -62,7 +62,6 @@ ViewHelpers of EXT:news
    Be/Buttons/IconForRecordViewHelper
    Be/Buttons/IconViewHelper
 
-   Format/DamViewHelper
    Format/DateViewHelper
    Format/FileDownloadViewHelper
    Format/FileSizeViewHelper

@@ -93,7 +93,6 @@ $default = array(
 	'tx_news_viewhelpers_be_multieditlinkviewhelper' => $extensionClassesPath . 'ViewHelpers/Be/MultiEditLinkViewHelper.php',
 	'tx_news_viewhelpers_be_buttons_iconforrecordviewhelper' => $extensionClassesPath . 'ViewHelpers/Be/Buttons/IconForRecordViewHelper.php',
 	'tx_news_viewhelpers_be_buttons_iconviewhelper' => $extensionClassesPath . 'ViewHelpers/Be/Buttons/IconViewHelper.php',
-	'tx_news_viewhelpers_format_damviewhelper' => $extensionClassesPath . 'ViewHelpers/Format/DamViewHelper.php',
 	'tx_news_viewhelpers_format_dateviewhelper' => $extensionClassesPath . 'ViewHelpers/Format/DateViewHelper.php',
 	'tx_news_viewhelpers_format_filedownloadviewhelper' => $extensionClassesPath . 'ViewHelpers/Format/FileDownloadViewHelper.php',
 	'tx_news_viewhelpers_format_filesizeviewhelper' => $extensionClassesPath . 'ViewHelpers/Format/FileSizeViewHelper.php',

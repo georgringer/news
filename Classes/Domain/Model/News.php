@@ -833,15 +833,6 @@ class Tx_News_Domain_Model_News extends Tx_Extbase_DomainObject_AbstractEntity {
 	}
 
 	/**
-	 * Get all media elements of type dam
-	 *
-	 * @return array|null
-	 */
-	public function getMediaTypeDam() {
-		return $this->getMediaSelection(Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM);
-	}
-
-	/**
 	 * Adds a media to this media.
 	 *
 	 * @param Tx_News_Domain_Model_Media $media

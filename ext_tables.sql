@@ -139,7 +139,6 @@ CREATE TABLE tx_news_domain_model_media (
 	copyright tinytext,
 	image text,
 	html text,
-	dam int(11) DEFAULT '0' NOT NULL,
 	multimedia tinytext,
 	type int(11) DEFAULT '0' NOT NULL,
 	showinpreview tinyint(4) DEFAULT '0' NOT NULL,

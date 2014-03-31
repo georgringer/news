@@ -31,29 +31,6 @@
 class Tx_News_Hooks_ItemsProcFunc {
 
 	/**
-	 * Set DAM as an additional option. Changes are done in $config
-	 *
-	 * @param array $config configuration of TCA field
-	 * @return void
-	 */
-	public function user_MediaType(array &$config) {
-			// if dam is loaded
-		if (t3lib_extMgm::isLoaded('dam')) {
-			$locallangFile = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
-
-				// additional entry
-			$damEntry = array(
-				$GLOBALS['LANG']->sL($locallangFile . 'tx_news_domain_model_media.type.I.3'),
-				'3',
-				t3lib_extMgm::extRelPath('news') . 'Resources/Public/Icons/media_type_dam.gif'
-			);
-
-				// add entry to type list
-			array_push($config['items'], $damEntry);
-		}
-	}
-
-	/**
 	 * Itemsproc function to extend the selection of templateLayouts in the plugin
 	 *
 	 * @param array &$config configuration array

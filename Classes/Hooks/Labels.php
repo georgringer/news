@@ -88,22 +88,6 @@ class Tx_News_Hooks_Labels {
 					// Don't show html value as this could get a XSS
 				$typeInfo .= $params['row']['caption'];
 				break;
-				// DAM
-			case Tx_News_Domain_Model_Media::MEDIA_TYPE_DAM:
-				if (intval($params['row']['uid']) > 0) {
-					$config = $GLOBALS['TCA'][$params['table']]['columns']['dam']['config'];
-					$damItems = tx_dam_db::getReferencedFiles(
-						$params['table'],
-						$params['row']['uid'],
-						$config['MM_match_fields'],
-						$config['MM'],
-						'tx_dam.*');
-					if (is_array($damItems['rows'])) {
-						$item = array_shift($damItems['rows']);
-						$typeInfo = $this->getTitleFromFields('title,file_name', $item);
-					}
-				}
-				break;
 			default:
 				$typeInfo .= $params['row']['caption'];
 		}

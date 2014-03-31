@@ -33,7 +33,6 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 	const MEDIA_TYPE_IMAGE = 0;
 	const MEDIA_TYPE_MULTIMEDIA = 1;
 	const MEDIA_TYPE_HTML = 2;
-	const MEDIA_TYPE_DAM = 3;
 
 	/**
 	 * @var DateTime
@@ -104,11 +103,6 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 	 * @var string
 	 */
 	protected $image;
-
-	/**
-	 * @var integer
-	 */
-	protected $dam;
 
 	/**
 	 * @var string
@@ -397,25 +391,6 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 	}
 
 	/**
-	 * Get dam record uid
-	 *
-	 * @return integer
-	 */
-	public function getDam() {
-		return $this->dam;
-	}
-
-	/**
-	 * Set dam record
-	 *
-	 * @param integer $dam
-	 * @return void
-	 */
-	public function setDam($dam) {
-		$this->dam = $dam;
-	}
-
-	/**
 	 * Get multimedia url
 	 *
 	 * @return string
@@ -484,9 +459,6 @@ class Tx_News_Domain_Model_Media extends Tx_Extbase_DomainObject_AbstractEntity 
 				break;
 			case self::MEDIA_TYPE_HTML:
 				$content = $this->getHtml();
-				break;
-			case self::MEDIA_TYPE_DAM:
-				$content = $this->getDam();
 				break;
 			case self::MEDIA_TYPE_IMAGE:
 			default:
