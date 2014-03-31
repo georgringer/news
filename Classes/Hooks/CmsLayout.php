@@ -587,7 +587,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @param string $key name of the key
 	 * @param string $sheet name of the sheet
-	 * @return NULL if nothing found, value if found
+	 * @return string|NULL if nothing found, value if found
 	 */
 	protected function getFieldFromFlexform($key, $sheet = 'sDEF') {
 		$flexform = $this->flexformData;
