@@ -56,7 +56,7 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends \TYPO3\CMS\Fluid\Cor
 	 * @param boolean $hideError Define if an error should be displayed if file not found
 	 * @param integer $fileSize File size
 	 * @return string
-	 * @throws Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException
+	 * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
 	 */
 	public function render($file = NULL, $format = '', $hideError = FALSE, $fileSize = NULL) {
 

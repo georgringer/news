@@ -45,7 +45,7 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends \TYPO3\CMS\Fluid
 * 	 * @param string $alt alt text
 * 	 * @param string $title title text
 	 * @return string
-	 * @throws Tx_Fluid_Core_ViewHelper_Exception_InvalidVariableException
+	 * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
 	 */
 	public function render($file, $configuration = array(), $hideError = FALSE, $class = '', $target = '', $alt = '', $title = '') {
 		if (!is_file($file)) {
@@ -87,7 +87,7 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends \TYPO3\CMS\Fluid
 		}
 
 		// merge default configuration with optional configuration
-		$tsConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule($tsConfiguration, $configuration);
+		$tsConfiguration = \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($tsConfiguration, $configuration);
 
 		if (!empty($target)) {
 			$tsConfiguration['target'] = $target;

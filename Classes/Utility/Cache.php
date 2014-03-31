@@ -40,7 +40,7 @@ class Tx_News_Utility_Cache {
 	/**
 	 * Marks as cObj as processed.
 	 *
-	 * @param tslib_cObj $cObj
+	 * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
 	 * @return void
 	 */
 	public function markContentRecordAsProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj) {

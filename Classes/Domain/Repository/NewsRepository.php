@@ -114,7 +114,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		}
 
 		if ($demand->getAuthor()) {
-			$constraints[] = $query->equals('author',$demand->getAuthor());
+			$constraints[] = $query->equals('author', $demand->getAuthor());
 		}
 
 		// archived
@@ -218,7 +218,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			$tagList = explode(',', $tags);
 
 			foreach ($tagList as $singleTag) {
-				$constraints[] =  $query->contains('tags', $singleTag);
+				$constraints[] = $query->contains('tags', $singleTag);
 			}
 		}
 
@@ -362,10 +362,10 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$field = empty($field) ? 'datetime' : $field;
 
 		$sql = 'SELECT FROM_UNIXTIME(' . $field . ', "%m") AS "_Month",' .
-		' FROM_UNIXTIME(' . $field . ', "%Y") AS "_Year" ,' .
-		' count(FROM_UNIXTIME(' . $field . ', "%m")) as count_month,' .
-		' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
-		' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
+			' FROM_UNIXTIME(' . $field . ', "%Y") AS "_Year" ,' .
+			' count(FROM_UNIXTIME(' . $field . ', "%m")) as count_month,' .
+			' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
+			' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
 		// strip unwanted order by
 		$sql = $GLOBALS['TYPO3_DB']->stripOrderBy($sql);

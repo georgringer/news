@@ -430,7 +430,7 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 
 		foreach ($importData as $importItem) {
 
-				// Store language overlay in post persit queue
+				// Store language overlay in post persist queue
 			if ($importItem['sys_language_uid']) {
 				$this->postPersistQueue[$importItem['import_id']] = array(
 					'action' => self::ACTION_IMPORT_L10N_OVERLAY,
@@ -646,7 +646,7 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 	/**
 	 * Get import Folder
 	 *
-	 * TODO: catch exception when storage/folder doesn't exist and return readable message to the user
+	 * TODO: catch exception when storage/folder does not exist and return readable message to the user
 	 *
 	 * @return \TYPO3\CMS\Core\Resource\Folder
 	 */

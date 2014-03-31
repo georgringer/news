@@ -247,7 +247,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Set language parent
 	 *
-	 * @param integer $l10nParent l10nparent
+	 * @param integer $l10nParent l10nParent
 	 * @return void
 	 */
 	public function setL10nParent($l10nParent) {
@@ -407,7 +407,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	}
 
 	/**
-	 * Get fegroup
+	 * Get feGroup
 	 *
 	 * @return string
 	 */
@@ -416,9 +416,9 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	}
 
 	/**
-	 * Get Fegroup
+	 * Get feGroup
 	 *
-	 * @param string $feGroup fegroup
+	 * @param string $feGroup feGroup
 	 * @return void
 	 */
 	public function setFeGroup($feGroup) {

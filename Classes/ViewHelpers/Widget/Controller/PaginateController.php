@@ -73,7 +73,7 @@ class Tx_News_ViewHelpers_Widget_Controller_PaginateController extends \TYPO3\CM
 	 */
 	public function initializeAction() {
 		$this->objects = $this->widgetConfiguration['objects'];
-		$this->configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule(
+		$this->configuration = \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule(
 			$this->configuration,
 			(array)$this->widgetConfiguration['configuration'], TRUE);
 		$this->numberOfPages = intval(ceil(count($this->objects) / (integer)$this->configuration['itemsPerPage']));
