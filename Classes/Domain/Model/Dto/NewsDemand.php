@@ -110,9 +110,6 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/** @var boolean */
 	protected $excludeAlreadyDisplayedNews;
 
-	/** @var boolean */
-	protected $isDummyRecord;
-
 	/**
 	 * Set archive settings
 	 *
@@ -529,24 +526,4 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	public function getExcludeAlreadyDisplayedNews() {
 		return $this->excludeAlreadyDisplayedNews;
 	}
-
-	/**
-	 * Get dummy record flag, used for unit tests
-	 *
-	 * @return boolean
-	 */
-	public function getIsDummyRecord() {
-		return $this->isDummyRecord;
-	}
-
-	/**
-	 * Set dummy record flag, used for unit tests
-	 *
-	 * @param boolean $isDummyRecord dummy record flag
-	 * @return void
-	 */
-	public function setIsDummyRecord($isDummyRecord) {
-		$this->isDummyRecord = $isDummyRecord;
-	}
-
 }

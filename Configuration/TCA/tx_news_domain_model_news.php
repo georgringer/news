@@ -97,11 +97,6 @@ $tx_news_domain_model_news = array(
 				'type' => 'passthrough'
 			)
 		),
-		'is_dummy_record' => array(
-			'config' => array(
-				'type' => 'passthrough'
-			)
-		),
 		'pid' => array(
 			'label' => 'pid',
 			'config' => array(

@@ -222,11 +222,6 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			}
 		}
 
-		// dummy records, used for UnitTests only!
-		if ($demand->getIsDummyRecord()) {
-			$constraints[] = $query->equals('isDummyRecord', 1);
-		}
-
 		// Search
 		$searchConstraints = $this->getSearchConstraints($query, $demand);
 		if (!empty($searchConstraints)) {
