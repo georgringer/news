@@ -152,7 +152,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends \TYPO3\CMS
 	 * @test
 	 * @expectedException UnexpectedValueException
 	 */
-	public function addSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven() {
+	public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven() {
 		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface' );
 		$mockedRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'), array(), '',FALSE);
 
@@ -162,14 +162,14 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends \TYPO3\CMS
 		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
 		$demand->setSearch($search);
 
-		$mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
 	}
 
 	/**
 	 * @test
 	 * @expectedException UnexpectedValueException
 	 */
-	public function addSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven() {
+	public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven() {
 		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface' );
 		$mockedRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'), array(), '',FALSE);
 
@@ -179,14 +179,14 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends \TYPO3\CMS
 		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
 		$demand->setSearch($search);
 
-		$mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
 	}
 
 	/**
 	 * @test
 	 * @expectedException UnexpectedValueException
 	 */
-	public function addSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven() {
+	public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven() {
 		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface' );
 		$mockedRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'), array(), '',FALSE);
 
@@ -196,7 +196,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends \TYPO3\CMS
 		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
 		$demand->setSearch($search);
 
-		$mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
 	}
 
 	/**
@@ -208,7 +208,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends \TYPO3\CMS
 
 		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
 		$demand->setSearch(NULL);
-		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
 		$this->assertEmpty($result);
 	}
 
@@ -226,7 +226,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends \TYPO3\CMS
 		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
 		$demand->setSearch($search);
 
-		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
 		$this->assertEquals(1, count($result));
 	}
 
@@ -244,19 +244,19 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends \TYPO3\CMS
 		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
 		$demand->setSearch($search);
 
-		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
 		$this->assertEquals(1, count($result));
 
 		$search->setMaximumDate('2015-01-01');
 		$demand->setSearch($search);
 
-		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
 		$this->assertEquals(2, count($result));
 
 		$search->setMaximumDate('xyz');
 		$demand->setSearch($search);
 
-		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
 		$this->assertEquals(1, count($result));
 	}
 }
