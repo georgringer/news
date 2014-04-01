@@ -26,11 +26,21 @@
 class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
+	 * @var Tx_Phpunit_Framework
+	 */
+	protected $testingFramework;
+
+	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
+	protected $objectManager;
+
+	/**
 	 * @var array
 	 */
 	private $backupGlobalVariables;
 
 	public function setUp() {
+		$this->testingFramework = new Tx_Phpunit_Framework('sys_category');
+		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 		$this->backupGlobalVariables = array(
 			'BE_USER' => $GLOBALS['BE_USER'],
 			'TSFE' => $GLOBALS['TSFE'],
@@ -195,6 +205,32 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends \TYPO3
 				)
 			),
 		);
+	}
+
+
+	/**
+	 * Test if by import source is done
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function findRecordsByImportSource() {
+		/** @var Tx_News_Domain_Repository_CategoryRepository $categoryRepository */
+		$categoryRepository = $this->objectManager->get('Tx_News_Domain_Repository_CategoryRepository');
+
+		$randomTitle = \TYPO3\CMS\Core\Utility\GeneralUtility::getRandomHexString(10);
+		$randomImportId = time();
+		$randomImportSource = 'newsunittest';
+
+		$this->testingFramework->createRecord('sys_category', array(
+			'title' => $randomTitle,
+			'import_source' => $randomImportSource,
+			'import_id' => $randomImportId
+		));
+
+		$category = $categoryRepository->findOneByImportSourceAndImportId($randomImportSource, $randomImportId);
+
+		$this->assertEquals($category->getTitle(), $randomTitle);
 	}
 
 }

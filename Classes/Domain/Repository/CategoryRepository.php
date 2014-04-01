@@ -40,7 +40,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 *
 	 * @param string $importSource import source
 	 * @param integer $importId import id
-	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
+	 * @return Tx_News_Domain_Model_Category
 	 */
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();

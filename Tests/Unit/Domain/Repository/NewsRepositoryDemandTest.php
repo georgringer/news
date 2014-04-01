@@ -311,7 +311,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 	}
 
 	/**
-	 * Test if startingpoint is working
+	 * Test if by import source is done
 	 *
 	 * @test
 	 * @return void
@@ -323,7 +323,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 		$randomTitle = \TYPO3\CMS\Core\Utility\GeneralUtility::getRandomHexString(10);
 		$randomImportId = time();
 		$randomImportSource = 'newsunittest';
-		$uid = $this->testingFramework->createRecord('tx_news_domain_model_news', array(
+		$this->testingFramework->createRecord('tx_news_domain_model_news', array(
 			'type' => 0,
 			'title' => $randomTitle,
 			'import_source' => $randomImportSource,
