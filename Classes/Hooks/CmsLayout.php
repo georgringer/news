@@ -84,7 +84,7 @@ class Tx_News_Hooks_CmsLayout {
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
 				$actionTranslation = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
 
-				$result .= '<h5>' . $actionTranslation . '</h5>';
+				$result .= '<pre>' . $actionTranslation . '</pre>';
 
 			} else {
 				$result = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
@@ -521,7 +521,7 @@ class Tx_News_Hooks_CmsLayout {
 			);
 
 			foreach ($rawPagesRecords as $page) {
-				$pagesOut[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $page)) . '<small> (' . $page['uid'] . ')</small>';
+				$pagesOut[] = htmlspecialchars(t3lib_BEfunc::getRecordTitle('pages', $page)) . ' (' . $page['uid'] . ')';
 			}
 
 			$recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
@@ -533,9 +533,9 @@ class Tx_News_Hooks_CmsLayout {
 			}
 
 			if (!empty($recursiveLevelText)) {
-				$recursiveLevelText = '<br /><small>' .
-					$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.recursive', TRUE) .
-					': ' . $recursiveLevelText . '</small>';
+				$recursiveLevelText = '<br />' .
+					$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.recursive', TRUE) . ' ' .
+					$recursiveLevelText;
 			}
 
 			$this->tableData[] = array(
@@ -546,40 +546,23 @@ class Tx_News_Hooks_CmsLayout {
 	}
 
 	/**
-	 * Render the settings as table
+	 * Render the settings as table for Web>Page module
+	 * System settings are displayed in mono font
 	 *
 	 * @param array $record content element record
 	 * @return string
 	 */
 	protected function renderSettingsAsTable(array $record) {
-		$content = '';
 		if (count($this->tableData) == 0) {
-			return $content;
+			return '';
 		}
 
-		$visible = ($record['hidden'] == 0);
-		$i = 0;
+		$content = '';
 		foreach ($this->tableData as $line) {
-			// Check if the setting is in the list of disabled ones
-			$class = ($i++ % 2 === 0) ? 'bgColor4' : 'bgColor3';
-
-			if (!empty($line[1])) {
-				$renderedLine = '<td style="' . ($visible ? 'font-weight:bold;' : '') . 'width:40%;">' . $line[0] . '</td>
-								<td>' . $line[1] . '</td>';
-			} else {
-				$renderedLine = '<td style="' . ($visible ? 'font-weight:bold;' : '') . '" colspan="2">' . $line[0] . '</td>';
-			}
-			$content .= '<tr class="' . ($visible ? $class : '') . '">' . $renderedLine . '</tr>';
+			$content .= '<strong>' . $line[0] . '</strong>' . ' ' .$line[1] . '<br />';
 		}
 
-		if (!empty($content)) {
-			$styles = 'width:100%;';
-			$styles .= ($visible) ? '' : 'opacity:0.7;';
-
-			$content = '<table style="' . $styles . '" class="t3-table">' . $content . '</table>';
-		}
-
-		return $content;
+		return '<pre>' . $content . '</pre>';
 	}
 
 	/**
