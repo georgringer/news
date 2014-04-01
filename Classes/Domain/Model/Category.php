@@ -86,9 +86,10 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	protected $parentcategory;
 
 	/**
-	 * @var string
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+	 * @lazy
 	 */
-	protected $image;
+	protected $images;
 
 	/**
 	 * @var integer
@@ -293,22 +294,31 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	}
 
 	/**
-	 * Get image
-	 *
-	 * @return string image
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
 	 */
-	public function getImage() {
-		return $this->image;
+	public function setImages($images) {
+		$this->images = $images;
 	}
 
 	/**
-	 * Set image
-	 *
-	 * @param string $image image
-	 * @return void
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
 	 */
-	public function setImage($image) {
-		$this->image = $image;
+	public function getImages() {
+		return $this->images;
+	}
+
+	/**
+	 * Get the first image
+	 *
+	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
+	 */
+	public function getFirstImage() {
+		$images = $this->getImages();
+		foreach($images as $image) {
+			return $image;
+		}
+
+		return NULL;
 	}
 
 	/**

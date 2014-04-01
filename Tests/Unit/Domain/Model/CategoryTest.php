@@ -183,15 +183,35 @@ class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests
 	}
 
 	/**
-	 * Test if image can be set
+	 * Test if images can be set
 	 *
 	 * @test
 	 * @return void
 	 */
-	public function imageCanBeSet() {
-		$value = '/some/image.jpg';
-		$this->instance->setImage($value);
-		$this->assertEquals($value, $this->instance->getImage());
+	public function imagesCanBeSet() {
+		$value = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->instance->setImages($value);
+		$this->assertEquals($value, $this->instance->getImages());
+	}
+
+
+	/**
+	 * Test if first image can be get
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function firstImageCanBeGet() {
+		$storage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$item1 = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+		$item1->_setProperty('fo', 'bar');
+		$storage->attach($item1);
+		$item2 = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+		$item2->_setProperty('lorem', 'ipsum');
+		$storage->attach($item2);
+
+		$this->instance->setImages($storage);
+		$this->assertEquals($item1, $this->instance->getFirstImage());
 	}
 
 	/**
