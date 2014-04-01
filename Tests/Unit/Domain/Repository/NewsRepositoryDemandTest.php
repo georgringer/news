@@ -1,26 +1,26 @@
 <?php
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2010 Georg Ringer <typo3@ringerge.org>
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+ *  Copyright notice
+ *
+ *  (c) 2010 Georg Ringer <typo3@ringerge.org>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * Tests for domain repository newsRepository
@@ -63,27 +63,27 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 		$demand->setIsDummyRecord(TRUE);
 		$demand->setStoragePage($pid);
 
-			// create some dummy records
+		// create some dummy records
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 1, 'pid' => $pid));
+			'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 1, 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 1, 'pid' => $pid));
+			'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 1, 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 0, 'pid' => $pid));
+			'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 0, 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 0, 'pid' => $pid));
+			'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 0, 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 0, 'pid' => $pid));
+			'tx_news_domain_model_news', array('type' => 0, 'istopnews' => 0, 'pid' => $pid));
 
-			// no matter about top news
+		// no matter about top news
 		$demand->setTopNewsRestriction(0);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
 
-			// Only Top news
+		// Only Top news
 		$demand->setTopNewsRestriction(1);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 2);
 
-			// Only non Top news
+		// Only non Top news
 		$demand->setTopNewsRestriction(2);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 3);
 	}
@@ -103,35 +103,35 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 		$demand->setIsDummyRecord(TRUE);
 		$demand->setStoragePage($pid);
 
-			// create some dummy records
+		// create some dummy records
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => (time() + (-10 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => (time() + (-10 * 86400)), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => (time() + (-7 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => (time() + (-7 * 86400)), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => (time() + (-4 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => (time() + (-4 * 86400)), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => (time() + (-3 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => (time() + (-3 * 86400)), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => (time() + (1 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => (time() + (1 * 86400)), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => (time() + (3 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => (time() + (3 * 86400)), 'pid' => $pid));
 
-			// maximum 8 days old
+		// maximum 8 days old
 		$demand->setTimeRestriction('-8 days');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
 
-			// get all news maximum 6 days old
+		// get all news maximum 6 days old
 		$demand->setTimeRestriction((6 * 86400));
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
 
-			// no restriction should get you all
+		// no restriction should get you all
 		$demand->setTimeRestriction(0);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 6);
 	}
@@ -151,30 +151,30 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 		$demand->setIsDummyRecord(TRUE);
 		$demand->setStoragePage($pid);
 
-			// create some dummy records
+		// create some dummy records
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => strtotime('2011/02/20'), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => strtotime('2011/02/20'), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => strtotime('2011/02/22'), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => strtotime('2011/02/22'), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => strtotime('2011/03/1'), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => strtotime('2011/03/1'), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => strtotime('2011/03/10'), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => strtotime('2011/03/10'), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => strtotime('2011/03/31'), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => strtotime('2011/03/31'), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => strtotime('2011/03/10'), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => strtotime('2011/03/10'), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'datetime' => strtotime('2011/04/1'), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'datetime' => strtotime('2011/04/1'), 'pid' => $pid));
 
-			// set month and year with integers
+		// set month and year with integers
 		$demand->setDateField('datetime');
 		$demand->setMonth(4);
 		$demand->setYear(2011);
@@ -185,7 +185,7 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 		$demand->setYear('2011');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 1);
 
-			// set month and year with strings
+		// set month and year with strings
 		$demand->setMonth('3');
 		$demand->setYear('2011');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
@@ -226,35 +226,35 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 		$demand->setIsDummyRecord(TRUE);
 		$demand->setStoragePage($pid);
 
-			// create some dummy records
+		// create some dummy records
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'archive' => 0, 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'archive' => 0, 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'archive' => (time() + (-10 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'archive' => (time() + (-10 * 86400)), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'archive' => (time() + (-5 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'archive' => (time() + (-5 * 86400)), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'archive' => (time() + (1 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'archive' => (time() + (1 * 86400)), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'archive' => (time() + (5 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'archive' => (time() + (5 * 86400)), 'pid' => $pid));
 		$this->testingFramework->createRecord(
-				'tx_news_domain_model_news', array(
-				'type' => 0, 'archive' => (time() + (10 * 86400)), 'pid' => $pid));
+			'tx_news_domain_model_news', array(
+			'type' => 0, 'archive' => (time() + (10 * 86400)), 'pid' => $pid));
 
-			// Archived means: archive date must be lower than current time AND != 0
+		// Archived means: archive date must be lower than current time AND != 0
 		$demand->setArchiveRestriction('archived');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 2);
 
-			// Active means: archive date must be in future or no archive date
+		// Active means: archive date must be in future or no archive date
 		$demand->setArchiveRestriction('active');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
 
-			// no value means: give all
+		// no value means: give all
 		$demand->setArchiveRestriction('');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 6);
 	}
@@ -273,23 +273,66 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryDemandTest extends \TYP
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setIsDummyRecord(TRUE);
 
-		$pidList = array(94,94,95,96,96,97);
+		$pidList = array(94, 94, 95, 96, 96, 97);
 		foreach ($pidList as $pid) {
 			$this->testingFramework->createRecord(
 				'tx_news_domain_model_news', array('type' => 0, 'pid' => $pid));
 		}
 
-			// simple starting point
+		// simple starting point
 		$demand->setStoragePage(94);
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 2);
 
-			// multiple starting points
+		// multiple starting points
 		$demand->setStoragePage('94,95,96');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
 
-			// multiple starting points, including invalid values and commas
+		// multiple starting points, including invalid values and commas
 		$demand->setStoragePage('94 , 95 , x ,97');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 4);
+	}
+
+	/**
+	 * Test if startingpoint is working
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function findRecordsByUid() {
+		/** @var Tx_News_Domain_Repository_NewsRepository $newsRepository */
+		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
+
+		$randomTitle = \TYPO3\CMS\Core\Utility\GeneralUtility::getRandomHexString(10);
+		$uid = $this->testingFramework->createRecord('tx_news_domain_model_news', array('type' => 0, 'title' => $randomTitle));
+
+		$news = $newsRepository->findByUid($uid);
+
+		$this->assertEquals($news->getTitle(), $randomTitle);
+	}
+
+	/**
+	 * Test if startingpoint is working
+	 *
+	 * @test
+	 * @return void
+	 */
+	public function findRecordsByImportSource() {
+		/** @var Tx_News_Domain_Repository_NewsRepository $newsRepository */
+		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
+
+		$randomTitle = \TYPO3\CMS\Core\Utility\GeneralUtility::getRandomHexString(10);
+		$randomImportId = time();
+		$randomImportSource = 'newsunittest';
+		$uid = $this->testingFramework->createRecord('tx_news_domain_model_news', array(
+			'type' => 0,
+			'title' => $randomTitle,
+			'import_source' => $randomImportSource,
+			'import_id' => $randomImportId
+		));
+
+		$news = $newsRepository->findOneByImportSourceAndImportId($randomImportSource, $randomImportId);
+
+		$this->assertEquals($news->getTitle(), $randomTitle);
 	}
 
 	/**
