@@ -10,6 +10,9 @@
 			<label index="search-text">There are %1$s results for "%2$s".</label>
 			<label index="search-start">Start search</label>
 			<label index="search-noresult">No news found.</label>
+			<label index="search-subject">Text</label>
+			<label index="search-minimumDate">Minimum Date</label>
+			<label index="search-maximumDate">Maximum Date</label>
 			<label index="more-link">Read more</label>
 			<label index="back-link">Back</label>
 			<label index="related-news">Related news</label>

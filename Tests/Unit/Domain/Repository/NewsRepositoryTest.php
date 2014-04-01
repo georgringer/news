@@ -147,4 +147,116 @@ class Tx_News_Tests_Unit_Domain_Repository_NewsRepositoryTest extends \TYPO3\CMS
 		}
 		$newsRepository->_call('createConstraintsFromDemand', $query, $demand);
 	}
+
+	/**
+	 * @test
+	 * @expectedException UnexpectedValueException
+	 */
+	public function addSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven() {
+		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface' );
+		$mockedRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'), array(), '',FALSE);
+
+		$search = new Tx_News_Domain_Model_Dto_Search();
+		$search->setSubject('fo');
+
+		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
+		$demand->setSearch($search);
+
+		$mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+	}
+
+	/**
+	 * @test
+	 * @expectedException UnexpectedValueException
+	 */
+	public function addSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven() {
+		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface' );
+		$mockedRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'), array(), '',FALSE);
+
+		$search = new Tx_News_Domain_Model_Dto_Search();
+		$search->setMaximumDate('2014-04-01');
+
+		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
+		$demand->setSearch($search);
+
+		$mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+	}
+
+	/**
+	 * @test
+	 * @expectedException UnexpectedValueException
+	 */
+	public function addSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven() {
+		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface' );
+		$mockedRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'), array(), '',FALSE);
+
+		$search = new Tx_News_Domain_Model_Dto_Search();
+		$search->setMinimumDate('2014-04-01');
+
+		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
+		$demand->setSearch($search);
+
+		$mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+	}
+
+	/**
+	 * @test
+	 */
+	public function emptyConstraintIsReturnedForEmptySearchDemand() {
+		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface' );
+		$mockedRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'), array(), '',FALSE);
+
+		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
+		$demand->setSearch(NULL);
+		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$this->assertEmpty($result);
+	}
+
+	/**
+	 * @test
+	 */
+	public function constraintsAreReturnedForSearchSubject() {
+		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface' );
+		$mockedRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'), array(), '',FALSE);
+
+		$search = new Tx_News_Domain_Model_Dto_Search();
+		$search->setSubject('Lorem');
+		$search->setFields('title,fo');
+
+		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
+		$demand->setSearch($search);
+
+		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$this->assertEquals(1, count($result));
+	}
+
+	/**
+	 * @test
+	 */
+	public function constraintsAreReturnedForDateFields() {
+		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface' );
+		$mockedRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_NewsRepository', array('dummy'), array(), '',FALSE);
+
+		$search = new Tx_News_Domain_Model_Dto_Search();
+		$search->setMinimumDate('2014-01-01');
+		$search->setDateField('datetime');
+
+		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
+		$demand->setSearch($search);
+
+		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$this->assertEquals(1, count($result));
+
+		$search->setMaximumDate('2015-01-01');
+		$demand->setSearch($search);
+
+		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$this->assertEquals(2, count($result));
+
+		$search->setMaximumDate('xyz');
+		$demand->setSearch($search);
+
+		$result = $mockedRepository->_call('addSearchConstraints', $mockedQuery, $demand);
+		$this->assertEquals(1, count($result));
+	}
 }

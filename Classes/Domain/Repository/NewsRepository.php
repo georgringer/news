@@ -228,27 +228,9 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		}
 
 		// Search
-		if ($demand->getSearch() !== NULL) {
-			/* @var $searchObject Tx_News_Domain_Model_Dto_Search */
-			$searchObject = $demand->getSearch();
-
-			$searchFields = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $searchObject->getFields(), TRUE);
-			$searchConstraints = array();
-
-			if (count($searchFields) === 0) {
-				throw new UnexpectedValueException('No search fields defined', 1318497755);
-			}
-
-			$searchSubject = $searchObject->getSubject();
-			foreach ($searchFields as $field) {
-				if (!empty($searchSubject)) {
-					$searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
-				}
-			}
-
-			if (count($searchConstraints)) {
-				$constraints[] = $query->logicalOr($searchConstraints);
-			}
+		$searchConstraints = $this->getSearchConstraints($query, $demand);
+		if (!empty($searchConstraints)) {
+			$constraints[] = $query->logicalAnd($searchConstraints);
 		}
 
 		// Exclude already displayed
@@ -395,6 +377,65 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		}
 
 		return $data;
+	}
+
+
+	/**
+	 * Get the search constraints
+	 *
+	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
+	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @return array
+	 * @throws UnexpectedValueException
+	 */
+	protected function getSearchConstraints(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
+		$constraints = array();
+		if ($demand->getSearch() === NULL) {
+			return $constraints;
+		}
+
+		/* @var $searchObject Tx_News_Domain_Model_Dto_Search */
+		$searchObject = $demand->getSearch();
+
+		$searchSubject = $searchObject->getSubject();
+		if (!empty($searchSubject)) {
+			$searchFields = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $searchObject->getFields(), TRUE);
+			$searchConstraints = array();
+
+			if (count($searchFields) === 0) {
+				throw new UnexpectedValueException('No search fields defined', 1318497755);
+			}
+
+
+			foreach ($searchFields as $field) {
+				if (!empty($searchSubject)) {
+					$searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
+				}
+			}
+
+			if (count($searchConstraints)) {
+				$constraints[] = $query->logicalOr($searchConstraints);
+			}
+		}
+
+		$minimumDate = strtotime($searchObject->getMinimumDate());
+		if ($minimumDate) {
+			$field = $searchObject->getDateField();
+			if (empty($field)) {
+				throw new UnexpectedValueException('No date field is defined', 1396348732);
+			}
+			$constraints[] = $query->greaterThanOrEqual($field, $minimumDate);
+		}
+		$maximumDate = strtotime($searchObject->getMaximumDate());
+		if ($maximumDate) {
+			$field = $searchObject->getDateField();
+			if (empty($field)) {
+				throw new UnexpectedValueException('No date field is defined', 1396348733);
+			}
+			$constraints[] = $query->lessThanOrEqual($field, $maximumDate);
+		}
+
+		return $constraints;
 	}
 
 }

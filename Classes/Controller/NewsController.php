@@ -319,6 +319,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 		if (!is_null($search)) {
 			$search->setFields($this->settings['search']['fields']);
+			$search->setDateField($this->settings['dateField']);
 		}
 		$demand->setSearch($search);
 

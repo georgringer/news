@@ -41,6 +41,27 @@ class Tx_News_Domain_Model_Dto_Search extends \TYPO3\CMS\Extbase\DomainObject\Ab
 	protected $fields;
 
 	/**
+	 * Minimum date
+	 *
+	 * @var string
+	 */
+	protected $minimumDate;
+
+	/**
+	 * Maximum date
+	 *
+	 * @var string
+	 */
+	protected $maximumDate;
+
+	/**
+	 * Field using for date queries
+	 *
+	 * @var string
+	 */
+	protected $dateField;
+
+	/**
 	 * Get the subject
 	 *
 	 * @return string
@@ -76,6 +97,48 @@ class Tx_News_Domain_Model_Dto_Search extends \TYPO3\CMS\Extbase\DomainObject\Ab
 	 */
 	public function setFields($fields) {
 		$this->fields = $fields;
+	}
+
+	/**
+	 * @param string $maximumDate
+	 */
+	public function setMaximumDate($maximumDate) {
+		$this->maximumDate = $maximumDate;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getMaximumDate() {
+		return $this->maximumDate;
+	}
+
+	/**
+	 * @param string $minimumDate
+	 */
+	public function setMinimumDate($minimumDate) {
+		$this->minimumDate = $minimumDate;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getMinimumDate() {
+		return $this->minimumDate;
+	}
+
+	/**
+	 * @param string $dateField
+	 */
+	public function setDateField($dateField) {
+		$this->dateField = $dateField;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDateField() {
+		return $this->dateField;
 	}
 
 }
