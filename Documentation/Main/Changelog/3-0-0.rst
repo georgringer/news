@@ -18,6 +18,7 @@ FAL is used for the following fields:
 
 * Media
 * Related files
+* Category images
 
 If you update from a previous version, set the configuration "Use FAL relations instead of news media elements" in the Extension Manager > news to "Both" instead of "Yes".
 There is no upgrade wizard available or planned for existing files.

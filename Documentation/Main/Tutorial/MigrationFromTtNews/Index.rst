@@ -14,7 +14,6 @@ This tutorial will help you to migrate records from tt_news to news.
 Requirements
 """""""""""""
 
-* Installed extension tt_news
 * Installed extension news
 * Installed extension news_ttnewsimport
 
