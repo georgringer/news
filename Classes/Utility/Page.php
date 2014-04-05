@@ -44,7 +44,7 @@ class Tx_News_Utility_Page {
 			return $pidList;
 		}
 
-		$queryGenerator = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Tree\\View\\PageTreeView');
+		$queryGenerator = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Database\\QueryGenerator');
 		$recursiveStoragePids = $pidList;
 		$storagePids = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $pidList);
 		foreach ($storagePids as $startPid) {
