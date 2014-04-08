@@ -119,7 +119,7 @@ class Tx_News_TreeProvider_DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree
 			return TRUE;
 		}
 
-		return in_array($mounts, $child->getId ());
+		return in_array($child->getId(), $mounts);
 	}
 
 	/**
