@@ -36,6 +36,7 @@ Misc
 
 Changes which should be mentioned are:
 
+* Default TypoScript uses syntax templateRootPaths, partialRootPaths, layoutRootPaths to allow chaining of the templates
 * Support of 'Insert Record' element
 * Add more snippets to the documentation
 * Improve Administration module

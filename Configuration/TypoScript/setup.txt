@@ -6,9 +6,15 @@ plugin.tx_news {
 	mvc.callDefaultActionIfActionCantBeResolved = 1
 
 	view {
-		templateRootPath = {$plugin.tx_news.view.templateRootPath}
-		partialRootPath = {$plugin.tx_news.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_news.view.layoutRootPath}
+		templateRootPaths {
+			100 = {$plugin.tx_news.view.templateRootPath}
+		}
+		partialRootPaths {
+			100 = {$plugin.tx_news.view.partialRootPath}
+		}
+		layoutRootPaths {
+			100 = {$plugin.tx_news.view.layoutRootPath}
+		}
 	}
 	# Modify the translation
 	_LOCAL_LANG {
