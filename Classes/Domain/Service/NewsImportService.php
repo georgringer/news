@@ -493,7 +493,7 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 		$result = FALSE;
 		$mediaItems = $news->getMedia();
 
-		if ($mediaItems->count() !== 0) {
+		if (isset($mediaItems) && $mediaItems->count() !== 0) {
 			foreach ($mediaItems as $mediaItem) {
 				if ($mediaItem->getImage() == basename($mediaFile) &&
 					$this->filesAreEqual(PATH_site . $mediaFile, PATH_site . self::UPLOAD_PATH . $mediaItem->getImage())) {
@@ -516,7 +516,7 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 		$result = FALSE;
 		$mediaItems = $news->getMedia();
 
-		if ($mediaItems->count() !== 0) {
+		if (isset($mediaItem) && $mediaItems->count() !== 0) {
 			foreach ($mediaItems as $mediaItem) {
 				if ($mediaItem->getMultimedia() === $url) {
 					$result = $mediaItem;
