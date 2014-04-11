@@ -394,7 +394,6 @@ $tx_news_domain_model_news = array(
 		),
 		'type' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.doktype_formlabel',
 			'config' => array(
 				'type' => 'select',
@@ -457,7 +456,6 @@ $tx_news_domain_model_news = array(
 		),
 		'internalurl' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.palettes.links',
 			'config' => array(
 				'type' => 'group',
@@ -477,7 +475,6 @@ $tx_news_domain_model_news = array(
 		),
 		'externalurl' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.doktype.I.8',
 			'config' => array(
 				'type' => 'input',
