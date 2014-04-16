@@ -41,12 +41,16 @@ class Tx_News_Service_CacheService {
 	protected $cacheName;
 
 	/**
+	 * @var \TYPO3\CMS\Core\Cache\CacheManager
+	 */
+	protected $cacheManager;
+
+	/**
 	 * @param $cacheName string cache name
 	 */
 	public function __construct($cacheName) {
 		$this->cacheName = $cacheName;
-
-		$this->initializeCache();
+		$this->cacheManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
 	}
 
 	/**
@@ -56,7 +60,7 @@ class Tx_News_Service_CacheService {
 	 * @return mixed or NULL if not found
 	 */
 	public function get($cacheIdentifier) {
-		$entry = $GLOBALS['typo3CacheManager']->getCache($this->cacheName)->get($cacheIdentifier);
+		$entry = $this->cacheManager->getCache($this->cacheName)->get($cacheIdentifier);
 		return $entry;
 	}
 
@@ -70,7 +74,7 @@ class Tx_News_Service_CacheService {
 	 * @return void
 	 */
 	public function set($cacheIdentifier, $entry, array $tags = array(), $lifetime = NULL) {
-		$GLOBALS['typo3CacheManager']->getCache($this->cacheName)->set($cacheIdentifier, $entry, $tags, $lifetime);
+		$this->cacheManager->getCache($this->cacheName)->set($cacheIdentifier, $entry, $tags, $lifetime);
 	}
 
 	/**
@@ -79,26 +83,6 @@ class Tx_News_Service_CacheService {
 	 * @return void
 	 */
 	public function flush() {
-		$GLOBALS['typo3CacheManager']->getCache($this->cacheName)->flush();
+		$this->cacheManager->getCache($this->cacheName)->flush();
 	}
-
-	/**
-	 * Initialize cache instance to be ready to use
-	 *
-	 * @return void
-	 */
-	protected function initializeCache() {
-		\TYPO3\CMS\Core\Cache\Cache::initializeCachingFramework();
-		try {
-			$this->cacheInstance = $GLOBALS['typo3CacheManager']->getCache($this->cacheName);
-		} catch (\TYPO3\CMS\Core\Cache\Exception\NoSuchCacheException $e) {
-			$this->cacheInstance = $GLOBALS['typo3CacheFactory']->create(
-							$this->cacheName,
-							$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$this->cacheName]['frontend'],
-							$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$this->cacheName]['backend'],
-							(array)$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$this->cacheName]['options']
-			);
-		}
-	}
-
 }

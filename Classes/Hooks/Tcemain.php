@@ -41,7 +41,7 @@ class Tx_News_Hooks_Tcemain {
 			$cacheTag = $params['table'] . '_' . $params['uid'];
 
 			/** @var $cacheManager \TYPO3\CMS\Core\Cache\CacheManager */
-			$cacheManager = $GLOBALS['typo3CacheManager'];
+			$cacheManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
 			$cacheManager->getCache('cache_pages')->flushByTag($cacheTag);
 			$cacheManager->getCache('cache_pagesection')->flushByTag($cacheTag);
 		}
