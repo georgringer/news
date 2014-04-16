@@ -209,7 +209,9 @@ $tx_news_domain_model_news = array(
 						'type' => 'script',
 						'title' => 'Full screen Rich Text Editing',
 						'icon' => 'wizard_rte2.gif',
-						'script' => 'wizard_rte.php',
+						'module' => array(
+							'name' => 'wizard_rte',
+						),
 					),
 				),
 			)
@@ -557,12 +559,16 @@ $tx_news_domain_model_news = array(
 							'table' => 'tx_news_domain_model_tag',
 							'pid' => $configuration->getTagPid(),
 						),
-						'script' => 'wizard_list.php',
+						'module' => array(
+							'name' => 'wizard_list',
+						),
 					),
 					'edit' => array(
 						'type' => 'popup',
 						'title' => $ll . 'tx_news_domain_model_news.tags.edit',
-						'script' => 'wizard_edit.php',
+						'module' => array(
+							'name' => 'wizard_edit',
+						),
 						'popup_onlyOpenIfSelected' => 1,
 						'icon' => 'edit2.gif',
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
