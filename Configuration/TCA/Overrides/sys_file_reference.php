@@ -24,5 +24,3 @@ $GLOBALS['TCA']['sys_file_reference']['palettes']['newsPalette'] = array(
 	'showitem' => 'showinpreview',
 	'canNotCollapse' => TRUE
 );
-
-return $GLOBALS['TCA']['sys_file_reference'];

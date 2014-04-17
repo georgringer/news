@@ -133,5 +133,3 @@ $newSysCategoryColumns = array(
 
 // add fe_group as enable field
 $GLOBALS['TCA']['sys_category']['ctrl']['enablecolumns']['fe_group'] = 'fe_group';
-
-return $GLOBALS['TCA']['sys_category'];
