@@ -47,8 +47,10 @@ class Tx_News_Service_CacheService {
 
 	/**
 	 * @param $cacheName string cache name
+	 * @deprecated since 3.0 will be removed in 4.0
 	 */
 	public function __construct($cacheName) {
+		\TYPO3\CMS\Core\Utility\GeneralUtility::logDeprecatedFunction();
 		$this->cacheName = $cacheName;
 		$this->cacheManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
 	}

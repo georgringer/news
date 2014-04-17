@@ -59,7 +59,8 @@ class Tx_News_Hooks_Tcemain {
 	public function processDatamap_afterDatabaseOperations($status, $table, $recordUid, array $fields, \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject) {
 		// Clear category cache
 		if ($table === 'sys_category') {
-			$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
+			/** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
+			$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('cache_news_category');
 			$cache->flush();
 		}
 

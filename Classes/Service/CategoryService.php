@@ -36,7 +36,8 @@ class Tx_News_Service_CategoryService {
 	 * @return string comma separated list of category ids
 	 */
 	public static function getChildrenCategories($idList, $counter = 0, $additionalWhere = '', $removeGivenIdListFromResult = FALSE) {
-		$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
+		/** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
+		$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('cache_news_category');
 		$cacheIdentifier = sha1('children' . $idList);
 
 		$entry = $cache->get($cacheIdentifier);
@@ -76,7 +77,7 @@ class Tx_News_Service_CategoryService {
 	 * @return string comma separated list of category ids
 	 */
 	public static function getRootline($id, $additionalWhere = '') {
-		$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Service_CacheService', 'news_categorycache');
+		$cache = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('cache_news_category');
 		$cacheIdentifier = sha1('rootline' . $id);
 
 		$entry = $cache->get($cacheIdentifier);
