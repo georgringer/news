@@ -131,6 +131,9 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		}
 
 		// Time restriction greater than or equal
+		$timeRestrictionField = $demand->getDateField();
+		$timeRestrictionField = (empty($timeRestrictionField)) ? 'datetime' : $timeRestrictionField;
+
 		if ($demand->getTimeRestriction()) {
 			$timeLimit = 0;
 			// integer = timestamp
@@ -148,7 +151,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			}
 
 			$constraints[] = $query->greaterThanOrEqual(
-				'datetime',
+				$timeRestrictionField,
 				$timeLimit
 			);
 		}
@@ -171,7 +174,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			}
 
 			$constraints[] = $query->lessThanOrEqual(
-				'datetime',
+				$timeRestrictionField,
 				$timeLimit
 			);
 		}
