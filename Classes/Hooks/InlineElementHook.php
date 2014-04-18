@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface  {
+class Tx_News_Hooks_InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface  {
 
 	/**
 	 * Initializes this hook object.
