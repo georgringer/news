@@ -53,7 +53,6 @@ return array(
 		),
 		'title' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news_domain_model_tag.title',
 			'config' => array(
 				'type' => 'input',
