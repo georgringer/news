@@ -149,6 +149,8 @@ class Tx_News_Domain_Service_CategoryImportService implements \TYPO3\CMS\Core\Si
 		$category->setHidden($importItem['hidden']);
 		$category->setStarttime($importItem['starttime']);
 		$category->setEndtime($importItem['endtime']);
+		$category->setCrdate($importItem['crdate']);
+		$category->setTstamp($importItem['tstamp']);
 		$category->setTitle($importItem['title']);
 		$category->setDescription($importItem['description']);
 		$category->setImage($importItem['image']);

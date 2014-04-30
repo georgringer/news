@@ -70,6 +70,8 @@ class Tx_News_Service_Import_T3BlogCategoryDataProviderService implements Tx_New
 				'hidden'         => $category['hidden'],
 				'starttime'      => $category['starttime'],
 				'endtime'        => $category['endtime'],
+				'tstamp'         => $category['tstamp'],
+				'crdate'         => $category['crdate'],
 				'title'          => $category['catname'],
 				'description'    => $category['description'],
 				'parentcategory' => $category['parent_id'],

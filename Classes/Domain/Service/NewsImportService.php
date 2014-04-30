@@ -176,6 +176,8 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 		$news->setStarttime($importItem['starttime']);
 		$news->setEndtime($importItem['endtime']);
 		$news->setFeGroup($importItem['fe_group']);
+		$news->setTstamp($importItem['tstamp']);
+		$news->setCrdate($importItem['crdate']);
 
 		$news->setTitle($importItem['title']);
 		$news->setTeaser($importItem['teaser']);

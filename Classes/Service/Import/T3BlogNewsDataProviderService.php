@@ -68,6 +68,7 @@ class Tx_News_Service_Import_T3BlogNewsDataProviderService implements Tx_News_Se
 			$importData[] = array(
 				'pid'              => $row['pid'],
 				'crdate'           => $row['crdate'],
+				'tstamp'           => $row['tstamp'],
 				'cruser_id'        => $row['cruser_id'],
 				'hidden'           => $row['hidden'],
 				'l10n_parent'      => $row['l18n_parent'],
