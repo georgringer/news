@@ -191,15 +191,15 @@ lib.tx_news.contentElementRendering {
 }
 
 # Rendering of news, displayed by "Insert Record" content element
-tt_content.shortcut.20.0.tables := addToList(tx_news_domain_model_news)
-tt_content.shortcut.20.0.conf.tx_news_domain_model_news = USER
-tt_content.shortcut.20.0.conf.tx_news_domain_model_news {
+tt_content.shortcut.20.tables := addToList(tx_news_domain_model_news)
+tt_content.shortcut.20.conf.tx_news_domain_model_news = USER
+tt_content.shortcut.20.conf.tx_news_domain_model_news {
 	userFunc = tx_extbase_core_bootstrap->run
 	extensionName = News
 	pluginName = Pi1
 	switchableControllerActions {
 		News {
-		  1 = detail
+			1 = detail
 		}
 	}
 	settings < plugin.tx_news.settings
