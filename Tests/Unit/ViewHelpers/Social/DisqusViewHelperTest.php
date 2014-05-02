@@ -31,11 +31,6 @@
  */
 class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
-	/**
-	 * @var Tx_Phpunit_Framework
-	 */
-	protected $testingFramework;
-
 	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
 	protected $objectManager;
 
@@ -46,7 +41,6 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\
 	 */
 	public function setUp() {
 		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$this->testingFramework = new Tx_Phpunit_Framework('tx_news');
 	}
 
 	/**
@@ -58,9 +52,8 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\
 	public function viewHelperReturnsCorrectJs() {
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
-		$newUid = $this->testingFramework->createRecord(
-			'tx_news_domain_model_news', array('pid' => 98, 'title' => 'fobar'));
-		$newsItem = $newsRepository->findByUid($newUid);
+		$newsItem = new Tx_News_Domain_Model_News();
+		$newsItem->setTitle('fobar');
 
 		$language = 'en';
 
@@ -90,16 +83,6 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\
 				</script>';
 
 		$this->assertEquals($expectedCode, $actualResult);
-	}
-
-	/**
-	 * Tear down and remove records
-	 *
-	 * @return void
-	 */
-	public function tearDown() {
-		$this->testingFramework->cleanUp();
-		unset($this->testingFramework);
 	}
 
 }
