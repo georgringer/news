@@ -59,6 +59,7 @@ $default = array(
 	'tx_news_mediarenderer_video_quicktime' => $extensionClassesPath . 'MediaRenderer/Video/Quicktime.php',
 	'tx_news_mediarenderer_video_videosites' => $extensionClassesPath . 'MediaRenderer/Video/Videosites.php',
 	'tx_news_mediarenderer_video_youtube' => $extensionClassesPath . 'MediaRenderer/Video/Youtube.php',
+	'tx_news_mediarenderer_video_vimeo' => $extensionClassesPath . 'MediaRenderer/Video/Vimeo.php',
 	'tx_news_service_cacheservice' => $extensionClassesPath . 'Service/CacheService.php',
 	'tx_news_service_categoryservice' => $extensionClassesPath . 'Service/CategoryService.php',
 	'tx_news_service_fileservice' => $extensionClassesPath . 'Service/FileService.php',
