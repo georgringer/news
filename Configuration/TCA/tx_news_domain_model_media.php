@@ -184,7 +184,6 @@ $tx_news_domain_model_media = array(
 			'label' => 'LLL:EXT:cms/locallang_ttc.xml:media.type',
 			'config' => array(
 				'type' => 'select',
-				'itemsProcFunc' => 'Tx_News_Hooks_ItemsProcFunc->user_MediaType',
 				'items' => array(
 					array($ll . 'tx_news_domain_model_media.type.I.0', '0', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/media_type_image.png'),
 					array($ll . 'tx_news_domain_model_media.type.I.1', '1', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/media_type_multimedia.png'),
