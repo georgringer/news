@@ -38,7 +38,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Service_SettingsService implements \TYPO3\CMS\Core\SingletonInterface {
+class Tx_News_Service_SettingsService {
 
 	/**
 	 * @var mixed
