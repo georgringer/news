@@ -67,14 +67,14 @@ $boot = function($packageKey) {
 			$addTableItems = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(';', $configuration->getPageModuleFieldsNews(), TRUE);
 			foreach ($addTableItems as $item) {
 				$split = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode('=', $item, TRUE);
-				$fList = $fTitle = '';
 				if (count($split) == 2) {
 					$fTitle = $split[0];
 					$fList = $split[1];
 				} else {
+					$fTitle = '';
 					$fList = $split[0];
 				}
-				$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_news_domain_model_news'][] = array(
+				$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_news_domain_model_news'][] = array(
 					'MENU' => $fTitle,
 					'fList' => $fList,
 					'icon' => TRUE,
@@ -83,7 +83,7 @@ $boot = function($packageKey) {
 		}
 
 		if ($configuration->getPageModuleFieldsCategory()) {
-			$TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['sys_category'][0] = array(
+			$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['sys_category'][0] = array(
 				'fList' => htmlspecialchars($configuration->getPageModuleFieldsCategory()),
 				'icon' => TRUE
 			);
