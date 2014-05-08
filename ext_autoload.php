@@ -16,7 +16,6 @@ $default = array(
 	'tx_news_domain_model_filereference' => $extensionClassesPath . 'Domain/Model/FileReference.php',
 	'tx_news_domain_model_link' => $extensionClassesPath . 'Domain/Model/Link.php',
 	'tx_news_domain_model_media' => $extensionClassesPath . 'Domain/Model/Media.php',
-	'tx_news_domain_model_mediafilereference' => $extensionClassesPath . 'Domain/Model/MediaFileReference.php',
 	'tx_news_domain_model_news' => $extensionClassesPath . 'Domain/Model/News.php',
 	'tx_news_domain_model_newsdefault' => $extensionClassesPath . 'Domain/Model/NewsDefault.php',
 	'tx_news_domain_model_newsexternal' => $extensionClassesPath . 'Domain/Model/NewsExternal.php',

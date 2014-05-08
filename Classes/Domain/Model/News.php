@@ -184,7 +184,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Fal media items
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_MediaFileReference>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference>
 	 * @lazy
 	 */
 	protected $falMedia;
@@ -911,9 +911,9 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Add a Fal media file reference
 	 *
-	 * @param Tx_News_Domain_Model_MediaFileReference $falMedia
+	 * @param Tx_News_Domain_Model_FileReference $falMedia
 	 */
-	public function addFalMedia(Tx_News_Domain_Model_MediaFileReference $falMedia) {
+	public function addFalMedia(Tx_News_Domain_Model_FileReference $falMedia) {
 		if ($this->getFalMedia() === NULL) {
 			$this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
@@ -928,7 +928,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	public function getFalMediaPreviews() {
 		if ($this->falMediaPreviews === NULL && $this->getFalMedia()) {
 			$this->falMediaPreviews = array();
-			/** @var $mediaItem Tx_News_Domain_Model_MediaFileReference */
+			/** @var $mediaItem Tx_News_Domain_Model_FileReference */
 			foreach ($this->getFalMedia() as $mediaItem) {
 				if ($mediaItem->getOriginalResource()->getProperty('showinpreview')) {
 					$this->falMediaPreviews[] = $mediaItem;
@@ -947,7 +947,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	public function getNonFalMediaPreviews() {
 		if ($this->falMediaNonPreviews === NULL && $this->getFalMedia()) {
 			$this->falMediaNonPreviews = array();
-			/** @var $mediaItem Tx_News_Domain_Model_MediaFileReference */
+			/** @var $mediaItem Tx_News_Domain_Model_FileReference */
 			foreach ($this->getFalMedia() as $mediaItem) {
 				if (!$mediaItem->getOriginalResource()->getProperty('showinpreview')) {
 					$this->falMediaNonPreviews[] = $mediaItem;

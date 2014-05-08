@@ -254,12 +254,6 @@ config.tx_extbase.persistence.classes {
 		}
 	}
 
-	Tx_News_Domain_Model_MediaFileReference {
-		mapping {
-			tableName = sys_file_reference
-		}
-	}
-
 	Tx_News_Domain_Model_TtContent {
 		mapping {
 			tableName = tt_content

@@ -266,7 +266,7 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 						continue;
 					}
 
-					/** @var $media Tx_News_Domain_Model_MediaFileReference */
+					/** @var $media Tx_News_Domain_Model_FileReference */
 					if (!$media = $this->getIfFalRelationIfAlreadyExists($news->getFalMedia(), $file)) {
 
 						// file not inside a storage then search for existing file or copy the one form storage 0 to the import folder
@@ -286,9 +286,9 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 							}
 						}
 
-						$media = $this->objectManager->get('Tx_News_Domain_Model_MediaFileReference');
-						$news->addFalMedia($media);
+						$media = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
 						$media->setFileUid($file->getUid());
+						$news->addFalMedia($media);
 					}
 
 					if ($media) {
@@ -367,8 +367,8 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 						}
 
 						$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
-						$news->addFalRelatedFile($relatedFile);
 						$relatedFile->setFileUid($file->getUid());
+						$news->addFalRelatedFile($relatedFile);
 					}
 
 					if ($relatedFile) {

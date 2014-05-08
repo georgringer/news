@@ -724,6 +724,11 @@ if ($configuration->getUseFal()) {
 					'appearance' => array(
 						'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add'
 					),
+					'foreign_match_fields' => array(
+						'fieldname' => 'fal_media',
+						'tablenames' => 'tx_news_domain_model_news',
+						'table_local' => 'sys_file',
+					),
 					// custom configuration for displaying fields in the overlay/reference table
 					// to use the newsPalette and imageoverlayPalette instead of the basicoverlayPalette
 					'foreign_types' => array(
@@ -777,6 +782,11 @@ if ($configuration->getUseFal()) {
 				array(
 					'appearance' => array(
 						'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_related_files.add'
+					),
+					'foreign_match_fields' => array(
+						'fieldname' => 'fal_related_files',
+						'tablenames' => 'tx_news_domain_model_news',
+						'table_local' => 'sys_file',
 					),
 				)
 			)

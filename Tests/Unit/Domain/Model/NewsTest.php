@@ -367,7 +367,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @test
 	 */
 	public function falMediaCanBeAdded() {
-		$mediaItem = new Tx_News_Domain_Model_MediaFileReference();
+		$mediaItem = new Tx_News_Domain_Model_FileReference();
 		$mediaItem->setTitle('Fo');
 
 		$news = new Tx_News_Domain_Model_News();
@@ -387,7 +387,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 		$mockedElement1->_set('showinpreview', TRUE);
 		$mockedElement1->expects($this->any())->method('getProperty')->will($this->returnValue(TRUE));
 
-		$mediaItem1 = new Tx_News_Domain_Model_MediaFileReference();
+		$mediaItem1 = new Tx_News_Domain_Model_FileReference();
 		$mediaItem1->_setProperty('originalResource', $mockedElement1);
 		$news->addFalMedia($mediaItem1);
 
@@ -396,7 +396,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 		$mockedElement2->_set('showinpreview', TRUE);
 		$mockedElement2->expects($this->any())->method('getProperty')->will($this->returnValue(FALSE));
 
-		$mediaItem2 = new Tx_News_Domain_Model_MediaFileReference();
+		$mediaItem2 = new Tx_News_Domain_Model_FileReference();
 		$mediaItem2->_setProperty('originalResource', $mockedElement2);
 		$news->addFalMedia($mediaItem2);
 
@@ -405,7 +405,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 		$mockedElement3->_set('showinpreview', TRUE);
 		$mockedElement3->expects($this->any())->method('getProperty')->will($this->returnValue(TRUE));
 
-		$mediaItem3 = new Tx_News_Domain_Model_MediaFileReference();
+		$mediaItem3 = new Tx_News_Domain_Model_FileReference();
 		$mediaItem3->_setProperty('originalResource', $mockedElement3);
 		$news->addFalMedia($mediaItem3);
 
