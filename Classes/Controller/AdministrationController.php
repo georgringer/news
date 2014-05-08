@@ -225,6 +225,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		}
 
 		$returnUrl = 'mod.php?M=web_NewsTxNewsM2&id=' . $this->pageUid;
+		$returnUrl .= '&moduleToken=' . \TYPO3\CMS\Core\FormProtection\FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
 		$url = 'alt_doc.php?edit[' . $table . '][' . $pid . ']=new&returnUrl=' . urlencode($returnUrl);
 
 		\TYPO3\CMS\Core\Utility\HttpUtility::redirect($url);
