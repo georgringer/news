@@ -147,6 +147,7 @@
 			<label index="module.headline">Settings</label>
 			<label index="module.recursive">Recursive</label>
 			<label index="module.timeRestriction">Time Restriction</label>
+			<label index="module.timeRestrictionHigh">Time Restriction High</label>
 			<label index="module.createNewCategory">Create a new category</label>
 			<label index="module.topNewsYes">Yes</label>
 			<label index="module.topNewsNo">No</label>
