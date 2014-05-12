@@ -29,50 +29,15 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Domain_Service_CategoryImportService implements \TYPO3\CMS\Core\SingletonInterface {
+class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Service_AbstractImportService {
 
 	const ACTION_SET_PARENT_CATEGORY = 1;
 	const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
-
-	/**
 	 * @var Tx_News_Domain_Repository_CategoryRepository
 	 */
 	protected $categoryRepository;
-
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-	 */
-	protected $persistenceManager;
-
-	/**
-	 * @var array
-	 */
-	protected $postPersistQueue = array();
-
-	/**
-	 * Inject the object manager
-	 *
-	 * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
-	 * @return void
-	 */
-	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager) {
-		$this->objectManager = $objectManager;
-	}
-
-	/**
-	 * Inject Persistence Manager
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
-	 * @return void
-	 */
-	public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager) {
-		$this->persistenceManager = $persistenceManager;
-	}
 
 	/**
 	 * Inject the category repository.
@@ -153,7 +118,7 @@ class Tx_News_Domain_Service_CategoryImportService implements \TYPO3\CMS\Core\Si
 		$category->setTstamp($importItem['tstamp']);
 		$category->setTitle($importItem['title']);
 		$category->setDescription($importItem['description']);
-		$category->setImage($importItem['image']);
+		$this->setFileRelationFromImage($category, $importItem['image']);
 		$category->setShortcut($importItem['shortcut']);
 		$category->setSinglePid($importItem['single_pid']);
 
@@ -161,6 +126,63 @@ class Tx_News_Domain_Service_CategoryImportService implements \TYPO3\CMS\Core\Si
 		$category->setImportSource($importItem['import_source']);
 
 		return $category;
+	}
+
+	/**
+	 * Add category image when not already present
+	 *
+	 * @param Tx_News_Domain_Model_Category $category
+	 * @param $image
+	 */
+	protected function setFileRelationFromImage($category, $image) {
+
+		// get fileObject by given identifier (file UID, combined identifier or path/filename)
+		try {
+			$newImage = $this->getResourceFactory()->retrieveFileOrFolderObject($image);
+		} catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+			$newImage = FALSE;
+		}
+
+		// new image found check if this isn't already
+		if ($newImage) {
+			$existingImages = $category->getImages();
+			if ($existingImages->count() !== 0) {
+				/** @var $item Tx_News_Domain_Model_FileReference */
+				foreach ($existingImages as $item) {
+					// only check already persisted items
+					if ($item->getFileUid() === (int)$newImage->getUid()
+						||
+						($item->getUid() &&
+							$item->getOriginalResource()->getName() === $newImage->getName() &&
+							$item->getOriginalResource()->getSize() === (int)$newImage->getSize())
+					) {
+						$newImage = FALSE;
+						break;
+					}
+				}
+			}
+		}
+
+		if ($newImage) {
+			// file not inside a storage then search for existing file or copy the one form storage 0 to the import folder
+			if ($newImage->getStorage()->getUid() === 0) {
+
+				// search DB for same file based on hash (to prevent duplicates)
+				$existingFile = $this->findFileByHash($newImage->getSha1());
+
+				// no exciting file then copy file to import folder
+				if ($existingFile === NULL) {
+					$newImage = $this->getResourceStorage()->copyFile($newImage, $this->getImportFolder());
+				} else {
+					$newImage = $existingFile;
+				}
+			}
+
+			$fileReference = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
+			$fileReference->setFileUid($newImage->getUid());
+			$fileReference->setPid($category->getPid());
+			$category->addImage($fileReference);
+		}
 	}
 
 	/**

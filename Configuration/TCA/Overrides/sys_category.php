@@ -69,6 +69,11 @@ $newSysCategoryColumns = array(
 				'appearance' => array(
 					'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
 				),
+				'foreign_match_fields' => array(
+					'fieldname' => 'images',
+					'tablenames' => 'sys_category',
+					'table_local' => 'sys_file',
+				),
 			),
 			$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
 		)

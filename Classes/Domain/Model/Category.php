@@ -86,7 +86,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	protected $parentcategory;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference>
 	 * @lazy
 	 */
 	protected $images;
@@ -305,6 +305,24 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	 */
 	public function getImages() {
 		return $this->images;
+	}
+
+	/**
+	 * Add image
+	 *
+	 * @param Tx_News_Domain_Model_FileReference $image
+	 */
+	public function addImage(Tx_News_Domain_Model_FileReference $image) {
+		$this->images->attach($image);
+	}
+
+	/**
+	 * Remove image
+	 *
+	 * @param Tx_News_Domain_Model_FileReference $image
+	 */
+	public function removeImage(Tx_News_Domain_Model_FileReference $image) {
+		$this->images->detach($image);
 	}
 
 	/**

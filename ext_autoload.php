@@ -36,6 +36,7 @@ $default = array(
 	'tx_news_domain_repository_newsrepository' => $extensionClassesPath . 'Domain/Repository/NewsRepository.php',
 	'tx_news_domain_repository_tagrepository' => $extensionClassesPath . 'Domain/Repository/TagRepository.php',
 	'tx_news_domain_repository_ttcontentrepository' => $extensionClassesPath . 'Domain/Repository/TtContentRepository.php',
+	'tx_news_domain_service_abstractimportservice' => $extensionClassesPath . 'Domain/Service/AbstractImportService.php',
 	'tx_news_domain_service_categoryimportservice' => $extensionClassesPath . 'Domain/Service/CategoryImportService.php',
 	'tx_news_domain_service_newsimportservice' => $extensionClassesPath . 'Domain/Service/NewsImportService.php',
 	'tx_news_hooks_cmslayout' => $extensionClassesPath . 'Hooks/CmsLayout.php',

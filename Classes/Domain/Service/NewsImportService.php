@@ -29,19 +29,10 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\SingletonInterface {
-	const UPLOAD_PATH = 'uploads/tx_news/';
+class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_AbstractImportService {
+
 	const ACTION_IMPORT_L10N_OVERLAY = 1;
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-	 */
-	protected $objectManager;
-
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-	 */
-	protected $persistenceManager;
 
 	/**
 	 * @var Tx_News_Domain_Repository_NewsRepository
@@ -61,49 +52,7 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 	/**
 	 * @var array
 	 */
-	protected $postPersistQueue = array();
-
-	/**
-	 * @var array
-	 */
 	protected $settings = array();
-
-	/**
-	 * @var Tx_News_Domain_Model_Dto_EmConfiguration
-	 */
-	protected $emSettings;
-
-	/**
-	 * @var \TYPO3\CMS\Core\Resource\Folder
-	 */
-	protected $importFolder;
-
-	/**
-	 * Constructor
-	 */
-	public function __construct() {
-		$this->emSettings = Tx_News_Utility_EmConfiguration::getSettings();
-	}
-
-	/**
-	 * Inject the object manager
-	 *
-	 * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
-	 * @return void
-	 */
-	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager) {
-		$this->objectManager = $objectManager;
-	}
-
-	/**
-	 * Inject Persistence Manager
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
-	 * @return void
-	 */
-	public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager) {
-		$this->persistenceManager = $persistenceManager;
-	}
 
 	/**
 	 * Inject the news repository
@@ -135,7 +84,6 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 	public function injectTtContentRepository(Tx_News_Domain_Repository_TtContentRepository $ttContentRepository) {
 		$this->ttContentRepository = $ttContentRepository;
 	}
-
 
 	/**
 	 * @param array $importItem
@@ -583,36 +531,6 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 	}
 
 	/**
-	 * Find a existing file by its hash
-	 *
-	 * @param string $hash
-	 * @return NULL|\TYPO3\CMS\Core\Resource\File
-	 */
-	protected function findFileByHash($hash) {
-		$file = NULL;
-
-		/**
-		 * As of 6.2 we can use
-		 * $files = FileIndexRepository->findByContentHash($hash);
-		 * Until then a direct DB query
-		 */
-		$files = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-			'storage,identifier',
-			'sys_file',
-			'sha1=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($hash, 'sys_file')
-		);
-		if (count($files)) {
-			foreach ($files as $fileInfo) {
-				if ($fileInfo['storage'] > 0) {
-					$file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier($fileInfo['storage'], $fileInfo['identifier']);
-					break;
-				}
-			}
-		}
-		return $file;
-	}
-
-	/**
 	 * Get an existing related link object
 	 *
 	 * @param Tx_News_Domain_Model_News $news
@@ -632,46 +550,5 @@ class Tx_News_Domain_Service_NewsImportService implements \TYPO3\CMS\Core\Single
 			}
 		}
 		return $result;
-	}
-
-	/**
-	 * Compares 2 files by using its filesize
-	 *
-	 * @param string $file1 Absolute path and filename to file1
-	 * @param string $file2 Absolute path and filename to file2
-	 * @return boolean
-	 */
-	protected function filesAreEqual($file1, $file2) {
-		return (filesize($file1) === filesize($file2));
-	}
-
-	/**
-	 * Get import Folder
-	 *
-	 * TODO: catch exception when storage/folder does not exist and return readable message to the user
-	 *
-	 * @return \TYPO3\CMS\Core\Resource\Folder
-	 */
-	protected function getImportFolder() {
-		if ($this->importFolder === NULL) {
-			$this->importFolder = $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter().':'.$this->emSettings->getResourceFolderImporter());
-		}
-		return $this->importFolder;
-	}
-
-	/**
-	 * Get resource storage
-	 *
-	 * @return \TYPO3\CMS\Core\Resource\ResourceStorage
-	 */
-	protected function getResourceStorage() {
-		return $this->getResourceFactory()->getStorageObject($this->emSettings->getStorageUidImporter());
-	}
-
-	/**
-	 * @return \TYPO3\CMS\Core\Resource\ResourceFactory
-	 */
-	protected function getResourceFactory() {
-		return \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
 	}
 }
