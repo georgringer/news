@@ -128,7 +128,7 @@ class Tx_News_Hooks_CmsLayout {
 
 				// for all views
 				$this->getOverrideDemandSettings();
-				$this->getTemplateLayoutSettings();
+				$this->getTemplateLayoutSettings($params['row']['pid']);
 
 				$result .= $this->renderSettingsAsTable();
 			}
@@ -466,17 +466,20 @@ class Tx_News_Hooks_CmsLayout {
 	/**
 	 * Render template layout configuration
 	 *
+	 * @param int $pageUid
 	 * @return void
 	 */
-	protected function getTemplateLayoutSettings() {
+	protected function getTemplateLayoutSettings($pageUid) {
 		$title = '';
-
 		$field = $this->getFieldFromFlexform('settings.templateLayout', 'template');
-		if (!empty($field) && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])) // Find correct title by looping over all options
-		{
-			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] as $layouts) {
-				if ($layouts[1] === $field) {
-					$title = $layouts[0];
+
+		// Find correct title by looping over all options
+		if (!empty($field)) {
+			/** @var Tx_News_Utility_TemplateLayout $templateLayoutsUtility */
+			$templateLayoutsUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Utility_TemplateLayout');
+			foreach ($templateLayoutsUtility->getAvailableTemplateLayouts($pageUid) as $layout) {
+				if ($layout[1] === $field) {
+					$title = $layout[0];
 				}
 			}
 		}

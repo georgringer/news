@@ -37,36 +37,16 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * @return void
 	 */
 	public function user_templateLayout(array &$config) {
-			// Check if the layouts are extended by ext_tables
-		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])
-				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])) {
-
-				// Add every item
-			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] as $layouts) {
-				$additionalLayout = array(
-					$GLOBALS['LANG']->sL($layouts[0], TRUE),
-					$layouts[1]
-				);
-				array_push($config['items'], $additionalLayout);
-			}
+		/** @var Tx_News_Utility_TemplateLayout $templateLayoutsUtility */
+		$templateLayoutsUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Utility_TemplateLayout');
+		$templateLayouts = $templateLayoutsUtility->getAvailableTemplateLayouts($config['row']['pid']);
+		foreach ($templateLayouts as $layout) {
+			$additionalLayout = array(
+				$GLOBALS['LANG']->sL($layout[0], TRUE),
+				$layout[1]
+			);
+			array_push($config['items'], $additionalLayout);
 		}
-
-			// Add tsconfig values
-		if (is_numeric($config['row']['pid'])) {
-			$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($config['row']['pid']);
-			if (isset($pagesTsConfig['tx_news.']['templateLayouts.']) && is_array($pagesTsConfig['tx_news.']['templateLayouts.'])) {
-
-					// Add every item
-				foreach ($pagesTsConfig['tx_news.']['templateLayouts.'] as $key => $label) {
-					$additionalLayout = array(
-						$GLOBALS['LANG']->sL($label, TRUE),
-						$key
-					);
-					array_push($config['items'], $additionalLayout);
-				}
-			}
-		}
-
 	}
 
 	/**
