@@ -175,7 +175,7 @@ $tx_news_domain_model_news = array(
 			)
 		),
 		'alternative_title' => array(
-			'exclude' => 0,
+			'exclude' => 1,
 			'label' => $ll . 'tx_news_domain_model_news.alternative_title',
 			'config' => array(
 				'type' => 'input',
@@ -577,7 +577,7 @@ $tx_news_domain_model_news = array(
 			),
 		),
 		'path_segment' => array(
-			'exclude' => 0,
+			'exclude' => 1,
 			'label' => $ll . 'tx_news_domain_model_news.path_segment',
 			'config' => array(
 				'type' => 'input',
