@@ -324,6 +324,7 @@ class ext_update {
 		$this->updateCategoryPermissionFields('be_groups', $oldNewCategoryUidMapping);
 		$this->updateCategoryPermissionFields('be_users', $oldNewCategoryUidMapping);
 		$this->migrateCategoryImages();
+		$this->updateFlexformCategories('news_pi1', $oldNewCategoryUidMapping, 'settings.categories');
 
 		/**
 		 * Finished category migration
@@ -560,6 +561,79 @@ class ext_update {
 		$message = 'Migrated ' . $processedImages . ' category images';
 		$status = FlashMessage::INFO;
 		$title = '';
+		$this->messageArray[] = array($status, $title, $message);
+	}
+
+	/**
+	 * Update categories in flexforms
+	 *
+	 * @param string $pluginName
+	 * @param array $oldNewCategoryUidMapping
+	 * @param string $flexformField name of the flexform's field to look for
+	 * @return void
+	 */
+	protected function updateFlexformCategories($pluginName, $oldNewCategoryUidMapping, $flexformField) {
+		$count = 0;
+		$title = 'Update flexforms categories (' . $pluginName . ':' . $flexformField . ')';
+		$res = $this->databaseConnection->exec_SELECTquery('uid, pi_flexform',
+			'tt_content',
+			'CType=\'list\' AND list_type=\'' . $pluginName . '\' AND deleted=0');
+
+		/** @var \TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools $flexformTools */
+		$flexformTools = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\FlexForm\\FlexFormTools');
+
+		while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
+
+			$status = NULL;
+			$xmlArray = GeneralUtility::xml2array($row['pi_flexform']);
+
+			if (!is_array($xmlArray) || !isset($xmlArray['data'])) {
+				$status = FlashMessage::ERROR;
+				$message = 'Flexform data of plugin "' . $pluginName . '" not found.';
+			} elseif (!isset($xmlArray['data']['sDEF']['lDEF'])) {
+				$status = FlashMessage::WARNING;
+				$message = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain sheet: sDEF';
+			} elseif (isset($xmlArray[$flexformField . '_updated'])) {
+				$status = FlashMessage::NOTICE;
+				$message = 'Flexform data of record tt_content:' . $row['uid'] . ' is already updated for ' . $flexformField . '. No update needed...';
+			} else {
+				// Some flexforms may have displayCond
+				if (isset($xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'])) {
+					$updated = FALSE;
+					$oldCategories = GeneralUtility::trimExplode(',', $xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'], TRUE);
+
+					if (!empty($oldCategories)) {
+						$newCategories = array();
+
+						foreach ($oldCategories as $uid) {
+							if (isset($oldNewCategoryUidMapping[$uid])) {
+								$newCategories[] = $oldNewCategoryUidMapping[$uid];
+								$updated = TRUE;
+							} else {
+								$status = FlashMessage::WARNING;
+								$message = 'The category ' . $uid . ' of record tt_content:' . $row['uid'] . ' was not found in sys_category records. Maybe the category was deleted before the migration? Please check manually...';
+							}
+						}
+
+						if ($updated) {
+							$count ++;
+							$xmlArray[$flexformField . '_updated'] = 1;
+							$xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'] = implode(',', $newCategories);
+							$this->databaseConnection->exec_UPDATEquery('tt_content', 'uid=' . $row['uid'], array(
+								'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray)
+							));
+						}
+					}
+				}
+			}
+
+			if ($status !== NULL) {
+				$this->messageArray[] = array($status, $title, $message);
+			}
+		}
+
+		$status = FlashMessage::INFO;
+		$message = 'Updated ' . $count . ' tt_content flexforms for  "' . $pluginName . ':' . $flexformField . '"';
 		$this->messageArray[] = array($status, $title, $message);
 	}
 
