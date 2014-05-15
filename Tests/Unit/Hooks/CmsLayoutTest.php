@@ -200,7 +200,7 @@ class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitT
 		);
 		$this->addContentToFlexform($flexform, 'settings.templateLayout', 'fo', 'template');
 		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getTemplateLayoutSettings');
+		$this->cmsLayout->_call('getTemplateLayoutSettings', 1);
 		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
 	}
 
