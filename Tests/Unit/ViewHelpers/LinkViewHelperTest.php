@@ -87,6 +87,53 @@ class Tx_News_Tests_Unit_ViewHelpers_LinkViewHelperTest extends \TYPO3\CMS\Core\
 	 * @test
 	 * @return void
 	 */
+	public function humanReadAbleDateIsAddedToConfiguration() {
+		$dateTime = new DateTime('2014-05-16');
+		$newsItem = new Tx_News_Domain_Model_News();
+		$newsItem->_setProperty('uid', 123);
+		$newsItem->setDatetime($dateTime);
+
+		$tsSettings = array(
+			'link' => array(
+				'hrDate' => array(
+					'_typoScriptNodeValue' => 1,
+					'day' => 'j',
+					'month' => 'n',
+					'year' => 'Y',
+				)
+			)
+		);
+		$configuration = array();
+		$expected = '&tx_news_pi1[news]=123&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[day]=16&tx_news_pi1[month]=5&tx_news_pi1[year]=2014';
+
+		$result = $this->mockedViewHelper->_call('getLinkToNewsItem', $newsItem, $tsSettings, $configuration);
+		$this->assertEquals($expected, $result['additionalParams']);
+	}
+
+	/**
+	 * @test
+	 * @return void
+	 */
+	public function controllerAndActionAreSkippedInUrl() {
+		$newsItem = new Tx_News_Domain_Model_News();
+		$newsItem->_setProperty('uid', 123);
+
+		$tsSettings = array(
+			'link' => array(
+				'skipControllerAndAction' => 1
+			)
+		);
+		$configuration = array();
+		$expected = '&tx_news_pi1[news]=123';
+
+		$result = $this->mockedViewHelper->_call('getLinkToNewsItem', $newsItem, $tsSettings, $configuration);
+		$this->assertEquals($expected, $result['additionalParams']);
+	}
+
+	/**
+	 * @test
+	 * @return void
+	 */
 	public function getDetailPidFromCategoriesReturnsCorrectValue() {
 		$viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_LinkViewHelper', array('dummy'));
 
