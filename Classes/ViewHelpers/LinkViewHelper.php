@@ -99,7 +99,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 				break;
 				// normal news record
 			default:
-				$configuration = $this->getLinkToNewsItem($newsItem, $tsSettings);
+				$configuration = $this->getLinkToNewsItem($newsItem, $tsSettings, $configuration);
 		}
 		if (isset($tsSettings['link']['typesOpeningInNewWindow'])) {
 			if (\TYPO3\CMS\Core\Utility\GeneralUtility::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
@@ -121,12 +121,12 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	 * Generate the link configuration for the link to the news item
 	 *
 	 * @param Tx_News_Domain_Model_News $newsItem
-	 * @param $tsSettings
+	 * @param array $tsSettings
+	 * @param array $configuration
 	 * @return array
 	 */
-	protected function getLinkToNewsItem(Tx_News_Domain_Model_News $newsItem, $tsSettings) {
+	protected function getLinkToNewsItem(Tx_News_Domain_Model_News $newsItem, $tsSettings, $configuration) {
 		$detailPid = 0;
-		$configuration = array();
 		$detailPidDeterminationMethods = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'], TRUE);
 
 		// if TS is not set, prefer flexform setting
