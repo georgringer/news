@@ -230,6 +230,23 @@ If you want that, you need to activate the following setting in your TypoScript:
 	}
 
 
+Removing controller and action arguments from URL (II)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+An alternative way to get rid of the arguments controller and action is to add those dynamically by the core if needed. All you need is this TypoScript: ::
+
+	[globalVar = GP:tx_news_pi1|news > 0]
+	config.defaultGetVars {
+		tx_news_pi1 {
+			controller=News
+			action=detail
+		}
+	}
+	[global]
+
+This snippet will set &tx_news_pi1[controller]=News&tx_news_pi1[action]=detail if any news uid is provided in the URL.
+
+
 Human readable dates
 """""""""""""""""""""""
 
