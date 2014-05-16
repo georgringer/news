@@ -64,6 +64,9 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 		'default' => 'getDetailPidFromDefaultDetailPid',
 	);
 
+	/** @var $cObj \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
+	protected $cObj;
+
 	/**
 	 * @var Tx_News_Service_SettingsService $pluginSettingsService
 	 * @return void
@@ -84,8 +87,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $uriOnly = FALSE, $configuration = array()) {
 		$tsSettings = $this->pluginSettingsService->getSettings();
 
-		/** @var $cObj tslib_cObj */
-		$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
+		$this->init();
 
 		$newsType = (int)$newsItem->getType();
 		switch ($newsType) {
@@ -107,7 +109,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 			}
 		}
 
-		$url = $cObj->typoLink_URL($configuration);
+		$url = $this->cObj->typoLink_URL($configuration);
 		if ($uriOnly) {
 			return $url;
 		}
@@ -209,5 +211,14 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	 */
 	protected function getDetailPidFromFlexform($settings, $newsItem) {
 		return (int)$settings['detailPid'];
+	}
+
+	/**
+	 * Initialize properties
+	 *
+	 * @return void
+	 */
+	protected function init() {
+		$this->cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 	}
 }
