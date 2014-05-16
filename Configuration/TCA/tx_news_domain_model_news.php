@@ -238,7 +238,6 @@ $tx_news_domain_model_news = array(
 				'size' => 12,
 				'max' => 20,
 				'eval' => 'datetime,required',
-				'default' => mktime(date('H'), date('i'), 0, date('m'), date('d'), date('Y'))
 			)
 		),
 		'archive' => array(

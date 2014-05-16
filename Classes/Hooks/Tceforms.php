@@ -39,8 +39,17 @@ class Tx_News_Hooks_Tceforms {
 	 * @return void
 	 */
 	public function getSingleField_preProcess($table, $field, array &$row) {
-			// Predefine the archive date
-		if ($table === 'tx_news_domain_model_news' && empty($row['archive']) && is_numeric($row['pid'])) {
+		if ($table !== 'tx_news_domain_model_news') {
+			return;
+		}
+
+		// Set current time for new records
+		if (substr($row['uid'], 0, 3) === 'NEW') {
+			$row['datetime'] = $GLOBALS['EXEC_TIME'];
+		}
+
+		// Predefine archive date
+		if (empty($row['archive']) && is_numeric($row['pid'])) {
 			$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($row['pid']);
 			if (is_array($pagesTsConfig['tx_news.']['predefine.'])
 					&& is_array($pagesTsConfig['tx_news.']['predefine.'])
