@@ -4,18 +4,22 @@
 
 ---
 conf.py:
-  copyright: 1992-2014
-  project: TYPO3 Extension "news"
-  version: 2.3.0
-  release: 2.3.0
+  copyright: 2000-2014
+  project: 'News: Versatile news system'
+  version: 3.0
+  release: 3.0.0
   latex_documents:
   - - Index
     - news.tex
-    - News: Versatile news system
+    - 'News: Versatile news system'
     - Georg Ringer
     - manual
   latex_elements:
     papersize: a4paper
     pointsize: 10pt
     preamble: \usepackage{typo3}
+  intersphinx_mapping:
+    t3tsref:
+    - http://docs.typo3.org/typo3cms/TyposcriptReference/
+    - null
 ...
