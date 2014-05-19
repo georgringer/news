@@ -7,13 +7,13 @@ plugin.tx_news {
 
 	view {
 		templateRootPaths {
-			100 = {$plugin.tx_news.view.templateRootPath}
+			0 = {$plugin.tx_news.view.templateRootPath}
 		}
 		partialRootPaths {
-			100 = {$plugin.tx_news.view.partialRootPath}
+			0 = {$plugin.tx_news.view.partialRootPath}
 		}
 		layoutRootPaths {
-			100 = {$plugin.tx_news.view.layoutRootPath}
+			0 = {$plugin.tx_news.view.layoutRootPath}
 		}
 	}
 	# Modify the translation
