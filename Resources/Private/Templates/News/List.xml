@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-{namespace n=Tx_News_ViewHelpers}<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+{namespace n=Tx_News_ViewHelpers}<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>{settings.list.rss.channel.title}</title>
 		<link>{settings.list.rss.channel.link}</link>
@@ -13,14 +13,15 @@
 		<f:if condition="{settings.list.rss.channel.category}">
 			<category>{settings.list.rss.channel.category}</category>
 		</f:if>
+		<atom:link href="<f:format.htmlentities><f:uri.page pageType="9818"/></f:format.htmlentities>" rel="self" type="application/rss+xml" />
 		<generator>{settings.list.rss.channel.generator}</generator>
 			<f:if condition="{news}">
 				<f:for each="{news}" as="newsItem">
 					<item>
-						<guid>news-{newsItem.uid}</guid>
+						<guid isPermaLink="false">news-{newsItem.uid}</guid>
 						<pubDate><n:format.date format="r" strftime="0">{newsItem.datetime}</n:format.date></pubDate>
 						<title><n:format.hsc>{newsItem.title}</n:format.hsc></title>
-						<link><n:format.hsc><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></n:format.hsc></link>
+						<link><f:format.htmlentities><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></f:format.htmlentities></link>
 						<description><n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc></description>
 						<content:encoded><f:format.cdata><f:format.html>{newsItem.bodytext}</f:format.html></f:format.cdata></content:encoded>
 					</item>
