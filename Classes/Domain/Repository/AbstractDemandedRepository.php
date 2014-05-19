@@ -189,6 +189,9 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 
 		// @todo consider moving this to a separate function as well
 		if ($demand->getOffset() != NULL) {
+			if (!$query->getLimit()) {
+				$query->setLimit(PHP_INT_MAX);
+			}
 			$query->setOffset((int) $demand->getOffset());
 		}
 
