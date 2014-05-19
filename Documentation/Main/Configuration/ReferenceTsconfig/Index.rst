@@ -178,6 +178,21 @@ Reference TsConfig for the Administration Module (Backend)
 
          The user will be redirected to the page with the uid 456.
 
+ - :Property:
+         allowedPage
+
+   :Data type:
+         integer
+
+   :Description:
+         If defined, the administration module will redirect the user always to the given page, no matter what defined in the page tree.
+
+         Example: ::
+
+           tx_news.module.allowedPage = 123
+
+         The user will be redirected to the page with the uid 123.
+
 
 Clear caches if a news record changes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

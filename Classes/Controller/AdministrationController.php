@@ -224,8 +224,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 			}
 		}
 
-		$returnUrl = 'mod.php?M=web_NewsTxNewsM2&id=' . $this->pageUid;
-		$returnUrl .= '&moduleToken=' . \TYPO3\CMS\Core\FormProtection\FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
+		$returnUrl = 'mod.php?M=web_NewsTxNewsM2&id=' . $this->pageUid . $this->getToken();
 		$url = 'alt_doc.php?edit[' . $table . '][' . $pid . ']=new&returnUrl=' . urlencode($returnUrl);
 
 		\TYPO3\CMS\Core\Utility\HttpUtility::redirect($url);
@@ -250,9 +249,21 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	 * @return void
 	 */
 	protected function redirectToPageOnStart() {
-		if ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
-			$url = 'mod.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'];
+		if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
+			$url = 'mod.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
+			\TYPO3\CMS\Core\Utility\HttpUtility::redirect($url);
+		} elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
+			$url = 'mod.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
 			\TYPO3\CMS\Core\Utility\HttpUtility::redirect($url);
 		}
+	}
+
+	/**
+	 * Get a CSRF token
+	 *
+	 * @return string
+	 */
+	protected function getToken() {
+		return '&moduleToken=' . \TYPO3\CMS\Core\FormProtection\FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
 	}
 }
