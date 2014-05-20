@@ -132,9 +132,10 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	 * @return void
 	 */
 	public function findRecordsByArchiveRestriction() {
+		$GLOBALS['EXEC_TIME'] = 1396812099;
 		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
 
-		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
+		/** @var $demand \Tx_News_Domain_Model_Dto_NewsDemand */
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setStoragePage(7);
 
@@ -207,9 +208,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setStoragePage(9);
 
-		// maximum 8 days old
-		$demand->setTimeRestriction('-8 days');
-		$this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
+		$GLOBALS['EXEC_TIME'] = strtotime('2014-04-03');
 
 		// get all news maximum 6 days old
 		$demand->setTimeRestriction((6 * 86400));
