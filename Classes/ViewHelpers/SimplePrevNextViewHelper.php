@@ -87,47 +87,9 @@ class Tx_News_ViewHelpers_SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core
 	 * @return string
 	 */
 	public function render(Tx_News_Domain_Model_News $news, $pidList = '', $sortField = 'datetime', $as) {
-		$pidList = empty($pidList) ? $news->getPid() : $pidList;
+		$neighbours = $this->getNeighbours($news, $pidList, $sortField);
 
-		$select = 'SELECT tx_news_domain_model_news.uid,tx_news_domain_model_news.title ';
-		$from = 'FROM tx_news_domain_model_news';
-		$whereClause = 'tx_news_domain_model_news.pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
-			. $this->getEnableFieldsWhereClauseForTable();
-
-		$query = $select . $from . '
-					WHERE ' . $whereClause . ' && ' . $sortField . ' >= (SELECT MAX(' . $sortField . ')
-						' . $from . '
-					WHERE ' . $whereClause . ' AND ' . $sortField . ' < (SELECT ' . $sortField . '
-						FROM tx_news_domain_model_news
-						WHERE tx_news_domain_model_news.uid = ' . $news->getUid() . '))
-					ORDER BY ' . $sortField . ' ASC
-					LIMIT 3';
-
-		$query2 = $select . $from . '
-			WHERE ' . $whereClause . ' AND ' . $sortField . '= (SELECT MIN(' . $sortField . ')
-				FROM tx_news_domain_model_news
-				WHERE ' . $sortField . ' >
-					(SELECT ' . $sortField . '
-					FROM tx_news_domain_model_news
-					WHERE tx_news_domain_model_news.uid = ' . $news->getUid() . '))
-			';
-
-		$res = $this->databaseConnection->sql_query($query);
-		$out = array();
-		while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
-			$out[] = $row;
-		}
-		$this->databaseConnection->sql_free_result($res);
-
-		if (count($out) === 0) {
-			$res = $this->databaseConnection->sql_query($query2);
-			while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
-				$out[] = $row;
-			}
-			$this->databaseConnection->sql_free_result($res);
-		}
-
-		$mapped = $this->mapResultToObjects($out);
+		$mapped = $this->mapResultToObjects($neighbours);
 
 		$this->templateVariableContainer->add($as, $mapped);
 		$output = $this->renderChildren();
@@ -200,8 +162,60 @@ class Tx_News_ViewHelpers_SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core
 			return \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause($table) .
 			\TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields($table) .
 			\TYPO3\CMS\Core\Resource\Utility\BackendUtility::getWorkspaceWhereClause($table);
+		} elseif(TYPO3_MODE === 'BE' && TYPO3_cliMode === TRUE) {
+			return '';
 		}
 
 		throw new UnexpectedValueException('No TSFE for frontend and no BE_USER for Backend defined, please report the issue!');
+	}
+
+	/**
+	 * @param Tx_News_Domain_Model_News $news
+	 * @param $pidList
+	 * @param $sortField
+	 * @return array
+	 */
+	protected function getNeighbours(Tx_News_Domain_Model_News $news, $pidList, $sortField) {
+		$pidList = empty($pidList) ? $news->getPid() : $pidList;
+
+		$select = 'SELECT tx_news_domain_model_news.uid,tx_news_domain_model_news.title ';
+		$from = 'FROM tx_news_domain_model_news';
+		$whereClause = 'tx_news_domain_model_news.pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
+			. $this->getEnableFieldsWhereClauseForTable();
+
+		$query = $select . $from . '
+					WHERE ' . $whereClause . ' && ' . $sortField . ' >= (SELECT MAX(' . $sortField . ')
+						' . $from . '
+					WHERE ' . $whereClause . ' AND ' . $sortField . ' < (SELECT ' . $sortField . '
+						FROM tx_news_domain_model_news
+						WHERE tx_news_domain_model_news.uid = ' . $news->getUid() . '))
+					ORDER BY ' . $sortField . ' ASC
+					LIMIT 3';
+
+		$query2 = $select . $from . '
+			WHERE ' . $whereClause . ' AND ' . $sortField . '= (SELECT MIN(' . $sortField . ')
+				FROM tx_news_domain_model_news
+				WHERE ' . $sortField . ' >
+					(SELECT ' . $sortField . '
+					FROM tx_news_domain_model_news
+					WHERE tx_news_domain_model_news.uid = ' . $news->getUid() . '))
+			';
+
+		$res = $this->databaseConnection->sql_query($query);
+		$out = array();
+		while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
+			$out[] = $row;
+		}
+		$this->databaseConnection->sql_free_result($res);
+
+		if (count($out) === 0) {
+			$res = $this->databaseConnection->sql_query($query2);
+			while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
+				$out[] = $row;
+			}
+			$this->databaseConnection->sql_free_result($res);
+			return $out;
+		}
+		return $out;
 	}
 }
