@@ -1,0 +1,32 @@
+
+# ==============================================
+# Persistence object mapping configuration
+# ==============================================
+config.tx_extbase.persistence.classes {
+	Tx_News_Domain_Model_FileReference {
+		mapping {
+			tableName = sys_file_reference
+		}
+	}
+
+	Tx_News_Domain_Model_TtContent {
+		mapping {
+			tableName = tt_content
+			columns {
+				altText.mapOnProperty = altText
+				titleText.mapOnProperty = titleText
+				colPos.mapOnProperty = colPos
+				CType.mapOnProperty = CType
+			}
+		}
+	}
+
+	Tx_News_Domain_Model_Category {
+		mapping {
+			tableName = sys_category
+			columns {
+				parent.mapOnProperty = parentcategory
+			}
+		}
+	}
+}
