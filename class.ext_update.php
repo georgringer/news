@@ -96,8 +96,48 @@ class ext_update {
 	protected function processUpdates() {
 
 		$this->updateContentRelationToMm();
+		$this->updateFileRelations();
 
 		$this->migrateNewsCategoriesToSysCategories();
+	}
+
+	/**
+	 *  Updates relations between news records and files.
+	 *
+	 * @return void
+	 */
+	protected function updateFileRelations() {
+		$title = "Update related files";
+		$countNewsWithFileRelation = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'tx_news_domain_model_news', 'deleted=0 AND related_files != ""');
+		$countFilesWithParent = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'tx_news_domain_model_file', 'deleted=0 AND parent != 0');
+		if ($countFilesWithParent === 0 && $countNewsWithFileRelation > 0) {
+			$newsCount = 0;
+			// select news with related files
+			$newsQuery = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,related_files', 'tx_news_domain_model_news', 'deleted=0 AND related_files !=""');
+			while ($newsRow = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($newsQuery)) {
+				$newsCount++;
+				$news = $newsRow['uid'];
+				$relatedFilesUids = explode(',', $newsRow['related_files']);
+				// update news
+				$update = array('related_files' => count($relatedFilesUids));
+				$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_news_domain_model_news', 'uid=' . $news, $update);
+				foreach ($relatedFilesUids as $relatedFile) {
+					// update file
+					$update = array('parent' => $news);
+					$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_news_domain_model_file', 'uid=' . $relatedFile, $update);
+				}
+			}
+			$GLOBALS['TYPO3_DB']->sql_free_result($newsQuery);
+
+			$this->messageArray[] = array(FlashMessage::OK, $title, $newsCount . ' news records have been updated!');
+		} else {
+			if ($countNewsWithFileRelation == 0) {
+				$this->messageArray[] = array(FlashMessage::NOTICE, $title, 'Nothing to do! There are no news with related files');
+			}
+			if ($countFilesWithParent != 0) {
+				$this->messageArray[] = array(FlashMessage::NOTICE, $title, 'Can not update because there are files with new relation model!');
+			}
+		}
 	}
 
 	/**
