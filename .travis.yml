@@ -53,6 +53,7 @@ before_script:
 script:
 #  - phpLint all
   - if [[ "$COVERAGE" == "0" ]]; then php $PWD/typo3/cli_dispatch.phpsh phpunit -c typo3conf/ext/news/Tests/Build/UnitTests.xml; fi
+  - if [[ "$COVERAGE" == "1" ]]; then php $PWD/typo3conf/ext/phpunit/Composer/vendor/bin/phpunit --process-isolation  --bootstrap typo3/sysext/core/Build/FunctionalTestsBootstrap.php typo3conf/ext/news/Tests/Functional/; fi
   - if [[ "$COVERAGE" == "1" ]]; then php $PWD/typo3/cli_dispatch.phpsh phpunit --coverage-clover=coverage.clover -c typo3conf/ext/news/Tests/Build/UnitTests.xml; fi
   - if [[ "$COVERAGE" == "1" ]]; then wget https://scrutinizer-ci.com/ocular.phar; fi
   - if [[ "$COVERAGE" == "1" ]]; then cp -R typo3conf/ext/news/.git .; fi
