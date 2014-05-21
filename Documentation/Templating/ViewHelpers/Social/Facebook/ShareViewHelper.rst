@@ -18,40 +18,13 @@ General properties
    :Default value: Default value:
 
  - :Name:
-         additionalAttributes
-   :Type:
-         array
-   :Description:
-         Additional tag attributes. They will be added directly to the resulting HTML tag.
-   :Default value:
-         
-
- - :Name:
          loadJs
    :Type:
          boolean
    :Description:
-         
+
    :Default value:
          1
-
- - :Name:
-         name
-   :Type:
-         string
-   :Description:
-         default\: fb\_share
-   :Default value:
-         
-
- - :Name:
-         shareurl
-   :Type:
-         string
-   :Description:
-         Shared url, default\: http\://www.facebook.com/sharer.php
-   :Default value:
-         
 
  - :Name:
          type
