@@ -146,7 +146,7 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 		// new image found check if this isn't already
 		if ($newImage) {
 			$existingImages = $category->getImages();
-			if ($existingImages->count() !== 0) {
+			if (!is_null($existingImages) && $existingImages->count() !== 0) {
 				/** @var $item Tx_News_Domain_Model_FileReference */
 				foreach ($existingImages as $item) {
 					// only check already persisted items
@@ -178,6 +178,7 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 				}
 			}
 
+			/** @var Tx_News_Domain_Model_FileReference $fileReference */
 			$fileReference = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
 			$fileReference->setFileUid($newImage->getUid());
 			$fileReference->setPid($category->getPid());
