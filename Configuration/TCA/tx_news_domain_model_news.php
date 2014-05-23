@@ -459,19 +459,26 @@ $tx_news_domain_model_news = array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:cms/locallang_tca.xml:pages.palettes.links',
 			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'db',
-				'allowed' => 'pages',
-				'size' => 1,
-				'maxitems' => 1,
-				'minitems' => 1,
-				'show_thumbs' => 1,
-				'softref' => 'typolink',
+				'type' => 'input',
+				'size' => '30',
+				'max' => '255',
+				'eval' => 'trim,required',
 				'wizards' => array(
-					'suggest' => array(
-						'type' => 'suggest',
-					),
+					'_PADDING' => 2,
+					'link' => array(
+						'type' => 'popup',
+						'title' => 'LLL:EXT:cms/locallang_ttc.xlf:header_link_formlabel',
+						'icon' => 'link_popup.gif',
+						'module' => array(
+							'name' => 'wizard_element_browser',
+							'urlParameters' => array(
+								'mode' => 'wizard'
+							)
+						),
+						'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1'
+					)
 				),
+				'softref' => 'typolink'
 			)
 		),
 		'externalurl' => array(
