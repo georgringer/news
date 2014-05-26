@@ -143,22 +143,25 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 			$newImage = FALSE;
 		}
 
+		// only proceed if image is found
+		if (!$newImage instanceof \TYPO3\CMS\Core\Resource\File) {
+			return;
+		}
+
 		// new image found check if this isn't already
-		if ($newImage) {
-			$existingImages = $category->getImages();
-			if (!is_null($existingImages) && $existingImages->count() !== 0) {
-				/** @var $item Tx_News_Domain_Model_FileReference */
-				foreach ($existingImages as $item) {
-					// only check already persisted items
-					if ($item->getFileUid() === (int)$newImage->getUid()
-						||
-						($item->getUid() &&
-							$item->getOriginalResource()->getName() === $newImage->getName() &&
-							$item->getOriginalResource()->getSize() === (int)$newImage->getSize())
-					) {
-						$newImage = FALSE;
-						break;
-					}
+		$existingImages = $category->getImages();
+		if (!is_null($existingImages) && $existingImages->count() !== 0) {
+			/** @var $item Tx_News_Domain_Model_FileReference */
+			foreach ($existingImages as $item) {
+				// only check already persisted items
+				if ($item->getFileUid() === (int)$newImage->getUid()
+					||
+					($item->getUid() &&
+						$item->getOriginalResource()->getName() === $newImage->getName() &&
+						$item->getOriginalResource()->getSize() === (int)$newImage->getSize())
+				) {
+					$newImage = FALSE;
+					break;
 				}
 			}
 		}
