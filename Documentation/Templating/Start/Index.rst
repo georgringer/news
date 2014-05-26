@@ -45,7 +45,7 @@ The TypoScript Setup syntax looks like this: ::
 			view {
 				templateRootPaths {
 					0 = EXT:news/Resources/Private/Templates/
-					1 = EXT:fileadmin/templates/ext/news/Templates/
+					1 = fileadmin/templates/ext/news/Templates/
 				}
 				partialRootPaths {
 					0 = EXT:news/Resources/Private/Partials/
