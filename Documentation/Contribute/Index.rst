@@ -33,7 +33,7 @@ It is assumed you have set up ssh (username and port) and git (username and emai
 	# Install the gerrit commit-msg hook for the distribution clone
 	scp -p -P 29418 <USERNAME>@review.typo3.org:hooks/commit-msg .git/hooks/
 	# Configure review.typo3.org as default push target for submitting code for review
-	git config remote.origin.pushurl ssh://review.typo3.org:29418/TYPO3v4/Extensions/news.git
+	git config remote.origin.pushurl ssh://review.typo3.org:29418/TYPO3CMS/Extensions/news.git
 	git config remote.origin.push HEAD:refs/for/master
 
 
