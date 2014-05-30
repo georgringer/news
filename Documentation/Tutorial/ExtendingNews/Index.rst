@@ -11,7 +11,10 @@ Extending EXT:news
 
 This tutorial will help you to extend the extension "news".
 
-TODO: add example exts
+.. tip::
+
+	Take a look at the extension https://github.com/cyberhouse/t3ext-newsauthor which adds a relation to the table "fe_users".
+
 
 Custom ViewHelpers
 """"""""""""""""""""
