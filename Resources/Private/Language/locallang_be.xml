@@ -150,9 +150,10 @@
 			<label index="module.timeRestriction">Time Restriction</label>
 			<label index="module.timeRestrictionHigh">Time Restriction High</label>
 			<label index="module.createNewCategory">Create a new category</label>
+			<label index="module.createNewNewsRecord">Create new news record</label>
+			<label index="module.createNewTag">Create new tag record</label>
 			<label index="module.topNewsYes">Yes</label>
 			<label index="module.topNewsNo">No</label>
-			<label index="module.createNewNewsRecord">Create new news record</label>
 			<label index="module.newsListing">News Listing</label>
 			<label index="module.newsPidListing">News Pid listing</label>
 
