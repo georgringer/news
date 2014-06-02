@@ -86,7 +86,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 			array_push($config['items'], array('', ''));
 
 			$newItemArray = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $newItems, TRUE);
-			$languageKey = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:flexforms_general.orderBy.';
+			$languageKey = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.';
 			foreach ($newItemArray as $item) {
 					// label: if empty, key (=field) is used
 				$label = $GLOBALS['LANG']->sL($languageKey . $item, TRUE);
@@ -183,7 +183,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 			// if any language is available
 		if (count($languages) > 0) {
 			$html = '<select name="data[newsoverlay]" id="field_newsoverlay">
-						<option value="0">' . $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.default_value', TRUE) . '</option>';
+						<option value="0">' . $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', TRUE) . '</option>';
 
 			foreach ($languages as $language) {
 				$selected = ($GLOBALS['BE_USER']->uc['newsoverlay'] == $language['uid']) ? ' selected="selected" ' : '';
@@ -193,7 +193,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 			$html .= '</select>';
 		} else {
 			$html .= $GLOBALS['LANG']->sL(
-						'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:usersettings.no-languages-available', TRUE
+						'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available', TRUE
 					);
 		}
 

@@ -34,7 +34,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 
 	const TAG = 'tx_news_domain_model_tag';
 	const NEWS = 'tx_news_domain_model_news';
-	const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:tag_suggest_';
+	const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest_';
 
 	/**
 	 * Create a tag

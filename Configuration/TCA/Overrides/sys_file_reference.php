@@ -9,7 +9,7 @@ if (!defined('TYPO3_MODE')) {
 $newSysFileReferenceColumns = array(
 	'showinpreview' => array(
 		'exclude' => 1,
-		'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_media.showinpreview',
+		'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinpreview',
 		'config' => array(
 			'type' => 'check',
 			'default' => 0

@@ -12,7 +12,7 @@ $pluginSignature = strtolower($extensionName) . '_pi1';
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	$_EXTKEY,
 	'Pi1',
-		'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_be.xml:pi1_title'
+		'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_be.xlf:pi1_title'
 );
 
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,recursive,select_key,pages';

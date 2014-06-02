@@ -66,7 +66,7 @@ class Tx_News_Hooks_InlineElementHook implements \TYPO3\CMS\Backend\Form\Element
 	 */
 	public function renderForeignRecordHeaderControl_postProcess($parentUid, $foreignTable, array $childRecord, array $childConfig, $isVirtual, array &$controlItems) {
 		if ($foreignTable === 'sys_file_reference' && !empty($childRecord['showinpreview'])) {
-				$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
+				$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 				$label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinpreview', TRUE);
 				$icon = '../' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
 				$extraItem = array('showinpreview' => ' <img title="' . $label . '" src="' . $icon . '" />');

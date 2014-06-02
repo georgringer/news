@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:52Z" product-name="news">
+		<header/>
+		<body>
+			<trans-unit id=".description" xml:space="preserve">
+				<source>Link record</source>
+			</trans-unit>
+			<trans-unit id=".details" xml:space="preserve">
+				<source>Relation to other pages and records.</source>
+			</trans-unit>
+			<trans-unit id="_.seeAlso" xml:space="preserve">
+				<source>See also the website http://www.news.com/</source>
+			</trans-unit>
+			<trans-unit id="hidden.description" xml:space="preserve">
+				<source>Hidden elements are never shown in the frontend.</source>
+			</trans-unit>
+			<trans-unit id="title.description" xml:space="preserve">
+				<source>Optional title of a link.</source>
+			</trans-unit>
+			<trans-unit id="description.description" xml:space="preserve">
+				<source>Description of a link.</source>
+			</trans-unit>
+			<trans-unit id="uri.description" xml:space="preserve">
+				<source>Link to a file, ... .</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

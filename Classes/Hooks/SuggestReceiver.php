@@ -73,7 +73,7 @@ $link = implode(' ', explode(chr(10), $javaScriptCode));
 				'text' => '<div onclick="' . $link . '">
 							<span class="suggest-path">
 								<a>' .
-									sprintf($GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xml:tag_suggest'), $text) .
+									sprintf($GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest'), $text) .
 								'</a>
 							</span></div>',
 				'table' => 'tx_news_domain_model_tag',

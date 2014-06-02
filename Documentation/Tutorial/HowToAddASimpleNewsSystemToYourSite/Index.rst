@@ -147,7 +147,7 @@ detail page.
 
          You can use a normal string as title or a translatable string from a
          locallang file by using the common syntax
-         LLL:path/to/file/locallang.xml:key.
+         LLL:path/to/file/locallang.xlf:key.
 
          If no field list is set, no records are shown in the page module.
 

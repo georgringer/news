@@ -9,10 +9,10 @@
 	<td>
 		<f:if condition="{newsItem.isTopNews}">
 			<f:then>
-				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.topNewsYes" />
+				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.topNewsYes" />
 			</f:then>
 			<f:else>
-				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.topNewsNo" />
+				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.topNewsNo" />
 			</f:else>
 		</f:if>
 	</td>
@@ -28,12 +28,12 @@
 	<td>
 		<f:if condition="{newsItem.author}">
 			<strong>
-				<f:translate key="LLL:EXT:cms/locallang_tca.xml:pages.author_formlabel" />
+				<f:translate key="LLL:EXT:cms/locallang_tca.xlf:pages.author_formlabel" />
 				:</strong> {newsItem.author}<br />
 		</f:if>
 		<f:if condition="{newsItem.categories}">
 			<strong>
-				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xml:tx_news_domain_model_news.categories" />
+				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_news.categories" />
 				:</strong>
 			<f:for each="{newsItem.categories}" as="category" iteration="iterator">
 				<span title="UID: {category.uid}">{category.title}</span>

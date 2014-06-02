@@ -33,7 +33,7 @@ General properties
    :Description:
          onclick setting
    :Default value:
-         
+
 
  - :Name:
          title
@@ -42,7 +42,7 @@ General properties
    :Description:
          Title attribute of the resulting link
    :Default value:
-         
+
 
  - :Name:
          uri
@@ -51,7 +51,7 @@ General properties
    :Description:
          the target URI for the link
    :Default value:
-         
+
 
 
 
@@ -83,7 +83,7 @@ Basic example II
 Code: ::
 
 	 <n:be.buttons.icon uri="{f:uri.action(action:'index')}" icon="tcarecords-tx_news_domain_model_news-default"
-	 title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.newsListing')}" />
+	 title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsListing')}" />
 
 
 Output: ::

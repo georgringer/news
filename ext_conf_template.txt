@@ -1,51 +1,51 @@
-	# cat=basic/enable/1; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.0=0,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.1=1,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms.2=2]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.removeListActionFromFlexforms
+	# cat=basic/enable/1; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.removeListActionFromFlexforms.0=0,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.removeListActionFromFlexforms.1=1,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.removeListActionFromFlexforms.2=2]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.removeListActionFromFlexforms
 removeListActionFromFlexforms = 2
 
-	# cat=basic/enable/40; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsNews
-pageModuleFieldsNews = LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pagemodule_simple=title,datetime;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pagemodule_advanced=title,datetime,teaser,categories;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pagemodule_complex=title,datetime,teaser,categories,archive;
+	# cat=basic/enable/40; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.pageModuleFieldsNews
+pageModuleFieldsNews = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pagemodule_simple=title,datetime;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pagemodule_advanced=title,datetime,teaser,categories;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pagemodule_complex=title,datetime,teaser,categories,archive;
 
-	# cat=basic/enable/30; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.pageModuleFieldsCategory
+	# cat=basic/enable/30; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.pageModuleFieldsCategory
 pageModuleFieldsCategory = title,description
 
-	# cat=basic/enable/2; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate.date=date,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate.datetime=datetime]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.archiveDate
+	# cat=basic/enable/2; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.archiveDate.date=date,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.archiveDate.datetime=datetime]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.archiveDate
 archiveDate = date
 
 # Records
 ###########################
-	# cat=records/enable/103; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.prependAtCopy
+	# cat=records/enable/103; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.prependAtCopy
 prependAtCopy = 1
 
- 	# cat=records/enable/101; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.tagPid
+ 	# cat=records/enable/101; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.tagPid
 tagPid = 1
 
-	# cat=records/enable/25; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showMediaDescriptionField
+	# cat=records/enable/25; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.showMediaDescriptionField
 showMediaDescriptionField = 0
 
-	# cat=records/enable/26; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.rteForTeaser
+	# cat=records/enable/26; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.rteForTeaser
 rteForTeaser = 0
 
-	# cat=records/enable/110; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.contentElementRelation
+	# cat=records/enable/110; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.contentElementRelation
 contentElementRelation = 0
 
-	# cat=records/enable/120; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.manualSorting
+	# cat=records/enable/120; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.manualSorting
 manualSorting = 0
 
-	# cat=records/enable/106; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.none=none,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.pages_tsconfig=page_tsconfig,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.current_pid=current_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.storage_pid=storage_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction.siteroot=siteroot]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.categoryRestriction
+	# cat=records/enable/106; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.none=none,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.pages_tsconfig=page_tsconfig,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.current_pid=current_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.storage_pid=storage_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.siteroot=siteroot]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction
 categoryRestriction =
 
-	# cat=records/enable/130; type=options[LLL:EXT:lang/locallang_common.xml:no=0,LLL:EXT:lang/locallang_common.xml:yes=1,LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.useFal.both=2],LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.useFal.addMultimedia=3]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.useFal
+	# cat=records/enable/130; type=options[LLL:EXT:lang/locallang_common.xlf:no=0,LLL:EXT:lang/locallang_common.xlf:yes=1,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.useFal.both=2],LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.useFal.addMultimedia=3]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.useFal
 useFal = 1
 
 # Backend modules
 ###########################
-	# cat=backend modules/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showImporter
+	# cat=backend modules/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.showImporter
 showImporter = 0
 
-	# cat=backend modules/enable/21; type=int; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.storageUidImporter
+	# cat=backend modules/enable/21; type=int; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.storageUidImporter
 storageUidImporter = 1
 
-	# cat=backend modules/enable/22; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.resourceFolderImporter
+	# cat=backend modules/enable/22; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.resourceFolderImporter
 resourceFolderImporter = /news_import
 
-	# cat=backend modules/enable/10; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xml:extmng.showAdministrationModule
+	# cat=backend modules/enable/10; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.showAdministrationModule
 showAdministrationModule = 1

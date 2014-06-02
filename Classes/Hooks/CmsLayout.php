@@ -42,7 +42,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @var string
 	 */
-	const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:';
+	const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
 
 	/**
 	 * Table information
@@ -529,14 +529,14 @@ class Tx_News_Hooks_CmsLayout {
 			$recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
 			$recursiveLevelText = '';
 			if ($recursiveLevel === 250) {
-				$recursiveLevelText = $GLOBALS['LANG']->sL('LLL:EXT:cms/locallang_ttc.xml:recursive.I.5');
+				$recursiveLevelText = $GLOBALS['LANG']->sL('LLL:EXT:cms/locallang_ttc.xlf:recursive.I.5');
 			} elseif ($recursiveLevel > 0) {
-				$recursiveLevelText = $GLOBALS['LANG']->sL('LLL:EXT:cms/locallang_ttc.xml:recursive.I.' . $recursiveLevel);
+				$recursiveLevelText = $GLOBALS['LANG']->sL('LLL:EXT:cms/locallang_ttc.xlf:recursive.I.' . $recursiveLevel);
 			}
 
 			if (!empty($recursiveLevelText)) {
 				$recursiveLevelText = '<br />' .
-					$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xml:LGL.recursive', TRUE) . ' ' .
+					$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xlf:LGL.recursive', TRUE) . ' ' .
 					$recursiveLevelText;
 			}
 

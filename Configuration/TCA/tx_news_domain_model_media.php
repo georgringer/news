@@ -3,7 +3,7 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xml:';
+$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
 // Extension manager configuration
 $configuration = \Tx_News_Utility_EmConfiguration::getSettings();
@@ -64,21 +64,21 @@ $tx_news_domain_model_media = array(
 		),
 		'sys_language_uid' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
+			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0)
+					array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
+					array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
 				)
 			)
 		),
 		'l10n_parent' => array(
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
+			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
@@ -95,7 +95,7 @@ $tx_news_domain_model_media = array(
 		),
 		'hidden' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.hidden',
+			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
 			'config' => array(
 				'type' => 'check',
 				'default' => 0
@@ -113,7 +113,7 @@ $tx_news_domain_model_media = array(
 		'title' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'noCopy',
-			'label' => 'LLL:EXT:cms/locallang_ttc.xml:image_titleText',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xlf:image_titleText',
 			'config' => array(
 				'type' => 'input',
 				'size' => 20,
@@ -122,7 +122,7 @@ $tx_news_domain_model_media = array(
 		'alt' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'noCopy',
-			'label' => 'LLL:EXT:cms/locallang_ttc.xml:image_altText',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xlf:image_altText',
 			'config' => array(
 				'type' => 'input',
 				'size' => 20,
@@ -181,7 +181,7 @@ $tx_news_domain_model_media = array(
 		'type' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'LLL:EXT:cms/locallang_ttc.xml:media.type',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xlf:media.type',
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
@@ -195,7 +195,7 @@ $tx_news_domain_model_media = array(
 		'width' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'LLL:EXT:cms/locallang_ttc.xml:imagewidth_formlabel',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xlf:imagewidth_formlabel',
 			'config' => array(
 				'type' => 'input',
 				'size' => 3,
@@ -205,7 +205,7 @@ $tx_news_domain_model_media = array(
 		'height' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'LLL:EXT:cms/locallang_ttc.xml:imageheight_formlabel',
+			'label' => 'LLL:EXT:cms/locallang_ttc.xlf:imageheight_formlabel',
 			'config' => array(
 				'type' => 'input',
 				'size' => 3,

@@ -8,8 +8,8 @@
 				<div class="left">
 					<f:be.buttons.csh />
 					<f:be.menus.actionMenu>
-						<f:be.menus.actionMenuItem label="{f:translate(key: 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.newsListing')}" controller="Administration" action="index" />
-						<f:be.menus.actionMenuItem label="{f:translate(key: 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.newsPidListing')}" controller="Administration" action="newsPidListing" />
+						<f:be.menus.actionMenuItem label="{f:translate(key: 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsListing')}" controller="Administration" action="index" />
+						<f:be.menus.actionMenuItem label="{f:translate(key: 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsPidListing')}" controller="Administration" action="newsPidListing" />
 					</f:be.menus.actionMenu>
 				</div>
 
@@ -21,16 +21,16 @@
 
 			<div class="typo3-docheader-buttons">
 				<div class="left">
-					<f:link.action action="newNews" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewNewsRecord')}">
+					<f:link.action action="newNews" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.createNewNewsRecord')}">
 						<f:image src="{f:uri.resource(path:'Icons/news_domain_model_news_add.png')}" />
 					</f:link.action>
 					<n:be.security.ifAccessToTableIsAllowed table="tx_news_domain_model_category">
-						<f:link.action action="newCategory" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewCategory')}">
+						<f:link.action action="newCategory" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.createNewCategory')}">
 							<f:image src="{f:uri.resource(path:'Icons/news_domain_model_category_add.png')}" />
 						</f:link.action>
 					</n:be.security.ifAccessToTableIsAllowed>
 					<n:be.security.ifAccessToTableIsAllowed table="tx_news_domain_model_tag">
-						<f:link.action action="newTag" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.createNewTag')}">
+						<f:link.action action="newTag" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.createNewTag')}">
 							<f:image src="{f:uri.resource(path:'Icons/news_domain_model_tag_add.png')}" />
 						</f:link.action>
 					</n:be.security.ifAccessToTableIsAllowed>

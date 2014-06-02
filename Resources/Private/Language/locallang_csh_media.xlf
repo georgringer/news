@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:02Z" product-name="news">
+		<header/>
+		<body>
+			<trans-unit id=".description" xml:space="preserve">
+				<source>Media record</source>
+			</trans-unit>
+			<trans-unit id=".details" xml:space="preserve">
+				<source>Relation to media records</source>
+			</trans-unit>
+			<trans-unit id="_.seeAlso" xml:space="preserve">
+				<source>See also the website http://www.news.com/</source>
+			</trans-unit>
+			<trans-unit id="hidden.description" xml:space="preserve">
+				<source>Hidden elements are never shown in the frontend.</source>
+			</trans-unit>
+			<trans-unit id="caption.description" xml:space="preserve">
+				<source>Caption of the media element</source>
+			</trans-unit>
+			<trans-unit id="title.description" xml:space="preserve">
+				<source>Additional information for the title tag.</source>
+			</trans-unit>
+			<trans-unit id="alt.description" xml:space="preserve">
+				<source>Additional information for the alt tag.</source>
+			</trans-unit>
+			<trans-unit id="type.description" xml:space="preserve">
+				<source>Type of media element. This can be (by default): Images, Video &amp; Audio, Plain Html.</source>
+			</trans-unit>
+			<trans-unit id="showinpreview.description" xml:space="preserve">
+				<source>If checked, this media element is also available in the list view.</source>
+			</trans-unit>
+			<trans-unit id="video.description" xml:space="preserve">
+				<source>Define the URL to the video or audio resource. This can be either a relative path (e.g. fileadmin/video.flv) or an absolute path (e.g. to a youtube video).</source>
+			</trans-unit>
+			<trans-unit id="media.description" xml:space="preserve">
+				<source>Select the image itself.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

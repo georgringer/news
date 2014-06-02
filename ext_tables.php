@@ -8,17 +8,17 @@ $boot = function($packageKey) {
 
 	// CSH - context sensitive help
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_news', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_news.xml');
+			'tx_news_domain_model_news', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_news.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_media', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_media.xml');
+			'tx_news_domain_model_media', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_media.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_file', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_file.xml');
+			'tx_news_domain_model_file', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_file.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_link', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_link.xml');
+			'tx_news_domain_model_link', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_link.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_tag', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_tag.xml');
+			'tx_news_domain_model_tag', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_tag.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tt_content.pi_flexform.news_pi1.list', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_flexforms.xml');
+			'tt_content.pi_flexform.news_pi1.list', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_flexforms.xlf');
 
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_news');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_media');
@@ -54,7 +54,7 @@ $boot = function($packageKey) {
 		}
 		if ($addNewsToModuleSelection) {
 			$GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = array(
-				0 => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:news-folder',
+				0 => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:news-folder',
 				1 => 'news',
 				2 => '../typo3conf/ext/news/Resources/Public/Icons/folder.gif'
 			);
@@ -91,12 +91,12 @@ $boot = function($packageKey) {
 
 		// Extend user settings
 		$GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = array(
-			'label'			=> 'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:usersettings.overlay',
+			'label'			=> 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.overlay',
 			'type'			=> 'select',
 			'itemsProcFunc'	=> 'Tx_News_Hooks_ItemsProcFunc->user_categoryOverlay',
 		);
 		$GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
-			--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xml:pi1_title,newsoverlay';
+			--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay';
 
 		// Add tables to livesearch (e.g. "#news:fo" or "#newscat:fo")
 		$GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['news'] = 'tx_news_domain_model_news';
@@ -118,18 +118,18 @@ $boot = function($packageKey) {
 				array(
 					'access' => 'user,group',
 					'icon'   => 'EXT:' . $packageKey . '/Resources/Public/Icons/import_module.gif',
-					'labels' => 'LLL:EXT:' . $packageKey . '/Resources/Private/Language/locallang_mod.xml',
+					'labels' => 'LLL:EXT:' . $packageKey . '/Resources/Private/Language/locallang_mod.xlf',
 				)
 			);
 
 			if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('t3blog')) {
 				Tx_News_Utility_ImportJob::register(
 					'Tx_News_Jobs_T3BlogNewsImportJob',
-					'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:t3blog_importer_title',
+					'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:t3blog_importer_title',
 					'');
 				Tx_News_Utility_ImportJob::register(
 					'Tx_News_Jobs_T3BlogCategoryImportJob',
-					'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:t3blogcategory_importer_title',
+					'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:t3blogcategory_importer_title',
 					'');
 			}
 		}
@@ -150,7 +150,7 @@ $boot = function($packageKey) {
 				array(
 					'access' => 'user,group',
 					'icon'   => 'EXT:' . $packageKey . '/Resources/Public/Icons/folder.gif',
-					'labels' => 'LLL:EXT:' . $packageKey . '/Resources/Private/Language/locallang_modadministration.xml',
+					'labels' => 'LLL:EXT:' . $packageKey . '/Resources/Private/Language/locallang_modadministration.xlf',
 				)
 			);
 		}

@@ -34,7 +34,7 @@
  * # Example: Basic example II
  * <code>
  * <n:be.buttons.icon uri="{f:uri.action(action:'index')}" icon="tcarecords-tx_news_domain_model_news-default"
- * title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xml:module.newsListing')}" />
+ * title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsListing')}" />
  * </code>
  * <output>
  * A linked button with the icon of a news record which is linked to the index action

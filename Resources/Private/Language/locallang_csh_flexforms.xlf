@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:43Z" product-name="news">
+		<header/>
+		<body>
+			<trans-unit id="switchableControllerActions.description" xml:space="preserve">
+				<source>Set the view you want to display</source>
+			</trans-unit>
+			<trans-unit id="switchableControllerActions.details" xml:space="preserve">
+				<source>List view shows all news records. Latest uses a time restriction, the rest should be understandable</source>
+			</trans-unit>
+			<trans-unit id="settings.orderBy.description" xml:space="preserve">
+				<source>Define the sorting field</source>
+			</trans-unit>
+			<trans-unit id="settings.orderDirection.description" xml:space="preserve">
+				<source>Define the sorting direction</source>
+			</trans-unit>
+			<trans-unit id="settings.dateField.description" xml:space="preserve">
+				<source>Select the field which is used to build the date menu.</source>
+			</trans-unit>
+			<trans-unit id="settings.categories.description" xml:space="preserve">
+				<source>Choose the categories to define which news items are displayed</source>
+			</trans-unit>
+			<trans-unit id="settings.categoryConjunction.description" xml:space="preserve">
+				<source>Define how the selected categories are used</source>
+			</trans-unit>
+			<trans-unit id="settings.includeSubCategories.description" xml:space="preserve">
+				<source>Include all subcategories of the selected categories too.</source>
+			</trans-unit>
+			<trans-unit id="settings.categoryConjunction.details" xml:space="preserve">
+				<source>&quot;Don't care&quot;: No category restriction is set. &quot;Show items with selected categories OR&quot;: A news records need to be related with at least one of the selected categories. &quot;Show selected categories AND&quot;. A news record need to be related to all selected categories. &quot;Do not show&quot; is the opposite of above.</source>
+			</trans-unit>
+			<trans-unit id="settings.archiveRestriction.description" xml:space="preserve">
+				<source>Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</source>
+			</trans-unit>
+			<trans-unit id="settings.timeRestriction.description" xml:space="preserve">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like &quot;-4 days&quot; or &quot;-3 hours&quot;. The prepended - is important! Only news items after the given time are shown.</source>
+			</trans-unit>
+			<trans-unit id="settings.timeRestrictionHigh.description" xml:space="preserve">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like &quot;-4 days&quot; or &quot;-3 hours&quot;. The prepended - is important! Only news items before the given time are shown.</source>
+			</trans-unit>
+			<trans-unit id="settings.topNewsRestriction.description" xml:space="preserve">
+				<source>A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</source>
+			</trans-unit>
+			<trans-unit id="settings.singleNews.description" xml:space="preserve">
+				<source>Display the selected single news record.</source>
+			</trans-unit>
+			<trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve">
+				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records.</source>
+			</trans-unit>
+			<trans-unit id="settings.startingpoint.description" xml:space="preserve">
+				<source>Define the pages/sysfolders which hold the news records</source>
+			</trans-unit>
+			<trans-unit id="settings.recursive.description" xml:space="preserve">
+				<source>Select the recursion level of the startingpoint.</source>
+			</trans-unit>
+			<trans-unit id="settings.detailPid.description" xml:space="preserve">
+				<source>Select the page on which the detail view should be shown.</source>
+			</trans-unit>
+			<trans-unit id="settings.backPid.description" xml:space="preserve">
+				<source>Select the page which is used to return to on detail view.</source>
+			</trans-unit>
+			<trans-unit id="settings.listPid.description" xml:space="preserve">
+				<source>Select the page on which the list view is shown.</source>
+			</trans-unit>
+			<trans-unit id="settings.limit.description" xml:space="preserve">
+				<source>Set the maximum amount of news records to be displayed</source>
+			</trans-unit>
+			<trans-unit id="settings.offset.description" xml:space="preserve">
+				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
+			</trans-unit>
+			<trans-unit id="settings.topNewsFirst.description" xml:space="preserve">
+				<source>If checked: No matter which sorting is defined, top news are shown as first news records.</source>
+			</trans-unit>
+			<trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve">
+				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
+			</trans-unit>
+			<trans-unit id="settings.tags.description" xml:space="preserve">
+				<source>Filter by given tags.</source>
+			</trans-unit>
+			<trans-unit id="settings.media.maxWidth.description" xml:space="preserve">
+				<source>Maximal width of media elements (images, videos, ...)</source>
+			</trans-unit>
+			<trans-unit id="settings.media.maxHeight.description" xml:space="preserve">
+				<source>Maximal height of media elements (images, videos, ...)</source>
+			</trans-unit>
+			<trans-unit id="settings.cropMaxCharacters.description" xml:space="preserve">
+				<source>Define the length of the teaser in chars. The teaser is typically cropped in the list view.</source>
+			</trans-unit>
+			<trans-unit id="settings.templateLayout.description" xml:space="preserve">
+				<source>Select a special layout for displaying news records.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

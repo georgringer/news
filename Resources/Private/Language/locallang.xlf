@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news">
+		<header/>
+		<body>
+			<trans-unit id="search-text" xml:space="preserve">
+				<source>There are %1$s results for &quot;%2$s&quot;.</source>
+			</trans-unit>
+			<trans-unit id="search-start" xml:space="preserve">
+				<source>Start search</source>
+			</trans-unit>
+			<trans-unit id="search-noresult" xml:space="preserve">
+				<source>No news found.</source>
+			</trans-unit>
+			<trans-unit id="search-subject" xml:space="preserve">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="search-minimumDate" xml:space="preserve">
+				<source>Minimum Date</source>
+			</trans-unit>
+			<trans-unit id="search-maximumDate" xml:space="preserve">
+				<source>Maximum Date</source>
+			</trans-unit>
+			<trans-unit id="more-link" xml:space="preserve">
+				<source>Read more</source>
+			</trans-unit>
+			<trans-unit id="back-link" xml:space="preserve">
+				<source>Back</source>
+			</trans-unit>
+			<trans-unit id="related-news" xml:space="preserve">
+				<source>Related news</source>
+			</trans-unit>
+			<trans-unit id="related-files" xml:space="preserve">
+				<source>Related files</source>
+			</trans-unit>
+			<trans-unit id="related-links" xml:space="preserve">
+				<source>Related links</source>
+			</trans-unit>
+			<trans-unit id="author" xml:space="preserve">
+				<source>created by %s</source>
+			</trans-unit>
+			<trans-unit id="paginate_overall" xml:space="preserve">
+				<source>Page %s of %s.</source>
+			</trans-unit>
+			<trans-unit id="paginate_next" xml:space="preserve">
+				<source>Next</source>
+			</trans-unit>
+			<trans-unit id="paginate_previous" xml:space="preserve">
+				<source>Previous</source>
+			</trans-unit>
+			<trans-unit id="categories" xml:space="preserve">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tags" xml:space="preserve">
+				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="entry" xml:space="preserve">
+				<source>entry</source>
+			</trans-unit>
+			<trans-unit id="entries" xml:space="preserve">
+				<source>entries</source>
+			</trans-unit>
+			<trans-unit id="month.01" xml:space="preserve">
+				<source>January</source>
+			</trans-unit>
+			<trans-unit id="month.02" xml:space="preserve">
+				<source>February</source>
+			</trans-unit>
+			<trans-unit id="month.03" xml:space="preserve">
+				<source>March</source>
+			</trans-unit>
+			<trans-unit id="month.04" xml:space="preserve">
+				<source>April</source>
+			</trans-unit>
+			<trans-unit id="month.05" xml:space="preserve">
+				<source>May</source>
+			</trans-unit>
+			<trans-unit id="month.06" xml:space="preserve">
+				<source>June</source>
+			</trans-unit>
+			<trans-unit id="month.07" xml:space="preserve">
+				<source>July</source>
+			</trans-unit>
+			<trans-unit id="month.08" xml:space="preserve">
+				<source>August</source>
+			</trans-unit>
+			<trans-unit id="month.09" xml:space="preserve">
+				<source>September</source>
+			</trans-unit>
+			<trans-unit id="month.10" xml:space="preserve">
+				<source>October</source>
+			</trans-unit>
+			<trans-unit id="month.11" xml:space="preserve">
+				<source>November</source>
+			</trans-unit>
+			<trans-unit id="month.12" xml:space="preserve">
+				<source>December</source>
+			</trans-unit>
+			<trans-unit id="day.1" xml:space="preserve">
+				<source>Monday</source>
+			</trans-unit>
+			<trans-unit id="day.2" xml:space="preserve">
+				<source>Tuesday</source>
+			</trans-unit>
+			<trans-unit id="day.3" xml:space="preserve">
+				<source>Wednesday</source>
+			</trans-unit>
+			<trans-unit id="day.4" xml:space="preserve">
+				<source>Thursday</source>
+			</trans-unit>
+			<trans-unit id="day.5" xml:space="preserve">
+				<source>Friday</source>
+			</trans-unit>
+			<trans-unit id="day.6" xml:space="preserve">
+				<source>Saturday</source>
+			</trans-unit>
+			<trans-unit id="day.7" xml:space="preserve">
+				<source>Sunday</source>
+			</trans-unit>
+			<trans-unit id="dateFormat" xml:space="preserve">
+				<source>%m/%d/%Y</source>
+			</trans-unit>
+			<trans-unit id="list_nonewsfound" xml:space="preserve">
+				<source>No news available.</source>
+			</trans-unit>
+			<trans-unit id="list_nocategoriesfound" xml:space="preserve">
+				<source>No categories available.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
