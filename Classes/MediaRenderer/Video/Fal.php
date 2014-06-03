@@ -49,7 +49,7 @@ class Tx_News_MediaRenderer_Video_Fal implements Tx_News_MediaRenderer_FalMediaI
 			$view->setTemplatePathAndFilename($templateFile);
 		}
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'flowplayer-3.2.4.min.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'flowplayer-3.2.12.min.js');
 
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
