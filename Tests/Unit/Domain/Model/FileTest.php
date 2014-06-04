@@ -36,17 +36,13 @@ class Tx_News_Tests_Unit_Domain_Model_FileTest extends \TYPO3\CMS\Core\Tests\Uni
 	 */
 	protected $fileDomainModelInstance;
 
-	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-	protected $objectManager;
-
 	/**
 	 * Setup
 	 *
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$this->fileDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_File');
+		$this->fileDomainModelInstance = new Tx_News_Domain_Model_File();
 	}
 
 	/**

@@ -36,17 +36,13 @@ class Tx_News_Tests_Unit_Domain_Model_LinkTest extends \TYPO3\CMS\Core\Tests\Uni
 	 */
 	protected $linkDomainModelInstance;
 
-	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-	protected $objectManager;
-
 	/**
 	 * Setup
 	 *
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$this->linkDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_Link');
+		$this->linkDomainModelInstance = new Tx_News_Domain_Model_Link();
 	}
 
 	/**

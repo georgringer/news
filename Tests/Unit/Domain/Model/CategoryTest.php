@@ -36,17 +36,13 @@ class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests
 	 */
 	protected $instance;
 
-	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-	protected $objectManager;
-
 	/**
 	 * Setup
 	 *
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$this->instance = $this->objectManager->get('Tx_News_Domain_Model_Category');
+		$this->instance = new Tx_News_Domain_Model_Category();
 	}
 
 	/**

@@ -31,13 +31,11 @@
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+
 	/**
 	 * @var Tx_News_Domain_Model_News
 	 */
 	protected $newsDomainModelInstance;
-
-	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-	protected $objectManager;
 
 	/**
 	 * Set up framework
@@ -45,8 +43,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$this->newsDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_News');
+		$this->newsDomainModelInstance = new Tx_News_Domain_Model_News();
 	}
 
 	/**

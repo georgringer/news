@@ -36,19 +36,13 @@ class Tx_News_Tests_Unit_Domain_Model_TtContentTest extends \TYPO3\CMS\Core\Test
 	 */
 	protected $ttContentDomainModelInstance;
 
-	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-	protected $objectManager;
-
 	/**
 	 * Setup
 	 *
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-
-		/** @var Tx_News_Domain_Model_TtContent ttContentDomainModelInstance */
-		$this->ttContentDomainModelInstance = $this->objectManager->get('Tx_News_Domain_Model_TtContent');
+		$this->ttContentDomainModelInstance = new Tx_News_Domain_Model_TtContent();
 	}
 
 	/**
