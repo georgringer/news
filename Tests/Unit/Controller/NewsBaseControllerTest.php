@@ -113,7 +113,7 @@ class Tx_News_Tests_Unit_Controller_NewsBaseControllerTest extends \TYPO3\CMS\Co
 		$mockController = $this->getAccessibleMock('Tx_News_Controller_NewsBaseController', array('redirectToUri'));
 
 		$mockUriBuilder = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder');
-			$mockController->_set('uriBuilder', $mockUriBuilder);
+		$mockController->_set('uriBuilder', $mockUriBuilder);
 
 		$mockUriBuilder->expects($this->once())
 			->method('setTargetPageUid')->with('123');
@@ -141,6 +141,23 @@ class Tx_News_Tests_Unit_Controller_NewsBaseControllerTest extends \TYPO3\CMS\Co
 		$mockController->_call('handleNoNewsFoundError', 'redirectToPage,456,301');
 	}
 
+	/**
+	 * @test
+	 */
+	public function signalSlotGetsEmitted() {
+		$mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', array('dispatch'));
+		$mockedController = $this->getAccessibleMock('Tx_News_Controller_NewsBaseController', array('dummy'));
+		$mockedController->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
+
+		$classPart = 'FoController';
+		$signalArguments = array('fo' => 'bar');
+		$name = 'foAction';
+
+		$mockedSignalSlotDispatcher->expects($this->once())
+			->method('dispatch')->with('GeorgRinger\\News\\Controller\\' . $classPart, $name, $signalArguments);
+
+		$mockedController->_call('emitActionSignal', $classPart, $name, $signalArguments);
+	}
 
 
 }

@@ -71,11 +71,15 @@ class Tx_News_Controller_CategoryController extends Tx_News_Controller_NewsContr
 		}
 
 		$idList = explode(',', $this->settings['categories']);
-		$this->view->assignMultiple(array(
+
+		$assignedValues = array(
 			'categories' => $this->categoryRepository->findTree($idList),
 			'overwriteDemand' => $overwriteDemand,
 			'demand' => $demand,
-		));
+		);
+
+		$this->emitActionSignal('CategoryController', self::SIGNAL_ListAction, $assignedValues);
+		$this->view->assignMultiple($assignedValues);
 	}
 
 }

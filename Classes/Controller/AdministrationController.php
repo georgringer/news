@@ -30,6 +30,9 @@
  */
 class Tx_News_Controller_AdministrationController extends Tx_News_Controller_NewsController {
 
+	const SIGNAL_IndexAction = 'indexAction';
+	const SIGNAL_NewsPidListingAction = 'newsPidListingAction';
+
 	/**
 	 * Page uid
 	 *
@@ -106,13 +109,16 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 			$idList[] = $c->getUid();
 		}
 
-		$this->view->assignMultiple(array(
+		$assignedValues = array(
 			'page' => $this->pageUid,
 			'demand' => $demand,
 			'news' => $this->newsRepository->findDemanded($demand, FALSE),
 			'categories' => $this->categoryRepository->findTree($idList),
 			'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
-		));
+		);
+
+		$this->emitActionSignal('AdministrationController', self::SIGNAL_IndexAction, $assignedValues);
+		$this->view->assignMultiple($assignedValues);
 	}
 
 	/**
@@ -130,10 +136,13 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 			$rawTree[] = $row;
 		}
 
-		$this->view->assignMultiple(array(
+		$assignedValues = array(
 			'tree' => $rawTree,
 			'treeLevel' => $treeLevel,
-		));
+		);
+
+		$this->emitActionSignal('AdministrationController', self::SIGNAL_NewsPidListingAction, $assignedValues);
+		$this->view->assignMultiple($assignedValues);
 	}
 
 	/**

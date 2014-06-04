@@ -32,6 +32,12 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseController {
 
+	const SIGNAL_ListAction = 'listAction';
+	const SIGNAL_DetailAction = 'detailAction';
+	const SIGNAL_DateMenuAction = 'dateMenuAction';
+	const SIGNAL_SearchFormAction = 'searchFormAction';
+	const SIGNAL_SearchResultAction = 'searchResultAction';
+
 	/**
 	 * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 */
@@ -154,11 +160,14 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		}
 		$newsRecords = $this->newsRepository->findDemanded($demand);
 
-		$this->view->assignMultiple(array(
+		$assignedValues = array(
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand,
 			'demand' => $demand,
-		));
+		);
+
+		$this->emitActionSignal('NewsController', self::SIGNAL_ListAction, $assignedValues);
+		$this->view->assignMultiple($assignedValues);
 	}
 
 	/**
@@ -192,10 +201,13 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			$this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
 		}
 
-		$this->view->assignMultiple(array(
+		$assignedValues = array(
 			'newsItem' => $news,
 			'currentPage' => (int)$currentPage,
-		));
+		);
+
+		$this->emitActionSignal('NewsController', self::SIGNAL_DetailAction, $assignedValues);
+		$this->view->assignMultiple($assignedValues);
 
 		Tx_News_Utility_Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
 		if (!is_null($news) && is_a($news, 'Tx_News_Domain_Model_News')) {
@@ -269,14 +281,17 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$demand->setOrder($this->settings['orderDirection']);
 		$statistics = $this->newsRepository->countByDate($demand);
 
-		$this->view->assignMultiple(array(
+		$assignedValues = array(
 			'listPid' => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
 			'dateField' => $dateField,
 			'data' => $statistics,
 			'news' => $newsRecords,
 			'overwriteDemand' => $overwriteDemand,
 			'demand' => $demand,
-		));
+		);
+
+		$this->emitActionSignal('NewsController', self::SIGNAL_DateMenuAction, $assignedValues);
+		$this->view->assignMultiple($assignedValues);
 	}
 
 	/**
@@ -297,11 +312,14 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		}
 		$demand->setSearch($search);
 
-		$this->view->assignMultiple(array(
+		$assignedValues = array(
 			'search' => $search,
 			'overwriteDemand' => $overwriteDemand,
 			'demand' => $demand,
-		));
+		);
+
+		$this->emitActionSignal('NewsController', self::SIGNAL_SearchFormAction, $assignedValues);
+		$this->view->assignMultiple($assignedValues);
 	}
 
 	/**
@@ -323,12 +341,15 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		}
 		$demand->setSearch($search);
 
-		$this->view->assignMultiple(array(
+		$assignedValues = array(
 			'news' => $this->newsRepository->findDemanded($demand),
 			'overwriteDemand' => $overwriteDemand,
 			'search' => $search,
 			'demand' => $demand,
-		));
+		);
+
+		$this->emitActionSignal('NewsController', self::SIGNAL_SearchResultAction, $assignedValues);
+		$this->view->assignMultiple($assignedValues);
 	}
 
 	/***************************************************************************

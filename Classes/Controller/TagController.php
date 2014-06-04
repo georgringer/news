@@ -22,6 +22,8 @@
  */
 class Tx_News_Controller_TagController extends Tx_News_Controller_NewsController {
 
+	const SIGNAL_ListAction = 'listAction';
+
 	/**
 	 * @var Tx_News_Domain_Repository_TagRepository
 	 */
@@ -55,11 +57,14 @@ class Tx_News_Controller_TagController extends Tx_News_Controller_NewsController
 			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
 		}
 
-		$this->view->assignMultiple(array(
+		$assignedValues = array(
 			'tags' => $this->tagRepository->findDemanded($demand),
 			'overwriteDemand' => $overwriteDemand,
 			'demand' => $demand,
-		));
+		);
+
+		$this->emitActionSignal('TagController', self::SIGNAL_ListAction, $assignedValues);
+		$this->view->assignMultiple($assignedValues);
 	}
 
 }

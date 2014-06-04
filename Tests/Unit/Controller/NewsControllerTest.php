@@ -84,7 +84,7 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 
 		$fixture = $this->getMock(
 			'Tx_News_Controller_NewsController',
-			array('createDemandObjectFromSettings')
+			array('createDemandObjectFromSettings', 'emitActionSignal')
 		);
 		$fixture->injectNewsRepository($this->newsRepository);
 		$fixture->injectConfigurationManager($configurationManager);

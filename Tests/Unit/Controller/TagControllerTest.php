@@ -76,6 +76,7 @@ class Tx_News_Tests_Unit_Controller_TagControllerTest extends \TYPO3\CMS\Core\Te
 		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
 		$settings = array('list' => 'foo', 'orderBy' => 'datetime');
 
+		$mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', array('dispatch'));
 		$configurationManager = $this->getMock(
 			'TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'
 		);
@@ -84,6 +85,8 @@ class Tx_News_Tests_Unit_Controller_TagControllerTest extends \TYPO3\CMS\Core\Te
 			'Tx_News_Controller_TagController',
 			array('createDemandObjectFromSettings')
 		);
+		$fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
+
 		$fixture->injectTagRepository($this->tagRepository);
 		$fixture->injectConfigurationManager($configurationManager);
 		$fixture->setView($this->getMock('Tx_Fluid_View_TemplateView', array(), array(), '', FALSE));
