@@ -302,7 +302,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * Set order respect top news flag
 	 *
-	 * @param integer $topNewsFirst respect top news flag
+	 * @param boolean $topNewsFirst respect top news flag
 	 * @return void
 	 */
 	public function setTopNewsFirst($topNewsFirst) {
@@ -340,11 +340,11 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * Set top news setting
 	 *
-	 * @param string $topNewsFirst top news settings
+	 * @param string $topNewsRestriction top news settings
 	 * @return void
 	 */
-	public function setTopNewsRestriction($topNewsFirst) {
-		$this->topNewsRestriction = $topNewsFirst;
+	public function setTopNewsRestriction($topNewsRestriction) {
+		$this->topNewsRestriction = $topNewsRestriction;
 	}
 
 	/**
