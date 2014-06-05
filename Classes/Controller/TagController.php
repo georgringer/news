@@ -22,7 +22,7 @@
  */
 class Tx_News_Controller_TagController extends Tx_News_Controller_NewsController {
 
-	const SIGNAL_ListAction = 'listAction';
+	const SIGNAL_TAG_LIST_ACTION = 'listAction';
 
 	/**
 	 * @var Tx_News_Domain_Repository_TagRepository
@@ -63,7 +63,7 @@ class Tx_News_Controller_TagController extends Tx_News_Controller_NewsController
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('TagController', self::SIGNAL_ListAction, $assignedValues);
+		$this->emitActionSignal('TagController', self::SIGNAL_TAG_LIST_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 

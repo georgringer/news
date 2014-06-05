@@ -30,8 +30,8 @@
  */
 class Tx_News_Controller_AdministrationController extends Tx_News_Controller_NewsController {
 
-	const SIGNAL_IndexAction = 'indexAction';
-	const SIGNAL_NewsPidListingAction = 'newsPidListingAction';
+	const SIGNAL_ADMINISTRATION_INDEX_ACTION = 'indexAction';
+	const SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION = 'newsPidListingAction';
 
 	/**
 	 * Page uid
@@ -117,7 +117,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 			'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
 		);
 
-		$this->emitActionSignal('AdministrationController', self::SIGNAL_IndexAction, $assignedValues);
+		$this->emitActionSignal('AdministrationController', self::SIGNAL_ADMINISTRATION_INDEX_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 
@@ -141,7 +141,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 			'treeLevel' => $treeLevel,
 		);
 
-		$this->emitActionSignal('AdministrationController', self::SIGNAL_NewsPidListingAction, $assignedValues);
+		$this->emitActionSignal('AdministrationController', self::SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 

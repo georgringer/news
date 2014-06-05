@@ -32,11 +32,11 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseController {
 
-	const SIGNAL_ListAction = 'listAction';
-	const SIGNAL_DetailAction = 'detailAction';
-	const SIGNAL_DateMenuAction = 'dateMenuAction';
-	const SIGNAL_SearchFormAction = 'searchFormAction';
-	const SIGNAL_SearchResultAction = 'searchResultAction';
+	const SIGNAL_NEWS_LIST_ACTION = 'listAction';
+	const SIGNAL_NEWS_DETAIL_ACTION = 'detailAction';
+	const SIGNAL_NEWS_DATEMENU_ACTION = 'dateMenuAction';
+	const SIGNAL_NEWS_SEARCHFORM_ACTION = 'searchFormAction';
+	const SIGNAL_NEWS_SEARCHRESULT_ACTION = 'searchResultAction';
 
 	/**
 	 * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
@@ -166,7 +166,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_ListAction, $assignedValues);
+		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 
@@ -206,7 +206,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			'currentPage' => (int)$currentPage,
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_DetailAction, $assignedValues);
+		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 
 		Tx_News_Utility_Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
@@ -290,7 +290,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_DateMenuAction, $assignedValues);
+		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DATEMENU_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 
@@ -318,7 +318,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_SearchFormAction, $assignedValues);
+		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHFORM_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 
@@ -348,7 +348,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_SearchResultAction, $assignedValues);
+		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHRESULT_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 

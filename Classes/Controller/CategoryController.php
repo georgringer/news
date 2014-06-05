@@ -30,6 +30,8 @@
  */
 class Tx_News_Controller_CategoryController extends Tx_News_Controller_NewsController {
 
+	const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
+
 	/**
 	 * Page uid
 	 *
@@ -78,7 +80,7 @@ class Tx_News_Controller_CategoryController extends Tx_News_Controller_NewsContr
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('CategoryController', self::SIGNAL_ListAction, $assignedValues);
+		$this->emitActionSignal('CategoryController', self::SIGNAL_CATEGORY_LIST_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 
