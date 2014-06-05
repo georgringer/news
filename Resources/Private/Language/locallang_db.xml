@@ -68,6 +68,9 @@
 			<label index="tx_news_domain_model_news.path_segment">Speaking URL path segment</label>
 
 			<label index="be_user.tx_news_categorymounts">News: Category restriction</label>
+
+			<label index="pages.tabs.metadata">Metadata</label>
+			<label index="pages.palettes.metatags">Meta Tags</label>
 		</languageKey>
 		<languageKey index="da" type="array">
 			<label index="tx_news_domain_model_news.tabs.relations">Relationer</label>

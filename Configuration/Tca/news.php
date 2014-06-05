@@ -575,8 +575,8 @@ $TCA['tx_news_domain_model_news'] = array(
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
-				--div--;LLL:EXT:cms/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:cms/locallang_tca.xlf:pages.palettes.metatags;metatags,
+				--div--;' . $ll . 'pages.tabs.metadata,
+					--palette--;' . $ll . 'pages.palettes.metatags;metatags,
 					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
@@ -590,8 +590,8 @@ $TCA['tx_news_domain_model_news'] = array(
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
-				--div--;LLL:EXT:cms/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:cms/locallang_tca.xlf:pages.palettes.metatags;metatags,
+				--div--;' . $ll . 'pages.tabs.metadata,
+					--palette--;' . $ll . 'pages.palettes.metatags;metatags,
 					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
@@ -605,8 +605,8 @@ $TCA['tx_news_domain_model_news'] = array(
 
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.options,categories,tags,
 				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,media,related_files,related_links,related,related_from,
-				--div--;LLL:EXT:cms/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:cms/locallang_tca.xlf:pages.palettes.metatags;metatags,
+				--div--;' . $ll . 'pages.tabs.metadata,
+					--palette--;' . $ll . 'pages.palettes.metatags;metatags,
 					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
 				--div--;LLL:EXT:cms/locallang_tca.xml:pages.tabs.extended,'
 		),
