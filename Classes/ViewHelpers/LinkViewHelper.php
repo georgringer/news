@@ -127,29 +127,32 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	 * @param array $configuration
 	 * @return array
 	 */
-	protected function getLinkToNewsItem(Tx_News_Domain_Model_News $newsItem, $tsSettings, $configuration) {
-		$detailPid = 0;
-		$detailPidDeterminationMethods = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'], TRUE);
+	protected function getLinkToNewsItem(Tx_News_Domain_Model_News $newsItem, $tsSettings, array $configuration = array()) {
 
-		// if TS is not set, prefer flexform setting
-		if (!isset($tsSettings['detailPidDetermination'])) {
-			$detailPidDeterminationMethods[] = 'flexform';
-		}
+		if (!isset($configuration['parameter'])) {
+			$detailPid = 0;
+			$detailPidDeterminationMethods = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'], TRUE);
 
-		foreach ($detailPidDeterminationMethods as $determinationMethod) {
-			if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
-				if ($detailPid = call_user_func(array($this, $callback), $tsSettings, $newsItem)) {
-					break;
+			// if TS is not set, prefer flexform setting
+			if (!isset($tsSettings['detailPidDetermination'])) {
+				$detailPidDeterminationMethods[] = 'flexform';
+			}
+
+			foreach ($detailPidDeterminationMethods as $determinationMethod) {
+				if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
+					if ($detailPid = call_user_func(array($this, $callback), $tsSettings, $newsItem)) {
+						break;
+					}
 				}
 			}
-		}
 
-		if (!$detailPid) {
-			$detailPid = $GLOBALS['TSFE']->id;
+			if (!$detailPid) {
+				$detailPid = $GLOBALS['TSFE']->id;
+			}
+			$configuration['parameter'] = $detailPid;
 		}
 
 		$configuration['useCacheHash'] = 1;
-		$configuration['parameter'] = $detailPid;
 		$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $newsItem->getUid();
 
 		if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
