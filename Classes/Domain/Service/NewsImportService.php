@@ -214,24 +214,20 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 						continue;
 					}
 
+					// file not inside a storage then search for same file based on hash (to prevent duplicates)
+					if ($file->getStorage()->getUid() === 0) {
+						$existingFile = $this->findFileByHash($file->getSha1());
+						if ($existingFile !== NULL) {
+							$file = $existingFile;
+						}
+					}
+
 					/** @var $media Tx_News_Domain_Model_FileReference */
 					if (!$media = $this->getIfFalRelationIfAlreadyExists($news->getFalMedia(), $file)) {
 
-						// file not inside a storage then search for existing file or copy the one form storage 0 to the import folder
+						// file not inside a storage copy the one form storage 0 to the import folder
 						if ($file->getStorage()->getUid() === 0) {
-
-							// search DB for same file based on hash (to prevent duplicates)
-							$existingFile = $this->findFileByHash($file->getSha1());
-
-							// no exciting file then copy file to import folder
-							if ($existingFile === NULL) {
-								$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
-
-								// temp work around (uid is not correctly set in $file, fixed in https://review.typo3.org/#/c/26520/)
-								$file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier($this->emSettings->getStorageUidImporter(), $file->getIdentifier());
-							} else {
-								$file = $existingFile;
-							}
+							$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
 						}
 
 						$media = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
@@ -294,24 +290,20 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 						continue;
 					}
 
+					// file not inside a storage then search for same file based on hash (to prevent duplicates)
+					if ($file->getStorage()->getUid() === 0) {
+						$existingFile = $this->findFileByHash($file->getSha1());
+						if ($existingFile !== NULL) {
+							$file = $existingFile;
+						}
+					}
+
 					/** @var $relatedFile Tx_News_Domain_Model_FileReference */
 					if (!$relatedFile = $this->getIfFalRelationIfAlreadyExists($news->getFalRelatedFiles(), $file)) {
 
-						// file not inside a storage then search for existing file or copy the one form storage 0 to the import folder
+						// file not inside a storage copy the one form storage 0 to the import folder
 						if ($file->getStorage()->getUid() === 0) {
-
-							// search DB for same file based on hash (to prevent duplicates)
-							$existingFile = $this->findFileByHash($file->getSha1());
-
-							// no exciting file then copy file to import folder
-							if ($existingFile === NULL) {
-								$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
-
-								// temp work around (uid is not correctly set in $file, fixed in https://review.typo3.org/#/c/26520/)
-								$file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier($this->emSettings->getStorageUidImporter(), $file->getIdentifier());
-							} else {
-								$file = $existingFile;
-							}
+							$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
 						}
 
 						$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
