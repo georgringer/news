@@ -195,7 +195,7 @@ class Tx_News_ViewHelpers_SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core
 		$query2 = $select . $from . '
 			WHERE ' . $whereClause . ' AND ' . $sortField . '= (SELECT MIN(' . $sortField . ')
 				FROM tx_news_domain_model_news
-				WHERE ' . $sortField . ' >
+				WHERE ' . $whereClause . ' AND ' . $sortField . ' >
 					(SELECT ' . $sortField . '
 					FROM tx_news_domain_model_news
 					WHERE tx_news_domain_model_news.uid = ' . $news->getUid() . '))
