@@ -347,6 +347,13 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
 			' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
+		if (TYPO3_MODE === 'FE') {
+			$sql .= $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
+		} else {
+			$sql .= \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('tx_news_domain_model_news') .
+				\TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause('tx_news_domain_model_news');
+		}
+
 		// strip unwanted order by
 		$sql = $GLOBALS['TYPO3_DB']->stripOrderBy($sql);
 
