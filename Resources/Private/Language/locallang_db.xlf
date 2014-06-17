@@ -52,7 +52,7 @@
 				<source>News</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.type.I.1" xml:space="preserve">
-				<source>Internal Page</source>
+				<source>Internal link</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.type.I.2" xml:space="preserve">
 				<source>External Page</source>

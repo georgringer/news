@@ -457,7 +457,7 @@ $tx_news_domain_model_news = array(
 		),
 		'internalurl' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:cms/locallang_tca.xlf:pages.palettes.links',
+			'label' => $ll . 'tx_news_domain_model_news.type.I.1',
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
