@@ -1,28 +1,44 @@
-<f:layout name="Backend/Default" />
+<f:layout name="Backend/Simple" />
 
 <f:section name="iconButtons">
 
 </f:section>
 
 <f:section name="content">
-	<h3 class="uppercase">News importer</h3>
+	<h3 class="uppercase">
+		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.header" />
+	</h3>
 
 	<p class="description">
-		This is the "News importer module". Within the select box below you find a list of all available import jobs.<br />
-		<strong>Note</strong>: It's strongly recommended to backup all news tables before running an import job.
-
+		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.description" />
 	</p>
+	<div class="typo3-message message-warning">
+		<div class="message-body">
+			<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.backupwarning" />
+		</div>
+	</div>
 	<br />
-	Choose a job:
-	<f:form.select id="jobSelector" options="{availableJobs}" />
-	<br /><br />
+
+	<f:if condition="{availableJobs -> f:count()} > 1">
+		<f:then>
+			<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.choose_a_job" />:
+			<f:form.select id="jobSelector" options="{availableJobs}" />
+			<br /><br />
+		</f:then>
+		<f:else>
+			<div class="typo3-message message-information">
+				<div class="message-body">
+					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.nojobs" />
+				</div>
+			</div>
+		</f:else>
+	</f:if>
 
 	<div id="job" style="display:none;">
 		<div id="progressBar" style="width:300px;"></div>
 		<button id="startButton">Start</button>
 		<br />
 	</div>
-
 
 	<script type="text/javascript">
 		var moduleUrl = '{f:format.raw(value: moduleUrl)}';
@@ -44,7 +60,7 @@
 			};
 
 			var getParameterPrefix = function (mainModuleName, subModuleName) {
-				return  'tx_' + extKey + '_' + mainModuleName + '_' + extKey + subModuleName.replace(/_/g, '');
+				return 'tx_' + extKey + '_' + mainModuleName + '_' + extKey + subModuleName.replace(/_/g, '');
 			};
 
 			pub.getExtKey = function () {
@@ -55,15 +71,15 @@
 				var parameterPrefix = getParameterPrefix(mainModuleName, subModuleName);
 				var params = {};
 
-				Ext.apply(parameters, {controller:controller, action:action});
+				Ext.apply(parameters, {controller: controller, action: action});
 
 				Ext.iterate(parameters, function (key, value) {
 					params[parameterPrefix + '[' + key + ']'] = value;
 				});
 
 				var request = {
-					'url':moduleUrl,
-					'params':params
+					'url': moduleUrl,
+					'params': params
 				};
 
 				return request;
@@ -82,10 +98,10 @@
 
 			var run = function () {
 				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'Import',
-					'runJob', {jobClassName:jobInfo.jobClassName, offset:runCounter * jobInfo.increaseOffsetPerRunBy}));
+						'runJob', {jobClassName: jobInfo.jobClassName, offset: runCounter * jobInfo.increaseOffsetPerRunBy}));
 
 				Ext.apply(request, {
-					success:function () {
+					success: function () {
 						var progress = runCounter / jobInfo.runsToComplete;
 
 						progressBar.updateProgress(progress, Math.round(100 * progress) + '%');
@@ -99,7 +115,7 @@
 							runCounter = 1;
 						}
 					},
-					failure:function () {
+					failure: function () {
 						alert('error');
 					}
 				});
@@ -111,7 +127,7 @@
 				Ext.get('job').show();
 
 				progressBar = new Ext.ProgressBar({
-					renderTo:'progressBar'
+					renderTo: 'progressBar'
 				});
 
 				Ext.get('startButton').on('click', function () {
@@ -121,12 +137,12 @@
 
 			var loadJobInfo = function (jobClassName) {
 				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'Import',
-					'jobInfo', {jobClassName:jobClassName}));
+						'jobInfo', {jobClassName: jobClassName}));
 
 				Ext.apply(request, {
-					success:function (response) {
+					success: function (response) {
 						jobInfo = (Ext.decode(response.responseText));
-						Ext.apply(jobInfo, {jobClassName:jobClassName});
+						Ext.apply(jobInfo, {jobClassName: jobClassName});
 						initJob();
 					}
 				});

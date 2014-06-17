@@ -1,0 +1,29 @@
+{namespace n=Tx_News_ViewHelpers}
+
+<f:be.container>
+	<n:includeFile path="../typo3conf/ext/news/Resources/Public/Css/administration.css" />
+	<div class="typo3-fullDoc">
+		<div id="typo3-docheader">
+			<div class="typo3-docheader-functions">
+				<div class="left"></div>
+
+				<div class="right">
+					<f:be.pagePath />
+					<f:be.pageInfo />
+				</div>
+			</div>
+
+			<div class="typo3-docheader-buttons">
+				<div class="left"></div>
+				<div class="right">
+					<f:be.buttons.shortcut />
+				</div>
+			</div>
+		</div>
+		<div id="typo3-docbody">
+			<div id="typo3-inner-docbody" class="news-administration">
+				<f:render section="content" />
+			</div>
+		</div>
+	</div>
+</f:be.container>

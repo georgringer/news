@@ -406,6 +406,25 @@
 			<trans-unit id="news-folder" xml:space="preserve">
 				<source>News</source>
 			</trans-unit>
+
+			<trans-unit id="import.header" xml:space="preserve">
+				<source>News Importer</source>
+			</trans-unit>
+
+			<trans-unit id="import.choose_a_job" xml:space="preserve">
+				<source>Choose a job</source>
+			</trans-unit>
+
+			<trans-unit id="import.description" xml:space="preserve">
+				<source>This is the "News importer module". </source>
+			</trans-unit>
+			<trans-unit id="import.backupwarning" xml:space="preserve">
+				<source>It's strongly recommended to backup all news tables before running an import job.</source>
+			</trans-unit>
+			<trans-unit id="import.nojobs" xml:space="preserve">
+				<source>No jobs available for the importer.</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>
