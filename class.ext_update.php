@@ -380,24 +380,27 @@ class ext_update {
 	 */
 	protected function migrateNewsCategoryRecords() {
 
+		// migrate default language category records
 		$rows = $this->databaseConnection->exec_SELECTgetRows(
 			'uid, pid, tstamp, crdate, cruser_id, starttime, endtime, sorting, ' .
 			'sys_language_uid, l10n_parent, l10n_diffsource, ' .
 			'title, description, ' .
 			'fe_group, single_pid, shortcut, import_id, import_source',
 			'tx_news_domain_model_category',
-			'migrate_sys_category_uid = 0 AND deleted = 0'
+			'migrate_sys_category_uid = 0 AND deleted = 0 AND sys_language_uid = 0'
 		);
 
 		if ($this->databaseConnection->sql_error()) {
 			$message = ' SQL ERROR: ' . $this->databaseConnection->sql_error();
 			$status = FlashMessage::ERROR;
-			$title = 'Failed selecting old category records';
+			$title = 'Failed selecting old default language category records';
 			$this->messageArray[] = array($status, $title, $message);
 		}
 
-		// Create a new sys_category record for each found record
+		// Create a new sys_category record for each found record in default language, then
 		$newCategoryRecords = 0;
+
+		$oldNewDefaultLanguageCategoryUidMapping = array();
 		foreach ($rows as $row) {
 			$oldUid = $row['uid'];
 			unset($row['uid']);
@@ -408,6 +411,53 @@ class ext_update {
 
 			if ($this->databaseConnection->exec_INSERTquery('sys_category', $row) !== FALSE) {
 				$newUid = $this->databaseConnection->sql_insert_id();
+				$oldNewDefaultLanguageCategoryUidMapping[$oldUid] = $newUid;
+				$this->databaseConnection->exec_UPDATEquery(
+					'tx_news_domain_model_category',
+					'uid=' . $oldUid,
+					array('migrate_sys_category_uid' => $newUid)
+				);
+				$newCategoryRecords++;
+			} else {
+				$message = ' SQL ERROR: ' . $this->databaseConnection->sql_error();
+				$status = FlashMessage::ERROR;
+				$title = 'Failed copying [' . $oldUid . '] ' . htmlspecialchars($row['title']) . ' to sys_category';
+				$this->messageArray[] = array($status, $title, $message);
+			}
+		}
+
+		// migrate non-default language category records
+		$rows = $this->databaseConnection->exec_SELECTgetRows(
+			'uid, pid, tstamp, crdate, cruser_id, starttime, endtime, sorting, ' .
+			'sys_language_uid, l10n_parent, l10n_diffsource, ' .
+			'title, description, ' .
+			'fe_group, single_pid, shortcut, import_id, import_source',
+			'tx_news_domain_model_category',
+			'migrate_sys_category_uid = 0 AND deleted = 0 AND sys_language_uid > 0'
+		);
+
+		if ($this->databaseConnection->sql_error()) {
+			$message = ' SQL ERROR: ' . $this->databaseConnection->sql_error();
+			$status = FlashMessage::ERROR;
+			$title = 'Failed selecting old non-default language category records';
+			$this->messageArray[] = array($status, $title, $message);
+		}
+
+		foreach ($rows as $row) {
+			$oldUid = $row['uid'];
+			unset($row['uid']);
+
+			if (is_null($row['l10n_diffsource'])) {
+				$row['l10n_diffsource'] = '';
+			}
+			// set l10n_parent if category is a localized version
+			if (array_key_exists($row['l10n_parent'], $oldNewDefaultLanguageCategoryUidMapping)) {
+				$row['l10n_parent'] = $oldNewDefaultLanguageCategoryUidMapping[$row['l10n_parent']];
+			}
+
+			if ($this->databaseConnection->exec_INSERTquery('sys_category', $row) !== FALSE) {
+				$newUid = $this->databaseConnection->sql_insert_id();
+				$oldNewDefaultLanguageCategoryUidMapping[$oldUid] = $newUid;
 				$this->databaseConnection->exec_UPDATEquery(
 					'tx_news_domain_model_category',
 					'uid=' . $oldUid,
