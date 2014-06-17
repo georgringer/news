@@ -89,10 +89,10 @@ abstract class Tx_News_Jobs_AbstractImportJob implements Tx_News_Jobs_ImportJobI
 	 * @return array
 	 */
 	public function getInfo() {
-		$totalRecordCount = $this->importDataProviderService->getTotalRecordCount();
+		$totalRecordCount = (int)$this->importDataProviderService->getTotalRecordCount();
 		$info = array(
 			'totalRecordCount' => $totalRecordCount,
-			'runsToComplete' => ceil($totalRecordCount / $this->getNumberOfRecordsPerRun()),
+			'runsToComplete' => $totalRecordCount > 0 ? (ceil($totalRecordCount / $this->getNumberOfRecordsPerRun())) : 0,
 			'increaseOffsetPerRunBy' => $this->getNumberOfRecordsPerRun(),
 		);
 
