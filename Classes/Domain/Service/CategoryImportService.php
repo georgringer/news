@@ -39,6 +39,10 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	 */
 	protected $categoryRepository;
 
+	public function __construct() {
+		$this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+	}
+
 	/**
 	 * Inject the category repository.
 	 *
@@ -54,6 +58,8 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	 * @return void
 	 */
 	public function import(array $importArray) {
+		$this->logger->info(sprintf('Starting import for %s categories', count($importArray)));
+
 		// Sort import array to import the default language first
 		foreach ($importArray as $importItem) {
 			$category = $this->hydrateCategory($importItem);

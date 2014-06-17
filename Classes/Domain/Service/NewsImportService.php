@@ -54,6 +54,10 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	 */
 	protected $settings = array();
 
+	public function __construct() {
+		$this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+	}
+
 	/**
 	 * Inject the news repository
 	 *

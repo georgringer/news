@@ -33,6 +33,10 @@ class Tx_News_Domain_Service_AbstractImportService implements \TYPO3\CMS\Core\Si
 	 */
 	protected $importFolder;
 
+	/**
+	 * @var \TYPO3\CMS\Core\Log\Logger
+	 */
+	protected $logger;
 
 	/**
 	 * Inject the object manager
