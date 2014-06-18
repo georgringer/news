@@ -55,7 +55,11 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	protected $settings = array();
 
 	public function __construct() {
-		$this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+		/** @var \TYPO3\CMS\Core\Log\Logger $logger */
+		$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+		$this->logger = $logger;
+
+		parent::__construct();
 	}
 
 	/**
@@ -96,6 +100,8 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	protected function initializeNewsRecord(array $importItem) {
 		$news = NULL;
 
+		$this->logger->info(sprintf('Import of news from source "%s" with id "%s"', $importItem['import_source'], $importItem['import_id']));
+
 		if ($importItem['import_source'] && $importItem['import_id']) {
 			$news = $this->newsRepository->findOneByImportSourceAndImportId($importItem['import_source'],
 				$importItem['import_id']);
@@ -105,6 +111,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 			$news = $this->objectManager->get('Tx_News_Domain_Model_News');
 			$this->newsRepository->add($news);
 		} else {
+			$this->logger->info(sprintf('News exists already with id "%s".', $news->getUid()));
 			$this->newsRepository->update($news);
 		}
 
@@ -373,6 +380,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	 */
 	public function import(array $importData, array $importItemOverwrite = array(), $settings = array()) {
 		$this->settings = $settings;
+		$this->logger->info(sprintf('Starting import for %s news', count($importData)));
 
 		foreach ($importData as $importItem) {
 

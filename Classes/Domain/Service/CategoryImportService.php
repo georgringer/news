@@ -40,7 +40,11 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	protected $categoryRepository;
 
 	public function __construct() {
-		$this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+		/** @var \TYPO3\CMS\Core\Log\Logger $logger */
+		$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+		$this->logger = $logger;
+
+		parent::__construct();
 	}
 
 	/**
@@ -109,13 +113,20 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	 * @return Tx_News_Domain_Model_Category
 	 */
 	protected function hydrateCategory(array $importItem) {
-		if (is_null($category = $this->categoryRepository->findOneByImportSourceAndImportId(
-			$importItem['import_source'], $importItem['import_id']))) {
+		$category = $this->categoryRepository->findOneByImportSourceAndImportId($importItem['import_source'], $importItem['import_id']);
+
+		$this->logger->info(sprintf('Import of category from source "%s" with id "%s"', $importItem['import_source'], $importItem['import_id']));
+
+		if (is_null($category)) {
+			$this->logger->info('Category is new');
 
 			/** @var $category Tx_News_Domain_Model_Category */
 			$category = $this->objectManager->get('Tx_News_Domain_Model_Category');
 			$this->categoryRepository->add($category);
+		} else {
+			$this->logger->info(sprintf('Category exists already with id "%s".', $category->getUid()));
 		}
+
 		$category->setPid($importItem['pid']);
 		$category->setHidden($importItem['hidden']);
 		$category->setStarttime($importItem['starttime']);
