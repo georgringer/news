@@ -25,7 +25,7 @@
  * <div id="disqus_thread"></div>
  * <n:social.disqus newsItem="{newsItem}"
  *         shortName="demo123"
- *         link="{n:link(newsItem:newsItem,settings:settings,uriOnly:1)}" />
+ *         link="{n:link(newsItem:newsItem,settings:settings,uriOnly:1,configuration:'{forceAbsoluteUrl:1}')}" />
  *
  * @package TYPO3
  * @subpackage tx_news
