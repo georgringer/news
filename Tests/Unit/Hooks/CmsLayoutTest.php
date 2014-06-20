@@ -30,6 +30,9 @@ class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitT
 
 	public function setUp() {
 		parent::setUp();
+
+		$GLOBALS['LANG'] = $this->getAccessibleMock('TYPO3\\CMS\\Core\\Utility\\GeneralUtility\\LanguageService', array('sl'));
+
 		$this->cmsLayout = $this->getAccessibleMock('Tx_News_Hooks_CmsLayout', array('dummy'));
 	}
 

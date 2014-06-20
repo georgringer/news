@@ -42,6 +42,9 @@ class Tx_News_Tests_Unit_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHel
 
 	public function setUp() {
 		parent::setUp();
+
+		$GLOBALS['BE_USER'] = $this->getMock('TYPO3\\CMS\\Core\\Authentication\\BackendUserAuthentication', array('dummy'));
+
 		$this->viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHelper', array('renderThenChild', 'renderElseChild'));
 		$this->injectDependenciesIntoViewHelper($this->viewHelper);
 		$this->viewHelper->initializeArguments();

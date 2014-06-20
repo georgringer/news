@@ -31,18 +31,6 @@
  */
 class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
-	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-	protected $objectManager;
-
-	/**
-	 * Set up test class
-	 *
-	 * @return void
-	 */
-	public function setUp() {
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-	}
-
 	/**
 	 * Test if default file format works
 	 *
@@ -50,8 +38,6 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\
 	 * @return void
 	 */
 	public function viewHelperReturnsCorrectJs() {
-		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
-
 		$newsItem = new Tx_News_Domain_Model_News();
 		$newsItem->setTitle('fobar');
 

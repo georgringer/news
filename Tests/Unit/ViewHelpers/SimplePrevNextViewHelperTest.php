@@ -43,6 +43,9 @@ class Tx_News_Tests_Unit_Tx_News_ViewHelpers_SimplePrevNextViewHelperTest extend
 		parent::setUp();
 
 		$this->viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_SimplePrevNextViewHelper', array('dummy'));
+
+		$mockedDatabaseConnection = $this->getMock('TYPO3\\CMS\\Core\\Database\\DatabaseConnection', array('exec_SELECTgetSingleRow'));
+		$this->viewHelper->_set('databaseConnection', $mockedDatabaseConnection);
 	}
 
 	/**

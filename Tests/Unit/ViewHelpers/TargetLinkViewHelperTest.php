@@ -28,25 +28,11 @@
 class Tx_News_Tests_Unit_ViewHelpers_TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-	 */
-	protected $objectManager;
-
-	/**
-	 * @param $objectManager \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-	 * @return void
-	 */
-	protected function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
-		$this->objectManager = $objectManager;
-	}
-
-	/**
 	 * @return Tx_News_ViewHelpers_TargetLinkViewHelper
 	 * @support
 	 */
 	protected function getPreparedInstance() {
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$instance = $objectManager->get('Tx_News_ViewHelpers_TargetLinkViewHelper');
+		$instance = new Tx_News_ViewHelpers_TargetLinkViewHelper();
 		return $instance;
 	}
 
