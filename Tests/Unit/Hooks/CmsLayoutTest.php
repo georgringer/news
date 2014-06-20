@@ -31,9 +31,16 @@ class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitT
 	public function setUp() {
 		parent::setUp();
 
-		$GLOBALS['LANG'] = $this->getAccessibleMock('TYPO3\\CMS\\Core\\Utility\\GeneralUtility\\LanguageService', array('sl'));
+		$languageService = $this->getMock('TYPO3\\CMS\\Core\\Utility\\GeneralUtility\\LanguageService', array('sL'));
+		$languageService->expects($this->any())->method('sL')->will($this->returnValue('any language'));
+
+		$GLOBALS['LANG'] = $languageService;
+
+
+
 
 		$this->cmsLayout = $this->getAccessibleMock('Tx_News_Hooks_CmsLayout', array('dummy'));
+		$this->cmsLayout->_set('databaseConnection', $this->getMock('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection', array('exec_SELECTquery', 'exec_SELECTgetRows')));
 	}
 
 	/**
@@ -198,11 +205,14 @@ class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitT
 	 */
 	public function getTemplateLayoutSettingsAddsValueIfFilled() {
 		$flexform = array();
-		$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] = array(
-			array('bar', 'fo')
-		);
+		$mockedTemplateLayout = $this->getMock('Tx_News_Utility_TemplateLayout', array('getAvailableTemplateLayouts'));
+
+		$mockedTemplateLayout->expects($this->once())->method('getAvailableTemplateLayouts')->will($this->returnValue(array(array('bar', 'fo'))));
+
 		$this->addContentToFlexform($flexform, 'settings.templateLayout', 'fo', 'template');
 		$this->cmsLayout->_set('flexformData', $flexform);
+		$this->cmsLayout->_set('templateLayoutsUtility', $mockedTemplateLayout);
+
 		$this->cmsLayout->_call('getTemplateLayoutSettings', 1);
 		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
 	}

@@ -58,6 +58,18 @@ class Tx_News_Hooks_CmsLayout {
 	 */
 	public $flexformData = array();
 
+	/** @var  \TYPO3\CMS\Core\Database\DatabaseConnection */
+	protected $databaseConnection;
+
+	/** @var Tx_News_Utility_TemplateLayout $templateLayoutsUtility */
+	protected $templateLayoutsUtility;
+
+	public function __construct() {
+		/** @var \TYPO3\CMS\Core\Database\DatabaseConnection databaseConnection */
+		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
+		$this->templateLayoutsUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Utility_TemplateLayout');
+	}
+
 	/**
 	 * Returns information about this extension's pi1 plugin
 	 *
@@ -162,7 +174,7 @@ class Tx_News_Hooks_CmsLayout {
 		$singleNewsRecord = (int)$this->getFieldFromFlexform('settings.singleNews');
 
 		if ($singleNewsRecord > 0) {
-			$newsRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'deleted=0 AND uid=' . $singleNewsRecord);
+			$newsRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'deleted=0 AND uid=' . $singleNewsRecord);
 
 			if (is_array($newsRecord)) {
 				$pageRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('pages', $newsRecord['pid']);
@@ -339,7 +351,7 @@ class Tx_News_Hooks_CmsLayout {
 			}
 
 			// Category records
-			$rawCategoryRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			$rawCategoryRecords = $this->databaseConnection->exec_SELECTgetRows(
 				'*',
 				'sys_category',
 				'deleted=0 AND uid IN(' . implode(',', $categories) . ')'
@@ -374,7 +386,7 @@ class Tx_News_Hooks_CmsLayout {
 		}
 
 		$categoryTitles = array();
-		$rawTagRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+		$rawTagRecords = (array)$this->databaseConnection->exec_SELECTgetRows(
 			'*',
 			'tx_news_domain_model_tag',
 			'deleted=0 AND uid IN(' . implode(',', $tags) . ')'
@@ -475,9 +487,8 @@ class Tx_News_Hooks_CmsLayout {
 
 		// Find correct title by looping over all options
 		if (!empty($field)) {
-			/** @var Tx_News_Utility_TemplateLayout $templateLayoutsUtility */
-			$templateLayoutsUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Utility_TemplateLayout');
-			foreach ($templateLayoutsUtility->getAvailableTemplateLayouts($pageUid) as $layout) {
+
+			foreach ($this->templateLayoutsUtility->getAvailableTemplateLayouts($pageUid) as $layout) {
 				if ($layout[1] === $field) {
 					$title = $layout[0];
 				}
@@ -516,7 +527,7 @@ class Tx_News_Hooks_CmsLayout {
 
 		if (!empty($value)) {
 			$pagesOut = array();
-			$rawPagesRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+			$rawPagesRecords = $this->databaseConnection->exec_SELECTgetRows(
 				'*',
 				'pages',
 				'deleted=0 AND uid IN(' . implode(',', \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $value, TRUE)) . ')'
