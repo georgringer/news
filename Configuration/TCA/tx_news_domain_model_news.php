@@ -193,7 +193,7 @@ $tx_news_domain_model_news = array(
 			)
 		),
 		'bodytext' => array(
-			'exclude' => 1,
+			'exclude' => 0,
 			'l10n_mode' => 'noCopy',
 			'label' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext_formlabel',
 			'config' => array(
