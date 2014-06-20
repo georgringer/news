@@ -1,60 +1,39 @@
 language: php
+
 php:
   - 5.3
   - 5.4
+  - 5.5
+  - 5.6
 
 env:
-  - DB=mysql TYPO3=master INTEGRATION=master COVERAGE=0
-#  - DB=mysql TYPO3=TYPO3_6-1 INTEGRATION=master COVERAGE=0
-#  - DB=mysql TYPO3=TYPO3_6-0 INTEGRATION=master COVERAGE=0
-
-matrix:
-  include:
-    - php: 5.5
-      env: DB=mysql TYPO3=master INTEGRATION=master COVERAGE=1
-
-services:
-  - memcached
+  - TYPO3_BRANCH=master COVERAGE=0
 
 notifications:
   email:
-    - georg.ringer@gmail.com
+#    - georg.ringer@gmail.com
 
 before_script:
-  # Get latest git version cause of travis issues (https://github.com/travis-ci/travis-ci/issues/1710)
-  - sudo apt-get update && sudo apt-get install git
-# Install build dependencies
   - cd ..
-  - git clone --single-branch --branch $INTEGRATION --depth 1 git://github.com/georgringer/TYPO3-Travis-Integration.git build-environment
-  - git clone --single-branch --branch $TYPO3 --depth 1 https://github.com/TYPO3/TYPO3.CMS.git core
-  - source build-environment/install-helper.sh
-  - if [[ "$TRAVIS_PHP_VERSION" != "5.5" ]]; then installPhpModule igbinary; fi
-  - installPhpModule -y memcache
-  - installPhpModule redis
-  - if [[ "$TRAVIS_PHP_VERSION" == "5.3" ]]; then installPhpModule -y apc; fi
-
-# Install rudimentary TYPO3
-  - git clone --single-branch --branch $TYPO3 --depth 1 git://git.typo3.org/TYPO3CMS/Distributions/Introduction.git build-environment/Introduction
-  - mv core/typo3 .
-  - if [[ -d core/t3lib ]]; then mv core/t3lib . ; fi
-  - mv build-environment/typo3conf .
-  - git clone --single-branch --branch master --depth 1 git://git.typo3.org/TYPO3CMS/Extensions/phpunit.git typo3conf/ext/phpunit/
-  - mv news ./typo3conf/ext
-  - mkdir fileadmin
-  - mkdir uploads
-  - if [[ "$DB" == "mysql" ]]; then mysql -e "DROP DATABASE IF EXISTS typo3_test;" -uroot; fi
-  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS typo3_test;" -uroot; fi
-  - if [[ "$DB" == "mysql" ]]; then mysql -uroot typo3_test < build-environment/Introduction/typo3conf/ext/introduction/Resources/Private/Subpackages/Introduction/Database/introduction.sql; fi
-  - if [[ "$DB" == "mysql" && -f build-environment/dbimport/cache_tables.sql ]]; then mysql -uroot typo3_test < build-environment/dbimport/cache_tables.sql; fi
-  - if [[ "$DB" == "mysql" && -f  build-environment/dbimport/cli_users.sql ]]; then mysql -uroot typo3_test < build-environment/dbimport/cli_users.sql; fi
-  - if [[ "$DB" == "mysql" && -f  build-environment/dbimport/news.sql ]]; then mysql -uroot typo3_test < build-environment/dbimport/news.sql; fi
-
+  - git clone --single-branch --branch $TYPO3_BRANCH --depth 1 https://github.com/TYPO3/TYPO3.CMS.git typo3_core
+  - mv typo3_core/* .
+  - sudo apt-get install parallel
+  - composer self-update
+  - composer install
+  - mkdir -p uploads typo3temp typo3conf/ext
+  - mv news typo3conf/ext/
 
 script:
-#  - phpLint all
-  - if [[ "$COVERAGE" == "0" ]]; then php $PWD/typo3/cli_dispatch.phpsh phpunit -c typo3conf/ext/news/Tests/Build/UnitTests.xml; fi
-  - if [[ "$COVERAGE" == "1" ]]; then php $PWD/typo3conf/ext/phpunit/Composer/vendor/bin/phpunit --process-isolation  --bootstrap typo3/sysext/core/Build/FunctionalTestsBootstrap.php typo3conf/ext/news/Tests/Functional/; fi
-  - if [[ "$COVERAGE" == "1" ]]; then php $PWD/typo3/cli_dispatch.phpsh phpunit --coverage-clover=coverage.clover -c typo3conf/ext/news/Tests/Build/UnitTests.xml; fi
-  - if [[ "$COVERAGE" == "1" ]]; then wget https://scrutinizer-ci.com/ocular.phar; fi
-  - if [[ "$COVERAGE" == "1" ]]; then cp -R typo3conf/ext/news/.git .; fi
-  - if [[ "$COVERAGE" == "1" ]]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi
+  - >
+    echo;
+    echo "Running unit tests";
+    ./bin/phpunit --colors -c typo3/sysext/core/Build/UnitTests.xml typo3conf/ext/news/Tests/Unit/
+  - >
+    echo;
+    echo "Running php lint";
+    /bin/bash -c "
+        if ! find typo3conf/ext/news -name \*.php | parallel --gnu 'php -l {}' > /tmp/errors 2>&1; then
+            grep -v \"No syntax errors detected in\" /tmp/errors;
+            exit 99;
+        fi
+    "
