@@ -60,7 +60,7 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends \TYPO3\CMS\Fluid\Cor
 	 */
 	public function render($file = NULL, $format = '', $hideError = FALSE, $fileSize = NULL) {
 
-		if (!is_file($file)) {
+		if (!is_null($file) && !is_file($file)) {
 			$errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
 			\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($errorMessage, 'news', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
 
