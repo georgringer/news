@@ -424,6 +424,17 @@ The following table describes the settings concerning the detail view.
 
 
  - :Property:
+         disqusShortname
+
+   :Data type:
+         string
+
+   :Description:
+         If set, the commenting system of disqus (www.disqus.com) is used with the given name.
+
+   :Default:
+
+ - :Property:
          errorHandling
 
    :Data type:

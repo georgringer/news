@@ -99,6 +99,7 @@ plugin.tx_news {
 			errorHandling = pageNotFoundHandler
 			registerProperties = keywords,title
 			showSocialShareButtons = 1
+			disqusShortname =
 
 			# media configuration
 			media {
