@@ -26,8 +26,15 @@ before_script:
 script:
   - >
     echo;
+    export typo3DatabaseName="typo3";
+    export typo3DatabaseHost="localhost";
+    export typo3DatabaseUsername="root";
+    export typo3DatabasePassword="";
+    find . -wholename '*typo3conf/ext/news/Tests/Functional/*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; ./bin/phpunit --colors -c typo3conf/ext/news/Tests/Build/FunctionalTests.xml {}'
+  - >
+    echo;
     echo "Running unit tests";
-    ./bin/phpunit --colors -c typo3/sysext/core/Build/UnitTests.xml typo3conf/ext/news/Tests/Unit/
+    ./bin/phpunit --colors -c typo3conf/ext/news/Tests/Build/UnitTests.xml typo3conf/ext/news/Tests/Unit/
   - >
     echo;
     echo "Running php lint";
