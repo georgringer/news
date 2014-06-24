@@ -68,7 +68,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/** @var string */
 	protected $timeRestrictionHigh = NULL;
 
-	/** @var boolean */
+	/** @var int */
 	protected $topNewsRestriction;
 
 	/** @var string */

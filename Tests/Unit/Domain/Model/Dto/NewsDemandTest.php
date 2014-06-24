@@ -123,7 +123,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_NewsDemandTest extends \TYPO3\CMS\Core
 	 * @return void
 	 */
 	public function topNewsRestrictionCanBeSet() {
-		$value = TRUE;
+		$value = 1;
 		$this->instance->setTopNewsRestriction($value);
 		$this->assertEquals($value, $this->instance->getTopNewsRestriction());
 	}
