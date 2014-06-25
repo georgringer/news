@@ -164,12 +164,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
 		$demand->setStoragePage(8);
 
-		// set month and year with integers
-		$demand->setDateField('datetime');
-		$demand->setMonth(4);
-		$demand->setYear(2011);
-		$this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 1);
-
 		$demand->setMonth('4');
 		$demand->setYear('2011');
 		$this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 1);
