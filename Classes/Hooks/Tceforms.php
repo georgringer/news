@@ -21,6 +21,13 @@
 class Tx_News_Hooks_Tceforms {
 
 	/**
+	 * Path to the locallang file
+	 *
+	 * @var string
+	 */
+	const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
+
+	/**
 	 * Preprocessing of fields
 	 *
 	 * @param string $table table name
@@ -50,6 +57,39 @@ class Tx_News_Hooks_Tceforms {
 					$row['archive'] = $calculatedTime;
 				}
 			}
+		}
+	}
+
+	/**
+	 * Pre-processing of the whole TCEform
+	 *
+	 * @param string $table
+	 * @param array $row
+	 * @param \TYPO3\CMS\Backend\Form\FormEngine $parentObject
+	 */
+	public function getMainFields_preProcess($table, $row, $parentObject) {
+		if ($table !== 'tx_news_domain_model_news') {
+			return;
+		}
+		if (!\Tx_News_Service_AccessControlService::userHasCategoryPermissionsForRecord($row)) {
+			$parentObject->renderReadonly = TRUE;
+
+			$flashMessageContent = $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.content', TRUE);
+			$flashMessageContent .= '<ul>';
+			$accessDeniedCategories = \Tx_News_Service_AccessControlService::getAccessDeniedCategories($row);
+			foreach ($accessDeniedCategories as $accessDeniedCategory) {
+				$flashMessageContent .= '<li>' . htmlspecialchars($accessDeniedCategory['title']) . ' [' . $accessDeniedCategory['uid'] . ']</li>';
+			}
+			$flashMessageContent .= '</ul>';
+
+			/** @var \TYPO3\CMS\Core\Messaging\FlashMessage $flashMessage */
+			$flashMessage = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+				'TYPO3\CMS\Core\Messaging\FlashMessage',
+				$flashMessageContent,
+				$GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.header', TRUE),
+				TYPO3\CMS\Core\Messaging\FlashMessage::WARNING
+			);
+			TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($flashMessage);
 		}
 	}
 

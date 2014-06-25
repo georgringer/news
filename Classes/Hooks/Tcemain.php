@@ -90,4 +90,46 @@ class Tx_News_Hooks_Tcemain {
 		}
 	}
 
+	/**
+	 * Prevent saving of a news record if the editor doesn't have access to all categories of the news recird
+	 *
+	 * @param array $fieldArray
+	 * @param string $table
+	 * @param int $id
+	 * @param $parentObject \TYPO3\CMS\Core\DataHandling\DataHandler
+	 */
+	public function processDatamap_preProcessFieldArray(&$fieldArray, $table, $id, $parentObject) {
+		if ($table === 'tx_news_domain_model_news') {
+			// check permissions of assigned categories
+			if (is_int($id) && !$GLOBALS['BE_USER']->isAdmin()) {
+				$newsRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord($table, $id);
+				if (!\Tx_News_Service_AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
+					$parentObject->log($table, $id, 2, 0, 1, "processDatamap: Attempt to modify a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in your BE usergroup.", 1, array($table));
+					// unset fieldArray to prevent saving of the record
+					$fieldArray = array();
+				}
+			}
+		}
+	}
+
+	/**
+	 * Prevent deleting/moving of a news record if the editor doesn't have access to all categories of the news recird
+	 *
+	 * @param string $command
+	 * @param string $table
+	 * @param int $id
+	 * @param string $value
+	 * @param $parentObject \TYPO3\CMS\Core\DataHandling\DataHandler
+	 */
+	public function processCmdmap_preProcess($command, &$table, $id, $value, $parentObject) {
+		if ($table === 'tx_news_domain_model_news' && !$GLOBALS['BE_USER']->isAdmin() && is_integer($id)) {
+			$newsRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord($table, $id);
+			if (!\Tx_News_Service_AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
+				$parentObject->log($table, $id, 2, 0, 1, "processCmdmap: Attempt to " . $command . " a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in the BE usergroup.", 1, array($table));
+				// unset table to prevent saving
+				$table = '';
+			}
+		}
+	}
+
 }

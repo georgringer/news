@@ -437,6 +437,13 @@
 				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
 			</trans-unit>
 
+			<trans-unit id="record.savingdisabled.header">
+				<source>Saving is disabled</source>
+			</trans-unit>
+			<trans-unit id="record.savingdisabled.content">
+				<source>This record has the following categories assigned that are not defined in your permissions:</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

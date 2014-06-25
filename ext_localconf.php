@@ -31,9 +31,16 @@ $boot = function($packageKey) {
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][$packageKey . '_clearcache'] =
 		'Tx_News_Hooks_Tcemain->clearCachePostProc';
 
+	// Edit restriction for news records
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass'][$packageKey] =
+		'Tx_News_Hooks_Tcemain';
 
 	// Tceforms: Rendering of fields
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass'][$packageKey] =
+		'Tx_News_Hooks_Tceforms';
+
+	// Tceforms: Rendering of the whole Tceform
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass'][] =
 		'Tx_News_Hooks_Tceforms';
 
 	// Modify flexform values
