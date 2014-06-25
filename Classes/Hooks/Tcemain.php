@@ -22,22 +22,29 @@ class Tx_News_Hooks_Tcemain {
 
 	/**
 	 * Flushes the cache if a news record was edited.
+     * This happens on two levels: by UID and by PID.
 	 *
 	 * @param array $params
 	 * @return void
 	 */
 	public function clearCachePostProc(array $params) {
-		if (isset($params['table']) && $params['table'] === 'tx_news_domain_model_news' && isset($params['uid'])) {
-			$cacheTag = $params['table'] . '_' . $params['uid'];
+		if (isset($params['table']) && $params['table'] === 'tx_news_domain_model_news') {
+            $cacheTagsToFlush = array();
+            if (isset($params['uid'])) {
+                $cacheTagsToFlush[] = 'tx_news_uid_' . $params['uid'];
+            }
+            if (isset($params['uid_page'])) {
+                $cacheTagsToFlush[] = 'tx_news_pid_' . $params['uid_page'];
+            }
 
-			/** @var $cacheManager \TYPO3\CMS\Core\Cache\CacheManager */
-			$cacheManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
-			$cacheManager->getCache('cache_pages')->flushByTag($cacheTag);
-			$cacheManager->getCache('cache_pagesection')->flushByTag($cacheTag);
-			$cacheManager->getCache('cache_pages')->flushByTag('tx_news');
-			$cacheManager->getCache('cache_pagesection')->flushByTag('tx_news');
-		}
-	}
+            /** @var $cacheManager \TYPO3\CMS\Core\Cache\CacheManager */
+            $cacheManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
+            foreach ($cacheTagsToFlush as $cacheTag) {
+                $cacheManager->getCache('cache_pages')->flushByTag($cacheTag);
+                $cacheManager->getCache('cache_pagesection')->flushByTag($cacheTag);
+            }
+        }
+    }
 
 	/**
 	 * Generate a different preview link     *

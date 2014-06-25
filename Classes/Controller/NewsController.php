@@ -158,6 +158,8 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
+
+		Tx_News_Utility_Cache::addPageCacheTagsByDemandObject($demand);
 	}
 
 	/**
@@ -201,7 +203,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 		Tx_News_Utility_Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
 		if (!is_null($news) && is_a($news, 'Tx_News_Domain_Model_News')) {
-			Tx_News_Utility_Cache::addCacheTagsByNewsRecords(array($news), FALSE);
+			Tx_News_Utility_Cache::addCacheTagsByNewsRecords(array($news));
 		}
 	}
 

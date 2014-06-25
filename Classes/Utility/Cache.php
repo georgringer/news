@@ -53,27 +53,17 @@ class Tx_News_Utility_Cache {
 	 * Adds cache tags to page cache by news-records.
 	 *
 	 * Following cache tags will be added to tsfe:
-	 * "tx_news_domain_model_news_[news:uid]"
-	 * "pageId_[news:pid]"
+	 * "tx_news_uid_[news:uid]"
 	 *
 	 * @param array $newsRecords array with news records
-	 * @param boolean $includePageIdTag
 	 * @return void
 	 */
-	public static function addCacheTagsByNewsRecords(array $newsRecords, $includePageIdTag = FALSE) {
+	public static function addCacheTagsByNewsRecords(array $newsRecords) {
 		$cacheTags = array();
-		$addedPageIdTags = array();
 		foreach ($newsRecords as $news) {
 			// cache tag for each news record
-			$cacheTags[] = 'tx_news_domain_model_news_' . $news->getUid();
-
-			if ($includePageIdTag && !in_array($news->getPid(), $addedPageIdTags)) {
-				// cache tag for each parent page record
-				$cacheTags[] = 'pageId_' . $news->getPid();
-				$addedPageIdTags[] = $news->getPid();
-			}
+			$cacheTags[] = 'tx_news_uid_' . $news->getUid();
 		}
-//var_dump($cacheTags);
 		if (count($cacheTags) > 0) {
 			$GLOBALS['TSFE']->addCacheTags($cacheTags);
 		}
@@ -81,23 +71,21 @@ class Tx_News_Utility_Cache {
 
 	/**
 	 * Adds page cache tags by used storagePages.
-	 *
-	 * Returns true if at least one tag was added.
+	 * This adds tags with the scheme tx_news_pid_[news:pid]
 	 *
 	 * @param Tx_News_Domain_Model_Dto_NewsDemand $demand
-	 * @return boolean
+	 * @return void
 	 */
 	public static function addPageCacheTagsByDemandObject(Tx_News_Domain_Model_Dto_NewsDemand $demand) {
 		$cacheTags = array();
-
-		// Add cache tags for each storage page
-		if ($demand->getStoragePage()) {
-			foreach (\TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
-				$cacheTags[] = 'pageId_' . $pageId;
+        if ($demand->getStoragePage()) {
+            // Add cache tags for each storage page
+            foreach (\TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
+				$cacheTags[] = 'tx_news_pid_' . $pageId;
 			}
-			$GLOBALS['TSFE']->addCacheTags($cacheTags);
 		}
-
-		return count($cacheTags) > 0;
+        if (count($cacheTags) > 0) {
+            $GLOBALS['TSFE']->addCacheTags($cacheTags);
+        }
 	}
 }
