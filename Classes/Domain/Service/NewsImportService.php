@@ -142,6 +142,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 		$news->setFeGroup($importItem['fe_group']);
 		$news->setTstamp($importItem['tstamp']);
 		$news->setCrdate($importItem['crdate']);
+		$news->setSysLanguageUid($importItem['sys_language_uid']);
 
 		$news->setTitle($importItem['title']);
 		$news->setTeaser($importItem['teaser']);
@@ -394,7 +395,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 		foreach ($importData as $importItem) {
 
 				// Store language overlay in post persist queue
-			if ($importItem['sys_language_uid']) {
+			if ((int)$importItem['sys_language_uid'] > 0) {
 				$this->postPersistQueue[$importItem['import_id']] = array(
 					'action' => self::ACTION_IMPORT_L10N_OVERLAY,
 					'category' => NULL,
