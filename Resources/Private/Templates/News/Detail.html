@@ -32,7 +32,9 @@
 				<p>
 					<!-- date -->
 					<span class="news-list-date">
-						<n:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</n:format.date>
+						<time datetime="{f:format.date(date:newsItem.datetime,format:'Y-m-d')}">
+							<n:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</n:format.date>
+						</time>
 					</span>
 
 					<f:if condition="{newsItem.categories}">
