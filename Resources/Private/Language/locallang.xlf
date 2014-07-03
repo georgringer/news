@@ -39,6 +39,9 @@
 			<trans-unit id="author" xml:space="preserve">
 				<source>created by %s</source>
 			</trans-unit>
+			<trans-unit id="author_simple" xml:space="preserve">
+				<source>created by</source>
+			</trans-unit>
 			<trans-unit id="paginate_overall" xml:space="preserve">
 				<source>Page %s of %s.</source>
 			</trans-unit>

@@ -52,8 +52,8 @@
 
 					<f:if condition="{newsItem.author}">
 						<!-- author -->
-						<span class="news-list-author">
-							<f:translate key="author" arguments="{0:newsItem.author}"></f:translate>
+						<span class="news-list-author" itemscope itemtype="http://data-vocabulary.org/Person">
+							<f:translate key="author_simple" /> <span itemprop="name">{newsItem.author}</span>
 						</span>
 					</f:if>
 				</p>
