@@ -9,11 +9,21 @@
 Known problems
 --------------
 
-The following issues are known bugs. However those are not fixable inside EXT:news as it needs changes in the
-the framework below!
+The following issues are known bugs. However those are either not fixable inside EXT:news or not too easy to solve!
+
+Category images on root page
+=================================
+
+Due to restrictions of the File Abstraction Layer (FAL), it is not possible to add images to categories which are
+saved on the root page (uid 0). Documented at http://forge.typo3.org/issues/57515
+
 
 Multilanguage
 =================================
+
+.. tip::
+
+	This has been resolved in TYPO3 CMS 6.2.3 & 6.3!
 
 The strategy of extbase is currently quite simple. Imagine the default language "English" and a 2nd language "German".
 If the german news records should be rendered, the following (pseudo query) is used: ::
