@@ -1,17 +1,23 @@
 filter:
     excluded_paths:
+        - 'Documentation/*'
+        - 'Tests/*'
         - 'Resources/Public/JavaScript/Contrib/*'
-
+    paths:
+        - 'Classes/*'
 tools:
 
     external_code_coverage:
         timeout: 700
+        runs: 3
 
     php_cpd:
         enabled: true
 
     php_code_sniffer:
         enabled: true
+        config:
+            standard: TYPO3CMS
 
     php_cs_fixer:
         enabled: true

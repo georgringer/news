@@ -7,7 +7,12 @@ php:
   - 5.6
 
 env:
-  - TYPO3_BRANCH=master COVERAGE=0
+  - DB=mysql TYPO3_BRANCH=master COVERAGE=0
+
+matrix:
+  include:
+    - php: 5.5
+      env: DB=mysql TYPO3_BRANCH=master COVERAGE=1
 
 notifications:
   email:
@@ -25,22 +30,32 @@ before_script:
 
 script:
   - >
-    echo;
-    export typo3DatabaseName="typo3";
-    export typo3DatabaseHost="localhost";
-    export typo3DatabaseUsername="root";
-    export typo3DatabasePassword="";
-    find . -wholename '*typo3conf/ext/news/Tests/Functional/*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; ./bin/phpunit --colors -c typo3conf/ext/news/Tests/Build/FunctionalTests.xml {}'
+    if [[ "$COVERAGE" == "0" ]]; then
+      echo;
+      echo "Running unit tests";
+      ./bin/phpunit --colors -c typo3conf/ext/news/Tests/Build/UnitTests.xml
+    fi
   - >
-    echo;
-    echo "Running unit tests";
-    ./bin/phpunit --colors -c typo3conf/ext/news/Tests/Build/UnitTests.xml typo3conf/ext/news/Tests/Unit/
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      echo "Running unit tests";
+      ./bin/phpunit --coverage-clover=unittest-coverage.clover --colors -c typo3conf/ext/news/Tests/Build/UnitTests.xml
+    fi
   - >
-    echo;
-    echo "Running php lint";
-    /bin/bash -c "
-        if ! find typo3conf/ext/news -name \*.php | parallel --gnu 'php -l {}' > /tmp/errors 2>&1; then
-            grep -v \"No syntax errors detected in\" /tmp/errors;
-            exit 99;
-        fi
-    "
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      export typo3DatabaseName="typo3";
+      export typo3DatabaseHost="localhost";
+      export typo3DatabaseUsername="root";
+      export typo3DatabasePassword="";
+      find . -wholename '*/typo3conf/ext/news/Tests/Functional/*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; ./bin/phpunit --coverage-clover={}functionaltest-coverage.clover --colors -c typo3conf/ext/news/Tests/Build/FunctionalTests.xml {}'
+    fi
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      echo "Uploading code coverage results";
+      wget https://scrutinizer-ci.com/ocular.phar
+      cp -R typo3conf/ext/news/.git .
+      php ocular.phar code-coverage:upload --format=php-clover unittest-coverage.clover
+      find . -wholename '*/typo3conf/ext/news/Tests/Functional/*Test.php' -exec php ocular.phar code-coverage:upload --format=php-clover {}functionaltest-coverage.clover \;
+    fi

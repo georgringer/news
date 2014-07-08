@@ -1,5 +1,6 @@
 <phpunit backupGlobals="false"
 	backupStaticAttributes="false"
+	bootstrap="../../../../../typo3/sysext/core/Build/UnitTestsBootstrap.php"
 	colors="true"
 	convertErrorsToExceptions="true"
 	convertWarningsToExceptions="true"
