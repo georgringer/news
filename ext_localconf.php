@@ -79,6 +79,12 @@ $boot = function($packageKey) {
 		$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration'][$packageKey] =
 			'Tx_News_Hooks_RealUrlAutoConfiguration->addNewsConfig';
 	}
+
+	/* ===========================================================================
+		Update scripts
+	=========================================================================== */
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_fal'] = 'GeorgRinger\\News\\Updates\\FalUpdateWizard';
+
 };
 
 $boot($_EXTKEY);
