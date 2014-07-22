@@ -2,6 +2,9 @@
 
 <tr class="db_list_normal">
 	<td class="col-title">
+		<n:be.clickmenu table="tx_news_domain_model_news" uid="{newsItem.uid}">
+			<n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="{newsItem.title}" />
+		</n:be.clickmenu>
 		<a href="" title="UID: {newsItem.uid}" onclick="window.location.href='alt_doc.php?returnUrl='+T3_THIS_LOCATION+'&edit[tx_news_domain_model_news][{newsItem.uid}]=edit'; return false;">
 			{newsItem.title}
 		</a>
