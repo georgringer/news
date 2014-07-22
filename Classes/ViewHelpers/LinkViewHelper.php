@@ -77,9 +77,10 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	 * @param array $settings
 	 * @param boolean $uriOnly return only the url without the a-tag
 	 * @param array $configuration optional typolink configuration
+	 * @param string $content optional content which is linked
 	 * @return string link
 	 */
-	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $uriOnly = FALSE, $configuration = array()) {
+	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $uriOnly = FALSE, $configuration = array(), $content = '') {
 		$tsSettings = $this->pluginSettingsService->getSettings();
 
 		$this->init();
@@ -110,7 +111,12 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 		}
 
 		$this->tag->addAttribute('href', $url);
-		$this->tag->setContent($this->renderChildren());
+
+		if (empty($content)) {
+			$content = $this->renderChilder();
+		}
+		$this->tag->setContent($content);
+
 		return $this->tag->render();
 	}
 
