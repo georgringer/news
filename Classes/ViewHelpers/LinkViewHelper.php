@@ -113,7 +113,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 		$this->tag->addAttribute('href', $url);
 
 		if (empty($content)) {
-			$content = $this->renderChilder();
+			$content = $this->renderChildren();
 		}
 		$this->tag->setContent($content);
 
