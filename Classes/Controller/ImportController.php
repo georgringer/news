@@ -46,8 +46,41 @@ class Tx_News_Controller_ImportController extends \TYPO3\CMS\Extbase\Mvc\Control
 	 * @return void
 	 */
 	public function indexAction() {
-		$this->view->assign('availableJobs', array_merge(array(0 => ''), $this->getAvailableJobs()));
-		$this->view->assign('moduleUrl', \TYPO3\CMS\Backend\Utility\BackendUtility::getModuleUrl($this->request->getPluginName()));
+		$this->view->assignMultiple(array(
+				'error' => $this->checkCorrectConfiguration(),
+				'availableJobs' => array_merge(array(0 => ''), $this->getAvailableJobs()),
+				'moduleUrl' => \TYPO3\CMS\Backend\Utility\BackendUtility::getModuleUrl($this->request->getPluginName()))
+		);
+	}
+
+	/**
+	 * Check for correct configuration
+	 *
+	 * @return string
+	 * @throws Exception
+	 * @throws TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsException
+	 */
+	protected function checkCorrectConfiguration() {
+		$error = '';
+		$settings = Tx_News_Utility_EmConfiguration::getSettings();
+
+		try {
+			$storageId = (int)$settings->getStorageUidImporter();
+			$path = $settings->getResourceFolderImporter();
+			if ($storageId === 0) {
+				throw new \UnexpectedValueException('import.error.configuration.storageUidImporter');
+			}
+			if (empty($path)) {
+				throw new \UnexpectedValueException('import.error.configuration.resourceFolderImporter');
+			}
+			$storage = $this->getResourceFactory()->getStorageObject($settings->getStorageUidImporter());
+			$folder = $storage->getFolder($path);
+		} catch (\TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException $e) {
+			$error= 'import.error.configuration.resourceFolderImporter.notExist';
+		} catch (\UnexptedValueException $e) {
+			$error = $e->getMessage();
+		}
+		return $error;
 	}
 
 	/**
@@ -73,5 +106,12 @@ class Tx_News_Controller_ImportController extends \TYPO3\CMS\Extbase\Mvc\Control
 	public function jobInfoAction($jobClassName) {
 		$job = $this->objectManager->get($jobClassName);
 		return json_encode($job->getInfo());
+	}
+
+	/**
+	 * @return \TYPO3\CMS\Core\Resource\ResourceFactory
+	 */
+	protected function getResourceFactory() {
+		return \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
 	}
 }

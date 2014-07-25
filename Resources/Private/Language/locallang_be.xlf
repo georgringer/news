@@ -424,6 +424,18 @@
 			<trans-unit id="import.nojobs" xml:space="preserve">
 				<source>No jobs available for the importer.</source>
 			</trans-unit>
+			<trans-unit id="import.error.configuration.title" xml:space="preserve">
+				<source>The configuration for the import is incomplete!</source>
+			</trans-unit>
+			<trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve">
+				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
+			</trans-unit>
+			<trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve">
+				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
+			</trans-unit>
+			<trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve">
+				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
+			</trans-unit>
 
 		</body>
 	</file>

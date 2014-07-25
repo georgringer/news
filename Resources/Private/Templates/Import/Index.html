@@ -18,7 +18,16 @@
 		</div>
 	</div>
 	<br />
-
+	<f:if condition="{error}">
+			<div class="typo3-message message-error">
+				<div class="message-header">
+					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.error.configuration.title" />
+				</div>
+				<div class="message-body">
+					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:{error}" default="{error}" />
+				</div>
+			</div>
+	</f:if>
 	<f:if condition="{availableJobs -> f:count()} > 1">
 		<f:then>
 			<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.choose_a_job" />:
