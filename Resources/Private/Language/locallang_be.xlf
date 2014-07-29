@@ -193,7 +193,7 @@
 				<source>Max records displayed</source>
 			</trans-unit>
 			<trans-unit id="flexforms_additional.offset" xml:space="preserve">
-				<source>Start with news item #</source>
+				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
 			</trans-unit>
 			<trans-unit id="flexforms_additional.hidePagination" xml:space="preserve">
 				<source>Hide the pagination</source>
