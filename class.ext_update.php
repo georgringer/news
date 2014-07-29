@@ -567,13 +567,13 @@ class ext_update {
 
 		$updatedRecords = 0;
 		$rows = $this->databaseConnection->exec_SELECTgetRows(
-			'uid, category_perms, tx_news_categorymounts',
+			'',
 			$table,
-			"tx_news_categorymounts != ''"
+			'1=1'
 		);
 
 		foreach ($rows as $row) {
-			$oldUids = GeneralUtility::trimExplode(',', $row['tx_news_categorymounts']);
+			$oldUids = GeneralUtility::trimExplode(',', (string)$row['tx_news_categorymounts']);
 			$newUids = $row['category_perms'] ? GeneralUtility::trimExplode(',', $row['category_perms']) : array();
 			foreach ($oldUids as $oldUid) {
 				if (!empty($oldNewCategoryUidMapping[$oldUid])) {
