@@ -93,7 +93,9 @@
 			</div>
 
 			<div class="category-tree">
-				<f:render section="categoryTree" arguments="{categories: categories}" />
+                <div class="tree-wrapper">
+                    <f:render section="categoryTree" arguments="{categories: categories}" />
+                </div>
 
 				<f:if condition="{categories}">
 					<div class="field">

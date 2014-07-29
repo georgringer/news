@@ -4,10 +4,14 @@
 	}
 	.category-tree {
 		float: left;
-		margin: 5px;
+		margin: 0 10px;
 
 		ul {
-			margin: 1px 0 1px 10px;
+            margin: 4px;
+
+          ul {
+            margin: 2px 0 4px 12px;
+          }
 		}
 	}
 	.form {
@@ -29,18 +33,31 @@
 
 		.category-tree {
 			li {
-				margin: 3px 0;
+				margin: 2px 0;
 
 				label {
 					padding: 0;
 					margin: 0;
+                    min-height: 12px;
+                    line-height: 1;
 				}
 			}
 
-			input {
-				margin-right: 2px;
+            input {
+				margin: 0;
 			}
+
+            .tree-wrapper {
+                background: white;
+                border: 1px solid #CDCDCD;
+                padding: 0 4px;
+                height: 160px;
+                width: 320px;
+                margin-bottom: 5px;
+                overflow: auto;
+            }
 		}
+
 		.form .field label {
 			display: block;
 			float: left;
