@@ -77,7 +77,7 @@ class Tx_News_Service_AccessControlService {
 	 */
 	public static function getCategoriesForNewsRecord($newsRecord) {
 		// determine localization overlay mode to select categories either from parent or localized record
-		if ($newsRecord['sys_language_uid'] > 0 && ['l10n_parent'] > 0) {
+		if ($newsRecord['sys_language_uid'] > 0 && $newsRecord['l10n_parent'] > 0) {
 			// localized version of a news record
 			$categoryL10nMode = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['categories']['l10n_mode'];
 			if ($categoryL10nMode === 'mergeIfNotBlank') {

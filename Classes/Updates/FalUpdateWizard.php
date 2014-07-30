@@ -244,7 +244,7 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 	protected function getMediaRecordsFromTable($table, $field) {
 		$additionalWhereClause = '';
 		if ($table === 'tx_news_domain_model_media') {
-			$additionalWhereClause = ' AND tx_news_domain_model_media.type = 0';
+			$additionalWhereClause = ' AND tx_news_domain_model_media.type = 0 AND tx_news_domain_model_media.image != ""';
 		}
 		$records = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			$table . '.*, tx_news_domain_model_news.uid AS newsUid, tx_news_domain_model_news.pid as newsPid',
