@@ -84,14 +84,14 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 		$notMigratedMediaRowsCount = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows(
 			'tx_news_domain_model_media.uid',
 			'tx_news_domain_model_media LEFT JOIN tx_news_domain_model_news ON tx_news_domain_model_media.parent = tx_news_domain_model_news.uid',
-			'tx_news_domain_model_news.fal_media = 0 AND tx_news_domain_model_media.type = 0 AND
+			'tx_news_domain_model_news.fal_media = 0 AND tx_news_domain_model_media.type = 0 AND tx_news_domain_model_media.image != "" AND
 					tx_news_domain_model_media.deleted=0 AND
 					tx_news_domain_model_news.deleted=0
 			'
 		);
 		if ($notMigratedMediaRowsCount > 0) {
 			$description = 'There are <strong>' . $notMigratedMediaRowsCount . '</strong> media records which are using the old media relation. '
-				. 'This wizard will move the files to "fileadmin/' . self::FOLDER_ContentUploads . '".';
+				. 'This wizard will copy the files to "fileadmin/' . self::FOLDER_ContentUploads . '".';
 			$updateNeeded = TRUE;
 		}
 
@@ -105,7 +105,7 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 		);
 		if ($notMigratedRelatedFileRowsCount > 0) {
 			$description .= '<br /><br />There are <strong>' . $notMigratedRelatedFileRowsCount . '</strong> related file records which are using the old relation. '
-				. 'This wizard will move the files to "fileadmin/' . self::FOLDER_ContentUploads . '".';
+				. 'This wizard will copy the files to "fileadmin/' . self::FOLDER_ContentUploads . '".';
 			$updateNeeded = TRUE;
 		}
 
