@@ -138,3 +138,5 @@ $newSysCategoryColumns = array(
 
 // add fe_group as enable field
 $GLOBALS['TCA']['sys_category']['ctrl']['enablecolumns']['fe_group'] = 'fe_group';
+$GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_news_domain_model_news']
+= array(0 => 'categories');
