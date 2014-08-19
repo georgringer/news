@@ -64,6 +64,11 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	protected $categoryRestriction = '';
 
 	/**
+	 * @var bool
+	 */
+	protected $categoryBeGroupTceFormsRestriction = FALSE;
+
+	/**
 	 * @var boolean
 	 */
 	protected $contentElementRelation = FALSE;
@@ -152,6 +157,15 @@ class Tx_News_Domain_Model_Dto_EmConfiguration {
 	 */
 	public function getCategoryRestriction() {
 		return $this->categoryRestriction;
+	}
+
+	/**
+	 * Get categoryBeGroupTceFormsRestriction
+	 *
+	 * @return boolean
+	 */
+	public function getCategoryBeGroupTceFormsRestriction() {
+		return $this->categoryBeGroupTceFormsRestriction;
 	}
 
 	/**

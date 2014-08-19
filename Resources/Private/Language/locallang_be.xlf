@@ -259,6 +259,9 @@
 			<trans-unit id="extmng.categoryRestriction.none" xml:space="preserve">
 				<source>No restriction</source>
 			</trans-unit>
+			<trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve">
+				<source>Editor needs to have permissions to all selected categories to save a news item</source>
+			</trans-unit>
 			<trans-unit id="extmng.useFal" xml:space="preserve">
 				<source>Use FAL relations instead of news media elements</source>
 			</trans-unit>

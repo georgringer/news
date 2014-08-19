@@ -27,6 +27,11 @@ class Tx_News_Service_AccessControlService {
 	 * @return boolean
 	 */
 	public static function userHasCategoryPermissionsForRecord(array $newsRecord) {
+
+		if (!Tx_News_Utility_EmConfiguration::getSettings()->getCategoryBeGroupTceFormsRestriction()) {
+			return TRUE;
+		}
+
 		/** @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication $backendUserAuthentication */
 		$backendUserAuthentication = $GLOBALS['BE_USER'];
 		if ($backendUserAuthentication->isAdmin()) {
