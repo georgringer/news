@@ -52,11 +52,16 @@ class Tx_News_Service_AccessControlService {
 		/** @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication $backendUserAuthentication */
 		$backendUserAuthentication = $GLOBALS['BE_USER'];
 		if ($backendUserAuthentication->isAdmin()) {
-			// an admin may edit all news
-			return TRUE;
+			// an admin may edit all news so no categories without access
+			return array();
 		}
 
+		// no category mounts set means access to all
 		$backendUserCategories = $backendUserAuthentication->getCategoryMountPoints();
+		if ($backendUserCategories === array()) {
+			return array();
+		}
+
 		$newsRecordCategories = self::getCategoriesForNewsRecord($newsRecord);
 
 		// Remove categories the user has access to
