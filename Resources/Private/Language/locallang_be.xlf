@@ -290,10 +290,7 @@
 				<source>Date &amp; Time</source>
 			</trans-unit>
 			<trans-unit id="extmng.removeListActionFromFlexforms" xml:space="preserve">
-				<source>List actions shown in Flexforms:There are 2 different list views: &quot;List only&quot; can only show the list view. This is
-				for example neded if you need a list view at the same page as the detail view. &quot;List+Detail&quot; will show the same list view but will show the detail view if a news
-				item is set via GET arguments. Be aware: If the setting is changed after news plugins have been created, all plugins need to be reconfigured by selecting the
-				correct action!
+				<source>List actions shown in Flexforms:There are 2 different list views: &quot;List only&quot; can only show the list view. This is for example neded if you need a list view at the same page as the detail view. &quot;List+Detail&quot; will show the same list view but will show the detail view if a news item is set via GET arguments. Be aware: If the setting is changed after news plugins have been created, all plugins need to be reconfigured by selecting the correct action!
 			</source>
 			</trans-unit>
 			<trans-unit id="extmng.removeListActionFromFlexforms.0" xml:space="preserve">
@@ -399,8 +396,7 @@
 				<source>List pages with count of news &amp; category records</source>
 			</trans-unit>
 			<trans-unit id="administration.newsPidListing.description" xml:space="preserve">
-				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show
-				the news entries of the page.
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
 			</source>
 			</trans-unit>
 			<trans-unit id="administration.nolimit" xml:space="preserve">
@@ -439,14 +435,12 @@
 			<trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve">
 				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
 			</trans-unit>
-
 			<trans-unit id="record.savingdisabled.header">
 				<source>Saving is disabled</source>
 			</trans-unit>
 			<trans-unit id="record.savingdisabled.content">
 				<source>This record has the following categories assigned that are not defined in your permissions:</source>
 			</trans-unit>
-
 		</body>
 	</file>
 </xliff>
