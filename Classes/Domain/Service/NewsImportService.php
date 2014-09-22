@@ -40,6 +40,11 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	protected $categoryRepository;
 
 	/**
+	 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+	 */
+	protected $signalSlotDispatcher;
+
+	/**
 	 * @var array
 	 */
 	protected $settings = array();
@@ -81,6 +86,16 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	 */
 	public function injectTtContentRepository(Tx_News_Domain_Repository_TtContentRepository $ttContentRepository) {
 		$this->ttContentRepository = $ttContentRepository;
+	}
+
+	/**
+	 * Inject SignalSlotDispatcher
+	 *
+	 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
+	 * @return void
+	 */
+	public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher) {
+		$this->signalSlotDispatcher = $signalSlotDispatcher;
 	}
 
 	/**
@@ -357,6 +372,10 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 				$relatedLink->setPid($importItem['pid']);
 			}
 		}
+
+		$arguments = array('importItem' => $importItem, 'news' => $news);
+		$this->emitSignal('postHydrate', $arguments);
+
 		return $news;
 	}
 
@@ -544,5 +563,15 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 			}
 		}
 		return $result;
+	}
+
+	/**
+	 * Emits signal
+	 *
+	 * @param string $signalName name of the signal slot
+	 * @param array $signalArguments arguments for the signal slot
+	 */
+	protected function emitSignal($signalName, array $signalArguments) {
+		$this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\NewsImportService', $signalName, $signalArguments);
 	}
 }

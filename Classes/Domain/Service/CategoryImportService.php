@@ -29,6 +29,11 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	 */
 	protected $categoryRepository;
 
+	/**
+	 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+	 */
+	protected $signalSlotDispatcher;
+
 	public function __construct() {
 		/** @var \TYPO3\CMS\Core\Log\Logger $logger */
 		$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
@@ -45,6 +50,16 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	 */
 	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
+	}
+
+	/**
+	 * Inject SignalSlotDispatcher
+	 *
+	 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
+	 * @return void
+	 */
+	public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher) {
+		$this->signalSlotDispatcher = $signalSlotDispatcher;
 	}
 
 	/**
@@ -131,6 +146,9 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 
 		$category->setImportId($importItem['import_id']);
 		$category->setImportSource($importItem['import_source']);
+
+		$arguments = array('importItem' => $importItem, 'category' => $category);
+		$this->emitSignal('postHydrate', $arguments);
 
 		return $category;
 	}
@@ -246,6 +264,16 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 			$l10nChildrenCategory->setSysLanguageUid((int)$sysLanguageUid);
 		}
 
+	}
+
+	/**
+	 * Emits signal
+	 *
+	 * @param string $signalName name of the signal slot
+	 * @param array $signalArguments arguments for the signal slot
+	 */
+	protected function emitSignal($signalName, array $signalArguments) {
+		$this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\CategoryImportService', $signalName, $signalArguments);
 	}
 
 }
