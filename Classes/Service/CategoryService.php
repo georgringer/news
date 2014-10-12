@@ -91,7 +91,7 @@ class Tx_News_Service_CategoryService {
 	 * @param string $additionalWhere additional where clause
 	 * @return string comma separated list of category ids
 	 */
-	private static function getChildrenCategoriesRecursive($idList, $counter, $additionalWhere) {
+	private static function getChildrenCategoriesRecursive($idList, $counter = 0, $additionalWhere = '') {
 		$result = array();
 
 		// add idlist to the output too
