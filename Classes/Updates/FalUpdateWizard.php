@@ -186,7 +186,11 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 	 * @return void
 	 */
 	protected function migrateRecord(array $record, $field) {
-		$file = $record['image'];
+		if ($field === 'fal_related_files') {
+			$file = $record['file'];
+		} else {
+			$file = $record['image'];
+		}
 
 		if (file_exists(PATH_site . 'uploads/tx_news/' . $file)) {
 			\TYPO3\CMS\Core\Utility\GeneralUtility::upload_copy_move(
