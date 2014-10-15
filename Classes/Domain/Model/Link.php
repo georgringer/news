@@ -45,6 +45,11 @@ class Tx_News_Domain_Model_Link extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	protected $uri;
 
 	/**
+	 * @var integer
+	 */
+	protected $l10nParent;
+
+	/**
 	 * Get creation date
 	 *
 	 * @return integer
@@ -137,6 +142,44 @@ class Tx_News_Domain_Model_Link extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	 */
 	public function setUri($uri) {
 		$this->uri = $uri;
+	}
+
+	/**
+	 * Set sys language
+	 *
+	 * @param int $sysLanguageUid
+	 * @return void
+	 */
+	public function setSysLanguageUid($sysLanguageUid) {
+		$this->_languageUid = $sysLanguageUid;
+	}
+
+	/**
+	 * Get sys language
+	 *
+	 * @return int
+	 */
+	public function getSysLanguageUid() {
+		return $this->_languageUid;
+	}
+
+	/**
+	 * Set l10n parent
+	 *
+	 * @param int $l10nParent
+	 * @return void
+	 */
+	public function setL10nParent($l10nParent) {
+		$this->l10nParent = $l10nParent;
+	}
+
+	/**
+	 * Get l10n parent
+	 *
+	 * @return int
+	 */
+	public function getL10nParent() {
+		return $this->l10nParent;
 	}
 
 }
