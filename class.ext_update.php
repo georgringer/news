@@ -399,6 +399,10 @@ class ext_update {
 				$row['l10n_diffsource'] = '';
 			}
 
+			if (is_null($row['description'])) {
+				$row['description'] = '';
+			}
+
 			if ($this->databaseConnection->exec_INSERTquery('sys_category', $row) !== FALSE) {
 				$newUid = $this->databaseConnection->sql_insert_id();
 				$oldNewDefaultLanguageCategoryUidMapping[$oldUid] = $newUid;
@@ -439,6 +443,10 @@ class ext_update {
 
 			if (is_null($row['l10n_diffsource'])) {
 				$row['l10n_diffsource'] = '';
+			}
+
+			if (is_null($row['description'])) {
+				$row['description'] = '';
 			}
 			// set l10n_parent if category is a localized version
 			if (array_key_exists($row['l10n_parent'], $oldNewDefaultLanguageCategoryUidMapping)) {
