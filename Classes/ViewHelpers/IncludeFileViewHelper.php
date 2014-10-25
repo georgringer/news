@@ -48,7 +48,7 @@ class Tx_News_ViewHelpers_IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\Vi
 				$GLOBALS['TSFE']->getPageRenderer()->addCssFile($path, 'stylesheet', 'all', '', $compress);
 			}
 		} else {
-			$doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('template');
+			$doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
 			$pageRenderer = $doc->getPageRenderer();
 
 				// JS
