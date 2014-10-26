@@ -16,7 +16,7 @@ Basic setup
 """""""""""""""
 
 The most simple example is the following one. You can just add the section with copy&paste to
-the *postVarSets/Default* section: ::
+the *postVarSets/_DEFAULT* section: ::
 
 	// EXT:news start
 	'news' => array(
@@ -59,23 +59,42 @@ Here is a full RealURL configuration with the explanation below. ::
 
 	<?php
 
-	$TYPO3_CONF_VARS['FE']['addRootLineFields'].= ',tx_realurl_pathsegment';
-	$TYPO3_CONF_VARS['EXTCONF']['realurl']['_DEFAULT'] = array(
+	$GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'] .= ',tx_realurl_pathsegment';
+
+	// Adjust to your needs
+	$domain = 'www.example.com';
+	$rootPageUid = 123;
+	$rssFeedPageType = 9818; // pageType of your RSS feed page
+
+	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl'][$domain] = array(
 		'pagePath' => array(
 			'type' => 'user',
 			'userFunc' => 'EXT:realurl/class.tx_realurl_advanced.php:&tx_realurl_advanced->main',
 			'spaceCharacter' => '-',
 			'languageGetVar' => 'L',
 			'expireDays' => '3',
-			'rootpage_id' => 1,
-			'firstHitPathCache'=>1
+			'rootpage_id' => $rootPageUid,
+			'firstHitPathCache' => 1
 		),
 		'init' => array(
 			'enableCHashCache' => TRUE,
-			'enableCHashCache' => 1,
 			'respectSimulateStaticURLs' => 0,
-			'enableUrlDecodeCache' => 1,
-			'enableUrlEncodeCache' => 1
+			'appendMissingSlash' => 'ifNotFile,redirect',
+			'adminJumpToBackend' => TRUE,
+			'enableUrlDecodeCache' => TRUE,
+			'enableUrlEncodeCache' => TRUE,
+			'emptyUrlReturnValue' => '/',
+		),
+		'fileName' => array(
+			'defaultToHTMLsuffixOnPrev' => 0,
+			'acceptHTMLsuffix' => 1,
+			'index' => array(
+				'feed.rss' => array(
+					'keyValues' => array(
+						'type' => $rssFeedPageType,
+					)
+				)
+			)
 		),
 		'preVars' => array(
 			array(
@@ -166,7 +185,6 @@ Here is a full RealURL configuration with the explanation below. ::
 			'701' => 'newsDetailConfiguration', // For additional detail pages, add their uid as well
 			'71' => 'newsTagConfiguration',
 			'72' => 'newsCategoryConfiguration',
-
 		),
 		'postVarSets' => array(
 			'_DEFAULT' => array(
@@ -199,22 +217,22 @@ Here is a full RealURL configuration with the explanation below. ::
 
 	);
 
-	?>
 
 **Explanation**
 
-The configuration of *_newsDetailConfiguration_* is used for the single view.
+The configuration of *newsDetailConfiguration* is used for the single view.
 Its name is not that important but the same name has to be used in line 86 where the uid of the single view page is set.
 In this example it is *70*. Of course you need to set the uid of your single view page.
 
 The same happens for a single view of categories and tags by using newsCategoryConfiguration and newsTagConfiguration.
 
-Because of using fixedPostVars, the arguments can be removed in the @postVarSets@ section.
+Because of using fixedPostVars, the arguments can be removed in the *postVarSets* section.
 
 Removing controller and action arguments from URL
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-If you got a separate page to display the single view it is possible to skip the arguments ::
+If you got a separate page to display the single view it is possible to skip the arguments. This is not necessary if you use
+the Advanced realUrl configuration from above. ::
 
 	&tx_news_pi1[controller]=News
 	&tx_news_pi1[action]=detail
