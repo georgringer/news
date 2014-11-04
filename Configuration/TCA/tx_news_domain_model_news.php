@@ -231,6 +231,7 @@ $tx_news_domain_model_news = array(
 		),
 		'datetime' => array(
 			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news_domain_model_news.datetime',
 			'config' => array(
 				'type' => 'input',
@@ -727,7 +728,11 @@ if ($configuration->getUseFal()) {
 				'fal_media',
 				array(
 					'appearance' => array(
-						'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add'
+						'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add',
+						'showPossibleLocalizationRecords' => 1,
+						'showRemovedLocalizationRecords' => 1,
+						'showAllLocalizationLink' => 1,
+						'showSynchronizationLink' => 1
 					),
 					'foreign_match_fields' => array(
 						'fieldname' => 'fal_media',
@@ -786,7 +791,11 @@ if ($configuration->getUseFal()) {
 				'fal_related_files',
 				array(
 					'appearance' => array(
-						'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_related_files.add'
+						'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_related_files.add',
+						'showPossibleLocalizationRecords' => 1,
+						'showRemovedLocalizationRecords' => 1,
+						'showAllLocalizationLink' => 1,
+						'showSynchronizationLink' => 1
 					),
 					'foreign_match_fields' => array(
 						'fieldname' => 'fal_related_files',
