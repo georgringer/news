@@ -71,7 +71,7 @@ class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends \TYPO3\CMS\Flu
 		$this->tag->addAttribute('data-href', $shareUrl);
 		$this->tag->removeAttribute('shareurl');
                 
-                if (!empty($tsSettings['facebookAppId'])) {
+                if (empty($tsSettings['facebookAppId'])) {
                     $this->tag->removeAttribute('app_id');
                 } else {
                     $this->tag->addAttribute('app_id',$tsSettings['facebookAppId']);
