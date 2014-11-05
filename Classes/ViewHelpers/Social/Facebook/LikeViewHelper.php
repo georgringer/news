@@ -1,16 +1,26 @@
 <?php
-/**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
- */
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2010 Georg Ringer <typo3@ringerge.org>
+*  All rights reserved
+*
+*  This script is part of the TYPO3 project. The TYPO3 project is
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
 
 /**
  * ViewHelper to add a like button
@@ -59,9 +69,10 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends \TYPO3\CMS\Flui
 	 */
 	public function initializeArguments() {
 		$this->registerTagAttribute('href', 'string', 'Given url, if empty, current url is used');
+                $this->registerTagAttribute('app_id','string','Your apps unique identifier. Required.');
 		$this->registerTagAttribute('layout', 'string', 'Either: standard, button_count or box_count');
-		$this->registerTagAttribute('width', 'integer', 'With of widget, default 450');
-		$this->registerTagAttribute('font', 'string', 'Font, options are: arial,lucidia grande,segoe ui,tahoma,trebuchet ms,verdana');
+                $this->registerTagAttribute('redirect_uri','string', 'The URL to redirect to after a person clicks a button on the dialog. Required when using URL redirection.');
+		$this->registerTagAttribute('display', 'string', 'Determines how the dialog is rendered.');
 		$this->registerTagAttribute('javaScript', 'string', 'JS URL. If not set, default is used, if set to -1 no Js is loaded');
 	}
 
@@ -87,14 +98,13 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends \TYPO3\CMS\Flui
 				$tsSettings = $this->pluginSettingsService->getSettings();
 
 				$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
-
-				if (!empty($tsSettings['facebookAppId'])) {
+                                $fbAppId = (!empty($tsSettings['facebookAppId'])) ? $tsSettings['facebookAppId'] : '';
+                                if (!empty($tsSettings['facebookAppId'])) {
                                     $code = '<script src="https://connect.facebook.net/' . $locale . '/all.js#xfbml=1&appId='. $fbAppId .'"></script>';
                                 } else {
                                     $code = '<script src="https://connect.facebook.net/' . $locale . '/all.js#xfbml=1"></script>';
                                 }
-
-					// Social interaction Google Analytics
+					// Social interaction Google Analytics  
 				if ($this->pluginSettingsService->getByPath('analytics.social.facebookLike') == 1) {
 					$code .= \TYPO3\CMS\Core\Utility\GeneralUtility::wrapJS("
 						FB.Event.subscribe('edge.create', function(targetUrl) {
@@ -106,7 +116,8 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends \TYPO3\CMS\Flui
 					");
 				}
 			} else {
-				$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
+                                $code = '';
+				//$code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
 			}
 		}
 
