@@ -58,6 +58,8 @@ class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends \TYPO3\CMS\Flu
 	 * @return string
 	 */
 	public function render($loadJs = TRUE) {
+		$tsSettings = $this->pluginSettingsService->getSettings();
+                
 		if (!empty($this->arguments['type'])) {
 			$this->tag->addAttribute('data-type', $this->arguments['type']);
 			$this->tag->removeAttribute('type');
@@ -68,6 +70,12 @@ class Tx_News_ViewHelpers_Social_Facebook_ShareViewHelper extends \TYPO3\CMS\Flu
 		$shareUrl = empty($this->arguments['shareurl']) ? \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL') : $this->arguments['shareurl'];
 		$this->tag->addAttribute('data-href', $shareUrl);
 		$this->tag->removeAttribute('shareurl');
+                
+                if (!empty($tsSettings['facebookAppId'])) {
+                    $this->tag->removeAttribute('app_id');
+                } else {
+                    $this->tag->addAttribute('app_id',$tsSettings['facebookAppId']);
+                }
 		$this->tag->addAttribute('class', 'fb-share-button');
 		$this->tag->setContent(' ');
 
