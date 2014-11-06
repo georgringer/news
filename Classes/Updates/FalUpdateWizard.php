@@ -192,7 +192,7 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 			$file = $record['image'];
 		}
 
-		if (file_exists(PATH_site . 'uploads/tx_news/' . $file)) {
+		if (!empty($file) && file_exists(PATH_site . 'uploads/tx_news/' . $file)) {
 			\TYPO3\CMS\Core\Utility\GeneralUtility::upload_copy_move(
 				PATH_site . 'uploads/tx_news/' . $file,
 				$this->targetDirectory . $file);
