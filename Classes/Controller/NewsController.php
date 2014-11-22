@@ -29,11 +29,6 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	const SIGNAL_NEWS_SEARCHRESULT_ACTION = 'searchResultAction';
 
 	/**
-	 * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
-	 */
-	protected $typoScriptFrontendController;
-
-	/**
 	 * @var Tx_News_Domain_Repository_NewsRepository
 	 */
 	protected $newsRepository;
@@ -73,7 +68,6 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 				$typoScriptFrontendController->addCacheTags(array('tx_news'));
 				$cacheTagsSet = TRUE;
 			}
-			$this->typoScriptFrontendController = $typoScriptFrontendController;
 		}
 
 	}
