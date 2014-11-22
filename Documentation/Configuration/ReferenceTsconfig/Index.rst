@@ -210,6 +210,10 @@ You can use: ::
 
 to clear the complete caches as well
 
+	TCEMAIN.clearCacheCmd = cacheTag:tx_news
+
+to clear all caches of pages on which the news plugins are used
+
 .. tip::
 
 	The mentioned TCEMAIN settings are part of the TYPO3 core and can be used therefore not only for the news extension.
