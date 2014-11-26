@@ -97,6 +97,7 @@ plugin.tx_news {
 		# --------------
 		detail {
 			errorHandling = pageNotFoundHandler
+			checkPidOfNewsRecord = 0
 			registerProperties = keywords,title
 			showSocialShareButtons = 1
 			disqusShortname =

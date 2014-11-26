@@ -185,7 +185,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			}
 		}
 
-		if (is_a($news, 'Tx_News_Domain_Model_News')) {
+		if (is_a($news, 'Tx_News_Domain_Model_News') && $this->settings['detail']['checkPidOfNewsRecord']) {
 			$news = $this->checkPidOfNewsRecord($news);
 		}
 
