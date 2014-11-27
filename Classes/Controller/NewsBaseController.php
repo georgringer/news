@@ -11,6 +11,8 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
+use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 
 /**
  * Base controller
@@ -31,6 +33,37 @@ class Tx_News_Controller_NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Contr
 	protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view) {
 		$view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
 		$view->assign('emConfiguration', Tx_News_Utility_EmConfiguration::getSettings());
+	}
+
+	/**
+	 * @param RequestInterface $request
+	 * @param ResponseInterface $response
+	 * @throws Exception
+	 */
+	public function processRequest(RequestInterface $request, ResponseInterface $response) {
+		try {
+			parent::processRequest($request, $response);
+		} catch (Exception $exception) {
+			$this->handleKnownExceptionsElseThrowAgain($exception);
+		}
+	}
+
+	/**
+	 * @param Exception $exception
+	 * @throws Exception
+	 */
+	private function handleKnownExceptionsElseThrowAgain(Exception $exception) {
+		$previousException = $exception->getPrevious();
+
+		if (
+				$this->actionMethodName === 'detailAction'
+				&& $previousException instanceof \TYPO3\CMS\Extbase\Property\Exception
+				&& isset($this->settings['detail']['errorHandling'])
+		) {
+			$this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
+		} else {
+			throw $exception;
+		}
 	}
 
 
