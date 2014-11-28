@@ -57,7 +57,7 @@ class Tx_News_Utility_Page {
 	 */
 	public static function setRegisterProperties($properties, $object, $prefix = 'news') {
 		if (!empty($properties) && !is_null(($object))) {
-			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
+			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 			$items = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $properties, TRUE);
 
 			$register = array();
