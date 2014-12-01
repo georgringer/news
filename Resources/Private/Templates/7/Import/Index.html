@@ -1,0 +1,176 @@
+<f:layout name="Backend/Simple" />
+
+<f:section name="iconButtons">
+
+</f:section>
+
+<f:section name="content">
+	<h3 class="uppercase">
+		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.header" />
+	</h3>
+
+	<p class="description">
+		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.description" />
+	</p>
+	<div class="alert alert-warning">
+		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.backupwarning" />
+	</div>
+	<br />
+	<f:if condition="{error}">
+			<div class="alert alert-danger">
+				<div class="message-header">
+					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.error.configuration.title" />
+				</div>
+				<div class="message-body">
+					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:{error}" default="{error}" />
+				</div>
+			</div>
+	</f:if>
+	<f:if condition="{availableJobs -> f:count()} > 1">
+		<f:then>
+			<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.choose_a_job" />:
+			<f:form.select id="jobSelector" options="{availableJobs}" />
+			<br /><br />
+		</f:then>
+		<f:else>
+			<div class="alert alert-info">
+				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.nojobs" />
+			</div>
+		</f:else>
+	</f:if>
+
+	<div id="job" style="display:none;">
+		<div id="progressBar" style="width:300px;"></div>
+		<button id="startButton">Start</button>
+		<br />
+	</div>
+
+	<script type="text/javascript">
+		var moduleUrl = '{f:format.raw(value: moduleUrl)}';
+		<![CDATA[
+		Ext.namespace('Tx_News');
+
+		Tx_News.Common = function () {
+			var pub = {};
+			var extKey = 'news';
+
+			var underscoreToUpperCamelCase = function (subject) {
+				var matches = subject.match(/(_\w)/g);
+				if (matches) {
+					matches.each(function (m) {
+						subject = subject.replace(m, m.charAt(1).toUpperCase());
+					});
+				}
+				return subject.charAt(0).toUpperCase() + subject.substr(1);
+			};
+
+			var getParameterPrefix = function (mainModuleName, subModuleName) {
+				return 'tx_' + extKey + '_' + mainModuleName + '_' + extKey + subModuleName.replace(/_/g, '');
+			};
+
+			pub.getExtKey = function () {
+				return extKey;
+			};
+
+			pub.getBackendRequest = function (mainModuleName, subModuleName, controller, action, parameters) {
+				var parameterPrefix = getParameterPrefix(mainModuleName, subModuleName);
+				var params = {};
+
+				Ext.apply(parameters, {controller: controller, action: action});
+
+				Ext.iterate(parameters, function (key, value) {
+					params[parameterPrefix + '[' + key + ']'] = value;
+				});
+
+				var request = {
+					'url': moduleUrl,
+					'params': params
+				};
+
+				return request;
+			};
+
+			return pub;
+		}();
+
+
+		Tx_News.Importer = function () {
+			var pub = {};
+			var jobInfo = {};
+			var progressBar;
+
+			var runCounter = 0;
+
+			var run = function () {
+				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'Import',
+						'runJob', {jobClassName: jobInfo.jobClassName, offset: runCounter * jobInfo.increaseOffsetPerRunBy}));
+
+				Ext.apply(request, {
+					success: function () {
+						var progress = runCounter / jobInfo.runsToComplete;
+
+						progressBar.updateProgress(progress, Math.round(100 * progress) + '%');
+						runCounter++;
+
+						if (runCounter <= jobInfo.runsToComplete) {
+							run();
+						} else {
+							progressBar.updateText('Done.');
+							progressBar.reset();
+							runCounter = 1;
+						}
+					},
+					failure: function () {
+						alert('error');
+					}
+				});
+
+				Ext.Ajax.request(request);
+			};
+
+			var initJob = function () {
+				Ext.get('job').show();
+
+				progressBar = new Ext.ProgressBar({
+					renderTo: 'progressBar'
+				});
+
+				Ext.get('startButton').on('click', function () {
+					run();
+				});
+			};
+
+			var loadJobInfo = function (jobClassName) {
+				var request = Ext.apply(Tx_News.Common.getBackendRequest('web', 'tx_news_m1', 'Import',
+						'jobInfo', {jobClassName: jobClassName}));
+
+				Ext.apply(request, {
+					success: function (response) {
+						jobInfo = (Ext.decode(response.responseText));
+						Ext.apply(jobInfo, {jobClassName: jobClassName});
+						initJob();
+					}
+				});
+
+				Ext.Ajax.request(request);
+			};
+
+			pub.init = function () {
+				Ext.get('jobSelector').on('change', function () {
+					var jobClassName = this.getValue();
+					if (jobClassName != '0') {
+						loadJobInfo(jobClassName);
+					} else {
+						Ext.get('job').hide();
+					}
+				});
+			};
+			return pub;
+		}();
+
+		Ext.onReady(function () {
+			Tx_News.Importer.init();
+		});
+		]]>
+	</script>
+</f:section>

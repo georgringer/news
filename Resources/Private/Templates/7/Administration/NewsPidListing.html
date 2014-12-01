@@ -1,0 +1,45 @@
+{namespace n=Tx_News_ViewHelpers}
+
+<f:layout name="Backend/Default" />
+
+<f:section name="content">
+	<h2>
+		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.newsPidListing.header" />
+	</h2>
+	<f:flashMessages class="tx-extbase-flash-message" />
+	<p>
+		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.newsPidListing.description" />
+	</p>
+	<br />
+	<f:form action="newsPidListing">
+		<label for="treeLevel">
+			<f:translate key="LLL:EXT:lang/locallang_general.xlf:LGL.recursive" />
+		</label>
+		<f:form.select name="treeLevel" id="treeLevel" options="{1:1,2:2,3:3,4:4,5:5,6:6,7:7}" value="{treeLevel}" additionalAttributes="{onchange:'this.form.submit()'}" />
+	</f:form>
+	<table cellpadding="0" cellmargin="0" cellspacing="0" class="t3-table">
+		<thead>
+			<tr class="t3-row-header">
+				<td>
+					<f:translate key="LLL:EXT:lang/locallang_tca.xlf:pages" />
+				</td>
+				<td>
+					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_news" />
+				</td>
+				<td>
+					<f:translate key="LLL:EXT:lang/locallang_tca.xlf:sys_category" />
+				</td>
+			</tr>
+		</thead>
+		<f:for each="{tree}" as="item">
+			<tr class="db_list_normal {f:if(condition: item.countNewsAndCategories, then: 'show', else: 'hide')}">
+				<td class="icon" nowrap="nowrap">
+					<f:format.html parseFuncTSPath="">{item.HTML}</f:format.html>
+					<f:link.action action="index" additionalParams="{id:item.row.uid}" title="UID: {item.row.uid}">{item.row.title}</f:link.action>
+				</td>
+				<td>{item.countNews}</td>
+				<td>{item.countCategories}</td>
+			</tr>
+		</f:for>
+	</table>
+</f:section>

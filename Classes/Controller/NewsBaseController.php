@@ -33,6 +33,7 @@ class Tx_News_Controller_NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Contr
 	protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view) {
 		$view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
 		$view->assign('emConfiguration', Tx_News_Utility_EmConfiguration::getSettings());
+		$view->assign('isVersion7Compatible', \TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0'));
 	}
 
 	/**
