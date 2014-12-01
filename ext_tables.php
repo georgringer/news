@@ -117,7 +117,8 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon'   => 'EXT:' . $packageKey . '/Resources/Public/Icons/import_module.gif',
+					'icon' => 'EXT:' . $packageKey . '/Resources/Public/Icons/' .
+						(\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0') ? 'module_import.png' : 'import_module.gif'),
 					'labels' => 'LLL:EXT:' . $packageKey . '/Resources/Private/Language/locallang_mod.xlf',
 				)
 			);
@@ -149,7 +150,8 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon'   => 'EXT:' . $packageKey . '/Resources/Public/Icons/folder.gif',
+					'icon' => 'EXT:' . $packageKey . '/Resources/Public/Icons/' .
+						(\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0') ? 'module_administration.png' : 'folder.gif'),
 					'labels' => 'LLL:EXT:' . $packageKey . '/Resources/Private/Language/locallang_modadministration.xlf',
 				)
 			);
