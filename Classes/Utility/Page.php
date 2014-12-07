@@ -96,7 +96,7 @@ class Tx_News_Utility_Page {
 			// Creating top icon; the current page
 		$tree->tree[] = array(
 			'row' => $treeStartingRecord,
-			'HTML' => \TYPO3\CMS\Backend\Utility\IconUtility::getIconImage('pages', $treeStartingRecord, $GLOBALS['BACK_PATH'], 'align="top"')
+			'HTML' => \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord('pages', $treeStartingRecord)
 		);
 
 		$tree->getTree($pageUid, $treeLevel, '');
