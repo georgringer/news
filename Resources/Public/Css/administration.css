@@ -64,6 +64,6 @@
 .news-administration .result .item a :hover {
   text-decoration: underline;
 }
-.news-administration .hide {
+.news-administration .hide, .news-administration .hide-line {
   opacity: 0.5;
 }
