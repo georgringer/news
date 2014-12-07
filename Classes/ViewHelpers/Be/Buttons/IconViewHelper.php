@@ -54,15 +54,16 @@ class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends \TYPO3\CMS\Fluid\Vie
 	 * @param string $uri the target URI for the link
 	 * @param string $title Title attribute of the resulting link
 	 * @param string $onclick onclick setting
+	 * @param string $class css class
 	 * @return string the rendered icon link
 	 */
-	public function render($icon = 'closedok', $uri = '', $title = '', $onclick = '') {
+	public function render($icon = 'closedok', $uri = '', $title = '', $onclick = '', $class = '') {
 		$icon = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIcon($icon, array('title' => $title));
 
 		if (empty($uri) && empty($onclick)) {
 			$content = $icon;
 		} else {
-			$content = '<a onclick="' . htmlspecialchars($onclick) . '" href="' . htmlspecialchars($uri) . '">' . $icon . '</a>';
+			$content = '<a onclick="' . htmlspecialchars($onclick) . '" href="' . htmlspecialchars($uri) . '" class="' . htmlspecialchars($class) . '">' . $icon . '</a>';
 		}
 
 		return $content;
