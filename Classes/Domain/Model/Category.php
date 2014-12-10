@@ -113,6 +113,15 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	protected $countRelatedNews = 0;
 
 	/**
+	 * Initialize images
+	 *
+	 * @return \Tx_News_Domain_Model_Category
+	 */
+	public function __construct() {
+		$this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+	}
+
+	/**
 	 * Get creation date
 	 *
 	 * @return DateTime
