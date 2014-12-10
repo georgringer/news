@@ -140,7 +140,9 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 		$category->setTstamp($importItem['tstamp']);
 		$category->setTitle($importItem['title']);
 		$category->setDescription($importItem['description']);
-		$this->setFileRelationFromImage($category, $importItem['image']);
+		if (!empty($importItem['image'])) {
+			$this->setFileRelationFromImage($category, $importItem['image']);
+		}
 		$category->setShortcut($importItem['shortcut']);
 		$category->setSinglePid($importItem['single_pid']);
 
