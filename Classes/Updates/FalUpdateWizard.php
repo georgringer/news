@@ -211,6 +211,7 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 				'pid' => $record['newsPid'],
 				'sorting_foreign' => $record['sorting'],
 				'title' => $record['title'],
+				'hidden' => $record['hidden'],
 			);
 
 			if ($field === 'fal_media') {
