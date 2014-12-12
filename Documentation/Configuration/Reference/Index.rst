@@ -345,6 +345,8 @@ The following table describes the settings concerning the list view.
          Set a custom template file for the paginate widget.
          The path has to point to the template file, for example :code:`EXT:foobar/Resources/Private/Templates/ViewHelpers/Widget/Paginate/Index.html`
 
+         *Important:* `list.paginate.templatePath` needs to be added to the setting `overrideFlexformSettingsIfEmpty`!
+
    :Default:
          itemsPerPage = 10
 
