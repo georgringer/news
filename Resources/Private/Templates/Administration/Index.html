@@ -31,7 +31,11 @@
 	</f:if>
 	<f:flashMessages class="tx-extbase-flash-message" />
 
-	<f:form name="demand" object="{demand}">
+	<f:form name="demand" object="{demand}" method="get" >
+		<input type="hidden" name="M" value="web_NewsTxNewsM2">
+		<input type="hidden" name="moduleToken" value="{moduleToken}">
+		<input type="hidden" name="id" value="{page}">
+
 		<h2>
 			<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.headline" />
 		</h2>
@@ -153,6 +157,13 @@
 							<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem, dateformat:dateformat}" />
 						</f:for>
 						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="6">
+									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsCount" arguments="{0:'{f:count(subject:news)}'}" />
+								</td>
+							</tr>
+						</tfoot>
 					</table>
 				</f:be.widget.paginate>
 			</div>

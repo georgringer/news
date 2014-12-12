@@ -100,6 +100,7 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 		}
 
 		$assignedValues = array(
+			'moduleToken' => $this->getToken(TRUE),
 			'page' => $this->pageUid,
 			'demand' => $demand,
 			'news' => $this->newsRepository->findDemanded($demand, FALSE),
@@ -260,9 +261,15 @@ class Tx_News_Controller_AdministrationController extends Tx_News_Controller_New
 	/**
 	 * Get a CSRF token
 	 *
+	 * @param bool $tokenOnly Set it to TRUE to get only the token, otherwise including the &moduleToken= as prefix
 	 * @return string
 	 */
-	protected function getToken() {
-		return '&moduleToken=' . \TYPO3\CMS\Core\FormProtection\FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
+	protected function getToken($tokenOnly = FALSE) {
+		$token = \TYPO3\CMS\Core\FormProtection\FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
+		if ($tokenOnly) {
+			return $token;
+		} else {
+			return '&moduleToken=' . $token;
+		}
 	}
 }

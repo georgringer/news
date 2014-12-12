@@ -383,6 +383,9 @@
 			<trans-unit id="module.newsListing" xml:space="preserve">
 				<source>News Listing</source>
 			</trans-unit>
+			<trans-unit id="module.newsCount" xml:space="preserve">
+				<source>%s news records</source>
+			</trans-unit>
 			<trans-unit id="module.newsPidListing" xml:space="preserve">
 				<source>News Pid listing</source>
 			</trans-unit>
