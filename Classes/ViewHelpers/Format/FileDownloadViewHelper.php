@@ -53,7 +53,7 @@ class Tx_News_ViewHelpers_Format_FileDownloadViewHelper extends \TYPO3\CMS\Fluid
 			}
 		}
 
-		$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
+		$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 
 		$fileInformation = pathinfo($file);
 		$fileInformation['file'] = $file;
