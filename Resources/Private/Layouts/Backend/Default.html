@@ -24,7 +24,7 @@
 					<f:link.action action="newNews" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.createNewNewsRecord')}">
 						<f:image src="{f:uri.resource(path:'Icons/news_domain_model_news_add.png')}" />
 					</f:link.action>
-					<n:be.security.ifAccessToTableIsAllowed table="tx_news_domain_model_category">
+					<n:be.security.ifAccessToTableIsAllowed table="sys_category">
 						<f:link.action action="newCategory" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.createNewCategory')}">
 							<f:image src="{f:uri.resource(path:'Icons/news_domain_model_category_add.png')}" />
 						</f:link.action>
