@@ -48,6 +48,7 @@ class Tx_News_ViewHelpers_Social_GravatarViewHelper extends \TYPO3\CMS\Fluid\Cor
 		$this->registerArgument('email', 'string', 'e-mail address of the user');
 		$this->registerArgument('size', 'integer', 'size since the images are square');
 		$this->registerArgument('alt', 'string', 'alt-text');
+		$this->registerArgument('default', 'string', 'default gravatar image (404, mm, identicon, monsterid, wavatar, retro, or blank)');
 	}
 
 	/**
@@ -56,8 +57,17 @@ class Tx_News_ViewHelpers_Social_GravatarViewHelper extends \TYPO3\CMS\Fluid\Cor
 	 * @return string
 	 */
 	public function render() {
-		$size = ((int) $this->arguments['size'] > 0) ? '?s=' . (int) $this->arguments['size'] : '';
-		$this->tag->addAttribute('src', self::GRAVATAR_IMAGE_REQUEST_URL . md5($this->arguments['email']) . $size);
+		$args = array();
+		if ((int) $this->arguments['size'] > 0) {
+			$args[] = 's=' . (int) $this->arguments['size'];
+		}
+		if ($this->arguments['default']) {
+			$args[] = 'd=' . $this->arguments['default'];
+		}
+		if ($args) {
+			$args = '?' . implode('&', $args);
+		}
+		$this->tag->addAttribute('src', self::GRAVATAR_IMAGE_REQUEST_URL . md5($this->arguments['email']) . $args);
 		$this->tag->addAttribute('alt', $this->arguments['alt']);
 		return $this->tag->render();
 	}
