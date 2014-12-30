@@ -231,7 +231,6 @@ $tx_news_domain_model_news = array(
 		),
 		'datetime' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => $ll . 'tx_news_domain_model_news.datetime',
 			'config' => array(
 				'type' => 'input',
