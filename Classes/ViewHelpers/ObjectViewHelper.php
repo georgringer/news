@@ -21,7 +21,7 @@
  * 		as="out"
  * 		className="Tx_Myext_Domain_Model_CustomModel" >
  * {out.fo}
- * </n:link>
+ * </n:object>
  * </code>
  * <output>
  * Property "fo" from model Tx_Myext_Domain_Model_CustomModel
