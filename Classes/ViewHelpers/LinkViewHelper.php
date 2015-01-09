@@ -187,9 +187,11 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	 */
 	protected function getDetailPidFromCategories($settings, $newsItem) {
 		$detailPid = 0;
-		foreach ($newsItem->getCategories() as $category) {
-			if ($detailPid = (int)$category->getSinglePid()) {
-				break;
+		if ($newsItem->getCategories()) {
+			foreach ($newsItem->getCategories() as $category) {
+				if ($detailPid = (int)$category->getSinglePid()) {
+					break;
+				}
 			}
 		}
 		return $detailPid;
