@@ -157,23 +157,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 		$this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 1);
 	}
 
-
-	/**
-	 * Test if record by month/year constraint does not work with no datefield set
-	 *
-	 * @test
-	 * @return void
-	 * @expectedException InvalidArgumentException
-	 */
-	public function findRecordsByMonthAndYearWithNoDateField() {
-		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
-		$demand->setStoragePage(92);
-		$demand->setMonth(4);
-		$demand->setYear(2011);
-		$this->newsRepository->findDemanded($demand)->count();
-	}
-
 	/**
 	 * Test if latest limit constraint works
 	 *
