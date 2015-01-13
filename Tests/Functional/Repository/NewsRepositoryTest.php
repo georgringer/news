@@ -155,11 +155,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 		$demand->setMonth('4');
 		$demand->setYear('2011');
 		$this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 1);
-
-		// set month and year with strings
-		$demand->setMonth('3');
-		$demand->setYear('2011');
-		$this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 4);
 	}
 
 
