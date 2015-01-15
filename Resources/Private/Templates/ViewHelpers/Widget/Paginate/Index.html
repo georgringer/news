@@ -13,8 +13,15 @@
 <f:section name="paginator">
 	<f:if condition="{pagination.numberOfPages} > 1">
 		<f:if condition="{settings.list.paginate}">
-			<f:if condition="{pagination.current} > 1">
-				<n:headerData><link rel="prev" href="<f:widget.uri arguments="{currentPage: pagination.previousPage}" />" /></n:headerData>
+			<f:if condition="{pagination.previousPage}">
+				<f:if condition="{pagination.previousPage} > 1">
+					<f:then>
+						<n:headerData><link rel="prev" href="<f:widget.uri arguments="{currentPage: pagination.previousPage}" />" /></n:headerData>
+					</f:then>
+					<f:else>
+						<n:headerData><link rel="prev" href="<f:widget.uri />" /></n:headerData>
+					</f:else>
+				</f:if>
 			</f:if>
 			<f:if condition="{pagination.nextPage}">
 				<n:headerData><link rel="next" href="<f:widget.uri arguments="{currentPage: pagination.nextPage}" />" /></n:headerData>
