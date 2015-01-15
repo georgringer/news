@@ -196,7 +196,7 @@ lib.tx_news.contentElementRendering {
 tt_content.shortcut.20.tables := addToList(tx_news_domain_model_news)
 tt_content.shortcut.20.conf.tx_news_domain_model_news = USER
 tt_content.shortcut.20.conf.tx_news_domain_model_news {
-	userFunc = tx_extbase_core_bootstrap->run
+	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
 	extensionName = News
 	pluginName = Pi1
 	switchableControllerActions {
