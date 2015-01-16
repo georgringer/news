@@ -359,7 +359,7 @@ class ext_update {
 		/**
 		 * Finished category migration
 		 */
-		$message = 'All categories are updated. Run <strong>DB compare</strong> in the install tool to remove the now obsolute `tx_news_domain_model_category` table and run the <strong>DB check</strong> to update the reference index.';
+		$message = 'All categories are updated. Run <strong>DB compare</strong> in the install tool to remove the now obsolete `tx_news_domain_model_category` table and run the <strong>DB check</strong> to update the reference index.';
 		$status = FlashMessage::OK;
 		$title = 'Updated all categories!';
 		$this->messageArray[] = array($status, $title, $message);
