@@ -12,4 +12,4 @@ Please follow the documentation found at http://docs.typo3.org/typo3cms/extensio
 
 [![Build Status](https://travis-ci.org/TYPO3-extensions/news.png)](https://travis-ci.org/TYPO3-extensions/news)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/TYPO3-extensions/news/badges/quality-score.png?s=83495e8a1f3392b4f13023ecb8eb331308bb3adc)](https://scrutinizer-ci.com/g/TYPO3-extensions/news/)
-[![Code Coverage](https://scrutinizer-ci.cowm/g/TYPO3-extensions/news/badges/coverage.png?s=f34fa9c02e2962e63c4d56b164bc8d64113a61bb)](https://scrutinizer-ci.com/g/TYPO3-extensions/news/)
+[![Code Coverage](https://scrutinizer-ci.com/g/TYPO3-extensions/news/badges/coverage.png?s=f34fa9c02e2962e63c4d56b164bc8d64113a61bb)](https://scrutinizer-ci.com/g/TYPO3-extensions/news/)
