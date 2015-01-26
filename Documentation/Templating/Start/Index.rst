@@ -43,14 +43,17 @@ The TypoScript Setup syntax looks like this: ::
 
 		plugin.tx_news {
 			view {
+				templateRootPaths >
 				templateRootPaths {
 					0 = EXT:news/Resources/Private/Templates/
 					1 = fileadmin/templates/ext/news/Templates/
 				}
+				partialRootPaths >
 				partialRootPaths {
 					0 = EXT:news/Resources/Private/Partials/
 					1 = fileadmin/templates/ext/news/Partials/
 				}
+				layoutRootPaths >
 				layoutRootPaths {
 					0 = EXT:news/Resources/Private/Layouts/
 					1 = fileadmin/templates/ext/news/Layouts/
