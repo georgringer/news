@@ -395,7 +395,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 		foreach ($importData as $importItem) {
 
 				// Store language overlay in post persist queue
-			if ((int)$importItem['sys_language_uid'] > 0) {
+			if ((int)$importItem['sys_language_uid'] > 0 && $importItem['l10n_parent'] > 0) {
 				$this->postPersistQueue[$importItem['import_id']] = array(
 					'action' => self::ACTION_IMPORT_L10N_OVERLAY,
 					'category' => NULL,
@@ -434,8 +434,6 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 		);
 
 		if ($parentNews !== NULL) {
-			$importItem['import_id'] .= '|L:' . $importItem['sys_language_uid'];
-
 			$news = $this->initializeNewsRecord($importItem);
 
 			$this->hydrateNewsRecord($news, $importItem, $importItemOverwrite);
