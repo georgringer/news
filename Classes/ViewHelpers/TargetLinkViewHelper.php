@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -24,7 +27,7 @@
  * A link to the page with uid 123 and target set to "_blank"
  * </output>
  */
-class Tx_News_ViewHelpers_TargetLinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class TargetLinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Returns the correct target of a typolink

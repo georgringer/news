@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Service;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,30 +14,31 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Service\FileService;
 
 /**
- * Test class for Tx_News_Service_FileService
+ * Test class for FileService
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Service_FileServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class FileServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
-	 * @expectedException UnexpectedValueException
+	 * @expectedException \UnexpectedValueException
 	 */
 	public function emptyUrlThrowsException() {
-		Tx_News_Service_FileService::getCorrectUrl('');
+		FileService::getCorrectUrl('');
 	}
 
 	/**
 	 * @test
-	 * @expectedException UnexpectedValueException
+	 * @expectedException \UnexpectedValueException
 	 */
 	public function notAllowedPathThrowsException() {
-		Tx_News_Service_FileService::getCorrectUrl('../../fo.mp3');
+		FileService::getCorrectUrl('../../fo.mp3');
 	}
 
 	/**
@@ -42,7 +46,7 @@ class Tx_News_Tests_Unit_Service_FileServiceTest extends \TYPO3\CMS\Core\Tests\U
 	 * @dataProvider validUrlIsReturnedDataProvider
 	 */
 	public function validUrlIsReturned($expected, $actual) {
-		$result = Tx_News_Service_FileService::getCorrectUrl($actual);
+		$result = FileService::getCorrectUrl($actual);
 
 		$this->assertEquals($expected, $result, 'exp:' . $expected .  ', <br />' . $result);
 	}

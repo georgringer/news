@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers\Social\Facebook;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,8 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\Url;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to add a like button
@@ -32,10 +37,10 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
-	 * @var Tx_News_Service_SettingsService
+	 * @var \GeorgRinger\News\Service\SettingsService
 	 */
 	protected $pluginSettingsService;
 
@@ -45,10 +50,10 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends \TYPO3\CMS\Flui
 	protected $tagName = 'fb:like';
 
 	/**
-	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
 	 * @return void
 	 */
-	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+	public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService) {
 		$this->pluginSettingsService = $pluginSettingsService;
 	}
 
@@ -75,10 +80,10 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends \TYPO3\CMS\Flui
 
 		$url = (!empty($this->arguments['href'])) ?
 				$this->arguments['href'] :
-			\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
+			GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
 
 			// absolute urls are needed
-		$this->tag->addAttribute('href', Tx_News_Utility_Url::prependDomain($url));
+		$this->tag->addAttribute('href', Url::prependDomain($url));
 		$this->tag->forceClosingTag(TRUE);
 
 			// -1 means no JS
@@ -92,7 +97,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends \TYPO3\CMS\Flui
 
 					// Social interaction Google Analytics
 				if ($this->pluginSettingsService->getByPath('analytics.social.facebookLike') == 1) {
-					$code .= \TYPO3\CMS\Core\Utility\GeneralUtility::wrapJS("
+					$code .= GeneralUtility::wrapJS("
 						FB.Event.subscribe('edge.create', function(targetUrl) {
 						 	_gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
 						});

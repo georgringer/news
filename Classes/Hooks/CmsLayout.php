@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Hooks;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook to display verbose information about pi1 plugin in Web>Page module
@@ -18,7 +22,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Hooks_CmsLayout {
+class CmsLayout {
 
 	/**
 	 * Extension key
@@ -51,13 +55,13 @@ class Tx_News_Hooks_CmsLayout {
 	/** @var  \TYPO3\CMS\Core\Database\DatabaseConnection */
 	protected $databaseConnection;
 
-	/** @var Tx_News_Utility_TemplateLayout $templateLayoutsUtility */
+	/** @var \GeorgRinger\News\Utility\TemplateLayout $templateLayoutsUtility */
 	protected $templateLayoutsUtility;
 
 	public function __construct() {
 		/** @var \TYPO3\CMS\Core\Database\DatabaseConnection databaseConnection */
 		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
-		$this->templateLayoutsUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Utility_TemplateLayout');
+		$this->templateLayoutsUtility = GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\TemplateLayout');
 	}
 
 	/**
@@ -74,12 +78,12 @@ class Tx_News_Hooks_CmsLayout {
 		}
 
 		if ($params['row']['list_type'] == self::KEY . '_pi1') {
-			$this->flexformData = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($params['row']['pi_flexform']);
+			$this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
 
 			// if flexform data is found
 			$actions = $this->getFieldFromFlexform('switchableControllerActions');
 			if (!empty($actions)) {
-				$actionList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(';', $actions);
+				$actionList = GeneralUtility::trimExplode(';', $actions);
 
 				// translate the first action into its translation
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
@@ -133,7 +137,7 @@ class Tx_News_Hooks_CmsLayout {
 						'action' => $actionTranslationKey
 					);
 					foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\CmsLayout']['extensionSummary'] as $reference) {
-						\TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
+						GeneralUtility::callUserFunction($reference, $params, $this);
 					}
 				}
 
@@ -193,13 +197,13 @@ class Tx_News_Hooks_CmsLayout {
 				} else {
 					/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
 					$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $newsRecord['pid']);
-					$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+					$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 					$content = $message->render();
 				}
 			} else {
 				/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
 				$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.newsNotAvailable', TRUE), $singleNewsRecord);
-				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 				$content = $message->render();
 			}
 
@@ -255,7 +259,7 @@ class Tx_News_Hooks_CmsLayout {
 		} else {
 			/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
 			$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $detailPid);
-			$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+			$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 			$content = $message->render();
 		}
 
@@ -333,7 +337,7 @@ class Tx_News_Hooks_CmsLayout {
 		$categoryMode = '';
 		$categoriesOut = array();
 
-		$categories = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.categories'), TRUE);
+		$categories = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.categories'), TRUE);
 		if (count($categories) > 0) {
 
 			// Category mode
@@ -379,7 +383,7 @@ class Tx_News_Hooks_CmsLayout {
 	 * @return void
 	 */
 	public function getTagRestrictionSetting() {
-		$tags = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'additional'), TRUE);
+		$tags = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'additional'), TRUE);
 		if (count($tags) === 0) {
 			return;
 		}
@@ -529,7 +533,7 @@ class Tx_News_Hooks_CmsLayout {
 			$rawPagesRecords = $this->databaseConnection->exec_SELECTgetRows(
 				'*',
 				'pages',
-				'deleted=0 AND uid IN(' . implode(',', \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $value, TRUE)) . ')'
+				'deleted=0 AND uid IN(' . implode(',', GeneralUtility::intExplode(',', $value, TRUE)) . ')'
 			);
 
 			foreach ($rawPagesRecords as $page) {

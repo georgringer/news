@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\ViewHelpers\Widget;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -27,20 +30,20 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Widget_PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper {
+class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper {
 
 	/**
-	 * @var Tx_News_ViewHelpers_Widget_Controller_PaginateController
+	 * @var \GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController
 	 */
 	protected $controller;
 
 	/**
 	 * Inject controller
 	 *
-	 * @param Tx_News_ViewHelpers_Widget_Controller_PaginateController $controller
+	 * @param \GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController $controller
 	 * @return void
 	 */
-	public function injectController(Tx_News_ViewHelpers_Widget_Controller_PaginateController $controller) {
+	public function injectController(\GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController $controller) {
 		$this->controller = $controller;
 	}
 

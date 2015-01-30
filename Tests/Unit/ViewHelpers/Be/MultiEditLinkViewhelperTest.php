@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Be;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,15 +14,17 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\ViewHelpers\Be\MultiEditLinkViewHelper;
 
 /**
- * Tests for Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper
+ * Tests for MultiEditLinkViewHelper
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_ViewHelpers_Be_MultiEditLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class MultiEditLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if default file format works
@@ -28,16 +33,16 @@ class Tx_News_Tests_Unit_ViewHelpers_Be_MultiEditLinkViewHelperTest extends \TYP
 	 * @return void
 	 */
 	public function viewHelperReturnsCorrectJavaScriptLink() {
-		$viewHelper = new Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper();
+		$viewHelper = new MultiEditLinkViewHelper();
 
-		$newsItem1 = new Tx_News_Domain_Model_News();
+		$newsItem1 = new News();
 		$newsItem1->setTitle('Item 1');
 		$newsItem1->_setProperty('uid', 3);
-		$newsItem2 = new Tx_News_Domain_Model_News();
+		$newsItem2 = new News();
 		$newsItem2->setTitle('Item 2');
 		$newsItem2->_setProperty('uid', 9);
 
-		$newsItems = new SplObjectStorage();
+		$newsItems = new \SplObjectStorage();
 		$newsItems->attach($newsItem1);
 		$newsItems->attach($newsItem2);
 

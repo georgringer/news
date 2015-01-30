@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -14,15 +17,15 @@
 
 
 /**
- * Test for Tx_News_ViewHelpers_MetaTagViewHelper
+ * Test for MetaTagViewHelper
  */
-class Tx_News_Tests_Unit_ViewHelpers_MetaTagViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpers\ViewHelperBaseTestcase {
+class MetaTagViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpers\ViewHelperBaseTestcase {
 
 	/** @var  \TYPO3\CMS\Core\Page\PageRenderer */
 	protected $pageRenderer;
 
 	/**
-	 * @var Tx_News_ViewHelpers_MetaTagViewHelper
+	 * @var \GeorgRinger\News\ViewHelpers\MetaTagViewHelper
 	 */
 	protected $viewHelper;
 
@@ -37,7 +40,7 @@ class Tx_News_Tests_Unit_ViewHelpers_MetaTagViewHelperTest extends \TYPO3\CMS\Fl
 		$GLOBALS['TSFE'] = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController', array('getPageRenderer'), array(), '', FALSE);
 		$GLOBALS['TSFE']->_set('pageRenderer', $this->pageRenderer);
 		$GLOBALS['TSFE']->expects($this->any())->method('getPageRenderer')->will($this->returnValue($this->pageRenderer));
-		$this->viewHelper = $this->getMock($this->buildAccessibleProxy('Tx_News_ViewHelpers_MetaTagViewHelper'), array('renderChildren'));
+		$this->viewHelper = $this->getMock($this->buildAccessibleProxy('GeorgRinger\\News\\ViewHelpers\\MetaTagViewHelper'), array('renderChildren'));
 		$this->viewHelper->initializeArguments();
 	}
 

@@ -80,10 +80,10 @@ plugin.tx_news {
 		# Interface implementations
 		interfaces {
 			media {
-				video = Tx_News_MediaRenderer_Audio_Mp3Html5,Tx_News_MediaRenderer_Audio_Mp3,Tx_News_MediaRenderer_Video_Quicktime,Tx_News_MediaRenderer_Video_File,Tx_News_MediaRenderer_Video_Youtube,Tx_News_MediaRenderer_Video_Vimeo,Tx_News_MediaRenderer_Video_Videosites
+				video = GeorgRinger\News\MediaRenderer\Audio\Mp3Html5,GeorgRinger\News\MediaRenderer\Audio\Mp3,GeorgRinger\News\MediaRenderer\Video\Quicktime,GeorgRinger\News\MediaRenderer\Video\File,GeorgRinger\News\MediaRenderer\Video\Youtube,GeorgRinger\News\MediaRenderer\Video\Vimeo,GeorgRinger\News\MediaRenderer\Video\Videosites
 			}
 			falMedia {
-				video = Tx_News_MediaRenderer_Video_Fal
+				video = GeorgRinger\News\MediaRenderer\Video\Fal
 			}
 		}
 
@@ -236,28 +236,27 @@ module.tx_news {
 # Persistence object mapping configuration
 # ==============================================
 config.tx_extbase.persistence.classes {
-	Tx_News_Domain_Model_News {
+	GeorgRinger\News\Domain\Model\News {
 		subclasses {
-			0 = Tx_News_Domain_Model_NewsDefault
-			1 = Tx_News_Domain_Model_NewsExternal
-			2 = Tx_News_Domain_Model_NewsInternal
+			0 = GeorgRinger\News\Domain\Model\NewsDefault
+			1 = GeorgRinger\News\Domain\Model\NewsExternal
+			2 = GeorgRinger\News\Domain\Model\NewsInternal
 		}
 	}
 
-	Tx_News_Domain_Model_NewsDefault {
+	GeorgRinger\News\Domain\Model\NewsDefault {
 		mapping {
 			recordType = 0
 			tableName = tx_news_domain_model_news
 		}
 	}
-	Tx_News_Domain_Model_NewsExternal {
+	GeorgRinger\News\Domain\Model\NewsExternal {
 		mapping {
 			recordType = 1
 			tableName = tx_news_domain_model_news
 		}
 	}
-
-	Tx_News_Domain_Model_NewsInternal {
+	GeorgRinger\News\Domain\Model\NewsInternal {
 		mapping {
 			recordType = 2
 			tableName = tx_news_domain_model_news

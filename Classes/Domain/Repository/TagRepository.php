@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Domain\Repository;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,24 +14,30 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+use GeorgRinger\News\Domain\Model\DemandInterface;
+use GeorgRinger\News\Utility\Validation;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+
 /**
  * Repository for tag objects
  */
-class Tx_News_Domain_Repository_TagRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository {
+class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository {
 
 	/**
 	 * Returns an array of constraints created from a given demand object.
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param QueryInterface $query
+	 * @param DemandInterface $demand
 	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 */
-	protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
+	protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand) {
 		$constraints = array();
 
 		// Storage page
 		if ($demand->getStoragePage() != 0) {
-			$pidList = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $demand->getStoragePage(), TRUE);
+			$pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), TRUE);
 			$constraints[] = $query->in('pid', $pidList);
 		}
 
@@ -45,26 +54,26 @@ class Tx_News_Domain_Repository_TagRepository extends Tx_News_Domain_Repository_
 	/**
 	 * Returns an array of orderings created from a given demand object.
 	 *
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param DemandInterface $demand
 	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 */
-	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {
+	protected function createOrderingsFromDemand(DemandInterface $demand) {
 		$orderings = array();
 
-		if (Tx_News_Utility_Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
-			$orderList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $demand->getOrder(), TRUE);
+		if (Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
+			$orderList = GeneralUtility::trimExplode(',', $demand->getOrder(), TRUE);
 
 			if (!empty($orderList)) {
 				// go through every order statement
 				foreach ($orderList as $orderItem) {
-					list($orderField, $ascDesc) = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $orderItem, TRUE);
+					list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, TRUE);
 					// count == 1 means that no direction is given
 					if ($ascDesc) {
 						$orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
-							\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
-							\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING);
+							QueryInterface::ORDER_DESCENDING :
+							QueryInterface::ORDER_ASCENDING);
 					} else {
-						$orderings[$orderField] = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
+						$orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
 					}
 				}
 			}

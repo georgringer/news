@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,15 +21,15 @@
  * @subpackage tx_news
  * @version $Id$
  */
-class Tx_News_Domain_Model_File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
+class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $crdate;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $tstamp;
 
@@ -49,7 +51,7 @@ class Tx_News_Domain_Model_File extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Get crdate
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getCrdate() {
 		return $this->crdate;
@@ -58,7 +60,7 @@ class Tx_News_Domain_Model_File extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Set crdate
 	 *
-	 * @param DateTime $crdate crdate
+	 * @param \DateTime $crdate crdate
 	 * @return void
 	 */
 	public function setCrdate($crdate) {
@@ -68,7 +70,7 @@ class Tx_News_Domain_Model_File extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Get Tstamp
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getTstamp() {
 		return $this->tstamp;
@@ -77,7 +79,7 @@ class Tx_News_Domain_Model_File extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Set tstamp
 	 *
-	 * @param DateTime $tstamp tstamp
+	 * @param \DateTime $tstamp tstamp
 	 * @return void
 	 */
 	public function setTstamp($tstamp) {

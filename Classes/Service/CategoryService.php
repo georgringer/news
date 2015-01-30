@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Service;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +21,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Service_CategoryService {
+class CategoryService {
 
 	/**
 	 * Get child categories by calling recursive function
@@ -161,11 +164,11 @@ class Tx_News_Service_CategoryService {
 	 * @param string $default default label
 	 * @param array $row category record
 	 * @return string
-	 * @throws UnexpectedValueException
+	 * @throws \UnexpectedValueException
 	 */
 	public static function translateCategoryRecord($default, array $row = array()) {
 		if (TYPO3_MODE != 'BE') {
-			throw new UnexpectedValueException('TYPO3 Mode must be BE');
+			throw new \UnexpectedValueException('TYPO3 Mode must be BE');
 		}
 
 		$overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];

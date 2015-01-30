@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,4 +20,4 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-interface Tx_News_Domain_Model_DemandInterface {}
+interface DemandInterface {}

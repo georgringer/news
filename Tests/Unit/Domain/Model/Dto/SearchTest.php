@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Dto\Search;
 
 /**
  * Tests for domains model News
@@ -19,7 +23,7 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Tests_Unit_Domain_Model_Dto_SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if subject can be set
@@ -28,7 +32,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_SearchTest extends \TYPO3\CMS\Core\Tes
 	 * @return void
 	 */
 	public function subjectCanBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_Dto_Search();
+		$domainModelInstance = new Search();
 		$subject = 'Test 123';
 		$domainModelInstance->setSubject($subject);
 		$this->assertEquals($subject, $domainModelInstance->getSubject());
@@ -41,7 +45,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_SearchTest extends \TYPO3\CMS\Core\Tes
 	 * @return void
 	 */
 	public function fieldsCanBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_Dto_Search();
+		$domainModelInstance = new Search();
 		$fields = 'field1,field2';
 		$domainModelInstance->setFields($fields);
 		$this->assertEquals($fields, $domainModelInstance->getFields());
@@ -54,7 +58,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_SearchTest extends \TYPO3\CMS\Core\Tes
 	 * @return void
 	 */
 	public function minimumDateCanBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_Dto_Search();
+		$domainModelInstance = new Search();
 		$value = '123';
 		$domainModelInstance->setMinimumDate($value);
 		$this->assertEquals($value, $domainModelInstance->getMinimumDate());
@@ -67,7 +71,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_SearchTest extends \TYPO3\CMS\Core\Tes
 	 * @return void
 	 */
 	public function maximumDateCanBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_Dto_Search();
+		$domainModelInstance = new Search();
 		$value = '456';
 		$domainModelInstance->setMaximumDate($value);
 		$this->assertEquals($value, $domainModelInstance->getMaximumDate());

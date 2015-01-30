@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to render links from news records to detail view or page
@@ -43,10 +47,10 @@
  * </output>
  *
  */
-class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper {
+class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper {
 
 	/**
-	 * @var Tx_News_Service_SettingsService
+	 * @var \GeorgRinger\News\Service\SettingsService
 	 */
 	protected $pluginSettingsService;
 
@@ -63,24 +67,24 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	protected $cObj;
 
 	/**
-	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
 	 * @return void
 	 */
-	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+	public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService) {
 		$this->pluginSettingsService = $pluginSettingsService;
 	}
 
 	/**
 	 * Render link to news item or internal/external pages
 	 *
-	 * @param Tx_News_Domain_Model_News $newsItem current news object
+	 * @param \GeorgRinger\News\Domain\Model\News $newsItem current news object
 	 * @param array $settings
 	 * @param boolean $uriOnly return only the url without the a-tag
 	 * @param array $configuration optional typolink configuration
 	 * @param string $content optional content which is linked
 	 * @return string link
 	 */
-	public function render(Tx_News_Domain_Model_News $newsItem, array $settings = array(), $uriOnly = FALSE, $configuration = array(), $content = '') {
+	public function render(\GeorgRinger\News\Domain\Model\News $newsItem, array $settings = array(), $uriOnly = FALSE, $configuration = array(), $content = '') {
 		$tsSettings = $this->pluginSettingsService->getSettings();
 
 		$this->init();
@@ -100,7 +104,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 				$configuration = $this->getLinkToNewsItem($newsItem, $tsSettings, $configuration);
 		}
 		if (isset($tsSettings['link']['typesOpeningInNewWindow'])) {
-			if (\TYPO3\CMS\Core\Utility\GeneralUtility::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
+			if (GeneralUtility::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
 				$this->tag->addAttribute('target', '_blank');
 			}
 		}
@@ -123,16 +127,16 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	/**
 	 * Generate the link configuration for the link to the news item
 	 *
-	 * @param Tx_News_Domain_Model_News $newsItem
+	 * @param \GeorgRinger\News\Domain\Model\News $newsItem
 	 * @param array $tsSettings
 	 * @param array $configuration
 	 * @return array
 	 */
-	protected function getLinkToNewsItem(Tx_News_Domain_Model_News $newsItem, $tsSettings, array $configuration = array()) {
+	protected function getLinkToNewsItem(\GeorgRinger\News\Domain\Model\News $newsItem, $tsSettings, array $configuration = array()) {
 
 		if (!isset($configuration['parameter'])) {
 			$detailPid = 0;
-			$detailPidDeterminationMethods = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'], TRUE);
+			$detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'], TRUE);
 
 			// if TS is not set, prefer flexform setting
 			if (!isset($tsSettings['detailPidDetermination'])) {
@@ -182,7 +186,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	 * Gets detailPid from categories of the given news item. First will be return.
 	 *
 	 * @param  array $settings
-	 * @param  Tx_News_Domain_Model_News $newsItem
+	 * @param  \GeorgRinger\News\Domain\Model\News $newsItem
 	 * @return int
 	 */
 	protected function getDetailPidFromCategories($settings, $newsItem) {
@@ -201,7 +205,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	 * Gets detailPid from defaultDetailPid setting
 	 *
 	 * @param  array $settings
-	 * @param  Tx_News_Domain_Model_News $newsItem
+	 * @param  \GeorgRinger\News\Domain\Model\News $newsItem
 	 * @return int
 	 */
 	protected function getDetailPidFromDefaultDetailPid($settings, $newsItem) {
@@ -212,7 +216,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	 * Gets detailPid from flexform of current plugin.
 	 *
 	 * @param  array $settings
-	 * @param  Tx_News_Domain_Model_News $newsItem
+	 * @param  \GeorgRinger\News\Domain\Model\News $newsItem
 	 * @return int
 	 */
 	protected function getDetailPidFromFlexform($settings, $newsItem) {
@@ -225,6 +229,6 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 	 * @return void
 	 */
 	protected function init() {
-		$this->cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+		$this->cObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 	}
 }

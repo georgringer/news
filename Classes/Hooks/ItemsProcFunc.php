@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Hooks;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Userfunc to render alternative label for media elements
@@ -18,7 +22,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Hooks_ItemsProcFunc {
+class ItemsProcFunc {
 
 	/**
 	 * Itemsproc function to extend the selection of templateLayouts in the plugin
@@ -27,8 +31,8 @@ class Tx_News_Hooks_ItemsProcFunc {
 	 * @return void
 	 */
 	public function user_templateLayout(array &$config) {
-		/** @var Tx_News_Utility_TemplateLayout $templateLayoutsUtility */
-		$templateLayoutsUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Utility_TemplateLayout');
+		/** @var \GeorgRinger\News\Utility\TemplateLayout $templateLayoutsUtility */
+		$templateLayoutsUtility = GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\TemplateLayout');
 		$templateLayouts = $templateLayoutsUtility->getAvailableTemplateLayouts($config['row']['pid']);
 		foreach ($templateLayouts as $layout) {
 			$additionalLayout = array(
@@ -51,15 +55,15 @@ class Tx_News_Hooks_ItemsProcFunc {
 
 			// check if the record has been saved once
 		if (is_array($config['row']) && !empty($config['row']['pi_flexform'])) {
-			$flexformConfig = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($config['row']['pi_flexform']);
+			$flexformConfig = GeneralUtility::xml2array($config['row']['pi_flexform']);
 
 				// check if there is a flexform configuration
 			if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
 				$selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
 					// check for selected action
-				if (\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($selectedActionList, 'Category')) {
+				if (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Category')) {
 					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
-				} elseif (\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($selectedActionList, 'Tag')) {
+				} elseif (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Tag')) {
 					$this->removeNonValidOrderFields($config, 'tx_news_domain_model_tag');
 					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'];
 				} else {
@@ -75,7 +79,7 @@ class Tx_News_Hooks_ItemsProcFunc {
 				// empty default line
 			array_push($config['items'], array('', ''));
 
-			$newItemArray = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $newItems, TRUE);
+			$newItemArray = GeneralUtility::trimExplode(',', $newItems, TRUE);
 			$languageKey = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.';
 			foreach ($newItemArray as $item) {
 					// label: if empty, key (=field) is used

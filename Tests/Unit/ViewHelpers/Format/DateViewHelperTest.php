@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,15 +14,16 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\ViewHelpers\Format\DateViewHelper;
 
 /**
- * Tests for Tx_News_ViewHelpers_Format_DateViewHelper
+ * Tests for \GeorgRinger\News\ViewHelpers\Format\DateViewHelper
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_ViewHelpers_Format_DateViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class DateViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if given format works
@@ -29,7 +33,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_DateViewHelperTest extends \TYPO3\CM
 	 * @return void
 	 */
 	public function correctDateIsReturned($expectedResult, $settings) {
-		$viewHelper = new Tx_News_ViewHelpers_Format_DateViewHelper();
+		$viewHelper = new DateViewHelper();
 		$this->assertEquals($viewHelper->render($settings['date'], $settings['format'], $settings['currentDate'], $settings['strftime']), $expectedResult);
 	}
 
@@ -39,12 +43,12 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_DateViewHelperTest extends \TYPO3\CM
 	 * @return array
 	 */
 	public function correctDateIsReturnedDataProvider() {
-		$currentDate = new DateTime('@' . $GLOBALS['EXEC_TIME']);
+		$currentDate = new \DateTime('@' . $GLOBALS['EXEC_TIME']);
 
 		return array(
 			'stfTimeDateGiven' => array(
 				'08 2012', array(
-					'date' => new DateTime('2012-07-08 11:14:15'),
+					'date' => new \DateTime('2012-07-08 11:14:15'),
 					'format' => '%d %Y',
 					'currentDate' => FALSE,
 					'strftime' => TRUE
@@ -52,7 +56,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_DateViewHelperTest extends \TYPO3\CM
 			),
 			'dateTimeGiven' => array(
 				'2012', array(
-					'date' => new DateTime('2012-07-08 11:14:15'),
+					'date' => new \DateTime('2012-07-08 11:14:15'),
 					'format' => 'Y',
 					'currentDate' => FALSE,
 					'strftime' => FALSE

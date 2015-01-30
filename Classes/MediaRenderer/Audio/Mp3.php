@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\MediaRenderer\Audio;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,9 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\MediaRenderer\MediaInterface;
+use GeorgRinger\News\Service\FileService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Implementation of typical audio files
@@ -18,28 +24,28 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInterface {
+class Mp3 implements MediaInterface {
 
 	const PATH_TO_JS = 'typo3conf/ext/news/Resources/Public/JavaScript/Contrib/';
 
 	/**
 	 * Render mp3 files
 	 *
-	 * @param Tx_News_Domain_Model_Media $element
+	 * @param \GeorgRinger\News\Domain\Model\Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @param string $template
 	 * @return string
 	 */
-	public function render(Tx_News_Domain_Model_Media $element, $width, $height, $template = '') {
-		$url = Tx_News_Service_FileService::getCorrectUrl($element->getMultimedia());
-		$uniqueId = Tx_News_Service_FileService::getUniqueId($element);
+	public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height, $template = '') {
+		$url = FileService::getCorrectUrl($element->getMultimedia());
+		$uniqueId = FileService::getUniqueId($element);
 
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'swfobject-2-2.js');
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'audioplayer-noswfobject.js');
 
 		$inlineJs = '
-			AudioPlayer.setup("' . \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . self::PATH_TO_JS . 'audioplayer-player.swf", {
+			AudioPlayer.setup("' . GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . self::PATH_TO_JS . 'audioplayer-player.swf", {
 				width: ' . (int)$width . '
 			});';
 
@@ -47,7 +53,7 @@ class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInte
 
 		$content = '<p id="' . htmlspecialchars($uniqueId) . '">' . htmlspecialchars($element->getCaption()) . '</p>
 					<script type="text/javascript">
-						AudioPlayer.embed(' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($uniqueId) . ', {soundFile: ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($url) . '});
+						AudioPlayer.embed(' . GeneralUtility::quoteJSvalue($uniqueId) . ', {soundFile: ' . GeneralUtility::quoteJSvalue($url) . '});
 					</script> ';
 
 		return $content;
@@ -56,11 +62,11 @@ class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInte
 	/**
 	 * Implementation is only used if file ending is mp3
 	 *
-	 * @param Tx_News_Domain_Model_Media $element media element
+	 * @param \GeorgRinger\News\Domain\Model\Media $element media element
 	 * @return boolean
 	 */
-	public function enabled(Tx_News_Domain_Model_Media $element) {
-		$url = Tx_News_Service_FileService::getFalFilename($element->getContent());
+	public function enabled(\GeorgRinger\News\Domain\Model\Media $element) {
+		$url = FileService::getFalFilename($element->getContent());
 		$fileEnding = strtolower(substr($url, -3));
 		return ($fileEnding === 'mp3');
 	}

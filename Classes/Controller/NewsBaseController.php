@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Controller;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +13,8 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\EmConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 
@@ -20,7 +24,7 @@ use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Controller_NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * Initializes the view before invoking an action method.
@@ -32,28 +36,28 @@ class Tx_News_Controller_NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Contr
 	 */
 	protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view) {
 		$view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
-		$view->assign('emConfiguration', Tx_News_Utility_EmConfiguration::getSettings());
-		$view->assign('isVersion7Compatible', \TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0'));
+		$view->assign('emConfiguration', EmConfiguration::getSettings());
+		$view->assign('isVersion7Compatible', GeneralUtility::compat_version('7.0'));
 	}
 
 	/**
 	 * @param RequestInterface $request
 	 * @param ResponseInterface $response
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public function processRequest(RequestInterface $request, ResponseInterface $response) {
 		try {
 			parent::processRequest($request, $response);
-		} catch (Exception $exception) {
+		} catch (\Exception $exception) {
 			$this->handleKnownExceptionsElseThrowAgain($exception);
 		}
 	}
 
 	/**
-	 * @param Exception $exception
-	 * @throws Exception
+	 * @param \Exception $exception
+	 * @throws \Exception
 	 */
-	private function handleKnownExceptionsElseThrowAgain(Exception $exception) {
+	private function handleKnownExceptionsElseThrowAgain(\Exception $exception) {
 		$previousException = $exception->getPrevious();
 
 		if (
@@ -72,7 +76,7 @@ class Tx_News_Controller_NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Contr
 	 * Error handling if no news entry is found
 	 *
 	 * @param string $configuration configuration what will be done
-	 * @throws InvalidArgumentException
+	 * @throws \InvalidArgumentException
 	 * @return void
 	 */
 	protected function handleNoNewsFoundError($configuration) {
@@ -80,7 +84,7 @@ class Tx_News_Controller_NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Contr
 			return;
 		}
 
-		$configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $configuration, TRUE);
+		$configuration = GeneralUtility::trimExplode(',', $configuration, TRUE);
 
 		switch ($configuration[0]) {
 			case 'redirectToListView':
@@ -89,12 +93,12 @@ class Tx_News_Controller_NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Contr
 			case 'redirectToPage':
 				if (count($configuration) === 1 || count($configuration) > 3) {
 					$msg = sprintf('If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used', $configuration[0]);
-					throw new InvalidArgumentException($msg);
+					throw new \InvalidArgumentException($msg);
 				}
 				$this->uriBuilder->reset();
 				$this->uriBuilder->setTargetPageUid($configuration[1]);
 				$this->uriBuilder->setCreateAbsoluteUri(TRUE);
-				if (\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SSL')) {
+				if (GeneralUtility::getIndpEnv('TYPO3_SSL')) {
 					$this->uriBuilder->setAbsoluteUriScheme('https');
 				}
 				$url = $this->uriBuilder->build();

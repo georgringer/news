@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Jobs;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,9 +22,9 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-abstract class Tx_News_Jobs_AbstractImportJob implements Tx_News_Jobs_ImportJobInterface {
+abstract class AbstractImportJob implements ImportJobInterface {
 	/**
-	 * @var Tx_News_Service_Import_DataProviderServiceInterface
+	 * @var \GeorgRinger\News\Service\Import\DataProviderServiceInterface
 	 */
 	protected $importDataProviderService;
 

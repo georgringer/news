@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,7 +22,7 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_ViewHelpers_Format_StriptagsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class StriptagsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test of strip tags viewhelper
@@ -28,7 +31,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_StriptagsViewHelperTest extends \TYP
 	 * @return void
 	 */
 	public function stripTagsFromContent() {
-		$viewHelper = $this->getMock('Tx_News_ViewHelpers_Format_StriptagsViewHelper', array('renderChildren'));
+		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', array('renderChildren'));
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p>'));
 		$actualResult = $viewHelper->render();
 		$this->assertEquals('TestFo', $actualResult);
@@ -41,7 +44,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_StriptagsViewHelperTest extends \TYP
 	 * @return void
 	 */
 	public function stripTagsFromContentWithAllowedTags() {
-		$viewHelper = $this->getMock('Tx_News_ViewHelpers_Format_StriptagsViewHelper', array('renderChildren'));
+		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', array('renderChildren'));
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p><strong>Bar</strong>'));
 		$actualResult = $viewHelper->render('<strong>');
 		$this->assertEquals('TestFo<strong>Bar</strong>', $actualResult);

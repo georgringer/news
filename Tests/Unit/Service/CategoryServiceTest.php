@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Service;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,22 +14,23 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Service\CategoryService;
 
 /**
- * Test class for Tx_News_Service_CategoryService
+ * Test class for CategoryService
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Service_CategoryServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class CategoryServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
 	 * @dataProvider removeValuesFromStringDataProvider
 	 */
 	public function removeValuesFromString($expected, $given) {
-		$result = Tx_News_Service_CategoryService::removeValuesFromString($given[0], $given[1]);
+		$result = CategoryService::removeValuesFromString($given[0], $given[1]);
 		$this->assertEquals($expected, $result);
 	}
 

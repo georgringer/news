@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Domain\Repository;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +21,7 @@
  * @subpackage tx_news
  * @author Juerg Langhard <langhard@greenbanana.ch>
  */
-class Tx_News_Domain_Repository_TtContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class TtContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	protected $objectType = 'Tx_News_Domain_Model_TtContent';
+	protected $objectType = '\GeorgRinger\News\Domain\Model\Ttcontent';
 }

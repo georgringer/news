@@ -1,4 +1,9 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model;
+
+use GeorgRinger\News\Domain\Model\Link;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,10 +24,10 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Domain_Model_LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var Tx_News_Domain_Model_Link
+	 * @var Link
 	 */
 	protected $linkDomainModelInstance;
 
@@ -32,7 +37,7 @@ class Tx_News_Tests_Unit_Domain_Model_LinkTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->linkDomainModelInstance = new Tx_News_Domain_Model_Link();
+		$this->linkDomainModelInstance = new Link();
 	}
 
 	/**

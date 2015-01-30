@@ -5,7 +5,7 @@ if (!defined ('TYPO3_MODE')) {
 
 $boot = function($packageKey) {
 	// Extension manager configuration
-	$configuration = Tx_News_Utility_EmConfiguration::getSettings();
+	$configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 		$packageKey,
@@ -22,35 +22,35 @@ $boot = function($packageKey) {
 
 	// Page module hook
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info'][$packageKey . '_pi1'][$packageKey] =
-		'Tx_News_Hooks_CmsLayout->getExtensionSummary';
+		'GeorgRinger\\News\\Hooks\\CmsLayout->getExtensionSummary';
 
 	// Preview of news records
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][$packageKey] =
-		'Tx_News_Hooks_Tcemain';
+		'GeorgRinger\\News\\Hooks\\Tcemain';
 
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][$packageKey . '_clearcache'] =
-		'Tx_News_Hooks_Tcemain->clearCachePostProc';
+		'GeorgRinger\\News\\Hooks\\Tcemain->clearCachePostProc';
 
 	// Edit restriction for news records
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass'][$packageKey] =
-		'Tx_News_Hooks_Tcemain';
+		'GeorgRinger\\News\\Hooks\\Tcemain';
 
 	// Tceforms: Rendering of fields
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass'][$packageKey] =
-		'Tx_News_Hooks_Tceforms';
+		'GeorgRinger\\News\\Hooks\\Tceforms';
 
 	// Tceforms: Rendering of the whole Tceform
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass'][] =
-		'Tx_News_Hooks_Tceforms';
+		'GeorgRinger\\News\\Hooks\\Tceforms';
 
 	// Modify flexform values
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][$packageKey] =
-		'Tx_News_Hooks_T3libBefunc';
+		'GeorgRinger\\News\\Hooks\\T3libBefunc';
 
 	// Inline records hook
 	if ($configuration->getUseFal()) {
 		$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook'][$packageKey] =
-			'Tx_News_Hooks_InlineElementHook';
+			'GeorgRinger\\News\\Hooks\\InlineElementHook';
 	}
 
 	/* ===========================================================================
@@ -69,7 +69,7 @@ $boot = function($packageKey) {
 	/* ===========================================================================
 		Add soft reference parser
 	=========================================================================== */
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['softRefParser']['news_externalurl'] = '&Tx_News_Database_SoftReferenceIndex';
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['softRefParser']['news_externalurl'] = 'GeorgRinger\\News\\Database\\SoftReferenceIndex';
 
 	/* ===========================================================================
 		Add TSconfig
@@ -84,7 +84,7 @@ $boot = function($packageKey) {
 	=========================================================================== */
 	if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
 		$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration'][$packageKey] =
-			'Tx_News_Hooks_RealUrlAutoConfiguration->addNewsConfig';
+			'GeorgRinger\\News\\Hooks\\RealUrlAutoConfiguration->addNewsConfig';
 	}
 
 	/* ===========================================================================

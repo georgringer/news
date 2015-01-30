@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers\Be\Buttons;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,8 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Utility\IconUtility;
 
 /**
  * ViewHelper to show sprite icon for a record
@@ -26,7 +31,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Be_Buttons_IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper {
+class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper {
 
 	/**
 	 * Render the sprite icon
@@ -38,9 +43,9 @@ class Tx_News_ViewHelpers_Be_Buttons_IconForRecordViewHelper extends \TYPO3\CMS\
 	 */
 	public function render($table, $uid, $title) {
 		$icon = '';
-		$row = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord($table, $uid);
+		$row = BackendUtility::getRecord($table, $uid);
 		if (is_array($row)) {
-			$icon = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord($table, $row, array('title' => htmlspecialchars($title)));
+			$icon = IconUtility::getSpriteIconForRecord($table, $row, array('title' => htmlspecialchars($title)));
 		}
 
 		return $icon;

@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,7 +20,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference {
+class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference {
 
 	/**
 	 * Obsolete when foreign_selector is supported by ExtBase persistence layer

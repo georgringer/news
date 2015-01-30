@@ -9,8 +9,10 @@
 		"typo3/cms-core": ">=6.2.1,<8.0"
 	},
 	"autoload": {
-		"classmap": ["Classes"]
-	},
+        "psr-4": {
+            "GeorgRinger\\News\\": "Classes"
+        }
+    }
 	"replace": {
 		"news": "*"
 	},

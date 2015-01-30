@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Domain\Model\Dto;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,6 +14,8 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\DemandInterface;
+
 /**
  * News Demand object which holds all information to get the correct
  * news records.
@@ -19,8 +23,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_Dto_NewsDemand
-	extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implements Tx_News_Domain_Model_DemandInterface {
+class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implements DemandInterface {
 
 	/**
 	 * @var array
@@ -76,7 +79,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/** @var string */
 	protected $searchFields;
 
-	/** @var Tx_News_Domain_Model_Dto_Search */
+	/** @var \GeorgRinger\News\Domain\Model\Dto\Search */
 	protected $search;
 
 	/** @var string */
@@ -482,7 +485,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * Get search object
 	 *
-	 * @return Tx_News_Domain_Model_Dto_Search
+	 * @return \GeorgRinger\News\Domain\Model\Dto\Search
 	 */
 	public function getSearch() {
 		return $this->search;
@@ -491,7 +494,7 @@ class Tx_News_Domain_Model_Dto_NewsDemand
 	/**
 	 * Set search object
 	 *
-	 * @param Tx_News_Domain_Model_Dto_Search $search search object
+	 * @param \GeorgRinger\News\Domain\Model\Dto\Search $search search object
 	 * @return void
 	 */
 	public function setSearch($search = NULL) {

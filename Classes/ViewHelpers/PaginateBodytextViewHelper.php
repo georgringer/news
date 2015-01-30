@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Paginate the bodytext which is very useful for longer texts or to increase
@@ -60,19 +64,19 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Render everything
 	 *
-	 * @param Tx_News_Domain_Model_News $object current news object
+	 * @param \GeorgRinger\News\Domain\Model\News $object current news object
 	 * @param string $as name of property which holds the text
 	 * @param integer $currentPage Selected page
 	 * @param string $token Token used to split the text
 	 * @return string
 	 */
-	public function render(Tx_News_Domain_Model_News $object, $as, $currentPage, $token = '###more###') {
-		$parts = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode($token, $object->getBodytext(), TRUE);
+	public function render(\GeorgRinger\News\Domain\Model\News $object, $as, $currentPage, $token = '###more###') {
+		$parts = GeneralUtility::trimExplode($token, $object->getBodytext(), TRUE);
 		$numberOfPages = count($parts);
 
 		if ($numberOfPages === 1) {

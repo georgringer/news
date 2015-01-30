@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Hooks;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,10 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Service\AccessControlService;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Messaging\FlashMessageQueue;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into tceforms
@@ -18,7 +25,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Hooks_Tceforms {
+class Tceforms {
 
 	/**
 	 * Path to the locallang file
@@ -71,25 +78,25 @@ class Tx_News_Hooks_Tceforms {
 		if ($table !== 'tx_news_domain_model_news') {
 			return;
 		}
-		if (!\Tx_News_Service_AccessControlService::userHasCategoryPermissionsForRecord($row)) {
+		if (!AccessControlService::userHasCategoryPermissionsForRecord($row)) {
 			$parentObject->renderReadonly = TRUE;
 
 			$flashMessageContent = $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.content', TRUE);
 			$flashMessageContent .= '<ul>';
-			$accessDeniedCategories = \Tx_News_Service_AccessControlService::getAccessDeniedCategories($row);
+			$accessDeniedCategories = AccessControlService::getAccessDeniedCategories($row);
 			foreach ($accessDeniedCategories as $accessDeniedCategory) {
 				$flashMessageContent .= '<li>' . htmlspecialchars($accessDeniedCategory['title']) . ' [' . $accessDeniedCategory['uid'] . ']</li>';
 			}
 			$flashMessageContent .= '</ul>';
 
-			/** @var \TYPO3\CMS\Core\Messaging\FlashMessage $flashMessage */
-			$flashMessage = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+			/** @var FlashMessage $flashMessage */
+			$flashMessage = GeneralUtility::makeInstance(
 				'TYPO3\CMS\Core\Messaging\FlashMessage',
 				$flashMessageContent,
 				$GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.header', TRUE),
-				TYPO3\CMS\Core\Messaging\FlashMessage::WARNING
+				FlashMessage::WARNING
 			);
-			TYPO3\CMS\Core\Messaging\FlashMessageQueue::addMessage($flashMessage);
+			FlashMessageQueue::addMessage($flashMessage);
 		}
 	}
 

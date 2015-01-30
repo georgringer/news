@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,15 +14,17 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
+use GeorgRinger\News\Domain\Model\News;
 
-	/**
-	 * Tests for Tx_News_ViewHelpers_ExcludeDisplayedNewsViewHelper
-	 *
-	 * @package TYPO3
-	 * @subpackage tx_news
-	 * @author Georg Ringer <typo3@ringerge.org>
-	 */
-class Tx_News_Tests_Unit_ViewHelpers_ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+/**
+ * Tests for ExcludeDisplayedNewsViewHelper
+ *
+ * @package TYPO3
+ * @subpackage tx_news
+ * @author Georg Ringer <typo3@ringerge.org>
+ */
+class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
@@ -27,25 +32,25 @@ class Tx_News_Tests_Unit_ViewHelpers_ExcludeDisplayedNewsViewHelperTest extends 
 	 */
 	public function newsIsAddedToExcludedList() {
 
-		$viewHelper = new Tx_News_ViewHelpers_ExcludeDisplayedNewsViewHelper();
+		$viewHelper = new ExcludeDisplayedNewsViewHelper();
 		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], NULL);
 
-		$newsItem1 = new Tx_News_Domain_Model_News();
+		$newsItem1 = new News();
 		$newsItem1->_setProperty('uid', '123');
 
 		$viewHelper->render($newsItem1);
 		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], array('123' => '123'));
 
-		$newsItem1 = new Tx_News_Domain_Model_News();
+		$newsItem1 = new News();
 		$newsItem1->_setProperty('uid', '123');
 		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], array('123' => '123'));
 
-		$newsItem2 = new Tx_News_Domain_Model_News();
+		$newsItem2 = new News();
 		$newsItem2->_setProperty('uid', '12');
 		$viewHelper->render($newsItem2);
 		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], array('123' => '123', '12' => '12'));
 
-		$newsItem3 = new Tx_News_Domain_Model_News();
+		$newsItem3 = new News();
 		$newsItem3->_setProperty('uid', '12');
 		$newsItem3->_setProperty('_localizedUid', '456');
 		$viewHelper->render($newsItem3);

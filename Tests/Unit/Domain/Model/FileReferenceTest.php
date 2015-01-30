@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,10 +15,12 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\FileReference;
+
 /**
- * Tests for Tx_News_Domain_Model_FileReference
+ * Tests for GeorgRinger\News\Domain\Model\FileReference
  */
-class Tx_News_Tests_Unit_Domain_Model_FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if fileUid can be set
@@ -24,7 +29,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileReferenceTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function fileUidCanBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_FileReference();
+		$domainModelInstance = new FileReference();
 		$value = 'Test 123';
 		$domainModelInstance->setFileUid($value);
 		$this->assertEquals($value, $domainModelInstance->getFileUid());
@@ -37,7 +42,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileReferenceTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function alternativeBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_FileReference();
+		$domainModelInstance = new FileReference();
 		$value = 'Test 123';
 		$domainModelInstance->setAlternative($value);
 		$this->assertEquals($value, $domainModelInstance->getAlternative());
@@ -50,7 +55,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileReferenceTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function descriptionBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_FileReference();
+		$domainModelInstance = new FileReference();
 		$value = 'Test 123';
 		$domainModelInstance->setDescription($value);
 		$this->assertEquals($value, $domainModelInstance->getDescription());
@@ -63,7 +68,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileReferenceTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function linkBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_FileReference();
+		$domainModelInstance = new FileReference();
 		$value = 'Test 123';
 		$domainModelInstance->setLink($value);
 		$this->assertEquals($value, $domainModelInstance->getLink());
@@ -76,7 +81,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileReferenceTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function titleBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_FileReference();
+		$domainModelInstance = new FileReference();
 		$value = 'Test 123';
 		$domainModelInstance->setTitle($value);
 		$this->assertEquals($value, $domainModelInstance->getTitle());
@@ -89,7 +94,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileReferenceTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function showInPreviewBeSet() {
-		$domainModelInstance = new Tx_News_Domain_Model_FileReference();
+		$domainModelInstance = new FileReference();
 		$value = TRUE;
 		$domainModelInstance->setShowinpreview($value);
 		$this->assertEquals($value, $domainModelInstance->getShowinpreview());

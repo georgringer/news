@@ -19,14 +19,14 @@ use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Functional test for the Tx_News_Domain_Repository_NewsRepository
+ * Functional test for the \GeorgRinger\News\Domain\Repository\NewsRepository
  */
 class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 
 	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
 	protected $objectManager;
 
-	/** @var  Tx_News_Domain_Repository_NewsRepository */
+	/** @var  \GeorgRinger\News\Domain\Repository\NewsRepository */
 	protected $newsRepository;
 
 	protected $testExtensionsToLoad = array('typo3conf/ext/news');
@@ -34,7 +34,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$this->newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
+		$this->newsRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\NewsRepository');
 
 		$this->importDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.xml');
 	}
@@ -71,8 +71,8 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	 * @return void
 	 */
 	public function findTopNewsRecords() {
-		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
+		/** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
+		$demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\Dto\\NewsDemand');
 		$demand->setStoragePage(2);
 
 		// no matter about top news
@@ -95,8 +95,8 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	 * @return void
 	 */
 	public function findRecordsByStartingpointRestriction() {
-		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
+		/** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
+		$demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
 
 		// simple starting point
 		$demand->setStoragePage(3);
@@ -120,10 +120,10 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	 */
 	public function findRecordsByArchiveRestriction() {
 		$GLOBALS['EXEC_TIME'] = 1396812099;
-		$newsRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
+		$newsRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\NewsRepository');
 
-		/** @var $demand \Tx_News_Domain_Model_Dto_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
+		/** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
+		$demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
 		$demand->setStoragePage(7);
 
 		// Archived means: archive date must be lower than current time AND != 0
@@ -148,8 +148,8 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	 */
 	public function findRecordsByMonthAndYear() {
 		$this->markTestSkipped('Does not work in travis');
-		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
+		/** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
+		$demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
 		$demand->setStoragePage(8);
 
 		$demand->setDateField('datetime');
@@ -165,8 +165,8 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	 * @return void
 	 */
 	public function findLatestLimitRecords() {
-		/** @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
+		/** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
+		$demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
 		$demand->setStoragePage(9);
 
 		$GLOBALS['EXEC_TIME'] = strtotime('2014-04-03');

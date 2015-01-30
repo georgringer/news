@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Utility;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,7 +18,7 @@
 /**
  * TypoScript Utility class
  */
-class Tx_News_Utility_TypoScript {
+class TypoScript {
 
 	/**
 	 * @param array $base

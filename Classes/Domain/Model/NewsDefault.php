@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,6 +20,6 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_NewsDefault extends Tx_News_Domain_Model_News {
+class NewsDefault extends \GeorgRinger\News\Domain\Model\News {
 
 }

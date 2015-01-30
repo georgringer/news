@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -14,12 +17,12 @@
 
 
 /**
- * Test for Tx_News_ViewHelpers_SimplePrevNextViewHelper
+ * Test for SimplePrevNextViewHelper
  */
-class Tx_News_Tests_Unit_Tx_News_ViewHelpers_SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpers\ViewHelperBaseTestcase {
+class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpers\ViewHelperBaseTestcase {
 
 	/**
-	 * @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface|\Tx_News_ViewHelpers_SimplePrevNextViewHelper
+	 * @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface|\GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper
 	 */
 	protected $viewHelper;
 
@@ -29,7 +32,7 @@ class Tx_News_Tests_Unit_Tx_News_ViewHelpers_SimplePrevNextViewHelperTest extend
 	public function setUp() {
 		parent::setUp();
 
-		$this->viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_SimplePrevNextViewHelper', array('dummy'));
+		$this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('dummy'));
 
 		$mockedDatabaseConnection = $this->getMock('TYPO3\\CMS\\Core\\Database\\DatabaseConnection', array('exec_SELECTgetSingleRow'));
 		$this->viewHelper->_set('databaseConnection', $mockedDatabaseConnection);
@@ -47,7 +50,7 @@ class Tx_News_Tests_Unit_Tx_News_ViewHelpers_SimplePrevNextViewHelperTest extend
 	 * @test
 	 */
 	public function queryResultWillReturnCorrectOutputForAllLinks() {
-		$viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_SimplePrevNextViewHelper', array('getObject'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('getObject'));
 
 		$in = array(
 			0 => array('uid' => 123),
@@ -65,7 +68,7 @@ class Tx_News_Tests_Unit_Tx_News_ViewHelpers_SimplePrevNextViewHelperTest extend
 	 * @test
 	 */
 	public function queryResultWillReturnCorrectOutputFor2Links() {
-		$viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_SimplePrevNextViewHelper', array('getObject'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('getObject'));
 
 		$in = array(
 			0 => array('uid' => 147),
@@ -81,7 +84,7 @@ class Tx_News_Tests_Unit_Tx_News_ViewHelpers_SimplePrevNextViewHelperTest extend
 	 * @test
 	 */
 	public function queryResultWillReturnCorrectOutputFor1Link() {
-		$viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_SimplePrevNextViewHelper', array('getObject'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('getObject'));
 
 		$in = array(
 			0 => array('uid' => 369),
@@ -97,7 +100,7 @@ class Tx_News_Tests_Unit_Tx_News_ViewHelpers_SimplePrevNextViewHelperTest extend
 	 * @expectedException \UnexpectedValueException
 	 */
 	public function queryResultWillReturnExceptionForUnknownCount() {
-		$viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_SimplePrevNextViewHelper', array('getObject'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('getObject'));
 
 		$in = array(
 			0 => array('uid' => 369),

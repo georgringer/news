@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Cache;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +13,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class Cache builder
@@ -18,7 +21,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Cache_ClassCacheBuilder {
+class ClassCacheBuilder {
 
 	const CACHE_FILE_LOCATION = 'typo3temp/Cache/Code/cache_phpcode/';
 
@@ -81,15 +84,15 @@ class Tx_News_Cache_ClassCacheBuilder {
 			try {
 				$extensionInfoFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($extensionKey, 'Resources/Private/extend-news.txt');
 				if (file_exists($extensionInfoFile)) {
-					$info = \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl($extensionInfoFile);
-					$classes = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(LF, $info, TRUE);
+					$info = GeneralUtility::getUrl($extensionInfoFile);
+					$classes = GeneralUtility::trimExplode(LF, $info, TRUE);
 					foreach ($classes as $class) {
 						$extensibleExtensions[$class][$extensionKey] = 1;
 					}
 				}
 			} catch(Exception $e) {
 				$message = sprintf('Class cache could not been been build. Error "%s" with extension "%s"!', $e->getMessage(), $extensionKey);
-				\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($message, 'news');
+				GeneralUtility::devLog($message, 'news');
 			}
 		}
 		return $extensibleExtensions;
@@ -106,14 +109,14 @@ class Tx_News_Cache_ClassCacheBuilder {
 	protected function writeFile($content, $identifier) {
 		$path = PATH_site . self::CACHE_FILE_LOCATION;
 		if (!is_dir($path)) {
-			\TYPO3\CMS\Core\Utility\GeneralUtility::mkdir_deep(PATH_site, self::CACHE_FILE_LOCATION);
+			GeneralUtility::mkdir_deep(PATH_site, self::CACHE_FILE_LOCATION);
 		}
 
 		$content = '<?php ' . LF . $content . LF . '}' . LF . '?>';
 
 		$path .= $this->generateFileNameFromIdentifier($identifier);
 
-		$success = \TYPO3\CMS\Core\Utility\GeneralUtility::writeFile($path, $content);
+		$success = GeneralUtility::writeFile($path, $content);
 		if (!$success) {
 			throw new RuntimeException('File "' . $path . '" could not be written');
 		}
@@ -125,11 +128,11 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 *
 	 * @param string $identifier identifier
 	 * @return string
-	 * @throws InvalidArgumentException
+	 * @throws \InvalidArgumentException
 	 */
 	protected function generateFileNameFromIdentifier($identifier) {
 		if (!is_string($identifier) || empty($identifier)) {
-			throw new InvalidArgumentException('Given identifier is either not a string or empty');
+			throw new \InvalidArgumentException('Given identifier is either not a string or empty');
 		}
 
 		$result = str_replace('/', '_', $identifier) . '.php';
@@ -147,13 +150,13 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 * @param boolean $removeClassDefinition If class definition should be removed
 	 * @return string path of the saved file
 	 * @throws Exception
-	 * @throws InvalidArgumentException
+	 * @throws \InvalidArgumentException
 	 */
 	public function parseSingleFile($filePath, $removeClassDefinition = TRUE) {
 		if (!is_file($filePath)) {
-			throw new InvalidArgumentException(sprintf('File "%s" could not be found', $filePath));
+			throw new \InvalidArgumentException(sprintf('File "%s" could not be found', $filePath));
 		}
-		$code = \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl($filePath);
+		$code = GeneralUtility::getUrl($filePath);
 		return $this->changeCode($code, $filePath, $removeClassDefinition);
 	}
 
@@ -168,7 +171,7 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 */
 	protected function changeCode($code, $filePath, $removeClassDefinition = TRUE, $renderPartialInfo = TRUE) {
 		if (empty($code)) {
-			throw new InvalidArgumentException(sprintf('File "%s" could not be fetched or is empty', $filePath));
+			throw new \InvalidArgumentException(sprintf('File "%s" could not be fetched or is empty', $filePath));
 		}
 		$code = trim($code);
 		$code = str_replace(array('<?php', '?>'), '', $code);

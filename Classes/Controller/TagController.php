@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Controller;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -15,22 +17,22 @@
 /**
  * Tag controller
  */
-class Tx_News_Controller_TagController extends Tx_News_Controller_NewsController {
+class TagController extends NewsController {
 
 	const SIGNAL_TAG_LIST_ACTION = 'listAction';
 
 	/**
-	 * @var Tx_News_Domain_Repository_TagRepository
+	 * @var \GeorgRinger\News\Domain\Repository\TagRepository
 	 */
 	protected $tagRepository;
 
 	/**
 	 * Inject a tag repository to enable DI
 	 *
-	 * @param Tx_News_Domain_Repository_TagRepository $tagRepository
+	 * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
 	 * @return void
 	 */
-	public function injectTagRepository(Tx_News_Domain_Repository_TagRepository $tagRepository) {
+	public function injectTagRepository(\GeorgRinger\News\Domain\Repository\TagRepository $tagRepository) {
 		$this->tagRepository = $tagRepository;
 	}
 

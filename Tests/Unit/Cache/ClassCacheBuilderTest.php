@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Cache;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -13,19 +16,17 @@
  */
 
 /**
- * Tests for Tx_News_Tests_Unit_Cache_ClassCacheBuilder
+ * Class ClassCacheBuilderTest
  *
- * @package TYPO3
- * @subpackage tx_news
- * @author Georg Ringer <typo3@ringerge.org>
+ * @package GeorgRinger\News\Tests\Unit\Cache
  */
-class Tx_News_Tests_Unit_Cache_ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
 	 */
 	public function cacheFileCanBeWritten() {
-		$classCacheBuilder = $this->getAccessibleMock('Tx_News_Cache_ClassCacheBuilder', array('dummy'));
+		$classCacheBuilder = $this->getAccessibleMock('GeorgRinger\\News\\Cache\\ClassCacheBuilder', array('dummy'));
 		$content = '// this is some test';
 		$identifier = 'Test/Unit/Fo';
 
@@ -43,7 +44,7 @@ class Tx_News_Tests_Unit_Cache_ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tes
 	 * @dataProvider generatedCacheFileNameIsCorrectDataProvider
 	 */
 	public function generatedCacheFileNameIsCorrect($expectedResult, $given) {
-		$classCacheBuilder = $this->getAccessibleMock('Tx_News_Cache_ClassCacheBuilder', array('dummy'));
+		$classCacheBuilder = $this->getAccessibleMock('GeorgRinger\\News\\Cache\\ClassCacheBuilder', array('dummy'));
 		$result = $classCacheBuilder->_call('generateFileNameFromIdentifier', $given);
 
 		$this->assertEquals($expectedResult, $result, 'exp:' . $expectedResult . ' - ' . $result);
@@ -68,7 +69,7 @@ class Tx_News_Tests_Unit_Cache_ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tes
 	 * @expectedException InvalidArgumentException
 	 */
 	public function generatedCacheFileNameThrowsAnExceptionIfIdentifierIsWrong($given) {
-		$classCacheBuilder = $this->getAccessibleMock('Tx_News_Cache_ClassCacheBuilder', array('dummy'));
+		$classCacheBuilder = $this->getAccessibleMock('GeorgRinger\\News\\Cache\\ClassCacheBuilder', array('dummy'));
 		$classCacheBuilder->_call('generateFileNameFromIdentifier', $given);
 	}
 
@@ -79,7 +80,7 @@ class Tx_News_Tests_Unit_Cache_ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tes
 		return array(
 			'emptyStringGiven' => array(''),
 			'NullGiven' => array(NULL),
-			'ObjectGiven' => array(new SplObjectStorage()),
+			'ObjectGiven' => array(new \SplObjectStorage()),
 		);
 	}
 
@@ -88,7 +89,7 @@ class Tx_News_Tests_Unit_Cache_ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tes
 	 * @expectedException InvalidArgumentException
 	 */
 	public function parseSingleFileThrowsAnExceptionIfFileNotFound() {
-		$classCacheBuilder = $this->getAccessibleMock('Tx_News_Cache_ClassCacheBuilder', array('dummy'));
+		$classCacheBuilder = $this->getAccessibleMock('GeorgRinger\\News\\Cache\\ClassCacheBuilder', array('dummy'));
 		$classCacheBuilder->_call('parseSingleFile', 'someNonExistingDirectory/file.php');
 	}
 
@@ -97,7 +98,7 @@ class Tx_News_Tests_Unit_Cache_ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tes
 	 * @expectedException InvalidArgumentException
 	 */
 	public function changeCodeThrowsAnExceptionIfEmptyCodeGiven() {
-		$classCacheBuilder = $this->getAccessibleMock('Tx_News_Cache_ClassCacheBuilder', array('dummy'));
+		$classCacheBuilder = $this->getAccessibleMock('GeorgRinger\\News\\Cache\\ClassCacheBuilder', array('dummy'));
 		$classCacheBuilder->_call('changeCode', '', 'anyFile');
 	}
 
@@ -106,7 +107,7 @@ class Tx_News_Tests_Unit_Cache_ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tes
 	 * @dataProvider changeCodeWorksDataProvider
 	 */
 	public function changeCodeWorks($given, $expectedResult, $removeClassDefinition = TRUE) {
-		$classCacheBuilder = $this->getAccessibleMock('Tx_News_Cache_ClassCacheBuilder', array('dummy'));
+		$classCacheBuilder = $this->getAccessibleMock('GeorgRinger\\News\\Cache\\ClassCacheBuilder', array('dummy'));
 		$result = $classCacheBuilder->_call('changeCode', $given, 'SomeFile', $removeClassDefinition, FALSE);
 
 		$this->assertEquals($result, $expectedResult);

@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,21 +14,23 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Model\Dto\Search;
 
 /**
- * Tests for Tx_News_Domain_Model_Dto_NewsDemand
+ * Tests for NewsDemand
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Domain_Model_Dto_NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
-	/** @var  Tx_News_Domain_Model_Dto_NewsDemand */
+	/** @var  NewsDemand */
 	protected $instance;
 
 	public function setup() {
-		$this->instance = new Tx_News_Domain_Model_Dto_NewsDemand();
+		$this->instance = new NewsDemand();
 	}
 
 	/**
@@ -174,7 +179,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_NewsDemandTest extends \TYPO3\CMS\Core
 	 * @return void
 	 */
 	public function searchCanBeSet() {
-		$value = new Tx_News_Domain_Model_Dto_Search();
+		$value = new Search();
 		$value->setSubject('fo');
 		$this->instance->setSearch($value);
 		$this->assertEquals($value, $this->instance->getSearch());

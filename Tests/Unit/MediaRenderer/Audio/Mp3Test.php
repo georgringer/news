@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\MediaRenderer\Audio;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,11 +14,13 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Media;
+use GeorgRinger\News\MediaRenderer\Audio\Mp3;
 
 /**
- * Tests for Tx_News_MediaRenderer_Audio_Mp3
+ * Tests for Mp3
  */
-class Tx_News_Tests_Unit_MediaRenderer_Audio_Mp3Test extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class Mp3Test extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
@@ -23,11 +28,11 @@ class Tx_News_Tests_Unit_MediaRenderer_Audio_Mp3Test extends \TYPO3\CMS\Core\Tes
 	 * @return void
 	 */
 	public function fileIsRecognized($expected, $expectedOutput) {
-		$mediaElement = new Tx_News_Domain_Model_Media();
+		$mediaElement = new Media();
 		$mediaElement->setMultimedia($expected);
-		$mediaElement->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
+		$mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
 
-		$renderer = new Tx_News_MediaRenderer_Audio_Mp3();
+		$renderer = new Mp3();
 		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
 	}
 

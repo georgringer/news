@@ -27,7 +27,7 @@ $boot = function($packageKey) {
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_tag');
 
 	// Extension manager configuration
-	$configuration = Tx_News_Utility_EmConfiguration::getSettings();
+	$configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
 	/***************
 	 * News icon in page tree
@@ -93,7 +93,7 @@ $boot = function($packageKey) {
 		$GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = array(
 			'label'			=> 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.overlay',
 			'type'			=> 'select',
-			'itemsProcFunc'	=> 'Tx_News_Hooks_ItemsProcFunc->user_categoryOverlay',
+			'itemsProcFunc'	=> 'GeorgRinger\\News\\Hooks\\ItemsProcFunc->user_categoryOverlay',
 		);
 		$GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 			--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay';
@@ -124,12 +124,12 @@ $boot = function($packageKey) {
 			);
 
 			if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('t3blog')) {
-				Tx_News_Utility_ImportJob::register(
-					'Tx_News_Jobs_T3BlogNewsImportJob',
+				\GeorgRinger\News\Utility\ImportJob::register(
+					'GeorgRinger\\News\\Jobs\\T3BlogNewsImportJob',
 					'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:t3blog_importer_title',
 					'');
-				Tx_News_Utility_ImportJob::register(
-					'Tx_News_Jobs_T3BlogCategoryImportJob',
+				\GeorgRinger\News\Utility\ImportJob::register(
+					'GeorgRinger\\News\\Jobs\\T3BlogCategoryImportJob',
 					'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:t3blogcategory_importer_title',
 					'');
 			}
@@ -160,7 +160,7 @@ $boot = function($packageKey) {
 		/* ===========================================================================
 			Ajax call to save tags
 		=========================================================================== */
-		$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = 'typo3conf/ext/news/Classes/Hooks/SuggestReceiverCall.php:Tx_News_Hooks_SuggestReceiverCall->createTag';
+		$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = 'typo3conf/ext/news/Classes/Hooks/SuggestReceiverCall.php:GeorgRinger\\News\\Hooks\\SuggestReceiverCall->createTag';
 	}
 
 	/* ===========================================================================

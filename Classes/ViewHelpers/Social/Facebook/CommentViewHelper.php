@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers\Social\Facebook;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to comment content
@@ -24,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class CommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
 	 * @var	string
@@ -32,15 +36,15 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends \TYPO3\CMS\F
 	protected $tagName = 'fb:comments';
 
 	/**
-	 * @var Tx_News_Service_SettingsService
+	 * @var \GeorgRinger\News\Service\SettingsService
 	 */
 	protected $pluginSettingsService;
 
 	/**
-	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
 	 * @return void
 	 */
-	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+	public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService) {
 		$this->pluginSettingsService = $pluginSettingsService;
 	}
 
@@ -64,7 +68,7 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends \TYPO3\CMS\F
 	 */
 	public function render($appId) {
 		$tsSettings = $this->pluginSettingsService->getSettings();
-		$this->tag->addAttribute('data-href', \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+		$this->tag->addAttribute('data-href', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
 		$this->tag->forceClosingTag(TRUE);
 
 		$locale = (!empty($tsSettings['facebookLocale']) && strlen($tsSettings['facebookLocale']) <= 5) ? $tsSettings['facebookLocale'] : 'en_US';

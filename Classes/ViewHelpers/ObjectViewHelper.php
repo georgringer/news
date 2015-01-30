@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -40,18 +43,18 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Output different objects
 	 *
-	 * @param Tx_News_Domain_Model_News $newsItem current newsitem
+	 * @param \GeorgRinger\News\Domain\Model\News $newsItem current newsitem
 	 * @param string $as output variable
 	 * @param string $className custom class which handles the new objects
 	 * @param string $extendedTable table which is extended
 	 * @return string output
 	 */
-	public function render(Tx_News_Domain_Model_News $newsItem, $as, $className, $extendedTable = 'tx_news_domain_model_news') {
+	public function render(\GeorgRinger\News\Domain\Model\News $newsItem, $as, $className, $extendedTable = 'tx_news_domain_model_news') {
 		$rawRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', $extendedTable, 'uid=' . (int)$newsItem->getUid());
 		$rawRecord = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
 			$extendedTable,

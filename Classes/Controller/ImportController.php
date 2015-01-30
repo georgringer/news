@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Controller;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +13,12 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Jobs\ImportJobInterface;
+use GeorgRinger\News\Utility\EmConfiguration;
+use GeorgRinger\News\Utility\ImportJob;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 
 /**
  * Controller to import news records
@@ -18,7 +26,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Controller_ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
 	 * Retrieve all available import jobs by traversing trough registered
@@ -28,11 +36,11 @@ class Tx_News_Controller_ImportController extends \TYPO3\CMS\Extbase\Mvc\Control
 	 */
 	protected function getAvailableJobs() {
 		$availableJobs = array();
-		$registeredJobs = Tx_News_Utility_ImportJob::getRegisteredJobs();
+		$registeredJobs = ImportJob::getRegisteredJobs();
 
 		foreach ($registeredJobs as $registeredJob) {
 			$jobInstance = $this->objectManager->get($registeredJob['className']);
-			if ($jobInstance instanceof Tx_News_Jobs_ImportJobInterface && $jobInstance->isEnabled()) {
+			if ($jobInstance instanceof ImportJobInterface && $jobInstance->isEnabled()) {
 				$availableJobs[$registeredJob['className']] = $GLOBALS['LANG']->sL($registeredJob['title']);
 			}
 		}
@@ -49,7 +57,7 @@ class Tx_News_Controller_ImportController extends \TYPO3\CMS\Extbase\Mvc\Control
 		$this->view->assignMultiple(array(
 				'error' => $this->checkCorrectConfiguration(),
 				'availableJobs' => array_merge(array(0 => ''), $this->getAvailableJobs()),
-				'moduleUrl' => \TYPO3\CMS\Backend\Utility\BackendUtility::getModuleUrl($this->request->getPluginName()))
+				'moduleUrl' => BackendUtility::getModuleUrl($this->request->getPluginName()))
 		);
 	}
 
@@ -58,11 +66,11 @@ class Tx_News_Controller_ImportController extends \TYPO3\CMS\Extbase\Mvc\Control
 	 *
 	 * @return string
 	 * @throws Exception
-	 * @throws TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsException
+	 * @throws \TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsException
 	 */
 	protected function checkCorrectConfiguration() {
 		$error = '';
-		$settings = Tx_News_Utility_EmConfiguration::getSettings();
+		$settings = EmConfiguration::getSettings();
 
 		try {
 			$storageId = (int)$settings->getStorageUidImporter();
@@ -75,7 +83,7 @@ class Tx_News_Controller_ImportController extends \TYPO3\CMS\Extbase\Mvc\Control
 			}
 			$storage = $this->getResourceFactory()->getStorageObject($settings->getStorageUidImporter());
 			$folder = $storage->getFolder($path);
-		} catch (\TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException $e) {
+		} catch (FolderDoesNotExistException $e) {
 			$error= 'import.error.configuration.resourceFolderImporter.notExist';
 		} catch (\UnexptedValueException $e) {
 			$error = $e->getMessage();
@@ -109,9 +117,9 @@ class Tx_News_Controller_ImportController extends \TYPO3\CMS\Extbase\Mvc\Control
 	}
 
 	/**
-	 * @return \TYPO3\CMS\Core\Resource\ResourceFactory
+	 * @return ResourceFactory
 	 */
 	protected function getResourceFactory() {
-		return \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
+		return ResourceFactory::getInstance();
 	}
 }

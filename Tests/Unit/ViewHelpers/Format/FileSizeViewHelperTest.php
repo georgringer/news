@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\ViewHelpers\Format\FileSizeViewHelper;
 
 /**
  * Tests for FileSizeViewHelper
@@ -19,7 +23,7 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class FileSizeViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if default file format works
@@ -28,7 +32,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends \TYPO
 	 * @return void
 	 */
 	public function viewHelperReturnsFileSizeWithDefaultFormat() {
-		$viewHelper = new Tx_News_ViewHelpers_Format_FileSizeViewHelper();
+		$viewHelper = new FileSizeViewHelper();
 		$actualResult = $viewHelper->render(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt');
 		$this->assertEquals('14.4 K', $actualResult);
 	}
@@ -40,7 +44,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends \TYPO
 	 * @return void
 	 */
 	public function viewHelperReturnsFileSizeWithGivenFormat() {
-		$viewHelper = new Tx_News_ViewHelpers_Format_FileSizeViewHelper();
+		$viewHelper = new FileSizeViewHelper();
 		$actualResult = $viewHelper->render(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt', '| A| B| C');
 		$this->assertEquals('14.4 A', $actualResult);
 	}
@@ -49,11 +53,11 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_FileSizeViewHelperTest extends \TYPO
 	 * Test if exception handling works
 	 *
 	 * @test
-	 * @expectedException Tx_Fluid_Core_ViewHelper_Exception
+	 * @expectedException \TYPO3\CMS\Fluid\Core\ViewHelper\Exception
 	 * @return void
 	 */
 	public function viewHelperThrowsExceptionIfFileNotFound() {
-		$viewHelper = new Tx_News_ViewHelpers_Format_FileSizeViewHelper();
+		$viewHelper = new FileSizeViewHelper();
 		$viewHelper->render('fo', 'bar');
 	}
 

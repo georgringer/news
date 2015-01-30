@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -27,15 +30,15 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Add the news uid to a global variable to be able to exclude it later
 	 *
-	 * @param Tx_News_Domain_Model_News $newsItem current news item
+	 * @param \GeorgRinger\News\Domain\Model\News $newsItem current news item
 	 * @return void
 	 */
-	public function render(Tx_News_Domain_Model_News $newsItem) {
+	public function render(\GeorgRinger\News\Domain\Model\News $newsItem) {
 		$uid = $newsItem->getUid();
 
 		if (empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {

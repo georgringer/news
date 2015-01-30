@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\MediaRenderer\Video;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,8 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\MediaRenderer\MediaInterface;
+use GeorgRinger\News\Service\FileService;
 
 /**
  * Implementation of quicktime support
@@ -18,18 +23,18 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_MediaRenderer_Video_Quicktime implements Tx_News_MediaRenderer_MediaInterface {
+class Quicktime implements MediaInterface {
 
 	/**
 	 * Render quicktime files
 	 *
-	 * @param Tx_News_Domain_Model_Media $element
+	 * @param \GeorgRinger\News\Domain\Model\Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @return string
 	 */
-	public function render(Tx_News_Domain_Model_Media $element, $width, $height) {
-		$url = Tx_News_Service_FileService::getCorrectUrl($element->getContent());
+	public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height) {
+		$url = FileService::getCorrectUrl($element->getContent());
 
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
@@ -51,10 +56,10 @@ class Tx_News_MediaRenderer_Video_Quicktime implements Tx_News_MediaRenderer_Med
 	/**
 	 * Implementation is used if file extension is mov
 	 *
-	 * @param Tx_News_Domain_Model_Media $element
+	 * @param \GeorgRinger\News\Domain\Model\Media $element
 	 * @return boolean
 	 */
-	public function enabled(Tx_News_Domain_Model_Media $element) {
+	public function enabled(\GeorgRinger\News\Domain\Model\Media $element) {
 		$url = $element->getContent();
 		$fileEnding = strtolower(substr($url, -3));
 

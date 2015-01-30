@@ -3,13 +3,13 @@
 # Persistence object mapping configuration
 # ==============================================
 config.tx_extbase.persistence.classes {
-	Tx_News_Domain_Model_FileReference {
+	GeorgRinger\News\Domain\Model\FileReference {
 		mapping {
 			tableName = sys_file_reference
 		}
 	}
 
-	Tx_News_Domain_Model_TtContent {
+	GeorgRinger\News\Domain\Model\TtContent {
 		mapping {
 			tableName = tt_content
 			columns {
@@ -21,7 +21,7 @@ config.tx_extbase.persistence.classes {
 		}
 	}
 
-	Tx_News_Domain_Model_Category {
+	GeorgRinger\News\Domain\Model\Category {
 		mapping {
 			tableName = sys_category
 			columns {

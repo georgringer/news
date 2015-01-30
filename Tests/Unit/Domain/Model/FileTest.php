@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,6 +15,8 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\File;
+
 /**
  * Tests for domains model File
  *
@@ -19,10 +24,10 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Domain_Model_FileTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class FileTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var Tx_News_Domain_Model_File
+	 * @var File
 	 */
 	protected $fileDomainModelInstance;
 
@@ -32,7 +37,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->fileDomainModelInstance = new Tx_News_Domain_Model_File();
+		$this->fileDomainModelInstance = new File();
 	}
 
 	/**
@@ -78,7 +83,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function crdateCanBeSet() {
-		$time = new DateTime('now');
+		$time = new \DateTime('now');
 		$this->fileDomainModelInstance->setCrdate($time);
 		$this->assertEquals($time, $this->fileDomainModelInstance->getCrdate());
 	}
@@ -90,7 +95,7 @@ class Tx_News_Tests_Unit_Domain_Model_FileTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function tstampCanBeSet() {
-		$time = new DateTime('now');
+		$time = new \DateTime('now');
 		$this->fileDomainModelInstance->setTstamp($time);
 		$this->assertEquals($time, $this->fileDomainModelInstance->getTstamp());
 	}

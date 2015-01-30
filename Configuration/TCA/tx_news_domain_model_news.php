@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
 // Extension manager configuration
-$configuration = \Tx_News_Utility_EmConfiguration::getSettings();
+$configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
 $teaserRteConfiguration = $configuration->getRteForTeaser() ? ';;;richtext::rte_transform[flag=rte_disabled|mode=ts_css]' : '';
 
@@ -279,7 +279,7 @@ $tx_news_domain_model_news = array(
 				'type' => 'select',
 				'renderMode' => 'tree',
 				'treeConfig' => array(
-					'dataProvider' => 'Tx_News_TreeProvider_DatabaseTreeDataProvider',
+					'dataProvider' => 'GeorgRinger\\News\\TreeProvider\\DatabaseTreeDataProvider',
 					'parentField' => 'parent',
 					'appearance' => array(
 						'showHeader' => TRUE,
@@ -554,7 +554,7 @@ $tx_news_domain_model_news = array(
 					'suggest' => array(
 						'type' => 'suggest',
 						'default' => array(
-							'receiverClass' => 'Tx_News_Hooks_SuggestReceiver'
+							'receiverClass' => 'GeorgRinger\\News\\Hooks\\SuggestReceiver'
 						),
 					),
 					'list' => array(

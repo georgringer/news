@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Database;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,7 +20,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Database_SoftReferenceIndex {
+class SoftReferenceIndex {
 
 	// Token prefix
 	public $tokenID_basePrefix = '';

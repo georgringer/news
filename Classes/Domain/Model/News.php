@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,13 +14,18 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\File;
+use GeorgRinger\News\Domain\Model\FileReference;
+use GeorgRinger\News\Domain\Model\Link;
+
 /**
  * News model
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * @var DateTime
@@ -113,25 +120,25 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	protected $authorEmail;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Category>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Category>
 	 * @lazy
 	 */
 	protected $categories;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
 	 * @lazy
 	 */
 	protected $related;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
 	 * @lazy
 	 */
 	protected $relatedFrom;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_File>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\File>
 	 * @lazy
 	 */
 	protected $relatedFiles;
@@ -139,13 +146,13 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Fal related files
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
 	 * @lazy
 	 */
 	protected $falRelatedFiles;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Link>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link>
 	 * @lazy
 	 */
 	protected $relatedLinks;
@@ -166,7 +173,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	protected $description;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Media>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Media>
 	 * @lazy
 	 */
 	protected $media;
@@ -174,7 +181,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Fal media items
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
 	 * @lazy
 	 */
 	protected $falMedia;
@@ -211,13 +218,13 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	protected $istopnews;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_TtContent>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\TtContent>
 	 * @lazy
 	 */
 	protected $contentElements;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Tag>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Tag>
 	 * @lazy
 	 */
 	protected $tags;
@@ -250,7 +257,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Initialize categories and media relation
 	 *
-	 * @return \Tx_News_Domain_Model_News
+	 * @return \GeorgRinger\News\Domain\Model\News
 	 */
 	public function __construct() {
 		$this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -471,7 +478,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Get categories
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Category>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Category>
 	 */
 	public function getCategories() {
 		return $this->categories;
@@ -480,7 +487,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Get first category
 	 *
-	 * @return Tx_News_Domain_Model_Category
+	 * @return Category
 	 */
 	public function getFirstCategory() {
 		$categories = $this->getCategories();
@@ -505,17 +512,17 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Adds a category to this categories.
 	 *
-	 * @param Tx_News_Domain_Model_Category $category
+	 * @param Category $category
 	 * @return void
 	 */
-	public function addCategory(Tx_News_Domain_Model_Category $category) {
+	public function addCategory(Category $category) {
 		$this->getCategories()->attach($category);
 	}
 
 	/**
 	 * Get related news
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
 	 */
 	public function getRelated() {
 		return $this->related;
@@ -524,7 +531,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Set related from
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News> $relatedFrom
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News> $relatedFrom
 	 * @return void
 	 */
 	public function setRelatedFrom($relatedFrom) {
@@ -534,7 +541,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Get related from
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_News>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
 	 */
 	public function getRelatedFrom() {
 		return $this->relatedFrom;
@@ -605,7 +612,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Get related files
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_File>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\File>
 	 */
 	public function getRelatedFiles() {
 		return $this->relatedFiles;
@@ -624,10 +631,10 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Adds a file to this files.
 	 *
-	 * @param Tx_News_Domain_Model_File $file
+	 * @param File $file
 	 * @return void
 	 */
-	public function addRelatedFile(Tx_News_Domain_Model_File $file) {
+	public function addRelatedFile(File $file) {
 		if ($this->getRelatedFiles() === NULL) {
 			$this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
@@ -637,7 +644,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Get related links
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Link>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link>
 	 */
 	public function getRelatedLinks() {
 		return $this->relatedLinks;
@@ -646,7 +653,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Get FAL related files
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference>
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
 	 */
 	public function getFalRelatedFiles() {
 		return $this->falRelatedFiles;
@@ -665,10 +672,10 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Adds a file to this files.
 	 *
-	 * @param Tx_News_Domain_Model_FileReference $file
+	 * @param FileReference $file
 	 * @return void
 	 */
-	public function addFalRelatedFile(Tx_News_Domain_Model_FileReference $file) {
+	public function addFalRelatedFile(FileReference $file) {
 		if ($this->getFalRelatedFiles() === NULL) {
 			$this->falRelatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
@@ -678,7 +685,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Set related links
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_Link> $relatedLinks related links relation
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link> $relatedLinks related links relation
 	 * @return void
 	 */
 	public function setRelatedLinks($relatedLinks) {
@@ -810,7 +817,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	 * @return array|null
 	 */
 	public function getMediaTypeImage() {
-		return $this->getMediaSelection(Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE);
+		return $this->getMediaSelection(\GeorgRinger\News\Domain\Model\Media::MEDIA_TYPE_IMAGE);
 	}
 
 	/**
@@ -819,16 +826,16 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	 * @return array|null
 	 */
 	public function getMediaTypeMultimedia() {
-		return $this->getMediaSelection(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
+		return $this->getMediaSelection(\GeorgRinger\News\Domain\Model\Media::MEDIA_TYPE_MULTIMEDIA);
 	}
 
 	/**
 	 * Adds a media to this media.
 	 *
-	 * @param Tx_News_Domain_Model_Media $media
+	 * @param \GeorgRinger\News\Domain\Model\Media $media
 	 * @return void
 	 */
-	public function addMedia(Tx_News_Domain_Model_Media $media) {
+	public function addMedia(\GeorgRinger\News\Domain\Model\Media $media) {
 		if ($this->getMedia() === NULL) {
 			$this->media = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
@@ -838,10 +845,10 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Adds a related link.
 	 *
-	 * @param Tx_News_Domain_Model_Link $relatedLink
+	 * @param Link $relatedLink
 	 * @return void
 	 */
-	public function addRelatedLink(Tx_News_Domain_Model_Link $relatedLink) {
+	public function addRelatedLink(Link $relatedLink) {
 		if ($this->relatedLinks === NULL) {
 			$this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
@@ -851,7 +858,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Get first media element which is tagged as preview and is of type image
 	 *
-	 * @return Tx_News_Domain_Model_Media
+	 * @return \GeorgRinger\News\Domain\Model\Media
 	 */
 	public function getFirstImagePreview() {
 		$mediaElements = $this->getMedia();
@@ -901,9 +908,9 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Add a Fal media file reference
 	 *
-	 * @param Tx_News_Domain_Model_FileReference $falMedia
+	 * @param FileReference $falMedia
 	 */
-	public function addFalMedia(Tx_News_Domain_Model_FileReference $falMedia) {
+	public function addFalMedia(FileReference $falMedia) {
 		if ($this->getFalMedia() === NULL) {
 			$this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}
@@ -918,7 +925,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	public function getFalMediaPreviews() {
 		if ($this->falMediaPreviews === NULL && $this->getFalMedia()) {
 			$this->falMediaPreviews = array();
-			/** @var $mediaItem Tx_News_Domain_Model_FileReference */
+			/** @var $mediaItem FileReference */
 			foreach ($this->getFalMedia() as $mediaItem) {
 				if ($mediaItem->getOriginalResource()->getProperty('showinpreview')) {
 					$this->falMediaPreviews[] = $mediaItem;
@@ -937,7 +944,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	public function getFalMediaNonPreviews() {
 		if ($this->falMediaNonPreviews === NULL && $this->getFalMedia()) {
 			$this->falMediaNonPreviews = array();
-			/** @var $mediaItem Tx_News_Domain_Model_FileReference */
+			/** @var $mediaItem FileReference */
 			foreach ($this->getFalMedia() as $mediaItem) {
 				if (!$mediaItem->getOriginalResource()->getProperty('showinpreview')) {
 					$this->falMediaNonPreviews[] = $mediaItem;
@@ -1042,10 +1049,10 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	/**
 	 * Adds a content element to the record
 	 *
-	 * @param Tx_News_Domain_Model_TtContent $contentElement
+	 * @param \GeorgRinger\News\Domain\Model\TtContent $contentElement
 	 * @return void
 	 */
-	public function addContentElement(Tx_News_Domain_Model_TtContent $contentElement) {
+	public function addContentElement(\GeorgRinger\News\Domain\Model\TtContent $contentElement) {
 		if ($this->getContentElements() === NULL) {
 			$this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		}

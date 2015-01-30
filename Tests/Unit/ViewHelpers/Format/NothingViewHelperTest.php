@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,7 +22,7 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_ViewHelpers_Format_NothingViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class NothingViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test of strip tags viewhelper
@@ -28,7 +31,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Format_NothingViewHelperTest extends \TYPO3
 	 * @return void
 	 */
 	public function noResultExpected() {
-		$viewHelper = $this->getMock('Tx_News_ViewHelpers_Format_NothingViewHelper', array('renderChildren'));
+		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\NothingViewHelper', array('renderChildren'));
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('whatever content'));
 		$actualResult = $viewHelper->render();
 		$this->assertEquals(NULL, $actualResult);

@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Widget\Controller;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -13,16 +16,16 @@
  */
 
 /**
- * Tests for Tx_News_ViewHelpers_Widget_Controller_PaginateController
+ * Tests for PaginateController
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_ViewHelpers_Widget_Controller_PaginateControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class PaginateControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var Tx_News_ViewHelpers_Widget_Controller_PaginateController
+	 * @var \GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController
 	 */
 	protected $controller;
 
@@ -32,14 +35,14 @@ class Tx_News_Tests_Unit_ViewHelpers_Widget_Controller_PaginateControllerTest ex
 	 * @return void
 	 */
 	public function setUp() {
-		$this->controller = $this->getAccessibleMock('Tx_News_ViewHelpers_Widget_Controller_PaginateController', array('dummy'), array(), '', FALSE);
+		$this->controller = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Widget\\Controller\\PaginateController', array('dummy'), array(), '', FALSE);
 	}
 
 	/**
 	 * @test
 	 */
 	public function initializationIsCorrect() {
-		$controller = $this->getAccessibleMock('Tx_News_ViewHelpers_Widget_Controller_PaginateController', array('dummy'));
+		$controller = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Widget\\Controller\\PaginateController', array('dummy'));
 		$objects = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
 		$configuration = array(
 			'templatePath' => 'fo/bar',

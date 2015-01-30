@@ -124,7 +124,7 @@ holds the information of the list template.
 
 The content of the file is ::
 
-   {namespace n=Tx_News_ViewHelpers}
+   {namespace n=GeorgRinger\News\ViewHelpers}
 
    <n:includeFile path="EXT:news/Resources/Public/Css/news-basic.css" />
    <n:includeFile path="EXT:news/Resources/Public/Css/news-advanced.css" />

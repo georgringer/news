@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Hooks;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -13,12 +16,12 @@
  */
 
 /**
- * Tests for Tx_News_Hooks_CmsLayout
+ * Tests for CmsLayout
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/** @var  \TYPO3\CMS\Core\Tests\AccessibleObjectInterface */
 	protected $cmsLayout;
@@ -34,7 +37,7 @@ class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitT
 
 
 
-		$this->cmsLayout = $this->getAccessibleMock('Tx_News_Hooks_CmsLayout', array('dummy'));
+		$this->cmsLayout = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\CmsLayout', array('dummy'));
 		$this->cmsLayout->_set('databaseConnection', $this->getMock('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection', array('exec_SELECTquery', 'exec_SELECTgetRows')));
 	}
 
@@ -200,7 +203,7 @@ class Tx_News_Tests_Unit_Hooks_CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitT
 	 */
 	public function getTemplateLayoutSettingsAddsValueIfFilled() {
 		$flexform = array();
-		$mockedTemplateLayout = $this->getMock('Tx_News_Utility_TemplateLayout', array('getAvailableTemplateLayouts'));
+		$mockedTemplateLayout = $this->getMock('GeorgRinger\\News\\Utility\\TemplateLayout', array('getAvailableTemplateLayouts'));
 
 		$mockedTemplateLayout->expects($this->once())->method('getAvailableTemplateLayouts')->will($this->returnValue(array(array('bar', 'fo'))));
 

@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\MediaRenderer;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,24 +21,24 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-interface Tx_News_MediaRenderer_MediaInterface {
+interface MediaInterface {
 
 	/**
 	 * Render a media element
 	 *
-	 * @param Tx_News_Domain_Model_Media $element
+	 * @param \GeorgRinger\News\Domain\Model\Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @return string
 	 */
-	public function render(Tx_News_Domain_Model_Media $element, $width, $height);
+	public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height);
 
 	/**
 	 * If enabled
 	 *
-	 * @param Tx_News_Domain_Model_Media $element
+	 * @param \GeorgRinger\News\Domain\Model\Media $element
 	 * @return string
 	 */
-	public function enabled(Tx_News_Domain_Model_Media $element);
+	public function enabled(\GeorgRinger\News\Domain\Model\Media $element);
 
 }

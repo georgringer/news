@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Service\Import;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +21,7 @@
  * @package TYPO3
  * @author Ingo Renner <ingo@typo3.org>
  */
-class Tx_News_Service_Import_T3BlogNewsDataProviderService implements Tx_News_Service_Import_DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface {
+class T3BlogNewsDataProviderService implements DataProviderServiceInterface, \TYPO3\CMS\Core\SingletonInterface {
 
 	protected $importSource = 'TX_T3BLOG_IMPORT';
 

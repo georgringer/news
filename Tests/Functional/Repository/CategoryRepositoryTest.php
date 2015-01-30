@@ -26,7 +26,7 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
 	protected $objectManager;
 
-	/** @var  \Tx_News_Domain_Repository_CategoryRepository */
+	/** @var  \GeorgRinger\News\Domain\Repository\CategoryRepository */
 	protected $categoryRepository;
 
 	protected $testExtensionsToLoad = array('typo3conf/ext/news');
@@ -34,7 +34,7 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$this->categoryRepository = $this->objectManager->get('Tx_News_Domain_Repository_NewsRepository');
+		$this->categoryRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository');
 
 		$this->importDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_category.xml');
 	}

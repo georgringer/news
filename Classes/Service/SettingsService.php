@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Service;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,7 +20,7 @@
  *
  * Example
  * $pluginSettingsService =
- * $this->objectManager->get('Tx_News_Service_SettingsService');
+ * $this->objectManager->get('GeorgRinger\\News\\Service\\SettingsService');
  * \TYPO3\CMS\Core\Utility\GeneralUtility::print_array($pluginSettingsService->getSettings());
  *
  * If objectManager is not available:
@@ -27,7 +30,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Service_SettingsService {
+class SettingsService {
 
 	/**
 	 * @var mixed

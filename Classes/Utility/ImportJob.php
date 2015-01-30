@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Utility;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,7 +22,7 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Utility_ImportJob {
+class ImportJob {
 
 	/**
 	 * @var array

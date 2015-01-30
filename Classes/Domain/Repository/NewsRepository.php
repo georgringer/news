@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Domain\Repository;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,25 +15,31 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\DemandInterface;
+use GeorgRinger\News\Service\CategoryService;
+use GeorgRinger\News\Utility\Validation;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+
 /**
  * News repository with all the callable functionality
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository {
+class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository {
 
 	/**
 	 * Returns a category constraint created by
 	 * a given list of categories and a junction string
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
+	 * @param QueryInterface $query
 	 * @param  array $categories
 	 * @param  string $conjunction
 	 * @param  boolean $includeSubCategories
 	 * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
 	 */
-	protected function createCategoryConstraint(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, $categories, $conjunction, $includeSubCategories = FALSE) {
+	protected function createCategoryConstraint(QueryInterface $query, $categories, $conjunction, $includeSubCategories = FALSE) {
 		$constraint = NULL;
 		$categoryConstraints = array();
 
@@ -40,11 +49,11 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		}
 
 		if (!is_array($categories)) {
-			$categories = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $categories, TRUE);
+			$categories = GeneralUtility::intExplode(',', $categories, TRUE);
 		}
 		foreach ($categories as $category) {
 			if ($includeSubCategories) {
-				$subCategories = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', Tx_News_Service_CategoryService::getChildrenCategories($category, 0, '', TRUE), TRUE);
+				$subCategories = GeneralUtility::trimExplode(',', CategoryService::getChildrenCategories($category, 0, '', TRUE), TRUE);
 				$subCategoryConstraint = array();
 				$subCategoryConstraint[] = $query->contains('categories', $category);
 				if (count($subCategories) > 0) {
@@ -84,14 +93,14 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	/**
 	 * Returns an array of constraints created from a given demand object.
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param QueryInterface $query
+	 * @param DemandInterface $demand
 	 * @throws UnexpectedValueException
 	 * @throws InvalidArgumentException
 	 * @throws Exception
 	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 */
-	protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
+	protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand) {
 		$constraints = array();
 
 		if ($demand->getCategories() && $demand->getCategories() !== '0') {
@@ -178,7 +187,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 
 		// storage page
 		if ($demand->getStoragePage() != 0) {
-			$pidList = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $demand->getStoragePage(), TRUE);
+			$pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), TRUE);
 			$constraints['pid'] = $query->in('pid', $pidList);
 		}
 
@@ -244,29 +253,29 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	/**
 	 * Returns an array of orderings created from a given demand object.
 	 *
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param DemandInterface $demand
 	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 */
-	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {
+	protected function createOrderingsFromDemand(DemandInterface $demand) {
 		$orderings = array();
 		if ($demand->getTopNewsFirst()) {
-			$orderings['istopnews'] = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING;
+			$orderings['istopnews'] = QueryInterface::ORDER_DESCENDING;
 		}
 
-		if (Tx_News_Utility_Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
-			$orderList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $demand->getOrder(), TRUE);
+		if (Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
+			$orderList = GeneralUtility::trimExplode(',', $demand->getOrder(), TRUE);
 
 			if (!empty($orderList)) {
 				// go through every order statement
 				foreach ($orderList as $orderItem) {
-					list($orderField, $ascDesc) = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $orderItem, TRUE);
+					list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, TRUE);
 					// count == 1 means that no direction is given
 					if ($ascDesc) {
 						$orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
-							\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
-							\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING);
+							QueryInterface::ORDER_DESCENDING :
+							QueryInterface::ORDER_ASCENDING);
 					} else {
-						$orderings[$orderField] = \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
+						$orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
 					}
 				}
 			}
@@ -280,7 +289,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 *
 	 * @param string $importSource import source
 	 * @param integer $importId import id
-	 * @return Tx_News_Domain_Model_News
+	 * @return \GeorgRinger\News\Domain\Model\News
 	 */
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();
@@ -301,7 +310,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 *
 	 * @param integer $uid id of record
 	 * @param boolean $respectEnableFields if set to false, hidden records are shown
-	 * @return Tx_News_Domain_Model_News
+	 * @return \GeorgRinger\News\Domain\Model\News
 	 */
 	public function findByUid($uid, $respectEnableFields = TRUE) {
 		$query = $this->createQuery();
@@ -320,10 +329,10 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	 * Get the count of news records by month/year and
 	 * returns the result compiled as array
 	 *
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param DemandInterface $demand
 	 * @return array
 	 */
-	public function countByDate(Tx_News_Domain_Model_DemandInterface $demand) {
+	public function countByDate(DemandInterface $demand) {
 		$data = array();
 		$sql = $this->findDemandedRaw($demand);
 
@@ -378,27 +387,27 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 	/**
 	 * Get the search constraints
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param QueryInterface $query
+	 * @param DemandInterface $demand
 	 * @return array
 	 * @throws UnexpectedValueException
 	 */
-	protected function getSearchConstraints(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand) {
+	protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand) {
 		$constraints = array();
 		if ($demand->getSearch() === NULL) {
 			return $constraints;
 		}
 
-		/* @var $searchObject Tx_News_Domain_Model_Dto_Search */
+		/* @var $searchObject \GeorgRinger\News\Domain\Model\Dto\Search */
 		$searchObject = $demand->getSearch();
 
 		$searchSubject = $searchObject->getSubject();
 		if (!empty($searchSubject)) {
-			$searchFields = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $searchObject->getFields(), TRUE);
+			$searchFields = GeneralUtility::trimExplode(',', $searchObject->getFields(), TRUE);
 			$searchConstraints = array();
 
 			if (count($searchFields) === 0) {
-				throw new UnexpectedValueException('No search fields defined', 1318497755);
+				throw new \UnexpectedValueException('No search fields defined', 1318497755);
 			}
 
 
@@ -417,7 +426,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		if ($minimumDate) {
 			$field = $searchObject->getDateField();
 			if (empty($field)) {
-				throw new UnexpectedValueException('No date field is defined', 1396348732);
+				throw new \UnexpectedValueException('No date field is defined', 1396348732);
 			}
 			$constraints[] = $query->greaterThanOrEqual($field, $minimumDate);
 		}
@@ -425,7 +434,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		if ($maximumDate) {
 			$field = $searchObject->getDateField();
 			if (empty($field)) {
-				throw new UnexpectedValueException('No date field is defined', 1396348733);
+				throw new \UnexpectedValueException('No date field is defined', 1396348733);
 			}
 			$constraints[] = $query->lessThanOrEqual($field, $maximumDate);
 		}

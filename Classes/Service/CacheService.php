@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Service;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +21,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Service_CacheService {
+class CacheService {
 
 	/**
 	 * @var \TYPO3\CMS\Core\Cache\Frontend\AbstractFrontend

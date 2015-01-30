@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,6 +15,14 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\File;
+use GeorgRinger\News\Domain\Model\FileReference;
+use GeorgRinger\News\Domain\Model\Link;
+use GeorgRinger\News\Domain\Model\Media;
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Domain\Model\Tag;
+
 /**
  * Tests for domains model News
  *
@@ -20,10 +31,10 @@
  * @author Georg Ringer <typo3@ringerge.org>
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var Tx_News_Domain_Model_News
+	 * @var News
 	 */
 	protected $newsDomainModelInstance;
 
@@ -33,7 +44,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->newsDomainModelInstance = new Tx_News_Domain_Model_News();
+		$this->newsDomainModelInstance = new News();
 	}
 
 	/**
@@ -79,7 +90,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function datetimeCanBeSet() {
-		$datetime = new DateTime();
+		$datetime = new \DateTime();
 		$this->newsDomainModelInstance->setDatetime($datetime);
 		$this->assertEquals($datetime, $this->newsDomainModelInstance->getDatetime());
 	}
@@ -91,7 +102,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function archiveCanBeSet() {
-		$archive = new DateTime();
+		$archive = new \DateTime();
 		$this->newsDomainModelInstance->setArchive($archive);
 		$this->assertEquals($archive, $this->newsDomainModelInstance->getArchive());
 	}
@@ -237,7 +248,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	public function tagsCanBeSet() {
 		$tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 
-		$tag = new Tx_News_Domain_Model_Tag();
+		$tag = new Tag();
 		$tag->setTitle('Tag');
 		$tags->attach($tags);
 		$this->newsDomainModelInstance->setTags($tags);
@@ -253,7 +264,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	public function contentElementsCanBeSet() {
 		$ce = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 
-		$item = new SplObjectStorage();
+		$item = new \SplObjectStorage();
 		$ce->attach($item);
 
 		$this->newsDomainModelInstance->setContentElements($ce);
@@ -267,7 +278,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function categoryCanBeSet() {
-		$category = new Tx_News_Domain_Model_Category();
+		$category = new Category();
 		$category->setTitle('fo');
 		$categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$categories->attach($category);
@@ -282,7 +293,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function mediaCanBeSet() {
-		$media = new Tx_News_Domain_Model_Media();
+		$media = new Media();
 		$media->setTitle('fo');
 		$mediaElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$mediaElements->attach($media);
@@ -298,7 +309,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function relatedFilesCanBeSet() {
-		$file = new Tx_News_Domain_Model_File();
+		$file = new File();
 		$file->setTitle('fo');
 		$related = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$related->attach($file);
@@ -313,7 +324,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function relatedLinksCanBeSet() {
-		$link = new Tx_News_Domain_Model_Link();
+		$link = new Link();
 		$link->setTitle('fo');
 
 		$related = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -329,16 +340,16 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @return void
 	 */
 	public function correctMediaSelectionIsReturned() {
-		$imageElement1 = new Tx_News_Domain_Model_Media();
-		$imageElement1->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE);
-		$imageElement2 = new Tx_News_Domain_Model_Media();
-		$imageElement2->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE);
-		$imageElement3 = new Tx_News_Domain_Model_Media();
-		$imageElement3->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE);
-		$multimediaElement1 = new Tx_News_Domain_Model_Media();
-		$multimediaElement1->setType(Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA);
+		$imageElement1 = new Media();
+		$imageElement1->setType(Media::MEDIA_TYPE_IMAGE);
+		$imageElement2 = new Media();
+		$imageElement2->setType(Media::MEDIA_TYPE_IMAGE);
+		$imageElement3 = new Media();
+		$imageElement3->setType(Media::MEDIA_TYPE_IMAGE);
+		$multimediaElement1 = new Media();
+		$multimediaElement1->setType(Media::MEDIA_TYPE_MULTIMEDIA);
 
-		$news = new Tx_News_Domain_Model_News();
+		$news = new News();
 		$news->addMedia($imageElement1);
 		$news->addMedia($imageElement2);
 		$news->addMedia($imageElement3);
@@ -354,10 +365,10 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @test
 	 */
 	public function falMediaCanBeAdded() {
-		$mediaItem = new Tx_News_Domain_Model_FileReference();
+		$mediaItem = new FileReference();
 		$mediaItem->setTitle('Fo');
 
-		$news = new Tx_News_Domain_Model_News();
+		$news = new News();
 		$news->addFalMedia($mediaItem);
 
 		$this->assertEquals($news->getFalMedia()->current(), $mediaItem);
@@ -367,32 +378,32 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 	 * @test
 	 */
 	public function falMediaPreviewsAreReturned() {
-		$news = new Tx_News_Domain_Model_News();
+		$news = new News();
 
-		$mockedElement1 = $this->getAccessibleMock('Tx_News_Domain_Model_FileReference', array('getProperty'));
+		$mockedElement1 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', array('getProperty'));
 		$mockedElement1->_set('uid', 1);
 		$mockedElement1->_set('showinpreview', TRUE);
 		$mockedElement1->expects($this->any())->method('getProperty')->will($this->returnValue(TRUE));
 
-		$mediaItem1 = new Tx_News_Domain_Model_FileReference();
+		$mediaItem1 = new FileReference();
 		$mediaItem1->_setProperty('originalResource', $mockedElement1);
 		$news->addFalMedia($mediaItem1);
 
-		$mockedElement2 = $this->getAccessibleMock('Tx_News_Domain_Model_FileReference', array('getProperty'));
+		$mockedElement2 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', array('getProperty'));
 		$mockedElement2->_set('uid', 2);
 		$mockedElement2->_set('showinpreview', TRUE);
 		$mockedElement2->expects($this->any())->method('getProperty')->will($this->returnValue(FALSE));
 
-		$mediaItem2 = new Tx_News_Domain_Model_FileReference();
+		$mediaItem2 = new FileReference();
 		$mediaItem2->_setProperty('originalResource', $mockedElement2);
 		$news->addFalMedia($mediaItem2);
 
-		$mockedElement3 = $this->getAccessibleMock('Tx_News_Domain_Model_FileReference', array('getProperty'));
+		$mockedElement3 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', array('getProperty'));
 		$mockedElement3->_set('uid', 3);
 		$mockedElement3->_set('showinpreview', TRUE);
 		$mockedElement3->expects($this->any())->method('getProperty')->will($this->returnValue(TRUE));
 
-		$mediaItem3 = new Tx_News_Domain_Model_FileReference();
+		$mediaItem3 = new FileReference();
 		$mediaItem3->_setProperty('originalResource', $mockedElement3);
 		$news->addFalMedia($mediaItem3);
 

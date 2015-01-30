@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-{namespace n=Tx_News_ViewHelpers}<feed xmlns="http://www.w3.org/2005/Atom">
+{namespace n=GeorgRinger\News\ViewHelpers}<feed xmlns="http://www.w3.org/2005/Atom">
 	<title>{settings.list.rss.channel.title}</title>
 	<link href="{settings.list.rss.channel.link}"/>
 	<link rel="self" href="<f:format.htmlentities><f:uri.page pageType="9818"/></f:format.htmlentities>"/>

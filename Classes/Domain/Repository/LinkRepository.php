@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Domain\Repository;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,6 +21,6 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Domain_Repository_LinkRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class LinkRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 }

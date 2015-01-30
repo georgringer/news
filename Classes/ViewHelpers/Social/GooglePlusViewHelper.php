@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers\Social;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -30,10 +33,10 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
-	 * @var Tx_News_Service_SettingsService
+	 * @var \GeorgRinger\News\Service\SettingsService
 	 */
 	protected $pluginSettingsService;
 
@@ -43,10 +46,10 @@ class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends \TYPO3\CMS\Fluid\C
 	protected $tagName = 'g:plusone';
 
 	/**
-	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
 	 * @return void
 	 */
-	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+	public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService) {
 		$this->pluginSettingsService = $pluginSettingsService;
 	}
 

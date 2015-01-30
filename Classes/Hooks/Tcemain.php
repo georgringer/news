@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Hooks;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,8 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Service\AccessControlService;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 
 /**
  * Hook into tcemain which is used to show preview of news item
@@ -18,7 +23,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Hooks_Tcemain {
+class Tcemain {
 
 	/**
 	 * Flushes the cache if a news record was edited.
@@ -73,9 +78,9 @@ class Tx_News_Hooks_Tcemain {
 
 			if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fields['type']) {
 				// If "savedokview" has been pressed and current article has "type" 0 (= normal news article)
-				$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
+				$pagesTsConfig = BackendUtility::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
 				if ($pagesTsConfig['tx_news.']['singlePid']) {
-					$record = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tx_news_domain_model_news', $recordUid);
+					$record = BackendUtility::getRecord('tx_news_domain_model_news', $recordUid);
 
 					$parameters = array(
 						'no_cache' => 1,
@@ -109,8 +114,8 @@ class Tx_News_Hooks_Tcemain {
 		if ($table === 'tx_news_domain_model_news') {
 			// check permissions of assigned categories
 			if (is_int($id) && !$GLOBALS['BE_USER']->isAdmin()) {
-				$newsRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord($table, $id);
-				if (!\Tx_News_Service_AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
+				$newsRecord = BackendUtility::getRecord($table, $id);
+				if (!AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
 					$parentObject->log($table, $id, 2, 0, 1, "processDatamap: Attempt to modify a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in your BE usergroup.", 1, array($table));
 					// unset fieldArray to prevent saving of the record
 					$fieldArray = array();
@@ -130,8 +135,8 @@ class Tx_News_Hooks_Tcemain {
 	 */
 	public function processCmdmap_preProcess($command, &$table, $id, $value, $parentObject) {
 		if ($table === 'tx_news_domain_model_news' && !$GLOBALS['BE_USER']->isAdmin() && is_integer($id)) {
-			$newsRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord($table, $id);
-			if (!\Tx_News_Service_AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
+			$newsRecord = BackendUtility::getRecord($table, $id);
+			if (!AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
 				$parentObject->log($table, $id, 2, 0, 1, "processCmdmap: Attempt to " . $command . " a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in the BE usergroup.", 1, array($table));
 				// unset table to prevent saving
 				$table = '';

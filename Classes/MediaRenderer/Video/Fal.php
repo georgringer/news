@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\MediaRenderer\Video;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,26 +15,29 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\FileReference;
+use GeorgRinger\News\MediaRenderer\FalMediaInterface;
+
 /**
  * Implementation of fal support
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_MediaRenderer_Video_Fal implements Tx_News_MediaRenderer_FalMediaInterface {
+class Fal implements FalMediaInterface {
 
 	const PATH_TO_JS = 'typo3conf/ext/news/Resources/Public/JavaScript/Contrib/';
 
 	/**
 	 * Render a video player
 	 *
-	 * @param Tx_News_Domain_Model_FileReference $element
+	 * @param FileReference $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @param string $templateFile template file to override. Absolute path
 	 * @return string
 	 */
-	public function render(Tx_News_Domain_Model_FileReference $element, $width, $height, $templateFile = '' ) {
+	public function render(FileReference $element, $width, $height, $templateFile = '' ) {
 		$view = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Fluid_View_StandaloneView');
 		if (!$templateFile || !is_readable($templateFile)) {
 			$view->setTemplatePathAndFilename(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news') . 'Resources/Private/Templates/ViewHelpers/Flv.html');
@@ -52,10 +58,10 @@ class Tx_News_MediaRenderer_Video_Fal implements Tx_News_MediaRenderer_FalMediaI
 	/**
 	 * Files with extension flv|mp4 are handled within this implementation
 	 *
-	 * @param Tx_News_Domain_Model_FileReference $element
+	 * @param FileReference $element
 	 * @return boolean
 	 */
-	public function enabled(Tx_News_Domain_Model_FileReference $element) {
+	public function enabled(FileReference $element) {
 		$fileEnding = $element->getOriginalResource()->getExtension();
 
 		$enabled = FALSE;

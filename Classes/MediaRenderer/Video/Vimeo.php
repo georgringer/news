@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\MediaRenderer\Video;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\MediaRenderer\MediaInterface;
 
 /**
  * Implementation of Vimeo support
@@ -18,17 +22,17 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_MediaRenderer_Video_Vimeo implements Tx_News_MediaRenderer_MediaInterface {
+class Vimeo implements MediaInterface {
 
 	/**
 	 * Render videos from vimeo
 	 *
-	 * @param Tx_News_Domain_Model_Media $element
+	 * @param \GeorgRinger\News\Domain\Model\Media $element
 	 * @param integer $width
 	 * @param integer $height
 	 * @return string
 	 */
-	public function render(Tx_News_Domain_Model_Media $element, $width, $height) {
+	public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height) {
 		$content = '';
 
 		$url = $this->getVimeoUrl($element);
@@ -48,10 +52,10 @@ class Tx_News_MediaRenderer_Video_Vimeo implements Tx_News_MediaRenderer_MediaIn
 	/**
 	 * Check if given element includes an url to a vimeo video
 	 *
-	 * @param Tx_News_Domain_Model_Media $element
+	 * @param \GeorgRinger\News\Domain\Model\Media $element
 	 * @return boolean
 	 */
-	public function enabled(Tx_News_Domain_Model_Media $element) {
+	public function enabled(\GeorgRinger\News\Domain\Model\Media $element) {
 		$result = FALSE;
 		$url = $this->getVimeoUrl($element);
 		if ($url !== NULL) {
@@ -64,10 +68,10 @@ class Tx_News_MediaRenderer_Video_Vimeo implements Tx_News_MediaRenderer_MediaIn
 	/**
 	 * Get Vimeo url
 	 *
-	 * @param Tx_News_Domain_Model_Media $element
+	 * @param \GeorgRinger\News\Domain\Model\Media $element
 	 * @return null|string
 	 */
-	public function getVimeoUrl(Tx_News_Domain_Model_Media $element) {
+	public function getVimeoUrl(\GeorgRinger\News\Domain\Model\Media $element) {
 		$videoId = NULL;
 		$vimeoUrl = NULL;
 

@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,7 +21,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
 	protected $objectManager;
@@ -48,12 +51,12 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends \TYPO3
 	 * @return void
 	 */
 	public function correctSysLanguageIsReturnedUsingTsfe() {
-		/** @var Tx_News_Domain_Repository_CategoryRepository $mockTemplateParser */
+		/** @var \GeorgRinger\\News\\Domain\\Repository\\CategoryRepository $mockTemplateParser */
 		if (version_compare(TYPO3_branch, '6.2', '>=')) {
 			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
-			$mockTemplateParser = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'), array($objectManager));
+			$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', array('dummy'), array($objectManager));
 		} else {
-			$mockTemplateParser = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'));
+			$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', array('dummy'));
 		}
 		$result = $mockTemplateParser->_call('getSysLanguageUid');
 
@@ -76,12 +79,12 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends \TYPO3
 	 * @return void
 	 */
 	public function correctSysLanguageIsReturnedUsingGetAndPostRequest() {
-		/** @var Tx_News_Domain_Repository_CategoryRepository $mockedCategoryRepository */
+		/** @var \GeorgRinger\News\Domain\Repository\CategoryRepository $mockedCategoryRepository */
 		if (version_compare(TYPO3_branch, '6.2', '>=')) {
 			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
-			$mockedCategoryRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'), array($objectManager));
+			$mockedCategoryRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', array('dummy'), array($objectManager));
 		} else {
-			$mockedCategoryRepository = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'));
+			$mockedCategoryRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', array('dummy'));
 		}
 		unset($GLOBALS['TSFE']);
 
@@ -117,9 +120,9 @@ class Tx_News_Tests_Unit_Domain_Repository_CategoryRepositoryTest extends \TYPO3
 	public function categoryIdsAreCorrectlyReplaced($expectedResult, $given) {
 		if (version_compare(TYPO3_branch, '6.2', '>=')) {
 			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
-			$mockTemplateParser = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'), array($objectManager));
+			$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', array('dummy'), array($objectManager));
 		} else {
-			$mockTemplateParser = $this->getAccessibleMock('Tx_News_Domain_Repository_CategoryRepository', array('dummy'));
+			$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', array('dummy'));
 		}
 
 		$result = $mockTemplateParser->_call('replaceCategoryIds', $given['idList'], $given['toBeChanged']);

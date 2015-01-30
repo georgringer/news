@@ -1,5 +1,7 @@
 <?php
 
+namespace GeorgRinger\News\Tests\Unit\Utility;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -16,7 +18,7 @@
 /**
  * TemplateLayout utility class unit tests
  */
-class Tx_News_Tests_Unit_Utility_TemplateLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TemplateLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
@@ -34,7 +36,7 @@ class Tx_News_Tests_Unit_Utility_TemplateLayoutTest extends \TYPO3\CMS\Core\Test
 			),
 		);
 
-		$templateLayoutUtility = $this->getAccessibleMock('Tx_News_Utility_TemplateLayout', array('getTemplateLayoutsFromTsConfig'));
+		$templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', array('getTemplateLayoutsFromTsConfig'));
 		$templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue(array()));
 		$templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
 		$this->assertSame($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'], $templateLayouts);
@@ -62,7 +64,7 @@ class Tx_News_Tests_Unit_Utility_TemplateLayoutTest extends \TYPO3\CMS\Core\Test
 		// clear TYPO3_CONF_VARS
 		unset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']);
 
-		$templateLayoutUtility = $this->getAccessibleMock('Tx_News_Utility_TemplateLayout', array('getTemplateLayoutsFromTsConfig'));
+		$templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', array('getTemplateLayoutsFromTsConfig'));
 		$templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue($tsConfigArray));
 		$templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
 		$this->assertSame($result, $templateLayouts);
@@ -97,7 +99,7 @@ class Tx_News_Tests_Unit_Utility_TemplateLayoutTest extends \TYPO3\CMS\Core\Test
 			),
 		);
 
-		$templateLayoutUtility = $this->getAccessibleMock('Tx_News_Utility_TemplateLayout', array('getTemplateLayoutsFromTsConfig'));
+		$templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', array('getTemplateLayoutsFromTsConfig'));
 		$templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue($tsConfigArray));
 		$templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
 		$this->assertSame($result, $templateLayouts);

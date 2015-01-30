@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers\Format;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,7 +22,7 @@
  * @subpackage tx_news
  * @deprecated Use Tx_Fluid_ViewHelpers_Format_HtmlspecialcharsViewHelper
  */
-class Tx_News_ViewHelpers_Format_HscViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class HscViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Render content with htmlspecialchars

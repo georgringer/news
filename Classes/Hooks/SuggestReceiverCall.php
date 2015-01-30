@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Hooks;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,9 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\EmConfiguration;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
 /**
@@ -20,7 +26,7 @@
  * @package	TYPO3
  * @subpackage	tx_news
  */
-class Tx_News_Hooks_SuggestReceiverCall {
+class SuggestReceiverCall {
 
 	const TAG = 'tx_news_domain_model_tag';
 	const NEWS = 'tx_news_domain_model_news';
@@ -35,7 +41,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	 * @throws Exception
 	 */
 	public function createTag(array $params, \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj) {
-		$request = \TYPO3\CMS\Core\Utility\GeneralUtility::_POST();
+		$request = GeneralUtility::_POST();
 
 		try {
 				// Check if a tag is submitted
@@ -44,7 +50,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 			}
 
 			$newsUid = $request['newsid'];
-			if ((int)$newsUid === 0 && (strlen($newsUid) == 16 && !\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($newsUid, 'NEW'))) {
+			if ((int)$newsUid === 0 && (strlen($newsUid) == 16 && !GeneralUtility::isFirstPartOfStr($newsUid, 'NEW'))) {
 				throw new Exception('error_no-newsid');
 			}
 
@@ -78,7 +84,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	 */
 	protected function getTagUid(array $request) {
 			// Get configuration from EM
-		$configuration = Tx_News_Utility_EmConfiguration::getSettings();
+		$configuration = EmConfiguration::getSettings();
 
 		$pid = $configuration->getTagPid();
 		if ($pid === 0) {
@@ -108,7 +114,7 @@ class Tx_News_Hooks_SuggestReceiverCall {
 			);
 
 			/** @var \TYPO3\CMS\Core\DataHandling\DataHandler $tce */
-			$tce = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\DataHandling\\DataHandler');
+			$tce = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\DataHandling\\DataHandler');
 			$tce->start($tcemainData, array());
 			$tce->process_datamap();
 
@@ -131,9 +137,9 @@ class Tx_News_Hooks_SuggestReceiverCall {
 	protected function getTagPidFromTsConfig($newsUid) {
 		$pid = 0;
 
-		$newsRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tx_news_domain_model_news', (int)$newsUid);
+		$newsRecord = BackendUtility::getRecord('tx_news_domain_model_news', (int)$newsUid);
 
-		$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($newsRecord['pid']);
+		$pagesTsConfig = BackendUtility::getPagesTSconfig($newsRecord['pid']);
 		if (isset($pagesTsConfig['tx_news.']) && isset($pagesTsConfig['tx_news.']['tagPid'])) {
 			$pid = (int)$pagesTsConfig['tx_news.']['tagPid'];
 		}

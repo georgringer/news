@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Domain\Service;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,6 +15,12 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\File;
+use GeorgRinger\News\Domain\Model\FileReference;
+use GeorgRinger\News\Domain\Model\Link;
+use GeorgRinger\News\Domain\Model\Media;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * News Import Service
  *
@@ -19,23 +28,23 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_AbstractImportService {
+class NewsImportService extends AbstractImportService {
 
 	const ACTION_IMPORT_L10N_OVERLAY = 1;
 
 
 	/**
-	 * @var Tx_News_Domain_Repository_NewsRepository
+	 * @var \GeorgRinger\News\Domain\Repository\NewsRepository
 	 */
 	protected $newsRepository;
 
 	/**
-	 * @var Tx_News_Domain_Repository_TtContentRepository
+	 * @var \GeorgRinger\News\Domain\Repository\TtContentRepository
 	 */
 	protected $ttContentRepository;
 
 	/**
-	 * @var Tx_News_Domain_Repository_CategoryRepository
+	 * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
 	 */
 	protected $categoryRepository;
 
@@ -51,7 +60,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 
 	public function __construct() {
 		/** @var \TYPO3\CMS\Core\Log\Logger $logger */
-		$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+		$logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
 		$this->logger = $logger;
 
 		parent::__construct();
@@ -60,20 +69,20 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	/**
 	 * Inject the news repository
 	 *
-	 * @param Tx_News_Domain_Repository_NewsRepository $newsRepository
+	 * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
 	 * @return void
 	 */
-	public function injectNewsRepository(Tx_News_Domain_Repository_NewsRepository $newsRepository) {
+	public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository) {
 		$this->newsRepository = $newsRepository;
 	}
 
 	/**
 	 * Inject the category repository
 	 *
-	 * @param Tx_News_Domain_Repository_CategoryRepository $categoryRepository
+	 * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
 	 * @return void
 	 */
-	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
+	public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
 	}
 
@@ -81,10 +90,10 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	/**
 	 * Inject the ttcontent repository
 	 *
-	 * @param Tx_News_Domain_Repository_TtContentRepository $ttContentRepository
+	 * @param \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
 	 * @return void
 	 */
-	public function injectTtContentRepository(Tx_News_Domain_Repository_TtContentRepository $ttContentRepository) {
+	public function injectTtContentRepository(\GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository) {
 		$this->ttContentRepository = $ttContentRepository;
 	}
 
@@ -100,7 +109,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 
 	/**
 	 * @param array $importItem
-	 * @return null|Tx_News_Domain_Model_News
+	 * @return null|\GeorgRinger\News\Domain\Model\News
 	 */
 	protected function initializeNewsRecord(array $importItem) {
 		$news = NULL;
@@ -113,7 +122,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 		}
 
 		if ($news === NULL) {
-			$news = $this->objectManager->get('Tx_News_Domain_Model_News');
+			$news = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\News');
 			$this->newsRepository->add($news);
 		} else {
 			$this->logger->info(sprintf('News exists already with id "%s".', $news->getUid()));
@@ -124,12 +133,12 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	}
 
 	/**
-	 * @param Tx_News_Domain_Model_News $news
+	 * @param \GeorgRinger\News\Domain\Model\News $news
 	 * @param array $importItem
 	 * @param array $importItemOverwrite
-	 * @return Tx_News_Domain_Model_News
+	 * @return \GeorgRinger\News\Domain\Model\News
 	 */
-	protected function hydrateNewsRecord(Tx_News_Domain_Model_News $news, array $importItem, array $importItemOverwrite) {
+	protected function hydrateNewsRecord(\GeorgRinger\News\Domain\Model\News $news, array $importItem, array $importItemOverwrite) {
 
 		if (!empty($importItemOverwrite)) {
 			$importItem = array_merge($importItem, $importItemOverwrite);
@@ -150,8 +159,8 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 
 		$news->setType($importItem['type']);
 		$news->setKeywords($importItem['keywords']);
-		$news->setDatetime(new DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
-		$news->setArchive(new DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
+		$news->setDatetime(new \DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
+		$news->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
 
 		$contentElementUidArray = \TYPO3\CMS\Extbase\Utility\ArrayUtility::trimExplode(',', $importItem['content_elements'], TRUE);
 		foreach ($contentElementUidArray as $contentElementUid) {
@@ -188,7 +197,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 		}
 
 		/** @var $basicFileFunctions \TYPO3\CMS\Core\Utility\File\BasicFileUtility */
-		$basicFileFunctions = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Utility\\File\\BasicFileUtility');
+		$basicFileFunctions = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Utility\\File\\BasicFileUtility');
 
 		// media relation
 		if (is_array($importItem['media'])) {
@@ -196,11 +205,11 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 			foreach ($importItem['media'] as $mediaItem) {
 
 				// multi media
-				if ((int)$mediaItem['type'] === Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA) {
+				if ((int)$mediaItem['type'] === Media::MEDIA_TYPE_MULTIMEDIA) {
 
 					if (($media = $this->getMultiMediaIfAlreadyExists($news, $mediaItem['multimedia'])) === FALSE) {
-						/** @var Tx_News_Domain_Model_Media $media */
-						$media = $this->objectManager->get('Tx_News_Domain_Model_Media');
+						/** @var Media $media */
+						$media = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Media');
 						$media->setMultimedia($mediaItem['multimedia']);
 						$news->addMedia($media);
 					}
@@ -240,7 +249,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 						}
 					}
 
-					/** @var $media Tx_News_Domain_Model_FileReference */
+					/** @var $media FileReference */
 					if (!$media = $this->getIfFalRelationIfAlreadyExists($news->getFalMedia(), $file)) {
 
 						// file not inside a storage copy the one form storage 0 to the import folder
@@ -248,7 +257,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 							$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
 						}
 
-						$media = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
+						$media = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\FileReference');
 						$media->setFileUid($file->getUid());
 						$news->addFalMedia($media);
 					}
@@ -272,7 +281,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 							$uniqueName
 						);
 
-						$media = $this->objectManager->get('Tx_News_Domain_Model_Media');
+						$media = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Media');
 						$news->addMedia($media);
 
 						$media->setImage(basename($uniqueName));
@@ -316,7 +325,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 						}
 					}
 
-					/** @var $relatedFile Tx_News_Domain_Model_FileReference */
+					/** @var $relatedFile FileReference */
 					if (!$relatedFile = $this->getIfFalRelationIfAlreadyExists($news->getFalRelatedFiles(), $file)) {
 
 						// file not inside a storage copy the one form storage 0 to the import folder
@@ -324,7 +333,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 							$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
 						}
 
-						$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
+						$relatedFile = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\FileReference');
 						$relatedFile->setFileUid($file->getUid());
 						$news->addFalRelatedFile($relatedFile);
 					}
@@ -349,7 +358,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 							$uniqueName
 						);
 
-						$relatedFile = $this->objectManager->get('Tx_News_Domain_Model_File');
+						$relatedFile = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\File');
 						$news->addRelatedFile($relatedFile);
 
 						$relatedFile->setFile(basename($uniqueName));
@@ -363,9 +372,9 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 
 		if (is_array($importItem['related_links'])) {
 			foreach ($importItem['related_links'] as $link) {
-				/** @var $relatedLink Tx_News_Domain_Model_Link */
+				/** @var $relatedLink Link */
 				if (($relatedLink = $this->getRelatedLinkIfAlreadyExists($news, $link['uri'])) === FALSE) {
-					$relatedLink = $this->objectManager->get('Tx_News_Domain_Model_Link');
+					$relatedLink = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Link');
 					$relatedLink->setUri($link['uri']);
 					$news->addRelatedLink($relatedLink);
 				}
@@ -448,11 +457,11 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	/**
 	 * Get media file if it exists
 	 *
-	 * @param Tx_News_Domain_Model_News $news
+	 * @param \GeorgRinger\News\Domain\Model\News $news
 	 * @param string $mediaFile
-	 * @return Boolean|Tx_News_Domain_Model_Media
+	 * @return Boolean|\GeorgRinger\News\Domain\Model\Media
 	 */
-	protected function getMediaIfAlreadyExists(Tx_News_Domain_Model_News $news, $mediaFile) {
+	protected function getMediaIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $mediaFile) {
 		$result = FALSE;
 		$mediaItems = $news->getMedia();
 
@@ -471,11 +480,11 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	/**
 	 * Get multimedia object if it exists
 	 *
-	 * @param Tx_News_Domain_Model_News $news
+	 * @param \GeorgRinger\News\Domain\Model\News $news
 	 * @param string $url
-	 * @return Boolean|Tx_News_Domain_Model_Media
+	 * @return Boolean|\GeorgRinger\News\Domain\Model\Media
 	 */
-	protected function getMultiMediaIfAlreadyExists(Tx_News_Domain_Model_News $news, $url) {
+	protected function getMultiMediaIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $url) {
 		$result = FALSE;
 		$mediaItems = $news->getMedia();
 
@@ -493,11 +502,11 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	/**
 	 * Get related file if it exists
 	 *
-	 * @param Tx_News_Domain_Model_News $news
+	 * @param \GeorgRinger\News\Domain\Model\News $news
 	 * @param string $relatedFile
-	 * @return Boolean|Tx_News_Domain_Model_File
+	 * @return Boolean|File
 	 */
-	protected function getRelatedFileIfAlreadyExists(Tx_News_Domain_Model_News $news, $relatedFile) {
+	protected function getRelatedFileIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $relatedFile) {
 		$result = FALSE;
 		$relatedItems = $news->getRelatedFiles();
 
@@ -519,14 +528,14 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	/**
 	 * Get an existing items from the references that matches the file
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference> $items
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference> $items
 	 * @param \TYPO3\CMS\Core\Resource\File $file
-	 * @return bool|Tx_News_Domain_Model_FileReference
+	 * @return bool|FileReference
 	 */
 	protected function getIfFalRelationIfAlreadyExists(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $items, \TYPO3\CMS\Core\Resource\File $file) {
 		$result = FALSE;
 		if ($items->count() !== 0) {
-			/** @var $item Tx_News_Domain_Model_FileReference */
+			/** @var $item FileReference */
 			foreach ($items as $item) {
 				// only check already persisted items
 				if ($item->getFileUid() === (int)$file->getUid()
@@ -546,11 +555,11 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 	/**
 	 * Get an existing related link object
 	 *
-	 * @param Tx_News_Domain_Model_News $news
+	 * @param \GeorgRinger\News\Domain\Model\News $news
 	 * @param string $uri
-	 * @return bool|Tx_News_Domain_Model_Link
+	 * @return bool|Link
 	 */
-	protected function getRelatedLinkIfAlreadyExists(Tx_News_Domain_Model_News $news, $uri) {
+	protected function getRelatedLinkIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $uri) {
 		$result = FALSE;
 		$links = $news->getRelatedLinks();
 

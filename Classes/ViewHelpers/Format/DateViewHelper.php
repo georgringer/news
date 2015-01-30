@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\ViewHelpers\Format;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -50,12 +53,12 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Format_DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Render the supplied DateTime object as a formatted date.
 	 *
-	 * @param mixed $date DateTime object or a string that is accepted by DateTime constructor
+	 * @param mixed $date \DateTime object or a string that is accepted by DateTime constructor
 	 * @param string $format Format String which is taken to format the Date/Time
 	 * @param bool $currentDate if true, the current date is used
 	 * @param bool $strftime if true, the strftime is used instead of date()
@@ -77,9 +80,9 @@ class Tx_News_ViewHelpers_Format_DateViewHelper extends \TYPO3\CMS\Fluid\Core\Vi
 				return '';
 			}
 		}
-		if (!$date instanceof DateTime) {
+		if (!$date instanceof \DateTime) {
 			try {
-				$date = new DateTime($date);
+				$date = new \DateTime($date);
 			} catch (Exception $exception) {
 				throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception('"' . $date . '" could not be parsed by DateTime constructor.', 1241722579);
 			}

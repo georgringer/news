@@ -16,17 +16,20 @@ namespace GeorgRinger\News\Tests\Unit\Functional\ViewHelpers;
  */
 
 
+use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Functional test for the Tx_News_ViewHelpers_SimplePrevNextViewHelper
+ * Class SimplePrevNextViewHelperTest
+ *
+ * @package GeorgRinger\News\Tests\Unit\Functional\ViewHelpers
  */
 class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface|\Tx_News_ViewHelpers_SimplePrevNextViewHelper */
+	/** @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface|\GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper */
 	protected $mockedViewHelper;
 
-	/** @var \Tx_News_Domain_Model_News */
+	/** @var \GeorgRinger\News\Domain\Model\News */
 	protected $news;
 
 	protected $testExtensionsToLoad = array('typo3conf/ext/news');
@@ -34,9 +37,9 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestC
 
 	public function setUp() {
 		parent::setUp();
-		$this->mockedViewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_SimplePrevNextViewHelper', array('dummy'), array(), '', TRUE, TRUE, FALSE);
+		$this->mockedViewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('dummy'), array(), '', TRUE, TRUE, FALSE);
 
-		$this->news = new \Tx_News_Domain_Model_News();
+		$this->news = new News();
 		$this->news->setPid(9);
 
 		$this->importDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.xml');

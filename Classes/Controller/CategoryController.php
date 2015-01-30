@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Controller;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,7 +20,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Controller_CategoryController extends Tx_News_Controller_NewsController {
+class CategoryController extends NewsController {
 
 	const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
 
@@ -30,22 +32,22 @@ class Tx_News_Controller_CategoryController extends Tx_News_Controller_NewsContr
 	protected $pageUid = 0;
 
 	/**
-	 * @var Tx_News_Domain_Repository_NewsRepository
+	 * @var \GeorgRinger\News\Domain\Repository\NewsRepository
 	 */
 	protected $newsRepository;
 
 	/**
-	 * @var Tx_News_Domain_Repository_CategoryRepository
+	 * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
 	 */
 	protected $categoryRepository;
 
 	/**
 	 * Inject a category repository to enable DI
 	 *
-	 * @param Tx_News_Domain_Repository_CategoryRepository $categoryRepository
+	 * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
 	 * @return void
 	 */
-	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
+	public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
 	}
 

@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Domain\Repository;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +14,9 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+use GeorgRinger\News\Domain\Model\DemandInterface;
+
 /**
  * Abstract demanded repository
  *
@@ -18,9 +24,9 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
+abstract class AbstractDemandedRepository
 	extends \TYPO3\CMS\Extbase\Persistence\Repository
-	implements Tx_News_Domain_Repository_DemandedRepositoryInterface {
+	implements \GeorgRinger\News\Domain\Repository\DemandedRepositoryInterface {
 
 	/**
 	 * @var \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface
@@ -38,29 +44,29 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	 * Returns an array of constraints created from a given demand object.
 	 *
 	 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param DemandInterface $demand
 	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 * @abstract
 	 */
-	abstract protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, Tx_News_Domain_Model_DemandInterface $demand);
+	abstract protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query, DemandInterface $demand);
 
 	/**
 	 * Returns an array of orderings created from a given demand object.
 	 *
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param DemandInterface $demand
 	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 * @abstract
 	 */
-	abstract protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand);
+	abstract protected function createOrderingsFromDemand(DemandInterface $demand);
 
 	/**
 	 * Returns the objects of this repository matching the demand.
 	 *
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param DemandInterface $demand
 	 * @param boolean $respectEnableFields
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
-	public function findDemanded(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
+	public function findDemanded(DemandInterface $demand, $respectEnableFields = TRUE) {
 		$query = $this->generateQuery($demand, $respectEnableFields);
 
 		return $query->execute();
@@ -69,11 +75,11 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	/**
 	 * Returns the database query to get the matching result
 	 *
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param DemandInterface $demand
 	 * @param boolean $respectEnableFields
 	 * @return string
 	 */
-	public function findDemandedRaw(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
+	public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = TRUE) {
 		$query = $this->generateQuery($demand, $respectEnableFields);
 
 		$queryParser = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Typo3DbQueryParser');
@@ -136,7 +142,7 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 		return $sql;
 	}
 
-	protected function generateQuery(Tx_News_Domain_Model_DemandInterface $demand, $respectEnableFields = TRUE) {
+	protected function generateQuery(DemandInterface $demand, $respectEnableFields = TRUE) {
 		$query = $this->createQuery();
 
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
@@ -191,10 +197,10 @@ abstract class Tx_News_Domain_Repository_AbstractDemandedRepository
 	/**
 	 * Returns the total number objects of this repository matching the demand.
 	 *
-	 * @param Tx_News_Domain_Model_DemandInterface $demand
+	 * @param DemandInterface $demand
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
-	public function countDemanded(Tx_News_Domain_Model_DemandInterface $demand) {
+	public function countDemanded(DemandInterface $demand) {
 		$query = $this->createQuery();
 
 		if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {

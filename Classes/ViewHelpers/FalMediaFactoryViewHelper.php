@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\ViewHelpers;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,13 +15,16 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\FileReference;
+use GeorgRinger\News\MediaRenderer\FalMediaInterface;
+
 /**
  * ViewHelper to show videos
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * If the escaping interceptor should be disabled inside this ViewHelper,
@@ -36,13 +42,13 @@ class Tx_News_ViewHelpers_FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Cor
 	 * and use the proper ones to render the media element
 	 *
 	 * @param string $classes list of classes which are used to render the media object
-	 * @param Tx_News_Domain_Model_FileReference $element Current media object
+	 * @param FileReference $element Current media object
 	 * @param integer $width width
 	 * @param integer $height height
 	 * @return string
 	 * @throws UnexpectedValueException
 	 */
-	public function render($classes, Tx_News_Domain_Model_FileReference $element, $width, $height) {
+	public function render($classes, FileReference $element, $width, $height) {
 		$content = '';
 		$classList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $classes, TRUE);
 
@@ -51,8 +57,8 @@ class Tx_News_ViewHelpers_FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Cor
 			$videoObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($classData);
 
 				// check interface implementation
-			if (!($videoObject instanceof Tx_News_MediaRenderer_FalMediaInterface)) {
-				throw new UnexpectedValueException('$videoObject must implement interface Tx_News_MediaRenderer_FalMediaInterface', 1385297020);
+			if (!($videoObject instanceof FalMediaInterface)) {
+				throw new \UnexpectedValueException('$videoObject must implement interface \GeorgRinger\News\MediaRenderer\FalMediaInterface', 1385297020);
 			}
 
 				// if no content found and the implementation is enabled, try to render

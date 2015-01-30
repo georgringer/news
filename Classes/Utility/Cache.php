@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Utility;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Cache Utility class
@@ -19,7 +23,7 @@
  * @subpackage tx_news
  * @author Lars Hess <larshess@gmail.com>
  */
-class Tx_News_Utility_Cache {
+class Cache {
 
 	/**
 	 * Stack for processed cObjs which has added news relevant cache tags.
@@ -73,14 +77,14 @@ class Tx_News_Utility_Cache {
 	 * Adds page cache tags by used storagePages.
 	 * This adds tags with the scheme tx_news_pid_[news:pid]
 	 *
-	 * @param Tx_News_Domain_Model_Dto_NewsDemand $demand
+	 * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
 	 * @return void
 	 */
-	public static function addPageCacheTagsByDemandObject(Tx_News_Domain_Model_Dto_NewsDemand $demand) {
+	public static function addPageCacheTagsByDemandObject(\GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand) {
 		$cacheTags = array();
         if ($demand->getStoragePage()) {
             // Add cache tags for each storage page
-            foreach (\TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
+            foreach (GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
 				$cacheTags[] = 'tx_news_pid_' . $pageId;
 			}
 		}

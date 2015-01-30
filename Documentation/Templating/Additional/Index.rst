@@ -124,7 +124,7 @@ If you want to customize the Paginate ViewHelper Template you can customize it b
 
 	plugin.tx_news {
 		view {
-			widget.Tx_News_ViewHelpers_Widget_PaginateViewHelper.templateRootPath = fileadmin/pathtocustomnews/Templates/
+			widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = fileadmin/pathtocustomnews/Templates/
 		}
 	}
 

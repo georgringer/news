@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Utility;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\Validation;
 
 /**
  * Tests for Validation
@@ -19,7 +23,7 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Utility_ValidationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ValidationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	const ALLOWED_FIELDS = 'author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title';
 
@@ -31,7 +35,7 @@ class Tx_News_Tests_Unit_Utility_ValidationTest extends \TYPO3\CMS\Core\Tests\Un
 	 * @return void
 	 */
 	public function testForValidOrdering($expectedFields, $expected) {
-		$validation = Tx_News_Utility_Validation::isValidOrdering($expectedFields, self::ALLOWED_FIELDS);
+		$validation = Validation::isValidOrdering($expectedFields, self::ALLOWED_FIELDS);
 		$this->assertEquals($validation, $expected);
 
 	}

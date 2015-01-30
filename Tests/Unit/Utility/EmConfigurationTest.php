@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Utility;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,15 +14,16 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\EmConfiguration;
 
 /**
- * Test for Tx_News_Utility_EmConfiguration
+ * Test for EmConfiguration
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Utility_EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var array
@@ -50,7 +54,7 @@ class Tx_News_Tests_Unit_Utility_EmConfigurationTest extends \TYPO3\CMS\Core\Tes
 	 */
 	public function settingsAreCorrectlyReturned($expectedFields, $expected) {
 		$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news'] = $expectedFields;
-		$this->assertEquals($expected, Tx_News_Utility_EmConfiguration::parseSettings());
+		$this->assertEquals($expected, EmConfiguration::parseSettings());
 	}
 
 	/**
@@ -82,7 +86,7 @@ class Tx_News_Tests_Unit_Utility_EmConfigurationTest extends \TYPO3\CMS\Core\Tes
 	 */
 	public function extensionManagerConfigurationIsCorrectlyReturned($expectedFields, $expected) {
 		$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news'] = $expectedFields;
-		$this->assertEquals($expected, Tx_News_Utility_EmConfiguration::getSettings());
+		$this->assertEquals($expected, EmConfiguration::getSettings());
 	}
 
 	/**
@@ -93,16 +97,16 @@ class Tx_News_Tests_Unit_Utility_EmConfigurationTest extends \TYPO3\CMS\Core\Tes
 	public function extensionManagerConfigurationIsCorrectlyReturnedDataProvider() {
 		return array(
 			'noConfigurationFound' => array(
-				NULL, new Tx_News_Domain_Model_Dto_EmConfiguration(array())
+				NULL, new EmConfiguration(array())
 			),
 			'wrongConfigurationFound' => array(
-				serialize('Test 123'), new Tx_News_Domain_Model_Dto_EmConfiguration(array())
+				serialize('Test 123'), new EmConfiguration(array())
 			),
 			'noValidPropertiesFound' => array(
-				serialize(array('key' => 'value')), new Tx_News_Domain_Model_Dto_EmConfiguration(array())
+				serialize(array('key' => 'value')), new EmConfiguration(array())
 			),
 			'validPropertiesFound' => array(
-				serialize(array('key' => 'value', 'pageModuleFieldsNews' => 'test')), new Tx_News_Domain_Model_Dto_EmConfiguration(array('pageModuleFieldsNews' => 'test'))
+				serialize(array('key' => 'value', 'pageModuleFieldsNews' => 'test')), new EmConfiguration(array('pageModuleFieldsNews' => 'test'))
 			),
 		);
 	}

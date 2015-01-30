@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Utility;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,21 +14,22 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\ImportJob;
 
 /**
- * Test class for Tx_News_Utility_ImportJob
+ * Test class for ImportJob
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Utility_ImportJobTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ImportJobTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
  	 * @test
 	 */
 	public function classCanBeRegistered() {
-		$importJobInstance = new Tx_News_Utility_ImportJob();
+		$importJobInstance = new ImportJob();
 
 		$jobs = array();
 		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);

@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -46,7 +49,7 @@
  * </output>
  *
  */
-class Tx_News_ViewHelpers_SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/** @var \TYPO3\CMS\Core\Database\DatabaseConnection */
 	protected $databaseConnection;
@@ -69,14 +72,14 @@ class Tx_News_ViewHelpers_SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core
 	}
 
 	/**
-	 * @param Tx_News_Domain_Model_News $news
+	 * @param \GeorgRinger\News\Domain\Model\News $news
 	 * @param string $pidList this is something
 	 * @param string $sortField
 	 * @param string $as
 	 * @throws TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
 	 * @return string
 	 */
-	public function render(Tx_News_Domain_Model_News $news, $pidList = '', $sortField = 'datetime', $as) {
+	public function render(\GeorgRinger\News\Domain\Model\News $news, $pidList = '', $sortField = 'datetime', $as) {
 		$neighbours = $this->getNeighbours($news, $pidList, $sortField);
 
 		$mapped = $this->mapResultToObjects($neighbours);
@@ -109,7 +112,7 @@ class Tx_News_ViewHelpers_SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core
 				$tmp['next'] = $result[0];
 				break;
 			default:
-				throw new UnexpectedValueException(sprintf('Unexpected count of "%s" which is not implemented!', $count));
+				throw new \UnexpectedValueException(sprintf('Unexpected count of "%s" which is not implemented!', $count));
 		}
 
 		foreach ($tmp as $_id => $single) {
@@ -130,7 +133,7 @@ class Tx_News_ViewHelpers_SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core
 
 		$rawRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . (int)$id);
 		if (is_array($rawRecord)) {
-			$className = 'Tx_News_Domain_Model_News';
+			$className = 'GeorgRinger\\News\\Domain\\Model\\News';
 
 			$records = $this->dataMapper->map($className, array($rawRecord));
 			$record = array_shift($records);
@@ -156,16 +159,16 @@ class Tx_News_ViewHelpers_SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core
 			return '';
 		}
 
-		throw new UnexpectedValueException('No TSFE for frontend and no BE_USER for Backend defined, please report the issue!');
+		throw new \UnexpectedValueException('No TSFE for frontend and no BE_USER for Backend defined, please report the issue!');
 	}
 
 	/**
-	 * @param Tx_News_Domain_Model_News $news
+	 * @param \GeorgRinger\News\Domain\Model\News $news
 	 * @param $pidList
 	 * @param $sortField
 	 * @return array
 	 */
-	protected function getNeighbours(Tx_News_Domain_Model_News $news, $pidList, $sortField) {
+	protected function getNeighbours(\GeorgRinger\News\Domain\Model\News $news, $pidList, $sortField) {
 		$pidList = empty($pidList) ? $news->getPid() : $pidList;
 
 		$select = 'SELECT tx_news_domain_model_news.uid,tx_news_domain_model_news.title ';

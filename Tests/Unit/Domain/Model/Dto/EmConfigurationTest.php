@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 
 /**
  * Tests for domains model News
@@ -19,7 +23,7 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if the settings can be read
@@ -46,7 +50,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends \TYPO3\CMS
 			'resourceFolderImporter' => 'fo',
 		);
 
-		$configurationInstance = new Tx_News_Domain_Model_Dto_EmConfiguration($configuration);
+		$configurationInstance = new EmConfiguration($configuration);
 
 		foreach ($configuration as $key => $value) {
 			$functionName = 'get' . ucwords($key);
@@ -80,7 +84,7 @@ class Tx_News_Tests_Unit_Domain_Model_Dto_EmConfigurationTest extends \TYPO3\CMS
 			'resourceFolderImporter' => '/news_import',
 		);
 
-		$configurationInstance = new Tx_News_Domain_Model_Dto_EmConfiguration(array());
+		$configurationInstance = new EmConfiguration(array());
 
 		foreach ($configuration as $key => $value) {
 			$functionName = 'get' . ucwords($key);

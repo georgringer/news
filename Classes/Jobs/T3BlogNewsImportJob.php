@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Jobs;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,7 +22,7 @@
  * @subpackage tx_news
  * @author Ingo Renner <ingo@typo3.org>
  */
-class Tx_News_Jobs_T3BlogNewsImportJob extends Tx_News_Jobs_AbstractImportJob {
+class T3BlogNewsImportJob extends AbstractImportJob {
 
 	/**
 	 * @var int
@@ -33,20 +36,20 @@ class Tx_News_Jobs_T3BlogNewsImportJob extends Tx_News_Jobs_AbstractImportJob {
 	/**
 	 * Inject import dataprovider service
 	 *
-	 * @param Tx_News_Service_Import_T3BlogNewsDataProviderService $importDataProviderService
+	 * @param \GeorgRinger\News\Service\Import\T3BlogNewsDataProviderService $importDataProviderService
 	 * @return void
 	 */
-	public function injectImportDataProviderService(Tx_News_Service_Import_T3BlogNewsDataProviderService $importDataProviderService) {
+	public function injectImportDataProviderService(\GeorgRinger\News\Service\Import\T3BlogNewsDataProviderService $importDataProviderService) {
 		$this->importDataProviderService = $importDataProviderService;
 	}
 
 	/**
 	 * Inject import service
 	 *
-	 * @param Tx_News_Domain_Service_NewsImportService $importService
+	 * @param \GeorgRinger\News\Domain\Service\NewsImportService $importService
 	 * @return void
 	 */
-	public function injectImportService(Tx_News_Domain_Service_NewsImportService $importService) {
+	public function injectImportService(\GeorgRinger\News\Domain\Service\NewsImportService $importService) {
 		$this->importService = $importService;
 	}
 }

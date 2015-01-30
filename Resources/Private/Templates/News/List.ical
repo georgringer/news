@@ -1,4 +1,4 @@
-{namespace n=Tx_News_ViewHelpers}BEGIN:VCALENDAR
+{namespace n=GeorgRinger\News\ViewHelpers}BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//TYPO3/NONSGML News system (news)//EN
 <f:if condition="{news}"><f:for each="{news}" as="newsItem">BEGIN:VEVENT

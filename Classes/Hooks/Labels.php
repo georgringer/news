@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Hooks;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,11 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Media;
+use GeorgRinger\News\Service\CategoryService;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Userfunc to get alternative label
@@ -19,7 +27,7 @@
  * @package	TYPO3
  * @subpackage	tx_news
  */
-class Tx_News_Hooks_Labels {
+class Labels {
 
 	/**
 	 * Generate additional label for category records
@@ -30,15 +38,15 @@ class Tx_News_Hooks_Labels {
 	 */
 	public function getUserLabelCategory(array &$params) {
 			// In list view: show normal label
-		$listView = strpos(\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/sysext/list/mod1/db_list.php')
-					||  strpos(\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?&M=web_list')
-					||  strpos(\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?M=web_list');
+		$listView = strpos(GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/sysext/list/mod1/db_list.php')
+					||  strpos(GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?&M=web_list')
+					||  strpos(GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?M=web_list');
 
 			// No overlay if language of category is not base or no language yet selected
 		if ($listView || !is_array($params['row'])) {
 			$params['title'] = $params['row']['title'];
 		} else {
-			$params['title'] = Tx_News_Service_CategoryService::translateCategoryRecord($params['row']['title'], $params['row']);
+			$params['title'] = CategoryService::translateCategoryRecord($params['row']['title'], $params['row']);
 		}
 	}
 
@@ -57,24 +65,24 @@ class Tx_News_Hooks_Labels {
 			// Add additional info based on type
 		switch ((int)$params['row']['type']) {
 			// Image
-			case Tx_News_Domain_Model_Media::MEDIA_TYPE_IMAGE:
+			case Media::MEDIA_TYPE_IMAGE:
 				$typeInfo .= $this->getTitleFromFields('title,alt,caption,image', $params['row']);
 
 				if (!empty($params['row']['image'])) {
 					$params['row']['image'] = $this->splitFileName($params['row']['image']);
 					try {
-						$additionalHtmlContent = '<br />' . \TYPO3\CMS\Backend\Utility\BackendUtility::thumbCode($params['row'], 'tx_news_domain_model_media', 'image', $GLOBALS['BACK_PATH'], '', NULL, 0, '', '', FALSE);
+						$additionalHtmlContent = '<br />' . BackendUtility::thumbCode($params['row'], 'tx_news_domain_model_media', 'image', $GLOBALS['BACK_PATH'], '', NULL, 0, '', '', FALSE);
 					} catch(\TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException $exception) {
 						$additionalHtmlContent = '<br />' . htmlspecialchars($params['row']['image']);
 					}
 				}
 				break;
 				// Audio & Video
-			case Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA:
+			case Media::MEDIA_TYPE_MULTIMEDIA:
 				$typeInfo .= $this->getTitleFromFields('caption,multimedia', $params['row']);
 				break;
 				// HTML
-			case Tx_News_Domain_Model_Media::MEDIA_TYPE_HTML:
+			case Media::MEDIA_TYPE_HTML:
 					// Don't show html value as this could get a XSS
 				$typeInfo .= $params['row']['caption'];
 				break;
@@ -89,20 +97,20 @@ class Tx_News_Hooks_Labels {
 		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'])) {
 			$params = array('params' => $params, 'title' => $title);
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'] as $reference) {
-				$title = \TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
+				$title = GeneralUtility::callUserFunction($reference, $params, $this);
 			}
 		}
 
 			// Preview
 		if ($params['row']['showinpreview']) {
 			$label = htmlspecialchars($GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.show'));
-			$icon = '../' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
+			$icon = '../' . ExtensionManagementUtility::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
 			$title .= ' <img title="' . $label . '" src="' . $icon . '" />';
 		}
 
 			// Show the [No title] if empty
 		if (empty($title)) {
-			$title =  \TYPO3\CMS\Backend\Utility\BackendUtility::getNoRecordTitle(TRUE);
+			$title =  BackendUtility::getNoRecordTitle(TRUE);
 		}
 
 		$params['title'] = $title;
@@ -145,7 +153,7 @@ class Tx_News_Hooks_Labels {
 	 */
 	protected function getTitleFromFields($fieldList, $record = array()) {
 		$title = '';
-		$fields = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $fieldList, TRUE);
+		$fields = GeneralUtility::trimExplode(',', $fieldList, TRUE);
 
 		if (!is_array($record) || empty($record)) {
 			return $title;

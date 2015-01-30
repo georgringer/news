@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,32 +15,34 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\NewsRecurring\Domain\Model\News;
 
 /**
- * Test for Tx_News_ViewHelpers_LinkViewHelper
+ * Test for LinkViewHelper
  */
-class Tx_News_Tests_Unit_ViewHelpers_LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	protected $mockedContentObjectRenderer;
 
 	protected $mockedViewHelper;
 
-	/** @var Tx_News_Domain_Model_News */
+	/** @var News */
 	protected $newsItem;
 
 	/**
 	 * Set up
 	 */
 	public function setUp() {
-		$this->mockedViewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_LinkViewHelper', array('init', 'renderChildren'));
+		$this->mockedViewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', array('init', 'renderChildren'));
 		$this->mockedContentObjectRenderer = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer', array('typoLink_URL'));
-		$pluginSettings = $this->getAccessibleMock('Tx_News_Service_SettingsService', array('getSettings'));
+		$pluginSettings = $this->getAccessibleMock('GeorgRinger\\News\\Service\\SettingsService', array('getSettings'));
 		$tag = $this->getAccessibleMock('TYPO3\\CMS\\Fluid\\Core\\ViewHelper\\TagBuilder', array('addAttribute', 'setContent', 'render'));
 		$this->mockedViewHelper->_set('cObj', $this->mockedContentObjectRenderer);
 		$this->mockedViewHelper->_set('tag', $tag);
 		$this->mockedViewHelper->_set('pluginSettingsService', $pluginSettings);
 
-		$this->newsItem = new Tx_News_Domain_Model_News();
+		$this->newsItem = new News();
 	}
 
 	/**
@@ -75,8 +80,8 @@ class Tx_News_Tests_Unit_ViewHelpers_LinkViewHelperTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function humanReadAbleDateIsAddedToConfiguration() {
-		$dateTime = new DateTime('2014-05-16');
-		$newsItem = new Tx_News_Domain_Model_News();
+		$dateTime = new \DateTime('2014-05-16');
+		$newsItem = new \GeorgRinger\News\Domain\Model\News();
 		$newsItem->_setProperty('uid', 123);
 		$newsItem->setDatetime($dateTime);
 
@@ -102,7 +107,7 @@ class Tx_News_Tests_Unit_ViewHelpers_LinkViewHelperTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function controllerAndActionAreSkippedInUrl() {
-		$newsItem = new Tx_News_Domain_Model_News();
+		$newsItem = new \GeorgRinger\News\Domain\Model\News();
 		$newsItem->_setProperty('uid', 123);
 
 		$tsSettings = array(
@@ -122,19 +127,19 @@ class Tx_News_Tests_Unit_ViewHelpers_LinkViewHelperTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function getDetailPidFromCategoriesReturnsCorrectValue() {
-		$viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_LinkViewHelper', array('dummy'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', array('dummy'));
 
-		$newsItem = new Tx_News_Domain_Model_News();
+		$newsItem = new \GeorgRinger\News\Domain\Model\News();
 
 		$categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$category1 = new Tx_News_Domain_Model_Category();
+		$category1 = new Category();
 		$categories->attach($category1);
 
-		$category2 = new Tx_News_Domain_Model_Category();
+		$category2 = new Category();
 		$category2->setSinglePid('123');
 		$categories->attach($category2);
 
-		$category3 = new Tx_News_Domain_Model_Category();
+		$category3 = new Category();
 		$category3->setSinglePid('456');
 		$categories->attach($category3);
 
@@ -150,7 +155,7 @@ class Tx_News_Tests_Unit_ViewHelpers_LinkViewHelperTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected) {
-		$viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_LinkViewHelper', array('dummy'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', array('dummy'));
 
 		$result = $viewHelper->_call('getDetailPidFromDefaultDetailPid', $settings, NULL);
 		$this->assertEquals($expected, $result);
@@ -171,7 +176,7 @@ class Tx_News_Tests_Unit_ViewHelpers_LinkViewHelperTest extends \TYPO3\CMS\Core\
 	 * @return void
 	 */
 	public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected) {
-		$viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_LinkViewHelper', array('dummy'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', array('dummy'));
 
 		$result = $viewHelper->_call('getDetailPidFromFlexform', $settings, NULL);
 		$this->assertEquals($expected, $result);

@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Service\Import;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +21,7 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-interface Tx_News_Service_Import_DataProviderServiceInterface {
+interface DataProviderServiceInterface {
 	public function getTotalRecordCount();
 	public function getImportData();
 }

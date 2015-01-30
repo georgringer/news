@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Controller;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,9 +14,12 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Controller\NewsController;
+use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
+use GeorgRinger\News\Domain\Model\News;
 
 /**
- * Testcase for the Tx_News_Controller_NewsController class.
+ * Testcase for the NewsController class.
  *
  * @package TYPO3
  * @subpackage tx_news
@@ -21,15 +27,15 @@
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Georg Ringer <mail@ringerge.org>
  */
-class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var Tx_News_Controller_NewsController
+	 * @var NewsController
 	 */
 	private $fixture = NULL;
 
 	/**
-	 * @var Tx_News_Domain_Repository_NewsRepository
+	 * @var NewsController
 	 */
 	private $newsRepository = NULL;
 
@@ -39,10 +45,10 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 	 * @return void
 	 */
 	public function setUp() {
-		$this->fixture = new Tx_News_Controller_NewsController();
+		$this->fixture = new NewsController();
 
 		$this->newsRepository = $this->getMock(
-			'Tx_News_Domain_Repository_NewsRepository', array(), array(), '', FALSE
+			'GeorgRinger\\News\\Domain\\Repository\\NewsRepository', array(), array(), '', FALSE
 		);
 		$this->fixture->injectNewsRepository($this->newsRepository);
 	}
@@ -63,7 +69,7 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 	 * @return void
 	 */
 	public function listActionFindsDemandedNewsByDemandFromSettings() {
-		$demand = clone new Tx_News_Domain_Model_Dto_AdministrationDemand();
+		$demand = clone new AdministrationDemand();
 		$settings = array('list' => 'foo', 'orderByAllowed' => NULL);
 
 		$configurationManager = $this->getMock(
@@ -73,7 +79,7 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 			->will($this->returnValue($settings));
 
 		$fixture = $this->getMock(
-			'Tx_News_Controller_NewsController',
+			'GeorgRinger\\News\\Controller\\NewsController',
 			array('createDemandObjectFromSettings', 'emitActionSignal')
 		);
 		$fixture->injectNewsRepository($this->newsRepository);
@@ -95,11 +101,11 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 	 */
 	public function checkPidOfNewsRecordWorks() {
 		$mockedSignalDispatcher = $this->getAccessibleMock('\TYPO3\CMS\Extbase\SignalSlot\Dispatcher', array('dummy'));
-		$mockedController = $this->getAccessibleMock('Tx_News_Controller_NewsController',
+		$mockedController = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsController',
 			array('dummy'));
 		$mockedController->_set('signalSlotDispatcher', $mockedSignalDispatcher);
 
-		$news = new Tx_News_Domain_Model_News();
+		$news = new News();
 
 		// No startingpoint
 		$mockedController->_set('settings', array('startingpoint' => ''));
@@ -125,7 +131,7 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 	 * @expectedException \UnexpectedValueException
 	 */
 	public function exceptionForInvalidDemandClass() {
-		$mockedController = $this->getAccessibleMock('Tx_News_Controller_NewsController', array('dummy'));
+		$mockedController = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsController', array('dummy'));
 		$mockedObjectManager = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array('get'));
 		$mockedObjectManager->expects($this->once())->method('get')->willReturn('fo');
 		$mockedController->_set('objectManager', $mockedObjectManager);

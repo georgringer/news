@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Social;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +14,9 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\ViewHelpers\Social\DisqusViewHelper;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Tests for DisqusSizeViewHelper
@@ -19,7 +25,7 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if default file format works
@@ -28,13 +34,13 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\
 	 * @return void
 	 */
 	public function viewHelperReturnsCorrectJs() {
-		$newsItem = new Tx_News_Domain_Model_News();
+		$newsItem = new News();
 		$newsItem->setTitle('fobar');
 
 		$language = 'en';
 
-		$viewHelper = new Tx_News_ViewHelpers_Social_DisqusViewHelper();
-		$settingsService = $this->getAccessibleMock('Tx_News_Service_SettingsService');
+		$viewHelper = new DisqusViewHelper();
+		$settingsService = $this->getAccessibleMock('GeorgRinger\\News\\Service\\SettingsService');
 		$settingsService->expects($this->any())
 			->method('getSettings')
 			->will($this->returnValue(array('disqusLocale' => $language)));
@@ -43,12 +49,12 @@ class Tx_News_Tests_Unit_ViewHelpers_Social_DisqusViewHelperTest extends \TYPO3\
 		$actualResult = $viewHelper->render($newsItem, 'abcdef', 'http://typo3.org/dummy/fobar.html');
 
 		$expectedCode = '<script type="text/javascript">
-					var disqus_shortname = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue('abcdef', TRUE) . ';
-					var disqus_identifier = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue('news_' . $newUid, TRUE) . ';
-					var disqus_url = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue('http://typo3.org/dummy/fobar.html') . ';
-					var disqus_title = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue('fobar', TRUE) . ';
+					var disqus_shortname = ' . GeneralUtility::quoteJSvalue('abcdef', TRUE) . ';
+					var disqus_identifier = ' . GeneralUtility::quoteJSvalue('news_' . $newUid, TRUE) . ';
+					var disqus_url = ' . GeneralUtility::quoteJSvalue('http://typo3.org/dummy/fobar.html') . ';
+					var disqus_title = ' . GeneralUtility::quoteJSvalue('fobar', TRUE) . ';
 					var disqus_config = function () {
-						this.language = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($language) . ';
+						this.language = ' . GeneralUtility::quoteJSvalue($language) . ';
 					};
 
 					(function() {

@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,21 +14,22 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 
 /**
- * Tests for Tx_News_Domain_Model_Dto_AdministrationDemand
+ * Tests for AdministrationDemand
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Domain_Model_Dto_AdministrationDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class AdministrationDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
-	/** @var  Tx_News_Domain_Model_Dto_AdministrationDemand */
+	/** @var  AdministrationDemand */
 	protected $instance;
 
 	public function setup() {
-		$this->instance = new Tx_News_Domain_Model_Dto_AdministrationDemand();
+		$this->instance = new AdministrationDemand();
 	}
 
 	/**

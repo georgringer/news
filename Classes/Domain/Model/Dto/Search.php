@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Domain\Model\Dto;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,7 +21,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_Dto_Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Basic search word

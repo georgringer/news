@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Controller;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,25 +14,27 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Controller\TagController;
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 
 /**
- * Testcase for the Tx_News_Controller_TagController class.
+ * Testcase for the TagController class.
  *
  * @package TYPO3
  * @subpackage tx_news
  *
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Controller_TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 
 	/**
-	 * @var Tx_News_Controller_ListController
+	 * @var TagController
 	 */
 	private $fixture = NULL;
 
 	/**
-	 * @var Tx_News_Domain_Repository_TagRepository
+	 * @var \GeorgRinger\News\Domain\Repository\TagRepository
 	 */
 	private $tagRepository = NULL;
 
@@ -39,10 +44,10 @@ class Tx_News_Tests_Unit_Controller_TagControllerTest extends \TYPO3\CMS\Core\Te
 	 * @return void
 	 */
 	public function setUp() {
-		$this->fixture = new Tx_News_Controller_TagController();
+		$this->fixture = new TagController();
 
 		$this->tagRepository = $this->getMock(
-			'Tx_News_Domain_Repository_TagRepository', array(), array(), '', FALSE
+			'GeorgRinger\\News\\Domain\\Repository\\TagRepository', array(), array(), '', FALSE
 		);
 		$this->fixture->injectTagRepository($this->tagRepository);
 	}
@@ -63,7 +68,7 @@ class Tx_News_Tests_Unit_Controller_TagControllerTest extends \TYPO3\CMS\Core\Te
 	 * @return void
 	 */
 	public function listActionFindsDemandedTagsByDemandFromSettings() {
-		$demand = new Tx_News_Domain_Model_Dto_NewsDemand();
+		$demand = new NewsDemand();
 		$settings = array('list' => 'foo', 'orderBy' => 'datetime');
 
 		$mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', array('dispatch'));
@@ -72,7 +77,7 @@ class Tx_News_Tests_Unit_Controller_TagControllerTest extends \TYPO3\CMS\Core\Te
 		);
 
 		$fixture = $this->getAccessibleMock(
-			'Tx_News_Controller_TagController',
+			'GeorgRinger\\News\\Controller\\TagController',
 			array('createDemandObjectFromSettings')
 		);
 		$fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);

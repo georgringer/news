@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers\Social;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to add disqus thread
@@ -25,41 +29,41 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_Social_DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	protected $escapingInterceptorEnabled = FALSE;
 
 	/**
-	 * @var Tx_News_Service_SettingsService
+	 * @var \GeorgRinger\News\Service\SettingsService
 	 */
 	protected $pluginSettingsService;
 
 	/**
-	 * @var Tx_News_Service_SettingsService $pluginSettingsService
+	 * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
 	 * @return void
 	 */
-	public function injectSettingsService(Tx_News_Service_SettingsService $pluginSettingsService) {
+	public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService) {
 		$this->pluginSettingsService = $pluginSettingsService;
 	}
 
 	/**
 	 * Render disqus thread
 	 *
-	 * @param Tx_News_Domain_Model_News $newsItem news item
+	 * @param \GeorgRinger\News\Domain\Model\News $newsItem news item
 	 * @param string $shortName shortname
 	 * @param string $link link
 	 * @return string
 	 */
-	public function render(Tx_News_Domain_Model_News $newsItem, $shortName, $link) {
+	public function render(\GeorgRinger\News\Domain\Model\News $newsItem, $shortName, $link) {
 		$tsSettings = $this->pluginSettingsService->getSettings();
 
 		$code = '<script type="text/javascript">
-					var disqus_shortname = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($shortName, TRUE) . ';
+					var disqus_shortname = ' . GeneralUtility::quoteJSvalue($shortName, TRUE) . ';
 					var disqus_identifier = \'news_' . $newsItem->getUid() . '\';
-					var disqus_url = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($link, TRUE) . ';
-					var disqus_title = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($newsItem->getTitle(), TRUE) . ';
+					var disqus_url = ' . GeneralUtility::quoteJSvalue($link, TRUE) . ';
+					var disqus_title = ' . GeneralUtility::quoteJSvalue($newsItem->getTitle(), TRUE) . ';
 					var disqus_config = function () {
-						this.language = ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($tsSettings['disqusLocale']) . ';
+						this.language = ' . GeneralUtility::quoteJSvalue($tsSettings['disqusLocale']) . ';
 					};
 
 					(function() {

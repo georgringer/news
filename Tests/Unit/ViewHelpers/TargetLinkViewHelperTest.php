@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,18 +14,19 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
 
 /**
- * Test for Tx_News_ViewHelpers_TargetLinkViewHelper
+ * Test for TargetLinkViewHelper
  */
-class Tx_News_Tests_Unit_ViewHelpers_TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @return Tx_News_ViewHelpers_TargetLinkViewHelper
+	 * @return \GeorgRinger\News\ViewHelpers\TargetLinkViewHelper
 	 * @support
 	 */
 	protected function getPreparedInstance() {
-		$instance = new Tx_News_ViewHelpers_TargetLinkViewHelper();
+		$instance = new TargetLinkViewHelper();
 		return $instance;
 	}
 
@@ -31,7 +35,7 @@ class Tx_News_Tests_Unit_ViewHelpers_TargetLinkViewHelperTest extends \TYPO3\CMS
 	 */
 	public function canCreateViewHelperClassInstance() {
 		$instance = $this->getPreparedInstance();
-		$this->assertInstanceOf('Tx_News_ViewHelpers_TargetLinkViewHelper', $instance);
+		$this->assertInstanceOf('GeorgRinger\\News\\ViewHelpers\\TargetLinkViewHelper', $instance);
 	}
 
 
@@ -43,7 +47,7 @@ class Tx_News_Tests_Unit_ViewHelpers_TargetLinkViewHelperTest extends \TYPO3\CMS
 	 * @return void
 	 */
 	public function correctTargetIsReturned($link, $expectedResult) {
-		$viewHelper = new Tx_News_ViewHelpers_TargetLinkViewHelper();
+		$viewHelper = new TargetLinkViewHelper();
 		$this->assertEquals($viewHelper->render($link), $expectedResult);
 	}
 

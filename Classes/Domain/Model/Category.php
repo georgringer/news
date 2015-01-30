@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,30 +14,33 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\FileReference;
+
 /**
  * Category Model
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+
 	/**
 	 * @var integer
 	 */
 	protected $sorting;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $crdate;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $tstamp;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $starttime;
 
@@ -45,7 +50,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	protected $hidden;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $endtime;
 
@@ -70,13 +75,13 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	protected $description;
 
 	/**
-	 * @var Tx_News_Domain_Model_Category
+	 * @var \GeorgRinger\News\Domain\Model\Category
 	 * @lazy
 	 */
 	protected $parentcategory;
 
 	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Tx_News_Domain_Model_FileReference>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
 	 * @lazy
 	 */
 	protected $images;
@@ -115,7 +120,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Initialize images
 	 *
-	 * @return \Tx_News_Domain_Model_Category
+	 * @return \GeorgRinger\News\Domain\Model\Category
 	 */
 	public function __construct() {
 		$this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -124,7 +129,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Get creation date
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getCrdate() {
 		return $this->crdate;
@@ -133,7 +138,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Set Creation Date
 	 *
-	 * @param DateTime $crdate crdate
+	 * @param \DateTime $crdate crdate
 	 * @return void
 	 */
 	public function setCrdate($crdate) {
@@ -143,7 +148,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Get Tstamp
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getTstamp() {
 		return $this->tstamp;
@@ -152,7 +157,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Set tstamp
 	 *
-	 * @param DateTime $tstamp tstamp
+	 * @param \DateTime $tstamp tstamp
 	 * @return void
 	 */
 	public function setTstamp($tstamp) {
@@ -162,7 +167,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Get starttime
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getStarttime() {
 		return $this->starttime;
@@ -171,7 +176,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Set starttime
 	 *
-	 * @param DateTime $starttime starttime
+	 * @param \DateTime $starttime starttime
 	 * @return void
 	 */
 	public function setStarttime($starttime) {
@@ -181,7 +186,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Get Endtime
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getEndtime() {
 		return $this->endtime;
@@ -190,7 +195,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Set Endtime
 	 *
-	 * @param DateTime $endtime endttime
+	 * @param \DateTime $endtime endttime
 	 * @return void
 	 */
 	public function setEndtime($endtime) {
@@ -300,7 +305,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	}
 
 	/**
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
 	 */
 	public function getImages() {
 		return $this->images;
@@ -309,29 +314,29 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Add image
 	 *
-	 * @param Tx_News_Domain_Model_FileReference $image
+	 * @param FileReference $image
 	 */
-	public function addImage(Tx_News_Domain_Model_FileReference $image) {
+	public function addImage(FileReference $image) {
 		$this->images->attach($image);
 	}
 
 	/**
 	 * Remove image
 	 *
-	 * @param Tx_News_Domain_Model_FileReference $image
+	 * @param FileReference $image
 	 */
-	public function removeImage(Tx_News_Domain_Model_FileReference $image) {
+	public function removeImage(FileReference $image) {
 		$this->images->detach($image);
 	}
 
 	/**
 	 * Get the first image
 	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
+	 * @return FileReference|null
 	 */
 	public function getFirstImage() {
 		$images = $this->getImages();
-		foreach($images as $image) {
+		foreach ($images as $image) {
 			return $image;
 		}
 
@@ -341,7 +346,7 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Get parent category
 	 *
-	 * @return Tx_News_Domain_Model_Category
+	 * @return \GeorgRinger\News\Domain\Model\Category
 	 */
 	public function getParentcategory() {
 		return $this->parentcategory;
@@ -350,10 +355,10 @@ class Tx_News_Domain_Model_Category extends \TYPO3\CMS\Extbase\DomainObject\Abst
 	/**
 	 * Set parent category
 	 *
-	 * @param Tx_News_Domain_Model_Category $category parent category
+	 * @param \GeorgRinger\News\Domain\Model\Category $category parent category
 	 * @return void
 	 */
-	public function setParentcategory(Tx_News_Domain_Model_Category $category) {
+	public function setParentcategory(Category $category) {
 		$this->parentcategory = $category;
 	}
 

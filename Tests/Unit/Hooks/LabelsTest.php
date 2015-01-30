@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Hooks;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -13,13 +16,13 @@
  */
 
 /**
- * Tests for Tx_News_Hooks_Labels
+ * Tests for Labels
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Hooks_LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 
 	/**
@@ -28,7 +31,7 @@ class Tx_News_Tests_Unit_Hooks_LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTest
 	 * @return void
 	 */
 	public function correctFieldOfArrayIsReturned($input, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('Tx_News_Hooks_Labels', array('dummy'));
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', array('dummy'));
 		$result = $mockTemplateParser->_call('getTitleFromFields', $input[0], $input[1]);
 		$this->assertEquals($expectedResult, $result);
 	}
@@ -59,7 +62,7 @@ class Tx_News_Tests_Unit_Hooks_LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTest
 	 * @return void
 	 */
 	public function splitOfFileNameReturnsCorrectPartial($string, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('Tx_News_Hooks_Labels', array('dummy'));
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', array('dummy'));
 		$result = $mockTemplateParser->_call('splitFileName', $string);
 		$this->assertEquals($expectedResult, $result);
 	}

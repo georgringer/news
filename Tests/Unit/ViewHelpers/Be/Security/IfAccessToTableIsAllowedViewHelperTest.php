@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Be\Security;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -13,15 +16,15 @@
  */
 
 /**
- * Test case for the Tx_News_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHelper class.
+ * Test case for the IfAccessToTableIsAllowedViewHelper class.
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Tests_Unit_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpers\ViewHelperBaseTestcase {
+class IfAccessToTableIsAllowedViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpers\ViewHelperBaseTestcase {
 
 	/**
-	 * @var \Tx_News_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHelper
+	 * @var \GeorgRinger\News\ViewHelpers\Be\Security\IfAccessToTableIsAllowedViewHelper
 	 */
 	protected $viewHelper;
 
@@ -35,7 +38,7 @@ class Tx_News_Tests_Unit_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHel
 
 		$GLOBALS['BE_USER'] = $this->getMock('TYPO3\\CMS\\Core\\Authentication\\BackendUserAuthentication', array('dummy'));
 
-		$this->viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_Be_Security_IfAccessToTableIsAllowedViewHelper', array('renderThenChild', 'renderElseChild'));
+		$this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Be\\Security\\IfAccessToTableIsAllowedViewHelper', array('renderThenChild', 'renderElseChild'));
 		$this->injectDependenciesIntoViewHelper($this->viewHelper);
 		$this->viewHelper->initializeArguments();
 	}

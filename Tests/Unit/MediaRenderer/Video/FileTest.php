@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\MediaRenderer\Video;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,11 +14,13 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Media;
+use GeorgRinger\News\MediaRenderer\Video\File;
 
 /**
- * Tests for Tx_News_Tests_Interfaces_Video_FileTest
+ * Tests for File
  */
-class Tx_News_Tests_Unit_MediaRenderer_Video_FileTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class FileTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
@@ -23,10 +28,10 @@ class Tx_News_Tests_Unit_MediaRenderer_Video_FileTest extends \TYPO3\CMS\Core\Te
 	 * @return void
 	 */
 	public function flvFileIsRecognized($expected, $expectedOutput) {
-		$mediaElement = new Tx_News_Domain_Model_Media();
+		$mediaElement = new Media();
 		$mediaElement->setMultimedia($expected);
 
-		$renderer = new Tx_News_MediaRenderer_Video_File();
+		$renderer = new File();
 		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
 	}
 

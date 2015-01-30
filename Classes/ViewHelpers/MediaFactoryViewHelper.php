@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,8 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\MediaRenderer\MediaInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to show videos
@@ -18,7 +23,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_ViewHelpers_MediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class MediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * If the escaping interceptor should be disabled inside this ViewHelper,
@@ -36,23 +41,23 @@ class Tx_News_ViewHelpers_MediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\V
 	 * and use the proper ones to render the media element
 	 *
 	 * @param string $classes list of classes which are used to render the media object
-	 * @param Tx_News_Domain_Model_Media $element Current media object
+	 * @param \GeorgRinger\News\Domain\Model\Media $element Current media object
 	 * @param integer $width width
 	 * @param integer $height height
 	 * @return string
-	 * @throws UnexpectedValueException
+	 * @throws \UnexpectedValueException
 	 */
-	public function render($classes, Tx_News_Domain_Model_Media $element, $width, $height) {
+	public function render($classes, \GeorgRinger\News\Domain\Model\Media $element, $width, $height) {
 		$content = '';
-		$classList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $classes, TRUE);
+		$classList = GeneralUtility::trimExplode(',', $classes, TRUE);
 
 			// go through every class provided by argument
 		foreach ($classList as $classData) {
-			$videoObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($classData);
+			$videoObject = GeneralUtility::makeInstance($classData);
 
 				// check interface implementation
-			if (!($videoObject instanceof Tx_News_MediaRenderer_MediaInterface)) {
-				throw new UnexpectedValueException('$videoObject must implement interface Tx_News_MediaRenderer_MediaInterface', 1295088673);
+			if (!($videoObject instanceof MediaInterface)) {
+				throw new \UnexpectedValueException('$videoObject must implement interface \GeorgRinger\News\MediaRenderer\MediaInterface', 1295088673);
 			}
 
 				// if no content found and the implementation is enabled, try to render

@@ -1,6 +1,8 @@
 <?php
 
-/**
+namespace GeorgRinger\News\Utility;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -16,7 +18,7 @@
 /**
  * TemplateLayout utility class
  */
-class Tx_News_Utility_TemplateLayout implements \TYPO3\CMS\Core\SingletonInterface {
+class TemplateLayout implements \TYPO3\CMS\Core\SingletonInterface {
 
 	/**
 	 * Get available template layouts for a certain page

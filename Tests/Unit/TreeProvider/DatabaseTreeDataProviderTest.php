@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\TreeProvider;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -13,9 +16,9 @@
  */
 
 /**
- * Tests for Tx_News_TreeProvider_DatabaseTreeDataProvider
+ * Tests for DatabaseTreeDataProvider
  */
-class Tx_News_Tests_Unit_TreeProvider_DatabaseTreeDataProviderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class DatabaseTreeDataProviderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var array
@@ -39,7 +42,7 @@ class Tx_News_Tests_Unit_TreeProvider_DatabaseTreeDataProviderTest extends \TYPO
 	 * @test
 	 */
 	public function canSingleCategoryAclSettingBeActivated() {
-		$mockTemplateParser = $this->getAccessibleMock('Tx_News_TreeProvider_DatabaseTreeDataProvider',array('dummy'), array(), '',
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\TreeProvider\\DatabaseTreeDataProvider',array('dummy'), array(), '',
 			$callOriginalConstructor = FALSE);
 
 		$this->assertEquals(FALSE, $mockTemplateParser->_call('isSingleCategoryAclActivated'));

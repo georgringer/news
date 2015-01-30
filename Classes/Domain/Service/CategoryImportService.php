@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Domain\Service;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,6 +15,10 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\FileReference;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Category Import Service
  *
@@ -19,13 +26,13 @@
  * @subpackage tx_news
  * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
-class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Service_AbstractImportService {
+class CategoryImportService extends AbstractImportService {
 
 	const ACTION_SET_PARENT_CATEGORY = 1;
 	const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 
 	/**
-	 * @var Tx_News_Domain_Repository_CategoryRepository
+	 * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
 	 */
 	protected $categoryRepository;
 
@@ -36,7 +43,7 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 
 	public function __construct() {
 		/** @var \TYPO3\CMS\Core\Log\Logger $logger */
-		$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
+		$logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
 		$this->logger = $logger;
 
 		parent::__construct();
@@ -45,10 +52,10 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	/**
 	 * Inject the category repository.
 	 *
-	 * @param Tx_News_Domain_Repository_CategoryRepository $categoryRepository
+	 * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
 	 * @return void
 	 */
-	public function injectCategoryRepository(Tx_News_Domain_Repository_CategoryRepository $categoryRepository) {
+	public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository) {
 		$this->categoryRepository = $categoryRepository;
 	}
 
@@ -115,7 +122,7 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	 * Hydrate a category record with the given array
 	 *
 	 * @param array $importItem
-	 * @return Tx_News_Domain_Model_Category
+	 * @return Category
 	 */
 	protected function hydrateCategory(array $importItem) {
 		$category = $this->categoryRepository->findOneByImportSourceAndImportId($importItem['import_source'], $importItem['import_id']);
@@ -125,8 +132,8 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 		if (is_null($category)) {
 			$this->logger->info('Category is new');
 
-			/** @var $category Tx_News_Domain_Model_Category */
-			$category = $this->objectManager->get('Tx_News_Domain_Model_Category');
+			/** @var $category Category */
+			$category = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Category');
 			$this->categoryRepository->add($category);
 		} else {
 			$this->logger->info(sprintf('Category exists already with id "%s".', $category->getUid()));
@@ -158,7 +165,7 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	/**
 	 * Add category image when not already present
 	 *
-	 * @param Tx_News_Domain_Model_Category $category
+	 * @param Category $category
 	 * @param $image
 	 */
 	protected function setFileRelationFromImage($category, $image) {
@@ -178,7 +185,7 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 		// new image found check if this isn't already
 		$existingImages = $category->getImages();
 		if (!is_null($existingImages) && $existingImages->count() !== 0) {
-			/** @var $item Tx_News_Domain_Model_FileReference */
+			/** @var $item FileReference */
 			foreach ($existingImages as $item) {
 				// only check already persisted items
 				if ($item->getFileUid() === (int)$newImage->getUid()
@@ -208,8 +215,8 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 				}
 			}
 
-			/** @var Tx_News_Domain_Model_FileReference $fileReference */
-			$fileReference = $this->objectManager->get('Tx_News_Domain_Model_FileReference');
+			/** @var FileReference $fileReference */
+			$fileReference = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\FileReference');
 			$fileReference->setFileUid($newImage->getUid());
 			$fileReference->setPid($category->getPid());
 			$category->addImage($fileReference);
@@ -223,7 +230,7 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	 * @return void
 	 */
 	protected function setParentCategory(array $queueItem) {
-		/** @var $category Tx_News_Domain_Model_Category */
+		/** @var $category Category */
 		$category = $queueItem['category'];
 		$parentCategoryOriginUid = $queueItem['parentCategoryOriginUid'];
 
@@ -247,9 +254,9 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 	 * @return void
 	 */
 	protected function createL10nChildrenCategory(array $queueItem) {
-		/** @var $category Tx_News_Domain_Model_Category */
+		/** @var $category Category */
 		$category = $queueItem['category'];
-		$titleLanguageOverlay = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode('|', $queueItem['titleLanguageOverlay']);
+		$titleLanguageOverlay = GeneralUtility::trimExplode('|', $queueItem['titleLanguageOverlay']);
 
 		foreach ($titleLanguageOverlay as $key => $title) {
 			$sysLanguageUid = $key + 1;
@@ -257,7 +264,7 @@ class Tx_News_Domain_Service_CategoryImportService extends Tx_News_Domain_Servic
 			$importItem = $queueItem['importItem'];
 			$importItem['import_id'] = $importItem['import_id'] . '|L:' . $sysLanguageUid;
 
-			/** @var $l10nChildrenCategory Tx_News_Domain_Model_Category */
+			/** @var $l10nChildrenCategory Category */
 			$l10nChildrenCategory = $this->hydrateCategory($importItem);
 			$this->categoryRepository->add($l10nChildrenCategory);
 

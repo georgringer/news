@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,7 +20,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Model_Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	const MEDIA_TYPE_IMAGE = 0;
 	const MEDIA_TYPE_MULTIMEDIA = 1;

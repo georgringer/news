@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Utility;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,22 +14,23 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\TypoScript;
 
 /**
- * Test class for Tx_News_Utility_TypoScript
+ * Test class for TypoScript
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Utility_TypoScriptTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TypoScriptTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
 	 * @dataProvider overrideWorksDataProvider
 	 */
 	public function overrideWorks($base, $overload, $expected) {
-		$utility = new Tx_News_Utility_TypoScript();
+		$utility = new TypoScript();
 
 		$result = $utility->override($base, $overload);
 		$this->assertEquals($expected, $result);
@@ -130,7 +134,7 @@ class Tx_News_Tests_Unit_Utility_TypoScriptTest extends \TYPO3\CMS\Core\Tests\Un
 	 * @dataProvider correctValueIsReturnedDataProvider
 	 */
 	public function correctValueIsReturned($path, $expected) {
-		$mockedUtility = $this->getAccessibleMock('Tx_News_Utility_TypoScript', array('dummy'));
+		$mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', array('dummy'));
 
 		$in = array(
 			'level_1' => array(
@@ -175,7 +179,7 @@ class Tx_News_Tests_Unit_Utility_TypoScriptTest extends \TYPO3\CMS\Core\Tests\Un
 	 * @dataProvider correctValueIsSetDataProvider
 	 */
 	public function correctValueIsSet($path, $newValue, $expected) {
-		$mockedUtility = $this->getAccessibleMock('Tx_News_Utility_TypoScript', array('dummy'), array(), '', TRUE, FALSE);
+		$mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', array('dummy'), array(), '', TRUE, FALSE);
 
 		$in = array(
 			'level_1' => array(

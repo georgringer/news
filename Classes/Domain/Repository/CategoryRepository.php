@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Domain\Repository;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,25 +15,30 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\DemandInterface;
+use GeorgRinger\News\Service\CategoryService;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+
 /**
  * Category repository with all callable functionality
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Repository_AbstractDemandedRepository {
+class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository {
 
-	protected function createConstraintsFromDemand(\TYPO3\CMS\Extbase\Persistence\QueryInterface $query,
-		Tx_News_Domain_Model_DemandInterface $demand) {}
+	protected function createConstraintsFromDemand(QueryInterface $query,
+		DemandInterface $demand) {}
 
-	protected function createOrderingsFromDemand(Tx_News_Domain_Model_DemandInterface $demand) {}
+	protected function createOrderingsFromDemand(DemandInterface $demand) {}
 
 	/**
 	 * Find category by import source and import id
 	 *
 	 * @param string $importSource import source
 	 * @param integer $importId import id
-	 * @return Tx_News_Domain_Model_Category
+	 * @return Category
 	 */
 	public function findOneByImportSourceAndImportId($importSource, $importId) {
 		$query = $this->createQuery();
@@ -48,7 +56,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 * Find categories by a given pid
 	 *
 	 * @param integer $pid pid
-	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
+	 * @return QueryInterface
 	 */
 	public function findParentCategoriesByPid($pid) {
 		$query = $this->createQuery();
@@ -64,11 +72,11 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 * Find category tree
 	 *
 	 * @param array $rootIdList list of id s
-	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
+	 * @return QueryInterface
 	 */
 	public function findTree(array $rootIdList) {
-		$subCategories = Tx_News_Service_CategoryService::getChildrenCategories(implode(',',$rootIdList));
-		$ordering = array('sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING);
+		$subCategories = CategoryService::getChildrenCategories(implode(',',$rootIdList));
+		$ordering = array('sorting' => QueryInterface::ORDER_ASCENDING);
 
 		$categories = $this->findByIdList(explode(',',$subCategories), $ordering);
 		$flatCategories = array();
@@ -104,7 +112,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 *
 	 * @param array $idList list of id s
 	 * @param array $ordering ordering
-	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
+	 * @return QueryInterface
 	 */
 	public function findByIdList(array $idList, array $ordering = array()) {
 		$query = $this->createQuery();
@@ -125,7 +133,7 @@ class Tx_News_Domain_Repository_CategoryRepository extends Tx_News_Domain_Reposi
 	 * Find categories by a given parent
 	 *
 	 * @param integer $parent parent
-	 * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
+	 * @return QueryInterface
 	 */
 	public function findChildren($parent) {
 		$query = $this->createQuery();

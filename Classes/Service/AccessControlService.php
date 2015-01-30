@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\Service;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\EmConfiguration;
 
 /**
  * Service for access control related stuff
@@ -18,7 +22,7 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Service_AccessControlService {
+class AccessControlService {
 
 	/**
 	 * Check if a user has access to all categories of a news record
@@ -28,7 +32,7 @@ class Tx_News_Service_AccessControlService {
 	 */
 	public static function userHasCategoryPermissionsForRecord(array $newsRecord) {
 
-		if (!Tx_News_Utility_EmConfiguration::getSettings()->getCategoryBeGroupTceFormsRestriction()) {
+		if (!EmConfiguration::getSettings()->getCategoryBeGroupTceFormsRestriction()) {
 			return TRUE;
 		}
 

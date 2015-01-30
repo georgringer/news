@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +14,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\TtContent;
 
 /**
  * Tests for tt_content model
@@ -19,10 +23,10 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Domain_Model_TtContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TtContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var Tx_News_Domain_Model_TtContent
+	 * @var TtContent
 	 */
 	protected $ttContentDomainModelInstance;
 
@@ -32,14 +36,14 @@ class Tx_News_Tests_Unit_Domain_Model_TtContentTest extends \TYPO3\CMS\Core\Test
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->ttContentDomainModelInstance = new Tx_News_Domain_Model_TtContent();
+		$this->ttContentDomainModelInstance = new TtContent();
 	}
 
 	/**
 	 * @test
 	 */
 	public function crdateCanBeSet() {
-		$fieldValue = new DateTime();
+		$fieldValue = new \DateTime();
 		$this->ttContentDomainModelInstance->setCrdate($fieldValue);
 		$this->assertEquals($fieldValue, $this->ttContentDomainModelInstance->getCrdate());
 	}
@@ -48,7 +52,7 @@ class Tx_News_Tests_Unit_Domain_Model_TtContentTest extends \TYPO3\CMS\Core\Test
 	 * @test
 	 */
 	public function tstampCanBeSet() {
-		$fieldValue = new DateTime();
+		$fieldValue = new \DateTime();
 		$this->ttContentDomainModelInstance->setTstamp($fieldValue);
 		$this->assertEquals($fieldValue, $this->ttContentDomainModelInstance->getTstamp());
 	}

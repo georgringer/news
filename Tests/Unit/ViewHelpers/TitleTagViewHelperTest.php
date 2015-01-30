@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -14,9 +17,9 @@
 
 
 /**
- * Test for Tx_News_ViewHelpers_TitleTagViewHelper
+ * Test for TitleTagViewHelper
  */
-class Tx_News_Tests_Unit_ViewHelpers_TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface
@@ -27,7 +30,7 @@ class Tx_News_Tests_Unit_ViewHelpers_TitleTagViewHelperTest extends \TYPO3\CMS\C
 	 * Set up
 	 */
 	public function setUp() {
-		$this->tsfe = $this->getAccessibleMock('tslib_fe', array('dummy'), array(), '', FALSE);
+		$this->tsfe = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController', array('dummy'), array(), '', FALSE);
 		$GLOBALS['TSFE'] = $this->tsfe;
 	}
 
@@ -39,7 +42,7 @@ class Tx_News_Tests_Unit_ViewHelpers_TitleTagViewHelperTest extends \TYPO3\CMS\C
 	 */
 	public function titleTagIsSet() {
 		$title = 'Some title';
-		$viewHelper = $this->getMock('Tx_News_ViewHelpers_TitleTagViewHelper', array('renderChildren'));
+		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', array('renderChildren'));
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue($title));
 
 		$viewHelper->render();

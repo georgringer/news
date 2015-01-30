@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,7 +22,7 @@
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_ViewHelpers_PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if given tag is a closing tag
@@ -29,7 +32,7 @@ class Tx_News_Tests_Unit_ViewHelpers_PaginateBodytextViewHelperTest extends \TYP
 	 * @return void
 	 */
 	public function givenTagIsAClosingTag($tag, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('Tx_News_ViewHelpers_PaginateBodytextViewHelper', array('dummy'));
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', array('dummy'));
 		$result = $mockTemplateParser->_call('isClosingTag', $tag);
 		$this->assertEquals($expectedResult, $result);
 	}
@@ -53,7 +56,7 @@ class Tx_News_Tests_Unit_ViewHelpers_PaginateBodytextViewHelperTest extends \TYP
 	 * @return void
 	 */
 	public function givenTagIsSelfClosingTag($tag, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('Tx_News_ViewHelpers_PaginateBodytextViewHelper', array('dummy'));
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', array('dummy'));
 		$result = $mockTemplateParser->_call('isSelfClosingTag', $tag);
 		$this->assertEquals($expectedResult, $result);
 	}
@@ -77,7 +80,7 @@ class Tx_News_Tests_Unit_ViewHelpers_PaginateBodytextViewHelperTest extends \TYP
 	 * @return void
 	 */
 	public function givenTagIsAnOpeningTag($tag, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('Tx_News_ViewHelpers_PaginateBodytextViewHelper', array('dummy'));
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', array('dummy'));
 		$result = $mockTemplateParser->_call('isOpeningTag', $tag);
 		$this->assertEquals($expectedResult, $result);
 	}
@@ -99,7 +102,7 @@ class Tx_News_Tests_Unit_ViewHelpers_PaginateBodytextViewHelperTest extends \TYP
 	 * @return void
 	 */
 	public function extractTagReturnsCorrectOne($tag, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('Tx_News_ViewHelpers_PaginateBodytextViewHelper', array('dummy'));
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', array('dummy'));
 		$result = $mockTemplateParser->_call('extractTag', $tag);
 		$this->assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)), 1);
 	}

@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,20 +14,21 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\News;
 
 /**
- * Tests for Tx_News_ViewHelpers_IfIsActiveViewHelper
+ * Tests for IfIsActiveViewHelper
  */
-class Tx_News_Tests_Unit_ViewHelpers_IfIsActiveViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class IfIsActiveViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var Tx_News_ViewHelpers_IfIsActiveViewHelper
+	 * @var \GeorgRinger\News\ViewHelpers\IfIsActiveViewHelper
 	 */
 	protected $viewHelper;
 
 	public function setUp() {
 		parent::setUp();
-		$this->viewHelper = $this->getAccessibleMock('Tx_News_ViewHelpers_IfIsActiveViewHelper', array('renderThenChild', 'renderElseChild'));
+		$this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\IfIsActiveViewHelper', array('renderThenChild', 'renderElseChild'));
 	}
 
 	/**
@@ -32,7 +36,7 @@ class Tx_News_Tests_Unit_ViewHelpers_IfIsActiveViewHelperTest extends \TYPO3\CMS
 	 * @return void
 	 */
 	public function elseChildIsCalledWithNoGetArguments() {
-		$newsItem = new Tx_News_Domain_Model_News();
+		$newsItem = new News();
 		$newsItem->_setProperty('uid', 123);
 
 		$this->viewHelper->expects($this->once())
@@ -47,7 +51,7 @@ class Tx_News_Tests_Unit_ViewHelpers_IfIsActiveViewHelperTest extends \TYPO3\CMS
 	 */
 	public function elseChildIsCalledWithWrongGetArguments() {
 		$_GET['tx_news_pi1']['news'] = 456;
-		$newsItem = new Tx_News_Domain_Model_News();
+		$newsItem = new News();
 		$newsItem->_setProperty('uid', 123);
 
 		$this->viewHelper->expects($this->once())
@@ -62,7 +66,7 @@ class Tx_News_Tests_Unit_ViewHelpers_IfIsActiveViewHelperTest extends \TYPO3\CMS
 	 */
 	public function thenChildIsCalledWithCorrectArguments() {
 		$_GET['tx_news_pi1']['news'] = '789';
-		$newsItem = new Tx_News_Domain_Model_News();
+		$newsItem = new News();
 		$newsItem->_setProperty('uid', 789);
 
 		$this->viewHelper->expects($this->once())

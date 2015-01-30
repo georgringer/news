@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
 // Extension manager configuration
-$configuration = \Tx_News_Utility_EmConfiguration::getSettings();
+$configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
 $tx_news_domain_model_media = array(
 	'ctrl' => array(
@@ -14,7 +14,7 @@ $tx_news_domain_model_media = array(
 		'label' => 'caption',
 		'label_alt' => 'type, showinpreview',
 		'label_alt_force' => 1,
-		'formattedLabel_userFunc' => 'Tx_News_Hooks_Labels->getUserLabelMedia',
+		'formattedLabel_userFunc' => 'GeorgRinger\\News\\Hooks\\Labels->getUserLabelMedia',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',

@@ -1,10 +1,15 @@
 <?php
+
+namespace GeorgRinger\News\Domain\Service;
+
 /*
  * This source file is proprietary property of Beech Applications B.V.
  * Date: 12-05-2014 12:29
  * All code (c) Beech Applications B.V. all rights reserved
  */
-class Tx_News_Domain_Service_AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface {
+use GeorgRinger\News\Utility\EmConfiguration;
+
+class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface {
 
 	const UPLOAD_PATH = 'uploads/tx_news/';
 
@@ -24,7 +29,7 @@ class Tx_News_Domain_Service_AbstractImportService implements \TYPO3\CMS\Core\Si
 	protected $postPersistQueue = array();
 
 	/**
-	 * @var Tx_News_Domain_Model_Dto_EmConfiguration
+	 * @var \GeorgRinger\News\Domain\Model\Dto\EmConfiguration
 	 */
 	protected $emSettings;
 
@@ -62,7 +67,7 @@ class Tx_News_Domain_Service_AbstractImportService implements \TYPO3\CMS\Core\Si
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->emSettings = Tx_News_Utility_EmConfiguration::getSettings();
+		$this->emSettings = EmConfiguration::getSettings();
 	}
 
 

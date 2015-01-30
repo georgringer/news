@@ -1,4 +1,6 @@
 <?php
+namespace GeorgRinger\News\Controller;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,6 +14,8 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Utility\Cache;
+use GeorgRinger\News\Utility\Page;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -20,7 +24,7 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseController {
+class NewsController extends NewsBaseController {
 
 	const SIGNAL_NEWS_LIST_ACTION = 'listAction';
 	const SIGNAL_NEWS_DETAIL_ACTION = 'detailAction';
@@ -29,7 +33,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	const SIGNAL_NEWS_SEARCHRESULT_ACTION = 'searchResultAction';
 
 	/**
-	 * @var Tx_News_Domain_Repository_NewsRepository
+	 * @var \GeorgRinger\News\Domain\Repository\NewsRepository
 	 */
 	protected $newsRepository;
 
@@ -44,10 +48,10 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	/**
 	 * Inject a news repository to enable DI
 	 *
-	 * @param Tx_News_Domain_Repository_NewsRepository $newsRepository
+	 * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
 	 * @return void
 	 */
-	public function injectNewsRepository(Tx_News_Domain_Repository_NewsRepository $newsRepository) {
+	public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository) {
 		$this->newsRepository = $newsRepository;
 	}
 
@@ -79,21 +83,21 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * Create the demand object which define which records will get shown
 	 *
 	 * @param array $settings
-	 * @param string $class optional class which must be an instance of Tx_News_Domain_Model_Dto_NewsDemand
-	 * @return Tx_News_Domain_Model_Dto_NewsDemand
+	 * @param string $class optional class which must be an instance of \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+	 * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 	 */
-	protected function createDemandObjectFromSettings($settings, $class = 'Tx_News_Domain_Model_Dto_NewsDemand') {
+	protected function createDemandObjectFromSettings($settings, $class = 'GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand') {
 		$class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
-		/* @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
+		/* @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
 		$demand = $this->objectManager->get($class, $settings);
-		if (!$demand instanceof \Tx_News_Domain_Model_Dto_NewsDemand) {
+		if (!$demand instanceof \GeorgRinger\News\Domain\Model\Dto\NewsDemand) {
 			throw new \UnexpectedValueException(
-				sprintf('The demand object must be an instance of Tx_News_Domain_Model_Dto_NewsDemand, but %s given!', $class),
+				sprintf('The demand object must be an instance of \GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand, but %s given!', $class),
 				1423157953);
 		}
 
-		$demand->setCategories(\TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $settings['categories'], TRUE));
+		$demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'], TRUE));
 		$demand->setCategoryConjunction($settings['categoryConjunction']);
 		$demand->setIncludeSubCategories($settings['includeSubCategories']);
 		$demand->setTags($settings['tags']);
@@ -120,7 +124,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$demand->setYear($settings['year']);
 
 
-		$demand->setStoragePage(Tx_News_Utility_Page::extendPidListByChildren($settings['startingpoint'],
+		$demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
 			$settings['recursive']));
 		return $demand;
 	}
@@ -128,9 +132,9 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	/**
 	 * Overwrites a given demand object by an propertyName =>  $propertyValue array
 	 *
-	 * @param Tx_News_Domain_Model_Dto_NewsDemand $demand
+	 * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
 	 * @param array $overwriteDemand
-	 * @return Tx_News_Domain_Model_Dto_NewsDemand
+	 * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 	 */
 	protected function overwriteDemandObject($demand, $overwriteDemand) {
 
@@ -167,17 +171,17 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 
-		Tx_News_Utility_Cache::addPageCacheTagsByDemandObject($demand);
+		Cache::addPageCacheTagsByDemandObject($demand);
 	}
 
 	/**
 	 * Single view of a news record
 	 *
-	 * @param Tx_News_Domain_Model_News $news news item
+	 * @param \GeorgRinger\News\Domain\Model\News $news news item
 	 * @param integer $currentPage current page for optional pagination
 	 * @return void
 	 */
-	public function detailAction(Tx_News_Domain_Model_News $news = NULL, $currentPage = 1) {
+	public function detailAction(\GeorgRinger\News\Domain\Model\News $news = NULL, $currentPage = 1) {
 		if (is_null($news)) {
 			$previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
 			if ($this->request->hasArgument('news_preview')) {
@@ -193,7 +197,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			}
 		}
 
-		if (is_a($news, 'Tx_News_Domain_Model_News') && $this->settings['detail']['checkPidOfNewsRecord']) {
+		if (is_a($news, 'GeorgRinger\\News\\Domain\\Model\\News') && $this->settings['detail']['checkPidOfNewsRecord']) {
 			$news = $this->checkPidOfNewsRecord($news);
 		}
 
@@ -209,9 +213,9 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 
-		Tx_News_Utility_Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
-		if (!is_null($news) && is_a($news, 'Tx_News_Domain_Model_News')) {
-			Tx_News_Utility_Cache::addCacheTagsByNewsRecords(array($news));
+		Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
+		if (!is_null($news) && is_a($news, 'GeorgRinger\\News\\Domain\\Model\\News')) {
+			Cache::addCacheTagsByNewsRecords(array($news));
 		}
 	}
 
@@ -219,13 +223,13 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * Checks if the news pid could be found in the startingpoint settings of the detail plugin and
 	 * if the pid could not be found it return NULL instead of the news object.
 	 *
-	 * @param Tx_News_Domain_Model_News $news
-	 * @return NULL|Tx_News_Domain_Model_News
+	 * @param \GeorgRinger\News\Domain\Model\News $news
+	 * @return NULL|\GeorgRinger\News\Domain\Model\News
 	 */
-	protected function checkPidOfNewsRecord(Tx_News_Domain_Model_News $news) {
+	protected function checkPidOfNewsRecord(\GeorgRinger\News\Domain\Model\News $news) {
 		$allowedStoragePages = GeneralUtility::trimExplode(
 			',',
-			Tx_News_Utility_Page::extendPidListByChildren(
+			Page::extendPidListByChildren(
 				$this->settings['startingpoint'],
 				$this->settings['recursive']
 			),
@@ -297,18 +301,18 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	/**
 	 * Display the search form
 	 *
-	 * @param Tx_News_Domain_Model_Dto_Search $search
+	 * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
 	 * @param array $overwriteDemand
 	 * @return void
 	 */
-	public function searchFormAction(Tx_News_Domain_Model_Dto_Search $search = NULL, array $overwriteDemand = array()) {
+	public function searchFormAction(\GeorgRinger\News\Domain\Model\Dto\Search $search = NULL, array $overwriteDemand = array()) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
 		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
 			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
 		}
 
 		if (is_null($search)) {
-			$search = $this->objectManager->get('Tx_News_Domain_Model_Dto_Search');
+			$search = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\Search');
 		}
 		$demand->setSearch($search);
 
@@ -325,11 +329,11 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	/**
 	 * Displays the search result
 	 *
-	 * @param Tx_News_Domain_Model_Dto_Search $search
+	 * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
 	 * @param array $overwriteDemand
 	 * @return void
 	 */
-	public function searchResultAction(Tx_News_Domain_Model_Dto_Search $search = NULL, array $overwriteDemand = array()) {
+	public function searchResultAction(\GeorgRinger\News\Domain\Model\Dto\Search $search = NULL, array $overwriteDemand = array()) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
 		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
 			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
@@ -398,8 +402,8 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 
 					// start override
 		if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
-			/** @var Tx_News_Utility_TypoScript $typoScriptUtility */
-			$typoScriptUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_News_Utility_TypoScript');
+			/** @var \GeorgRinger\News\Utility\TypoScript $typoScriptUtility */
+			$typoScriptUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\TypoScript');
 			$originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
 		}
 

@@ -53,14 +53,14 @@ You are finished with this step if you can add content to the new field in the b
 **Create the model**
 
 Create a model for your additional field.
-Important: the structure needs to match the one of EXT:news. If you wanna extend *Tx_News_Domain_Model_News*,
+Important: the structure needs to match the one of EXT:news. If you wanna extend *GeorgRinger\News\Domain\Model\News*,
 your class needs to be *Tx_Workshop_Domain_Model_News*, which means having the file *News.php* in *EXT:workshop/Classes/Domain/Model/*.
 
 The content looks like: ::
 
 	<?php
 
-		class Tx_Workshop_Domain_Model_News extends Tx_News_Domain_Model_News {
+		class Tx_Workshop_Domain_Model_News extends \GeorgRinger\News\Domain\Model\News {
 
 			/**
 			* @var string

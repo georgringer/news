@@ -1,5 +1,8 @@
 <?php
-/**
+
+namespace GeorgRinger\News\ViewHelpers\Format;
+
+	/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -35,7 +38,7 @@
  * @subpackage tx_news
  * @see http://de.php.net/manual/de/function.strip-tags.php
  */
-class Tx_News_ViewHelpers_Format_StriptagsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class StriptagsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	protected $escapingInterceptorEnabled = FALSE;
 

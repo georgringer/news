@@ -1,4 +1,7 @@
 <?php
+
+namespace GeorgRinger\News\Tests\Unit\Domain\Model;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,17 +15,19 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Domain\Model\Category;
+
 /**
- * Tests for Tx_News_Domain_Model_Category
+ * Tests for \GeorgRinger\News\Domain\Model\Category
  *
  * @package TYPO3
  * @subpackage tx_news
  * @author Georg Ringer <typo3@ringerge.org>
  */
-class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var Tx_News_Domain_Model_Category
+	 * @var Category
 	 */
 	protected $instance;
 
@@ -32,7 +37,7 @@ class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests
 	 * @return void
 	 */
 	protected function setUp() {
-		$this->instance = new Tx_News_Domain_Model_Category();
+		$this->instance = new Category();
 	}
 
 	/**
@@ -54,7 +59,7 @@ class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests
 	 * @return void
 	 */
 	public function crdateCanBeSet() {
-		$value = new DateTime('2014-03-30');
+		$value = new \DateTime('2014-03-30');
 		$this->instance->setCrdate($value);
 		$this->assertEquals($value, $this->instance->getCrdate());
 	}
@@ -66,7 +71,7 @@ class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests
 	 * @return void
 	 */
 	public function tstampCanBeSet() {
-		$value = new DateTime('2014-03-30');
+		$value = new \DateTime('2014-03-30');
 		$this->instance->setTstamp($value);
 		$this->assertEquals($value, $this->instance->getTstamp());
 	}
@@ -78,7 +83,7 @@ class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests
 	 * @return void
 	 */
 	public function starttimeCanBeSet() {
-		$value = new DateTime('2014-03-30');
+		$value = new \DateTime('2014-03-30');
 		$this->instance->setStarttime($value);
 		$this->assertEquals($value, $this->instance->getStarttime());
 	}
@@ -90,7 +95,7 @@ class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests
 	 * @return void
 	 */
 	public function endtimeCanBeSet() {
-		$value = new DateTime('2014-03-30');
+		$value = new \DateTime('2014-03-30');
 		$this->instance->setEndtime($value);
 		$this->assertEquals($value, $this->instance->getEndtime());
 	}
@@ -162,7 +167,7 @@ class Tx_News_Tests_Unit_Domain_Model_CategoryTest extends \TYPO3\CMS\Core\Tests
 	 * @return void
 	 */
 	public function parentCategoryCanBeSet() {
-		$value = new Tx_News_Domain_Model_Category();
+		$value = new Category();
 		$value->setTitle('fo');
 		$this->instance->setParentcategory($value);
 		$this->assertEquals($value, $this->instance->getParentcategory());
