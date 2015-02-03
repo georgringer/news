@@ -196,9 +196,10 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 			foreach ($importItem['media'] as $mediaItem) {
 
 				// multi media
-				if ($mediaItem['type'] === Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA) {
+				if ((int)$mediaItem['type'] === Tx_News_Domain_Model_Media::MEDIA_TYPE_MULTIMEDIA) {
 
 					if (($media = $this->getMultiMediaIfAlreadyExists($news, $mediaItem['multimedia'])) === FALSE) {
+						/** @var Tx_News_Domain_Model_Media $media */
 						$media = $this->objectManager->get('Tx_News_Domain_Model_Media');
 						$media->setMultimedia($mediaItem['multimedia']);
 						$news->addMedia($media);
@@ -216,7 +217,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 					$media->setType($mediaItem['type']);
 					$media->setPid($importItem['pid']);
 
-				// Images FAL enabled
+					// Images FAL enabled
 				} elseif($this->emSettings->getUseFal() > 0) {
 
 					// get fileobject by given identifier (file UID, combined identifier or path/filename)
@@ -394,7 +395,7 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 
 		foreach ($importData as $importItem) {
 
-				// Store language overlay in post persist queue
+			// Store language overlay in post persist queue
 			if ((int)$importItem['sys_language_uid'] > 0 && $importItem['l10n_parent'] > 0) {
 				$this->postPersistQueue[$importItem['import_id']] = array(
 					'action' => self::ACTION_IMPORT_L10N_OVERLAY,
@@ -531,9 +532,9 @@ class Tx_News_Domain_Service_NewsImportService extends Tx_News_Domain_Service_Ab
 				if ($item->getFileUid() === (int)$file->getUid()
 					||
 					($item->getUid() &&
-					$item->getOriginalResource()->getName() === $file->getName() &&
-					$item->getOriginalResource()->getSize() === (int)$file->getSize())
-					) {
+						$item->getOriginalResource()->getName() === $file->getName() &&
+						$item->getOriginalResource()->getSize() === (int)$file->getSize())
+				) {
 					$result = $item;
 					break;
 				}
