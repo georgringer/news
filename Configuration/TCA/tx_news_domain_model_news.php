@@ -167,6 +167,7 @@ $tx_news_domain_model_news = array(
 		),
 		'title' => array(
 			'exclude' => 0,
+			'l10n_mode' => 'prefixLangTitle',
 			'label' => 'LLL:EXT:cms/locallang_ttc.xlf:header_formlabel',
 			'config' => array(
 				'type' => 'input',
