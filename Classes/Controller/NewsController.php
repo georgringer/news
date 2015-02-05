@@ -76,11 +76,17 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * Create the demand object which define which records will get shown
 	 *
 	 * @param array $settings
+	 * @param string $class optional class which must be an instance of Tx_News_Domain_Model_Dto_NewsDemand
 	 * @return Tx_News_Domain_Model_Dto_NewsDemand
 	 */
-	protected function createDemandObjectFromSettings($settings) {
+	protected function createDemandObjectFromSettings($settings, $class = 'Tx_News_Domain_Model_Dto_NewsDemand') {
 		/* @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
-		$demand = $this->objectManager->get('Tx_News_Domain_Model_Dto_NewsDemand');
+		$demand = $this->objectManager->get($class);
+		if (!$demand instanceof \Tx_News_Domain_Model_Dto_NewsDemand) {
+			throw new \UnexpectedValueException(
+				sprintf('The demand object must be an instance of Tx_News_Domain_Model_Dto_NewsDemand, but %s given!', $class),
+				1423157953);
+		}
 
 		$demand->setCategories(\TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $settings['categories'], TRUE));
 		$demand->setCategoryConjunction($settings['categoryConjunction']);

@@ -120,4 +120,17 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 		$this->assertEquals(NULL, $mockedController->_call('checkPidOfNewsRecord', $news));
 	}
 
+	/**
+	 * @test
+	 * @expectedException \UnexpectedValueException
+	 */
+	public function exceptionForInvalidDemandClass() {
+		$mockedController = $this->getAccessibleMock('Tx_News_Controller_NewsController', array('dummy'));
+		$mockedObjectManager = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManager', array('get'));
+		$mockedObjectManager->expects($this->once())->method('get')->willReturn('fo');
+		$mockedController->_set('objectManager', $mockedObjectManager);
+		$settings = array('fo' => 'bar');
+		$mockedController->_call('createDemandObjectFromSettings', $settings, 'fo');
+	}
+
 }
