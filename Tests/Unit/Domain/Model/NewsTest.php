@@ -397,7 +397,7 @@ class Tx_News_Tests_Unit_Domain_Model_NewsTest extends \TYPO3\CMS\Core\Tests\Uni
 		$news->addFalMedia($mediaItem3);
 
 		$this->assertEquals(2, count($news->getFalMediaPreviews()));
-		$this->assertEquals(1, count($news->getNonFalMediaPreviews()));
+		$this->assertEquals(1, count($news->getFalMediaNonPreviews()));
 		$this->assertEquals(3, count($news->getFalMedia()));
 	}
 

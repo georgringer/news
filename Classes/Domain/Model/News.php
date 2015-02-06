@@ -934,7 +934,7 @@ class Tx_News_Domain_Model_News extends \TYPO3\CMS\Extbase\DomainObject\Abstract
 	 *
 	 * @return array
 	 */
-	public function getNonFalMediaPreviews() {
+	public function getFalMediaNonPreviews() {
 		if ($this->falMediaNonPreviews === NULL && $this->getFalMedia()) {
 			$this->falMediaNonPreviews = array();
 			/** @var $mediaItem Tx_News_Domain_Model_FileReference */
