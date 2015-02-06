@@ -12,14 +12,14 @@ Known problems
 The following issues are known bugs. However those are either not fixable inside EXT:news or not too easy to solve!
 
 Category images on root page
-=================================
+============================
 
 Due to restrictions of the File Abstraction Layer (FAL), it is not possible to add images to categories which are
 saved on the root page (uid 0). Documented at http://forge.typo3.org/issues/57515
 
 
 Multilanguage
-=================================
+=============
 
 .. tip::
 
@@ -43,3 +43,8 @@ If you are using a language mode like strict, this is the time when the record i
 Out of this reasons, the following things don't work out of the box:
 * Sorting records in a translation by a translated field
 * Using strict mode and a pagination
+
+DBAL
+====
+
+Extbase does not fully support DBAL, therefore it might be that things fail!
