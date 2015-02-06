@@ -153,7 +153,7 @@ class Tx_News_ViewHelpers_LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Li
 			$configuration['parameter'] = $detailPid;
 		}
 
-		$configuration['useCacheHash'] = 1;
+		$configuration['useCacheHash'] = $GLOBALS['TSFE']->sys_page->versioningPreview ? 0 : 1;
 		$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $newsItem->getUid();
 
 		if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
