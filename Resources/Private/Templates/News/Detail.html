@@ -183,7 +183,7 @@
 										</n:format.fileDownload>
 									</span>
 									<span class="news-related-files-size">
-										<n:format.fileSize file="{relatedFile.originalResource.publicUrl}" fileSize="{relatedFile.originalResource.size}" format="{settings.relatedFiles.fileSizeLabels}" />
+										{relatedFile.originalResource.size -> f:format.bytes()}
 									</span>
 								</li>
 							</f:for>
