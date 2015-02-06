@@ -67,8 +67,12 @@ $newSysCategoryColumns = array(
 			'images',
 			array(
 				'appearance' => array(
-					'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference'
-				),
+					'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference',
+					'showPossibleLocalizationRecords' => 1,
+					'showRemovedLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1,
+					'showSynchronizationLink' => 1
+					),
 				'foreign_match_fields' => array(
 					'fieldname' => 'images',
 					'tablenames' => 'sys_category',
