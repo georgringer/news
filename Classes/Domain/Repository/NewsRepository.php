@@ -95,7 +95,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		$constraints = array();
 
 		if ($demand->getCategories() && $demand->getCategories() !== '0') {
-			$constraints[] = $this->createCategoryConstraint(
+			$constraints['categories'] = $this->createCategoryConstraint(
 				$query,
 				$demand->getCategories(),
 				$demand->getCategoryConjunction(),
@@ -104,17 +104,17 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 		}
 
 		if ($demand->getAuthor()) {
-			$constraints[] = $query->equals('author', $demand->getAuthor());
+			$constraints['author'] = $query->equals('author', $demand->getAuthor());
 		}
 
 		// archived
 		if ($demand->getArchiveRestriction() == 'archived') {
-			$constraints[] = $query->logicalAnd(
+			$constraints['archived'] = $query->logicalAnd(
 				$query->lessThan('archive', $GLOBALS['EXEC_TIME']),
 				$query->greaterThan('archive', 0)
 			);
 		} elseif ($demand->getArchiveRestriction() == 'active') {
-			$constraints[] = $query->logicalOr(
+			$constraints['active'] = $query->logicalOr(
 				$query->greaterThanOrEqual('archive', $GLOBALS['EXEC_TIME']),
 				$query->equals('archive', 0)
 			);
@@ -140,7 +140,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 				}
 			}
 
-			$constraints[] = $query->greaterThanOrEqual(
+			$constraints['timeRestrictionGreater'] = $query->greaterThanOrEqual(
 				$timeRestrictionField,
 				$timeLimit
 			);
@@ -163,7 +163,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 				}
 			}
 
-			$constraints[] = $query->lessThanOrEqual(
+			$constraints['timeRestrictionLess'] = $query->lessThanOrEqual(
 				$timeRestrictionField,
 				$timeLimit
 			);
@@ -171,15 +171,15 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 
 		// top news
 		if ($demand->getTopNewsRestriction() == 1) {
-			$constraints[] = $query->equals('istopnews', 1);
+			$constraints['topNews1'] = $query->equals('istopnews', 1);
 		} elseif ($demand->getTopNewsRestriction() == 2) {
-			$constraints[] = $query->equals('istopnews', 0);
+			$constraints['topNews2'] = $query->equals('istopnews', 0);
 		}
 
 		// storage page
 		if ($demand->getStoragePage() != 0) {
 			$pidList = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $demand->getStoragePage(), TRUE);
-			$constraints[] = $query->in('pid', $pidList);
+			$constraints['pid'] = $query->in('pid', $pidList);
 		}
 
 		// month & year OR year only
@@ -199,7 +199,7 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 				$begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
 				$end = mktime(23, 59, 59, 12, 31, $demand->getYear());
 			}
-			$constraints[] = $query->logicalAnd(
+			$constraints['datetime'] = $query->logicalAnd(
 				$query->greaterThanOrEqual($demand->getDateField(), $begin),
 				$query->lessThanOrEqual($demand->getDateField(), $end)
 			);
@@ -211,19 +211,19 @@ class Tx_News_Domain_Repository_NewsRepository extends Tx_News_Domain_Repository
 			$tagList = explode(',', $tags);
 
 			foreach ($tagList as $singleTag) {
-				$constraints[] = $query->contains('tags', $singleTag);
+				$constraints['tags'] = $query->contains('tags', $singleTag);
 			}
 		}
 
 		// Search
 		$searchConstraints = $this->getSearchConstraints($query, $demand);
 		if (!empty($searchConstraints)) {
-			$constraints[] = $query->logicalAnd($searchConstraints);
+			$constraints['search'] = $query->logicalAnd($searchConstraints);
 		}
 
 		// Exclude already displayed
 		if ($demand->getExcludeAlreadyDisplayedNews() && isset($GLOBALS['EXT']['news']['alreadyDisplayed']) && !empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {
-			$constraints[] = $query->logicalNot(
+			$constraints['excludeAlreadyDisplayedNews'] = $query->logicalNot(
 				$query->in(
 					'uid',
 					$GLOBALS['EXT']['news']['alreadyDisplayed']
