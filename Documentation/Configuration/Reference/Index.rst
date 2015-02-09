@@ -457,7 +457,7 @@ The following table describes the settings concerning the detail view.
    :Description:
          If no news entry is found, it is possible to use various types of error handling.
          * **redirectToListView**: This will redirect to the list view on the same page.
-         * **redirectToPage**: Redirect to any page by using the syntax redirectToPage,<pageid>,<status>. This means e.g. redirectToPage,123,404 to redirect to the page with UID 123 and error code 404.
+         * **redirectToPage**: Redirect to any page by using the syntax redirectToPage,<pageid>,<status>. This means e.g. redirectToPage,123,301 to redirect to the page with UID 123 and error code 301. **Important:** A 404 status code is not allowed in PHP "Location:" header. Only 201, 3xx status codes are possible.
          * **pageNotFoundHandler**: The default page not found handler will be called.
 
    :Default:
