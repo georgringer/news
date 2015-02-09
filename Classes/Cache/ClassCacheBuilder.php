@@ -29,7 +29,6 @@ class Tx_News_Cache_ClassCacheBuilder {
 	 * @throws Exception
 	 */
 	public function build() {
-		$this->init();
 		$cacheEntries = array();
 
 		$extensibleExtensions = $this->getExtensibleExtensions();
@@ -94,15 +93,6 @@ class Tx_News_Cache_ClassCacheBuilder {
 			}
 		}
 		return $extensibleExtensions;
-	}
-
-	/**
-	 * Load some classes
-	 *
-	 * @return void
-	 */
-	protected function init() {
-		require_once \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('core') . 'Classes/Utility/VersionNumberUtility.php';
 	}
 
 	/**
