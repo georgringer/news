@@ -70,7 +70,7 @@ class Tx_News_Hooks_CmsLayout {
 		$result = $actionTranslationKey = '';
 
 		if ($this->showExtensionTitle()) {
-			$result .= '<strong>' . $GLOBALS['LANG']->sL(self::LLPATH . 'pi1_title', TRUE) . '</strong>';
+			$result .= '<strong>' . $this->getLanguageService()->sL(self::LLPATH . 'pi1_title', TRUE) . '</strong>';
 		}
 
 		if ($params['row']['list_type'] == self::KEY . '_pi1') {
@@ -83,12 +83,12 @@ class Tx_News_Hooks_CmsLayout {
 
 				// translate the first action into its translation
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
-				$actionTranslation = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
+				$actionTranslation = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
 
 				$result .= '<pre>' . $actionTranslation . '</pre>';
 
 			} else {
-				$result = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
+				$result = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
 			}
 
 			if (is_array($this->flexformData)) {
@@ -128,6 +128,15 @@ class Tx_News_Hooks_CmsLayout {
 					default:
 				}
 
+				if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\CmsLayout']['extensionSummary'])) {
+					$params = array(
+						'action' => $actionTranslationKey
+					);
+					foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\CmsLayout']['extensionSummary'] as $reference) {
+						\TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
+					}
+				}
+
 				// for all views
 				$this->getOverrideDemandSettings();
 				$this->getTemplateLayoutSettings($params['row']['pid']);
@@ -144,13 +153,13 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getArchiveSettings() {
+	public function getArchiveSettings() {
 		$archive = $this->getFieldFromFlexform('settings.archiveRestriction');
 
 		if (!empty($archive)) {
 			$this->tableData[] = array(
-				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.archiveRestriction'),
-				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.archiveRestriction.' . $archive)
+				$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.archiveRestriction'),
+				$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.archiveRestriction.' . $archive)
 			);
 		}
 	}
@@ -160,7 +169,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getSingleNewsSettings() {
+	public function getSingleNewsSettings() {
 		$singleNewsRecord = (int)$this->getFieldFromFlexform('settings.singleNews');
 
 		if ($singleNewsRecord > 0) {
@@ -183,18 +192,18 @@ class Tx_News_Hooks_CmsLayout {
 						'</a>';
 				} else {
 					/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
-					$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $newsRecord['pid']);
+					$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $newsRecord['pid']);
 					$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 					$content = $message->render();
 				}
 			} else {
 				/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
-				$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.newsNotAvailable', TRUE), $singleNewsRecord);
+				$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.newsNotAvailable', TRUE), $singleNewsRecord);
 				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 				$content = $message->render();
 			}
 
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.singleNews'), $content);
+			$this->tableData[] = array($this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.singleNews'), $content);
 		}
 	}
 
@@ -203,13 +212,13 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getDetailPidSetting() {
+	public function getDetailPidSetting() {
 		$detailPid = (int)$this->getFieldFromFlexform('settings.detailPid', 'additional');
 
 		if ($detailPid > 0) {
 			$content = $this->getPageRecordData($detailPid);
 
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.detailPid'), $content);
+			$this->tableData[] = array($this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.detailPid'), $content);
 		}
 	}
 
@@ -218,13 +227,13 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getListPidSetting() {
+	public function getListPidSetting() {
 		$listPid = (int)$this->getFieldFromFlexform('settings.listPid', 'additional');
 
 		if ($listPid > 0) {
 			$content = $this->getPageRecordData($listPid);
 
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.listPid'), $content);
+			$this->tableData[] = array($this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.listPid'), $content);
 		}
 	}
 
@@ -234,7 +243,7 @@ class Tx_News_Hooks_CmsLayout {
 	 * @param $detailPid
 	 * @return string
 	 */
-	protected function getPageRecordData($detailPid) {
+	public function getPageRecordData($detailPid) {
 		$pageRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('pages', $detailPid);
 
 		if (is_array($pageRecord)) {
@@ -245,7 +254,7 @@ class Tx_News_Hooks_CmsLayout {
 				htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('pages', $pageRecord));
 		} else {
 			/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
-			$text = sprintf($GLOBALS['LANG']->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $detailPid);
+			$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $detailPid);
 			$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
 			$content = $message->render();
 		}
@@ -258,10 +267,10 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getOrderSettings() {
+	public function getOrderSettings() {
 		$orderField = $this->getFieldFromFlexform('settings.orderBy');
 		if (!empty($orderField)) {
-			$text = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderBy.' . $orderField);
+			$text = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.orderBy.' . $orderField);
 
 			// Order direction (asc, desc)
 			$orderDirection = $this->getOrderDirectionSetting();
@@ -276,7 +285,7 @@ class Tx_News_Hooks_CmsLayout {
 			}
 
 			$this->tableData[] = array(
-				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderBy'),
+				$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.orderBy'),
 				$text
 			);
 		}
@@ -287,12 +296,12 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return string
 	 */
-	protected function getOrderDirectionSetting() {
+	public function getOrderDirectionSetting() {
 		$text = '';
 
 		$orderDirection = $this->getFieldFromFlexform('settings.orderDirection');
 		if (!empty($orderDirection)) {
-			$text = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.orderDirection.' . $orderDirection);
+			$text = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.orderDirection.' . $orderDirection);
 		}
 
 		return $text;
@@ -303,11 +312,11 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return string
 	 */
-	protected function getTopNewsFirstSetting() {
+	public function getTopNewsFirstSetting() {
 		$text = '';
 		$topNewsSetting = (int)$this->getFieldFromFlexform('settings.topNewsFirst', 'additional');
 		if ($topNewsSetting === 1) {
-			$text = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.topNewsFirst');
+			$text = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.topNewsFirst');
 		}
 
 		return $text;
@@ -320,7 +329,7 @@ class Tx_News_Hooks_CmsLayout {
 	 * @param boolean $showCategoryMode show the category conjunction
 	 * @return void
 	 */
-	protected function getCategorySettings($showCategoryMode = TRUE) {
+	public function getCategorySettings($showCategoryMode = TRUE) {
 		$categoryMode = '';
 		$categoriesOut = array();
 
@@ -332,9 +341,9 @@ class Tx_News_Hooks_CmsLayout {
 
 			if ($showCategoryMode) {
 				if (empty($categoryModeSelection)) {
-					$categoryMode = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categoryConjunction.all');
+					$categoryMode = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction.all');
 				} else {
-					$categoryMode = $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categoryConjunction.' . $categoryModeSelection);
+					$categoryMode = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction.' . $categoryModeSelection);
 				}
 
 				$categoryMode = '<span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>';
@@ -353,11 +362,11 @@ class Tx_News_Hooks_CmsLayout {
 
 			$includeSubcategories = $this->getFieldFromFlexform('settings.includeSubCategories');
 			if ($includeSubcategories) {
-				$categoryMode .= '<br />+ ' . $GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.includeSubCategories', TRUE);
+				$categoryMode .= '<br />+ ' . $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.includeSubCategories', TRUE);
 			}
 
 			$this->tableData[] = array(
-				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.categories') .
+				$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categories') .
 				'<br />' . $categoryMode,
 				implode(', ', $categoriesOut)
 			);
@@ -369,7 +378,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getTagRestrictionSetting() {
+	public function getTagRestrictionSetting() {
 		$tags = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'additional'), TRUE);
 		if (count($tags) === 0) {
 			return;
@@ -386,7 +395,7 @@ class Tx_News_Hooks_CmsLayout {
 		}
 
 		$this->tableData[] = array(
-			$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.tags'),
+			$this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.tags'),
 			implode(', ', $categoryTitles)
 		);
 	}
@@ -396,19 +405,19 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getOffsetLimitSettings() {
+	public function getOffsetLimitSettings() {
 		$offset = $this->getFieldFromFlexform('settings.offset', 'additional');
 		$limit = $this->getFieldFromFlexform('settings.limit', 'additional');
 		$hidePagination = $this->getFieldFromFlexform('settings.hidePagination', 'additional');
 
 		if ($offset) {
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.offset'), $offset);
+			$this->tableData[] = array($this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.offset'), $offset);
 		}
 		if ($limit) {
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.limit'), $limit);
+			$this->tableData[] = array($this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.limit'), $limit);
 		}
 		if ($hidePagination) {
-			$this->tableData[] = array($GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_additional.hidePagination'), NULL);
+			$this->tableData[] = array($this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.hidePagination'), NULL);
 		}
 	}
 
@@ -417,12 +426,12 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getDateMenuSettings() {
+	public function getDateMenuSettings() {
 		$dateMenuField = $this->getFieldFromFlexform('settings.dateField');
 
 		$this->tableData[] = array(
-			$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.dateField'),
-			$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.dateField.' . $dateMenuField)
+			$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.dateField'),
+			$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.dateField.' . $dateMenuField)
 		);
 	}
 
@@ -431,12 +440,12 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getTimeRestrictionSetting() {
+	public function getTimeRestrictionSetting() {
 		$timeRestriction = $this->getFieldFromFlexform('settings.timeRestriction');
 
 		if (!empty($timeRestriction)) {
 			$this->tableData[] = array(
-				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
+				$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
 				htmlspecialchars($timeRestriction)
 			);
 		}
@@ -444,7 +453,7 @@ class Tx_News_Hooks_CmsLayout {
 		$timeRestrictionHigh = $this->getFieldFromFlexform('settings.timeRestrictionHigh');
 		if (!empty($timeRestrictionHigh)) {
 			$this->tableData[] = array(
-				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.timeRestrictionHigh'),
+				$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.timeRestrictionHigh'),
 				htmlspecialchars($timeRestrictionHigh)
 			);
 		}
@@ -455,12 +464,12 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getTopNewsRestrictionSetting() {
+	public function getTopNewsRestrictionSetting() {
 		$topNewsRestriction = (int)$this->getFieldFromFlexform('settings.topNewsRestriction');
 		if ($topNewsRestriction > 0) {
 			$this->tableData[] = array(
-				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.topNewsRestriction'),
-				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_general.topNewsRestriction.' . $topNewsRestriction)
+				$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.topNewsRestriction'),
+				$this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.topNewsRestriction.' . $topNewsRestriction)
 			);
 		}
 	}
@@ -471,7 +480,7 @@ class Tx_News_Hooks_CmsLayout {
 	 * @param int $pageUid
 	 * @return void
 	 */
-	protected function getTemplateLayoutSettings($pageUid) {
+	public function getTemplateLayoutSettings($pageUid) {
 		$title = '';
 		$field = $this->getFieldFromFlexform('settings.templateLayout', 'template');
 
@@ -487,8 +496,8 @@ class Tx_News_Hooks_CmsLayout {
 
 		if (!empty($title)) {
 			$this->tableData[] = array(
-				$GLOBALS['LANG']->sL(self::LLPATH . 'flexforms_template.templateLayout'),
-				$GLOBALS['LANG']->sL($title)
+				$this->getLanguageService()->sL(self::LLPATH . 'flexforms_template.templateLayout'),
+				$this->getLanguageService()->sL($title)
 			);
 		}
 	}
@@ -498,11 +507,11 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getOverrideDemandSettings() {
+	public function getOverrideDemandSettings() {
 		$field = $this->getFieldFromFlexform('settings.disableOverrideDemand', 'additional');
 
 		if ($field == 1) {
-			$this->tableData[] = array($GLOBALS['LANG']->sL(
+			$this->tableData[] = array($this->getLanguageService()->sL(
 				self::LLPATH . 'flexforms_additional.disableOverrideDemand'), '');
 		}
 	}
@@ -512,7 +521,7 @@ class Tx_News_Hooks_CmsLayout {
 	 *
 	 * @return void
 	 */
-	protected function getStartingPoint() {
+	public function getStartingPoint() {
 		$value = $this->getFieldFromFlexform('settings.startingpoint');
 
 		if (!empty($value)) {
@@ -530,19 +539,19 @@ class Tx_News_Hooks_CmsLayout {
 			$recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
 			$recursiveLevelText = '';
 			if ($recursiveLevel === 250) {
-				$recursiveLevelText = $GLOBALS['LANG']->sL('LLL:EXT:cms/locallang_ttc.xlf:recursive.I.5');
+				$recursiveLevelText = $this->getLanguageService()->sL('LLL:EXT:cms/locallang_ttc.xlf:recursive.I.5');
 			} elseif ($recursiveLevel > 0) {
-				$recursiveLevelText = $GLOBALS['LANG']->sL('LLL:EXT:cms/locallang_ttc.xlf:recursive.I.' . $recursiveLevel);
+				$recursiveLevelText = $this->getLanguageService()->sL('LLL:EXT:cms/locallang_ttc.xlf:recursive.I.' . $recursiveLevel);
 			}
 
 			if (!empty($recursiveLevelText)) {
 				$recursiveLevelText = '<br />' .
-					$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xlf:LGL.recursive', TRUE) . ' ' .
+					$this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.recursive', TRUE) . ' ' .
 					$recursiveLevelText;
 			}
 
 			$this->tableData[] = array(
-				$GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
+				$this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
 				implode(', ', $pagesOut) . $recursiveLevelText
 			);
 		}
@@ -561,7 +570,7 @@ class Tx_News_Hooks_CmsLayout {
 
 		$content = '';
 		foreach ($this->tableData as $line) {
-			$content .= '<strong>' . $line[0] . '</strong>' . ' ' .$line[1] . '<br />';
+			$content .= '<strong>' . $line[0] . '</strong>' . ' ' . $line[1] . '<br />';
 		}
 
 		return '<pre>' . $content . '</pre>';
@@ -575,7 +584,7 @@ class Tx_News_Hooks_CmsLayout {
 	 * @param string $sheet name of the sheet
 	 * @return string|NULL if nothing found, value if found
 	 */
-	protected function getFieldFromFlexform($key, $sheet = 'sDEF') {
+	public function getFieldFromFlexform($key, $sheet = 'sDEF') {
 		$flexform = $this->flexformData;
 		if (isset($flexform['data'])) {
 			$flexform = $flexform['data'];
@@ -599,5 +608,14 @@ class Tx_News_Hooks_CmsLayout {
 		$majorVersion = intval(substr(TYPO3_branch, 0, 1));
 
 		return ($majorVersion >= 6);
+	}
+
+	/**
+	 * Return language service instance
+	 *
+	 * @return \TYPO3\CMS\Lang\LanguageService
+	 */
+	public function getLanguageService() {
+		return $GLOBALS['LANG'];
 	}
 }
