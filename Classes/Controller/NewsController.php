@@ -83,7 +83,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 		$class = isset($settings['demandClass']) ? $settings['demandClass'] : $class;
 
 		/* @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
-		$demand = $this->objectManager->get($class);
+		$demand = $this->objectManager->get($class, $settings);
 		if (!$demand instanceof \Tx_News_Domain_Model_Dto_NewsDemand) {
 			throw new \UnexpectedValueException(
 				sprintf('The demand object must be an instance of Tx_News_Domain_Model_Dto_NewsDemand, but %s given!', $class),
