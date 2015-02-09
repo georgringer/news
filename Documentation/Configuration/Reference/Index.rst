@@ -275,6 +275,18 @@ General properties
    :Default:
          en\_US
 
+ - :Property:
+         demandClass
+
+   :Data type:
+         string
+
+   :Description:
+         Set a class which is used instead of the Demand class
+
+   :Default:
+
+
 
 [tsref:plugin.tx\_news.settings]
 

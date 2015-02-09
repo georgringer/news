@@ -75,6 +75,8 @@ plugin.tx_news {
 		googlePlusLocale = en
 		disqusLocale = en
 
+		demandClass =
+
 		# Interface implementations
 		interfaces {
 			media {
