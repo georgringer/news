@@ -80,7 +80,7 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 	 * @return Tx_News_Domain_Model_Dto_NewsDemand
 	 */
 	protected function createDemandObjectFromSettings($settings, $class = 'Tx_News_Domain_Model_Dto_NewsDemand') {
-		$class = isset($settings['demandClass']) ? $settings['demandClass'] : $class;
+		$class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
 		/* @var $demand Tx_News_Domain_Model_Dto_NewsDemand */
 		$demand = $this->objectManager->get($class, $settings);
