@@ -96,3 +96,42 @@ and ::
 		</f:if>
 	</f:section>
 
+
+Extension linkhandler sample configuration
+"""""""""""""""""""""""""""""""""""""""""""
+
+You could use ext:linkhandler to link to an single news record. Here is a simple example.
+
+``TypoScript-Setup``::
+
+	plugin.tx_linkhandler {
+		news {
+			forceLink = 0
+			listTables = tx_news_domain_model_news
+			typolink {
+				parameter = {$pids.newsSinglePid}
+				additionalParams = &amp;tx_news_pi1[news]={field:uid}
+				additionalParams.insertData = 1
+				useCacheHash = 1
+			}
+		}
+	}
+
+The related``TSConfig``::
+
+	mod.tx_linkhandler {
+		news {
+			label=News
+			listTables=tx_news_domain_model_news
+			previewPageId = 1
+		}
+	}
+	RTE.default
+		tx_linkhandler {
+			news {
+				label=News
+				listTables=tx_news_domain_model_news
+			}
+		}
+	}
+	RTE.default.FE.tx_linkhandler < RTE.default.tx_linkhandler
