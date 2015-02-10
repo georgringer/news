@@ -65,6 +65,7 @@ class Tx_News_ViewHelpers_Format_FileSizeViewHelper extends \TYPO3\CMS\Fluid\Cor
 		} else {
 			$result = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize($fileSize, $format);
 		}
+		$result = htmlspecialchars($result);
 
 		return $result;
 	}

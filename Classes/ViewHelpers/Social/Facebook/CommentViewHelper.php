@@ -67,7 +67,7 @@ class Tx_News_ViewHelpers_Social_Facebook_CommentViewHelper extends \TYPO3\CMS\F
 		$this->tag->addAttribute('data-href', \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
 		$this->tag->forceClosingTag(TRUE);
 
-		$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
+		$locale = (!empty($tsSettings['facebookLocale']) && strlen($tsSettings['facebookLocale']) <= 5) ? $tsSettings['facebookLocale'] : 'en_US';
 
 		$code = '<div id="fb-root"></div>
 					<script src="http://connect.facebook.net/' . $locale . '/all.js#appId=' . htmlspecialchars($appId) .

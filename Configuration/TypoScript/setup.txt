@@ -163,13 +163,14 @@ plugin.tx_news {
 			download {
 				labelStdWrap {
 					cObject = TEXT
+					htmlSpecialChars = 1
 				}
 			}
 		}
 
 		# Opengraph implementation
 		opengraph {
-			site_name =  {$plugin.tx_news.opengraph.site_name}
+			site_name = {$plugin.tx_news.opengraph.site_name}
 			type = article
 			admins =
 			email =

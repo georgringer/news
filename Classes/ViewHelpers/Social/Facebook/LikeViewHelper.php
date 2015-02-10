@@ -86,7 +86,7 @@ class Tx_News_ViewHelpers_Social_Facebook_LikeViewHelper extends \TYPO3\CMS\Flui
 			if (empty($this->arguments['javaScript'])) {
 				$tsSettings = $this->pluginSettingsService->getSettings();
 
-				$locale = (!empty($tsSettings['facebookLocale'])) ? $tsSettings['facebookLocale'] : 'en_US';
+				$locale = (!empty($tsSettings['facebookLocale']) && strlen($tsSettings['facebookLocale']) <= 5) ? $tsSettings['facebookLocale'] : 'en_US';
 
 				$code = '<script src="https://connect.facebook.net/' . $locale . '/all.js#xfbml=1"></script>';
 

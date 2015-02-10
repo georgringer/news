@@ -77,7 +77,7 @@ class Tx_News_ViewHelpers_Social_GooglePlusViewHelper extends \TYPO3\CMS\Fluid\C
 		}
 
 		$tsSettings = $this->pluginSettingsService->getSettings();
-		$locale = (!empty($tsSettings['googlePlusLocale'])) ? '{lang:\'' . $tsSettings['googlePlusLocale'] . '\'}' : '';
+		$locale = (!empty($tsSettings['googlePlusLocale']) && strlen($tsSettings['googlePlusLocale']) <= 5) ? '{lang:\'' . $tsSettings['googlePlusLocale'] . '\'}' : '';
 
 		$code = '<script type="text/javascript" src="' . $jsCode . '">' . $locale . '</script>';
 
