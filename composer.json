@@ -1,0 +1,19 @@
+{
+	"name": "georgringer/news",
+	"type": "typo3-cms-extension",
+	"description": "Versatile news extension, based on extbase & fluid for TYPO3 CMS",
+	"homepage": "http://typo3.org",
+	"license": ["GPL-2.0+"],
+	"version": "3.1.0",
+	"require": {
+		"typo3/cms-core": ">=6.2.1,<8.0"
+	},
+	"replace": {
+		"news": "*"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "3.1.x-dev"
+		}
+	}
+}
