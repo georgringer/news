@@ -368,7 +368,13 @@ class Tx_News_Controller_NewsController extends Tx_News_Controller_NewsBaseContr
 			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
 			);
 
-			// Use stdWrap for given defined settings
+		$propertiesNotAllowedViaFlexForms = array('orderByAllowed');
+		foreach($propertiesNotAllowedViaFlexForms as $property) {
+			$originalSettings[$property] = $tsSettings['settings'][$property];
+		}
+
+
+		// Use stdWrap for given defined settings
 		if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
 			/** @var  \TYPO3\CMS\Extbase\Service\TypoScriptService $typoScriptService */
 			$typoScriptService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService');
