@@ -573,7 +573,7 @@ class Tx_News_Hooks_CmsLayout {
 			$content .= '<strong>' . $line[0] . '</strong>' . ' ' . $line[1] . '<br />';
 		}
 
-		return '<pre>' . $content . '</pre>';
+		return '<pre style="white-space:normal">' . $content . '</pre>';
 	}
 
 	/**
