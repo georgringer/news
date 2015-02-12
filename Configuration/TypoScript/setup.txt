@@ -107,10 +107,17 @@ plugin.tx_news {
 			# media configuration
 			media {
 				image {
-						# choose the rel tag like gallery[fo]
-					lightbox = lightbox[myImageSet]
 					maxWidth = 282
 					maxHeight =
+
+					# Get lightbox settings from css_styled_content
+					lightbox {
+						enabled = {$styles.content.imgtext.linkWrap.lightboxEnabled}
+						class = {$styles.content.imgtext.linkWrap.lightboxCssClass}
+						width = {$styles.content.imgtext.linkWrap.width}
+						height = {$styles.content.imgtext.linkWrap.height}
+						rel = lightbox[myImageSet]
+					}
 				}
 
 				video {
@@ -223,13 +230,13 @@ module.tx_news < plugin.tx_news
 
 # CMS 7 compatible templates
 [compatVersion = 7.0]
-module.tx_news {
-	view {
-		templateRootPaths {
-			0 = {$plugin.tx_news.view.templateRootPath}7/
+	module.tx_news {
+		view {
+			templateRootPaths {
+				0 = {$plugin.tx_news.view.templateRootPath}7/
+			}
 		}
 	}
-}
 [global]
 
 # ==============================================
