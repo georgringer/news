@@ -1,6 +1,6 @@
 
 
-3.1.0 - 2015/02/XX
+3.1.0 - 2015/02/12
 ----------------------------------
 
 This is a major release supporting now also TYPO3 CMS 7, next to 6.2 LTS.
@@ -41,16 +41,22 @@ A lot of code changed in this version. The most important changes are:
 * Improved FAL migration
 * Improved import service
 * SignalSlots in ImportService and the actions
+* Added a composer.json
 
 All Changes
 ===========
 
 ::
 
+	2015-02-11 [TASK] Add autoload definition in composer.json (Commit 991de43 by Helmut Hummel)
+	2015-02-10 [TASK] Changelog for 3.1.0 (Commit b88d81a by Georg Ringer)
 	2015-02-10 [FEATURE] Add composer.json (Commit 33241ca by Georg Ringer)
 	2015-02-10 [TASK] Add simple ext:linkhandler sample configuration (Commit fc553ad by Josef Florian Glatz)
 	2015-02-10 [TASK] Change allowed TYPO3 version (Commit 58bb06e by Georg Ringer)
 	2015-02-10 [BUGFIX] Improve escaping in VH (Commit e4ce1cb by Georg Ringer)
+	2015-02-10 [FEATURE] Add composer.json (Commit 33241ca by Georg Ringer)
+	2015-02-10 [TASK] Add simple ext:linkhandler sample configuration (Commit fc553ad by Josef Florian Glatz)
+	2015-02-10 [TASK] Change allowed TYPO3 version (Commit 58bb06e by Georg Ringer)
 	2015-02-10 [BUGFIX] Ignore unwanted settings of flexforms (Commit 63fcf77 by Georg Ringer)
 	2015-02-10 [BUGFIX] Followup for getDemandClass (Commit 413a44b by Georg Ringer)
 	2015-02-10 [BUGFIX] Prevent spreading columns in page module (Commit 6f68088 by Josef Florian Glatz)
