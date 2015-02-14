@@ -42,6 +42,14 @@ General properties
    :Description:
          alt-text
    :Default value:
+
+ - :Name:
+         default
+   :Type:
+         string
+   :Description:
+         Default gravatar image. Can either be  404, mm, identicon, monsterid, wavatar, retro, or blank
+   :Default value:
          
 
  - :Name:
