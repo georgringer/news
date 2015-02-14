@@ -133,6 +133,38 @@ If you want to show the news title in the breadcrumb menu if the single view is 
 
 The relevant part starts with *20 = RECORDS* as this cObject renders the title of the news article. **Important:** Never forget the *source.intval = 1* to avoid SQL injections and the *htmlSpecialChars = 1* to avoid Cross-Site Scripting!
 
+Category Menu: Add category title to title tag
+""""""""""""""""""""""""""""""""""""""""""""""
+
+If you want to add the title of an active category record to the title tag, you can use this snippet: ::
+
+	[globalVar = GP:tx_news_pi1|overwriteDemand|categories > 0]
+		temp.newsTitle >
+		temp.newsTitle = CONTENT
+		temp.newsTitle {
+			table = sys_category
+			select {
+				languageField = sys_language_uid
+				pidInList = {$categoryStoragePid}
+				selectFields = title
+				join = sys_category_record_mm ON(sys_category_record_mm.uid_local=sys_category.uid)
+				where = sys_category_record_mm.tablenames = 'tx_news_domain_model_news'
+				andWhere.data = GP:tx_news_pi1|overwriteDemand|categories
+				andWhere.intval = 1
+				andWhere.wrap = sys_category_record_mm.uid_local =|
+			}
+			renderObj = TEXT
+			renderObj {
+				field = title
+				htmlSpecialChars = 1
+			}
+			renderObj.wrap = <title>What&nbsp; | &nbsp;- Ever</title>
+		}
+		page.headerData.1 >
+		page.headerData.1 < temp.newsTitle
+	[global]
+
+
 Add HTML to the header part in the detail view.
 """""""""""""""""""""""""""""""""""""""""""""""
 
