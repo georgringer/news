@@ -208,7 +208,7 @@ You can use: ::
 
 	TCEMAIN.clearCacheCmd = pages
 
-to clear the complete caches as well
+to clear the complete caches as well ::
 
 	TCEMAIN.clearCacheCmd = cacheTag:tx_news
 
