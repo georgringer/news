@@ -18,9 +18,9 @@
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInterface {
+class Tx_News_MediaRenderer_Audio_Mp3Html5 implements Tx_News_MediaRenderer_MediaInterface {
 
-	const PATH_TO_JS = 'typo3conf/ext/news/Resources/Public/JavaScript/Contrib/';
+	const PATH_TO_JS = 'typo3conf/ext/news/Resources/Public/Contrib/audiojs/';
 
 	/**
 	 * Render mp3 files
@@ -35,20 +35,12 @@ class Tx_News_MediaRenderer_Audio_Mp3 implements Tx_News_MediaRenderer_MediaInte
 		$url = Tx_News_Service_FileService::getCorrectUrl($element->getMultimedia());
 		$uniqueId = Tx_News_Service_FileService::getUniqueId($element);
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'swfobject-2-2.js');
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'audioplayer-noswfobject.js');
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'audio.min.js');
 
-		$inlineJs = '
-			AudioPlayer.setup("' . \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . self::PATH_TO_JS . 'audioplayer-player.swf", {
-				width: ' . (int)$width . '
-			});';
+		$inlineJs = 'audiojs.events.ready(function() { audiojs.createAll(); });';
+		$GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode('news_audio_html5', $inlineJs);
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode('news_audio', $inlineJs);
-
-		$content = '<p id="' . htmlspecialchars($uniqueId) . '">' . htmlspecialchars($element->getCaption()) . '</p>
-					<script type="text/javascript">
-						AudioPlayer.embed(' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($uniqueId) . ', {soundFile: ' . \TYPO3\CMS\Core\Utility\GeneralUtility::quoteJSvalue($url) . '});
-					</script> ';
+		$content = '<audio src="' . htmlspecialchars($url) . '" preload="auto"></audio>';
 
 		return $content;
 	}

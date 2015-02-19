@@ -80,7 +80,7 @@ plugin.tx_news {
 		# Interface implementations
 		interfaces {
 			media {
-				video = Tx_News_MediaRenderer_Audio_Mp3,Tx_News_MediaRenderer_Video_Quicktime,Tx_News_MediaRenderer_Video_File,Tx_News_MediaRenderer_Video_Youtube,Tx_News_MediaRenderer_Video_Vimeo,Tx_News_MediaRenderer_Video_Videosites
+				video = Tx_News_MediaRenderer_Audio_Mp3Html5,Tx_News_MediaRenderer_Audio_Mp3,Tx_News_MediaRenderer_Video_Quicktime,Tx_News_MediaRenderer_Video_File,Tx_News_MediaRenderer_Video_Youtube,Tx_News_MediaRenderer_Video_Vimeo,Tx_News_MediaRenderer_Video_Videosites
 			}
 			falMedia {
 				video = Tx_News_MediaRenderer_Video_Fal
