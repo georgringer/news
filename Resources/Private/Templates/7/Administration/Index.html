@@ -3,7 +3,7 @@
 <f:layout name="Backend/Default" />
 
 <f:section name="categoryTree">
-	<ul class="list-unstyled">
+	<ul class="{class}">
 		<f:for each="{categories}" as="category">
 			<li>
 				<f:form.checkbox id="category-{category.item.uid}" property="selectedCategories" value="{category.item.uid}" />
@@ -113,7 +113,7 @@
 				<div class="col-sm-8">
 					<div class="category-tree">
 						<div class="tree-wrapper">
-							<f:render section="categoryTree" arguments="{categories: categories}" />
+							<f:render section="categoryTree" arguments="{categories: categories, class:'list-tree'}" />
 						</div>
 
 						<f:if condition="{categories}">
