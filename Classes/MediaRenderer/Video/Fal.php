@@ -41,12 +41,6 @@ class Tx_News_MediaRenderer_Video_Fal implements Tx_News_MediaRenderer_FalMediaI
 
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'flowplayer-3.2.12.min.js');
 
-			// override width & height if both are set
-		if ($element->getWidth() > 0 && $element->getHeight() > 0) {
-			$width = $element->getWidth();
-			$height = $element->getHeight();
-		}
-
 		$view->assign('width', \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($width));
 		$view->assign('height', \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($height));
 		$view->assign('uniqueDivId', 'mediaelement-' . md5($element->getUid() . uniqid()));
