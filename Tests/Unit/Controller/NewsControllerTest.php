@@ -64,7 +64,7 @@ class Tx_News_Tests_Unit_Controller_NewsControllerTest extends \TYPO3\CMS\Core\T
 	 */
 	public function listActionFindsDemandedNewsByDemandFromSettings() {
 		$demand = clone new Tx_News_Domain_Model_Dto_AdministrationDemand();
-		$settings = array('list' => 'foo');
+		$settings = array('list' => 'foo', 'orderByAllowed' => NULL);
 
 		$configurationManager = $this->getMock(
 			'TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'
