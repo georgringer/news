@@ -97,16 +97,16 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function extensionManagerConfigurationIsCorrectlyReturnedDataProvider() {
 		return array(
 			'noConfigurationFound' => array(
-				NULL, new EmConfiguration(array())
+				NULL, new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration(array())
 			),
 			'wrongConfigurationFound' => array(
-				serialize('Test 123'), new EmConfiguration(array())
+				serialize('Test 123'), new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration(array())
 			),
 			'noValidPropertiesFound' => array(
-				serialize(array('key' => 'value')), new EmConfiguration(array())
+				serialize(array('key' => 'value')), new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration(array())
 			),
 			'validPropertiesFound' => array(
-				serialize(array('key' => 'value', 'pageModuleFieldsNews' => 'test')), new EmConfiguration(array('pageModuleFieldsNews' => 'test'))
+				serialize(array('key' => 'value', 'pageModuleFieldsNews' => 'test')), new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration(array('pageModuleFieldsNews' => 'test'))
 			),
 		);
 	}

@@ -16,7 +16,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 
 use GeorgRinger\News\Domain\Model\Category;
-use GeorgRinger\NewsRecurring\Domain\Model\News;
+use GeorgRinger\News\Domain\Model\News;
 
 /**
  * Test for LinkViewHelper
