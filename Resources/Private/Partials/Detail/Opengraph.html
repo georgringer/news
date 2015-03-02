@@ -11,14 +11,14 @@
 	<f:then>
 		<n:metaTag
 			property="og:image"
-			content="{f:uri.image(src:'{newsItem.firstFalImagePreview.uid}' treatIdAsReference:1 maxWidth:'500')}"
+			content="{f:uri.image(src:'{newsItem.firstFalImagePreview.uid}', treatIdAsReference:1, maxWidth:'500')}"
 			forceAbsoluteUrl="1" />
 	</f:then>
 	<f:else>
 		<f:if condition="{newsItem.firstImagePreview.image}">
 			<n:metaTag
 					property="og:image"
-					content="{f:uri.image(src:'uploads/tx_news/{newsItem.firstImagePreview.image}' maxWidth:'500')}"
+					content="{f:uri.image(src:'uploads/tx_news/{newsItem.firstImagePreview.image}', maxWidth:'500')}"
 					forceAbsoluteUrl="1" />
 		</f:if>
 	</f:else>
