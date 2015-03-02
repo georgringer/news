@@ -45,6 +45,25 @@ You can get the latest version from git by using the git command::
 
    git clone git://git.typo3.org/TYPO3CMS/Extensions/news.git
 
+Namespaces, Composer & ClassAliasMap
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you are using news since **3.2.x**, composer for your projects and still need the *ClassAliasMap* because of using the
+pre-namespace classes, you need to add the following lines to your ```composer.json``` file: ::
+
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/helhum/class-alias-loader.git"
+		}
+	],
+	"require": {
+		"helhum/class-alias-loader": "1.0.*@dev",
+	},
+		"scripts": {
+		"post-autoload-dump": "Helhum\\ClassAliasLoader\\Composer\\ClassAliasGenerator::generateAliasMap"
+	},
+
 
 Preparation: Include static TypoScript
 """"""""""""""""""""""""""""""""""""""
