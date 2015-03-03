@@ -83,7 +83,7 @@ class DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 		if (!$date instanceof \DateTime) {
 			try {
 				$date = new \DateTime($date);
-			} catch (Exception $exception) {
+			} catch (\Exception $exception) {
 				throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception('"' . $date . '" could not be parsed by DateTime constructor.', 1241722579);
 			}
 		}

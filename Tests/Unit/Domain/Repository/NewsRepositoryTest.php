@@ -75,7 +75,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 //
 	/**
 	 * @test
-	 * @expectedException UnexpectedValueException
+	 * @expectedException \UnexpectedValueException
 	 */
 	public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven() {
 		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface');
@@ -92,7 +92,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 //
 	/**
 	 * @test
-	 * @expectedException UnexpectedValueException
+	 * @expectedException \UnexpectedValueException
 	 */
 	public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven() {
 		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface');

@@ -29,7 +29,7 @@ class ClassCacheBuilder {
 	 * Builds the proxy files
 	 *
 	 * @return array information for the autoloader
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public function build() {
 		$cacheEntries = array();
@@ -42,7 +42,7 @@ class ClassCacheBuilder {
 			// Get the file from news itself, this needs to be loaded as first
 			$path = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news') . 'Classes/' . $key . '.php';
 			if (!is_file($path)) {
-				throw new Exception('given file "' . $path . '" does not exist');
+				throw new \Exception('given file "' . $path . '" does not exist');
 			}
 			$code = $this->parseSingleFile($path, FALSE);
 
@@ -61,8 +61,8 @@ class ClassCacheBuilder {
 				$cacheIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $key));
 				try {
 					$cacheEntries[$cacheIdentifier] = $this->writeFile($code, $key);
-				} catch (Exception $e) {
-					throw new Exception($e->getMessage());
+				} catch (\Exception $e) {
+					throw new \Exception($e->getMessage());
 				}
 			}
 		}
@@ -90,7 +90,7 @@ class ClassCacheBuilder {
 						$extensibleExtensions[$class][$extensionKey] = 1;
 					}
 				}
-			} catch(Exception $e) {
+			} catch(\Exception $e) {
 				$message = sprintf('Class cache could not been been build. Error "%s" with extension "%s"!', $e->getMessage(), $extensionKey);
 				GeneralUtility::devLog($message, 'news');
 			}
@@ -103,7 +103,7 @@ class ClassCacheBuilder {
 	 *
 	 * @param string $content
 	 * @param string $identifier identifier of the file
-	 * @throws RuntimeException
+	 * @throws \RuntimeException
 	 * @return string path of the written file
 	 */
 	protected function writeFile($content, $identifier) {
@@ -118,7 +118,7 @@ class ClassCacheBuilder {
 
 		$success = GeneralUtility::writeFile($path, $content);
 		if (!$success) {
-			throw new RuntimeException('File "' . $path . '" could not be written');
+			throw new \RuntimeException('File "' . $path . '" could not be written');
 		}
 		return $path;
 	}
@@ -149,7 +149,7 @@ class ClassCacheBuilder {
 	 * @param string $filePath path of the file
 	 * @param boolean $removeClassDefinition If class definition should be removed
 	 * @return string path of the saved file
-	 * @throws Exception
+	 * @throws \Exception
 	 * @throws \InvalidArgumentException
 	 */
 	public function parseSingleFile($filePath, $removeClassDefinition = TRUE) {
@@ -166,8 +166,8 @@ class ClassCacheBuilder {
 	 * @param boolean $removeClassDefinition
 	 * @param boolean $renderPartialInfo
 	 * @return string
-	 * @throws Exception
-	 * @throws InvalidArgumentException
+	 * @throws \Exception
+	 * @throws \InvalidArgumentException
 	 */
 	protected function changeCode($code, $filePath, $removeClassDefinition = TRUE, $renderPartialInfo = TRUE) {
 		if (empty($code)) {

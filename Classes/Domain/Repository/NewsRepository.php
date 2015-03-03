@@ -95,9 +95,9 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 	 *
 	 * @param QueryInterface $query
 	 * @param DemandInterface $demand
-	 * @throws UnexpectedValueException
-	 * @throws InvalidArgumentException
-	 * @throws Exception
+	 * @throws \UnexpectedValueException
+	 * @throws \InvalidArgumentException
+	 * @throws \Exception
 	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
 	 */
 	protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand) {
@@ -145,7 +145,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 				if ($timeFromString) {
 					$timeLimit = $timeFromString;
 				} else {
-					throw new Exception('Time limit Low could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+					throw new \Exception('Time limit Low could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
 				}
 			}
 
@@ -168,7 +168,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 				if ($timeFromString) {
 					$timeLimit = $timeFromString;
 				} else {
-					throw new Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+					throw new \Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
 				}
 			}
 
@@ -194,7 +194,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 		// month & year OR year only
 		if ($demand->getYear() > 0) {
 			if (is_null($demand->getDateField())) {
-				throw new InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
+				throw new \InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
 			}
 			if ($demand->getMonth() > 0) {
 				if ($demand->getDay() > 0) {
@@ -390,7 +390,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 	 * @param QueryInterface $query
 	 * @param DemandInterface $demand
 	 * @return array
-	 * @throws UnexpectedValueException
+	 * @throws \UnexpectedValueException
 	 */
 	protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand) {
 		$constraints = array();

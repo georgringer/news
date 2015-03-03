@@ -46,7 +46,7 @@ class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 	 * @param integer $width width
 	 * @param integer $height height
 	 * @return string
-	 * @throws UnexpectedValueException
+	 * @throws \UnexpectedValueException
 	 */
 	public function render($classes, FileReference $element, $width, $height) {
 		$content = '';

@@ -68,7 +68,7 @@ class Page {
 				$key = $prefix . ucfirst($item);
 				try {
 					$register[$key] = \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getProperty($object, $item);
-				} catch (Exception $e) {
+				} catch (\Exception $e) {
 					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($e->getMessage(), 'news', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
 				}
 			}
@@ -82,11 +82,11 @@ class Page {
 	 * @param integer $pageUid page to start with
 	 * @param integer $treeLevel count of levels
 	 * @return \TYPO3\CMS\Backend\Tree\View\PageTreeView
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public static function pageTree($pageUid, $treeLevel) {
 		if (TYPO3_MODE !== 'BE') {
-			throw new Exception('Page::pageTree does only work in the backend!');
+			throw new \Exception('Page::pageTree does only work in the backend!');
 		}
 
 		/* @var $tree \TYPO3\CMS\Backend\Tree\View\PageTreeView */

@@ -38,7 +38,7 @@ class SuggestReceiverCall {
 	 * @param array $params
 	 * @param \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj
 	 * @return void
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public function createTag(array $params, \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj) {
 		$request = GeneralUtility::_POST();
@@ -46,12 +46,12 @@ class SuggestReceiverCall {
 		try {
 				// Check if a tag is submitted
 			if (!isset($request['item']) || empty($request['item'])) {
-				throw new Exception('error_no-tag');
+				throw new \Exception('error_no-tag');
 			}
 
 			$newsUid = $request['newsid'];
 			if ((int)$newsUid === 0 && (strlen($newsUid) == 16 && !GeneralUtility::isFirstPartOfStr($newsUid, 'NEW'))) {
-				throw new Exception('error_no-newsid');
+				throw new \Exception('error_no-newsid');
 			}
 
 				// Get tag uid
@@ -69,7 +69,7 @@ class SuggestReceiverCall {
 				$newsUid
 			);
 			$ajaxObj->setJavascriptCallbackWrap(implode('-', $response));
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			$errorMsg = $GLOBALS['LANG']->sL(self::LLPATH . $e->getMessage());
 			$ajaxObj->setError($errorMsg);
 		}
@@ -80,7 +80,7 @@ class SuggestReceiverCall {
 	 *
 	 * @param array $request ajax request
 	 * @return integer
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	protected function getTagUid(array $request) {
 			// Get configuration from EM
@@ -92,7 +92,7 @@ class SuggestReceiverCall {
 		}
 
 		if ($pid === 0) {
-			throw new Exception('error_no-pid-defined');
+			throw new \Exception('error_no-pid-defined');
 		}
 
 		$record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
@@ -122,7 +122,7 @@ class SuggestReceiverCall {
 		}
 
 		if ($tagUid == 0) {
-			throw new Exception('error_no-tag-created');
+			throw new \Exception('error_no-tag-created');
 		}
 
 		return $tagUid;

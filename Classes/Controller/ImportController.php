@@ -65,7 +65,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * Check for correct configuration
 	 *
 	 * @return string
-	 * @throws Exception
+	 * @throws \Exception
 	 * @throws \TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsException
 	 */
 	protected function checkCorrectConfiguration() {
@@ -85,7 +85,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 			$folder = $storage->getFolder($path);
 		} catch (FolderDoesNotExistException $e) {
 			$error= 'import.error.configuration.resourceFolderImporter.notExist';
-		} catch (\UnexptedValueException $e) {
+		} catch (\UnexpectedValueException $e) {
 			$error = $e->getMessage();
 		}
 		return $error;

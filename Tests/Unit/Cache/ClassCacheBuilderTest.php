@@ -66,7 +66,7 @@ class ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 * @dataProvider generatedCacheFileNameThrowsAnExceptionIfIdentifierIsWrongDataProvider
-	 * @expectedException InvalidArgumentException
+	 * @expectedException \InvalidArgumentException
 	 */
 	public function generatedCacheFileNameThrowsAnExceptionIfIdentifierIsWrong($given) {
 		$classCacheBuilder = $this->getAccessibleMock('GeorgRinger\\News\\Cache\\ClassCacheBuilder', array('dummy'));
@@ -86,7 +86,7 @@ class ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
-	 * @expectedException InvalidArgumentException
+	 * @expectedException \InvalidArgumentException
 	 */
 	public function parseSingleFileThrowsAnExceptionIfFileNotFound() {
 		$classCacheBuilder = $this->getAccessibleMock('GeorgRinger\\News\\Cache\\ClassCacheBuilder', array('dummy'));
@@ -95,7 +95,7 @@ class ClassCacheBuilderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
-	 * @expectedException InvalidArgumentException
+	 * @expectedException \InvalidArgumentException
 	 */
 	public function changeCodeThrowsAnExceptionIfEmptyCodeGiven() {
 		$classCacheBuilder = $this->getAccessibleMock('GeorgRinger\\News\\Cache\\ClassCacheBuilder', array('dummy'));

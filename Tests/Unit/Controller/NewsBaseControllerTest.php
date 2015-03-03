@@ -81,7 +81,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
-	 * @expectedException InvalidArgumentException
+	 * @expectedException \InvalidArgumentException
 	 */
 	public function NoNewsFoundConfigurationThrowsExceptionWithTooLessRedirectToPageOptions() {
 		$mock = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController',
@@ -91,7 +91,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * @test
-	 * @expectedException InvalidArgumentException
+	 * @expectedException \InvalidArgumentException
 	 */
 	public function NoNewsFoundConfigurationThrowsExceptionWithTooManyRedirectToPageOptions() {
 		$mock = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController',

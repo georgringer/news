@@ -729,7 +729,7 @@ class ext_update {
 	 * Get Category Image folder
 	 *
 	 * @return \TYPO3\CMS\Core\Resource\Folder|void
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	protected function getCategoryImageFolder() {
 		if ($this->categoryImageFolder === NULL) {
