@@ -91,6 +91,7 @@ $boot = function($packageKey) {
 		Update scripts
 	=========================================================================== */
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_fal'] = 'GeorgRinger\\News\\Updates\\FalUpdateWizard';
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_mm'] = 'GeorgRinger\\News\\Updates\\TtContentRelation';
 
 };
 

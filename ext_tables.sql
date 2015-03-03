@@ -267,7 +267,15 @@ CREATE TABLE be_users (
 );
 
 #
-# Add show in preview to file reference
+# Table structure for table 'tt_content'
+#
+CREATE TABLE tt_content (
+	tx_news_related_news int(11) DEFAULT '0' NOT NULL,
+);
+
+#
+# Table structure for table 'sys_file_reference'
+#
 CREATE TABLE sys_file_reference (
 	showinpreview tinyint(4) DEFAULT '0' NOT NULL
 );
