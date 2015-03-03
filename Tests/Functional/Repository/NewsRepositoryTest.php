@@ -15,7 +15,6 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  */
 
 
-use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -33,7 +32,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 		$this->newsRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\NewsRepository');
 
 		$this->importDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.xml');
@@ -180,4 +179,8 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 		$this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 6);
 	}
 
+	public function tearDown() {
+		unset($this->newsRepository);
+		unset($this->objectManager);
+	}
 }

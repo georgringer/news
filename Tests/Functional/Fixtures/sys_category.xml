@@ -2,12 +2,12 @@
 <dataset>
 
 	<!--findRecordsByImportSource-->
-	<tx_news_domain_model_news>
+	<sys_category>
 		<uid>456</uid>
 		<pid>1</pid>
 		<title>findRecordByImportSource</title>
 		<import_source>functional_test</import_source>
 		<import_id>2</import_id>
-	</tx_news_domain_model_news>
+	</sys_category>
 
 </dataset>
