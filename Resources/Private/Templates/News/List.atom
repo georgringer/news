@@ -4,7 +4,7 @@
 	<link href="{settings.list.rss.channel.link}"/>
 	<link rel="self" href="<f:format.htmlentities><f:uri.page pageType="9818"/></f:format.htmlentities>"/>
 	<id><f:uri.page/></id>
-	<updated><n:format.date format="c" currentDate="1" strftime="0"/></updated>
+	<updated><f:format.date format="c" date="now"/></updated>
 	<f:if condition="{news}">
 		<f:for each="{news}" as="newsItem">
 			<entry>
@@ -14,8 +14,8 @@
 					<name><f:if condition="{newsItem.author}"><f:then>{newsItem.author}</f:then><f:else>-</f:else></f:if></name>
 					<f:if condition="{newsItem.author_email}"><email>{newsItem.author_email}</email></f:if>
 				</author>
-				<published><n:format.date format="c" strftime="0">{newsItem.crdate}</n:format.date></published>
-				<updated><n:format.date format="c" strftime="0">{newsItem.datetime}</n:format.date></updated>
+				<published><f:format.date format="c">{newsItem.crdate}</f:format.date></published>
+				<updated><f:format.date format="c">{newsItem.datetime}</f:format.date></updated>
 				<link rel="alternate" type="text/html" href="<n:format.hsc><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></n:format.hsc>"/>
 				<summary><n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc></summary>
 				<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">

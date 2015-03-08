@@ -14,6 +14,7 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to format a date, using strftime
@@ -66,6 +67,8 @@ class DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 	 * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception
 	 */
 	public function render($date = NULL, $format = '%Y-%m-%d', $currentDate = FALSE, $strftime = TRUE) {
+		GeneralUtility::deprecationLog('The ViewHelper "format.date" of EXT:news is deprecated! Use the one of the core!');
+
 		if ($currentDate) {
 			if ($strftime) {
 				return strftime($format, $GLOBALS['EXEC_TIME']);

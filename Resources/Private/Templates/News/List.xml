@@ -8,8 +8,8 @@
 		<f:if condition="{settings.list.rss.channel.copyright}">
 			<copyright>{settings.list.rss.channel.copyright}</copyright>
 		</f:if>
-		<pubDate><n:format.date format="r" currentDate="1" strftime="0" /></pubDate>
-		<lastBuildDate><n:format.date format="r" currentDate="1" strftime="0" /></lastBuildDate>
+		<pubDate><f:format.date format="r" date="now" /></pubDate>
+		<lastBuildDate><f:format.date format="r" date="now" /></lastBuildDate>
 		<f:if condition="{settings.list.rss.channel.category}">
 			<category>{settings.list.rss.channel.category}</category>
 		</f:if>
@@ -19,7 +19,7 @@
 				<f:for each="{news}" as="newsItem">
 					<item>
 						<guid isPermaLink="false">news-{newsItem.uid}</guid>
-						<pubDate><n:format.date format="r" strftime="0">{newsItem.datetime}</n:format.date></pubDate>
+						<pubDate><f:format.date format="r">{newsItem.datetime}</f:format.date></pubDate>
 						<title><n:format.hsc>{newsItem.title}</n:format.hsc></title>
 						<link><f:format.htmlentities><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></f:format.htmlentities></link>
 						<description><n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc></description>
