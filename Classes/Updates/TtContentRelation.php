@@ -38,7 +38,7 @@ class TtContentRelation extends AbstractUpdate {
 		} else {
 			$countRows = $this->getDatabaseConnection()->exec_SELECTcountRows('*', self::MM_TABLE, '1=1');
 			if ($countRows === 0) {
-				$description = sprintf('The database table "%s" is empty, nothing to do');
+				$description = sprintf('The database table "%s" is empty, nothing to do', self::MM_TABLE);
 			} else {
 				$description = sprintf('The database table "%s" contains <strong>%s</strong> entries which will be migrated!', self::MM_TABLE, $countRows);
 
