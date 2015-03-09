@@ -14,6 +14,7 @@ namespace GeorgRinger\News\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to render meta tags
@@ -63,14 +64,14 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
 	public function render($useCurrentDomain = FALSE, $forceAbsoluteUrl = FALSE) {
 		// set current domain
 		if ($useCurrentDomain) {
-			$this->tag->addAttribute('content', \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+			$this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
 		}
 
 		// prepend current domain
 		if ($forceAbsoluteUrl) {
 			$path = $this->arguments['content'];
-			if (!\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($path, \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
-				$this->tag->addAttribute('content', \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $this->arguments['content']);
+			if (!GeneralUtility::isFirstPartOfStr($path, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
+				$this->tag->addAttribute('content', rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/') . '/' . ltrim($this->arguments['content']), '/');
 			}
 		}
 
