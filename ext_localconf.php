@@ -1,9 +1,9 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
+if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$boot = function($packageKey) {
+$boot = function ($packageKey) {
 	// Extension manager configuration
 	$configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
@@ -93,6 +93,20 @@ $boot = function($packageKey) {
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_fal'] = 'GeorgRinger\\News\\Updates\\FalUpdateWizard';
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_mm'] = 'GeorgRinger\\News\\Updates\\TtContentRelation';
 
+
+	// Register cache frontend for proxy class generation
+	$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = array(
+		'frontend' => 'TYPO3\\CMS\\Core\\Cache\\Frontend\\PhpFrontend',
+		'backend' => 'TYPO3\\CMS\\Core\\Cache\\Backend\\FileBackend',
+		'groups' => array(
+			'all',
+			'system',
+		),
+		'options' => array(
+			'defaultLifetime' => 0,
+		),
+	);
+	\GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
 };
 
 $boot($_EXTKEY);
