@@ -563,7 +563,7 @@ class NewsImportService extends AbstractImportService {
 		$result = FALSE;
 		$links = $news->getRelatedLinks();
 
-		if ($links->count() !== 0) {
+		if (!empty($links) && $links->count() !== 0) {
 			foreach ($links as $link) {
 				if ($link->getUri() === $uri) {
 					$result = $link;
