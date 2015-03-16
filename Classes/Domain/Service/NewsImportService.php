@@ -467,7 +467,9 @@ class NewsImportService extends AbstractImportService {
 
 		if (isset($mediaItems) && $mediaItems->count() !== 0) {
 			foreach ($mediaItems as $mediaItem) {
-				if ($mediaItem->getImage() == basename($mediaFile) &&
+				$pathInfoItem = pathinfo($mediaItem->getImage());
+				$pathInfoMediaFile = pathInfo($mediaFile);
+				if (GeneralUtility::isFirstPartOfStr($pathInfoItem['filename'], $pathInfoMediaFile['filename'])  &&
 					$this->filesAreEqual(PATH_site . $mediaFile, PATH_site . self::UPLOAD_PATH . $mediaItem->getImage())) {
 					$result = $mediaItem;
 					break;
