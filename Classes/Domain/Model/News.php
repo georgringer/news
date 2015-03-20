@@ -28,12 +28,12 @@ use GeorgRinger\News\Domain\Model\Link;
 class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $crdate;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $tstamp;
 
@@ -48,12 +48,12 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $l10nParent;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $starttime;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $endtime;
 
@@ -100,12 +100,12 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $bodytext;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $datetime;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $archive;
 
@@ -348,7 +348,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Get datetime
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getDatetime() {
 		return $this->datetime;
@@ -357,7 +357,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Set date time
 	 *
-	 * @param DateTime $datetime datetime
+	 * @param \DateTime $datetime datetime
 	 * @return void
 	 */
 	public function setDatetime($datetime) {
@@ -394,7 +394,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Get archive date
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getArchive() {
 		return $this->archive;
@@ -403,7 +403,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Set archive date
 	 *
-	 * @param DateTime $archive archive date
+	 * @param \DateTime $archive archive date
 	 * @return void
 	 */
 	public function setArchive($archive) {
@@ -1319,7 +1319,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Get start time
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getStarttime() {
 		return $this->starttime;
@@ -1365,7 +1365,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Get endtime
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getEndtime() {
 		return $this->endtime;

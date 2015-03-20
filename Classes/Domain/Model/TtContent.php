@@ -23,12 +23,12 @@ namespace GeorgRinger\News\Domain\Model;
 class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $crdate;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $tstamp;
 
@@ -144,7 +144,7 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 
 	/**
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getCrdate() {
 		return $this->crdate;
@@ -159,7 +159,7 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getTstamp() {
 		return $this->tstamp;

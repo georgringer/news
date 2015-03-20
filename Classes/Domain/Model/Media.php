@@ -27,12 +27,12 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	const MEDIA_TYPE_HTML = 2;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $crdate;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $tstamp;
 
@@ -214,7 +214,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Get creation date
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getCrdate() {
 		return $this->crdate;
@@ -223,7 +223,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Set creation date
 	 *
-	 * @param DateTime $crdate creation date
+	 * @param \DateTime $crdate creation date
 	 * @return void
 	 */
 	public function setCrdate($crdate) {
@@ -233,7 +233,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Get timestamp
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getTstamp() {
 		return $this->tstamp;
@@ -242,7 +242,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Set timestamp
 	 *
-	 * @param DateTime $tstamp timestamp
+	 * @param \DateTime $tstamp timestamp
 	 * @return void
 	 */
 	public function setTstamp($tstamp) {

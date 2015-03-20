@@ -23,12 +23,12 @@ namespace GeorgRinger\News\Domain\Model;
 class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $crdate;
 
 	/**
-	 * @var DateTime
+	 * @var \DateTime
 	 */
 	protected $tstamp;
 
@@ -40,7 +40,7 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Get crdate
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getCrdate() {
 		return $this->crdate;
@@ -49,7 +49,7 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Set crdate
 	 *
-	 * @param DateTime $crdate crdate
+	 * @param \DateTime $crdate crdate
 	 * @return void
 	 */
 	public function setCrdate($crdate) {
@@ -59,7 +59,7 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Get Tstamp
 	 *
-	 * @return DateTime
+	 * @return \DateTime
 	 */
 	public function getTstamp() {
 		return $this->tstamp;
@@ -68,7 +68,7 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Set tstamp
 	 *
-	 * @param DateTime $tstamp tstamp
+	 * @param \DateTime $tstamp tstamp
 	 * @return void
 	 */
 	public function setTstamp($tstamp) {
