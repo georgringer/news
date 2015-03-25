@@ -13,6 +13,7 @@ namespace GeorgRinger\News\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Utility\Page;
 
 /**
@@ -178,6 +179,12 @@ class AdministrationController extends NewsController {
 		$demand->setStoragePage(Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));
 		$demand->setOrderByAllowed($this->settings['orderByAllowed']);
 
+		if ($demand->getSearchWord()) {
+			$searchDto = new Search();
+			$searchDto->setSubject($demand->getSearchWord());
+			$searchDto->setFields('title');
+			$demand->setSearch($searchDto);
+		}
 		// Ensure that always a storage page is set
 		if ((int)$demand->getStoragePage() === 0) {
 			$demand->setStoragePage('-3');

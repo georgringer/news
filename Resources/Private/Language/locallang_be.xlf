@@ -380,6 +380,9 @@
 			<trans-unit id="module.topNewsNo" xml:space="preserve">
 				<source>No</source>
 			</trans-unit>
+			<trans-unit id="module.searchWord" xml:space="preserve">
+				<source>Search</source>
+			</trans-unit>
 			<trans-unit id="module.newsListing" xml:space="preserve">
 				<source>News Listing</source>
 			</trans-unit>

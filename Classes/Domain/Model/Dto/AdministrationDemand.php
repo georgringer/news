@@ -42,6 +42,11 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 	 */
 	protected $sortingDirection;
 
+	/**
+	 * @var string
+	 */
+	protected $searchWord;
+
 	public function getRecursive() {
 		return $this->recursive;
 	}
@@ -97,5 +102,19 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 	 */
 	public function setSortingDirection($sortingDirection) {
 		$this->sortingDirection = $sortingDirection;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getSearchWord() {
+		return $this->searchWord;
+	}
+
+	/**
+	 * @param string $searchWord
+	 */
+	public function setSearchWord($searchWord) {
+		$this->searchWord = $searchWord;
 	}
 }
