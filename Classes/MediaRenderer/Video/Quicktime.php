@@ -60,7 +60,7 @@ class Quicktime implements MediaInterface {
 	 * @return boolean
 	 */
 	public function enabled(\GeorgRinger\News\Domain\Model\Media $element) {
-		$url = $element->getContent();
+		$url = FileService::getFalFilename($element->getContent());
 		$fileEnding = strtolower(substr($url, -3));
 
 		return ($fileEnding === 'mov');
