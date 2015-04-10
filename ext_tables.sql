@@ -59,6 +59,7 @@ CREATE TABLE tx_news_domain_model_news (
 
 	PRIMARY KEY (uid),
 	KEY parent (pid),
+	KEY sys_language_uid_l10n_parent (sys_language_uid,l10n_parent),
 	KEY import (import_id,import_source)
 );
 
