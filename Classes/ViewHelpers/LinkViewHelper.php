@@ -165,7 +165,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper {
 				'&tx_news_pi1[action]=detail';
 		}
 
-		// Add date as human readable (30/04/2011)
+		// Add date as human readable
 		if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
 			$dateTime = $newsItem->getDatetime();
 
