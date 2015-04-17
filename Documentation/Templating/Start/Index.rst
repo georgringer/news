@@ -130,7 +130,6 @@ The content of the file is ::
    <n:includeFile path="EXT:news/Resources/Public/Css/news-advanced.css" />
 
    <div class="news">
-           <f:renderFlashMessages class="tx-news-flash-message" />
            <f:render section="content" />
    </div>
 
