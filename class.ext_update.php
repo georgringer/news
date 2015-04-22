@@ -575,7 +575,7 @@ class ext_update {
 
 		$updatedRecords = 0;
 		$rows = $this->databaseConnection->exec_SELECTgetRows(
-			'',
+			'*',
 			$table,
 			'1=1'
 		);
