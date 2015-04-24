@@ -8,7 +8,7 @@ $boot = function($packageKey) {
 	$configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-		$packageKey,
+		'GeorgRinger.' . $packageKey,
 		'Pi1',
 		array(
 			'News' => 'list,detail,dateMenu,searchForm,searchResult',

@@ -209,6 +209,7 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
 	extensionName = News
 	pluginName = Pi1
+	vendorName = GeorgRinger
 	switchableControllerActions {
 		News {
 			1 = detail

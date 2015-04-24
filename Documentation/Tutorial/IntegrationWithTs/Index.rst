@@ -18,9 +18,10 @@ If EXT:news should be integrated by using TypoScript only, you can use this code
 
 	lib.news = USER
 	lib.news {
-	  userFunc = tx_extbase_core_bootstrap->run
+	  userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
 	  extensionName = News
 	  pluginName = Pi1
+	  vendorName = GeorgRinger
 
 	  switchableControllerActions {
 		News {
@@ -49,9 +50,10 @@ Base plugin settings: ::
 
 	lib.news = USER
 	lib.news {
-			userFunc = tx_extbase_core_bootstrap->run
-			pluginName = Pi1
+			userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
 			extensionName = News
+			pluginName = Pi1
+			vendorName = GeorgRinger
 			controller = News
 			settings =< plugin.tx_news.settings
 			persistence =< plugin.tx_news.persistence
