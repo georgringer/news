@@ -96,7 +96,12 @@ class Tceforms {
 				$GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.header', TRUE),
 				FlashMessage::WARNING
 			);
-			FlashMessageQueue::addMessage($flashMessage);
+
+			/** @var \TYPO3\CMS\Core\Messaging\FlashMessageService $flashMessageService */
+			$flashMessageService = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessageService');
+			/** @var $defaultFlashMessageQueue \TYPO3\CMS\Core\Messaging\FlashMessageQueue */
+			$defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
+			$defaultFlashMessageQueue->enqueue($flashMessage);
 		}
 	}
 
