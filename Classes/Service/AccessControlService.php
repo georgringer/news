@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Service;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,6 +15,8 @@ namespace GeorgRinger\News\Service;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Utility\EmConfiguration;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Service for access control related stuff
@@ -31,14 +33,11 @@ class AccessControlService {
 	 * @return boolean
 	 */
 	public static function userHasCategoryPermissionsForRecord(array $newsRecord) {
-
 		if (!EmConfiguration::getSettings()->getCategoryBeGroupTceFormsRestriction()) {
 			return TRUE;
 		}
 
-		/** @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication $backendUserAuthentication */
-		$backendUserAuthentication = $GLOBALS['BE_USER'];
-		if ($backendUserAuthentication->isAdmin()) {
+		if (self::getBackendUser()->isAdmin()) {
 			// an admin may edit all news
 			return TRUE;
 		}
@@ -58,17 +57,22 @@ class AccessControlService {
 	 * @return array
 	 */
 	public static function getAccessDeniedCategories(array $newsRecord) {
-		/** @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication $backendUserAuthentication */
-		$backendUserAuthentication = $GLOBALS['BE_USER'];
-		if ($backendUserAuthentication->isAdmin()) {
+		if (self::getBackendUser()->isAdmin()) {
 			// an admin may edit all news so no categories without access
 			return array();
 		}
 
 		// no category mounts set means access to all
-		$backendUserCategories = $backendUserAuthentication->getCategoryMountPoints();
+		$backendUserCategories = self::getBackendUser()->getCategoryMountPoints();
 		if ($backendUserCategories === array()) {
 			return array();
+		}
+
+		/** @var \GeorgRinger\News\Service\CategoryService $catService */
+		$catService = GeneralUtility::makeInstance('GeorgRinger\\News\\Service\\CategoryService');
+		$subCategories = $catService->getChildrenCategories(implode(',', $backendUserCategories));
+		if (!empty($subCategories)) {
+			$backendUserCategories = explode(',', $subCategories);
 		}
 
 		$newsRecordCategories = self::getCategoriesForNewsRecord($newsRecord);
@@ -97,7 +101,7 @@ class AccessControlService {
 			if ($categoryL10nMode === 'mergeIfNotBlank') {
 				// mergeIfNotBlank: If there are categories in the localized version, take these, if not, inherit from parent
 				$whereClause = 'tablenames=\'tx_news_domain_model_news\' AND uid_foreign=' . $newsRecord['uid'];
-				$newsRecordCategoriesCount = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'sys_category_record_mm', $whereClause, '', '', '', 'uid_local');
+				$newsRecordCategoriesCount = self::getDatabaseConnection()->exec_SELECTcountRows('*', 'sys_category_record_mm', $whereClause, '', '', '', 'uid_local');
 				if ($newsRecordCategoriesCount > 0) {
 					// take categories from localized version
 					$newsRecordUid = $newsRecord['uid'];
@@ -117,9 +121,9 @@ class AccessControlService {
 		}
 
 		$whereClause = 'AND sys_category_record_mm.tablenames=\'tx_news_domain_model_news\' AND sys_category_record_mm.uid_foreign=' . $newsRecordUid .
-			\TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause('sys_category') . \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('sys_category');
+			BackendUtility::deleteClause('sys_category') . BackendUtility::BEenableFields('sys_category');
 
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query(
+		$res = self::getDatabaseConnection()->exec_SELECT_mm_query(
 			'sys_category_record_mm.uid_local, sys_category.title',
 			'sys_category',
 			'sys_category_record_mm',
@@ -128,15 +132,29 @@ class AccessControlService {
 		);
 
 		$categories = array();
-		while (($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
+		while (($row = self::getDatabaseConnection()->sql_fetch_assoc($res))) {
 			$categories[] = array(
 				'uid' => $row['uid_local'],
 				'title' => $row['title']
 			);
 		}
-		$GLOBALS['TYPO3_DB']->sql_free_result($res);
+		self::getDatabaseConnection()->sql_free_result($res);
 		return $categories;
-
 	}
 
+	/**
+	 * @return \TYPO3\Cms\Core\Database\DatabaseConnection
+	 */
+	protected static function getDatabaseConnection() {
+		return $GLOBALS['TYPO3_DB'];
+	}
+
+	/**
+	 * Returns the current BE user.
+	 *
+	 * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+	 */
+	protected static function getBackendUser() {
+		return $GLOBALS['BE_USER'];
+	}
 }
