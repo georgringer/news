@@ -257,7 +257,7 @@ $tx_news_domain_model_media = array(
 			'canNotCollapse' => TRUE
 		),
 		'palettteCore' => array(
-			'showitem' => 'type,showinpreview, hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,',
+			'showitem' => 'type,showinpreview, hidden,sys_language_uid, l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),
 		'paletteAlt' => array(

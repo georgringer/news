@@ -145,7 +145,7 @@ return array(
 	),
 	'palettes' => array(
 		'palettteCore' => array(
-			'showitem' => 'hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,',
+			'showitem' => 'hidden,sys_language_uid,l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),
 		'palettteDescription' => array(

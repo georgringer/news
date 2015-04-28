@@ -610,7 +610,7 @@ $tx_news_domain_model_news = array(
 		// default news
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser' . $teaserRteConfiguration . ',;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,
+					title;;paletteCore,teaser' . $teaserRteConfiguration . ',author;;paletteAuthor,datetime;;paletteArchive,
 					bodytext;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],
 					rte_disabled;LLL:EXT:cms/locallang_ttc.xlf:rte_enabled_formlabel,
 					content_elements,
@@ -628,7 +628,7 @@ $tx_news_domain_model_news = array(
 		// internal url
 		'1' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser' . $teaserRteConfiguration . ',;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,internalurl,
+					title;;paletteCore, teaser' . $teaserRteConfiguration . ',author;;paletteAuthor,datetime;;paletteArchive,internalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.access;paletteAccess,
@@ -643,7 +643,7 @@ $tx_news_domain_model_news = array(
 		// external url
 		'2' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,;;;;2-2-2, teaser' . $teaserRteConfiguration . ',;;;;3-3-3,author;;paletteAuthor,datetime;;paletteArchive,externalurl,
+					title;;paletteCore, teaser' . $teaserRteConfiguration . ',author;;paletteAuthor,datetime;;paletteArchive,externalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.access;paletteAccess,
