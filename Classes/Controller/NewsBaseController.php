@@ -122,7 +122,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * Emits signal for various actions
 	 *
 	 * @param string $classPart last part of the class name
-	 * @param $signalName name of the signal slot
+	 * @param string $signalName name of the signal slot
 	 * @param array $signalArguments arguments for the signal slot
 	 */
 	protected function emitActionSignal($classPart, $signalName, array $signalArguments) {
