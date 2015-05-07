@@ -6,17 +6,17 @@ $boot = function($packageKey) {
 
 	// CSH - context sensitive help
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_news', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_news.xlf');
+			'tx_news_domain_model_news', 'EXT:news/Resources/Private/Language/locallang_csh_news.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_media', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_media.xlf');
+			'tx_news_domain_model_media', 'EXT:news/Resources/Private/Language/locallang_csh_media.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_file', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_file.xlf');
+			'tx_news_domain_model_file', 'EXT:news/Resources/Private/Language/locallang_csh_file.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_link', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_link.xlf');
+			'tx_news_domain_model_link', 'EXT:news/Resources/Private/Language/locallang_csh_link.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_tag', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_tag.xlf');
+			'tx_news_domain_model_tag', 'EXT:news/Resources/Private/Language/locallang_csh_tag.xlf');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tt_content.pi_flexform.news_pi1.list', 'EXT:' . $packageKey . '/Resources/Private/Language/locallang_csh_flexforms.xlf');
+			'tt_content.pi_flexform.news_pi1.list', 'EXT:news/Resources/Private/Language/locallang_csh_flexforms.xlf');
 
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_news');
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_media');
@@ -98,7 +98,7 @@ $boot = function($packageKey) {
 		=========================================================================== */
 		if ($configuration->getShowImporter()) {
 			\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-				$packageKey,
+				'news',
 				'web',
 				'tx_news_m1',
 				'',
@@ -107,9 +107,9 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon' => 'EXT:' . $packageKey . '/Resources/Public/Icons/' .
+					'icon' => 'EXT:news/Resources/Public/Icons/' .
 						(\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0') ? 'module_import.png' : 'import_module.gif'),
-					'labels' => 'LLL:EXT:' . $packageKey . '/Resources/Private/Language/locallang_mod.xlf',
+					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
 				)
 			);
 
@@ -131,7 +131,7 @@ $boot = function($packageKey) {
 		=========================================================================== */
 		if ($configuration->getShowAdministrationModule()) {
 			\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-				$packageKey,
+				'news',
 				'web',
 				'tx_news_m2',
 				'',
@@ -140,9 +140,9 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon' => 'EXT:' . $packageKey . '/Resources/Public/Icons/' .
+					'icon' => 'EXT:news/Resources/Public/Icons/' .
 						(\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0') ? 'module_administration.png' : 'folder.gif'),
-					'labels' => 'LLL:EXT:' . $packageKey . '/Resources/Private/Language/locallang_modadministration.xlf',
+					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
 				)
 			);
 		}
