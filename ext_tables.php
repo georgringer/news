@@ -33,15 +33,7 @@ $boot = function($packageKey) {
 	unset($GLOBALS['ICON_TYPES']['news']);
 	\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news/Resources/Public/Icons/folder.gif');
 
-	if (TYPO3_MODE == 'BE') {
-		$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($packageKey);
-		$pluginSignature = strtolower($extensionName) . '_pi1';
-
-		/***************
-		 * Wizard pi1
-		 */
-		$GLOBALS['TBE_MODULES_EXT']['xMOD_db_new_content_el']['addElClasses'][$pluginSignature . '_wizicon'] =
-			\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($packageKey) . 'Resources/Private/Php/class.' . $packageKey . '_wizicon.php';
+	if (TYPO3_MODE === 'BE') {
 
 		$addNewsToModuleSelection = TRUE;
 		foreach ($GLOBALS['TCA']['pages']['columns']['module']['config']['items'] as $item) {

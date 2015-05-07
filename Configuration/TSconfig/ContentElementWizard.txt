@@ -1,0 +1,13 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+	elements {
+		news {
+			icon = ../typo3conf/ext/news/Resources/Public/Icons/ce_wiz.gif
+			title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title
+			description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
+			tt_content_defValues {
+				CType = list
+				list_type = news_pi1
+			}
+		}
+	}
+}
