@@ -53,7 +53,7 @@ class Tceforms {
 		}
 
 		// Predefine archive date
-		if (empty($row['archive']) && is_numeric($row['pid'])) {
+		if (substr($row['uid'], 0, 3) === 'NEW' && empty($row['archive']) && is_numeric($row['pid'])) {
 			$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($row['pid']);
 			if (is_array($pagesTsConfig['tx_news.']['predefine.'])
 					&& is_array($pagesTsConfig['tx_news.']['predefine.'])
