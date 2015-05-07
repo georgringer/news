@@ -1,7 +1,5 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-	die ('Access denied.');
-}
+defined('TYPO3_MODE') or die();
 
 $boot = function($packageKey) {
 	// The following calls are targeted for BE but might be needed in FE editing
