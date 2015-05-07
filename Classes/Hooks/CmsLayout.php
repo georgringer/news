@@ -118,6 +118,7 @@ class CmsLayout {
 						$this->getStartingPoint();
 						$this->getTimeRestrictionSetting();
 						$this->getTopNewsRestrictionSetting();
+						$this->getArchiveSettings();
 						$this->getDateMenuSettings();
 						$this->getCategorySettings();
 						break;
