@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * # Example: Basic link
  * <code>
  * <n:link newsItem="{newsItem}" settings="{settings}">
- * 	{newsItem.title}
+ *    {newsItem.title}
  * </n:link>
  * </code>
  * <output>
@@ -91,15 +91,15 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper {
 
 		$newsType = (int)$newsItem->getType();
 		switch ($newsType) {
-				// internal news
+			// internal news
 			case 1:
 				$configuration['parameter'] = $newsItem->getInternalurl();
 				break;
-				// external news
+			// external news
 			case 2:
 				$configuration['parameter'] = $newsItem->getExternalurl();
 				break;
-				// normal news record
+			// normal news record
 			default:
 				$configuration = $this->getLinkToNewsItem($newsItem, $tsSettings, $configuration);
 		}
@@ -158,7 +158,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper {
 		}
 
 		$configuration['useCacheHash'] = $GLOBALS['TSFE']->sys_page->versioningPreview ? 0 : 1;
-		$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $newsItem->getUid();
+		$configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
 
 		if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
 			$configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
@@ -180,6 +180,23 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper {
 			}
 		}
 		return $configuration;
+	}
+
+	/**
+	 * @param \GeorgRinger\News\Domain\Model\News $newsItem
+	 * @return int
+	 */
+	protected function getNewsId(\GeorgRinger\News\Domain\Model\News $newsItem) {
+		$uid = $newsItem->getUid();
+		// If a user is logged in and not in live workspace
+		if ($GLOBALS['BE_USER'] && $GLOBALS['BE_USER']->workspace > 0) {
+			$record = \TYPO3\CMS\Backend\Utility\BackendUtility::getLiveVersionOfRecord('tx_news_domain_model_news', $newsItem->getUid());
+			if ($record['uid']) {
+				$uid = $record['uid'];
+			}
+		}
+
+		return $uid;
 	}
 
 	/**
