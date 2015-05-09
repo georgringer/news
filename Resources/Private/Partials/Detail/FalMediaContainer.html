@@ -9,6 +9,9 @@
 				<f:if condition="{mediaElement.originalResource.type} == 4">
 					<f:render partial="Detail/FalMediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
 				</f:if>
+				<f:if condition="{mediaElement.originalResource.type} == 5">
+					<f:render partial="Detail/FalMediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
+				</f:if>
 			</div>
 		</f:for>
 	</div>
