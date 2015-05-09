@@ -109,6 +109,11 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 			$updateNeeded = TRUE;
 		}
 
+		if ($updateNeeded) {
+			$description .= '<br /><br /><strong>Important:</strong> The <strong>first</strong> local storage inside "' . $GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'] . '" will
+			be used for the migration. If you have multiple storages, only enable the one which should be used for the migration.';
+		}
+
 		return $updateNeeded;
 	}
 
