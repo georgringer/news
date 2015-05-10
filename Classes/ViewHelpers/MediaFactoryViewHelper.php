@@ -53,7 +53,7 @@ class MediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
 
 			// go through every class provided by argument
 		foreach ($classList as $classData) {
-			$videoObject = GeneralUtility::makeInstance($classData);
+			$videoObject = $this->objectManager->get($classData);
 
 				// check interface implementation
 			if (!($videoObject instanceof MediaInterface)) {

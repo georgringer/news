@@ -54,7 +54,7 @@ class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 
 			// go through every class provided by argument
 		foreach ($classList as $classData) {
-			$videoObject = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($classData);
+			$videoObject = $this->objectManager->get($classData);
 
 				// check interface implementation
 			if (!($videoObject instanceof FalMediaInterface)) {
