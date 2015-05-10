@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\MediaRenderer\Video;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -23,6 +23,19 @@ use GeorgRinger\News\MediaRenderer\MediaInterface;
  * @subpackage tx_news
  */
 class Youtube implements MediaInterface {
+
+	/**
+	 * @var \GeorgRinger\News\Service\SettingsService
+	 */
+	protected $pluginSettingsService;
+
+	/**
+	 * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+	 * @return void
+	 */
+	public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService) {
+		$this->pluginSettingsService = $pluginSettingsService;
+	}
 
 	/**
 	 * Render videos from youtube
@@ -86,6 +99,12 @@ class Youtube implements MediaInterface {
 		}
 		if ($videoId) {
 			$youtubeUrl = '//www.youtube.com/embed/' . $videoId . '?fs=1&wmode=opaque';
+			$settings = $this->pluginSettingsService->getSettings();
+			if (isset($settings['mediaRenderer']) && isset($settings['mediaRenderer']['youtube'])
+				&& isset($settings['mediaRenderer']['youtube']['additionalParams'])
+			) {
+				$youtubeUrl .= $settings['mediaRenderer']['youtube']['additionalParams'];
+			}
 		}
 
 		return $youtubeUrl;

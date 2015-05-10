@@ -87,6 +87,11 @@ plugin.tx_news {
 				video = GeorgRinger\News\MediaRenderer\Video\Fal
 			}
 		}
+		mediaRenderer {
+			youtube {
+				additionalParams =
+			}
+		}
 
 		# --------------
 		#  Search
