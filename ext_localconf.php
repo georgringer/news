@@ -20,30 +20,30 @@ $boot = function ($packageKey) {
 
 	// Page module hook
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['news' . '_pi1']['news'] =
-		'GeorgRinger\\News\\Hooks\\CmsLayout->getExtensionSummary';
+		'GeorgRinger\\News\\Hooks\\PageLayoutView->getExtensionSummary';
 
 	// Preview of news records
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
-		'GeorgRinger\\News\\Hooks\\Tcemain';
+		'GeorgRinger\\News\\Hooks\\DataHandler';
 
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news' . '_clearcache'] =
-		'GeorgRinger\\News\\Hooks\\Tcemain->clearCachePostProc';
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news_clearcache'] =
+		'GeorgRinger\\News\\Hooks\\DataHandler->clearCachePostProc';
 
 	// Edit restriction for news records
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['news'] =
-		'GeorgRinger\\News\\Hooks\\Tcemain';
+		'GeorgRinger\\News\\Hooks\\DataHandler';
 
-	// Tceforms: Rendering of fields
+	// FormEngine: Rendering of fields
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass']['news'] =
-		'GeorgRinger\\News\\Hooks\\Tceforms';
+		'GeorgRinger\\News\\Hooks\\FormEngine';
 
-	// Tceforms: Rendering of the whole Tceform
+	// FormEngine: Rendering of the whole FormEngine
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass'][] =
-		'GeorgRinger\\News\\Hooks\\Tceforms';
+		'GeorgRinger\\News\\Hooks\\FormEngine';
 
 	// Modify flexform values
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass']['news'] =
-		'GeorgRinger\\News\\Hooks\\T3libBefunc';
+		'GeorgRinger\\News\\Hooks\\BackendUtility';
 
 	// Inline records hook
 	if ($configuration->getUseFal()) {

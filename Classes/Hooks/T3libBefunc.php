@@ -22,7 +22,7 @@ namespace GeorgRinger\News\Hooks;
  * @package TYPO3
  * @subpackage tx_news
  */
-class T3libBefunc {
+class BackendUtility {
 
 	/**
 	 * Fields which are removed in detail view

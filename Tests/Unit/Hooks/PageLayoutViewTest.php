@@ -16,15 +16,15 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  */
 
 /**
- * Tests for CmsLayout
+ * Tests for PageLayoutView
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/** @var  \TYPO3\CMS\Core\Tests\AccessibleObjectInterface */
-	protected $cmsLayout;
+	protected $pageLayoutView;
 
 	public function setUp() {
 		parent::setUp();
@@ -37,8 +37,8 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 
 
-		$this->cmsLayout = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\CmsLayout', array('dummy'));
-		$this->cmsLayout->_set('databaseConnection', $this->getMock('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection', array('exec_SELECTquery', 'exec_SELECTgetRows')));
+		$this->pageLayoutView = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\PageLayoutView', array('dummy'));
+		$this->pageLayoutView->_set('databaseConnection', $this->getMock('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection', array('exec_SELECTquery', 'exec_SELECTgetRows')));
 	}
 
 	/**
@@ -49,9 +49,9 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.archiveRestriction', 'something');
 
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getArchiveSettings');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getArchiveSettings');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 	}
 
 	/**
@@ -62,9 +62,9 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.detailPid', '9999999999', 'additional');
 
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getDetailPidSetting');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getDetailPidSetting');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 	}
 
 
@@ -76,9 +76,9 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.tags', '9999999999', 'additional');
 
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getTagRestrictionSetting');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getTagRestrictionSetting');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 	}
 
 
@@ -91,9 +91,9 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.listPid', '9999999999', 'additional');
 
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getListPidSetting');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getListPidSetting');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 	}
 
 	/**
@@ -104,9 +104,9 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.orderBy', 'fo');
 
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getOrderSettings');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getOrderSettings');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 	}
 
 	/**
@@ -117,10 +117,10 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.orderDirection', 'asc');
 
-		$this->assertEquals($this->cmsLayout->_call('getOrderDirectionSetting'), '');
+		$this->assertEquals($this->pageLayoutView->_call('getOrderDirectionSetting'), '');
 
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$out = $this->cmsLayout->_call('getOrderDirectionSetting');
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$out = $this->pageLayoutView->_call('getOrderDirectionSetting');
 		$this->assertEquals((strlen($out) > 1), TRUE);
 	}
 
@@ -132,10 +132,10 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.topNewsFirst', '1', 'additional');
 
-		$this->assertEquals($this->cmsLayout->_call('getTopNewsFirstSetting'), '');
+		$this->assertEquals($this->pageLayoutView->_call('getTopNewsFirstSetting'), '');
 
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$out = $this->cmsLayout->_call('getTopNewsFirstSetting');
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$out = $this->pageLayoutView->_call('getTopNewsFirstSetting');
 		$this->assertEquals((strlen($out) > 1), TRUE);
 	}
 
@@ -147,24 +147,24 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function getOffsetLimitSettingsAddsValueIfFilled() {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.offset', '1', 'additional');
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getOffsetLimitSettings');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getOffsetLimitSettings');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 
 		$this->addContentToFlexform($flexform, 'settings.limit', '1', 'additional');
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getOffsetLimitSettings');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 2);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getOffsetLimitSettings');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 2);
 
 		$this->addContentToFlexform($flexform, 'settings.hidePagination', '0', 'additional');
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getOffsetLimitSettings');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 2);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getOffsetLimitSettings');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 2);
 
 		$this->addContentToFlexform($flexform, 'settings.hidePagination', '1', 'additional');
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getOffsetLimitSettings');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 3);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getOffsetLimitSettings');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 3);
 	}
 
 	/**
@@ -174,9 +174,9 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function getDateMenuSettingsAddsValueIfFilled() {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.dateField', 'field');
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getDateMenuSettings');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getDateMenuSettings');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 	}
 
 
@@ -187,14 +187,14 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function getTimeRestrictionSettingAddsValueIfFilled() {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.timeRestriction', 'fo');
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getTimeRestrictionSetting');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getTimeRestrictionSetting');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 
 		$this->addContentToFlexform($flexform, 'settings.timeRestrictionHigh', 'bar');
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getTimeRestrictionSetting');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 2);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getTimeRestrictionSetting');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 2);
 	}
 
 	/**
@@ -208,11 +208,11 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$mockedTemplateLayout->expects($this->once())->method('getAvailableTemplateLayouts')->will($this->returnValue(array(array('bar', 'fo'))));
 
 		$this->addContentToFlexform($flexform, 'settings.templateLayout', 'fo', 'template');
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_set('templateLayoutsUtility', $mockedTemplateLayout);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_set('templateLayoutsUtility', $mockedTemplateLayout);
 
-		$this->cmsLayout->_call('getTemplateLayoutSettings', 1);
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_call('getTemplateLayoutSettings', 1);
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 	}
 
 	/**
@@ -222,9 +222,9 @@ class CmsLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function getOverrideDemandSettingsAddsValueIfFilled() {
 		$flexform = array();
 		$this->addContentToFlexform($flexform, 'settings.disableOverrideDemand', '1', 'additional');
-		$this->cmsLayout->_set('flexformData', $flexform);
-		$this->cmsLayout->_call('getOverrideDemandSettings');
-		$this->assertEquals(count($this->cmsLayout->_get('tableData')), 1);
+		$this->pageLayoutView->_set('flexformData', $flexform);
+		$this->pageLayoutView->_call('getOverrideDemandSettings');
+		$this->assertEquals(count($this->pageLayoutView->_get('tableData')), 1);
 	}
 
 

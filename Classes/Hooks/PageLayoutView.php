@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage tx_news
  */
-class CmsLayout {
+class PageLayoutView {
 
 	/**
 	 * Extension key
@@ -133,11 +133,11 @@ class CmsLayout {
 					default:
 				}
 
-				if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\CmsLayout']['extensionSummary'])) {
+				if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'])) {
 					$params = array(
 						'action' => $actionTranslationKey
 					);
-					foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\CmsLayout']['extensionSummary'] as $reference) {
+					foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'] as $reference) {
 						GeneralUtility::callUserFunction($reference, $params, $this);
 					}
 				}

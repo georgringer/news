@@ -20,12 +20,12 @@ use TYPO3\CMS\Core\Messaging\FlashMessageQueue;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Hook into tceforms
+ * Hook into FormEngine
  *
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tceforms {
+class FormEngine {
 
 	/**
 	 * Path to the locallang file

@@ -24,7 +24,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage tx_news
  */
-class Tcemain {
+class DataHandler {
 
 	/**
 	 * Flushes the cache if a news record was edited.
