@@ -326,12 +326,6 @@
 			<trans-unit id="usersettings.no-languages-available" xml:space="preserve">
 				<source>There are no languages available, so nothing to choose.</source>
 			</trans-unit>
-			<trans-unit id="t3blog_importer_title" xml:space="preserve">
-				<source>Import t3blog blog/news records</source>
-			</trans-unit>
-			<trans-unit id="t3blogcategory_importer_title" xml:space="preserve">
-				<source>Import t3blog category records</source>
-			</trans-unit>
 			<trans-unit id="start_import" xml:space="preserve">
 				<source>Start import with %s record(s).</source>
 			</trans-unit>

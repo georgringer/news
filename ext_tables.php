@@ -112,17 +112,6 @@ $boot = function($packageKey) {
 					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
 				)
 			);
-
-			if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('t3blog')) {
-				\GeorgRinger\News\Utility\ImportJob::register(
-					'GeorgRinger\\News\\Jobs\\T3BlogNewsImportJob',
-					'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:t3blog_importer_title',
-					'');
-				\GeorgRinger\News\Utility\ImportJob::register(
-					'GeorgRinger\\News\\Jobs\\T3BlogCategoryImportJob',
-					'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:t3blogcategory_importer_title',
-					'');
-			}
 		}
 
 
