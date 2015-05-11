@@ -15,7 +15,6 @@ namespace GeorgRinger\News\Tests\Unit\MediaRenderer\Video;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Domain\Model\Media;
-use GeorgRinger\News\MediaRenderer\Video\Youtube;
 
 /**
  * Tests for Youtube
@@ -32,7 +31,10 @@ class YoutubeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$mediaElement->setMultimedia($expected);
 		$mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
 
-		$renderer = new Youtube();
+		$mockedSettingsService = $this->getMock('GeorgRinger\\News\\Service\\SettingsService', array('getSettings'));
+
+		$renderer = $this->getAccessibleMock('GeorgRinger\\News\\MediaRenderer\\Video\\Youtube', array('dummy'));
+		$renderer->_set('pluginSettingsService', $mockedSettingsService);
 		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
 	}
 
