@@ -38,7 +38,7 @@ $boot = function ($packageKey) {
 		'GeorgRinger\\News\\Hooks\\FormEngine';
 
 	// FormEngine: Rendering of the whole FormEngine
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass'][] =
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass']['news'] =
 		'GeorgRinger\\News\\Hooks\\FormEngine';
 
 	// Modify flexform values
