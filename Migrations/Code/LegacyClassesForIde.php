@@ -3,12 +3,6 @@
 /**
  * @deprecated
  */
-class Tx_News_Cache_ClassCacheBuilder extends GeorgRinger\News\Cache\ClassCacheBuilder {}
-
-
-/**
- * @deprecated
- */
 class Tx_News_Controller_AdministrationController extends GeorgRinger\News\Controller\AdministrationController {}
 
 

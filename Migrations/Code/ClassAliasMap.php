@@ -1,6 +1,5 @@
 <?php
 return array(
-	'Tx_News_Cache_ClassCacheBuilder' => 'GeorgRinger\\News\\Cache\\ClassCacheBuilder',
 	'Tx_News_Controller_AdministrationController' => 'GeorgRinger\\News\\Controller\\AdministrationController',
 	'Tx_News_Controller_CategoryController' => 'GeorgRinger\\News\\Controller\\CategoryController',
 	'Tx_News_Controller_ImportController' => 'GeorgRinger\\News\\Controller\\ImportController',
