@@ -171,12 +171,12 @@ class BackendUtility {
 				default:
 			}
 
-			if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/T3libBefunc.php']['updateFlexforms'])) {
+			if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'])) {
 				$params = array(
 					'selectedView' => $selectedView,
 					'dataStructure' => &$dataStructure,
 				);
-				foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/T3libBefunc.php']['updateFlexforms'] as $reference) {
+				foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] as $reference) {
 					\TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
 				}
 			}

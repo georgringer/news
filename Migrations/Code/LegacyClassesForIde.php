@@ -446,19 +446,19 @@ class Tx_News_Jobs_AbstractImportJob extends GeorgRinger\News\Jobs\AbstractImpor
 /**
  * @deprecated
  */
-class Tx_News_Hooks_Tcemain extends GeorgRinger\News\Hooks\Tcemain {}
+class Tx_News_Hooks_Tcemain extends GeorgRinger\News\Hooks\DataHandler {}
 
 
 /**
  * @deprecated
  */
-class Tx_News_Hooks_Tceforms extends GeorgRinger\News\Hooks\Tceforms {}
+class Tx_News_Hooks_Tceforms extends GeorgRinger\News\Hooks\FormEngine {}
 
 
 /**
  * @deprecated
  */
-class Tx_News_Hooks_T3libBefunc extends GeorgRinger\News\Hooks\T3libBefunc {}
+class Tx_News_Hooks_T3libBefunc extends GeorgRinger\News\Hooks\BackendUtility {}
 
 
 /**
