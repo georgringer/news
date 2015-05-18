@@ -339,18 +339,6 @@ class Tx_News_Service_AccessControlService extends GeorgRinger\News\Service\Acce
 /**
  * @deprecated
  */
-class Tx_News_Service_Import_T3BlogNewsDataProviderService extends GeorgRinger\News\Service\Import\T3BlogNewsDataProviderService {}
-
-
-/**
- * @deprecated
- */
-class Tx_News_Service_Import_T3BlogCategoryDataProviderService extends GeorgRinger\News\Service\Import\T3BlogCategoryDataProviderService {}
-
-
-/**
- * @deprecated
- */
 interface Tx_News_Service_Import_DataProviderServiceInterface extends GeorgRinger\News\Service\Import\DataProviderServiceInterface {}
 
 /**
@@ -411,18 +399,6 @@ class Tx_News_MediaRenderer_Audio_Mp3Html5 extends GeorgRinger\News\MediaRendere
  * @deprecated
  */
 class Tx_News_MediaRenderer_Audio_Mp3 extends GeorgRinger\News\MediaRenderer\Audio\Mp3 {}
-
-
-/**
- * @deprecated
- */
-class Tx_News_Jobs_T3BlogNewsImportJob extends GeorgRinger\News\Jobs\T3BlogNewsImportJob {}
-
-
-/**
- * @deprecated
- */
-class Tx_News_Jobs_T3BlogCategoryImportJob extends GeorgRinger\News\Jobs\T3BlogCategoryImportJob {}
 
 
 /**
