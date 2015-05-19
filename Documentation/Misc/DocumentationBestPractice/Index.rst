@@ -3,19 +3,17 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. _introduction:
 
-Introduction
-============
+Documentation best practice
+===========================
 
 .. only:: html
 
-	This chapter gives you a basic introduction about the TYPO3 CMS extension "*news*".
+	Best practice for Documentation with rest
 
 .. toctree::
 	:maxdepth: 5
 	:titlesonly:
 
-	About/Index
-	Support/Index
-	Thanks/Index
+	Examples/Index
+	CrossLink/Index

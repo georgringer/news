@@ -1,4 +1,4 @@
-﻿.. ==================================================
+.. ==================================================
 .. FOR YOUR INFORMATION
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
@@ -8,7 +8,7 @@
 
 
 .. ==================================================
-.. DEFINE SOME TEXTROLES
+.. DEFINE SOME TEXT ROLES
 .. --------------------------------------------------
 
 .. role::   typoscript(code)
@@ -18,4 +18,18 @@
 
 .. role::   php(code)
 
-.. highlight:: guess
+.. highlight:: php
+
+.. |img-record-tag|      image:: /Images/Administration/record-tag.png
+.. :border: 0
+.. :align: left
+
+.. |img-record-category|      image:: /Images/Administration/record-category.png
+.. :border: 0
+.. :align: left
+
+.. |img-plugin-ts|      image:: /Images/Administration/news-include-TypoScript.png
+.. :border: 0
+.. :align: left
+.. :name: NewsPluginTs
+

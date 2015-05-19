@@ -3,19 +3,21 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. _introduction:
+.. include:: ../Includes.txt
 
-Introduction
-============
+
+.. _developer-manual:
+
+For developers
+==============
 
 .. only:: html
 
-	This chapter gives you a basic introduction about the TYPO3 CMS extension "*news*".
+	This chapter describes how to use the extension from a developer point of view.
 
 .. toctree::
 	:maxdepth: 5
 	:titlesonly:
 
-	About/Index
-	Support/Index
-	Thanks/Index
+	ExtendNews/Index
+	Contribute/Index

@@ -1,0 +1,25 @@
+
+
+2.2.1 - 2013/09/23
+------------------
+
+This is the first stable release!
+
+Features
+========
+
+::
+
+	* SearchFormAction can handle $overwriteDemand which enables you to have improved search capabilities
+	* Support for linkvalidator
+	* iCalendar as view
+
+
+Important bugfixes / tasks
+==========================
+
+::
+
+	* Fix useStdwrap in 4.5
+	* Fix for loading a class under 4.5
+

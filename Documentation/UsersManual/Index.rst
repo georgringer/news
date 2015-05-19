@@ -1,4 +1,4 @@
-.. ==================================================
+﻿.. ==================================================
 .. FOR YOUR INFORMATION
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
@@ -6,14 +6,21 @@
 .. include:: ../Includes.txt
 
 
-Users manual
-------------
+.. _userManual:
 
+For editors
+===========
+
+.. only:: html
+
+	This chapter describes how to use the extension from a user point of view.
+
+	The sections "*Records*" lists all the fields of the various records and "*Plugin*" describes all availble plugins.
 
 .. toctree::
-   :maxdepth: 5
-   :titlesonly:
-   :glob:
+	:maxdepth: 5
+	:titlesonly:
 
-   AboutNewsCategoryRecords/Index
-
+	HowToStart/Index
+	Records/Index
+	Plugins/Index

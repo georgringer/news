@@ -4,16 +4,19 @@
 
 ---
 conf.py:
-  copyright: 2000-2014
-  project: 'News: Versatile news system'
-  version: 3.0
-  release: 3.0.0
+  copyright: 2015
+  project: News system
+  version: 3.1
+  release: 3.1.0
   latex_documents:
   - - Index
     - news.tex
-    - 'News: Versatile news system'
+    - News system
     - Georg Ringer
     - manual
+  html_theme_options:
+    github_repository: georgringer/news-documentation
+    github_branch: master
   latex_elements:
     papersize: a4paper
     pointsize: 10pt
@@ -21,5 +24,11 @@ conf.py:
   intersphinx_mapping:
     t3tsref:
     - http://docs.typo3.org/typo3cms/TyposcriptReference/
+    - null
+    t3start:
+    - http://docs.typo3.org/typo3cms/GettingStartedTutorial/
+    - null
+    t3editors:
+    - http://docs.typo3.org/typo3cms/EditorsTutorial/
     - null
 ...

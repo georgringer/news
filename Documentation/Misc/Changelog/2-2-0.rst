@@ -1,0 +1,68 @@
+
+
+2.2.0 - 2013/07/06
+------------------
+
+This version has been released during the TYPO3 Developer Days 2013 in Hamburg.
+
+
+.. tip::
+
+	To get a full list of changes, take either a look at http://git.typo3.org/TYPO3CMS/Extensions/news.git or use *git log*.
+
+
+Breaking/Important changes
+==========================
+
+::
+
+	* Even though 4.5 is still supported, PHP 5.3 is now required to be able to cover the full version range from 4.5 to 6,2
+	* Changes in database structure, an update in Extension Manager / Compare in Install Tool is needed
+		- Default value '0' for type field of news record
+		- Add fields for enabling basic workspace support
+	* EXT:news is using travis to check all UnitTests in all major TYPO3 releases. You can get the status at https://travis-ci.org/TYPO3-extensions/news
+
+Features
+========
+
+::
+
+	* Path to dummy images is configurable
+	* ViewHelper for Gravatar, thx Philipp Bergsmann
+	* Description field for media elements
+	* Description & keywords meta tag
+	* Support maxHeight for media elements in default templates
+	* Error handling in detail view if no news found. The setting settings.detail.errorHandling can either be
+		- pageNotFoundHandler: use pageNotFoundHandler of the core
+		- redirectToListView: redirect to list view
+		- redirectToPage: redirect to any page, including a custom header
+	* Atom feed support
+	* Full text RSS feed
+	* ViewHelper to set target of links: Tx_News_ViewHelpers_TargetLinkViewHelper
+	* More options 	for FileDownloadViewHelper: class, target, alt, title
+	* Import from t3blog, thx Ingo Renner
+	* Dateformat is now translateable by using <f:translate key="dateFormat" />
+
+
+
+
+Important bugfixes / tasks
+==========================
+
+::
+
+	* Default more link in List.html
+	* Support of new property mapper
+	* Category tree in FE supports translations
+	* Move the domain model of tt_content to Tx_News_Domain_Model_TtContent
+	* Configuration in Extension Manager uses tabs to group the settings
+
+
+Miscellaneous
+=============
+
+::
+
+	* Improved documentation, especially examples for ViewHelpers
+	* More UnitTests
+	* Improved translations

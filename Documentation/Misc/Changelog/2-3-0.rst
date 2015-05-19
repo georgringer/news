@@ -1,0 +1,61 @@
+
+
+2.3.0 - 2013/12/12
+------------------
+
+This is the last release which will support TYPO3 branches 4.x.
+
+
+Important bugfixes / tasks
+==========================
+
+::
+
+	* The pagination has been reworked and synced with the one of the core. If you changed the templates, please adopt your template.
+
+
+All Changes
+===========
+
+::
+
+	* 2013-12-12 [TASK] Change start/endtime to datetime (Commit a6ddca9)
+	* 2013-12-03 [TASK] Use https for social API calls (Commit 1ac5ecd)
+	* 2013-12-03 [TASK] Add notification email to travis (Commit 02b4949)
+	* 2013-12-02 [BUGFIX] v3 (Commit 3eff0be)
+	* 2013-12-02 [BUGFIX] Final fix (Commit b74d2bc)
+	* 2013-11-30 [FEATURE] Improved recursive setting inheritance (Commit 1e71da1)
+	* 2013-12-02 [BUGFIX] Fix failing unittest (Commit 9f1d93b)
+	* 2013-12-02 [BUGFIX] Use t3lib_div to be compatible (Commit ebbd76a)
+	* 2013-12-01 [TASK] Improve handleNoNewsFoundError (Commit 309e81f)
+	* 2013-11-30 [TASK] Improve Unittests (Commit eea69b6)
+	* 2013-11-30 [TASK] UnitTest for NewsBaseController (Commit 3ab4366)
+	* 2013-11-29 [DOC] Change Tracis url (Commit 674aeed)
+	* 2013-11-28 [BUGFIX] Fix tests for 6.2 (Commit 10edf80)
+	* 2013-11-27 [!!!][BUGFIX] Improve pagination (Commit b8405b3)
+	* 2013-11-21 [DOC] Add example for groupedfor VH (Commit 3a88cf5)
+	* 2013-11-14 [FEATURE] Optional RTE for teaser field (Commit 4a7c1cf)
+	* 2013-11-14 [FEATURE] Add field description (Commit d8001fe)
+	* 2013-11-03 [FEATURE] Implement some basic cache tagging (Commit e6bac94)
+	* 2013-11-01 [BUGFIX] Fix styling issues (Commit 0ecbc41)
+	* 2013-11-01 [TASK][CGL] Remove all closing tags (Commit 588ca47)
+	* 2013-10-20 [TASK] Cleanup Administration module (Commit deb0d5b)
+	* 2013-10-21 [TASK] Change labelfunc for media for 6.2 (Commit 32f0bc1)
+	* 2013-10-28 [TASK] Improve ClassCacheBuilder! (Commit 4e141a9)
+	* 2013-10-28 [TASK] Increase treelevel in flexforms (Commit a984a8d)
+	* 2013-10-23 [FEATURE] Get the emconfiguration to the FE (Commit 9fc11aa)
+	* 2013-10-21 [TASK] Avoid empty tags with <f:format.html> (Commit fa10918)
+	* 2013-10-20 [BUGFIX] Fix some warnings (Commit 7c6fdee)
+	* 2013-10-20 [FEATURE] Redirect user in Administrationmodule if no page is set (Commit ebaa2e1)
+	* 2013-10-01 [FEATURE] Add realurl auto config (Commit 9c39b64)
+	* 2013-10-09 [TASK] Cleanup TCA (Commit 3a79c1b)
+	* 2013-10-02 [BUGFIX] Remove exclude from flexforms (Commit 1da7712)
+	* 2013-10-01 [BUGFIX] Fix error in flexform hook (Commit ddbcfc4)
+	* 2013-09-30 [FEATURE] Add getters for different media elements (Commit a09f647)
+	* 2013-09-25 [TASK] Add 'sorting' to allowed order fields (Commit 1513881)
+	* 2013-09-25 [TASK] Make og:site_name configurable via TS (Commit 7fe2c9e)
+
+This list has been created by using: ::
+
+	git log --since="2013/09/23" --abbrev-commit --pretty='%ad %s (Commit %h)' --date=short
+

@@ -1,0 +1,20 @@
+
+
+3.0.1 - 2014/06/03
+------------------
+
+This is a security release, containing only the bugfix for the issues mentioned at http://typo3.org/teams/security/security-bulletins/typo3-extensions/typo3-ext-sa-2014-009/
+
+
+Upgrade procedure
+=================
+
+If you copied all templates to e.g. fileadmin/templates/fo/, you need to adopt the file *Templates/ViewHelpers/Flv.html* and change the used flowplayer version to *flowplayer-3.2.16.swf*.
+
+All Changes
+===========
+
+::
+
+	2014-06-03 [BUGFIX] Update 3rd party libs (Commit cde104f)
+
