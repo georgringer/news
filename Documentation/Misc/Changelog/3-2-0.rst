@@ -1,13 +1,14 @@
 3.2.0 - 2015/05/19
 ==================
 
-This release is dedicated to my wedding in June! I am so excited and want to share my happiness with the TYPO3 community!
-If you are using this extension, take some minutes and write me a postcard. That would be awesome! You can find the :ref:`contact data here <thanks>`.
+This release is dedicated to my **wedding in June**! I am so excited and want to share my happiness with the TYPO3 community!
+
+If you are using this extension, take some minutes and write me a postcard. You can find the :ref:`contact data here <thanks>`.
 
 .. only:: html
 
-   .. contents::
-:local:
+.. contents::
+        :local:
         :depth: 1
 
 
@@ -17,8 +18,8 @@ The following changes might break your installation but all are easy to solve.
 
 .. only:: html
 
-   .. contents::
-:local:
+.. contents::
+        :local:
         :depth: 1
 
 Change of proxy-class generation
