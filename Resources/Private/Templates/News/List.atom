@@ -14,8 +14,8 @@
 					<name><f:if condition="{newsItem.author}"><f:then>{newsItem.author}</f:then><f:else>-</f:else></f:if></name>
 					<f:if condition="{newsItem.authorEmail}"><email>{newsItem.authorEmail}</email></f:if>
 				</author>
-				<published><f:format.date format="c">{newsItem.crdate}</f:format.date></published>
-				<updated><f:format.date format="c">{newsItem.datetime}</f:format.date></updated>
+				<published><f:format.date format="c">{newsItem.datetime}</f:format.date></published>
+				<updated><f:format.date format="c">{newsItem.tstamp}</f:format.date></updated>
 				<link rel="alternate" type="text/html" href="<n:format.hsc><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></n:format.hsc>"/>
 				<summary><n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc></summary>
 				<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
