@@ -208,6 +208,7 @@ class NewsController extends NewsBaseController {
 		$assignedValues = array(
 			'newsItem' => $news,
 			'currentPage' => (int)$currentPage,
+			'demand' => $this->createDemandObjectFromSettings($this->settings),
 		);
 
 		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
