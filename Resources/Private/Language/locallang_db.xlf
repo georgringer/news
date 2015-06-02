@@ -43,7 +43,7 @@
 				<source>Related Files</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.fal_related_files.add" xml:space="preserve">
-				<source>Add releated file</source>
+				<source>Add related file</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.related_links" xml:space="preserve">
 				<source>Related Links</source>
