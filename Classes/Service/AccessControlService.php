@@ -120,7 +120,7 @@ class AccessControlService {
 			$newsRecordUid = $newsRecord['uid'];
 		}
 
-		$whereClause = 'AND sys_category_record_mm.tablenames=\'tx_news_domain_model_news\' AND sys_category_record_mm.uid_foreign=' . $newsRecordUid .
+		$whereClause = 'AND sys_category_record_mm.tablenames="tx_news_domain_model_news" AND sys_category_record_mm.fieldname="categories" AND sys_category_record_mm.uid_foreign=' . $newsRecordUid .
 			BackendUtility::deleteClause('sys_category') . BackendUtility::BEenableFields('sys_category');
 
 		$res = self::getDatabaseConnection()->exec_SELECT_mm_query(
