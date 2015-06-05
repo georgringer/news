@@ -15,7 +15,7 @@ namespace GeorgRinger\News\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Service\AccessControlService;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -80,9 +80,9 @@ class DataHandler {
 
 			if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fields['type']) {
 				// If "savedokview" has been pressed and current article has "type" 0 (= normal news article)
-				$pagesTsConfig = BackendUtility::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
+				$pagesTsConfig = BackendUtilityCore::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
 				if ($pagesTsConfig['tx_news.']['singlePid']) {
-					$record = BackendUtility::getRecord('tx_news_domain_model_news', $recordUid);
+					$record = BackendUtilityCore::getRecord('tx_news_domain_model_news', $recordUid);
 
 					$parameters = array(
 						'no_cache' => 1,
@@ -116,7 +116,7 @@ class DataHandler {
 		if ($table === 'tx_news_domain_model_news') {
 			// check permissions of assigned categories
 			if (is_int($id) && !$this->getBackendUser()->isAdmin()) {
-				$newsRecord = BackendUtility::getRecord($table, $id);
+				$newsRecord = BackendUtilityCore::getRecord($table, $id);
 				if (!AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
 					$parentObject->log($table, $id, 2, 0, 1, "processDatamap: Attempt to modify a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in your BE usergroup.", 1, array($table));
 					// unset fieldArray to prevent saving of the record
@@ -152,7 +152,7 @@ class DataHandler {
 	 */
 	public function processCmdmap_preProcess($command, &$table, $id, $value, $parentObject) {
 		if ($table === 'tx_news_domain_model_news' && !$this->getBackendUser()->isAdmin() && is_integer($id)) {
-			$newsRecord = BackendUtility::getRecord($table, $id);
+			$newsRecord = BackendUtilityCore::getRecord($table, $id);
 			if (!AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
 				$parentObject->log($table, $id, 2, 0, 1, "processCmdmap: Attempt to " . $command . " a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in the BE usergroup.", 1, array($table));
 				// unset table to prevent saving

@@ -15,7 +15,7 @@ namespace GeorgRinger\News\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Utility\EmConfiguration;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
@@ -137,9 +137,9 @@ class SuggestReceiverCall {
 	protected function getTagPidFromTsConfig($newsUid) {
 		$pid = 0;
 
-		$newsRecord = BackendUtility::getRecord('tx_news_domain_model_news', (int)$newsUid);
+		$newsRecord = BackendUtilityCore::getRecord('tx_news_domain_model_news', (int)$newsUid);
 
-		$pagesTsConfig = BackendUtility::getPagesTSconfig($newsRecord['pid']);
+		$pagesTsConfig = BackendUtilityCore::getPagesTSconfig($newsRecord['pid']);
 		if (isset($pagesTsConfig['tx_news.']) && isset($pagesTsConfig['tx_news.']['tagPid'])) {
 			$pid = (int)$pagesTsConfig['tx_news.']['tagPid'];
 		}
