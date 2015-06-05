@@ -427,7 +427,7 @@ class ext_update {
 			'title, description, ' .
 			'fe_group, single_pid, shortcut, import_id, import_source',
 			'tx_news_domain_model_category',
-			'migrate_sys_category_uid = 0 AND deleted = 0 AND sys_language_uid > 0'
+			'migrate_sys_category_uid = 0 AND deleted = 0 AND sys_language_uid != 0'
 		);
 
 		if ($this->databaseConnection->sql_error()) {
