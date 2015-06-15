@@ -351,7 +351,6 @@ class ext_update {
 		$oldNewCategoryUidMapping = $this->getOldNewCategoryUidMapping();
 		$this->updateParentFieldOfMigratedCategories($oldNewCategoryUidMapping);
 		$this->migrateCategoryMmRecords($oldNewCategoryUidMapping);
-		$this->updateCategoryPermissionFields('be_groups', $oldNewCategoryUidMapping);
 		$this->updateCategoryPermissionFields('be_users', $oldNewCategoryUidMapping);
 		$this->migrateCategoryImages();
 		$this->updateFlexformCategories('news_pi1', $oldNewCategoryUidMapping, 'settings.categories');
@@ -575,7 +574,7 @@ class ext_update {
 
 		$updatedRecords = 0;
 		$rows = $this->databaseConnection->exec_SELECTgetRows(
-			'',
+			'*',
 			$table,
 			'1=1'
 		);
