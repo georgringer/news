@@ -470,7 +470,7 @@ class Tx_News_Hooks_InlineElementHook extends GeorgRinger\News\Hooks\InlineEleme
 /**
  * @deprecated
  */
-class Tx_News_Hooks_CmsLayout extends GeorgRinger\News\Hooks\CmsLayout {}
+class Tx_News_Hooks_CmsLayout extends GeorgRinger\News\Hooks\PageLayoutView {}
 
 
 /**
