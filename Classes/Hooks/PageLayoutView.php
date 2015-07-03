@@ -71,11 +71,9 @@ class PageLayoutView {
 	 * @return string Information about pi1 plugin
 	 */
 	public function getExtensionSummary(array $params) {
-		$result = $actionTranslationKey = '';
+		$actionTranslationKey = '';
 
-		if ($this->showExtensionTitle()) {
-			$result .= '<strong>' . $this->getLanguageService()->sL(self::LLPATH . 'pi1_title', TRUE) . '</strong>';
-		}
+		$result = '<strong>' . $this->getLanguageService()->sL(self::LLPATH . 'pi1_title', TRUE) . '</strong><br>';
 
 		if ($params['row']['list_type'] == self::KEY . '_pi1') {
 			$this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
@@ -89,11 +87,12 @@ class PageLayoutView {
 				$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
 				$actionTranslation = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
 
-				$result .= '<pre>' . $actionTranslation . '</pre>';
+				$result .= $actionTranslation;
 
 			} else {
-				$result = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
+				$result .= $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
 			}
+			$result .= '<hr>';
 
 			if (is_array($this->flexformData)) {
 
@@ -601,18 +600,6 @@ class PageLayoutView {
 		}
 
 		return NULL;
-	}
-
-	/**
-	 * Because of changes since TYPO3 CMS version 6.0,
-	 * the extension name needs to be shown additionally
-	 *
-	 * @return boolean
-	 */
-	protected function showExtensionTitle() {
-		$majorVersion = intval(substr(TYPO3_branch, 0, 1));
-
-		return ($majorVersion >= 6);
 	}
 
 	/**
