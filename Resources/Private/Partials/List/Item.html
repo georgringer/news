@@ -2,13 +2,13 @@
 	=====================
 		Partials/List/Item.html
 -->
-<div class="article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}">
+<div class="article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}" itemscope="itemscope" itemtype="http://schema.org/Article">
 	<n:excludeDisplayedNews newsItem="{newsItem}"/>
 	<!-- header -->
 	<div class="header">
 		<h3>
 			<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
-				{newsItem.title}
+				<span itemprop="headline">{newsItem.title}</span>
 			</n:link>
 		</h3>
 	</div>
@@ -104,10 +104,10 @@
 	<div class="teaser-text">
 		<f:if condition="{newsItem.teaser}">
 			<f:then>
-				{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+				<span itemprop="description">{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}</span>
 			</f:then>
 			<f:else>
-				{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+				<span itemprop="description">{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}</span>
 			</f:else>
 		</f:if>
 
@@ -123,6 +123,7 @@
 			<span class="news-list-date">
 				<time datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
 					<f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+					<meta itemprop="datePublished" content="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}" />
 				</time>
 			</span>
 
@@ -133,7 +134,7 @@
 
 			<f:if condition="{newsItem.tags}">
 				<!-- Tags -->
-				<span class="news-list-tags">
+				<span class="news-list-tags" itemprop="keywords">
 					<f:for each="{newsItem.tags}" as="tag">
 						{tag.title}
 					</f:for>

@@ -26,7 +26,7 @@
 				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
 			</n:format.nothing>
 			<div class="header">
-				<h3>{newsItem.title}</h3>
+				<h3 itemprop="headline">{newsItem.title}</h3>
 			</div>
 			<div class="footer">
 				<p>
@@ -34,6 +34,7 @@
 					<span class="news-list-date">
 						<time datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
 							<f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+							<meta itemprop="datePublished" content="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}" />
 						</time>
 					</span>
 
@@ -43,7 +44,7 @@
 
 					<f:if condition="{newsItem.tags}">
 						<!-- Tags -->
-						<span class="news-list-tags">
+						<span class="news-list-tags" itemprop="keywords">
 						<f:for each="{newsItem.tags}" as="tag">
 							{tag.title}
 						</f:for>
@@ -52,7 +53,7 @@
 
 					<f:if condition="{newsItem.author}">
 						<!-- author -->
-						<span class="news-list-author" itemscope="itemscope" itemtype="http://data-vocabulary.org/Person">
+						<span class="news-list-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
 							<f:translate key="author_simple" /> <span itemprop="name">{newsItem.author}</span>
 						</span>
 					</f:if>
@@ -61,7 +62,7 @@
 
 			<f:if condition="{newsItem.teaser}">
 				<!-- teaser -->
-				<div class="teaser-text">
+				<div class="teaser-text" itemprop="description">
 					<f:format.html>{newsItem.teaser}</f:format.html>
 				</div>
 			</f:if>
@@ -75,7 +76,7 @@
 			<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}" />
 
 			<!-- main text -->
-			<div class="news-text-wrap">
+			<div class="news-text-wrap" itemprop="articleBody">
 				<f:format.html>{newsItem.bodytext}</f:format.html>
 			</div>
 
@@ -91,7 +92,7 @@
 			<f:if condition="{settings.detail.showSocialShareButtons}">
 				<div class="facebook">
 					<div class="like">
-						<n:social.facebook.like></n:social.facebook.like>
+						<n:social.facebook.like />
 					</div>
 					<div class="share">
 						<n:social.facebook.share />
