@@ -6,6 +6,7 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 return array(
 	'ctrl' => array(
 		'title' => $ll . 'tx_news_domain_model_file',
+		'descriptionColumn' => 'description',
 		'label' => 'title',
 		'label_alt' => 'file',
 		'label_alt_force' => 1,

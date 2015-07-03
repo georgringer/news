@@ -13,6 +13,7 @@ $teaserRteConfiguration = $configuration->getRteForTeaser() ? ';;;richtext::rte_
 $tx_news_domain_model_news = array(
 	'ctrl' => array(
 		'title' => $ll . 'tx_news_domain_model_news',
+		'descriptionColumn' => 'tag',
 		'label' => 'title',
 		'prependAtCopy' => $configuration->getPrependAtCopy() ? 'LLL:EXT:lang/locallang_general.xlf:LGL.prependAtCopy' : '',
 		'hideAtCopy' => TRUE,

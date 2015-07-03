@@ -9,6 +9,7 @@ $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 $tx_news_domain_model_media = array(
 	'ctrl' => array(
 		'title' => $ll . 'tx_news_domain_model_media',
+		'descriptionColumn' => 'description',
 		'label' => 'caption',
 		'label_alt' => 'type, showinpreview',
 		'label_alt_force' => 1,
