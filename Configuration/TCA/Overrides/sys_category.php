@@ -31,32 +31,6 @@ $newSysCategoryColumns = array(
 			'type' => 'passthrough',
 		)
 	),
-	'fe_group' => array(
-		'exclude' => 1,
-		'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.fe_group',
-		'config' => array(
-			'type' => 'select',
-			'size' => 5,
-			'maxitems' => 20,
-			'items' => array(
-				array(
-					'LLL:EXT:lang/locallang_general.xlf:LGL.hide_at_login',
-					-1,
-				),
-				array(
-					'LLL:EXT:lang/locallang_general.xlf:LGL.any_login',
-					-2,
-				),
-				array(
-					'LLL:EXT:lang/locallang_general.xlf:LGL.usergroups',
-					'--div--',
-				),
-			),
-			'exclusiveKeys' => '-1,-2',
-			'foreign_table' => 'fe_groups',
-			'foreign_table_where' => 'ORDER BY fe_groups.title',
-		),
-	),
 	'images' => array(
 		'exclude' => 1,
 		'l10n_mode' => 'mergeIfNotBlank',
@@ -136,9 +110,6 @@ $newSysCategoryColumns = array(
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category', '--div--;LLL:EXT:cms/locallang_tca.xls:pages.tabs.options, images', '', 'before:description');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category', 'single_pid', '', 'after:description');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category', 'shortcut', '', 'after:single_pid');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category', 'fe_group');
 
-// add fe_group as enable field
-$GLOBALS['TCA']['sys_category']['ctrl']['enablecolumns']['fe_group'] = 'fe_group';
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_news_domain_model_news']
 = array(0 => 'categories');
