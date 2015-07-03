@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Backend\Form\Wizard\SuggestWizardDefaultReceiver;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Backend\Utility\IconUtility;
 
@@ -25,7 +26,7 @@ use TYPO3\CMS\Backend\Utility\IconUtility;
  * @package	TYPO3
  * @subpackage	tx_news
  */
-class SuggestReceiver extends \TYPO3\CMS\Backend\Form\Element\SuggestDefaultReceiver{
+class SuggestReceiver7 extends SuggestWizardDefaultReceiver {
 
 	/**
 	 * Queries a table for records and completely processes them
@@ -39,9 +40,7 @@ class SuggestReceiver extends \TYPO3\CMS\Backend\Form\Element\SuggestDefaultRece
 	 */
 	public function queryTable(&$params, $recursionCounter = 0) {
 		$uid = (int)GeneralUtility::_GP('uid');
-
 		$records = parent::queryTable($params, $recursionCounter);
-
 		if ($this->checkIfTagIsNotFound($records)) {
 			$text = GeneralUtility::quoteJSvalue($params['value']);
 $javaScriptCode = '

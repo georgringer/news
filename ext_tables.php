@@ -139,7 +139,14 @@ $boot = function($packageKey) {
 		/* ===========================================================================
 			Ajax call to save tags
 		=========================================================================== */
-		$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = 'typo3conf/ext/news/Classes/Hooks/SuggestReceiverCall.php:GeorgRinger\\News\\Hooks\\SuggestReceiverCall->createTag';
+		if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.3')) {
+			$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = array(
+				'callbackMethod' => 'GeorgRinger\\News\\Hooks\\SuggestReceiverCall->createTag',
+				'csrfTokenCheck' => FALSE
+			);
+		} else {
+			$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = 'typo3conf/ext/news/Classes/Hooks/SuggestReceiverCall.php:GeorgRinger\\News\\Hooks\\SuggestReceiverCall->createTag';
+		}
 	}
 
 	/* ===========================================================================

@@ -553,7 +553,7 @@ $tx_news_domain_model_news = array(
 					'suggest' => array(
 						'type' => 'suggest',
 						'default' => array(
-							'receiverClass' => 'GeorgRinger\\News\\Hooks\\SuggestReceiver'
+							'receiverClass' => 'GeorgRinger\\News\\Hooks\\SuggestReceiver' . (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.3') ? '7' : '')
 						),
 					),
 					'list' => array(
