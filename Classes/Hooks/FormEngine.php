@@ -79,8 +79,11 @@ class FormEngine {
 			return;
 		}
 		if (!AccessControlService::userHasCategoryPermissionsForRecord($row)) {
-			$parentObject->renderReadonly = TRUE;
-
+			if (method_exists($parentObject, 'setRenderReadonly')) {
+				$parentObject->setRenderReadonly(TRUE);
+			} else {
+				$parentObject->renderReadonly = TRUE;
+			}
 			$flashMessageContent = $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.content', TRUE);
 			$flashMessageContent .= '<ul>';
 			$accessDeniedCategories = AccessControlService::getAccessDeniedCategories($row);
