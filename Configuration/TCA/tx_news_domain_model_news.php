@@ -689,6 +689,10 @@ $tx_news_domain_model_news = array(
 	)
 );
 
+if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.3')) {
+	unset($tx_news_domain_model_news['columns']['rte_disabled']);
+}
+
 // category restriction based on settings in extension manager
 $categoryRestrictionSetting = $configuration->getCategoryRestriction();
 if ($categoryRestrictionSetting) {
