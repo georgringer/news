@@ -98,7 +98,7 @@ $boot = function($packageKey) {
 		=========================================================================== */
 		if ($configuration->getShowImporter()) {
 			\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-				'news',
+				'GeorgRinger.news',
 				'web',
 				'tx_news_m1',
 				'',
@@ -120,7 +120,7 @@ $boot = function($packageKey) {
 		=========================================================================== */
 		if ($configuration->getShowAdministrationModule()) {
 			\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-				'news',
+				'GeorgRinger.news',
 				'web',
 				'tx_news_m2',
 				'',
