@@ -192,6 +192,8 @@ class NewsImportService extends AbstractImportService {
 
 				if ($category) {
 					$news->addCategory($category);
+				} else {
+					$this->logger->warning(sprintf('Category with ID "%s" was not found', $categoryUid));
 				}
 			}
 		}
