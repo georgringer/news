@@ -152,6 +152,7 @@ class NewsImportService extends AbstractImportService {
 		$news->setTstamp($importItem['tstamp']);
 		$news->setCrdate($importItem['crdate']);
 		$news->setSysLanguageUid($importItem['sys_language_uid']);
+		$news->setSorting((int)$importItem['sorting']);
 
 		$news->setTitle($importItem['title']);
 		$news->setTeaser($importItem['teaser']);

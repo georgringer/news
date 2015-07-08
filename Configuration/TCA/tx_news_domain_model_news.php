@@ -114,6 +114,12 @@ $tx_news_domain_model_news = array(
 				'type' => 'passthrough',
 			)
 		),
+		'sorting' => array(
+			'label' => 'sorting',
+			'config' => array(
+				'type' => 'passthrough',
+			)
+		),
 		'starttime' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
