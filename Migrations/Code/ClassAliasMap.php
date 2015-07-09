@@ -78,7 +78,7 @@ return array(
 	'Tx_News_Hooks_Labels' => 'GeorgRinger\\News\\Hooks\\Labels',
 	'Tx_News_Hooks_ItemsProcFunc' => 'GeorgRinger\\News\\Hooks\\ItemsProcFunc',
 	'Tx_News_Hooks_InlineElementHook' => 'GeorgRinger\\News\\Hooks\\InlineElementHook',
-	'Tx_News_Hooks_CmsLayout' => 'GeorgRinger\\News\\Hooks\\CmsLayout',
+	'Tx_News_Hooks_CmsLayout' => 'GeorgRinger\\News\\Hooks\\PageLayoutView',
 	'Tx_News_Domain_Service_NewsImportService' => 'GeorgRinger\\News\\Domain\\Service\\NewsImportService',
 	'Tx_News_Domain_Service_CategoryImportService' => 'GeorgRinger\\News\\Domain\\Service\\CategoryImportService',
 	'Tx_News_Domain_Service_AbstractImportService' => 'GeorgRinger\\News\\Domain\\Service\\AbstractImportService',
