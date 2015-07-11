@@ -4,7 +4,7 @@
 	"description": "Versatile news extension, based on extbase & fluid for TYPO3 CMS",
 	"homepage": "http://typo3.org",
 	"license": ["GPL-2.0+"],
-	"version": "3.2.0",
+	"version": "3.2.1",
 	"require": {
 		"typo3/cms-core": ">=6.2.1,<8.0"
 	},
