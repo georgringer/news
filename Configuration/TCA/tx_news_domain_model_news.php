@@ -304,7 +304,7 @@ $tx_news_domain_model_news = array(
 				'size' => 10,
 				'autoSizeMax' => 20,
 				'minitems' => 0,
-				'maxitems' => 20,
+				'maxitems' => 99,
 			)
 		),
 		'related' => array(
@@ -553,7 +553,7 @@ $tx_news_domain_model_news = array(
 				'size' => 10,
 				'autoSizeMax' => 20,
 				'minitems' => 0,
-				'maxitems' => 20,
+				'maxitems' => 99,
 				'wizards' => array(
 					'_PADDING' => 2,
 					'_VERTICAL' => 1,
