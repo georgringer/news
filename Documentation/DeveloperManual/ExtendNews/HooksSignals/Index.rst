@@ -70,7 +70,7 @@ First, register your implementation in the file ``ext_localconf.php``:
 	defined('TYPO3_MODE') or die();
 
 	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'][$_EXTKEY]
-		= 'EXT:' . $_EXTKEY . '/Classes/Hooks/Repository.php:YourVendor\\Extkey\\Hooks\\Repository->modify';
+		= 'YourVendor\\Extkey\\Hooks\\Repository->modify';
 
 Now create the file ``Classes/Hooks/Repository.php``:
 
@@ -81,10 +81,11 @@ Now create the file ``Classes/Hooks/Repository.php``:
 	namespace YourVendor\Extkey\Hooks;
 
 	use TYPO3\CMS\Core\Utility\GeneralUtility;
+	use \GeorgRinger\News\Domain\Rpository\NewsRepository;
 
 	class Repository {
 
-		public function modify(array $params, \Tx_News_Domain_Repository_NewsRepository $newsRepository) {
+		public function modify(array $params, NewsRepository $newsRepository) {
 			$this->updateConstraints($params['demand'], $params['respectEnableFields'], $params['query'], $params['constraints']);
 		}
 
