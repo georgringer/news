@@ -7,15 +7,18 @@ plugin.tx_news {
 
 	view {
 		templateRootPaths {
-			0 = {$plugin.tx_news.view.templateRootPath}
+			0 = EXT:news/Resources/Private/Templates/
+			1 = {$plugin.tx_news.view.templateRootPath}
 		}
 		partialRootPaths {
-			0 = {$plugin.tx_news.view.partialRootPath}
+			0 = EXT:news/Resources/Private/Partials/
+			1 = {$plugin.tx_news.view.partialRootPath}
 		}
 		layoutRootPaths {
-			0 = {$plugin.tx_news.view.layoutRootPath}
+			0 = EXT:news/Resources/Private/Layouts/
+			1 = {$plugin.tx_news.view.layoutRootPath}
 		}
-		widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = {$plugin.tx_news.view.templateRootPath}
+		widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/
 	}
 	# Modify the translation
 	_LOCAL_LANG {
