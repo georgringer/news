@@ -242,6 +242,7 @@ module.tx_news < plugin.tx_news
 [compatVersion = 7.0]
 	module.tx_news {
 		view {
+			templateRootPaths >
 			templateRootPaths {
 				0 = {$plugin.tx_news.view.templateRootPath}7/
 			}
