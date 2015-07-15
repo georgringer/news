@@ -22,7 +22,6 @@ use GeorgRinger\News\Domain\Model\DemandInterface;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 abstract class AbstractDemandedRepository
 	extends \TYPO3\CMS\Extbase\Persistence\Repository

@@ -24,8 +24,6 @@ use GeorgRinger\News\Domain\Model\News;
  * @package TYPO3
  * @subpackage tx_news
  *
- * @author Oliver Klee <typo3-coding@oliverklee.de>
- * @author Georg Ringer <mail@ringerge.org>
  */
 class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

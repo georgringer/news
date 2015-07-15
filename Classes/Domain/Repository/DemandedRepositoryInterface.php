@@ -22,7 +22,6 @@ use GeorgRinger\News\Domain\Model\DemandInterface;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 interface DemandedRepositoryInterface {
 	public function findDemanded(DemandInterface $demand, $respectEnableFields = TRUE);

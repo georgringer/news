@@ -18,6 +18,5 @@ namespace GeorgRinger\News\Domain\Model;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 interface DemandInterface {}

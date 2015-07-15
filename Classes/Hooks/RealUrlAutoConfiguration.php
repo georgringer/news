@@ -19,7 +19,6 @@ namespace GeorgRinger\News\Hooks;
 /**
  * AutoConfiguration-Hook for RealURL
  *
- * @author WOLTER, Christoph <typo3@chrinet.de>
  * @package TYPO3
  * @subpackage tx_news
  */

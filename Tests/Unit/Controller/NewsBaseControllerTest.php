@@ -21,7 +21,6 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  * @package TYPO3
  * @subpackage tx_news
  *
- * @author Georg Ringer <mail@ringerge.org>
  */
 class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

@@ -21,7 +21,6 @@ use GeorgRinger\News\Utility\Validation;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Georg Ringer <typo3@ringerge.org>
  */
 class ValidationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

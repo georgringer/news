@@ -21,7 +21,6 @@ use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

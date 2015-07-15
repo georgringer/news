@@ -23,7 +23,6 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
  * @package TYPO3
  * @subpackage tx_news
  *
- * @author Georg Ringer <typo3@ringerge.org>
  */
 class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

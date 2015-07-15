@@ -22,7 +22,6 @@ use GeorgRinger\News\Domain\Model\File;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Georg Ringer <typo3@ringerge.org>
  */
 class FileTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

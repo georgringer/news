@@ -24,7 +24,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class CategoryImportService extends AbstractImportService {
 

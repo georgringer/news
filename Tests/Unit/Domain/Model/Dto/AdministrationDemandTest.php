@@ -21,7 +21,6 @@ use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Georg Ringer <typo3@ringerge.org>
  */
 class AdministrationDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

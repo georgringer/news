@@ -21,7 +21,6 @@ use TYPO3\CMS\Backend\Utility\IconUtility;
 /**
  * Custom suggest receiver for tags
  *
- * @author	Georg Ringer <typo3@ringerge.org>
  * @package	TYPO3
  * @subpackage	tx_news
  */

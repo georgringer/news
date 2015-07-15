@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Lars Hess <larshess@gmail.com>
  */
 class Cache {
 

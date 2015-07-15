@@ -19,7 +19,6 @@ namespace GeorgRinger\News\Domain\Repository;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Juerg Langhard <langhard@greenbanana.ch>
  */
 class TtContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 

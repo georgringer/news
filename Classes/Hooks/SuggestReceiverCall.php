@@ -22,7 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Ajax response for the custom suggest receiver
  *
- * @author	Georg Ringer <typo3@ringerge.org>
  * @package	TYPO3
  * @subpackage	tx_news
  */

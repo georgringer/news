@@ -26,7 +26,6 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * <n:social.gravatar email="{newsItem.authorEmail}" size="20" class="gravatar" />
  * Result: a img-tag with the gravatar-url with 20px square-image
  *
- * @author Philipp Bergsmann <p.bergsmann@opendo.at>
  * @package TYPO3
  * @subpackage tx_news
  */

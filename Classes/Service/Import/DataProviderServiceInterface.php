@@ -19,7 +19,6 @@ namespace GeorgRinger\News\Service\Import;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 interface DataProviderServiceInterface {
 	public function getTotalRecordCount();

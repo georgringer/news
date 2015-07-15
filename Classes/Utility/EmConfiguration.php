@@ -22,8 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Alexander Buchgeher
- * @author Georg Ringer <typo3@ringerge.org>
  */
 class EmConfiguration {
 

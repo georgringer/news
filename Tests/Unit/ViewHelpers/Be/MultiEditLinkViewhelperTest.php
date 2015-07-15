@@ -22,7 +22,6 @@ use GeorgRinger\News\ViewHelpers\Be\MultiEditLinkViewHelper;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Georg Ringer <typo3@ringerge.org>
  */
 class MultiEditLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

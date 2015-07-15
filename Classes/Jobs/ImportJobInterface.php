@@ -19,7 +19,6 @@ namespace GeorgRinger\News\Jobs;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 interface ImportJobInterface {
 	public function getNumberOfRecordsPerRun();

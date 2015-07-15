@@ -43,9 +43,6 @@ namespace GeorgRinger\News\ViewHelpers\Be\Buttons;
  * A linked button with the icon of a news record which is linked to the index action
  * </output>
  *
- * @author Steffen Kamper <info@sk-typo3.de>
- * @author Bastian Waidelich <bastian@typo3.org>
- * @author Georg Ringer <typo3@ringerge.org>
  * @license http://www.gnu.org/copyleft/gpl.html
  */
 class IconViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper {

@@ -28,8 +28,6 @@ use GeorgRinger\News\Domain\Model\Tag;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @author Georg Ringer <typo3@ringerge.org>
- * @author Nikolas Hagelstein <nikolas.hagelstein@gmail.com>
  */
 class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
