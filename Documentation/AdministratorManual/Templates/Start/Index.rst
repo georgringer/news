@@ -16,7 +16,7 @@ most important things you need for using it. You can get
 more information in books like the one of `Jochen Rau und Sebastian
 Kurfürst <http://www.amazon.de/Zukunftssichere-TYPO3-Extensions-mit-
 Extbase-Fluid/dp/3897219654/>`_ or online, e.g. at
-`http://wiki.tpyo3.org/Fluid <http://wiki.tpyo3.org/Fluid>`_ or many
+`http://wiki.typo3.org/Fluid <http://wiki.typo3.org/Fluid>`_ or many
 other sites.
 
 
