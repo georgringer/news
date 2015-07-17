@@ -168,7 +168,7 @@ class NewsController extends NewsBaseController {
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
+		$assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 
 		Cache::addPageCacheTagsByDemandObject($demand);
@@ -211,7 +211,7 @@ class NewsController extends NewsBaseController {
 			'demand' => $this->createDemandObjectFromSettings($this->settings),
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
+		$assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 
 		Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
@@ -295,7 +295,7 @@ class NewsController extends NewsBaseController {
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DATEMENU_ACTION, $assignedValues);
+		$assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DATEMENU_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 
@@ -323,7 +323,7 @@ class NewsController extends NewsBaseController {
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHFORM_ACTION, $assignedValues);
+		$assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHFORM_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 
@@ -353,7 +353,7 @@ class NewsController extends NewsBaseController {
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHRESULT_ACTION, $assignedValues);
+		$assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHRESULT_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 

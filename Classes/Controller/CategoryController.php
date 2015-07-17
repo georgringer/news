@@ -72,7 +72,7 @@ class CategoryController extends NewsController {
 			'demand' => $demand,
 		);
 
-		$this->emitActionSignal('CategoryController', self::SIGNAL_CATEGORY_LIST_ACTION, $assignedValues);
+		$assignedValues = $this->emitActionSignal('CategoryController', self::SIGNAL_CATEGORY_LIST_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 

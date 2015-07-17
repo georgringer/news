@@ -124,9 +124,12 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	 * @param string $classPart last part of the class name
 	 * @param string $signalName name of the signal slot
 	 * @param array $signalArguments arguments for the signal slot
+	 *
+	 * @return array
 	 */
 	protected function emitActionSignal($classPart, $signalName, array $signalArguments) {
-		$this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Controller\\' . $classPart, $signalName, $signalArguments);
+		$signalArguments['extendedVariables'] = array();
+		return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Controller\\' . $classPart, $signalName, $signalArguments);
 	}
 
 }

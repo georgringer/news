@@ -112,7 +112,7 @@ class AdministrationController extends NewsController {
 			'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
 		);
 
-		$this->emitActionSignal('AdministrationController', self::SIGNAL_ADMINISTRATION_INDEX_ACTION, $assignedValues);
+		$assignedValues = $this->emitActionSignal('AdministrationController', self::SIGNAL_ADMINISTRATION_INDEX_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 
@@ -136,7 +136,7 @@ class AdministrationController extends NewsController {
 			'treeLevel' => $treeLevel,
 		);
 
-		$this->emitActionSignal('AdministrationController', self::SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION, $assignedValues);
+		$assignedValues = $this->emitActionSignal('AdministrationController', self::SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION, $assignedValues);
 		$this->view->assignMultiple($assignedValues);
 	}
 
