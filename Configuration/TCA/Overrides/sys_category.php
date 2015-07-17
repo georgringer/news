@@ -69,6 +69,9 @@ $newSysCategoryColumns = array(
 			'wizards' => array(
 				'suggest' => array(
 					'type' => 'suggest',
+					'default' => array(
+						'searchWholePhrase' => TRUE
+					)
 				),
 			),
 		)
@@ -88,6 +91,9 @@ $newSysCategoryColumns = array(
 			'wizards' => array(
 				'suggest' => array(
 					'type' => 'suggest',
+					'default' => array(
+						'searchWholePhrase' => TRUE
+					)
 				),
 			),
 		)
