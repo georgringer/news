@@ -17,7 +17,7 @@
 				<published><f:format.date format="c">{newsItem.datetime}</f:format.date></published>
 				<updated><f:format.date format="c">{newsItem.tstamp}</f:format.date></updated>
 				<link rel="alternate" type="text/html" href="<n:format.hsc><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></n:format.hsc>"/>
-				<summary><n:format.hsc><n:format.striptags>{newsItem.teaser}</n:format.striptags></n:format.hsc></summary>
+				<summary><n:format.hsc><f:format.stripTags>{newsItem.teaser}</f:format.stripTags></n:format.hsc></summary>
 				<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
 					<f:format.html>{newsItem.bodytext}</f:format.html>
 				</div></content>
