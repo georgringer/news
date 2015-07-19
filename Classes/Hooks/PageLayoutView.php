@@ -14,6 +14,10 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Backend\Template\DocumentTemplate;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Utility\IconUtility;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -180,30 +184,30 @@ class PageLayoutView {
 			$newsRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'deleted=0 AND uid=' . $singleNewsRecord);
 
 			if (is_array($newsRecord)) {
-				$pageRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('pages', $newsRecord['pid']);
+				$pageRecord = BackendUtility::getRecord('pages', $newsRecord['pid']);
 
 				if (is_array($pageRecord)) {
-					$iconPage = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
-					$iconNews = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord('tx_news_domain_model_news', $newsRecord, array('title' => 'Uid: ' . $newsRecord['uid']));
+					$iconPage = IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
+					$iconNews = IconUtility::getSpriteIconForRecord('tx_news_domain_model_news', $newsRecord, array('title' => 'Uid: ' . $newsRecord['uid']));
 
-					$onClickPage = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'], 1, '', '+info,edit,view', TRUE);
-					$onClickNews = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($iconNews, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
+					$onClickPage = $this->getDocumentTemplate()->wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'], 1, '', '+info,edit,view', TRUE);
+					$onClickNews = $this->getDocumentTemplate()->wrapClickMenuOnIcon($iconNews, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
 
 					$content = '<a href="#" onclick="' . htmlspecialchars($onClickPage) . '">' . $iconPage . '</a>' .
-						htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('pages', $pageRecord)) . ': ' .
+						htmlspecialchars(BackendUtility::getRecordTitle('pages', $pageRecord)) . ': ' .
 						'<a href="#" onclick="' . htmlspecialchars($onClickNews) . '">' .
-						$iconNews . htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
+						$iconNews . htmlspecialchars(BackendUtility::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
 						'</a>';
 				} else {
-					/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
+					/** @var $message FlashMessage */
 					$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $newsRecord['pid']);
-					$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+					$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', FlashMessage::WARNING);
 					$content = $message->render();
 				}
 			} else {
-				/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
+				/** @var $message FlashMessage */
 				$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.newsNotAvailable', TRUE), $singleNewsRecord);
-				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', FlashMessage::WARNING);
 				$content = $message->render();
 			}
 
@@ -248,18 +252,16 @@ class PageLayoutView {
 	 * @return string
 	 */
 	public function getPageRecordData($detailPid) {
-		$pageRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('pages', $detailPid);
+		$pageRecord = BackendUtility::getRecord('pages', $detailPid);
 
 		if (is_array($pageRecord)) {
-			$icon = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
-			$onClick = $GLOBALS['SOBE']->doc->wrapClickMenuOnIcon($icon, 'pages', $pageRecord['uid'], TRUE, '', '+info,edit');
-
-			$content = '<a href="#" onclick="' . htmlspecialchars($onClick) . '">' . $icon . '</a>' .
-				htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('pages', $pageRecord));
+			$data = IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']))
+			. htmlspecialchars(BackendUtility::getRecordTitle('pages', $pageRecord));
+			$content = $this->getDocumentTemplate()->wrapClickMenuOnIcon($data, 'pages', $pageRecord['uid'], TRUE, '', '+info,edit');
 		} else {
-			/** @var $message \TYPO3\CMS\Core\Messaging\FlashMessage */
+			/** @var $message FlashMessage */
 			$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $detailPid);
-			$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING);
+			$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', FlashMessage::WARNING);
 			$content = $message->render();
 		}
 
@@ -361,7 +363,7 @@ class PageLayoutView {
 			);
 
 			foreach ($rawCategoryRecords as $record) {
-				$categoriesOut[] = htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('sys_category', $record));
+				$categoriesOut[] = htmlspecialchars(BackendUtility::getRecordTitle('sys_category', $record));
 			}
 
 			$includeSubcategories = $this->getFieldFromFlexform('settings.includeSubCategories');
@@ -395,7 +397,7 @@ class PageLayoutView {
 			'deleted=0 AND uid IN(' . implode(',', $tags) . ')'
 		);
 		foreach ($rawTagRecords as $record) {
-			$categoryTitles[] = htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('tx_news_domain_model_tag', $record));
+			$categoryTitles[] = htmlspecialchars(BackendUtility::getRecordTitle('tx_news_domain_model_tag', $record));
 		}
 
 		$this->tableData[] = array(
@@ -537,7 +539,7 @@ class PageLayoutView {
 			);
 
 			foreach ($rawPagesRecords as $page) {
-				$pagesOut[] = htmlspecialchars(\TYPO3\CMS\Backend\Utility\BackendUtility::getRecordTitle('pages', $page)) . ' (' . $page['uid'] . ')';
+				$pagesOut[] = htmlspecialchars(BackendUtility::getRecordTitle('pages', $page)) . ' (' . $page['uid'] . ')';
 			}
 
 			$recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
@@ -610,4 +612,14 @@ class PageLayoutView {
 	public function getLanguageService() {
 		return $GLOBALS['LANG'];
 	}
+
+	/**
+	 * Get the DocumentTemplate
+	 *
+	 * @return DocumentTemplate
+	 */
+	protected function getDocumentTemplate() {
+		return $GLOBALS['SOBE']->doc;
+	}
+
 }
