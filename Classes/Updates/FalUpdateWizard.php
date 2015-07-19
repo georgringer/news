@@ -1,6 +1,7 @@
 <?php
 
 namespace GeorgRinger\News\Updates;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -52,13 +53,13 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 	protected function init() {
 		$fileadminDirectory = rtrim($GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'], '/') . '/';
 		/** @var $storageRepository \TYPO3\CMS\Core\Resource\StorageRepository */
-		$storageRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
+		$storageRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
 		$storages = $storageRepository->findAll();
 		foreach ($storages as $storage) {
 			$storageRecord = $storage->getStorageRecord();
 			$configuration = $storage->getConfiguration();
 			$isLocalDriver = $storageRecord['driver'] === 'Local';
-			$isOnFileadmin = !empty($configuration['basePath']) && \TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($configuration['basePath'], $fileadminDirectory);
+			$isOnFileadmin = !empty($configuration['basePath']) && GeneralUtility::isFirstPartOfStr($configuration['basePath'], $fileadminDirectory);
 			if ($isLocalDriver && $isOnFileadmin) {
 				$this->storage = $storage;
 				break;
@@ -67,8 +68,8 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 		if (!isset($this->storage)) {
 			throw new \RuntimeException('Local default storage could not be initialized - might be due to missing sys_file* tables.');
 		}
-		$this->fileFactory = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
-		$this->fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+		$this->fileFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
+		$this->fileRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
 		$this->targetDirectory = PATH_site . $fileadminDirectory . self::FOLDER_ContentUploads . '/';
 	}
 
@@ -198,7 +199,7 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 		}
 
 		if (!empty($file) && file_exists(PATH_site . 'uploads/tx_news/' . $file)) {
-			\TYPO3\CMS\Core\Utility\GeneralUtility::upload_copy_move(
+			GeneralUtility::upload_copy_move(
 				PATH_site . 'uploads/tx_news/' . $file,
 				$this->targetDirectory . $file);
 

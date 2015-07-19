@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Service;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Wrapper for the caching framework
@@ -43,9 +44,9 @@ class CacheService {
 	 * @deprecated since 3.0 will be removed in 4.0
 	 */
 	public function __construct($cacheName) {
-		\TYPO3\CMS\Core\Utility\GeneralUtility::logDeprecatedFunction();
+		GeneralUtility::logDeprecatedFunction();
 		$this->cacheName = $cacheName;
-		$this->cacheManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
+		$this->cacheManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
 	}
 
 	/**

@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Utility;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * TypoScript Utility class
@@ -26,7 +27,7 @@ class TypoScript {
 	 * @return array
 	 */
 	public function override(array $base, array $overload) {
-		$validFields = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $overload['settings']['overrideFlexformSettingsIfEmpty'], TRUE);
+		$validFields = GeneralUtility::trimExplode(',', $overload['settings']['overrideFlexformSettingsIfEmpty'], TRUE);
 		foreach ($validFields as $fieldName) {
 
 			// Multilevel field

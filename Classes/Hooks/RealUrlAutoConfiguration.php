@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 
 /**
@@ -33,7 +34,7 @@ class RealUrlAutoConfiguration {
 	public function addNewsConfig($params) {
 
 		// Check for proper unique key
-		$postVar = (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tt_news') ? 'tx_news' : 'news');
+		$postVar = (ExtensionManagementUtility::isLoaded('tt_news') ? 'tx_news' : 'news');
 
 		return array_merge_recursive($params['config'], array(
 				'postVarSets' => array(

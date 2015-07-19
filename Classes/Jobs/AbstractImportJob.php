@@ -22,6 +22,7 @@ namespace GeorgRinger\News\Jobs;
  * @subpackage tx_news
  */
 abstract class AbstractImportJob implements ImportJobInterface {
+
 	/**
 	 * @var \GeorgRinger\News\Service\Import\DataProviderServiceInterface
 	 */

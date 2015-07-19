@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into \TYPO3\CMS\Backend\Utility\BackendUtility to change flexform behaviour
@@ -129,19 +130,19 @@ class BackendUtility {
 
 			// get the first selected action
 		if (is_string($row['pi_flexform'])) {
-			$flexformSelection = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($row['pi_flexform']);
+			$flexformSelection = GeneralUtility::xml2array($row['pi_flexform']);
 		} else {
 			$flexformSelection = $row['pi_flexform'];
 		}
 		if (is_array($flexformSelection) && is_array($flexformSelection['data'])) {
 			$selectedView = $flexformSelection['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
 			if (!empty($selectedView)) {
-				$actionParts = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(';', $selectedView, TRUE);
+				$actionParts = GeneralUtility::trimExplode(';', $selectedView, TRUE);
 				$selectedView = $actionParts[0];
 			}
 
 			// new plugin element
-		} elseif (\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($row['uid'], 'NEW')) {
+		} elseif (GeneralUtility::isFirstPartOfStr($row['uid'], 'NEW')) {
 				// use List as starting view
 			$selectedView = 'News->list';
 		}
@@ -177,7 +178,7 @@ class BackendUtility {
 					'dataStructure' => &$dataStructure,
 				);
 				foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] as $reference) {
-					\TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
+					GeneralUtility::callUserFunction($reference, $params, $this);
 				}
 			}
 		}
@@ -192,7 +193,7 @@ class BackendUtility {
 	 */
 	protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved) {
 		foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
-			$fieldsInSheet = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $sheetFields, TRUE);
+			$fieldsInSheet = GeneralUtility::trimExplode(',', $sheetFields, TRUE);
 
 			foreach ($fieldsInSheet as $fieldName) {
 				unset($dataStructure['sheets'][$sheetName]['ROOT']['el']['settings.' . $fieldName]);

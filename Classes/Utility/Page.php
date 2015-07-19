@@ -14,6 +14,9 @@ namespace GeorgRinger\News\Utility;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Utility\IconUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Page Utility class
@@ -36,9 +39,9 @@ class Page {
 			return $pidList;
 		}
 
-		$queryGenerator = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Database\\QueryGenerator');
+		$queryGenerator = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Database\\QueryGenerator');
 		$recursiveStoragePids = $pidList;
-		$storagePids = \TYPO3\CMS\Core\Utility\GeneralUtility::intExplode(',', $pidList);
+		$storagePids = GeneralUtility::intExplode(',', $pidList);
 		foreach ($storagePids as $startPid) {
 			$pids = $queryGenerator->getTreeList($startPid, $recursive, 0, 1);
 			if (strlen($pids) > 0) {
@@ -59,8 +62,8 @@ class Page {
 	 */
 	public static function setRegisterProperties($properties, $object, $prefix = 'news') {
 		if (!empty($properties) && !is_null(($object))) {
-			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
-			$items = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $properties, TRUE);
+			$cObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+			$items = GeneralUtility::trimExplode(',', $properties, TRUE);
 
 			$register = array();
 			foreach ($items as $item) {
@@ -68,7 +71,7 @@ class Page {
 				try {
 					$register[$key] = \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getProperty($object, $item);
 				} catch (\Exception $e) {
-					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($e->getMessage(), 'news', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
+					GeneralUtility::devLog($e->getMessage(), 'news', GeneralUtility::SYSLOG_SEVERITY_WARNING);
 				}
 			}
 			$cObj->LOAD_REGISTER($register, '');
@@ -89,16 +92,16 @@ class Page {
 		}
 
 		/* @var $tree \TYPO3\CMS\Backend\Tree\View\PageTreeView */
-		$tree = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Tree\\View\\PageTreeView');
+		$tree = GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Tree\\View\\PageTreeView');
 		$tree->init('AND ' . $GLOBALS['BE_USER']->getPagePermsClause(1));
 
-		$treeStartingRecord = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('pages', $pageUid);
-		\TYPO3\CMS\Backend\Utility\BackendUtility::workspaceOL('pages', $treeStartingRecord);
+		$treeStartingRecord = BackendUtility::getRecord('pages', $pageUid);
+		BackendUtility::workspaceOL('pages', $treeStartingRecord);
 
 			// Creating top icon; the current page
 		$tree->tree[] = array(
 			'row' => $treeStartingRecord,
-			'HTML' => \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIconForRecord('pages', $treeStartingRecord)
+			'HTML' => IconUtility::getSpriteIconForRecord('pages', $treeStartingRecord)
 		);
 
 		$tree->getTree($pageUid, $treeLevel, '');

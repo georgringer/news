@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Service;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
@@ -82,7 +83,7 @@ class FileService {
 			$fileUid = substr($url, 5);
 
 			if (MathUtility::canBeInterpretedAsInteger($fileUid)) {
-				$fileObject = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getFileObject($fileUid);
+				$fileObject = ResourceFactory::getInstance()->getFileObject($fileUid);
 
 				if ($fileObject instanceof \TYPO3\CMS\Core\Resource\FileInterface) {
 					$url = $fileObject->getPublicUrl();

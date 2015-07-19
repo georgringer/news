@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Utility;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Validation
@@ -39,20 +40,20 @@ class Validation {
 			return FALSE;
 		}
 
-		$fields = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $fieldToCheck, TRUE);
+		$fields = GeneralUtility::trimExplode(',', $fieldToCheck, TRUE);
 		foreach ($fields as $field) {
 			if ($isValid === TRUE) {
-				$split = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', $field, TRUE);
+				$split = GeneralUtility::trimExplode(' ', $field, TRUE);
 				$count = count($split);
 				switch ($count) {
 					case 1:
-						if (!\TYPO3\CMS\Core\Utility\GeneralUtility::inList($allowedSettings, $split[0])) {
+						if (!GeneralUtility::inList($allowedSettings, $split[0])) {
 							$isValid = FALSE;
 						}
 						break;
 					case 2:
 						if ((strtolower($split[1]) !== 'desc' && strtolower($split[1]) !== 'asc') ||
-							!\TYPO3\CMS\Core\Utility\GeneralUtility::inList($allowedSettings, $split[0])) {
+							!GeneralUtility::inList($allowedSettings, $split[0])) {
 							$isValid = FALSE;
 						}
 						break;

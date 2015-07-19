@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Utility;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Url Utility class
@@ -30,8 +31,8 @@ class Url {
 	 * @return string
 	 */
 	public static function prependDomain($url) {
-		if (!\TYPO3\CMS\Core\Utility\GeneralUtility::isFirstPartOfStr($url, \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
-			$url =  \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $url;
+		if (!GeneralUtility::isFirstPartOfStr($url, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
+			$url =  GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $url;
 		}
 
 		return $url;
