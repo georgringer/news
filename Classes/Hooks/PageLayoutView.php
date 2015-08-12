@@ -15,7 +15,7 @@ namespace GeorgRinger\News\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Backend\Template\DocumentTemplate;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\Utility\IconUtility;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -184,7 +184,7 @@ class PageLayoutView {
 			$newsRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'deleted=0 AND uid=' . $singleNewsRecord);
 
 			if (is_array($newsRecord)) {
-				$pageRecord = BackendUtility::getRecord('pages', $newsRecord['pid']);
+				$pageRecord = BackendUtilityCore::getRecord('pages', $newsRecord['pid']);
 
 				if (is_array($pageRecord)) {
 					$iconPage = IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
@@ -194,9 +194,9 @@ class PageLayoutView {
 					$onClickNews = $this->getDocumentTemplate()->wrapClickMenuOnIcon($iconNews, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
 
 					$content = '<a href="#" onclick="' . htmlspecialchars($onClickPage) . '">' . $iconPage . '</a>' .
-						htmlspecialchars(BackendUtility::getRecordTitle('pages', $pageRecord)) . ': ' .
+						htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord)) . ': ' .
 						'<a href="#" onclick="' . htmlspecialchars($onClickNews) . '">' .
-						$iconNews . htmlspecialchars(BackendUtility::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
+						$iconNews . htmlspecialchars(BackendUtilityCore::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
 						'</a>';
 				} else {
 					/** @var $message FlashMessage */
@@ -252,11 +252,11 @@ class PageLayoutView {
 	 * @return string
 	 */
 	public function getPageRecordData($detailPid) {
-		$pageRecord = BackendUtility::getRecord('pages', $detailPid);
+		$pageRecord = BackendUtilityCore::getRecord('pages', $detailPid);
 
 		if (is_array($pageRecord)) {
 			$data = IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']))
-			. htmlspecialchars(BackendUtility::getRecordTitle('pages', $pageRecord));
+			. htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
 			$content = $this->getDocumentTemplate()->wrapClickMenuOnIcon($data, 'pages', $pageRecord['uid'], TRUE, '', '+info,edit');
 		} else {
 			/** @var $message FlashMessage */
@@ -363,7 +363,7 @@ class PageLayoutView {
 			);
 
 			foreach ($rawCategoryRecords as $record) {
-				$categoriesOut[] = htmlspecialchars(BackendUtility::getRecordTitle('sys_category', $record));
+				$categoriesOut[] = htmlspecialchars(BackendUtilityCore::getRecordTitle('sys_category', $record));
 			}
 
 			$includeSubcategories = $this->getFieldFromFlexform('settings.includeSubCategories');
@@ -397,7 +397,7 @@ class PageLayoutView {
 			'deleted=0 AND uid IN(' . implode(',', $tags) . ')'
 		);
 		foreach ($rawTagRecords as $record) {
-			$categoryTitles[] = htmlspecialchars(BackendUtility::getRecordTitle('tx_news_domain_model_tag', $record));
+			$categoryTitles[] = htmlspecialchars(BackendUtilityCore::getRecordTitle('tx_news_domain_model_tag', $record));
 		}
 
 		$this->tableData[] = array(
@@ -539,7 +539,7 @@ class PageLayoutView {
 			);
 
 			foreach ($rawPagesRecords as $page) {
-				$pagesOut[] = htmlspecialchars(BackendUtility::getRecordTitle('pages', $page)) . ' (' . $page['uid'] . ')';
+				$pagesOut[] = htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $page)) . ' (' . $page['uid'] . ')';
 			}
 
 			$recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
