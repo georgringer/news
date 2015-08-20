@@ -41,6 +41,12 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
 			$constraints[] = $query->in('pid', $pidList);
 		}
 
+		// Tags
+		if ($demand->getTags()) {
+			$tagList = GeneralUtility::intExplode(',', $demand->getTags(), TRUE);
+			$constraints[] = $query->in('uid', $tagList);
+		}
+
 		// Clean not used constraints
 		foreach ($constraints as $key => $value) {
 			if (is_null($value)) {
