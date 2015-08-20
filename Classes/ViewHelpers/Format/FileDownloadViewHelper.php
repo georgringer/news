@@ -94,7 +94,7 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
 			$tsConfiguration['altText'] = $alt;
 		}
 		if (!empty($title)) {
-			$tsConfiguration['titleText'] = $title;
+			$tsConfiguration['title'] = $title;
 		}
 
 		// generate link
