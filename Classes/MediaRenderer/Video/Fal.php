@@ -38,7 +38,7 @@ class Fal implements FalMediaInterface {
 	 * @return string
 	 */
 	public function render(FileReference $element, $width, $height, $templateFile = '' ) {
-		$view = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Tx_Fluid_View_StandaloneView');
+		$view = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Fluid\View\StandaloneView');
 		if (!$templateFile || !is_readable($templateFile)) {
 			$view->setTemplatePathAndFilename(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news') . 'Resources/Private/Templates/ViewHelpers/Flv.html');
 		} else {

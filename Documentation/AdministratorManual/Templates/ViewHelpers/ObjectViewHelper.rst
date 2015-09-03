@@ -67,19 +67,19 @@ Code: ::
 
 	 <n:object newsItem="{newsItem}"
 	 		as="out"
-	 		className="Tx_Myext_Domain_Model_CustomModel" >
+	 		className="Vendor\Myext\Domain\Model\CustomModel" >
 	 {out.fo}
 	 </n:link>
 
 
 Output: ::
 
-	 Property "fo" from model Tx_Myext_Domain_Model_CustomModel
+	 Property "fo" from model Vendor\Myext\Domain\Model\CustomModel
 	 which extends the table tx_news_domain_model_news
 
 	 !!Be aware that this needs a mapping in TS!!
 	    config.tx_extbase.persistence.classes {
-	        Tx_Myext_Domain_Model_CustomModel {
+	        Vendor\Myext\Domain\Model\CustomModel {
 	             mapping {
 	                tableName = tx_news_domain_model_news
 	            }

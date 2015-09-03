@@ -40,7 +40,7 @@ class File implements MediaInterface {
 	 * @return string
 	 */
 	public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height, $templateFile = '' ) {
-		$view = GeneralUtility::makeInstance('Tx_Fluid_View_StandaloneView');
+		$view = GeneralUtility::makeInstance('TYPO3\CMS\Fluid\View\StandaloneView');
 		if (!$templateFile || !is_readable($templateFile)) {
 			$view->setTemplatePathAndFilename(ExtensionManagementUtility::extPath('news') . 'Resources/Private/Templates/ViewHelpers/Flv.html');
 		} else {

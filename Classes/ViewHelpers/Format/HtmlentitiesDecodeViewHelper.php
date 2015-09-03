@@ -20,7 +20,7 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @deprecated use Tx_Fluid_ViewHelpers_Format_HtmlentitiesDecodeViewHelper
+ * @deprecated use \TYPO3\CMS\Fluid\ViewHelpers\Format\HtmlentitiesDecodeViewHelper
  */
 class HtmlentitiesDecodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
@@ -43,7 +43,7 @@ class HtmlentitiesDecodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
 	 * @see http://www.php.net/html_entity_decode
 	 */
 	public function render($value = NULL, $keepQuotes = FALSE) {
-		if (class_exists('Tx_Fluid_ViewHelpers_Format_HtmlentitiesDecodeViewHelper')) {
+		if (class_exists('TYPO3\CMS\Fluid\ViewHelpers\Format\HtmlentitiesDecodeViewHelper')) {
 			$message = 'EXT:news: Since TYPO3 4.6.0, a native ViewHelper for html_entity_decode() ' .
 				'is available, use f:format.htmlentitiesDecode instead of n:format.htmlEntityDecode';
 

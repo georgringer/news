@@ -20,7 +20,7 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  *
  * @package TYPO3
  * @subpackage tx_news
- * @deprecated Use Tx_Fluid_ViewHelpers_Format_HtmlspecialcharsViewHelper
+ * @deprecated Use \TYPO3\CMS\Fluid\ViewHelpers\Format\HtmlspecialcharsViewHelper
  */
 class HscViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
@@ -28,10 +28,10 @@ class HscViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper 
 	 * Render content with htmlspecialchars
 	 *
 	 * @return string Formatted date
-	 * @deprecated Use Tx_Fluid_ViewHelpers_Format_HtmlspecialcharsViewHelper instead
+	 * @deprecated Use \TYPO3\CMS\Fluid\ViewHelpers\Format\HtmlspecialcharsViewHelper instead
 	 */
 	public function render() {
-		if (class_exists('Tx_Fluid_ViewHelpers_Format_HtmlspecialcharsViewHelper')) {
+		if (class_exists('TYPO3\CMS\Fluid\ViewHelpers\Format\HtmlspecialcharsViewHelper')) {
 			$message = 'EXT:news: Since TYPO3 4.6.0, a native ViewHelper for htmlspecialchars() ' .
 			'is available, use f:format.htmlspecialchars instead of n:format.hsc';
 

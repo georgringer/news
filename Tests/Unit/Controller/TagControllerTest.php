@@ -83,7 +83,7 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$fixture->injectTagRepository($this->tagRepository);
 		$fixture->injectConfigurationManager($configurationManager);
-		$fixture->setView($this->getMock('Tx_Fluid_View_TemplateView', array(), array(), '', FALSE));
+		$fixture->setView($this->getMock('TYPO3\CMS\Fluid\View\TemplateView', array(), array(), '', FALSE));
 		$fixture->_set('settings', $settings);
 
 		$fixture->expects($this->once())->method('createDemandObjectFromSettings')

@@ -82,7 +82,7 @@ class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		);
 		$fixture->injectNewsRepository($this->newsRepository);
 		$fixture->injectConfigurationManager($configurationManager);
-		$fixture->setView($this->getMock('Tx_Fluid_View_TemplateView', array(), array(), '', FALSE));
+		$fixture->setView($this->getMock('TYPO3\CMS\Fluid\View\TemplateView', array(), array(), '', FALSE));
 
 		$fixture->expects($this->once())->method('createDemandObjectFromSettings')
 			->with($settings)->will($this->returnValue($demand));
