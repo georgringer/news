@@ -62,6 +62,8 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
 	 * @return string
 	 */
 	public function render($loadJs = TRUE) {
+		$tsSettings = $this->pluginSettingsService->getSettings();
+                
 		if (!empty($this->arguments['type'])) {
 			$this->tag->addAttribute('data-type', $this->arguments['type']);
 			$this->tag->removeAttribute('type');
@@ -72,6 +74,12 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
 		$shareUrl = empty($this->arguments['shareurl']) ? GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL') : $this->arguments['shareurl'];
 		$this->tag->addAttribute('data-href', $shareUrl);
 		$this->tag->removeAttribute('shareurl');
+                
+                if (empty($tsSettings['facebookAppId'])) {
+                    $this->tag->removeAttribute('app_id');
+                } else {    
+                    $this->tag->addAttribute('app_id',$tsSettings['facebookAppId']);
+                }
 		$this->tag->addAttribute('class', 'fb-share-button');
 		$this->tag->setContent(' ');
 
