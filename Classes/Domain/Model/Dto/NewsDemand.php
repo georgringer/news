@@ -103,6 +103,12 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
 	/** @var boolean */
 	protected $excludeAlreadyDisplayedNews;
 
+	/** @var string */
+	protected $action;
+
+	/** @var string */
+	protected $class;
+
 	/**
 	 * Set archive settings
 	 *
@@ -519,4 +525,42 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
 	public function getExcludeAlreadyDisplayedNews() {
 		return $this->excludeAlreadyDisplayedNews;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getAction() {
+		return $this->action;
+	}
+
+	/**
+	 * @param string $action
+	 */
+	public function setAction($action) {
+		$this->action = $action;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getClass() {
+		return $this->class;
+	}
+
+	/**
+	 * @param string $class
+	 */
+	public function setClass($class) {
+		$this->class = $class;
+	}
+
+	/**
+	 * @param string $action
+	 * @param string $controller
+	 */
+	public function setActionAndClass($action, $controller) {
+		$this->action = $action;
+		$this->class = $controller;
+	}
+
 }

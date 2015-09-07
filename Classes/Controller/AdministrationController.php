@@ -96,6 +96,7 @@ class AdministrationController extends NewsController {
 			}
 		}
 		$demand = $this->createDemandObjectFromSettings($demand);
+		$demand->setActionAndClass(__METHOD__, __CLASS__);
 
 		$categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
 		$idList = array();

@@ -156,6 +156,7 @@ class NewsController extends NewsBaseController {
 	 */
 	public function listAction(array $overwriteDemand = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
+		$demand->setActionAndClass(__METHOD__, __CLASS__);
 
 		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
 			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
@@ -205,10 +206,13 @@ class NewsController extends NewsBaseController {
 			$this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
 		}
 
+		$demand = $this->createDemandObjectFromSettings($this->settings);
+		$demand->setActionAndClass(__METHOD__, __CLASS__);
+
 		$assignedValues = array(
 			'newsItem' => $news,
 			'currentPage' => (int)$currentPage,
-			'demand' => $this->createDemandObjectFromSettings($this->settings),
+			'demand' => $demand,
 		);
 
 		$assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
@@ -272,6 +276,7 @@ class NewsController extends NewsBaseController {
 	 */
 	public function dateMenuAction(array $overwriteDemand = NULL) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
+		$demand->setActionAndClass(__METHOD__, __CLASS__);
 
 		// It might be that those are set, @see http://forge.typo3.org/issues/44759
 		$demand->setLimit(0);
@@ -308,6 +313,8 @@ class NewsController extends NewsBaseController {
 	 */
 	public function searchFormAction(\GeorgRinger\News\Domain\Model\Dto\Search $search = NULL, array $overwriteDemand = array()) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
+		$demand->setActionAndClass(__METHOD__, __CLASS__);
+
 		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
 			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
 		}
@@ -336,6 +343,8 @@ class NewsController extends NewsBaseController {
 	 */
 	public function searchResultAction(\GeorgRinger\News\Domain\Model\Dto\Search $search = NULL, array $overwriteDemand = array()) {
 		$demand = $this->createDemandObjectFromSettings($this->settings);
+		$demand->setActionAndClass(__METHOD__, __CLASS__);
+
 		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
 			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
 		}
