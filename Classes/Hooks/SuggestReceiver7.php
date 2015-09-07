@@ -43,7 +43,7 @@ class SuggestReceiver7 extends SuggestWizardDefaultReceiver {
 		if ($this->checkIfTagIsNotFound($records)) {
 			$text = GeneralUtility::quoteJSvalue($params['value']);
 $javaScriptCode = '
-var value=\'' . $text . '\';
+var value=' . $text . ';
 
 Ext.Ajax.request({
 	url : \'ajax.php\' ,
