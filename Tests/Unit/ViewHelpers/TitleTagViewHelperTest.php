@@ -46,7 +46,7 @@ class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue($title));
 
 		$viewHelper->render();
-		$this->assertEquals($title, $GLOBALS['TSFE']->altPageTitle);
+		$this->assertEquals($title, $GLOBALS['TSFE']->page['title']);
 		$this->assertEquals($title, $GLOBALS['TSFE']->indexedDocTitle);
 	}
 }
