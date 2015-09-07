@@ -156,6 +156,13 @@ $boot = function($packageKey) {
 	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] = 'tstamp,datetime,crdate,title' . ($configuration->getManualSorting() ? ',sorting' : '');
 	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'] = 'tstamp,crdate,title';
 	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'] = $configuration->getRemoveListActionFromFlexforms();
+
+	if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.4')) {
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPageTSConfigFile(
+			'news',
+			'Configuration/TSconfig/Page/news_only.txt',
+			'EXT:news :: Restrict pages to news records');
+	}
 };
 
 $boot($_EXTKEY);
