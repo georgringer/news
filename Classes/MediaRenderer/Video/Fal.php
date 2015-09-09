@@ -17,6 +17,7 @@ namespace GeorgRinger\News\MediaRenderer\Video;
 
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\MediaRenderer\FalMediaInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Implementation of fal support
@@ -44,8 +45,8 @@ class Fal implements FalMediaInterface {
 		} else {
 			$view->setTemplatePathAndFilename($templateFile);
 		}
-
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'flowplayer-3.2.12.min.js');
+		$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+		$pageRenderer->addJsFile(self::PATH_TO_JS . 'flowplayer-3.2.12.min.js');
 
 		$view->assign('width', \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($width));
 		$view->assign('height', \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($height));

@@ -14,6 +14,7 @@ namespace GeorgRinger\News\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to include a css/js file
@@ -39,21 +40,19 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
 	 * @return void
 	 */
 	public function render($path, $compress = FALSE) {
+		$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
 		if (TYPO3_MODE === 'FE') {
 			$path = $GLOBALS['TSFE']->tmpl->getFileName($path);
 
 				// JS
 			if (strtolower(substr($path, -3)) === '.js') {
-				$GLOBALS['TSFE']->getPageRenderer()->addJsFile($path, NULL, $compress);
+				$pageRenderer->addJsFile($path, NULL, $compress);
 
 				// CSS
 			} elseif (strtolower(substr($path, -4)) === '.css') {
-				$GLOBALS['TSFE']->getPageRenderer()->addCssFile($path, 'stylesheet', 'all', '', $compress);
+				$pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress);
 			}
 		} else {
-			$doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
-			$pageRenderer = $doc->getPageRenderer();
-
 				// JS
 			if (strtolower(substr($path, -3)) === '.js') {
 				$pageRenderer->addJsFile($path, NULL, $compress);

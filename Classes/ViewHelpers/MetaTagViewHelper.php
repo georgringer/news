@@ -76,7 +76,8 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
 		}
 
 		if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
-			$GLOBALS['TSFE']->getPageRenderer()->addMetaTag($this->tag->render());
+			$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+			$pageRenderer->addMetaTag($this->tag->render());
 		}
 	}
 }

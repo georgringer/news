@@ -49,7 +49,8 @@ class File implements MediaInterface {
 
 		$url = FileService::getCorrectUrl($element->getContent());
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'flowplayer-3.2.12.min.js');
+		$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+		$pageRenderer->addJsFile(self::PATH_TO_JS . 'flowplayer-3.2.12.min.js');
 
 			// override width & height if both are set
 		if ($element->getWidth() > 0 && $element->getHeight() > 0) {

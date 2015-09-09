@@ -41,15 +41,16 @@ class Mp3 implements MediaInterface {
 		$url = FileService::getCorrectUrl($element->getMultimedia());
 		$uniqueId = FileService::getUniqueId($element);
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'swfobject-2-2.js');
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'audioplayer-noswfobject.js');
+		$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+		$pageRenderer->addJsFile(self::PATH_TO_JS . 'swfobject-2-2.js');
+		$pageRenderer->addJsFile(self::PATH_TO_JS . 'audioplayer-noswfobject.js');
 
 		$inlineJs = '
 			AudioPlayer.setup("' . GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . self::PATH_TO_JS . 'audioplayer-player.swf", {
 				width: ' . (int)$width . '
 			});';
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode('news_audio', $inlineJs);
+		$pageRenderer->addJsInlineCode('news_audio', $inlineJs);
 
 		$content = '<p id="' . htmlspecialchars($uniqueId) . '">' . htmlspecialchars($element->getCaption()) . '</p>
 					<script type="text/javascript">

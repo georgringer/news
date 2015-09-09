@@ -51,7 +51,8 @@ class Videosites implements MediaInterface {
 		}
 
 		if (!empty($finalUrl)) {
-			$GLOBALS['TSFE']->getPageRenderer()->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
+			$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+			$pageRenderer->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
 			$uniqueDivId = 'mediaelement' . FileService::getUniqueId($element);
 
 			$content .= '<div id="' . htmlspecialchars($uniqueDivId) . '"></div>

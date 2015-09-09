@@ -14,6 +14,7 @@ namespace GeorgRinger\News\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to render data in <head> section of website
@@ -40,6 +41,7 @@ class HeaderDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
 	 * @return void
 	*/
 	public function render() {
-		$GLOBALS['TSFE']->getPageRenderer()->addHeaderData($this->renderChildren());
+		$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+		$pageRenderer->addHeaderData($this->renderChildren());
 	}
 }

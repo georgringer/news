@@ -16,6 +16,7 @@ namespace GeorgRinger\News\MediaRenderer\Audio;
  */
 use GeorgRinger\News\MediaRenderer\MediaInterface;
 use GeorgRinger\News\Service\FileService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Implementation of typical audio files
@@ -40,10 +41,11 @@ class Mp3Html5 implements MediaInterface {
 		$url = FileService::getCorrectUrl($element->getMultimedia());
 		$uniqueId = FileService::getUniqueId($element);
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFile(self::PATH_TO_JS . 'audio.min.js');
+		$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+		$pageRenderer->addJsFile(self::PATH_TO_JS . 'audio.min.js');
 
 		$inlineJs = 'audiojs.events.ready(function() { audiojs.createAll(); });';
-		$GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode('news_audio_html5', $inlineJs);
+		$pageRenderer->addJsInlineCode('news_audio_html5', $inlineJs);
 
 		$content = '<audio src="' . htmlspecialchars($url) . '" preload="auto"></audio>';
 
