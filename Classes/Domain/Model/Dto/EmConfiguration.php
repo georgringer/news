@@ -106,7 +106,7 @@ class EmConfiguration {
 	/**
 	 * @var int
 	 */
-	protected $useFal;
+	protected $useFal = 1;
 
 	/**
 	 * @var int
