@@ -15,6 +15,8 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\ViewHelpers\TitleTagViewHelper;
+
 
 /**
  * Test for TitleTagViewHelper
@@ -42,6 +44,7 @@ class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 */
 	public function titleTagIsSet() {
 		$title = 'Some title';
+		/** @var TitleTagViewHelper|\PHPUnit_Framework_MockObject_MockObject $viewHelper */
 		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', array('renderChildren'));
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue($title));
 
