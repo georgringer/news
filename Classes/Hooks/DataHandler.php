@@ -151,7 +151,7 @@ class DataHandler {
 	 * @param $parentObject \TYPO3\CMS\Core\DataHandling\DataHandler
 	 */
 	public function processCmdmap_preProcess($command, &$table, $id, $value, $parentObject) {
-		if ($table === 'tx_news_domain_model_news' && !$this->getBackendUser()->isAdmin() && is_integer($id)) {
+		if ($table === 'tx_news_domain_model_news' && !$this->getBackendUser()->isAdmin() && is_integer($id) && $command !== 'undelete') {
 			$newsRecord = BackendUtilityCore::getRecord($table, $id);
 			if (!AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
 				$parentObject->log($table, $id, 2, 0, 1, "processCmdmap: Attempt to " . $command . " a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in the BE usergroup.", 1, array($table));
