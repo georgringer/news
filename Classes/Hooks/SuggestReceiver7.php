@@ -15,9 +15,9 @@ namespace GeorgRinger\News\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Backend\Form\Wizard\SuggestWizardDefaultReceiver;
+use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Backend\Utility\IconUtility;
-
 
 /**
  * Custom suggest receiver for tags
@@ -71,7 +71,7 @@ $link = implode(' ', explode(chr(10), $javaScriptCode));
 							</span></div>',
 				'table' => 'tx_news_domain_model_tag',
 				'class' => 'suggest-noresults',
-				'style' => 'background-color:#E9F1FE !important;background-image:url(' . $this->getDummyIconPath() . ');',
+				'icon' => $this->getDummyIcon()->render()
 			);
 		}
 
@@ -98,9 +98,12 @@ $link = implode(' ', explode(chr(10), $javaScriptCode));
 		return TRUE;
 	}
 
-	private function getDummyIconPath() {
-		$icon = IconUtility::getIcon('tx_news_domain_model_tag');
-		return IconUtility::skinImg('', $icon, '', 1);
+	/**
+	 * @return Icon
+	 */
+	private function getDummyIcon() {
+		$iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+		return $iconFactory->getIcon('tx_news_domain_model_tag', Icon::SIZE_SMALL);
 	}
 
 }

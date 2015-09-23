@@ -21,6 +21,9 @@ namespace GeorgRinger\News\ViewHelpers\Be\Buttons;
 	 *                                                                        *
 	 * The TYPO3 project - inspiring people to share!                         *
 	 *                                                                        */
+use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Viewhelper which returns save button with icon
@@ -58,7 +61,10 @@ class IconViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendView
 	 * @return string the rendered icon link
 	 */
 	public function render($icon = 'closedok', $uri = '', $title = '', $onclick = '', $class = '') {
-		$icon = \TYPO3\CMS\Backend\Utility\IconUtility::getSpriteIcon($icon, array('title' => $title));
+		$iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+		$icon = '<span title="' . htmlspecialchars($title) . '">'
+			. $iconFactory->getIcon($icon, Icon::SIZE_SMALL)
+			. '</span>';
 
 		if (empty($uri) && empty($onclick)) {
 			$content = $icon;

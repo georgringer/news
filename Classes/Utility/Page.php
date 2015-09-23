@@ -15,7 +15,8 @@ namespace GeorgRinger\News\Utility;
  * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Backend\Utility\IconUtility;
+use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -98,10 +99,12 @@ class Page {
 		$treeStartingRecord = BackendUtility::getRecord('pages', $pageUid);
 		BackendUtility::workspaceOL('pages', $treeStartingRecord);
 
+		$iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+
 			// Creating top icon; the current page
 		$tree->tree[] = array(
 			'row' => $treeStartingRecord,
-			'HTML' => IconUtility::getSpriteIconForRecord('pages', $treeStartingRecord)
+			'HTML' => $iconFactory->getIconForRecord('pages', $treeStartingRecord, Icon::SIZE_SMALL)->render()
 		);
 
 		$tree->getTree($pageUid, $treeLevel, '');

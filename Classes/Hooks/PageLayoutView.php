@@ -16,7 +16,8 @@ namespace GeorgRinger\News\Hooks;
  */
 use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
-use TYPO3\CMS\Backend\Utility\IconUtility;
+use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -56,6 +57,11 @@ class PageLayoutView {
 	 */
 	public $flexformData = array();
 
+	/**
+	 * @var IconFactory
+	 */
+	protected $iconFactory;
+
 	/** @var  \TYPO3\CMS\Core\Database\DatabaseConnection */
 	protected $databaseConnection;
 
@@ -66,6 +72,7 @@ class PageLayoutView {
 		/** @var \TYPO3\CMS\Core\Database\DatabaseConnection databaseConnection */
 		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
 		$this->templateLayoutsUtility = GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\TemplateLayout');
+		$this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
 	}
 
 	/**
@@ -187,8 +194,12 @@ class PageLayoutView {
 				$pageRecord = BackendUtilityCore::getRecord('pages', $newsRecord['pid']);
 
 				if (is_array($pageRecord)) {
-					$iconPage = IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
-					$iconNews = IconUtility::getSpriteIconForRecord('tx_news_domain_model_news', $newsRecord, array('title' => 'Uid: ' . $newsRecord['uid']));
+					$iconPage = '<span title="Uid: ' . htmlspecialchars($pageRecord['uid']) . '">'
+						. $this->iconFactory->getIconForRecord('pages', $pageRecord, Icon::SIZE_SMALL)->render()
+						. '</span>';
+					$iconNews = '<span title="Uid: ' . htmlspecialchars($newsRecord['uid']) . '">'
+						. $this->iconFactory->getIconForRecord('tx_news_domain_model_news', $newsRecord, Icon::SIZE_SMALL)->render()
+						. '</span>';
 
 					$pageTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
 					$newsTitle = (BackendUtilityCore::getRecordTitle('tx_news_domain_model_news', $newsRecord));
@@ -253,7 +264,9 @@ class PageLayoutView {
 		$pageRecord = BackendUtilityCore::getRecord('pages', $detailPid);
 
 		if (is_array($pageRecord)) {
-			$data = IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']))
+			$data = '<span title="Uid: ' . htmlspecialchars($pageRecord['uid']) . '">'
+				. $this->iconFactory->getIconForRecord('pages', $pageRecord, Icon::SIZE_SMALL)->render()
+				. '</span>'
 				. htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
 			$content = $this->getDocumentTemplate()->wrapClickMenuOnIcon($data, 'pages', $pageRecord['uid'], TRUE, '', '+info,edit');
 		} else {

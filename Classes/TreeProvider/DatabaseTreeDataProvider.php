@@ -16,7 +16,8 @@ namespace GeorgRinger\News\TreeProvider;
  */
 use GeorgRinger\News\Service\CategoryService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Backend\Utility\IconUtility;
+use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -48,6 +49,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
 	 * @return \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode node
 	 */
 	protected function buildRepresentationForNode (\TYPO3\CMS\Backend\Tree\TreeNode $basicNode, \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode $parent = NULL, $level = 0, $restriction = FALSE) {
+		$iconFactory = GeneralUtility::makeInstance(IconFactory::class);
 		/**@param $node \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode */
 		$node = GeneralUtility::makeInstance ('TYPO3\\CMS\\Core\\Tree\\TableConfiguration\\DatabaseTreeNode');
 		$row = array();
@@ -77,7 +79,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
 		}
 		$node->setSelectable (!GeneralUtility::inList ($this->getNonSelectableLevelList (), $level) && !in_array ($basicNode->getId (), $this->getItemUnselectableList ()));
 		$node->setSortValue ($this->nodeSortValues[$basicNode->getId ()]);
-		$node->setIcon (IconUtility::mapRecordTypeToSpriteIconClass ($this->tableName, $row));
+		$node->setIcon($iconFactory->getIconForRecord($this->tableName, $row, Icon::SIZE_SMALL)->render());
 		$node->setParentNode ($parent);
 		if ($basicNode->hasChildNodes ()) {
 			$node->setHasChildren (TRUE);
