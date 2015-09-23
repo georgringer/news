@@ -80,7 +80,8 @@ $tx_news_domain_model_news = array(
 		),
 		'l10n_diffsource' => array(
 			'config' => array(
-				'type' => 'passthrough'
+				'type' => 'passthrough',
+				'default' => ''
 			)
 		),
 		'hidden' => array(
