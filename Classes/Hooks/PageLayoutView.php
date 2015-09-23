@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -190,14 +190,12 @@ class PageLayoutView {
 					$iconPage = IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']));
 					$iconNews = IconUtility::getSpriteIconForRecord('tx_news_domain_model_news', $newsRecord, array('title' => 'Uid: ' . $newsRecord['uid']));
 
-					$onClickPage = $this->getDocumentTemplate()->wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'], 1, '', '+info,edit,view', TRUE);
-					$onClickNews = $this->getDocumentTemplate()->wrapClickMenuOnIcon($iconNews, 'tx_news_domain_model_news', $newsRecord['uid'], 1, '', '+info,edit', TRUE);
+					$pageTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
+					$newsTitle = (BackendUtilityCore::getRecordTitle('tx_news_domain_model_news', $newsRecord));
 
-					$content = '<a href="#" onclick="' . htmlspecialchars($onClickPage) . '">' . $iconPage . '</a>' .
-						htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord)) . ': ' .
-						'<a href="#" onclick="' . htmlspecialchars($onClickNews) . '">' .
-						$iconNews . htmlspecialchars(BackendUtilityCore::getRecordTitle('tx_news_domain_model_news', $newsRecord)) .
-						'</a>';
+					$content = $this->getDocumentTemplate()->wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'], TRUE, '', '+info,edit,view')
+						. $pageTitle . ': ' . $this->getDocumentTemplate()->wrapClickMenuOnIcon($iconNews . ' ' . $newsTitle, 'tx_news_domain_model_news', $newsRecord['uid'], TRUE, '', '+info,edit');
+
 				} else {
 					/** @var $message FlashMessage */
 					$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $newsRecord['pid']);
@@ -256,7 +254,7 @@ class PageLayoutView {
 
 		if (is_array($pageRecord)) {
 			$data = IconUtility::getSpriteIconForRecord('pages', $pageRecord, array('title' => 'Uid: ' . $pageRecord['uid']))
-			. htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
+				. htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
 			$content = $this->getDocumentTemplate()->wrapClickMenuOnIcon($data, 'pages', $pageRecord['uid'], TRUE, '', '+info,edit');
 		} else {
 			/** @var $message FlashMessage */
