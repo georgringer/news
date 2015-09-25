@@ -107,8 +107,7 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon' => 'EXT:news/Resources/Public/Icons/' .
-						(\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0') ? 'module_import.png' : 'import_module.gif'),
+					'icon' => 'EXT:news/Resources/Public/Icons/module_import.gif',
 					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
 				)
 			);
@@ -129,8 +128,7 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon' => 'EXT:news/Resources/Public/Icons/' .
-						(\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0') ? 'module_administration.png' : 'folder.gif'),
+					'icon' => 'EXT:news/Resources/Public/Icons/folder.gif',
 					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
 				)
 			);
@@ -139,14 +137,7 @@ $boot = function($packageKey) {
 		/* ===========================================================================
 			Ajax call to save tags
 		=========================================================================== */
-		if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.3')) {
-			$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = array(
-				'callbackMethod' => 'GeorgRinger\\News\\Hooks\\SuggestReceiverCall->createTag',
-				'csrfTokenCheck' => FALSE
-			);
-		} else {
-			$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = 'typo3conf/ext/news/Classes/Hooks/SuggestReceiverCall.php:GeorgRinger\\News\\Hooks\\SuggestReceiverCall->createTag';
-		}
+		$GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = 'typo3conf/ext/news/Classes/Hooks/SuggestReceiverCall.php:GeorgRinger\\News\\Hooks\\SuggestReceiverCall->createTag';
 	}
 
 	/* ===========================================================================
@@ -156,13 +147,6 @@ $boot = function($packageKey) {
 	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] = 'tstamp,datetime,crdate,title' . ($configuration->getManualSorting() ? ',sorting' : '');
 	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'] = 'tstamp,crdate,title';
 	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'] = $configuration->getRemoveListActionFromFlexforms();
-
-	if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.4')) {
-		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPageTSConfigFile(
-			'news',
-			'Configuration/TSconfig/Page/news_only.txt',
-			'EXT:news :: Restrict pages to news records');
-	}
 };
 
 $boot($_EXTKEY);
