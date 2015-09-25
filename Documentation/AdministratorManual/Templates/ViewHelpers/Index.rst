@@ -40,7 +40,7 @@ The most of awesome thing is that you can use ViewHelpers of any extension in an
 
 .. code-block:: html
 
-    {namespace something=Vendor\AnotherExtension\ViewHelpers}
+    {namespace something=Tx_AnotherExtension_ViewHelpers}
 
 and call the ViewHelper like
 

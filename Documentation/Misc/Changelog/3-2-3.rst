@@ -1,0 +1,67 @@
+3.2.3 - 2015/09/25
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+Important changes
+-----------------
+This release targets 6.2 LTS only!
+To avoid entries in the deprecation log and code duplications, EXT:news for 6.2 LTS will be developed in a separated branch called **6x**.
+
+A separate release for 7.x will follow, in the meantime, just use the master branch!
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+Deprecation of n:format.striptags
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ViewHelper ``<n:format.striptags>`` is deprecated. Please use the one of the core ``<f:format.stripTags>``.
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+	2015-09-25 [BUGFIX] Fix tests (Commit 67d573d by Georg Ringer)
+	2015-09-23 [TASK] Improve TCA for l10n_diff fields (Commit 8321a7f by Georg Ringer)
+	2015-09-23 [TASK] Remove icons for l10n_parent (Commit dffdfd6 by Georg Ringer)
+	2015-09-23 [BUGFIX] Fix broken PageLayout hook (Commit 8206721 by Georg Ringer)
+	2015-09-15 [BUGFIX] Exclude undelete from DataHandler hook (Commit 3c4d687 by Georg Ringer)
+	2015-09-11 [BUGFIX] Allow target in FalMediaImage (Commit f2d4509 by Georg Ringer)
+	2015-09-10 [BUGFIX] User correct default for useFal setting (Commit a405472 by Markus Klein)
+	2015-09-10 [BUGFIX] Revert reverted title change again (Commit 6b3b63b by Markus Klein)
+	2015-09-09 Revert "[BUGFIX] Revert title tag change" (Commit 9a1a28a by Georg Ringer)
+	2015-09-09 [TASK] Remove usage of deprecated function getPageRenderer() (Commit 08b06d5 by Frank Nägler)
+	2015-09-07 [FEATURE] Action and class are now available in the demand object (Commit 5d6a906 by Georg Ringer)
+	2015-07-17 [FEATURE] Allow overwrite the variables of the controller signals (Commit 805c0ab by Tim Lochmüller)
+	2015-03-20 [FEATURE] Provide a sitemap for news (Commit 179a2a5 by Jan Kiesewetter)
+	2015-09-07 [BUGFIX] Remove placeholder to support IE11 (Commit f9def37 by Georg Ringer)
+	2015-09-07 [BUGFIX] Revert title tag change (Commit 92960b7 by Georg Ringer)
+	2015-09-07 [BUGFIX] Fix js in suggest (Commit c457291 by Georg Ringer)
+	2015-09-07 [BUGFIX] Let disqus work with https (Commit 59a918c by Georg Ringer)
+	2015-09-07 [FEATURE] Include TsConfig for only news records (Commit ea8e4d7 by Georg Ringer)
+	2015-09-03 [BUGFIX] Replace old class names with new ones (Commit 7e39efe by Daniel Goerz)
+	2015-08-20 [BUGFIX] FileDownloadViewHelper typolink configuration error (Commit 75eaf01 by Lukas Vorlicek)
+	2015-08-20 [TASK] Use tag constraint in tag repository (Commit e682d25 by Georg Ringer)
+	2015-08-12 [TASK] Remove version from composer.json (Commit e5d027b by Marc Bastian Heinrichs)
+	2015-08-12 [BUGFIX] Use different namespace for BackendUtility in PageLayoutView (Commit 8b300c7 by Marc Bastian Heinrichs)
+	2015-07-19 [TASK] Cleanup use namespaces (Commit e4e15e3 by Georg Ringer)
+	2015-07-19 [BUGFIX] Fix page icon in PageLayoutView (Commit df70c42 by Georg Ringer)
+	2015-07-19 [!!!][TASK] Deprecate striptags viewhelper (Commit e2e0c93 by Georg Ringer)
+	2015-07-17 [FEATURE] Set suggest config searchWholePhrase = TRUE (Commit e7e981e by Frans Saris)
+	2015-07-16 [BUGFIX] Fix ClassAliasMap for the PageLayoutView (Commit f4f602c by Georg Ringer)
+	2015-07-15 [TASK] Skip scrutinizer (Commit 89e3a59 by Georg Ringer)
+	2015-07-15 [CLEANUP] @author tag (Commit 81310f4 by Markus Klein)
+	2015-07-15 [BUGFIX] Fix template usage in BE for 7.x (Commit f72f513 by Georg Ringer)
+
+This list has been created by using ``git log --since="2015/07/15" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.
