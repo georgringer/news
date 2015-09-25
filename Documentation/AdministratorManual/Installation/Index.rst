@@ -36,6 +36,10 @@ You can get the latest version from git by using the git command:
 
    git clone git://git.typo3.org/TYPO3CMS/Extensions/news.git
 
+.. important::
+
+   The master branch supports TYPO3 CMS 7 only. Use the branch ``6x`` if you are using TYPO3 CMS 6.2!
+
 Preparation: Include static TypoScript
 --------------------------------------
 
