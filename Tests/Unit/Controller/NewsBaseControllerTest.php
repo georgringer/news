@@ -142,7 +142,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$mockedController->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
 		$classPart = 'FoController';
-		$signalArguments = array('fo' => 'bar');
+		$signalArguments = array('fo' => 'bar','extendedVariables' => array());
 		$name = 'foAction';
 
 		$mockedSignalSlotDispatcher->expects($this->once())
