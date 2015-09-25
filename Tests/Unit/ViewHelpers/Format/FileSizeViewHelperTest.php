@@ -33,7 +33,7 @@ class FileSizeViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function viewHelperReturnsFileSizeWithDefaultFormat() {
 		$viewHelper = new FileSizeViewHelper();
 		$actualResult = $viewHelper->render(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt');
-		$this->assertEquals('14.4 K', $actualResult);
+		$this->assertEquals('14.35 Ki', $actualResult);
 	}
 
 	/**
@@ -45,7 +45,7 @@ class FileSizeViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function viewHelperReturnsFileSizeWithGivenFormat() {
 		$viewHelper = new FileSizeViewHelper();
 		$actualResult = $viewHelper->render(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('news', 'Tests/Unit/ViewHelpers/Format/') . 'dummy.txt', '| A| B| C');
-		$this->assertEquals('14.4 A', $actualResult);
+		$this->assertEquals('14.35 A', $actualResult);
 	}
 
 	/**
