@@ -12,14 +12,12 @@
 	<p class="description">
 		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.description" />
 	</p>
-	<div class="typo3-message message-warning">
-		<div class="message-body">
-			<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.backupwarning" />
-		</div>
+	<div class="alert alert-warning">
+		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.backupwarning" />
 	</div>
 	<br />
 	<f:if condition="{error}">
-			<div class="typo3-message message-error">
+			<div class="alert alert-danger">
 				<div class="message-header">
 					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.error.configuration.title" />
 				</div>
@@ -35,10 +33,8 @@
 			<br /><br />
 		</f:then>
 		<f:else>
-			<div class="typo3-message message-information">
-				<div class="message-body">
-					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.nojobs" />
-				</div>
+			<div class="alert alert-info">
+				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.nojobs" />
 			</div>
 		</f:else>
 	</f:if>

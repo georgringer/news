@@ -107,8 +107,7 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon' => 'EXT:news/Resources/Public/Icons/' .
-						(\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0') ? 'module_import.png' : 'import_module.gif'),
+					'icon' => 'EXT:news/Resources/Public/Icons/module_import.png',
 					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
 				)
 			);
@@ -129,8 +128,7 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon' => 'EXT:news/Resources/Public/Icons/' .
-						(\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.0') ? 'module_administration.png' : 'folder.gif'),
+					'icon' => 'EXT:news/Resources/Public/Icons/module_administration.png',
 					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
 				)
 			);

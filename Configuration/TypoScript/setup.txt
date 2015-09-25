@@ -238,18 +238,6 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 # ==============================================
 module.tx_news < plugin.tx_news
 
-# CMS 7 compatible templates
-[compatVersion = 7.0]
-	module.tx_news {
-		view {
-			templateRootPaths >
-			templateRootPaths {
-				0 = {$plugin.tx_news.view.templateRootPath}7/
-			}
-		}
-	}
-[global]
-
 # ==============================================
 # Persistence object mapping configuration
 # ==============================================
