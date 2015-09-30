@@ -36,44 +36,12 @@ class FormEngine {
 	const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
 
 	/**
-	 * Preprocessing of fields
-	 *
-	 * @param string $table table name
-	 * @param string $field field name
-	 * @param array $row record row
-	 * @return void
-	 */
-	public function getSingleField_preProcess($table, $field, array &$row) {
-		if ($table !== 'tx_news_domain_model_news') {
-			return;
-		}
-
-		// Set current time for new records
-		if (substr($row['uid'], 0, 3) === 'NEW') {
-			$row['datetime'] = $GLOBALS['EXEC_TIME'];
-		}
-
-		// Predefine archive date
-		if (substr($row['uid'], 0, 3) === 'NEW' && empty($row['archive']) && is_numeric($row['pid'])) {
-			$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($row['pid']);
-			if (is_array($pagesTsConfig['tx_news.']['predefine.'])
-					&& is_array($pagesTsConfig['tx_news.']['predefine.'])
-					&& isset($pagesTsConfig['tx_news.']['predefine.']['archive'])) {
-				$calculatedTime = strtotime($pagesTsConfig['tx_news.']['predefine.']['archive']);
-
-				if ($calculatedTime !== FALSE) {
-					$row['archive'] = $calculatedTime;
-				}
-			}
-		}
-	}
-
-	/**
 	 * Pre-processing of the whole TCEform
 	 *
 	 * @param string $table
 	 * @param array $row
 	 * @param \TYPO3\CMS\Backend\Form\FormEngine $parentObject
+	 * @todo this hook won't work, do we need it?
 	 */
 	public function getMainFields_preProcess($table, $row, $parentObject) {
 		if ($table !== 'tx_news_domain_model_news') {

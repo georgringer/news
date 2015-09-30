@@ -72,7 +72,7 @@ $boot = function ($packageKey) {
 	/* ===========================================================================
 		Add TSconfig
 	=========================================================================== */
-		// For linkvalidator
+	// For linkvalidator
 	if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('linkvalidator')) {
 		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.txt">');
 	}
@@ -104,6 +104,12 @@ $boot = function ($packageKey) {
 		'options' => array(
 			'defaultLifetime' => 0,
 		),
+	);
+
+	$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = array(
+		'depends' => array(
+			\TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew::class,
+		)
 	);
 	\GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
 };
