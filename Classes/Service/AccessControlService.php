@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Service;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -68,8 +69,8 @@ class AccessControlService {
 			return array();
 		}
 
-		/** @var \GeorgRinger\News\Service\CategoryService $catService */
-		$catService = GeneralUtility::makeInstance('GeorgRinger\\News\\Service\\CategoryService');
+		/** @var CategoryService $catService */
+		$catService = GeneralUtility::makeInstance(CategoryService::class);
 		$subCategories = $catService->getChildrenCategories(implode(',', $backendUserCategories));
 		if (!empty($subCategories)) {
 			$backendUserCategories = explode(',', $subCategories);

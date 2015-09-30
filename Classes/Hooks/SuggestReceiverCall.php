@@ -16,6 +16,7 @@ namespace GeorgRinger\News\Hooks;
  */
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 
@@ -112,8 +113,8 @@ class SuggestReceiverCall {
 				)
 			);
 
-			/** @var \TYPO3\CMS\Core\DataHandling\DataHandler $tce */
-			$tce = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\DataHandling\\DataHandler');
+			/** @var DataHandler $tce */
+			$tce = GeneralUtility::makeInstance(DataHandler::class);
 			$tce->start($tcemainData, array());
 			$tce->process_datamap();
 

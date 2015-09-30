@@ -132,7 +132,7 @@ class CategoryImportService extends AbstractImportService {
 			$this->logger->info('Category is new');
 
 			/** @var $category Category */
-			$category = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Category');
+			$category = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Category::class);
 			$this->categoryRepository->add($category);
 		} else {
 			$this->logger->info(sprintf('Category exists already with id "%s".', $category->getUid()));
@@ -215,7 +215,7 @@ class CategoryImportService extends AbstractImportService {
 			}
 
 			/** @var FileReference $fileReference */
-			$fileReference = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\FileReference');
+			$fileReference = $this->objectManager->get(\GeorgRinger\News\Domain\Model\FileReference::class);
 			$fileReference->setFileUid($newImage->getUid());
 			$fileReference->setPid($category->getPid());
 			$category->addImage($fileReference);

@@ -14,6 +14,8 @@ namespace GeorgRinger\News\Utility;
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Utility\ClassLoader;
+use GeorgRinger\News\Utility\ClassParser;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -32,8 +34,8 @@ class ClassCacheManager {
 	 * @return self
 	 */
 	public function __construct() {
-		/** @var \GeorgRinger\News\Utility\ClassLoader $classLoader */
-		$classLoader = GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\ClassLoader');
+		/** @var ClassLoader $classLoader */
+		$classLoader = GeneralUtility::makeInstance(ClassLoader::class);
 		$this->cacheInstance = $classLoader->initializeCache();
 	}
 
@@ -97,8 +99,8 @@ class ClassCacheManager {
 			$content = str_replace('<?php', '', $content);
 			return $content;
 		} else {
-			/** @var \GeorgRinger\News\Utility\ClassParser $classParser */
-			$classParser = GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\ClassParser');
+			/** @var ClassParser $classParser */
+			$classParser = GeneralUtility::makeInstance(ClassParser::class);
 			$classParser->parse($filePath);
 			$classParserInformation = $classParser->getFirstClass();
 			$codeInLines = explode(LF, $code);

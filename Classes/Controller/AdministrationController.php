@@ -15,6 +15,7 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Utility\Page;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
  * Administration controller
@@ -82,7 +83,7 @@ class AdministrationController extends NewsController {
 	public function indexAction(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand = NULL) {
 		$this->redirectToPageOnStart();
 		if (is_null($demand)) {
-			$demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\AdministrationDemand');
+			$demand = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand::class);
 
 			// Preselect by TsConfig (e.g. tx_news.module.preselect.topNewsRestriction = 1)
 			if (isset($this->tsConfiguration['preselect.'])
@@ -91,7 +92,7 @@ class AdministrationController extends NewsController {
 				unset($this->tsConfiguration['preselect.']['orderByAllowed']);
 
 				foreach ($this->tsConfiguration['preselect.'] as $propertyName => $propertyValue) {
-					\TYPO3\CMS\Extbase\Reflection\ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+					ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
 				}
 			}
 		}

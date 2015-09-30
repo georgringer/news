@@ -51,7 +51,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
 	protected function buildRepresentationForNode (\TYPO3\CMS\Backend\Tree\TreeNode $basicNode, \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode $parent = NULL, $level = 0, $restriction = FALSE) {
 		$iconFactory = GeneralUtility::makeInstance(IconFactory::class);
 		/**@param $node \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode */
-		$node = GeneralUtility::makeInstance ('TYPO3\\CMS\\Core\\Tree\\TableConfiguration\\DatabaseTreeNode');
+		$node = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode::class);
 		$row = array();
 		if ($basicNode->getId () == 0) {
 			$node->setSelected (FALSE);
@@ -84,7 +84,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
 		if ($basicNode->hasChildNodes ()) {
 			$node->setHasChildren (TRUE);
 			/** @var \TYPO3\CMS\Backend\Tree\SortedTreeNodeCollection $childNodes */
-			$childNodes = GeneralUtility::makeInstance ('TYPO3\\CMS\\Backend\\Tree\\SortedTreeNodeCollection');
+			$childNodes = GeneralUtility::makeInstance (\TYPO3\CMS\Backend\Tree\SortedTreeNodeCollection::class);
 			$foundSomeChild = FALSE;
 			foreach ($basicNode->getChildNodes () as $child) {
 				// Change in custom TreeDataProvider by adding the if clause

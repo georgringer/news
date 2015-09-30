@@ -16,6 +16,7 @@ namespace GeorgRinger\News\Hooks;
  */
 use GeorgRinger\News\Service\AccessControlService;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -43,8 +44,8 @@ class DataHandler {
 				$cacheTagsToFlush[] = 'tx_news_pid_' . $params['uid_page'];
 			}
 
-			/** @var $cacheManager \TYPO3\CMS\Core\Cache\CacheManager */
-			$cacheManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
+			/** @var $cacheManager CacheManager */
+			$cacheManager = GeneralUtility::makeInstance(CacheManager::class);
 			foreach ($cacheTagsToFlush as $cacheTag) {
 				$cacheManager->getCache('cache_pages')->flushByTag($cacheTag);
 				$cacheManager->getCache('cache_pagesection')->flushByTag($cacheTag);
@@ -66,7 +67,7 @@ class DataHandler {
 		// Clear category cache
 		if ($table === 'sys_category') {
 			/** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
-			$cache = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('cache_news_category');
+			$cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
 			$cache->flush();
 		}
 

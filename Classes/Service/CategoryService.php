@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Service;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -36,7 +37,7 @@ class CategoryService {
 	 */
 	public static function getChildrenCategories($idList, $counter = 0, $additionalWhere = '', $removeGivenIdListFromResult = FALSE) {
 		/** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
-		$cache = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('cache_news_category');
+		$cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
 		$cacheIdentifier = sha1('children' . $idList);
 
 		$entry = $cache->get($cacheIdentifier);
@@ -76,7 +77,8 @@ class CategoryService {
 	 * @return string comma separated list of category ids
 	 */
 	public static function getRootline($id, $additionalWhere = '') {
-		$cache = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache('cache_news_category');
+		/** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
+		$cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
 		$cacheIdentifier = sha1('rootline' . $id);
 
 		$entry = $cache->get($cacheIdentifier);

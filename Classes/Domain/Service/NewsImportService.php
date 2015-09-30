@@ -19,6 +19,7 @@ use GeorgRinger\News\Domain\Model\File;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use GeorgRinger\News\Domain\Model\Media;
+use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -121,7 +122,7 @@ class NewsImportService extends AbstractImportService {
 		}
 
 		if ($news === NULL) {
-			$news = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\News');
+			$news = $this->objectManager->get(\GeorgRinger\News\Domain\Model\News::class);
 			$this->newsRepository->add($news);
 		} else {
 			$this->logger->info(sprintf('News exists already with id "%s".', $news->getUid()));
@@ -198,8 +199,8 @@ class NewsImportService extends AbstractImportService {
 			}
 		}
 
-		/** @var $basicFileFunctions \TYPO3\CMS\Core\Utility\File\BasicFileUtility */
-		$basicFileFunctions = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Utility\\File\\BasicFileUtility');
+		/** @var $basicFileFunctions BasicFileUtility */
+		$basicFileFunctions = GeneralUtility::makeInstance(BasicFileUtility::class);
 
 		// media relation
 		if (is_array($importItem['media'])) {
@@ -211,7 +212,7 @@ class NewsImportService extends AbstractImportService {
 
 					if (($media = $this->getMultiMediaIfAlreadyExists($news, $mediaItem['multimedia'])) === FALSE) {
 						/** @var Media $media */
-						$media = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Media');
+						$media = $this->objectManager->get(Media::class);
 						$media->setMultimedia($mediaItem['multimedia']);
 						$news->addMedia($media);
 					}
@@ -259,7 +260,7 @@ class NewsImportService extends AbstractImportService {
 							$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
 						}
 
-						$media = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\FileReference');
+						$media = $this->objectManager->get(FileReference::class);
 						$media->setFileUid($file->getUid());
 						$news->addFalMedia($media);
 					}
@@ -283,7 +284,7 @@ class NewsImportService extends AbstractImportService {
 							$uniqueName
 						);
 
-						$media = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Media');
+						$media = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Media::class);
 						$news->addMedia($media);
 
 						$media->setImage(basename($uniqueName));
@@ -335,7 +336,7 @@ class NewsImportService extends AbstractImportService {
 							$file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
 						}
 
-						$relatedFile = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\FileReference');
+						$relatedFile = $this->objectManager->get(FileReference::class);
 						$relatedFile->setFileUid($file->getUid());
 						$news->addFalRelatedFile($relatedFile);
 					}
@@ -360,7 +361,7 @@ class NewsImportService extends AbstractImportService {
 							$uniqueName
 						);
 
-						$relatedFile = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\File');
+						$relatedFile = $this->objectManager->get(\GeorgRinger\News\Domain\Model\File::class);
 						$news->addRelatedFile($relatedFile);
 
 						$relatedFile->setFile(basename($uniqueName));
@@ -376,7 +377,7 @@ class NewsImportService extends AbstractImportService {
 			foreach ($importItem['related_links'] as $link) {
 				/** @var $relatedLink Link */
 				if (($relatedLink = $this->getRelatedLinkIfAlreadyExists($news, $link['uri'])) === FALSE) {
-					$relatedLink = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Link');
+					$relatedLink = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Link::class);
 					$relatedLink->setUri($link['uri']);
 					$news->addRelatedLink($relatedLink);
 				}

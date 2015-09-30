@@ -1,6 +1,9 @@
 <?php
 
 namespace GeorgRinger\News\Updates;
+use TYPO3\CMS\Core\Resource\FileRepository;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -31,12 +34,12 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 	protected $targetDirectory;
 
 	/**
-	 * @var \TYPO3\CMS\Core\Resource\ResourceFactory
+	 * @var ResourceFactory
 	 */
 	protected $fileFactory;
 
 	/**
-	 * @var \TYPO3\CMS\Core\Resource\FileRepository
+	 * @var FileRepository
 	 */
 	protected $fileRepository;
 
@@ -52,8 +55,8 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 	 */
 	protected function init() {
 		$fileadminDirectory = rtrim($GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'], '/') . '/';
-		/** @var $storageRepository \TYPO3\CMS\Core\Resource\StorageRepository */
-		$storageRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
+		/** @var $storageRepository StorageRepository */
+		$storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
 		$storages = $storageRepository->findAll();
 		foreach ($storages as $storage) {
 			$storageRecord = $storage->getStorageRecord();
@@ -68,8 +71,8 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate {
 		if (!isset($this->storage)) {
 			throw new \RuntimeException('Local default storage could not be initialized - might be due to missing sys_file* tables.');
 		}
-		$this->fileFactory = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
-		$this->fileRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+		$this->fileFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+		$this->fileRepository = GeneralUtility::makeInstance(FileRepository::class);
 		$this->targetDirectory = PATH_site . $fileadminDirectory . self::FOLDER_ContentUploads . '/';
 	}
 

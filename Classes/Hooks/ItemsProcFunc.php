@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -31,8 +32,8 @@ class ItemsProcFunc {
 	 * @return void
 	 */
 	public function user_templateLayout(array &$config) {
-		/** @var \GeorgRinger\News\Utility\TemplateLayout $templateLayoutsUtility */
-		$templateLayoutsUtility = GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\TemplateLayout');
+		/** @var TemplateLayout $templateLayoutsUtility */
+		$templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
 		$templateLayouts = $templateLayoutsUtility->getAvailableTemplateLayouts($config['row']['pid']);
 		foreach ($templateLayouts as $layout) {
 			$additionalLayout = array(

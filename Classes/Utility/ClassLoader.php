@@ -16,6 +16,8 @@ namespace GeorgRinger\News\Utility;
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Utility\ClassCacheManager;
+use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Core;
@@ -46,8 +48,8 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface {
 	 */
 	public function initializeCache() {
 		if (is_null($this->cacheInstance)) {
-			/** @var \TYPO3\CMS\Core\Cache\CacheManager $cacheManager */
-			$cacheManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager');
+			/** @var CacheManager $cacheManager */
+			$cacheManager = GeneralUtility::makeInstance(CacheManager::class);
 			$this->cacheInstance = $cacheManager->getCache('news');
 		}
 		return $this->cacheInstance;
@@ -73,8 +75,8 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface {
 		if (!empty($cacheEntryIdentifier) && !$classCache->has($cacheEntryIdentifier)) {
 			require_once(ExtensionManagementUtility::extPath('news') . 'Classes/Utility/ClassCacheManager.php');
 
-			/** @var \GeorgRinger\News\Utility\ClassCacheManager $classCacheManager */
-			$classCacheManager = GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\ClassCacheManager');
+			/** @var ClassCacheManager $classCacheManager */
+			$classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
 			$classCacheManager->reBuild();
 		}
 

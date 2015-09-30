@@ -320,7 +320,7 @@ class NewsController extends NewsBaseController {
 		}
 
 		if (is_null($search)) {
-			$search = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\Search');
+			$search = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Dto\Search::class);
 		}
 		$demand->setSearch($search);
 
@@ -397,9 +397,9 @@ class NewsController extends NewsBaseController {
 		// Use stdWrap for given defined settings
 		if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
 			/** @var  \TYPO3\CMS\Extbase\Service\TypoScriptService $typoScriptService */
-			$typoScriptService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService');
+			$typoScriptService = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\TypoScriptService::class);
 			$typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
-			$stdWrapProperties = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], TRUE);
+			$stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], TRUE);
 			foreach ($stdWrapProperties as $key) {
 				if (is_array($typoScriptArray[$key . '.'])) {
 					$originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
@@ -413,7 +413,7 @@ class NewsController extends NewsBaseController {
 					// start override
 		if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
 			/** @var \GeorgRinger\News\Utility\TypoScript $typoScriptUtility */
-			$typoScriptUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\TypoScript');
+			$typoScriptUtility = GeneralUtility::makeInstance(\GeorgRinger\News\Utility\TypoScript::class);
 			$originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
 		}
 

@@ -14,10 +14,12 @@ namespace GeorgRinger\News\Utility;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Backend\Tree\View\PageTreeView;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Page Utility class
@@ -40,7 +42,7 @@ class Page {
 			return $pidList;
 		}
 
-		$queryGenerator = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Database\\QueryGenerator');
+		$queryGenerator = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\QueryGenerator::class);
 		$recursiveStoragePids = $pidList;
 		$storagePids = GeneralUtility::intExplode(',', $pidList);
 		foreach ($storagePids as $startPid) {
@@ -63,7 +65,7 @@ class Page {
 	 */
 	public static function setRegisterProperties($properties, $object, $prefix = 'news') {
 		if (!empty($properties) && !is_null(($object))) {
-			$cObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+			$cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
 			$items = GeneralUtility::trimExplode(',', $properties, TRUE);
 
 			$register = array();
@@ -84,7 +86,7 @@ class Page {
 	 *
 	 * @param integer $pageUid page to start with
 	 * @param integer $treeLevel count of levels
-	 * @return \TYPO3\CMS\Backend\Tree\View\PageTreeView
+	 * @return PageTreeView
 	 * @throws \Exception
 	 */
 	public static function pageTree($pageUid, $treeLevel) {
@@ -92,8 +94,8 @@ class Page {
 			throw new \Exception('Page::pageTree does only work in the backend!');
 		}
 
-		/* @var $tree \TYPO3\CMS\Backend\Tree\View\PageTreeView */
-		$tree = GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Tree\\View\\PageTreeView');
+		/* @var $tree PageTreeView */
+		$tree = GeneralUtility::makeInstance(PageTreeView::class);
 		$tree->init('AND ' . $GLOBALS['BE_USER']->getPagePermsClause(1));
 
 		$treeStartingRecord = BackendUtility::getRecord('pages', $pageUid);

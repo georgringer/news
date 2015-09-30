@@ -17,6 +17,7 @@ namespace GeorgRinger\News\Hooks;
 use GeorgRinger\News\Service\AccessControlService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageQueue;
+use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -100,8 +101,8 @@ class FormEngine {
 				FlashMessage::WARNING
 			);
 
-			/** @var \TYPO3\CMS\Core\Messaging\FlashMessageService $flashMessageService */
-			$flashMessageService = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessageService');
+			/** @var FlashMessageService $flashMessageService */
+			$flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
 			/** @var $defaultFlashMessageQueue \TYPO3\CMS\Core\Messaging\FlashMessageQueue */
 			$defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
 			$defaultFlashMessageQueue->enqueue($flashMessage);

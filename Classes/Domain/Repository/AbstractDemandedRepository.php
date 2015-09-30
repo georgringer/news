@@ -16,6 +16,9 @@ namespace GeorgRinger\News\Domain\Repository;
  */
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
+use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 
 /**
  * Abstract demanded repository
@@ -81,7 +84,7 @@ abstract class AbstractDemandedRepository
 	public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = TRUE) {
 		$query = $this->generateQuery($demand, $respectEnableFields);
 
-		$queryParser = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Storage\\Typo3DbQueryParser');
+		$queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
 		list($hash, $parameters) = $queryParser->preparseQuery($query);
 		$statementParts = $queryParser->parseQuery($query);
 
@@ -91,13 +94,13 @@ abstract class AbstractDemandedRepository
 
 		$tableNameForEscape = (reset($statementParts['tables']) ?: 'foo');
 		foreach ($parameters as $parameterPlaceholder => $parameter) {
-			if ($parameter instanceof \TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy) {
+			if ($parameter instanceof LazyLoadingProxy) {
 				$parameter = $parameter->_loadRealInstance();
 			}
 
 			if ($parameter instanceof \DateTime) {
 				$parameter = $parameter->format('U');
-			} elseif ($parameter instanceof \TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface) {
+			} elseif ($parameter instanceof DomainObjectInterface) {
 				$parameter = (int)$parameter->getUid();
 			} elseif (is_array($parameter)) {
 				$subParameters = array();

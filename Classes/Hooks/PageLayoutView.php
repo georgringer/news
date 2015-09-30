@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -65,13 +66,13 @@ class PageLayoutView {
 	/** @var  \TYPO3\CMS\Core\Database\DatabaseConnection */
 	protected $databaseConnection;
 
-	/** @var \GeorgRinger\News\Utility\TemplateLayout $templateLayoutsUtility */
+	/** @var TemplateLayout $templateLayoutsUtility */
 	protected $templateLayoutsUtility;
 
 	public function __construct() {
 		/** @var \TYPO3\CMS\Core\Database\DatabaseConnection databaseConnection */
 		$this->databaseConnection = $GLOBALS['TYPO3_DB'];
-		$this->templateLayoutsUtility = GeneralUtility::makeInstance('GeorgRinger\\News\\Utility\\TemplateLayout');
+		$this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
 		$this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
 	}
 
@@ -210,13 +211,13 @@ class PageLayoutView {
 				} else {
 					/** @var $message FlashMessage */
 					$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $newsRecord['pid']);
-					$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', FlashMessage::WARNING);
+					$message = GeneralUtility::makeInstance(FlashMessage::class, $text, '', FlashMessage::WARNING);
 					$content = $message->render();
 				}
 			} else {
 				/** @var $message FlashMessage */
 				$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.newsNotAvailable', TRUE), $singleNewsRecord);
-				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', FlashMessage::WARNING);
+				$message = GeneralUtility::makeInstance(FlashMessage::class, $text, '', FlashMessage::WARNING);
 				$content = $message->render();
 			}
 
@@ -272,7 +273,7 @@ class PageLayoutView {
 		} else {
 			/** @var $message FlashMessage */
 			$text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', TRUE), $detailPid);
-			$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage', $text, '', FlashMessage::WARNING);
+			$message = GeneralUtility::makeInstance(FlashMessage::class, $text, '', FlashMessage::WARNING);
 			$content = $message->render();
 		}
 
