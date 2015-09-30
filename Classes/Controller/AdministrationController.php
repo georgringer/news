@@ -15,6 +15,8 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Utility\Page;
+use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
@@ -235,11 +237,12 @@ class AdministrationController extends NewsController {
 				$pid = (int)$this->tsConfiguration['defaultPid.'][$table];
 			}
 		}
-
-		$returnUrl = 'mod.php?M=web_NewsTxNewsM2&id=' . $this->pageUid . $this->getToken();
-		$url = 'alt_doc.php?edit[' . $table . '][' . $pid . ']=new&returnUrl=' . urlencode($returnUrl);
-
-		\TYPO3\CMS\Core\Utility\HttpUtility::redirect($url);
+		$returnUrl = 'index.php?M=web_NewsTxNewsM2&id=' . $this->pageUid . $this->getToken();
+		$url = BackendUtilityCore::getModuleUrl('record_edit', array(
+			'edit[' . $table . '][' . $pid . ']' => 'new',
+			'returnUrl' => $returnUrl
+		));
+		HttpUtility::redirect($url);
 	}
 
 	/**
@@ -248,7 +251,7 @@ class AdministrationController extends NewsController {
 	 * @return void
 	 */
 	protected function setTsConfig() {
-		$tsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($this->pageUid);
+		$tsConfig = BackendUtilityCore::getPagesTSconfig($this->pageUid);
 		if (isset($tsConfig['tx_news.']['module.']) && is_array($tsConfig['tx_news.']['module.'])) {
 			$this->tsConfiguration = $tsConfig['tx_news.']['module.'];
 		}
@@ -263,10 +266,10 @@ class AdministrationController extends NewsController {
 	protected function redirectToPageOnStart() {
 		if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
 			$url = 'mod.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
-			\TYPO3\CMS\Core\Utility\HttpUtility::redirect($url);
+			HttpUtility::redirect($url);
 		} elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
 			$url = 'mod.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
-			\TYPO3\CMS\Core\Utility\HttpUtility::redirect($url);
+			HttpUtility::redirect($url);
 		}
 	}
 
