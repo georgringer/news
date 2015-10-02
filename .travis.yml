@@ -1,61 +1,50 @@
 language: php
 
 php:
-  - 5.3
-  - 5.4
   - 5.5
   - 5.6
 
 env:
-  - DB=mysql TYPO3_BRANCH=master COVERAGE=0
+  matrix:
+    - TYPO3_VERSION=7.5.0
+    - TYPO3_VERSION=dev-master
 
-matrix:
-  include:
-    - php: 5.5
-      env: DB=mysql TYPO3_BRANCH=master COVERAGE=0
+sudo: false
 
-notifications:
-  email:
-#    - georg.ringer@gmail.com
+addons:
+  apt:
+    packages:
+      - parallel
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - composer self-update
+  - composer --version
 
 before_script:
-  - cd ..
-  - git clone --single-branch --branch $TYPO3_BRANCH --depth 1 https://github.com/TYPO3/TYPO3.CMS.git typo3_core
-  - mv typo3_core/* .
-  - sudo apt-get install parallel
-  - composer self-update
-  - composer install
-  - mkdir -p uploads typo3temp typo3conf/ext
-  - mv news typo3conf/ext/
+  - composer require typo3/cms=$TYPO3_VERSION
+  # Restore composer.json
+  - git checkout composer.json
+  - export TYPO3_PATH_WEB=$PWD/.Build/Web
 
 script:
   - >
-    if [[ "$COVERAGE" == "0" ]]; then
-      echo;
-      echo "Running unit tests";
-      ./bin/phpunit --colors -c typo3conf/ext/news/Tests/Build/UnitTests.xml
-    fi
+    echo;
+    echo "Running unit tests";
+    .Build/bin/phpunit --colors  -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit/
+
   - >
-    if [[ "$COVERAGE" == "1" ]]; then
-      echo;
-      echo "Running unit tests";
-      ./bin/phpunit --coverage-clover=unittest-coverage.clover --colors -c typo3conf/ext/news/Tests/Build/UnitTests.xml
-    fi
+    echo;
+    echo "Running php lint";
+    find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
+
   - >
-    if [[ "$COVERAGE" == "1" ]]; then
-      echo;
-      export typo3DatabaseName="typo3";
-      export typo3DatabaseHost="localhost";
-      export typo3DatabaseUsername="root";
-      export typo3DatabasePassword="";
-      find . -wholename '*/typo3conf/ext/news/Tests/Functional/*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; ./bin/phpunit --coverage-clover={}functionaltest-coverage.clover --colors -c typo3conf/ext/news/Tests/Build/FunctionalTests.xml {}'
-    fi
-  - >
-    if [[ "$COVERAGE" == "1" ]]; then
-      echo;
-      echo "Uploading code coverage results";
-      wget https://scrutinizer-ci.com/ocular.phar
-      cp -R typo3conf/ext/news/.git .
-      php ocular.phar code-coverage:upload --format=php-clover unittest-coverage.clover
-      find . -wholename '*/typo3conf/ext/news/Tests/Functional/*Test.php' -exec php ocular.phar code-coverage:upload --format=php-clover {}functionaltest-coverage.clover \;
-    fi
+    echo;
+    export typo3DatabaseName="typo3";
+    export typo3DatabaseHost="localhost";
+    export typo3DatabaseUsername="root";
+    export typo3DatabasePassword="";
+    find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/FunctionalTests.xml {}'
