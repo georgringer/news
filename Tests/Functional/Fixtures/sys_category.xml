@@ -8,6 +8,8 @@
 		<title>findRecordByImportSource</title>
 		<import_source>functional_test</import_source>
 		<import_id>2</import_id>
+		<l10n_diffsource></l10n_diffsource>
+		<description></description>
 	</sys_category>
 
 </dataset>
