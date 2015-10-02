@@ -48,6 +48,7 @@ class NewsRowInitializeNewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 */
 	public function archiveTimeIsFilled() {
 		$provider = new NewsRowInitializeNew();
+		$GLOBALS['EXEC_TIME'] = time();
 
 		$result = array(
 			'command' => 'new',
@@ -62,7 +63,7 @@ class NewsRowInitializeNewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		);
 
 		$expected = $result;
-		$expected['databaseRow']['datetime'] = time();
+		$expected['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
 		$expected['databaseRow']['archive'] = strtotime('+10 days');
 
 		$this->assertEquals($expected, $provider->addData($result));
