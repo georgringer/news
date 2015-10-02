@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,6 +15,7 @@ namespace GeorgRinger\News\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Utility\TemplateLayout;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -25,6 +26,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ItemsProcFunc {
 
+	/** @var TemplateLayout $templateLayoutsUtility */
+	protected $templateLayoutsUtility;
+
+	public function __construct() {
+		$this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
+	}
+
 	/**
 	 * Itemsproc function to extend the selection of templateLayouts in the plugin
 	 *
@@ -32,12 +40,12 @@ class ItemsProcFunc {
 	 * @return void
 	 */
 	public function user_templateLayout(array &$config) {
-		/** @var TemplateLayout $templateLayoutsUtility */
-		$templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
-		$templateLayouts = $templateLayoutsUtility->getAvailableTemplateLayouts($config['row']['pid']);
+		$row = $this->getContentElementRow($config['row']['uid']);
+
+		$templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($row['pid']);
 		foreach ($templateLayouts as $layout) {
 			$additionalLayout = array(
-				$GLOBALS['LANG']->sL($layout[0], TRUE),
+				$this->getLanguageService()->sL($layout[0], TRUE),
 				$layout[1]
 			);
 			array_push($config['items'], $additionalLayout);
@@ -52,16 +60,16 @@ class ItemsProcFunc {
 	 * @return void
 	 */
 	public function user_orderBy(array &$config) {
-		$newItems = '';
+		$row = $this->getContentElementRow($config['row']['uid']);
 
-			// check if the record has been saved once
-		if (is_array($config['row']) && !empty($config['row']['pi_flexform'])) {
-			$flexformConfig = GeneralUtility::xml2array($config['row']['pi_flexform']);
+		// check if the record has been saved once
+		if (is_array($row) && !empty($row['pi_flexform'])) {
+			$flexformConfig = GeneralUtility::xml2array($row['pi_flexform']);
 
-				// check if there is a flexform configuration
+			// check if there is a flexform configuration
 			if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
 				$selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
-					// check for selected action
+				// check for selected action
 				if (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Category')) {
 					$newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
 				} elseif (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Tag')) {
@@ -73,18 +81,18 @@ class ItemsProcFunc {
 			}
 		}
 
-			// if a override configuration is found
+		// if a override configuration is found
 		if (!empty($newItems)) {
-				// remove default configuration
+			// remove default configuration
 			$config['items'] = array();
-				// empty default line
+			// empty default line
 			array_push($config['items'], array('', ''));
 
 			$newItemArray = GeneralUtility::trimExplode(',', $newItems, TRUE);
 			$languageKey = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.';
 			foreach ($newItemArray as $item) {
-					// label: if empty, key (=field) is used
-				$label = $GLOBALS['LANG']->sL($languageKey . $item, TRUE);
+				// label: if empty, key (=field) is used
+				$label = $this->getLanguageService()->sL($languageKey . $item, TRUE);
 				if (empty($label)) {
 					$label = htmlspecialchars($item);
 				}
@@ -103,7 +111,7 @@ class ItemsProcFunc {
 	protected function removeNonValidOrderFields(array &$config, $tableName) {
 		$allowedFields = array_keys($GLOBALS['TCA'][$tableName]['columns']);
 
-		foreach($config['items'] as $key => $item) {
+		foreach ($config['items'] as $key => $item) {
 			if ($item[1] != '' && !in_array($item[1], $allowedFields)) {
 				unset($config['items'][$key]);
 			}
@@ -119,22 +127,23 @@ class ItemsProcFunc {
 	public function user_switchableControllerActions(array &$config) {
 		if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'])) {
 			$configuration = (int)$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'];
-				switch ($configuration) {
-					case 1:
-						$this->removeActionFromList($config, 'News->list');
-						break;
-					case 2:
-						$this->removeActionFromList($config, 'News->list;News->detail');
-						break;
-					default:
-				}
+			switch ($configuration) {
+				case 1:
+					$this->removeActionFromList($config, 'News->list');
+					break;
+				case 2:
+					$this->removeActionFromList($config, 'News->list;News->detail');
+					break;
+				default:
+			}
 		}
 
-			// Add additional actions
+		// Add additional actions
 		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
-				&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])) {
+			&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
+		) {
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'] as $key => $label) {
-				array_push($config['items'], array($GLOBALS['LANG']->sL($label), $key, ''));
+				array_push($config['items'], array($this->getLanguageService()->sL($label), $key, ''));
 			}
 		}
 	}
@@ -164,8 +173,8 @@ class ItemsProcFunc {
 		$html = '';
 
 		$orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ?
-						$GLOBALS['TCA']['sys_language']['ctrl']['sortby'] :
-						$GLOBALS['TYPO3_DB']->stripOrderBy($GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']);
+			$GLOBALS['TCA']['sys_language']['ctrl']['sortby'] :
+			$GLOBALS['TYPO3_DB']->stripOrderBy($GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']);
 
 		$languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'*',
@@ -175,10 +184,10 @@ class ItemsProcFunc {
 			$orderBy
 		);
 
-			// if any language is available
+		// if any language is available
 		if (count($languages) > 0) {
 			$html = '<select name="data[newsoverlay]" id="field_newsoverlay">
-						<option value="0">' . $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', TRUE) . '</option>';
+						<option value="0">' . $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', TRUE) . '</option>';
 
 			foreach ($languages as $language) {
 				$selected = ($GLOBALS['BE_USER']->uc['newsoverlay'] == $language['uid']) ? ' selected="selected" ' : '';
@@ -187,12 +196,31 @@ class ItemsProcFunc {
 
 			$html .= '</select>';
 		} else {
-			$html .= $GLOBALS['LANG']->sL(
-						'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available', TRUE
-					);
+			$html .= $this->getLanguageService()->sL(
+				'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available', TRUE
+			);
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Get tt_content record
+	 *
+	 * @param int $uid
+	 * @return array
+	 */
+	protected function getContentElementRow($uid) {
+		return BackendUtility::getRecord('tt_content', $uid);
+	}
+
+	/**
+	 * Returns LanguageService
+	 *
+	 * @return \TYPO3\CMS\Lang\LanguageService
+	 */
+	protected function getLanguageService() {
+		return $GLOBALS['LANG'];
 	}
 
 }
