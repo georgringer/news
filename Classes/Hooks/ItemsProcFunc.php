@@ -15,7 +15,7 @@ namespace GeorgRinger\News\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Utility\TemplateLayout;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -179,7 +179,7 @@ class ItemsProcFunc {
 		$languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
 			'*',
 			'sys_language',
-			'1=1 ' . \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause('sys_language'),
+			'1=1 ' . BackendUtilityCore::deleteClause('sys_language'),
 			'',
 			$orderBy
 		);
@@ -211,7 +211,7 @@ class ItemsProcFunc {
 	 * @return array
 	 */
 	protected function getContentElementRow($uid) {
-		return BackendUtility::getRecord('tt_content', $uid);
+		return BackendUtilityCore::getRecord('tt_content', $uid);
 	}
 
 	/**
