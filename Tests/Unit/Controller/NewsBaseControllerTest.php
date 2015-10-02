@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Testcase for the GeorgRinger\\News\\Controller\\NewsBaseController class.
@@ -25,7 +26,7 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
 class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface
+	 * @var \PHPUnit_Framework_MockObject_MockObject|TypoScriptFrontendController|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface
 	 */
 	protected $tsfe = NULL;
 
@@ -33,7 +34,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * Set up
 	 */
 	public function setUp() {
-		$this->tsfe = $this->getAccessibleMock('tslib_fe', array('pageNotFoundAndExit'), array(), '', FALSE);
+		$this->tsfe = $this->getAccessibleMock(TypoScriptFrontendController::class, array('pageNotFoundAndExit'), array(), '', FALSE);
 		$GLOBALS['TSFE'] = $this->tsfe;
 	}
 
