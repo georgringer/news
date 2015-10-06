@@ -1,49 +1,6 @@
 {namespace n=GeorgRinger\News\ViewHelpers}
 
-<f:be.container>
-	<n:includeFile path="../typo3conf/ext/news/Resources/Public/Css/administration.css" />
-	<div class="typo3-fullDoc">
-		<div id="typo3-docheader">
-			<div class="typo3-docheader-functions">
-				<div class="left">
-					<f:be.buttons.csh />
-					<f:be.menus.actionMenu>
-						<f:be.menus.actionMenuItem label="{f:translate(key: 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsListing')}" controller="Administration" action="index" />
-						<f:be.menus.actionMenuItem label="{f:translate(key: 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsPidListing')}" controller="Administration" action="newsPidListing" />
-					</f:be.menus.actionMenu>
-				</div>
-
-				<div class="right">
-					<f:be.pagePath />
-					<f:be.pageInfo />
-				</div>
-			</div>
-
-			<div class="typo3-docheader-buttons">
-				<div class="left">
-					<f:link.action action="newNews" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.createNewNewsRecord')}">
-						<f:image src="{f:uri.resource(path:'Icons/news_domain_model_news_add.png')}" />
-					</f:link.action>
-					<n:be.security.ifAccessToTableIsAllowed table="sys_category">
-						<f:link.action action="newCategory" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.createNewCategory')}">
-							<f:image src="{f:uri.resource(path:'Icons/news_domain_model_category_add.png')}" />
-						</f:link.action>
-					</n:be.security.ifAccessToTableIsAllowed>
-					<n:be.security.ifAccessToTableIsAllowed table="tx_news_domain_model_tag">
-						<f:link.action action="newTag" title="{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.createNewTag')}">
-							<f:image src="{f:uri.resource(path:'Icons/news_domain_model_tag_add.png')}" />
-						</f:link.action>
-					</n:be.security.ifAccessToTableIsAllowed>
-				</div>
-				<div class="right">
-					<f:be.buttons.shortcut />
-				</div>
-			</div>
-		</div>
-		<div id="typo3-docbody">
-			<div id="typo3-inner-docbody" class="news-administration">
-				<f:render section="content" />
-			</div>
-		</div>
-	</div>
-</f:be.container>
+<div class="typo3-documentation">
+	<f:flashMessages />
+	<f:render section="content" />
+</div>

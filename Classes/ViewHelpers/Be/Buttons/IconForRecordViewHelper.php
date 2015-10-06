@@ -47,6 +47,7 @@ class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBa
 		$icon = '';
 		$row = BackendUtility::getRecord($table, $uid);
 		if (is_array($row)) {
+			/** @var IconFactory $iconFactory */
 			$iconFactory = GeneralUtility::makeInstance(IconFactory::class);
 			$icon = '<span title="' . htmlspecialchars($title) . '">'
 				. $iconFactory->getIconForRecord($table, $row, Icon::SIZE_SMALL)->render()

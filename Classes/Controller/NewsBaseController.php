@@ -37,6 +37,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view) {
 		$view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
 		$view->assign('emConfiguration', EmConfiguration::getSettings());
+		parent::initializeView($view);
 	}
 
 	/**

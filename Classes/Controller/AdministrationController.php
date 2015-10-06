@@ -15,9 +15,18 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Utility\Page;
+use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
+use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Administration controller
@@ -63,6 +72,110 @@ class AdministrationController extends NewsController {
 		$this->pageUid = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id');
 		$this->setTsConfig();
 		parent::initializeAction();
+	}
+
+	/**
+	 * BackendTemplateContainer
+	 *
+	 * @var BackendTemplateView
+	 */
+	protected $view;
+
+	/**
+	 * @var IconFactory
+	 */
+	protected $iconFactory;
+
+	/**
+	 * Backend Template Container
+	 *
+	 * @var BackendTemplateView
+	 */
+	protected $defaultViewObjectName = BackendTemplateView::class;
+
+
+	/**
+	 * Set up the doc header properly here
+	 *
+	 * @param ViewInterface $view
+	 */
+	protected function initializeView(ViewInterface $view) {
+		$this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+		/** @var BackendTemplateView $view */
+		parent::initializeView($view);
+		$view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation([]);
+
+		$this->createMenu();
+		$this->createButtons();
+	}
+
+	/**
+	 * Create menu
+	 *
+	 * @return void
+	 */
+	protected function createMenu() {
+		/** @var UriBuilder $uriBuilder */
+		$uriBuilder = $this->objectManager->get(UriBuilder::class);
+		$uriBuilder->setRequest($this->request);
+
+		$menu = $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->makeMenu();
+		$menu->setIdentifier('news');
+
+		$actions = [
+			['action' => 'index', 'label' => 'newsListing'],
+			['action' => 'newsPidListing', 'label' => 'newsPidListing']
+		];
+
+		foreach ($actions as $action) {
+			$item = $menu->makeMenuItem()
+				->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.' . $action['label']))
+				->setHref($uriBuilder->reset()->uriFor($action['action'], array(), 'Administration'))
+				->setActive($this->request->getControllerActionName() === $action['action']);
+			$menu->addMenuItem($item);
+		}
+
+		$this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
+		$pageInfo = BackendUtilityCore::readPageAccess($this->pageUid, '');
+		$this->view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation($pageInfo);
+	}
+
+	/**
+	 * Create the panel of buttons
+	 *
+	 * @return void
+	 */
+	protected function createButtons() {
+		$buttonBar = $this->view->getModuleTemplate()->getDocHeaderComponent()->getButtonBar();
+		$uriBuilder = $this->objectManager->get(UriBuilder::class);
+		$uriBuilder->setRequest($this->request);
+
+		$buttons = [
+			[
+				'table' => 'tx_news_domain_model_news',
+				'label' => 'module.createNewNewsRecord',
+				'action' => 'newNews'
+			],
+			[
+				'table' => 'tx_news_domain_model_tag',
+				'label' => 'module.createNewTag',
+				'action' => 'newTag'
+			],
+			[
+				'table' => 'sys_category',
+				'label' => 'module.createNewCategory',
+				'action' => 'newCategory'
+			]
+		];
+		foreach ($buttons as $key => $tableConfiguration) {
+			if ($this->getBackendUser()->isAdmin() || GeneralUtility::inList($this->getBackendUser()->groupData['tables_modify'], $tableConfiguration['table'])) {
+				$viewButton = $buttonBar->makeLinkButton()
+					->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor($tableConfiguration['action'], array(), 'Administration'))
+					->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label'], TRUE))
+					->setIcon($this->iconFactory->getIconForRecord($tableConfiguration['table'], [], Icon::SIZE_SMALL));
+				$buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key);
+			}
+		}
 	}
 
 	/**
@@ -212,11 +325,11 @@ class AdministrationController extends NewsController {
 		$row['countNews'] = $db->exec_SELECTcountRows(
 			'*',
 			'tx_news_domain_model_news',
-			'pid=' . $pageUid . \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('tx_news_domain_model_news'));
+			'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
 		$row['countCategories'] = $db->exec_SELECTcountRows(
 			'*',
 			'sys_category',
-			'pid=' . $pageUid . \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('sys_category'));
+			'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
 
 		$row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
 	}
@@ -280,11 +393,29 @@ class AdministrationController extends NewsController {
 	 * @return string
 	 */
 	protected function getToken($tokenOnly = FALSE) {
-		$token = \TYPO3\CMS\Core\FormProtection\FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
+		$token = FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
 		if ($tokenOnly) {
 			return $token;
 		} else {
 			return '&moduleToken=' . $token;
 		}
+	}
+
+	/**
+	 * Returns the LanguageService
+	 *
+	 * @return LanguageService
+	 */
+	protected function getLanguageService() {
+		return $GLOBALS['LANG'];
+	}
+
+	/**
+	 * Get backend user
+	 *
+	 * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+	 */
+	protected function getBackendUser() {
+		return $GLOBALS['BE_USER'];
 	}
 }
