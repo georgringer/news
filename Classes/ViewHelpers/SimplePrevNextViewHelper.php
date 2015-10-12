@@ -173,7 +173,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
 
 		$select = 'SELECT tx_news_domain_model_news.uid,tx_news_domain_model_news.title ';
 		$from = 'FROM tx_news_domain_model_news';
-		$whereClause = 'tx_news_domain_model_news.pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
+		$whereClause = 'sys_language_uid = '.$GLOBALS['TSFE']->sys_language_uid.' AND tx_news_domain_model_news.pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
 			. $this->getEnableFieldsWhereClauseForTable();
 
 		$query = $select . $from . '
