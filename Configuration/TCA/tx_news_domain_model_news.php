@@ -56,7 +56,7 @@ $tx_news_domain_model_news = array(
 			'label' => 'LLL:EXT:cms/locallang_ttc.xlf:sys_language_uid_formlabel',
 			'config' => array(
 				'type' => 'select',
-				'renderType '=> 'selectSingle',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
@@ -71,7 +71,7 @@ $tx_news_domain_model_news = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
-				'renderType '=> 'selectSingle',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
@@ -410,7 +410,7 @@ $tx_news_domain_model_news = array(
 			'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.doktype_formlabel',
 			'config' => array(
 				'type' => 'select',
-				'renderType '=> 'selectSingle',
+				'renderType'=> 'selectSingle',
 				'items' => array(
 					array($ll . 'tx_news_domain_model_news.type.I.0', 0),
 					array($ll . 'tx_news_domain_model_news.type.I.1', 1),

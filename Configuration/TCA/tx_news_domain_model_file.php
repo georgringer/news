@@ -57,7 +57,7 @@ return array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
-				'renderType '=> 'selectSingle',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
@@ -72,7 +72,7 @@ return array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
-				'renderType '=> 'selectSingle',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
