@@ -481,12 +481,9 @@ $tx_news_domain_model_news = array(
 					'link' => array(
 						'type' => 'popup',
 						'title' => 'LLL:EXT:cms/locallang_ttc.xlf:header_link_formlabel',
-						'icon' => 'link_popup.gif',
+						'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
 						'module' => array(
-							'name' => 'wizard_element_browser',
-							'urlParameters' => array(
-								'mode' => 'wizard'
-							)
+							'name' => 'wizard_link_browser',
 						),
 						'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1'
 					)
