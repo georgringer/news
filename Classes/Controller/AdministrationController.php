@@ -105,6 +105,9 @@ class AdministrationController extends NewsController {
 		parent::initializeView($view);
 		$view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation([]);
 
+		$pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
+		$pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ClickMenu');
+
 		$this->createMenu();
 		$this->createButtons();
 	}
