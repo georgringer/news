@@ -16,7 +16,7 @@ return array(
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_tag.png',
+		'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_tag.png',
 		'searchFields' => 'uid,title',
 	),
 	'interface' => array(

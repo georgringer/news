@@ -26,7 +26,7 @@ return array(
 		'enablecolumns' => array(
 			'disabled' => 'hidden',
 		),
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_link.gif',
+		'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_link.gif',
 		'hideTable' => TRUE,
 	),
 	'interface' => array(

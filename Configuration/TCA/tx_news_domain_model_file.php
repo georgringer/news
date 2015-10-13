@@ -27,7 +27,7 @@ return array(
 			'disabled' => 'hidden',
 			'fe_group' => 'fe_group',
 		),
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/news_domain_model_file.gif',
+		'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_file.gif',
 		'hideTable' => TRUE,
 	),
 	'interface' => array(
