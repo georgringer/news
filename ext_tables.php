@@ -112,7 +112,7 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon' => 'EXT:news/Resources/Public/Icons/module_import.png',
+					'icon' => 'EXT:news/Resources/Public/Icons/module_import.svg',
 					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
 				)
 			);
@@ -133,7 +133,7 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon' => 'EXT:news/Resources/Public/Icons/module_administration.png',
+					'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
 					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
 				)
 			);
