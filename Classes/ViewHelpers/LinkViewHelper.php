@@ -77,6 +77,12 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
         $this->pluginSettingsService = $pluginSettingsService;
     }
 
+    public function initializeArguments()
+    {
+        $this->registerUniversalTagAttributes();
+        $this->registerTagAttribute('section', 'string', 'Anchor for links', false);
+    }
+
     /**
      * Render link to news item or internal/external pages
      *
@@ -121,6 +127,10 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
         $url = $this->cObj->typoLink_URL($configuration);
         if ($uriOnly) {
             return $url;
+        }
+
+        if ($this->hasArgument('section')) {
+            $url .= '#' . $this->arguments['section'];
         }
 
         $this->tag->addAttribute('href', $url);
