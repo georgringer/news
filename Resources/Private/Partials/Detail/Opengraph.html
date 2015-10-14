@@ -30,8 +30,8 @@
 		<n:metaTag property="og:description" content="{newsItem.description}" />
 	</f:then>
 	<f:else>
-		<n:metaTag name="description" content="{newsItem.teaser}" />
-		<n:metaTag property="og:description" content="{newsItem.teaser}" />
+		<n:metaTag name="description" content="{newsItem.teaser -> f:format.stripTags()}" />
+		<n:metaTag property="og:description" content="{newsItem.teaser -> f:format.stripTags()}" />
 	</f:else>
 </f:if>
 <n:metaTag name="keywords" content="{newsItem.keywords}" />
