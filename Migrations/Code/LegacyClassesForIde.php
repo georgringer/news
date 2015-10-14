@@ -327,12 +327,6 @@ class Tx_News_Service_CategoryService extends GeorgRinger\News\Service\CategoryS
 /**
  * @deprecated
  */
-class Tx_News_Service_CacheService extends GeorgRinger\News\Service\CacheService {}
-
-
-/**
- * @deprecated
- */
 class Tx_News_Service_AccessControlService extends GeorgRinger\News\Service\AccessControlService {}
 
 
