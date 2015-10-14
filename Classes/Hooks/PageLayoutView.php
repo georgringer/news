@@ -687,7 +687,7 @@ class PageLayoutView
      */
     protected function getDocumentTemplate()
     {
-        return $GLOBALS['SOBE']->doc;
+        return $GLOBALS['TBE_TEMPLATE'];
     }
 
 }
