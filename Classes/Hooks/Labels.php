@@ -37,16 +37,20 @@ class Labels {
 	 * @return void
 	 */
 	public function getUserLabelCategory(array &$params) {
-			// In list view: show normal label
-		$listView = strpos(GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/sysext/list/mod1/db_list.php')
-					||  strpos(GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?&M=web_list')
-					||  strpos(GeneralUtility::getIndpEnv('REQUEST_URI'), 'typo3/mod.php?M=web_list');
+		$showTranslationInformation = FALSE;
 
-			// No overlay if language of category is not base or no language yet selected
-		if ($listView || !is_array($params['row'])) {
-			$params['title'] = $params['row']['title'];
-		} else {
+		$getVars = GeneralUtility::_GET();
+		if (isset($getVars['route']) && $getVars['route'] === '/record/edit'
+		&& isset($getVars['edit']) && is_array($getVars['edit'])
+			&& (isset($getVars['edit']['tt_content']) || isset($getVars['edit']['tx_news_domain_model_news']) || isset($getVars['edit']['sys_category']))
+		) {
+			$showTranslationInformation = TRUE;
+		}
+
+		if ($showTranslationInformation && is_array($params['row'])) {
 			$params['title'] = CategoryService::translateCategoryRecord($params['row']['title'], $params['row']);
+		} else {
+			$params['title'] = $params['row']['title'];
 		}
 	}
 

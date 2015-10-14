@@ -119,3 +119,6 @@ $newSysCategoryColumns = array(
 
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_news_domain_model_news']
 = array(0 => 'categories');
+
+$GLOBALS['TCA']['sys_category']['ctrl']['label_userFunc'] =
+	\GeorgRinger\News\Hooks\Labels::class . '->getUserLabelCategory';
