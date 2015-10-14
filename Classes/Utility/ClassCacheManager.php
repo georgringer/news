@@ -14,8 +14,6 @@ namespace GeorgRinger\News\Utility;
  * The TYPO3 project - inspiring people to share!
  */
 
-use GeorgRinger\News\Utility\ClassLoader;
-use GeorgRinger\News\Utility\ClassParser;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 

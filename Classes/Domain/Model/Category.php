@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-use GeorgRinger\News\Domain\Model\FileReference;
 
 /**
  * Category Model

@@ -16,7 +16,6 @@ namespace GeorgRinger\News\Hooks;
  */
 use GeorgRinger\News\Service\AccessControlService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
-use TYPO3\CMS\Core\Messaging\FlashMessageQueue;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 

@@ -41,7 +41,6 @@ class Mp3Html5 implements MediaInterface
     public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height, $template = '')
     {
         $url = FileService::getCorrectUrl($element->getMultimedia());
-        $uniqueId = FileService::getUniqueId($element);
 
         $pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
         $pageRenderer->addJsFile(self::PATH_TO_JS . 'audio.min.js');

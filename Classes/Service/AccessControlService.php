@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Service;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

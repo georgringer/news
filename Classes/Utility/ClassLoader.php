@@ -16,7 +16,6 @@ namespace GeorgRinger\News\Utility;
  * The TYPO3 project - inspiring people to share!
  */
 
-use GeorgRinger\News\Utility\ClassCacheManager;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

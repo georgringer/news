@@ -87,7 +87,6 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 throw new \UnexpectedValueException('import.error.configuration.resourceFolderImporter');
             }
             $storage = $this->getResourceFactory()->getStorageObject($settings->getStorageUidImporter());
-            $folder = $storage->getFolder($path);
         } catch (FolderDoesNotExistException $e) {
             $error = 'import.error.configuration.resourceFolderImporter.notExist';
         } catch (\UnexpectedValueException $e) {

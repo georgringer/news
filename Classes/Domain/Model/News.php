@@ -14,10 +14,7 @@ namespace GeorgRinger\News\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-use GeorgRinger\News\Domain\Model\Category;
-use GeorgRinger\News\Domain\Model\File;
-use GeorgRinger\News\Domain\Model\FileReference;
-use GeorgRinger\News\Domain\Model\Link;
+
 
 /**
  * News model
