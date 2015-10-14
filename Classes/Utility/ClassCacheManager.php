@@ -114,11 +114,13 @@ class ClassCacheManager
                 $innerPart = array_slice($codeInLines, $classParserInformation['start']);
             }
 
+            if (trim($innerPart[0] === '{')) {
+                unset($innerPart[0]);
+            }
             $codePart = implode(LF, $innerPart);
             $closingBracket = strrpos($codePart, '}');
             $content = $this->getPartialInfo($filePath) . substr($codePart, 0, $closingBracket);
             return $content;
-
         }
     }
 
