@@ -2,53 +2,58 @@
 defined('TYPO3_MODE') or die();
 
 $boot = function($packageKey) {
-	// The following calls are targeted for BE but might be needed in FE editing
 
 	// CSH - context sensitive help
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_news', 'EXT:news/Resources/Private/Language/locallang_csh_news.xlf');
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_media', 'EXT:news/Resources/Private/Language/locallang_csh_media.xlf');
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_file', 'EXT:news/Resources/Private/Language/locallang_csh_file.xlf');
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_link', 'EXT:news/Resources/Private/Language/locallang_csh_link.xlf');
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-			'tx_news_domain_model_tag', 'EXT:news/Resources/Private/Language/locallang_csh_tag.xlf');
+	foreach(['news', 'media', 'file', 'link', 'tag'] as $table) {
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_' . $table);
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+			'tx_news_domain_model_' . $table, 'EXT:news/Resources/Private/Language/locallang_csh_' . $table . '.xlf');
+	}
+
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
 			'tt_content.pi_flexform.news_pi1.list', 'EXT:news/Resources/Private/Language/locallang_csh_flexforms.xlf');
-
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_news');
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_media');
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_file');
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_link');
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_tag');
 
 	// Extension manager configuration
 	$configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
-	/***************
-	 * News icon in page tree
-	 */
-	unset($GLOBALS['ICON_TYPES']['news']);
-	\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-news', '../typo3conf/ext/news/Resources/Public/Icons/folder.gif');
-
 	if (TYPO3_MODE === 'BE') {
+		/** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
+		$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+		$iconRegistry->registerIcon(
+			'apps-pagetree-folder-contains-news',
+			\TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+			array(
+				'source' => 'EXT:news/Resources/Public/Icons/folder.gif',
+			)
+		);
+		$iconRegistry->registerIcon(
+			'ext-news-type-default',
+			\TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+			array(
+				'source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.gif',
+			)
+		);
+		$iconRegistry->registerIcon(
+			'ext-news-type-internal',
+			\TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+			array(
+				'source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_internal.gif',
+			)
+		);
+		$iconRegistry->registerIcon(
+			'ext-news-type-external',
+			\TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+			array(
+				'source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_external.gif',
+			)
+		);
 
-		$addNewsToModuleSelection = TRUE;
-		foreach ($GLOBALS['TCA']['pages']['columns']['module']['config']['items'] as $item) {
-			if ($item[1] === 'news') {
-				$addNewsToModuleSelection = FALSE;
-				continue;
-			}
-		}
-		if ($addNewsToModuleSelection) {
-			$GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = array(
-				0 => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:news-folder',
-				1 => 'news',
-				2 => '../typo3conf/ext/news/Resources/Public/Icons/folder.gif'
-			);
-		}
+		// Override news icon
+		$GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = array(
+			0 => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:news-folder',
+			1 => 'news',
+			2 => 'apps-pagetree-folder-contains-news'
+		);
 
 		/***************
 		 * Show news table in page module

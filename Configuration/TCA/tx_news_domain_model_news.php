@@ -25,9 +25,10 @@ $tx_news_domain_model_news = array(
 		'editlock' => 'editlock',
 		'type' => 'type',
 		'typeicon_column' => 'type',
-		'typeicons' => array(
-			'1' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_internal.gif',
-			'2' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_external.gif',
+		'typeicon_classes' => array(
+			'default' => 'ext-news-type-default',
+			'1' => 'ext-news-type-internal',
+			'2' => 'ext-news-type-external',
 		),
 		'dividers2tabs' => TRUE,
 		'useColumnsForDefaultValues' => 'type',
