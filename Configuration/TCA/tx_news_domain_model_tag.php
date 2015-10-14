@@ -61,11 +61,11 @@ return array(
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'title;;palletteCore,'
+			'showitem' => 'title, --palette--;;paletteCore'
 		)
 	),
 	'palettes' => array(
-		'palletteCore' => array(
+		'paletteCore' => array(
 			'showitem' => 'hidden,',
 			'canNotCollapse' => TRUE
 		),

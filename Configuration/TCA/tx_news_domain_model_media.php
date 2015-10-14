@@ -183,6 +183,7 @@ $tx_news_domain_model_media = array(
 			'label' => 'LLL:EXT:cms/locallang_ttc.xlf:media.type',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array($ll . 'tx_news_domain_model_media.type.I.0', '0', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/media_type_image.png'),
 					array($ll . 'tx_news_domain_model_media.type.I.1', '1', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/media_type_multimedia.png'),
@@ -235,7 +236,7 @@ $tx_news_domain_model_media = array(
 						'RTEonly' => 1,
 						'type' => 'script',
 						'title' => 'Full screen Rich Text Editing',
-						'icon' => 'wizard_rte2.gif',
+						'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_rte.gif',
 						'module' => array(
 							'name' => 'wizard_rte',
 						),
@@ -246,16 +247,16 @@ $tx_news_domain_model_media = array(
 	),
 	'types' => array(
 		// Image
-		'0' => array('showitem' => '--palette--;;palettteCore,image;;paletteWidthHeight,caption,title;;paletteAlt,copyright,description;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],'),
+		'0' => array('showitem' => '--palette--;;paletteCore,image, --palette--;;paletteWidthHeight,caption,title, --palette--;;paletteAlt,copyright,description;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],'),
 		// Multimedia (Video & Audio)
-		'1' => array('showitem' => '--palette--;;palettteCore,multimedia,caption,copyright,description,'),
+		'1' => array('showitem' => '--palette--;;paletteCore,multimedia,caption,copyright,description,'),
 	),
 	'palettes' => array(
 		'paletteWidthHeight' => array(
 			'showitem' => 'width,height,',
 			'canNotCollapse' => TRUE
 		),
-		'palettteCore' => array(
+		'paletteCore' => array(
 			'showitem' => 'type,showinpreview, hidden,sys_language_uid, l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),

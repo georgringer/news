@@ -136,6 +136,7 @@ return array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.fe_group',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectMultipleSideBySide',
 				'size' => 5,
 				'maxitems' => 20,
 				'items' => array(
@@ -151,11 +152,11 @@ return array(
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'file;;palettteCore,title;;palettteDescription,fe_group'
+			'showitem' => 'file, --palette--;;palettteCore,title, --palette--;;palettteDescription,fe_group'
 		)
 	),
 	'palettes' => array(
-		'palettteCore' => array(
+		'paletteCore' => array(
 			'showitem' => 'hidden,sys_language_uid, l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),

@@ -219,7 +219,7 @@ $tx_news_domain_model_news = array(
 						'RTEonly' => 1,
 						'type' => 'script',
 						'title' => 'Full screen Rich Text Editing',
-						'icon' => 'wizard_rte2.gif',
+						'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_rte.gif',
 						'module' => array(
 							'name' => 'wizard_rte',
 						),
@@ -286,7 +286,7 @@ $tx_news_domain_model_news = array(
 			'label' => $ll . 'tx_news_domain_model_news.categories',
 			'config' => array(
 				'type' => 'select',
-				'renderMode' => 'tree',
+				'renderType' => 'selectTree',
 				'treeConfig' => array(
 					'dataProvider' => \GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider::class,
 					'parentField' => 'parent',
@@ -572,7 +572,7 @@ $tx_news_domain_model_news = array(
 					'list' => array(
 						'type' => 'script',
 						'title' => $ll . 'tx_news_domain_model_news.tags.list',
-						'icon' => 'list.gif',
+						'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_list.gif',
 						'params' => array(
 							'table' => 'tx_news_domain_model_tag',
 							'pid' => $configuration->getTagPid(),
@@ -588,7 +588,7 @@ $tx_news_domain_model_news = array(
 							'name' => 'wizard_edit',
 						),
 						'popup_onlyOpenIfSelected' => 1,
-						'icon' => 'edit2.gif',
+						'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_edit.gif',
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
 					),
 				),
@@ -621,7 +621,7 @@ $tx_news_domain_model_news = array(
 		// default news
 		'0' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore,teaser' . $teaserRteConfiguration . ',author;;paletteAuthor,datetime;;paletteArchive,
+					title,--palette--;;paletteCore,teaser' . $teaserRteConfiguration . ',author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,
 					bodytext;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],
 					rte_disabled;LLL:EXT:cms/locallang_ttc.xlf:rte_enabled_formlabel,
 					content_elements,
@@ -639,7 +639,7 @@ $tx_news_domain_model_news = array(
 		// internal url
 		'1' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore, teaser' . $teaserRteConfiguration . ',author;;paletteAuthor,datetime;;paletteArchive,internalurl,
+					title,--palette--;;paletteCore, teaser' . $teaserRteConfiguration . ',author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,internalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.access;paletteAccess,
@@ -654,7 +654,7 @@ $tx_news_domain_model_news = array(
 		// external url
 		'2' => array(
 			'showitem' => 'l10n_parent, l10n_diffsource,
-					title;;paletteCore, teaser' . $teaserRteConfiguration . ',author;;paletteAuthor,datetime;;paletteArchive,externalurl,
+					title,--palette--;;paletteCore, teaser' . $teaserRteConfiguration . ',author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,externalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.access;paletteAccess,

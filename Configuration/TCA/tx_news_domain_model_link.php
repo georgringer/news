@@ -139,15 +139,15 @@ return array(
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'uri;;palettteCore,title;;palettteDescription,'
+			'showitem' => 'uri, --palette--;;palettteCore,title, --palette--;;paletteDescription'
 		)
 	),
 	'palettes' => array(
-		'palettteCore' => array(
+		'paletteCore' => array(
 			'showitem' => 'hidden,sys_language_uid,l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),
-		'palettteDescription' => array(
+		'paletteDescription' => array(
 			'showitem' => 'description',
 			'canNotCollapse' => FALSE
 		)
