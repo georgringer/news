@@ -10,6 +10,7 @@ tx_news_sitemap {
 		additionalHeaders = Content-Type:text/xml;charset=utf-8
 		disablePrefixComment = 1
 	}
+
 	wrap = <?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">|</urlset>
 	10 = CONTENT
 	10 {
@@ -23,6 +24,7 @@ tx_news_sitemap {
 			languageField = sys_language_uid
 			where = type=0
 		}
+
 		renderObj = COA
 		renderObj {
 			wrap = <url>|</url>
@@ -31,7 +33,7 @@ tx_news_sitemap {
 				wrap = <loc>|</loc>
 				10 = COA
 				10 {
-						# htmlSpecialChar on the link to encode ampersand
+					# htmlSpecialChar on the link to encode ampersand
 					stdWrap.htmlSpecialChars = 1
 					10 = TEXT
 					10 {
@@ -45,14 +47,16 @@ tx_news_sitemap {
 					}
 				}
 			}
+
 			20 = TEXT
 			20.wrap = <lastmod>|</lastmod>
 			20.field = tstamp
 			20.date = Y-m-d
 		}
 	}
-		# Add more news urls in the same sitemap
-		# from other page with a different detail view page if needed
+
+	# Add more news urls in the same sitemap
+	# from other page with a different detail view page if needed
 	#20 < .10
 	#20.select.pidInList = Startingpoint
 	#20.select.recursive = 0

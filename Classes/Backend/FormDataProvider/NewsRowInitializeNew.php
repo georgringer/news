@@ -20,30 +20,32 @@ use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 /**
  * Fill the news records with default values
  */
-class NewsRowInitializeNew implements FormDataProviderInterface {
+class NewsRowInitializeNew implements FormDataProviderInterface
+{
 
-	/**
-	 * @param array $result
-	 * @return array
-	 */
-	public function addData(array $result) {
-		if ($result['command'] !== 'new' || $result['tableName'] !== 'tx_news_domain_model_news') {
-			return $result;
-		}
+    /**
+     * @param array $result
+     * @return array
+     */
+    public function addData(array $result)
+    {
+        if ($result['command'] !== 'new' || $result['tableName'] !== 'tx_news_domain_model_news') {
+            return $result;
+        }
 
-		$result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
+        $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
 
-		if (is_array($result['pageTsConfig']['tx_news.'])
-			&& is_array($result['pageTsConfig']['tx_news.']['predefine.'])
-			&& isset($result['pageTsConfig']['tx_news.']['predefine.']['archive'])
-		) {
-			$calculatedTime = strtotime($result['pageTsConfig']['tx_news.']['predefine.']['archive']);
+        if (is_array($result['pageTsConfig']['tx_news.'])
+            && is_array($result['pageTsConfig']['tx_news.']['predefine.'])
+            && isset($result['pageTsConfig']['tx_news.']['predefine.']['archive'])
+        ) {
+            $calculatedTime = strtotime($result['pageTsConfig']['tx_news.']['predefine.']['archive']);
 
-			if ($calculatedTime !== FALSE) {
-				$result['databaseRow']['archive'] = $calculatedTime;
-			}
-		}
+            if ($calculatedTime !== false) {
+                $result['databaseRow']['archive'] = $calculatedTime;
+            }
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 }

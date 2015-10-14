@@ -17,75 +17,81 @@ use TYPO3\CMS\Install\Updates\AbstractUpdate;
  *
  * The TYPO3 project - inspiring people to share!
  */
-class TtContentRelation extends AbstractUpdate {
+class TtContentRelation extends AbstractUpdate
+{
 
-	const MM_TABLE = 'tx_news_domain_model_news_ttcontent_mm';
+    const MM_TABLE = 'tx_news_domain_model_news_ttcontent_mm';
 
-	protected $title = 'EXT:news Migrate from tt_content mm relation';
+    protected $title = 'EXT:news Migrate from tt_content mm relation';
 
-	/**
-	 * Checks whether updates are required.
-	 *
-	 * @param string &$description The description for the update
-	 * @return bool Whether an update is required (TRUE) or not (FALSE)
-	 */
-	public function checkForUpdate(&$description) {
-		$status = FALSE;
+    /**
+     * Checks whether updates are required.
+     *
+     * @param string &$description The description for the update
+     * @return bool Whether an update is required (TRUE) or not (FALSE)
+     */
+    public function checkForUpdate(&$description)
+    {
+        $status = false;
 
-		$databaseTables = $this->getDatabaseConnection()->admin_get_tables();
-		if (!isset($databaseTables[self::MM_TABLE])) {
-			$description = sprintf('The database table "%s" does not exist, nothing to do!', self::MM_TABLE);
-		} else {
-			$countRows = $this->getDatabaseConnection()->exec_SELECTcountRows('*', self::MM_TABLE, '1=1');
-			if ($countRows === 0) {
-				$description = sprintf('The database table "%s" is empty, nothing to do', self::MM_TABLE);
-			} else {
-				$description = sprintf('The database table "%s" contains <strong>%s</strong> entries which will be migrated!', self::MM_TABLE, $countRows);
+        $databaseTables = $this->getDatabaseConnection()->admin_get_tables();
+        if (!isset($databaseTables[self::MM_TABLE])) {
+            $description = sprintf('The database table "%s" does not exist, nothing to do!', self::MM_TABLE);
+        } else {
+            $countRows = $this->getDatabaseConnection()->exec_SELECTcountRows('*', self::MM_TABLE, '1=1');
+            if ($countRows === 0) {
+                $description = sprintf('The database table "%s" is empty, nothing to do', self::MM_TABLE);
+            } else {
+                $description = sprintf('The database table "%s" contains <strong>%s</strong> entries which will be migrated!',
+                    self::MM_TABLE, $countRows);
 
-				$firstContentElementRow = $this->getDatabaseConnection()->exec_SELECTgetSingleRow('*', 'tt_content', '1=1');
-				if (!isset($firstContentElementRow['tx_news_related_news'])) {
-					$status = FALSE;
-					$description .= '<br><strong>WARNING:</strong> The database table "tt_content" does not contain the column <i>tx_news_related_news</i> which is needed!';
-					$description .= '<br>Use the Database Compare to add this field!';
-				} else {
-					$status = TRUE;
-				}
+                $firstContentElementRow = $this->getDatabaseConnection()->exec_SELECTgetSingleRow('*', 'tt_content',
+                    '1=1');
+                if (!isset($firstContentElementRow['tx_news_related_news'])) {
+                    $status = false;
+                    $description .= '<br><strong>WARNING:</strong> The database table "tt_content" does not contain the column <i>tx_news_related_news</i> which is needed!';
+                    $description .= '<br>Use the Database Compare to add this field!';
+                } else {
+                    $status = true;
+                }
 
-			}
-		}
+            }
+        }
 
-		return $status;
-	}
+        return $status;
+    }
 
-	/**
-	 * Performs the accordant updates.
-	 *
-	 * @param array &$dbQueries Queries done in this update
-	 * @param mixed &$customMessages Custom messages
-	 * @return bool Whether everything went smoothly or not
-	 */
-	public function performUpdate(array &$dbQueries, &$customMessages) {
-		$rows = $this->getDatabaseConnection()->exec_SELECTgetRows('*', self::MM_TABLE, '1=1');
-		foreach ($rows as $row) {
-			$update = array(
-				'tx_news_related_news' => $row['uid_local'],
-				'sorting' => $row['sorting']
-			);
-			$this->getDatabaseConnection()->exec_UPDATEquery(
-				'tt_content',
-				'uid=' . $row['uid_foreign'],
-				$update
-			);
-		}
+    /**
+     * Performs the accordant updates.
+     *
+     * @param array &$dbQueries Queries done in this update
+     * @param mixed &$customMessages Custom messages
+     * @return bool Whether everything went smoothly or not
+     */
+    public function performUpdate(array &$dbQueries, &$customMessages)
+    {
+        $rows = $this->getDatabaseConnection()->exec_SELECTgetRows('*', self::MM_TABLE, '1=1');
+        foreach ($rows as $row) {
+            $update = array(
+                'tx_news_related_news' => $row['uid_local'],
+                'sorting' => $row['sorting']
+            );
+            $this->getDatabaseConnection()->exec_UPDATEquery(
+                'tt_content',
+                'uid=' . $row['uid_foreign'],
+                $update
+            );
+        }
 
-		return TRUE;
-	}
+        return true;
+    }
 
 
-	/**
-	 * @return DatabaseConnection
-	 */
-	protected function getDatabaseConnection() {
-		return $GLOBALS['TYPO3_DB'];
-	}
+    /**
+     * @return DatabaseConnection
+     */
+    protected function getDatabaseConnection()
+    {
+        return $GLOBALS['TYPO3_DB'];
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -30,38 +30,40 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage tx_news
  */
-class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
-	/**
-	 * Include a CSS/JS file
-	 *
-	 * @param string $path Path to the CSS/JS file which should be included
-	 * @param boolean $compress Define if file should be compressed
-	 * @return void
-	 */
-	public function render($path, $compress = FALSE) {
-		$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
-		if (TYPO3_MODE === 'FE') {
-			$path = $GLOBALS['TSFE']->tmpl->getFileName($path);
+    /**
+     * Include a CSS/JS file
+     *
+     * @param string $path Path to the CSS/JS file which should be included
+     * @param boolean $compress Define if file should be compressed
+     * @return void
+     */
+    public function render($path, $compress = false)
+    {
+        $pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+        if (TYPO3_MODE === 'FE') {
+            $path = $GLOBALS['TSFE']->tmpl->getFileName($path);
 
-				// JS
-			if (strtolower(substr($path, -3)) === '.js') {
-				$pageRenderer->addJsFile($path, NULL, $compress);
+            // JS
+            if (strtolower(substr($path, -3)) === '.js') {
+                $pageRenderer->addJsFile($path, null, $compress);
 
-				// CSS
-			} elseif (strtolower(substr($path, -4)) === '.css') {
-				$pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress);
-			}
-		} else {
-				// JS
-			if (strtolower(substr($path, -3)) === '.js') {
-				$pageRenderer->addJsFile($path, NULL, $compress);
+                // CSS
+            } elseif (strtolower(substr($path, -4)) === '.css') {
+                $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress);
+            }
+        } else {
+            // JS
+            if (strtolower(substr($path, -3)) === '.js') {
+                $pageRenderer->addJsFile($path, null, $compress);
 
-				// CSS
-			} elseif (strtolower(substr($path, -4)) === '.css') {
-				$pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress);
-			}
-		}
-	}
+                // CSS
+            } elseif (strtolower(substr($path, -4)) === '.css') {
+                $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress);
+            }
+        }
+    }
 
 }

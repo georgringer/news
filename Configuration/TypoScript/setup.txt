@@ -1,4 +1,3 @@
-
 # ==============================================
 # FE-Plugin configuration for EXT:news
 # ==============================================
@@ -10,16 +9,20 @@ plugin.tx_news {
 			0 = EXT:news/Resources/Private/Templates/
 			1 = {$plugin.tx_news.view.templateRootPath}
 		}
+
 		partialRootPaths {
 			0 = EXT:news/Resources/Private/Partials/
 			1 = {$plugin.tx_news.view.partialRootPath}
 		}
+
 		layoutRootPaths {
 			0 = EXT:news/Resources/Private/Layouts/
 			1 = {$plugin.tx_news.view.layoutRootPath}
 		}
+
 		widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/
 	}
+
 	# Modify the translation
 	_LOCAL_LANG {
 		default {
@@ -86,10 +89,12 @@ plugin.tx_news {
 			media {
 				video = GeorgRinger\News\MediaRenderer\Audio\Mp3Html5,GeorgRinger\News\MediaRenderer\Audio\Mp3,GeorgRinger\News\MediaRenderer\Video\Quicktime,GeorgRinger\News\MediaRenderer\Video\File,GeorgRinger\News\MediaRenderer\Video\Youtube,GeorgRinger\News\MediaRenderer\Video\Vimeo,GeorgRinger\News\MediaRenderer\Video\Videosites
 			}
+
 			falMedia {
 				video = GeorgRinger\News\MediaRenderer\Video\Fal
 			}
 		}
+
 		mediaRenderer {
 			youtube {
 				additionalParams =
@@ -146,6 +151,7 @@ plugin.tx_news {
 					maxWidth = 100
 					maxHeight = 100
 				}
+
 				dummyImage = typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png
 			}
 
@@ -224,6 +230,7 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 			1 = detail
 		}
 	}
+
 	settings < plugin.tx_news.settings
 	settings {
 		singleNews.field = uid
@@ -231,7 +238,6 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 		insertRecord = 1
 	}
 }
-
 
 # ==============================================
 # BE-module configuration for EXT:news
@@ -256,12 +262,14 @@ config.tx_extbase.persistence.classes {
 			tableName = tx_news_domain_model_news
 		}
 	}
+
 	GeorgRinger\News\Domain\Model\NewsExternal {
 		mapping {
 			recordType = 1
 			tableName = tx_news_domain_model_news
 		}
 	}
+
 	GeorgRinger\News\Domain\Model\NewsInternal {
 		mapping {
 			recordType = 2

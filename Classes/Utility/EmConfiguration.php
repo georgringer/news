@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -23,33 +23,36 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage tx_news
  */
-class EmConfiguration {
+class EmConfiguration
+{
 
-	/**
-	 * Parses the extension settings.
-	 *
-	 * @return \GeorgRinger\News\Domain\Model\Dto\EmConfiguration
-	 * @throws \Exception If the configuration is invalid.
-	 */
-	public static function getSettings() {
-		$configuration = self::parseSettings();
-		GeneralUtility::requireOnce(ExtensionManagementUtility::extPath('news') . 'Classes/Domain/Model/Dto/EmConfiguration.php');
-		$settings = new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration($configuration);
-		return $settings;
-	}
+    /**
+     * Parses the extension settings.
+     *
+     * @return \GeorgRinger\News\Domain\Model\Dto\EmConfiguration
+     * @throws \Exception If the configuration is invalid.
+     */
+    public static function getSettings()
+    {
+        $configuration = self::parseSettings();
+        GeneralUtility::requireOnce(ExtensionManagementUtility::extPath('news') . 'Classes/Domain/Model/Dto/EmConfiguration.php');
+        $settings = new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration($configuration);
+        return $settings;
+    }
 
-	/**
-	 * Parse settings and return it as array
-	 *
-	 * @return array unserialized extconf settings
-	 */
-	public static function parseSettings() {
-		$settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
+    /**
+     * Parse settings and return it as array
+     *
+     * @return array unserialized extconf settings
+     */
+    public static function parseSettings()
+    {
+        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
 
-		if (!is_array($settings)) {
-			$settings = array();
-		}
-		return $settings;
-	}
+        if (!is_array($settings)) {
+            $settings = array();
+        }
+        return $settings;
+    }
 
 }

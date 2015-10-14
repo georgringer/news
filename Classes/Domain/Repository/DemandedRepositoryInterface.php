@@ -23,7 +23,9 @@ use GeorgRinger\News\Domain\Model\DemandInterface;
  * @package TYPO3
  * @subpackage tx_news
  */
-interface DemandedRepositoryInterface {
-	public function findDemanded(DemandInterface $demand, $respectEnableFields = TRUE);
-	public function countDemanded(DemandInterface $demand);
+interface DemandedRepositoryInterface
+{
+    public function findDemanded(DemandInterface $demand, $respectEnableFields = true);
+
+    public function countDemanded(DemandInterface $demand);
 }

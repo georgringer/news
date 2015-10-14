@@ -51,8 +51,11 @@ class EditRecordViewHelper extends AbstractViewHelper implements CompilableInter
      *
      * @return string
      */
-    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
         $parameters = GeneralUtility::explodeUrl2Array($arguments['parameters']);
 
         $parameters['returnUrl'] = 'index.php?M=web_NewsTxNewsM2&id=' . (int)GeneralUtility::_GET('id')

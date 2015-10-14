@@ -23,24 +23,25 @@ use GeorgRinger\News\Domain\Model\FileReference;
  * @package TYPO3
  * @subpackage tx_news
  */
-interface FalMediaInterface {
+interface FalMediaInterface
+{
 
-	/**
-	 * Render a media element
-	 *
-	 * @param FileReference $element
-	 * @param integer $width
-	 * @param integer $height
-	 * @return string
-	 */
-	public function render(FileReference $element, $width, $height);
+    /**
+     * Render a media element
+     *
+     * @param FileReference $element
+     * @param integer $width
+     * @param integer $height
+     * @return string
+     */
+    public function render(FileReference $element, $width, $height);
 
-	/**
-	 * If enabled
-	 *
-	 * @param FileReference $element
-	 * @return string
-	 */
-	public function enabled(FileReference $element);
+    /**
+     * If enabled
+     *
+     * @param FileReference $element
+     * @return string
+     */
+    public function enabled(FileReference $element);
 
 }

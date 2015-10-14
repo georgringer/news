@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Service;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -23,63 +23,68 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage tx_news
  */
-class CacheService {
+class CacheService
+{
 
-	/**
-	 * @var \TYPO3\CMS\Core\Cache\Frontend\AbstractFrontend
-	 */
-	protected $cacheInstance;
+    /**
+     * @var \TYPO3\CMS\Core\Cache\Frontend\AbstractFrontend
+     */
+    protected $cacheInstance;
 
-	/**
-	 * @var string
-	 */
-	protected $cacheName;
+    /**
+     * @var string
+     */
+    protected $cacheName;
 
-	/**
-	 * @var CacheManager
-	 */
-	protected $cacheManager;
+    /**
+     * @var CacheManager
+     */
+    protected $cacheManager;
 
-	/**
-	 * @param $cacheName string cache name
-	 * @deprecated since 3.0 will be removed in 4.0
-	 */
-	public function __construct($cacheName) {
-		GeneralUtility::logDeprecatedFunction();
-		$this->cacheName = $cacheName;
-		$this->cacheManager = GeneralUtility::makeInstance(CacheManager::class);
-	}
+    /**
+     * @param $cacheName string cache name
+     * @deprecated since 3.0 will be removed in 4.0
+     */
+    public function __construct($cacheName)
+    {
+        GeneralUtility::logDeprecatedFunction();
+        $this->cacheName = $cacheName;
+        $this->cacheManager = GeneralUtility::makeInstance(CacheManager::class);
+    }
 
-	/**
-	 * Get entry from caching framework
-	 *
-	 * @param string $cacheIdentifier cache identifier
-	 * @return mixed or NULL if not found
-	 */
-	public function get($cacheIdentifier) {
-		$entry = $this->cacheManager->getCache($this->cacheName)->get($cacheIdentifier);
-		return $entry;
-	}
+    /**
+     * Get entry from caching framework
+     *
+     * @param string $cacheIdentifier cache identifier
+     * @return mixed or NULL if not found
+     */
+    public function get($cacheIdentifier)
+    {
+        $entry = $this->cacheManager->getCache($this->cacheName)->get($cacheIdentifier);
+        return $entry;
+    }
 
-	/**
-	 * Set an entry to the caching framework
-	 *
-	 * @param string $cacheIdentifier
-	 * @param string $entry
-	 * @param array $tags
-	 * @param integer $lifetime
-	 * @return void
-	 */
-	public function set($cacheIdentifier, $entry, array $tags = array(), $lifetime = NULL) {
-		$this->cacheManager->getCache($this->cacheName)->set($cacheIdentifier, $entry, $tags, $lifetime);
-	}
+    /**
+     * Set an entry to the caching framework
+     *
+     * @param string $cacheIdentifier
+     * @param string $entry
+     * @param array $tags
+     * @param integer $lifetime
+     * @return void
+     */
+    public function set($cacheIdentifier, $entry, array $tags = array(), $lifetime = null)
+    {
+        $this->cacheManager->getCache($this->cacheName)->set($cacheIdentifier, $entry, $tags, $lifetime);
+    }
 
-	/**
-	 * Flush cache
-	 *
-	 * @return void
-	 */
-	public function flush() {
-		$this->cacheManager->getCache($this->cacheName)->flush();
-	}
+    /**
+     * Flush cache
+     *
+     * @return void
+     */
+    public function flush()
+    {
+        $this->cacheManager->getCache($this->cacheName)->flush();
+    }
 }

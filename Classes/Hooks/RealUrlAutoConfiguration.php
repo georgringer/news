@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -23,40 +23,42 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  * @package TYPO3
  * @subpackage tx_news
  */
-class RealUrlAutoConfiguration {
+class RealUrlAutoConfiguration
+{
 
-	/**
-	 * Generates additional RealURL configuration and merges it with provided configuration
-	 *
-	 * @param       array $params Default configuration
-	 * @return      array Updated configuration
-	 */
-	public function addNewsConfig($params) {
+    /**
+     * Generates additional RealURL configuration and merges it with provided configuration
+     *
+     * @param       array $params Default configuration
+     * @return      array Updated configuration
+     */
+    public function addNewsConfig($params)
+    {
 
-		// Check for proper unique key
-		$postVar = (ExtensionManagementUtility::isLoaded('tt_news') ? 'tx_news' : 'news');
+        // Check for proper unique key
+        $postVar = (ExtensionManagementUtility::isLoaded('tt_news') ? 'tx_news' : 'news');
 
-		return array_merge_recursive($params['config'], array(
-				'postVarSets' => array(
-					'_DEFAULT' => array(
-						$postVar => array(
-							array(
-								'GETvar' => 'tx_news_pi1[news]',
-								'lookUpTable' => array(
-									'table' => 'tx_news_domain_model_news',
-									'id_field' => 'uid',
-									'alias_field' => 'title',
-									'useUniqueCache' => 1,
-									'useUniqueCache_conf' => array(
-										'strtolower' => 1,
-										'spaceCharacter' => '-',
-									),
-								),
-							),
-						),
-					)
-				)
-			)
-		);
-	}
+        return array_merge_recursive($params['config'], array(
+                'postVarSets' => array(
+                    '_DEFAULT' => array(
+                        $postVar => array(
+                            array(
+                                'GETvar' => 'tx_news_pi1[news]',
+                                'lookUpTable' => array(
+                                    'table' => 'tx_news_domain_model_news',
+                                    'id_field' => 'uid',
+                                    'alias_field' => 'title',
+                                    'useUniqueCache' => 1,
+                                    'useUniqueCache_conf' => array(
+                                        'strtolower' => 1,
+                                        'spaceCharacter' => '-',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    )
+                )
+            )
+        );
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Format;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -39,21 +39,23 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @subpackage tx_news
  * @see http://de.php.net/manual/de/function.strip-tags.php
  */
-class StriptagsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class StriptagsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
-	protected $escapingInterceptorEnabled = FALSE;
+    protected $escapingInterceptorEnabled = false;
 
-	/**
-	 * Strip tags
-	 *
-	 * @param string $allowTags Allowed tags
-	 * @return string
-	 * @deprecated
-	 */
-	public function render($allowTags = '') {
-		GeneralUtility::deprecationLog('The ViewHelper "format.striptags" of EXT:news is deprecated! Use <f:format.stripTags>!');
+    /**
+     * Strip tags
+     *
+     * @param string $allowTags Allowed tags
+     * @return string
+     * @deprecated
+     */
+    public function render($allowTags = '')
+    {
+        GeneralUtility::deprecationLog('The ViewHelper "format.striptags" of EXT:news is deprecated! Use <f:format.stripTags>!');
 
-		$content = strip_tags($this->renderChildren(), $allowTags);
-		return $content;
-	}
+        $content = strip_tags($this->renderChildren(), $allowTags);
+        return $content;
+    }
 }

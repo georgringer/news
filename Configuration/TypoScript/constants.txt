@@ -8,15 +8,17 @@ plugin.tx_news {
 		category =
 		generator = TYPO3 EXT:news
 	}
+
 	opengraph {
 		site_name =
 	}
+
 	view {
-		 # cat=plugin.tx_news/file; type=string; label=Path to template root (FE)
+		# cat=plugin.tx_news/file; type=string; label=Path to template root (FE)
 		templateRootPath = EXT:news/Resources/Private/Templates/
-		 # cat=plugin.tx_news/file; type=string; label=Path to template partials (FE)
+		# cat=plugin.tx_news/file; type=string; label=Path to template partials (FE)
 		partialRootPath = EXT:news/Resources/Private/Partials/
-		 # cat=plugin.tx_news/file; type=string; label=Path to template layouts (FE)
+		# cat=plugin.tx_news/file; type=string; label=Path to template layouts (FE)
 		layoutRootPath = EXT:news/Resources/Private/Layouts/
 	}
 

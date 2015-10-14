@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Social;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -29,39 +29,42 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage tx_news
  */
-class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
-	protected $escapingInterceptorEnabled = FALSE;
+    protected $escapingInterceptorEnabled = false;
 
-	/**
-	 * @var \GeorgRinger\News\Service\SettingsService
-	 */
-	protected $pluginSettingsService;
+    /**
+     * @var \GeorgRinger\News\Service\SettingsService
+     */
+    protected $pluginSettingsService;
 
-	/**
-	 * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
-	 * @return void
-	 */
-	public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService) {
-		$this->pluginSettingsService = $pluginSettingsService;
-	}
+    /**
+     * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     * @return void
+     */
+    public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
+    {
+        $this->pluginSettingsService = $pluginSettingsService;
+    }
 
-	/**
-	 * Render disqus thread
-	 *
-	 * @param \GeorgRinger\News\Domain\Model\News $newsItem news item
-	 * @param string $shortName shortname
-	 * @param string $link link
-	 * @return string
-	 */
-	public function render(\GeorgRinger\News\Domain\Model\News $newsItem, $shortName, $link) {
-		$tsSettings = $this->pluginSettingsService->getSettings();
+    /**
+     * Render disqus thread
+     *
+     * @param \GeorgRinger\News\Domain\Model\News $newsItem news item
+     * @param string $shortName shortname
+     * @param string $link link
+     * @return string
+     */
+    public function render(\GeorgRinger\News\Domain\Model\News $newsItem, $shortName, $link)
+    {
+        $tsSettings = $this->pluginSettingsService->getSettings();
 
-		$code = '<script type="text/javascript">
-					var disqus_shortname = ' . GeneralUtility::quoteJSvalue($shortName, TRUE) . ';
+        $code = '<script type="text/javascript">
+					var disqus_shortname = ' . GeneralUtility::quoteJSvalue($shortName, true) . ';
 					var disqus_identifier = \'news_' . $newsItem->getUid() . '\';
-					var disqus_url = ' . GeneralUtility::quoteJSvalue($link, TRUE) . ';
-					var disqus_title = ' . GeneralUtility::quoteJSvalue($newsItem->getTitle(), TRUE) . ';
+					var disqus_url = ' . GeneralUtility::quoteJSvalue($link, true) . ';
+					var disqus_title = ' . GeneralUtility::quoteJSvalue($newsItem->getTitle(), true) . ';
 					var disqus_config = function () {
 						this.language = ' . GeneralUtility::quoteJSvalue($tsSettings['disqusLocale']) . ';
 					};
@@ -73,6 +76,6 @@ class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
 					})();
 				</script>';
 
-		return $code;
-	}
+        return $code;
+    }
 }

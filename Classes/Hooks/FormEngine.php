@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -26,55 +26,57 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package TYPO3
  * @subpackage tx_news
  */
-class FormEngine {
+class FormEngine
+{
 
-	/**
-	 * Path to the locallang file
-	 *
-	 * @var string
-	 */
-	const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
+    /**
+     * Path to the locallang file
+     *
+     * @var string
+     */
+    const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
 
-	/**
-	 * Pre-processing of the whole TCEform
-	 *
-	 * @param string $table
-	 * @param array $row
-	 * @param \TYPO3\CMS\Backend\Form\FormEngine $parentObject
-	 * @todo this hook won't work, do we need it?
-	 */
-	public function getMainFields_preProcess($table, $row, $parentObject) {
-		if ($table !== 'tx_news_domain_model_news') {
-			return;
-		}
-		if (!AccessControlService::userHasCategoryPermissionsForRecord($row)) {
-			if (method_exists($parentObject, 'setRenderReadonly')) {
-				$parentObject->setRenderReadonly(TRUE);
-			} else {
-				$parentObject->renderReadonly = TRUE;
-			}
-			$flashMessageContent = $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.content', TRUE);
-			$flashMessageContent .= '<ul>';
-			$accessDeniedCategories = AccessControlService::getAccessDeniedCategories($row);
-			foreach ($accessDeniedCategories as $accessDeniedCategory) {
-				$flashMessageContent .= '<li>' . htmlspecialchars($accessDeniedCategory['title']) . ' [' . $accessDeniedCategory['uid'] . ']</li>';
-			}
-			$flashMessageContent .= '</ul>';
+    /**
+     * Pre-processing of the whole TCEform
+     *
+     * @param string $table
+     * @param array $row
+     * @param \TYPO3\CMS\Backend\Form\FormEngine $parentObject
+     * @todo this hook won't work, do we need it?
+     */
+    public function getMainFields_preProcess($table, $row, $parentObject)
+    {
+        if ($table !== 'tx_news_domain_model_news') {
+            return;
+        }
+        if (!AccessControlService::userHasCategoryPermissionsForRecord($row)) {
+            if (method_exists($parentObject, 'setRenderReadonly')) {
+                $parentObject->setRenderReadonly(true);
+            } else {
+                $parentObject->renderReadonly = true;
+            }
+            $flashMessageContent = $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.content', true);
+            $flashMessageContent .= '<ul>';
+            $accessDeniedCategories = AccessControlService::getAccessDeniedCategories($row);
+            foreach ($accessDeniedCategories as $accessDeniedCategory) {
+                $flashMessageContent .= '<li>' . htmlspecialchars($accessDeniedCategory['title']) . ' [' . $accessDeniedCategory['uid'] . ']</li>';
+            }
+            $flashMessageContent .= '</ul>';
 
-			/** @var FlashMessage $flashMessage */
-			$flashMessage = GeneralUtility::makeInstance(
-				'TYPO3\CMS\Core\Messaging\FlashMessage',
-				$flashMessageContent,
-				$GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.header', TRUE),
-				FlashMessage::WARNING
-			);
+            /** @var FlashMessage $flashMessage */
+            $flashMessage = GeneralUtility::makeInstance(
+                'TYPO3\CMS\Core\Messaging\FlashMessage',
+                $flashMessageContent,
+                $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.header', true),
+                FlashMessage::WARNING
+            );
 
-			/** @var FlashMessageService $flashMessageService */
-			$flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
-			/** @var $defaultFlashMessageQueue \TYPO3\CMS\Core\Messaging\FlashMessageQueue */
-			$defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
-			$defaultFlashMessageQueue->enqueue($flashMessage);
-		}
-	}
+            /** @var FlashMessageService $flashMessageService */
+            $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
+            /** @var $defaultFlashMessageQueue \TYPO3\CMS\Core\Messaging\FlashMessageQueue */
+            $defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
+            $defaultFlashMessageQueue->enqueue($flashMessage);
+        }
+    }
 
 }
