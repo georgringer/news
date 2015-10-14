@@ -16,6 +16,7 @@ namespace GeorgRinger\News\MediaRenderer\Audio;
  */
 use GeorgRinger\News\MediaRenderer\MediaInterface;
 use GeorgRinger\News\Service\FileService;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -43,7 +44,7 @@ class Mp3 implements MediaInterface
         $url = FileService::getCorrectUrl($element->getMultimedia());
         $uniqueId = FileService::getUniqueId($element);
 
-        $pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->addJsFile(self::PATH_TO_JS . 'swfobject-2-2.js');
         $pageRenderer->addJsFile(self::PATH_TO_JS . 'audioplayer-noswfobject.js');
 

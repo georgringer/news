@@ -20,35 +20,35 @@ $boot = function ($packageKey) {
 
     // Page module hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['news' . '_pi1']['news'] =
-        'GeorgRinger\\News\\Hooks\\PageLayoutView->getExtensionSummary';
+        \GeorgRinger\News\Hooks\PageLayoutView::class . '->getExtensionSummary';
 
     // Preview of news records
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
-        'GeorgRinger\\News\\Hooks\\DataHandler';
+        \GeorgRinger\News\Hooks\DataHandler::class;
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news_clearcache'] =
-        'GeorgRinger\\News\\Hooks\\DataHandler->clearCachePostProc';
+        \GeorgRinger\News\Hooks\DataHandler::class . '->clearCachePostProc';
 
     // Edit restriction for news records
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['news'] =
-        'GeorgRinger\\News\\Hooks\\DataHandler';
+        \GeorgRinger\News\Hooks\DataHandler::class;
 
     // FormEngine: Rendering of fields
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass']['news'] =
-        'GeorgRinger\\News\\Hooks\\FormEngine';
+        \GeorgRinger\News\Hooks\FormEngine::class;
 
     // FormEngine: Rendering of the whole FormEngine
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass']['news'] =
-        'GeorgRinger\\News\\Hooks\\FormEngine';
+        \GeorgRinger\News\Hooks\FormEngine::class;
 
     // Modify flexform values
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass']['news'] =
-        'GeorgRinger\\News\\Hooks\\BackendUtility';
+        \GeorgRinger\News\Hooks\BackendUtility::class;
 
     // Inline records hook
     if ($configuration->getUseFal()) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] =
-            'GeorgRinger\\News\\Hooks\\InlineElementHook';
+            \GeorgRinger\News\Hooks\InlineElementHook::class;
     }
 
     /* ===========================================================================
@@ -60,14 +60,14 @@ $boot = function ($packageKey) {
     // Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
     // and overrides the default variable frontend of 4.6
     if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'])) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'] = 'TYPO3\CMS\Core\Cache\Frontend\StringFrontend';
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\StringFrontend::class;
     }
 
 
     /* ===========================================================================
         Add soft reference parser
     =========================================================================== */
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['softRefParser']['news_externalurl'] = 'GeorgRinger\\News\\Database\\SoftReferenceIndex';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['softRefParser']['news_externalurl'] = \GeorgRinger\News\Database\SoftReferenceIndex::class;
 
     /* ===========================================================================
         Add TSconfig
@@ -83,20 +83,20 @@ $boot = function ($packageKey) {
     =========================================================================== */
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['news'] =
-            'GeorgRinger\\News\\Hooks\\RealUrlAutoConfiguration->addNewsConfig';
+            \GeorgRinger\News\Hooks\RealUrlAutoConfiguration::class . '->addNewsConfig';
     }
 
     /* ===========================================================================
         Update scripts
     =========================================================================== */
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_fal'] = 'GeorgRinger\\News\\Updates\\FalUpdateWizard';
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_mm'] = 'GeorgRinger\\News\\Updates\\TtContentRelation';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_fal'] = \GeorgRinger\News\Updates\FalUpdateWizard::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_mm'] = \GeorgRinger\News\Updates\TtContentRelation::class;
 
 
     // Register cache frontend for proxy class generation
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = array(
-        'frontend' => 'TYPO3\\CMS\\Core\\Cache\\Frontend\\PhpFrontend',
-        'backend' => 'TYPO3\\CMS\\Core\\Cache\\Backend\\FileBackend',
+        'frontend' =>  \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend::class,
+        'backend' => \TYPO3\CMS\Core\Cache\Backend\FileBackend::class,
         'groups' => array(
             'all',
             'system',

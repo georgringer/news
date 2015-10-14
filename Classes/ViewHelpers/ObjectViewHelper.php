@@ -14,6 +14,9 @@ namespace GeorgRinger\News\ViewHelpers;
      *
      * The TYPO3 project - inspiring people to share!
      */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 
 /**
  * ViewHelper to render extended objects
@@ -69,9 +72,9 @@ class ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
             $GLOBALS['TSFE']->sys_language_content,
             $GLOBALS['TSFE']->sys_language_contentOL);
 
-        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-        /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
-        $dataMapper = $objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Mapper\\DataMapper');
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        /* @var $dataMapper DataMapper */
+        $dataMapper = $objectManager->get(DataMapper::class);
 
         $records = $dataMapper->map($className, array($rawRecord));
         $record = array_shift($records);

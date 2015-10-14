@@ -15,6 +15,7 @@ namespace GeorgRinger\News\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * ViewHelper to render links from news records to detail view or page
@@ -64,7 +65,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
         'default' => 'getDetailPidFromDefaultDetailPid',
     );
 
-    /** @var $cObj \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer */
+    /** @var $cObj ContentObjectRenderer */
     protected $cObj;
 
     /**
@@ -265,6 +266,6 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
      */
     protected function init()
     {
-        $this->cObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+        $this->cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }
 }

@@ -89,7 +89,7 @@ $boot = function ($packageKey) {
         $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = array(
             'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.overlay',
             'type' => 'select',
-            'itemsProcFunc' => 'GeorgRinger\\News\\Hooks\\ItemsProcFunc->user_categoryOverlay',
+            'itemsProcFunc' => \GeorgRinger\News\Hooks\ItemsProcFunc::class . '->user_categoryOverlay',
         );
         $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 			--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay';

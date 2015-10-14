@@ -14,6 +14,9 @@ namespace GeorgRinger\News\ViewHelpers\Format;
      *
      * The TYPO3 project - inspiring people to share!
      */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Service\TypoScriptService;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * ViewHelper to render a download link of a file using $cObj->filelink()
@@ -57,8 +60,8 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
     ) {
         if (!is_file($file)) {
             $errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
-            \TYPO3\CMS\Core\Utility\GeneralUtility::devLog($errorMessage, 'news',
-                \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
+            GeneralUtility::devLog($errorMessage, 'news',
+                GeneralUtility::SYSLOG_SEVERITY_WARNING);
 
             if (!$hideError) {
                 throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException(
@@ -66,7 +69,7 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
             }
         }
 
-        $cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+        $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
 
         $fileInformation = pathinfo($file);
         $fileInformation['file'] = $file;
@@ -89,8 +92,8 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
         if (!is_array($configuration)) {
             $configuration = array('labelStdWrap.' => array('cObject' => 'TEXT'));
         } else {
-            /** @var $typoscriptService \TYPO3\CMS\Extbase\Service\TypoScriptService */
-            $typoscriptService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\TypoScriptService');
+            /** @var $typoscriptService TypoScriptService */
+            $typoscriptService = GeneralUtility::makeInstance(TypoScriptService::class);
             $configuration = $typoscriptService->convertPlainArrayToTypoScriptArray($configuration);
         }
 
