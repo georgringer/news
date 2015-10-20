@@ -116,9 +116,11 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
             case 1:
                 $tmp['next'] = $result[0];
                 break;
+            case 0:
+                // no next or prev news, shit happens....
+                break;
             default:
-                throw new \UnexpectedValueException(sprintf('Unexpected count of "%s" which is not implemented!',
-                    $count));
+                throw new \UnexpectedValueException(sprintf('Unexpected count of "%s" which is not implemented!', $count));
         }
 
         foreach ($tmp as $_id => $single) {
