@@ -21,9 +21,9 @@ $boot = function ($packageKey) {
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         $iconRegistry->registerIcon(
             'apps-pagetree-folder-contains-news',
-            \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
             array(
-                'source' => 'EXT:news/Resources/Public/Icons/folder.gif',
+                'source' => 'EXT:news/Resources/Public/Icons/ext-news-folder-tree.svg',
             )
         );
         $iconRegistry->registerIcon(
