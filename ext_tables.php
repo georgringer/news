@@ -1,7 +1,7 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-$boot = function ($packageKey) {
+$boot = function () {
 
     // CSH - context sensitive help
     foreach (['news', 'media', 'file', 'link', 'tag'] as $table) {
@@ -22,38 +22,30 @@ $boot = function ($packageKey) {
         $iconRegistry->registerIcon(
             'apps-pagetree-folder-contains-news',
             \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-            array(
-                'source' => 'EXT:news/Resources/Public/Icons/ext-news-folder-tree.svg',
-            )
+            ['source' => 'EXT:news/Resources/Public/Icons/ext-news-folder-tree.svg']
         );
         $iconRegistry->registerIcon(
             'ext-news-type-default',
             \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            array(
-                'source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.gif',
-            )
+            ['source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.gif']
         );
         $iconRegistry->registerIcon(
             'ext-news-type-internal',
             \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            array(
-                'source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_internal.gif',
-            )
+            ['source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_internal.gif']
         );
         $iconRegistry->registerIcon(
             'ext-news-type-external',
             \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            array(
-                'source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_external.gif',
-            )
+            ['source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_external.gif']
         );
 
         // Override news icon
-        $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = array(
+        $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = [
             0 => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:news-folder',
             1 => 'news',
             2 => 'apps-pagetree-folder-contains-news'
-        );
+        ];
 
         /***************
          * Show news table in page module
@@ -70,27 +62,27 @@ $boot = function ($packageKey) {
                     $fTitle = '';
                     $fList = $split[0];
                 }
-                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_news_domain_model_news'][] = array(
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_news_domain_model_news'][] = [
                     'MENU' => $fTitle,
                     'fList' => $fList,
                     'icon' => true,
-                );
+                ];
             }
         }
 
         if ($configuration->getPageModuleFieldsCategory()) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['sys_category'][0] = array(
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['sys_category'][0] = [
                 'fList' => htmlspecialchars($configuration->getPageModuleFieldsCategory()),
                 'icon' => true
-            );
+            ];
         }
 
         // Extend user settings
-        $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = array(
+        $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = [
             'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.overlay',
             'type' => 'select',
             'itemsProcFunc' => \GeorgRinger\News\Hooks\ItemsProcFunc::class . '->user_categoryOverlay',
-        );
+        ];
         $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
 			--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay';
 
@@ -108,14 +100,12 @@ $boot = function ($packageKey) {
                 'web',
                 'tx_news_m1',
                 '',
-                array(
-                    'Import' => 'index, runJob, jobInfo',
-                ),
-                array(
+                ['Import' => 'index, runJob, jobInfo'],
+                [
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_import.svg',
                     'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
-                )
+                ]
             );
         }
 
@@ -129,24 +119,22 @@ $boot = function ($packageKey) {
                 'web',
                 'tx_news_m2',
                 '',
-                array(
-                    'Administration' => 'index,newNews,newCategory,newTag,newsPidListing',
-                ),
-                array(
+                ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing'],
+                [
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
                     'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
-                )
+                ]
             );
         }
 
         /* ===========================================================================
             Ajax call to save tags
         =========================================================================== */
-        $GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = array(
-            'callbackMethod' => 'GeorgRinger\\News\\Hooks\\SuggestReceiverCall->createTag',
+        $GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = [
+            'callbackMethod' => \GeorgRinger\News\Hooks\SuggestReceiverCall::class . '->createTag',
             'csrfTokenCheck' => false
-        );
+        ];
     }
 
     /* ===========================================================================
@@ -164,5 +152,5 @@ $boot = function ($packageKey) {
 
 };
 
-$boot($_EXTKEY);
+$boot();
 unset($boot);

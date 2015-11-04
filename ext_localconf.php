@@ -1,21 +1,21 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-$boot = function ($packageKey) {
+$boot = function () {
     // Extension manager configuration
     $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'GeorgRinger.news',
         'Pi1',
-        array(
+        [
             'News' => 'list,detail,dateMenu,searchForm,searchResult',
             'Category' => 'list',
             'Tag' => 'list',
-        ),
-        array(
+        ],
+        [
             'News' => 'searchForm,searchResult',
-        )
+        ]
     );
 
     // Page module hook
@@ -55,7 +55,7 @@ $boot = function ($packageKey) {
         Custom cache, done with the caching framework
     =========================================================================== */
     if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category'])) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category'] = array();
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category'] = [];
     }
     // Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
     // and overrides the default variable frontend of 4.6
@@ -94,25 +94,25 @@ $boot = function ($packageKey) {
 
 
     // Register cache frontend for proxy class generation
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = array(
-        'frontend' =>  \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend::class,
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = [
+        'frontend' => \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend::class,
         'backend' => \TYPO3\CMS\Core\Cache\Backend\FileBackend::class,
-        'groups' => array(
+        'groups' => [
             'all',
             'system',
-        ),
-        'options' => array(
+        ],
+        'options' => [
             'defaultLifetime' => 0,
-        ),
-    );
+        ]
+    ];
 
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = array(
-        'depends' => array(
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = [
+        'depends' => [
             \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew::class,
-        )
-    );
+        ]
+    ];
     \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
 };
 
-$boot($_EXTKEY);
+$boot();
 unset($boot);
