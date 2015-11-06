@@ -17,7 +17,6 @@ namespace GeorgRinger\News\Tests\Unit\Functional\ViewHelpers;
 
 
 use GeorgRinger\News\Domain\Model\News;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class SimplePrevNextViewHelperTest

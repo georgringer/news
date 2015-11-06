@@ -19,7 +19,6 @@ namespace GeorgRinger\News\Utility;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Core;
 
 /**
  * Class ClassLoader
