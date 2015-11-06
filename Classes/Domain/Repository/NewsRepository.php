@@ -47,7 +47,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $includeSubCategories = false
     ) {
         $constraint = null;
-        $categoryConstraints = array();
+        $categoryConstraints = [];
 
         // If "ignore category selection" is used, nothing needs to be done
         if (empty($conjunction)) {
@@ -61,7 +61,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if ($includeSubCategories) {
                 $subCategories = GeneralUtility::trimExplode(',',
                     CategoryService::getChildrenCategories($category, 0, '', true), true);
-                $subCategoryConstraint = array();
+                $subCategoryConstraint = [];
                 $subCategoryConstraint[] = $query->contains('categories', $category);
                 if (count($subCategories) > 0) {
                     foreach ($subCategories as $subCategory) {
@@ -109,7 +109,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
     {
-        $constraints = array();
+        $constraints = [];
 
         if ($demand->getCategories() && $demand->getCategories() !== '0') {
             $constraints['categories'] = $this->createCategoryConstraint(
@@ -266,7 +266,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      */
     protected function createOrderingsFromDemand(DemandInterface $demand)
     {
-        $orderings = array();
+        $orderings = [];
         if ($demand->getTopNewsFirst()) {
             $orderings['istopnews'] = QueryInterface::ORDER_DESCENDING;
         }
@@ -345,7 +345,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      */
     public function countByDate(DemandInterface $demand)
     {
-        $data = array();
+        $data = [];
         $sql = $this->findDemandedRaw($demand);
 
         // Get the month/year into the result
@@ -406,7 +406,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      */
     protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand)
     {
-        $constraints = array();
+        $constraints = [];
         if ($demand->getSearch() === null) {
             return $constraints;
         }
@@ -417,7 +417,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $searchSubject = $searchObject->getSubject();
         if (!empty($searchSubject)) {
             $searchFields = GeneralUtility::trimExplode(',', $searchObject->getFields(), true);
-            $searchConstraints = array();
+            $searchConstraints = [];
 
             if (count($searchFields) === 0) {
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);

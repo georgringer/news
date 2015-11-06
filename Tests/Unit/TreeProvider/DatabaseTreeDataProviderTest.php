@@ -26,9 +26,9 @@ class DatabaseTreeDataProviderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	private $backupGlobalVariables;
 
 	public function setUp() {
-		$this->backupGlobalVariables = array(
+		$this->backupGlobalVariables = [
 			'BE_USER' => $GLOBALS['BE_USER'],
-		);
+		];
 	}
 
 	public function tearDown() {
@@ -42,13 +42,13 @@ class DatabaseTreeDataProviderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function canSingleCategoryAclSettingBeActivated() {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\TreeProvider\\DatabaseTreeDataProvider',array('dummy'), array(), '',
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\TreeProvider\\DatabaseTreeDataProvider',['dummy'], [], '',
 			$callOriginalConstructor = FALSE);
 
 		$this->assertEquals(FALSE, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
 
 		// Add TsConfig array
-		$GLOBALS['BE_USER']->userTS['tx_news.'] = array();
+		$GLOBALS['BE_USER']->userTS['tx_news.'] = [];
 		$this->assertEquals(FALSE, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
 
 		// Set the access

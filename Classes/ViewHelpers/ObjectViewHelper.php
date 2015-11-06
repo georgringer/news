@@ -76,7 +76,7 @@ class ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         /* @var $dataMapper DataMapper */
         $dataMapper = $objectManager->get(DataMapper::class);
 
-        $records = $dataMapper->map($className, array($rawRecord));
+        $records = $dataMapper->map($className, [$rawRecord]);
         $record = array_shift($records);
 
         $this->templateVariableContainer->add($as, $record);

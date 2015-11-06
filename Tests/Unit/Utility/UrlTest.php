@@ -40,16 +40,16 @@ class UrlTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 */
 	public function correctUrlIsDeliveredDataProvider() {
 		$currentDomain = GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
-		return array(
-			'absoluteUrlIsUsed' => array(
+		return [
+			'absoluteUrlIsUsed' => [
 				$currentDomain . 'index.php?id=123', $currentDomain . 'index.php?id=123'
-			),
-			'relativeUrlIsUsed' => array(
+			],
+			'relativeUrlIsUsed' => [
 				'index.php?id=123', $currentDomain . 'index.php?id=123'
-			),
-			'domainOnlyIsGiven' => array(
+			],
+			'domainOnlyIsGiven' => [
 				$currentDomain, $currentDomain
-			),
-		);
+			],
+		];
 	}
 }

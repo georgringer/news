@@ -59,11 +59,11 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
     /**
      * @var array
      */
-    protected $detailPidDeterminationCallbacks = array(
+    protected $detailPidDeterminationCallbacks = [
         'flexform' => 'getDetailPidFromFlexform',
         'categories' => 'getDetailPidFromCategories',
         'default' => 'getDetailPidFromDefaultDetailPid',
-    );
+    ];
 
     /** @var $cObj ContentObjectRenderer */
     protected $cObj;
@@ -95,9 +95,9 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
      */
     public function render(
         \GeorgRinger\News\Domain\Model\News $newsItem,
-        array $settings = array(),
+        array $settings = [],
         $uriOnly = false,
-        $configuration = array(),
+        $configuration = [],
         $content = ''
     ) {
         $tsSettings = $this->pluginSettingsService->getSettings();
@@ -154,7 +154,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
     protected function getLinkToNewsItem(
         \GeorgRinger\News\Domain\Model\News $newsItem,
         $tsSettings,
-        array $configuration = array()
+        array $configuration = []
     ) {
 
         if (!isset($configuration['parameter'])) {
@@ -169,7 +169,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
 
             foreach ($detailPidDeterminationMethods as $determinationMethod) {
                 if ($callback = $this->detailPidDeterminationCallbacks[$determinationMethod]) {
-                    if ($detailPid = call_user_func(array($this, $callback), $tsSettings, $newsItem)) {
+                    if ($detailPid = call_user_func([$this, $callback], $tsSettings, $newsItem)) {
                         break;
                     }
                 }

@@ -32,9 +32,9 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
 	public function setUp() {
 		parent::setUp();
 
-		$this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('dummy'));
+		$this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['dummy']);
 
-		$mockedDatabaseConnection = $this->getMock('TYPO3\\CMS\\Core\\Database\\DatabaseConnection', array('exec_SELECTgetSingleRow'));
+		$mockedDatabaseConnection = $this->getMock('TYPO3\\CMS\\Core\\Database\\DatabaseConnection', ['exec_SELECTgetSingleRow']);
 		$this->viewHelper->_set('databaseConnection', $mockedDatabaseConnection);
 	}
 
@@ -50,14 +50,14 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
 	 * @test
 	 */
 	public function queryResultWillReturnCorrectOutputForAllLinks() {
-		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('getObject'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
 
-		$in = array(
-			0 => array('uid' => 123),
-			1 => array('uid' => 456),
-			2 => array('uid' => 789),
-		);
-		$exp = array('prev' => 123, 'next' => 789);
+		$in = [
+			0 => ['uid' => 123],
+			1 => ['uid' => 456],
+			2 => ['uid' => 789],
+		];
+		$exp = ['prev' => 123, 'next' => 789];
 		$viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(123));
 		$viewHelper->expects($this->at(1))->method('getObject')->will($this->returnValue(789));
 		$out = $viewHelper->_call('mapResultToObjects', $in);
@@ -68,13 +68,13 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
 	 * @test
 	 */
 	public function queryResultWillReturnCorrectOutputFor2Links() {
-		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('getObject'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
 
-		$in = array(
-			0 => array('uid' => 147),
-			1 => array('uid' => 258),
-		);
-		$exp = array('prev' => 147);
+		$in = [
+			0 => ['uid' => 147],
+			1 => ['uid' => 258],
+		];
+		$exp = ['prev' => 147];
 		$viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(147));
 		$out = $viewHelper->_call('mapResultToObjects', $in);
 		$this->assertEquals($out, $exp);
@@ -84,12 +84,12 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
 	 * @test
 	 */
 	public function queryResultWillReturnCorrectOutputFor1Link() {
-		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('getObject'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
 
-		$in = array(
-			0 => array('uid' => 369),
-		);
-		$exp = array('next' => 369);
+		$in = [
+			0 => ['uid' => 369],
+		];
+		$exp = ['next' => 369];
 		$viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(369));
 		$out = $viewHelper->_call('mapResultToObjects', $in);
 		$this->assertEquals($out, $exp);
@@ -100,14 +100,14 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
 	 * @expectedException \UnexpectedValueException
 	 */
 	public function queryResultWillReturnExceptionForUnknownCount() {
-		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', array('getObject'));
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
 
-		$in = array(
-			0 => array('uid' => 369),
-			1 => array('uid' => 369),
-			2 => array('uid' => 369),
-			3 => array('uid' => 369),
-		);
+		$in = [
+			0 => ['uid' => 369],
+			1 => ['uid' => 369],
+			2 => ['uid' => 369],
+			3 => ['uid' => 369],
+		];
 		$out = $viewHelper->_call('mapResultToObjects', $in);
 	}
 

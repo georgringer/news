@@ -27,18 +27,18 @@ class NewsRowInitializeNewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$GLOBALS['EXEC_TIME'] = time();
 
-		$result = array(
+		$result = [
 			'command' => 'new',
 			'tableName' => 'tx_news_domain_model_news'
-		);
+		];
 
-		$expected = array(
+		$expected = [
 			'command' => 'new',
 			'tableName' => 'tx_news_domain_model_news',
-			'databaseRow' => array(
+			'databaseRow' => [
 				'datetime' => $GLOBALS['EXEC_TIME']
-			)
-		);
+			]
+		];
 
 		$this->assertEquals($expected, $provider->addData($result));
 	}
@@ -50,17 +50,17 @@ class NewsRowInitializeNewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$provider = new NewsRowInitializeNew();
 		$GLOBALS['EXEC_TIME'] = time();
 
-		$result = array(
+		$result = [
 			'command' => 'new',
 			'tableName' => 'tx_news_domain_model_news',
-			'pageTsConfig' => array(
-				'tx_news.' => array(
-					'predefine.' => array(
+			'pageTsConfig' => [
+				'tx_news.' => [
+					'predefine.' => [
 						'archive' => '+10 days'
-					)
-				)
-			)
-		);
+					]
+				]
+			]
+		];
 
 		$expected = $result;
 		$expected['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];

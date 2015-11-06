@@ -378,7 +378,7 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function falMediaPreviewsAreReturned() {
 		$news = new News();
 
-		$mockedElement1 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', array('getProperty'));
+		$mockedElement1 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
 		$mockedElement1->_set('uid', 1);
 		$mockedElement1->_set('showinpreview', TRUE);
 		$mockedElement1->expects($this->any())->method('getProperty')->will($this->returnValue(TRUE));
@@ -387,7 +387,7 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$mediaItem1->_setProperty('originalResource', $mockedElement1);
 		$news->addFalMedia($mediaItem1);
 
-		$mockedElement2 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', array('getProperty'));
+		$mockedElement2 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
 		$mockedElement2->_set('uid', 2);
 		$mockedElement2->_set('showinpreview', TRUE);
 		$mockedElement2->expects($this->any())->method('getProperty')->will($this->returnValue(FALSE));
@@ -396,7 +396,7 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$mediaItem2->_setProperty('originalResource', $mockedElement2);
 		$news->addFalMedia($mediaItem2);
 
-		$mockedElement3 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', array('getProperty'));
+		$mockedElement3 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
 		$mockedElement3->_set('uid', 3);
 		$mockedElement3->_set('showinpreview', TRUE);
 		$mockedElement3->expects($this->any())->method('getProperty')->will($this->returnValue(TRUE));

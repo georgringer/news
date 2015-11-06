@@ -61,7 +61,7 @@ class SuggestReceiverCall
 
             $ajaxObj->setContentFormat('javascript');
             $ajaxObj->setContent('');
-            $response = array(
+            $response = [
                 $newTagId,
                 $request['item'],
                 self::TAG,
@@ -69,7 +69,7 @@ class SuggestReceiverCall
                 'tags',
                 'data[tx_news_domain_model_news][' . $newsUid . '][tags]',
                 $newsUid
-            );
+            ];
             $ajaxObj->setJavascriptCallbackWrap(implode('-', $response));
         } catch (\Exception $e) {
             $errorMsg = $GLOBALS['LANG']->sL(self::LLPATH . $e->getMessage());
@@ -107,18 +107,18 @@ class SuggestReceiverCall
         if (isset($record['uid'])) {
             $tagUid = $record['uid'];
         } else {
-            $tcemainData = array(
-                self::TAG => array(
-                    'NEW' => array(
+            $tcemainData = [
+                self::TAG => [
+                    'NEW' => [
                         'pid' => $pid,
                         'title' => $request['item']
-                    )
-                )
-            );
+                    ]
+                ]
+            ];
 
             /** @var DataHandler $tce */
             $tce = GeneralUtility::makeInstance(DataHandler::class);
-            $tce->start($tcemainData, array());
+            $tce->start($tcemainData, []);
             $tce->process_datamap();
 
             $tagUid = $tce->substNEWwithIDs['NEW'];

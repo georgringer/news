@@ -36,9 +36,9 @@ class EditRecordViewHelper extends AbstractViewHelper implements CompilableInter
     public function render($parameters)
     {
         return static::renderStatic(
-            array(
+            [
                 'parameters' => $parameters
-            ),
+            ],
             $this->buildRenderChildrenClosure(),
             $this->renderingContext
         );

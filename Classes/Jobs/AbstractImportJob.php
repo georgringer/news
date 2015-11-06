@@ -37,12 +37,12 @@ abstract class AbstractImportJob implements ImportJobInterface
     /**
      * @var array
      */
-    protected $importServiceSettings = array();
+    protected $importServiceSettings = [];
 
     /**
      * @var array
      */
-    protected $importItemOverwrite = array();
+    protected $importItemOverwrite = [];
 
     /*
      * @var int
@@ -87,11 +87,11 @@ abstract class AbstractImportJob implements ImportJobInterface
     public function getInfo()
     {
         $totalRecordCount = (int)$this->importDataProviderService->getTotalRecordCount();
-        $info = array(
+        $info = [
             'totalRecordCount' => $totalRecordCount,
             'runsToComplete' => $totalRecordCount > 0 ? (ceil($totalRecordCount / $this->getNumberOfRecordsPerRun())) : 0,
             'increaseOffsetPerRunBy' => $this->getNumberOfRecordsPerRun(),
-        );
+        ];
 
         return $info;
     }

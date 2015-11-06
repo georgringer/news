@@ -38,27 +38,27 @@ class RealUrlAutoConfiguration
         // Check for proper unique key
         $postVar = (ExtensionManagementUtility::isLoaded('tt_news') ? 'tx_news' : 'news');
 
-        return array_merge_recursive($params['config'], array(
-                'postVarSets' => array(
-                    '_DEFAULT' => array(
-                        $postVar => array(
-                            array(
+        return array_merge_recursive($params['config'], [
+                'postVarSets' => [
+                    '_DEFAULT' => [
+                        $postVar => [
+                            [
                                 'GETvar' => 'tx_news_pi1[news]',
-                                'lookUpTable' => array(
+                                'lookUpTable' => [
                                     'table' => 'tx_news_domain_model_news',
                                     'id_field' => 'uid',
                                     'alias_field' => 'title',
                                     'useUniqueCache' => 1,
-                                    'useUniqueCache_conf' => array(
+                                    'useUniqueCache_conf' => [
                                         'strtolower' => 1,
                                         'spaceCharacter' => '-',
-                                    ),
-                                ),
-                            ),
-                        ),
-                    )
-                )
-            )
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ]
+                ]
+            ]
         );
     }
 }

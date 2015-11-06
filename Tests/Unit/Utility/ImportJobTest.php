@@ -30,24 +30,24 @@ class ImportJobTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function classCanBeRegistered() {
 		$importJobInstance = new ImportJob();
 
-		$jobs = array();
+		$jobs = [];
 		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
 
 		// Add job #1
-		$jobs[] = array(
+		$jobs[] = [
 			'className' => 'Class 1',
 			'title' => 'Some title',
 			'description' => ''
-		);
+		];
 		$importJobInstance->register('Class 1', 'Some title', '');
 		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
 
 		// Add job #2
-		$jobs[] = array(
+		$jobs[] = [
 			'className' => 'Class 2',
 			'title' => '',
 			'description' => 'Some description'
-		);
+		];
 		$importJobInstance->register('Class 2', '', 'Some description');
 		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
 	}

@@ -27,7 +27,7 @@ class ImportJob
     /**
      * @var array
      */
-    protected static $registeredJobs = array();
+    protected static $registeredJobs = [];
 
     /**
      * Register an import job.
@@ -40,11 +40,11 @@ class ImportJob
      */
     public static function register($className, $title, $description)
     {
-        self::$registeredJobs[] = array(
+        self::$registeredJobs[] = [
             'className' => $className,
             'title' => $title,
             'description' => $description
-        );
+        ];
     }
 
     /**

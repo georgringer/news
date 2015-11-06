@@ -38,7 +38,7 @@ class DataHandler
     public function clearCachePostProc(array $params)
     {
         if (isset($params['table']) && $params['table'] === 'tx_news_domain_model_news') {
-            $cacheTagsToFlush = array();
+            $cacheTagsToFlush = [];
             if (isset($params['uid'])) {
                 $cacheTagsToFlush[] = 'tx_news_uid_' . $params['uid'];
             }
@@ -93,12 +93,12 @@ class DataHandler
                 if ($pagesTsConfig['tx_news.']['singlePid']) {
                     $record = BackendUtilityCore::getRecord('tx_news_domain_model_news', $recordUid);
 
-                    $parameters = array(
+                    $parameters = [
                         'no_cache' => 1,
                         'tx_news_pi1[controller]' => 'News',
                         'tx_news_pi1[action]' => 'detail',
                         'tx_news_pi1[news_preview]' => $record['uid'],
-                    );
+                    ];
                     if ($record['sys_language_uid'] > 0) {
                         if ($record['l10n_parent'] > 0) {
                             $parameters['tx_news_pi1[news_preview]'] = $record['l10n_parent'];
@@ -131,9 +131,9 @@ class DataHandler
                 if (!AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
                     $parentObject->log($table, $id, 2, 0, 1,
                         "processDatamap: Attempt to modify a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in your BE usergroup.",
-                        1, array($table));
+                        1, [$table]);
                     // unset fieldArray to prevent saving of the record
-                    $fieldArray = array();
+                    $fieldArray = [];
                 } else {
 
                     // If the category relation has been modified, no | is found anymore
@@ -170,7 +170,7 @@ class DataHandler
             if (!AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
                 $parentObject->log($table, $id, 2, 0, 1,
                     "processCmdmap: Attempt to " . $command . " a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in the BE usergroup.",
-                    1, array($table));
+                    1, [$table]);
                 // unset table to prevent saving
                 $table = '';
             }

@@ -40,20 +40,20 @@ class VideositesTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function fileIsRecognizedDataProvider() {
-		return array(
-			'workingFlv' => array(
+		return [
+			'workingFlv' => [
 				'fileadmin/fo/bar.flv', TRUE
-			),
-			'workingFlvWithUpperCaseFileType' => array(
+			],
+			'workingFlvWithUpperCaseFileType' => [
 				'fileadmin/fo/bar.FLV', TRUE
-			),
-			'noMediaFileGiven' => array(
+			],
+			'noMediaFileGiven' => [
 				NULL, FALSE
-			),
-			'emptyMediaFileGiven' => array(
+			],
+			'emptyMediaFileGiven' => [
 				'', FALSE
-			),
-		);
+			],
+		];
 	}
 
 }

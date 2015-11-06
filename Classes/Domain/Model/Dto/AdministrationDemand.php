@@ -31,7 +31,7 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /**
      * @var array
      */
-    protected $selectedCategories = array();
+    protected $selectedCategories = [];
 
     /**
      * @var string

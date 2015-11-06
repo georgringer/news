@@ -40,23 +40,23 @@ class QuicktimeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function quicktimeFileIsRecognizedDataProvider() {
-		return array(
-			'workingFile' => array(
+		return [
+			'workingFile' => [
 				'fileadmin/fo/bar.mov', TRUE
-			),
-			'workingFileWithUpperCaseFileType' => array(
+			],
+			'workingFileWithUpperCaseFileType' => [
 				'fileadmin/fo/bar.mov', TRUE
-			),
-			'otherFileType' => array(
+			],
+			'otherFileType' => [
 				'fileadmin/someMusic.mp3', FALSE
-			),
-			'noMediaFileGiven' => array(
+			],
+			'noMediaFileGiven' => [
 				NULL, FALSE
-			),
-			'emptyMediaFileGiven' => array(
+			],
+			'emptyMediaFileGiven' => [
 				'', FALSE
-			),
-		);
+			],
+		];
 	}
 
 }

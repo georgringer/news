@@ -30,7 +30,7 @@ class StriptagsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return void
 	 */
 	public function stripTagsFromContent() {
-		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', array('renderChildren'));
+		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', ['renderChildren']);
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p>'));
 		$actualResult = $viewHelper->render();
 		$this->assertEquals('TestFo', $actualResult);
@@ -43,7 +43,7 @@ class StriptagsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return void
 	 */
 	public function stripTagsFromContentWithAllowedTags() {
-		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', array('renderChildren'));
+		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', ['renderChildren']);
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p><strong>Bar</strong>'));
 		$actualResult = $viewHelper->render('<strong>');
 		$this->assertEquals('TestFo<strong>Bar</strong>', $actualResult);

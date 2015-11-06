@@ -32,7 +32,7 @@ class TemplateLayout implements SingletonInterface
      */
     public function getAvailableTemplateLayouts($pageUid)
     {
-        $templateLayouts = array();
+        $templateLayouts = [];
 
         // Check if the layouts are extended by ext_tables
         if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'])
@@ -48,7 +48,7 @@ class TemplateLayout implements SingletonInterface
                 $title = $optGroupParts[1];
                 $templateKey = $optGroupParts[0];
             }
-            $templateLayouts[] = array($title, $templateKey);
+            $templateLayouts[] = [$title, $templateKey];
         }
 
         return $templateLayouts;
@@ -62,7 +62,7 @@ class TemplateLayout implements SingletonInterface
      */
     protected function getTemplateLayoutsFromTsConfig($pageUid)
     {
-        $templateLayouts = array();
+        $templateLayouts = [];
         $pagesTsConfig = BackendUtility::getPagesTSconfig($pageUid);
         if (isset($pagesTsConfig['tx_news.']['templateLayouts.']) && is_array($pagesTsConfig['tx_news.']['templateLayouts.'])) {
             $templateLayouts = $pagesTsConfig['tx_news.']['templateLayouts.'];

@@ -39,22 +39,22 @@ class CategoryServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function removeValuesFromStringDataProvider() {
-		return array(
-			'simpleExampleWithRemovalAtEnd' => array(
-				'1,2,3,4', array('1,2,3,4,5', '5')
-			),
-			'simpleExampleWithMixedRemovals' => array(
-				'1,2,3,4', array('1,7,2,9,3,4', '9,7')
-			),
-			'removalIsSame' => array(
-				'', array('1,2,3', '3,2,1')
-			),
-			'noRemovalFound' => array(
-				'1,2,3', array('1,2,3', '9,8,7')
-			),
-			'noInputGiven' => array(
-				'', array('', '9,8,7')
-			),
-		);
+		return [
+			'simpleExampleWithRemovalAtEnd' => [
+				'1,2,3,4', ['1,2,3,4,5', '5']
+			],
+			'simpleExampleWithMixedRemovals' => [
+				'1,2,3,4', ['1,7,2,9,3,4', '9,7']
+			],
+			'removalIsSame' => [
+				'', ['1,2,3', '3,2,1']
+			],
+			'noRemovalFound' => [
+				'1,2,3', ['1,2,3', '9,8,7']
+			],
+			'noInputGiven' => [
+				'', ['', '9,8,7']
+			],
+		];
 	}
 }

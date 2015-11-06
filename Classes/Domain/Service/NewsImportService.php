@@ -57,7 +57,7 @@ class NewsImportService extends AbstractImportService
     /**
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     public function __construct()
     {
@@ -401,7 +401,7 @@ class NewsImportService extends AbstractImportService
             }
         }
 
-        $arguments = array('importItem' => $importItem, 'news' => $news);
+        $arguments = ['importItem' => $importItem, 'news' => $news];
         $this->emitSignal('postHydrate', $arguments);
 
         return $news;
@@ -415,7 +415,7 @@ class NewsImportService extends AbstractImportService
      * @param array $settings
      * @return void
      */
-    public function import(array $importData, array $importItemOverwrite = array(), $settings = array())
+    public function import(array $importData, array $importItemOverwrite = [], $settings = [])
     {
         $this->settings = $settings;
         $this->logger->info(sprintf('Starting import for %s news', count($importData)));
@@ -424,11 +424,11 @@ class NewsImportService extends AbstractImportService
 
             // Store language overlay in post persist queue
             if ((int)$importItem['sys_language_uid'] > 0 && (string)$importItem['l10n_parent'] !== '0') {
-                $this->postPersistQueue[$importItem['import_id']] = array(
+                $this->postPersistQueue[$importItem['import_id']] = [
                     'action' => self::ACTION_IMPORT_L10N_OVERLAY,
                     'category' => null,
                     'importItem' => $importItem
-                );
+                ];
                 continue;
             }
 

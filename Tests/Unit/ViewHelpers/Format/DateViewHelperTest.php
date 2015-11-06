@@ -44,31 +44,31 @@ class DateViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function correctDateIsReturnedDataProvider() {
 		$currentDate = new \DateTime('@' . $GLOBALS['EXEC_TIME']);
 
-		return array(
-			'stfTimeDateGiven' => array(
-				'08 2012', array(
+		return [
+			'stfTimeDateGiven' => [
+				'08 2012', [
 					'date' => new \DateTime('2012-07-08 11:14:15'),
 					'format' => '%d %Y',
 					'currentDate' => FALSE,
 					'strftime' => TRUE
-				)
-			),
-			'dateTimeGiven' => array(
-				'2012', array(
+				]
+			],
+			'dateTimeGiven' => [
+				'2012', [
 					'date' => new \DateTime('2012-07-08 11:14:15'),
 					'format' => 'Y',
 					'currentDate' => FALSE,
 					'strftime' => FALSE
-				)
-			),
-			'currentDate' => array(
-				strftime('%Y', $currentDate->format('U')), array(
+				]
+			],
+			'currentDate' => [
+				strftime('%Y', $currentDate->format('U')), [
 					'date' => $currentDate,
 					'format' => 'Y',
 					'currentDate' => TRUE,
 					'strftime' => FALSE
-				)
-			),
-		);
+				]
+			],
+		];
 	}
 }

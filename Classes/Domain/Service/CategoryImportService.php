@@ -85,20 +85,20 @@ class CategoryImportService extends AbstractImportService
             $category = $this->hydrateCategory($importItem);
 
             if (!empty($importItem['title_lang_ol'])) {
-                $this->postPersistQueue[$importItem['import_id']] = array(
+                $this->postPersistQueue[$importItem['import_id']] = [
                     'category' => $category,
                     'importItem' => $importItem,
                     'action' => self::ACTION_CREATE_L10N_CHILDREN_CATEGORY,
                     'titleLanguageOverlay' => $importItem['title_lang_ol']
-                );
+                ];
             }
 
             if ($importItem['parentcategory']) {
-                $this->postPersistQueue[$importItem['import_id']] = array(
+                $this->postPersistQueue[$importItem['import_id']] = [
                     'category' => $category,
                     'action' => self::ACTION_SET_PARENT_CATEGORY,
                     'parentCategoryOriginUid' => $importItem['parentcategory']
-                );
+                ];
             }
         }
 
@@ -163,7 +163,7 @@ class CategoryImportService extends AbstractImportService
         $category->setImportId($importItem['import_id']);
         $category->setImportSource($importItem['import_source']);
 
-        $arguments = array('importItem' => $importItem, 'category' => $category);
+        $arguments = ['importItem' => $importItem, 'category' => $category];
         $this->emitSignal('postHydrate', $arguments);
 
         return $category;

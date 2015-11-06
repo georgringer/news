@@ -104,7 +104,7 @@ class Labels
 
         // Hook to modify the label, especially useful when using custom media relations
         if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'])) {
-            $params = array('params' => $params, 'title' => $title);
+            $params = ['params' => $params, 'title' => $title];
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'] as $reference) {
                 $title = GeneralUtility::callUserFunction($reference, $params, $this);
             }
@@ -138,7 +138,7 @@ class Labels
             return '';
         }
 
-        $catTitles = array();
+        $catTitles = [];
         $res = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query(
             'sys_category.title as title',
             'tx_news_domain_model_news',
@@ -161,7 +161,7 @@ class Labels
      * @param array $record record
      * @return string 1st used field
      */
-    protected function getTitleFromFields($fieldList, $record = array())
+    protected function getTitleFromFields($fieldList, $record = [])
     {
         $title = '';
         $fields = GeneralUtility::trimExplode(',', $fieldList, true);

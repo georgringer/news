@@ -102,7 +102,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      */
     protected function mapResultToObjects(array $result)
     {
-        $out = $tmp = array();
+        $out = $tmp = [];
         $count = count($result);
 
         switch ($count) {
@@ -145,7 +145,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         if (is_array($rawRecord)) {
             $className = 'GeorgRinger\\News\\Domain\\Model\\News';
 
-            $records = $this->dataMapper->map($className, array($rawRecord));
+            $records = $this->dataMapper->map($className, [$rawRecord]);
             $record = array_shift($records);
         }
 
@@ -207,7 +207,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
 			';
 
         $res = $this->databaseConnection->sql_query($query);
-        $out = array();
+        $out = [];
         while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
             $out[] = $row;
         }

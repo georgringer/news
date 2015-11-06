@@ -39,23 +39,23 @@ class FileTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function flvFileIsRecognizedDataProvider() {
-		return array(
-			'workingFlv' => array(
+		return [
+			'workingFlv' => [
 				'fileadmin/fo/bar.flv', TRUE
-			),
-			'workingFlvWithUpperCaseFileType' => array(
+			],
+			'workingFlvWithUpperCaseFileType' => [
 				'fileadmin/fo/bar.FLV', TRUE
-			),
-			'otherFileType' => array(
+			],
+			'otherFileType' => [
 				'fileadmin/someMusic.mp3', FALSE
-			),
-			'noMediaFileGiven' => array(
+			],
+			'noMediaFileGiven' => [
 				NULL, FALSE
-			),
-			'emptyMediaFileGiven' => array(
+			],
+			'emptyMediaFileGiven' => [
 				'', FALSE
-			),
-		);
+			],
+		];
 	}
 
 }

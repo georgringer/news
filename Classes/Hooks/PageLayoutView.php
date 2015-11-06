@@ -50,14 +50,14 @@ class PageLayoutView
      *
      * @var array
      */
-    public $tableData = array();
+    public $tableData = [];
 
     /**
      * Flexform information
      *
      * @var array
      */
-    public $flexformData = array();
+    public $flexformData = [];
 
     /**
      * @var IconFactory
@@ -148,9 +148,9 @@ class PageLayoutView
                 }
 
                 if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'])) {
-                    $params = array(
+                    $params = [
                         'action' => $actionTranslationKey
-                    );
+                    ];
                     foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'] as $reference) {
                         GeneralUtility::callUserFunction($reference, $params, $this);
                     }
@@ -177,10 +177,10 @@ class PageLayoutView
         $archive = $this->getFieldFromFlexform('settings.archiveRestriction');
 
         if (!empty($archive)) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.archiveRestriction'),
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.archiveRestriction.' . $archive)
-            );
+            ];
         }
     }
 
@@ -232,10 +232,10 @@ class PageLayoutView
                 $content = $message->render();
             }
 
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.singleNews'),
                 $content
-            );
+            ];
         }
     }
 
@@ -251,10 +251,10 @@ class PageLayoutView
         if ($detailPid > 0) {
             $content = $this->getPageRecordData($detailPid);
 
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.detailPid'),
                 $content
-            );
+            ];
         }
     }
 
@@ -270,10 +270,10 @@ class PageLayoutView
         if ($listPid > 0) {
             $content = $this->getPageRecordData($listPid);
 
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.listPid'),
                 $content
-            );
+            ];
         }
     }
 
@@ -328,10 +328,10 @@ class PageLayoutView
                 $text .= '<br />' . $topNews;
             }
 
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.orderBy'),
                 $text
-            );
+            ];
         }
     }
 
@@ -378,7 +378,7 @@ class PageLayoutView
     public function getCategorySettings($showCategoryMode = true)
     {
         $categoryMode = '';
-        $categoriesOut = array();
+        $categoriesOut = [];
 
         $categories = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.categories'), true);
         if (count($categories) > 0) {
@@ -413,11 +413,11 @@ class PageLayoutView
                         true);
             }
 
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categories') .
                 '<br />' . $categoryMode,
                 implode(', ', $categoriesOut)
-            );
+            ];
         }
     }
 
@@ -433,7 +433,7 @@ class PageLayoutView
             return;
         }
 
-        $categoryTitles = array();
+        $categoryTitles = [];
         $rawTagRecords = (array)$this->databaseConnection->exec_SELECTgetRows(
             '*',
             'tx_news_domain_model_tag',
@@ -444,10 +444,10 @@ class PageLayoutView
                 $record));
         }
 
-        $this->tableData[] = array(
+        $this->tableData[] = [
             $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.tags'),
             implode(', ', $categoryTitles)
-        );
+        ];
     }
 
     /**
@@ -462,22 +462,22 @@ class PageLayoutView
         $hidePagination = $this->getFieldFromFlexform('settings.hidePagination', 'additional');
 
         if ($offset) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.offset'),
                 $offset
-            );
+            ];
         }
         if ($limit) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.limit'),
                 $limit
-            );
+            ];
         }
         if ($hidePagination) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.hidePagination'),
                 null
-            );
+            ];
         }
     }
 
@@ -490,10 +490,10 @@ class PageLayoutView
     {
         $dateMenuField = $this->getFieldFromFlexform('settings.dateField');
 
-        $this->tableData[] = array(
+        $this->tableData[] = [
             $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.dateField'),
             $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.dateField.' . $dateMenuField)
-        );
+        ];
     }
 
     /**
@@ -506,18 +506,18 @@ class PageLayoutView
         $timeRestriction = $this->getFieldFromFlexform('settings.timeRestriction');
 
         if (!empty($timeRestriction)) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
                 htmlspecialchars($timeRestriction)
-            );
+            ];
         }
 
         $timeRestrictionHigh = $this->getFieldFromFlexform('settings.timeRestrictionHigh');
         if (!empty($timeRestrictionHigh)) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.timeRestrictionHigh'),
                 htmlspecialchars($timeRestrictionHigh)
-            );
+            ];
         }
     }
 
@@ -530,10 +530,10 @@ class PageLayoutView
     {
         $topNewsRestriction = (int)$this->getFieldFromFlexform('settings.topNewsRestriction');
         if ($topNewsRestriction > 0) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.topNewsRestriction'),
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.topNewsRestriction.' . $topNewsRestriction)
-            );
+            ];
         }
     }
 
@@ -559,10 +559,10 @@ class PageLayoutView
         }
 
         if (!empty($title)) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_template.templateLayout'),
                 $this->getLanguageService()->sL($title)
-            );
+            ];
         }
     }
 
@@ -576,11 +576,11 @@ class PageLayoutView
         $field = $this->getFieldFromFlexform('settings.disableOverrideDemand', 'additional');
 
         if ($field == 1) {
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL(
                     self::LLPATH . 'flexforms_additional.disableOverrideDemand'),
                 ''
-            );
+            ];
         }
     }
 
@@ -594,7 +594,7 @@ class PageLayoutView
         $value = $this->getFieldFromFlexform('settings.startingpoint');
 
         if (!empty($value)) {
-            $pagesOut = array();
+            $pagesOut = [];
             $rawPagesRecords = $this->databaseConnection->exec_SELECTgetRows(
                 '*',
                 'pages',
@@ -620,10 +620,10 @@ class PageLayoutView
                     $recursiveLevelText;
             }
 
-            $this->tableData[] = array(
+            $this->tableData[] = [
                 $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
                 implode(', ', $pagesOut) . $recursiveLevelText
-            );
+            ];
         }
     }
 

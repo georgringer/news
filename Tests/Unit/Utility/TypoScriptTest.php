@@ -41,90 +41,90 @@ class TypoScriptTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function overrideWorksDataProvider() {
-		return array(
-			'basic' => array(
-				array(
+		return [
+			'basic' => [
+				[
 					'value_1' => 'fo',
 					'value_2' => ''
-				),
-				array(),
-				array(
+				],
+				[],
+				[
 					'value_1' => 'fo',
 					'value_2' => ''
-				)
-			),
-			'simple' => array(
-				array(
+				]
+			],
+			'simple' => [
+				[
 					'value_1' => 'fo',
 					'value_2' => ''
-				),
-				array(
-					'settings' => array(
+				],
+				[
+					'settings' => [
 						'value_2' => 'bar',
 						'overrideFlexformSettingsIfEmpty' => 'value_2'
-					)
-				),
-				array(
+					]
+				],
+				[
 					'value_1' => 'fo',
 					'value_2' => 'bar'
-				)
-			),
-			'simple2' => array(
-				array(
+				]
+			],
+			'simple2' => [
+				[
 					'value_1' => 'fo',
-					'sub' => array(
+					'sub' => [
 						'sub_1' => 'xy'
-					)
-				),
-				array(
-					'settings' => array(
+					]
+				],
+				[
+					'settings' => [
 						'value_2' => 'bar',
 						'overrideFlexformSettingsIfEmpty' => 'value_2'
-					)
-				),
-				array(
+					]
+				],
+				[
 					'value_1' => 'fo',
 					'value_2' => 'bar',
-					'sub' => array(
+					'sub' => [
 						'sub_1' => 'xy'
-					)
-				)
-			),
-			'deep' => array(
-				array(
+					]
+				]
+			],
+			'deep' => [
+				[
 					'value_1' => 'fo',
-					'sub_1' => array(
+					'sub_1' => [
 						'sub_1a' => ''
-					),
-					'sub_2' => array(
+					],
+					'sub_2' => [
 						'sub_2a' => 'xy',
-					),
-				),
-				array(
-					'settings' => array(
+					],
+				],
+				[
+					'settings' => [
 						'value_2' => 'bar',
-						'sub_1' => array(
+						'sub_1' => [
 							'sub_1a' => 'lorem'
-						),
-						'sub_2' => array(
+						],
+						'sub_2' => [
 							'sub_2a' => 'xy',
 							'sub_2b' => 'abc'
-						),
+						],
 						'overrideFlexformSettingsIfEmpty' => 'value_2, sub_1.sub_1a,sub_2.sub_2b'
-					)
-				),
-				array(
+					]
+				],
+				[
 					'value_1' => 'fo',
 					'value_2' => 'bar',
-					'sub_1' => array(
+					'sub_1' => [
 						'sub_1a' => 'lorem'
-					),
-					'sub_2' => array(
+					],
+					'sub_2' => [
 						'sub_2a' => 'xy',
-					),
-				)
-			),
-		);
+					],
+				]
+			],
+		];
 	}
 
 
@@ -133,18 +133,18 @@ class TypoScriptTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @dataProvider correctValueIsReturnedDataProvider
 	 */
 	public function correctValueIsReturned($path, $expected) {
-		$mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', array('dummy'));
+		$mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', ['dummy']);
 
-		$in = array(
-			'level_1' => array(
+		$in = [
+			'level_1' => [
 				'in_1' => 'value in 1',
-				'level_2' => array(
-					'level_3' => array(
+				'level_2' => [
+					'level_3' => [
 						'in_3' => 'value in 3'
-					)
-				)
-			)
-		);
+					]
+				]
+			]
+		];
 
 		$path = explode('.', $path);
 		$result = $mockedUtility->_call('getValue', $in, $path);
@@ -157,20 +157,20 @@ class TypoScriptTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function correctValueIsReturnedDataProvider() {
-		return array(
-			'valueFoundInDeepLevel' => array(
+		return [
+			'valueFoundInDeepLevel' => [
 				'level_1.level_2.level_3.in_3', 'value in 3'
-			),
-			'valueFoundInFirstLevel' => array(
+			],
+			'valueFoundInFirstLevel' => [
 				'level_1.in_1', 'value in 1'
-			),
-			'firstLevelNotFound' => array(
+			],
+			'firstLevelNotFound' => [
 				'wrong.wronger.stillWrong', NULL
-			),
-			'lastLevelNotFound' => array(
+			],
+			'lastLevelNotFound' => [
 				'level_1.level_2.level_3.in_Nothing', NULL
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -178,18 +178,18 @@ class TypoScriptTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @dataProvider correctValueIsSetDataProvider
 	 */
 	public function correctValueIsSet($path, $newValue, $expected) {
-		$mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', array('dummy'), array(), '', TRUE, FALSE);
+		$mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', ['dummy'], [], '', TRUE, FALSE);
 
-		$in = array(
-			'level_1' => array(
+		$in = [
+			'level_1' => [
 				'in_1' => 'value in 1',
-				'level_2' => array(
-					'level_3' => array(
+				'level_2' => [
+					'level_3' => [
 						'in_3' => 'value in 3'
-					)
-				)
-			)
-		);
+					]
+				]
+			]
+		];
 
 		$path = explode('.', $path);
 		$result = $mockedUtility->_call('setValue', $in, $path, $newValue);
@@ -202,65 +202,65 @@ class TypoScriptTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function correctValueIsSetDataProvider() {
-		return array(
-			'overrideValueLow' => array(
+		return [
+			'overrideValueLow' => [
 				'level_1.in_1',
 				'new value in 1',
-				array(
-					'level_1' => array(
+				[
+					'level_1' => [
 						'in_1' => 'new value in 1',
-						'level_2' => array(
-							'level_3' => array(
+						'level_2' => [
+							'level_3' => [
 								'in_3' => 'value in 3'
-							)
-						)
-					)
-				)
-			),
-			'overrideValueDeep' => array(
+							]
+						]
+					]
+				]
+			],
+			'overrideValueDeep' => [
 				'level_1.level_2.level_3.in_3',
 				'new value in 3',
-				array(
-					'level_1' => array(
+				[
+					'level_1' => [
 						'in_1' => 'value in 1',
-						'level_2' => array(
-							'level_3' => array(
+						'level_2' => [
+							'level_3' => [
 								'in_3' => 'new value in 3'
-							)
-						)
-					)
-				)
-			),
-			'newValueDeep' => array(
+							]
+						]
+					]
+				]
+			],
+			'newValueDeep' => [
 				'level_1.level_2.level_3.level_4.level_5.in_5',
 				'new value in 5',
-				array(
-					'level_1' => array(
+				[
+					'level_1' => [
 						'in_1' => 'value in 1',
-						'level_2' => array(
-							'level_3' => array(
+						'level_2' => [
+							'level_3' => [
 								'in_3' => 'value in 3',
-								'level_4' => array(
-									'level_5' => array(
+								'level_4' => [
+									'level_5' => [
 										'in_5' => 'new value in 5'
-									)
-								)
-							)
-						)
-					)
-				)
-			),
-			'overrideArrayWithValue' => array(
+									]
+								]
+							]
+						]
+					]
+				]
+			],
+			'overrideArrayWithValue' => [
 				'level_1.level_2',
 				'new value as 2',
-				array(
-					'level_1' => array(
+				[
+					'level_1' => [
 						'in_1' => 'value in 1',
 						'level_2' => 'new value as 2'
-					)
-				)
-			),
-		);
+					]
+				]
+			],
+		];
 	}
 
 }

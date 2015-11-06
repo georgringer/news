@@ -6,8 +6,8 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 // Extension manager configuration
 $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
-$tx_news_domain_model_media = array(
-    'ctrl' => array(
+$tx_news_domain_model_media = [
+    'ctrl' => [
         'title' => $ll . 'tx_news_domain_model_media',
         'descriptionColumn' => 'description',
         'label' => 'caption',
@@ -27,117 +27,117 @@ $tx_news_domain_model_media = array(
         'default_sortby' => 'ORDER BY sorting',
         'sortby' => 'sorting',
         'delete' => 'deleted',
-        'enablecolumns' => array(
+        'enablecolumns' => [
             'disabled' => 'hidden',
-        ),
+        ],
         'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_media.gif',
         'hideTable' => true,
-    ),
-    'interface' => array(
+    ],
+    'interface' => [
         'showRecordFieldList' => 'sys_language_uid,l10n_parent,l10n_diffsource,hidden,title,media,type,video,showInPreview, width, height, description'
-    ),
-    'columns' => array(
-        'pid' => array(
+    ],
+    'columns' => [
+        'pid' => [
             'label' => 'pid',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough'
-            )
-        ),
-        'sorting' => array(
+            ]
+        ],
+        'sorting' => [
             'label' => 'pid',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough'
-            )
-        ),
-        'crdate' => array(
+            ]
+        ],
+        'crdate' => [
             'label' => 'crdate',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough',
-            )
-        ),
-        'tstamp' => array(
+            ]
+        ],
+        'tstamp' => [
             'label' => 'tstamp',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough',
-            )
-        ),
-        'sys_language_uid' => array(
+            ]
+        ],
+        'sys_language_uid' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'special' => 'languages',
-                'items' => array(
-                    array(
+                'items' => [
+                    [
                         'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
                         -1,
                         'flags-multiple'
-                    ),
-                ),
+                    ],
+                ],
                 'default' => 0,
-            )
-        ),
-        'l10n_parent' => array(
+            ]
+        ],
+        'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => array(
-                    array('', 0),
-                ),
+                'items' => [
+                    ['', 0],
+                ],
                 'foreign_table' => 'tx_news_domain_model_media',
                 'foreign_table_where' => 'AND tx_news_domain_model_media.pid=###CURRENT_PID### AND tx_news_domain_model_media.sys_language_uid IN (-1,0)',
-            )
-        ),
-        'l10n_diffsource' => array(
-            'config' => array(
+            ]
+        ],
+        'l10n_diffsource' => [
+            'config' => [
                 'type' => 'passthrough',
                 'default' => ''
-            )
-        ),
-        'hidden' => array(
+            ]
+        ],
+        'hidden' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
-            'config' => array(
+            'config' => [
                 'type' => 'check',
                 'default' => 0
-            )
-        ),
-        'caption' => array(
+            ]
+        ],
+        'caption' => [
             'exclude' => 1,
             'l10n_mode' => 'noCopy',
             'label' => $ll . 'tx_news_domain_model_media.caption',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
-            )
-        ),
-        'title' => array(
+            ]
+        ],
+        'title' => [
             'exclude' => 1,
             'l10n_mode' => 'noCopy',
             'label' => 'LLL:EXT:cms/locallang_ttc.xlf:image_titleText',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 20,
-            )
-        ),
-        'alt' => array(
+            ]
+        ],
+        'alt' => [
             'exclude' => 1,
             'l10n_mode' => 'noCopy',
             'label' => 'LLL:EXT:cms/locallang_ttc.xlf:image_altText',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 20,
-            )
-        ),
-        'image' => array(
+            ]
+        ],
+        'image' => [
             'exclude' => 0,
             'l10n_mode' => 'copy',
             'label' => $ll . 'tx_news_domain_model_media.media',
-            'config' => array(
+            'config' => [
                 'type' => 'group',
                 'internal_type' => 'file',
                 'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
@@ -147,136 +147,136 @@ $tx_news_domain_model_media = array(
                 'size' => 1,
                 'minitems' => 1,
                 'maxitems' => 1,
-            )
-        ),
-        'multimedia' => array(
+            ]
+        ],
+        'multimedia' => [
             'exclude' => 0,
             'l10n_mode' => 'copy',
             'label' => $ll . 'tx_news_domain_model_media.multimedia',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim,required',
                 'softref' => 'news_externalurl',
-                'wizards' => array(
+                'wizards' => [
                     '_PADDING' => 2,
-                    'link' => array(
+                    'link' => [
                         'type' => 'popup',
                         'title' => 'Link',
                         'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => array(
+                        'module' => [
                             'name' => 'wizard_link_browser',
-                        ),
+                        ],
                         'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
-                    )
-                )
-            )
-        ),
-        'showinpreview' => array(
+                    ]
+                ]
+            ]
+        ],
+        'showinpreview' => [
             'exclude' => 1,
             'label' => $ll . 'tx_news_domain_model_media.showinpreview',
-            'config' => array(
+            'config' => [
                 'type' => 'check',
                 'default' => 0
-            )
-        ),
-        'type' => array(
+            ]
+        ],
+        'type' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:cms/locallang_ttc.xlf:media.type',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => array(
-                    array(
+                'items' => [
+                    [
                         $ll . 'tx_news_domain_model_media.type.I.0',
                         '0',
                         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/media_type_image.png'
-                    ),
-                    array(
+                    ],
+                    [
                         $ll . 'tx_news_domain_model_media.type.I.1',
                         '1',
                         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Icons/media_type_multimedia.png'
-                    ),
-                ),
+                    ],
+                ],
                 'size' => 1,
                 'maxitems' => 1,
-            )
-        ),
-        'width' => array(
+            ]
+        ],
+        'width' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:cms/locallang_ttc.xlf:imagewidth_formlabel',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 3,
                 'eval' => 'int',
-            )
-        ),
-        'height' => array(
+            ]
+        ],
+        'height' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:cms/locallang_ttc.xlf:imageheight_formlabel',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 3,
                 'eval' => 'int',
-            )
-        ),
-        'copyright' => array(
+            ]
+        ],
+        'copyright' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_media.copyright',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 20,
-            )
-        ),
-        'description' => array(
+            ]
+        ],
+        'description' => [
             'exclude' => 0,
             'l10n_mode' => 'noCopy',
             'label' => $ll . 'tx_news_domain_model_file.description',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
-                'wizards' => array(
+                'wizards' => [
                     '_PADDING' => 2,
-                    'RTE' => array(
+                    'RTE' => [
                         'notNewRecords' => 1,
                         'RTEonly' => 1,
                         'type' => 'script',
                         'title' => 'Full screen Rich Text Editing',
                         'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_rte.gif',
-                        'module' => array(
+                        'module' => [
                             'name' => 'wizard_rte',
-                        ),
-                    ),
-                ),
-            )
-        ),
-    ),
-    'types' => array(
+                        ],
+                    ],
+                ],
+            ]
+        ],
+    ],
+    'types' => [
         // Image
-        '0' => array('showitem' => '--palette--;;paletteCore,image, --palette--;;paletteWidthHeight,caption,title, --palette--;;paletteAlt,copyright,description;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],'),
+        '0' => ['showitem' => '--palette--;;paletteCore,image, --palette--;;paletteWidthHeight,caption,title, --palette--;;paletteAlt,copyright,description;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],'],
         // Multimedia (Video & Audio)
-        '1' => array('showitem' => '--palette--;;paletteCore,multimedia,caption,copyright,description,'),
-    ),
-    'palettes' => array(
-        'paletteWidthHeight' => array(
+        '1' => ['showitem' => '--palette--;;paletteCore,multimedia,caption,copyright,description,'],
+    ],
+    'palettes' => [
+        'paletteWidthHeight' => [
             'showitem' => 'width,height,',
             'canNotCollapse' => true
-        ),
-        'paletteCore' => array(
+        ],
+        'paletteCore' => [
             'showitem' => 'type,showinpreview, hidden,sys_language_uid, l10n_parent, l10n_diffsource,',
             'canNotCollapse' => true
-        ),
-        'paletteAlt' => array(
+        ],
+        'paletteAlt' => [
             'showitem' => 'alt',
             'canNotCollapse' => false
-        ),
-    )
-);
+        ],
+    ]
+];
 
 // Hide image type when FAL + Multimedia is set
 if ($configuration->getUseFal() === 3) {

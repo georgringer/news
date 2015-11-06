@@ -62,13 +62,13 @@ class AccessControlService
     {
         if (self::getBackendUser()->isAdmin()) {
             // an admin may edit all news so no categories without access
-            return array();
+            return [];
         }
 
         // no category mounts set means access to all
         $backendUserCategories = self::getBackendUser()->getCategoryMountPoints();
-        if ($backendUserCategories === array()) {
-            return array();
+        if ($backendUserCategories === []) {
+            return [];
         }
 
         /** @var CategoryService $catService */
@@ -136,12 +136,12 @@ class AccessControlService
             $whereClause
         );
 
-        $categories = array();
+        $categories = [];
         while (($row = self::getDatabaseConnection()->sql_fetch_assoc($res))) {
-            $categories[] = array(
+            $categories[] = [
                 'uid' => $row['uid_local'],
                 'title' => $row['title']
-            );
+            ];
         }
         self::getDatabaseConnection()->sql_free_result($res);
         return $categories;

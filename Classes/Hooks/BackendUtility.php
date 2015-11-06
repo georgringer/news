@@ -31,78 +31,78 @@ class BackendUtility
      *
      * @var array
      */
-    public $removedFieldsInDetailView = array(
+    public $removedFieldsInDetailView = [
         'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						dateField',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters'
-    );
+    ];
 
     /**
      * Fields which are removed in list view
      *
      * @var array
      */
-    public $removedFieldsInListView = array(
+    public $removedFieldsInListView = [
         'sDEF' => 'dateField,singleNews,previewHiddenRecords',
         'additional' => '',
         'template' => ''
-    );
+    ];
 
     /**
      * Fields which are removed in dateMenu view
      *
      * @var array
      */
-    public $removedFieldsInDateMenuView = array(
+    public $removedFieldsInDateMenuView = [
         'sDEF' => 'orderBy,singleNews',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
-    );
+    ];
 
     /**
      * Fields which are removed in search form view
      *
      * @var array
      */
-    public $removedFieldsInSearchFormView = array(
+    public $removedFieldsInSearchFormView = [
         'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
-    );
+    ];
 
     /**
      * Fields which are removed in category list view
      *
      * @var array
      */
-    public $removedFieldsInCategoryListView = array(
+    public $removedFieldsInCategoryListView = [
         'sDEF' => 'orderBy,orderDirection,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
-    );
+    ];
 
     /**
      * Fields which are removed in tag list view
      *
      * @var array
      */
-    public $removedFieldsInTagListView = array(
+    public $removedFieldsInTagListView = [
         'sDEF' => 'categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						dateField,singleNews,previewHiddenRecords',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
-    );
+    ];
 
     /**
      * Hook function of \TYPO3\CMS\Backend\Utility\BackendUtility
@@ -177,10 +177,10 @@ class BackendUtility
             }
 
             if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'])) {
-                $params = array(
+                $params = [
                     'selectedView' => $selectedView,
                     'dataStructure' => &$dataStructure,
-                );
+                ];
                 foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] as $reference) {
                     GeneralUtility::callUserFunction($reference, $params, $this);
                 }

@@ -47,10 +47,10 @@ class ItemsProcFunc
 
         $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($row['pid']);
         foreach ($templateLayouts as $layout) {
-            $additionalLayout = array(
+            $additionalLayout = [
                 $this->getLanguageService()->sL($layout[0], true),
                 $layout[1]
-            );
+            ];
             array_push($config['items'], $additionalLayout);
         }
     }
@@ -88,9 +88,9 @@ class ItemsProcFunc
         // if a override configuration is found
         if (!empty($newItems)) {
             // remove default configuration
-            $config['items'] = array();
+            $config['items'] = [];
             // empty default line
-            array_push($config['items'], array('', ''));
+            array_push($config['items'], ['', '']);
 
             $newItemArray = GeneralUtility::trimExplode(',', $newItems, true);
             $languageKey = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.';
@@ -100,7 +100,7 @@ class ItemsProcFunc
                 if (empty($label)) {
                     $label = htmlspecialchars($item);
                 }
-                array_push($config['items'], array($label, $item));
+                array_push($config['items'], [$label, $item]);
             }
         }
     }
@@ -149,7 +149,7 @@ class ItemsProcFunc
             && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
         ) {
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'] as $key => $label) {
-                array_push($config['items'], array($this->getLanguageService()->sL($label), $key, ''));
+                array_push($config['items'], [$this->getLanguageService()->sL($label), $key, '']);
             }
         }
     }

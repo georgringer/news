@@ -30,29 +30,29 @@ class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return void
 	 */
 	public function correctFieldOfArrayIsReturned($input, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', array('dummy'));
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', ['dummy']);
 		$result = $mockTemplateParser->_call('getTitleFromFields', $input[0], $input[1]);
 		$this->assertEquals($expectedResult, $result);
 	}
 
 	public function correctFieldOfArrayIsReturnedDataProvider() {
-		return array(
-			'working example 1' => array(
-				array('uid, title', array('title' => 'fobar')), 'fobar'
-			),
-			'1st found result is returned' => array(
-				array('uid, title', array('uid' => '123', 'title' => 'fobar')), '123'
-			),
-			'empty fieldlist returns empty string' => array(
-				array('', array('title' => 'fobar')), ''
-			),
-			'empty array returns empty string' => array(
-				array('uid, title', array()), ''
-			),
-			'null returns empty string' => array(
-				array('uid, title', NULL), ''
-			),
-		);
+		return [
+			'working example 1' => [
+				['uid, title', ['title' => 'fobar']], 'fobar'
+			],
+			'1st found result is returned' => [
+				['uid, title', ['uid' => '123', 'title' => 'fobar']], '123'
+			],
+			'empty fieldlist returns empty string' => [
+				['', ['title' => 'fobar']], ''
+			],
+			'empty array returns empty string' => [
+				['uid, title', []], ''
+			],
+			'null returns empty string' => [
+				['uid, title', NULL], ''
+			],
+		];
 	}
 
 	/**
@@ -61,25 +61,25 @@ class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return void
 	 */
 	public function splitOfFileNameReturnsCorrectPartial($string, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', array('dummy'));
+		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', ['dummy']);
 		$result = $mockTemplateParser->_call('splitFileName', $string);
 		$this->assertEquals($expectedResult, $result);
 	}
 
 	public function splitOfFileNameReturnsCorrectPartialDataProvider() {
-		return array(
-			'working example 1' => array(
+		return [
+			'working example 1' => [
 				'fobar|fobar', 'fobar'
-			),
-			'different strings' => array(
+			],
+			'different strings' => [
 				'fo|bar', 'fo|bar'
-			),
-			'wrong count 1' => array(
+			],
+			'wrong count 1' => [
 				'fo|bar|xxx', 'fo|bar|xxx'
-			),
-			'wrong count 2' => array(
+			],
+			'wrong count 2' => [
 				'fobar', 'fobar'
-			),
-		);
+			],
+		];
 	}
 }

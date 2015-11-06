@@ -40,23 +40,23 @@ class Mp3Test extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function fileIsRecognizedDataProvider() {
-		return array(
-			'workingMp3' => array(
+		return [
+			'workingMp3' => [
 				'fileadmin/fo/bar.mp3', TRUE
-			),
-			'workingMp3WithUpperCaseFileType' => array(
+			],
+			'workingMp3WithUpperCaseFileType' => [
 				'fileadmin/fo/bar.MP3', TRUE
-			),
-			'otherFileType' => array(
+			],
+			'otherFileType' => [
 				'fileadmin/someMusic.flv', FALSE
-			),
-			'noMediaFileGiven' => array(
+			],
+			'noMediaFileGiven' => [
 				NULL, FALSE
-			),
-			'emptyMediaFileGiven' => array(
+			],
+			'emptyMediaFileGiven' => [
 				'', FALSE
-			),
-		);
+			],
+		];
 	}
 
 }

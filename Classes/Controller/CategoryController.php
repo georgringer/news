@@ -70,11 +70,11 @@ class CategoryController extends NewsController
 
         $idList = explode(',', $this->settings['categories']);
 
-        $assignedValues = array(
+        $assignedValues = [
             'categories' => $this->categoryRepository->findTree($idList),
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-        );
+        ];
 
         $assignedValues = $this->emitActionSignal('CategoryController', self::SIGNAL_CATEGORY_LIST_ACTION,
             $assignedValues);

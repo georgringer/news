@@ -72,10 +72,10 @@ class TtContentRelation extends AbstractUpdate
     {
         $rows = $this->getDatabaseConnection()->exec_SELECTgetRows('*', self::MM_TABLE, '1=1');
         foreach ($rows as $row) {
-            $update = array(
+            $update = [
                 'tx_news_related_news' => $row['uid_local'],
                 'sorting' => $row['sorting']
-            );
+            ];
             $this->getDatabaseConnection()->exec_UPDATEquery(
                 'tt_content',
                 'uid=' . $row['uid_foreign'],

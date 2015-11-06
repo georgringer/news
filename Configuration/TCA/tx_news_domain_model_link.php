@@ -3,8 +3,8 @@ defined('TYPO3_MODE') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
-return array(
-    'ctrl' => array(
+return [
+    'ctrl' => [
         'title' => $ll . 'tx_news_domain_model_link',
         'descriptionColumn' => 'description',
         'label' => 'title',
@@ -22,136 +22,136 @@ return array(
         'default_sortby' => 'ORDER BY sorting',
         'sortby' => 'sorting',
         'delete' => 'deleted',
-        'enablecolumns' => array(
+        'enablecolumns' => [
             'disabled' => 'hidden',
-        ),
+        ],
         'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_link.gif',
         'hideTable' => true,
-    ),
-    'interface' => array(
+    ],
+    'interface' => [
         'showRecordFieldList' => 'hidden,title,description,uri'
-    ),
-    'columns' => array(
-        'pid' => array(
+    ],
+    'columns' => [
+        'pid' => [
             'label' => 'pid',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough'
-            )
-        ),
-        'crdate' => array(
+            ]
+        ],
+        'crdate' => [
             'label' => 'crdate',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough',
-            )
-        ),
-        'tstamp' => array(
+            ]
+        ],
+        'tstamp' => [
             'label' => 'tstamp',
-            'config' => array(
+            'config' => [
                 'type' => 'passthrough',
-            )
-        ),
-        'sys_language_uid' => array(
+            ]
+        ],
+        'sys_language_uid' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'special' => 'languages',
-                'items' => array(
-                    array(
+                'items' => [
+                    [
                         'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
                         -1,
                         'flags-multiple'
-                    ),
-                ),
+                    ],
+                ],
                 'default' => 0,
-            )
-        ),
-        'l10n_parent' => array(
+            ]
+        ],
+        'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
-            'config' => array(
+            'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => array(
-                    array('', 0),
-                ),
+                'items' => [
+                    ['', 0],
+                ],
                 'foreign_table' => 'tx_news_domain_model_link',
                 'foreign_table_where' => 'AND tx_news_domain_model_link.pid=###CURRENT_PID### AND tx_news_domain_model_link.sys_language_uid IN (-1,0)',
-            )
-        ),
-        'l10n_diffsource' => array(
-            'config' => array(
+            ]
+        ],
+        'l10n_diffsource' => [
+            'config' => [
                 'type' => 'passthrough',
                 'default' => ''
-            )
-        ),
-        'hidden' => array(
+            ]
+        ],
+        'hidden' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
-            'config' => array(
+            'config' => [
                 'type' => 'check',
                 'default' => 0
-            )
-        ),
-        'title' => array(
+            ]
+        ],
+        'title' => [
             'exclude' => 0,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.title',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'size' => 30,
-            )
-        ),
-        'description' => array(
+            ]
+        ],
+        'description' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.description',
-            'config' => array(
+            'config' => [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
-            )
-        ),
-        'uri' => array(
+            ]
+        ],
+        'uri' => [
             'exclude' => 0,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.uri',
-            'config' => array(
+            'config' => [
                 'type' => 'input',
                 'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
                 'size' => 30,
                 'eval' => 'trim,required',
                 'softref' => 'news_externalurl',
-                'wizards' => array(
+                'wizards' => [
                     '_PADDING' => 2,
-                    'link' => array(
+                    'link' => [
                         'type' => 'popup',
                         'title' => 'Link',
                         'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
-                        'module' => array(
+                        'module' => [
                             'name' => 'wizard_link_browser',
-                        ),
+                        ],
                         'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
-                    )
-                )
-            )
-        ),
-    ),
-    'types' => array(
-        0 => array(
+                    ]
+                ]
+            ]
+        ],
+    ],
+    'types' => [
+        0 => [
             'showitem' => 'uri, --palette--;;palettteCore,title, --palette--;;paletteDescription'
-        )
-    ),
-    'palettes' => array(
-        'paletteCore' => array(
+        ]
+    ],
+    'palettes' => [
+        'paletteCore' => [
             'showitem' => 'hidden,sys_language_uid,l10n_parent, l10n_diffsource,',
             'canNotCollapse' => true
-        ),
-        'paletteDescription' => array(
+        ],
+        'paletteDescription' => [
             'showitem' => 'description',
             'canNotCollapse' => false
-        )
-    )
-);
+        ]
+    ]
+];

@@ -50,7 +50,7 @@ class EmConfiguration
         $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
 
         if (!is_array($settings)) {
-            $settings = array();
+            $settings = [];
         }
         return $settings;
     }

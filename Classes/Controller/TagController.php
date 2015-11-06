@@ -58,11 +58,11 @@ class TagController extends NewsController
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
-        $assignedValues = array(
+        $assignedValues = [
             'tags' => $this->tagRepository->findDemanded($demand),
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-        );
+        ];
 
         $assignedValues = $this->emitActionSignal('TagController', self::SIGNAL_TAG_LIST_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);

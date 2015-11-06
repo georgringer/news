@@ -68,12 +68,12 @@ class SoftReferenceIndex
             $linkElement = explode(',', $content);
         } else {
             // If only one element, just set in this array to make it easy below.
-            $linkElement = array($content);
+            $linkElement = [$content];
         }
         // Traverse the links now:
-        $elements = array();
+        $elements = [];
         foreach ($linkElement as $k => $typolinkValue) {
-            $typolinkProperties = array();
+            $typolinkProperties = [];
             list($linkUrl, $browserTarget, $cssClass) = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ',
                 $typolinkValue, 1);
             //Add http as default schema for external urls if none given
@@ -92,10 +92,10 @@ class SoftReferenceIndex
         }
         // Return output:
         if (count($elements)) {
-            $resultArray = array(
+            $resultArray = [
                 'content' => implode(',', $linkElement),
                 'elements' => $elements
-            );
+            ];
             return $resultArray;
         }
 
@@ -118,17 +118,17 @@ class SoftReferenceIndex
 
         // Initialize, set basic values. In any case a link will be shown
         $tokenId = $this->makeTokenID('setTypoLinkPartsElement:' . $idx);
-        $elements[$tokenId . ':' . $idx] = array();
+        $elements[$tokenId . ':' . $idx] = [];
         $elements[$tokenId . ':' . $idx]['matchString'] = $content;
         // Based on link type, maybe do more:
         switch ((string)$typolinkProperties['LINK_TYPE']) {
             case 'url':
                 // Mail addresses and URLs can be substituted manually:
-                $elements[$tokenId . ':' . $idx]['subst'] = array(
+                $elements[$tokenId . ':' . $idx]['subst'] = [
                     'type' => 'string',
                     'tokenID' => $tokenId,
                     'tokenValue' => $typolinkProperties['url']
-                );
+                ];
                 // Output content will be the token instead:
                 $content = '{softref:' . $tokenId . '}';
                 break;

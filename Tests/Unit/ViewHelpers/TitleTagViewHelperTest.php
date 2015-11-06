@@ -32,7 +32,7 @@ class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * Set up
 	 */
 	public function setUp() {
-		$this->tsfe = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController', array('dummy'), array(), '', FALSE);
+		$this->tsfe = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController', ['dummy'], [], '', FALSE);
 		$GLOBALS['TSFE'] = $this->tsfe;
 	}
 
@@ -45,7 +45,7 @@ class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function titleTagIsSet() {
 		$title = 'Some title';
 		/** @var TitleTagViewHelper|\PHPUnit_Framework_MockObject_MockObject $viewHelper */
-		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', array('renderChildren'));
+		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['renderChildren']);
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue($title));
 
 		$viewHelper->render();

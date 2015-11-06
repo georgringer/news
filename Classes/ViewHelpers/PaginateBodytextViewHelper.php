@@ -91,8 +91,8 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
                 $currentPage = $numberOfPages;
             }
 
-            $tagsToOpen = array();
-            $tagsToClose = array();
+            $tagsToOpen = [];
+            $tagsToClose = [];
 
             for ($j = 0; $j < $currentPage; $j++) {
                 $chunk = $parts[$j];
@@ -127,16 +127,16 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
             }
         }
 
-        $pages = array();
+        $pages = [];
         for ($i = 1; $i <= $numberOfPages; $i++) {
-            $pages[] = array('number' => $i, 'isCurrent' => ($i === $currentPage));
+            $pages[] = ['number' => $i, 'isCurrent' => ($i === $currentPage)];
         }
 
-        $pagination = array(
+        $pagination = [
             'pages' => $pages,
             'numberOfPages' => $numberOfPages,
             'current' => $currentPage
-        );
+        ];
 
         if ($currentPage < $numberOfPages) {
             $pagination['nextPage'] = $currentPage + 1;

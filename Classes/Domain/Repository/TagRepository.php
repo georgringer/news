@@ -35,7 +35,7 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
     {
-        $constraints = array();
+        $constraints = [];
 
         // Storage page
         if ($demand->getStoragePage() != 0) {
@@ -67,7 +67,7 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
      */
     protected function createOrderingsFromDemand(DemandInterface $demand)
     {
-        $orderings = array();
+        $orderings = [];
 
         if (Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
             $orderList = GeneralUtility::trimExplode(',', $demand->getOrder(), true);

@@ -64,7 +64,7 @@ Ext.Ajax.request({
             $javaScriptCode = trim(str_replace('"', '\'', $javaScriptCode));
             $link = implode(' ', explode(chr(10), $javaScriptCode));
 
-            $records['tx_news_domain_model_tag_' . strlen($text)] = array(
+            $records['tx_news_domain_model_tag_' . strlen($text)] = [
                 'text' => '<div onclick="' . $link . '">
 							<span class="suggest-path">
 								<a>' .
@@ -75,7 +75,7 @@ Ext.Ajax.request({
                 'table' => 'tx_news_domain_model_tag',
                 'class' => 'suggest-noresults',
                 'icon' => $this->getDummyIcon()->render()
-            );
+            ];
         }
 
         return $records;

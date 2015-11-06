@@ -63,7 +63,7 @@ class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBas
      */
     public function render()
     {
-        $args = array();
+        $args = [];
         if ((int)$this->arguments['size'] > 0) {
             $args['s'] = (int)$this->arguments['size'];
         }

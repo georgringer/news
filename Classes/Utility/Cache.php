@@ -29,7 +29,7 @@ class Cache
      * Stack for processed cObjs which has added news relevant cache tags.
      * @var array
      */
-    protected static $processedContentRecords = array();
+    protected static $processedContentRecords = [];
 
     /**
      * Marks as cObj as processed.
@@ -66,7 +66,7 @@ class Cache
      */
     public static function addCacheTagsByNewsRecords(array $newsRecords)
     {
-        $cacheTags = array();
+        $cacheTags = [];
         foreach ($newsRecords as $news) {
             // cache tag for each news record
             $cacheTags[] = 'tx_news_uid_' . $news->getUid();
@@ -85,7 +85,7 @@ class Cache
      */
     public static function addPageCacheTagsByDemandObject(\GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand)
     {
-        $cacheTags = array();
+        $cacheTags = [];
         if ($demand->getStoragePage()) {
             // Add cache tags for each storage page
             foreach (GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {

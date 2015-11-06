@@ -28,7 +28,7 @@ class IfIsActiveViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\IfIsActiveViewHelper', array('renderThenChild', 'renderElseChild'));
+		$this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\IfIsActiveViewHelper', ['renderThenChild', 'renderElseChild']);
 	}
 
 	/**

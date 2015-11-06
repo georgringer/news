@@ -40,23 +40,23 @@ class VimeoTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function fileIsRecognizedDataProvider() {
-		return array(
-			'defaultUrl' => array(
+		return [
+			'defaultUrl' => [
 				'http://vimeo.com/16850096', TRUE
-			),
-			'noMediaFileGiven' => array(
+			],
+			'noMediaFileGiven' => [
 				NULL, FALSE
-			),
-			'emptyMediaFileGiven' => array(
+			],
+			'emptyMediaFileGiven' => [
 				'', FALSE
-			),
-			'localFileGiven' => array(
+			],
+			'localFileGiven' => [
 				'fileadmin/fobar.flv', FALSE
-			),
-			'wrongDomainGiven' => array(
+			],
+			'wrongDomainGiven' => [
 				'http://youtu.be/ko5CCSomDMY', FALSE
-			),
-		);
+			],
+		];
 	}
 
 }

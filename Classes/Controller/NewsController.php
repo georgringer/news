@@ -44,7 +44,7 @@ class NewsController extends NewsBaseController
     protected $configurationManager;
 
     /** @var array */
-    protected $ignoredSettingsForOverride = array('demandClass', 'orderByAllowed');
+    protected $ignoredSettingsForOverride = ['demandClass', 'orderByAllowed'];
 
     /**
      * Inject a news repository to enable DI
@@ -75,7 +75,7 @@ class NewsController extends NewsBaseController
             /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
             $typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
-                $typoScriptFrontendController->addCacheTags(array('tx_news'));
+                $typoScriptFrontendController->addCacheTags(['tx_news']);
                 $cacheTagsSet = true;
             }
         }
@@ -172,11 +172,11 @@ class NewsController extends NewsBaseController
         }
         $newsRecords = $this->newsRepository->findDemanded($demand);
 
-        $assignedValues = array(
+        $assignedValues = [
             'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-        );
+        ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
@@ -221,18 +221,18 @@ class NewsController extends NewsBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        $assignedValues = array(
+        $assignedValues = [
             'newsItem' => $news,
             'currentPage' => (int)$currentPage,
             'demand' => $demand,
-        );
+        ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
 
         Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
         if (!is_null($news) && is_a($news, 'GeorgRinger\\News\\Domain\\Model\\News')) {
-            Cache::addCacheTagsByNewsRecords(array($news));
+            Cache::addCacheTagsByNewsRecords([$news]);
         }
     }
 
@@ -257,10 +257,10 @@ class NewsController extends NewsBaseController
             $this->signalSlotDispatcher->dispatch(
                 __CLASS__,
                 'checkPidOfNewsRecordFailedInDetailAction',
-                array(
+                [
                     'news' => $news,
                     'newsController' => $this
-                )
+                ]
             );
             $news = null;
         }
@@ -306,14 +306,14 @@ class NewsController extends NewsBaseController
         $demand->setOrder($this->settings['orderDirection']);
         $statistics = $this->newsRepository->countByDate($demand);
 
-        $assignedValues = array(
+        $assignedValues = [
             'listPid' => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
             'dateField' => $dateField,
             'data' => $statistics,
             'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-        );
+        ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DATEMENU_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
@@ -328,7 +328,7 @@ class NewsController extends NewsBaseController
      */
     public function searchFormAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
-        array $overwriteDemand = array()
+        array $overwriteDemand = []
     ) {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -342,11 +342,11 @@ class NewsController extends NewsBaseController
         }
         $demand->setSearch($search);
 
-        $assignedValues = array(
+        $assignedValues = [
             'search' => $search,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-        );
+        ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHFORM_ACTION,
             $assignedValues);
@@ -362,7 +362,7 @@ class NewsController extends NewsBaseController
      */
     public function searchResultAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
-        array $overwriteDemand = array()
+        array $overwriteDemand = []
     ) {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -377,12 +377,12 @@ class NewsController extends NewsBaseController
         }
         $demand->setSearch($search);
 
-        $assignedValues = array(
+        $assignedValues = [
             'news' => $this->newsRepository->findDemanded($demand),
             'overwriteDemand' => $overwriteDemand,
             'search' => $search,
             'demand' => $demand,
-        );
+        ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHRESULT_ACTION,
             $assignedValues);
@@ -413,7 +413,7 @@ class NewsController extends NewsBaseController
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
         );
 
-        $propertiesNotAllowedViaFlexForms = array('orderByAllowed');
+        $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];
         foreach ($propertiesNotAllowedViaFlexForms as $property) {
             $originalSettings[$property] = $tsSettings['settings'][$property];
         }

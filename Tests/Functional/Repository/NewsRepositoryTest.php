@@ -28,7 +28,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 	/** @var  \GeorgRinger\News\Domain\Repository\NewsRepository */
 	protected $newsRepository;
 
-	protected $testExtensionsToLoad = array('typo3conf/ext/news');
+	protected $testExtensionsToLoad = ['typo3conf/ext/news'];
 
 	public function setUp() {
 		parent::setUp();

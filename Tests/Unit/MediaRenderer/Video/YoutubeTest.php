@@ -31,9 +31,9 @@ class YoutubeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$mediaElement->setMultimedia($expected);
 		$mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
 
-		$mockedSettingsService = $this->getMock('GeorgRinger\\News\\Service\\SettingsService', array('getSettings'));
+		$mockedSettingsService = $this->getMock('GeorgRinger\\News\\Service\\SettingsService', ['getSettings']);
 
-		$renderer = $this->getAccessibleMock('GeorgRinger\\News\\MediaRenderer\\Video\\Youtube', array('dummy'));
+		$renderer = $this->getAccessibleMock('GeorgRinger\\News\\MediaRenderer\\Video\\Youtube', ['dummy']);
 		$renderer->_set('pluginSettingsService', $mockedSettingsService);
 		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
 	}
@@ -42,26 +42,26 @@ class YoutubeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return array
 	 */
 	public function fileIsRecognizedDataProvider() {
-		return array(
-			'defaultUrl' => array(
+		return [
+			'defaultUrl' => [
 				'http://www.youtube.com/watch?v=IGX2dXpTyns', TRUE
-			),
-			'shortUrl' => array(
+			],
+			'shortUrl' => [
 				'http://youtu.be/ko5CCSomDMY', TRUE
-			),
-			'noMediaFileGiven' => array(
+			],
+			'noMediaFileGiven' => [
 				NULL, FALSE
-			),
-			'emptyMediaFileGiven' => array(
+			],
+			'emptyMediaFileGiven' => [
 				'', FALSE
-			),
-			'localFileGiven' => array(
+			],
+			'localFileGiven' => [
 				'fileadmin/fobar.flv', FALSE
-			),
-			'wrongDomainGiven' => array(
+			],
+			'wrongDomainGiven' => [
 				'http://www.somedomain.com/watch/1234', FALSE
-			),
-		);
+			],
+		];
 	}
 
 }

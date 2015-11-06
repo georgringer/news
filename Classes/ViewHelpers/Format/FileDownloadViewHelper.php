@@ -51,7 +51,7 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
      */
     public function render(
         $file,
-        $configuration = array(),
+        $configuration = [],
         $hideError = false,
         $class = '',
         $target = '',
@@ -77,20 +77,20 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
         $cObj->data = $fileInformation;
 
         // set a basic configuration for cObj->filelink
-        $tsConfiguration = array(
+        $tsConfiguration = [
             'path' => $fileInformation['dirname'] . '/',
             'ATagParams' => 'class="download-link basic-class ' . strtolower($fileInformation['extension']) . (!empty($class) ? ' ' . $class : '') . '"',
-            'labelStdWrap.' => array(
-                'cObject.' => array(
+            'labelStdWrap.' => [
+                'cObject.' => [
                     'value' => $this->renderChildren()
-                )
-            ),
+                ]
+            ],
 
-        );
+        ];
 
         // Fallback if no configuration given
         if (!is_array($configuration)) {
-            $configuration = array('labelStdWrap.' => array('cObject' => 'TEXT'));
+            $configuration = ['labelStdWrap.' => ['cObject' => 'TEXT']];
         } else {
             /** @var $typoscriptService TypoScriptService */
             $typoscriptService = GeneralUtility::makeInstance(TypoScriptService::class);

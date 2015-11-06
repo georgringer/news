@@ -597,7 +597,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getAllRelatedSorted()
     {
-        $all = array();
+        $all = [];
         $itemsRelated = $this->getRelated();
         if ($itemsRelated) {
             $all = array_merge($all, $itemsRelated->toArray());
@@ -819,7 +819,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
             return null;
         }
 
-        $previewCollection = array();
+        $previewCollection = [];
         foreach ($mediaElements as $mediaElement) {
             if ($mediaElement->getShowinpreview()) {
                 $previewCollection[] = $mediaElement;
@@ -846,7 +846,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
             return null;
         }
 
-        $collection = array();
+        $collection = [];
         foreach ($mediaElements as $mediaElement) {
             if (!$mediaElement->getShowinpreview()) {
                 $collection[] = $mediaElement;
@@ -983,7 +983,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getFalMediaPreviews()
     {
         if ($this->falMediaPreviews === null && $this->getFalMedia()) {
-            $this->falMediaPreviews = array();
+            $this->falMediaPreviews = [];
             /** @var $mediaItem FileReference */
             foreach ($this->getFalMedia() as $mediaItem) {
                 if ($mediaItem->getOriginalResource()->getProperty('showinpreview')) {
@@ -1003,7 +1003,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getFalMediaNonPreviews()
     {
         if ($this->falMediaNonPreviews === null && $this->getFalMedia()) {
-            $this->falMediaNonPreviews = array();
+            $this->falMediaNonPreviews = [];
             /** @var $mediaItem FileReference */
             foreach ($this->getFalMedia() as $mediaItem) {
                 if (!$mediaItem->getOriginalResource()->getProperty('showinpreview')) {
@@ -1136,7 +1136,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getContentElementIdList()
     {
-        $idList = array();
+        $idList = [];
         foreach ($this->getContentElements() as $contentElement) {
             $idList[] = $contentElement->getUid();
         }
@@ -1613,7 +1613,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
             return null;
         }
 
-        $collection = array();
+        $collection = [];
         foreach ($mediaElements as $mediaElement) {
             if ((int)$mediaElement->getType() === $type) {
                 $collection[] = $mediaElement;

@@ -85,18 +85,18 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     public function findTree(array $rootIdList)
     {
         $subCategories = CategoryService::getChildrenCategories(implode(',', $rootIdList));
-        $ordering = array('sorting' => QueryInterface::ORDER_ASCENDING);
+        $ordering = ['sorting' => QueryInterface::ORDER_ASCENDING];
 
         $categories = $this->findByIdList(explode(',', $subCategories), $ordering);
-        $flatCategories = array();
+        $flatCategories = [];
         foreach ($categories as $category) {
-            $flatCategories[$category->getUid()] = Array(
+            $flatCategories[$category->getUid()] = [
                 'item' => $category,
                 'parent' => ($category->getParentcategory()) ? $category->getParentcategory()->getUid() : null
-            );
+            ];
         }
 
-        $tree = array();
+        $tree = [];
 
         // If leaves are selected without its parents selected, those are shown as parent
         foreach ($flatCategories as $id => &$flatCategory) {
@@ -123,7 +123,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      * @param array $ordering ordering
      * @return QueryInterface
      */
-    public function findByIdList(array $idList, array $ordering = array())
+    public function findByIdList(array $idList, array $ordering = [])
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);

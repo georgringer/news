@@ -41,7 +41,7 @@ class MultiEditLinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
      */
     public function render($items, $columns)
     {
-        $idList = array();
+        $idList = [];
         foreach ($items as $item) {
             $idList[] = $item->getUid();
         }

@@ -1,5 +1,5 @@
 <?php
-return array(
+return [
 	'Tx_News_Controller_AdministrationController' => 'GeorgRinger\\News\\Controller\\AdministrationController',
 	'Tx_News_Controller_CategoryController' => 'GeorgRinger\\News\\Controller\\CategoryController',
 	'Tx_News_Controller_ImportController' => 'GeorgRinger\\News\\Controller\\ImportController',
@@ -109,4 +109,4 @@ return array(
 	'Tx_News_Domain_Model_Dto_NewsDemand' => 'GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand',
 	'Tx_News_Domain_Model_Dto_Search' => 'GeorgRinger\\News\\Domain\\Model\\Dto\\Search',
 	'Tx_News_Domain_Model_Dto_' => 'GeorgRinger\\News\\Domain\\Model\\Dto\\',
-);
+];

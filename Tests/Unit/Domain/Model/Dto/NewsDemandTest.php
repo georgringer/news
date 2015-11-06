@@ -37,7 +37,7 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return void
 	 */
 	public function categoriesCanBeSet() {
-		$value = array('Test 123');
+		$value = ['Test 123'];
 		$this->instance->setCategories($value);
 		$this->assertEquals($value, $this->instance->getCategories());
 	}

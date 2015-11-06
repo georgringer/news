@@ -44,7 +44,7 @@ class ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Ab
         $uid = $newsItem->getUid();
 
         if (empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {
-            $GLOBALS['EXT']['news']['alreadyDisplayed'] = array();
+            $GLOBALS['EXT']['news']['alreadyDisplayed'] = [];
         }
         $GLOBALS['EXT']['news']['alreadyDisplayed'][$uid] = $uid;
 

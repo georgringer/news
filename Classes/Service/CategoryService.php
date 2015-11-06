@@ -107,7 +107,7 @@ class CategoryService
      */
     private static function getChildrenCategoriesRecursive($idList, $counter = 0, $additionalWhere = '')
     {
-        $result = array();
+        $result = [];
 
         // add idlist to the output too
         if ($counter === 0) {
@@ -146,7 +146,7 @@ class CategoryService
     public static function getRootlineRecursive($id, $counter = 0, $additionalWhere = '')
     {
         $id = (int)$id;
-        $result = array();
+        $result = [];
 
         $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
             'uid,parent',
@@ -179,7 +179,7 @@ class CategoryService
      * @return string
      * @throws \UnexpectedValueException
      */
-    public static function translateCategoryRecord($default, array $row = array())
+    public static function translateCategoryRecord($default, array $row = [])
     {
         if (TYPO3_MODE != 'BE') {
             throw new \UnexpectedValueException('TYPO3 Mode must be BE');

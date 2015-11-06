@@ -40,42 +40,42 @@ class ValidationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	}
 
 	public function orderDataProvider() {
-		return array(
-			'allowedOrdering' => array(
+		return [
+			'allowedOrdering' => [
 				'title,uid', TRUE
-			),
-			'allowedOrderingWithSorting' => array(
+			],
+			'allowedOrderingWithSorting' => [
 				'title ASC, uid', TRUE
-			),
-			'allowedOrderingWithSorting2' => array(
+			],
+			'allowedOrderingWithSorting2' => [
 				'title ASC, uid DESC', TRUE
-			),
-			'allowedOrderingWithSorting3' => array(
+			],
+			'allowedOrderingWithSorting3' => [
 				'title, uid desc,teaser', TRUE
-			),
-			'allowedOrderingWithDotsAndSorting' => array(
+			],
+			'allowedOrderingWithDotsAndSorting' => [
 				'categories.title DESC, uid ASC,author,teaser desc', TRUE
-			),
-			'nonAllowedField' => array(
+			],
+			'nonAllowedField' => [
 				'title,teaserFo,uid', FALSE
-			),
-			'nonAllowedSorting' => array(
+			],
+			'nonAllowedSorting' => [
 				'title,teaser ASCx,uid', FALSE
-			),
-			'nonAllowedDoubleSorting' => array(
+			],
+			'nonAllowedDoubleSorting' => [
 				'title,teaser ASC DESC,uid', FALSE
-			),
-			'nonAllowedDoubleFields' => array(
+			],
+			'nonAllowedDoubleFields' => [
 				'title teaser,uid', FALSE
-			),
-			'emptySorting' => array(
+			],
+			'emptySorting' => [
 				'', TRUE
-			),
-			'emptySorting2' => array(
+			],
+			'emptySorting2' => [
 				' ', TRUE
-			),
+			],
 
-		);
+		];
 	}
 
 }

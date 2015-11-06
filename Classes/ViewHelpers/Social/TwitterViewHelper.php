@@ -88,7 +88,7 @@ class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
             (!empty($this->arguments['class'])) ? $this->arguments['class'] : 'twitter-share-button');
 
         // rewrite tags as it seems that it is not possible to have tags with a '-'.
-        $rewriteTags = array('datacount', 'datavia', 'datarelated', 'datatext', 'dataurl', 'datalang');
+        $rewriteTags = ['datacount', 'datavia', 'datarelated', 'datatext', 'dataurl', 'datalang'];
         foreach ($rewriteTags as $tag) {
             if (!empty($this->arguments[$tag])) {
                 $newTag = str_replace('data', 'data-', $tag);

@@ -27,7 +27,7 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * @var array
      */
-    protected $postPersistQueue = array();
+    protected $postPersistQueue = [];
 
     /**
      * @var \GeorgRinger\News\Domain\Model\Dto\EmConfiguration

@@ -5,9 +5,9 @@ namespace GeorgRinger\News\Utility;
 class ClassParser
 {
 
-    private $classes = array();
-    private $extends = array();
-    private $implements = array();
+    private $classes = [];
+    private $extends = [];
+    private $implements = [];
 
     const STATE_CLASS_HEAD = 100001;
     const STATE_FUNCTION_HEAD = 100002;
@@ -24,7 +24,7 @@ class ClassParser
 
     public function getClassesImplementing($interface)
     {
-        $implementers = array();
+        $implementers = [];
         if (isset($this->implements[$interface])) {
             foreach ($this->implements[$interface] as $name) {
                 $implementers[$name] = $this->classes[$name];
@@ -35,7 +35,7 @@ class ClassParser
 
     public function getClassesExtending($class)
     {
-        $extenders = array();
+        $extenders = [];
         if (isset($this->extends[$class])) {
             foreach ($this->extends[$class] as $name) {
                 $extenders[$name] = $this->classes[$name];
@@ -48,11 +48,11 @@ class ClassParser
     {
         $file = realpath($file);
         $tokens = token_get_all(file_get_contents($file));
-        $classes = array();
+        $classes = [];
 
         $si = null;
         $depth = 0;
-        $mod = array();
+        $mod = [];
         $doc = null;
         $state = null;
         foreach ($tokens as $idx => &$token) {
@@ -88,21 +88,21 @@ class ClassParser
                             case T_CLASS:
                                 $state = self::STATE_CLASS_HEAD;
                                 $si = $token[1];
-                                $classes[] = array(
+                                $classes[] = [
                                     'name' => $token[1],
                                     'modifiers' => $mod,
                                     'doc' => $doc,
                                     'start' => $token[2]
-                                );
+                                ];
                                 break;
                             case T_FUNCTION:
                                 $state = self::STATE_FUNCTION_HEAD;
                                 $clsc = count($classes);
                                 if ($depth > 0 && $clsc) {
-                                    $classes[$clsc - 1]['functions'][$token[1]] = array(
+                                    $classes[$clsc - 1]['functions'][$token[1]] = [
                                         'modifiers' => $mod,
                                         'doc' => $doc
-                                    );
+                                    ];
                                 }
                                 break;
                             case T_IMPLEMENTS:
@@ -129,7 +129,7 @@ class ClassParser
                     case ';':
                         $state = 0;
                         $doc = null;
-                        $mod = array();
+                        $mod = [];
                         break;
                 }
             }

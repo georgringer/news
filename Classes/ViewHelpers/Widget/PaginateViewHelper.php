@@ -62,8 +62,8 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
     public function render(
         \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects,
         $as,
-        $configuration = array('itemsPerPage' => 10, 'insertAbove' => false, 'insertBelow' => true),
-        $initial = array()
+        $configuration = ['itemsPerPage' => 10, 'insertAbove' => false, 'insertBelow' => true],
+        $initial = []
     ) {
         return $this->initiateSubRequest();
     }
