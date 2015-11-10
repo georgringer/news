@@ -6,7 +6,7 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 // Extension manager configuration
 $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
-$teaserRteConfiguration = $configuration->getRteForTeaser() ? ';;;richtext::rte_transform[flag=rte_disabled|mode=ts_css]' : '';
+$teaserRteConfiguration = $configuration->getRteForTeaser() ? 'richtext:rte_transform[mode=ts_css]' : '';
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
 
@@ -623,10 +623,17 @@ $tx_news_domain_model_news = [
     'types' => [
         // default news
         '0' => [
+            'columnsOverrides' => [
+                'bodytext' => [
+                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
+                ],
+                'teaser' => [
+                    'defaultExtras' => $teaserRteConfiguration
+                ],
+            ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore,teaser' . $teaserRteConfiguration . ',author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,
-					bodytext;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],
-					rte_disabled;LLL:EXT:cms/locallang_ttc.xlf:rte_enabled_formlabel,
+					title,--palette--;;paletteCore,teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,
+					bodytext,rte_disabled;LLL:EXT:cms/locallang_ttc.xlf:rte_enabled_formlabel,
 					content_elements,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
@@ -641,8 +648,16 @@ $tx_news_domain_model_news = [
         ],
         // internal url
         '1' => [
+            'columnsOverrides' => [
+                'bodytext' => [
+                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
+                ],
+                'teaser' => [
+                    'defaultExtras' => $teaserRteConfiguration
+                ],
+            ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser' . $teaserRteConfiguration . ',author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,internalurl,
+					title,--palette--;;paletteCore, teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,internalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.access;paletteAccess,
@@ -656,8 +671,16 @@ $tx_news_domain_model_news = [
         ],
         // external url
         '2' => [
+            'columnsOverrides' => [
+                'bodytext' => [
+                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
+                ],
+                'teaser' => [
+                    'defaultExtras' => $teaserRteConfiguration
+                ],
+            ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser' . $teaserRteConfiguration . ',author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,externalurl,
+					title,--palette--;;paletteCore, teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,externalurl,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.access;paletteAccess,

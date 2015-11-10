@@ -258,7 +258,7 @@ $tx_news_domain_model_media = [
     ],
     'types' => [
         // Image
-        '0' => ['showitem' => '--palette--;;paletteCore,image, --palette--;;paletteWidthHeight,caption,title, --palette--;;paletteAlt,copyright,description;;;richtext::rte_transform[flag=rte_disabled|mode=ts_css],'],
+        '0' => ['showitem' => '--palette--;;paletteCore,image, --palette--;;paletteWidthHeight,caption,title, --palette--;;paletteAlt,copyright,description'],
         // Multimedia (Video & Audio)
         '1' => ['showitem' => '--palette--;;paletteCore,multimedia,caption,copyright,description,'],
     ],
