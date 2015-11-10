@@ -81,7 +81,7 @@ $tx_news_domain_model_news = [
                 ],
                 'foreign_table' => 'tx_news_domain_model_news',
                 'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
-                'noIconsBelowSelect' => true
+                'showIconTable' => false
             ]
         ],
         'l10n_diffsource' => [
