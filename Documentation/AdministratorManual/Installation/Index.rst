@@ -9,6 +9,11 @@
 
 Installation
 ============
+
+.. important::
+
+   Use the versions 3.x for TYPO3 CMS 6.2 LTS and 4.x for TYPO3 CMS 7 LTS.
+
 The extension needs to be installed as any other extension of TYPO3 CMS:
 
 #. Switch to the module “Extension Manager”.
