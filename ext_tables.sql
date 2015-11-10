@@ -52,7 +52,6 @@ CREATE TABLE tx_news_domain_model_news (
 	content_elements text,
 	path_segment tinytext,
 	alternative_title tinytext,
-	rte_disabled tinyint(4) DEFAULT '0' NOT NULL,
 
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,

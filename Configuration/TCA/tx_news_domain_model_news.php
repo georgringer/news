@@ -46,7 +46,6 @@ $tx_news_domain_model_news = [
         ],
         'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.gif',
         'searchFields' => 'uid,title',
-        'requestUpdate' => 'rte_disabled',
     ],
     'interface' => [
         'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements,tags,path_segment,alternative_title,fal_related_files'
@@ -229,19 +228,6 @@ $tx_news_domain_model_news = [
                         ],
                     ],
                 ],
-            ]
-        ],
-        'rte_disabled' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:cms/locallang_ttc.xlf:rte_enabled',
-            'config' => [
-                'type' => 'check',
-                'showIfRTE' => 1,
-                'items' => [
-                    '1' => [
-                        '0' => 'LLL:EXT:cms/locallang_ttc.xlf:rte_enabled.I.0'
-                    ]
-                ]
             ]
         ],
         'datetime' => [
@@ -633,7 +619,7 @@ $tx_news_domain_model_news = [
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
 					title,--palette--;;paletteCore,teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,
-					bodytext,rte_disabled;LLL:EXT:cms/locallang_ttc.xlf:rte_enabled_formlabel,
+					bodytext;LLL:EXT:cms/locallang_ttc.xlf:rte_enabled_formlabel,
 					content_elements,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
@@ -727,10 +713,6 @@ $tx_news_domain_model_news = [
         ],
     ]
 ];
-
-if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('7.3')) {
-    unset($tx_news_domain_model_news['columns']['rte_disabled']);
-}
 
 // category restriction based on settings in extension manager
 $categoryRestrictionSetting = $configuration->getCategoryRestriction();
