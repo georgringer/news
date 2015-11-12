@@ -473,7 +473,7 @@ $tx_news_domain_model_news = [
                         'title' => 'LLL:EXT:cms/locallang_ttc.xlf:header_link_formlabel',
                         'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
                         'module' => [
-                            'name' => 'wizard_link_browser',
+                            'name' => 'wizard_link',
                         ],
                         'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1'
                     ]
