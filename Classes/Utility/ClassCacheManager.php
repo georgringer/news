@@ -105,7 +105,7 @@ class ClassCacheManager
             $classParser = GeneralUtility::makeInstance(ClassParser::class);
             $classParser->parse($filePath);
             $classParserInformation = $classParser->getFirstClass();
-            $codeInLines = explode(LF, $code);
+            $codeInLines = explode(LF, str_replace(CR, '', $code));
 
             if (isset($classParserInformation['eol'])) {
                 $innerPart = array_slice($codeInLines, $classParserInformation['start'],
@@ -114,7 +114,7 @@ class ClassCacheManager
                 $innerPart = array_slice($codeInLines, $classParserInformation['start']);
             }
 
-            if (trim($innerPart[0] === '{')) {
+            if (trim($innerPart[0]) === '{') {
                 unset($innerPart[0]);
             }
             $codePart = implode(LF, $innerPart);
