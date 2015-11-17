@@ -22,13 +22,13 @@
 						<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
 							<f:alias map="{mediaElement: newsItem.falMediaPreviews.0}">
 								<f:if condition="{mediaElement.originalResource.type} == 2">
-									<f:image src="{mediaElement.uid}" treatIdAsReference="1" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}"/>
+									<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}"/>
 								</f:if>
 								<f:if condition="{mediaElement.originalResource.type} == 4">
 									<f:render partial="Detail/FalMediaVideo" arguments="{mediaElement: mediaElement}"/>
 								</f:if>
 								<f:if condition="{mediaElement.originalResource.type} == 5">
-									<f:image src="{mediaElement.uid}" treatIdAsReference="1" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}"/>
+									<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}"/>
 								</f:if>
 							</f:alias>
 						</n:link>
