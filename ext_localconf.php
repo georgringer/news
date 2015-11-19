@@ -22,10 +22,6 @@ $boot = function () {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['news' . '_pi1']['news'] =
         \GeorgRinger\News\Hooks\PageLayoutView::class . '->getExtensionSummary';
 
-    // Preview of news records
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
-        \GeorgRinger\News\Hooks\DataHandler::class;
-
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news_clearcache'] =
         \GeorgRinger\News\Hooks\DataHandler::class . '->clearCachePostProc';
 

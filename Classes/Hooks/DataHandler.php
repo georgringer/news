@@ -78,40 +78,6 @@ class DataHandler
             $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
             $cache->flush();
         }
-
-        // Preview link
-        if ($table === 'tx_news_domain_model_news') {
-
-            // direct preview
-            if (!is_numeric($recordUid)) {
-                $recordUid = $parentObject->substNEWwithIDs[$recordUid];
-            }
-
-            if (isset($GLOBALS['_POST']['_savedokview_x']) && !$fields['type']) {
-                // If "savedokview" has been pressed and current article has "type" 0 (= normal news article)
-                $pagesTsConfig = BackendUtilityCore::getPagesTSconfig($GLOBALS['_POST']['popViewId']);
-                if ($pagesTsConfig['tx_news.']['singlePid']) {
-                    $record = BackendUtilityCore::getRecord('tx_news_domain_model_news', $recordUid);
-
-                    $parameters = [
-                        'no_cache' => 1,
-                        'tx_news_pi1[controller]' => 'News',
-                        'tx_news_pi1[action]' => 'detail',
-                        'tx_news_pi1[news_preview]' => $record['uid'],
-                    ];
-                    if ($record['sys_language_uid'] > 0) {
-                        if ($record['l10n_parent'] > 0) {
-                            $parameters['tx_news_pi1[news_preview]'] = $record['l10n_parent'];
-                        }
-                        $parameters['L'] = $record['sys_language_uid'];
-                    }
-
-                    $GLOBALS['_POST']['popViewId_addParams'] = GeneralUtility::implodeArrayForUrl('', $parameters, '',
-                        false, true);
-                    $GLOBALS['_POST']['popViewId'] = $pagesTsConfig['tx_news.']['singlePid'];
-                }
-            }
-        }
     }
 
     /**
