@@ -43,7 +43,7 @@ class SuggestReceiverCall
      */
     public function createTag(array $params, \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj)
     {
-        $request = GeneralUtility::_POST();
+        $request = GeneralUtility::_GET();
 
         try {
             // Check if a tag is submitted
