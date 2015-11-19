@@ -79,7 +79,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
             $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
             $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinpreview', true);
             $icon = '../' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
-            $extraItem = ['showinpreview' => ' <img title="' . $label . '" src="' . $icon . '" />'];
+            $extraItem = ['showinpreview' => ' <span class="btn btn-default"><img title="' . $label . '" src="' . $icon . '" /></span>'];
             $controlItems = $extraItem + $controlItems;
         }
     }
