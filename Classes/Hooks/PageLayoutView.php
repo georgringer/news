@@ -25,8 +25,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Hook to display verbose information about pi1 plugin in Web>Page module
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class PageLayoutView
 {
@@ -368,11 +366,10 @@ class PageLayoutView
         return $text;
     }
 
-
     /**
      * Render category settings
      *
-     * @param boolean $showCategoryMode show the category conjunction
+     * @param bool $showCategoryMode show the category conjunction
      * @return void
      */
     public function getCategorySettings($showCategoryMode = true)

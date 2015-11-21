@@ -43,8 +43,6 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
  *    }
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {

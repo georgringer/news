@@ -22,8 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Custom suggest receiver for tags
  *
- * @package    TYPO3
- * @subpackage    tx_news
  */
 class SuggestReceiver extends SuggestWizardDefaultReceiver
 {
@@ -35,7 +33,7 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
      * they only need to be put into a <li>-structure
      *
      * @param array $params
-     * @param integer $recursionCounter recursion counter
+     * @param int $recursionCounter recursion counter
      * @return mixed array of rows or FALSE if nothing found
      */
     public function queryTable(&$params, $recursionCounter = 0)
@@ -86,7 +84,7 @@ Ext.Ajax.request({
      * Check if current tag is found.
      *
      * @param array $tags returned tags
-     * @return boolean
+     * @return bool
      */
     protected function checkIfTagIsNotFound(array $tags)
     {

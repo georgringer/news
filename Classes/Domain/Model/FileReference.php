@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * File Reference
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
 {
@@ -26,7 +24,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     /**
      * Obsolete when foreign_selector is supported by ExtBase persistence layer
      *
-     * @var integer
+     * @var int
      */
     protected $uidLocal;
 
@@ -51,14 +49,14 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     protected $link;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $showinpreview;
 
     /**
      * Set File uid
      *
-     * @param integer $fileUid
+     * @param int $fileUid
      * @return void
      */
     public function setFileUid($fileUid)
@@ -164,7 +162,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     /**
      * Set showinpreview
      *
-     * @param boolean $showinpreview
+     * @param bool $showinpreview
      * @return void
      */
     public function setShowinpreview($showinpreview)
@@ -175,7 +173,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     /**
      * Get showinpreview
      *
-     * @return boolean
+     * @return bool
      */
     public function getShowinpreview()
     {

@@ -19,8 +19,6 @@ use GeorgRinger\News\Domain\Model\Dto\Search;
 /**
  * Tests for domains model News
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

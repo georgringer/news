@@ -20,8 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Service for category related stuff
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class CategoryService
 {
@@ -31,9 +29,9 @@ class CategoryService
      * and using the caching framework to save some queries
      *
      * @param string $idList list of category ids to start
-     * @param integer $counter
+     * @param int $counter
      * @param string $additionalWhere additional where clause
-     * @param boolean $removeGivenIdListFromResult remove the given id list from result
+     * @param bool $removeGivenIdListFromResult remove the given id list from result
      * @return string comma separated list of category ids
      */
     public static function getChildrenCategories(
@@ -79,7 +77,7 @@ class CategoryService
      * Get rootline up by calling recursive function
      * and using the caching framework to save some queries
      *
-     * @param integer $id category id to start
+     * @param int $id category id to start
      * @param string $additionalWhere additional where clause
      * @return string comma separated list of category ids
      */
@@ -101,7 +99,7 @@ class CategoryService
      * Get child categories
      *
      * @param string $idList list of category ids to start
-     * @param integer $counter
+     * @param int $counter
      * @param string $additionalWhere additional where clause
      * @return string comma separated list of category ids
      */
@@ -138,8 +136,8 @@ class CategoryService
     /**
      * Get rootline categories
      *
-     * @param integer $id category id to start
-     * @param integer $counter counter
+     * @param int $id category id to start
+     * @param int $counter counter
      * @param string $additionalWhere additional where clause
      * @return string comma separated list of category ids
      */
@@ -169,7 +167,6 @@ class CategoryService
         $result = implode(',', $result);
         return $result;
     }
-
 
     /**
      * Translate a category record in the backend

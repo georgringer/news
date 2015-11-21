@@ -14,14 +14,11 @@ namespace GeorgRinger\News\Tests\Unit\Functional\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
-
 use GeorgRinger\News\Domain\Model\News;
 
 /**
  * Class SimplePrevNextViewHelperTest
  *
- * @package GeorgRinger\News\Tests\Unit\Functional\ViewHelpers
  */
 class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 
@@ -69,7 +66,6 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestC
 		];
 		$this->assertEquals($exp, $fo);
 	}
-
 
 	/**
 	 * @test

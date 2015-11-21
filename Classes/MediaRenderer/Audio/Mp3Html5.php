@@ -22,8 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Implementation of typical audio files
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Mp3Html5 implements MediaInterface
 {
@@ -34,8 +32,8 @@ class Mp3Html5 implements MediaInterface
      * Render mp3 files
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
      * @param string $template
      * @return string
      */
@@ -58,7 +56,7 @@ class Mp3Html5 implements MediaInterface
      * Implementation is only used if file ending is mp3
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element media element
-     * @return boolean
+     * @return bool
      */
     public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
     {

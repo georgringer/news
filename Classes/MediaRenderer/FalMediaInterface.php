@@ -14,14 +14,11 @@ namespace GeorgRinger\News\MediaRenderer;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\FileReference;
 
 /**
  * Interface to implement video views
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 interface FalMediaInterface
 {
@@ -30,8 +27,8 @@ interface FalMediaInterface
      * Render a media element
      *
      * @param FileReference $element
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
      * @return string
      */
     public function render(FileReference $element, $width, $height);

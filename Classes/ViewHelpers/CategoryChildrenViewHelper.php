@@ -18,8 +18,6 @@ namespace GeorgRinger\News\ViewHelpers;
 /**
  * ViewHelper to get children of a category
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class CategoryChildrenViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -43,7 +41,7 @@ class CategoryChildrenViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
     /**
      * Render the viewhelper
      *
-     * @param integer $category category uid
+     * @param int $category category uid
      * @param string $as name of the new object
      * @return string rendered content
      */

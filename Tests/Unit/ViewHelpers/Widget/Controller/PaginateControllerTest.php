@@ -18,8 +18,6 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Widget\Controller;
 /**
  * Tests for PaginateController
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class PaginateControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
@@ -63,7 +61,6 @@ class PaginateControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertEquals($controller->_get('numberOfPages'), 5);
 		$this->assertEquals($controller->_get('templatePath'), PATH_site . 'fo/bar');
 	}
-
 
 	/**
 	 * @test

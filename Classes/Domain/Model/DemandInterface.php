@@ -16,8 +16,6 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * Demanded repository interface
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 interface DemandInterface
 {

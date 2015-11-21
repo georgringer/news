@@ -18,8 +18,6 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 /**
  * Tests for PaginateBodytextViewHelper
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
@@ -114,6 +112,5 @@ class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase 
 			['this is a test', 'this is a test'],
 		];
 	}
-
 
 }

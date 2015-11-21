@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Service\CategoryService;
@@ -23,8 +22,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * Category repository with all callable functionality
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
 {
@@ -43,7 +40,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      * Find category by import source and import id
      *
      * @param string $importSource import source
-     * @param integer $importId import id
+     * @param int $importId import id
      * @return Category
      */
     public function findOneByImportSourceAndImportId($importSource, $importId)
@@ -62,7 +59,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     /**
      * Find categories by a given pid
      *
-     * @param integer $pid pid
+     * @param int $pid pid
      * @return QueryInterface
      */
     public function findParentCategoriesByPid($pid)
@@ -142,7 +139,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     /**
      * Find categories by a given parent
      *
-     * @param integer $parent parent
+     * @param int $parent parent
      * @return QueryInterface
      */
     public function findChildren($parent)
@@ -181,7 +178,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     /**
      * Get the current sys language uid
      *
-     * @return integer
+     * @return int
      */
     protected function getSysLanguageUid()
     {

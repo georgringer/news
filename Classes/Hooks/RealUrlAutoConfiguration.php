@@ -16,12 +16,9 @@ namespace GeorgRinger\News\Hooks;
  */
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
-
 /**
  * AutoConfiguration-Hook for RealURL
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class RealUrlAutoConfiguration
 {

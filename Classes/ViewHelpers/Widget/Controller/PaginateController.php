@@ -19,8 +19,6 @@ namespace GeorgRinger\News\ViewHelpers\Widget\Controller;
  * Paginate controller to create the pagination.
  * Extended version from fluid core
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController
 {
@@ -42,7 +40,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
     protected $objects;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $currentPage = 1;
 
@@ -52,18 +50,18 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
     protected $templatePath = '';
 
     /**
-     * @var integer
+     * @var int
      */
     protected $numberOfPages = 1;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $maximumNumberOfLinks = 99;
 
-    /** @var integer */
+    /** @var int */
     protected $initialOffset = 0;
-    /** @var integer */
+    /** @var int */
     protected $initialLimit = 0;
 
     /**
@@ -101,7 +99,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
     /**
      * Main action
      *
-     * @param integer $currentPage
+     * @param int $currentPage
      * @return void
      */
     public function indexAction($currentPage = 1)

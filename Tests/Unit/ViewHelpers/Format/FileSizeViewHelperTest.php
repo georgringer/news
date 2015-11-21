@@ -19,8 +19,6 @@ use GeorgRinger\News\ViewHelpers\Format\FileSizeViewHelper;
 /**
  * Tests for FileSizeViewHelper
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class FileSizeViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

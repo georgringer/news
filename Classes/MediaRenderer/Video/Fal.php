@@ -14,7 +14,6 @@ namespace GeorgRinger\News\MediaRenderer\Video;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\MediaRenderer\FalMediaInterface;
 use TYPO3\CMS\Core\Page\PageRenderer;
@@ -23,8 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Implementation of fal support
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Fal implements FalMediaInterface
 {
@@ -35,8 +32,8 @@ class Fal implements FalMediaInterface
      * Render a video player
      *
      * @param FileReference $element
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
      * @param string $templateFile template file to override. Absolute path
      * @return string
      */
@@ -63,7 +60,7 @@ class Fal implements FalMediaInterface
      * Files with extension flv|mp4 are handled within this implementation
      *
      * @param FileReference $element
-     * @return boolean
+     * @return bool
      */
     public function enabled(FileReference $element)
     {

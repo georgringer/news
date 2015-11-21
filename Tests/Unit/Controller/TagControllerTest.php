@@ -20,12 +20,9 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 /**
  * Testcase for the TagController class.
  *
- * @package TYPO3
- * @subpackage tx_news
  *
  */
 class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-
 
 	/**
 	 * @var TagController
@@ -98,6 +95,5 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		// datetime must be removed
 		$this->assertEquals($fixture->_get('settings'), ['list' => 'foo']);
 	}
-
 
 }

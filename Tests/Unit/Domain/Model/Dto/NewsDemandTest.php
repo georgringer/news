@@ -20,8 +20,6 @@ use GeorgRinger\News\Domain\Model\Dto\Search;
 /**
  * Tests for NewsDemand
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
@@ -132,7 +130,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertEquals($value, $this->instance->getDateField());
 	}
 
-
 	/**
 	 * @test
 	 * @return void
@@ -203,7 +200,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->instance->setOrderByAllowed($value);
 		$this->assertEquals($value, $this->instance->getOrderByAllowed());
 	}
-
 
 	/**
 	 * @test

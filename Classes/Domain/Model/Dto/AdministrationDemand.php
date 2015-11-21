@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Model\Dto;
 /**
  * Administration Demand model
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 {

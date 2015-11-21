@@ -18,8 +18,6 @@ namespace GeorgRinger\News\Utility;
 /**
  * Utility class for import jobs
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ImportJob
 {

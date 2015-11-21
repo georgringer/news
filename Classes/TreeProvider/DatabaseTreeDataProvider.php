@@ -46,7 +46,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      *
      * @param \TYPO3\CMS\Backend\Tree\TreeNode|\TYPO3\CMS\Backend\Tree\TreeNode $basicNode
      * @param NULL|\TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode $parent
-     * @param integer $level
+     * @param int $level
      * @param bool $restriction
      * @return \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode node
      */

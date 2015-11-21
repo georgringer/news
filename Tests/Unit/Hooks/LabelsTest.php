@@ -18,11 +18,8 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
 /**
  * Tests for Labels
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-
 
 	/**
 	 * @test

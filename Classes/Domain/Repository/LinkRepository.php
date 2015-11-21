@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Repository;
 /**
  * Repository for link objects
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class LinkRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {

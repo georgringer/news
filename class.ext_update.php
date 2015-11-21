@@ -11,15 +11,12 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Update class for the extension manager.
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ext_update
 {
@@ -103,7 +100,7 @@ class ext_update
      */
     protected function updateFileRelations()
     {
-        $title = "Update related files";
+        $title = 'Update related files';
         $countNewsWithFileRelation = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'tx_news_domain_model_news',
             'deleted=0 AND related_files != ""');
         $countFilesWithParent = $GLOBALS['TYPO3_DB']->exec_SELECTcountRows('*', 'tx_news_domain_model_file',
@@ -240,7 +237,7 @@ class ext_update
      *
      * @param string $oldTableName old table name
      * @param string $newTableName new table name
-     * @return boolean
+     * @return bool
      */
     protected function renameDatabaseTable($oldTableName, $newTableName)
     {
@@ -355,7 +352,7 @@ class ext_update
         $oldCategoryCount = $this->databaseConnection->exec_SELECTcountRows(
             'uid',
             'tx_news_domain_model_category',
-            "deleted = 0"
+            'deleted = 0'
         );
 
         if ($oldCategoryCount === 0) {

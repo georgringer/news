@@ -27,8 +27,6 @@ namespace GeorgRinger\News\ViewHelpers;
  * None
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {

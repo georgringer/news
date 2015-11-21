@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
@@ -23,8 +22,6 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 /**
  * Abstract demanded repository
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 abstract class AbstractDemandedRepository
     extends \TYPO3\CMS\Extbase\Persistence\Repository
@@ -71,7 +68,7 @@ abstract class AbstractDemandedRepository
      * Returns the objects of this repository matching the demand.
      *
      * @param DemandInterface $demand
-     * @param boolean $respectEnableFields
+     * @param bool $respectEnableFields
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findDemanded(DemandInterface $demand, $respectEnableFields = true)
@@ -85,7 +82,7 @@ abstract class AbstractDemandedRepository
      * Returns the database query to get the matching result
      *
      * @param DemandInterface $demand
-     * @param boolean $respectEnableFields
+     * @param bool $respectEnableFields
      * @return string
      */
     public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true)

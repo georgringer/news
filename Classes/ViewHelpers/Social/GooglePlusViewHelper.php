@@ -30,8 +30,6 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * Result: Small Google Plus Button to share www.mydomain.tld
  *    without showing the counter
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
@@ -54,7 +52,6 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
     {
         $this->pluginSettingsService = $pluginSettingsService;
     }
-
 
     /**
      * Arguments initialization

@@ -19,8 +19,6 @@ use GeorgRinger\News\Utility\ImportJob;
 /**
  * Test class for ImportJob
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ImportJobTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

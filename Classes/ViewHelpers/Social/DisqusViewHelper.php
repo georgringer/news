@@ -26,8 +26,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *         shortName="demo123"
  *         link="{n:link(newsItem:newsItem,settings:settings,uriOnly:1,configuration:'{forceAbsoluteUrl:1}')}" />
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {

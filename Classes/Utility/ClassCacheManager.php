@@ -13,7 +13,6 @@ namespace GeorgRinger\News\Utility;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -76,14 +75,13 @@ class ClassCacheManager
 
     }
 
-
     /**
      * Parse a single file and does some magic
      * - Remove the <?php tags
      * - Remove the class definition (if set)
      *
      * @param string $filePath path of the file
-     * @param boolean $baseClass If class definition should be removed
+     * @param bool $baseClass If class definition should be removed
      * @return string path of the saved file
      * @throws \Exception
      * @throws \InvalidArgumentException
@@ -123,7 +121,6 @@ class ClassCacheManager
             return $content;
         }
     }
-
 
     /**
      * @param string $filePath

@@ -15,7 +15,6 @@ namespace GeorgRinger\News\ViewHelpers\Social;
      * The TYPO3 project - inspiring people to share!
      */
 
-
 /**
  * Hashes an email-address and fetches the image from gravatar
  * see: http://en.gravatar.com/site/implement/images/
@@ -26,8 +25,6 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * <n:social.gravatar email="{newsItem.authorEmail}" size="20" class="gravatar" />
  * Result: a img-tag with the gravatar-url with 20px square-image
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {

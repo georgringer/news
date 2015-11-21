@@ -21,8 +21,6 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 /**
  * File utility
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class FileService
 {
@@ -80,7 +78,6 @@ class FileService
      * @param @param string $url
      * @return string
      */
-
     public static function getFalFilename($url)
     {
         if (substr($url, 0, 5) === 'file:') {

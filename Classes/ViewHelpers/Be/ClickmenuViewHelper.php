@@ -28,8 +28,6 @@ namespace GeorgRinger\News\ViewHelpers\Be;
  * Linked icon (<n:be.button.iconForRecord /> with a click menu for the given record (table + uid)
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ClickmenuViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -38,7 +36,7 @@ class ClickmenuViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewH
      * Render the clickmenu
      *
      * @param string $table Name of the table
-     * @param integer $uid uid of the record
+     * @param int $uid uid of the record
      * @return string
      */
     public function render($table, $uid)

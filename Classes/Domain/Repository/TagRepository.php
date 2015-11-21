@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Utility\Validation;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

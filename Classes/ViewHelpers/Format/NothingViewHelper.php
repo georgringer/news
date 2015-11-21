@@ -29,8 +29,6 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  * nothing
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class NothingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {

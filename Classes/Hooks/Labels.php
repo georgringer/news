@@ -24,8 +24,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Userfunc to get alternative label
  *
- * @package    TYPO3
- * @subpackage    tx_news
  */
 class Labels
 {
@@ -128,8 +126,8 @@ class Labels
     /**
      * Get news categories based on the news id
      *
-     * @param integer $newsUid
-     * @param integer $catMm
+     * @param int $newsUid
+     * @param int $catMm
      * @return string list of categories
      */
     protected function getCategories($newsUid, $catMm)

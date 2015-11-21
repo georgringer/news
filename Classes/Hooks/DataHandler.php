@@ -22,8 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Hook into tcemain which is used to show preview of news item
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class DataHandler
 {
@@ -60,7 +58,7 @@ class DataHandler
      *
      * @param string $status status
      * @param string $table table name
-     * @param integer $recordUid id of the record
+     * @param int $recordUid id of the record
      * @param array $fields fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject parent Object
      * @return void
@@ -135,7 +133,7 @@ class DataHandler
             $newsRecord = BackendUtilityCore::getRecord($table, $id);
             if (!AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
                 $parentObject->log($table, $id, 2, 0, 1,
-                    "processCmdmap: Attempt to " . $command . " a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in the BE usergroup.",
+                    'processCmdmap: Attempt to ' . $command . " a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in the BE usergroup.",
                     1, [$table]);
                 // unset table to prevent saving
                 $table = '';

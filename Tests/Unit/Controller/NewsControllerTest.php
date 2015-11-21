@@ -21,8 +21,6 @@ use GeorgRinger\News\Domain\Model\News;
 /**
  * Testcase for the NewsController class.
  *
- * @package TYPO3
- * @subpackage tx_news
  *
  */
 class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
@@ -93,7 +91,6 @@ class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$fixture->listAction();
 	}
-
 
 	/**
 	 * @test

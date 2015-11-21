@@ -15,7 +15,6 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-
 /**
  * Test for SimplePrevNextViewHelper
  */

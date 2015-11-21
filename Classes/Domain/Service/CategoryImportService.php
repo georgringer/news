@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Domain\Service;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\FileReference;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -22,8 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Category Import Service
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class CategoryImportService extends AbstractImportService
 {

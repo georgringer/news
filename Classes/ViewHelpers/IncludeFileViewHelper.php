@@ -28,8 +28,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * This will include the file provided by {settings} in the header
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -38,7 +36,7 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
      * Include a CSS/JS file
      *
      * @param string $path Path to the CSS/JS file which should be included
-     * @param boolean $compress Define if file should be compressed
+     * @param bool $compress Define if file should be compressed
      * @return void
      */
     public function render($path, $compress = false)

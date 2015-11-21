@@ -19,8 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Validation
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Validation
 {
@@ -30,7 +28,7 @@ class Validation
      *
      * @param string $fieldToCheck
      * @param string $allowedSettings
-     * @return boolean
+     * @return bool
      */
     public static function isValidOrdering($fieldToCheck, $allowedSettings)
     {

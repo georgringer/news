@@ -19,8 +19,6 @@ use GeorgRinger\News\Utility\EmConfiguration;
 /**
  * Test for EmConfiguration
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
@@ -74,7 +72,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			],
 		];
 	}
-
 
 	/**
 	 * Test if configuration model is correctly returned

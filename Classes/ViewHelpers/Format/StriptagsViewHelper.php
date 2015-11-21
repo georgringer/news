@@ -35,8 +35,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * This is a <a href="">test</a>
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  * @see http://de.php.net/manual/de/function.strip-tags.php
  */
 class StriptagsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper

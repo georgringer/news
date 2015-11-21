@@ -30,8 +30,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  *  Link to download the file "uploads/tx_news/{relatedFile.file}"
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -41,7 +39,7 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
      *
      * @param string $file Path to the file
      * @param array $configuration configuration used to render the filelink cObject
-     * @param boolean $hideError define if an error should be displayed if file not found
+     * @param bool $hideError define if an error should be displayed if file not found
      *     * @param string $class optional class
      *     * @param string $target target
      *     * @param string $alt alt text

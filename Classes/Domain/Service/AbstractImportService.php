@@ -75,13 +75,12 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
         $this->emSettings = EmConfiguration::getSettings();
     }
 
-
     /**
      * Compares 2 files by using its filesize
      *
      * @param string $file1 Absolute path and filename to file1
      * @param string $file2 Absolute path and filename to file2
-     * @return boolean
+     * @return bool
      */
     protected function filesAreEqual($file1, $file2)
     {

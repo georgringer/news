@@ -20,8 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Hook into \TYPO3\CMS\Backend\Utility\BackendUtility to change flexform behaviour
  * depending on action selection
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class BackendUtility
 {

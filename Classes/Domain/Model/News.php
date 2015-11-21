@@ -14,13 +14,9 @@ namespace GeorgRinger\News\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-
-
 /**
  * News model
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
@@ -36,12 +32,12 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $tstamp;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $sysLanguageUid;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $l10nParent;
 
@@ -63,17 +59,17 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $feGroup;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $hidden;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $deleted;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $cruserId;
 
@@ -211,7 +207,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $externalurl;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $istopnews;
 
@@ -233,7 +229,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $pathSegment;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $editlock;
 
@@ -248,7 +244,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $importSource;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $sorting;
 
@@ -376,7 +372,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get year of datetime
      *
-     * @return integer
+     * @return int
      */
     public function getYearOfDatetime()
     {
@@ -386,7 +382,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get month of datetime
      *
-     * @return integer
+     * @return int
      */
     public function getMonthOfDatetime()
     {
@@ -396,7 +392,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get day of datetime
      *
-     * @return integer
+     * @return int
      */
     public function getDayOfDatetime()
     {
@@ -427,7 +423,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get year of archive date
      *
-     * @return integer
+     * @return int
      */
     public function getYearOfArchive()
     {
@@ -437,7 +433,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get Month or archive date
      *
-     * @return integer
+     * @return int
      */
     public function getMonthOfArchive()
     {
@@ -447,7 +443,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get day of archive date
      *
-     * @return integer
+     * @return int
      */
     public function getDayOfArchive()
     {
@@ -614,7 +610,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $all;
     }
 
-
     /**
      * Return related items sorted by datetime
      *
@@ -745,7 +740,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set type of news
      *
-     * @param integer $type type
+     * @param int $type type
      * @return void
      */
     public function setType($type)
@@ -773,7 +768,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->keywords = $keywords;
     }
-
 
     /**
      * Get description
@@ -994,7 +988,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $this->falMediaPreviews;
     }
 
-
     /**
      * Get all media elements which are not tagged as preview
      *
@@ -1076,7 +1069,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get top news flag
      *
-     * @return boolean
+     * @return bool
      */
     public function getIstopnews()
     {
@@ -1086,7 +1079,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set top news flag
      *
-     * @param boolean $istopnews top news flag
+     * @param bool $istopnews top news flag
      * @return void
      */
     public function setIstopnews($istopnews)
@@ -1188,7 +1181,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get creation date
      *
-     * @return integer
+     * @return int
      */
     public function getCrdate()
     {
@@ -1198,7 +1191,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set creation date
      *
-     * @param integer $crdate
+     * @param int $crdate
      * @return void
      */
     public function setCrdate($crdate)
@@ -1209,7 +1202,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get year of crdate
      *
-     * @return integer
+     * @return int
      */
     public function getYearOfCrdate()
     {
@@ -1219,7 +1212,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get month of crdate
      *
-     * @return integer
+     * @return int
      */
     public function getMonthOfCrdate()
     {
@@ -1229,7 +1222,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get day of crdate
      *
-     * @return integer
+     * @return int
      */
     public function getDayOfCrdate()
     {
@@ -1239,7 +1232,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get timestamp
      *
-     * @return integer
+     * @return int
      */
     public function getTstamp()
     {
@@ -1249,7 +1242,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set time stamp
      *
-     * @param integer $tstamp time stamp
+     * @param int $tstamp time stamp
      * @return void
      */
     public function setTstamp($tstamp)
@@ -1302,7 +1295,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get year of tstamp
      *
-     * @return integer
+     * @return int
      */
     public function getYearOfTstamp()
     {
@@ -1312,7 +1305,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get month of tstamp
      *
-     * @return integer
+     * @return int
      */
     public function getMonthOfTstamp()
     {
@@ -1322,7 +1315,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get day of tstamp
      *
-     * @return integer
+     * @return int
      */
     public function getDayOfTimestamp()
     {
@@ -1332,7 +1325,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get id of creator user
      *
-     * @return integer
+     * @return int
      */
     public function getCruserId()
     {
@@ -1342,7 +1335,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set cruser id
      *
-     * @param integer $cruserId id of creator user
+     * @param int $cruserId id of creator user
      * @return void
      */
     public function setCruserId($cruserId)
@@ -1353,7 +1346,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get editlock flag
      *
-     * @return integer
+     * @return int
      */
     public function getEditlock()
     {
@@ -1363,7 +1356,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set edit lock flag
      *
-     * @param integer $editlock editlock flag
+     * @param int $editlock editlock flag
      * @return void
      */
     public function setEditlock($editlock)
@@ -1374,7 +1367,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get hidden flag
      *
-     * @return integer
+     * @return int
      */
     public function getHidden()
     {
@@ -1384,7 +1377,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set hidden flag
      *
-     * @param integer $hidden hidden flag
+     * @param int $hidden hidden flag
      * @return void
      */
     public function setHidden($hidden)
@@ -1395,7 +1388,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get deleted flag
      *
-     * @return integer
+     * @return int
      */
     public function getDeleted()
     {
@@ -1405,7 +1398,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set deleted flag
      *
-     * @param integer $deleted deleted flag
+     * @param int $deleted deleted flag
      * @return void
      */
     public function setDeleted($deleted)
@@ -1426,7 +1419,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set start time
      *
-     * @param integer $starttime start time
+     * @param int $starttime start time
      * @return void
      */
     public function setStarttime($starttime)
@@ -1437,7 +1430,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get year of starttime
      *
-     * @return integer
+     * @return int
      */
     public function getYearOfStarttime()
     {
@@ -1447,7 +1440,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get month of starttime
      *
-     * @return integer
+     * @return int
      */
     public function getMonthOfStarttime()
     {
@@ -1457,7 +1450,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get day of starttime
      *
-     * @return integer
+     * @return int
      */
     public function getDayOfStarttime()
     {
@@ -1477,7 +1470,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set end time
      *
-     * @param integer $endtime end time
+     * @param int $endtime end time
      * @return void
      */
     public function setEndtime($endtime)
@@ -1488,7 +1481,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get year of endtime
      *
-     * @return integer
+     * @return int
      */
     public function getYearOfEndtime()
     {
@@ -1498,7 +1491,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get month of endtime
      *
-     * @return integer
+     * @return int
      */
     public function getMonthOfEndtime()
     {
@@ -1508,7 +1501,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get day of endtime
      *
-     * @return integer
+     * @return int
      */
     public function getDayOfEndtime()
     {
@@ -1539,7 +1532,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get import id
      *
-     * @return integer
+     * @return int
      */
     public function getImportId()
     {
@@ -1549,7 +1542,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set import id
      *
-     * @param integer $importId import id
+     * @param int $importId import id
      * @return void
      */
     public function setImportId($importId)
@@ -1560,7 +1553,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get sorting
      *
-     * @return integer
+     * @return int
      */
     public function getSorting()
     {
@@ -1570,7 +1563,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set sorting
      *
-     * @param integer $sorting sorting
+     * @param int $sorting sorting
      * @return void
      */
     public function setSorting($sorting)

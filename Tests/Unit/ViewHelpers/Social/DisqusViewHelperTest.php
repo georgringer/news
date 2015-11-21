@@ -21,8 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Tests for DisqusSizeViewHelper
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

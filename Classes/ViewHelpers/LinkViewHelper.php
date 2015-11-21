@@ -88,7 +88,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
      *
      * @param \GeorgRinger\News\Domain\Model\News $newsItem current news object
      * @param array $settings
-     * @param boolean $uriOnly return only the url without the a-tag
+     * @param bool $uriOnly return only the url without the a-tag
      * @param array $configuration optional typolink configuration
      * @param string $content optional content which is linked
      * @return string link

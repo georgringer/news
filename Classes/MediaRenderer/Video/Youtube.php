@@ -19,8 +19,6 @@ use GeorgRinger\News\MediaRenderer\MediaInterface;
 /**
  * Implementation of youtube support
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Youtube implements MediaInterface
 {
@@ -43,8 +41,8 @@ class Youtube implements MediaInterface
      * Render videos from youtube
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height)
@@ -75,7 +73,7 @@ class Youtube implements MediaInterface
      * Check if given element includes an url to a youtube video
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @return boolean
+     * @return bool
      */
     public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
     {
@@ -88,7 +86,6 @@ class Youtube implements MediaInterface
         }
         return $result;
     }
-
 
     /**
      * @param \GeorgRinger\News\Domain\Model\Media $element

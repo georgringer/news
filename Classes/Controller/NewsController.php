@@ -13,16 +13,13 @@ namespace GeorgRinger\News\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Controller of news records
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class NewsController extends NewsBaseController
 {
@@ -130,7 +127,6 @@ class NewsController extends NewsBaseController
         $demand->setMonth($settings['month']);
         $demand->setYear($settings['year']);
 
-
         $demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
             $settings['recursive']));
         return $demand;
@@ -188,7 +184,7 @@ class NewsController extends NewsBaseController
      * Single view of a news record
      *
      * @param \GeorgRinger\News\Domain\Model\News $news news item
-     * @param integer $currentPage current page for optional pagination
+     * @param int $currentPage current page for optional pagination
      * @return void
      */
     public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
@@ -417,7 +413,6 @@ class NewsController extends NewsBaseController
         foreach ($propertiesNotAllowedViaFlexForms as $property) {
             $originalSettings[$property] = $tsSettings['settings'][$property];
         }
-
 
         // Use stdWrap for given defined settings
         if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {

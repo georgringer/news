@@ -133,7 +133,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     /**
      * Get the news object from the given id
      *
-     * @param integer $id
+     * @param int $id
      * @return mixed|null
      */
     protected function getObject($id)

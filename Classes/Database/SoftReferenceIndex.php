@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Database;
 /**
  * Class for processing news soft reference types
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class SoftReferenceIndex
 {
@@ -31,12 +29,12 @@ class SoftReferenceIndex
      *
      * @param string $table Database table name
      * @param string $field Field name for which processing occurs
-     * @param integer $uid UID of the record
+     * @param int $uid UID of the record
      * @param string $content The content/value of the field
      * @param string $spKey The softlink parser key. This is only interesting if more than one parser is grouped in the same class. That is the case with this parser.
      * @param array $spParams Parameters of the softlink parser. Basically this is the content inside optional []-brackets after the softref keys. Parameters are exploded by ";
      * @param string $structurePath If running from inside a FlexForm structure, this is the path of the tag.
-     * @return array|boolean Result array on positive matches, see description above. Otherwise FALSE
+     * @return array|bool Result array on positive matches, see description above. Otherwise FALSE
      */
     public function findRef($table, $field, $uid, $content, $spKey, $spParams, $structurePath = '')
     {
@@ -108,7 +106,7 @@ class SoftReferenceIndex
      * @param array $typolinkProperties TypoLink properties
      * @param array $elements Array of elements to be modified with substitution / information entries.
      * @param string $content The content to process.
-     * @param integer $idx Index value of the found element - user to make unique but stable tokenID
+     * @param int $idx Index value of the found element - user to make unique but stable tokenID
      * @return string The input content, possibly containing tokens now according to the added substitution entries in $elements
      * @see getTypoLinkParts()
      */

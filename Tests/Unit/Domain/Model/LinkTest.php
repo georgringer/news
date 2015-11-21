@@ -20,8 +20,6 @@ use GeorgRinger\News\Domain\Model\Link;
 /**
  * Tests for domains model Link
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

@@ -36,8 +36,6 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  *  3 M
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class FileSizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -47,8 +45,8 @@ class FileSizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
      *
      * @param string $file Path to the file
      * @param string $format Labels for bytes, kilo, mega and giga separated by vertical bar (|) and possibly encapsulated in "". Eg: " | K| M| G" (which is the default value)
-     * @param boolean $hideError Define if an error should be displayed if file not found
-     * @param integer $fileSize File size
+     * @param bool $hideError Define if an error should be displayed if file not found
+     * @param int $fileSize File size
      * @return string
      * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
      */

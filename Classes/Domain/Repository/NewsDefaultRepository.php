@@ -18,8 +18,6 @@ namespace GeorgRinger\News\Domain\Repository;
 /**
  * News repository with all the callable functionality
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class NewsDefaultRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
 {

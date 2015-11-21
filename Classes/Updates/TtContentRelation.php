@@ -86,7 +86,6 @@ class TtContentRelation extends AbstractUpdate
         return true;
     }
 
-
     /**
      * @return DatabaseConnection
      */

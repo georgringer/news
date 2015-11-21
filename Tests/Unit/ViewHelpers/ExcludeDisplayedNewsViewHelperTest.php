@@ -14,14 +14,12 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
 use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
 
 /**
  * Tests for ExcludeDisplayedNewsViewHelper
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

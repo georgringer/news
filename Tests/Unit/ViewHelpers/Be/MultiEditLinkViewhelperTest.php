@@ -20,8 +20,6 @@ use GeorgRinger\News\ViewHelpers\Be\MultiEditLinkViewHelper;
 /**
  * Tests for MultiEditLinkViewHelper
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class MultiEditLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
@@ -54,6 +52,5 @@ class MultiEditLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$this->assertEquals($content, $actualResult);
 	}
-
 
 }

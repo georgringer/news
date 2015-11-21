@@ -19,8 +19,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 /**
  * Testcase for the GeorgRinger\\News\\Controller\\NewsBaseController class.
  *
- * @package TYPO3
- * @subpackage tx_news
  *
  */
 class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
@@ -151,6 +149,5 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$mockedController->_call('emitActionSignal', $classPart, $name, $signalArguments);
 	}
-
 
 }

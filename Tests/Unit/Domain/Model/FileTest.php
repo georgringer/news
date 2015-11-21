@@ -14,14 +14,11 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\File;
 
 /**
  * Tests for domains model File
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class FileTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

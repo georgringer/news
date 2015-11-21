@@ -14,15 +14,12 @@ namespace GeorgRinger\News\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\MediaRenderer\FalMediaInterface;
 
 /**
  * ViewHelper to show videos
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -32,11 +29,10 @@ class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
      * then set this value to FALSE.
      * This is internal and NO part of the API. It is very likely to change.
      *
-     * @var boolean
+     * @var bool
      * @internal
      */
     protected $escapingInterceptorEnabled = false;
-
 
     /**
      * Go through all given classes which implement the mediainterface
@@ -44,8 +40,8 @@ class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
      *
      * @param string $classes list of classes which are used to render the media object
      * @param FileReference $element Current media object
-     * @param integer $width width
-     * @param integer $height height
+     * @param int $width width
+     * @param int $height height
      * @return string
      * @throws \UnexpectedValueException
      */

@@ -21,8 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Implementation of video portal support
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Videosites implements MediaInterface
 {
@@ -31,8 +29,8 @@ class Videosites implements MediaInterface
      * Render videos from various video portals
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height)
@@ -74,7 +72,7 @@ class Videosites implements MediaInterface
      * the check is done in tslib_mediaWizardManager
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @return boolean
+     * @return bool
      */
     public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
     {

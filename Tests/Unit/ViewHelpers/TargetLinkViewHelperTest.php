@@ -38,7 +38,6 @@ class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertInstanceOf('GeorgRinger\\News\\ViewHelpers\\TargetLinkViewHelper', $instance);
 	}
 
-
 	/**
 	 * Test if correct target is returned
 	 *

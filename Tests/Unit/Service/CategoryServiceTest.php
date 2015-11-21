@@ -19,8 +19,6 @@ use GeorgRinger\News\Service\CategoryService;
 /**
  * Test class for CategoryService
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class CategoryServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Jobs;
 /**
  * Import job interface
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 interface ImportJobInterface
 {

@@ -18,8 +18,6 @@ namespace GeorgRinger\News\ViewHelpers\Format;
 /**
  * ViewHelper for htmlspecialchars
  *
- * @package TYPO3
- * @subpackage tx_news
  * @deprecated Use \TYPO3\CMS\Fluid\ViewHelpers\Format\HtmlspecialcharsViewHelper
  */
 class HscViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper

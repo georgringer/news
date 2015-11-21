@@ -19,8 +19,6 @@ use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 /**
  * Tests for AdministrationDemand
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class AdministrationDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

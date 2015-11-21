@@ -19,8 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Url Utility class
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Url
 {

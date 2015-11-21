@@ -13,8 +13,6 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
-
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -61,7 +59,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 
 		$this->assertEquals($news->getTitle(), 'findRecordsByImportSource');
 	}
-
 
 	/**
 	 * Test if top news constraint works
@@ -110,7 +107,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 		$this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
 	}
 
-
 	/**
 	 * Test if record are found by archived/non archived flag
 	 *
@@ -137,7 +133,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 		$demand->setArchiveRestriction('');
 		$this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
 	}
-
 
 	/**
 	 * Test if record by month/year constraint works

@@ -23,8 +23,6 @@ use TYPO3\CMS\Core\Resource\ResourceFactory;
 /**
  * Controller to import news records
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {

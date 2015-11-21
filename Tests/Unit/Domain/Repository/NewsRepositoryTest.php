@@ -20,8 +20,6 @@ use GeorgRinger\News\Domain\Model\Dto\Search;
 /**
  * Tests for domain repository newsRepository
  *
- * @package TYPO3
- * @subpackage tx_news
  *
  */
 class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {

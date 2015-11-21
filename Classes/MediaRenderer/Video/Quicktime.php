@@ -20,8 +20,6 @@ use GeorgRinger\News\Service\FileService;
 /**
  * Implementation of quicktime support
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Quicktime implements MediaInterface
 {
@@ -30,8 +28,8 @@ class Quicktime implements MediaInterface
      * Render quicktime files
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height)
@@ -59,7 +57,7 @@ class Quicktime implements MediaInterface
      * Implementation is used if file extension is mov
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @return boolean
+     * @return bool
      */
     public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
     {

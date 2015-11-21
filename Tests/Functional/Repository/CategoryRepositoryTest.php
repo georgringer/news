@@ -13,8 +13,6 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
-
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -37,7 +35,6 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 
 		$this->importDataSet(__DIR__ . '/../Fixtures/sys_category.xml');
 	}
-
 
 	/**
 	 * Test if by import source is done

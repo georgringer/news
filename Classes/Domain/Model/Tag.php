@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * Tag model
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 {

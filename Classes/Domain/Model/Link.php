@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * Link model
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 {
@@ -49,14 +47,14 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     protected $uri;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $l10nParent;
 
     /**
      * Get creation date
      *
-     * @return integer
+     * @return int
      */
     public function getCrdate()
     {
@@ -66,7 +64,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     /**
      * Set creation date
      *
-     * @param integer $crdate creation date
+     * @param int $crdate creation date
      * @return void
      */
     public function setCrdate($crdate)
@@ -77,7 +75,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     /**
      * Get timestamp
      *
-     * @return integer
+     * @return int
      */
     public function getTstamp()
     {
@@ -87,7 +85,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     /**
      * Set timestamp
      *
-     * @param integer $tstamp timestamp
+     * @param int $tstamp timestamp
      * @return void
      */
     public function setTstamp($tstamp)

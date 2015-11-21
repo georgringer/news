@@ -19,8 +19,6 @@ use GeorgRinger\News\ViewHelpers\Format\DateViewHelper;
 /**
  * Tests for \GeorgRinger\News\ViewHelpers\Format\DateViewHelper
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class DateViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

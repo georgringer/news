@@ -59,7 +59,6 @@ $boot = function () {
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\StringFrontend::class;
     }
 
-
     /* ===========================================================================
         Add soft reference parser
     =========================================================================== */
@@ -87,7 +86,6 @@ $boot = function () {
     =========================================================================== */
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_fal'] = \GeorgRinger\News\Updates\FalUpdateWizard::class;
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_mm'] = \GeorgRinger\News\Updates\TtContentRelation::class;
-
 
     // Register cache frontend for proxy class generation
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = [

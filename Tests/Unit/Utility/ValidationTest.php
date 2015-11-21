@@ -19,8 +19,6 @@ use GeorgRinger\News\Utility\Validation;
 /**
  * Tests for Validation
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ValidationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

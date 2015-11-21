@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * Media model
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
@@ -38,17 +36,17 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $tstamp;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $hidden;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $deleted;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $cruserId;
 
@@ -68,27 +66,27 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $alt;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $type;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $showinpreview;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $width;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $height;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $sorting;
 
@@ -183,7 +181,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get type
      *
-     * @return integer
+     * @return int
      */
     public function getType()
     {
@@ -193,7 +191,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set type
      *
-     * @param integer $type type
+     * @param int $type type
      * @return void
      */
     public function setType($type)
@@ -204,7 +202,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get flag if shown in preview
      *
-     * @return integer
+     * @return int
      */
     public function getShowinpreview()
     {
@@ -214,7 +212,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set show in preview flag
      *
-     * @param integer $showinpreview flag if shown in preview
+     * @param int $showinpreview flag if shown in preview
      * @return void
      */
     public function setShowinpreview($showinpreview)
@@ -267,7 +265,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get hidden flag
      *
-     * @return integer
+     * @return int
      */
     public function getHidden()
     {
@@ -277,7 +275,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set hidden flag
      *
-     * @param integer $hidden hidden flag
+     * @param int $hidden hidden flag
      * @return void
      */
     public function setHidden($hidden)
@@ -288,7 +286,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get deleted flag
      *
-     * @return integer
+     * @return int
      */
     public function getDeleted()
     {
@@ -298,7 +296,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set deleted flag
      *
-     * @param integer $deleted deleted flag
+     * @param int $deleted deleted flag
      * @return void
      */
     public function setDeleted($deleted)
@@ -309,7 +307,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get creators user id
      *
-     * @return integer
+     * @return int
      */
     public function getCruserId()
     {
@@ -319,7 +317,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set creators user id
      *
-     * @param integer $cruserId creators user id
+     * @param int $cruserId creators user id
      * @return void
      */
     public function setCruserId($cruserId)
@@ -330,7 +328,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get width of element
      *
-     * @return integer
+     * @return int
      */
     public function getWidth()
     {
@@ -340,7 +338,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set with of element
      *
-     * @param integer $width integer
+     * @param int $width integer
      * @return void
      */
     public function setWidth($width)
@@ -351,7 +349,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get height of element
      *
-     * @return integer
+     * @return int
      */
     public function getHeight()
     {
@@ -361,7 +359,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set height of element
      *
-     * @param integer $height height
+     * @param int $height height
      * @return void
      */
     public function setHeight($height)
@@ -372,7 +370,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get sorting
      *
-     * @return integer
+     * @return int
      */
     public function getSorting()
     {
@@ -382,7 +380,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set sorting
      *
-     * @param integer $sorting sorting
+     * @param int $sorting sorting
      * @return void
      */
     public function setSorting($sorting)
@@ -517,6 +515,5 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->description;
     }
-
 
 }

@@ -18,8 +18,6 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
 /**
  * Tests for domain repository categoryRepository
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
@@ -106,7 +104,6 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$_GET['L'] = 15;
 		$this->assertEquals(13, $result);
 	}
-
 
 	/**
 	 * Test if category ids are replaced

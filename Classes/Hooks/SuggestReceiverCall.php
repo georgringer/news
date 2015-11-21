@@ -19,12 +19,9 @@ use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-
 /**
  * Ajax response for the custom suggest receiver
  *
- * @package    TYPO3
- * @subpackage    tx_news
  */
 class SuggestReceiverCall
 {
@@ -81,7 +78,7 @@ class SuggestReceiverCall
      * Get the uid of the tag, either bei inserting as new or get existing
      *
      * @param array $request ajax request
-     * @return integer
+     * @return int
      * @throws \Exception
      */
     protected function getTagUid(array $request)
@@ -134,7 +131,7 @@ class SuggestReceiverCall
     /**
      * Get pid for tags from TsConfig
      *
-     * @param integer $newsUid uid of current news record
+     * @param int $newsUid uid of current news record
      * @return int
      */
     protected function getTagPidFromTsConfig($newsUid)

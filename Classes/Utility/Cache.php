@@ -19,8 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Cache Utility class
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Cache
 {
@@ -47,7 +45,7 @@ class Cache
      * Checks if a cObj has already added cache tags.
      *
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
-     * @return boolean
+     * @return bool
      */
     public function isContentRecordAlreadyProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj)
     {

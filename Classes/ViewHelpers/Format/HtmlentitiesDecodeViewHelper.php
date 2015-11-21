@@ -18,8 +18,6 @@ namespace GeorgRinger\News\ViewHelpers\Format;
 /**
  * ViewHelper for html_entity_decode
  *
- * @package TYPO3
- * @subpackage tx_news
  * @deprecated use \TYPO3\CMS\Fluid\ViewHelpers\Format\HtmlentitiesDecodeViewHelper
  */
 class HtmlentitiesDecodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
@@ -30,7 +28,7 @@ class HtmlentitiesDecodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
      * child nodes would be escaped before this view helper
      * can decode the text's entities.
      *
-     * @var boolean
+     * @var bool
      */
     protected $escapingInterceptorEnabled = false;
 
@@ -39,7 +37,7 @@ class HtmlentitiesDecodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
      * using PHPs html_entity_decode() function.
      *
      * @param string $value string to format
-     * @param boolean $keepQuotes if TRUE, single and double quotes won't be replaced
+     * @param bool $keepQuotes if TRUE, single and double quotes won't be replaced
      * @return string the altered string
      * @see http://www.php.net/html_entity_decode
      */

@@ -14,14 +14,11 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\Category;
 
 /**
  * Tests for \GeorgRinger\News\Domain\Model\Category
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
@@ -184,7 +181,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertEquals($value, $this->instance->getImages());
 	}
 
-
 	/**
 	 * Test if first image can be get
 	 *
@@ -228,7 +224,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertEquals($value, $this->instance->getSinglePid());
 	}
 
-
 	/**
 	 * Test if importId can be set
 	 *
@@ -251,6 +246,5 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->instance->setImportSource($value);
 		$this->assertEquals($value, $this->instance->getImportSource());
 	}
-
 
 }

@@ -27,8 +27,6 @@ namespace GeorgRinger\News\Service;
  * http://forge.typo3.org/projects/typo3v4-mvc/wiki/
  * Dependency_Injection_%28DI%29#Creating-Prototype-Objects-through-the-Object-Manager
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class SettingsService
 {

@@ -19,8 +19,6 @@ use GeorgRinger\News\Domain\Model\Media;
 /**
  * Tests for domains model Media
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class MediaTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

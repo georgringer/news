@@ -20,8 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * ViewHelper to show videos
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class MediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -31,11 +29,10 @@ class MediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
      * then set this value to FALSE.
      * This is internal and NO part of the API. It is very likely to change.
      *
-     * @var boolean
+     * @var bool
      * @internal
      */
     protected $escapingInterceptorEnabled = false;
-
 
     /**
      * Go through all given classes which implement the mediainterface
@@ -43,8 +40,8 @@ class MediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
      *
      * @param string $classes list of classes which are used to render the media object
      * @param \GeorgRinger\News\Domain\Model\Media $element Current media object
-     * @param integer $width width
-     * @param integer $height height
+     * @param int $width width
+     * @param int $height height
      * @return string
      * @throws \UnexpectedValueException
      */

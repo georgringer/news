@@ -19,8 +19,6 @@ use GeorgRinger\News\Utility\TypoScript;
 /**
  * Test class for TypoScript
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class TypoScriptTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
@@ -126,7 +124,6 @@ class TypoScriptTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			],
 		];
 	}
-
 
 	/**
 	 * @test

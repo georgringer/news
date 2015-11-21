@@ -19,8 +19,6 @@ use GeorgRinger\News\Domain\Model\TtContent;
 /**
  * Tests for tt_content model
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class TtContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

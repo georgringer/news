@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Controller;
 /**
  * Category controller
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class CategoryController extends NewsController
 {
@@ -28,7 +26,7 @@ class CategoryController extends NewsController
     /**
      * Page uid
      *
-     * @var integer
+     * @var int
      */
     protected $pageUid = 0;
 

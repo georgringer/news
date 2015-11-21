@@ -23,16 +23,14 @@ use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Administration controller
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class AdministrationController extends NewsController
 {
@@ -43,7 +41,7 @@ class AdministrationController extends NewsController
     /**
      * Page uid
      *
-     * @var integer
+     * @var int
      */
     protected $pageUid = 0;
 
@@ -94,7 +92,6 @@ class AdministrationController extends NewsController
      * @var BackendTemplateView
      */
     protected $defaultViewObjectName = BackendTemplateView::class;
-
 
     /**
      * Set up the doc header properly here
@@ -251,7 +248,7 @@ class AdministrationController extends NewsController
     /**
      * Shows a page tree including count of news + category records
      *
-     * @param integer $treeLevel
+     * @param int $treeLevel
      * @return void
      */
     public function newsPidListingAction($treeLevel = 2)

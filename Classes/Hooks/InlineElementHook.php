@@ -18,8 +18,6 @@ namespace GeorgRinger\News\Hooks;
 /**
  * Inline Element Hook
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface
 {
@@ -41,7 +39,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
      * @param string $foreignTable The table (foreign_table) we create control-icons for
      * @param array $childRecord The current record of that foreign_table
      * @param array $childConfig TCA configuration of the current field of the child record
-     * @param boolean $isVirtual Defines whether the current records is only virtually shown and not physically part of the parent record
+     * @param bool $isVirtual Defines whether the current records is only virtually shown and not physically part of the parent record
      * @param array &$enabledControls (reference) Associative array with the enabled control items
      * @return void
      */
@@ -63,7 +61,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
      * @param string $foreignTable The table (foreign_table) we create control-icons for
      * @param array $childRecord The current record of that foreign_table
      * @param array $childConfig TCA configuration of the current field of the child record
-     * @param boolean $isVirtual Defines whether the current records is only virtually shown and not physically part of the parent record
+     * @param bool $isVirtual Defines whether the current records is only virtually shown and not physically part of the parent record
      * @param array &$controlItems (reference) Associative array with the currently available control items
      * @return void
      */

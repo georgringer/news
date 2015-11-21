@@ -21,8 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Userfunc to render alternative label for media elements
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ItemsProcFunc
 {

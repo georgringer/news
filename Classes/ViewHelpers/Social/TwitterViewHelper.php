@@ -29,8 +29,6 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * dataurl="http://www.mydomain.tld">Twitter</n:social.twitter>
  * Result: Twitter widget to share www.mydomain.tld with a german twitter text
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {

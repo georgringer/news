@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * News model for internal news
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class NewsInternal extends \GeorgRinger\News\Domain\Model\News
 {

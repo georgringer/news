@@ -18,8 +18,6 @@ namespace GeorgRinger\News\Jobs;
 /**
  * Abstract Import job
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 abstract class AbstractImportJob implements ImportJobInterface
 {
@@ -57,7 +55,7 @@ abstract class AbstractImportJob implements ImportJobInterface
     /**
      * Get number of runs
      *
-     * @return integer
+     * @return int
      */
     public function getNumberOfRecordsPerRun()
     {

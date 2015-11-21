@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Service\Import;
 /**
  * Import Service interface
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 interface DataProviderServiceInterface
 {

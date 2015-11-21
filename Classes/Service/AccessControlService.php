@@ -21,8 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Service for access control related stuff
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class AccessControlService
 {
@@ -31,7 +29,7 @@ class AccessControlService
      * Check if a user has access to all categories of a news record
      *
      * @param array $newsRecord
-     * @return boolean
+     * @return bool
      */
     public static function userHasCategoryPermissionsForRecord(array $newsRecord)
     {

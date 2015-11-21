@@ -27,8 +27,6 @@ namespace GeorgRinger\News\ViewHelpers\Widget;
  * </f:widget.paginate>
  * </code>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
 {

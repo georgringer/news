@@ -25,8 +25,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <social.facebook.comment appId="165193833530000" xid="news-{newsItem.uid}" />
  * Result: Facebook widget to comment an article
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class CommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {

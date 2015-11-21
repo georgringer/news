@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Model\Dto;
 /**
  * Extension Manager configuration
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class EmConfiguration
 {
@@ -38,7 +36,7 @@ class EmConfiguration
     }
 
     /**
-     * @var integer
+     * @var int
      */
     protected $removeListActionFromFlexforms = 2;
 
@@ -53,7 +51,7 @@ class EmConfiguration
     protected $pageModuleFieldsCategory = '';
 
     /**
-     * @var integer
+     * @var int
      */
     protected $tagPid = 0;
 
@@ -73,12 +71,12 @@ class EmConfiguration
     protected $categoryBeGroupTceFormsRestriction = false;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $contentElementRelation = false;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $manualSorting = false;
 
@@ -88,20 +86,20 @@ class EmConfiguration
     protected $archiveDate = 'date';
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $showImporter = false;
 
-    /** @var boolean */
+    /** @var bool */
     protected $rteForTeaser = false;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $showAdministrationModule = true;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $showMediaDescriptionField = false;
 
@@ -121,7 +119,7 @@ class EmConfiguration
     protected $resourceFolderImporter = '/news_import';
 
     /**
-     * @return integer
+     * @return int
      */
     public function getRemoveListActionFromFlexforms()
     {
@@ -145,7 +143,7 @@ class EmConfiguration
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getTagPid()
     {
@@ -154,7 +152,7 @@ class EmConfiguration
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function getPrependAtCopy()
     {
@@ -172,7 +170,7 @@ class EmConfiguration
     /**
      * Get categoryBeGroupTceFormsRestriction
      *
-     * @return boolean
+     * @return bool
      */
     public function getCategoryBeGroupTceFormsRestriction()
     {
@@ -180,7 +178,7 @@ class EmConfiguration
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getContentElementRelation()
     {
@@ -188,7 +186,7 @@ class EmConfiguration
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getManualSorting()
     {
@@ -204,7 +202,7 @@ class EmConfiguration
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getShowImporter()
     {
@@ -212,7 +210,7 @@ class EmConfiguration
     }
 
     /**
-     * @param boolean $showAdministrationModule
+     * @param bool $showAdministrationModule
      * @return void
      */
     public function setShowAdministrationModule($showAdministrationModule)
@@ -221,7 +219,7 @@ class EmConfiguration
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getShowAdministrationModule()
     {
@@ -229,7 +227,7 @@ class EmConfiguration
     }
 
     /**
-     * @param boolean $showMediaDescriptionField
+     * @param bool $showMediaDescriptionField
      * @return void
      */
     public function setShowMediaDescriptionField($showMediaDescriptionField)
@@ -238,7 +236,7 @@ class EmConfiguration
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getShowMediaDescriptionField()
     {
@@ -246,7 +244,7 @@ class EmConfiguration
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getRteForTeaser()
     {

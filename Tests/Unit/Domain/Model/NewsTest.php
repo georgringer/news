@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\File;
 use GeorgRinger\News\Domain\Model\FileReference;
@@ -26,8 +25,6 @@ use GeorgRinger\News\Domain\Model\Tag;
 /**
  * Tests for domains model News
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

@@ -18,8 +18,6 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
 /**
  * Tests for StriptagsViewHelper
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class StriptagsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

@@ -18,8 +18,6 @@ namespace GeorgRinger\News\Domain\Model\Dto;
  * News Demand object which holds all information to get the correct
  * news records.
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {

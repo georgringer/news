@@ -20,8 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Test class for Url
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class UrlTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 

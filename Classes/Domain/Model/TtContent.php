@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * Model of tt_content
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
@@ -54,7 +52,7 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $bodytext;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $colPos;
 
@@ -64,12 +62,12 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $image;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $imagewidth;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $imageorient;
 
@@ -79,12 +77,12 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $imagecaption;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $imagecols;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $imageborder;
 
@@ -99,7 +97,7 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $layout;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $cols;
 
@@ -142,7 +140,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $listType;
-
 
     /**
      * @return \DateTime
@@ -249,7 +246,7 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get the colpos
      *
-     * @return integer
+     * @return int
      */
     public function getColPos()
     {
@@ -259,7 +256,7 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set colpos
      *
-     * @param integer $colPos
+     * @param int $colPos
      * @return void
      */
     public function setColPos($colPos)
@@ -555,6 +552,5 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->listType = $listType;
     }
-
 
 }

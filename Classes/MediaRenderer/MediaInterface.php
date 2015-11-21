@@ -18,8 +18,6 @@ namespace GeorgRinger\News\MediaRenderer;
 /**
  * Interface to implement video views
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 interface MediaInterface
 {
@@ -28,8 +26,8 @@ interface MediaInterface
      * Render a media element
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height);

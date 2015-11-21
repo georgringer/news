@@ -23,8 +23,6 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 /**
  * Implementation of file support
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class File implements MediaInterface
 {
@@ -35,8 +33,8 @@ class File implements MediaInterface
      * Render a video player
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param integer $width
-     * @param integer $height
+     * @param int $width
+     * @param int $height
      * @param string $templateFile template file to override. Absolute path
      * @return string
      */
@@ -72,7 +70,7 @@ class File implements MediaInterface
      * Files with extension flv|mp4 are handled within this implementation
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @return boolean
+     * @return bool
      */
     public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
     {

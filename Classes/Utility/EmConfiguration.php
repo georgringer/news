@@ -20,8 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Utility class to get the settings from Extension Manager
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class EmConfiguration
 {

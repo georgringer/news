@@ -30,8 +30,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Icon of the news record with the given uid
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper
 {
@@ -40,7 +38,7 @@ class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBa
      * Render the sprite icon
      *
      * @param string $table table name
-     * @param integer $uid uid of record
+     * @param int $uid uid of record
      * @param string $title title
      * @return string sprite icon
      */

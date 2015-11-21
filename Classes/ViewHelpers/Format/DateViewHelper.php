@@ -51,8 +51,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * 2013-06-12T15:19:21+00:00
  * </output>
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {

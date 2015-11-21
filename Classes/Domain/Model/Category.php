@@ -14,18 +14,15 @@ namespace GeorgRinger\News\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-
 /**
  * Category Model
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
     /**
-     * @var integer
+     * @var int
      */
     protected $sorting;
 
@@ -45,7 +42,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $starttime;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $hidden;
 
@@ -55,12 +52,12 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $endtime;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $sysLanguageUid;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $l10nParent;
 
@@ -87,12 +84,12 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $images;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $shortcut;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $singlePid;
 
@@ -113,7 +110,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $feGroup;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $countRelatedNews = 0;
 
@@ -214,7 +211,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get Hidden
      *
-     * @return boolean
+     * @return bool
      */
     public function getHidden()
     {
@@ -224,7 +221,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set Hidden
      *
-     * @param boolean $hidden
+     * @param bool $hidden
      * @return void
      */
     public function setHidden($hidden)
@@ -235,7 +232,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get sys language
      *
-     * @return integer
+     * @return int
      */
     public function getSysLanguageUid()
     {
@@ -245,7 +242,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set sys language
      *
-     * @param integer $sysLanguageUid language uid
+     * @param int $sysLanguageUid language uid
      * @return void
      */
     public function setSysLanguageUid($sysLanguageUid)
@@ -256,7 +253,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get language parent
      *
-     * @return integer
+     * @return int
      */
     public function getL10nParent()
     {
@@ -266,7 +263,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set language parent
      *
-     * @param integer $l10nParent l10nParent
+     * @param int $l10nParent l10nParent
      * @return void
      */
     public function setL10nParent($l10nParent)
@@ -391,7 +388,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get shortcut
      *
-     * @return integer
+     * @return int
      */
     public function getShortcut()
     {
@@ -401,7 +398,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set shortcut
      *
-     * @param integer $shortcut shortcut
+     * @param int $shortcut shortcut
      * @return void
      */
     public function setShortcut($shortcut)
@@ -412,7 +409,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get single pid of category
      *
-     * @return integer
+     * @return int
      */
     public function getSinglePid()
     {
@@ -422,7 +419,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set single pid
      *
-     * @param integer $singlePid single pid
+     * @param int $singlePid single pid
      * @return void
      */
     public function setSinglePid($singlePid)
@@ -454,7 +451,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get sorting id
      *
-     * @return integer sorting id
+     * @return int sorting id
      */
     public function getSorting()
     {
@@ -464,7 +461,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set sorting id
      *
-     * @param integer $sorting sorting id
+     * @param int $sorting sorting id
      * @return void
      */
     public function setSorting($sorting)

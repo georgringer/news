@@ -17,8 +17,6 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * File model
  *
- * @package TYPO3
- * @subpackage tx_news
  * @version $Id$
  */
 class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
@@ -167,7 +165,7 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     /**
      * Get boolean if file ending is registered as image type
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsImageFile()
     {

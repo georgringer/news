@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\Validation;
@@ -24,8 +23,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * News repository with all the callable functionality
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
 {
@@ -37,7 +34,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @param QueryInterface $query
      * @param  array $categories
      * @param  string $conjunction
-     * @param  boolean $includeSubCategories
+     * @param  bool $includeSubCategories
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
      */
     protected function createCategoryConstraint(
@@ -297,7 +294,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * Find first news by import and source id
      *
      * @param string $importSource import source
-     * @param integer $importId import id
+     * @param int $importId import id
      * @return \GeorgRinger\News\Domain\Model\News
      */
     public function findOneByImportSourceAndImportId($importSource, $importId)
@@ -318,8 +315,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * Override default findByUid function to enable also the option to turn of
      * the enableField setting
      *
-     * @param integer $uid id of record
-     * @param boolean $respectEnableFields if set to false, hidden records are shown
+     * @param int $uid id of record
+     * @param bool $respectEnableFields if set to false, hidden records are shown
      * @return \GeorgRinger\News\Domain\Model\News
      */
     public function findByUid($uid, $respectEnableFields = true)
@@ -395,7 +392,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         return $data;
     }
 
-
     /**
      * Get the search constraints
      *
@@ -422,7 +418,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if (count($searchFields) === 0) {
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);
             }
-
 
             foreach ($searchFields as $field) {
                 if (!empty($searchSubject)) {

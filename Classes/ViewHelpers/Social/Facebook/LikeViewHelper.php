@@ -34,8 +34,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Result: Facebook widget to share www.typo3.org within a plugin styled with
  * width 300 and arial as font
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {

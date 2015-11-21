@@ -25,8 +25,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <n:social.facebook.share />
  * Result: Facebook widget to share current URL with the Facebook button
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
@@ -61,7 +59,7 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     /**
      * Render a share button
      *
-     * @param boolean $loadJs
+     * @param bool $loadJs
      * @return string
      */
     public function render($loadJs = true)

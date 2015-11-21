@@ -14,14 +14,11 @@ namespace GeorgRinger\News\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Domain\Model\DemandInterface;
 
 /**
  * Demand domain model interface
  *
- * @package TYPO3
- * @subpackage tx_news
  */
 interface DemandedRepositoryInterface
 {
