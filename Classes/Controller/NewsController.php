@@ -143,7 +143,9 @@ class NewsController extends NewsBaseController {
 		}
 
 		foreach ($overwriteDemand as $propertyName => $propertyValue) {
-			\TYPO3\CMS\Extbase\Reflection\ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+			if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
+				\TYPO3\CMS\Extbase\Reflection\ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+			}
 		}
 		return $demand;
 	}

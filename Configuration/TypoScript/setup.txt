@@ -41,6 +41,7 @@ plugin.tx_news {
 
 		# general settings
 		overrideFlexformSettingsIfEmpty = cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
+		allowEmptyStringsForOverwriteDemand = 0
 
 		includeSubCategories = 0
 
