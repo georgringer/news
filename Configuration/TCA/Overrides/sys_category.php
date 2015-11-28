@@ -39,7 +39,7 @@ $newSysCategoryColumns = [
             'images',
             [
                 'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:cms/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => 1,
                     'showRemovedLocalizationRecords' => 1,
                     'showAllLocalizationLink' => 1,
