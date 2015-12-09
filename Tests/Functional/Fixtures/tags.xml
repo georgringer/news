@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+	<tx_news_domain_model_tag>
+		<uid>1</uid>
+		<pid>1</pid>
+		<title>Tag 1</title>
+	</tx_news_domain_model_tag>
+
+	<tx_news_domain_model_tag>
+		<uid>2</uid>
+		<pid>1</pid>
+		<title>Tag 2</title>
+	</tx_news_domain_model_tag>
+
+	<tx_news_domain_model_tag>
+		<uid>3</uid>
+		<pid>1</pid>
+		<title>Tag 3</title>
+	</tx_news_domain_model_tag>
+
+	<tx_news_domain_model_tag>
+		<uid>4</uid>
+		<pid>1</pid>
+		<title>Tag 4</title>
+	</tx_news_domain_model_tag>
+
+	<tx_news_domain_model_tag>
+		<uid>5</uid>
+		<pid>1</pid>
+		<title>Tag 5</title>
+	</tx_news_domain_model_tag>
+</dataset>

@@ -165,4 +165,80 @@
 		<pid>9</pid>
 		<datetime>1396640035</datetime>
 	</tx_news_domain_model_news>
+
+	<!--Tags-->
+	<tx_news_domain_model_news>
+		<uid>130</uid>
+		<pid>10</pid>
+		<title>tag1,tag2,tag3</title>
+		<tags>3</tags>
+	</tx_news_domain_model_news>
+	<tx_news_domain_model_news_tag_mm>
+		<uid_local>130</uid_local>
+		<uid_foreign>1</uid_foreign>
+		<sorting>1</sorting>
+	</tx_news_domain_model_news_tag_mm>
+	<tx_news_domain_model_news_tag_mm>
+		<uid_local>130</uid_local>
+		<uid_foreign>2</uid_foreign>
+		<sorting>2</sorting>
+	</tx_news_domain_model_news_tag_mm>
+	<tx_news_domain_model_news_tag_mm>
+		<uid_local>130</uid_local>
+		<uid_foreign>3</uid_foreign>
+		<sorting>3</sorting>
+	</tx_news_domain_model_news_tag_mm>
+
+	<tx_news_domain_model_news>
+		<uid>131</uid>
+		<pid>10</pid>
+		<title>tag3</title>
+		<tags>1</tags>
+	</tx_news_domain_model_news>
+	<tx_news_domain_model_news_tag_mm>
+		<uid_local>131</uid_local>
+		<uid_foreign>3</uid_foreign>
+		<sorting>1</sorting>
+	</tx_news_domain_model_news_tag_mm>
+
+	<tx_news_domain_model_news>
+		<uid>132</uid>
+		<pid>10</pid>
+		<title>tag4</title>
+		<tags>1</tags>
+	</tx_news_domain_model_news>
+	<tx_news_domain_model_news_tag_mm>
+		<uid_local>132</uid_local>
+		<uid_foreign>4</uid_foreign>
+		<sorting>1</sorting>
+	</tx_news_domain_model_news_tag_mm>
+
+	<tx_news_domain_model_news>
+		<uid>133</uid>
+		<pid>10</pid>
+		<title>tag5</title>
+		<tags>1</tags>
+	</tx_news_domain_model_news>
+	<tx_news_domain_model_news_tag_mm>
+		<uid_local>133</uid_local>
+		<uid_foreign>5</uid_foreign>
+		<sorting>1</sorting>
+	</tx_news_domain_model_news_tag_mm>
+
+	<tx_news_domain_model_news>
+		<uid>134</uid>
+		<pid>10</pid>
+		<title>tag4,tag5</title>
+		<tags>2</tags>
+	</tx_news_domain_model_news>
+	<tx_news_domain_model_news_tag_mm>
+		<uid_local>134</uid_local>
+		<uid_foreign>4</uid_foreign>
+		<sorting>1</sorting>
+	</tx_news_domain_model_news_tag_mm>
+	<tx_news_domain_model_news_tag_mm>
+		<uid_local>134</uid_local>
+		<uid_foreign>5</uid_foreign>
+		<sorting>2</sorting>
+	</tx_news_domain_model_news_tag_mm>
 </dataset>

@@ -179,6 +179,47 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase {
 		$this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 6);
 	}
 
+	/**
+	 * Test if by tag search works
+	 *
+	 * @test
+	 * @return void
+     */
+    public function findRecordsByTags() {
+        /** @var \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand */
+        $demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\Dto\\NewsDemand');
+        $demand->setStoragePage(10);
+        $demand->setOrder('uid');
+		$demand->setOrderByAllowed('uid');
+
+		// given is 1 tag
+		$demand->setTags('3');
+		$news = $this->newsRepository->findDemanded($demand);
+		$this->assertEquals('130,131', $this->getIdListOfNews($news));
+
+		// given are 2 tags
+		$demand->setTags('1,5');
+		$news = $this->newsRepository->findDemanded($demand);
+		$this->assertEquals('130,133,134', $this->getIdListOfNews($news));
+
+		// given are 3 real tags & 1 not existing
+		$demand->setTags('5,3,1,10');
+		$news = $this->newsRepository->findDemanded($demand);
+		$this->assertEquals('130,131,133,134', $this->getIdListOfNews($news));
+	}
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList
+     * @return string
+     */
+    protected function getIdListOfNews(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList) {
+        $idList = array();
+        foreach ($newsList as $news) {
+            $idList[] = $news->getUid();
+        }
+        return implode(',', $idList);
+    }
+
 	public function tearDown() {
 		unset($this->newsRepository);
 		unset($this->objectManager);
