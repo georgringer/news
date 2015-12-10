@@ -620,7 +620,8 @@ $tx_news_domain_model_news = [
             'showitem' => 'l10n_parent, l10n_diffsource,
 					title,--palette--;;paletteCore,teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,
 					bodytext;LLL:EXT:cms/locallang_ttc.xlf:rte_enabled_formlabel,
-					content_elements,
+				
+				--div--;' . $ll . 'tx_news_domain_model_news.content_elements,content_elements,
 
 				--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:cms/locallang_ttc.xlf:palette.access;paletteAccess,
