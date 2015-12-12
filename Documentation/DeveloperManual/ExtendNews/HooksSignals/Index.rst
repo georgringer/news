@@ -81,7 +81,7 @@ Now create the file ``Classes/Hooks/Repository.php``:
 	namespace YourVendor\Extkey\Hooks;
 
 	use TYPO3\CMS\Core\Utility\GeneralUtility;
-	use \GeorgRinger\News\Domain\Rpository\NewsRepository;
+	use \GeorgRinger\News\Domain\Repository\NewsRepository;
 
 	class Repository {
 
