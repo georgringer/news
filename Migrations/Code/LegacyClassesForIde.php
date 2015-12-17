@@ -198,11 +198,6 @@ class Tx_News_ViewHelpers_Be_ClickmenuViewHelper extends GeorgRinger\News\ViewHe
 /**
  * @deprecated
  */
-class Tx_News_ViewHelpers_Be_Security extends GeorgRinger\News\ViewHelpers\Be\Security\IfAccessToTableIsAllowedViewHelper {}
-
-/**
- * @deprecated
- */
 class Tx_News_ViewHelpers_Be_Buttons_IconViewHelper extends GeorgRinger\News\ViewHelpers\Be\Buttons\IconViewHelper {}
 
 /**

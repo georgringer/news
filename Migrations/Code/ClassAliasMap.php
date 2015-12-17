@@ -39,7 +39,6 @@ return [
 	'Tx_News_ViewHelpers_Format_DateViewHelper' => 'GeorgRinger\\News\\ViewHelpers\\Format\\DateViewHelper',
 	'Tx_News_ViewHelpers_Be_MultiEditLinkViewHelper' => 'GeorgRinger\\News\\ViewHelpers\\Be\\MultiEditLinkViewHelper',
 	'Tx_News_ViewHelpers_Be_ClickmenuViewHelper' => 'GeorgRinger\\News\\ViewHelpers\\Be\\ClickmenuViewHelper',
-	'Tx_News_ViewHelpers_Be_Security' => 'GeorgRinger\\News\\ViewHelpers\\Be\\Security\\IfAccessToTableIsAllowedViewHelper',
 	'Tx_News_ViewHelpers_Be_Buttons_IconViewHelper' => 'GeorgRinger\\News\\ViewHelpers\\Be\\Buttons\\IconViewHelper',
 	'Tx_News_ViewHelpers_Be_Buttons_IconForRecordViewHelper' => 'GeorgRinger\\News\\ViewHelpers\\Be\\Buttons\\IconForRecordViewHelper',
 	'Tx_News_Utility_Validation' => 'GeorgRinger\\News\\Utility\\Validation',
