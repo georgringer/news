@@ -1,0 +1,42 @@
+{namespace n=GeorgRinger\News\ViewHelpers}
+<f:layout name="General" />
+<!--
+	=====================
+		Templates/Category/List.html
+-->
+
+<f:section name="content">
+	<f:if condition="{categories}">
+		<f:then>
+			<f:render section="categoryTree" arguments="{categories:categories,overwriteDemand:overwriteDemand,class:'nav nav-sidebar category-menu-view'}" />
+		</f:then>
+		<f:else>
+			<f:translate key="list_nocategoriesfound" />
+		</f:else>
+	</f:if>
+</f:section>
+
+<f:section name="categoryTree">
+	<ul class="{class}">
+		<f:for each="{categories}" as="category">
+			<li>
+				<f:if condition="{category.item.uid} == {overwriteDemand.categories}">
+					<f:then>
+						<f:link.page title="{category.item.title}" class="active" pageUid="{settings.listPid}"
+							additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">{category.item.title}
+						</f:link.page>
+					</f:then>
+					<f:else>
+						<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
+							additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">{category.item.title}
+						</f:link.page>
+					</f:else>
+				</f:if>
+
+				<f:if condition="{category.children}">
+					<f:render section="categoryTree" arguments="{categories: category.children,overwriteDemand:overwriteDemand,class:''}" />
+				</f:if>
+			</li>
+		</f:for>
+	</ul>
+</f:section>

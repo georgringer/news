@@ -15,13 +15,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['news_pi1'] =
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('news_pi1',
     'FILE:EXT:news/Configuration/FlexForms/flexform_news.xml');
 
-/***************
- * Default TypoScript
- */
+// TypoScript
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('news', 'Configuration/TypoScript', 'News');
-
-/***************
- * Sitemap TypoScript
- */
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('news', 'Configuration/TypoScript/Sitemap',
-    'News Sitemap');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('news', 'Configuration/TypoScript/Sitemap', 'News Sitemap');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('news', 'Configuration/TypoScript/Styles/Twb', 'News Styles Twitter Bootstrap');

@@ -1,0 +1,21 @@
+{namespace n=GeorgRinger\News\ViewHelpers}
+<f:layout name="General" />
+
+<!--
+	=====================
+		Templates/Tag/List.html
+-->
+
+<f:section name="content">
+	<f:if condition="{tags}">
+		<ul class="nav nav-sidebar tag-menu-view">
+			<f:for each="{tags}" as="tag">
+				<li class="{f:if(condition:'{tag.uid} == {overwriteDemand.tags}',then:'active',else:'')}">
+					<f:link.page title="{tag.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
+						{tag.title}
+					</f:link.page>
+				</li>
+			</f:for>
+		</ul>
+	</f:if>
+</f:section>
