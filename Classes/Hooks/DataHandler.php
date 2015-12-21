@@ -91,9 +91,6 @@ class DataHandler {
 						'tx_news_pi1[news_preview]' => $record['uid'],
 					);
 					if ($record['sys_language_uid'] > 0) {
-						if ($record['l10n_parent'] > 0) {
-							$parameters['tx_news_pi1[news_preview]'] = $record['l10n_parent'];
-						}
 						$parameters['L'] = $record['sys_language_uid'];
 					}
 
