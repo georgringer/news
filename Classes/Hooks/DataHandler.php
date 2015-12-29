@@ -47,8 +47,7 @@ class DataHandler
             /** @var $cacheManager CacheManager */
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
             foreach ($cacheTagsToFlush as $cacheTag) {
-                $cacheManager->getCache('cache_pages')->flushByTag($cacheTag);
-                $cacheManager->getCache('cache_pagesection')->flushByTag($cacheTag);
+                $cacheManager->flushCachesInGroupByTag('pages', $cacheTag);
             }
         }
     }
