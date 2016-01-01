@@ -6,8 +6,8 @@ php:
 
 env:
   matrix:
-    - TYPO3_VERSION=7.6.0
-    - TYPO3_VERSION=dev-master
+    - TYPO3_VERSION=7.6.2
+    - TYPO3_VERSION=7.x-dev
 
 sudo: false
 
