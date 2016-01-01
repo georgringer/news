@@ -131,7 +131,10 @@ class DataHandler {
 							foreach($deniedCategories as $deniedCategory) {
 								$fieldArray['categories'] .= ',' . $deniedCategory['uid'];
 							}
-							$fieldArray['categories'] = trim($fieldArray['categories'], ',');
+							// Check if the categories are not empty,
+							if (!empty($fieldArray['categories'])) {
+								$fieldArray['categories'] = trim($fieldArray['categories'], ',');
+							}
 						}
 					}
 
