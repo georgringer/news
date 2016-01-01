@@ -168,6 +168,8 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
             \TYPO3\CMS\Core\Resource\Utility\BackendUtility::getWorkspaceWhereClause($table);
         } elseif (TYPO3_MODE === 'BE' && TYPO3_cliMode === true) {
             return '';
+        } elseif(TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_CLI) {
+            return '';
         }
 
         throw new \UnexpectedValueException('No TSFE for frontend and no BE_USER for Backend defined, please report the issue!');
