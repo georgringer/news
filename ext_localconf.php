@@ -116,6 +116,11 @@ $boot = function () {
             ['source' => 'EXT:news/Resources/Public/Icons/ext-news-folder-tree.svg']
         );
         $iconRegistry->registerIcon(
+            'ext-news-wizard-icon',
+            \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+            ['source' => 'EXT:news/Resources/Public/Icons/ce_wiz.gif']
+        );
+        $iconRegistry->registerIcon(
             'ext-news-type-default',
             \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
             ['source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.gif']
