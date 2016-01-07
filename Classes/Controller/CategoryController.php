@@ -68,8 +68,13 @@ class CategoryController extends NewsController
 
         $idList = explode(',', $this->settings['categories']);
 
+        $startingPoint = null;
+        if(!empty($this->settings['startingpoint'])){
+            $startingPoint = $this->settings['startingpoint'];
+        }
+
         $assignedValues = [
-            'categories' => $this->categoryRepository->findTree($idList),
+            'categories' => $this->categoryRepository->findTree($idList, $startingPoint),
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
         ];

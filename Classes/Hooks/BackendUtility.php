@@ -82,7 +82,7 @@ class BackendUtility
     public $removedFieldsInCategoryListView = [
         'sDEF' => 'orderBy,orderDirection,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
-						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
+						recursive,dateField,singleNews,previewHiddenRecords',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'

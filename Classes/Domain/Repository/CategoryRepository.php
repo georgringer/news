@@ -17,6 +17,7 @@ namespace GeorgRinger\News\Domain\Repository;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Service\CategoryService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
@@ -79,12 +80,12 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      * @param array $rootIdList list of id s
      * @return QueryInterface
      */
-    public function findTree(array $rootIdList)
+    public function findTree(array $rootIdList, $startingPoint = null)
     {
         $subCategories = CategoryService::getChildrenCategories(implode(',', $rootIdList));
         $ordering = ['sorting' => QueryInterface::ORDER_ASCENDING];
 
-        $categories = $this->findByIdList(explode(',', $subCategories), $ordering);
+        $categories = $this->findByIdList(explode(',', $subCategories), $ordering, $startingPoint);
         $flatCategories = [];
         foreach ($categories as $category) {
             $flatCategories[$category->getUid()] = [
@@ -120,7 +121,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      * @param array $ordering ordering
      * @return QueryInterface
      */
-    public function findByIdList(array $idList, array $ordering = [])
+    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -130,9 +131,16 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         }
         $this->overlayTranslatedCategoryIds($idList);
 
+        $conditions = [];
+        $conditions[] = $query->in('uid', $idList);
+
+        if(is_null($startingPoint) === false) {
+            $conditions[] = $query->in('pid', GeneralUtility::trimExplode(',', $startingPoint, true));
+        }
+
         return $query->matching(
             $query->logicalAnd(
-                $query->in('uid', $idList)
+                $conditions
             ))->execute();
     }
 
