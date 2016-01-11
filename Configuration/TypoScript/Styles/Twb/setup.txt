@@ -29,5 +29,6 @@ plugin.tx_news {
 					width = 300
 				}
 			}
+		}
 	}
 }
