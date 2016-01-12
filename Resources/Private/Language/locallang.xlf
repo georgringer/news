@@ -28,13 +28,13 @@
 				<source>Back</source>
 			</trans-unit>
 			<trans-unit id="related-news" xml:space="preserve">
-				<source>Related news</source>
+				<source>Related News</source>
 			</trans-unit>
 			<trans-unit id="related-files" xml:space="preserve">
-				<source>Related files</source>
+				<source>Related Files</source>
 			</trans-unit>
 			<trans-unit id="related-links" xml:space="preserve">
-				<source>Related links</source>
+				<source>Related Links</source>
 			</trans-unit>
 			<trans-unit id="author" xml:space="preserve">
 				<source>created by %s</source>
