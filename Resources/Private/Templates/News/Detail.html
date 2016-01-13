@@ -104,6 +104,7 @@
 			</f:if>
 
 			<f:if condition="{settings.detail.disqusShortname}">
+				<div id="disqus_thread"></div>
 				<n:social.disqus newsItem="{newsItem}"
 								 shortName="{settings.detail.disqusShortname}"
 								 link="{n:link(newsItem:newsItem, settings:settings, uriOnly:1, configuration:'{forceAbsoluteUrl:1}')}" />
