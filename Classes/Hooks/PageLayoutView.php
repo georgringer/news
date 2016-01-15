@@ -210,9 +210,9 @@ class PageLayoutView
                     $pageTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
                     $newsTitle = (BackendUtilityCore::getRecordTitle('tx_news_domain_model_news', $newsRecord));
 
-                    $content = $this->getDocumentTemplate()->wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'],
+                    $content = BackendUtilityCore::wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'],
                             true, '', '+info,edit,view')
-                        . $pageTitle . ': ' . $this->getDocumentTemplate()->wrapClickMenuOnIcon($iconNews . ' ' . $newsTitle,
+                        . $pageTitle . ': ' . BackendUtilityCore::wrapClickMenuOnIcon($iconNews . ' ' . $newsTitle,
                             'tx_news_domain_model_news', $newsRecord['uid'], true, '', '+info,edit');
 
                 } else {
@@ -290,7 +290,7 @@ class PageLayoutView
                 . $this->iconFactory->getIconForRecord('pages', $pageRecord, Icon::SIZE_SMALL)->render()
                 . '</span>'
                 . htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
-            $content = $this->getDocumentTemplate()->wrapClickMenuOnIcon($data, 'pages', $pageRecord['uid'], true, '',
+            $content = BackendUtilityCore::wrapClickMenuOnIcon($data, 'pages', $pageRecord['uid'], true, '',
                 '+info,edit');
         } else {
             /** @var $message FlashMessage */
