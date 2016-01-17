@@ -63,7 +63,7 @@ class Youtube implements MediaInterface
                 $frameBorderAttribute = ' frameborder="0"';
             }
 
-            $content = '<iframe width="' . (int)$width . '" height="' . (int)$height . '" src="' . htmlspecialchars($url) . '"' . $frameBorderAttribute . '></iframe>';
+            $content = '<iframe allowfullscreen="allowfullscreen" width="' . (int)$width . '" height="' . (int)$height . '" src="' . htmlspecialchars($url) . '"' . $frameBorderAttribute . '></iframe>';
         }
 
         return $content;
