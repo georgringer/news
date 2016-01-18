@@ -141,7 +141,9 @@ class AdministrationController extends NewsController
 
         $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
         $pageInfo = BackendUtilityCore::readPageAccess($this->pageUid, '');
-        $this->view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation($pageInfo);
+        if (is_array($pageInfo)) {
+            $this->view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation($pageInfo);
+        }
     }
 
     /**
