@@ -62,7 +62,7 @@ class Tx_News_Hooks_T3libBefunc {
 	 */
 	public $removedFieldsInDateMenuView = array(
 			'sDEF' => 'orderBy,singleNews',
-			'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,previewHiddenRecords,excludeAlreadyDisplayedNews',
+			'additional' => 'limit,offset,hidePagination,topNewsFirst,backPid,previewHiddenRecords,excludeAlreadyDisplayedNews',
 			'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
 		);
 
