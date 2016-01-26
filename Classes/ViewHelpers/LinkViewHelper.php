@@ -48,8 +48,13 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * </output>
  *
  */
-class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
+class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
+
+    /**
+     * @var string
+     */
+    protected $tagName = 'a';
 
     /**
      * @var \GeorgRinger\News\Service\SettingsService
