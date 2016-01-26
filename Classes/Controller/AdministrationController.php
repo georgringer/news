@@ -223,7 +223,7 @@ class AdministrationController extends NewsController
                 }
             }
         }
-        $demand = $this->createDemandObjectFromSettings($demand);
+        $demand = $this->createDemandObject($demand);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
         $categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
@@ -308,7 +308,7 @@ class AdministrationController extends NewsController
      * @param \GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand
      * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
      */
-    protected function createDemandObjectFromSettings(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand)
+    protected function createDemandObject(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand)
     {
         $demand->setCategories($demand->getSelectedCategories());
         $demand->setOrder($demand->getSortingField() . ' ' . $demand->getSortingDirection());
