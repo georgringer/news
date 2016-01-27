@@ -70,7 +70,7 @@ Basically there are 2 possible variants:
 
 archiveDate
 """""""""""
-Define if the archive date field should be rendered as a date field or including the date as well.
+Define if the archive date field should be rendered as a date field or including the time as well.
 
 .. _extensionManagerPageModuleFieldsCategory:
 

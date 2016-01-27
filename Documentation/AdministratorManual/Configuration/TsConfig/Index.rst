@@ -27,26 +27,10 @@ Properties
 	=========================== =====================================
 	Property                    Data type
 	=========================== =====================================
-	singlePid_                  integer
 	templateLayouts_            array
 	archive_                    string
 	tagPid_                     integer
 	=========================== =====================================
-
-.. _tsconfigSinglePid:
-
-singlePid
-~~~~~~~~~
-It is possible to preview a news record if pressing the button “Save &
-Preview”. Therefore the ID of the page with the single view needs to
-be defined. ::
-
-	# Example:
-	tx_news.singlePid = 123
-
-A plugin with the view “Detail view” must be available on that page.
-If a preview of hidden records needs to be allowed too, the checkbox
-“*Allow hidden records*” needs to be checked in the plugin.
 
 .. _tsconfigTemplateLayouts:
 

@@ -17,11 +17,13 @@ Best practice
 	:maxdepth: 5
 	:titlesonly:
 
+	PreviewOfRecord/Index
 	IntegrationWithTypoScript/Index
 	ClearCache/Index
 	Realurl/Index
 	PredefineFields/Index
 	Rss/Index
 	ICalendar/Index
+	MigrateFromTtNews/Index
 
 

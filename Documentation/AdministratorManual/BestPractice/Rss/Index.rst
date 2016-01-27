@@ -212,27 +212,6 @@ If you want to rewrite the URL, use a configuration like this one.
 
 This will change the URL to :code:`/feed.rss`.
 
-
-If you want to rewrite the URL, use a configuration like this one.
-
-.. code-block:: php
-
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['_DEFAULT'] = array(
-    	'fileName' => array (
-    		'defaultToHTMLsuffixOnPrev' => 0,
-    		'acceptHTMLsuffix' => 1,
-    		'index' => array(
-    			'feed.rss' => array(
-    				'keyValues' => array(
-    					'type' => 9818,
-    				)
-    			),
-    		)
-    	)
-    );
-
-This will change the URL to /feed.rss
-
 Add a link to the RSS feed in the list view
 """""""""""""""""""""""""""""""""""""""""""
 

@@ -19,6 +19,7 @@ Templates
 	:titlesonly:
 
 	Start/Index
+	TwitterBootstrap/Index
 	TemplateSelector/Index
 	ViewHelpers/Index
 	Snippets/Index
