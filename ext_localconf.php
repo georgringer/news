@@ -136,6 +136,11 @@ $boot = function () {
             ['source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_external.gif']
         );
     }
+
+    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('dd_googlesitemap')) {
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['dd_googlesitemap']['sitemap']['txnews']
+            = \GeorgRinger\News\Hooks\TxNewsSitemapGenerator::class . '->main';
+    }
 };
 
 $boot();
