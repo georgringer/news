@@ -106,6 +106,11 @@ $boot = function ($packageKey) {
 		),
 	);
 	\GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
+
+    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('dd_googlesitemap')) {
+      $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['dd_googlesitemap']['sitemap']['txnews']
+          = 'GeorgRinger\\News\\Hooks\\TxNewsSitemapGenerator->main';
+    }
 };
 
 $boot($_EXTKEY);
