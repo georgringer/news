@@ -15,6 +15,7 @@ namespace GeorgRinger\News\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 /**
  * ViewHelper to check if the current news item is rendered as single view on the same page
@@ -28,17 +29,17 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * </output>
  *
  */
-class IfIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper
+class IfIsActiveViewHelper extends AbstractConditionViewHelper
 {
+    public function initializeArguments()
+    {
+        $this->registerArgument('newsItem', 'object', 'News item', false);
+        parent::initializeArguments();
+    }
 
-    public function render(\GeorgRinger\News\Domain\Model\News $newsItem)
+    protected static function evaluateCondition(array $arguments = null)
     {
         $vars = GeneralUtility::_GET('tx_news_pi1');
-
-        if (isset($vars['news']) && (int)$newsItem->getUid() === (int)$vars['news']) {
-            return $this->renderThenChild();
-        } else {
-            return $this->renderElseChild();
-        }
+        return (isset($vars['news']) && isset($vars['newsItem']) && (int)$arguments['newsItem']->getUid() === (int)$vars['news']);
     }
 }
