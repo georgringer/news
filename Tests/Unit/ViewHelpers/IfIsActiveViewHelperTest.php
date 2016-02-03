@@ -60,19 +60,4 @@ class IfIsActiveViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->viewHelper->render($newsItem);
 	}
 
-		/**
-	 * @test
-	 * @return void
-	 */
-	public function thenChildIsCalledWithCorrectArguments() {
-		$_GET['tx_news_pi1']['news'] = '789';
-		$newsItem = new News();
-		$newsItem->_setProperty('uid', 789);
-
-		$this->viewHelper->expects($this->once())
-			->method('renderThenChild');
-
-		$this->viewHelper->render($newsItem);
-	}
-
 }
