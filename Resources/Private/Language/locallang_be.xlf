@@ -402,6 +402,18 @@
 			<trans-unit id="administration.nolimit" xml:space="preserve">
 				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
 			</trans-unit>
+			<trans-unit id="administration.toggleForm" xml:space="preserve">
+				<source>Zeige/Verberge Filter</source>
+			</trans-unit>
+			<trans-unit id="administration.nonewsfound" xml:space="preserve">
+				<source>No news found</source>
+			</trans-unit>
+			<trans-unit id="administration.nonewsfoundText" xml:space="preserve">
+				<source>The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</source>
+			</trans-unit>
+			<trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve">
+				<source>See all pages containing news records</source>
+			</trans-unit>
 			<trans-unit id="news-folder" xml:space="preserve">
 				<source>News</source>
 			</trans-unit>

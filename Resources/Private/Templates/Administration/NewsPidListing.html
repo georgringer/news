@@ -35,12 +35,12 @@
 		</thead>
 		<f:for each="{tree}" as="item">
 			<tr class="{f:if(condition: item.countNewsAndCategories, then: '', else: 'hide_line')}">
-				<td class="icon" nowrap="nowrap">
+				<td nowrap="nowrap">
 					<f:format.html parseFuncTSPath="">{item.HTML}</f:format.html>
 					<f:link.action action="index" additionalParams="{id:item.row.uid}" title="UID: {item.row.uid}">{item.row.title}</f:link.action>
 				</td>
-				<td>{item.countNews}</td>
-				<td>{item.countCategories}</td>
+				<td>{f:if(condition:item.countNews,then:item.countNews,else:'')}</td>
+				<td>{f:if(condition:item.countCategories,then:item.countCategories,else:'')}</td>
 			</tr>
 		</f:for>
 	</table>

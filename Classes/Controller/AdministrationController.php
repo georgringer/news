@@ -15,6 +15,7 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Utility\Page;
+use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
@@ -186,6 +187,20 @@ class AdministrationController extends NewsController
                 $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key);
             }
         }
+
+        /** @var Clipboard clipObj */
+        $clipBoard = GeneralUtility::makeInstance(Clipboard::class);
+        $clipBoard->initializeClipboard();
+        $elFromTable = $clipBoard->elFromTable('tx_news_domain_model_news');
+        if (!empty($elFromTable)) {
+            $viewButton = $buttonBar->makeLinkButton()
+                ->setHref($clipBoard->pasteUrl('', $this->pageUid))
+                ->setOnClick('return ' . $clipBoard->confirmMsg('pages', BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
+                        $elFromTable))
+                ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/locallang_mod_web_list.xlf:clip_pasteInto'))
+                ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', ICON::SIZE_SMALL));
+            $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);
+        }
     }
 
     /**
@@ -210,6 +225,7 @@ class AdministrationController extends NewsController
     {
         $this->redirectToPageOnStart();
         if (is_null($demand)) {
+
             $demand = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand::class);
 
             // Preselect by TsConfig (e.g. tx_news.module.preselect.topNewsRestriction = 1)
@@ -222,6 +238,7 @@ class AdministrationController extends NewsController
                     ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
                 }
             }
+            $this->view->assign('hideForm', true);
         }
         $demand = $this->createDemandObject($demand);
         $demand->setActionAndClass(__METHOD__, __CLASS__);

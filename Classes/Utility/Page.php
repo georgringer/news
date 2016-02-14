@@ -97,9 +97,15 @@ class Page
             throw new \Exception('Page::pageTree does only work in the backend!');
         }
 
+        $pageUid = (int)$pageUid;
+        if ($pageUid === 0 && !self::getBackendUser()->isAdmin()) {
+            $mounts = self::getBackendUser()->returnWebmounts();
+            $pageUid = array_shift($mounts);
+        }
+
         /* @var $tree PageTreeView */
         $tree = GeneralUtility::makeInstance(PageTreeView::class);
-        $tree->init('AND ' . $GLOBALS['BE_USER']->getPagePermsClause(1));
+        $tree->init('AND ' . self::getBackendUser()->getPagePermsClause(1));
 
         $treeStartingRecord = BackendUtility::getRecord('pages', $pageUid);
         BackendUtility::workspaceOL('pages', $treeStartingRecord);
@@ -114,6 +120,16 @@ class Page
 
         $tree->getTree($pageUid, $treeLevel, '');
         return $tree;
+    }
+
+    /**
+     * Get backend user
+     *
+     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     */
+    static protected function getBackendUser()
+    {
+        return $GLOBALS['BE_USER'];
     }
 
 }

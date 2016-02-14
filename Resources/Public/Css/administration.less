@@ -1,84 +1,102 @@
 .news-administration {
-	.clear {
-		clear: both;
-	}
-	.category-tree {
-		float: left;
-		margin: 0 10px;
 
-		ul {
-            margin: 4px;
+  // new styles
+  .form-group {
+    margin-bottom: 5px;
+  }
+  #settings-title {
+    cursor: pointer;
+  }
 
-          ul {
-            margin: 2px 0 4px 12px;
-          }
-		}
-	}
-	.form {
-		float: left;
-		border-right: 1px solid #ccc;
-		padding-right: 10px;
-	}
+  .clear {
+    clear: both;
+  }
+  .category-tree {
+    float: left;
+    margin: 0 150px;
 
-	.settings {
-		background-color: #EDEDED;
-		border-top: 1px solid #CDCDCD;
-		border-bottom: 1px solid #CDCDCD;
-		padding: 12px;
-		margin-bottom: 24px;
+    ul {
+      margin: 4px;
 
-		.field {
-			padding: 2px 0;
-		}
+      ul {
+        margin: 2px 0 4px 12px;
+      }
+    }
+  }
+  .form {
+    float: left;
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+  }
 
-		.category-tree {
-			li {
-				margin: 2px 0;
+  .settings {
+    background-color: #ededed;
+    border-top: 1px solid #cdcdcd;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 12px;
+    margin-bottom: 24px;
 
-				label {
-					padding: 0;
-					margin: 0;
-                    min-height: 12px;
-                    line-height: 1;
-				}
-			}
+    .field {
+      padding: 2px 0;
+    }
 
-            input {
-				margin: 0;
-			}
+    .category-tree {
+      li {
+        margin: 2px 0;
 
-            .tree-wrapper {
-                background: white;
-                border: 1px solid #CDCDCD;
-                padding: 0 4px;
-                height: 160px;
-                width: 320px;
-                margin-bottom: 5px;
-                overflow: auto;
-            }
-		}
+        label {
+          padding: 0;
+          margin: 0;
+          min-height: 12px;
+          line-height: 1;
+        }
+      }
 
-		.form .field label {
-			display: block;
-			float: left;
-			width: 150px;
-		}
-		.submit {
-			margin: 5px 0 3px 150px;
-		}
-	}
-	.result .item {
-		padding: 1px;
+      input {
+        margin: 0;
+      }
 
-		a {
-			font-style: italic;
+      .tree-wrapper {
+        background: white;
+        border: 1px solid #cdcdcd;
+        padding: 0 4px;
+        height: 160px;
+        width: 320px;
+        margin-bottom: 5px;
+        overflow: auto;
+      }
+    }
 
-			:hover {
-				text-decoration: underline;
-			}
-		}
-	}
-	.hide, .hide_line {
-		opacity: 0.5;
-	}
+    .form .field label {
+      display: block;
+      float: left;
+      width: 150px;
+    }
+    .submit {
+      margin: 5px 0 3px 150px;
+    }
+  }
+  .result {
+    margin-top: 10px;
+    .item {
+      padding: 1px;
+
+      a {
+        font-style: italic;
+
+        :hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .hide {
+    opacity: 0.5;
+  }
+  .hide_line {
+    opacity: 0.4;
+    td {
+      border: none;
+    }
+  }
 }
