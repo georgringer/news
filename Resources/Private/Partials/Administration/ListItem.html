@@ -2,9 +2,9 @@
 
 <tr class="db_list_normal">
 	<td class="col-title">
-		<n:be.clickmenu table="tx_news_domain_model_news" uid="{newsItem.uid}">
+		<f:format.raw><n:be.clickmenu table="tx_news_domain_model_news" uid="{newsItem.uid}">
 			<n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="{newsItem.title}" />
-		</n:be.clickmenu>
+		</n:be.clickmenu></f:format.raw>
 		<a href="{n:be.editRecord(parameters: 'edit[tx_news_domain_model_news][{newsItem.uid}]=edit')}" title="UID: {newsItem.uid}">
 			{newsItem.title}
 		</a>
