@@ -75,8 +75,10 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
             $path = $this->arguments['content'];
             if (!GeneralUtility::isFirstPartOfStr($path, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
                 $this->tag->addAttribute('content',
-                    rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/') . '/' . ltrim($this->arguments['content']),
-                    '/');
+                    rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
+                    . '/'
+                    . ltrim($this->arguments['content'], '/')
+                );
             }
         }
 
