@@ -107,7 +107,7 @@ $boot = function($packageKey) {
 				),
 				array(
 					'access' => 'user,group',
-					'icon' => 'EXT:news/Resources/Public/Icons/module_import.gif',
+					'icon' => 'EXT:news/Resources/Public/Icons/folder.gif',
 					'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
 				)
 			);
