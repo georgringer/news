@@ -37,12 +37,19 @@ class NewsRowInitializeNew implements FormDataProviderInterface
 
         if (is_array($result['pageTsConfig']['tx_news.'])
             && is_array($result['pageTsConfig']['tx_news.']['predefine.'])
-            && isset($result['pageTsConfig']['tx_news.']['predefine.']['archive'])
         ) {
-            $calculatedTime = strtotime($result['pageTsConfig']['tx_news.']['predefine.']['archive']);
 
-            if ($calculatedTime !== false) {
-                $result['databaseRow']['archive'] = $calculatedTime;
+            if (isset($result['pageTsConfig']['tx_news.']['predefine.']['author'])) {
+                $result['databaseRow']['author'] = $GLOBALS['BE_USER']->user['realName'];
+                $result['databaseRow']['author_email'] = $GLOBALS['BE_USER']->user['email'];
+            }
+
+            if (isset($result['pageTsConfig']['tx_news.']['predefine.']['archive'])) {
+                $calculatedTime = strtotime($result['pageTsConfig']['tx_news.']['predefine.']['archive']);
+
+                if ($calculatedTime !== false) {
+                    $result['databaseRow']['archive'] = $calculatedTime;
+                }
             }
         }
 
