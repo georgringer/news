@@ -231,6 +231,9 @@ class AdministrationController extends NewsController
         foreach ($categories as $c) {
             $idList[] = $c->getUid();
         }
+        if (empty($idList) && !$this->getBackendUser()->isAdmin()) {
+            $idList = $this->getBackendUser()->getCategoryMountPoints();
+        }
 
         $assignedValues = [
             'moduleToken' => $this->getToken(true),
