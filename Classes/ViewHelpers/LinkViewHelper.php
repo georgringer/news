@@ -14,6 +14,7 @@ namespace GeorgRinger\News\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -106,6 +107,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         $content = ''
     ) {
         $tsSettings = $this->pluginSettingsService->getSettings();
+        ArrayUtility::mergeRecursiveWithOverrule($tsSettings, $settings);
 
         $this->init();
 
