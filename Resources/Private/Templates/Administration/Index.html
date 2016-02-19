@@ -6,11 +6,12 @@
 	<ul class="{class}">
 		<f:for each="{categories}" as="category">
 			<li>
-				<f:form.checkbox id="category-{category.item.uid}" property="selectedCategories" value="{category.item.uid}" />
-				<label for="category-{category.item.uid}" title="{category.item.uid}">{category.item.title}</label>
+				<label>
+					<input type="checkbox" {n:be.isCheckboxActive(id:category.item.uid,categories:demand.categories)} name="tx_news_web_newstxnewsm2[demand][selectedCategories][]" value="{category.item.uid}" /> {category.item.title}
+				</label>
 
 				<f:if condition="{category.children}">
-					<f:render section="categoryTree" arguments="{categories: category.children}" />
+					<f:render section="categoryTree" arguments="{categories: category.children, demand:demand}" />
 				</f:if>
 			</li>
 		</f:for>
@@ -34,6 +35,7 @@
 				<input type="hidden" name="M" value="web_NewsTxNewsM2">
 				<input type="hidden" name="moduleToken" value="{moduleToken}">
 				<input type="hidden" name="id" value="{page}">
+				<f:form.checkbox property="selectedCategories" value="0" />
 
 				<a id="toggle-settings"><i class="fa fa-minus"></i> {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.toggleForm')}</a>
 
@@ -125,7 +127,7 @@
 							<div class="col-sm-8">
 								<div class="category-tree">
 									<div class="tree-wrapper">
-										<f:render section="categoryTree" arguments="{categories: categories, class:'list-tree'}" />
+										<f:render section="categoryTree" arguments="{demand:demand,categories: categories, class:'list-tree'}" />
 									</div>
 
 									<f:if condition="{categories}">
