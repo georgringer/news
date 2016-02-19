@@ -106,8 +106,8 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         $configuration = [],
         $content = ''
     ) {
-        $tsSettings = $this->pluginSettingsService->getSettings();
-        ArrayUtility::mergeRecursiveWithOverrule($tsSettings, $settings);
+        $tsSettings = (array)$this->pluginSettingsService->getSettings();
+        ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array)$settings);
 
         $this->init();
 
