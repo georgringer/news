@@ -39,6 +39,7 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			'contentElementRelation' => FALSE,
 			'manualSorting' => FALSE,
 			'archiveDate' => 'bar',
+			'dateTimeNotRequired' => TRUE,
 			'showImporter' => TRUE,
 			'showAdministrationModule' => FALSE,
 			'showMediaDescriptionField' => FALSE,
@@ -63,7 +64,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 */
 	public function defaultSettingsCanBeRead() {
 		$configuration = [
-			'removeListActionFromFlexforms' => '2',
 			'removeListActionFromFlexforms' => 2,
 			'pageModuleFieldsNews' => '',
 			'pageModuleFieldsCategory' => '',
@@ -73,6 +73,7 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			'contentElementRelation' => FALSE,
 			'manualSorting' => FALSE,
 			'archiveDate' => 'date',
+			'dateTimeNotRequired' => false,
 			'showImporter' => FALSE,
 			'showAdministrationModule' => TRUE,
 			'showMediaDescriptionField' => FALSE,

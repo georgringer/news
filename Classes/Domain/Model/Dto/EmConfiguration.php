@@ -88,6 +88,11 @@ class EmConfiguration
     /**
      * @var bool
      */
+    protected $dateTimeNotRequired = false;
+
+    /**
+     * @var bool
+     */
     protected $showImporter = false;
 
     /** @var bool */
@@ -274,4 +279,21 @@ class EmConfiguration
     {
         return $this->storageUidImporter;
     }
+
+    /**
+     * @return bool
+     */
+    public function getDateTimeNotRequired()
+    {
+        return (bool)$this->dateTimeNotRequired;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDateTimeRequired()
+    {
+        return !(bool)$this->dateTimeNotRequired;
+    }
+
 }

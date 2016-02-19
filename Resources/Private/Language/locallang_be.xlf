@@ -320,6 +320,9 @@
 			<trans-unit id="extmng.rteForTeaser" xml:space="preserve">
 				<source>Enable a RTE for the teaser field.</source>
 			</trans-unit>
+			<trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve">
+				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
+			</trans-unit>
 			<trans-unit id="usersettings.overlay" xml:space="preserve">
 				<source>Use this overlay for news categories in the Backend</source>
 			</trans-unit>

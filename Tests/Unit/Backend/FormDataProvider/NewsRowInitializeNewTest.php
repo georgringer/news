@@ -16,57 +16,84 @@ namespace GeorgRinger\News\Unit\Backend\FormDataProvider;
  */
 
 use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Tests\UnitTestCase;
 
-class NewsRowInitializeNewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class NewsRowInitializeNewTest extends UnitTestCase
+{
 
-	/**
-	 * @test
-	 */
-	public function dateTimeIsFilled() {
-		$provider = new NewsRowInitializeNew();
+    /**
+     * @test
+     */
+    public function dateTimeIsFilled()
+    {
+        $provider = new NewsRowInitializeNew();
 
-		$GLOBALS['EXEC_TIME'] = time();
+        $GLOBALS['EXEC_TIME'] = time();
 
-		$result = [
-			'command' => 'new',
-			'tableName' => 'tx_news_domain_model_news'
-		];
+        $result = [
+            'command' => 'new',
+            'tableName' => 'tx_news_domain_model_news'
+        ];
 
-		$expected = [
-			'command' => 'new',
-			'tableName' => 'tx_news_domain_model_news',
-			'databaseRow' => [
-				'datetime' => $GLOBALS['EXEC_TIME']
-			]
-		];
+        $expected = [
+            'command' => 'new',
+            'tableName' => 'tx_news_domain_model_news',
+            'databaseRow' => [
+                'datetime' => $GLOBALS['EXEC_TIME']
+            ]
+        ];
 
-		$this->assertEquals($expected, $provider->addData($result));
-	}
+        $this->assertEquals($expected, $provider->addData($result));
+    }
 
-		/**
-	 * @test
-	 */
-	public function archiveTimeIsFilled() {
-		$provider = new NewsRowInitializeNew();
-		$GLOBALS['EXEC_TIME'] = time();
+    /**
+     * @test
+     */
+    public function dateTimeIsNotFilledIfSetInExtensionManagerConfiguration()
+    {
+        $mockedProvider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
+        $configuration = ['dateTimeNotRequired' => true];
+        $settings = new EmConfiguration($configuration);
+        $mockedProvider->_set('emConfiguration', $settings);
 
-		$result = [
-			'command' => 'new',
-			'tableName' => 'tx_news_domain_model_news',
-			'pageTsConfig' => [
-				'tx_news.' => [
-					'predefine.' => [
-						'archive' => '+10 days'
-					]
-				]
-			]
-		];
+        $result = [
+            'command' => 'new',
+            'tableName' => 'tx_news_domain_model_news'
+        ];
+        $expected = [
+            'command' => 'new',
+            'tableName' => 'tx_news_domain_model_news',
+        ];
 
-		$expected = $result;
-		$expected['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
-		$expected['databaseRow']['archive'] = strtotime('+10 days');
+        $this->assertEquals($expected, $mockedProvider->addData($result));
+    }
 
-		$this->assertEquals($expected, $provider->addData($result));
-	}
+    /**
+     * @test
+     */
+    public function archiveTimeIsFilled()
+    {
+        $provider = new NewsRowInitializeNew();
+        $GLOBALS['EXEC_TIME'] = time();
+
+        $result = [
+            'command' => 'new',
+            'tableName' => 'tx_news_domain_model_news',
+            'pageTsConfig' => [
+                'tx_news.' => [
+                    'predefine.' => [
+                        'archive' => '+10 days'
+                    ]
+                ]
+            ]
+        ];
+
+        $expected = $result;
+        $expected['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
+        $expected['databaseRow']['archive'] = strtotime('+10 days');
+
+        $this->assertEquals($expected, $provider->addData($result));
+    }
 
 }

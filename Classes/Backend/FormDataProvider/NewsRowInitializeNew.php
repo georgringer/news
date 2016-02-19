@@ -15,6 +15,7 @@ namespace GeorgRinger\News\Backend\FormDataProvider;
  * The TYPO3 project - inspiring people to share!
  */
 
+use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 
 /**
@@ -22,6 +23,14 @@ use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
  */
 class NewsRowInitializeNew implements FormDataProviderInterface
 {
+
+    /** @var  EmConfiguration */
+    protected $emConfiguration;
+
+    public function __construct()
+    {
+        $this->emConfiguration = EmConfiguration::getSettings();
+    }
 
     /**
      * @param array $result
@@ -33,7 +42,9 @@ class NewsRowInitializeNew implements FormDataProviderInterface
             return $result;
         }
 
-        $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
+        if ($this->emConfiguration->getDateTimeRequired()) {
+            $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
+        }
 
         if (is_array($result['pageTsConfig']['tx_news.'])
             && is_array($result['pageTsConfig']['tx_news.']['predefine.'])
