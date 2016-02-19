@@ -403,7 +403,7 @@
 				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
 			</trans-unit>
 			<trans-unit id="administration.toggleForm" xml:space="preserve">
-				<source>Zeige/Verberge Filter</source>
+				<source>Show/Hide filter</source>
 			</trans-unit>
 			<trans-unit id="administration.nonewsfound" xml:space="preserve">
 				<source>No news found</source>
