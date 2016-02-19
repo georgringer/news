@@ -6,11 +6,12 @@
 	<ul class="list-unstyled">
 		<f:for each="{categories}" as="category">
 			<li>
-				<f:form.checkbox id="category-{category.item.uid}" property="selectedCategories" value="{category.item.uid}" />
-				<label for="category-{category.item.uid}" title="{category.item.uid}">{category.item.title}</label>
+				<label>
+					<input type="checkbox" {n:be.isCheckboxActive(id:category.item.uid,categories:demand.categories)} name="tx_news_web_newstxnewsm2[demand][selectedCategories][]" value="{category.item.uid}" /> {category.item.title}
+				</label>
 
 				<f:if condition="{category.children}">
-					<f:render section="categoryTree" arguments="{categories: category.children}" />
+					<f:render section="categoryTree" arguments="{categories: category.children, demand:demand}" />
 				</f:if>
 			</li>
 		</f:for>
@@ -34,6 +35,7 @@
 		<input type="hidden" name="M" value="web_NewsTxNewsM2">
 		<input type="hidden" name="moduleToken" value="{moduleToken}">
 		<input type="hidden" name="id" value="{page}">
+		<f:form.checkbox style="display:none" property="selectedCategories" value="0" />
 
 		<h2>
 			<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.headline" />
@@ -103,9 +105,9 @@
 			</div>
 
 			<div class="category-tree">
-                <div class="tree-wrapper">
-                    <f:render section="categoryTree" arguments="{categories: categories}" />
-                </div>
+				<div class="tree-wrapper">
+					<f:render section="categoryTree" arguments="{demand:demand,categories: categories}" />
+				</div>
 
 				<f:if condition="{categories}">
 					<div class="field">
@@ -164,11 +166,11 @@
 						</f:for>
 						</tbody>
 						<tfoot>
-							<tr>
-								<td colspan="6">
-									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsCount" arguments="{0:'{f:count(subject:news)}'}" />
-								</td>
-							</tr>
+						<tr>
+							<td colspan="6">
+								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsCount" arguments="{0:'{f:count(subject:news)}'}" />
+							</td>
+						</tr>
 						</tfoot>
 					</table>
 				</f:be.widget.paginate>
