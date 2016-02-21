@@ -123,7 +123,7 @@ return [
                 'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
                 'size' => 30,
                 'eval' => 'trim,required',
-                'softref' => 'news_externalurl',
+                'softref' => 'typolink',
                 'wizards' => [
                     '_PADDING' => 2,
                     'link' => [

@@ -488,7 +488,7 @@ $tx_news_domain_model_news = [
                 'type' => 'input',
                 'size' => 50,
                 'eval' => 'required',
-                'softref' => 'news_externalurl'
+                'softref' => 'typolink'
             ]
         ],
         'istopnews' => [

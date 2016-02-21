@@ -60,11 +60,6 @@ $boot = function () {
     }
 
     /* ===========================================================================
-        Add soft reference parser
-    =========================================================================== */
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['softRefParser']['news_externalurl'] = \GeorgRinger\News\Database\SoftReferenceIndex::class;
-
-    /* ===========================================================================
         Add TSconfig
     =========================================================================== */
     // For linkvalidator
