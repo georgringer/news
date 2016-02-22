@@ -111,6 +111,7 @@ class NewsController extends NewsBaseController
         $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh']);
         $demand->setArchiveRestriction($settings['archiveRestriction']);
         $demand->setExcludeAlreadyDisplayedNews($settings['excludeAlreadyDisplayedNews']);
+        $demand->setHideIdList($settings['hideIdList']);
 
         if ($settings['orderBy']) {
             $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);

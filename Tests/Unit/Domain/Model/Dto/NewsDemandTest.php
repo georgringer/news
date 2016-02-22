@@ -250,4 +250,13 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->instance->setExcludeAlreadyDisplayedNews($value);
 		$this->assertEquals($value, $this->instance->getExcludeAlreadyDisplayedNews());
 	}
+
+	/**
+	 * @test
+	 */
+	public function hideIdListCanBeSet() {
+		$value = '123,456';
+		$this->instance->setHideIdList($value);
+		$this->assertEquals($value, $this->instance->getHideIdList());
+	}
 }

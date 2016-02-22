@@ -102,6 +102,9 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     protected $excludeAlreadyDisplayedNews;
 
     /** @var string */
+    protected $hideIdList;
+
+    /** @var string */
     protected $action;
 
     /** @var string */
@@ -564,6 +567,22 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     public function getExcludeAlreadyDisplayedNews()
     {
         return $this->excludeAlreadyDisplayedNews;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHideIdList()
+    {
+        return $this->hideIdList;
+    }
+
+    /**
+     * @param string $hideIdList
+     */
+    public function setHideIdList($hideIdList)
+    {
+        $this->hideIdList = $hideIdList;
     }
 
     /**

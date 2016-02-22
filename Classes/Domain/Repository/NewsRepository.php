@@ -15,6 +15,7 @@ namespace GeorgRinger\News\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Domain\Model\DemandInterface;
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\Validation;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -106,6 +107,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
     {
+        /** @var NewsDemand $demand */
         $constraints = [];
 
         if ($demand->getCategories() && $demand->getCategories() !== '0') {
@@ -245,6 +247,17 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 $query->in(
                     'uid',
                     $GLOBALS['EXT']['news']['alreadyDisplayed']
+                )
+            );
+        }
+
+        // Hide id list
+        $hideIdList = $demand->getHideIdList();
+        if ($hideIdList) {
+            $constraints['excludeAlreadyDisplayedNews'] = $query->logicalNot(
+                $query->in(
+                    'uid',
+                    GeneralUtility::intExplode(',', $hideIdList)
                 )
             );
         }
