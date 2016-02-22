@@ -56,6 +56,8 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
         $alt = '',
         $title = ''
     ) {
+        GeneralUtility::deprecationLog('The ViewHelper "format.fileDownload" of EXT:news is deprecated! Just use the native implementation of FAL');
+
         if (!is_file($file)) {
             $errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
             GeneralUtility::devLog($errorMessage, 'news',

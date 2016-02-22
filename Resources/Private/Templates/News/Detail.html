@@ -173,17 +173,9 @@
 							<f:for each="{newsItem.falRelatedFiles}" as="relatedFile">
 								<li>
 									<span class="news-related-files-link">
-										<n:format.fileDownload file="{relatedFile.originalResource.publicUrl}" configuration="{settings.relatedFiles.download}">
-											<f:if condition="{relatedFile.originalResource.title}">
-												<f:comment><!-- Todo: Remove format.raw() if using title/name outside cObject context--></f:comment>
-												<f:then>
-													{relatedFile.originalResource.title -> f:format.raw()}
-												</f:then>
-												<f:else>
-													{relatedFile.originalResource.name -> f:format.raw()}
-												</f:else>
-											</f:if>
-										</n:format.fileDownload>
+										<a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+											{f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+										</a>
 									</span>
 									<span class="news-related-files-size">
 										{relatedFile.originalResource.size -> f:format.bytes()}
