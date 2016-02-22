@@ -46,7 +46,7 @@ class TypoScript
                 }
             } else {
                 // if flexform setting is empty and value is available in TS
-                if ((!isset($base[$fieldName]) || (strlen($base[$fieldName]) === 0))
+                if (((!isset($base[$fieldName]) || $base[$fieldName] === '0') || (strlen($base[$fieldName]) === 0))
                     && isset($overload['settings'][$fieldName])
                 ) {
                     $base[$fieldName] = $overload['settings'][$fieldName];
