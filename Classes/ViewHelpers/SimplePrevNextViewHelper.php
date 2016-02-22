@@ -142,6 +142,19 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
 
         $rawRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news',
             'uid=' . (int)$id);
+
+        if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->sys_language_content > 0) {
+            $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
+                'tx_news_domain_model_news',
+                $rawRecord,
+                $GLOBALS['TSFE']->sys_language_content,
+                $GLOBALS['TSFE']->sys_language_contentOL
+            );
+            if (!is_null($overlay)) {
+                $rawRecord = $overlay;
+            }
+        }
+
         if (is_array($rawRecord)) {
             $className = 'GeorgRinger\\News\\Domain\\Model\\News';
 
