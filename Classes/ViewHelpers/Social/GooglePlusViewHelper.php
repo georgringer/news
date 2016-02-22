@@ -42,7 +42,7 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
     /**
      * @var    string
      */
-    protected $tagName = 'g:plusone';
+    protected $tagName = 'div';
 
     /**
      * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
@@ -75,7 +75,7 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
     public function render($jsCode = '')
     {
         if (empty($jsCode)) {
-            $jsCode = 'https://apis.google.com/js/plusone.js';
+            $jsCode = 'https://apis.google.com/js/platform.js';
         } elseif ($jsCode != '-1') {
             $jsCode = htmlspecialchars($jsCode);
         }
@@ -83,9 +83,14 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
         $tsSettings = $this->pluginSettingsService->getSettings();
         $locale = (!empty($tsSettings['googlePlusLocale']) && strlen($tsSettings['googlePlusLocale']) <= 5) ? '{lang:\'' . $tsSettings['googlePlusLocale'] . '\'}' : '';
 
-        $code = '<script type="text/javascript" src="' . $jsCode . '">' . $locale . '</script>';
+        $code = '<script type="text/javascript" src="' . $jsCode . '" async="async" defer="defer">' . $locale . '</script>';
 
         $this->tag->setContent(' ');
+        $this->tag->addAttribute('class', 'g-plusone');
+        if ($this->tag->hasAttribute('href')) {
+            $this->tag->addAttribute('data-ref', $this->tag->getAttribute('href'));
+            $this->tag->removeAttribute('href');
+        }
 
         $code .= $this->tag->render();
         return $code;
