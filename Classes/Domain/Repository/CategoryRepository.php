@@ -125,6 +125,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->getQuerySettings()->setRespectSysLanguage(false);
 
         if (count($ordering) > 0) {
             $query->setOrderings($ordering);
