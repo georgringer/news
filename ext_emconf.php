@@ -24,7 +24,10 @@ $EM_CONF[$_EXTKEY] = [
 			'typo3' => '7.6.0-7.99.99',
 		],
 		'conflicts' => [],
-		'suggests' => [],
+		'suggests' => [
+			'dd_googlesitemap' => '2.0.5-2.99.99',
+			'rx_shariff' => '7.0.0-7.99.99'
+		],
 	],
 	'suggests' => [],
 ];

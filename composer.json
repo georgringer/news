@@ -21,6 +21,10 @@
   "require": {
     "typo3/cms-core": ">=7.6.0,<8.0"
   },
+  "suggest": {
+    "dmitryd/typo3-dd-googlesitemap": "~2.0",
+    "reelworx/rx-shariff": "~7.0"
+  },
   "require-dev": {
     "mikey179/vfsStream": "1.4.*@dev",
     "phpunit/phpunit": "~4.8.0"
