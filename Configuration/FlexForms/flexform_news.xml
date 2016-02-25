@@ -155,6 +155,7 @@
 								<type>select</type>
 								<renderMode>tree</renderMode>
 								<treeConfig>
+									<dataProvider>GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider</dataProvider>
 									<parentField>parent</parentField>
 									<appearance>
 										<maxLevels>99</maxLevels>
