@@ -15,6 +15,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\ViewHelpers\Format\FileSizeViewHelper;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Tests for FileSizeViewHelper
@@ -48,14 +49,20 @@ class FileSizeViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
 	 * Test if exception handling works
+	 * Using expectedException does not work supporting 7 + 8.
 	 *
 	 * @test
-	 * @expectedException \TYPO3\CMS\Fluid\Core\ViewHelper\Exception
 	 * @return void
 	 */
-	public function viewHelperThrowsExceptionIfFileNotFound() {
-		$viewHelper = new FileSizeViewHelper();
-		$viewHelper->render('fo', 'bar');
+	public function viewHelperThrowsExceptionIfFileNotFoundFor()
+	{
+		try {
+			$viewHelper = new FileSizeViewHelper();
+			$viewHelper->render('fo', 'bar');
+		} catch (\Exception $e) {
+			$expectedException = GeneralUtility::compat_version('8.0.0') ? 'TYPO3Fluid\Fluid\Core\Exception' : 'TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException';
+			$this->assertEquals($expectedException, get_class($e));
+		}
 	}
 
 }
