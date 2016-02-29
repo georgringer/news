@@ -200,7 +200,7 @@ class NewsController extends NewsBaseController
 
             if ($previewNewsId > 0) {
                 if ($this->isPreviewOfHiddenRecordsEnabled()) {
-                    $GLOBALS['TSFE']->showHiddenRecords = TRUE;
+                    $GLOBALS['TSFE']->showHiddenRecords = true;
                     $news = $this->newsRepository->findByUid($previewNewsId, false);
                 } else {
                     $news = $this->newsRepository->findByUid($previewNewsId);
@@ -439,6 +439,16 @@ class NewsController extends NewsBaseController
             /** @var \GeorgRinger\News\Utility\TypoScript $typoScriptUtility */
             $typoScriptUtility = GeneralUtility::makeInstance(\GeorgRinger\News\Utility\TypoScript::class);
             $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
+        }
+
+        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'])) {
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'] as $_funcRef) {
+                $_params = array(
+                    'originalSettings' => $originalSettings,
+                    'tsSettings' => $tsSettings,
+                );
+                $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
+            }
         }
 
         $this->settings = $originalSettings;
