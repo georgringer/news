@@ -1,7 +1,7 @@
 {
 	"name": "georgringer/news",
 	"type": "typo3-cms-extension",
-	"version": "3.2.4",
+	"version": "3.2.5",
 	"description": "Versatile news extension, based on extbase & fluid for TYPO3 CMS",
 	"homepage": "http://typo3.org",
 	"license": ["GPL-2.0+"],
