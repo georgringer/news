@@ -252,11 +252,14 @@ class AdministrationController extends NewsController
             $idList = $this->getBackendUser()->getCategoryMountPoints();
         }
 
+        $newsItems = $this->newsRepository->findDemanded($demand, false);
+
         $assignedValues = [
             'moduleToken' => $this->getToken(true),
             'page' => $this->pageUid,
             'demand' => $demand,
-            'news' => $this->newsRepository->findDemanded($demand, false),
+            'news' => $newsItems,
+            'showSearchForm' => (!is_null($demand) || count($newsItems) > 0),
             'categories' => $this->categoryRepository->findTree($idList),
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];
