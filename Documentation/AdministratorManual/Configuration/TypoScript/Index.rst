@@ -571,6 +571,7 @@ Properties
 	displayDummyIfNoMedia_                boolean
 	detailPidDetermination_               string
 	defaultDetailPid_                     integer
+	hideIdList_                           string
 	orderByAllowed_                       string
 	`analytics\.social`_                  array
 	relatedFiles_                         array
@@ -743,6 +744,31 @@ defaultDetailPid
 """"""""""""""""
 
 *See above*
+
+
+.. _tsHideIdList:
+
+hideIdList
+""""""""""
+.. container:: table-row
+
+   Property
+         hideIdList
+   Data type
+         string
+   Description
+         Define a list of ids of news articles which are excluded in the view. This is similar to the setting ``excludeAlreadyDisplayedNews`` but the exclusion is defined in TypoScript instead of the template.
+
+         As an example this excludes the news record of a detail action of the same page ::
+
+            plugin.tx_news.settings {
+                useStdWrap := addToList(hideIdList)
+                hideIdList.cObject = TEXT
+                hideIdList.cObject {
+                    data = GP:tx_news_pi1|news
+                }
+            }
+
 
 .. _tsOrderByAllowed:
 

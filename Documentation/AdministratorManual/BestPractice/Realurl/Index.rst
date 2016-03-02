@@ -340,3 +340,33 @@ The following snippet shows how to use this field: ::
 	)
 
 As you can see, it is possible to combine any of the fields of the record.
+
+Add category (or any other additional property) to URL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you need to add an additional property (like the category title) to the URL, you can do so by adding the property with the typolink configuration ``additionalParams``.
+
+.. code-block:: html
+
+	<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" configuration="{additionalParams:'&tx_news_pi1[category]={newsItem.firstCategory.uid}'}">
+		{newsItem.title}
+	</n:link>
+
+All you now need is to add an additional section in your realurl configuration.
+
+.. code-block:: php
+
+	array(
+		'GETvar' => 'tx_news_pi1[category]',
+		'lookUpTable' => array(
+			'table' => 'sys_category',
+			'id_field' => 'uid',
+			'alias_field' => 'title',
+			'addWhereClause' => ' AND NOT deleted',
+			'useUniqueCache' => 1,
+			'useUniqueCache_conf' => array(
+				'strtolower' => 1,
+				'spaceCharacter' => '-',
+			),
+		),
+	),

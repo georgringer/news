@@ -23,6 +23,8 @@ If you want to use some default values, you can use this code inside the TsConfi
 	TCAdefaults {
 		tx_news_domain_model_news {
 			author =  John Doe
+			# Foreign record syntax <tablename>_<uid>
+			categories = sys_category_2, sys_category_5
 		}
 	}
 

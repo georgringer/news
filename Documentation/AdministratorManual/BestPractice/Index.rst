@@ -24,6 +24,7 @@ Best practice
 	PredefineFields/Index
 	Rss/Index
 	ICalendar/Index
+	SitemapWithDdGoogleSitemap/Index
 	MigrateFromTtNews/Index
 
 

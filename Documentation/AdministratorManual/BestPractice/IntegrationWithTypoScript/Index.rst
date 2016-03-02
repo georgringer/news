@@ -231,3 +231,48 @@ look at the given TypoScript snippet:
 By using the field *useStdWrap* it is possible to call the full range of stdWrap on any setting. In this case the first news record
 from the page with uid 3 is used as fallback.
 
+
+Show news items with same category in Detail.html
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you want to show in the detail action articles with the same category as the current one, you can use a snippet like this one:
+
+Add this to the ``Detail.html`` which will pass the first category uid to the TypoScript object ``lib.tx_news.relatedByFirstCategory``.
+
+.. code-block:: html
+
+	<f:if condition="{newsItem.firstCategory}">
+		<f:cObject typoscriptObjectPath="lib.tx_news.relatedByFirstCategory">{newsItem.firstCategory.uid}</f:cObject>
+	</f:if>
+
+.. code-block:: typoscript
+
+    lib.tx_news.relatedByFirstCategory = USER
+    lib.tx_news.relatedByFirstCategory {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = News
+        pluginName = Pi1
+        vendorName = GeorgRinger
+
+        switchableControllerActions {
+            News {
+                1 = list
+            }
+        }
+
+        settings < plugin.tx_news.settings
+        settings {
+            relatedView = 1
+            detailPid = 31
+            useStdWrap := addToList(categories)
+            categories.current = 1
+            categoryConjunction = or
+            overrideFlexformSettingsIfEmpty := addToList(detailPid)
+            startingpoint = 78
+        }
+    }
+
+Important is the line ``categories.current = 1`` which will set the category configuration.
+Of course you need to adopt the snippet to your own needs, like setting the ``detailPid``, ``startingPoint``, ...
+
+By defining a custom property like ``relatedView = 1`` you can differ in the ``List.html`` if it is called by this snippet or by a regular plugin.

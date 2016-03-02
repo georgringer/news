@@ -80,7 +80,7 @@ Now create the file ``Classes/Hooks/Repository.php``:
 	namespace YourVendor\Extkey\Hooks;
 
 	use TYPO3\CMS\Core\Utility\GeneralUtility;
-	use \GeorgRinger\News\Domain\Rpository\NewsRepository;
+	use \GeorgRinger\News\Domain\Repository\NewsRepository;
 
 	class Repository {
 
@@ -99,5 +99,43 @@ Now create the file ``Classes/Hooks/Repository.php``:
 			$constraints[] = $query->like('title', '%' . $subject . '%');
 		}
 	}
+
+.. hint:: Please change the vendor and extension key to your real life code.
+
+Controller/NewsController overrideSettings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Use this hook to change the final settings which are for building queries, for the template, ...
+
+Example
+"""""""
+This examples modifies the query and adds a constraint that only news records are shown which contain the word *yeah*.
+
+
+First, register your implementation in the file ``ext_localconf.php``:
+
+.. code-block:: php
+
+	<?php
+	defined('TYPO3_MODE') or die();
+
+	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'][$_EXTKEY]
+		= 'YourVendor\\Extkey\\Hooks\\NewsControllerSettings->modify';
+
+Now create the file ``Classes/Hooks/NewsControllerSettings.php``:
+
+.. code-block:: php
+
+	<?php
+
+	namespace YourVendor\Extkey\Hooks;
+
+	class NewsControllerSettings {
+
+		public function modify(array $params) {
+			$settings = $params['originalSettings'];
+			$settings['fo'] = bar;
+
+			return $settings
+		}
 
 .. hint:: Please change the vendor and extension key to your real life code.

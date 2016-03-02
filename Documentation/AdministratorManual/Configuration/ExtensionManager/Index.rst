@@ -38,6 +38,7 @@ Properties
 	contentElementRelation_               records                               0
 	manualSorting_                        records                               0
 	useFal_                               records                               fal
+	dateTimeNotRequired_                  records                               fal
 	showAdministrationModule_             backend modules                       0
 	showImporter_                         backend modules                       0
 	storageUidImporter_                   backend modules
@@ -198,6 +199,14 @@ The following options are available:
 - **No**: Hides the relations to FAL elements
 - **Both**: The old and the new media relations are used
 - **Fal & Multimedia**: Enables usage of FAL relations + the old media relation, limited to type "multimedia"
+
+.. _extensionManagerDateTimeNotRequired:
+
+dateTimeNotRequired
+"""""""""""""""""""
+If set, the date field of the news record is not a required field anymore. Furthermore if creating a new record, it is not filled anymore with the current date.
+
+Be aware that using this feature may lead to unexpected results if using e.g. the date menu if the field is not used anymore.
 
 .. _extensionManagerShowAdministrationModule:
 
