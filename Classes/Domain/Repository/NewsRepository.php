@@ -17,6 +17,7 @@ namespace GeorgRinger\News\Domain\Repository;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Service\CategoryService;
+use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -140,20 +141,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $timeRestrictionField = (empty($timeRestrictionField)) ? 'datetime' : $timeRestrictionField;
 
         if ($demand->getTimeRestriction()) {
-            $timeLimit = 0;
-            // integer = timestamp
-            if (\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($demand->getTimeRestriction())) {
-                $timeLimit = $GLOBALS['EXEC_TIME'] - $demand->getTimeRestriction();
-            } else {
-                // try to check strtotime
-                $timeFromString = strtotime($demand->getTimeRestriction());
-
-                if ($timeFromString) {
-                    $timeLimit = $timeFromString;
-                } else {
-                    throw new \Exception('Time limit Low could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
-                }
-            }
+            $timeLimit = ConstraintHelper::getTimeRestrictionLow($demand->getTimeRestriction());
 
             $constraints['timeRestrictionGreater'] = $query->greaterThanOrEqual(
                 $timeRestrictionField,
@@ -163,20 +151,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         // Time restriction less than or equal
         if ($demand->getTimeRestrictionHigh()) {
-            $timeLimit = 0;
-            // integer = timestamp
-            if (\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($demand->getTimeRestrictionHigh())) {
-                $timeLimit = $GLOBALS['EXEC_TIME'] + $demand->getTimeRestrictionHigh();
-            } else {
-                // try to check strtotime
-                $timeFromString = strtotime($demand->getTimeRestrictionHigh());
-
-                if ($timeFromString) {
-                    $timeLimit = $timeFromString;
-                } else {
-                    throw new \Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
-                }
-            }
+            $timeLimit = ConstraintHelper::getTimeRestrictionHigh($demand);
 
             $constraints['timeRestrictionLess'] = $query->lessThanOrEqual(
                 $timeRestrictionField,

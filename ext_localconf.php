@@ -43,7 +43,11 @@ $boot = function () {
         \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
     // Hide content elements in page module for 8
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\\CMS\\Recordlist\\RecordList\\DatabaseRecordList']['buildQueryParameters'][]
-     = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+        = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+
+    // Inline records hook
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] =
+        \GeorgRinger\News\Hooks\InlineElementHook::class;
 
     /* ===========================================================================
         Custom cache, done with the caching framework

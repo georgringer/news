@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Hooks\Backend;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Backend\RecordList\RecordListConstraint;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
@@ -27,6 +28,16 @@ use TYPO3\CMS\Recordlist\RecordList\AbstractDatabaseRecordList;
  */
 class RecordListQueryHook
 {
+
+    protected static $count = 0;
+
+    /** @var RecordListConstraint */
+    protected $recordListConstraint;
+
+    public function __construct()
+    {
+        $this->recordListConstraint = GeneralUtility::makeInstance(RecordListConstraint::class);
+    }
 
     /**
      * @param array $queryParts
@@ -43,17 +54,35 @@ class RecordListQueryHook
                     return;
                 }
                 $queryParts['WHERE'] = '1=2';
-                $message = GeneralUtility::makeInstance(
-                    FlashMessage::class,
-                    $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:hiddenContentElements.description'),
-                    '',
-                    FlashMessage::INFO
-                );
-                /** @var $flashMessageService \TYPO3\CMS\Core\Messaging\FlashMessageService */
-                $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
-                /** @var $defaultFlashMessageQueue \TYPO3\CMS\Core\Messaging\FlashMessageQueue */
-                $defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
-                $defaultFlashMessageQueue->enqueue($message);
+
+                if (self::$count === 0) {
+                    $message = GeneralUtility::makeInstance(
+                        FlashMessage::class,
+                        $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:hiddenContentElements.description'),
+                        '',
+                        FlashMessage::INFO
+                    );
+                    /** @var $flashMessageService \TYPO3\CMS\Core\Messaging\FlashMessageService */
+                    $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
+                    /** @var $defaultFlashMessageQueue \TYPO3\CMS\Core\Messaging\FlashMessageQueue */
+                    $defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
+                    $defaultFlashMessageQueue->enqueue($message);
+                }
+                self::$count++;
+            }
+        } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
+            $vars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+
+            if (is_array($vars) && is_array($vars['demand'])) {
+                $vars = $vars['demand'];
+                $parts = array();
+                $this->recordListConstraint->extendQuery($parts, $vars);
+                if (is_array($parts['where']) && !empty($parts['where'])) {
+                    $queryParts['WHERE'] .= ' AND ' . implode(' AND ', $parts['where']);
+                }
+                if (is_array($parts['orderBy']) && !empty($parts['orderBy'])) {
+                    $queryParts['ORDERBY'] = $parts['orderBy'][0][0] . ' ' . $parts['orderBy'][0][1];
+                }
             }
         }
     }

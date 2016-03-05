@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Hooks\Backend;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Backend\RecordList\RecordListConstraint;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
@@ -27,7 +28,16 @@ use TYPO3\CMS\Recordlist\RecordList\AbstractDatabaseRecordList;
  */
 class RecordListQueryHook8
 {
-    static protected $count = 0;
+    protected static $count = 0;
+
+    /** @var RecordListConstraint */
+    protected $recordListConstraint;
+
+    public function __construct()
+    {
+        $this->recordListConstraint = GeneralUtility::makeInstance(RecordListConstraint::class);
+    }
+
 
     public function buildQueryParametersPostProcess(
         array &$parameters,
@@ -60,6 +70,12 @@ class RecordListQueryHook8
                     $defaultFlashMessageQueue->enqueue($message);
                 }
                 self::$count++;
+            }
+        }  elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
+            $vars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+            if (is_array($vars) && is_array($vars['demand'])) {
+                $vars = $vars['demand'];
+                $this->recordListConstraint->extendQuery($parameters, $vars, $parentObject->id);
             }
         }
     }

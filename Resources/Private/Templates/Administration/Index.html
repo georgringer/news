@@ -9,7 +9,7 @@
 		<f:for each="{categories}" as="category">
 			<li>
 				<label>
-					<input type="checkbox" {n:be.isCheckboxActive(id:category.item.uid,categories:demand.categories)} name="tx_news_web_newstxnewsm2[demand][selectedCategories][]" value="{category.item.uid}" /> {category.item.title}
+					<input type="checkbox" {n:be.isCheckboxActive(id:category.item.uid,categories:demand.selectedCategories)} name="tx_news_web_newstxnewsm2[demand][selectedCategories][]" value="{category.item.uid}" /> {category.item.title}
 				</label>
 
 				<f:if condition="{category.children}">
@@ -149,50 +149,10 @@
 			</div>
 		</f:form>
 	</f:if>
-	<f:if condition="{news}">
+	<f:if condition="{newsCount}">
 		<f:then>
 			<div class="result">
-				<f:if condition="{settings.list.paginate.itemsPerPage} == 0">
-					<div class="alert alert-warning">
-						<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.nolimit" arguments="{0:'settings.list.paginate.itemsPerPage'}" />
-					</div>
-				</f:if>
-				<f:be.widget.paginate objects="{news}" as="paginatedNews" configuration="{itemsPerPage: settings.list.paginate.itemsPerPage}">
-					<table class="table table-hover">
-						<thead>
-						<tr class="t3-row-header">
-							<th>
-								<f:translate key="LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_formlabel" />
-							</th>
-							<th class="nowrap">
-								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_news.istopnews" />
-							</th>
-							<th class="nowrap date">
-								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_news.datetime" />
-							</th>
-							<th class="nowrap date">
-								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_news.archive" />
-							</th>
-							<th class="nowrap">
-								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.tstamp" />
-							</th>
-							<th class="nowrap nosort"></th>
-						</tr>
-						</thead>
-						<tbody>
-						<f:for each="{paginatedNews}" as="newsItem">
-							<f:render partial="Administration/ListItem" arguments="{newsItem: newsItem, dateformat:dateformat}" />
-						</f:for>
-						</tbody>
-						<tfoot>
-						<tr>
-							<td colspan="6">
-								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsCount" arguments="{0:'{news -> f:count()}'}" />
-							</td>
-						</tr>
-						</tfoot>
-					</table>
-				</f:be.widget.paginate>
+				{news -> f:format.raw()}
 			</div>
 		</f:then>
 		<f:else>

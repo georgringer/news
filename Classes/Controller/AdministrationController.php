@@ -13,10 +13,13 @@ namespace GeorgRinger\News\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
+use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
@@ -24,6 +27,7 @@ use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
+use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
@@ -63,6 +67,8 @@ class AdministrationController extends NewsController
      */
     protected $configurationManager;
 
+    protected $pageInformation = [];
+
     /**
      * Function will be called before every other action
      *
@@ -71,6 +77,7 @@ class AdministrationController extends NewsController
     public function initializeAction()
     {
         $this->pageUid = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id');
+        $this->pageInformation = BackendUtilityCore::readPageAccess($this->pageUid, '');
         $this->setTsConfig();
         parent::initializeAction();
     }
@@ -141,9 +148,8 @@ class AdministrationController extends NewsController
         }
 
         $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
-        $pageInfo = BackendUtilityCore::readPageAccess($this->pageUid, '');
-        if (is_array($pageInfo)) {
-            $this->view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation($pageInfo);
+        if (is_array($this->pageInformation)) {
+            $this->view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation($this->pageInformation);
         }
     }
 
@@ -195,7 +201,8 @@ class AdministrationController extends NewsController
         if (!empty($elFromTable)) {
             $viewButton = $buttonBar->makeLinkButton()
                 ->setHref($clipBoard->pasteUrl('', $this->pageUid))
-                ->setOnClick('return ' . $clipBoard->confirmMsg('pages', BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
+                ->setOnClick('return ' . $clipBoard->confirmMsg('pages',
+                        BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
                         $elFromTable))
                 ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/locallang_mod_web_list.xlf:clip_pasteInto'))
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', ICON::SIZE_SMALL));
@@ -216,17 +223,21 @@ class AdministrationController extends NewsController
 
     /**
      * Main action for administration
-     *
-     * @param \GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand
-     * @dontvalidate  $demand
-     * @return void
      */
-    public function indexAction(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand = null)
+    public function indexAction()
     {
         $this->redirectToPageOnStart();
-        if (is_null($demand)) {
-            $demand = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand::class);
 
+        $demandVars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+        $demand = $this->objectManager->get(AdministrationDemand::class);
+        if (is_array($demandVars['demand'])) {
+            foreach ($demandVars['demand'] as $key => $value) {
+                if (property_exists(AdministrationDemand::class, $key)) {
+                    $getter = 'set' . ucfirst($key);
+                    $demand->$getter($value);
+                }
+            }
+        } else {
             // Preselect by TsConfig (e.g. tx_news.module.preselect.topNewsRestriction = 1)
             if (isset($this->tsConfiguration['preselect.'])
                 && is_array($this->tsConfiguration['preselect.'])
@@ -239,9 +250,6 @@ class AdministrationController extends NewsController
             }
             $this->view->assign('hideForm', true);
         }
-        $demand = $this->createDemandObject($demand);
-        $demand->setActionAndClass(__METHOD__, __CLASS__);
-
         $categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
         $idList = [];
         foreach ($categories as $c) {
@@ -251,14 +259,46 @@ class AdministrationController extends NewsController
             $idList = $this->getBackendUser()->getCategoryMountPoints();
         }
 
-        $newsItems = $this->newsRepository->findDemanded($demand, false);
+        // Initialize the dblist object:
+        $dblist = GeneralUtility::makeInstance(NewsDatabaseRecordList::class);
+        $dblist->script = GeneralUtility::getIndpEnv('REQUEST_URI');
+        $dblist->thumbs = $this->getBackendUser()->uc['thumbnailsByDefault'];
+        $dblist->allFields = 1;
+        $dblist->localizationView = 1;
+        $dblist->clickTitleMode = 'edit';
+        $dblist->calcPerms = $this->getBackendUser()->calcPerms($this->pageInformation);
+        $dblist->showClipboard = 0;
+        $dblist->disableSingleTableView = 1;
+        $dblist->pageRow = $this->pageInformation;
+        $dblist->displayFields = false;
+        $dblist->dontShowClipControlPanels = true;
+        $dblist->counter++;
+        $dblist->MOD_MENU = array('bigControlPanel' => '', 'clipBoard' => '', 'localization' => '');
+        $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0, 1000);
+        $limit = 20;
+        $dblist->start($this->pageUid, 'tx_news_domain_model_news', $pointer, '',
+            $demand->getRecursive(), $limit);
+        $dblist->setDispFields();
+        $dblist->noControlPanels = true;
+        $dblist->setFields = [
+            'tx_news_domain_model_news' => [
+                'teaser',
+                'istopnews',
+                'datetime',
+                'categories'
+            ]
+        ];
+
+        $dblist->script = $_SERVER['REQUEST_URI'];
+        $dblist->generateList();
 
         $assignedValues = [
             'moduleToken' => $this->getToken(true),
             'page' => $this->pageUid,
             'demand' => $demand,
-            'news' => $newsItems,
-            'showSearchForm' => (!is_null($demand) || count($newsItems) > 0),
+            'news' => $dblist->HTMLcode,
+            'newsCount' => $dblist->counter,
+            'showSearchForm' => (!is_null($demand) || $dblist->counter > 0),
             'categories' => $this->categoryRepository->findTree($idList),
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];
@@ -322,33 +362,6 @@ class AdministrationController extends NewsController
     public function newTagAction()
     {
         $this->redirectToCreateNewRecord('tx_news_domain_model_tag');
-    }
-
-    /**
-     * Create the demand object which define which records will get shown
-     *
-     * @param \GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand
-     * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
-     */
-    protected function createDemandObject(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand)
-    {
-        $demand->setCategories($demand->getSelectedCategories());
-        $demand->setOrder($demand->getSortingField() . ' ' . $demand->getSortingDirection());
-        $demand->setStoragePage(Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));
-        $demand->setOrderByAllowed($this->settings['orderByAllowed']);
-
-        if ($demand->getSearchWord()) {
-            $searchDto = new Search();
-            $searchDto->setSubject($demand->getSearchWord());
-            $searchDto->setFields('title');
-            $demand->setSearch($searchDto);
-        }
-        // Ensure that always a storage page is set
-        if ((int)$demand->getStoragePage() === 0) {
-            $demand->setStoragePage('-3');
-        }
-
-        return $demand;
     }
 
     /**
