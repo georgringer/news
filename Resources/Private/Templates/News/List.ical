@@ -6,6 +6,6 @@ UID:news-{newsItem.uid}@{settings.domain}
 DTSTAMP:<f:format.date format="%Y%m%dT%H%M%S%Z">{newsItem.tstamp}</f:format.date>
 DTSTART:<f:format.date format="%Y%m%dT%H%M%S%Z">{newsItem.datetime}</f:format.date>
 DTEND:<f:format.date format="%Y%m%dT%H%M%S%Z"><f:if condition="{newsItem.archive}"><f:then>{newsItem.archive}</f:then><f:else>{newsItem.datetime}</f:else></f:if></f:format.date>
-SUMMARY:<n:format.hsc>{newsItem.title}</n:format.hsc>
+SUMMARY:{newsItem.title -> f:format.htmlspecialchars()}
 END:VEVENT
 </f:for></f:if>END:VCALENDAR
