@@ -116,7 +116,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
 	 */
 	public function findByIdList(array $idList, array $ordering = array()) {
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setRespectStoragePage(FALSE);
+		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
 
 		if (count($ordering) > 0) {
 			$query->setOrderings($ordering);
