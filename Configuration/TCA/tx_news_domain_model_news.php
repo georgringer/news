@@ -722,9 +722,6 @@ if ($categoryRestrictionSetting) {
         case 'current_pid':
             $categoryRestriction = ' AND sys_category.pid=###CURRENT_PID### ';
             break;
-        case 'storage_pid':
-            $categoryRestriction = ' AND sys_category.pid=###STORAGE_PID### ';
-            break;
         case 'siteroot':
             $categoryRestriction = ' AND sys_category.pid IN (###SITEROOT###) ';
             break;

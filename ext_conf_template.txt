@@ -30,7 +30,7 @@ contentElementRelation = 0
 	# cat=records/enable/120; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.manualSorting
 manualSorting = 0
 
-	# cat=records/enable/106; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.none=none,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.pages_tsconfig=page_tsconfig,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.current_pid=current_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.storage_pid=storage_pid,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.siteroot=siteroot]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction
+	# cat=records/enable/106; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.none=none,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.pages_tsconfig=page_tsconfig,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.current_pid=current_pidLLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction.siteroot=siteroot]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryRestriction
 categoryRestriction =
 
 	# cat=records/enable/107; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryBeGroupTceFormsRestriction

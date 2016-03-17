@@ -247,9 +247,6 @@
 			<trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
 				<source>Categories from current page</source>
 			</trans-unit>
-			<trans-unit id="extmng.categoryRestriction.storage_pid" xml:space="preserve">
-				<source>Categories from page which is defined in page properties</source>
-			</trans-unit>
 			<trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve">
 				<source>Categories from site root</source>
 			</trans-unit>
