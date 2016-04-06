@@ -259,7 +259,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 *
 	 * @return \GeorgRinger\News\Domain\Model\News
 	 */
-	public function __construct() {
+	public function initializeObject() {
 		$this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 		$this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
