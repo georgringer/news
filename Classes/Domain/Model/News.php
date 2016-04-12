@@ -1130,7 +1130,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getContentElementIdList()
     {
         $idList = [];
-        foreach ($this->getContentElements() as $contentElement) {
+        foreach ((array)$this->getContentElements() as $contentElement) {
             $idList[] = $contentElement->getUid();
         }
         return implode(',', $idList);
