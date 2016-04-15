@@ -272,7 +272,7 @@ $tx_news_domain_model_news = [
         ],
         'categories' => [
             'exclude' => 1,
-            'l10n_mode' => 'exclude',
+            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.categories',
             'config' => [
                 'type' => 'select',
@@ -536,7 +536,7 @@ $tx_news_domain_model_news = [
         ],
         'tags' => [
             'exclude' => 1,
-            'l10n_mode' => 'exclude',
+            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.tags',
             'config' => [
                 'type' => 'group',
