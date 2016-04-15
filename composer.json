@@ -19,7 +19,7 @@
     "GPL-2.0+"
   ],
   "require": {
-    "typo3/cms-core": ">=7.6.0,<8.0"
+    "typo3/cms-core": ">=7.6.0,<8.3"
   },
   "suggest": {
     "dmitryd/typo3-dd-googlesitemap": "~2.0",
