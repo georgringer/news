@@ -115,6 +115,26 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $countRelatedNews = 0;
 
     /**
+     * @var string
+     */
+    protected $seoTitle;
+
+    /**
+     * @var string
+     */
+    protected $seoDescription;
+
+    /**
+     * @var string
+     */
+    protected $seoHeadline;
+
+    /**
+     * @var string
+     */
+    protected $seoText;
+
+    /**
      * Initialize images
      *
      * @return \GeorgRinger\News\Domain\Model\Category
@@ -510,4 +530,70 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->importSource;
     }
+
+    /**
+     * @return string
+     */
+    public function getSeoTitle()
+    {
+        return $this->seoTitle;
+    }
+
+    /**
+     * @param string $seoTitle
+     */
+    public function setSeoTitle($seoTitle)
+    {
+        $this->seoTitle = $seoTitle;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoDescription()
+    {
+        return $this->seoDescription;
+    }
+
+    /**
+     * @param string $seoDescription
+     */
+    public function setSeoDescription($seoDescription)
+    {
+        $this->seoDescription = $seoDescription;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoHeadline()
+    {
+        return $this->seoHeadline;
+    }
+
+    /**
+     * @param string $seoHeadline
+     */
+    public function setSeoHeadline($seoHeadline)
+    {
+        $this->seoHeadline = $seoHeadline;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoText()
+    {
+        return $this->seoText;
+    }
+
+    /**
+     * @param string $seoText
+     */
+    public function setSeoText($seoText)
+    {
+        $this->seoText = $seoText;
+    }
+
+
 }

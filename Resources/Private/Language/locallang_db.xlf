@@ -87,6 +87,21 @@
 			<trans-unit id="tx_news_domain_model_news.keywords.placeholder" xml:space="preserve">
 				<source>Keyword1, keyword2, keyword3</source>
 			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			</trans-unit>
 			<trans-unit id="tx_news_domain_model_category.image" xml:space="preserve">
 				<source>Image</source>
 			</trans-unit>
@@ -95,6 +110,18 @@
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_category.shortcut" xml:space="preserve">
 				<source>News category shortcut</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_category.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_category.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_category.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_category.seo.seo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_media" xml:space="preserve">
 				<source>News Media Element</source>
@@ -152,6 +179,9 @@
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve">
 				<source>www.domain.org</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_tag" xml:space="preserve">
 				<source>News Tag</source>

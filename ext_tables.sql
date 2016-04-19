@@ -76,6 +76,11 @@ CREATE TABLE sys_category (
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
 
+	seo_title varchar(255) NOT NULL DEFAULT '',
+	seo_description text,
+	seo_headline varchar(255) NOT NULL DEFAULT '',
+	seo_text text,
+
 	KEY import (import_id,import_source)
 );
 
@@ -243,6 +248,10 @@ CREATE TABLE tx_news_domain_model_tag (
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
   t3ver_move_id int(11) DEFAULT '0' NOT NULL,
 	title tinytext,
+	seo_title varchar(255) NOT NULL DEFAULT '',
+	seo_description text,
+	seo_headline varchar(255) NOT NULL DEFAULT '',
+	seo_text text,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

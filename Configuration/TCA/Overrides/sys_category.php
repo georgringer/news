@@ -112,6 +112,35 @@ $newSysCategoryColumns = [
             'type' => 'passthrough'
         ]
     ],
+    'seo_headline' => [
+        'exclude' => 1,
+        'label' => $ll . 'tx_news_domain_model_category.seo.seo_headline',
+        'config' => [
+            'type' => 'input',
+        ],
+    ],
+    'seo_title' => [
+        'exclude' => 1,
+        'label' => $ll . 'tx_news_domain_model_category.seo.seo_title',
+        'config' => [
+            'type' => 'input',
+        ],
+    ],
+    'seo_description' => [
+        'exclude' => 1,
+        'label' => $ll . 'tx_news_domain_model_category.seo.seo_description',
+        'config' => [
+            'type' => 'text',
+        ],
+    ],
+    'seo_text' => [
+        'exclude' => 1,
+        'label' => $ll . 'tx_news_domain_model_category.seo.seo_text',
+        'config' => [
+            'type' => 'text',
+        ],
+        'defaultExtras' => 'richtext:rte_transform',
+    ],
 ];
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_category', $newSysCategoryColumns);
@@ -121,6 +150,8 @@ $newSysCategoryColumns = [
     'after:description');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category', 'shortcut', '',
     'after:single_pid');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category',
+    '--div--;' . $ll . 'tx_news_domain_model_category.tabs.seo, seo_title, seo_description, seo_headline, seo_text', '', 'after:endtime');
 
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_news_domain_model_news']
     = [0 => 'categories'];

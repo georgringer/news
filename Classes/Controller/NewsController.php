@@ -36,6 +36,16 @@ class NewsController extends NewsBaseController
     protected $newsRepository;
 
     /**
+     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
+     */
+    protected $categoryRepository;
+
+    /**
+     * @var \GeorgRinger\News\Domain\Repository\TagRepository
+     */
+    protected $tagRepository;
+
+    /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      */
     protected $configurationManager;
@@ -52,6 +62,28 @@ class NewsController extends NewsBaseController
     public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
     {
         $this->newsRepository = $newsRepository;
+    }
+
+    /**
+     * Inject a category repository to enable DI
+     *
+     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     * @return void
+     */
+    public function injectCatgegoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
+    /**
+     * Inject a tag repository to enable DI
+     *
+     * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
+     * @return void
+     */
+    public function injectTagRepository(\GeorgRinger\News\Domain\Repository\TagRepository $tagRepository)
+    {
+        $this->tagRepository = $tagRepository;
     }
 
     /**
@@ -177,6 +209,21 @@ class NewsController extends NewsBaseController
             'demand' => $demand,
         ];
 
+        if ($demand->getCategories() !== '') {
+            $categoriesList = $demand->getCategories();
+            if (!is_array($categoriesList)) {
+                $categoriesList = GeneralUtility::trimExplode(',', $categoriesList);
+            }
+            $assignedValues['categories'] = $this->categoryRepository->findByIdList($categoriesList);
+        }
+
+        if ($demand->getTags() !== '') {
+            $tagList = $demand->getTags();
+            if (!is_array($tagList)) {
+                $tagList = GeneralUtility::trimExplode(',', $tagList);
+            }
+            $assignedValues['tags'] = $this->tagRepository->findByIdList($tagList);
+        }
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
 

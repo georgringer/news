@@ -26,6 +26,37 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
 {
 
     /**
+     * Find categories by a given pid
+     *
+     * @param array $idList list of id s
+     * @param array $ordering ordering
+     * @param string $startingPoint starting point uid or comma separated list
+     * @return QueryInterface
+     */
+    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->getQuerySettings()->setRespectSysLanguage(false);
+
+        if (count($ordering) > 0) {
+            $query->setOrderings($ordering);
+        }
+
+        $conditions = [];
+        $conditions[] = $query->in('uid', $idList);
+
+        if($startingPoint !== null) {
+            $conditions[] = $query->in('pid', GeneralUtility::trimExplode(',', $startingPoint, true));
+        }
+
+        return $query->matching(
+            $query->logicalAnd(
+                $conditions
+            ))->execute();
+    }
+
+    /**
      * Returns an array of constraints created from a given demand object.
      *
      * @param QueryInterface $query

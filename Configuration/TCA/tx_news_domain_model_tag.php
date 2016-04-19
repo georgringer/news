@@ -58,10 +58,40 @@ return [
                 'eval' => 'required,unique,trim',
             ]
         ],
+        'seo_headline' => [
+            'exclude' => 1,
+            'label' => $ll . 'tx_news_domain_model_tag.seo.seo_headline',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'seo_title' => [
+            'exclude' => 1,
+            'label' => $ll . 'tx_news_domain_model_tag.seo.seo_title',
+            'config' => [
+                'type' => 'input',
+            ],
+        ],
+        'seo_description' => [
+            'exclude' => 1,
+            'label' => $ll . 'tx_news_domain_model_tag.seo.seo_description',
+            'config' => [
+                'type' => 'text',
+            ],
+        ],
+        'seo_text' => [
+            'exclude' => 1,
+            'label' => $ll . 'tx_news_domain_model_tag.seo.seo_text',
+            'config' => [
+                'type' => 'text',
+            ],
+            'defaultExtras' => 'richtext:rte_transform',
+        ],
     ],
     'types' => [
         0 => [
-            'showitem' => 'title, --palette--;;paletteCore'
+            'showitem' => 'title, --palette--;;paletteCore,
+            --div--;' . $ll . 'tx_news_domain_model_tag.tabs.seo, seo_title, seo_description, seo_headline, seo_text'
         ]
     ],
     'palettes' => [

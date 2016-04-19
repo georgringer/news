@@ -39,7 +39,7 @@ class TagController extends NewsController
     }
 
     /**
-     * List categories
+     * List tags
      *
      * @param array $overwriteDemand
      * @return void
