@@ -453,6 +453,12 @@
 			<trans-unit id="record.savingdisabled.content">
 				<source>This record has the following categories assigned that are not defined in your permissions:</source>
 			</trans-unit>
+			<trans-unit id="hiddenContentElements.title">
+				<source>Content elements are hidden</source>
+			</trans-unit>
+			<trans-unit id="hiddenContentElements.description">
+				<source>Content elements are hidden in sys folders of type "news"!</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -47,6 +47,9 @@ $boot = function () {
             \GeorgRinger\News\Hooks\InlineElementHook::class;
     }
 
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list.inc']['makeQueryArray']['news'] =
+        \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
+
     /* ===========================================================================
         Custom cache, done with the caching framework
     =========================================================================== */
