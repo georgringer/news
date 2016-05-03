@@ -271,6 +271,7 @@ CREATE TABLE be_users (
 #
 CREATE TABLE tt_content (
 	tx_news_related_news int(11) DEFAULT '0' NOT NULL,
+	KEY index_newscontent (tx_news_related_news)
 );
 
 #
