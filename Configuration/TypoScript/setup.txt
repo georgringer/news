@@ -211,7 +211,7 @@ plugin.tx_news {
 }
 
 # EXT:fluid_styled_content uses different constants
-[globalVar = LIT:0<{$styles.content.textmedia.maxW}}]
+[globalVar = LIT:0<{$styles.content.textmedia.maxW}]
 	plugin.tx_news.settings.detail.media.image.lightbox {
 		enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
 		class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
