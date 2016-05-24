@@ -30,7 +30,15 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
+    /**
+     * @var bool
+     */
     protected $escapingInterceptorEnabled = false;
+
+    /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
 
     /**
      * @var \GeorgRinger\News\Service\SettingsService

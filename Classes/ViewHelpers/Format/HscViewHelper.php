@@ -24,6 +24,11 @@ class HscViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
     /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+
+    /**
      * Render content with htmlspecialchars
      *
      * @return string Formatted date

@@ -33,6 +33,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper
 {
+    /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
 
     /**
      * Render the sprite icon

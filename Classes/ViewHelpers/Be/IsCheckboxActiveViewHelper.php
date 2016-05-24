@@ -22,7 +22,11 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class IsCheckboxActiveViewHelper extends AbstractViewHelper
 {
-
+    /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+    
     /**
      * @param int $id
      * @param array $categories

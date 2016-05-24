@@ -23,6 +23,11 @@ class CategoryChildrenViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
 {
 
     /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+    
+    /**
      * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
      */
     protected $categoryRepository;

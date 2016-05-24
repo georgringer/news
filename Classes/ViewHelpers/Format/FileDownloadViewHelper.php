@@ -35,6 +35,11 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
 {
 
     /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+
+    /**
      * Download a file
      *
      * @param string $file Path to the file

@@ -33,6 +33,11 @@ class HtmlentitiesDecodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
     protected $escapingInterceptorEnabled = false;
 
     /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+
+    /**
      * Converts all HTML entities to their applicable characters as needed
      * using PHPs html_entity_decode() function.
      *

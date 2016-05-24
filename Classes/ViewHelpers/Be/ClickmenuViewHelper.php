@@ -31,7 +31,11 @@ namespace GeorgRinger\News\ViewHelpers\Be;
  */
 class ClickmenuViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
+    /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+    
     /**
      * Render the clickmenu
      *

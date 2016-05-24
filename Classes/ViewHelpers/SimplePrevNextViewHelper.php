@@ -58,6 +58,11 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
     protected $dataMapper;
 
+    /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+
     public function __construct()
     {
         $this->databaseConnection = $GLOBALS['TYPO3_DB'];

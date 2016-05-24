@@ -35,6 +35,11 @@ class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
     protected $escapingInterceptorEnabled = false;
 
     /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+
+    /**
      * Go through all given classes which implement the mediainterface
      * and use the proper ones to render the media element
      *

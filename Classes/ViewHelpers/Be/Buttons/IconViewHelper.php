@@ -50,7 +50,11 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class IconViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper
 {
-
+    /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+    
     /**
      * Renders an icon link as known from the TYPO3 backend
      *

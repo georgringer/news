@@ -48,6 +48,11 @@ class ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
 {
 
     /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+    
+    /**
      * Output different objects
      *
      * @param \GeorgRinger\News\Domain\Model\News $newsItem current newsitem

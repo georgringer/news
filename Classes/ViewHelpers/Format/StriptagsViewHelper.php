@@ -40,7 +40,15 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class StriptagsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
+    /**
+     * @var bool
+     */
     protected $escapingInterceptorEnabled = false;
+
+    /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
 
     /**
      * Strip tags

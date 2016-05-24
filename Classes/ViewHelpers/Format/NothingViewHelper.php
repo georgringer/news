@@ -32,7 +32,11 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  */
 class NothingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
+    /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+    
     /**
      * Render children but do nothing else
      *

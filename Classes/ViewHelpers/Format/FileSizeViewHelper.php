@@ -41,6 +41,11 @@ class FileSizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
 {
 
     /**
+     * @var bool
+     */
+    protected $escapeOutput = false;
+    
+    /**
      * Renders the size of a file using \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize
      *
      * @param string $file Path to the file
