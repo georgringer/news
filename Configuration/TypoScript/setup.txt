@@ -243,7 +243,7 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 		}
 	}
 
-	settings < plugin.tx_news.settings
+	settings =< plugin.tx_news.settings
 	settings {
 		singleNews.field = uid
 		useStdWrap = singleNews
