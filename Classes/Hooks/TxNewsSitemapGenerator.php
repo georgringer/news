@@ -144,7 +144,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
             'tx_news_domain_model_news',
             'sys_category_record_mm',
             'sys_category',
-            ' AND sys_category_record_mm.uid_local = ' . intval($newsId)
+            ' AND sys_category_record_mm.uid_foreign = ' . intval($newsId)
         );
         $categoryRecord = $this->getDatabaseConnection()->sql_fetch_assoc($res);
 
