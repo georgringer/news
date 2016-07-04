@@ -200,14 +200,16 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
             $dateTime = $newsItem->getDatetime();
 
-            if (!empty($tsSettings['link']['hrDate']['day'])) {
-                $configuration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
-            }
-            if (!empty($tsSettings['link']['hrDate']['month'])) {
-                $configuration['additionalParams'] .= '&tx_news_pi1[month]=' . $dateTime->format($tsSettings['link']['hrDate']['month']);
-            }
-            if (!empty($tsSettings['link']['hrDate']['year'])) {
-                $configuration['additionalParams'] .= '&tx_news_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
+            if (!is_null($dateTime)) {
+                if (!empty($tsSettings['link']['hrDate']['day'])) {
+                    $configuration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
+                }
+                if (!empty($tsSettings['link']['hrDate']['month'])) {
+                    $configuration['additionalParams'] .= '&tx_news_pi1[month]=' . $dateTime->format($tsSettings['link']['hrDate']['month']);
+                }
+                if (!empty($tsSettings['link']['hrDate']['year'])) {
+                    $configuration['additionalParams'] .= '&tx_news_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
+                }
             }
         }
         return $configuration;
