@@ -54,6 +54,7 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     public function initializeArguments()
     {
         $this->registerTagAttribute('type', 'string', 'default: button_count');
+        $this->registerTagAttribute('shareurl', 'string', 'share url');
     }
 
     /**
