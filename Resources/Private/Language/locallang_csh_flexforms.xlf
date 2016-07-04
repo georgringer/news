@@ -46,7 +46,7 @@
 				<source>Display the selected single news record.</source>
 			</trans-unit>
 			<trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve">
-				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records.</source>
+				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
 			</trans-unit>
 			<trans-unit id="settings.startingpoint.description" xml:space="preserve">
 				<source>Define the pages/sysfolders which hold the news records</source>
