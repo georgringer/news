@@ -16,7 +16,7 @@ namespace GeorgRinger\News\Hooks;
  */
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
-use TYPO3\CMS\Core\DataHandling\DataHandler;
+use TYPO3\CMS\Core\DataHandling\DataHandler as DataHandlerCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -113,12 +113,12 @@ class SuggestReceiverCall
                 ]
             ];
 
-            /** @var DataHandler $tce */
-            $tce = GeneralUtility::makeInstance(DataHandler::class);
-            $tce->start($tcemainData, []);
-            $tce->process_datamap();
+            /** @var DataHandlerCore $dataHandler */
+            $dataHandler = GeneralUtility::makeInstance(DataHandlerCore::class);
+            $dataHandler->start($tcemainData, []);
+            $dataHandler->process_datamap();
 
-            $tagUid = $tce->substNEWwithIDs['NEW'];
+            $tagUid = $dataHandler->substNEWwithIDs['NEW'];
         }
 
         if ($tagUid == 0) {
