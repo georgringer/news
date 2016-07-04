@@ -93,17 +93,11 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     protected function generateSitemapContent()
     {
         if (count($this->pidList) > 0) {
-            $languageCondition = '';
-
-            $language = GeneralUtility::_GP('L');
-            if (MathUtility::canBeInterpretedAsInteger($language)) {
-                $languageCondition = ' AND sys_language_uid=' . $language;
-            }
 
             $res = $this->getDatabaseConnection()->exec_SELECTquery('*',
                 'tx_news_domain_model_news', 'pid IN (' . implode(',', $this->pidList) . ')' .
                 ($this->isNewsSitemap ? ' AND crdate>=' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '') .
-                $languageCondition .
+                ' AND sys_language_uid=' . (int)GeneralUtility::_GP('L') .
                 $this->cObj->enableFields('tx_news_domain_model_news'), '', 'datetime DESC',
                 $this->offset . ',' . $this->limit
             );
