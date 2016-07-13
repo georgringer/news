@@ -8,7 +8,7 @@
 .. _tsconfig:
 
 TsConfig
---------
+========
 This section covers all configurations which can be set with TsConfig.
 Every configuration starts with ``tx_news.``.
 
@@ -16,11 +16,11 @@ Every configuration starts with ``tx_news.``.
  Just for clarification: TsConfig is in TYPO3 only used for configurations inside the backend!
 
 General configuration
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 The general configuration covers options available during the creation and editing of news records.
 
 Properties
-""""""""""
+^^^^^^^^^^
 
 .. container:: ts-properties
 
@@ -35,7 +35,7 @@ Properties
 .. _tsconfigTemplateLayouts:
 
 templateLayouts
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 The selectbox “Template Layout” inside a plugin can be easily be extended by using TsConfig.::
 
 	# Example:
@@ -52,7 +52,7 @@ Inside the template it is then possible to define conditions with fluid by check
 .. _tsconfigArchive:
 
 archive
-~~~~~~~
+^^^^^^^
 Use strtotime (see `http://www.php.net/strtotime <http://www.php.net/strtotime>`_ ) to predefine the archive date.::
 
 	# Example:
@@ -63,7 +63,7 @@ will set the archive date on the the next friday.
 .. _tsconfigTagPid:
 
 tagPid
-~~~~~~
+^^^^^^
 Besides the configuration in the :ref:`Extension Manager <extensionManagerTagPid>` it is also possible to define the pid of tags created directly in the news record by Using TsConfig: ::
 
 	# Example:
@@ -73,10 +73,10 @@ Besides the configuration in the :ref:`Extension Manager <extensionManagerTagPid
 .. _tsconfigAdministration:
 
 Administration module
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
 Properties
-""""""""""
+^^^^^^^^^^
 .. container:: ts-properties
 
 	=========================== =====================================
@@ -91,7 +91,7 @@ Properties
 .. _tsconfigPreselect:
 
 preselect
-~~~~~~~~~
+^^^^^^^^^
 Predefine the form in the administration module. The possible fields for the preselection are:
 
 - recursive
@@ -115,7 +115,7 @@ Predefine the form in the administration module. The possible fields for the pre
 .. _tsconfigDefaultPid:
 
 defaultPid
-~~~~~~~~~~
+^^^^^^^^^^
 If no page is selected in the page tree, any record created in the administration module would be saved on the root page.
 If this is not desired, the pid can be defined by using defaultPid.<tablename>::
 
@@ -127,7 +127,7 @@ News records will be saved on page with ID 123.
 .. _tsconfigRedirectToPageOnStart:
 
 redirectToPageOnStart
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 If no page is selected, the user will be redirected to the given page. ::
 
 	# Example:
@@ -138,10 +138,31 @@ The user will be redirected to the page with the uid 456.
 .. _tsconfigAllowedPage:
 
 allowedPage
-~~~~~~~~~~~
+^^^^^^^^^^^
 If defined, the administration module will redirect the user always to the given page, no matter what defined in the page tree. ::
 
 	# Example:
 	tx_news.module.allowedPage = 123
 
 The user will be redirected to the page with the uid 123.
+
+Additional Configuration
+------------------------
+This section covers settings which influence the News Plugin
+
+switchableControllerAction
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+To remove a specific action from the News Plugin selectbox, use this snippet. ::
+
+	# Example:
+	TCEFORM.tt_content.pi_flexform.news_pi1.sDEF.switchableControllerActions.removeItems = Tag->list
+
+The possible values for the switchableControllerActions are:
+
+- News->list
+- News->detail
+- News->dateMenu
+- News->searchForm
+- News->searchResult
+- Category->list
+- Tag->list

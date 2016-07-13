@@ -18,7 +18,7 @@ It is possible to activate the action "Save & Preview" for news records by using
 			previewPageId = 123
 			useDefaultLanguageRecord = 0
 			fieldToParameterMap {
-				uid = tx_news_pi1[news]
+				uid = tx_news_pi1[news_preview]
 			}
 			additionalGetParameters {
 				tx_news_pi1.controller = News

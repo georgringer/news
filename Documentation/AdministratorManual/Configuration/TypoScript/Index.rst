@@ -301,6 +301,8 @@ previewHiddenRecords
 
          .. note:: Be aware to secure the page (e.g. using a TS condition to make it available only if an BE user is logged in) as this page could be called by anyone using any news record uid to see its content.
 
+         .. note:: If set, any hidden records on the current page are shown as well!
+
 .. _tsStartingpoint:
 
 startingpoint
@@ -475,7 +477,8 @@ excludeAlreadyDisplayedNews
    Description
          :typoscript:`plugin.tx_news.settings.excludeAlreadyDisplayedNews =1`
 
-         If checked, news items which are already rendered are excluded in the current plugin. To exclude news items, the viewHelper <n:excludeDisplayedNews newsItem="{newsItem}" /> needs to be added to the template.
+         If checked, news items which are already rendered are excluded in the current plugin. 
+         **To exclude news items, the viewHelper <n:excludeDisplayedNews newsItem="{newsItem}" /> needs to be added to the template.**
          .. note:: The order of rendering in the frontend is essential as the information which news record is shown and should not be included anymore is fetched during runtime.
 
 .. _tsDisableOverrideDemand:
@@ -706,7 +709,7 @@ detailPidDetermination
 .. container:: table-row
 
    Property
-         overrideFlexformSettingsIfEmpty
+         detailPidDetermination
    Data type
          string
    Description

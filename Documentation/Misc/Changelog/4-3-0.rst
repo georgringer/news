@@ -1,0 +1,43 @@
+4.3.0 - 2016/07/13
+==================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+Important changes
+-----------------
+
+This release is the first one which supports also version 8.
+
+Changed sitemap generation behaviour
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For multilanguage sitemaps you need to generate a sitemap for every language by providing the parameter "L".
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2016-07-04 [!!!][TASK] Change language behaviour for sitemap generation (Commit b733b24 by Georg Ringer)
+        2016-07-04 [BUGFIX] Use correct query in SiteMapGenerator (Commit 49db71d by Georg Ringer)
+        2016-07-04 [TASK] Add documentation about showing hidden records (Commit 863c757 by Georg Ringer)
+        2016-07-04 [BUGFIX] Check date for null in LinkViewHelper (Commit f08ed97 by Georg Ringer)
+        2016-07-04 [TASK] Register attribute shareurl in ShareViewHelper (Commit a307a0f by Georg Ringer)
+        2016-07-04 [BUGFIX] Use a different name for DataHandlerCore (Commit c6325b9 by Georg Ringer)
+        2016-06-17 [BUGFIX] fix typoscript to reference instead of copying plugins.tx_news.settings (Commit c6b0237 by Esteban Marín)
+        2016-05-24 [BUGFIX] Make VHs CMS 8 compatible (Commit 44b9552 by Markus Klein)
+        2016-05-11 [FEATURE] Add index to tt_content (Commit 3747a1a by Georg Ringer)
+        2016-05-11 [BUGFIX] Fix wrong TS condition (Commit 9d9324d by Georg Ringer)
+        2016-04-27 [FEATURE] Hide content elements in page/list module if news sys folder (Commit 4f66675 by Georg Ringer)
+        2016-04-27 [BUGFIX] twitter not listed twice in rx_shariff example (Commit b80beda by Markus Klein)
+        2016-04-19 [TASK] Add  addQueryStringMethod="GET" to paginator (Commit 5d0309a by Frank Naegler)
+        2016-04-15 Revert "[BUGFIX] Set l10nmode for categories & tags to exclude" (Commit 858c6f2 by Georg Ringer)
+        2016-04-15 [TASK] Make it compatible with core < 8.3 (Commit ea2159e by Georg Ringer)
+        2016-04-13 [BUGFIX][FOLLOWUP] Fix mysql strict (Commit 38842fc by Georg Ringer)
+        2016-04-12 [BUGFIX] Fix strict mysql checks (Commit fee4449 by Georg Ringer)
+        2016-03-17 [TASK] Remove unsupported categoryRestriction (Commit 780c111 by Nicole Cordes)
+
+This list has been created by using ``git log --since="2016/03/11" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``

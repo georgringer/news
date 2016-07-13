@@ -45,4 +45,14 @@ The provided example will wrap 3 items into a div with the class "row".
 		</f:if>
 	</f:for>
 
+By using the extension "vhs" you can achieve this in far less lines:
 
+.. code-block:: xml
+
+	<f:for each="{foo -> v:iterator.chunk(count: 3)}" as="bar" iteration="cycle">
+	    <li>
+	        <f:for each="{bar}" as="user">
+	            <f:render section="yourTarget" arguments="{_all}" />
+	        </f:for>
+	    </li>
+	</f:for>
