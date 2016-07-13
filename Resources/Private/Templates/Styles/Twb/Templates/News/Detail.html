@@ -85,6 +85,16 @@
 	</f:if>
 
 	<f:if condition="{settings.detail.showSocialShareButtons}">
+		<f:comment>
+			<![CDATA[
+			Care about the privacy of your readers?
+			Checkout https://typo3.org/extensions/repository/view/rx_shariff
+			and integrate it here with:
+			<div xmlns:rx="http://typo3.org/ns/Reelworx/RxShariff/ViewHelper">
+				<rx:shariff services="facebook,xing,twitter" enableBackend="true" />
+			</div>
+			]]>
+		</f:comment>
 		<div class="social">
 			<div class="like">
 				<n:social.facebook.like />
