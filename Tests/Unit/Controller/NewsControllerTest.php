@@ -17,6 +17,7 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
 use GeorgRinger\News\Controller\NewsController;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 
 /**
  * Testcase for the NewsController class.
@@ -35,6 +36,8 @@ class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 */
 	private $newsRepository = NULL;
 
+	/** @var CategoryRepository */
+	private $categoryRepository = NULL;
 	/**
 	 * Set up framework
 	 *
@@ -45,6 +48,9 @@ class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$this->newsRepository = $this->getMock(
 			'GeorgRinger\\News\\Domain\\Repository\\NewsRepository', [], [], '', FALSE
+		);
+		$this->categoryRepository = $this->getMock(
+			'GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', [], [], '', FALSE
 		);
 		$this->fixture->injectNewsRepository($this->newsRepository);
 	}
@@ -76,9 +82,10 @@ class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 		$fixture = $this->getMock(
 			'GeorgRinger\\News\\Controller\\NewsController',
-			['createDemandObjectFromSettings', 'emitActionSignal']
+			['createDemandObjectFromSettings', 'emitActionSignal', '']
 		);
 		$fixture->injectNewsRepository($this->newsRepository);
+		$fixture->injectCategoryRepository($this->categoryRepository);
 		$fixture->injectConfigurationManager($configurationManager);
 		$fixture->setView($this->getMock('TYPO3\CMS\Fluid\View\TemplateView', [], [], '', FALSE));
 
