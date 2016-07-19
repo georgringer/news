@@ -125,15 +125,23 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
             default:
                 $configuration = $this->getLinkToNewsItem($newsItem, $tsSettings, $configuration);
         }
+
+        $url = $this->cObj->typoLink_URL($configuration);
+        if ($uriOnly) {
+            return $url;
+        }
+
         if (isset($tsSettings['link']['typesOpeningInNewWindow'])) {
             if (GeneralUtility::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
                 $this->tag->addAttribute('target', '_blank');
             }
         }
 
-        $url = $this->cObj->typoLink_URL($configuration);
-        if ($uriOnly) {
-            return $url;
+        if (!$this->tag->hasAttribute('target')) {
+            $target = $this->getTargetConfiguration($configuration);
+            if (!empty($target)) {
+                $this->tag->addAttribute('target', $target);
+            }
         }
 
         if ($this->hasArgument('section')) {
@@ -232,6 +240,16 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         }
 
         return $uid;
+    }
+
+    /**
+     * @param array $configuration
+     * @return string
+     */
+    protected function getTargetConfiguration(array $configuration) {
+        $configuration['returnLast'] = 'target';
+
+        return $this->cObj->typoLink('dummy', $configuration);
     }
 
     /**
