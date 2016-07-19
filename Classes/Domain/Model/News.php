@@ -603,6 +603,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         if ($itemsRelatedFrom) {
             $all = array_merge($all, $itemsRelatedFrom->toArray());
         }
+        $all = array_unique($all);
 
         if (count($all) > 0) {
             usort($all, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
