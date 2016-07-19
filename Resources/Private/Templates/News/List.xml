@@ -25,6 +25,11 @@
 						<description>{newsItem.teaser -> f:format.stripTags() -> f:format.htmlspecialchars()}</description>
 						<f:if condition="{newsItem.firstFalImagePreview}"><enclosure url="{f:uri.image(image:'{newsItem.firstFalImagePreview}',absolute:1) -> f:format.htmlentities()}" length="{newsItem.firstFalImagePreview.originalResource.size}" type="{newsItem.firstFalImagePreview.originalResource.mimeType}" /></f:if>
 						<content:encoded><f:format.cdata><f:format.html>{newsItem.bodytext}</f:format.html></f:format.cdata></content:encoded>
+						<f:if condition="{newsItem.categories}">
+							<f:for each="{newsItem.categories}" as="newsItemCategory">
+								<category>{newsItemCategory.title -> f:format.htmlspecialchars()}</category>
+							</f:for>
+						</f:if>
 					</item>
 				</f:for>
 			</f:if>
