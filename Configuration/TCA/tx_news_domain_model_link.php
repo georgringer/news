@@ -141,7 +141,7 @@ return [
     ],
     'types' => [
         0 => [
-            'showitem' => 'uri, --palette--;;palettteCore,title, --palette--;;paletteDescription'
+            'showitem' => 'uri, --palette--;;paletteCore,title, --palette--;;paletteDescription'
         ]
     ],
     'palettes' => [
