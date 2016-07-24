@@ -110,11 +110,6 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $feGroup;
 
     /**
-     * @var int
-     */
-    protected $countRelatedNews = 0;
-
-    /**
      * @var string
      */
     protected $seoTitle;
