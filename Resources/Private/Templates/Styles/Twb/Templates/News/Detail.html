@@ -10,6 +10,7 @@
 <f:section name="content">
 	<f:if condition="{newsItem}">
 		<n:format.nothing>
+			<n:excludeDisplayedNews newsItem="{newsItem}" />
 			<f:if condition="{newsItem.alternativeTitle}">
 				<f:then>
 					<n:titleTag>

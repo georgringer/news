@@ -11,6 +11,7 @@
 	<f:if condition="{newsItem}">
 		<f:then>
 			<n:format.nothing>
+				<n:excludeDisplayedNews newsItem="{newsItem}" />
 				<f:if condition="{newsItem.alternativeTitle}">
 					<f:then>
 						<n:titleTag>
