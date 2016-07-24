@@ -39,14 +39,16 @@
 					</span>
 
 					<f:if condition="{newsItem.categories}">
-						<f:render partial="Category/Items" arguments="{categories:newsItem.categories, settings:settings}" />
+						<f:for each="{newsItem.categories}" as="category" iteration="iteratorCategories">
+							<f:link.page pageUid="{settings.backPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{categories:category.uid}}}">{category.title}</f:link.page>
+						</f:for>
 					</f:if>
 
 					<f:if condition="{newsItem.tags}">
 						<!-- Tags -->
 						<span class="news-list-tags" itemprop="keywords">
 						<f:for each="{newsItem.tags}" as="tag">
-							{tag.title}
+							<f:link.page pageUid="{settings.backPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">{tag.title}</f:link.page>
 						</f:for>
 						</span>
 					</f:if>
