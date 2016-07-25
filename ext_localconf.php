@@ -77,12 +77,6 @@ $boot = function () {
             \GeorgRinger\News\Hooks\RealUrlAutoConfiguration::class . '->addNewsConfig';
     }
 
-    /* ===========================================================================
-        Update scripts
-    =========================================================================== */
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_fal'] = \GeorgRinger\News\Updates\FalUpdateWizard::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['news_mm'] = \GeorgRinger\News\Updates\TtContentRelation::class;
-
     // Register cache frontend for proxy class generation
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = [
         'frontend' => \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend::class,
