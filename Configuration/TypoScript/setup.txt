@@ -85,13 +85,6 @@ plugin.tx_news {
 
 		demandClass =
 
-		# Interface implementations
-		interfaces {
-			falMedia {
-				video = GeorgRinger\News\MediaRenderer\Video\Fal
-			}
-		}
-
 		mediaRenderer {
 			youtube {
 				additionalParams =

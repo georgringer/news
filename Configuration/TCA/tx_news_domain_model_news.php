@@ -610,7 +610,7 @@ $tx_news_domain_model_news = [
                         ]
                     ]
                 ],
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'] . ',flv,mp4'
+                $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
             )
         ],
         'fal_related_files' => [

@@ -141,6 +141,9 @@
 			<trans-unit id="tx_news_domain_model_tag.title" xml:space="preserve">
 				<source>Title</source>
 			</trans-unit>
+			<trans-unit id="tx_news_domain_model_media.showinpreview" xml:space="preserve">
+				<source>Show in preview views</source>
+			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve">
 				<source>Speaking URL path segment</source>
 			</trans-unit>
