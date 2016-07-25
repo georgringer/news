@@ -36,9 +36,6 @@
 			<trans-unit id="tx_news_domain_model_news.related_from" xml:space="preserve">
 				<source>Related News (from)</source>
 			</trans-unit>
-			<trans-unit id="tx_news_domain_model_news.related_files" xml:space="preserve">
-				<source>Related Files</source>
-			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.fal_related_files" xml:space="preserve">
 				<source>Related Files</source>
 			</trans-unit>
@@ -56,9 +53,6 @@
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.type.I.2" xml:space="preserve">
 				<source>External Page</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_news.media" xml:space="preserve">
-				<source>Media Element</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.fal_media" xml:space="preserve">
 				<source>Media file</source>
@@ -122,48 +116,6 @@
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_category.seo.seo_text" xml:space="preserve">
 				<source>SEO Text-Container</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media" xml:space="preserve">
-				<source>News Media Element</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media.caption" xml:space="preserve">
-				<source>Caption</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media.media" xml:space="preserve">
-				<source>Image</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media.type.I.0" xml:space="preserve">
-				<source>Image</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media.type.I.1" xml:space="preserve">
-				<source>Video &amp; Audio</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media.type.I.2" xml:space="preserve">
-				<source>HTML</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media.multimedia" xml:space="preserve">
-				<source>Video- / Audio-URL</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media.show" xml:space="preserve">
-				<source>Show</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media.showinpreview" xml:space="preserve">
-				<source>Show in preview views</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_media.copyright" xml:space="preserve">
-				<source>Copyright</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_file" xml:space="preserve">
-				<source>News File Element</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_file.title" xml:space="preserve">
-				<source>Title</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_file.description" xml:space="preserve">
-				<source>Description</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_file.file" xml:space="preserve">
-				<source>File</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_link" xml:space="preserve">
 				<source>News Link Element</source>
