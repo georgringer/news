@@ -132,12 +132,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $relatedFrom;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\File>
-     * @lazy
-     */
-    protected $relatedFiles;
-
-    /**
      * Fal related files
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
@@ -165,12 +159,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $description;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Media>
-     * @lazy
-     */
-    protected $media;
 
     /**
      * Fal media items
@@ -638,41 +626,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get related files
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\File>
-     */
-    public function getRelatedFiles()
-    {
-        return $this->relatedFiles;
-    }
-
-    /**
-     * Set related files
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $relatedFiles related files
-     * @return void
-     */
-    public function setRelatedFiles($relatedFiles)
-    {
-        $this->relatedFiles = $relatedFiles;
-    }
-
-    /**
-     * Adds a file to this files.
-     *
-     * @param File $file
-     * @return void
-     */
-    public function addRelatedFile(File $file)
-    {
-        if ($this->getRelatedFiles() === null) {
-            $this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        }
-        $this->getRelatedFiles()->attach($file);
-    }
-
-    /**
      * Get related links
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link>
@@ -856,40 +809,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get all media elements of type image
-     *
-     * @return array|null
-     */
-    public function getMediaTypeImage()
-    {
-        return $this->getMediaSelection(\GeorgRinger\News\Domain\Model\Media::MEDIA_TYPE_IMAGE);
-    }
-
-    /**
-     * Get all media elements of type multimedia
-     *
-     * @return array|null
-     */
-    public function getMediaTypeMultimedia()
-    {
-        return $this->getMediaSelection(\GeorgRinger\News\Domain\Model\Media::MEDIA_TYPE_MULTIMEDIA);
-    }
-
-    /**
-     * Adds a media to this media.
-     *
-     * @param \GeorgRinger\News\Domain\Model\Media $media
-     * @return void
-     */
-    public function addMedia(\GeorgRinger\News\Domain\Model\Media $media)
-    {
-        if ($this->getMedia() === null) {
-            $this->media = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        }
-        $this->getMedia()->attach($media);
-    }
-
-    /**
      * Adds a related link.
      *
      * @param Link $relatedLink
@@ -901,39 +820,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
             $this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         }
         $this->relatedLinks->attach($relatedLink);
-    }
-
-    /**
-     * Get first media element which is tagged as preview and is of type image
-     *
-     * @return \GeorgRinger\News\Domain\Model\Media
-     */
-    public function getFirstImagePreview()
-    {
-        $mediaElements = $this->getMedia();
-
-        if (is_null($mediaElements)) {
-            return null;
-        }
-
-        foreach ($mediaElements as $mediaElement) {
-            if ($mediaElement->getShowinpreview()) {
-                return $mediaElement;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Set media relation
-     *
-     * @param   \TYPO3\CMS\Extbase\Persistence\ObjectStorage $media
-     * @return void
-     */
-    public function setMedia(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $media)
-    {
-        $this->media = $media;
     }
 
     /**
@@ -1015,7 +901,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getFirstFalImagePreview()
     {
-
         $mediaElements = $this->getFalMediaPreviews();
         if (is_array($mediaElements)) {
             foreach ($mediaElements as $mediaElement) {

@@ -280,37 +280,7 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->newsDomainModelInstance->setCategories($categories);
 		$this->assertEquals($categories, $this->newsDomainModelInstance->getCategories());
 	}
-
-	/**
-	 * Test if media can be set
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function mediaCanBeSet() {
-		$media = new Media();
-		$media->setTitle('fo');
-		$mediaElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$mediaElements->attach($media);
-
-		$this->newsDomainModelInstance->setMedia($mediaElements);
-		$this->assertEquals($mediaElements, $this->newsDomainModelInstance->getMedia());
-	}
-
-	/**
-	 * Test if related can be set
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function relatedFilesCanBeSet() {
-		$file = new File();
-		$file->setTitle('fo');
-		$related = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$related->attach($file);
-		$this->newsDomainModelInstance->setRelatedFiles($related);
-		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedFiles());
-	}
+	
 
 	/**
 	 * Test if related links can be set
@@ -328,33 +298,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertEquals($related, $this->newsDomainModelInstance->getRelatedLinks());
 	}
 
-	/**
-	 * Test if correct sub selection is returned
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function correctMediaSelectionIsReturned() {
-		$imageElement1 = new Media();
-		$imageElement1->setType(Media::MEDIA_TYPE_IMAGE);
-		$imageElement2 = new Media();
-		$imageElement2->setType(Media::MEDIA_TYPE_IMAGE);
-		$imageElement3 = new Media();
-		$imageElement3->setType(Media::MEDIA_TYPE_IMAGE);
-		$multimediaElement1 = new Media();
-		$multimediaElement1->setType(Media::MEDIA_TYPE_MULTIMEDIA);
-
-		$news = new News();
-		$news->addMedia($imageElement1);
-		$news->addMedia($imageElement2);
-		$news->addMedia($imageElement3);
-		$news->addMedia($imageElement3);
-		$news->addMedia($multimediaElement1);
-
-		$this->assertEquals(3, count($news->getMediaTypeImage()));
-		$this->assertEquals(1, count($news->getMediaTypeMultimedia()));
-		$this->assertEquals(4, count($news->getMedia()));
-	}
 
 	/**
 	 * @test

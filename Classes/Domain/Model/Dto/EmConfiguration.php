@@ -102,17 +102,7 @@ class EmConfiguration
      * @var bool
      */
     protected $showAdministrationModule = true;
-
-    /**
-     * @var bool
-     */
-    protected $showMediaDescriptionField = false;
-
-    /**
-     * @var int
-     */
-    protected $useFal = 1;
-
+    
     /**
      * @var int
      */
@@ -232,36 +222,11 @@ class EmConfiguration
     }
 
     /**
-     * @param bool $showMediaDescriptionField
-     * @return void
-     */
-    public function setShowMediaDescriptionField($showMediaDescriptionField)
-    {
-        $this->showMediaDescriptionField = $showMediaDescriptionField;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getShowMediaDescriptionField()
-    {
-        return $this->showMediaDescriptionField;
-    }
-
-    /**
      * @return bool
      */
     public function getRteForTeaser()
     {
         return $this->rteForTeaser;
-    }
-
-    /**
-     * @return int
-     */
-    public function getUseFal()
-    {
-        return version_compare(TYPO3_branch, '6.0', '>=') ? (int)$this->useFal : 0;
     }
 
     /**

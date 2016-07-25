@@ -36,9 +36,6 @@ categoryRestriction =
 	# cat=records/enable/107; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.categoryBeGroupTceFormsRestriction
 categoryBeGroupTceFormsRestriction = 0
 
-	# cat=records/enable/130; type=options[LLL:EXT:lang/locallang_common.xlf:no=0,LLL:EXT:lang/locallang_common.xlf:yes=1,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.useFal.both=2],LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.useFal.addMultimedia=3]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.useFal
-useFal = 1
-
 	# cat=records/enable/140; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.dateTimeNotRequired
 dateTimeNotRequired = 0
 

@@ -259,15 +259,6 @@
 			<trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve">
 				<source>Editor needs to have permissions to all selected categories to save a news item</source>
 			</trans-unit>
-			<trans-unit id="extmng.useFal" xml:space="preserve">
-				<source>Use FAL relations instead of news media elements</source>
-			</trans-unit>
-			<trans-unit id="extmng.useFal.both" xml:space="preserve">
-				<source>Both</source>
-			</trans-unit>
-			<trans-unit id="extmng.useFal.addMultimedia" xml:space="preserve">
-				<source>FAL + Multimedia</source>
-			</trans-unit>
 			<trans-unit id="extmng.manualSorting" xml:space="preserve">
 				<source>Enable manual sorting of news records</source>
 			</trans-unit>
@@ -310,9 +301,6 @@
 			</trans-unit>
 			<trans-unit id="extmng.showAdministrationModule" xml:space="preserve">
 				<source>Show administration module:Backend module to administrate news records</source>
-			</trans-unit>
-			<trans-unit id="extmng.showMediaDescriptionField" xml:space="preserve">
-				<source>Show description for media elements:If set you get an additional description field for media elements.</source>
 			</trans-unit>
 			<trans-unit id="extmng.rteForTeaser" xml:space="preserve">
 				<source>Enable a RTE for the teaser field.</source>

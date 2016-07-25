@@ -87,10 +87,6 @@ plugin.tx_news {
 
 		# Interface implementations
 		interfaces {
-			media {
-				video = GeorgRinger\News\MediaRenderer\Audio\Mp3Html5,GeorgRinger\News\MediaRenderer\Audio\Mp3,GeorgRinger\News\MediaRenderer\Video\Quicktime,GeorgRinger\News\MediaRenderer\Video\File,GeorgRinger\News\MediaRenderer\Video\Youtube,GeorgRinger\News\MediaRenderer\Video\Vimeo,GeorgRinger\News\MediaRenderer\Video\Videosites
-			}
-
 			falMedia {
 				video = GeorgRinger\News\MediaRenderer\Video\Fal
 			}

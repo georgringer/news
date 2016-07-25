@@ -14,11 +14,8 @@ namespace GeorgRinger\News\Domain\Service;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use GeorgRinger\News\Domain\Model\File;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
-use GeorgRinger\News\Domain\Model\Media;
-use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -94,7 +91,8 @@ class NewsImportService extends AbstractImportService
      */
     public function injectTtContentRepository(
         \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
-    ) {
+    )
+    {
         $this->ttContentRepository = $ttContentRepository;
     }
 
@@ -146,7 +144,8 @@ class NewsImportService extends AbstractImportService
         \GeorgRinger\News\Domain\Model\News $news,
         array $importItem,
         array $importItemOverwrite
-    ) {
+    )
+    {
 
         if (!empty($importItemOverwrite)) {
             $importItem = array_merge($importItem, $importItemOverwrite);
@@ -208,175 +207,94 @@ class NewsImportService extends AbstractImportService
             }
         }
 
-        /** @var $basicFileFunctions BasicFileUtility */
-        $basicFileFunctions = GeneralUtility::makeInstance(BasicFileUtility::class);
-
         // media relation
         if (is_array($importItem['media'])) {
 
             foreach ($importItem['media'] as $mediaItem) {
+                // get fileobject by given identifier (file UID, combined identifier or path/filename)
+                try {
+                    $file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
+                } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+                    $file = false;
+                }
 
-                // multi media
-                if ((int)$mediaItem['type'] === Media::MEDIA_TYPE_MULTIMEDIA) {
+                // no file found skip processing of this item
+                if ($file === false) {
+                    continue;
+                }
 
-                    if (($media = $this->getMultiMediaIfAlreadyExists($news, $mediaItem['multimedia'])) === false) {
-                        /** @var Media $media */
-                        $media = $this->objectManager->get(Media::class);
-                        $media->setMultimedia($mediaItem['multimedia']);
-                        $news->addMedia($media);
+                // file not inside a storage then search for same file based on hash (to prevent duplicates)
+                if ($file->getStorage()->getUid() === 0) {
+                    $existingFile = $this->findFileByHash($file->getSha1());
+                    if ($existingFile !== null) {
+                        $file = $existingFile;
                     }
+                }
 
-                    if (isset($mediaItem['caption'])) {
-                        $media->setDescription($mediaItem['caption']);
-                    }
-                    if (isset($mediaItem['copyright'])) {
-                        $media->setCopyright($mediaItem['copyright']);
-                    }
-                    if (isset($mediaItem['showinpreview'])) {
-                        $media->setShowinpreview($mediaItem['showinpreview']);
-                    }
-                    $media->setType($mediaItem['type']);
-                    $media->setPid($importItem['pid']);
+                /** @var $media FileReference */
+                if (!$media = $this->getIfFalRelationIfAlreadyExists($news->getFalMedia(), $file)) {
 
-                    // Images FAL enabled
-                } elseif ($this->emSettings->getUseFal() > 0) {
-
-                    // get fileobject by given identifier (file UID, combined identifier or path/filename)
-                    try {
-                        $file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
-                    } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
-                        $file = false;
-                    }
-
-                    // no file found skip processing of this item
-                    if ($file === false) {
-                        continue;
-                    }
-
-                    // file not inside a storage then search for same file based on hash (to prevent duplicates)
+                    // file not inside a storage copy the one form storage 0 to the import folder
                     if ($file->getStorage()->getUid() === 0) {
-                        $existingFile = $this->findFileByHash($file->getSha1());
-                        if ($existingFile !== null) {
-                            $file = $existingFile;
-                        }
+                        $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
                     }
 
-                    /** @var $media FileReference */
-                    if (!$media = $this->getIfFalRelationIfAlreadyExists($news->getFalMedia(), $file)) {
+                    $media = $this->objectManager->get(FileReference::class);
+                    $media->setFileUid($file->getUid());
+                    $news->addFalMedia($media);
+                }
 
-                        // file not inside a storage copy the one form storage 0 to the import folder
-                        if ($file->getStorage()->getUid() === 0) {
-                            $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
-                        }
-
-                        $media = $this->objectManager->get(FileReference::class);
-                        $media->setFileUid($file->getUid());
-                        $news->addFalMedia($media);
-                    }
-
-                    if ($media) {
-                        $media->setTitle($mediaItem['title']);
-                        $media->setAlternative($mediaItem['alt']);
-                        $media->setDescription($mediaItem['caption']);
-                        $media->setShowinpreview($mediaItem['showinpreview']);
-                        $media->setPid($importItem['pid']);
-                    }
-                } else {
-
-                    if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['image'])) {
-
-                        $uniqueName = $basicFileFunctions->getUniqueName($mediaItem['image'],
-                            PATH_site . self::UPLOAD_PATH);
-
-                        copy(
-                            PATH_site . $mediaItem['image'],
-                            $uniqueName
-                        );
-
-                        $media = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Media::class);
-                        $news->addMedia($media);
-
-                        $media->setImage(basename($uniqueName));
-                    }
-
+                if ($media) {
                     $media->setTitle($mediaItem['title']);
-                    $media->setAlt($mediaItem['alt']);
-                    $media->setCaption($mediaItem['caption']);
-                    $media->setType($mediaItem['type']);
+                    $media->setAlternative($mediaItem['alt']);
+                    $media->setDescription($mediaItem['caption']);
                     $media->setShowinpreview($mediaItem['showinpreview']);
                     $media->setPid($importItem['pid']);
                 }
+                
             }
         }
 
         // related files
         if (is_array($importItem['related_files'])) {
+            foreach ($importItem['related_files'] as $fileItem) {
 
-            // FAL enabled
-            if ($this->emSettings->getUseFal() > 0) {
+                // get fileObject by given identifier (file UID, combined identifier or path/filename)
+                try {
+                    $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
+                } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+                    $file = false;
+                }
 
-                foreach ($importItem['related_files'] as $fileItem) {
+                // no file found skip processing of this item
+                if ($file === false) {
+                    continue;
+                }
 
-                    // get fileObject by given identifier (file UID, combined identifier or path/filename)
-                    try {
-                        $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
-                    } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
-                        $file = false;
-                    }
-
-                    // no file found skip processing of this item
-                    if ($file === false) {
-                        continue;
-                    }
-
-                    // file not inside a storage then search for same file based on hash (to prevent duplicates)
-                    if ($file->getStorage()->getUid() === 0) {
-                        $existingFile = $this->findFileByHash($file->getSha1());
-                        if ($existingFile !== null) {
-                            $file = $existingFile;
-                        }
-                    }
-
-                    /** @var $relatedFile FileReference */
-                    if (!$relatedFile = $this->getIfFalRelationIfAlreadyExists($news->getFalRelatedFiles(), $file)) {
-
-                        // file not inside a storage copy the one form storage 0 to the import folder
-                        if ($file->getStorage()->getUid() === 0) {
-                            $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
-                        }
-
-                        $relatedFile = $this->objectManager->get(FileReference::class);
-                        $relatedFile->setFileUid($file->getUid());
-                        $news->addFalRelatedFile($relatedFile);
-                    }
-
-                    if ($relatedFile) {
-                        $relatedFile->setTitle($fileItem['title']);
-                        $relatedFile->setDescription($fileItem['description']);
-                        $relatedFile->setPid($importItem['pid']);
+                // file not inside a storage then search for same file based on hash (to prevent duplicates)
+                if ($file->getStorage()->getUid() === 0) {
+                    $existingFile = $this->findFileByHash($file->getSha1());
+                    if ($existingFile !== null) {
+                        $file = $existingFile;
                     }
                 }
 
-            } else {
+                /** @var $relatedFile FileReference */
+                if (!$relatedFile = $this->getIfFalRelationIfAlreadyExists($news->getFalRelatedFiles(), $file)) {
 
-                foreach ($importItem['related_files'] as $file) {
-                    if (!$relatedFile = $this->getRelatedFileIfAlreadyExists($news, $file['file'])) {
-
-                        $uniqueName = $basicFileFunctions->getUniqueName($file['file'],
-                            PATH_site . self::UPLOAD_PATH);
-
-                        copy(
-                            PATH_site . $file['file'],
-                            $uniqueName
-                        );
-
-                        $relatedFile = $this->objectManager->get(\GeorgRinger\News\Domain\Model\File::class);
-                        $news->addRelatedFile($relatedFile);
-
-                        $relatedFile->setFile(basename($uniqueName));
+                    // file not inside a storage copy the one form storage 0 to the import folder
+                    if ($file->getStorage()->getUid() === 0) {
+                        $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
                     }
-                    $relatedFile->setTitle($file['title']);
-                    $relatedFile->setDescription($file['description']);
+
+                    $relatedFile = $this->objectManager->get(FileReference::class);
+                    $relatedFile->setFileUid($file->getUid());
+                    $news->addFalRelatedFile($relatedFile);
+                }
+
+                if ($relatedFile) {
+                    $relatedFile->setTitle($fileItem['title']);
+                    $relatedFile->setDescription($fileItem['description']);
                     $relatedFile->setPid($importItem['pid']);
                 }
             }
@@ -469,84 +387,6 @@ class NewsImportService extends AbstractImportService
     }
 
     /**
-     * Get media file if it exists
-     *
-     * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param string $mediaFile
-     * @return Boolean|\GeorgRinger\News\Domain\Model\Media
-     */
-    protected function getMediaIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $mediaFile)
-    {
-        $result = false;
-        $mediaItems = $news->getMedia();
-
-        if (isset($mediaItems) && $mediaItems->count() !== 0) {
-            foreach ($mediaItems as $mediaItem) {
-                $pathInfoItem = pathinfo($mediaItem->getImage());
-                $pathInfoMediaFile = pathInfo($mediaFile);
-                if (GeneralUtility::isFirstPartOfStr($pathInfoItem['filename'], $pathInfoMediaFile['filename']) &&
-                    $this->filesAreEqual(PATH_site . $mediaFile, PATH_site . self::UPLOAD_PATH . $mediaItem->getImage())
-                ) {
-                    $result = $mediaItem;
-                    break;
-                }
-            }
-        }
-        return $result;
-    }
-
-    /**
-     * Get multimedia object if it exists
-     *
-     * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param string $url
-     * @return Boolean|\GeorgRinger\News\Domain\Model\Media
-     */
-    protected function getMultiMediaIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $url)
-    {
-        $result = false;
-        $mediaItems = $news->getMedia();
-
-        if (isset($mediaItem) && $mediaItems->count() !== 0) {
-            foreach ($mediaItems as $mediaItem) {
-                if ($mediaItem->getMultimedia() === $url) {
-                    $result = $mediaItem;
-                    break;
-                }
-            }
-        }
-        return $result;
-    }
-
-    /**
-     * Get related file if it exists
-     *
-     * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param string $relatedFile
-     * @return Boolean|File
-     */
-    protected function getRelatedFileIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $relatedFile)
-    {
-        $result = false;
-        $relatedItems = $news->getRelatedFiles();
-
-        if ($relatedItems->count() !== 0) {
-            foreach ($relatedItems as $relatedItem) {
-                if ($relatedItem->getFile() == basename($relatedFile) &&
-                    $this->filesAreEqual(
-                        PATH_site . $relatedFile,
-                        PATH_site . self::UPLOAD_PATH . $relatedItem->getFile()
-                    )
-                ) {
-                    $result = $relatedItem;
-                    break;
-                }
-            }
-        }
-        return $result;
-    }
-
-    /**
      * Get an existing items from the references that matches the file
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference> $items
@@ -556,7 +396,8 @@ class NewsImportService extends AbstractImportService
     protected function getIfFalRelationIfAlreadyExists(
         \TYPO3\CMS\Extbase\Persistence\ObjectStorage $items,
         \TYPO3\CMS\Core\Resource\File $file
-    ) {
+    )
+    {
         $result = false;
         if ($items->count() !== 0) {
             /** @var $item FileReference */

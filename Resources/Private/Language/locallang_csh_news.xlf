@@ -78,9 +78,6 @@
 			<trans-unit id="related_from.description" xml:space="preserve">
 				<source>Show news which select current news record as related.</source>
 			</trans-unit>
-			<trans-unit id="related_files.description" xml:space="preserve">
-				<source>Define related files, e.g. PDFs</source>
-			</trans-unit>
 			<trans-unit id="related_links.description" xml:space="preserve">
 				<source>Define related links to internal and external pages.</source>
 			</trans-unit>

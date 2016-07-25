@@ -74,7 +74,6 @@
 			</f:if>
 
 			<f:render partial="Detail/FalMediaContainer" arguments="{media: newsItem.falMedia, settings:settings}" />
-			<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}" />
 
 			<!-- main text -->
 			<div class="news-text-wrap" itemprop="articleBody">
@@ -139,36 +138,6 @@
 									</n:link>
 								</li>
 
-							</f:for>
-						</ul>
-					</div>
-				</f:if>
-
-				<f:if condition="{newsItem.relatedFiles}">
-					<!-- Related files -->
-					<div class="news-related news-related-files">
-						<h4>
-							<f:translate key="related-files" />
-						</h4>
-						<ul>
-							<f:for each="{newsItem.relatedFiles}" as="relatedFile">
-								<li>
-									<span class="news-related-files-link">
-										<n:format.fileDownload file="uploads/tx_news/{relatedFile.file}" configuration="{settings.relatedFiles.download}">
-											<f:if condition="{relatedFile.title}">
-												<f:then>
-													{relatedFile.title}
-												</f:then>
-												<f:else>
-													{relatedFile.file}
-												</f:else>
-											</f:if>
-										</n:format.fileDownload>
-									</span>
-									<span class="news-related-files-size">
-										<n:format.fileSize file="uploads/tx_news/{relatedFile.file}" format="{settings.relatedFiles.fileSizeLabels}" />
-									</span>
-								</li>
 							</f:for>
 						</ul>
 					</div>
