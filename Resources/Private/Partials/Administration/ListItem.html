@@ -1,6 +1,6 @@
-{namespace n=GeorgRinger\News\ViewHelpers}
-
-<tr class="db_list_normal">
+<tr class="db_list_normal"
+	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers">
 	<td class="col-title">
 		<a href="#" class="t3-js-clickmenutrigger" data-table="tx_news_domain_model_news" data-uid="{newsItem.uid}" data-listframe="0">
 				<n:be.buttons.iconForRecord table="tx_news_domain_model_news" uid="{newsItem.uid}" title="{newsItem.title}" />
@@ -41,7 +41,6 @@
 			<f:for each="{newsItem.categories}" as="category" iteration="iterator">
 				<span title="UID: {category.uid}">{category.title}</span>
 				<f:if condition="{iterator.isLast}">
-					<f:then></f:then>
 					<f:else>,</f:else>
 				</f:if>
 			</f:for>

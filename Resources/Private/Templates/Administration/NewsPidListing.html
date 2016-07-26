@@ -1,4 +1,4 @@
-{namespace n=GeorgRinger\News\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
 <f:layout name="Backend/Default" />
 
@@ -34,7 +34,7 @@
 			</tr>
 		</thead>
 		<f:for each="{tree}" as="item">
-			<tr class="{f:if(condition: item.countNewsAndCategories, then: '', else: 'hide_line')}">
+			<tr class="{f:if(condition: item.countNewsAndCategories, else: 'hide_line')}">
 				<td nowrap="nowrap">
 					<f:format.html parseFuncTSPath="">{item.HTML}</f:format.html>
 					<f:link.action action="index" additionalParams="{id:item.row.uid}" title="UID: {item.row.uid}">{item.row.title}</f:link.action>
@@ -45,3 +45,4 @@
 		</f:for>
 	</table>
 </f:section>
+</html>

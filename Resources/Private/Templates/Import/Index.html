@@ -1,3 +1,5 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
 <f:layout name="Backend/Simple" />
 
 <f:section name="iconButtons">
@@ -83,12 +85,10 @@
 					params[parameterPrefix + '[' + key + ']'] = value;
 				});
 
-				var request = {
+				return {
 					'url': moduleUrl,
 					'params': params
 				};
-
-				return request;
 			};
 
 			return pub;
@@ -177,3 +177,4 @@
 		]]>
 	</script>
 </f:section>
+</html>

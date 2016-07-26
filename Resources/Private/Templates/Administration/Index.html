@@ -1,4 +1,6 @@
-{namespace n=GeorgRinger\News\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
 
 <f:layout name="Backend/Default" />
 
@@ -185,7 +187,7 @@
 						<tfoot>
 						<tr>
 							<td colspan="6">
-								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsCount" arguments="{0:'{f:count(subject:news)}'}" />
+								<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.newsCount" arguments="{0:'{news -> f:count()}'}" />
 							</td>
 						</tr>
 						</tfoot>
@@ -226,4 +228,4 @@
 		});
 	</script>
 </f:section>
-
+</html>

@@ -1,4 +1,7 @@
-{namespace n=GeorgRinger\News\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  xmlns:rx="http://typo3.org/ns/Reelworx/RxShariff/ViewHelper"
+	  data-namespace-typo3-fluid="true">
 
 <f:layout name="Detail.html" />
 
@@ -95,9 +98,7 @@
 					Care about the privacy of your readers?
 					Checkout https://typo3.org/extensions/repository/view/rx_shariff
 					and integrate it here with:
-					<div xmlns:rx="http://typo3.org/ns/Reelworx/RxShariff/ViewHelper">
-						<rx:shariff services="facebook,xing,twitter" enableBackend="true" />
-					</div>
+					<rx:shariff services="facebook,xing,twitter" enableBackend="true" />
 					]]>
 				</f:comment>
 				<div class="facebook">
@@ -189,3 +190,4 @@
 		</f:else>
 	</f:if>
 </f:section>
+</html>

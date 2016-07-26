@@ -1,6 +1,4 @@
-{namespace n=GeorgRinger\News\ViewHelpers}
-
-<div class="mediaelement mediaelement-image">
+<div class="mediaelement mediaelement-image" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers">
 	<f:if condition="{mediaElement.link}">
 		<f:then>
 			<f:link.page pageUid="{mediaElement.link}" target="{n:targetLink(link:mediaElement.link)}">
