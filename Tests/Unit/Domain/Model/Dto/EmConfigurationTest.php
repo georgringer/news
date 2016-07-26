@@ -32,7 +32,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$configuration = [
 			'removeListActionFromFlexforms' => '2',
 			'pageModuleFieldsNews' => 'test',
-			'pageModuleFieldsCategory' => 'test',
 			'tagPid' => 123,
 			'prependAtCopy' => TRUE,
 			'categoryRestriction' => 'fo',
@@ -65,7 +64,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$configuration = [
 			'removeListActionFromFlexforms' => 2,
 			'pageModuleFieldsNews' => '',
-			'pageModuleFieldsCategory' => '',
 			'tagPid' => 0,
 			'prependAtCopy' => TRUE,
 			'categoryRestriction' => '',

@@ -47,13 +47,6 @@ $boot = function () {
             }
         }
 
-        if ($configuration->getPageModuleFieldsCategory()) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['sys_category'][0] = [
-                'fList' => htmlspecialchars($configuration->getPageModuleFieldsCategory()),
-                'icon' => true
-            ];
-        }
-
         // Extend user settings
         $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = [
             'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.overlay',

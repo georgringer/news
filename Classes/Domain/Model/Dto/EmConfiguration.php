@@ -46,11 +46,6 @@ class EmConfiguration
     protected $pageModuleFieldsNews = '';
 
     /**
-     * @var string
-     */
-    protected $pageModuleFieldsCategory = '';
-
-    /**
      * @var int
      */
     protected $tagPid = 0;
@@ -127,14 +122,6 @@ class EmConfiguration
     public function getPageModuleFieldsNews()
     {
         return $this->pageModuleFieldsNews;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPageModuleFieldsCategory()
-    {
-        return $this->pageModuleFieldsCategory;
     }
 
     /**

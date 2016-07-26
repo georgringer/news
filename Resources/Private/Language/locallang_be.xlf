@@ -233,9 +233,6 @@
 				label=fieldlist;label=fieldlist
 			</source>
 			</trans-unit>
-			<trans-unit id="extmng.pageModuleFieldsCategory" xml:space="preserve">
-				<source>Category fields shown in page module:Set the fields which should be shown in the page module.</source>
-			</trans-unit>
 			<trans-unit id="extmng.prependAtCopy" xml:space="preserve">
 				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
 			</trans-unit>
