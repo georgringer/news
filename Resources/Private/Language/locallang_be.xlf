@@ -269,19 +269,6 @@
 			<trans-unit id="extmng.archiveDate.datetime" xml:space="preserve">
 				<source>Date &amp; Time</source>
 			</trans-unit>
-			<trans-unit id="extmng.removeListActionFromFlexforms" xml:space="preserve">
-				<source>List actions shown in Flexforms:There are 2 different list views: &quot;List only&quot; can only show the list view. This is for example neded if you need a list view at the same page as the detail view. &quot;List+Detail&quot; will show the same list view but will show the detail view if a news item is set via GET arguments. Be aware: If the setting is changed after news plugins have been created, all plugins need to be reconfigured by selecting the correct action!
-			</source>
-			</trans-unit>
-			<trans-unit id="extmng.removeListActionFromFlexforms.0" xml:space="preserve">
-				<source>Both views are shown</source>
-			</trans-unit>
-			<trans-unit id="extmng.removeListActionFromFlexforms.1" xml:space="preserve">
-				<source>List &amp; Detail</source>
-			</trans-unit>
-			<trans-unit id="extmng.removeListActionFromFlexforms.2" xml:space="preserve">
-				<source>List only</source>
-			</trans-unit>
 			<trans-unit id="extmng.showImporter" xml:space="preserve">
 				<source>Show importer:Backend module to import into news</source>
 			</trans-unit>

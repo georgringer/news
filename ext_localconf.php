@@ -2,9 +2,6 @@
 defined('TYPO3_MODE') or die();
 
 $boot = function () {
-    // Extension manager configuration
-    $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
-
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'GeorgRinger.news',
         'Pi1',

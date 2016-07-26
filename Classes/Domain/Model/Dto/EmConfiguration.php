@@ -38,11 +38,6 @@ class EmConfiguration
     /**
      * @var int
      */
-    protected $removeListActionFromFlexforms = 2;
-
-    /**
-     * @var int
-     */
     protected $tagPid = 0;
 
     /**
@@ -102,14 +97,6 @@ class EmConfiguration
      * @var string
      */
     protected $resourceFolderImporter = '/news_import';
-
-    /**
-     * @return int
-     */
-    public function getRemoveListActionFromFlexforms()
-    {
-        return (int)$this->removeListActionFromFlexforms;
-    }
 
     /**
      * @return int
