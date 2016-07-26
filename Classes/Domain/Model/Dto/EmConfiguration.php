@@ -41,11 +41,6 @@ class EmConfiguration
     protected $removeListActionFromFlexforms = 2;
 
     /**
-     * @var string
-     */
-    protected $pageModuleFieldsNews = '';
-
-    /**
      * @var int
      */
     protected $tagPid = 0;
@@ -97,7 +92,7 @@ class EmConfiguration
      * @var bool
      */
     protected $showAdministrationModule = true;
-    
+
     /**
      * @var int
      */
@@ -114,14 +109,6 @@ class EmConfiguration
     public function getRemoveListActionFromFlexforms()
     {
         return (int)$this->removeListActionFromFlexforms;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPageModuleFieldsNews()
-    {
-        return $this->pageModuleFieldsNews;
     }
 
     /**

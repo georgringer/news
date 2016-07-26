@@ -31,7 +31,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function settingsCanBeRead() {
 		$configuration = [
 			'removeListActionFromFlexforms' => '2',
-			'pageModuleFieldsNews' => 'test',
 			'tagPid' => 123,
 			'prependAtCopy' => TRUE,
 			'categoryRestriction' => 'fo',
@@ -63,7 +62,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function defaultSettingsCanBeRead() {
 		$configuration = [
 			'removeListActionFromFlexforms' => 2,
-			'pageModuleFieldsNews' => '',
 			'tagPid' => 0,
 			'prependAtCopy' => TRUE,
 			'categoryRestriction' => '',

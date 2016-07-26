@@ -228,11 +228,6 @@
 			<trans-unit id="pagemodule_complex" xml:space="preserve">
 				<source>Full list</source>
 			</trans-unit>
-			<trans-unit id="extmng.pageModuleFieldsNews" xml:space="preserve">
-				<source>News fields shown in page module:Set the fields which should be shown in the page module by using the following syntax:
-				label=fieldlist;label=fieldlist
-			</source>
-			</trans-unit>
 			<trans-unit id="extmng.prependAtCopy" xml:space="preserve">
 				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
 			</trans-unit>

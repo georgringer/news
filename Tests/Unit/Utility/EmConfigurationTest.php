@@ -102,7 +102,7 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 				serialize(['key' => 'value']), new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration([])
 			],
 			'validPropertiesFound' => [
-				serialize(['key' => 'value', 'pageModuleFieldsNews' => 'test']), new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration(['pageModuleFieldsNews' => 'test'])
+				serialize(['key' => 'value', 'resourceFolderImporter' => 'test']), new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration(['resourceFolderImporter' => 'test'])
 			],
 		];
 	}

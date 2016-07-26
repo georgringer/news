@@ -24,29 +24,6 @@ $boot = function () {
             2 => 'apps-pagetree-folder-contains-news'
         ];
 
-        /***************
-         * Show news table in page module
-         */
-        if ($configuration->getPageModuleFieldsNews()) {
-            $addTableItems = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(';',
-                $configuration->getPageModuleFieldsNews(), true);
-            foreach ($addTableItems as $item) {
-                $split = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode('=', $item, true);
-                if (count($split) == 2) {
-                    $fTitle = $split[0];
-                    $fList = $split[1];
-                } else {
-                    $fTitle = '';
-                    $fList = $split[0];
-                }
-                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['cms']['db_layout']['addTables']['tx_news_domain_model_news'][] = [
-                    'MENU' => $fTitle,
-                    'fList' => $fList,
-                    'icon' => true,
-                ];
-            }
-        }
-
         // Extend user settings
         $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = [
             'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.overlay',

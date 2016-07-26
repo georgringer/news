@@ -1,9 +1,6 @@
 # cat=basic/enable/1; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.removeListActionFromFlexforms.0=0,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.removeListActionFromFlexforms.1=1,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.removeListActionFromFlexforms.2=2]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.removeListActionFromFlexforms
 removeListActionFromFlexforms = 2
 
-# cat=basic/enable/40; type=string; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.pageModuleFieldsNews
-pageModuleFieldsNews = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pagemodule_simple=title,datetime;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pagemodule_advanced=title,datetime,teaser,categories;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pagemodule_complex=title,datetime,teaser,categories,archive;
-
 # Records
 ###########################
 # cat=records/enable/103; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.prependAtCopy
