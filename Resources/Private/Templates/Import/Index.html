@@ -2,10 +2,6 @@
 
 <f:layout name="Backend/Simple" />
 
-<f:section name="iconButtons">
-
-</f:section>
-
 <f:section name="content">
 	<h3 class="uppercase">
 		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.header" />
@@ -50,7 +46,7 @@
 
 	<script type="text/javascript">
 		var moduleUrl = '{f:format.raw(value: moduleUrl)}';
-		<![CDATA[
+		//<![CDATA[
 		Ext.namespace('Tx_News');
 
 		Tx_News.Common = function () {
@@ -174,7 +170,7 @@
 		Ext.onReady(function () {
 			Tx_News.Importer.init();
 		});
-		]]>
+		//]]>
 	</script>
 </f:section>
 </html>
