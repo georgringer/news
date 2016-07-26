@@ -19,7 +19,6 @@ use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
-use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -216,18 +215,14 @@ class PageLayoutView
                             'tx_news_domain_model_news', $newsRecord['uid'], true, '', '+info,edit');
 
                 } else {
-                    /** @var $message FlashMessage */
-                    $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', true),
+                    $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
                         $newsRecord['pid']);
-                    $message = GeneralUtility::makeInstance(FlashMessage::class, $text, '', FlashMessage::WARNING);
-                    $content = $message->render();
+                    $content = $this->generateCallout($text);
                 }
             } else {
-                /** @var $message FlashMessage */
-                $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.newsNotAvailable', true),
+                $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.newsNotAvailable'),
                     $singleNewsRecord);
-                $message = GeneralUtility::makeInstance(FlashMessage::class, $text, '', FlashMessage::WARNING);
-                $content = $message->render();
+                $content = $this->generateCallout($text);
             }
 
             $this->tableData[] = [
@@ -293,11 +288,9 @@ class PageLayoutView
             $content = BackendUtilityCore::wrapClickMenuOnIcon($data, 'pages', $pageRecord['uid'], true, '',
                 '+info,edit');
         } else {
-            /** @var $message FlashMessage */
-            $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable', true),
+            $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
                 $detailPid);
-            $message = GeneralUtility::makeInstance(FlashMessage::class, $text, '', FlashMessage::WARNING);
-            $content = $message->render();
+            $content = $this->generateCallout($text);
         }
 
         return $content;
@@ -622,6 +615,18 @@ class PageLayoutView
                 implode(', ', $pagesOut) . $recursiveLevelText
             ];
         }
+    }
+
+    /**
+     * Render an alert box
+     *
+     * @param string $text
+     * @return string
+     */
+    protected function generateCallout($text) {
+        return '<div class="alert alert-warning">
+            ' . htmlspecialchars($text) . '
+        </div>';
     }
 
     /**
