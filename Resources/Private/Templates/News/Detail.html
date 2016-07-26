@@ -18,12 +18,12 @@
 				<f:if condition="{newsItem.alternativeTitle}">
 					<f:then>
 						<n:titleTag>
-							<n:format.htmlentitiesDecode>{newsItem.alternativeTitle}</n:format.htmlentitiesDecode>
+							<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
 						</n:titleTag>
 					</f:then>
 					<f:else>
 						<n:titleTag>
-							<n:format.htmlentitiesDecode>{newsItem.title}</n:format.htmlentitiesDecode>
+							<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
 						</n:titleTag>
 					</f:else>
 				</f:if>
