@@ -49,13 +49,8 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @return void
 	 */
 	public function correctSysLanguageIsReturnedUsingTsfe() {
-		/** @var \GeorgRinger\\News\\Domain\\Repository\\CategoryRepository $mockTemplateParser */
-		if (version_compare(TYPO3_branch, '6.2', '>=')) {
-			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
+			$objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
 			$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
-		} else {
-			$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy']);
-		}
 		$result = $mockTemplateParser->_call('getSysLanguageUid');
 
 		// Default value
@@ -79,7 +74,7 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function correctSysLanguageIsReturnedUsingGetAndPostRequest() {
 		/** @var \GeorgRinger\News\Domain\Repository\CategoryRepository $mockedCategoryRepository */
 		if (version_compare(TYPO3_branch, '6.2', '>=')) {
-			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
+			$objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
 			$mockedCategoryRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
 		} else {
 			$mockedCategoryRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy']);
@@ -116,7 +111,7 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 */
 	public function categoryIdsAreCorrectlyReplaced($expectedResult, $given) {
 		if (version_compare(TYPO3_branch, '6.2', '>=')) {
-			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
+			$objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
 			$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
 		} else {
 			$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy']);

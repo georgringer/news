@@ -68,9 +68,6 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$settings = ['list' => 'foo', 'orderBy' => 'datetime'];
 
 		$mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch']);
-		$configurationManager = $this->getMock(
-			'TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'
-		);
 
 		$fixture = $this->getAccessibleMock(
 			'GeorgRinger\\News\\Controller\\TagController',
@@ -79,8 +76,8 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
 		$fixture->injectTagRepository($this->tagRepository);
-		$fixture->injectConfigurationManager($configurationManager);
-		$fixture->setView($this->getMock('TYPO3\CMS\Fluid\View\TemplateView', [], [], '', FALSE));
+		$fixture->injectConfigurationManager($this->getMockBuilder('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface')->getMock());
+		$fixture->setView($this->getMockBuilder('TYPO3\CMS\Fluid\View\TemplateView')->disableOriginalConstructor()->getMock());
 		$fixture->_set('settings', $settings);
 
 		$fixture->expects($this->once())->method('createDemandObjectFromSettings')

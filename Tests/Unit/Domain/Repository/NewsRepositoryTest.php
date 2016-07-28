@@ -38,16 +38,10 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$query = $this->getMock('\TYPO3\CMS\Extbase\Persistence\QueryInterface');
 		$query->expects($this->once())->method('equals')->with('istopnews', 1);
 
-		if (version_compare(TYPO3_branch, '6.2', '>=')) {
-			$objectManager = $this->getMock('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
-			$newsRepository = $this->getAccessibleMock(
-				'GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [$objectManager]
-			);
-		} else {
-			$newsRepository = $this->getAccessibleMock(
-				'GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy']
-			);
-		}
+		$objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
+		$newsRepository = $this->getAccessibleMock(
+			'GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [$objectManager->getMock()]
+		);
 		$newsRepository->_call('createConstraintsFromDemand', $query, $demand);
 	}
 
@@ -56,7 +50,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @expectedException \UnexpectedValueException
 	 */
 	public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven() {
-		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface');
+		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
 		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
 
 		$search = new Search();
@@ -73,7 +67,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @expectedException \UnexpectedValueException
 	 */
 	public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven() {
-		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface');
+		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
 		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
 
 		$search = new Search();
@@ -90,7 +84,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @expectedException \UnexpectedValueException
 	 */
 	public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven() {
-		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface');
+		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
 		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
 
 		$search = new Search();
@@ -106,7 +100,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function emptyConstraintIsReturnedForEmptySearchDemand() {
-		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface');
+		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
 		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
 
 		$demand = new NewsDemand();
@@ -119,7 +113,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function constraintsAreReturnedForSearchSubject() {
-		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface');
+		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
 		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
 
 		$search = new Search();
@@ -137,7 +131,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 * @test
 	 */
 	public function constraintsAreReturnedForDateFields() {
-		$mockedQuery = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface');
+		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
 		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
 
 		$search = new Search();
