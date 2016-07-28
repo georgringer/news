@@ -171,7 +171,6 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         $tsSettings,
         array $configuration = []
     ) {
-
         if (!isset($configuration['parameter'])) {
             $detailPid = 0;
             $detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'],
@@ -246,7 +245,8 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
      * @param array $configuration
      * @return string
      */
-    protected function getTargetConfiguration(array $configuration) {
+    protected function getTargetConfiguration(array $configuration)
+    {
         $configuration['returnLast'] = 'target';
 
         return $this->cObj->typoLink('dummy', $configuration);

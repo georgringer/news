@@ -147,5 +147,4 @@ class SuggestReceiverCall
 
         return $pid;
     }
-
 }

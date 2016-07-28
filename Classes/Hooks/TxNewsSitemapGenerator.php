@@ -14,11 +14,9 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 use DmitryDulepov\DdGooglesitemap\Generator\AbstractSitemapGenerator;
 use DmitryDulepov\DdGooglesitemap\Renderers\NewsSitemapRenderer;
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\MathUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class implements news sitemap
@@ -49,7 +47,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     /**
      * Indicates sitemap type
      *
-     * @var boolean
+     * @var bool
      */
     protected $isNewsSitemap;
 
@@ -63,7 +61,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     /**
      * If true, try to get the single pid for a news item from its (first) category with fallback to $this->singlePid
      *
-     * @var boolean
+     * @var bool
      */
     protected $useCategorySinglePid;
 
@@ -93,7 +91,6 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     protected function generateSitemapContent()
     {
         if (count($this->pidList) > 0) {
-
             $res = $this->getDatabaseConnection()->exec_SELECTquery('*',
                 'tx_news_domain_model_news', 'pid IN (' . implode(',', $this->pidList) . ')' .
                 ($this->isNewsSitemap ? ' AND crdate>=' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '') .
@@ -203,7 +200,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      * Check if supplied page id and current page are in the same root line
      *
      * @param    int $pid Page id to check
-     * @return    boolean    true if page is in the root line
+     * @return    bool    true if page is in the root line
      */
     protected function isInRootline($pid)
     {

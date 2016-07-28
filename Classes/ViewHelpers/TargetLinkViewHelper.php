@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -47,5 +47,4 @@ class TargetLinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
 
         return '';
     }
-
 }

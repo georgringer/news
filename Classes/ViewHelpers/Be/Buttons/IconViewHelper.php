@@ -54,7 +54,7 @@ class IconViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendView
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
      * Renders an icon link as known from the TYPO3 backend
      *

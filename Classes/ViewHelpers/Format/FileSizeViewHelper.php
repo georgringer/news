@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Format;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -44,7 +44,7 @@ class FileSizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
      * Renders the size of a file using \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize
      *
@@ -57,7 +57,6 @@ class FileSizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
      */
     public function render($file = null, $format = '', $hideError = false, $fileSize = null)
     {
-
         if (!is_null($file) && !is_file($file)) {
             $errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
             \TYPO3\CMS\Core\Utility\GeneralUtility::devLog($errorMessage, 'news',

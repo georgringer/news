@@ -19,19 +19,20 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
  * Tests for NothingViewHelper
  *
  */
-class NothingViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class NothingViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * Test of nothing viewHelper
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function noResultExpected() {
-		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Format\\NothingViewHelper', ['renderChildren']);
-		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('whatever content'));
-		$actualResult = $viewHelper->render();
-		$this->assertEquals(NULL, $actualResult);
-	}
-
+    /**
+     * Test of nothing viewHelper
+     *
+     * @test
+     * @return void
+     */
+    public function noResultExpected()
+    {
+        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Format\\NothingViewHelper', ['renderChildren']);
+        $viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('whatever content'));
+        $actualResult = $viewHelper->render();
+        $this->assertEquals(null, $actualResult);
+    }
 }

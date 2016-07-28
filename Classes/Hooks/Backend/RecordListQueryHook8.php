@@ -36,7 +36,6 @@ class RecordListQueryHook8
         array $fieldList,
         AbstractDatabaseRecordList $parentObject
     ) {
-
         if ($table === 'tt_content' && (int)$parentObject->searchLevels === 0 && $parentObject->id > 0) {
             $pageRecord = BackendUtility::getRecord('pages', $parentObject->id, 'uid', ' AND doktype="254" AND module="news"');
             if (is_array($pageRecord)) {

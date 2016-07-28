@@ -52,5 +52,4 @@ class EmConfiguration
         }
         return $settings;
     }
-
 }

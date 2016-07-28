@@ -1,7 +1,7 @@
 <?php
 namespace GeorgRinger\News\Controller;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -69,7 +69,7 @@ class CategoryController extends NewsController
         $idList = explode(',', $this->settings['categories']);
 
         $startingPoint = null;
-        if(!empty($this->settings['startingpoint'])){
+        if (!empty($this->settings['startingpoint'])) {
             $startingPoint = $this->settings['startingpoint'];
         }
 
@@ -83,5 +83,4 @@ class CategoryController extends NewsController
             $assignedValues);
         $this->view->assignMultiple($assignedValues);
     }
-
 }

@@ -113,7 +113,6 @@ class CategoryImportService extends AbstractImportService
                     // do nothing
                     break;
             }
-
         }
 
         $this->persistenceManager->persistAll();
@@ -279,7 +278,6 @@ class CategoryImportService extends AbstractImportService
             $l10nChildrenCategory->setL10nParent((int)$category->getUid());
             $l10nChildrenCategory->setSysLanguageUid((int)$sysLanguageUid);
         }
-
     }
 
     /**
@@ -293,5 +291,4 @@ class CategoryImportService extends AbstractImportService
         $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\CategoryImportService', $signalName,
             $signalArguments);
     }
-
 }

@@ -231,5 +231,4 @@ class ItemsProcFunc
     {
         return $GLOBALS['LANG'];
     }
-
 }

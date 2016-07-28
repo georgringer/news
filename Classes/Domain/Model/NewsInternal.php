@@ -1,7 +1,7 @@
 <?php
 namespace GeorgRinger\News\Domain\Model;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -20,5 +20,4 @@ namespace GeorgRinger\News\Domain\Model;
  */
 class NewsInternal extends \GeorgRinger\News\Domain\Model\News
 {
-
 }

@@ -109,5 +109,4 @@ Ext.Ajax.request({
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         return $iconFactory->getIcon('tx_news_domain_model_tag', Icon::SIZE_SMALL);
     }
-
 }

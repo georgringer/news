@@ -136,5 +136,4 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Controller\\' . $classPart, $signalName,
             $signalArguments);
     }
-
 }

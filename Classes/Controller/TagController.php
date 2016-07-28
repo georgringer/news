@@ -1,7 +1,7 @@
 <?php
 namespace GeorgRinger\News\Controller;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -67,5 +67,4 @@ class TagController extends NewsController
         $assignedValues = $this->emitActionSignal('TagController', self::SIGNAL_TAG_LIST_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
     }
-
 }

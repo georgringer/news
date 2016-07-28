@@ -626,5 +626,4 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
         $this->action = $action;
         $this->class = $controller;
     }
-
 }

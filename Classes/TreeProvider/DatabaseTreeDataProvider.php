@@ -149,5 +149,4 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
 
         return false;
     }
-
 }

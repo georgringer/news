@@ -68,7 +68,7 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
      * Render everything
      *

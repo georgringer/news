@@ -100,14 +100,12 @@ class PageLayoutView
                 $actionTranslation = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
 
                 $result .= $actionTranslation;
-
             } else {
                 $result .= $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
             }
             $result .= '<hr>';
 
             if (is_array($this->flexformData)) {
-
                 switch ($actionTranslationKey) {
                     case 'news_list':
                         $this->getStartingPoint();
@@ -213,7 +211,6 @@ class PageLayoutView
                             true, '', '+info,edit,view')
                         . $pageTitle . ': ' . BackendUtilityCore::wrapClickMenuOnIcon($iconNews . ' ' . $newsTitle,
                             'tx_news_domain_model_news', $newsRecord['uid'], true, '', '+info,edit');
-
                 } else {
                     $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
                         $newsRecord['pid']);
@@ -540,7 +537,6 @@ class PageLayoutView
 
         // Find correct title by looping over all options
         if (!empty($field)) {
-
             foreach ($this->templateLayoutsUtility->getAvailableTemplateLayouts($pageUid) as $layout) {
                 if ($layout[1] === $field) {
                     $title = $layout[0];
@@ -623,7 +619,8 @@ class PageLayoutView
      * @param string $text
      * @return string
      */
-    protected function generateCallout($text) {
+    protected function generateCallout($text)
+    {
         return '<div class="alert alert-warning">
             ' . htmlspecialchars($text) . '
         </div>';
@@ -691,5 +688,4 @@ class PageLayoutView
     {
         return $GLOBALS['TBE_TEMPLATE'];
     }
-
 }

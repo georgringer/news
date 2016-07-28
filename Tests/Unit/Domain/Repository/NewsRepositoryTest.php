@@ -22,117 +22,124 @@ use GeorgRinger\News\Domain\Model\Dto\Search;
  *
  *
  */
-class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-	
-	/**
-	 * @test
-	 * @expectedException \UnexpectedValueException
-	 */
-	public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven() {
-		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
+class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-		$search = new Search();
-		$search->setSubject('fo');
+    /**
+     * @test
+     * @expectedException \UnexpectedValueException
+     */
+    public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven()
+    {
+        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
-		$demand = new NewsDemand();
-		$demand->setSearch($search);
+        $search = new Search();
+        $search->setSubject('fo');
 
-		$mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-	}
+        $demand = new NewsDemand();
+        $demand->setSearch($search);
+
+        $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+    }
 //
-	/**
-	 * @test
-	 * @expectedException \UnexpectedValueException
-	 */
-	public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven() {
-		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
+    /**
+     * @test
+     * @expectedException \UnexpectedValueException
+     */
+    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven()
+    {
+        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
-		$search = new Search();
-		$search->setMaximumDate('2014-04-01');
+        $search = new Search();
+        $search->setMaximumDate('2014-04-01');
 
-		$demand = new NewsDemand();
-		$demand->setSearch($search);
+        $demand = new NewsDemand();
+        $demand->setSearch($search);
 
-		$mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-	}
+        $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+    }
 //
-	/**
-	 * @test
-	 * @expectedException \UnexpectedValueException
-	 */
-	public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven() {
-		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
+    /**
+     * @test
+     * @expectedException \UnexpectedValueException
+     */
+    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven()
+    {
+        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
-		$search = new Search();
-		$search->setMinimumDate('2014-04-01');
+        $search = new Search();
+        $search->setMinimumDate('2014-04-01');
 
-		$demand = new NewsDemand();
-		$demand->setSearch($search);
+        $demand = new NewsDemand();
+        $demand->setSearch($search);
 
-		$mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-	}
+        $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+    }
 //
-	/**
-	 * @test
-	 */
-	public function emptyConstraintIsReturnedForEmptySearchDemand() {
-		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
+    /**
+     * @test
+     */
+    public function emptyConstraintIsReturnedForEmptySearchDemand()
+    {
+        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
-		$demand = new NewsDemand();
-		$demand->setSearch(NULL);
-		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-		$this->assertEmpty($result);
-	}
+        $demand = new NewsDemand();
+        $demand->setSearch(null);
+        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $this->assertEmpty($result);
+    }
 
-	/**
-	 * @test
-	 */
-	public function constraintsAreReturnedForSearchSubject() {
-		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
+    /**
+     * @test
+     */
+    public function constraintsAreReturnedForSearchSubject()
+    {
+        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
-		$search = new Search();
-		$search->setSubject('Lorem');
-		$search->setFields('title,fo');
+        $search = new Search();
+        $search->setSubject('Lorem');
+        $search->setFields('title,fo');
 
-		$demand = new NewsDemand();
-		$demand->setSearch($search);
+        $demand = new NewsDemand();
+        $demand->setSearch($search);
 
-		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-		$this->assertEquals(1, count($result));
-	}
+        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $this->assertEquals(1, count($result));
+    }
 
-	/**
-	 * @test
-	 */
-	public function constraintsAreReturnedForDateFields() {
-		$mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-		$mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', FALSE);
+    /**
+     * @test
+     */
+    public function constraintsAreReturnedForDateFields()
+    {
+        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
-		$search = new Search();
-		$search->setMinimumDate('2014-01-01');
-		$search->setDateField('datetime');
+        $search = new Search();
+        $search->setMinimumDate('2014-01-01');
+        $search->setDateField('datetime');
 
-		$demand = new NewsDemand();
-		$demand->setSearch($search);
+        $demand = new NewsDemand();
+        $demand->setSearch($search);
 
-		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-		$this->assertEquals(1, count($result));
+        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $this->assertEquals(1, count($result));
 
-		$search->setMaximumDate('2015-01-01');
-		$demand->setSearch($search);
+        $search->setMaximumDate('2015-01-01');
+        $demand->setSearch($search);
 
-		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-		$this->assertEquals(2, count($result));
+        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $this->assertEquals(2, count($result));
 
-		$search->setMaximumDate('xyz');
-		$demand->setSearch($search);
+        $search->setMaximumDate('xyz');
+        $demand->setSearch($search);
 
-		$result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
-		$this->assertEquals(1, count($result));
-	}
+        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $this->assertEquals(1, count($result));
+    }
 }

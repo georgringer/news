@@ -127,9 +127,8 @@ class Page
      *
      * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
-    static protected function getBackendUser()
+    protected static function getBackendUser()
     {
         return $GLOBALS['BE_USER'];
     }
-
 }

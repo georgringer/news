@@ -95,5 +95,4 @@ class NewsRowInitializeNewTest extends UnitTestCase
 
         $this->assertEquals($expected, $provider->addData($result));
     }
-
 }

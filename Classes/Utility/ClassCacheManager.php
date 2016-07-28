@@ -72,7 +72,6 @@ class ClassCacheManager
                 }
             }
         }
-
     }
 
     /**

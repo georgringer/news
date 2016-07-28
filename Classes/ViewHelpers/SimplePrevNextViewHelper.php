@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -186,7 +186,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
             \TYPO3\CMS\Core\Resource\Utility\BackendUtility::getWorkspaceWhereClause($table);
         } elseif (TYPO3_MODE === 'BE' && TYPO3_cliMode === true) {
             return '';
-        } elseif(TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_CLI) {
+        } elseif (TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_CLI) {
             return '';
         }
 

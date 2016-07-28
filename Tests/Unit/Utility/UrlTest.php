@@ -21,33 +21,36 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Test class for Url
  *
  */
-class UrlTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class UrlTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @test
-	 * @dataProvider correctUrlIsDeliveredDataProvider
-	 */
-	public function correctUrlIsDelivered($actual, $expected) {
-		$this->assertEquals($expected, Url::prependDomain($actual));
-	}
+    /**
+     * @test
+     * @dataProvider correctUrlIsDeliveredDataProvider
+     */
+    public function correctUrlIsDelivered($actual, $expected)
+    {
+        $this->assertEquals($expected, Url::prependDomain($actual));
+    }
 
-	/**
-	 * Data provider
-	 *
-	 * @return array
-	 */
-	public function correctUrlIsDeliveredDataProvider() {
-		$currentDomain = GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
-		return [
-			'absoluteUrlIsUsed' => [
-				$currentDomain . 'index.php?id=123', $currentDomain . 'index.php?id=123'
-			],
-			'relativeUrlIsUsed' => [
-				'index.php?id=123', $currentDomain . 'index.php?id=123'
-			],
-			'domainOnlyIsGiven' => [
-				$currentDomain, $currentDomain
-			],
-		];
-	}
+    /**
+     * Data provider
+     *
+     * @return array
+     */
+    public function correctUrlIsDeliveredDataProvider()
+    {
+        $currentDomain = GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
+        return [
+            'absoluteUrlIsUsed' => [
+                $currentDomain . 'index.php?id=123', $currentDomain . 'index.php?id=123'
+            ],
+            'relativeUrlIsUsed' => [
+                'index.php?id=123', $currentDomain . 'index.php?id=123'
+            ],
+            'domainOnlyIsGiven' => [
+                $currentDomain, $currentDomain
+            ],
+        ];
+    }
 }

@@ -101,5 +101,4 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
 
         return $code;
     }
-
 }

@@ -20,65 +20,68 @@ use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
  * Tests for domains model News
  *
  */
-class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * Test if the settings can be read
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function settingsCanBeRead() {
-		$configuration = [
-			'tagPid' => 123,
-			'prependAtCopy' => TRUE,
-			'categoryRestriction' => 'fo',
-			'contentElementRelation' => FALSE,
-			'manualSorting' => FALSE,
-			'archiveDate' => 'bar',
-			'dateTimeNotRequired' => TRUE,
-			'showImporter' => TRUE,
-			'showAdministrationModule' => FALSE,
-			'rteForTeaser' => FALSE,
-			'storageUidImporter' => 1,
-			'resourceFolderImporter' => 'fo',
-		];
+    /**
+     * Test if the settings can be read
+     *
+     * @test
+     * @return void
+     */
+    public function settingsCanBeRead()
+    {
+        $configuration = [
+            'tagPid' => 123,
+            'prependAtCopy' => true,
+            'categoryRestriction' => 'fo',
+            'contentElementRelation' => false,
+            'manualSorting' => false,
+            'archiveDate' => 'bar',
+            'dateTimeNotRequired' => true,
+            'showImporter' => true,
+            'showAdministrationModule' => false,
+            'rteForTeaser' => false,
+            'storageUidImporter' => 1,
+            'resourceFolderImporter' => 'fo',
+        ];
 
-		$configurationInstance = new EmConfiguration($configuration);
+        $configurationInstance = new EmConfiguration($configuration);
 
-		foreach ($configuration as $key => $value) {
-			$functionName = 'get' . ucwords($key);
-			$this->assertEquals($value, $configurationInstance->$functionName());
-		}
-	}
+        foreach ($configuration as $key => $value) {
+            $functionName = 'get' . ucwords($key);
+            $this->assertEquals($value, $configurationInstance->$functionName());
+        }
+    }
 
-	/**
-	 * Test if default settings can be read
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function defaultSettingsCanBeRead() {
-		$configuration = [
-			'tagPid' => 0,
-			'prependAtCopy' => TRUE,
-			'categoryRestriction' => '',
-			'contentElementRelation' => FALSE,
-			'manualSorting' => FALSE,
-			'archiveDate' => 'date',
-			'dateTimeNotRequired' => false,
-			'showImporter' => FALSE,
-			'showAdministrationModule' => TRUE,
-			'rteForTeaser' => FALSE,
-			'storageUidImporter' => 1,
-			'resourceFolderImporter' => '/news_import',
-		];
+    /**
+     * Test if default settings can be read
+     *
+     * @test
+     * @return void
+     */
+    public function defaultSettingsCanBeRead()
+    {
+        $configuration = [
+            'tagPid' => 0,
+            'prependAtCopy' => true,
+            'categoryRestriction' => '',
+            'contentElementRelation' => false,
+            'manualSorting' => false,
+            'archiveDate' => 'date',
+            'dateTimeNotRequired' => false,
+            'showImporter' => false,
+            'showAdministrationModule' => true,
+            'rteForTeaser' => false,
+            'storageUidImporter' => 1,
+            'resourceFolderImporter' => '/news_import',
+        ];
 
-		$configurationInstance = new EmConfiguration([]);
+        $configurationInstance = new EmConfiguration([]);
 
-		foreach ($configuration as $key => $value) {
-			$functionName = 'get' . ucwords($key);
-			$this->assertEquals($value, $configurationInstance->$functionName());
-		}
-	}
+        foreach ($configuration as $key => $value) {
+            $functionName = 'get' . ucwords($key);
+            $this->assertEquals($value, $configurationInstance->$functionName());
+        }
+    }
 }

@@ -21,36 +21,37 @@ use GeorgRinger\News\ViewHelpers\Be\MultiEditLinkViewHelper;
  * Tests for MultiEditLinkViewHelper
  *
  */
-class MultiEditLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class MultiEditLinkViewhelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * Test if default file format works
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function viewHelperReturnsCorrectJavaScriptLink() {
-		$viewHelper = new MultiEditLinkViewHelper();
+    /**
+     * Test if default file format works
+     *
+     * @test
+     * @return void
+     */
+    public function viewHelperReturnsCorrectJavaScriptLink()
+    {
+        $viewHelper = new MultiEditLinkViewHelper();
 
-		$newsItem1 = new News();
-		$newsItem1->setTitle('Item 1');
-		$newsItem1->_setProperty('uid', 3);
-		$newsItem2 = new News();
-		$newsItem2->setTitle('Item 2');
-		$newsItem2->_setProperty('uid', 9);
+        $newsItem1 = new News();
+        $newsItem1->setTitle('Item 1');
+        $newsItem1->_setProperty('uid', 3);
+        $newsItem2 = new News();
+        $newsItem2->setTitle('Item 2');
+        $newsItem2->_setProperty('uid', 9);
 
-		$newsItems = new \SplObjectStorage();
-		$newsItems->attach($newsItem1);
-		$newsItems->attach($newsItem2);
+        $newsItems = new \SplObjectStorage();
+        $newsItems->attach($newsItem1);
+        $newsItems->attach($newsItem2);
 
-		$columns = 'title,description';
-		$actualResult = $viewHelper->render($newsItems, $columns);
+        $columns = 'title,description';
+        $actualResult = $viewHelper->render($newsItems, $columns);
 
-		$content = 'window.location.href=\'alt_doc.php?returnUrl=\'+T3_THIS_LOCATION+\'&edit[tx_news_domain_model_news][' .
-			'3,9' .
-			']=edit&columnsOnly=title,description&disHelp=1\';return false;';
+        $content = 'window.location.href=\'alt_doc.php?returnUrl=\'+T3_THIS_LOCATION+\'&edit[tx_news_domain_model_news][' .
+            '3,9' .
+            ']=edit&columnsOnly=title,description&disHelp=1\';return false;';
 
-		$this->assertEquals($content, $actualResult);
-	}
-
+        $this->assertEquals($content, $actualResult);
+    }
 }

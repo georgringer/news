@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -51,7 +51,6 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         $isVirtual,
         array &$enabledControls
     ) {
-
     }
 
     /**
@@ -81,5 +80,4 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
             $controlItems = $extraItem + $controlItems;
         }
     }
-
 }

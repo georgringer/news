@@ -101,7 +101,6 @@ class DataHandler
 
                     // If the category relation has been modified, no | is found anymore
                     if (strpos($fieldArray['categories'], '|') === false) {
-
                         $deniedCategories = AccessControlService::getAccessDeniedCategories($newsRecord);
                         if (is_array($deniedCategories)) {
                             foreach ($deniedCategories as $deniedCategory) {
@@ -113,9 +112,7 @@ class DataHandler
                             }
                         }
                     }
-
                 }
-
             }
         }
     }
@@ -160,5 +157,4 @@ class DataHandler
     {
         return $GLOBALS['TYPO3_DB'];
     }
-
 }

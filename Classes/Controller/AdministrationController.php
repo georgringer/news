@@ -225,7 +225,6 @@ class AdministrationController extends NewsController
     {
         $this->redirectToPageOnStart();
         if (is_null($demand)) {
-
             $demand = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand::class);
 
             // Preselect by TsConfig (e.g. tx_news.module.preselect.topNewsRestriction = 1)

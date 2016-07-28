@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Format;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -36,7 +36,7 @@ class NothingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
      * Render children but do nothing else
      *

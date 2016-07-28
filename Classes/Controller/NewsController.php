@@ -13,9 +13,9 @@ namespace GeorgRinger\News\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Controller of news records
@@ -108,7 +108,6 @@ class NewsController extends NewsBaseController
                 $cacheTagsSet = true;
             }
         }
-
     }
 
     /**
@@ -174,7 +173,6 @@ class NewsController extends NewsBaseController
      */
     protected function overwriteDemandObject($demand, $overwriteDemand)
     {
-
         foreach ($this->ignoredSettingsForOverride as $property) {
             unset($overwriteDemand[$property]);
         }
@@ -512,5 +510,4 @@ class NewsController extends NewsBaseController
     {
         $this->view = $view;
     }
-
 }

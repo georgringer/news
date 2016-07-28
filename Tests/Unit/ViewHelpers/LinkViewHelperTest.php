@@ -20,173 +20,184 @@ use GeorgRinger\News\Domain\Model\News;
 /**
  * Test for LinkViewHelper
  */
-class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	protected $mockedContentObjectRenderer;
+    protected $mockedContentObjectRenderer;
 
-	protected $mockedViewHelper;
+    protected $mockedViewHelper;
 
-	/** @var News */
-	protected $newsItem;
+    /** @var News */
+    protected $newsItem;
 
-	/**
-	 * Set up
-	 */
-	public function setUp() {
-		$this->mockedViewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['init', 'renderChildren']);
-		$this->mockedContentObjectRenderer = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer', ['typoLink_URL', 'typoLink']);
-		$pluginSettings = $this->getAccessibleMock('GeorgRinger\\News\\Service\\SettingsService', ['getSettings']);
-		$tag = $this->getAccessibleMock('TYPO3\\CMS\\Fluid\\Core\\ViewHelper\\TagBuilder', ['addAttribute', 'setContent', 'render']);
-		$this->mockedViewHelper->_set('cObj', $this->mockedContentObjectRenderer);
-		$this->mockedViewHelper->_set('tag', $tag);
-		$this->mockedViewHelper->_set('pluginSettingsService', $pluginSettings);
+    /**
+     * Set up
+     */
+    public function setUp()
+    {
+        $this->mockedViewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['init', 'renderChildren']);
+        $this->mockedContentObjectRenderer = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer', ['typoLink_URL', 'typoLink']);
+        $pluginSettings = $this->getAccessibleMock('GeorgRinger\\News\\Service\\SettingsService', ['getSettings']);
+        $tag = $this->getAccessibleMock('TYPO3\\CMS\\Fluid\\Core\\ViewHelper\\TagBuilder', ['addAttribute', 'setContent', 'render']);
+        $this->mockedViewHelper->_set('cObj', $this->mockedContentObjectRenderer);
+        $this->mockedViewHelper->_set('tag', $tag);
+        $this->mockedViewHelper->_set('pluginSettingsService', $pluginSettings);
 
-		$this->newsItem = new News();
-	}
+        $this->newsItem = new News();
+    }
 
-	/**
-	 * @test
-	 */
-	public function internalPageIsUsed() {
-		$url = '123';
-		$result = ['parameter' => $url];
+    /**
+     * @test
+     */
+    public function internalPageIsUsed()
+    {
+        $url = '123';
+        $result = ['parameter' => $url];
 
-		$this->mockedContentObjectRenderer->expects($this->once())->method('typoLink_URL')->with($result);
+        $this->mockedContentObjectRenderer->expects($this->once())->method('typoLink_URL')->with($result);
 
-		$this->newsItem->setType(1);
-		$this->newsItem->setInternalurl($url);
+        $this->newsItem->setType(1);
+        $this->newsItem->setInternalurl($url);
 
-		$this->mockedViewHelper->render($this->newsItem);
-	}
+        $this->mockedViewHelper->render($this->newsItem);
+    }
 
-	/**
-	 * @test
-	 */
-	public function externalUrlIsUsed() {
-		$url = 'http://www.typo3.org';
-		$result = ['parameter' => $url];
+    /**
+     * @test
+     */
+    public function externalUrlIsUsed()
+    {
+        $url = 'http://www.typo3.org';
+        $result = ['parameter' => $url];
 
-		$this->mockedContentObjectRenderer->expects($this->once())->method('typoLink_URL')->with($result);
+        $this->mockedContentObjectRenderer->expects($this->once())->method('typoLink_URL')->with($result);
 
-		$this->newsItem->setType(2);
-		$this->newsItem->setExternalurl($url);
+        $this->newsItem->setType(2);
+        $this->newsItem->setExternalurl($url);
 
-		$this->mockedViewHelper->render($this->newsItem);
-	}
+        $this->mockedViewHelper->render($this->newsItem);
+    }
 
-	/**
-	 * @test
-	 * @return void
-	 */
-	public function humanReadAbleDateIsAddedToConfiguration() {
-		$dateTime = new \DateTime('2014-05-16');
-		$newsItem = new \GeorgRinger\News\Domain\Model\News();
-		$newsItem->_setProperty('uid', 123);
-		$newsItem->setDatetime($dateTime);
+    /**
+     * @test
+     * @return void
+     */
+    public function humanReadAbleDateIsAddedToConfiguration()
+    {
+        $dateTime = new \DateTime('2014-05-16');
+        $newsItem = new \GeorgRinger\News\Domain\Model\News();
+        $newsItem->_setProperty('uid', 123);
+        $newsItem->setDatetime($dateTime);
 
-		$tsSettings = [
-			'link' => [
-				'hrDate' => [
-					'_typoScriptNodeValue' => 1,
-					'day' => 'j',
-					'month' => 'n',
-					'year' => 'Y',
-				]
-			]
-		];
-		$configuration = [];
-		$expected = '&tx_news_pi1[news]=123&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[day]=16&tx_news_pi1[month]=5&tx_news_pi1[year]=2014';
+        $tsSettings = [
+            'link' => [
+                'hrDate' => [
+                    '_typoScriptNodeValue' => 1,
+                    'day' => 'j',
+                    'month' => 'n',
+                    'year' => 'Y',
+                ]
+            ]
+        ];
+        $configuration = [];
+        $expected = '&tx_news_pi1[news]=123&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[day]=16&tx_news_pi1[month]=5&tx_news_pi1[year]=2014';
 
-		$result = $this->mockedViewHelper->_call('getLinkToNewsItem', $newsItem, $tsSettings, $configuration);
-		$this->assertEquals($expected, $result['additionalParams']);
-	}
+        $result = $this->mockedViewHelper->_call('getLinkToNewsItem', $newsItem, $tsSettings, $configuration);
+        $this->assertEquals($expected, $result['additionalParams']);
+    }
 
-	/**
-	 * @test
-	 * @return void
-	 */
-	public function controllerAndActionAreSkippedInUrl() {
-		$newsItem = new \GeorgRinger\News\Domain\Model\News();
-		$newsItem->_setProperty('uid', 123);
+    /**
+     * @test
+     * @return void
+     */
+    public function controllerAndActionAreSkippedInUrl()
+    {
+        $newsItem = new \GeorgRinger\News\Domain\Model\News();
+        $newsItem->_setProperty('uid', 123);
 
-		$tsSettings = [
-			'link' => [
-				'skipControllerAndAction' => 1
-			]
-		];
-		$configuration = [];
-		$expected = '&tx_news_pi1[news]=123';
+        $tsSettings = [
+            'link' => [
+                'skipControllerAndAction' => 1
+            ]
+        ];
+        $configuration = [];
+        $expected = '&tx_news_pi1[news]=123';
 
-		$result = $this->mockedViewHelper->_call('getLinkToNewsItem', $newsItem, $tsSettings, $configuration);
-		$this->assertEquals($expected, $result['additionalParams']);
-	}
+        $result = $this->mockedViewHelper->_call('getLinkToNewsItem', $newsItem, $tsSettings, $configuration);
+        $this->assertEquals($expected, $result['additionalParams']);
+    }
 
-	/**
-	 * @test
-	 * @return void
-	 */
-	public function getDetailPidFromCategoriesReturnsCorrectValue() {
-		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['dummy']);
+    /**
+     * @test
+     * @return void
+     */
+    public function getDetailPidFromCategoriesReturnsCorrectValue()
+    {
+        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['dummy']);
 
-		$newsItem = new \GeorgRinger\News\Domain\Model\News();
+        $newsItem = new \GeorgRinger\News\Domain\Model\News();
 
-		$categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		$category1 = new Category();
-		$categories->attach($category1);
+        $categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $category1 = new Category();
+        $categories->attach($category1);
 
-		$category2 = new Category();
-		$category2->setSinglePid('123');
-		$categories->attach($category2);
+        $category2 = new Category();
+        $category2->setSinglePid('123');
+        $categories->attach($category2);
 
-		$category3 = new Category();
-		$category3->setSinglePid('456');
-		$categories->attach($category3);
+        $category3 = new Category();
+        $category3->setSinglePid('456');
+        $categories->attach($category3);
 
-		$newsItem->setCategories($categories);
+        $newsItem->setCategories($categories);
 
-		$result = $viewHelper->_call('getDetailPidFromCategories', [], $newsItem);
-		$this->assertEquals(123, $result);
-	}
+        $result = $viewHelper->_call('getDetailPidFromCategories', [], $newsItem);
+        $this->assertEquals(123, $result);
+    }
 
-	/**
-	 * @test
-	 * @dataProvider getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider
-	 * @return void
-	 */
-	public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected) {
-		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['dummy']);
+    /**
+     * @test
+     * @dataProvider getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider
+     * @return void
+     */
+    public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected)
+    {
+        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['dummy']);
 
-		$result = $viewHelper->_call('getDetailPidFromDefaultDetailPid', $settings, NULL);
-		$this->assertEquals($expected, $result);
-	}
+        $result = $viewHelper->_call('getDetailPidFromDefaultDetailPid', $settings, null);
+        $this->assertEquals($expected, $result);
+    }
 
-	public function getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider() {
-		return [
-			[NULL, 0],
-			[[], 0],
-			[['defaultDetailPid' => '789'], 789],
-			[['defaultDetailPid' => '45xy'], 45],
-		];
-	}
+    public function getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider()
+    {
+        return [
+            [null, 0],
+            [[], 0],
+            [['defaultDetailPid' => '789'], 789],
+            [['defaultDetailPid' => '45xy'], 45],
+        ];
+    }
 
-	/**
-	 * @test
-	 * @dataProvider getDetailPidFromFlexformReturnsCorrectValueDataProvider
-	 * @return void
-	 */
-	public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected) {
-		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['dummy']);
+    /**
+     * @test
+     * @dataProvider getDetailPidFromFlexformReturnsCorrectValueDataProvider
+     * @return void
+     */
+    public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected)
+    {
+        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['dummy']);
 
-		$result = $viewHelper->_call('getDetailPidFromFlexform', $settings, NULL);
-		$this->assertEquals($expected, $result);
-	}
+        $result = $viewHelper->_call('getDetailPidFromFlexform', $settings, null);
+        $this->assertEquals($expected, $result);
+    }
 
-	public function getDetailPidFromFlexformReturnsCorrectValueDataProvider() {
-		return [
-			[NULL, 0],
-			[[], 0],
-			[['detailPid' => '123'], 123],
-			[['detailPid' => '456xy'], 456],
-		];
-	}
+    public function getDetailPidFromFlexformReturnsCorrectValueDataProvider()
+    {
+        return [
+            [null, 0],
+            [[], 0],
+            [['detailPid' => '123'], 123],
+            [['detailPid' => '456xy'], 456],
+        ];
+    }
 }

@@ -85,5 +85,4 @@ class CommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
 
         return $code;
     }
-
 }

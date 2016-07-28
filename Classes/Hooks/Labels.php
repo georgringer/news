@@ -194,5 +194,4 @@ class Labels
 
         return $title;
     }
-
 }

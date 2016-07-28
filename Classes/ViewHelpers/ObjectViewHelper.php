@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -51,7 +51,7 @@ class ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
      * Output different objects
      *

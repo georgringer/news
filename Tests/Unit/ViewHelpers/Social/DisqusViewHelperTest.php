@@ -22,34 +22,36 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Tests for DisqusSizeViewHelper
  *
  */
-class DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * Test if default file format works
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function viewHelperReturnsCorrectJs() {
-		$newsItem = new News();
-		$newsItem->setTitle('fobar');
+    /**
+     * Test if default file format works
+     *
+     * @test
+     * @return void
+     */
+    public function viewHelperReturnsCorrectJs()
+    {
+        $newsItem = new News();
+        $newsItem->setTitle('fobar');
 
-		$language = 'en';
+        $language = 'en';
 
-		$viewHelper = new DisqusViewHelper();
-		$settingsService = $this->getAccessibleMock('GeorgRinger\\News\\Service\\SettingsService');
-		$settingsService->expects($this->any())
-			->method('getSettings')
-			->will($this->returnValue(['disqusLocale' => $language]));
+        $viewHelper = new DisqusViewHelper();
+        $settingsService = $this->getAccessibleMock('GeorgRinger\\News\\Service\\SettingsService');
+        $settingsService->expects($this->any())
+            ->method('getSettings')
+            ->will($this->returnValue(['disqusLocale' => $language]));
 
-		$viewHelper->injectSettingsService($settingsService);
-		$actualResult = $viewHelper->render($newsItem, 'abcdef', 'http://typo3.org/dummy/fobar.html');
+        $viewHelper->injectSettingsService($settingsService);
+        $actualResult = $viewHelper->render($newsItem, 'abcdef', 'http://typo3.org/dummy/fobar.html');
 
-		$expectedCode = '<script type="text/javascript">
-					var disqus_shortname = ' . GeneralUtility::quoteJSvalue('abcdef', TRUE) . ';
-					var disqus_identifier = ' . GeneralUtility::quoteJSvalue('news_' . $newUid, TRUE) . ';
+        $expectedCode = '<script type="text/javascript">
+					var disqus_shortname = ' . GeneralUtility::quoteJSvalue('abcdef', true) . ';
+					var disqus_identifier = ' . GeneralUtility::quoteJSvalue('news_' . $newUid, true) . ';
 					var disqus_url = ' . GeneralUtility::quoteJSvalue('http://typo3.org/dummy/fobar.html') . ';
-					var disqus_title = ' . GeneralUtility::quoteJSvalue('fobar', TRUE) . ';
+					var disqus_title = ' . GeneralUtility::quoteJSvalue('fobar', true) . ';
 					var disqus_config = function () {
 						this.language = ' . GeneralUtility::quoteJSvalue($language) . ';
 					};
@@ -61,7 +63,6 @@ class DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 					})();
 				</script>';
 
-		$this->assertEquals($expectedCode, $actualResult);
-	}
-
+        $this->assertEquals($expectedCode, $actualResult);
+    }
 }

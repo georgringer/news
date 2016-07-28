@@ -64,5 +64,4 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
             }
         }
     }
-
 }

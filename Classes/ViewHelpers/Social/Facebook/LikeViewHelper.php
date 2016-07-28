@@ -121,5 +121,4 @@ class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         $code .= '<div id="fb-root"></div>' . $this->tag->render();
         return $code;
     }
-
 }

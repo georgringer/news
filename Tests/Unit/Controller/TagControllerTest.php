@@ -23,70 +23,73 @@ use GeorgRinger\News\Domain\Repository\TagRepository;
  *
  *
  */
-class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @var TagController
-	 */
-	private $fixture = NULL;
+    /**
+     * @var TagController
+     */
+    private $fixture = null;
 
-	/**
-	 */
-	private $tagRepository = NULL;
+    /**
+     */
+    private $tagRepository = null;
 
-	/**
-	 * Set up framework
-	 *
-	 * @return void
-	 */
-	public function setUp() {
-		$this->fixture = new TagController();
+    /**
+     * Set up framework
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        $this->fixture = new TagController();
 
-		$this->tagRepository = $this->prophesize(TagRepository::class);
-	}
+        $this->tagRepository = $this->prophesize(TagRepository::class);
+    }
 
-	/**
-	 * Tear down framework
-	 *
-	 * @return void
-	 */
-	public function tearDown() {
-		unset($this->fixture, $this->tagRepository);
-	}
+    /**
+     * Tear down framework
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        unset($this->fixture, $this->tagRepository);
+    }
 
-	/**
-	 * Test for creating correct demand call
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function listActionFindsDemandedTagsByDemandFromSettings() {
-		$demand = new NewsDemand();
-		$settings = ['list' => 'foo', 'orderBy' => 'datetime'];
+    /**
+     * Test for creating correct demand call
+     *
+     * @test
+     * @return void
+     */
+    public function listActionFindsDemandedTagsByDemandFromSettings()
+    {
+        $demand = new NewsDemand();
+        $settings = ['list' => 'foo', 'orderBy' => 'datetime'];
 
-		$mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch']);
+        $mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch']);
 
-		$fixture = $this->getAccessibleMock(
-			'GeorgRinger\\News\\Controller\\TagController',
-			['createDemandObjectFromSettings', 'emitActionSignal']
-		);
-		$fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
+        $fixture = $this->getAccessibleMock(
+            'GeorgRinger\\News\\Controller\\TagController',
+            ['createDemandObjectFromSettings', 'emitActionSignal']
+        );
+        $fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
-		$fixture->_set('tagRepository', $this->tagRepository->reveal());
-		$fixture->injectConfigurationManager($this->getMockBuilder('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface')->getMock());
-		$fixture->setView($this->getMockBuilder('TYPO3\CMS\Fluid\View\TemplateView')->disableOriginalConstructor()->getMock());
-		$fixture->_set('settings', $settings);
+        $fixture->_set('tagRepository', $this->tagRepository->reveal());
+        $fixture->injectConfigurationManager($this->getMockBuilder('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface')->getMock());
+        $fixture->setView($this->getMockBuilder('TYPO3\CMS\Fluid\View\TemplateView')->disableOriginalConstructor()->getMock());
+        $fixture->_set('settings', $settings);
 
-		$fixture->expects($this->once())->method('createDemandObjectFromSettings')
-			->will($this->returnValue($demand));
-		$fixture->expects($this->once())->method('emitActionSignal')->will($this->returnValue([]));
+        $fixture->expects($this->once())->method('createDemandObjectFromSettings')
+            ->will($this->returnValue($demand));
+        $fixture->expects($this->once())->method('emitActionSignal')->will($this->returnValue([]));
 
         $this->tagRepository->findDemanded($demand)->shouldBeCalled();
 
-		$fixture->listAction();
+        $fixture->listAction();
 
-		// datetime must be removed
-		$this->assertEquals($fixture->_get('settings'), ['list' => 'foo']);
-	}
-
+        // datetime must be removed
+        $this->assertEquals($fixture->_get('settings'), ['list' => 'foo']);
+    }
 }

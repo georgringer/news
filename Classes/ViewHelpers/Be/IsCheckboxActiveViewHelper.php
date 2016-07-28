@@ -26,7 +26,7 @@ class IsCheckboxActiveViewHelper extends AbstractViewHelper
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
      * @param int $id
      * @param array $categories

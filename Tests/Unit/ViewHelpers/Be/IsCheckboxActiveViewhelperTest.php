@@ -14,9 +14,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Be;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\Be\IsCheckboxActiveViewHelper;
-use GeorgRinger\News\ViewHelpers\Be\MultiEditLinkViewHelper;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 /**

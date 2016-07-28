@@ -46,7 +46,7 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
         $conditions = [];
         $conditions[] = $query->in('uid', $idList);
 
-        if($startingPoint !== null) {
+        if ($startingPoint !== null) {
             $conditions[] = $query->in('pid', GeneralUtility::trimExplode(',', $startingPoint, true));
         }
 
@@ -120,5 +120,4 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
 
         return $orderings;
     }
-
 }

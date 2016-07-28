@@ -135,7 +135,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         $conditions = [];
         $conditions[] = $query->in('uid', $idList);
 
-        if(is_null($startingPoint) === false) {
+        if (is_null($startingPoint) === false) {
             $conditions[] = $query->in('pid', GeneralUtility::trimExplode(',', $startingPoint, true));
         }
 

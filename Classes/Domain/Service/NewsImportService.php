@@ -91,8 +91,7 @@ class NewsImportService extends AbstractImportService
      */
     public function injectTtContentRepository(
         \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
-    )
-    {
+    ) {
         $this->ttContentRepository = $ttContentRepository;
     }
 
@@ -144,9 +143,7 @@ class NewsImportService extends AbstractImportService
         \GeorgRinger\News\Domain\Model\News $news,
         array $importItem,
         array $importItemOverwrite
-    )
-    {
-
+    ) {
         if (!empty($importItemOverwrite)) {
             $importItem = array_merge($importItem, $importItemOverwrite);
         }
@@ -209,7 +206,6 @@ class NewsImportService extends AbstractImportService
 
         // media relation
         if (is_array($importItem['media'])) {
-
             foreach ($importItem['media'] as $mediaItem) {
                 // get fileobject by given identifier (file UID, combined identifier or path/filename)
                 try {
@@ -251,7 +247,6 @@ class NewsImportService extends AbstractImportService
                     $media->setShowinpreview($mediaItem['showinpreview']);
                     $media->setPid($importItem['pid']);
                 }
-                
             }
         }
 
@@ -348,7 +343,6 @@ class NewsImportService extends AbstractImportService
             $news = $this->initializeNewsRecord($importItem);
 
             $this->hydrateNewsRecord($news, $importItem, $importItemOverwrite);
-
         }
 
         $this->persistenceManager->persistAll();
@@ -383,7 +377,6 @@ class NewsImportService extends AbstractImportService
             $news->setSysLanguageUid($importItem['sys_language_uid']);
             $news->setL10nParent($parentNews->getUid());
         }
-
     }
 
     /**
@@ -396,8 +389,7 @@ class NewsImportService extends AbstractImportService
     protected function getIfFalRelationIfAlreadyExists(
         \TYPO3\CMS\Extbase\Persistence\ObjectStorage $items,
         \TYPO3\CMS\Core\Resource\File $file
-    )
-    {
+    ) {
         $result = false;
         if ($items->count() !== 0) {
             /** @var $item FileReference */

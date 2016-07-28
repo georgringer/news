@@ -69,7 +69,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 if ($subCategoryConstraint) {
                     $categoryConstraints[] = $query->logicalOr($subCategoryConstraint);
                 }
-
             } else {
                 $categoryConstraints[] = $query->contains('categories', $category);
             }
@@ -466,5 +465,4 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         return $constraints;
     }
-
 }
