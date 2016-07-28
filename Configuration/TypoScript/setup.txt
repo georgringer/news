@@ -85,11 +85,6 @@ plugin.tx_news {
 
 		demandClass =
 
-		mediaRenderer {
-			youtube {
-				additionalParams =
-			}
-		}
 
 		# --------------
 		#  Search
@@ -163,19 +158,6 @@ plugin.tx_news {
 					copyright = {$plugin.tx_news.rss.channel.copyright}
 					generator = {$plugin.tx_news.rss.channel.generator}
 					link = {$plugin.tx_news.rss.channel.link}
-				}
-			}
-		}
-
-		# --------------
-		#  Common
-		# --------------
-		relatedFiles {
-			fileSizeLabels =
-			download {
-				labelStdWrap {
-					cObject = TEXT
-					htmlSpecialChars = 1
 				}
 			}
 		}
