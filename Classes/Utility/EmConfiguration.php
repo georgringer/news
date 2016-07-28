@@ -15,7 +15,6 @@ namespace GeorgRinger\News\Utility;
  * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Utility class to get the settings from Extension Manager
@@ -33,7 +32,7 @@ class EmConfiguration
     public static function getSettings()
     {
         $configuration = self::parseSettings();
-        GeneralUtility::requireOnce(ExtensionManagementUtility::extPath('news') . 'Classes/Domain/Model/Dto/EmConfiguration.php');
+        require_once(ExtensionManagementUtility::extPath('news') . 'Classes/Domain/Model/Dto/EmConfiguration.php');
         $settings = new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration($configuration);
         return $settings;
     }
