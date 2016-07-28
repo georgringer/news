@@ -43,7 +43,7 @@ class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function titleTagIsSet() {
 		$title = 'Some title';
 		/** @var TitleTagViewHelper|\PHPUnit_Framework_MockObject_MockObject $viewHelper */
-		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['renderChildren']);
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['renderChildren']);
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue($title));
 
 		$viewHelper->render();

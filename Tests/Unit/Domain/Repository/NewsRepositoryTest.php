@@ -23,28 +23,7 @@ use GeorgRinger\News\Domain\Model\Dto\Search;
  *
  */
 class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-
-	/**
-	 * Test create constraints from demand including topnews setting
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function createConstraintsFromDemandForDemandWithTopnewsSetting1QueriesForIsTopNews() {
-		$demand = $this->getMock('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
-		$demand->expects($this->atLeastOnce())->method('getTopNewsRestriction')
-			->will($this->returnValue(1));
-
-		$query = $this->getMock('\TYPO3\CMS\Extbase\Persistence\QueryInterface');
-		$query->expects($this->once())->method('equals')->with('istopnews', 1);
-
-		$objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface');
-		$newsRepository = $this->getAccessibleMock(
-			'GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [$objectManager->getMock()]
-		);
-		$newsRepository->_call('createConstraintsFromDemand', $query, $demand);
-	}
-
+	
 	/**
 	 * @test
 	 * @expectedException \UnexpectedValueException

@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Rtehtmlarea\Extension\Language;
 
 /**
  * Tests for PageLayoutView
@@ -27,7 +28,7 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$languageService = $this->getMock('TYPO3\\CMS\\Core\\Utility\\GeneralUtility\\LanguageService', ['sL']);
+		$languageService = $this->getAccessibleMock(Language::class, ['sL']);
 		$languageService->expects($this->any())->method('sL')->will($this->returnValue('any language'));
 
 		$GLOBALS['LANG'] = $languageService;
@@ -193,7 +194,7 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	 */
 	public function getTemplateLayoutSettingsAddsValueIfFilled() {
 		$flexform = [];
-		$mockedTemplateLayout = $this->getMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getAvailableTemplateLayouts']);
+		$mockedTemplateLayout = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getAvailableTemplateLayouts']);
 
 		$mockedTemplateLayout->expects($this->once())->method('getAvailableTemplateLayouts')->will($this->returnValue([['bar', 'fo']]));
 

@@ -16,6 +16,7 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  */
 use GeorgRinger\News\Controller\TagController;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Repository\TagRepository;
 
 /**
  * Testcase for the TagController class.
@@ -30,7 +31,6 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	private $fixture = NULL;
 
 	/**
-	 * @var \GeorgRinger\News\Domain\Repository\TagRepository
 	 */
 	private $tagRepository = NULL;
 
@@ -42,10 +42,7 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	public function setUp() {
 		$this->fixture = new TagController();
 
-		$this->tagRepository = $this->getMock(
-			'GeorgRinger\\News\\Domain\\Repository\\TagRepository', [], [], '', FALSE
-		);
-		$this->fixture->injectTagRepository($this->tagRepository);
+		$this->tagRepository = $this->prophesize(TagRepository::class);
 	}
 
 	/**
@@ -75,7 +72,7 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		);
 		$fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
-		$fixture->injectTagRepository($this->tagRepository);
+		$fixture->_set('tagRepository', $this->tagRepository->reveal());
 		$fixture->injectConfigurationManager($this->getMockBuilder('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface')->getMock());
 		$fixture->setView($this->getMockBuilder('TYPO3\CMS\Fluid\View\TemplateView')->disableOriginalConstructor()->getMock());
 		$fixture->_set('settings', $settings);
@@ -84,8 +81,7 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 			->will($this->returnValue($demand));
 		$fixture->expects($this->once())->method('emitActionSignal')->will($this->returnValue([]));
 
-		$this->tagRepository->expects($this->once())->method('findDemanded')
-			->with($demand);
+        $this->tagRepository->findDemanded($demand)->shouldBeCalled();
 
 		$fixture->listAction();
 

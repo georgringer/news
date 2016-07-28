@@ -22,13 +22,13 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
 class NothingViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * Test of strip tags viewhelper
+	 * Test of nothing viewHelper
 	 *
 	 * @test
 	 * @return void
 	 */
 	public function noResultExpected() {
-		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\NothingViewHelper', ['renderChildren']);
+		$viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Format\\NothingViewHelper', ['renderChildren']);
 		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('whatever content'));
 		$actualResult = $viewHelper->render();
 		$this->assertEquals(NULL, $actualResult);
