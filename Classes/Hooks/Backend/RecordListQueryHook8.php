@@ -27,9 +27,10 @@ use TYPO3\CMS\Recordlist\RecordList\AbstractDatabaseRecordList;
  */
 class RecordListQueryHook8
 {
+    static protected $count = 0;
 
     public function buildQueryParametersPostProcess(
-        array $parameters,
+        array &$parameters,
         string $table,
         int $pageId,
         array $additionalConstraints,
@@ -43,18 +44,22 @@ class RecordListQueryHook8
                 if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
                     return;
                 }
-                $queryParts['WHERE'] = '1=2';
-                $message = GeneralUtility::makeInstance(
-                    FlashMessage::class,
-                    $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:hiddenContentElements.description'),
-                    '',
-                    FlashMessage::INFO
-                );
-                /** @var $flashMessageService \TYPO3\CMS\Core\Messaging\FlashMessageService */
-                $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
-                /** @var $defaultFlashMessageQueue \TYPO3\CMS\Core\Messaging\FlashMessageQueue */
-                $defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
-                $defaultFlashMessageQueue->enqueue($message);
+                $parameters['where'][] = '1=2';
+
+                if (self::$count === 0) {
+                    $message = GeneralUtility::makeInstance(
+                        FlashMessage::class,
+                        $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:hiddenContentElements.description'),
+                        '',
+                        FlashMessage::INFO
+                    );
+                    /** @var $flashMessageService \TYPO3\CMS\Core\Messaging\FlashMessageService */
+                    $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
+                    /** @var $defaultFlashMessageQueue \TYPO3\CMS\Core\Messaging\FlashMessageQueue */
+                    $defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
+                    $defaultFlashMessageQueue->enqueue($message);
+                }
+                self::$count++;
             }
         }
     }
