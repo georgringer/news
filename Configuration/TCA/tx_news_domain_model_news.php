@@ -242,7 +242,7 @@ $tx_news_domain_model_news = [
         ],
         'archive' => [
             'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
+            'l10n_mode' => 'copy',
             'label' => $ll . 'tx_news_domain_model_news.archive',
             'config' => [
                 'type' => 'input',
