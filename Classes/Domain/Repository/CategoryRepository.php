@@ -170,8 +170,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     protected function overlayTranslatedCategoryIds(array &$idList)
     {
         $language = $this->getSysLanguageUid();
-
-        if ($language > 0) {
+        if ($language > 0 && !empty($idList)) {
             if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
                 $whereClause = 'sys_language_uid=' . $language . ' AND l10n_parent IN(' . implode(',',
                         $idList) . ')' . $GLOBALS['TSFE']->sys_page->enableFields('sys_category');
