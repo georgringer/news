@@ -14,7 +14,9 @@ namespace GeorgRinger\News\Tests\Unit\Functional\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use DateTime;
 use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Core\Database\DatabaseConnection;
 
 /**
  * Class SimplePrevNextViewHelperTest
@@ -49,25 +51,15 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestC
      */
     public function allNeighboursCanBeFound()
     {
-        $this->news->_setProperty('uid', 103);
+        $this->setDate(1396035186);
 
-        $fo = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
+        $actual = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
 
         $exp = [
-            0 => [
-                'uid' => 102,
-                'title' => null
-            ],
-            1 => [
-                'uid' => 103,
-                'title' => null
-            ],
-            2 => [
-                'uid' => 104,
-                'title' => null
-            ]
+            'prev' => $this->getRow(102),
+            'next' => $this->getRow(104)
         ];
-        $this->assertEquals($exp, $fo);
+        $this->assertEquals($exp, $actual);
     }
 
     /**
@@ -76,17 +68,14 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestC
      */
     public function nextNeighbourCanBeFound()
     {
-        $this->news->_setProperty('uid', 101);
+        $this->setDate(1395516730);
 
-        $fo = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
+        $actual = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
 
         $exp = [
-            0 => [
-                'uid' => 102,
-                'title' => null
-            ],
+            'next' => $this->getRow(102)
         ];
-        $this->assertEquals($exp, $fo);
+        $this->assertEquals($exp, $actual);
     }
 
     /**
@@ -95,20 +84,34 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestC
      */
     public function previousNeighbourCanBeFound()
     {
-        $this->news->_setProperty('uid', 106);
-
-        $fo = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
-
+        $this->setDate(1396640035);
+        $actual = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
         $exp = [
-            0 => [
-                'uid' => 105,
-                'title' => null
-            ],
-            1 => [
-                'uid' => 106,
-                'title' => null
-            ],
+            'prev' => $this->getRow(105)
         ];
-        $this->assertEquals($exp, $fo);
+        $this->assertEquals($exp, $actual);
+    }
+
+    /**
+     * @param int $timestamp
+     */
+    protected function setDate($timestamp)
+    {
+        $date = new DateTime();
+        $date->setTimestamp($timestamp);
+        $this->news->_setProperty('datetime', $date);
+    }
+
+    protected function getRow($id)
+    {
+        return $this->getDb()->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . (int)$id);
+    }
+
+    /**
+     * @return DatabaseConnection
+     */
+    protected function getDb()
+    {
+        return $GLOBALS['TYPO3_DB'];
     }
 }

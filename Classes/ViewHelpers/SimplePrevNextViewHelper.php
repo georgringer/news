@@ -3,17 +3,19 @@
 namespace GeorgRinger\News\ViewHelpers;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
+use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Core\Database\DatabaseConnection;
 
 /**
  * ViewHelper for a **simple** prev/next link.
@@ -84,7 +86,6 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      * @param string $pidList this is something
      * @param string $sortField
      * @param string $as
-     * @throws TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\News $news, $pidList = '', $sortField = 'datetime', $as)
@@ -107,28 +108,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      */
     protected function mapResultToObjects(array $result)
     {
-        $out = $tmp = [];
-        $count = count($result);
-
-        switch ($count) {
-            case 3:
-                $tmp['prev'] = $result[0];
-                $tmp['next'] = $result[2];
-                break;
-            case 2:
-                $tmp['prev'] = $result[0];
-                break;
-            case 1:
-                $tmp['next'] = $result[0];
-                break;
-            case 0:
-                // no next or prev news, shit happens....
-                break;
-            default:
-                throw new \UnexpectedValueException(sprintf('Unexpected count of "%s" which is not implemented!', $count));
-        }
-
-        foreach ($tmp as $_id => $single) {
+        foreach ($result as $_id => $single) {
             $out[$_id] = $this->getObject($single['uid']);
         }
 
@@ -161,9 +141,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         }
 
         if (is_array($rawRecord)) {
-            $className = 'GeorgRinger\\News\\Domain\\Model\\News';
-
-            $records = $this->dataMapper->map($className, [$rawRecord]);
+            $records = $this->dataMapper->map(News::class, [$rawRecord]);
             $record = array_shift($records);
         }
 
@@ -177,20 +155,11 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      */
     protected function getEnableFieldsWhereClauseForTable()
     {
-        $table = 'tx_news_domain_model_news';
         if (is_object($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']->sys_page)) {
-            return $GLOBALS['TSFE']->sys_page->enableFields($table);
-        } elseif (is_object($GLOBALS['BE_USER'])) {
-            return \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause($table) .
-            \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields($table) .
-            \TYPO3\CMS\Core\Resource\Utility\BackendUtility::getWorkspaceWhereClause($table);
-        } elseif (TYPO3_MODE === 'BE' && TYPO3_cliMode === true) {
-            return '';
-        } elseif (TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_CLI) {
-            return '';
+            return $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
         }
 
-        throw new \UnexpectedValueException('No TSFE for frontend and no BE_USER for Backend defined, please report the issue!');
+        return '';
     }
 
     /**
@@ -201,46 +170,41 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      */
     protected function getNeighbours(\GeorgRinger\News\Domain\Model\News $news, $pidList, $sortField)
     {
+        $data = [];
         $pidList = empty($pidList) ? $news->getPid() : $pidList;
 
-        $select = 'SELECT tx_news_domain_model_news.uid,tx_news_domain_model_news.title ';
-        $from = 'FROM tx_news_domain_model_news';
-        $whereClause = 'tx_news_domain_model_news.pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
-            . $this->getEnableFieldsWhereClauseForTable();
-
-        $query = $select . $from . '
-					WHERE ' . $whereClause . ' && ' . $sortField . ' >= (SELECT MAX(' . $sortField . ')
-						' . $from . '
-					WHERE ' . $whereClause . ' AND ' . $sortField . ' < (SELECT ' . $sortField . '
-						FROM tx_news_domain_model_news
-						WHERE tx_news_domain_model_news.uid = ' . $news->getUid() . '))
-					ORDER BY ' . $sortField . ' ASC
-					LIMIT 3';
-
-        $query2 = $select . $from . '
-			WHERE ' . $whereClause . ' AND ' . $sortField . '= (SELECT MIN(' . $sortField . ')
-				FROM tx_news_domain_model_news
-				WHERE ' . $whereClause . ' AND ' . $sortField . ' >
-					(SELECT ' . $sortField . '
-					FROM tx_news_domain_model_news
-					WHERE tx_news_domain_model_news.uid = ' . $news->getUid() . '))
-			';
-
-        $res = $this->databaseConnection->sql_query($query);
-        $out = [];
-        while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
-            $out[] = $row;
-        }
-        $this->databaseConnection->sql_free_result($res);
-
-        if (count($out) === 0) {
-            $res = $this->databaseConnection->sql_query($query2);
-            while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
-                $out[] = $row;
+        foreach (['prev', 'next'] as $label) {
+            $whereClause = 'sys_language_uid = 0 AND pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
+                . $this->getEnableFieldsWhereClauseForTable();
+            switch ($label) {
+                case 'prev':
+                    $selector = '<';
+                    $order = 'desc';
+                    break;
+                case 'next':
+                    $selector = '>';
+                    $order = 'asc';
             }
-            $this->databaseConnection->sql_free_result($res);
-            return $out;
+            $getter = 'get' . ucfirst($sortField) . '';
+            $whereClause .= sprintf(' AND %s %s %s', $sortField, $selector, $news->$getter()->getTimeStamp());
+            $row = $this->getDb()->exec_SELECTgetSingleRow(
+                '*',
+                'tx_news_domain_model_news',
+                $whereClause,
+                '',
+                $sortField . ' ' . $order);
+            if (is_array($row)) {
+                $data[$label] = $row;
+            }
         }
-        return $out;
+        return $data;
+    }
+
+    /**
+     * @return DatabaseConnection
+     */
+    protected function getDb()
+    {
+        return $GLOBALS['TYPO3_DB'];
     }
 }
