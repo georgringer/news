@@ -29,6 +29,28 @@
 				</f:if>
 				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
 			</n:format.nothing>
+			<f:if condition="{settings.detail.showPrevNext}">
+				<n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime">
+					<f:if condition="{paginated}">
+						<ul class="pager">
+							<f:if condition="{paginated.prev}">
+								<li class="previous">
+									<n:link newsItem="{paginated.prev}" settings="{settings}">
+										<span aria-hidden="true">&larr; </span>{paginated.prev.title}
+									</n:link>
+								</li>
+							</f:if>
+							<f:if condition="{paginated.next}">
+								<li class="next">
+									<n:link newsItem="{paginated.next}" settings="{settings}" class="next">
+										{paginated.next.title} <span aria-hidden="true"> &rarr;</span>
+									</n:link>
+								</li>
+							</f:if>
+						</ul>
+					</f:if>
+				</n:simplePrevNext>
+			</f:if>
 			<div class="header">
 				<h3 itemprop="headline">{newsItem.title}</h3>
 			</div>
