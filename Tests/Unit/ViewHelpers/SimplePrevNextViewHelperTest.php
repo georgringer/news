@@ -58,9 +58,8 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
         $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
 
         $in = [
-            0 => ['uid' => 123],
-            1 => ['uid' => 456],
-            2 => ['uid' => 789],
+            'prev' => ['uid' => 123],
+            'next' => ['uid' => 789],
         ];
         $exp = ['prev' => 123, 'next' => 789];
         $viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(123));
@@ -77,8 +76,7 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
         $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
 
         $in = [
-            0 => ['uid' => 147],
-            1 => ['uid' => 258],
+            'prev' => ['uid' => 147],
         ];
         $exp = ['prev' => 147];
         $viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(147));
@@ -94,7 +92,7 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
         $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
 
         $in = [
-            0 => ['uid' => 369],
+            'next' => ['uid' => 369],
         ];
         $exp = ['next' => 369];
         $viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(369));
@@ -102,20 +100,4 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
         $this->assertEquals($out, $exp);
     }
 
-    /**
-     * @test
-     * @expectedException \UnexpectedValueException
-     */
-    public function queryResultWillReturnExceptionForUnknownCount()
-    {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
-
-        $in = [
-            0 => ['uid' => 369],
-            1 => ['uid' => 369],
-            2 => ['uid' => 369],
-            3 => ['uid' => 369],
-        ];
-        $out = $viewHelper->_call('mapResultToObjects', $in);
-    }
 }
