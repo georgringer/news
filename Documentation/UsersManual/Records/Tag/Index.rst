@@ -50,7 +50,7 @@ Properties
          .. code-block:: html
          <f:if condition="{tags.0.title}">
            <n:titleTag>
-             <n:format.htmlentitiesDecode>{tags.0.title}</n:format.htmlentitiesDecode>
+             <f:format.htmlentitiesDecode>{tags.0.title}</f:format.htmlentitiesDecode>
            </n:titleTag>
          </f:if>
 
