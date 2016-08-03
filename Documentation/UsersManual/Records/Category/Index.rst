@@ -80,7 +80,7 @@ Properties
          .. code-block:: html
          <f:if condition="{categories.0.title}">
            <n:titleTag>
-             <n:format.htmlentitiesDecode>{categories.0.title}</n:format.htmlentitiesDecode>
+             <f:format.htmlentitiesDecode>{categories.0.title}</f:format.htmlentitiesDecode>
            </n:titleTag>
          </f:if>
 
