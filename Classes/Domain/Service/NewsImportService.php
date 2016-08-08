@@ -151,7 +151,7 @@ class NewsImportService extends AbstractImportService
         $news->setHidden($importItem['hidden']);
         $news->setStarttime($importItem['starttime']);
         $news->setEndtime($importItem['endtime']);
-        $news->setFeGroup($importItem['fe_group']);
+        $news->setFeGroup((string)$importItem['fe_group']);
         $news->setTstamp($importItem['tstamp']);
         $news->setCrdate($importItem['crdate']);
         $news->setSysLanguageUid($importItem['sys_language_uid']);
@@ -161,7 +161,7 @@ class NewsImportService extends AbstractImportService
         $news->setTeaser($importItem['teaser']);
         $news->setBodytext($importItem['bodytext']);
 
-        $news->setType($importItem['type']);
+        $news->setType((string)$importItem['type']);
         $news->setKeywords($importItem['keywords']);
         $news->setDatetime(new \DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
         $news->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
