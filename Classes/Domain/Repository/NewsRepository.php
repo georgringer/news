@@ -151,7 +151,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         // Time restriction less than or equal
         if ($demand->getTimeRestrictionHigh()) {
-            $timeLimit = ConstraintHelper::getTimeRestrictionHigh($demand);
+            $timeLimit = ConstraintHelper::getTimeRestrictionHigh($demand->getTimeRestrictionHigh());
 
             $constraints['timeRestrictionLess'] = $query->lessThanOrEqual(
                 $timeRestrictionField,
