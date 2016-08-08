@@ -40,7 +40,6 @@ class CategoryService
         $additionalWhere = '',
         $removeGivenIdListFromResult = false
     ) {
-        /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
         $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
         $cacheIdentifier = sha1('children' . $idList);
 
@@ -83,7 +82,6 @@ class CategoryService
      */
     public static function getRootline($id, $additionalWhere = '')
     {
-        /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
         $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
         $cacheIdentifier = sha1('rootline' . $id);
 

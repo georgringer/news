@@ -69,7 +69,6 @@ class AccessControlService
             return [];
         }
 
-        /** @var CategoryService $catService */
         $catService = GeneralUtility::makeInstance(CategoryService::class);
         $subCategories = $catService->getChildrenCategories(implode(',', $backendUserCategories));
         if (!empty($subCategories)) {

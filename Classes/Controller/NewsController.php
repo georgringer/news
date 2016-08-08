@@ -465,7 +465,6 @@ class NewsController extends NewsBaseController
 
         // Use stdWrap for given defined settings
         if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
-            /** @var  \TYPO3\CMS\Extbase\Service\TypoScriptService $typoScriptService */
             $typoScriptService = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\TypoScriptService::class);
             $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
             $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
@@ -481,7 +480,6 @@ class NewsController extends NewsBaseController
 
         // start override
         if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
-            /** @var \GeorgRinger\News\Utility\TypoScript $typoScriptUtility */
             $typoScriptUtility = GeneralUtility::makeInstance(\GeorgRinger\News\Utility\TypoScript::class);
             $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
         }

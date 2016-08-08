@@ -40,7 +40,6 @@ class CategoryImportService extends AbstractImportService
 
     public function __construct()
     {
-        /** @var \TYPO3\CMS\Core\Log\Logger $logger */
         $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
         $this->logger = $logger;
 
@@ -135,7 +134,6 @@ class CategoryImportService extends AbstractImportService
         if (is_null($category)) {
             $this->logger->info('Category is new');
 
-            /** @var $category Category */
             $category = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Category::class);
             $this->categoryRepository->add($category);
         } else {
@@ -219,7 +217,6 @@ class CategoryImportService extends AbstractImportService
                 }
             }
 
-            /** @var FileReference $fileReference */
             $fileReference = $this->objectManager->get(\GeorgRinger\News\Domain\Model\FileReference::class);
             $fileReference->setFileUid($newImage->getUid());
             $fileReference->setPid($category->getPid());

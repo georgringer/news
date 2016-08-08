@@ -154,7 +154,6 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
         $link = '';
         if (is_string($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink']) && is_array($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink'])) {
             $cObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
-            /** @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj */
             $cObj->start($newsRow, 'tx_news_domain_model_news');
             $cObj->setCurrentVal($forceSinglePid ?: $this->singlePid);
             $link = $cObj->cObjGetSingle($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink'],

@@ -54,7 +54,6 @@ class NewsImportService extends AbstractImportService
 
     public function __construct()
     {
-        /** @var \TYPO3\CMS\Core\Log\Logger $logger */
         $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
         $this->logger = $logger;
 

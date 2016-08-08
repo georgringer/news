@@ -60,7 +60,6 @@ class FormEngine
             }
             $flashMessageContent .= '</ul>';
 
-            /** @var FlashMessage $flashMessage */
             $flashMessage = GeneralUtility::makeInstance(
                 'TYPO3\CMS\Core\Messaging\FlashMessage',
                 $flashMessageContent,
@@ -68,9 +67,7 @@ class FormEngine
                 FlashMessage::WARNING
             );
 
-            /** @var FlashMessageService $flashMessageService */
             $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
-            /** @var $defaultFlashMessageQueue \TYPO3\CMS\Core\Messaging\FlashMessageQueue */
             $defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
             $defaultFlashMessageQueue->enqueue($flashMessage);
         }

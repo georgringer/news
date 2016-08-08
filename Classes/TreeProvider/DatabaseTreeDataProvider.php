@@ -91,7 +91,6 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
         $node->setParentNode($parent);
         if ($basicNode->hasChildNodes()) {
             $node->setHasChildren(true);
-            /** @var \TYPO3\CMS\Backend\Tree\SortedTreeNodeCollection $childNodes */
             $childNodes = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Tree\SortedTreeNodeCollection::class);
             $foundSomeChild = false;
             foreach ($basicNode->getChildNodes() as $child) {

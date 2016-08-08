@@ -66,7 +66,6 @@ class Page
     public static function setRegisterProperties($properties, $object, $prefix = 'news')
     {
         if (!empty($properties) && !is_null(($object))) {
-            /** @var ContentObjectRenderer $cObj */
             $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
             $items = GeneralUtility::trimExplode(',', $properties, true);
 

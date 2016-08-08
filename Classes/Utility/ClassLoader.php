@@ -48,7 +48,6 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
     public function initializeCache()
     {
         if (is_null($this->cacheInstance)) {
-            /** @var CacheManager $cacheManager */
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
             $this->cacheInstance = $cacheManager->getCache('news');
         }
@@ -76,7 +75,6 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
         if (!empty($cacheEntryIdentifier) && !$classCache->has($cacheEntryIdentifier)) {
             require_once(ExtensionManagementUtility::extPath('news') . 'Classes/Utility/ClassCacheManager.php');
 
-            /** @var ClassCacheManager $classCacheManager */
             $classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
             $classCacheManager->reBuild();
         }

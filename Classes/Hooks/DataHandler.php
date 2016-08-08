@@ -44,7 +44,6 @@ class DataHandler
                 $cacheTagsToFlush[] = 'tx_news_pid_' . $params['uid_page'];
             }
 
-            /** @var $cacheManager CacheManager */
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
             foreach ($cacheTagsToFlush as $cacheTag) {
                 $cacheManager->flushCachesInGroupByTag('pages', $cacheTag);
@@ -71,7 +70,6 @@ class DataHandler
     ) {
         // Clear category cache
         if ($table === 'sys_category') {
-            /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
             $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
             $cache->flush();
         }

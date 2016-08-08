@@ -127,7 +127,6 @@ class AdministrationController extends NewsController
      */
     protected function createMenu()
     {
-        /** @var UriBuilder $uriBuilder */
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
@@ -194,7 +193,6 @@ class AdministrationController extends NewsController
             }
         }
 
-        /** @var Clipboard clipObj */
         $clipBoard = GeneralUtility::makeInstance(Clipboard::class);
         $clipBoard->initializeClipboard();
         $elFromTable = $clipBoard->elFromTable('tx_news_domain_model_news');

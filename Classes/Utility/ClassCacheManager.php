@@ -33,7 +33,6 @@ class ClassCacheManager
      */
     public function __construct()
     {
-        /** @var ClassLoader $classLoader */
         $classLoader = GeneralUtility::makeInstance(ClassLoader::class);
         $this->cacheInstance = $classLoader->initializeCache();
     }
@@ -98,7 +97,6 @@ class ClassCacheManager
             $content = str_replace('<?php', '', $content);
             return $content;
         } else {
-            /** @var ClassParser $classParser */
             $classParser = GeneralUtility::makeInstance(ClassParser::class);
             $classParser->parse($filePath);
             $classParserInformation = $classParser->getFirstClass();

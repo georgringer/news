@@ -113,7 +113,6 @@ class SuggestReceiverCall
                 ]
             ];
 
-            /** @var DataHandlerCore $dataHandler */
             $dataHandler = GeneralUtility::makeInstance(DataHandlerCore::class);
             $dataHandler->start($tcemainData, []);
             $dataHandler->process_datamap();
