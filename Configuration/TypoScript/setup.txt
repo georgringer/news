@@ -228,6 +228,9 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 		insertRecord = 1
 	}
 }
+# For fluid_styled_content
+tt_content.shortcut.variables.shortcuts.tables := addToList(tx_news_domain_model_news)
+tt_content.shortcut.variables.shortcuts.conf.tx_news_domain_model_news < tt_content.shortcut.20.conf.tx_news_domain_model_news
 
 # ==============================================
 # BE-module configuration for EXT:news
