@@ -178,6 +178,12 @@ plugin.tx_news {
 			region =
 			postal-code =
 			country-name =
+
+			twitter {
+				card = {$plugin.tx_news.opengraph.twitter.card}
+				site = {$plugin.tx_news.opengraph.twitter.site}
+				creator = {$plugin.tx_news.opengraph.twitter.creator}
+			}
 		}
 	}
 }

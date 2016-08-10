@@ -11,6 +11,12 @@ plugin.tx_news {
 
 	opengraph {
 		site_name =
+
+		twitter {
+			card = summaray
+			site =
+			creator =
+		}
 	}
 
 	view {

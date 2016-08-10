@@ -48,4 +48,9 @@
 <n:metaTag property="og:region" content="{settings.opengraph.region}" />
 <n:metaTag property="og:postal-code" content="{settings.opengraph.postal-code}" />
 <n:metaTag property="og:country-name" content="{settings.opengraph.country-name}" />
+<f:if condition="{settings.opengraph.twitter.site}">
+	<n:metaTag name="twitter:card" content="{settings.opengraph.twitter.card}" />
+	<n:metaTag name="twitter:site" content="{settings.opengraph.twitter.site}" />
+	<n:metaTag name="twitter:creator" content="{settings.opengraph.twitter.creator}" />
+</f:if>
 </html>
