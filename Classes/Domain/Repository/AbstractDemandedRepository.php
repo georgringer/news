@@ -88,40 +88,47 @@ abstract class AbstractDemandedRepository
     public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true)
     {
         $query = $this->generateQuery($demand, $respectEnableFields);
+        // @see https://forge.typo3.org/issues/77502
+        $isBelow8 = method_exists(Typo3DbQueryParser::class, 'preparseQuery');
+        $parameters = [];
 
         $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
-        list($hash, $parameters) = $queryParser->preparseQuery($query);
+        if ($isBelow8) {
+            list($hash, $parameters) = $queryParser->preparseQuery($query);
+        }
         $statementParts = $queryParser->parseQuery($query);
 
         // Limit and offset are not cached to allow caching of pagebrowser queries.
         $statementParts['limit'] = ((int)$query->getLimit() ?: null);
         $statementParts['offset'] = ((int)$query->getOffset() ?: null);
 
-        $tableNameForEscape = (reset($statementParts['tables']) ?: 'foo');
-        foreach ($parameters as $parameterPlaceholder => $parameter) {
-            if ($parameter instanceof LazyLoadingProxy) {
-                $parameter = $parameter->_loadRealInstance();
-            }
-
-            if ($parameter instanceof \DateTime) {
-                $parameter = $parameter->format('U');
-            } elseif ($parameter instanceof DomainObjectInterface) {
-                $parameter = (int)$parameter->getUid();
-            } elseif (is_array($parameter)) {
-                $subParameters = [];
-                foreach ($parameter as $subParameter) {
-                    $subParameters[] = $GLOBALS['TYPO3_DB']->fullQuoteStr($subParameter, $tableNameForEscape);
+        if ($isBelow8) {
+            $tableNameForEscape = (reset($statementParts['tables']) ?: 'foo');
+            foreach ($parameters as $parameterPlaceholder => $parameter) {
+                if ($parameter instanceof LazyLoadingProxy) {
+                    $parameter = $parameter->_loadRealInstance();
                 }
-                $parameter = implode(',', $subParameters);
-            } elseif ($parameter === null) {
-                $parameter = 'NULL';
-            } elseif (is_bool($parameter)) {
-                return ($parameter === true ? 1 : 0);
-            } else {
-                $parameter = $GLOBALS['TYPO3_DB']->fullQuoteStr((string)$parameter, $tableNameForEscape);
-            }
 
-            $statementParts['where'] = str_replace($parameterPlaceholder, $parameter, $statementParts['where']);
+                if ($parameter instanceof \DateTime) {
+                    $parameter = $parameter->format('U');
+                } elseif ($parameter instanceof DomainObjectInterface) {
+                    $parameter = (int)$parameter->getUid();
+                } elseif (is_array($parameter)) {
+                    $subParameters = [];
+                    foreach ($parameter as $subParameter) {
+                        $subParameters[] = $GLOBALS['TYPO3_DB']->fullQuoteStr($subParameter, $tableNameForEscape);
+                    }
+                    $parameter = implode(',', $subParameters);
+                } elseif ($parameter === null) {
+                    $parameter = 'NULL';
+                } elseif (is_bool($parameter)) {
+                    return ($parameter === true ? 1 : 0);
+                } else {
+                    $parameter = $GLOBALS['TYPO3_DB']->fullQuoteStr((string)$parameter, $tableNameForEscape);
+                }
+
+                $statementParts['where'] = str_replace($parameterPlaceholder, $parameter, $statementParts['where']);
+            }
         }
 
         $statementParts = [
