@@ -26,6 +26,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
 
     /**
      * @param string $property either width or height
+     * @return int
      */
     public function render($property)
     {
@@ -40,7 +41,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
                     $value = $tsfe->lastImageInfo[1];
                     break;
                 default:
-                    throw new \RuntimeException(sprintf('The value "%" is not supported in ImageSizeViewHelper', $property));
+                    throw new \RuntimeException(sprintf('The value "%s" is not supported in ImageSizeViewHelper', $property));
             }
         }
         return $value;
