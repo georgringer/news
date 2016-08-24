@@ -17,8 +17,10 @@ namespace GeorgRinger\News\Hooks;
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -85,7 +87,7 @@ class PageLayoutView
     {
         $actionTranslationKey = '';
 
-        $result = '<strong>' . $this->getLanguageService()->sL(self::LLPATH . 'pi1_title', true) . '</strong><br>';
+        $result = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong><br>';
 
         if ($params['row']['list_type'] == self::KEY . '_pi1') {
             $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
@@ -275,13 +277,23 @@ class PageLayoutView
         $record = BackendUtilityCore::getRecord($table, $id);
 
         if (is_array($record)) {
-            $data = '<span title="Uid: ' . htmlspecialchars($record['uid']) . '">'
+            $data = '<span data-toggle="tooltip" data-placement="top" data-title="Uid: ' . $record['uid'] . '">'
                 . $this->iconFactory->getIconForRecord($table, $record, Icon::SIZE_SMALL)->render()
-                . '</span> '
-                . htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record))
-                . ' (' . $record['uid'] . ')';
+                . '</span> ';
             $content = BackendUtilityCore::wrapClickMenuOnIcon($data, $table, $record['uid'], true, '',
                 '+info,edit');
+
+            $linkTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record));
+
+            if ($table === 'pages') {
+                $id = $record['uid'];
+                $currentPageId = (int)GeneralUtility::_GET('id');
+                $link = htmlspecialchars($this->getEditLink($record, $currentPageId));
+                $switchLabel = $this->getLanguageService()->sL(self::LLPATH . 'pagemodule.switchToPage');
+                $content .= ' <a href="#" data-toggle="tooltip" data-placement="top" data-title="' . $switchLabel . '" onclick=\'top.jump("' . $link . '", "web_layout", "web", ' . $id . ');return false\'>' . $linkTitle . '</a>';
+            } else {
+                $content .= $linkTitle;
+            }
         } else {
             $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
                 $id);
@@ -599,7 +611,7 @@ class PageLayoutView
 
             if (!empty($recursiveLevelText)) {
                 $recursiveLevelText = '<br />' .
-                    $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.recursive', true) . ' ' .
+                    htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.recursive')) . ' ' .
                     $recursiveLevelText;
             }
 
@@ -664,6 +676,29 @@ class PageLayoutView
         }
 
         return null;
+    }
+
+    /**
+     * Build a backend edit link based on given record.
+     *
+     * @param array $row Current record row from database.
+     * @param int $currentPageUid current page uid
+     * @return string Link to open an edit window for record.
+     * @see \TYPO3\CMS\Backend\Utility\BackendUtility::readPageAccess()
+     */
+    protected function getEditLink($row, $currentPageUid)
+    {
+        $editLink = '';
+        $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtility::getRecord('pages', $row['uid']));
+        $permsEdit = $localCalcPerms & Permission::PAGE_EDIT;
+        if ($permsEdit) {
+            $returnUrl = BackendUtility::getModuleUrl('web_layout', array('id' => $currentPageUid));
+            $editLink = BackendUtility::getModuleUrl('web_layout', array(
+                'id' => $row['uid'],
+                'returnUrl' => $returnUrl
+            ));
+        }
+        return $editLink;
     }
 
     /**
