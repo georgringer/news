@@ -2,7 +2,6 @@ filter:
     excluded_paths:
         - 'Documentation/*'
         - 'Tests/*'
-        - 'Resources/Public/JavaScript/Contrib/*'
     paths:
         - 'Classes/*'
 tools:
