@@ -196,21 +196,7 @@ class PageLayoutView
                 $pageRecord = BackendUtilityCore::getRecord('pages', $newsRecord['pid']);
 
                 if (is_array($pageRecord)) {
-                    $iconPage = '<span title="Uid: ' . htmlspecialchars($pageRecord['uid']) . '">'
-                        . $this->iconFactory->getIconForRecord('pages', $pageRecord, Icon::SIZE_SMALL)->render()
-                        . '</span>';
-                    $iconNews = '<span title="Uid: ' . htmlspecialchars($newsRecord['uid']) . '">'
-                        . $this->iconFactory->getIconForRecord('tx_news_domain_model_news', $newsRecord,
-                            Icon::SIZE_SMALL)->render()
-                        . '</span>';
-
-                    $pageTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
-                    $newsTitle = (BackendUtilityCore::getRecordTitle('tx_news_domain_model_news', $newsRecord));
-
-                    $content = BackendUtilityCore::wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'],
-                            true, '', '+info,edit,view')
-                        . $pageTitle . ': ' . BackendUtilityCore::wrapClickMenuOnIcon($iconNews . ' ' . $newsTitle,
-                            'tx_news_domain_model_news', $newsRecord['uid'], true, '', '+info,edit');
+                    $content = $this->getRecordData($newsRecord['uid'], 'tx_news_domain_model_news');
                 } else {
                     $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
                         $newsRecord['pid']);
@@ -239,7 +225,7 @@ class PageLayoutView
         $detailPid = (int)$this->getFieldFromFlexform('settings.detailPid', 'additional');
 
         if ($detailPid > 0) {
-            $content = $this->getPageRecordData($detailPid);
+            $content = $this->getRecordData($detailPid);
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.detailPid'),
@@ -258,7 +244,7 @@ class PageLayoutView
         $listPid = (int)$this->getFieldFromFlexform('settings.listPid', 'additional');
 
         if ($listPid > 0) {
-            $content = $this->getPageRecordData($listPid);
+            $content = $this->getRecordData($listPid);
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.listPid'),
@@ -270,23 +256,35 @@ class PageLayoutView
     /**
      * Get the rendered page title including onclick menu
      *
-     * @param $detailPid
+     * @param int $detailPid
      * @return string
+     * @deprecated use getRecordData() instead
      */
     public function getPageRecordData($detailPid)
     {
-        $pageRecord = BackendUtilityCore::getRecord('pages', $detailPid);
+        return $this->getRecordData($detailPid, 'pages');
+    }
 
-        if (is_array($pageRecord)) {
-            $data = '<span title="Uid: ' . htmlspecialchars($pageRecord['uid']) . '">'
-                . $this->iconFactory->getIconForRecord('pages', $pageRecord, Icon::SIZE_SMALL)->render()
-                . '</span>'
-                . htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
-            $content = BackendUtilityCore::wrapClickMenuOnIcon($data, 'pages', $pageRecord['uid'], true, '',
+    /**
+     * @param int $id
+     * @param string $table
+     * @return string
+     */
+    public function getRecordData($id, $table = 'pages')
+    {
+        $record = BackendUtilityCore::getRecord($table, $id);
+
+        if (is_array($record)) {
+            $data = '<span title="Uid: ' . htmlspecialchars($record['uid']) . '">'
+                . $this->iconFactory->getIconForRecord($table, $record, Icon::SIZE_SMALL)->render()
+                . '</span> '
+                . htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record))
+                . ' (' . $record['uid'] . ')';
+            $content = BackendUtilityCore::wrapClickMenuOnIcon($data, $table, $record['uid'], true, '',
                 '+info,edit');
         } else {
             $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
-                $detailPid);
+                $id);
             $content = $this->generateCallout($text);
         }
 
@@ -588,8 +586,7 @@ class PageLayoutView
             );
 
             foreach ($rawPagesRecords as $page) {
-                $pagesOut[] = htmlspecialchars(BackendUtilityCore::getRecordTitle('pages',
-                        $page)) . ' (' . $page['uid'] . ')';
+                $pagesOut[] = $this->getRecordData($page['uid']);
             }
 
             $recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
