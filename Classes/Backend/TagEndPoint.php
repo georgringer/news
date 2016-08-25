@@ -1,6 +1,6 @@
 <?php
 
-namespace GeorgRinger\News\Hooks;
+namespace GeorgRinger\News\Backend;
 
 /**
  * This file is part of the TYPO3 CMS project.
@@ -14,92 +14,91 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use Exception;
 use GeorgRinger\News\Utility\EmConfiguration;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\DataHandling\DataHandler as DataHandlerCore;
+use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Ajax response for the custom suggest receiver
  *
  */
-class SuggestReceiverCall
+class TagEndPoint
 {
 
     const TAG = 'tx_news_domain_model_tag';
     const NEWS = 'tx_news_domain_model_news';
-    const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest_';
+    const LL_PATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest_';
 
     /**
-     * Create a tag
-     *
-     * @param array $params
-     * @param \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj
-     * @return void
-     * @throws \Exception
+     * @param ServerRequestInterface $request
+     * @param Response $response
+     * @return Response
      */
-    public function createTag(array $params, \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj)
+    public function create(ServerRequestInterface $request, Response $response)
     {
-        $request = GeneralUtility::_GET();
-
         try {
-            // Check if a tag is submitted
-            if (!isset($request['item']) || empty($request['item'])) {
-                throw new \Exception('error_no-tag');
+            $item = isset($request->getParsedBody()['item']) ? $request->getParsedBody()['item'] : $request->getQueryParams()['item'];
+
+            if (empty($item)) {
+                throw new Exception('error_no-tag');
             }
 
-            $newsUid = $request['newsid'];
-            if ((int)$newsUid === 0 && (strlen($newsUid) == 16 && !GeneralUtility::isFirstPartOfStr($newsUid, 'NEW'))) {
-                throw new \Exception('error_no-newsid');
+            $newsUid = isset($request->getParsedBody()['newsid']) ? $request->getParsedBody()['newsid'] : $request->getQueryParams()['newsid'];
+            if ((int)$newsUid === 0) {
+                throw new Exception('error_no-newsid');
             }
 
             // Get tag uid
-            $newTagId = $this->getTagUid($request);
+            $newTagId = $this->getTagUid($item, $newsUid);
 
-            $ajaxObj->setContentFormat('javascript');
-            $ajaxObj->setContent('');
-            $response = [
+            $content = [
                 $newTagId,
-                $request['item'],
+                $item,
                 self::TAG,
                 self::NEWS,
                 'tags',
                 'data[tx_news_domain_model_news][' . $newsUid . '][tags]',
                 $newsUid
             ];
-            $ajaxObj->setJavascriptCallbackWrap(implode('-', $response));
-        } catch (\Exception $e) {
-            $errorMsg = $GLOBALS['LANG']->sL(self::LLPATH . $e->getMessage());
-            $ajaxObj->setError($errorMsg);
+            $response->getBody()->write(implode('-', $content));
+        } catch (Exception $e) {
+            $message = $GLOBALS['LANG']->sL(self::LL_PATH . $e->getMessage());
+            throw new \RuntimeException($message);
         }
+        return $response;
     }
 
     /**
      * Get the uid of the tag, either bei inserting as new or get existing
      *
-     * @param array $request ajax request
+     * @param string $title title
+     * @param int $newsUid news uid
      * @return int
-     * @throws \Exception
+     * @throws Exception
      */
-    protected function getTagUid(array $request)
+    protected function getTagUid($title, $newsUid)
     {
         // Get configuration from EM
         $configuration = EmConfiguration::getSettings();
 
         $pid = $configuration->getTagPid();
         if ($pid === 0) {
-            $pid = $this->getTagPidFromTsConfig($request['newsid']);
+            $pid = $this->getTagPidFromTsConfig($newsUid);
         }
 
         if ($pid === 0) {
-            throw new \Exception('error_no-pid-defined');
+            throw new Exception('error_no-pid-defined');
         }
 
         $record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
             '*',
             self::TAG,
             'deleted=0 AND pid=' . $pid .
-            ' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], self::TAG)
+            ' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($title, self::TAG)
         );
         if (isset($record['uid'])) {
             $tagUid = $record['uid'];
@@ -108,7 +107,7 @@ class SuggestReceiverCall
                 self::TAG => [
                     'NEW' => [
                         'pid' => $pid,
-                        'title' => $request['item']
+                        'title' => $title
                     ]
                 ]
             ];
@@ -121,7 +120,7 @@ class SuggestReceiverCall
         }
 
         if ($tagUid == 0) {
-            throw new \Exception('error_no-tag-created');
+            throw new Exception('error_no-tag-created');
         }
 
         return $tagUid;

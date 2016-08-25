@@ -72,14 +72,6 @@ $boot = function () {
                 ]
             );
         }
-
-        /* ===========================================================================
-            Ajax call to save tags
-        =========================================================================== */
-        $GLOBALS['TYPO3_CONF_VARS']['BE']['AJAX']['News::createTag'] = [
-            'callbackMethod' => \GeorgRinger\News\Hooks\SuggestReceiverCall::class . '->createTag',
-            'csrfTokenCheck' => false
-        ];
     }
 
     /* ===========================================================================
