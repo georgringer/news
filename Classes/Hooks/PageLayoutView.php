@@ -87,7 +87,7 @@ class PageLayoutView
     {
         $actionTranslationKey = '';
 
-        $result = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong><br>';
+        $result = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
 
         if ($params['row']['list_type'] == self::KEY . '_pi1') {
             $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
@@ -101,11 +101,10 @@ class PageLayoutView
                 $actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
                 $actionTranslation = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
 
-                $result .= $actionTranslation;
+                $result .= '<br><strong style="text-transform: uppercase">' . htmlspecialchars($actionTranslation) . '</strong>';
             } else {
-                $result .= $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
+                $result .= $this->generateCallout($this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured'));
             }
-            $result .= '<hr>';
 
             if (is_array($this->flexformData)) {
                 switch ($actionTranslationKey) {
@@ -277,11 +276,11 @@ class PageLayoutView
         $record = BackendUtilityCore::getRecord($table, $id);
 
         if (is_array($record)) {
-            $data = '<span data-toggle="tooltip" data-placement="top" data-title="Uid: ' . $record['uid'] . '">'
+            $data = '<span data-toggle="tooltip" data-placement="top" data-title="id=' . $record['uid'] . '">'
                 . $this->iconFactory->getIconForRecord($table, $record, Icon::SIZE_SMALL)->render()
                 . '</span> ';
             $content = BackendUtilityCore::wrapClickMenuOnIcon($data, $table, $record['uid'], true, '',
-                '+info,edit');
+                '+info,edit,history');
 
             $linkTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record));
 
@@ -652,7 +651,7 @@ class PageLayoutView
             $content .= '<strong>' . $line[0] . '</strong>' . ' ' . $line[1] . '<br />';
         }
 
-        return '<pre style="white-space:normal">' . $content . '</pre>';
+        return '<pre style="white-space:normal;margin-top:10px;">' . $content . '</pre>';
     }
 
     /**
