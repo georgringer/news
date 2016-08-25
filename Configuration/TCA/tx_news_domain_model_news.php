@@ -507,7 +507,7 @@ $tx_news_domain_model_news = [
                     'list' => [
                         'type' => 'script',
                         'title' => $ll . 'tx_news_domain_model_news.tags.list',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_list.gif',
+                        'icon' => 'actions-system-list-open',
                         'params' => [
                             'table' => 'tx_news_domain_model_tag',
                             'pid' => $configuration->getTagPid(),
@@ -523,7 +523,7 @@ $tx_news_domain_model_news = [
                             'name' => 'wizard_edit',
                         ],
                         'popup_onlyOpenIfSelected' => 1,
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_edit.gif',
+                        'icon' => 'actions-open',
                         'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
                     ],
                 ],
