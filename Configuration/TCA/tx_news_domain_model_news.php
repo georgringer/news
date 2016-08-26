@@ -282,7 +282,6 @@ $tx_news_domain_model_news = [
                     'parentField' => 'parent',
                     'appearance' => [
                         'showHeader' => true,
-                        'allowRecursiveMode' => true,
                         'expandAll' => true,
                         'maxLevels' => 99,
                     ],
@@ -296,7 +295,6 @@ $tx_news_domain_model_news = [
                 'foreign_table' => 'sys_category',
                 'foreign_table_where' => ' AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting',
                 'size' => 10,
-                'autoSizeMax' => 20,
                 'minitems' => 0,
                 'maxitems' => 99,
             ]
@@ -491,7 +489,6 @@ $tx_news_domain_model_news = [
                 'foreign_table' => 'tx_news_domain_model_tag',
                 'foreign_table_where' => 'ORDER BY tx_news_domain_model_tag.title',
                 'size' => 10,
-                'autoSizeMax' => 20,
                 'minitems' => 0,
                 'maxitems' => 99,
                 'wizards' => [

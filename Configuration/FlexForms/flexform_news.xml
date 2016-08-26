@@ -166,7 +166,6 @@
 								<foreign_table>sys_category</foreign_table>
 								<foreign_table_where>AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting</foreign_table_where>
 								<size>10</size>
-								<autoSizeMax>20</autoSizeMax>
 								<minitems>0</minitems>
 								<maxitems>99</maxitems>
 							</config>
@@ -526,7 +525,6 @@
 								<internal_type>db</internal_type>
 								<allowed>tx_news_domain_model_tag</allowed>
 								<size>3</size>
-								<autoSizeMax>20</autoSizeMax>
 								<minitems>0</minitems>
 								<maxitems>99</maxitems>
 							</config>
