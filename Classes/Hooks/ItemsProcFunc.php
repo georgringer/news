@@ -41,9 +41,8 @@ class ItemsProcFunc
      */
     public function user_templateLayout(array &$config)
     {
-        $row = $this->getContentElementRow($config['row']['uid']);
-
-        $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($row['pid']);
+        $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
+        $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
         foreach ($templateLayouts as $layout) {
             $additionalLayout = [
                 $this->getLanguageService()->sL($layout[0], true),
@@ -220,6 +219,23 @@ class ItemsProcFunc
     protected function getContentElementRow($uid)
     {
         return BackendUtilityCore::getRecord('tt_content', $uid);
+    }
+
+    /**
+     * Get page id, if negative, then it is a "after record"
+     *
+     * @param int $pid
+     * @return int
+     */
+    protected function getPageId($pid) {
+        $pid = (int)$pid;
+
+        if ($pid > 0) {
+            return $pid;
+        } else {
+            $row = BackendUtilityCore::getRecord('tt_content', abs($pid), 'uid,pid');
+            return $row['pid'];
+        }
     }
 
     /**
