@@ -628,6 +628,7 @@
 							<config>
 								<type>input</type>
 								<size>5</size>
+								<eval>num</eval>
 							</config>
 						</TCEforms>
 					</settings.cropMaxCharacters>
