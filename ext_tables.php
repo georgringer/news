@@ -35,7 +35,7 @@ $boot = function () {
         if ($configuration->getShowImporter()) {
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
                 'GeorgRinger.news',
-                'web',
+                'system',
                 'tx_news_m1',
                 '',
                 ['Import' => 'index, runJob, jobInfo'],
