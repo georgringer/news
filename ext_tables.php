@@ -17,13 +17,6 @@ $boot = function () {
     $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
     if (TYPO3_MODE === 'BE') {
-        // Override news icon
-        $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][] = [
-            0 => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:news-folder',
-            1 => 'news',
-            2 => 'apps-pagetree-folder-contains-news'
-        ];
-
         // Extend user settings
         $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = [
             'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.overlay',
