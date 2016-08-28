@@ -527,6 +527,14 @@
 								<size>3</size>
 								<minitems>0</minitems>
 								<maxitems>99</maxitems>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+										<default>
+											<searchWholePhrase>1</searchWholePhrase>
+										</default>
+									</suggest>
+								</wizards>
 							</config>
 						</TCEforms>
 					</settings.tags>
