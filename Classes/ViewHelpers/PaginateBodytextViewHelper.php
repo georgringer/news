@@ -70,17 +70,28 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
     protected $escapeOutput = false;
 
     /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('object', News::class, 'news item', true);
+        $this->registerArgument('as', 'string', 'as', true);
+        $this->registerArgument('currentPage', 'int', 'current page', true);
+        $this->registerArgument('tolen', 'string', 'token', '###more###');
+    }
+
+    /**
      * Render everything
      *
-     * @param \GeorgRinger\News\Domain\Model\News $object current news object
-     * @param string $as name of property which holds the text
-     * @param int $currentPage Selected page
-     * @param string $token Token used to split the text
      * @return string
      */
-    public function render(\GeorgRinger\News\Domain\Model\News $object, $as, $currentPage, $token = '###more###')
+    public function render()
     {
-        $parts = GeneralUtility::trimExplode($token, $object->getBodytext(), true);
+        $as = $this->arguments['as'];
+        $currentPage = $this->arguments['currentPage'];
+
+        $parts = GeneralUtility::trimExplode($this->arguments['token'], $this->arguments['newsItem']->getBodytext(), true);
         $numberOfPages = count($parts);
 
         if ($numberOfPages === 1) {

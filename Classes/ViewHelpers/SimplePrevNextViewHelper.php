@@ -82,15 +82,24 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     }
 
     /**
-     * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param string $pidList this is something
-     * @param string $sortField
-     * @param string $as
+     * Initialize arguments.
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('news', News::class, 'news item', true);
+        $this->registerArgument('pidList', 'string', 'pid list', false, '');
+        $this->registerArgument('sortField', 'string', 'sort field', false, 'datetime');
+        $this->registerArgument('as', 'string', 'as', true);
+    }
+
+    /**
      * @return string
      */
-    public function render(\GeorgRinger\News\Domain\Model\News $news, $pidList = '', $sortField = 'datetime', $as)
+    public function render()
     {
-        $neighbours = $this->getNeighbours($news, $pidList, $sortField);
+        $neighbours = $this->getNeighbours($this->arguments['news'], $this->arguments['pidList'], $this->arguments['sortField']);
+        $as = $this->arguments['as'];
 
         $mapped = $this->mapResultToObjects($neighbours);
 
@@ -163,12 +172,12 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     }
 
     /**
-     * @param \GeorgRinger\News\Domain\Model\News $news
+     * @param News $news
      * @param $pidList
      * @param $sortField
      * @return array
      */
-    protected function getNeighbours(\GeorgRinger\News\Domain\Model\News $news, $pidList, $sortField)
+    protected function getNeighbours(News $news, $pidList, $sortField)
     {
         $data = [];
         $pidList = empty($pidList) ? $news->getPid() : $pidList;

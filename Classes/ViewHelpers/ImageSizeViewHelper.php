@@ -25,15 +25,23 @@ class ImageSizeViewHelper extends AbstractViewHelper
 {
 
     /**
-     * @param string $property either width or height
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('property', 'string', 'either width or height', true);
+    }
+
+    /**
      * @return int
      */
-    public function render($property)
+    public function render()
     {
         $value = 0;
         $tsfe = $this->getTypoScriptFrontendController();
         if (!is_null($tsfe)) {
-            switch ($property) {
+            switch ($this->arguments['property']) {
                 case 'width':
                     $value = $tsfe->lastImageInfo[0];
                     break;
@@ -41,7 +49,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
                     $value = $tsfe->lastImageInfo[1];
                     break;
                 default:
-                    throw new \RuntimeException(sprintf('The value "%s" is not supported in ImageSizeViewHelper', $property));
+                    throw new \RuntimeException(sprintf('The value "%s" is not supported in ImageSizeViewHelper', $this->arguments['property']));
             }
         }
         return $value;

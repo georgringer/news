@@ -35,6 +35,8 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function setUp()
     {
+        $this->newsItem = new News();
+
         $this->mockedViewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['init', 'renderChildren']);
         $this->mockedContentObjectRenderer = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer', ['typoLink_URL', 'typoLink']);
         $pluginSettings = $this->getAccessibleMock('GeorgRinger\\News\\Service\\SettingsService', ['getSettings']);
@@ -42,8 +44,7 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->mockedViewHelper->_set('cObj', $this->mockedContentObjectRenderer);
         $this->mockedViewHelper->_set('tag', $tag);
         $this->mockedViewHelper->_set('pluginSettingsService', $pluginSettings);
-
-        $this->newsItem = new News();
+        $this->mockedViewHelper->_set('arguments', ['newsItem' => $this->newsItem]);
     }
 
     /**
@@ -59,7 +60,7 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->newsItem->setType(1);
         $this->newsItem->setInternalurl($url);
 
-        $this->mockedViewHelper->render($this->newsItem);
+        $this->mockedViewHelper->render();
     }
 
     /**
@@ -75,7 +76,7 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->newsItem->setType(2);
         $this->newsItem->setExternalurl($url);
 
-        $this->mockedViewHelper->render($this->newsItem);
+        $this->mockedViewHelper->render();
     }
 
     /**

@@ -3,17 +3,18 @@
 namespace GeorgRinger\News\ViewHelpers;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
+use GeorgRinger\News\Domain\Model\News;
 
 /**
  * ViewHelper to exclude news items in other plugins
@@ -32,13 +33,22 @@ class ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Ab
 {
 
     /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('newsItem', News::class, 'news item', true);
+    }
+
+    /**
      * Add the news uid to a global variable to be able to exclude it later
      *
-     * @param \GeorgRinger\News\Domain\Model\News $newsItem current news item
      * @return void
      */
-    public function render(\GeorgRinger\News\Domain\Model\News $newsItem)
+    public function render()
     {
+        $newsItem = $this->arguments['newsItem'];
         $uid = $newsItem->getUid();
 
         if (empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {

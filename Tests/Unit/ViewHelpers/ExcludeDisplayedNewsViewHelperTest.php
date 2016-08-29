@@ -24,6 +24,7 @@ use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
 class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
 
+
     /**
      * @test
      * @return void
@@ -36,7 +37,8 @@ class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestC
         $newsItem1 = new News();
         $newsItem1->_setProperty('uid', '123');
 
-        $viewHelper->render($newsItem1);
+        $viewHelper->setArguments(['newsItem' => $newsItem1]);
+        $viewHelper->render();
         $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123']);
 
         $newsItem1 = new News();
@@ -45,13 +47,15 @@ class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestC
 
         $newsItem2 = new News();
         $newsItem2->_setProperty('uid', '12');
-        $viewHelper->render($newsItem2);
+        $viewHelper->setArguments(['newsItem' => $newsItem2]);
+        $viewHelper->render();
         $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123', '12' => '12']);
 
         $newsItem3 = new News();
         $newsItem3->_setProperty('uid', '12');
         $newsItem3->_setProperty('_localizedUid', '456');
-        $viewHelper->render($newsItem3);
+        $viewHelper->setArguments(['newsItem' => $newsItem3]);
+        $viewHelper->render();
         $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123', '12' => '12', '456' => '456']);
     }
 }

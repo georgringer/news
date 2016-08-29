@@ -14,6 +14,7 @@ namespace GeorgRinger\News\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -85,27 +86,30 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 
     public function initializeArguments()
     {
+        parent::initializeArguments();
         $this->registerUniversalTagAttributes();
+        $this->registerArgument('newsItem', News::class, 'news item', true);
+        $this->registerArgument('settings', 'array', 'Settings', false, []);
+        $this->registerArgument('uriOnly', 'bool', 'url only', false, false);
+        $this->registerArgument('configuration', 'array', 'configuration', false, []);
+        $this->registerArgument('content', 'string', 'content', false, '');
         $this->registerTagAttribute('section', 'string', 'Anchor for links', false);
     }
 
     /**
      * Render link to news item or internal/external pages
      *
-     * @param \GeorgRinger\News\Domain\Model\News $newsItem current news object
-     * @param array $settings
-     * @param bool $uriOnly return only the url without the a-tag
-     * @param array $configuration optional typolink configuration
      * @param string $content optional content which is linked
      * @return string link
      */
-    public function render(
-        \GeorgRinger\News\Domain\Model\News $newsItem,
-        array $settings = [],
-        $uriOnly = false,
-        $configuration = [],
-        $content = ''
-    ) {
+    public function render()
+    {
+        $newsItem = $this->arguments['newsItem'];
+        $settings = $this->arguments['settings'];
+        $uriOnly = $this->arguments['uriOnly'];
+        $configuration = $this->arguments['configuration'];
+        $content = $this->arguments['content'];
+
         $tsSettings = (array)$this->pluginSettingsService->getSettings();
         ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array)$settings);
 
@@ -161,16 +165,17 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
     /**
      * Generate the link configuration for the link to the news item
      *
-     * @param \GeorgRinger\News\Domain\Model\News $newsItem
+     * @param News $newsItem
      * @param array $tsSettings
      * @param array $configuration
      * @return array
      */
     protected function getLinkToNewsItem(
-        \GeorgRinger\News\Domain\Model\News $newsItem,
+        News $newsItem,
         $tsSettings,
         array $configuration = []
-    ) {
+    )
+    {
         if (!isset($configuration['parameter'])) {
             $detailPid = 0;
             $detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'],
@@ -223,10 +228,10 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
     }
 
     /**
-     * @param \GeorgRinger\News\Domain\Model\News $newsItem
+     * @param News $newsItem
      * @return int
      */
-    protected function getNewsId(\GeorgRinger\News\Domain\Model\News $newsItem)
+    protected function getNewsId(News $newsItem)
     {
         $uid = $newsItem->getUid();
         // If a user is logged in and not in live workspace
@@ -256,7 +261,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
      * Gets detailPid from categories of the given news item. First will be return.
      *
      * @param  array $settings
-     * @param  \GeorgRinger\News\Domain\Model\News $newsItem
+     * @param  News $newsItem
      * @return int
      */
     protected function getDetailPidFromCategories($settings, $newsItem)
@@ -276,7 +281,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
      * Gets detailPid from defaultDetailPid setting
      *
      * @param  array $settings
-     * @param  \GeorgRinger\News\Domain\Model\News $newsItem
+     * @param  News $newsItem
      * @return int
      */
     protected function getDetailPidFromDefaultDetailPid($settings, $newsItem)
@@ -288,7 +293,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
      * Gets detailPid from flexform of current plugin.
      *
      * @param  array $settings
-     * @param  \GeorgRinger\News\Domain\Model\News $newsItem
+     * @param  News $newsItem
      * @return int
      */
     protected function getDetailPidFromFlexform($settings, $newsItem)

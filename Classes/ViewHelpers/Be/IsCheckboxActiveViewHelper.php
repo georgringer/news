@@ -16,6 +16,7 @@ namespace GeorgRinger\News\ViewHelpers\Be;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -29,12 +30,20 @@ class IsCheckboxActiveViewHelper extends AbstractViewHelper
     protected $escapeOutput = false;
 
     /**
-     * @param int $id
-     * @param array $categories
+     * Initialize arguments.
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('id', 'int', 'Category id', true);
+        $this->registerArgument('categories', 'array', 'List of categories', false, []);
+    }
+
+    /**
      * @return string
      */
-    public function render($id, array $categories = null)
+    public function render()
     {
-        return (is_array($categories) && in_array($id, $categories)) ? 'checked="checked"' : '';
+        return (is_array($this->arguments['categories']) && in_array($this->arguments['id'], $this->arguments['categories'])) ? 'checked="checked"' : '';
     }
 }
