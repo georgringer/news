@@ -183,7 +183,7 @@ class NewsImportService extends AbstractImportService
         $news->setAuthor($importItem['author']);
         $news->setAuthorEmail($importItem['author_email']);
 
-        $news->setImportid($importItem['import_id']);
+        $news->setImportId($importItem['import_id']);
         $news->setImportSource($importItem['import_source']);
 
         if (is_array($importItem['categories'])) {
