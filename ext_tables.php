@@ -13,8 +13,9 @@ $boot = function () {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
         'tt_content.pi_flexform.news_pi1.list', 'EXT:news/Resources/Private/Language/locallang_csh_flexforms.xlf');
 
+    $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
+
     if (TYPO3_MODE === 'BE') {
-        $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
         // Extend user settings
         $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = [
