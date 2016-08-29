@@ -167,17 +167,20 @@ class AdministrationController extends NewsController
             [
                 'table' => 'tx_news_domain_model_news',
                 'label' => 'module.createNewNewsRecord',
-                'action' => 'newNews'
+                'action' => 'newNews',
+                'icon' => 'ext-news-type-default'
             ],
             [
                 'table' => 'tx_news_domain_model_tag',
                 'label' => 'module.createNewTag',
-                'action' => 'newTag'
+                'action' => 'newTag',
+                'icon' => 'tcarecords-tx_news_domain_model_tag-default'
             ],
             [
                 'table' => 'sys_category',
                 'label' => 'module.createNewCategory',
-                'action' => 'newCategory'
+                'action' => 'newCategory',
+                'icon' => 'mimetypes-x-sys_category'
             ]
         ];
         foreach ($buttons as $key => $tableConfiguration) {
@@ -188,7 +191,7 @@ class AdministrationController extends NewsController
                     ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor($tableConfiguration['action'],
                         [], 'Administration'))
                     ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label']))
-                    ->setIcon($this->iconFactory->getIconForRecord($tableConfiguration['table'], [], Icon::SIZE_SMALL));
+                    ->setIcon($this->iconFactory->getIcon($tableConfiguration['icon'], Icon::SIZE_SMALL, 'overlay-new'));
                 $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key);
             }
         }
