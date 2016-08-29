@@ -405,8 +405,7 @@ class PageLayoutView
 
             $includeSubcategories = $this->getFieldFromFlexform('settings.includeSubCategories');
             if ($includeSubcategories) {
-                $categoryMode .= '<br />+ ' . $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.includeSubCategories',
-                        true);
+                $categoryMode .= '<br />+ ' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.includeSubCategories'));
             }
 
             $this->tableData[] = [

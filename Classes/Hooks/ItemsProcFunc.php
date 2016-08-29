@@ -45,7 +45,7 @@ class ItemsProcFunc
         $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
         foreach ($templateLayouts as $layout) {
             $additionalLayout = [
-                $this->getLanguageService()->sL($layout[0], true),
+                htmlspecialchars($this->getLanguageService()->sL($layout[0])),
                 $layout[1]
             ];
             array_push($config['items'], $additionalLayout);
@@ -93,11 +93,11 @@ class ItemsProcFunc
             $languageKey = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.';
             foreach ($newItemArray as $item) {
                 // label: if empty, key (=field) is used
-                $label = $this->getLanguageService()->sL($languageKey . $item, true);
+                $label = $this->getLanguageService()->sL($languageKey . $item);
                 if (empty($label)) {
-                    $label = htmlspecialchars($item);
+                    $label = $item;
                 }
-                array_push($config['items'], [$label, $item]);
+                array_push($config['items'], [htmlspecialchars($label), $item]);
             }
         }
     }
@@ -192,8 +192,7 @@ class ItemsProcFunc
         // if any language is available
         if (count($languages) > 0) {
             $html = '<select name="data[newsoverlay]" id="field_newsoverlay">
-						<option value="0">' . $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.default_value',
-                    true) . '</option>';
+						<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.default_value')) . '</option>';
 
             foreach ($languages as $language) {
                 $selected = ($GLOBALS['BE_USER']->uc['newsoverlay'] == $language['uid']) ? ' selected="selected" ' : '';
@@ -202,8 +201,8 @@ class ItemsProcFunc
 
             $html .= '</select>';
         } else {
-            $html .= $this->getLanguageService()->sL(
-                'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available', true
+            $html .= htmlspecialchars($this->getLanguageService()->sL(
+                'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available')
             );
         }
 
