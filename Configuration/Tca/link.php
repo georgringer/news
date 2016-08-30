@@ -114,11 +114,11 @@ $TCA['tx_news_domain_model_link'] = array(
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'uri;;palettteCore,title;;palettteDescription,'
+			'showitem' => 'uri;;paletteCore,title;;palettteDescription,'
 		)
 	),
 	'palettes' => array(
-		'palettteCore' => array(
+		'paletteCore' => array(
 			'showitem' => 'hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),

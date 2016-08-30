@@ -126,11 +126,11 @@ $TCA['tx_news_domain_model_file'] = array(
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'file;;palettteCore,title;;palettteDescription,fe_group'
+			'showitem' => 'file;;paletteCore,title;;palettteDescription,fe_group'
 		)
 	),
 	'palettes' => array(
-		'palettteCore' => array(
+		'paletteCore' => array(
 			'showitem' => 'hidden,sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),
