@@ -99,33 +99,21 @@ $boot = function () {
     \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
 
     if (TYPO3_MODE === 'BE') {
-        /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
+        $icons = [
+            'apps-pagetree-folder-contains-news' => 'ext-news-folder-tree.svg',
+            'ext-news-wizard-icon' => 'plugin_wizard.svg',
+            'ext-news-type-default' => 'news_domain_model_news.svg',
+            'ext-news-type-internal' => 'news_domain_model_news_internal.svg',
+            'ext-news-type-external' => 'news_domain_model_news_external.svg'
+        ];
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-        $iconRegistry->registerIcon(
-            'apps-pagetree-folder-contains-news',
-            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-            ['source' => 'EXT:news/Resources/Public/Icons/ext-news-folder-tree.svg']
-        );
-        $iconRegistry->registerIcon(
-            'ext-news-wizard-icon',
-            \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            ['source' => 'EXT:news/Resources/Public/Icons/ce_wiz.gif']
-        );
-        $iconRegistry->registerIcon(
-            'ext-news-type-default',
-            \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            ['source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.gif']
-        );
-        $iconRegistry->registerIcon(
-            'ext-news-type-internal',
-            \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            ['source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_internal.gif']
-        );
-        $iconRegistry->registerIcon(
-            'ext-news-type-external',
-            \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            ['source' => 'EXT:news/Resources/Public/Icons/news_domain_model_news_external.gif']
-        );
+        foreach ($icons as $identifier => $path) {
+            $iconRegistry->registerIcon(
+                $identifier,
+                \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+                ['source' => 'EXT:news/Resources/Public/Icons/' . $path]
+            );
+        }
     }
 
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('dd_googlesitemap')) {
