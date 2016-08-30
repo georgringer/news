@@ -140,7 +140,7 @@ return array(
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'uri;;paletteCore,title;;palettteDescription,'
+			'showitem' => 'uri;;paletteCore,title;;paletteDescription,'
 		)
 	),
 	'palettes' => array(
@@ -148,7 +148,7 @@ return array(
 			'showitem' => 'hidden,sys_language_uid,l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),
-		'palettteDescription' => array(
+		'paletteDescription' => array(
 			'showitem' => 'description',
 			'canNotCollapse' => FALSE
 		)

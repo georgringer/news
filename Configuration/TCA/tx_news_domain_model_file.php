@@ -148,7 +148,7 @@ return array(
 	),
 	'types' => array(
 		0 => array(
-			'showitem' => 'file;;paletteCore,title;;palettteDescription,fe_group'
+			'showitem' => 'file;;paletteCore,title;;paletteDescription,fe_group'
 		)
 	),
 	'palettes' => array(
@@ -156,7 +156,7 @@ return array(
 			'showitem' => 'hidden,sys_language_uid, l10n_parent, l10n_diffsource,',
 			'canNotCollapse' => TRUE
 		),
-		'palettteDescription' => array(
+		'paletteDescription' => array(
 			'showitem' => 'description',
 			'canNotCollapse' => FALSE
 		)
