@@ -22,6 +22,8 @@ cache:
 notifications:
   slack:
     secure: Cg6TncMmzvnRADbTNds/zHA1UEs1CaPXJKoZpEtGmnbPSaA+Jgtj9CDqhzjdaGK7t3nSomR4oCmHkrYK4c4sLvC1GjmvtydJ6j2doE72VQrRI2B47vcfhVOJwnGvkALFsVjSONp3ENCuP8pORw8A5b1+i9bFIcr7IsmuRPUyHak=
+    on_success: change
+    on_failure: always
 
 before_install:
   - composer self-update
