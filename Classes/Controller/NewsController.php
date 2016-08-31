@@ -120,7 +120,8 @@ class NewsController extends NewsBaseController
     protected function createDemandObjectFromSettings(
         $settings,
         $class = 'GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand'
-    ) {
+    )
+    {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
@@ -374,7 +375,8 @@ class NewsController extends NewsBaseController
     public function searchFormAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
         array $overwriteDemand = []
-    ) {
+    )
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -408,7 +410,8 @@ class NewsController extends NewsBaseController
     public function searchResultAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
         array $overwriteDemand = []
-    ) {
+    )
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -434,6 +437,33 @@ class NewsController extends NewsBaseController
         $this->view->assignMultiple($assignedValues);
     }
 
+    /**
+     * initialize search form action
+     */
+    public function initializesearchResultAction()
+    {
+        $this->initializeSearchActions();
+    }
+
+    /**
+     * initialize search result action
+     */
+    public function initializeSearchFormAction()
+    {
+        $this->initializeSearchActions();
+    }
+
+    /**
+     * Initialize searchForm and searchResult actions
+     */
+    protected function initializeSearchActions() {
+        if ($this->arguments->hasArgument('search')) {
+            $propertyMappingConfiguration = $this->arguments['search']->getPropertyMappingConfiguration();
+            $propertyMappingConfiguration->allowAllProperties();
+            $propertyMappingConfiguration->setTypeConverterOption('TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter', \TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, TRUE);
+        }
+    }
+
     /***************************************************************************
      * helper
      **********************/
@@ -446,7 +476,8 @@ class NewsController extends NewsBaseController
      */
     public function injectConfigurationManager(
         \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-    ) {
+    )
+    {
         $this->configurationManager = $configurationManager;
 
         $tsSettings = $this->configurationManager->getConfiguration(
