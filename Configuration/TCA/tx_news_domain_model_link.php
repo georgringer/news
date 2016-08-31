@@ -25,7 +25,9 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_link.gif',
+        'typeicon_classes' => [
+            'default' => 'ext-news-link'
+        ],
         'hideTable' => true,
     ],
     'interface' => [

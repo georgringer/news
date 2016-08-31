@@ -22,6 +22,7 @@ use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
@@ -228,6 +229,19 @@ class AdministrationController extends NewsController
     public function indexAction()
     {
         $this->redirectToPageOnStart();
+        $dataMap = [
+            'tt_content' => [
+                '66' => [
+                    'header' => 'fo',
+                    'categories' => '30,31,23',
+                ],
+            ]
+        ];
+        print_R($dataMap);
+        $this->dataHandler = GeneralUtility::makeInstance(DataHandler::class);
+        $this->dataHandler->start($dataMap, []);
+        $this->dataHandler->admin = true;
+        $this->dataHandler->process_datamap();
 
         $demandVars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
         $demand = $this->objectManager->get(AdministrationDemand::class);

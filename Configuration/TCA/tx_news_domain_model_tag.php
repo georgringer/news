@@ -16,7 +16,9 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_tag.png',
+        'typeicon_classes' => [
+            'default' => 'ext-news-tag'
+        ],        'ext-news-link',
         'searchFields' => 'uid,title',
     ],
     'interface' => [
