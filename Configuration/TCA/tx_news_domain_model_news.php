@@ -222,7 +222,7 @@ $tx_news_domain_model_news = [
                         'RTEonly' => 1,
                         'type' => 'script',
                         'title' => 'Full screen Rich Text Editing',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_rte.gif',
+                        'icon' => 'actions-wizard-rte',
                         'module' => [
                             'name' => 'wizard_rte',
                         ],
@@ -414,7 +414,7 @@ $tx_news_domain_model_news = [
                     'link' => [
                         'type' => 'popup',
                         'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+                        'icon' => 'actions-wizard-link',
                         'module' => [
                             'name' => 'wizard_link',
                         ],

@@ -131,7 +131,7 @@ return [
                     'link' => [
                         'type' => 'popup',
                         'title' => 'Link',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+                        'icon' => 'actions-wizard-link',
                         'module' => [
                             'name' => 'wizard_link',
                         ],
