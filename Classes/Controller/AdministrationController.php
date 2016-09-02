@@ -15,14 +15,11 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
-use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
-use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
@@ -36,7 +33,6 @@ use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Administration controller
- *
  */
 class AdministrationController extends NewsController
 {
@@ -116,6 +112,7 @@ class AdministrationController extends NewsController
 
         $pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ClickMenu');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/Tooltip');
 
         $this->createMenu();
         $this->createButtons();
@@ -188,10 +185,15 @@ class AdministrationController extends NewsController
             if ($this->getBackendUser()->isAdmin() || GeneralUtility::inList($this->getBackendUser()->groupData['tables_modify'],
                     $tableConfiguration['table'])
             ) {
+                $title = $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label']);
                 $viewButton = $buttonBar->makeLinkButton()
                     ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor($tableConfiguration['action'],
                         [], 'Administration'))
-                    ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label']))
+                    ->setDataAttributes([
+                        'toggle' => 'tooltip',
+                        'placement' => 'bottom',
+                        'title' => $title])
+                    ->setTitle($title)
                     ->setIcon($this->iconFactory->getIcon($tableConfiguration['icon'], Icon::SIZE_SMALL, 'overlay-new'));
                 $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key);
             }
@@ -229,19 +231,6 @@ class AdministrationController extends NewsController
     public function indexAction()
     {
         $this->redirectToPageOnStart();
-        $dataMap = [
-            'tt_content' => [
-                '66' => [
-                    'header' => 'fo',
-                    'categories' => '30,31,23',
-                ],
-            ]
-        ];
-        print_R($dataMap);
-        $this->dataHandler = GeneralUtility::makeInstance(DataHandler::class);
-        $this->dataHandler->start($dataMap, []);
-        $this->dataHandler->admin = true;
-        $this->dataHandler->process_datamap();
 
         $demandVars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
         $demand = $this->objectManager->get(AdministrationDemand::class);
