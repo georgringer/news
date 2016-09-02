@@ -151,32 +151,6 @@
 						</TCEforms>
 					</settings.dateField>
 
-					<!-- Category -->
-					<settings.categories>
-						<TCEforms>
-							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categories</label>
-							<config>
-								<type>select</type>
-								<renderMode>tree</renderMode>
-								<renderType>selectTree</renderType>
-								<treeConfig>
-									<dataProvider>GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider</dataProvider>
-									<parentField>parent</parentField>
-									<appearance>
-										<maxLevels>99</maxLevels>
-										<expandAll>TRUE</expandAll>
-										<showHeader>TRUE</showHeader>
-									</appearance>
-								</treeConfig>
-								<foreign_table>sys_category</foreign_table>
-								<foreign_table_where>AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting</foreign_table_where>
-								<size>10</size>
-								<minitems>0</minitems>
-								<maxitems>99</maxitems>
-							</config>
-						</TCEforms>
-					</settings.categories>
-
 					<!-- Category Mode -->
 					<settings.categoryConjunction>
 						<TCEforms>
@@ -209,6 +183,32 @@
 							</config>
 						</TCEforms>
 					</settings.categoryConjunction>
+
+					<!-- Category -->
+					<settings.categories>
+						<TCEforms>
+							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categories</label>
+							<config>
+								<type>select</type>
+								<renderMode>tree</renderMode>
+								<renderType>selectTree</renderType>
+								<treeConfig>
+									<dataProvider>GeorgRinger\News\TreeProvider\DatabaseTreeDataProvider</dataProvider>
+									<parentField>parent</parentField>
+									<appearance>
+										<maxLevels>99</maxLevels>
+										<expandAll>TRUE</expandAll>
+										<showHeader>TRUE</showHeader>
+									</appearance>
+								</treeConfig>
+								<foreign_table>sys_category</foreign_table>
+								<foreign_table_where>AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting</foreign_table_where>
+								<size>10</size>
+								<minitems>0</minitems>
+								<maxitems>99</maxitems>
+							</config>
+						</TCEforms>
+					</settings.categories>
 
 					<!-- Include sub categories -->
 					<settings.includeSubCategories>
