@@ -51,8 +51,8 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
 			method: \'POST\',
 			data: {item:value,newsid:\'' . $uid . '\' },
 			complete:function(result) {
-			    if (re.status == 200) {
-                    ar arr = result.responseText.split(\'-\');
+			    if (result.status == 200) {
+                    var arr = result.responseText.split(\'-\');
                     setFormValueFromBrowseWin(arr[5], arr[2] +  \'_\' + arr[0], arr[1]);
                     TBE_EDITOR.fieldChanged(arr[3], arr[6], arr[4], arr[5]);
 			    } else {
