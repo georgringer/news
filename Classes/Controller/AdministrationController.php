@@ -175,7 +175,7 @@ class AdministrationController extends NewsController
                 'table' => 'tx_news_domain_model_tag',
                 'label' => 'module.createNewTag',
                 'action' => 'newTag',
-                'icon' => 'tcarecords-tx_news_domain_model_tag-default'
+                'icon' => 'ext-news-tag'
             ],
             [
                 'table' => 'sys_category',
