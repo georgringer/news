@@ -56,7 +56,6 @@ All ViewHelpers
    :titlesonly:
    :glob:
 
-   CategoryChildrenViewHelper
    ExcludeDisplayedNewsViewHelper
    HeaderDataViewHelper
    IncludeFileViewHelper
@@ -68,19 +67,7 @@ All ViewHelpers
    TargetLinkViewHelper
    TitleTagViewHelper
 
-   Be/ClickmenuViewHelper
-   Be/MultiEditLinkViewHelper
-
-   Be/Buttons/IconForRecordViewHelper
-   Be/Buttons/IconViewHelper
-
-   Format/DateViewHelper
-   Format/FileDownloadViewHelper
-   Format/FileSizeViewHelper
-   Format/HscViewHelper
-   Format/HtmlentitiesDecodeViewHelper
    Format/NothingViewHelper
-   Format/StriptagsViewHelper
 
    Social/DisqusViewHelper
    Social/GooglePlusViewHelper

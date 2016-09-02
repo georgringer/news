@@ -187,6 +187,28 @@ You could use a code like the following one to render e.g. the title of a news a
 
     [global]
 
+If you want to show the categories of a news record, you can use the following code:
+
+.. code-block:: typoscript
+
+    lib.categoryTitle = CONTENT
+    lib.categoryTitle {
+        if.isTrue.data = GP:tx_news_pi1|news
+        table = tx_news_domain_model_news
+        select {
+            uidInList.data = GP:tx_news_pi1|news
+            pidInList = 123
+            join = sys_category_record_mm ON tx_news_domain_model_news.uid = sys_category_record_mm.uid_foreign JOIN sys_category ON sys_category.uid = sys_category_record_mm.uid_local
+            orderBy = sys_category.sorting
+            max = 1
+        }
+        renderObj = TEXT
+        renderObj {
+            field = title
+            htmlSpecialChars = 1
+        }
+    }
+
 Usage of a ViewHelper
 """""""""""""""""""""
 
@@ -276,3 +298,4 @@ Important is the line ``categories.current = 1`` which will set the category con
 Of course you need to adopt the snippet to your own needs, like setting the ``detailPid``, ``startingPoint``, ...
 
 By defining a custom property like ``relatedView = 1`` you can differ in the ``List.html`` if it is called by this snippet or by a regular plugin.
+

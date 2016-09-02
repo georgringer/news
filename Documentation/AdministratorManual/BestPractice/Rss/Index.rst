@@ -112,9 +112,10 @@ To create a RSS feed based on a plugin follow this steps:
 
       # delete content wrap
       tt_content.stdWrap >
+      tt_content.stdWrap.editPanel = 0
 
-**Important:** If your output still contains HTML code, please check your TypoScript
-(especially from css\_styled\_content) as this HTML is produced there!
+.. warning::
+ If your output still contains HTML code, please check your TypoScript (especially from css\_styled\_content or fluid\_styled\_content) as this HTML is produced there!
 
 Automatic RSS feeds - based on plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -129,6 +130,7 @@ The TypoScript code looks like this.
     	lib.stdheader >
     	tt_content.stdWrap.innerWrap >
     	tt_content.stdWrap.wrap >
+    	tt_content.stdWrap.editPanel = 0
     	# get away <div class="feEditAdvanced-firstWrapper" ...> if your logged into the backend
     	styles.content.get.stdWrap >
 

@@ -25,11 +25,7 @@ Properties
 	==================================== ===================================== ====================
 	Property                             Tab                                   Default
 	==================================== ===================================== ====================
-	removeListActionFromFlexforms_        basic                                 List only
 	archiveDate_                          basic                                 date
-	pageModuleFieldsCategory_             basic                                 title,description
-	pageModuleFieldsNews_                 basic
-	showMediaDescriptionField_            records                               0
 	rteForTeaser_                         records                               1
 	tagPid_                               records                               1
 	prependAtCopy_                        records                               1
@@ -37,12 +33,11 @@ Properties
 	categoryBeGroupTceFormsRestriction_   records
 	contentElementRelation_               records                               0
 	manualSorting_                        records                               0
-	useFal_                               records                               fal
 	dateTimeNotRequired_                  records                               fal
 	showAdministrationModule_             backend modules                       0
-	showImporter_                         backend modules                       0
-	storageUidImporter_                   backend modules
-	resourceFolderImporter_               backend modules                       /news_import
+	showImporter_                         import module                         0
+	storageUidImporter_                   import module
+	resourceFolderImporter_               import module                         /news_import
 	==================================== ===================================== ====================
 
 Property details
@@ -54,52 +49,11 @@ Property details
         :local:
         :depth: 1
 
-.. _extensionManager-removeListActionFromFlexforms:
-
-removeListActionFromFlexforms
-"""""""""""""""""""""""""""""
-This switch enables you to configure the behaviour of the list view if the URL contains the link to a single view.
-Basically there are 2 possible variants:
-
-* **List only**: No matter if a single news is defined in the URL, the plugin will still render the list view. You will need a separate detail view somewhere.
-* **List & Detail**: If a single news is defined in the URL, the single view will be shown.
-
-.. warning::
-	If you have created a plugin and change the setting, you need to reselect the new view in the plugin again!
-
 .. _extensionManagerArchiveDate:
 
 archiveDate
 """""""""""
 Define if the archive date field should be rendered as a date field or including the time as well.
-
-.. _extensionManagerPageModuleFieldsCategory:
-
-pageModuleFieldsCategory
-""""""""""""""""""""""""
-Define the fields which should be shown for category records in the page module.
-Empty the field if you don't want to show those records in the page module.
-
-.. _extensionManagerPageModuleFieldsNews:
-
-pageModuleFieldsNews
-""""""""""""""""""""
-Define the fields which should be shown for news records in the page module. A very simple API makes it possible to render a select box with multiple variants.
-
-The syntax is: ::
-
-	Label1=field1,field2,field3;Label2=field1,field2
-
-.. _extensionManagerShowMediaDescriptionField:
-
-showMediaDescriptionField
-"""""""""""""""""""""""""
-If set, a description field for media elements is shown.
-
-.. note::
-	This is just for non FAL relations!
-
-.. _extensionManageRrteForTeaser:
 
 rteForTeaser
 """"""""""""
@@ -190,17 +144,6 @@ manualSorting
 If set, news records can be manually sorted in the list view by the well known icons "up" and "down".
 
 .. _extensionManagerUseFal:
-
-useFal
-""""""
-The following options are available:
-
-- **Yes**: Enables usage of FAL relations
-- **No**: Hides the relations to FAL elements
-- **Both**: The old and the new media relations are used
-- **Fal & Multimedia**: Enables usage of FAL relations + the old media relation, limited to type "multimedia"
-
-.. _extensionManagerDateTimeNotRequired:
 
 dateTimeNotRequired
 """""""""""""""""""

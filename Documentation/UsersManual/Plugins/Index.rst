@@ -29,7 +29,7 @@ List
 ^^^^
 The list action displays a list of defined records. The filters can be defined either in the plugin or by using TypoScript and are described :ref:`here <ts>`.
 
-2 different list modes are available. It is possible to change the available ones in the :ref:`Extension Manager<extensionManager-removeListActionFromFlexforms>`.
+2 different list modes are available.
 
 List view
 """""""""

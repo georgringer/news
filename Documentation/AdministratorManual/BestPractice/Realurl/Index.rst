@@ -370,3 +370,15 @@ All you now need is to add an additional section in your realurl configuration.
 			),
 		),
 	),
+
+Auto configuration
+^^^^^^^^^^^^^^^^^^
+If the auto configuration is enabled in EXT:realurl, news provides a configuration for that as well.
+
+In case you want to provide your own configuration (e.g. in your sitepackage extension),
+you can unset the configuration by using the following code in your `ext_localconf.php`:
+
+.. code-block:: php
+
+    unset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['news']);
+
