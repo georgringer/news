@@ -18,6 +18,10 @@ Especially I want to thank my employer **Sup7even Digital**. Check out our new w
 Features
 --------
 
+Improved plugin rendering in page module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To improve the usability of the page module regarding the news plugin, the used settings are rendered with a complete new design.
+
 Reworked administration module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The record listing in the administration module is now based on the record listing of the list module. There are several advantages
@@ -128,6 +132,15 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+    2016-09-03 [TASK] Cleanup PageLayoutView (Commit 1f7546b by Georg Ringer)
+    2016-09-03 [TASK] Move administration.css (Commit 9fb7da9 by Georg Ringer)
+    2016-09-03 [FEATURE] Improve page module (Commit 38c5be8 by Georg Ringer)
+    2016-09-02 [BUGFIX] Fix ajax tag creation (Commit 26eb9d0 by Georg Ringer)
+    2016-09-02 [TASK] Add tooltips (Commit 80e52d6 by Georg Ringer)
+    2016-09-02 [TASK] Move category conjunction in flexform (Commit d4cb8ec by Georg Ringer)
+    2016-09-02 [BUGFIX] Fix tag icon (Commit 31df957 by Georg Ringer)
+    2016-09-02 [DOC] Add documentation for 5.0.0 (Commit a8e770a by Georg Ringer)
+    2016-09-02 [TASK] Fix dev branch in composer.json (Commit 0b0a811 by Georg Ringer)
     2016-09-02 [BUGFIX] Remove '.html' from layout calls (Commit 6b12b3a by Georg Ringer)
     2016-09-01 [TASK] Use new icons of the core (Commit 1c89306 by Georg Ringer)
     2016-08-31 [TASK] Followup for icons (Commit c4e098b by Georg Ringer)
