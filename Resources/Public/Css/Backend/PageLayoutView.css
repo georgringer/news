@@ -23,3 +23,7 @@
 .news-table .hidden-settings {
     border: 0;
 }
+
+.news-table > tbody > tr > td {
+    padding:3px 6px;
+}
