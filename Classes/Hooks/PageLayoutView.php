@@ -71,16 +71,11 @@ class PageLayoutView
      */
     protected $iconFactory;
 
-    /** @var  \TYPO3\CMS\Core\Database\DatabaseConnection */
-    protected $databaseConnection;
-
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
     public function __construct()
     {
-        /** @var \TYPO3\CMS\Core\Database\DatabaseConnection databaseConnection */
-        $this->databaseConnection = $GLOBALS['TYPO3_DB'];
         $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
         $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
     }
@@ -202,8 +197,7 @@ class PageLayoutView
         $singleNewsRecord = (int)$this->getFieldFromFlexform('settings.singleNews');
 
         if ($singleNewsRecord > 0) {
-            $newsRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news',
-                'deleted=0 AND uid=' . $singleNewsRecord);
+            $newsRecord = BackendUtilityCore::getRecord('tx_news_domain_model_news', $singleNewsRecord);
 
             if (is_array($newsRecord)) {
                 $pageRecord = BackendUtilityCore::getRecord('pages', $newsRecord['pid']);
@@ -405,14 +399,8 @@ class PageLayoutView
             }
 
             // Category records
-            $rawCategoryRecords = $this->databaseConnection->exec_SELECTgetRows(
-                '*',
-                'sys_category',
-                'deleted=0 AND uid IN(' . implode(',', $categories) . ')'
-            );
-
-            foreach ($rawCategoryRecords as $record) {
-                $categoriesOut[] = htmlspecialchars(BackendUtilityCore::getRecordTitle('sys_category', $record));
+            foreach ($categories as $id) {
+                $categoriesOut[] = $this->getRecordData($id, 'sys_category');
             }
 
             $includeSubcategories = $this->getFieldFromFlexform('settings.includeSubCategories');
@@ -441,14 +429,8 @@ class PageLayoutView
         }
 
         $categoryTitles = [];
-        $rawTagRecords = (array)$this->databaseConnection->exec_SELECTgetRows(
-            '*',
-            'tx_news_domain_model_tag',
-            'deleted=0 AND uid IN(' . implode(',', $tags) . ')'
-        );
-        foreach ($rawTagRecords as $record) {
-            $categoryTitles[] = htmlspecialchars(BackendUtilityCore::getRecordTitle('tx_news_domain_model_tag',
-                $record));
+        foreach ($tags as $id) {
+            $categoryTitles[] = $this->getRecordData($id, 'tx_news_domain_model_tag');
         }
 
         $this->tableData[] = [
@@ -600,15 +582,11 @@ class PageLayoutView
         $value = $this->getFieldFromFlexform('settings.startingpoint');
 
         if (!empty($value)) {
+            $pageIds = GeneralUtility::intExplode(',', $value, true);
             $pagesOut = [];
-            $rawPagesRecords = $this->databaseConnection->exec_SELECTgetRows(
-                '*',
-                'pages',
-                'deleted=0 AND uid IN(' . implode(',', GeneralUtility::intExplode(',', $value, true)) . ')'
-            );
 
-            foreach ($rawPagesRecords as $page) {
-                $pagesOut[] = $this->getRecordData($page['uid']);
+            foreach ($pageIds as $id) {
+                $pagesOut[] = $this->getRecordData($id, 'pages');
             }
 
             $recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
