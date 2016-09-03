@@ -638,7 +638,7 @@ class PageLayoutView
         $pageRenderer->addCssFile(ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Css/Backend/PageLayoutView.css');
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename('EXT:news/Resources/Private/Backend/PageLayoutView.html');
+        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:news/Resources/Private/Backend/PageLayoutView.html'));
         $view->assignMultiple([
             'header' => $header,
             'rows' => [
