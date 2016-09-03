@@ -20,8 +20,11 @@ use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Hook to display verbose information about pi1 plugin in Web>Page module
@@ -43,6 +46,11 @@ class PageLayoutView
      * @var string
      */
     const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
+
+    /**
+     * Max shown settings
+     */
+    const SETTINGS_IN_PREVIEW = 7;
 
     /**
      * Table information
@@ -85,9 +93,9 @@ class PageLayoutView
      */
     public function getExtensionSummary(array $params)
     {
-        $actionTranslationKey = '';
+        $actionTranslationKey = $result = '';
 
-        $result = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
+        $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
 
         if ($params['row']['list_type'] == self::KEY . '_pi1') {
             $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
@@ -101,28 +109,30 @@ class PageLayoutView
                 $actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
                 $actionTranslation = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
 
-                $result .= '<br><strong style="text-transform: uppercase">' . htmlspecialchars($actionTranslation) . '</strong>';
+                $header .= '<br><strong style="text-transform: uppercase">' . htmlspecialchars($actionTranslation) . '</strong>';
             } else {
-                $result .= $this->generateCallout($this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured'));
+                $header .= $this->generateCallout($this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured'));
             }
 
             if (is_array($this->flexformData)) {
                 switch ($actionTranslationKey) {
                     case 'news_list':
                         $this->getStartingPoint();
+                        $this->getCategorySettings();
+                        $this->getDetailPidSetting();
                         $this->getTimeRestrictionSetting();
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
+                        $this->getArchiveSettings();
                         $this->getTopNewsRestrictionSetting();
                         $this->getOrderSettings();
-                        $this->getCategorySettings();
-                        $this->getArchiveSettings();
                         $this->getOffsetLimitSettings();
-                        $this->getDetailPidSetting();
                         $this->getListPidSetting();
                         $this->getTagRestrictionSetting();
                         break;
                     case 'news_detail':
                         $this->getSingleNewsSettings();
                         $this->getDetailPidSetting();
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     case 'news_datemenu':
                         $this->getStartingPoint();
@@ -131,14 +141,17 @@ class PageLayoutView
                         $this->getArchiveSettings();
                         $this->getDateMenuSettings();
                         $this->getCategorySettings();
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     case 'category_list':
                         $this->getCategorySettings(false);
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     case 'tag_list':
                         $this->getStartingPoint();
                         $this->getListPidSetting();
                         $this->getOrderSettings();
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     default:
                 }
@@ -154,9 +167,8 @@ class PageLayoutView
 
                 // for all views
                 $this->getOverrideDemandSettings();
-                $this->getTemplateLayoutSettings($params['row']['pid']);
 
-                $result .= $this->renderSettingsAsTable();
+                $result = $this->renderSettingsAsTable($header, $params['row']['uid']);
             }
         }
 
@@ -471,7 +483,7 @@ class PageLayoutView
         if ($hidePagination) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.hidePagination'),
-                null
+                '<i class="fa fa-check"></i>'
             ];
         }
     }
@@ -637,20 +649,28 @@ class PageLayoutView
      * Render the settings as table for Web>Page module
      * System settings are displayed in mono font
      *
+     * @param string $header
+     * @param int $recordUid
      * @return string
      */
-    protected function renderSettingsAsTable()
+    protected function renderSettingsAsTable($header = '', $recordUid = 0)
     {
-        if (count($this->tableData) == 0) {
-            return '';
-        }
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/PageLayout');
+        $pageRenderer->addCssFile(ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Css/Backend/PageLayoutView.css');
 
-        $content = '';
-        foreach ($this->tableData as $line) {
-            $content .= '<strong>' . $line[0] . '</strong>' . ' ' . $line[1] . '<br />';
-        }
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $view->setTemplatePathAndFilename('EXT:news/Resources/Private/Backend/PageLayoutView.html');
+        $view->assignMultiple([
+            'header' => $header,
+            'rows' => [
+                'above' => array_slice($this->tableData, 0, self::SETTINGS_IN_PREVIEW),
+                'below' => array_slice($this->tableData, self::SETTINGS_IN_PREVIEW)
+            ],
+            'id' => $recordUid
+        ]);
 
-        return '<pre style="white-space:normal;margin-top:10px;">' . $content . '</pre>';
+        return $view->render();
     }
 
     /**
