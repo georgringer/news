@@ -303,6 +303,7 @@ class AdministrationController extends NewsController
             'news' => $dblist->HTMLcode,
             'newsCount' => $dblist->counter,
             'showSearchForm' => (!is_null($demand) || $dblist->counter > 0),
+            'requestUri' => GeneralUtility::quoteJSvalue(rawurlencode(GeneralUtility::getIndpEnv('REQUEST_URI'))),
             'categories' => $this->categoryRepository->findTree($idList),
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];
