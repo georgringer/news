@@ -87,7 +87,7 @@ return [
             'config' => [
                 'type' => 'text',
             ],
-            'defaultExtras' => 'richtext:rte_transform',
+            'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
         ],
     ],
     'types' => [

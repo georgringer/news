@@ -6,7 +6,7 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 // Extension manager configuration
 $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
-$teaserRteConfiguration = $configuration->getRteForTeaser() ? 'richtext:rte_transform' : '';
+$teaserRteConfiguration = $configuration->getRteForTeaser() ? 'richtext:rte_transform[mode=ts_css]' : '';
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
 
@@ -638,7 +638,7 @@ $tx_news_domain_model_news = [
         '0' => [
             'columnsOverrides' => [
                 'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform'
+                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
                 ],
                 'teaser' => [
                     'defaultExtras' => $teaserRteConfiguration
@@ -663,7 +663,7 @@ $tx_news_domain_model_news = [
         '1' => [
             'columnsOverrides' => [
                 'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform'
+                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
                 ],
                 'teaser' => [
                     'defaultExtras' => $teaserRteConfiguration
@@ -686,7 +686,7 @@ $tx_news_domain_model_news = [
         '2' => [
             'columnsOverrides' => [
                 'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform'
+                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
                 ],
                 'teaser' => [
                     'defaultExtras' => $teaserRteConfiguration
