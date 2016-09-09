@@ -17,7 +17,6 @@ namespace GeorgRinger\News\Hooks;
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
@@ -680,16 +679,16 @@ class PageLayoutView
      * @param array $row Current record row from database.
      * @param int $currentPageUid current page uid
      * @return string Link to open an edit window for record.
-     * @see \TYPO3\CMS\Backend\Utility\BackendUtility::readPageAccess()
+     * @see \TYPO3\CMS\Backend\Utility\BackendUtilityCore::readPageAccess()
      */
     protected function getEditLink($row, $currentPageUid)
     {
         $editLink = '';
-        $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtility::getRecord('pages', $row['uid']));
+        $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtilityCore::getRecord('pages', $row['uid']));
         $permsEdit = $localCalcPerms & Permission::PAGE_EDIT;
         if ($permsEdit) {
-            $returnUrl = BackendUtility::getModuleUrl('web_layout', array('id' => $currentPageUid));
-            $editLink = BackendUtility::getModuleUrl('web_layout', array(
+            $returnUrl = BackendUtilityCore::getModuleUrl('web_layout', array('id' => $currentPageUid));
+            $editLink = BackendUtilityCore::getModuleUrl('web_layout', array(
                 'id' => $row['uid'],
                 'returnUrl' => $returnUrl
             ));
