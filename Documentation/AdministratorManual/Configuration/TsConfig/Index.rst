@@ -24,12 +24,13 @@ Properties
 
 .. container:: ts-properties
 
-	=========================== =====================================
-	Property                    Data type
-	=========================== =====================================
-	templateLayouts_            array
-	archive_                    string
-	tagPid_                     integer
+	===========================      =====================================
+	Property                         Data type
+	===========================      =====================================
+	templateLayouts_                 array
+	archive_                         string
+	tagPid_                          integer
+	categoryRestrictionForFlexForms_ bool
 	=========================== =====================================
 
 .. _tsconfigTemplateLayouts:
@@ -69,6 +70,15 @@ Besides the configuration in the :ref:`Extension Manager <extensionManagerTagPid
 	# Example:
 	tx_news.tagPid = 123
 
+
+.. _tsconfigCategoryRestrictionForFlexForms:
+
+categoryRestrictionForFlexForms
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+After defining the category restriction in the :ref:`Extension Manager <extensionManagerCategoryRestriction>` it is also possible to restrict the categories in the news plugin. This needs to enabled by TsConfig: ::
+
+	# Example:
+	tx_news.categoryRestrictionForFlexForms = 1
 
 .. _tsconfigAdministration:
 

@@ -83,7 +83,9 @@ If set and a news record is copied, the news record will be prepended with the s
 
 categoryRestriction
 """""""""""""""""""
-Define an additional constraint for the categories inside a news record. Possible options are:
+Define an additional constraint for the categories inside a news record. To use this constraint for the news plugins as well, take a look at the  :ref:`TsConfig configuration <tsconfigCategoryRestrictionForFlexForms>`.
+
+Possible options are:
 
 .. only:: html
 
