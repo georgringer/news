@@ -82,3 +82,6 @@
 .news-administration .hide_line td {
   border: none;
 }
+.news-administration #toggle-settings {
+  /*cursor: pointer;*/
+}
