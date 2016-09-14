@@ -18,7 +18,7 @@ return [
         ],
         'typeicon_classes' => [
             'default' => 'ext-news-tag'
-        ],        'ext-news-link',
+        ],
         'searchFields' => 'uid,title',
     ],
     'interface' => [
