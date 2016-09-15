@@ -372,10 +372,11 @@ $tx_news_domain_model_news = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    [$ll . 'tx_news_domain_model_news.type.I.0', 0],
-                    [$ll . 'tx_news_domain_model_news.type.I.1', 1],
-                    [$ll . 'tx_news_domain_model_news.type.I.2', 2],
+                    [$ll . 'tx_news_domain_model_news.type.I.0', 0, 'ext-news-type-default'],
+                    [$ll . 'tx_news_domain_model_news.type.I.1', 1, 'ext-news-type-internal'],
+                    [$ll . 'tx_news_domain_model_news.type.I.2', 2, 'ext-news-type-external'],
                 ],
+                'showIconTable' => true,
                 'size' => 1,
                 'maxitems' => 1,
             ]
@@ -645,7 +646,9 @@ $tx_news_domain_model_news = [
                 ],
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore,teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,
+					title,--palette--;;paletteCore,teaser,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+					--palette--;;paletteDate,
 					bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
                 --div--;' . $ll . 'tx_news_domain_model_news.content_elements,content_elements,
 
@@ -670,7 +673,10 @@ $tx_news_domain_model_news = [
                 ],
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,internalurl,
+					title,--palette--;;paletteCore, teaser,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+					--palette--;;paletteDate,
+					internalurl,
 
 				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
@@ -693,7 +699,10 @@ $tx_news_domain_model_news = [
                 ],
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,externalurl,
+					title,--palette--;;paletteCore, teaser,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+					--palette--;;paletteDate,
+					externalurl,
 
 				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
@@ -708,7 +717,11 @@ $tx_news_domain_model_news = [
     ],
     'palettes' => [
         'paletteAuthor' => [
-            'showitem' => 'author_email,',
+            'showitem' => 'author,author_email,',
+            'canNotCollapse' => true
+        ],
+        'paletteDate' => [
+            'showitem' => 'datetime,archive,',
             'canNotCollapse' => true
         ],
         'paletteArchive' => [
