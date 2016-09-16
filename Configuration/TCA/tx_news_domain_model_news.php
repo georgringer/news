@@ -625,6 +625,9 @@ $tx_news_domain_model_news = [
                         'showAllLocalizationLink' => 1,
                         'showSynchronizationLink' => 1
                     ],
+                    'inline' => [
+                        'inlineOnlineMediaAddButtonStyle' => 'display:none'
+                    ],
                     'foreign_match_fields' => [
                         'fieldname' => 'fal_related_files',
                         'tablenames' => 'tx_news_domain_model_news',
