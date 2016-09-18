@@ -317,7 +317,8 @@ $tx_news_domain_model_news = [
                     'suggest' => [
                         'type' => 'suggest',
                         'default' => [
-                            'searchWholePhrase' => true
+                            'searchWholePhrase' => true,
+                            'addWhere' => ' AND tx_news_domain_model_news.uid != ###THIS_UID###'
                         ]
                     ],
                 ],
