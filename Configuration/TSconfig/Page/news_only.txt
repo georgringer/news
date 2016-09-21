@@ -1,2 +1,2 @@
 
-mod.web_list.allowedNewTables = tx_news_domain_model_news,sys_note,tx_news_domain_model_tag
+mod.web_list.allowedNewTables = tx_news_domain_model_news,sys_note,tx_news_domain_model_tag,pages_language_overlay
