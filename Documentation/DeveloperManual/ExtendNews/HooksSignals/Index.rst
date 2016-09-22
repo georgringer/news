@@ -48,6 +48,32 @@ To fulfill that signal, you can create a slot in your custom extension. All what
 		TRUE
 	);
 
+An example call look like this:
+
+.. code-block:: php
+
+	/**
+	 * @param int $listPid
+	 * @param string $dateField
+	 * @param array $data
+	 * @param QueryResultInterface $news
+	 * @param array $overwriteDemand
+	 * @param NewsDemand $demand
+	 * @param array $extendedVariables
+	 */
+	public function dateMenuActionSlot($listPid, $dateField, $data, $news, $overwriteDemand, $demand, $extendedVariables) {
+		$data['authors'] = $this->newsAuthorRepository->countByAuthor($demand);
+		return [
+			'listPid' => $listPid,
+			'dateField' => $dateField,
+			'data' => $data,
+			'news' => $news,
+			'overwriteDemand' => $overwriteDemand,
+			'demand' => $demand,
+			'extendedVariables' => $extendedVariables
+		];
+	}
+
 Hooks
 -----
 
