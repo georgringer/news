@@ -74,7 +74,7 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
      */
     public function setSelectedCategories($selectedCategories)
     {
-        if ($selectedCategories === '0' || $selectedCategories === array('0')) {
+        if ($selectedCategories === '0' || $selectedCategories === ['0']) {
             return [];
         }
         if (is_string($selectedCategories)) {

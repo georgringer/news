@@ -73,7 +73,7 @@ class RecordListQueryHook
 
             if (is_array($vars) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];
-                $parts = array();
+                $parts = [];
                 $this->recordListConstraint->extendQuery($parts, $vars);
                 if (is_array($parts['where']) && !empty($parts['where'])) {
                     $queryParts['WHERE'] .= ' AND ' . implode(' AND ', $parts['where']);

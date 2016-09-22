@@ -14,9 +14,9 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into \TYPO3\CMS\Backend\Utility\BackendUtility to change flexform behaviour

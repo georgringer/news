@@ -15,9 +15,6 @@ namespace GeorgRinger\News\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Service\CategoryService;
-use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
-use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**

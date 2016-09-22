@@ -141,7 +141,7 @@ class RecordListConstraint
         // order
         if (isset($arguments['sortingField']) && isset($GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$arguments['sortingField']])) {
             $direction = ($arguments['sortingDirection'] === 'asc' || $arguments['sortingDirection'] === 'desc') ? $arguments['sortingDirection'] : '';
-            $parameters['orderBy'] = array(array($arguments['sortingField'], $direction));
+            $parameters['orderBy'] = [[$arguments['sortingField'], $direction]];
         }
     }
 
@@ -174,7 +174,6 @@ class RecordListConstraint
 
         return $idList;
     }
-
 
     /**
      * @return DatabaseConnection

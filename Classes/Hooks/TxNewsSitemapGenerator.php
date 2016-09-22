@@ -42,7 +42,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      *
      * @var    array
      */
-    protected $pidList = array();
+    protected $pidList = [];
 
     /**
      * Indicates sitemap type
@@ -180,13 +180,13 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
         }
 
         if ($link == '') {
-            $conf = array(
+            $conf = [
                 'additionalParams' => '&tx_news_pi1[news]=' . $newsRow['uid'] . $additionalParams,
                 'forceAbsoluteUrl' => 1,
                 'parameter' => $forceSinglePid ?: $this->singlePid,
                 'returnLast' => 'url',
                 'useCacheHash' => true,
-            );
+            ];
             $link = htmlspecialchars($this->cObj->typoLink('', $conf));
         }
         return $link;

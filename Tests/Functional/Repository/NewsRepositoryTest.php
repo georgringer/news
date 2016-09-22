@@ -221,7 +221,7 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      */
     protected function getIdListOfNews(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList)
     {
-        $idList = array();
+        $idList = [];
         foreach ($newsList as $news) {
             $idList[] = $news->getUid();
         }

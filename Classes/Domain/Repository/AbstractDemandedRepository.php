@@ -122,7 +122,7 @@ abstract class AbstractDemandedRepository
                 } elseif ($parameter === null) {
                     $parameter = 'NULL';
                 } elseif (is_bool($parameter)) {
-                    return ($parameter === true ? 1 : 0);
+                    return $parameter === true ? 1 : 0;
                 } else {
                     $parameter = $GLOBALS['TYPO3_DB']->fullQuoteStr((string)$parameter, $tableNameForEscape);
                 }

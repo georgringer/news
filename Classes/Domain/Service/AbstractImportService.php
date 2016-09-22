@@ -84,7 +84,7 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
      */
     protected function filesAreEqual($file1, $file2)
     {
-        return (filesize($file1) === filesize($file2));
+        return filesize($file1) === filesize($file2);
     }
 
     /**
