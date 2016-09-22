@@ -5,7 +5,7 @@
 .. only:: html
 
 .. contents::
-:local:
+        :local:
         :depth: 3
 
 
@@ -19,7 +19,7 @@ Features
 --------
 
 Category Constratins for FlexForms
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The listing of categories inside a news record can be restricted by settings in the Extension Manager. The restriction can now be used in the FlexForm configuration as well by enabling it with TsConfig :ts:`tx_news.categoryRestrictionForFlexForms = 1`.
 

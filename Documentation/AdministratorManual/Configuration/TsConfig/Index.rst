@@ -31,7 +31,7 @@ Properties
 	archive_                         string
 	tagPid_                          integer
 	categoryRestrictionForFlexForms_ bool
-	=========================== =====================================
+	===========================      =====================================
 
 .. _tsconfigTemplateLayouts:
 

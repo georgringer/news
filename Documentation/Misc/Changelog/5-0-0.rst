@@ -5,7 +5,7 @@
 .. only:: html
 
 .. contents::
-:local:
+        :local:
         :depth: 3
 
 
