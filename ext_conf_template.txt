@@ -31,6 +31,10 @@ archiveDate = date
 
 # cat=backend module/enable/10; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.showAdministrationModule
 showAdministrationModule = 1
+
+# cat=backend module/enable/12; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.hidePageTreeForAdministrationModule
+hidePageTreeForAdministrationModule = 0
+
 # cat=import module/enable/20; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.showImporter
 showImporter = 0
 
