@@ -70,6 +70,7 @@ Properties
              Can be used to set a special headline for category pages, e.g. for H1 tag
              This must be enabled in the template:
              .. code-block:: html
+
          <f:if condition="{tags.0.headline}">
            <f:then>
              <h1>{tags.0.headline}</h1>
@@ -85,6 +86,7 @@ Properties
              Can be used to add additional content text for category pages
              This must be enabled in the template:
              .. code-block:: html
+
          <f:if condition="{tags.0.text}">
            <f:format.html>{tags.0.text}</f:format.html>
          </f:if>
