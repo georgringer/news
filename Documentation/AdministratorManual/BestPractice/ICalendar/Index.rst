@@ -181,7 +181,7 @@ To be able to render a link in the header section of the normal page which point
 .. code-block:: html
 
     <n:headerData>
-        <link rel="alternate" type="text/calendar" title="iCalendar 2.0" href="<f:uri.page additionalParams="{type:9819}"/>" />
+        <link rel="alternate" type="text/calendar" title="iCalendar 2.0" href="{f:uri.page(additionalParams:{type:9819})}" />
     </n:headerData>
 
 

@@ -74,7 +74,7 @@ Sort tags
 ^^^^^^^^^
 If you want to sort the tags of a news item, you can use a custom ViewHelper or ``EXT:vhs``:
 
-.. code-block:: typoscript
+.. code-block:: html
 
 	<ul>
 		<f:for each="{newsItem.tags->v:iterator.sort(order: 'ASC', sortBy: 'title')}" as="tag">

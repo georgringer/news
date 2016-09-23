@@ -213,6 +213,9 @@ Usage of a ViewHelper
 """""""""""""""""""""
 
 Use a viewHelper of EXT:news to write any code into the header part. The code could look like this
+
+.. code-block:: html
+
     <n:headerData><script>var newsId = {newsItem.uid};</n:headerData>
 
 If you want to set the title tag, you can use a specific viewHelper:

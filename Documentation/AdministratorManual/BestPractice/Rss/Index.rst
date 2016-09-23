@@ -222,7 +222,7 @@ To be able to render a link in the header section of the normal page which point
 .. code-block:: html
 
     <n:headerData>
-        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<f:uri.page additionalParams="{type:9818}"/>" />
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{f:uri.page(additionalParams:{type:9818})}" />
     </n:headerData>
 
 Troubleshooting
