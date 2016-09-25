@@ -226,7 +226,7 @@ class EmConfiguration
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getHidePageTreeForAdministrationModule()
     {

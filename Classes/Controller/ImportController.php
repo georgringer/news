@@ -77,7 +77,6 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $settings = EmConfiguration::getSettings();
 
         try {
-
             $storageId = (int)$settings->getStorageUidImporter();
             $path = $settings->getResourceFolderImporter();
             if ($storageId === 0) {

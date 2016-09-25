@@ -122,6 +122,9 @@ $boot = function () {
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['dd_googlesitemap']['sitemap']['txnews']
             = \GeorgRinger\News\Hooks\TxNewsSitemapGenerator::class . '->main';
     }
+
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \GeorgRinger\News\Command\NewsImportCommandController::class;
+
 };
 
 $boot();

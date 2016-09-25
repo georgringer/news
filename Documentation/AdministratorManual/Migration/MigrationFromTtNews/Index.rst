@@ -30,6 +30,11 @@ This needs to be done in the configuration of EXT:news inside the Extension Mana
 #. Select "Import tt_news category records" from the select box and start the import of categories.
 #. Select "Import tt_news news records" from the select box and start the import of news records.
 
+.. important::
+
+   It is also possible to import data by using a CLI call `./typo3/cli_dispatch.phpsh extbase newsimport:run`.
+
+
 Migration of plugins
 """"""""""""""""""""
 Since the latest version of news_ttnewsimport it is also possible to migrate tt_news plugins
