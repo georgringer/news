@@ -27,4 +27,4 @@ Add links to your own tutorials
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you have written an own tutorial or found one which is worth to be mentioned,
-please open an issue in the bugtracker of this documentation at https://github.com/georgringer/news-documentation/issues.
+please open an issue in the bugtracker.

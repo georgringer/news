@@ -24,7 +24,6 @@ use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
 class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
 
-
     /**
      * @test
      * @return void

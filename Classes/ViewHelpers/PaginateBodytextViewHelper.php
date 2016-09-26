@@ -133,7 +133,7 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
                 }
             }
 
-            $result = join('', $tagsToOpen) . $parts[$currentPage - 1];
+            $result = implode('', $tagsToOpen) . $parts[$currentPage - 1];
 
             while ($tag = array_pop($tagsToClose)) {
                 $result .= $this->getClosingTagByOpeningTag($tag);

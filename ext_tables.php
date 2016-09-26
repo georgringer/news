@@ -62,6 +62,7 @@ $boot = function () {
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
                     'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
+                    'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'typo3-pagetree'
                 ]
             );
         }

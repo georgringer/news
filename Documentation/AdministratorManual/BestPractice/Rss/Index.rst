@@ -219,10 +219,10 @@ Add a link to the RSS feed in the list view
 
 To be able to render a link in the header section of the normal page which points to the RSS feed you can use something like this in your List.html fluid template.
 
-.. code-block:: xml
+.. code-block:: html
 
     <n:headerData>
-        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<f:uri.page additionalParams="{type:9818}"/>" />
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{f:uri.page(additionalParams:{type:9818})}" />
     </n:headerData>
 
 Troubleshooting

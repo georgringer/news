@@ -24,14 +24,14 @@ Properties
 
 .. container:: ts-properties
 
-	===========================      =====================================
-	Property                         Data type
-	===========================      =====================================
-	templateLayouts_                 array
-	archive_                         string
-	tagPid_                          integer
-	categoryRestrictionForFlexForms_ bool
-	=========================== =====================================
+	==================================      =====================================
+	Property                                Data type
+	==================================      =====================================
+	templateLayouts_                        array
+	archive_                                string
+	tagPid_                                 integer
+	categoryRestrictionForFlexForms_        bool
+	==================================      =====================================
 
 .. _tsconfigTemplateLayouts:
 

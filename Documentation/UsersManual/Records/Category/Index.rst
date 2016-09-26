@@ -78,6 +78,7 @@ Properties
              Can be used to set a special <title>-Tag for category pages.
              This must be enabled in the template:
              .. code-block:: html
+
          <f:if condition="{categories.0.title}">
            <n:titleTag>
              <f:format.htmlentitiesDecode>{categories.0.title}</f:format.htmlentitiesDecode>
@@ -90,6 +91,7 @@ Properties
              Can be used to set a special meta description for category pages.
              This must be enabled in the template:
              .. code-block:: html
+
          <f:if condition="{categories.0.description}">
            <n:metaTag name="description" content="{categories.0.description -> f:format.stripTags()}" />
          </f:if>
@@ -100,6 +102,7 @@ Properties
              Can be used to set a special headline for category pages, e.g. for H1 tag
              This must be enabled in the template:
              .. code-block:: html
+
          <f:if condition="{categories.0.headline}">
            <f:then>
              <h1>{categories.0.headline}</h1>
@@ -115,6 +118,7 @@ Properties
              Can be used to add additional content text for category pages
              This must be enabled in the template:
              .. code-block:: html
+
          <f:if condition="{categories.0.text}">
            <f:format.html>{categories.0.text}</f:format.html>
          </f:if>

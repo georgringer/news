@@ -15,7 +15,7 @@ Group news records
 
 The following example will group all given news records by the property "firstCategory".
 
-.. code-block:: xml
+.. code-block:: html
 
 	<f:if condition="{news}">
 		<f:then>

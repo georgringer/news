@@ -88,6 +88,9 @@ class EmConfiguration
      */
     protected $showAdministrationModule = true;
 
+    /** @var bool */
+    protected $hidePageTreeForAdministrationModule = false;
+
     /**
      * @var int
      */
@@ -220,5 +223,13 @@ class EmConfiguration
     public function getDateTimeRequired()
     {
         return !(bool)$this->dateTimeNotRequired;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHidePageTreeForAdministrationModule()
+    {
+        return (bool)$this->hidePageTreeForAdministrationModule;
     }
 }

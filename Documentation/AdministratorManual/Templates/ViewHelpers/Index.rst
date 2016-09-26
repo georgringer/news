@@ -31,7 +31,7 @@ Now you can use a ViewHelper of news with a code like:
 
 .. code-block:: html
 
-	<n:headerData><!-- some comment --></n:headerData
+	<n:headerData><!-- some comment --></n:headerData>
 
 If you want to know what a ViewHelper does, it is very easy to find the related PHP class by looking at the namespace and the name of the ViewHelper.
 Having e.g. ``GeorgRinger\News\ViewHelpers`` and ``headerData`` you will find the class at ``news\\Classes\ViewHelpers\\HeaderDataViewHelper.php``.

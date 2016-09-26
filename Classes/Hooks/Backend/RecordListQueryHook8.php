@@ -38,7 +38,6 @@ class RecordListQueryHook8
         $this->recordListConstraint = GeneralUtility::makeInstance(RecordListConstraint::class);
     }
 
-
     public function buildQueryParametersPostProcess(
         array &$parameters,
         string $table,
@@ -69,7 +68,7 @@ class RecordListQueryHook8
                 }
                 self::$count++;
             }
-        }  elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
+        } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
             $vars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
             if (is_array($vars) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];

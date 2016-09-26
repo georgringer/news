@@ -77,7 +77,7 @@ And then you can use a condition like this:
 		<f:else>
 			do something if it is not set
 		</f:else>
-	<f/:if>
+	</f:if>
 
 
 

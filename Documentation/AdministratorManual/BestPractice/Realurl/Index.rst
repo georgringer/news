@@ -59,7 +59,7 @@ This example is advanced and works best with one single view page.
 It hides the controller and action name by using fixedPostVars.
 Here is a full RealURL configuration with the explanation below.
 
-.. code-block:: html
+.. code-block:: php
 
 	<?php
 

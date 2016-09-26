@@ -687,11 +687,11 @@ class PageLayoutView
         $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtilityCore::getRecord('pages', $row['uid']));
         $permsEdit = $localCalcPerms & Permission::PAGE_EDIT;
         if ($permsEdit) {
-            $returnUrl = BackendUtilityCore::getModuleUrl('web_layout', array('id' => $currentPageUid));
-            $editLink = BackendUtilityCore::getModuleUrl('web_layout', array(
+            $returnUrl = BackendUtilityCore::getModuleUrl('web_layout', ['id' => $currentPageUid]);
+            $editLink = BackendUtilityCore::getModuleUrl('web_layout', [
                 'id' => $row['uid'],
                 'returnUrl' => $returnUrl
-            ));
+            ]);
         }
         return $editLink;
     }

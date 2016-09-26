@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-    /**
+/**
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -50,8 +50,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         array $childConfig,
         $isVirtual,
         array &$enabledControls
-    )
-    {
+    ) {
     }
 
     /**
@@ -72,8 +71,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         array $childConfig,
         $isVirtual,
         array &$controlItems
-    )
-    {
+    ) {
         if ($foreignTable === 'sys_file_reference' && !empty($childRecord['showinpreview'])) {
             $label = $GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinpreview');
             $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];

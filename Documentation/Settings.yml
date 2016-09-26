@@ -15,7 +15,7 @@ conf.py:
     - Georg Ringer
     - manual
   html_theme_options:
-    github_repository: georgringer/news-documentation
+    github_repository: georgringer/news
     github_branch: master
   latex_elements:
     papersize: a4paper

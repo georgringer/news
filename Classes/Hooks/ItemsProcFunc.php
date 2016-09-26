@@ -226,7 +226,8 @@ class ItemsProcFunc
      * @param int $pid
      * @return int
      */
-    protected function getPageId($pid) {
+    protected function getPageId($pid)
+    {
         $pid = (int)$pid;
 
         if ($pid > 0) {

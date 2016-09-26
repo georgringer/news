@@ -44,6 +44,7 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             'rteForTeaser' => false,
             'storageUidImporter' => 1,
             'resourceFolderImporter' => 'fo',
+            'hidePageTreeForAdministrationModule' => true,
         ];
 
         $configurationInstance = new EmConfiguration($configuration);
@@ -75,6 +76,7 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             'rteForTeaser' => false,
             'storageUidImporter' => 1,
             'resourceFolderImporter' => '/news_import',
+            'hidePageTreeForAdministrationModule' => false,
         ];
 
         $configurationInstance = new EmConfiguration([]);

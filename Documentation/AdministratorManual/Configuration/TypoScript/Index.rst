@@ -77,7 +77,7 @@ orderBy
          string
    Description
          Define the sorting of displayed news records.
-         The chapter ":ref:`Extend news > Extend flexforms <extendClasses>`" shows how the select box can be extended.
+         The chapter ":ref:`Extend news > Extend flexforms <extendFlexforms>`" shows how the select box can be extended.
 
 .. _tsOrderDirection:
 
@@ -824,7 +824,7 @@ demandClass
          Overload the demand object which is used to build the queries.
 
          .. note::
-           This is just important if you want to extend EXT:news. :ref:`See here <extendClasses>`
+           This is just important if you want to extend EXT:news.
 
 .. _tsLinkHrDate:
 

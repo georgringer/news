@@ -15,7 +15,6 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
-use TYPO3\CMS\Fluid\Core\Variables\CmsVariableProvider;
 
 /**
  * Test for TargetLinkViewHelper

@@ -99,5 +99,4 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
         $out = $viewHelper->_call('mapResultToObjects', $in);
         $this->assertEquals($out, $exp);
     }
-
 }

@@ -33,7 +33,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
      */
     public function listURL($alternativeId = '', $table = '-1', $excludeList = '')
     {
-        $urlParameters = array();
+        $urlParameters = [];
         if ((string)$alternativeId !== '') {
             $urlParameters['id'] = $alternativeId;
         } else {
