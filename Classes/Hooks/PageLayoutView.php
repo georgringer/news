@@ -299,7 +299,7 @@ class PageLayoutView
                 $content .= $linkTitle;
             }
         } else {
-            $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
+            $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.recordNotAvailable'),
                 $id);
             $content = $this->generateCallout($text);
         }

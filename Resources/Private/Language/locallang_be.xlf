@@ -216,6 +216,9 @@
 			<trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
 				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
 			</trans-unit>
+			<trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
+				<source>Record with uid "%s" is not available anymore!</source>
+			</trans-unit>
 			<trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve">
 				<source>News record with uid &quot;%s&quot; is not available anymore!</source>
 			</trans-unit>
