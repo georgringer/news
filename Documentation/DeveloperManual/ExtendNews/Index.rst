@@ -16,3 +16,4 @@ Extend News
 	ExtendFlexforms/Index
 	HooksSignals/Index
 	ProxyClassGenerator/Index
+	ImportService/Index

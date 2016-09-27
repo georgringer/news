@@ -25,6 +25,3 @@ Best practice
 	Rss/Index
 	ICalendar/Index
 	SitemapWithDdGoogleSitemap/Index
-	MigrateFromTtNews/Index
-
-
