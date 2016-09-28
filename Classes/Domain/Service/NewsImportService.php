@@ -151,7 +151,9 @@ class NewsImportService extends AbstractImportService
         $news->setHidden($importItem['hidden']);
         $news->setStarttime($importItem['starttime']);
         $news->setEndtime($importItem['endtime']);
-        $news->setFeGroup((string)$importItem['fe_group']);
+        if (!empty($importItem['fe_group'])) {
+            $news->setFeGroup((string)$importItem['fe_group']);
+        }
         $news->setTstamp($importItem['tstamp']);
         $news->setCrdate($importItem['crdate']);
         $news->setSysLanguageUid($importItem['sys_language_uid']);
