@@ -572,7 +572,7 @@ class PageLayoutView
             $this->tableData[] = [
                 $this->getLanguageService()->sL(
                     self::LLPATH . 'flexforms_additional.disableOverrideDemand'),
-                ''
+                '<i class="fa fa-check"></i>'
             ];
         }
     }
