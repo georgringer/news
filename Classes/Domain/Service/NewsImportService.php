@@ -205,6 +205,9 @@ class NewsImportService extends AbstractImportService {
 		if (is_array($importItem['media'])) {
 
 			foreach ($importItem['media'] as $mediaItem) {
+                $arguments = ['importItem' => $importItem];
+                $return = $this->emitSignal('preHydrate', $arguments);
+                $importItem = $return['importItem'];
 
 				// multi media
 				if ((int)$mediaItem['type'] === Media::MEDIA_TYPE_MULTIMEDIA) {
@@ -585,6 +588,6 @@ class NewsImportService extends AbstractImportService {
 	 * @param array $signalArguments arguments for the signal slot
 	 */
 	protected function emitSignal($signalName, array $signalArguments) {
-		$this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\NewsImportService', $signalName, $signalArguments);
+        return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\NewsImportService', $signalName, $signalArguments);
 	}
 }
