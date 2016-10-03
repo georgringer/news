@@ -31,8 +31,6 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Fluid\Tests\Unit\ViewHelpe
      */
     public function setUp()
     {
-        parent::setUp();
-
         $this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['dummy']);
         $mockedDatabaseConnection = $this
             ->getMockBuilder('TYPO3\\CMS\\Core\\Database\\DatabaseConnection')
