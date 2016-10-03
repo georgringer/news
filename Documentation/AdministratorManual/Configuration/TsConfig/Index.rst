@@ -93,6 +93,7 @@ Properties
 	Property                    Data type
 	=========================== =====================================
 	preselect_                   array
+	columns_                     string
 	defaultPid_                  integer
 	redirectToPageOnStart_       integer
 	allowedPage_                 integer
@@ -121,6 +122,18 @@ Predefine the form in the administration module. The possible fields for the pre
 			topNewsRestriction = 1
 		}
 	}
+
+
+.. _tsconfigColumns:
+
+columns
+^^^^^^^
+
+Define a list of columns which are displayed in the administration module. Default is `teaser,istopnews,datetime,categories`. Example:
+
+.. code-block:: typoscript
+
+    tx_news.module.columns = datetime,archive,author
 
 .. _tsconfigDefaultPid:
 
