@@ -51,6 +51,7 @@
     "bin-dir": ".Build/bin",
     "preferred-install": {
       "typo3/cms": "source",
+      "typo3/cms-core": "source",
       "*": "dist"
     }
   },
