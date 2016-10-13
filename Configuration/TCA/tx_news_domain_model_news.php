@@ -30,7 +30,6 @@ $tx_news_domain_model_news = [
             '1' => 'ext-news-type-internal',
             '2' => 'ext-news-type-external',
         ],
-        'dividers2tabs' => true,
         'useColumnsForDefaultValues' => 'type',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',

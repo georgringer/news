@@ -18,7 +18,6 @@ return [
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
-        'dividers2tabs' => true,
         'default_sortby' => 'ORDER BY sorting',
         'sortby' => 'sorting',
         'delete' => 'deleted',
