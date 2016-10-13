@@ -4,7 +4,7 @@ defined('TYPO3_MODE') or die();
 $boot = function () {
 
     // CSH - context sensitive help
-    foreach (['news', 'media', 'tag'] as $table) {
+    foreach (['news', 'media', 'tag', 'link'] as $table) {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_' . $table);
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
             'tx_news_domain_model_' . $table, 'EXT:news/Resources/Private/Language/locallang_csh_' . $table . '.xlf');
