@@ -543,11 +543,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
      */
     public function getDateField()
     {
-        if (empty($this->dateField) || in_array($this->dateField, ['datetime', 'archive'])) {
-            return $this->dateField;
-        } else {
-            return '';
-        }
+        return $this->dateField;
     }
 
     /**
