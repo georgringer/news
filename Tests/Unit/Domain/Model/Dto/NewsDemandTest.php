@@ -145,9 +145,9 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->instance->setDateField($value);
         $this->assertEquals($value, $this->instance->getDateField());
 
-        $value = 'invalid';
+        $value = 'customField';
         $this->instance->setDateField($value);
-        $this->assertEquals('', $this->instance->getDateField());
+        $this->assertEquals($value, $this->instance->getDateField());
     }
 
     /**
