@@ -8,7 +8,7 @@
 .. _addCustomType:
 
 Add a custom type
-===============
+=================
 Out of the box news comes with three types built in:
 
 - "News": Default news record
@@ -43,6 +43,9 @@ In this example the new type will be called 'myCustomNewsType' and is configured
          
 2) TCA
 ---------------------------------
+
+In this example, the new type is configured to show the fields `bodytext` and `title`.
+Therefore, create the file ``Configuration/TCA/Overrides/tx_news_domain_model_news.php``.
 
 .. code-block:: php
 
