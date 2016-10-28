@@ -104,6 +104,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
      */
     public function render()
     {
+        /** @var News $newsItem */
         $newsItem = $this->arguments['newsItem'];
         $settings = $this->arguments['settings'];
         $uriOnly = $this->arguments['uriOnly'];
@@ -114,6 +115,10 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array)$settings);
 
         $this->init();
+
+        if (is_null($newsItem)) {
+            return $this->renderChildren();
+        }
 
         $newsType = (int)$newsItem->getType();
         switch ($newsType) {

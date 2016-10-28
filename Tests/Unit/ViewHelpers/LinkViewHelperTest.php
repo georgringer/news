@@ -16,6 +16,8 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Service\SettingsService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Test for LinkViewHelper
@@ -200,5 +202,17 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             [['detailPid' => '123'], 123],
             [['detailPid' => '456xy'], 456],
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function noNewsReturnsChildren()
+    {
+        $settingService = $this->getAccessibleMock(SettingsService::class, ['getConfiguration', 'getSettings']);
+        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['renderChildren', 'getSettings']);
+        $viewHelper->_set('pluginSettingsService', $settingService);
+        $result = $viewHelper->_call('render');
+        $this->assertEquals('', $result);
     }
 }
