@@ -17,3 +17,4 @@ Extend News
 	HooksSignals/Index
 	ProxyClassGenerator/Index
 	ImportService/Index
+	AddCustomType/Index
