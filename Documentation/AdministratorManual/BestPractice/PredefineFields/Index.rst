@@ -50,6 +50,15 @@ option "Images" from the media selection dropdown:
 	}
 
 
+Author name & email
+^^^^^^^^^^^^^^^^^^^
+
+By using the following code in the PageTsConig, the fields `Author` and `Author Email` are prefilled with the name and email address of the current backend user
+
+.. code-block:: typoscript
+
+	tx_news.predefine.author  = 1
+
 Archive date
 ^^^^^^^^^^^^
 
