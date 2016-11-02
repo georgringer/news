@@ -39,12 +39,17 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
 
     [globalVar = TSFE:type = 9818]
     config {
-    	disableAllHeaderCode = 1
-    	xhtml_cleaning = none
-    	admPanel = 0
-    	metaCharset = utf-8
-    	additionalHeaders = Content-Type:application/xml;charset=utf-8
-    	disablePrefixComment = 1
+        disableAllHeaderCode = 1
+        xhtml_cleaning = none
+        admPanel = 0
+        debug = 0
+        disablePrefixComment = 1
+        metaCharset = utf-8
+        # before CMS 8 (adjust if using ATOM)
+        additionalHeaders = Content-Type:application/rss+xml;charset=utf-8
+        # CMS 8 (adjust if using ATOM)
+        additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
+        absRefPrefix = {$plugin.tx_news.rss.channel.link}
     }
 
     pageNewsRSS = PAGE
@@ -96,15 +101,19 @@ To create a RSS feed based on a plugin follow this steps:
       page.10 < styles.content.get
 
       config {
-              # deactivate Standard-Header
-             disableAllHeaderCode = 1
-             # no xhtml tags
-             xhtml_cleaning = none
-             admPanel = 0
-             metaCharset = utf-8
-             # define charset
-             additionalHeaders = Content-Type:application/xml;charset=utf-8
-             disablePrefixComment = 1
+         # deactivate Standard-Header
+         disableAllHeaderCode = 1
+         # no xhtml tags
+         xhtml_cleaning = none
+         admPanel = 0
+
+         # define charset
+         metaCharset = utf-8
+         # before CMS 8 (adjust if using ATOM)
+         additionalHeaders = Content-Type:application/rss+xml;charset=utf-8
+         # CMS 8 (adjust if using ATOM)
+         additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
+         disablePrefixComment = 1
       }
 
       # set the format
@@ -149,14 +158,17 @@ The TypoScript code looks like this.
     		# no xhtml tags
     		xhtml_cleaning = none
     		admPanel = 0
+    		# define charset
     		metaCharset = utf-8
     		# you need an english locale to get correct rfc values for <lastBuildDate>, ...
     		locale_all = en_EN
-    		# define charset
+            # before CMS 8 (adjust if using ATOM)
     		additionalHeaders = Content-Type:application/xml;charset=utf-8
+            # CMS 8 (adjust if using ATOM)
+            additionalHeaders.10.header = Content-Type:application/xml;charset=utf-8
     		disablePrefixComment = 1
-    		baseURL = http://www.domain.tld/
-    		absRefPrefix = http://www.domain.tld/
+    		baseURL = {$plugin.tx_news.rss.channel.link}
+    		absRefPrefix = {$plugin.tx_news.rss.channel.link}
     	}
 
     	# set the format
