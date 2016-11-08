@@ -26,7 +26,7 @@ plugin.tx_news {
 	# Modify the translation
 	_LOCAL_LANG {
 		default {
-			# read_more = more >>
+			more-link_more = more >>
 		}
 	}
 
