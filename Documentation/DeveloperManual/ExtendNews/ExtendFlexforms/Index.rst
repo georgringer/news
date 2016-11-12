@@ -41,7 +41,7 @@ Remove fields in additional actions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you define an additional action, you won't need all available fields which are available inside the Flexforms. If you want to hide some fields,
-take a look at the hook inside the class Hooks/T3libBefunc.php:
+take a look at the hook inside the class Hooks/BackendUtility.php:
 
 .. code-block:: php
 
