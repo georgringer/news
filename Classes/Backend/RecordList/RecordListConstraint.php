@@ -13,6 +13,7 @@ namespace GeorgRinger\News\Backend\RecordList;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
@@ -84,6 +85,11 @@ class RecordListConstraint
                 }
             }
             if (!empty($arguments['selectedCategories'])) {
+                if ((int)$arguments['includeSubCategories'] === 1) {
+                    $categoryList = implode(',', $arguments['selectedCategories']);
+                    $listWithSubCategories = CategoryService::getChildrenCategories($categoryList);
+                    $arguments['selectedCategories'] = explode(',', $listWithSubCategories);
+                }
                 switch ($categoryMode) {
                     case 'and':
                         foreach ($arguments['selectedCategories'] as $category) {

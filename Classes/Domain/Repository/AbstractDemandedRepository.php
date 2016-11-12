@@ -161,7 +161,8 @@ abstract class AbstractDemandedRepository
             $queryParameters = $queryBuilder->getParameters();
             $params = [];
             foreach ($queryParameters as $key => $value) {
-                $params[':' . $key] = $value; // prefix array keys with ':'
+                // prefix array keys with ':'
+                $params[':' . $key] = (is_numeric($value)) ? $value : "'" . $value . "'"; //all non numeric values have to be quoted
                 unset($params[$key]);
             }
             // replace placeholders with real values

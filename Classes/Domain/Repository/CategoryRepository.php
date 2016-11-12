@@ -174,7 +174,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
             if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
                 $whereClause = 'sys_language_uid=' . $language . ' AND l10n_parent IN(' . implode(',',
                         $idList) . ')' . $GLOBALS['TSFE']->sys_page->enableFields('sys_category');
-                $rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'sys_category',
+                $rows = (array)$GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'sys_category',
                     $whereClause);
 
                 $idList = $this->replaceCategoryIds($idList, $rows);

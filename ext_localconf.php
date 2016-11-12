@@ -38,6 +38,18 @@ $boot = function () {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass']['news'] =
         \GeorgRinger\News\Hooks\BackendUtility::class;
 
+    // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
+    if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8005000) {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
+            'depends' => [
+                \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexPrepare::class,
+            ],
+            'before' => [
+                \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexProcess::class,
+            ],
+        ];
+    }
+
     // Hide content elements in page module for 7
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list.inc']['makeQueryArray']['news'] =
         \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
