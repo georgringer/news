@@ -14,6 +14,7 @@ namespace GeorgRinger\News\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -78,7 +79,7 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
         $this->registerArgument('object', News::class, 'news item', true);
         $this->registerArgument('as', 'string', 'as', true);
         $this->registerArgument('currentPage', 'int', 'current page', true);
-        $this->registerArgument('tolen', 'string', 'token', '###more###');
+        $this->registerArgument('token', 'string', 'token', '###more###');
     }
 
     /**
