@@ -45,10 +45,8 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
         debug = 0
         disablePrefixComment = 1
         metaCharset = utf-8
-        # before CMS 8 (adjust if using ATOM)
-        additionalHeaders = Content-Type:application/rss+xml;charset=utf-8
-        # CMS 8 (adjust if using ATOM)
-        additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
+        # adjust if using ATOM
+        additionalHeaders.876.header = Content-Type:application/rss+xml;charset=utf-8
         absRefPrefix = {$plugin.tx_news.rss.channel.link}
     }
 
@@ -109,10 +107,8 @@ To create a RSS feed based on a plugin follow this steps:
 
          # define charset
          metaCharset = utf-8
-         # before CMS 8 (adjust if using ATOM)
-         additionalHeaders = Content-Type:application/rss+xml;charset=utf-8
-         # CMS 8 (adjust if using ATOM)
-         additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
+         # adjust if using ATOM
+         additionalHeaders.876.header = Content-Type:application/rss+xml;charset=utf-8
          disablePrefixComment = 1
       }
 
@@ -162,10 +158,8 @@ The TypoScript code looks like this.
     		metaCharset = utf-8
     		# you need an english locale to get correct rfc values for <lastBuildDate>, ...
     		locale_all = en_EN
-            # before CMS 8 (adjust if using ATOM)
-    		additionalHeaders = Content-Type:application/xml;charset=utf-8
-            # CMS 8 (adjust if using ATOM)
-            additionalHeaders.10.header = Content-Type:application/xml;charset=utf-8
+            # adjust if using ATOM
+            additionalHeaders.876.header = Content-Type:application/xml;charset=utf-8
     		disablePrefixComment = 1
     		baseURL = {$plugin.tx_news.rss.channel.link}
     		absRefPrefix = {$plugin.tx_news.rss.channel.link}
