@@ -18,7 +18,5 @@ $newSysFileReferenceColumns = [
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_file_reference', $newSysFileReferenceColumns);
 
 // add special news palette
-$GLOBALS['TCA']['sys_file_reference']['palettes']['newsPalette'] = [
-    'showitem' => 'showinpreview',
-    'canNotCollapse' => true
-];
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'newsPalette', 'showinpreview');
+$GLOBALS['TCA']['sys_file_reference']['palettes']['newsPalette']['canNotCollapse'] = true;

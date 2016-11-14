@@ -13,6 +13,9 @@ $boot = function () {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
         'tt_content.pi_flexform.news_pi1.list', 'EXT:news/Resources/Private/Language/locallang_csh_flexforms.xlf');
 
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+        'sys_file_reference', 'EXT:news/Resources/Private/Language/locallang_csh_sys_file_reference.xlf');
+
     $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
     if (TYPO3_MODE === 'BE') {
@@ -24,7 +27,7 @@ $boot = function () {
             'itemsProcFunc' => \GeorgRinger\News\Hooks\ItemsProcFunc::class . '->user_categoryOverlay',
         ];
         $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
-			--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay';
+            --div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay';
 
         // Add tables to livesearch (e.g. "#news:fo" or "#newscat:fo")
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['news'] = 'tx_news_domain_model_news';
