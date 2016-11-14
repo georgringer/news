@@ -2,17 +2,17 @@
 namespace GeorgRinger\News\Domain\Model\Dto;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
  * Administration Demand model
@@ -34,18 +34,21 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /**
      * @var string
      */
-    protected $sortingField;
+    protected $sortingField = 'datetime';
 
     /**
      * @var string
      */
-    protected $sortingDirection;
+    protected $sortingDirection = 'desc';
 
     /**
      * @var string
      */
     protected $searchWord;
 
+    /**
+     * @return string
+     */
     public function getRecursive()
     {
         return $this->recursive;
@@ -75,7 +78,7 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     public function setSelectedCategories($selectedCategories)
     {
         if ($selectedCategories === '0' || $selectedCategories === ['0']) {
-            return [];
+            return;
         }
         if (is_string($selectedCategories)) {
             $selectedCategories = explode(',', $selectedCategories);

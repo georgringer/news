@@ -40,7 +40,7 @@ Properties
 	categories_                           Category selection                    General         string
 	categoryConjunction_                  Category mode                         General         string
 	includeSubCategories_                 Include subcategories                 General         boolean
-	archiveRestriction_                   Archive                               General         int
+	archiveRestriction_                   Archive                               General         string
 	timeRestriction_                      Time limit (LOW)                      General         string
 	timeRestrictionHigh_                  Time limit (HIGH):                    General         string
 	topNewsRestriction_                   Top News                              General         string
@@ -187,7 +187,7 @@ archiveRestriction
    Data type
          string
    Description
-         :typoscript:`plugin.tx_news.settings.archiveRestriction =1`
+         :typoscript:`plugin.tx_news.settings.archiveRestriction = active`
 
          News records can hold an optional archive date. 2 modes are available:
 
