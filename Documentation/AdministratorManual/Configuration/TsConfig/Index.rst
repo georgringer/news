@@ -97,6 +97,7 @@ Properties
 	defaultPid_                  integer
 	redirectToPageOnStart_       integer
 	allowedPage_                 integer
+	alwaysShowFilter_            bool
 	=========================== =====================================
 
 .. _tsconfigPreselect:
@@ -166,6 +167,17 @@ If defined, the administration module will redirect the user always to the given
 
 	# Example:
 	tx_news.module.allowedPage = 123
+
+The user will be redirected to the page with the uid 123.
+
+.. _tsconfigAlwaysShowFilter_:
+
+alwaysShowFilter
+^^^^^^^^^^^^^^^^
+If defined, the administration module will always show the filter opened.
+
+	# Example:
+	tx_news.module.alwaysShowFilter = 1
 
 The user will be redirected to the page with the uid 123.
 

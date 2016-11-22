@@ -252,7 +252,9 @@ class AdministrationController extends NewsController
                     ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
                 }
             }
-            $this->view->assign('hideForm', true);
+            if (!(bool)$this->tsConfiguration['alwaysShowFilter']) {
+                $this->view->assign('hideForm', true);
+            }
         }
         $categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
         $idList = [];
