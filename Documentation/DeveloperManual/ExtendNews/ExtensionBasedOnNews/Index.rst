@@ -134,6 +134,7 @@ Create a basic controller with the mentioned action.
 		protected function createDemandObject()
 		{
 			$demand = $this->objectManager->get(NewsDemand::class);
+			$demand->setLimit(10);
 
 			return $demand;
 		}
@@ -169,7 +170,19 @@ Create the template:
 Setup
 -----
 
-After enabling the extension in the Extension Manager and creating a plugin "Filter" on a page, you will see all news records of your system.
+After enabling the extension in the Extension Manager and creating a plugin "Filter" on a page, you will see up to 10 news records of your system.
+
+.. hint::
+
+	If your installation is based on composer, you need to add the classes to the PSR-4 section.
+
+	.. code-block:: js
+
+		"autoload": {
+			"psr-4": {
+				"GeorgRinger\\NewsFilter\\": "typo3conf/ext/news_filter/Classes/"
+			}
+		}
 
 Configuration
 -------------
@@ -203,4 +216,100 @@ By modifying the controller with the following code, you will change the output 
 Use FlexForms
 ^^^^^^^^^^^^^
 
-TBD
+Flexforms are a powerful tool to let editors configure plugins.
+
+Configuration/TCA/Overrides/tt_content.php
+""""""""""""""""""""""""""""""""""""""""""
+
+Exchange the existing file with the following content.
+
+.. code-block:: php
+
+	<?php
+	defined('TYPO3_MODE') or die();
+
+	/***************
+	 * Plugin
+	 */
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+		'news_categoryfilter',
+		'Filter',
+		'Some demo'
+	);
+
+	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['newsfilter_filter'] = 'recursive,select_key,pages';
+	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['newsfilter_filter'] = 'pi_flexform';
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('newsfilter_filter',
+		'FILE:EXT:news_categoryfilter/Configuration/FlexForms/flexform_news_filter.xml');
+
+Configuration/FlexForms/flexform_news_filter.xml
+""""""""""""""""""""""""""""""""""""""""""""""""
+
+The syntax of ``FlexForms`` is identical to the one of ``TCA`` with the only difference that it is written in XML instead of PHP.
+
+.. code-block:: xml
+
+	<T3DataStructure>
+		<sheets>
+			<sDEF>
+				<ROOT>
+					<TCEforms>
+						<sheetTitle>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings
+						</sheetTitle>
+					</TCEforms>
+					<type>array</type>
+					<el>
+						<settings.startingpoint>
+							<TCEforms>
+								<label>LLL:EXT:lang/locallang_general.xlf:LGL.startingpoint</label>
+								<config>
+									<type>group</type>
+									<internal_type>db</internal_type>
+									<allowed>pages</allowed>
+									<size>3</size>
+									<maxitems>50</maxitems>
+									<minitems>0</minitems>
+									<show_thumbs>1</show_thumbs>
+									<wizards>
+										<suggest>
+											<type>suggest</type>
+											<default>
+												<searchWholePhrase>1</searchWholePhrase>
+											</default>
+										</suggest>
+									</wizards>
+								</config>
+							</TCEforms>
+						</settings.startingpoint>
+					</el>
+				</ROOT>
+			</sDEF>
+		</sheets>
+	</T3DataStructure>
+
+Important is that each element's name is prepended with ``settings.``.
+
+.. hint::
+	Take a look at the FlexForms of the news extension for inspiration. You can even just copy & paste settings from there.
+	The file can be found at ``EXT:news/Configuration/FlexForms/flexform_news.xml``.
+
+
+Classes/Controller/FilterController.php
+"""""""""""""""""""""""""""""""""""""""
+
+Adopt the controller to use the settings instead of the hardcoded ones.
+
+.. code-block:: php
+
+    /**
+     * @return NewsDemand
+     */
+    protected function createDemandObject()
+    {
+        $demand = $this->objectManager->get(NewsDemand::class);
+        // Because of the naming "<settings.startingpoint>", you can use $this->settings['startingpoint']
+        $demand->setStoragePage($this->settings['startingpoint']);
+        $demand->setLimit(10);
+
+        return $demand;
+    }
