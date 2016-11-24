@@ -585,6 +585,7 @@ Properties
 	disqusLocale_                         string
 	googlePlusLocale_                     string
 	opengraph_                            array
+	metadata_                             array
 	`detail\.media`_                      array
 	`detail\.errorHandling`_              string
 	`detail\.checkPidOfNewsRecord`_       boolean
@@ -990,6 +991,31 @@ opengraph
              creator = {$plugin.tx_news.opengraph.twitter.creator}
            }
 		}
+
+.. _tsMetadata:
+
+metadata
+""""""""
+
+.. container:: table-row
+
+   Property
+         metadata
+   Data type
+         array
+   Description
+         Control the rendering of metadata in the html header.
+         You can disable the rendering by turning of the specific metadata groups.
+         To disable the entire rendering, delete the metadata array :code:`metadata >`.
+   Default
+         ::
+
+        metadata {
+          keywords = 1
+          description = 1
+          opengraph = 1
+          twitter =< plugin.tx_news.settings.opengraph.twitter.site
+        }
 
 .. _tsDetailMedia:
 

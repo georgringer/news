@@ -185,6 +185,12 @@ plugin.tx_news {
 				creator = {$plugin.tx_news.opengraph.twitter.creator}
 			}
 		}
+		metadata {
+			keywords = 1
+			description = 1
+			opengraph = 1
+			twitter =< plugin.tx_news.settings.opengraph.twitter.site
+		}
 	}
 }
 
