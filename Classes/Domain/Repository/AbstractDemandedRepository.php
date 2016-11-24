@@ -96,9 +96,11 @@ abstract class AbstractDemandedRepository
         $parameters = [];
 
         $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
-        if ($isBelow8) {
-            list($hash, $parameters) = $queryParser->preparseQuery($query);
-        } else if ($isBelow8_4) {
+        if ($isBelow8_4) {
+            if($isBelow8) {
+                list($hash, $parameters) = $queryParser->preparseQuery($query);
+            }
+
             $statementParts = $queryParser->parseQuery($query);
 
             $statementParts['limit'] = ((int)$query->getLimit() ?: null);
