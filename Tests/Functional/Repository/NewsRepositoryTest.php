@@ -14,6 +14,7 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -214,6 +215,30 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $news = $this->newsRepository->findDemanded($demand);
         $this->assertEquals('130,131,133,134', $this->getIdListOfNews($news));
     }
+
+    /**
+     * @test
+     */
+    public function findRecordsForDateMenu()
+    {
+        $demand = $this->objectManager->get(NewsDemand::class);
+        $demand->setStoragePage('9');
+        $demand->setDateField('datetime');
+        $expected = [
+            'single' => [
+                '2014' => [
+                    '03' => 4,
+                    '04' => 2
+                ]
+            ],
+            'total' => [
+                '2014' => 6
+            ]
+        ];
+        $dateMenuData = $this->newsRepository->countByDate($demand);
+        $this->assertEquals($expected, $dateMenuData);
+    }
+
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList
