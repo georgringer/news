@@ -14,6 +14,7 @@ namespace GeorgRinger\News\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -86,6 +87,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper {
 	 */
 	public function render(\GeorgRinger\News\Domain\Model\News $newsItem, array $settings = array(), $uriOnly = FALSE, $configuration = array(), $content = '') {
 		$tsSettings = $this->pluginSettingsService->getSettings();
+		ArrayUtility::mergeRecursiveWithOverrule($tsSettings, $settings);
 
 		$this->init();
 
