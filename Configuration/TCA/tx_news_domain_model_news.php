@@ -235,7 +235,6 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 16,
-                'max' => 20,
                 'eval' => 'datetime' . ($configuration->getDateTimeRequired() ? ',required' : ''),
             ]
         ],
@@ -246,7 +245,6 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'max' => 20,
                 'eval' => $configuration->getArchiveDate(),
                 'default' => 0
             ]
