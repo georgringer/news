@@ -609,7 +609,7 @@ class PageLayoutView
             }
 
             $this->tableData[] = [
-                $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
+                $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.startingpoint'),
                 implode(', ', $pagesOut) . $recursiveLevelText
             ];
         }
