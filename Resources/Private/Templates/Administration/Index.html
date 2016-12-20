@@ -141,6 +141,15 @@
 											<f:form.select class="form-control" property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
 										</div>
 									</div>
+									<div class="form-group">
+										<label for="includeSubCategories" class="col-sm-6 control-label">
+											<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.includeSubCategories" />
+										</label>
+
+										<div class="col-sm-6">
+											<f:form.checkbox class="form-control" property="includeSubCategories" value="1" id="includeSubCategories" />
+										</div>
+									</div>
 								</f:if>
 							</div>
 						</div>
@@ -179,6 +188,7 @@
 		</f:else>
 	</f:if>
 	<script type="text/javascript">
+		T3_THIS_LOCATION = {requestUri -> f:format.raw()};
 		TYPO3.jQuery(document).ready(function () {
 			TYPO3.jQuery('#toggle-settings').click(function () {
 				TYPO3.jQuery(this).children('i').toggleClass('fa-minus');

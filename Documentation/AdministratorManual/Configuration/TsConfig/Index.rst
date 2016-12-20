@@ -24,13 +24,14 @@ Properties
 
 .. container:: ts-properties
 
-	=========================== =====================================
-	Property                    Data type
-	=========================== =====================================
-	templateLayouts_            array
-	archive_                    string
-	tagPid_                     integer
-	=========================== =====================================
+	==================================      =====================================
+	Property                                Data type
+	==================================      =====================================
+	templateLayouts_                        array
+	archive_                                string
+	tagPid_                                 integer
+	categoryRestrictionForFlexForms_        bool
+	==================================      =====================================
 
 .. _tsconfigTemplateLayouts:
 
@@ -70,6 +71,15 @@ Besides the configuration in the :ref:`Extension Manager <extensionManagerTagPid
 	tx_news.tagPid = 123
 
 
+.. _tsconfigCategoryRestrictionForFlexForms:
+
+categoryRestrictionForFlexForms
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+After defining the category restriction in the :ref:`Extension Manager <extensionManagerCategoryRestriction>` it is also possible to restrict the categories in the news plugin. This needs to enabled by TsConfig: ::
+
+	# Example:
+	tx_news.categoryRestrictionForFlexForms = 1
+
 .. _tsconfigAdministration:
 
 Administration module
@@ -83,9 +93,11 @@ Properties
 	Property                    Data type
 	=========================== =====================================
 	preselect_                   array
+	columns_                     string
 	defaultPid_                  integer
 	redirectToPageOnStart_       integer
 	allowedPage_                 integer
+	alwaysShowFilter_            bool
 	=========================== =====================================
 
 .. _tsconfigPreselect:
@@ -111,6 +123,18 @@ Predefine the form in the administration module. The possible fields for the pre
 			topNewsRestriction = 1
 		}
 	}
+
+
+.. _tsconfigColumns:
+
+columns
+^^^^^^^
+
+Define a list of columns which are displayed in the administration module. Default is `teaser,istopnews,datetime,categories`. Example:
+
+.. code-block:: typoscript
+
+    tx_news.module.columns = datetime,archive,author
 
 .. _tsconfigDefaultPid:
 
@@ -143,6 +167,17 @@ If defined, the administration module will redirect the user always to the given
 
 	# Example:
 	tx_news.module.allowedPage = 123
+
+The user will be redirected to the page with the uid 123.
+
+.. _tsconfigAlwaysShowFilter_:
+
+alwaysShowFilter
+^^^^^^^^^^^^^^^^
+If defined, the administration module will always show the filter opened.
+
+	# Example:
+	tx_news.module.alwaysShowFilter = 1
 
 The user will be redirected to the page with the uid 123.
 

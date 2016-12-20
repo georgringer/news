@@ -39,12 +39,17 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
 
     [globalVar = TSFE:type = 9818]
     config {
-    	disableAllHeaderCode = 1
-    	xhtml_cleaning = none
-    	admPanel = 0
-    	metaCharset = utf-8
-    	additionalHeaders = Content-Type:application/xml;charset=utf-8
-    	disablePrefixComment = 1
+        disableAllHeaderCode = 1
+        xhtml_cleaning = none
+        admPanel = 0
+        debug = 0
+        disablePrefixComment = 1
+        metaCharset = utf-8
+        # before CMS 8 (adjust if using ATOM)
+        additionalHeaders = Content-Type:application/rss+xml;charset=utf-8
+        # CMS 8 (adjust if using ATOM)
+        additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
+        absRefPrefix = {$plugin.tx_news.rss.channel.link}
     }
 
     pageNewsRSS = PAGE
@@ -96,15 +101,19 @@ To create a RSS feed based on a plugin follow this steps:
       page.10 < styles.content.get
 
       config {
-              # deactivate Standard-Header
-             disableAllHeaderCode = 1
-             # no xhtml tags
-             xhtml_cleaning = none
-             admPanel = 0
-             metaCharset = utf-8
-             # define charset
-             additionalHeaders = Content-Type:application/xml;charset=utf-8
-             disablePrefixComment = 1
+         # deactivate Standard-Header
+         disableAllHeaderCode = 1
+         # no xhtml tags
+         xhtml_cleaning = none
+         admPanel = 0
+
+         # define charset
+         metaCharset = utf-8
+         # before CMS 8 (adjust if using ATOM)
+         additionalHeaders = Content-Type:application/rss+xml;charset=utf-8
+         # CMS 8 (adjust if using ATOM)
+         additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
+         disablePrefixComment = 1
       }
 
       # set the format
@@ -112,9 +121,10 @@ To create a RSS feed based on a plugin follow this steps:
 
       # delete content wrap
       tt_content.stdWrap >
+      tt_content.stdWrap.editPanel = 0
 
-**Important:** If your output still contains HTML code, please check your TypoScript
-(especially from css\_styled\_content) as this HTML is produced there!
+.. warning::
+ If your output still contains HTML code, please check your TypoScript (especially from css\_styled\_content or fluid\_styled\_content) as this HTML is produced there!
 
 Automatic RSS feeds - based on plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -129,6 +139,7 @@ The TypoScript code looks like this.
     	lib.stdheader >
     	tt_content.stdWrap.innerWrap >
     	tt_content.stdWrap.wrap >
+    	tt_content.stdWrap.editPanel = 0
     	# get away <div class="feEditAdvanced-firstWrapper" ...> if your logged into the backend
     	styles.content.get.stdWrap >
 
@@ -147,14 +158,17 @@ The TypoScript code looks like this.
     		# no xhtml tags
     		xhtml_cleaning = none
     		admPanel = 0
+    		# define charset
     		metaCharset = utf-8
     		# you need an english locale to get correct rfc values for <lastBuildDate>, ...
     		locale_all = en_EN
-    		# define charset
+            # before CMS 8 (adjust if using ATOM)
     		additionalHeaders = Content-Type:application/xml;charset=utf-8
+            # CMS 8 (adjust if using ATOM)
+            additionalHeaders.10.header = Content-Type:application/xml;charset=utf-8
     		disablePrefixComment = 1
-    		baseURL = http://www.domain.tld/
-    		absRefPrefix = http://www.domain.tld/
+    		baseURL = {$plugin.tx_news.rss.channel.link}
+    		absRefPrefix = {$plugin.tx_news.rss.channel.link}
     	}
 
     	# set the format
@@ -217,10 +231,10 @@ Add a link to the RSS feed in the list view
 
 To be able to render a link in the header section of the normal page which points to the RSS feed you can use something like this in your List.html fluid template.
 
-.. code-block:: xml
+.. code-block:: html
 
     <n:headerData>
-        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<f:uri.page additionalParams="{type:9818}"/>" />
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{f:uri.page(additionalParams:{type:9818})}" />
     </n:headerData>
 
 Troubleshooting

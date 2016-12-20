@@ -22,7 +22,7 @@
 			<f:if condition="{newsItem.falMediaPreviews}">
 				<f:then>
 					<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
-						<f:alias map="{mediaElement: newsItem.falMediaPreviews.0}">
+						<f:alias map="{mediaElement: '{newsItem.falMediaPreviews.0}'}">
 							<f:if condition="{mediaElement.originalResource.type} == 2">
 								<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}"/>
 							</f:if>

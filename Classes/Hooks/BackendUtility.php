@@ -14,6 +14,8 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -102,6 +104,14 @@ class BackendUtility
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
     ];
 
+    /** @var EmConfiguration */
+    protected $configuration;
+
+    public function __construct()
+    {
+        $this->configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
+    }
+
     /**
      * Hook function of \TYPO3\CMS\Backend\Utility\BackendUtility
      * It is used to change the flexform if it is about news
@@ -114,8 +124,12 @@ class BackendUtility
      */
     public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table)
     {
-        if ($table === 'tt_content' && $row['list_type'] === 'news_pi1' && is_array($dataStructure)) {
+        if ($table === 'tt_content' && $row['CType'] === 'list' && $row['list_type'] === 'news_pi1' && is_array($dataStructure)) {
             $this->updateFlexforms($dataStructure, $row);
+
+            if ($this->enabledInTsConfig($row['pid'])) {
+                $this->addCategoryConstraints($dataStructure);
+            }
         }
     }
 
@@ -187,6 +201,32 @@ class BackendUtility
     }
 
     /**
+     * Add category restriction to flexforms
+     *
+     * @param array $structure
+     */
+    protected function addCategoryConstraints(&$structure)
+    {
+        $categoryRestrictionSetting = $this->configuration->getCategoryRestriction();
+        $categoryRestriction = '';
+        switch ($categoryRestrictionSetting) {
+            case 'current_pid':
+                $categoryRestriction = ' AND sys_category.pid=###CURRENT_PID### ';
+                break;
+            case 'siteroot':
+                $categoryRestriction = ' AND sys_category.pid IN (###SITEROOT###) ';
+                break;
+            case 'page_tsconfig':
+                $categoryRestriction = ' AND sys_category.pid IN (###PAGE_TSCONFIG_IDLIST###) ';
+                break;
+        }
+
+        if (!empty($categoryRestriction)) {
+            $structure['sheets']['sDEF']['ROOT']['el']['settings.categories']['TCEforms']['config']['foreign_table_where'] = $categoryRestriction . $structure['sheets']['sDEF']['ROOT']['el']['settings.categories']['TCEforms']['config']['foreign_table_where'];
+        }
+    }
+
+    /**
      * Remove fields from flexform structure
      *
      * @param array &$dataStructure flexform structure
@@ -202,5 +242,18 @@ class BackendUtility
                 unset($dataStructure['sheets'][$sheetName]['ROOT']['el']['settings.' . $fieldName]);
             }
         }
+    }
+
+    /**
+     * @param int $pageId
+     * @return bool
+     */
+    protected function enabledInTsConfig($pageId)
+    {
+        $tsConfig = BackendUtilityCore::getPagesTSconfig($pageId);
+        if (isset($tsConfig['tx_news.']['categoryRestrictionForFlexForms'])) {
+            return (bool)$tsConfig['tx_news.']['categoryRestrictionForFlexForms'];
+        }
+        return false;
     }
 }

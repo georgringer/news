@@ -30,36 +30,36 @@ Properties
  - :Field:
          Field:
    :Description:
-         Description:
+             Description:
 
- - :Field:
-         Title
-   :Description:
-         Title of the tag. This field is required!
+     - :Field:
+             Title
+       :Description:
+             Title of the tag. This field is required!
 
- - :Field:
-         Hidden
-   :Description:
-         Hide a tag.
+     - :Field:
+             Hidden
+       :Description:
+             Hide a tag.
 
- - :Field:
-         SEO: <title>-Tag
-   :Description:
-         Can be used to set a special <title>-Tag for category pages.
-         This must be enabled in the template:
-         .. code-block:: html
+     - :Field:
+             SEO: <title>-Tag
+       :Description:
+             Can be used to set a special <title>-Tag for category pages.
+             This must be enabled in the template:
+             .. code-block:: html
          <f:if condition="{tags.0.title}">
            <n:titleTag>
-             <n:format.htmlentitiesDecode>{tags.0.title}</n:format.htmlentitiesDecode>
+             <f:format.htmlentitiesDecode>{tags.0.title}</f:format.htmlentitiesDecode>
            </n:titleTag>
          </f:if>
 
  - :Field:
          SEO: Meta-Description
    :Description:
-         Can be used to set a special meta description for category pages.
-         This must be enabled in the template:
-         .. code-block:: html
+             Can be used to set a special meta description for category pages.
+             This must be enabled in the template:
+             .. code-block:: html
          <f:if condition="{tags.0.description}">
            <n:metaTag name="description" content="{tags.0.description -> f:format.stripTags()}" />
          </f:if>
@@ -67,9 +67,10 @@ Properties
  - :Field:
          SEO: Headline
    :Description:
-         Can be used to set a special headline for category pages, e.g. for H1 tag
-         This must be enabled in the template:
-         .. code-block:: html
+             Can be used to set a special headline for category pages, e.g. for H1 tag
+             This must be enabled in the template:
+             .. code-block:: html
+
          <f:if condition="{tags.0.headline}">
            <f:then>
              <h1>{tags.0.headline}</h1>
@@ -82,9 +83,10 @@ Properties
  - :Field:
          SEO: Text
    :Description:
-         Can be used to add additional content text for category pages
-         This must be enabled in the template:
-         .. code-block:: html
+             Can be used to add additional content text for category pages
+             This must be enabled in the template:
+             .. code-block:: html
+
          <f:if condition="{tags.0.text}">
            <f:format.html>{tags.0.text}</f:format.html>
          </f:if>

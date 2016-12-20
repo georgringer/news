@@ -1,0 +1,89 @@
+5.3.0 - 2016/11/24
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Thanks to
+---------
+Open-Source is all about community and support! I want to thank everyone who contributed reports on forge, feedback on any channel and code!
+
+Especially I want to thank my employer **Sup7even Digital**. Check out our website http://www.sup7even.digital/!
+
+
+Features
+--------
+
+Improved administration module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The usability of the administration module has been improved. Examples using TsConfig
+
+.. code-block:: typoscript
+
+   // Change the used columns
+   tx_news.module.columns = datetime,archive,author
+   // Keep the filter always open
+   tx_news.module.alwaysShowFilter = 1
+
+Furthermore, a new checkbox to include subcategories in the search has been added.
+
+CLI import
+^^^^^^^^^^
+
+The import module can now be started using the commandline using ``./typo3/cli_dispatch.phpsh extbase newsimport:run``.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2016-11-23 [DOC] Finish documentation about using the demand object (Commit 3522e3b by Georg Ringer)
+        2016-11-22 [DOC] Start documentation about using the demand object (Commit 6d2ea50 by Georg Ringer)
+        2016-11-22 [FEATURE] Add setting to keep filter in Administration module open (Commit 868a2ed by Georg Ringer)
+        2016-11-14 [BUGFIX] Fix wrong arguments in PaginateBodyTextVH (Commit 6a886b3 by Georg Ringer)
+        2016-11-14 [TASK] Updated Preview views to list view + Updated documentation (#158) (Commit 5ab2688 by Tomas Norre Mikkelsen)
+        2016-11-14 [TASK] Changes how showinpreview is added to palette, it eases the possibility to extend the newsPalette (#163) (Commit da1e1ae by Tomas Norre Mikkelsen)
+        2016-11-14 [BUGFIX] Escape argument in f:alias VH (Commit 7c19002 by Georg Ringer)
+        2016-11-12 Update configuration of archiveRestriction (#150) (Commit ee346b2 by cjanody)
+        2016-11-12 [TASK] Use better default for news sorting in BE module (#159) (Commit 2f3156f by Markus Klein)
+        2016-11-12 [BUGFIX] Cast array in CategoryRepository (Commit e48a654 by Georg Ringer)
+        2016-11-12 [TASK] add example to link viewhelper (#162) (Commit 32d6b17 by Martin Hummer)
+        2016-11-08 [TASK] Adapt to breaking core hook getFlexFormDSClass (#155) (Commit 968ebca by Christian Kuhn)
+        2016-11-08 Update hook reference (#157) (Commit 49cced4 by Tomas Norre Mikkelsen)
+        2016-11-08 [BUGFIX] Use correct example in documenation (Commit 08d2436 by Georg Ringer)
+        2016-11-07 Merge branch 'master' of github.com:georgringer/news (Commit 509da8f by Georg Ringer)
+        2016-11-07 [TASK] Allow failure for 8 (Commit 20e36bc by Georg Ringer)
+        2016-11-05 [BUGFIX] quote non-numeric values in raw sql (#154) (Commit f2e24b5 by Martin Hummer)
+        2016-11-04 Merge branch 'master' of github.com:georgringer/news (Commit 0ce224e by Georg Ringer)
+        2016-11-04 [FEATURE] Add checkbox include subcategories in administration module (Commit 2c6779a by Georg Ringer)
+        2016-11-02 Docs content type (#147) (Commit 0d34b0e by Markus Klein)
+        2016-11-02 Update Settings.yml to newest version/release (#149) (Commit 3a3f979 by Marcus)
+        2016-10-28 [BUGFIX] Use correct check for prefilling author/email (Commit c2f0be9 by Georg Ringer)
+        2016-10-28 [TASK] Check if news is null in LinkViewHelper (Commit cffcf68 by Georg Ringer)
+        2016-10-28 [BUGFIX] Fix raw SQL handling for 8.4 (Commit 93aa783 by Martin Hummer)
+        2016-10-28 [DOC] Add custom type (#142) (Commit bc3bec8 by Martin Hummer)
+        2016-10-13 [TASK] Remove setting dividers2tabs (Commit a093010 by Georg Ringer)
+        2016-10-13 [BUGFIX] Allow link table on regular pages (Commit 7573f6b by Georg Ringer)
+        2016-10-10 [TASK] Add example for preselecting a select-field (#124) (Commit b5a0ae5 by Martin Hummer)
+        2016-10-04 [BUGFIX] remove one row class from list container (#121) (Commit dfafac0 by Johannes)
+        2016-10-04 [TASK] Remove scrutinizer (Commit de822ec by Georg Ringer)
+        2016-10-03 [TASK] Improve test suite (#118) (Commit e3426e2 by Georg Ringer)
+        2016-10-03 [FEATURE] Improve adminstration module (Commit a717bba by Georg Ringer)
+        2016-09-29 [TASK] Add check icon for settings.disableOverrideDemand (Commit dc954e5 by Georg Ringer)
+        2016-09-28 [BUGFIX] Fix wrong insertion of fe_group on repeated import (Commit 07344f9 by Georg Ringer)
+        2016-09-27 [TASK] Use correct version (Commit cee53fa by Georg Ringer)
+        2016-09-27 [DOC] Add chapter about import service (Commit 29735e1 by Georg Ringer)
+        2016-09-27 [TASK] Improve PageLayoutView and categories (Commit 32e91ce by Georg Ringer)
+        2016-09-27 [BUGFIX] Change error message in PageLayoutView (Commit 336002a by Georg Ringer)
+        2016-09-26 [BUGFIX] Remove escaping the return url (Commit 12971ed by Georg Ringer)
+        2016-09-25 [FEATURE] Provide import CLI call (Commit 2c5c682 by Georg Ringer)
+        2016-09-25 [BUGFIX] Ensure import dir exists (Commit b60a9a6 by Georg Ringer)
+        2016-09-24 [TASK] Add .gitattributes (Commit 13e1202 by Georg Ringer)
+
+
+This list has been created by using ``git log --since="2016/09/23" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

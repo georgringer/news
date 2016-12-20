@@ -1,0 +1,29 @@
+.news-table {
+    background-color: transparent;
+    border: 0;
+    margin: 0
+}
+
+.news-table th {
+    width: 40%;
+}
+
+.news-table .setting-switcher .up {
+    display: none;
+}
+
+.news-table .setting-switcher .open .up {
+    display: inline;
+}
+
+.news-table .setting-switcher .open .down {
+    display: none;
+}
+
+.news-table .hidden-settings {
+    border: 0;
+}
+
+.news-table > tbody > tr > td {
+    padding:3px 6px;
+}

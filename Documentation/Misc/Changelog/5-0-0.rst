@@ -1,0 +1,238 @@
+5.0.0 - 2016/09/03
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Thanks to
+---------
+Open-Source is all about community and support! I want to thank everyone who contributed reports on forge, feedback on any channel and code!
+
+Especially I want to thank my employer **Sup7even Digital**. Check out our new website http://www.sup7even.digital/!
+
+Features
+--------
+
+Improved plugin rendering in page module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To improve the usability of the page module regarding the news plugin, the used settings are rendered with a complete new design.
+
+Reworked administration module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The record listing in the administration module is now based on the record listing of the list module. There are several advantages
+
+- See translations & workspace overlays
+- Exact same behaviour as in the list module
+- Less custom code
+
+Full support of FAL
+^^^^^^^^^^^^^^^^^^^
+The full range of FAL assets can now be used, e.g. videos from youtube and vimeo and every file type which is supported by the various file renderers of the core and 3rd party extensions.
+
+Twitter card support
+^^^^^^^^^^^^^^^^^^^^
+Twitter supports some additional meta tags if an URL is shared. The following meta tags have been added to the the default templates:
+
+- ``<meta name="twitter:card" content="..." />``
+- ``<meta name="twitter:site" content="..." />``
+- ``<meta name="twitter:creator" content="..." />``
+
+All 3 can be filled by using constants.
+
+As twitter recognizes and uses the og:image meta tags as well, those are not duplicated for twitter. If you need a fine tuning, please take a look at https://dev.twitter.com/cards/getting-started.
+
+Support of shariff
+^^^^^^^^^^^^^^^^^^
+If the extension rx_shariff (https://typo3.org/extensions/repository/view/rx_shariff) is installed, it will be used for the social sharing links instead of the custom ViewHelpers.
+Shariff enables website users to share their favorite content without compromising their privacy.
+
+Thanks to Markus Klein and https://reelworx.at/ for providing this extension!
+
+Important changes
+-----------------
+
+Support for 8.3
+^^^^^^^^^^^^^^^
+This version fully supports TYPO3 8.3. However, if you are using the master version of TYPO3, please always use the master of news itself as well.
+
+New icons
+^^^^^^^^^
+New svg icons are used at the following places:
+
+- Records (News, Tag, Link)
+- Plugin wizard
+
+Repositioning of import module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import module is independ from the page tree and for sure nothing what an editor should be use. Therefore it is moved into the module section "System".
+
+Removal of old code
+^^^^^^^^^^^^^^^^^^^
+
+Pre-FAL relations
+"""""""""""""""""
+Before FAL, EXT:news used to have custom relations to own media files and related files. Those 2 relations and all related code has been removed. This includes
+
+- TCA
+- Model
+- Every migration and wizard
+- Any media renderer which have been based the old relations
+
+If you are using the FAL relations and the old ones togehter in one project, you need to migrate those records! There is **no** migration available or planned. Either write it on your own or get in contact with me (I can not do it for free!)
+
+Wizards & Migrations
+""""""""""""""""""""
+Every previous available wizard and migration code has been removed. This includes:
+
+- Migration from custom category records to sys_category
+- Migration of the tt_content relation
+
+ViewHelpers
+"""""""""""
+The following ViewHelpers have been removed:
+
+- ``<n:categoryChildren />``
+- ``<n:falMediaFactory />``
+- ``<n:mediaFactory />``
+- ``<n:be.buttons.iconForRecord />``
+- ``<n:be.buttons.icon />``
+- ``<n:be.clickmenu />``
+- ``<n:be.editRecord />``
+- ``<n:be.multiEditLink />``
+
+The following deprecated ViewHelpers have been removed:
+
+- ``<n:format:date />``
+- ``<n:format:hsc />``: Use ``<f:format.htmlspecialchars />``
+- ``<n:format:htmlentities />``: Use ``<f:format.htmlentitiesDecode />``
+- ``<n:format:striptags />``: Use ``<f:format.striptags />``
+- ``<n:format:fileDownload />``: Use the native implementation of FAL
+- ``<n:format:fileSize />``: Use the native implementation of FAL
+
+Any usage will throw an exception.
+
+Record rendering in the page module
+"""""""""""""""""""""""""""""""""""
+The rendering of news records and category records in the page module has been removed.
+
+ClassAliasMapping
+"""""""""""""""""
+The mapping from non-namespace classes to the namespace classes has been removed.
+
+Repositioning of the tt_content relation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The relation to content elements has been moved to a separate tab.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2016-09-03 [TASK] Cleanup PageLayoutView (Commit 1f7546b by Georg Ringer)
+    2016-09-03 [TASK] Move administration.css (Commit 9fb7da9 by Georg Ringer)
+    2016-09-03 [FEATURE] Improve page module (Commit 38c5be8 by Georg Ringer)
+    2016-09-02 [BUGFIX] Fix ajax tag creation (Commit 26eb9d0 by Georg Ringer)
+    2016-09-02 [TASK] Add tooltips (Commit 80e52d6 by Georg Ringer)
+    2016-09-02 [TASK] Move category conjunction in flexform (Commit d4cb8ec by Georg Ringer)
+    2016-09-02 [BUGFIX] Fix tag icon (Commit 31df957 by Georg Ringer)
+    2016-09-02 [DOC] Add documentation for 5.0.0 (Commit a8e770a by Georg Ringer)
+    2016-09-02 [TASK] Fix dev branch in composer.json (Commit 0b0a811 by Georg Ringer)
+    2016-09-02 [BUGFIX] Remove '.html' from layout calls (Commit 6b12b3a by Georg Ringer)
+    2016-09-01 [TASK] Use new icons of the core (Commit 1c89306 by Georg Ringer)
+    2016-08-31 [TASK] Followup for icons (Commit c4e098b by Georg Ringer)
+    2016-08-31 [TASK] Change travis notifications (Commit dc79319 by Georg Ringer)
+    2016-08-31 [TASK] Make it possible to preset search form (Commit 81542b1 by Georg Ringer)
+    2016-08-30 [!!!][TASK] Add new icons (Commit 81a7376 by Georg Ringer)
+    2016-08-29 [TASK] Add overlay icon in admin module (Commit 94341c1 by Georg Ringer)
+    2016-08-29 [TASK] Remove not needed icon (Commit e3b49ce by Georg Ringer)
+    2016-08-29 [!!!][TASK] Remove ViewHelper CategoryChildrenViewHelper (Commit 03c30e6 by Georg Ringer)
+    2016-08-29 [TASK] Move ViewHelper arguments to registerArgument (Commit b990351 by Georg Ringer)
+    2016-08-29 [TASK] Use fluent setters for NewsDemand (Commit bc6ade9 by Georg Ringer)
+    2016-08-29 [BUGFIX] Use propper case (Commit 10c4ffe by Georg Ringer)
+    2016-08-29 [TASK] Remove unused partial (Commit af5c1dc by Georg Ringer)
+    2016-08-29 [BUGFIX] Fix error in single view lightbox (Commit c6fd191 by Georg Ringer)
+    2016-08-29 [BUGFIX] Fix regression in ext_tables.php (Commit 051475f by Georg Ringer)
+    2016-08-29 [TASK] Fix deprecations in flexform (Commit 3e64b0b by Georg Ringer)
+    2016-08-29 [TASK] Fix deprecations (Commit 07ffeff by Georg Ringer)
+    2016-08-28 [TASK] Remove dead code in ext_tables (Commit 29de1d7 by Georg Ringer)
+    2016-08-28 [!!!][TASK] Move import module into 'System' (Commit d9dad89 by Georg Ringer)
+    2016-08-28 [BUGFIX] Use correct pid for new plugins (Commit 3c1b316 by Georg Ringer)
+    2016-08-28 [FEATURE] Add suggest wizard to tag setting in flexforms (Commit 34b1a34 by Georg Ringer)
+    2016-08-28 [TASK] Add eval 'num' to settings.cropMaxCharacters (Commit c4132f1 by Georg Ringer)
+    2016-08-28 [BUGFIX] Fix styling of newspidlisting (Commit 55df5f9 by Georg Ringer)
+    2016-08-28 [TASK] Move page icon to Configuration/TCA/Overrides/pages (Commit bff6da3 by Georg Ringer)
+    2016-08-26 [TASK] Enforce correct value for datefield (Commit 68cb1d6 by Georg Ringer)
+    2016-08-26 [TASK] Change rte configuation (Commit 0e498c5 by Georg Ringer)
+    2016-08-26 [TASK] Remove options autoSizeMax and allowRecursiveMode (Commit 765d12e by Georg Ringer)
+    2016-08-25 [TASK] Use proper ajax routing for tag generation (Commit 97a8372 by Georg Ringer)
+    2016-08-25 [TASK] Use new icons (Commit a2f888c by Georg Ringer)
+    2016-08-25 [TASK] Use font icon for the showinpreview in sys_file_reference (Commit e0e0e48 by Georg Ringer)
+    2016-08-25 [TASK] Improve header in PageLayoutView (Commit 424897d by Georg Ringer)
+    2016-08-24 [FEATURE] Improve PageLayoutView (Commit 629aa56 by Georg Ringer)
+    2016-08-24 [TASK] Improve rendering of starting point in page module (Commit f84b231 by Georg Ringer)
+    2016-08-24 [!!!][TASK] Remove unused code (Commit eb67b2c by Georg Ringer)
+    2016-08-24 [TASK] Adopt requirements (Commit 2260302 by Georg Ringer)
+    2016-08-23 [TASK] Fix breaking change of core (Commit f9fdf5a by Georg Ringer)
+    2016-08-18 [FOLLOWUP][BUGFIX] Use correct syntax (Commit 715c368 by Georg Ringer)
+    2016-08-18 [FEATURE] Render og:image:width & og:image:height (Commit 11047ab by Georg Ringer)
+    2016-08-16 [TASK] Prepare for extbase changes (Commit b25023a by Georg Ringer)
+    2016-08-14 [TASK] Remove outdated code from partial (Commit a84aaa4 by Georg Ringer)
+    2016-08-11 [BUGFIX] Support hrDate in google sitemap (Commit 9d249e7 by Georg Ringer)
+    2016-08-10 [BUGFIX] Support fluid_styled_content for insert record (Commit 1954f62 by Georg Ringer)
+    2016-08-10 [FEATURE] Support twitter card meta tags (Commit 78db35e by Georg Ringer)
+    2016-08-08 [BUGFIX] Cast type and fe_group to string for imports (Commit e82e524 by Georg Ringer)
+    2016-08-08 [BUGFIX] Fix error in Newsrepository (Commit 933b5e4 by Georg Ringer)
+    2016-08-08 [!!!][TASK] Remove be ViewHelpers (Commit 2934ef5 by Georg Ringer)
+    2016-08-08 [TASK] Remove not required type hints (Commit 11ef0f4 by Georg Ringer)
+    2016-08-02 [FEATURE] Show prev next feature flag (Commit 0780fc3 by Georg Ringer)
+    2016-08-02 [BUGFIX] Fix unit test (Commit fe5210e by Georg Ringer)
+    2016-08-01 [TASK] Rewrite SimplePrevNext (Commit e6ff250 by Georg Ringer)
+    2016-08-01 [!!!][TASK] Remove the FileService (Commit 3e41caa by Georg Ringer)
+    2016-08-01 [BUGFIX] Check if idlist is empty (Commit a0fd840 by Georg Ringer)
+    2016-08-01 [BUGFIX] Use l10nmode 'copy' for archive date (Commit 8e6307a by Georg Ringer)
+    2016-08-01 [DOC] Update readme.md (Commit d87fda6 by Georg Ringer)
+    2016-03-05 [FEATURE] Replace administration module news rendering (Commit 622610e by Georg Ringer)
+    2016-07-28 [TASK] Remove deprecated GeneralUtitlity::requireOnce()  call (Commit 9431a88 by Georg Ringer)
+    2016-07-28 [TASK] Cleanup TS (Commit 44ddfbf by Georg Ringer)
+    2016-07-28 [!!!][TASK] Remove FileDownload & FileSizeViehelpers (Commit f6299d9 by Georg Ringer)
+    2016-07-28 [BUGFIX] Fix ce hiding in 8 (Commit f0024c0 by Georg Ringer)
+    2016-07-28 [TASK] Run php-cs (Commit a8a4ded by Georg Ringer)
+    2016-07-28 [TASK] Replace ->getMock() in unit tests (Commit 5efb015 by Georg Ringer)
+    2016-07-28 [TASK] Use mockBuilder instead of mock() (Commit 425543e by Georg Ringer)
+    2016-07-27 [FEATURE] Suggest wizard for singleNews in flexforms (Commit bdaaa11 by Georg Ringer)
+    2016-07-26 [TASK] Cleanup template (Commit a6f7973 by Georg Ringer)
+    2016-07-26 [FEATURE] Native support for EXT:rx_shariff (Commit 8d19a01 by Georg Ringer)
+    2016-07-26 [BUGFIX] Use new ViewHelpers (Commit 2bd27f1 by Georg Ringer)
+    2016-07-26 [BUGFIX] Fix import module (Commit ed7efca by Georg Ringer)
+    2016-07-26 [TASK] Removal of removeListActionFromFlexforms (Commit 7f36663 by Georg Ringer)
+    2016-07-26 [TASK] Remove news listing in page module (Commit 6dccedc by Georg Ringer)
+    2016-07-26 [TASK] Remove category record rendering in page module (Commit 9a52c53 by Georg Ringer)
+    2016-07-26 [TASK] Migrate Fluid templates to use xml namespace declarations (Commit 2a7e63e by Markus Klein)
+    2016-07-26 [DOC] Add the CONTRIBUTING.md file (Commit 2ef532e by Georg Ringer)
+    2016-07-26 [TASK] Remove usage of FlashMessage::render (Commit d269e16 by Georg Ringer)
+    2016-07-25 [!!!][TASK] Remove deprecated viewhelpers (Commit b2a823c by Georg Ringer)
+    2016-07-25 [!!!][TASK] Use native FAL rendering for FE (Commit 2fca6de by Georg Ringer)
+    2016-07-25 [!!!][TASK] Remove ClassALiasMap (Commit cf04d85 by Georg Ringer)
+    2016-07-25 [BUGFIX] Use correct TCA (Commit 3f90194 by Georg Ringer)
+    2016-07-25 [TASK] Use 7.6.9 for tests (Commit 8f1c420 by Georg Ringer)
+    2016-07-25 [!!!][TASK] Remove pre FAL implementations (Commit 60890ba by Georg Ringer)
+    2016-07-25 [!!!][TASK] Remove update wizards (Commit 4c5f3cd by Georg Ringer)
+    2016-07-24 [!!!] Move content element relation to separate tab (Commit 13598f0 by Georg Ringer)
+    2016-07-24 [TASK] Remove unused property (Commit c00ed22 by Georg Ringer)
+    2016-07-24 [TASK] Add excludeDisplayedNews VH to Detail.html (Commit 02e506d by Georg Ringer)
+    2016-07-24 [BUGFIX] Fix typo in TCA (Commit e69137b by Georg Ringer)
+    2016-07-21 [TASK] Readd feature after changes in 8 (Commit 1e5a45f by Georg Ringer)
+    2016-07-19 [FOLLOWUP][FEATURE] Fix test (Commit 5776ea2 by Georg Ringer)
+    2016-07-19 [FEATURE] Respect targets in LinkViewHelper (Commit 3065bc6 by Georg Ringer)
+    2016-07-19 [FEATURE] Add categories to RSS feed (Commit f572d4f by Georg Ringer)
+    2016-07-19 [BUGFIX] Return only unique related news (Commit 6b63e99 by Georg Ringer)
+    2016-07-13 [TASK] Remove test (Commit fc1043b by Georg Ringer)
+    2016-07-13 [BUGFIX] Followup fix test (Commit bd0d7da by Georg Ringer)
+    2016-04-19 [FEATURE] SEO data for tags and categories (Commit 7d51182 by Frank Naegler)
+    2016-07-13 [TASK] Add shariff comment to TWB template (Commit 73f1026 by Georg Ringer)
+
+This list has been created by using ``git log --since="2016/07/13" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

@@ -1,0 +1,47 @@
+{namespace core = TYPO3\CMS\Core\ViewHelpers}
+
+<f:if condition="{rows.above}">
+    <f:then>
+        <table class="table table-condensed table-hover news-table">
+            <thead>
+            <tr>
+                <th colspan="2">{header -> f:format.raw()}</th>
+            </tr>
+            </thead>
+            <f:if condition="{rows.below}">
+                <tfoot class="setting-switcher">
+                <tr>
+                    <td colspan="2">
+                        <a href="#" data-identifier="newscollapse-{id}">
+                            <span class="down">{core:icon(identifier:'actions-move-down')}</span>
+                            <span class="up">{core:icon(identifier:'actions-move-up')}</span>
+                            Toggle settings
+                        </a>
+                    </td>
+                </tr>
+                </tfoot>
+            </f:if>
+            <tbody>
+            <f:for each="{rows.above}" as="item">
+                <tr>
+                    <th>{item.0 -> f:format.raw()}</th>
+                    <td>{item.1 -> f:format.raw()}</td>
+                </tr>
+            </f:for>
+            </tbody>
+            <f:if condition="{rows.below}">
+                <tbody class="hidden-settings hidden" id="newscollapse-{id}">
+                <f:for each="{rows.below}" as="item">
+                    <tr>
+                        <th>{item.0 -> f:format.raw()}</th>
+                        <td>{item.1 -> f:format.raw()}</td>
+                    </tr>
+                </f:for>
+                </tbody>
+            </f:if>
+        </table>
+    </f:then>
+    <f:else>
+        {header -> f:format.raw()}
+    </f:else>
+</f:if>

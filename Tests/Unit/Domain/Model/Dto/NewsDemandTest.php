@@ -137,9 +137,17 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function dateFieldCanBeSet()
     {
-        $value = 'field';
+        $value = 'datetime';
         $this->instance->setDateField($value);
         $this->assertEquals($value, $this->instance->getDateField());
+
+        $value = 'archive';
+        $this->instance->setDateField($value);
+        $this->assertEquals($value, $this->instance->getDateField());
+
+        $value = 'invalid';
+        $this->instance->setDateField($value);
+        $this->assertEquals('', $this->instance->getDateField());
     }
 
     /**

@@ -16,6 +16,8 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Service\SettingsService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Test for LinkViewHelper
@@ -35,6 +37,8 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function setUp()
     {
+        $this->newsItem = new News();
+
         $this->mockedViewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['init', 'renderChildren']);
         $this->mockedContentObjectRenderer = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer', ['typoLink_URL', 'typoLink']);
         $pluginSettings = $this->getAccessibleMock('GeorgRinger\\News\\Service\\SettingsService', ['getSettings']);
@@ -42,8 +46,7 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->mockedViewHelper->_set('cObj', $this->mockedContentObjectRenderer);
         $this->mockedViewHelper->_set('tag', $tag);
         $this->mockedViewHelper->_set('pluginSettingsService', $pluginSettings);
-
-        $this->newsItem = new News();
+        $this->mockedViewHelper->_set('arguments', ['newsItem' => $this->newsItem]);
     }
 
     /**
@@ -59,7 +62,7 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->newsItem->setType(1);
         $this->newsItem->setInternalurl($url);
 
-        $this->mockedViewHelper->render($this->newsItem);
+        $this->mockedViewHelper->render();
     }
 
     /**
@@ -75,7 +78,7 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->newsItem->setType(2);
         $this->newsItem->setExternalurl($url);
 
-        $this->mockedViewHelper->render($this->newsItem);
+        $this->mockedViewHelper->render();
     }
 
     /**
@@ -199,5 +202,17 @@ class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             [['detailPid' => '123'], 123],
             [['detailPid' => '456xy'], 456],
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function noNewsReturnsChildren()
+    {
+        $settingService = $this->getAccessibleMock(SettingsService::class, ['getConfiguration', 'getSettings']);
+        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['renderChildren', 'getSettings']);
+        $viewHelper->_set('pluginSettingsService', $settingService);
+        $result = $viewHelper->_call('render');
+        $this->assertEquals('', $result);
     }
 }

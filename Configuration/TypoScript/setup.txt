@@ -26,7 +26,7 @@ plugin.tx_news {
 	# Modify the translation
 	_LOCAL_LANG {
 		default {
-			# read_more = more >>
+			more-link_more = more >>
 		}
 	}
 
@@ -236,6 +236,9 @@ tt_content.shortcut.variables.shortcuts.conf.tx_news_domain_model_news < tt_cont
 # BE-module configuration for EXT:news
 # ==============================================
 module.tx_news < plugin.tx_news
+module.tx_news {
+	settings.list.paginate.itemsPerPage = 25
+}
 
 # ==============================================
 # Persistence object mapping configuration

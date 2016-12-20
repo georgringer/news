@@ -11,15 +11,9 @@ Need Support?
 =============
 There are various ways to get support for EXT:news!
 
-Mailing-list
-------------
-If you need help with the news extension, you can always ask in the
-public mailinglist *typo3.projects.news*.
-
-.. tip::
-
-   If you got any extbase / fluid related questions which don't deal with
-   EXT:news directly, it is maybe better to use the mailing-list *typo3.projects.typo3v4mvc*.
+Stackoverflow
+-------------
+Please use https://stackoverflow.com to get best support. Tags you should use are ``typo3`` and ``tx-news``, so your question will be visible at http://stackoverflow.com/questions/tagged/tx_news.
 
 Slack
 -----

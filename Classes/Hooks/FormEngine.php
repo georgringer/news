@@ -52,7 +52,7 @@ class FormEngine
             } else {
                 $parentObject->renderReadonly = true;
             }
-            $flashMessageContent = $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.content', true);
+            $flashMessageContent = htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.content'));
             $flashMessageContent .= '<ul>';
             $accessDeniedCategories = AccessControlService::getAccessDeniedCategories($row);
             foreach ($accessDeniedCategories as $accessDeniedCategory) {
@@ -63,7 +63,7 @@ class FormEngine
             $flashMessage = GeneralUtility::makeInstance(
                 'TYPO3\CMS\Core\Messaging\FlashMessage',
                 $flashMessageContent,
-                $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.header', true),
+                htmlspecialchars($GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.header')),
                 FlashMessage::WARNING
             );
 

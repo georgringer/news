@@ -30,12 +30,22 @@ A nice solution would be to use this JavaScript jQuery snippet:
 		}
 	}
 
+Creating links with fluid
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Besides the ViewHelper ``<n:link />`` you can also use the ViewHelpers of fluid itself:
+
+.. code-block:: html
+
+	<f:link.page pageUid="13" additionalParams="{tx_news_pi1: {controller: 'News',action: 'detail', news:newsItem.uid}}">{newsItem.title}</f:link.page>
+	<a href="{f:uri.page(pageUid:13,additionalParams:'{tx_news_pi1:{controller:\'News\',action:\'detail\',news:newsItem.uid}}')}">{newsItem.title}</a>
+
 
 Render category rootline
 ^^^^^^^^^^^^^^^^^^^^^^^^
 If you want to show not only the title of a single category which is related to the news item but the complete category rootline use this snippets.
 
-.. code-block:: xml
+.. code-block:: html
 
 	<f:if condition="{category:newsItem.firstCategory}">
 		<ul class="category-breadcrumb">
@@ -45,7 +55,7 @@ If you want to show not only the title of a single category which is related to 
 
 and
 
-.. code-block:: xml
+.. code-block:: html
 
 	<f:section name="categoryBreadcrumb">
 		<f:if condition="{category}">
@@ -59,3 +69,16 @@ and
 Use current content element in the Template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you ever need information from the content element itself, you can use ``{contentObjectData.header}``.
+
+Sort tags
+^^^^^^^^^
+If you want to sort the tags of a news item, you can use a custom ViewHelper or ``EXT:vhs``:
+
+.. code-block:: html
+
+	<ul>
+		<f:for each="{newsItem.tags->v:iterator.sort(order: 'ASC', sortBy: 'title')}" as="tag">
+			<li>{tag.title}</li>
+		</f:for>
+	</ul>
+

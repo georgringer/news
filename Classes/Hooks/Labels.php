@@ -14,11 +14,7 @@ namespace GeorgRinger\News\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use GeorgRinger\News\Domain\Model\Media;
 use GeorgRinger\News\Service\CategoryService;
-use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
-use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -52,75 +48,6 @@ class Labels
         } else {
             $params['title'] = $params['row']['title'];
         }
-    }
-
-    /**
-     * Render different label for media elements
-     *
-     * @param array $params configuration
-     * @return void
-     */
-    public function getUserLabelMedia(array &$params)
-    {
-        $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
-        $typeInfo = $additionalHtmlContent = '';
-
-        $type = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.type.I.' . $params['row']['type']);
-
-        // Add additional info based on type
-        switch ((int)$params['row']['type']) {
-            // Image
-            case Media::MEDIA_TYPE_IMAGE:
-                $typeInfo .= $this->getTitleFromFields('title,alt,caption,image', $params['row']);
-
-                if (!empty($params['row']['image'])) {
-                    $params['row']['image'] = $this->splitFileName($params['row']['image']);
-                    try {
-                        $additionalHtmlContent = '<br />' . BackendUtilityCore::thumbCode($params['row'],
-                                'tx_news_domain_model_media', 'image', $GLOBALS['BACK_PATH'], '', null, 0, '', '',
-                                false);
-                    } catch (FolderDoesNotExistException $exception) {
-                        $additionalHtmlContent = '<br />' . htmlspecialchars($params['row']['image']);
-                    }
-                }
-                break;
-            // Audio & Video
-            case Media::MEDIA_TYPE_MULTIMEDIA:
-                $typeInfo .= $this->getTitleFromFields('caption,multimedia', $params['row']);
-                break;
-            // HTML
-            case Media::MEDIA_TYPE_HTML:
-                // Don't show html value as this could get a XSS
-                $typeInfo .= $params['row']['caption'];
-                break;
-            default:
-                $typeInfo .= $params['row']['caption'];
-        }
-
-        $title = (!empty($typeInfo)) ? $type . ': ' . $typeInfo : $type;
-        $title = htmlspecialchars($title) . $additionalHtmlContent;
-
-        // Hook to modify the label, especially useful when using custom media relations
-        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'])) {
-            $params = ['params' => $params, 'title' => $title];
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'] as $reference) {
-                $title = GeneralUtility::callUserFunction($reference, $params, $this);
-            }
-        }
-
-        // Preview
-        if ($params['row']['showinpreview']) {
-            $label = htmlspecialchars($GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.show'));
-            $icon = '../' . ExtensionManagementUtility::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
-            $title .= ' <img title="' . $label . '" src="' . $icon . '" />';
-        }
-
-        // Show the [No title] if empty
-        if (empty($title)) {
-            $title = BackendUtilityCore::getNoRecordTitle(true);
-        }
-
-        $params['title'] = $title;
     }
 
     /**

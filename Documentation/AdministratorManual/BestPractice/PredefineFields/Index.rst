@@ -32,6 +32,13 @@ If you want to use some default values, you can use this code inside the TsConfi
 Select fields
 ^^^^^^^^^^^^^
 If you want to preselect a value from a select field, you need to set the value of the option field as value.
+In this example the language with the uid 3 will be preselected:
+
+.. code-block:: typoscript
+
+	TCAdefaults.tx_news_domain_model_news {
+        	sys_language_uid = 3
+	}
 
 If you want to remove an option from a select field you can take a look at this example which removes the
 option "Images" from the media selection dropdown:
@@ -42,6 +49,15 @@ option "Images" from the media selection dropdown:
 		type.removeItems = 0
 	}
 
+
+Author name & email
+^^^^^^^^^^^^^^^^^^^
+
+By using the following code in the PageTsConig, the fields `Author` and `Author Email` are prefilled with the name and email address of the current backend user
+
+.. code-block:: typoscript
+
+	tx_news.predefine.author  = 1
 
 Archive date
 ^^^^^^^^^^^^

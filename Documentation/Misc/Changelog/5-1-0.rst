@@ -1,0 +1,37 @@
+5.1.0 - 2016/09/12
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Thanks to
+---------
+Open-Source is all about community and support! I want to thank everyone who contributed reports on forge, feedback on any channel and code!
+
+Especially I want to thank my employer **Sup7even Digital**. Check out our new website http://www.sup7even.digital/!
+
+Features
+--------
+
+Category Constraints for FlexForms
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The listing of categories inside a news record can be restricted by settings in the Extension Manager. The restriction can now be used in the FlexForm configuration as well by enabling it with TsConfig :ts:`tx_news.categoryRestrictionForFlexForms = 1`.
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2016-09-09 [FEATURE] check category constraint in flexforms as well (Commit 4b9ac8f by Georg Ringer)
+    2016-09-09 [BUGFIX] Change rte transformation (Commit 52d21b7 by Georg Ringer)
+    2016-09-09 [TASK] Fix a typo (Commit 6ac3d28 by Georg Ringer)
+    2016-09-09 [BUGFIX] Use different namespace for BackendUtility in PageLayoutView (Commit 4566dfc by Georg Ringer)
+    2016-09-05 [BUGFIX] Provide requestUri (Commit 2d0c309 by Georg Ringer)
+
+This list has been created by using ``git log --since="2016/09/03" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

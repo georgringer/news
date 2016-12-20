@@ -38,7 +38,7 @@ class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     public function canCreateViewHelperClassInstance()
     {
         $instance = $this->getPreparedInstance();
-        $this->assertInstanceOf('GeorgRinger\\News\\ViewHelpers\\TargetLinkViewHelper', $instance);
+        $this->assertInstanceOf(TargetLinkViewHelper::class, $instance);
     }
 
     /**
@@ -51,7 +51,11 @@ class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     public function correctTargetIsReturned($link, $expectedResult)
     {
         $viewHelper = new TargetLinkViewHelper();
-        $this->assertEquals($viewHelper->render($link), $expectedResult);
+        $viewHelper->setArguments([
+            'link' => $link,
+        ]);
+
+        $this->assertEquals($viewHelper->render(), $expectedResult);
     }
 
     /**

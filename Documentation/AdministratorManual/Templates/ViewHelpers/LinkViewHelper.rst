@@ -195,4 +195,21 @@ Code: ::
 Output: ::
 
 	 The uri is returned
+	 
+	 
+	 
+Add additional parameters to the url
+""""""""""""""""""""""""""""""""""""
+
+
+
+Code: ::
+
+	 <n:link newsItem="{newsItem}" settings="{settings}" configuration="{additionalParams:'&tx_news_pi1[category]=111'}">fo</n:link>
+
+
+Output: ::
+
+	 <a href="link&tx_news_pi1[category]=111">fo</n:link>
+
 

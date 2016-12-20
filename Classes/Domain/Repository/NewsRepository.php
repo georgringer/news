@@ -200,7 +200,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         if ($tags) {
             $tagList = explode(',', $tags);
 
-            $subConstraints = array();
+            $subConstraints = [];
             foreach ($tagList as $singleTag) {
                 $subConstraints[] = $query->contains('tags', $singleTag);
             }

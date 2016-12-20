@@ -30,7 +30,7 @@ This is the default way in EXT:news. A basic TypoScript configuration is used to
 If you need to extend this, the best way is to introduce your own TypoScript which can be saved anywhere.
 This needs then to be referenced in the template.
 
-.. code-block:: xml
+.. code-block:: html
 
    <f:if condition="{newsItem.contentElements">
            <f:cObject typoscriptObjectPath="lib.yourownTypoScript">{newsItem.contentElements}</f:cObject>
@@ -42,7 +42,7 @@ Using Fluid
 
 You can also use fluid render the content elements. As an example:
 
-.. code-block:: xml
+.. code-block:: html
 
 	<f:if condition="{newsItem.contentElements">
 		<f:for each="{newsItem.contentElements}" as="element">

@@ -19,7 +19,11 @@ use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\Type\Bitmask\Permission;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Hook to display verbose information about pi1 plugin in Web>Page module
@@ -43,6 +47,11 @@ class PageLayoutView
     const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
 
     /**
+     * Max shown settings
+     */
+    const SETTINGS_IN_PREVIEW = 7;
+
+    /**
      * Table information
      *
      * @var array
@@ -61,16 +70,11 @@ class PageLayoutView
      */
     protected $iconFactory;
 
-    /** @var  \TYPO3\CMS\Core\Database\DatabaseConnection */
-    protected $databaseConnection;
-
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
     public function __construct()
     {
-        /** @var \TYPO3\CMS\Core\Database\DatabaseConnection databaseConnection */
-        $this->databaseConnection = $GLOBALS['TYPO3_DB'];
         $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
         $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
     }
@@ -83,9 +87,9 @@ class PageLayoutView
      */
     public function getExtensionSummary(array $params)
     {
-        $actionTranslationKey = '';
+        $actionTranslationKey = $result = '';
 
-        $result = '<strong>' . $this->getLanguageService()->sL(self::LLPATH . 'pi1_title', true) . '</strong><br>';
+        $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
 
         if ($params['row']['list_type'] == self::KEY . '_pi1') {
             $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
@@ -99,29 +103,30 @@ class PageLayoutView
                 $actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
                 $actionTranslation = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
 
-                $result .= $actionTranslation;
+                $header .= '<br><strong style="text-transform: uppercase">' . htmlspecialchars($actionTranslation) . '</strong>';
             } else {
-                $result .= $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured');
+                $header .= $this->generateCallout($this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured'));
             }
-            $result .= '<hr>';
 
             if (is_array($this->flexformData)) {
                 switch ($actionTranslationKey) {
                     case 'news_list':
                         $this->getStartingPoint();
+                        $this->getCategorySettings();
+                        $this->getDetailPidSetting();
                         $this->getTimeRestrictionSetting();
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
+                        $this->getArchiveSettings();
                         $this->getTopNewsRestrictionSetting();
                         $this->getOrderSettings();
-                        $this->getCategorySettings();
-                        $this->getArchiveSettings();
                         $this->getOffsetLimitSettings();
-                        $this->getDetailPidSetting();
                         $this->getListPidSetting();
                         $this->getTagRestrictionSetting();
                         break;
                     case 'news_detail':
                         $this->getSingleNewsSettings();
                         $this->getDetailPidSetting();
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     case 'news_datemenu':
                         $this->getStartingPoint();
@@ -130,14 +135,17 @@ class PageLayoutView
                         $this->getArchiveSettings();
                         $this->getDateMenuSettings();
                         $this->getCategorySettings();
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     case 'category_list':
                         $this->getCategorySettings(false);
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     case 'tag_list':
                         $this->getStartingPoint();
                         $this->getListPidSetting();
                         $this->getOrderSettings();
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     default:
                 }
@@ -153,9 +161,8 @@ class PageLayoutView
 
                 // for all views
                 $this->getOverrideDemandSettings();
-                $this->getTemplateLayoutSettings($params['row']['pid']);
 
-                $result .= $this->renderSettingsAsTable();
+                $result = $this->renderSettingsAsTable($header, $params['row']['uid']);
             }
         }
 
@@ -189,28 +196,13 @@ class PageLayoutView
         $singleNewsRecord = (int)$this->getFieldFromFlexform('settings.singleNews');
 
         if ($singleNewsRecord > 0) {
-            $newsRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news',
-                'deleted=0 AND uid=' . $singleNewsRecord);
+            $newsRecord = BackendUtilityCore::getRecord('tx_news_domain_model_news', $singleNewsRecord);
 
             if (is_array($newsRecord)) {
                 $pageRecord = BackendUtilityCore::getRecord('pages', $newsRecord['pid']);
 
                 if (is_array($pageRecord)) {
-                    $iconPage = '<span title="Uid: ' . htmlspecialchars($pageRecord['uid']) . '">'
-                        . $this->iconFactory->getIconForRecord('pages', $pageRecord, Icon::SIZE_SMALL)->render()
-                        . '</span>';
-                    $iconNews = '<span title="Uid: ' . htmlspecialchars($newsRecord['uid']) . '">'
-                        . $this->iconFactory->getIconForRecord('tx_news_domain_model_news', $newsRecord,
-                            Icon::SIZE_SMALL)->render()
-                        . '</span>';
-
-                    $pageTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
-                    $newsTitle = (BackendUtilityCore::getRecordTitle('tx_news_domain_model_news', $newsRecord));
-
-                    $content = BackendUtilityCore::wrapClickMenuOnIcon($iconPage, 'pages', $pageRecord['uid'],
-                            true, '', '+info,edit,view')
-                        . $pageTitle . ': ' . BackendUtilityCore::wrapClickMenuOnIcon($iconNews . ' ' . $newsTitle,
-                            'tx_news_domain_model_news', $newsRecord['uid'], true, '', '+info,edit');
+                    $content = $this->getRecordData($newsRecord['uid'], 'tx_news_domain_model_news');
                 } else {
                     $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
                         $newsRecord['pid']);
@@ -239,7 +231,7 @@ class PageLayoutView
         $detailPid = (int)$this->getFieldFromFlexform('settings.detailPid', 'additional');
 
         if ($detailPid > 0) {
-            $content = $this->getPageRecordData($detailPid);
+            $content = $this->getRecordData($detailPid);
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.detailPid'),
@@ -258,7 +250,7 @@ class PageLayoutView
         $listPid = (int)$this->getFieldFromFlexform('settings.listPid', 'additional');
 
         if ($listPid > 0) {
-            $content = $this->getPageRecordData($listPid);
+            $content = $this->getRecordData($listPid);
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.listPid'),
@@ -270,23 +262,45 @@ class PageLayoutView
     /**
      * Get the rendered page title including onclick menu
      *
-     * @param $detailPid
+     * @param int $detailPid
      * @return string
+     * @deprecated use getRecordData() instead
      */
     public function getPageRecordData($detailPid)
     {
-        $pageRecord = BackendUtilityCore::getRecord('pages', $detailPid);
+        return $this->getRecordData($detailPid, 'pages');
+    }
 
-        if (is_array($pageRecord)) {
-            $data = '<span title="Uid: ' . htmlspecialchars($pageRecord['uid']) . '">'
-                . $this->iconFactory->getIconForRecord('pages', $pageRecord, Icon::SIZE_SMALL)->render()
-                . '</span>'
-                . htmlspecialchars(BackendUtilityCore::getRecordTitle('pages', $pageRecord));
-            $content = BackendUtilityCore::wrapClickMenuOnIcon($data, 'pages', $pageRecord['uid'], true, '',
-                '+info,edit');
+    /**
+     * @param int $id
+     * @param string $table
+     * @return string
+     */
+    public function getRecordData($id, $table = 'pages')
+    {
+        $record = BackendUtilityCore::getRecord($table, $id);
+
+        if (is_array($record)) {
+            $data = '<span data-toggle="tooltip" data-placement="top" data-title="id=' . $record['uid'] . '">'
+                . $this->iconFactory->getIconForRecord($table, $record, Icon::SIZE_SMALL)->render()
+                . '</span> ';
+            $content = BackendUtilityCore::wrapClickMenuOnIcon($data, $table, $record['uid'], true, '',
+                '+info,edit,history');
+
+            $linkTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record));
+
+            if ($table === 'pages') {
+                $id = $record['uid'];
+                $currentPageId = (int)GeneralUtility::_GET('id');
+                $link = htmlspecialchars($this->getEditLink($record, $currentPageId));
+                $switchLabel = $this->getLanguageService()->sL(self::LLPATH . 'pagemodule.switchToPage');
+                $content .= ' <a href="#" data-toggle="tooltip" data-placement="top" data-title="' . $switchLabel . '" onclick=\'top.jump("' . $link . '", "web_layout", "web", ' . $id . ');return false\'>' . $linkTitle . '</a>';
+            } else {
+                $content .= $linkTitle;
+            }
         } else {
-            $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
-                $detailPid);
+            $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.recordNotAvailable'),
+                $id);
             $content = $this->generateCallout($text);
         }
 
@@ -364,47 +378,46 @@ class PageLayoutView
      */
     public function getCategorySettings($showCategoryMode = true)
     {
-        $categoryMode = '';
-        $categoriesOut = [];
-
         $categories = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.categories'), true);
         if (count($categories) > 0) {
+            $categoriesOut = [];
+            foreach ($categories as $id) {
+                $categoriesOut[] = $this->getRecordData($id, 'sys_category');
+            }
+
+            $this->tableData[] = [
+                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categories'),
+                implode(', ', $categoriesOut)
+            ];
 
             // Category mode
-            $categoryModeSelection = $this->getFieldFromFlexform('settings.categoryConjunction');
-
             if ($showCategoryMode) {
+                $categoryModeSelection = $this->getFieldFromFlexform('settings.categoryConjunction');
                 if (empty($categoryModeSelection)) {
                     $categoryMode = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction.all');
                 } else {
                     $categoryMode = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction.' . $categoryModeSelection);
                 }
 
-                $categoryMode = '<span style="font-weight:normal;font-style:italic">(' . htmlspecialchars($categoryMode) . ')</span>';
-            }
+                if (count($categories) > 0 && empty($categoryModeSelection)) {
+                    $categoryMode = $this->generateCallout($categoryMode);
+                } else {
+                    $categoryMode = htmlspecialchars($categoryMode);
+                }
 
-            // Category records
-            $rawCategoryRecords = $this->databaseConnection->exec_SELECTgetRows(
-                '*',
-                'sys_category',
-                'deleted=0 AND uid IN(' . implode(',', $categories) . ')'
-            );
-
-            foreach ($rawCategoryRecords as $record) {
-                $categoriesOut[] = htmlspecialchars(BackendUtilityCore::getRecordTitle('sys_category', $record));
+                $this->tableData[] = [
+                    $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction'),
+                    $categoryMode
+                ];
             }
 
             $includeSubcategories = $this->getFieldFromFlexform('settings.includeSubCategories');
             if ($includeSubcategories) {
-                $categoryMode .= '<br />+ ' . $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.includeSubCategories',
-                        true);
+                $this->tableData[] = [
+                    $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.includeSubCategories'),
+                    '<i class="fa fa-check"></i>'
+                ];
             }
-
-            $this->tableData[] = [
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categories') .
-                '<br />' . $categoryMode,
-                implode(', ', $categoriesOut)
-            ];
         }
     }
 
@@ -421,14 +434,8 @@ class PageLayoutView
         }
 
         $categoryTitles = [];
-        $rawTagRecords = (array)$this->databaseConnection->exec_SELECTgetRows(
-            '*',
-            'tx_news_domain_model_tag',
-            'deleted=0 AND uid IN(' . implode(',', $tags) . ')'
-        );
-        foreach ($rawTagRecords as $record) {
-            $categoryTitles[] = htmlspecialchars(BackendUtilityCore::getRecordTitle('tx_news_domain_model_tag',
-                $record));
+        foreach ($tags as $id) {
+            $categoryTitles[] = $this->getRecordData($id, 'tx_news_domain_model_tag');
         }
 
         $this->tableData[] = [
@@ -463,7 +470,7 @@ class PageLayoutView
         if ($hidePagination) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.hidePagination'),
-                null
+                '<i class="fa fa-check"></i>'
             ];
         }
     }
@@ -565,7 +572,7 @@ class PageLayoutView
             $this->tableData[] = [
                 $this->getLanguageService()->sL(
                     self::LLPATH . 'flexforms_additional.disableOverrideDemand'),
-                ''
+                '<i class="fa fa-check"></i>'
             ];
         }
     }
@@ -580,16 +587,11 @@ class PageLayoutView
         $value = $this->getFieldFromFlexform('settings.startingpoint');
 
         if (!empty($value)) {
+            $pageIds = GeneralUtility::intExplode(',', $value, true);
             $pagesOut = [];
-            $rawPagesRecords = $this->databaseConnection->exec_SELECTgetRows(
-                '*',
-                'pages',
-                'deleted=0 AND uid IN(' . implode(',', GeneralUtility::intExplode(',', $value, true)) . ')'
-            );
 
-            foreach ($rawPagesRecords as $page) {
-                $pagesOut[] = htmlspecialchars(BackendUtilityCore::getRecordTitle('pages',
-                        $page)) . ' (' . $page['uid'] . ')';
+            foreach ($pageIds as $id) {
+                $pagesOut[] = $this->getRecordData($id, 'pages');
             }
 
             $recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
@@ -602,12 +604,12 @@ class PageLayoutView
 
             if (!empty($recursiveLevelText)) {
                 $recursiveLevelText = '<br />' .
-                    $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.recursive', true) . ' ' .
+                    htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.recursive')) . ' ' .
                     $recursiveLevelText;
             }
 
             $this->tableData[] = [
-                $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
+                $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.startingpoint'),
                 implode(', ', $pagesOut) . $recursiveLevelText
             ];
         }
@@ -630,20 +632,28 @@ class PageLayoutView
      * Render the settings as table for Web>Page module
      * System settings are displayed in mono font
      *
+     * @param string $header
+     * @param int $recordUid
      * @return string
      */
-    protected function renderSettingsAsTable()
+    protected function renderSettingsAsTable($header = '', $recordUid = 0)
     {
-        if (count($this->tableData) == 0) {
-            return '';
-        }
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/PageLayout');
+        $pageRenderer->addCssFile(ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Css/Backend/PageLayoutView.css');
 
-        $content = '';
-        foreach ($this->tableData as $line) {
-            $content .= '<strong>' . $line[0] . '</strong>' . ' ' . $line[1] . '<br />';
-        }
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:news/Resources/Private/Backend/PageLayoutView.html'));
+        $view->assignMultiple([
+            'header' => $header,
+            'rows' => [
+                'above' => array_slice($this->tableData, 0, self::SETTINGS_IN_PREVIEW),
+                'below' => array_slice($this->tableData, self::SETTINGS_IN_PREVIEW)
+            ],
+            'id' => $recordUid
+        ]);
 
-        return '<pre style="white-space:normal">' . $content . '</pre>';
+        return $view->render();
     }
 
     /**
@@ -667,6 +677,29 @@ class PageLayoutView
         }
 
         return null;
+    }
+
+    /**
+     * Build a backend edit link based on given record.
+     *
+     * @param array $row Current record row from database.
+     * @param int $currentPageUid current page uid
+     * @return string Link to open an edit window for record.
+     * @see \TYPO3\CMS\Backend\Utility\BackendUtilityCore::readPageAccess()
+     */
+    protected function getEditLink($row, $currentPageUid)
+    {
+        $editLink = '';
+        $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtilityCore::getRecord('pages', $row['uid']));
+        $permsEdit = $localCalcPerms & Permission::PAGE_EDIT;
+        if ($permsEdit) {
+            $returnUrl = BackendUtilityCore::getModuleUrl('web_layout', ['id' => $currentPageUid]);
+            $editLink = BackendUtilityCore::getModuleUrl('web_layout', [
+                'id' => $row['uid'],
+                'returnUrl' => $returnUrl
+            ]);
+        }
+        return $editLink;
     }
 
     /**

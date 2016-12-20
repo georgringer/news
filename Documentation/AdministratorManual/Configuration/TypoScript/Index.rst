@@ -40,7 +40,7 @@ Properties
 	categories_                           Category selection                    General         string
 	categoryConjunction_                  Category mode                         General         string
 	includeSubCategories_                 Include subcategories                 General         boolean
-	archiveRestriction_                   Archive                               General         int
+	archiveRestriction_                   Archive                               General         string
 	timeRestriction_                      Time limit (LOW)                      General         string
 	timeRestrictionHigh_                  Time limit (HIGH):                    General         string
 	topNewsRestriction_                   Top News                              General         string
@@ -77,7 +77,7 @@ orderBy
          string
    Description
          Define the sorting of displayed news records.
-         The chapter ":ref:`Extend news > Extend flexforms <extendClasses>`" shows how the select box can be extended.
+         The chapter ":ref:`Extend news > Extend flexforms <extendFlexforms>`" shows how the select box can be extended.
 
 .. _tsOrderDirection:
 
@@ -187,7 +187,7 @@ archiveRestriction
    Data type
          string
    Description
-         :typoscript:`plugin.tx_news.settings.archiveRestriction =1`
+         :typoscript:`plugin.tx_news.settings.archiveRestriction = active`
 
          News records can hold an optional archive date. 2 modes are available:
 
@@ -477,7 +477,7 @@ excludeAlreadyDisplayedNews
    Description
          :typoscript:`plugin.tx_news.settings.excludeAlreadyDisplayedNews =1`
 
-         If checked, news items which are already rendered are excluded in the current plugin. 
+         If checked, news items which are already rendered are excluded in the current plugin.
          **To exclude news items, the viewHelper <n:excludeDisplayedNews newsItem="{newsItem}" /> needs to be added to the template.**
          .. note:: The order of rendering in the frontend is essential as the information which news record is shown and should not be included anymore is fetched during runtime.
 
@@ -577,7 +577,6 @@ Properties
 	hideIdList_                           string
 	orderByAllowed_                       string
 	`analytics\.social`_                  array
-	relatedFiles_                         array
 	demandClass_                          string
 	`link\.hrDate`_                       integer
 	`link\.typesOpeningInNewWindow`_      string
@@ -585,13 +584,12 @@ Properties
 	facebookLocale_                       string
 	disqusLocale_                         string
 	googlePlusLocale_                     string
-	interfaces_                           array
-	mediaRenderer_                        array
 	opengraph_                            array
 	`detail\.media`_                      array
 	`detail\.errorHandling`_              string
 	`detail\.checkPidOfNewsRecord`_       boolean
 	`detail\.registerProperties`_         string
+	`detail\.showPrevNext`_               boolean
 	`detail\.showSocialShareButtons`_     boolean
 	`detail\.disqusShortname`_            string
 	`list\.media`_                        array
@@ -812,30 +810,6 @@ analytics.social
            	twitter = 1
            }
 
-.. _tsRelatedFiles:
-
-relatedFiles
-""""""""""""
-.. container:: table-row
-
-   Property
-         relatedFiles
-   Data type
-         array
-   Description
-         Configuration to render the related files. This is used in the ViewHelper :code:`n:format.fileDownload`.
-   Default
-         ::
-
-           relatedFiles {
-           	fileSizeLabels =
-           	download {
-           		labelStdWrap {
-                      cObject = TEXT
-           		}
-           	}
-           }
-
 .. _tsDemandClass:
 
 demandClass
@@ -850,7 +824,7 @@ demandClass
          Overload the demand object which is used to build the queries.
 
          .. note::
-           This is just important if you want to extend EXT:news. :ref:`See here <extendClasses>`
+           This is just important if you want to extend EXT:news.
 
 .. _tsLinkHrDate:
 
@@ -969,56 +943,6 @@ googlePlusLocale
    Default
          en
 
-.. _tsInterfaces:
-
-interfaces
-""""""""""
-
-.. container:: table-row
-
-   Property
-         interfaces
-   Data type
-         array
-   Description
-          Media types like youtube videos are rendered with custom media renderers.
-          Those are registered in TypoScript with their class names and processed by order.
-   Default
-         ::
-
-            interfaces {
-           	media {
-           		video = GeorgRinger\News\MediaRenderer\Audio\Mp3Html5,GeorgRinger\News\MediaRenderer\Audio\Mp3,GeorgRinger\News\MediaRenderer\Video\Quicktime,GeorgRinger\News\MediaRenderer\Video\File,GeorgRinger\News\MediaRenderer\Video\Youtube,GeorgRinger\News\MediaRenderer\Video\Vimeo,GeorgRinger\News\MediaRenderer\Video\Videosites
-           	}
-           	falMedia {
-           		video = GeorgRinger\News\MediaRenderer\Video\Fal
-           	}
-           }
-
-
-.. _tsMediaRenderer:
-
-mediaRenderer
-""""""""""
-
-.. container:: table-row
-
-   Property
-         mediaRenderer
-   Data type
-         array
-   Description
-          Configuration of the various renderers (see configuration above). Currently only the renderer of Youtube videos uses those.
-   Default
-         ::
-
-			mediaRenderer {
-				youtube {
-					# Add additional parameters to the URL used in the iframes.
-					additionalParams =
-				}
-			}
-
 
 .. _tsOpengraph:
 
@@ -1041,6 +965,8 @@ opengraph
           - *og:description* is filled with the field **Description** or if that is empty with the **Teaser**.
           - *og:image* is filled with the first preview image.
           - *og:url* is filled with the current url.
+
+          Check out https://dev.twitter.com/cards/getting-started for more information regarding the twitter cards.
    Default
          ::
 
@@ -1058,6 +984,11 @@ opengraph
            region =
            postal-code =
            country-name =
+           twitter {
+             card = {$plugin.tx_news.opengraph.twitter.card}
+             site = {$plugin.tx_news.opengraph.twitter.site}
+             creator = {$plugin.tx_news.opengraph.twitter.creator}
+           }
 		}
 
 .. _tsDetailMedia:
@@ -1136,6 +1067,21 @@ detail.checkPidOfNewsRecord
          If those don't match, the news record won't be displayed.
    Default
          0
+
+.. _tsDetailShowPrevNext:
+
+detail.showPrevNext
+"""""""""""""""""""""""""
+.. container:: table-row
+
+   Property
+         detail.showPrevNext
+   Data type
+         boolean
+   Description
+         If enabled, links to the previous and next news records are shown
+   Default
+          0
 
 .. _tsDetailRegisterProperties:
 

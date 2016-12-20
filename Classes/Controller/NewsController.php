@@ -434,6 +434,34 @@ class NewsController extends NewsBaseController
         $this->view->assignMultiple($assignedValues);
     }
 
+    /**
+     * initialize search form action
+     */
+    public function initializesearchResultAction()
+    {
+        $this->initializeSearchActions();
+    }
+
+    /**
+     * initialize search result action
+     */
+    public function initializeSearchFormAction()
+    {
+        $this->initializeSearchActions();
+    }
+
+    /**
+     * Initialize searchForm and searchResult actions
+     */
+    protected function initializeSearchActions()
+    {
+        if ($this->arguments->hasArgument('search')) {
+            $propertyMappingConfiguration = $this->arguments['search']->getPropertyMappingConfiguration();
+            $propertyMappingConfiguration->allowAllProperties();
+            $propertyMappingConfiguration->setTypeConverterOption('TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter', \TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+        }
+    }
+
     /***************************************************************************
      * helper
      **********************/
@@ -486,10 +514,10 @@ class NewsController extends NewsBaseController
 
         if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'])) {
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'] as $_funcRef) {
-                $_params = array(
+                $_params = [
                     'originalSettings' => $originalSettings,
                     'tsSettings' => $tsSettings,
-                );
+                ];
                 $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
             }
         }

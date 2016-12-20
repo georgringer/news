@@ -30,6 +30,8 @@ The extension needs to be installed as any other extension of TYPO3 CMS:
       downloading either the t3x or zip version. Upload
       the file afterwards in the Extension Manager.
 
+   #. **Use composer**: Use `composer require georgringer/news`.
+
 #. The Extension Manager offers some basic configuration which is
    explained :ref:`here <extensionManager>`.
 

@@ -42,7 +42,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      *
      * @var    array
      */
-    protected $pidList = array();
+    protected $pidList = [];
 
     /**
      * Indicates sitemap type
@@ -151,27 +151,42 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      */
     protected function getNewsItemUrl($newsRow, $forceSinglePid = null)
     {
+        $configuration = $GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.'];
         $link = '';
-        if (is_string($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink']) && is_array($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink'])) {
+        if (is_string($configuration['tx_newsLink']) && is_array($configuration['tx_newsLink.'])) {
             $cObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
             $cObj->start($newsRow, 'tx_news_domain_model_news');
             $cObj->setCurrentVal($forceSinglePid ?: $this->singlePid);
-            $link = $cObj->cObjGetSingle($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink'],
-                $GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink']);
+            $link = $cObj->cObjGetSingle($configuration['tx_newsLink'], $configuration['tx_newsLink.']);
             unset($cObj);
         }
-        $skipControllerAndAction = isset($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_news.'])
-            && is_array($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_news.'])
-            && $GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_news.']['skipControllerAndAction'] == 1;
+        $additionalParams = '';
+        $skipControllerAndAction = isset($configuration['tx_news.'])
+            && is_array($configuration['tx_news.'])
+            && $configuration['tx_news.']['skipControllerAndAction'] == 1;
+        if (!$skipControllerAndAction) {
+            $additionalParams .= '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
+        }
+        if ((int)$configuration['tx_news.']['hrDate'] === 1 && $newsRow['datetime'] > 0) {
+            if (!empty($configuration['tx_news.']['hrDate.']['day'])) {
+                $additionalParams .= '&tx_news_pi1[day]=' . date($configuration['tx_news.']['hrDate.']['day'], $newsRow['datetime']);
+            }
+            if (!empty($configuration['tx_news.']['hrDate.']['month'])) {
+                $additionalParams .= '&tx_news_pi1[month]=' . date($configuration['tx_news.']['hrDate.']['month'], $newsRow['datetime']);
+            }
+            if (!empty($configuration['tx_news.']['hrDate.']['year'])) {
+                $additionalParams .= '&tx_news_pi1[year]=' . date($configuration['tx_news.']['hrDate.']['year'], $newsRow['datetime']);
+            }
+        }
 
         if ($link == '') {
-            $conf = array(
-                'additionalParams' => (!$skipControllerAndAction ? '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail' : '') . '&tx_news_pi1[news]=' . $newsRow['uid'],
+            $conf = [
+                'additionalParams' => '&tx_news_pi1[news]=' . $newsRow['uid'] . $additionalParams,
                 'forceAbsoluteUrl' => 1,
                 'parameter' => $forceSinglePid ?: $this->singlePid,
                 'returnLast' => 'url',
                 'useCacheHash' => true,
-            );
+            ];
             $link = htmlspecialchars($this->cObj->typoLink('', $conf));
         }
         return $link;

@@ -19,6 +19,7 @@ use GeorgRinger\News\Utility\ImportJob;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
+use UnexpectedValueException;
 
 /**
  * Controller to import news records
@@ -79,15 +80,19 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $storageId = (int)$settings->getStorageUidImporter();
             $path = $settings->getResourceFolderImporter();
             if ($storageId === 0) {
-                throw new \UnexpectedValueException('import.error.configuration.storageUidImporter');
+                throw new UnexpectedValueException('import.error.configuration.storageUidImporter');
             }
             if (empty($path)) {
-                throw new \UnexpectedValueException('import.error.configuration.resourceFolderImporter');
+                throw new UnexpectedValueException('import.error.configuration.resourceFolderImporter');
             }
-            $storage = $this->getResourceFactory()->getStorageObject($settings->getStorageUidImporter());
+            $storage = $this->getResourceFactory()->getStorageObject($storageId);
+            $pathExists = $storage->hasFolder($path);
+            if (!$pathExists) {
+                throw new FolderDoesNotExistException('Folder does not exist', 1474827988);
+            }
         } catch (FolderDoesNotExistException $e) {
             $error = 'import.error.configuration.resourceFolderImporter.notExist';
-        } catch (\UnexpectedValueException $e) {
+        } catch (UnexpectedValueException $e) {
             $error = $e->getMessage();
         }
         return $error;

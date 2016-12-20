@@ -18,14 +18,15 @@ return [
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
-        'dividers2tabs' => true,
         'default_sortby' => 'ORDER BY sorting',
         'sortby' => 'sorting',
         'delete' => 'deleted',
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_link.gif',
+        'typeicon_classes' => [
+            'default' => 'ext-news-link'
+        ],
         'hideTable' => true,
     ],
     'interface' => [
@@ -129,7 +130,7 @@ return [
                     'link' => [
                         'type' => 'popup',
                         'title' => 'Link',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+                        'icon' => 'actions-wizard-link',
                         'module' => [
                             'name' => 'wizard_link',
                         ],

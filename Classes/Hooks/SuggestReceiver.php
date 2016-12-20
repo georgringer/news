@@ -42,22 +42,23 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
         $records = parent::queryTable($params, $recursionCounter);
         if ($this->checkIfTagIsNotFound($records)) {
             $text = GeneralUtility::quoteJSvalue($params['value']);
-            $javaScriptCode = '
-var value=' . $text . ';
 
-Ext.Ajax.request({
-	url : \'ajax.php\' ,
-	method: "GET",
-	params : { ajaxID : \'News::createTag\', item:value,newsid:\'' . $uid . '\' },
-	success: function ( result, request ) {
-		var arr = result.responseText.split(\'-\');
-		setFormValueFromBrowseWin(arr[5], arr[2] +  \'_\' + arr[0], arr[1]);
-		TBE_EDITOR.fieldChanged(arr[3], arr[6], arr[4], arr[5]);
-	},
-	failure: function ( result, request) {
-		Ext.MessageBox.alert(\'Failed\', result.responseText);
-	}
-});
+            $javaScriptCode = '
+        var value=' . $text . ';
+        TYPO3.jQuery.ajax({
+			url : TYPO3.settings.ajaxUrls[\'news_tag\'] ,
+			method: \'POST\',
+			data: {item:value,newsid:\'' . $uid . '\' },
+			complete:function(result) {
+			    if (result.status == 200) {
+                    var arr = result.responseText.split(\'-\');
+                    setFormValueFromBrowseWin(arr[5], arr[2] +  \'_\' + arr[0], arr[1]);
+                    TBE_EDITOR.fieldChanged(arr[3], arr[6], arr[4], arr[5]);
+			    } else {
+			        alert(result.responseText);
+			    }
+			}
+		});
 ';
 
             $javaScriptCode = trim(str_replace('"', '\'', $javaScriptCode));
@@ -104,7 +105,7 @@ Ext.Ajax.request({
     /**
      * @return Icon
      */
-    private function getDummyIcon()
+    protected function getDummyIcon()
     {
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         return $iconFactory->getIcon('tx_news_domain_model_tag', Icon::SIZE_SMALL);

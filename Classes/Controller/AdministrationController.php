@@ -15,11 +15,9 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
-use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
@@ -35,7 +33,6 @@ use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Administration controller
- *
  */
 class AdministrationController extends NewsController
 {
@@ -115,6 +112,7 @@ class AdministrationController extends NewsController
 
         $pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ClickMenu');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/Tooltip');
 
         $this->createMenu();
         $this->createButtons();
@@ -167,28 +165,36 @@ class AdministrationController extends NewsController
             [
                 'table' => 'tx_news_domain_model_news',
                 'label' => 'module.createNewNewsRecord',
-                'action' => 'newNews'
+                'action' => 'newNews',
+                'icon' => 'ext-news-type-default'
             ],
             [
                 'table' => 'tx_news_domain_model_tag',
                 'label' => 'module.createNewTag',
-                'action' => 'newTag'
+                'action' => 'newTag',
+                'icon' => 'ext-news-tag'
             ],
             [
                 'table' => 'sys_category',
                 'label' => 'module.createNewCategory',
-                'action' => 'newCategory'
+                'action' => 'newCategory',
+                'icon' => 'mimetypes-x-sys_category'
             ]
         ];
         foreach ($buttons as $key => $tableConfiguration) {
             if ($this->getBackendUser()->isAdmin() || GeneralUtility::inList($this->getBackendUser()->groupData['tables_modify'],
                     $tableConfiguration['table'])
             ) {
+                $title = $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label']);
                 $viewButton = $buttonBar->makeLinkButton()
                     ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor($tableConfiguration['action'],
                         [], 'Administration'))
-                    ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label']))
-                    ->setIcon($this->iconFactory->getIconForRecord($tableConfiguration['table'], [], Icon::SIZE_SMALL));
+                    ->setDataAttributes([
+                        'toggle' => 'tooltip',
+                        'placement' => 'bottom',
+                        'title' => $title])
+                    ->setTitle($title)
+                    ->setIcon($this->iconFactory->getIcon($tableConfiguration['icon'], Icon::SIZE_SMALL, 'overlay-new'));
                 $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key);
             }
         }
@@ -203,7 +209,7 @@ class AdministrationController extends NewsController
                         BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
                         $elFromTable))
                 ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/locallang_mod_web_list.xlf:clip_pasteInto'))
-                ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', ICON::SIZE_SMALL));
+                ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));
             $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);
         }
     }
@@ -246,7 +252,9 @@ class AdministrationController extends NewsController
                     ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
                 }
             }
-            $this->view->assign('hideForm', true);
+            if (!(bool)$this->tsConfiguration['alwaysShowFilter']) {
+                $this->view->assign('hideForm', true);
+            }
         }
         $categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
         $idList = [];
@@ -271,20 +279,15 @@ class AdministrationController extends NewsController
         $dblist->displayFields = false;
         $dblist->dontShowClipControlPanels = true;
         $dblist->counter++;
-        $dblist->MOD_MENU = array('bigControlPanel' => '', 'clipBoard' => '', 'localization' => '');
+        $dblist->MOD_MENU = ['bigControlPanel' => '', 'clipBoard' => '', 'localization' => ''];
         $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0, 1000);
-        $limit = 20;
+        $limit = isset($this->settings['list']['paginate']['itemsPerPage']) ? (int)$this->settings['list']['paginate']['itemsPerPage'] : 20;
         $dblist->start($this->pageUid, 'tx_news_domain_model_news', $pointer, '',
             $demand->getRecursive(), $limit);
         $dblist->setDispFields();
         $dblist->noControlPanels = true;
         $dblist->setFields = [
-            'tx_news_domain_model_news' => [
-                'teaser',
-                'istopnews',
-                'datetime',
-                'categories'
-            ]
+            'tx_news_domain_model_news' => GeneralUtility::trimExplode(',', $this->tsConfiguration['columns'] ?: 'teaser,istopnews,datetime,categories', true)
         ];
 
         $dblist->script = $_SERVER['REQUEST_URI'];
@@ -297,6 +300,7 @@ class AdministrationController extends NewsController
             'news' => $dblist->HTMLcode,
             'newsCount' => $dblist->counter,
             'showSearchForm' => (!is_null($demand) || $dblist->counter > 0),
+            'requestUri' => GeneralUtility::quoteJSvalue(rawurlencode(GeneralUtility::getIndpEnv('REQUEST_URI'))),
             'categories' => $this->categoryRepository->findTree($idList),
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];

@@ -147,7 +147,7 @@ This relation handles all media files you want to attach to a news record.
    :Description:
          Description:
  - :Field:
-         Show in preview views
+         Show in list views
    :Description:
          If set, this media element will be rendered in the list view (or where it is desired by changing the templates).
  - :Field:
@@ -217,4 +217,3 @@ This relation handles links to any kind of URLs.
          Description
    :Description:
          Additional description
-

@@ -41,7 +41,7 @@ Remove fields in additional actions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you define an additional action, you won't need all available fields which are available inside the Flexforms. If you want to hide some fields,
-take a look at the hook inside the class Hooks/T3libBefunc.php:
+take a look at the hook inside the class Hooks/BackendUtility.php:
 
 .. code-block:: php
 
@@ -60,7 +60,7 @@ You can then access the variable in your template with
 :code:`{settings.templateLayout}` and use it for a condition or whatever.
 
 Extend flexforms with custom fields
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you need additional fields in the flexform configuration, this can be done by using a hook in the core.
 
 **Register the hook**
@@ -103,7 +103,7 @@ flexform file.
 
 Create the flexform file you just referenced in the hook. This can look like that.
 
-.. code-block:: xml
+.. code-block:: html
 
     <extra>
         <ROOT>

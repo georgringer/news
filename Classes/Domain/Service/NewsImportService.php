@@ -151,7 +151,9 @@ class NewsImportService extends AbstractImportService
         $news->setHidden($importItem['hidden']);
         $news->setStarttime($importItem['starttime']);
         $news->setEndtime($importItem['endtime']);
-        $news->setFeGroup((string)$importItem['fe_group']);
+        if (!empty($importItem['fe_group'])) {
+            $news->setFeGroup((string)$importItem['fe_group']);
+        }
         $news->setTstamp($importItem['tstamp']);
         $news->setCrdate($importItem['crdate']);
         $news->setSysLanguageUid($importItem['sys_language_uid']);
@@ -183,7 +185,7 @@ class NewsImportService extends AbstractImportService
         $news->setAuthor($importItem['author']);
         $news->setAuthorEmail($importItem['author_email']);
 
-        $news->setImportid($importItem['import_id']);
+        $news->setImportId($importItem['import_id']);
         $news->setImportSource($importItem['import_source']);
 
         if (is_array($importItem['categories'])) {
@@ -328,6 +330,9 @@ class NewsImportService extends AbstractImportService
         $this->logger->info(sprintf('Starting import for %s news', count($importData)));
 
         foreach ($importData as $importItem) {
+            $arguments = ['importItem' => $importItem];
+            $return = $this->emitSignal('preHydrate', $arguments);
+            $importItem = $return['importItem'];
 
             // Store language overlay in post persist queue
             if ((int)$importItem['sys_language_uid'] > 0 && (string)$importItem['l10n_parent'] !== '0') {
@@ -439,7 +444,7 @@ class NewsImportService extends AbstractImportService
      */
     protected function emitSignal($signalName, array $signalArguments)
     {
-        $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\NewsImportService', $signalName,
+        return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\NewsImportService', $signalName,
             $signalArguments);
     }
 }

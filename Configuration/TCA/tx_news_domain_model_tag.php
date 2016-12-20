@@ -10,13 +10,14 @@ return [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-        'dividers2tabs' => true,
         'default_sortby' => 'ORDER BY title',
         'delete' => 'deleted',
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_tag.png',
+        'typeicon_classes' => [
+            'default' => 'ext-news-tag'
+        ],
         'searchFields' => 'uid,title',
     ],
     'interface' => [
@@ -85,7 +86,7 @@ return [
             'config' => [
                 'type' => 'text',
             ],
-            'defaultExtras' => 'richtext:rte_transform',
+            'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
         ],
     ],
     'types' => [

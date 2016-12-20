@@ -5,6 +5,7 @@
   "keywords": [
     "TYPO3",
     "extension",
+    "article",
     "news"
   ],
   "homepage": "http://montagmorgen.at",
@@ -19,7 +20,7 @@
     "GPL-2.0+"
   ],
   "require": {
-    "typo3/cms-core": ">=7.6.0,<8.3"
+    "typo3/cms-core": ">=7.6.0,<8.9.99"
   },
   "suggest": {
     "dmitryd/typo3-dd-googlesitemap": "~2.0",
@@ -47,7 +48,12 @@
   },
   "config": {
     "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
+    "bin-dir": ".Build/bin",
+    "preferred-install": {
+      "typo3/cms": "source",
+      "typo3/cms-core": "source",
+      "*": "dist"
+    }
   },
   "scripts": {
     "post-autoload-dump": [
@@ -57,7 +63,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "4.2.x-dev"
+      "dev-master": "5.x-dev"
     },
     "typo3/cms": {
       "cms-package-dir": "{$vendor-dir}/typo3/cms",

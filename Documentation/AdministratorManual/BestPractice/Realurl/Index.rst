@@ -59,7 +59,7 @@ This example is advanced and works best with one single view page.
 It hides the controller and action name by using fixedPostVars.
 Here is a full RealURL configuration with the explanation below.
 
-.. code-block:: html
+.. code-block:: php
 
 	<?php
 
@@ -322,7 +322,7 @@ The following snippet shows how to use this field: ::
 			/** OR ***************/
 			'alias_field' => 'IF(path_segment!="",path_segment,title)',
 			/** OR ***************/
-			'alias_field' => "CONCAT(uid, '-', title))",
+			'alias_field' => "CONCAT(uid, '-', title)",
 
 			'addWhereClause' => ' AND NOT deleted',
 			'useUniqueCache' => 1,
@@ -370,3 +370,15 @@ All you now need is to add an additional section in your realurl configuration.
 			),
 		),
 	),
+
+Auto configuration
+^^^^^^^^^^^^^^^^^^
+If the auto configuration is enabled in EXT:realurl, news provides a configuration for that as well.
+
+In case you want to provide your own configuration (e.g. in your sitepackage extension),
+you can unset the configuration by using the following code in your `ext_localconf.php`:
+
+.. code-block:: php
+
+    unset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['news']);
+

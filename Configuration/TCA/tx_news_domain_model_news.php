@@ -30,7 +30,6 @@ $tx_news_domain_model_news = [
             '1' => 'ext-news-type-internal',
             '2' => 'ext-news-type-external',
         ],
-        'dividers2tabs' => true,
         'useColumnsForDefaultValues' => 'type',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
@@ -222,7 +221,7 @@ $tx_news_domain_model_news = [
                         'RTEonly' => 1,
                         'type' => 'script',
                         'title' => 'Full screen Rich Text Editing',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_rte.gif',
+                        'icon' => 'actions-wizard-rte',
                         'module' => [
                             'name' => 'wizard_rte',
                         ],
@@ -236,7 +235,6 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 16,
-                'max' => 20,
                 'eval' => 'datetime' . ($configuration->getDateTimeRequired() ? ',required' : ''),
             ]
         ],
@@ -247,7 +245,6 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'max' => 20,
                 'eval' => $configuration->getArchiveDate(),
                 'default' => 0
             ]
@@ -282,7 +279,6 @@ $tx_news_domain_model_news = [
                     'parentField' => 'parent',
                     'appearance' => [
                         'showHeader' => true,
-                        'allowRecursiveMode' => true,
                         'expandAll' => true,
                         'maxLevels' => 99,
                     ],
@@ -296,7 +292,6 @@ $tx_news_domain_model_news = [
                 'foreign_table' => 'sys_category',
                 'foreign_table_where' => ' AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting',
                 'size' => 10,
-                'autoSizeMax' => 20,
                 'minitems' => 0,
                 'maxitems' => 99,
             ]
@@ -319,7 +314,8 @@ $tx_news_domain_model_news = [
                     'suggest' => [
                         'type' => 'suggest',
                         'default' => [
-                            'searchWholePhrase' => true
+                            'searchWholePhrase' => true,
+                            'addWhere' => ' AND tx_news_domain_model_news.uid != ###THIS_UID###'
                         ]
                     ],
                 ],
@@ -374,10 +370,11 @@ $tx_news_domain_model_news = [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    [$ll . 'tx_news_domain_model_news.type.I.0', 0],
-                    [$ll . 'tx_news_domain_model_news.type.I.1', 1],
-                    [$ll . 'tx_news_domain_model_news.type.I.2', 2],
+                    [$ll . 'tx_news_domain_model_news.type.I.0', 0, 'ext-news-type-default'],
+                    [$ll . 'tx_news_domain_model_news.type.I.1', 1, 'ext-news-type-internal'],
+                    [$ll . 'tx_news_domain_model_news.type.I.2', 2, 'ext-news-type-external'],
                 ],
+                'showIconTable' => true,
                 'size' => 1,
                 'maxitems' => 1,
             ]
@@ -416,7 +413,7 @@ $tx_news_domain_model_news = [
                     'link' => [
                         'type' => 'popup',
                         'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+                        'icon' => 'actions-wizard-link',
                         'module' => [
                             'name' => 'wizard_link',
                         ],
@@ -491,7 +488,6 @@ $tx_news_domain_model_news = [
                 'foreign_table' => 'tx_news_domain_model_tag',
                 'foreign_table_where' => 'ORDER BY tx_news_domain_model_tag.title',
                 'size' => 10,
-                'autoSizeMax' => 20,
                 'minitems' => 0,
                 'maxitems' => 99,
                 'wizards' => [
@@ -507,7 +503,7 @@ $tx_news_domain_model_news = [
                     'list' => [
                         'type' => 'script',
                         'title' => $ll . 'tx_news_domain_model_news.tags.list',
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_list.gif',
+                        'icon' => 'actions-system-list-open',
                         'params' => [
                             'table' => 'tx_news_domain_model_tag',
                             'pid' => $configuration->getTagPid(),
@@ -523,7 +519,7 @@ $tx_news_domain_model_news = [
                             'name' => 'wizard_edit',
                         ],
                         'popup_onlyOpenIfSelected' => 1,
-                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_edit.gif',
+                        'icon' => 'actions-open',
                         'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
                     ],
                 ],
@@ -633,6 +629,9 @@ $tx_news_domain_model_news = [
                         'showAllLocalizationLink' => 1,
                         'showSynchronizationLink' => 1
                     ],
+                    'inline' => [
+                        'inlineOnlineMediaAddButtonStyle' => 'display:none'
+                    ],
                     'foreign_match_fields' => [
                         'fieldname' => 'fal_related_files',
                         'tablenames' => 'tx_news_domain_model_news',
@@ -654,7 +653,9 @@ $tx_news_domain_model_news = [
                 ],
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore,teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,
+					title,--palette--;;paletteCore,teaser,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+					--palette--;;paletteDate,
 					bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
                 --div--;' . $ll . 'tx_news_domain_model_news.content_elements,content_elements,
 
@@ -679,7 +680,10 @@ $tx_news_domain_model_news = [
                 ],
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,internalurl,
+					title,--palette--;;paletteCore, teaser,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+					--palette--;;paletteDate,
+					internalurl,
 
 				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
@@ -702,7 +706,10 @@ $tx_news_domain_model_news = [
                 ],
             ],
             'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser,author, --palette--;;paletteAuthor,datetime, --palette--;;paletteArchive,externalurl,
+					title,--palette--;;paletteCore, teaser,
+					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+					--palette--;;paletteDate,
+					externalurl,
 
 				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
 					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
@@ -717,7 +724,11 @@ $tx_news_domain_model_news = [
     ],
     'palettes' => [
         'paletteAuthor' => [
-            'showitem' => 'author_email,',
+            'showitem' => 'author,author_email,',
+            'canNotCollapse' => true
+        ],
+        'paletteDate' => [
+            'showitem' => 'datetime,archive,',
             'canNotCollapse' => true
         ],
         'paletteArchive' => [

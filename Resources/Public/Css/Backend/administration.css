@@ -1,0 +1,87 @@
+.news-administration .form-group {
+  margin-bottom: 5px;
+}
+.news-administration #settings-title {
+  cursor: pointer;
+}
+.news-administration .clear {
+  clear: both;
+}
+.news-administration .category-tree {
+  float: left;
+  margin: 0 150px;
+}
+.news-administration .category-tree ul {
+  margin: 4px;
+}
+.news-administration .category-tree ul ul {
+  margin: 2px 0 4px 12px;
+}
+.news-administration .form {
+  float: left;
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
+}
+.news-administration .settings {
+  background-color: #ededed;
+  border-top: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;
+  padding: 12px;
+  margin-bottom: 24px;
+}
+.news-administration .settings .field {
+  padding: 2px 0;
+}
+.news-administration .settings .category-tree li {
+  margin: 2px 0;
+}
+.news-administration .settings .category-tree li label {
+  padding: 0;
+  margin: 0;
+  min-height: 12px;
+  line-height: 1;
+}
+.news-administration .settings .category-tree input {
+  margin: 0;
+}
+.news-administration .settings .category-tree .tree-wrapper {
+  background: white;
+  border: 1px solid #cdcdcd;
+  padding: 0 4px;
+  height: 160px;
+  width: 320px;
+  margin-bottom: 5px;
+  overflow: auto;
+}
+.news-administration .settings .form .field label {
+  display: block;
+  float: left;
+  width: 150px;
+}
+.news-administration .settings .submit {
+  margin: 5px 0 3px 150px;
+}
+.news-administration .result {
+  margin-top: 10px;
+}
+.news-administration .result .item {
+  padding: 1px;
+}
+.news-administration .result .item a {
+  font-style: italic;
+}
+.news-administration .result .item a :hover {
+  text-decoration: underline;
+}
+.news-administration .hide {
+  opacity: 0.5;
+}
+.news-administration .hide_line {
+  opacity: 0.4;
+}
+.news-administration .hide_line td {
+  border: none;
+}
+.news-administration #toggle-settings {
+  /*cursor: pointer;*/
+}
