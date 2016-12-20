@@ -45,7 +45,7 @@ class BackendUtility
      * @var array
      */
     public $removedFieldsInListView = [
-        'sDEF' => 'dateField,singleNews,previewHiddenRecords',
+        'sDEF' => 'singleNews,previewHiddenRecords',
         'additional' => '',
         'template' => ''
     ];
