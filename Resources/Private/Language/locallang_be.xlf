@@ -308,6 +308,9 @@
 			<trans-unit id="tag_suggest" xml:space="preserve">
 				<source>Tag &quot;%s&quot; could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
 			</trans-unit>
+			<trans-unit id="tag_suggest2" xml:space="preserve">
+				<source>Tag could not be found, wanna create it? Click here!</source>
+			</trans-unit>
 			<trans-unit id="tag_suggest_error_no-tag" xml:space="preserve">
 				<source>No tag submitted!</source>
 			</trans-unit>
