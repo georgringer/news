@@ -51,6 +51,7 @@
 
 	<!-- teaser -->
 	<div class="teaser-text">
+		<n:removeMediaTags>
 		<f:if condition="{newsItem.teaser}">
 			<f:then>
 				<div itemprop="description">{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}</div>
@@ -59,6 +60,7 @@
 				<div itemprop="description">{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}</div>
 			</f:else>
 		</f:if>
+		</n:removeMediaTags>
 
 		<n:link newsItem="{newsItem}" settings="{settings}" class="more" title="{newsItem.title}">
 			<f:translate key="more-link"/>
