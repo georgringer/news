@@ -15,8 +15,10 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Base controller
@@ -78,12 +80,12 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      * @param string $configuration configuration what will be done
      * @throws \InvalidArgumentException
-     * @return void
+     * @return string
      */
     protected function handleNoNewsFoundError($configuration)
     {
         if (empty($configuration)) {
-            return;
+            return '';
         }
 
         $configuration = GeneralUtility::trimExplode(',', $configuration, true);
@@ -115,6 +117,15 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 break;
             case 'pageNotFoundHandler':
                 $GLOBALS['TSFE']->pageNotFoundAndExit('No news entry found.');
+                break;
+            case 'showStandaloneTemplate':
+                if (isset($configuration[2])) {
+                    $statusCode = constant(HttpUtility::class . '::HTTP_STATUS_'. $configuration[2]);
+                    HttpUtility::setResponseCode($statusCode);
+                }
+                $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
+                $standaloneTemplate->setTemplatePathAndFilename($configuration[1]);
+                return $standaloneTemplate->render();
                 break;
             default:
                 // Do nothing, it might be handled in the view.

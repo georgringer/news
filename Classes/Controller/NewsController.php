@@ -260,7 +260,10 @@ class NewsController extends NewsBaseController
         }
 
         if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
-            $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
+            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
+            if ($errorContent) {
+                return $errorContent;
+            }
         }
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
