@@ -23,13 +23,13 @@
 				<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
 					<f:alias map="{mediaElement: '{newsItem.falMediaPreviews.0}'}">
 						<f:if condition="{mediaElement.originalResource.type} == 2">
-							<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}"/>
+							<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
 						</f:if>
 						<f:if condition="{mediaElement.originalResource.type} == 4">
 							<f:render partial="Detail/FalMediaVideo" arguments="{mediaElement: mediaElement}"/>
 						</f:if>
 						<f:if condition="{mediaElement.originalResource.type} == 5">
-							<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}"/>
+							<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
 						</f:if>
 					</f:alias>
 				</n:link>
@@ -40,7 +40,7 @@
 				<div class="news-img-wrap">
 					<span class="no-media-element">
 						<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
-							<f:image src="{settings.list.media.dummyImage}" title="" alt="" maxWidth="{settings.list.media.image.maxWidth}" maxHeight="{settings.list.media.image.maxHeight}"/>
+							<f:image src="{settings.list.media.dummyImage}" title="" alt="" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
 						</n:link>
 					</span>
 				</div>
