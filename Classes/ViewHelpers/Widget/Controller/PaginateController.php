@@ -57,6 +57,8 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
     protected $initialOffset = 0;
     /** @var int */
     protected $initialLimit = 0;
+    /** @var int */
+    protected $recordId = 0;
 
     /**
      * Initialize the action and get correct configuration
@@ -86,6 +88,9 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
         }
         if (isset($this->widgetConfiguration['initial']['limit'])) {
             $this->initialLimit = (int)$this->widgetConfiguration['initial']['limit'];
+        }
+        if (isset($this->widgetConfiguration['initial']['recordId'])) {
+            $this->recordId = (int)$this->widgetConfiguration['initial']['recordId'];
         }
     }
 
@@ -135,6 +140,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
             $this->widgetConfiguration['as'] => $modifiedObjects
         ]);
         $this->view->assign('configuration', $this->configuration);
+        $this->view->assign('recordId', $this->recordId);
         $this->view->assign('pagination', $this->buildPagination());
 
         if (!empty($this->templatePath)) {
