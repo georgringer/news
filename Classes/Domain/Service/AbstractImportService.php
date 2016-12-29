@@ -2,10 +2,11 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
-/*
- * This source file is proprietary property of Beech Applications B.V.
- * Date: 12-05-2014 12:29
- * All code (c) Beech Applications B.V. all rights reserved
+/**
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\EmConfiguration;
 
