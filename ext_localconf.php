@@ -62,9 +62,9 @@ $boot = function () {
         \GeorgRinger\News\Hooks\InlineElementHook::class;
 
     // Xclass InlineRecordContainer
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Form\Container\InlineRecordContainer::class] = array(
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Form\Container\InlineRecordContainer::class] = [
         'className' => \GeorgRinger\News\Xclass\InlineRecordContainerForNews::class,
-    );
+    ];
 
     /* ===========================================================================
         Custom cache, done with the caching framework

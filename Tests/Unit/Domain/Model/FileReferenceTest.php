@@ -26,7 +26,6 @@ class FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if fileUid can be set
      *
      * @test
-     * @return void
      */
     public function fileUidCanBeSet()
     {
@@ -40,7 +39,6 @@ class FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if alternative can be set
      *
      * @test
-     * @return void
      */
     public function alternativeBeSet()
     {
@@ -54,7 +52,6 @@ class FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if description can be set
      *
      * @test
-     * @return void
      */
     public function descriptionBeSet()
     {
@@ -68,7 +65,6 @@ class FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if link can be set
      *
      * @test
-     * @return void
      */
     public function linkBeSet()
     {
@@ -82,7 +78,6 @@ class FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if title can be set
      *
      * @test
-     * @return void
      */
     public function titleBeSet()
     {
@@ -96,7 +91,6 @@ class FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if showInPreview can be set
      *
      * @test
-     * @return void
      */
     public function showInPreviewBeSet()
     {

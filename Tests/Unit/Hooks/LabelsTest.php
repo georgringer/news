@@ -25,7 +25,6 @@ class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      * @dataProvider correctFieldOfArrayIsReturnedDataProvider
-     * @return void
      */
     public function correctFieldOfArrayIsReturned($input, $expectedResult)
     {
@@ -58,7 +57,6 @@ class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      * @dataProvider splitOfFileNameReturnsCorrectPartialDataProvider
-     * @return void
      */
     public function splitOfFileNameReturnsCorrectPartial($string, $expectedResult)
     {

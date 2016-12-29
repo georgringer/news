@@ -38,7 +38,6 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * Set up framework
      *
-     * @return void
      */
     public function setUp()
     {
@@ -50,7 +49,6 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * Tear down framework
      *
-     * @return void
      */
     public function tearDown()
     {
@@ -61,7 +59,6 @@ class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test for creating correct demand call
      *
      * @test
-     * @return void
      */
     public function listActionFindsDemandedTagsByDemandFromSettings()
     {

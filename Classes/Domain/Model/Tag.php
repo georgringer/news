@@ -70,7 +70,6 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set crdate
      *
      * @param \DateTime $crdate crdate
-     * @return void
      */
     public function setCrdate($crdate)
     {
@@ -91,7 +90,6 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set tstamp
      *
      * @param \DateTime $tstamp tstamp
-     * @return void
      */
     public function setTstamp($tstamp)
     {
@@ -112,7 +110,6 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set title
      *
      * @param string $title title
-     * @return void
      */
     public function setTitle($title)
     {

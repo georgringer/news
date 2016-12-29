@@ -49,7 +49,6 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function correctSysLanguageIsReturnedUsingTsfe()
     {
@@ -73,7 +72,6 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function correctSysLanguageIsReturnedUsingGetAndPostRequest()
     {
@@ -112,7 +110,6 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * @param array $given
      * @test
      * @dataProvider categoryIdsAreCorrectlyReplacedDataProvider
-     * @return void
      */
     public function categoryIdsAreCorrectlyReplaced($expectedResult, $given)
     {

@@ -33,7 +33,6 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * Register instance of this class as spl autoloader
      *
-     * @return void
      */
     public static function registerAutoloader()
     {

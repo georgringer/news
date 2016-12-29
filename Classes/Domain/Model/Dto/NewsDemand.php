@@ -352,7 +352,6 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
      * Set search fields
      *
      * @param string $searchFields search fields
-     * @return void
      */
     public function setSearchFields($searchFields)
     {

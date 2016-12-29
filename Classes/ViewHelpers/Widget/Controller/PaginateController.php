@@ -67,7 +67,6 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
     /**
      * Initialize the action and get correct configuration
      *
-     * @return void
      */
     public function initializeAction()
     {
@@ -100,7 +99,6 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
      * Main action
      *
      * @param int $currentPage
-     * @return void
      */
     public function indexAction($currentPage = 1)
     {
@@ -184,7 +182,6 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
      * If a certain number of links should be displayed, adjust before and after
      * amounts accordingly.
      *
-     * @return void
      */
     protected function calculateDisplayRange()
     {

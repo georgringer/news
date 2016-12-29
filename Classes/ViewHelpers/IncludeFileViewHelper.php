@@ -37,7 +37,6 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
      *
      * @param string $path Path to the CSS/JS file which should be included
      * @param bool $compress Define if file should be compressed
-     * @return void
      */
     public function render($path, $compress = false)
     {

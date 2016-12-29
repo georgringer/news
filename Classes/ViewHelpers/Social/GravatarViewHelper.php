@@ -41,7 +41,6 @@ class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBas
     /**
      * initializes the arguments
      *
-     * @return void
      */
     public function initializeArguments()
     {

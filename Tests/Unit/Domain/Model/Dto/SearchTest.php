@@ -27,7 +27,6 @@ class SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if subject can be set
      *
      * @test
-     * @return void
      */
     public function subjectCanBeSet()
     {
@@ -41,7 +40,6 @@ class SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if fields can be set
      *
      * @test
-     * @return void
      */
     public function fieldsCanBeSet()
     {
@@ -55,7 +53,6 @@ class SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if minimumDate can be set
      *
      * @test
-     * @return void
      */
     public function minimumDateCanBeSet()
     {
@@ -69,7 +66,6 @@ class SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if minimumDate can be set
      *
      * @test
-     * @return void
      */
     public function maximumDateCanBeSet()
     {

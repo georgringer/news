@@ -47,7 +47,6 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
     /**
      * Arguments initialization
      *
-     * @return void
      */
     public function initializeArguments()
     {
@@ -61,7 +60,6 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
      *
      * @param bool $useCurrentDomain If set, current domain is used
      * @param bool $forceAbsoluteUrl If set, absolute url is forced
-     * @return void
      */
     public function render($useCurrentDomain = false, $forceAbsoluteUrl = false)
     {

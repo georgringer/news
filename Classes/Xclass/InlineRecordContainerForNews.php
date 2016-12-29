@@ -6,8 +6,6 @@ use TYPO3\CMS\Backend\Form\Container\InlineRecordContainer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Imaging\Icon;
-use TYPO3\CMS\Core\Resource\ProcessedFile;
-use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -44,7 +42,6 @@ class InlineRecordContainerForNews extends InlineRecordContainer
         $altText = BackendUtility::getRecordIconAltText($rec, $foreignTable);
         $iconImg = '<span title="' . $altText . '" id="' . htmlspecialchars($objectId) . '_icon' . '">' . $this->iconFactory->getIconForRecord($foreignTable, $rec, Icon::SIZE_SMALL)->render() . '</span>';
 
-
         $raw = BackendUtility::getRecord('tt_content', $rec['uid']);
         if (is_array($raw) && !empty($raw)) {
             $pageLayoutView = GeneralUtility::makeInstance(PageLayoutView::class);
@@ -71,5 +68,4 @@ class InlineRecordContainerForNews extends InlineRecordContainer
 
         return $header;
     }
-
 }

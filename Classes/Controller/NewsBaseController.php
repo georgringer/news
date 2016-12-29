@@ -33,7 +33,6 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * or prepare the view in another way before the action is called.
      *
      * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view The view to be initialized
-     * @return void
      */
     protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view)
     {
@@ -120,7 +119,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 break;
             case 'showStandaloneTemplate':
                 if (isset($configuration[2])) {
-                    $statusCode = constant(HttpUtility::class . '::HTTP_STATUS_'. $configuration[2]);
+                    $statusCode = constant(HttpUtility::class . '::HTTP_STATUS_' . $configuration[2]);
                     HttpUtility::setResponseCode($statusCode);
                 }
                 $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);

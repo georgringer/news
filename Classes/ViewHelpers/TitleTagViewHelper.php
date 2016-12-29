@@ -34,7 +34,6 @@ class TitleTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
     /**
      * Override the title tag
      *
-     * @return void
      */
     public function render()
     {

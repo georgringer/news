@@ -30,7 +30,6 @@ class ValidationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      * @dataProvider orderDataProvider
-     * @return void
      */
     public function testForValidOrdering($expectedFields, $expected)
     {

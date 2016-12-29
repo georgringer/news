@@ -181,7 +181,6 @@ class EmConfiguration
 
     /**
      * @param bool $showAdministrationModule
-     * @return void
      */
     public function setShowAdministrationModule($showAdministrationModule)
     {

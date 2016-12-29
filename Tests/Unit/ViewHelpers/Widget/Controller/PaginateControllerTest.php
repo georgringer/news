@@ -30,7 +30,6 @@ class PaginateControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * Sets up this test case
      *
-     * @return void
      */
     public function setUp()
     {

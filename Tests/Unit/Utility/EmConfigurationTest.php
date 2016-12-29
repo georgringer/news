@@ -50,7 +50,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      * @dataProvider settingsAreCorrectlyReturnedDataProvider
-     * @return void
      */
     public function settingsAreCorrectlyReturned($expectedFields, $expected)
     {
@@ -83,7 +82,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      * @dataProvider extensionManagerConfigurationIsCorrectlyReturnedDataProvider
-     * @return void
      */
     public function extensionManagerConfigurationIsCorrectlyReturned($expectedFields, $expected)
     {

@@ -26,7 +26,6 @@ class NothingViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test of nothing viewHelper
      *
      * @test
-     * @return void
      */
     public function noResultExpected()
     {

@@ -31,7 +31,6 @@ class DataHandler
      * This happens on two levels: by UID and by PID.
      *
      * @param array $params
-     * @return void
      */
     public function clearCachePostProc(array $params)
     {
@@ -59,7 +58,6 @@ class DataHandler
      * @param int $recordUid id of the record
      * @param array $fields fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject parent Object
-     * @return void
      */
     public function processDatamap_afterDatabaseOperations(
         $status,

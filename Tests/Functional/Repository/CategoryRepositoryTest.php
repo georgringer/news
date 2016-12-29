@@ -43,7 +43,6 @@ class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if by import source is done
      *
      * @test
-     * @return void
      */
     public function findRecordByImportSource()
     {

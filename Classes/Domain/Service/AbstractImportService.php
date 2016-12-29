@@ -48,7 +48,6 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
      * Inject the object manager
      *
      * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
-     * @return void
      */
     public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
     {
@@ -59,7 +58,6 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
      * Inject Persistence Manager
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
-     * @return void
      */
     public function injectPersistenceManager(
         \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager

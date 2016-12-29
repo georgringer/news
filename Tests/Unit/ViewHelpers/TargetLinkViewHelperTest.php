@@ -46,7 +46,6 @@ class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      * @dataProvider correctTargetIsReturnedDataProvider
-     * @return void
      */
     public function correctTargetIsReturned($link, $expectedResult)
     {

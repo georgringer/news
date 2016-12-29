@@ -41,7 +41,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getArchiveSettingAddsValueIfFilled()
     {
@@ -55,7 +54,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getDetailPidSettingAddsValueIfFilled()
     {
@@ -69,7 +67,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getTagRestrictionSettingAddsValueIfFilled()
     {
@@ -83,7 +80,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getListPidSettingAddsValueIfFilled()
     {
@@ -97,7 +93,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getOrderBySettingAddsValueIfFilled()
     {
@@ -111,7 +106,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getOrderDirectionSettingAddsValueIfFilled()
     {
@@ -127,7 +121,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getTopNewsFirstSettingAddsValueIfFilled()
     {
@@ -143,7 +136,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getOffsetLimitSettingsAddsValueIfFilled()
     {
@@ -171,7 +163,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getDateMenuSettingsAddsValueIfFilled()
     {
@@ -184,7 +175,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getTimeRestrictionSettingAddsValueIfFilled()
     {
@@ -202,7 +192,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getTemplateLayoutSettingsAddsValueIfFilled()
     {
@@ -221,7 +210,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getOverrideDemandSettingsAddsValueIfFilled()
     {
@@ -239,7 +227,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * @param string $key key of field
      * @param string $value value of field
      * @param string $sheet name of sheet
-     * @return void
      */
     protected function addContentToFlexform(array &$flexform, $key, $value, $sheet = 'sDEF')
     {

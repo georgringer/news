@@ -56,7 +56,6 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 
     /**
      * @param $recursive
-     * @return void
      */
     public function setRecursive($recursive)
     {
@@ -73,7 +72,6 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 
     /**
      * @param $selectedCategories
-     * @return void
      */
     public function setSelectedCategories($selectedCategories)
     {
@@ -96,7 +94,6 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 
     /**
      * @param $sortingField
-     * @return void
      */
     public function setSortingField($sortingField)
     {
@@ -113,7 +110,6 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 
     /**
      * @param $sortingDirection
-     * @return void
      */
     public function setSortingDirection($sortingDirection)
     {

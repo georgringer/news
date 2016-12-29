@@ -35,7 +35,6 @@ class AdministrationDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if recursive can be set
      *
      * @test
-     * @return void
      */
     public function recursiveCanBeSet()
     {
@@ -48,7 +47,6 @@ class AdministrationDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if selectedCategories can be set
      *
      * @test
-     * @return void
      */
     public function selectedCategoriesCanBeSet()
     {
@@ -61,7 +59,6 @@ class AdministrationDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if sortingField can be set
      *
      * @test
-     * @return void
      */
     public function sortingFieldCanBeSet()
     {
@@ -74,7 +71,6 @@ class AdministrationDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if sortingDirection can be set
      *
      * @test
-     * @return void
      */
     public function sortingDirectionCanBeSet()
     {

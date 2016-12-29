@@ -50,7 +50,6 @@ class CategoryImportService extends AbstractImportService
      * Inject the category repository.
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     * @return void
      */
     public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
@@ -61,7 +60,6 @@ class CategoryImportService extends AbstractImportService
      * Inject SignalSlotDispatcher
      *
      * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
-     * @return void
      */
     public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
     {
@@ -70,7 +68,6 @@ class CategoryImportService extends AbstractImportService
 
     /**
      * @param array $importArray
-     * @return void
      */
     public function import(array $importArray)
     {
@@ -228,7 +225,6 @@ class CategoryImportService extends AbstractImportService
      * Set parent category
      *
      * @param array $queueItem
-     * @return void
      */
     protected function setParentCategory(array $queueItem)
     {
@@ -253,7 +249,6 @@ class CategoryImportService extends AbstractImportService
      * Create l10n relation
      *
      * @param array $queueItem
-     * @return void
      */
     protected function createL10nChildrenCategory(array $queueItem)
     {

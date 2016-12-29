@@ -37,7 +37,6 @@ class ItemsProcFunc
      * Itemsproc function to extend the selection of templateLayouts in the plugin
      *
      * @param array &$config configuration array
-     * @return void
      */
     public function user_templateLayout(array &$config)
     {
@@ -57,7 +56,6 @@ class ItemsProcFunc
      * needs different ones then a news action
      *
      * @param array &$config configuration array
-     * @return void
      */
     public function user_orderBy(array &$config)
     {
@@ -107,7 +105,6 @@ class ItemsProcFunc
      *
      * @param array $config tca items
      * @param string $tableName table name
-     * @return void
      */
     protected function removeNonValidOrderFields(array &$config, $tableName)
     {
@@ -124,7 +121,6 @@ class ItemsProcFunc
      * Modifies the selectbox of available actions
      *
      * @param array &$config
-     * @return void
      */
     public function user_switchableControllerActions(array &$config)
     {
@@ -156,7 +152,6 @@ class ItemsProcFunc
      *
      * @param array $config available items
      * @param string $action action to be removed
-     * @return void
      */
     private function removeActionFromList(array &$config, $action)
     {

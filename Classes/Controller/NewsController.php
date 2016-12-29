@@ -57,7 +57,6 @@ class NewsController extends NewsBaseController
      * Inject a news repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
-     * @return void
      */
     public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
     {
@@ -68,7 +67,6 @@ class NewsController extends NewsBaseController
      * Inject a category repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     * @return void
      */
     public function injectCatgegoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
@@ -79,7 +77,6 @@ class NewsController extends NewsBaseController
      * Inject a tag repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
-     * @return void
      */
     public function injectTagRepository(\GeorgRinger\News\Domain\Repository\TagRepository $tagRepository)
     {
@@ -89,7 +86,6 @@ class NewsController extends NewsBaseController
     /**
      * Initializes the current action
      *
-     * @return void
      */
     public function initializeAction()
     {
@@ -189,7 +185,6 @@ class NewsController extends NewsBaseController
      * Output a list view of news
      *
      * @param array $overwriteDemand
-     * @return void
      */
     public function listAction(array $overwriteDemand = null)
     {
@@ -233,7 +228,6 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Model\News $news news item
      * @param int $currentPage current page for optional pagination
-     * @return void
      */
     public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
     {
@@ -334,7 +328,6 @@ class NewsController extends NewsBaseController
      * Render a menu by dates, e.g. years, months or dates
      *
      * @param array $overwriteDemand
-     * @return void
      */
     public function dateMenuAction(array $overwriteDemand = null)
     {
@@ -372,7 +365,6 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
      * @param array $overwriteDemand
-     * @return void
      */
     public function searchFormAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
@@ -406,7 +398,6 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
      * @param array $overwriteDemand
-     * @return void
      */
     public function searchResultAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
@@ -473,7 +464,6 @@ class NewsController extends NewsBaseController
      * Injects the Configuration Manager and is initializing the framework settings
      *
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
-     * @return void
      */
     public function injectConfigurationManager(
         \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
@@ -533,7 +523,6 @@ class NewsController extends NewsBaseController
      * This function is for testing purposes only.
      *
      * @param \TYPO3\CMS\Fluid\View\TemplateView $view the view to inject
-     * @return void
      */
     public function setView(\TYPO3\CMS\Fluid\View\TemplateView $view)
     {

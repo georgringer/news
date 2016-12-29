@@ -29,7 +29,6 @@ class DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if default file format works
      *
      * @test
-     * @return void
      */
     public function viewHelperReturnsCorrectJs()
     {

@@ -31,7 +31,6 @@ class TagController extends NewsController
      * Inject a tag repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
-     * @return void
      */
     public function injectTagRepository(\GeorgRinger\News\Domain\Repository\TagRepository $tagRepository)
     {
@@ -42,7 +41,6 @@ class TagController extends NewsController
      * List tags
      *
      * @param array $overwriteDemand
-     * @return void
      */
     public function listAction(array $overwriteDemand = null)
     {

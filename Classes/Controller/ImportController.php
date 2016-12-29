@@ -52,7 +52,6 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     /**
      * Shows the import jobs selection .
      *
-     * @return void
      */
     public function indexAction()
     {

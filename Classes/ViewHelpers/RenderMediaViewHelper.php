@@ -5,9 +5,9 @@ namespace GeorgRinger\News\ViewHelpers;
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileReference;
+use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 use TYPO3\CMS\Extbase\Service\ImageService;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 
 class RenderMediaViewHelper extends AbstractViewHelper
 {
@@ -37,12 +37,10 @@ class RenderMediaViewHelper extends AbstractViewHelper
      */
     protected $audioClass = '';
 
-
     /**
      * Initialize all arguments. You need to override this method and call
      * $this->registerArgument(...) inside this method, to register all your arguments.
      *
-     * @return void
      * @api
      */
     public function initializeArguments()
@@ -139,8 +137,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
                 $wrapClass= '';
                 if ($media->getType() === File::FILETYPE_VIDEO) {
                     $wrapClass = $this->videoClass;
-                }
-                elseif ($media->getType() === File::FILETYPE_AUDIO) {
+                } elseif ($media->getType() === File::FILETYPE_AUDIO) {
                     $wrapClass = $this->audioClass;
                 }
 
@@ -163,7 +160,8 @@ class RenderMediaViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public function render() {
+    public function render()
+    {
         /** @var News $news */
         $news = $this->arguments['news'];
 

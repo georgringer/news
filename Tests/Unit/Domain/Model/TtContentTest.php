@@ -31,7 +31,6 @@ class TtContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * Setup
      *
-     * @return void
      */
     protected function setUp()
     {

@@ -35,11 +35,9 @@ abstract class AbstractDemandedRepository
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-     * @return void
      */
     public function injectStorageBackend(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-    )
-    {
+    ) {
         $this->storageBackend = $storageBackend;
     }
 
@@ -97,7 +95,7 @@ abstract class AbstractDemandedRepository
 
         $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
         if ($isBelow8_4) {
-            if($isBelow8) {
+            if ($isBelow8) {
                 list($hash, $parameters) = $queryParser->preparseQuery($query);
             }
 
@@ -256,7 +254,6 @@ abstract class AbstractDemandedRepository
      * @param string $tableName
      *
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
-     * @return void
      */
     protected function replacePlaceholders(&$sqlString, array $parameters, $tableName = 'foo')
     {

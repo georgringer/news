@@ -40,7 +40,6 @@ class NothingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
     /**
      * Render children but do nothing else
      *
-     * @return void
      */
     public function render()
     {

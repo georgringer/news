@@ -44,7 +44,6 @@ class ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Ab
     /**
      * Add the news uid to a global variable to be able to exclude it later
      *
-     * @return void
      */
     public function render()
     {

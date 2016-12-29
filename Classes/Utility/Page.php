@@ -61,7 +61,6 @@ class Page
      * @param string $properties comma separated list of properties
      * @param mixed $object object or array to get the properties
      * @param string $prefix optional prefix
-     * @return void
      */
     public static function setRegisterProperties($properties, $object, $prefix = 'news')
     {

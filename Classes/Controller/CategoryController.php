@@ -44,7 +44,6 @@ class CategoryController extends NewsController
      * Inject a category repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     * @return void
      */
     public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
@@ -55,7 +54,6 @@ class CategoryController extends NewsController
      * List categories
      *
      * @param array $overwriteDemand
-     * @return void
      */
     public function listAction(array $overwriteDemand = null)
     {

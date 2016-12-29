@@ -27,7 +27,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if the settings can be read
      *
      * @test
-     * @return void
      */
     public function settingsCanBeRead()
     {
@@ -59,7 +58,6 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if default settings can be read
      *
      * @test
-     * @return void
      */
     public function defaultSettingsCanBeRead()
     {

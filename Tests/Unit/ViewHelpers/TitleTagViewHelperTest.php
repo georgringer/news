@@ -40,7 +40,6 @@ class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test of strip tags viewhelper
      *
      * @test
-     * @return void
      */
     public function titleTagIsSet()
     {

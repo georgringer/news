@@ -86,7 +86,6 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     /**
      * Generates news site map.
      *
-     * @return void
      */
     protected function generateSitemapContent()
     {
@@ -196,7 +195,6 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      * Checks that page list is in the rootline of the current page and excludes
      * pages that are outside of the rootline.
      *
-     * @return    void
      */
     protected function validateAndCreatePageList()
     {

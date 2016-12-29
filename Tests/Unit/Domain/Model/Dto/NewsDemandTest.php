@@ -34,7 +34,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function categoriesCanBeSet()
     {
@@ -45,7 +44,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function categoryConjunctionCanBeSet()
     {
@@ -56,7 +54,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function includeSubCategoriesCanBeSet()
     {
@@ -67,7 +64,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function authorCanBeSet()
     {
@@ -78,7 +74,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function tagsCanBeSet()
     {
@@ -89,7 +84,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function archiveRestrictionCanBeSet()
     {
@@ -100,7 +94,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function timeRestrictionCanBeSet()
     {
@@ -111,7 +104,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function timeRestrictionHighCanBeSet()
     {
@@ -122,7 +114,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function topNewsRestrictionCanBeSet()
     {
@@ -133,7 +124,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function dateFieldCanBeSet()
     {
@@ -152,7 +142,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function monthCanBeSet()
     {
@@ -163,7 +152,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function yearCanBeSet()
     {
@@ -174,7 +162,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function dayCanBeSet()
     {
@@ -185,7 +172,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function searchFieldsCanBeSet()
     {
@@ -196,7 +182,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function searchCanBeSet()
     {
@@ -208,7 +193,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function orderCanBeSet()
     {
@@ -219,7 +203,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function orderByAllowedCanBeSet()
     {
@@ -230,7 +213,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function topNewsFirstCanBeSet()
     {
@@ -241,7 +223,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function storagePageCanBeSet()
     {
@@ -252,7 +233,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function limitCanBeSet()
     {
@@ -263,7 +243,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function offsetCanBeSet()
     {
@@ -274,7 +253,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function excludeAlreadyDisplayedNewsCanBeSet()
     {

@@ -35,7 +35,6 @@ class IfIsActiveViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function elseChildIsCalledWithNoGetArguments()
     {
@@ -50,7 +49,6 @@ class IfIsActiveViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function elseChildIsCalledWithWrongGetArguments()
     {

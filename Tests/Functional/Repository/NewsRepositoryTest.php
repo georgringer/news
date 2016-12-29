@@ -45,7 +45,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if startingpoint is working
      *
      * @test
-     * @return void
      */
     public function findRecordsByUid()
     {
@@ -58,7 +57,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if by import source is done
      *
      * @test
-     * @return void
      */
     public function findRecordsByImportSource()
     {
@@ -71,7 +69,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if top news constraint works
      *
      * @test
-     * @return void
      */
     public function findTopNewsRecords()
     {
@@ -96,7 +93,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if startingpoint is working
      *
      * @test
-     * @return void
      */
     public function findRecordsByStartingpointRestriction()
     {
@@ -120,7 +116,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if record are found by archived/non archived flag
      *
      * @test
-     * @return void
      */
     public function findRecordsByArchiveRestriction()
     {
@@ -148,7 +143,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if record by month/year constraint works
      *
      * @test
-     * @return void
      */
     public function findRecordsByMonthAndYear()
     {
@@ -167,7 +161,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if latest limit constraint works
      *
      * @test
-     * @return void
      */
     public function findLatestLimitRecords()
     {
@@ -190,7 +183,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if by import source is done
      *
      * @test
-     * @return void
      */
     public function findRecordsByTags()
     {
@@ -238,7 +230,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $dateMenuData = $this->newsRepository->countByDate($demand);
         $this->assertEquals($expected, $dateMenuData);
     }
-
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList

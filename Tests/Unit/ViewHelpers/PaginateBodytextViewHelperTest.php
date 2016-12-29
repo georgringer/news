@@ -27,7 +27,6 @@ class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      * @dataProvider givenTagIsAClosingTagDataProvider
-     * @return void
      */
     public function givenTagIsAClosingTag($tag, $expectedResult)
     {
@@ -53,7 +52,6 @@ class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      * @dataProvider givenTagIsSelfClosingTagDataProvider
-     * @return void
      */
     public function givenTagIsSelfClosingTag($tag, $expectedResult)
     {
@@ -79,7 +77,6 @@ class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      * @dataProvider givenTagIsAnOpeningTagDataProvider
-     * @return void
      */
     public function givenTagIsAnOpeningTag($tag, $expectedResult)
     {
@@ -103,7 +100,6 @@ class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      * @dataProvider extractTagReturnsCorrectOneDataProvider
-     * @return void
      */
     public function extractTagReturnsCorrectOne($tag, $expectedResult)
     {

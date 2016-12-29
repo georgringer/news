@@ -31,7 +31,6 @@ class TagTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * Setup
      *
-     * @return void
      */
     protected function setUp()
     {
@@ -42,7 +41,6 @@ class TagTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if title can be set
      *
      * @test
-     * @return void
      */
     public function titleCanBeSet()
     {
@@ -55,7 +53,6 @@ class TagTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if crdate can be set
      *
      * @test
-     * @return void
      */
     public function crdateCanBeSet()
     {
@@ -68,7 +65,6 @@ class TagTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if tstamp can be set
      *
      * @test
-     * @return void
      */
     public function tstampCanBeSet()
     {

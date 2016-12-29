@@ -32,7 +32,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * Setup
      *
-     * @return void
      */
     protected function setUp()
     {
@@ -43,7 +42,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if title can be set
      *
      * @test
-     * @return void
      */
     public function titleCanBeSet()
     {
@@ -56,7 +54,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if crdate can be set
      *
      * @test
-     * @return void
      */
     public function crdateCanBeSet()
     {
@@ -69,7 +66,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if tstamp can be set
      *
      * @test
-     * @return void
      */
     public function tstampCanBeSet()
     {
@@ -82,7 +78,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if description can be set
      *
      * @test
-     * @return void
      */
     public function descriptionCanBeSet()
     {
@@ -95,7 +90,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if uri can be set
      *
      * @test
-     * @return void
      */
     public function uriCanBeSet()
     {

@@ -47,7 +47,6 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestC
 
     /**
      * @test
-     * @return void
      */
     public function allNeighboursCanBeFound()
     {
@@ -64,7 +63,6 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestC
 
     /**
      * @test
-     * @return void
      */
     public function nextNeighbourCanBeFound()
     {
@@ -80,7 +78,6 @@ class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestC
 
     /**
      * @test
-     * @return void
      */
     public function previousNeighbourCanBeFound()
     {

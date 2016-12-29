@@ -33,7 +33,6 @@ class ImportJob
      * @param string $className class name
      * @param string $title title
      * @param string $description description
-     * @return void
      * @static
      */
     public static function register($className, $title, $description)

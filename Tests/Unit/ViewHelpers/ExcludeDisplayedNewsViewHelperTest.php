@@ -26,7 +26,6 @@ class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestC
 
     /**
      * @test
-     * @return void
      */
     public function newsIsAddedToExcludedList()
     {

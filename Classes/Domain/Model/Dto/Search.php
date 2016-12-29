@@ -71,7 +71,6 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set subject
      *
      * @param string $subject
-     * @return void
      */
     public function setSubject($subject)
     {
@@ -92,7 +91,6 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set fields
      *
      * @param $fields
-     * @return void
      */
     public function setFields($fields)
     {
