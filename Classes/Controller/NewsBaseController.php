@@ -85,7 +85,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     protected function handleNoNewsFoundError($configuration)
     {
         if (empty($configuration)) {
-            return '';
+            return null;
         }
 
         $configuration = GeneralUtility::trimExplode(',', $configuration, true);
