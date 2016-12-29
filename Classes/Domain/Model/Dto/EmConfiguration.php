@@ -58,7 +58,10 @@ class EmConfiguration
     /**
      * @var bool
      */
-    protected $contentElementRelation = false;
+    protected $contentElementRelation = true;
+
+    /** @var bool */
+    protected $contentElementPreview = true;
 
     /**
      * @var bool
@@ -133,7 +136,7 @@ class EmConfiguration
      */
     public function getCategoryBeGroupTceFormsRestriction()
     {
-        return $this->categoryBeGroupTceFormsRestriction;
+        return (bool)$this->categoryBeGroupTceFormsRestriction;
     }
 
     /**
@@ -142,6 +145,14 @@ class EmConfiguration
     public function getContentElementRelation()
     {
         return (boolean)$this->contentElementRelation;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getContentElementPreview()
+    {
+        return (bool)$this->contentElementPreview;
     }
 
     /**

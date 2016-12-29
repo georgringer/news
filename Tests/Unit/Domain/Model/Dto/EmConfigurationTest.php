@@ -67,7 +67,7 @@ class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             'tagPid' => 0,
             'prependAtCopy' => true,
             'categoryRestriction' => '',
-            'contentElementRelation' => false,
+            'contentElementRelation' => true,
             'manualSorting' => false,
             'archiveDate' => 'date',
             'dateTimeNotRequired' => false,

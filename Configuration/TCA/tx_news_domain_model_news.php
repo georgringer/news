@@ -462,6 +462,7 @@ $tx_news_domain_model_news = [
                 'minitems' => 0,
                 'maxitems' => 99,
                 'appearance' => [
+                    'useXclassedVersion' => $configuration->getContentElementPreview(),
                     'collapseAll' => 1,
                     'expandSingle' => 1,
                     'levelLinksPosition' => 'bottom',
