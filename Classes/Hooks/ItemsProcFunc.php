@@ -10,7 +10,9 @@ namespace GeorgRinger\News\Hooks;
  */
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
  * Userfunc to render alternative label for media elements
@@ -33,14 +35,37 @@ class ItemsProcFunc
      */
     public function user_templateLayout(array &$config)
     {
-        $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
-        $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
-        foreach ($templateLayouts as $layout) {
-            $additionalLayout = [
-                htmlspecialchars($this->getLanguageService()->sL($layout[0])),
-                $layout[1]
-            ];
-            array_push($config['items'], $additionalLayout);
+        $pageId = 0;
+        if (ExtensionManagementUtility::isLoaded('compatibility6')) {
+            if (StringUtility::beginsWith($config['row']['uid'], 'NEW')) {
+                $getVars = GeneralUtility::_GET('edit');
+                if (is_array($getVars) && isset($getVars['tt_content']) && is_array($getVars['tt_content'])) {
+                    $keys = array_keys($getVars['tt_content']);
+                    $firstKey = (int)$keys[0];
+                    if ($firstKey > 0) {
+                        $pageId = $firstKey;
+                    } else {
+                        $row = $this->getContentElementRow(abs($firstKey));
+                        $pageId = $row['pid'];
+                    }
+                }
+            } else {
+                $row = $this->getContentElementRow($config['row']['uid']);
+                $pageId = $row['pid'];
+            }
+        } else {
+            $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
+        }
+
+        if ($pageId > 0) {
+            $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
+            foreach ($templateLayouts as $layout) {
+                $additionalLayout = [
+                    htmlspecialchars($this->getLanguageService()->sL($layout[0])),
+                    $layout[1]
+                ];
+                array_push($config['items'], $additionalLayout);
+            }
         }
     }
 
