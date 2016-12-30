@@ -10,12 +10,12 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
  */
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
+use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 /**
  * Tests for NewsDemand
- *
  */
-class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class NewsDemandTest extends UnitTestCase
 {
 
     /** @var  NewsDemand */
@@ -263,5 +263,36 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $value = '123,456';
         $this->instance->setHideIdList($value);
         $this->assertEquals($value, $this->instance->getHideIdList());
+    }
+
+    /**
+     * @test
+     */
+    public function actionCanBeSet()
+    {
+        $value = 'anAction';
+        $this->instance->setAction($value);
+        $this->assertEquals($value, $this->instance->getAction());
+    }
+
+    /**
+     * @test
+     */
+    public function classCanBeSet()
+    {
+        $value = 'FooBar';
+        $this->instance->setClass($value);
+        $this->assertEquals($value, $this->instance->getClass());
+    }
+
+
+    /**
+     * @test
+     */
+    public function typesCanBeSet()
+    {
+        $value = ['12', '34'];
+        $this->instance->setTypes($value);
+        $this->assertEquals($value, $this->instance->getTypes());
     }
 }

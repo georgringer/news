@@ -225,6 +225,28 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->assertEquals($expected, $dateMenuData);
     }
 
+
+    /**
+     * Test if records are found by type
+     * @test
+     */
+    public function findRecordsByType()
+    {
+        /** @var \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand */
+        $demand = $this->objectManager->get(NewsDemand::class);
+        $demand->setStoragePage('1,2');
+
+        // given is 1 tag
+        $demand->setTypes(['1']);
+        $count = $this->newsRepository->findDemanded($demand)->count();
+        $this->assertEquals(2, $count);
+
+        // given are 2 tags
+        $demand->setTypes(['1', 2]);
+        $count = $this->newsRepository->findDemanded($demand)->count();
+        $this->assertEquals(5, $count);
+    }
+
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList
      * @return string

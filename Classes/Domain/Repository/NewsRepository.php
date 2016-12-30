@@ -116,6 +116,10 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             $constraints['author'] = $query->equals('author', $demand->getAuthor());
         }
 
+        if ($demand->getTypes()) {
+            $constraints['author'] = $query->in('type', $demand->getTypes());
+        }
+
         // archived
         if ($demand->getArchiveRestriction() == 'archived') {
             $constraints['archived'] = $query->logicalAnd(
