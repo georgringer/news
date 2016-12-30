@@ -38,8 +38,6 @@
 			<input type="hidden" name="id" value="{page}">
 			<f:form.checkbox style="display:none" property="selectedCategories" value="0" />
 
-			<a id="toggle-settings"><i class="fa fa-minus"></i> {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.toggleForm')}</a>
-
 			<div id="setting-container" style="{f:if(condition:hideForm,then:'display:none',else:'')}">
 				<h2>
 					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.headline" />
@@ -190,9 +188,8 @@
 	<script type="text/javascript">
 		T3_THIS_LOCATION = {requestUri -> f:format.raw()};
 		TYPO3.jQuery(document).ready(function () {
-			TYPO3.jQuery('#toggle-settings').click(function () {
-				TYPO3.jQuery(this).children('i').toggleClass('fa-minus');
-				TYPO3.jQuery(this).children('i').toggleClass('fa-plus');
+			TYPO3.jQuery('a[data-togglelink="1"]').click(function (e) {
+			    e.preventDefault();
 				TYPO3.jQuery('#setting-container').toggle();
 			});
 		});

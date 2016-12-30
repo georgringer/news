@@ -152,6 +152,17 @@ class AdministrationController extends NewsController
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
+        $toggleButton = $buttonBar->makeLinkButton()
+            ->setHref('#')
+            ->setDataAttributes([
+                'togglelink' => '1',
+                'toggle' => 'tooltip',
+                'placement' => 'bottom',
+                ])
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.toggleForm'))
+            ->setIcon($this->iconFactory->getIcon('actions-filter', Icon::SIZE_SMALL));
+        $buttonBar->addButton($toggleButton, ButtonBar::BUTTON_POSITION_LEFT, 0);
+
         $buttons = [
             [
                 'table' => 'tx_news_domain_model_news',
@@ -186,7 +197,7 @@ class AdministrationController extends NewsController
                         'title' => $title])
                     ->setTitle($title)
                     ->setIcon($this->iconFactory->getIcon($tableConfiguration['icon'], Icon::SIZE_SMALL, 'overlay-new'));
-                $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key);
+                $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key + 1);
             }
         }
 
