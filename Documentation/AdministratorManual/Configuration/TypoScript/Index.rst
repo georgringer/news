@@ -1053,14 +1053,15 @@ detail.errorHandling
    Description
          If no news entry is found, it is possible to use various types of error handling.
 
+         - **showStandaloneTemplate**: A template is rendered. The syntax is `showStandaloneTemplate,<path>,<errorCode>`, e.g. `showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
          - **redirectToListView**: This will redirect to the list view on the same page.
          - **redirectToPage**: Redirect to any page by using the syntax redirectToPage,<pageid>,<status>. This means e.g. redirectToPage,123,404 to redirect to the page with UID 123 and error code 404.
          - **pageNotFoundHandler**: The default page not found handler will be called.
    Default
-         pageNotFoundHandler
+         showStandaloneTemplate
 
 .. _tsDetailCheckPidOfNewsRecord:
-
+`
 detail.checkPidOfNewsRecord
 """""""""""""""""""""""""""
 .. container:: table-row

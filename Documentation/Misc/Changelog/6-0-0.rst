@@ -1,0 +1,130 @@
+6.0.0 - 2017/xx/xx
+==================
+
+.. include:: ../../Includes.txt
+
+.. only:: html
+
+.. contents::
+:local:
+        :depth: 3
+
+
+Thanks to
+---------
+
+Contributors
+^^^^^^^^^^^^
+
+- Johannes
+- Sascha Marcel Schmidt
+- Kay Strobach
+- Jan Kiesewetter
+
+Sponsors
+^^^^^^^^
+- Sup7even
+- tbd
+
+
+Important changes
+-----------------
+
+The following changes might be important for your installation.
+
+Error msg if news not found
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+While rendering a **detail view** and a news record is not found anymore (e.g. because it has been deleted or set to hidden) an error message is now shown instead of an exception.
+This has been achived by setting the following default TypoScript:
+
+.. code-block:: typoscript
+
+        plugin.tx_news.settings.detail {
+                errorHandling = showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
+        }
+
+To achieve the previous behaviour, use
+
+.. code-block:: typoscript
+
+        plugin.tx_news.settings.detail {
+                errorHandling = pageNotFoundHandler
+        }
+
+Check width & height set in Flexform
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. Hint::
+
+        This change is only relevant to you if you are using the default templates for the **List** view.
+
+Width and height of images can be set in the plugin. Previously those values have not been used in the templates but they are used now.
+
+.. code-block:: html
+
+        <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+
+Move toggle link in admin module to toolbar
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The link in the administration module to toggle the filter form has been moved to the toolbar.
+
+|img-admin-module-filter|
+
+Features
+--------
+List of all features.
+
+Provide filter by type
+^^^^^^^^^^^^^^^^^^^^^^
+The `NewsDemand` class got a new property `types` which can be used to filter the returned news records by its type.
+
+Ajax Pagination
+^^^^^^^^^^^^^^^
+The templates and documentation has been enhanced to make it easy to use AJAX for the pagination.
+Thanks to Helmut Hummel who provides the awesome extension `typoscript_rendering` which is used for it.
+
+Add enclosure tag to deliver images in the stream
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The `List.xml` template which is used for RSS feeds is enhanced with the enclosure tag which provides the url to the first preview image.
+
+Add ViewHelper to display media files inline
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TBD
+
+Improved content element relations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To improve the usability of content elements added to a news item, the preview in the backend is enhanced by rendering the content elements as in the page module.
+
+|img-content-element-relation|
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2016-12-30 [TASK] Move toggle link in admin module to toolbar (Commit d7ace3f by Georg Ringer)
+        2016-12-30 [FEATURE] Provide filter by type (Commit bed8a25 by Georg Ringer)
+        2016-12-29 [FEATURE] Document the AJAX pagination (Commit 572fee8 by Georg Ringer)
+        2016-12-29 [FEATURE] First steps for an ajax based pagination (Commit 87a63c1 by Georg Ringer)
+        2016-12-29 [BUGFIX] Support for compatibility6 usage (Commit 4a1defb by Georg Ringer)
+        2016-12-29 [TASK] Adopt license (Commit 2a012d8 by Georg Ringer)
+        2016-12-29 [TASK] Code cleanup (Commit 5a2590d by Georg Ringer)
+        2016-12-29 [FEATURE] Improved content element relations (Commit 8b09b73 by Georg Ringer)
+        2016-12-29 [TASK][FOLLOWUP] Return null for handleNoNewsFoundError (Commit 18fee2d by Georg Ringer)
+        2016-12-28 [!!!][TASK] Check width & height set in Flexform (Commit 1493d0b by Georg Ringer)
+        2016-12-22 [FEATURE] Error msg if news not found (Commit 80d678d by Georg Ringer)
+        2016-12-22 [DOC] Add sponsors to release (Commit b262ffb by Georg Ringer)
+        2016-12-21 [DOC] Add lightbox config of fcs as well (Commit 970ebb3 by Georg Ringer)
+        2016-12-21 [TASK] Remove undefined from tag search (Commit fe5f4aa by Georg Ringer)
+        2016-12-21 [FEATURE] add ViewHelper to display media files inline (#167) (Commit fa8340c by Johannes)
+        2016-12-21 [BUGFIX] Render dummy image if no FAL preview media and feature is enabled (#173) (Commit 0b297a3 by Jan Kiesewetter)
+        2016-12-21 [DOC] Document showContentElementsInNewsSysFolder (Commit fb3ac3d by Georg Ringer)
+        2016-12-21 Update .travis.yml (#191) (Commit 58a1963 by Georg Ringer)
+        2016-12-15 Merge branch 'master' of github.com:georgringer/news (Commit 6eb3220 by Georg Ringer)
+        2016-12-15 [BUGFIX] Use correct label in PageLayoutView (Commit 144fc46 by Georg Ringer)
+        2016-12-15 removes odd brace (#188) (Commit a0fde56 by Sascha Marcel Schmidt)
+        2016-12-14 [BUGFIX] Remove max config from date fields (Commit d1f893a by Georg Ringer)
+        2016-12-14 [FEATURE] Add enclosure tag to deliver images in the stream (#185) (Commit c631ffb by Kay Strobach)
+        2016-12-06 [TASK] Move call to registerPageTSConfigFile to TCA/Overrides (Commit a431f39 by Georg Ringer)
+
+This list has been created by using `git log --since="2016/11/27" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
