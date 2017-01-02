@@ -72,6 +72,8 @@ class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
      */
     public function render()
     {
+        GeneralUtility::deprecationLog(sprintf('The ViewHelper "%s" has been deprecated and will be removed with version 7.0.0 of EXT:news', self::class));
+
         $code = '';
         $this->tag->addAttribute('href', 'https://twitter.com/share');
         $this->tag->addAttribute('class',

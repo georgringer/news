@@ -64,6 +64,8 @@ class CommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
      */
     public function render($appId)
     {
+        GeneralUtility::deprecationLog(sprintf('The ViewHelper "%s" has been deprecated and will be removed with version 7.0.0 of EXT:news', self::class));
+
         $tsSettings = $this->pluginSettingsService->getSettings();
         $this->tag->addAttribute('data-href', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
         $this->tag->forceClosingTag(true);

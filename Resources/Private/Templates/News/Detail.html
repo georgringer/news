@@ -122,22 +122,7 @@
 					and it will be used automatically!
 				</f:comment>
 				<n:extensionLoaded extensionKey="rx_shariff">
-					<f:then>
-						<f:render partial="Detail/Shariff" />
-					</f:then>
-					<f:else>
-						<div class="social">
-							<div class="like">
-								<n:social.facebook.like />
-							</div>
-							<div class="share">
-								<n:social.facebook.share />
-							</div>
-							<div class="twitter">
-								<n:social.twitter>Twitter</n:social.twitter>
-							</div>
-						</div>
-					</f:else>
+					<f:render partial="Detail/Shariff" />
 				</n:extensionLoaded>
 			</f:if>
 

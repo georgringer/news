@@ -57,6 +57,8 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
      */
     public function render($loadJs = true)
     {
+        GeneralUtility::deprecationLog(sprintf('The ViewHelper "%s" has been deprecated and will be removed with version 7.0.0 of EXT:news', self::class));
+
         if (!empty($this->arguments['type'])) {
             $this->tag->addAttribute('data-type', $this->arguments['type']);
             $this->tag->removeAttribute('type');
