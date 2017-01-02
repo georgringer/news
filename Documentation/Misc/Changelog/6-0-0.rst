@@ -6,31 +6,41 @@
 .. only:: html
 
 .. contents::
-:local:
+        :local:
         :depth: 3
-
 
 Thanks to
 ---------
 
-Contributors
-^^^^^^^^^^^^
+**Contributors**
 
 - Johannes
 - Sascha Marcel Schmidt
 - Kay Strobach
 - Jan Kiesewetter
 
-Sponsors
-^^^^^^^^
-- Sup7even
-- tbd
-
 
 Important changes
 -----------------
 
 The following changes might be important for your installation.
+
+Version dependency 7.6.13+ or 8.5+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To improve the performance and code quality, at least TYPO3 `7.6.13` or `8.5.` are required.
+
+Deprecate ViewHelpers for Facebook, Google+, Twitter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following ViewHelpers have been deprecated:
+
+- `<n:social.facebook.like />`
+- `<n:social.facebook.comment />`
+- `<n:social.googlePlus />`
+- `<n:social.twitter />`
+
+The ViewHelpers will be removed with the version 7.0.0.
+
+Install & configure the extension `rx_shariff` which takes care of the privacy of your users!
 
 Error msg if news not found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -90,7 +100,19 @@ The `List.xml` template which is used for RSS feeds is enhanced with the enclosu
 
 Add ViewHelper to display media files inline
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TBD
+Using images in the RTE is often loved by editors and disliked by integrators and developers. With this version, a mixture is available which can satisfy all users.
+
+By using the `RenderMediaViewHelper` in the templates, an editor can now place the keyword `[media]` in the RTE which are replaced by media elements saved in the FAL relation.
+
+Benefits:
+
+- An editor can place images and media elements where he wants
+- The relation is safed in a safe manner
+- The media elements can later be still modified
+
+.. Info::
+
+        As the ViewHelper and its usage is new, feedback is highly welcomed!
 
 Improved content element relations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
