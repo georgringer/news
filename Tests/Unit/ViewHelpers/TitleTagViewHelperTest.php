@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\ViewHelpers\TitleTagViewHelper;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 
 /**
  * Test for TitleTagViewHelper
@@ -39,10 +40,8 @@ class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     {
         $title = 'Some title';
         /** @var TitleTagViewHelper|\PHPUnit_Framework_MockObject_MockObject $viewHelper */
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['renderChildren']);
-        $viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue($title));
-
-        $viewHelper->render();
+        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['dummy']);
+        $viewHelper::renderStatic([], function() { return 'Some title'; }, $this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());
         $this->assertEquals($title, $GLOBALS['TSFE']->altPageTitle);
         $this->assertEquals($title, $GLOBALS['TSFE']->indexedDocTitle);
     }

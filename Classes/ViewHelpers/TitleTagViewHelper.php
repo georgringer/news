@@ -9,6 +9,11 @@ namespace GeorgRinger\News\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+
 /**
  * ViewHelper to render the page title
  *
@@ -22,16 +27,22 @@ namespace GeorgRinger\News\ViewHelpers;
  * </output>
  *
  */
-class TitleTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class TitleTagViewHelper extends AbstractViewHelper implements CompilableInterface
 {
+    use CompileWithRenderStatic;
 
     /**
-     * Override the title tag
-     *
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return void
      */
-    public function render()
-    {
-        $content = trim($this->renderChildren());
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
+        $content = trim($renderChildrenClosure());
         if (!empty($content)) {
             $GLOBALS['TSFE']->altPageTitle = $content;
             $GLOBALS['TSFE']->indexedDocTitle = $content;
