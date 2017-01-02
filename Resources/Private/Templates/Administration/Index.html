@@ -44,7 +44,7 @@
 				</h2>
 				<div class="settings">
 					<div class="row">
-						<div class="col-sm-4 form-horizontal">
+						<div class="col-sm-5 form-horizontal">
 							<div class="form-group">
 								<label for="searchWord" class="col-sm-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.searchWord" />
@@ -65,20 +65,33 @@
 							</div>
 							<div class="form-group">
 								<label for="timeRestriction" class="col-sm-4 control-label">
-									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.timeRestriction" />
+									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.timeRange" />
 								</label>
 
 								<div class="col-sm-8">
-									<f:form.textfield property="timeRestriction" id="timeRestriction" class="form-control" />
+									<div class="input-group">
+										<f:form.textfield type="datetime" property="timeRestriction" id="timeRestriction" class="form-control t3js-datetimepicker t3js-clearable" data="{date-type:'datetime',date-offset:'0'}" />
+										<span class="input-group-btn">
+											<label class="btn btn-default" for="timeRestriction">
+												<span class="fa fa-calendar"></span>
+											</label>
+										</span>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="timeRestrictionHigh" class="col-sm-4 control-label">
-									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.timeRestrictionHigh" />
+								<label for="timeRestriction" class="col-sm-4 control-label">
+									-
 								</label>
-
 								<div class="col-sm-8">
-									<f:form.textfield property="timeRestrictionHigh" id="timeRestrictionHigh" class="form-control" />
+									<div class="input-group">
+										<f:form.textfield type="datetime" property="timeRestrictionHigh" id="timeRestrictionHigh" class="form-control t3js-datetimepicker t3js-clearable" data="{date-type:'datetime',date-offset:'0'}" />
+										<span class="input-group-btn">
+											<label class="btn btn-default" for="timeRestrictionHigh">
+												<span class="fa fa-calendar"></span>
+											</label>
+										</span>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -123,7 +136,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-8">
+						<div class="col-sm-7">
 							<div class="category-tree">
 								<div class="tree-wrapper">
 									<f:render section="categoryTree" arguments="{demand:demand,categories: categories, class:'list-tree'}" />

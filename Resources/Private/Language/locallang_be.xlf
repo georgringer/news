@@ -335,6 +335,9 @@
 			<trans-unit id="module.recursive" xml:space="preserve">
 				<source>Recursive</source>
 			</trans-unit>
+			<trans-unit id="module.timeRange" xml:space="preserve">
+				<source>Time range</source>
+			</trans-unit>
 			<trans-unit id="module.timeRestriction" xml:space="preserve">
 				<source>Time Restriction</source>
 			</trans-unit>
