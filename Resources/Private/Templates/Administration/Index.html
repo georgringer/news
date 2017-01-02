@@ -136,28 +136,30 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-7">
+						<div class="col-sm-6 col-md-offset-1">
 							<div class="category-tree">
-								<div class="tree-wrapper">
-									<f:render section="categoryTree" arguments="{demand:demand,categories: categories, class:'list-tree'}" />
+								<div class="form-group">
+									<div class="tree-wrapper">
+										<f:render section="categoryTree" arguments="{demand:demand,categories: categories, class:'list-tree'}" />
+									</div>
 								</div>
 
 								<f:if condition="{categories}">
 									<div class="form-group">
-										<label for="categoryConjunction" class="col-sm-6 control-label">
+										<label for="categoryConjunction" class="col-sm-4 control-label">
 											<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction" />
 										</label>
 
-										<div class="col-sm-6">
-											<f:form.select class="form-control" property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
+										<div class="col-sm-8">
+											<f:form.select class="form-control" property="categoryConjunction" id="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="includeSubCategories" class="col-sm-6 control-label">
+										<label for="includeSubCategories" class="col-sm-4 control-label">
 											<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.includeSubCategories" />
 										</label>
 
-										<div class="col-sm-6">
+										<div class="col-sm-8">
 											<f:form.checkbox class="form-control" property="includeSubCategories" value="1" id="includeSubCategories" />
 										</div>
 									</div>
