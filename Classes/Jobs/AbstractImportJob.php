@@ -3,21 +3,14 @@
 namespace GeorgRinger\News\Jobs;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * Abstract Import job
- *
  */
 abstract class AbstractImportJob implements ImportJobInterface
 {
@@ -98,7 +91,6 @@ abstract class AbstractImportJob implements ImportJobInterface
      * The actual run method.
      *
      * @param  int $offset
-     * @return void
      */
     public function run($offset)
     {

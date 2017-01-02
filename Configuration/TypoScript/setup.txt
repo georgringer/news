@@ -97,7 +97,7 @@ plugin.tx_news {
 		#  Detail
 		# --------------
 		detail {
-			errorHandling = pageNotFoundHandler
+			errorHandling = showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
 			checkPidOfNewsRecord = 0
 			registerProperties = keywords,title
 			showPrevNext = 0

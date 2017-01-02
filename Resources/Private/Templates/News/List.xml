@@ -34,6 +34,9 @@
 								<category>{newsItemCategory.title -> f:format.htmlspecialchars()}</category>
 							</f:for>
 						</f:if>
+						<f:if condition="{newsItem.firstFalImagePreview}">
+						    <enclosure url="{f:uri.image(image:'{newsItem.firstFalImagePreview}', absolute:1, maxWidth: '1920', maxHeight: '1920')}" lenght="{newsItem.firstFalImagePreview.originalResource.size}" type="{newsItem.firstFalImagePreview.originalResource.mimeType}"/>
+				                </f:if>
 					</item>
 				</f:for>
 			</f:if>

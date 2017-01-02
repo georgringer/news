@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\File;
@@ -36,7 +30,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * Set up framework
      *
-     * @return void
      */
     protected function setUp()
     {
@@ -47,7 +40,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if title can be set
      *
      * @test
-     * @return void
      */
     public function titleCanBeSet()
     {
@@ -60,7 +52,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if teaser can be set
      *
      * @test
-     * @return void
      */
     public function teaserCanBeSet()
     {
@@ -73,7 +64,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if bodytext can be set
      *
      * @test
-     * @return void
      */
     public function bodytextCanBeSet()
     {
@@ -86,7 +76,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if datetime can be set
      *
      * @test
-     * @return void
      */
     public function datetimeCanBeSet()
     {
@@ -99,7 +88,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if archive can be set
      *
      * @test
-     * @return void
      */
     public function archiveCanBeSet()
     {
@@ -112,7 +100,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if author can be set
      *
      * @test
-     * @return void
      */
     public function authorCanBeSet()
     {
@@ -125,7 +112,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if emailadr can be set
      *
      * @test
-     * @return void
      */
     public function authorEmailCanBeSet()
     {
@@ -138,7 +124,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if type can be set
      *
      * @test
-     * @return void
      */
     public function typeCanBeSet()
     {
@@ -151,7 +136,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if keyword can be set
      *
      * @test
-     * @return void
      */
     public function keywordsCanBeSet()
     {
@@ -164,7 +148,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if internalurl can be set
      *
      * @test
-     * @return void
      */
     public function internalurlCanBeSet()
     {
@@ -177,7 +160,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if externalurl can be set
      *
      * @test
-     * @return void
      */
     public function externalurlCanBeSet()
     {
@@ -190,7 +172,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if topnews can be set
      *
      * @test
-     * @return void
      */
     public function isttopnewsCanBeSet()
     {
@@ -203,7 +184,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if editlock can be set
      *
      * @test
-     * @return void
      */
     public function editlockCanBeSet()
     {
@@ -216,7 +196,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if importid can be set
      *
      * @test
-     * @return void
      */
     public function importIdCanBeSet()
     {
@@ -229,7 +208,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if importSource can be set
      *
      * @test
-     * @return void
      */
     public function importSourceCanBeSet()
     {
@@ -242,7 +220,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if sorting can be set
      *
      * @test
-     * @return void
      */
     public function sortingCanBeSet()
     {
@@ -255,7 +232,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if tag can be set
      *
      * @test
-     * @return void
      */
     public function tagsCanBeSet()
     {
@@ -272,7 +248,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if content elements can be set
      *
      * @test
-     * @return void
      */
     public function contentElementsCanBeSet()
     {
@@ -289,7 +264,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if category can be set
      *
      * @test
-     * @return void
      */
     public function categoryCanBeSet()
     {
@@ -305,7 +279,6 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if related links can be set
      *
      * @test
-     * @return void
      */
     public function relatedLinksCanBeSet()
     {

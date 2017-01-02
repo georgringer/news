@@ -1,0 +1,115 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  xmlns:t="http://typo3.org/ns/Helhum/TyposcriptRendering/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:if condition="{configuration.insertAbove}">
+	<f:render section="paginator" arguments="{pagination: pagination,configuration:configuration,recordId:recordId}" />
+</f:if>
+
+<f:renderChildren arguments="{contentArguments}" />
+
+<f:if condition="{configuration.insertBelow}">
+	<f:render section="paginator" arguments="{pagination: pagination,configuration:configuration,recordId:recordId}" />
+</f:if>
+
+<f:section name="paginator">
+	<n:extensionLoaded extensionKey="typoscript_rendering">
+		<f:then>
+			<f:if condition="{pagination.numberOfPages} > 1">
+				<f:if condition="{settings.list.paginate}">
+					<f:if condition="{pagination.previousPage}">
+						<f:if condition="{pagination.previousPage} > 1">
+							<f:then>
+								<n:headerData>
+									<link rel="prev" href="{f:widget.uri(arguments: {currentPage: pagination.previousPage})}" />
+								</n:headerData>
+							</f:then>
+							<f:else>
+								<n:headerData>
+									<link rel="prev" href="{f:widget.uri()}" />
+								</n:headerData>
+							</f:else>
+						</f:if>
+					</f:if>
+					<f:if condition="{pagination.nextPage}">
+						<n:headerData>
+							<link rel="next" href="{f:widget.uri(arguments: {currentPage: pagination.nextPage})}" />
+						</n:headerData>
+					</f:if>
+				</f:if>
+
+				<div class="page-navigation">
+					<p>
+						<f:translate key="paginate_overall" arguments="{0:pagination.current,1:pagination.numberOfPages}" />
+					</p>
+					<ul class="pagination">
+						<f:if condition="{pagination.previousPage}">
+							<li class="previous">
+								<f:if condition="{pagination.previousPage} > 1">
+									<f:then>
+										<f:widget.link arguments="{currentPage: pagination.previousPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.previousPage)}\')}'}">
+											<f:translate key="paginate_previous" />
+										</f:widget.link>
+									</f:then>
+									<f:else>
+										<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:0)}\')}'}">
+											<f:translate key="paginate_previous" />
+										</f:widget.link>
+									</f:else>
+								</f:if>
+							</li>
+						</f:if>
+						<f:if condition="{pagination.displayRangeStart} > 1">
+							<li class="first">
+								<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:1)}\')}'}">1</f:widget.link>
+							</li>
+						</f:if>
+						<f:if condition="{pagination.hasLessPages}">
+							<li class="disabled"><span>...</span></li>
+						</f:if>
+						<f:for each="{pagination.pages}" as="page">
+							<f:if condition="{page.isCurrent}">
+								<f:then>
+									<li class="active"><span>{page.number}</span></li>
+								</f:then>
+								<f:else>
+									<li>
+										<f:if condition="{page.number} > 1">
+											<f:then>
+												<f:widget.link arguments="{currentPage: page.number}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:page.number)}\')}'}">{page.number}</f:widget.link>
+											</f:then>
+											<f:else>
+												<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:0)}\')}'}">{page.number}</f:widget.link>
+											</f:else>
+										</f:if>
+									</li>
+								</f:else>
+							</f:if>
+						</f:for>
+						<f:if condition="{pagination.hasMorePages}">
+							<li class="disabled"><span>...</span></li>
+						</f:if>
+						<f:if condition="{pagination.displayRangeEnd} < {pagination.numberOfPages}">
+							<li class="last">
+								<f:widget.link arguments="{currentPage: pagination.numberOfPages}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.numberOfPages)}\')}'}">{pagination.numberOfPages}</f:widget.link>
+							</li>
+						</f:if>
+						<f:if condition="{pagination.nextPage}">
+							<li class="last next">
+								<f:widget.link arguments="{currentPage: pagination.nextPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.nextPage)}\')}'}">
+									<f:translate key="paginate_next" />
+								</f:widget.link>
+							</li>
+						</f:if>
+					</ul>
+				</div>
+				<div class="news-clear"></div>
+			</f:if>
+		</f:then>
+		<f:else>
+			<div class="alert alert-danger">The extension <code>typoscript_rendering</code> must be installed!</div>
+		</f:else>
+	</n:extensionLoaded>
+</f:section>
+</html>

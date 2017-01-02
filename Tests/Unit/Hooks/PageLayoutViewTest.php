@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Tests\Unit\Hooks;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Rtehtmlarea\Extension\Language;
 
@@ -41,7 +35,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getArchiveSettingAddsValueIfFilled()
     {
@@ -55,7 +48,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getDetailPidSettingAddsValueIfFilled()
     {
@@ -69,7 +61,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getTagRestrictionSettingAddsValueIfFilled()
     {
@@ -83,7 +74,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getListPidSettingAddsValueIfFilled()
     {
@@ -97,7 +87,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getOrderBySettingAddsValueIfFilled()
     {
@@ -111,7 +100,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getOrderDirectionSettingAddsValueIfFilled()
     {
@@ -127,7 +115,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getTopNewsFirstSettingAddsValueIfFilled()
     {
@@ -143,7 +130,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getOffsetLimitSettingsAddsValueIfFilled()
     {
@@ -171,7 +157,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getDateMenuSettingsAddsValueIfFilled()
     {
@@ -184,7 +169,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getTimeRestrictionSettingAddsValueIfFilled()
     {
@@ -202,7 +186,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getTemplateLayoutSettingsAddsValueIfFilled()
     {
@@ -221,7 +204,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function getOverrideDemandSettingsAddsValueIfFilled()
     {
@@ -239,7 +221,6 @@ class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * @param string $key key of field
      * @param string $value value of field
      * @param string $sheet name of sheet
-     * @return void
      */
     protected function addContentToFlexform(array &$flexform, $key, $value, $sheet = 'sDEF')
     {

@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\ViewHelpers\Social\Facebook;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -39,7 +33,6 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
 
     /**
      * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
-     * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
     {
@@ -49,7 +42,6 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     /**
      * Arguments initialization
      *
-     * @return void
      */
     public function initializeArguments()
     {
@@ -65,6 +57,8 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
      */
     public function render($loadJs = true)
     {
+        GeneralUtility::deprecationLog(sprintf('The ViewHelper "%s" has been deprecated and will be removed with version 7.0.0 of EXT:news', self::class));
+
         if (!empty($this->arguments['type'])) {
             $this->tag->addAttribute('data-type', $this->arguments['type']);
             $this->tag->removeAttribute('type');

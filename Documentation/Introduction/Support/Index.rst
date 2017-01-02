@@ -13,7 +13,7 @@ There are various ways to get support for EXT:news!
 
 Stackoverflow
 -------------
-Please use https://stackoverflow.com to get best support. Tags you should use are ``typo3`` and ``tx-news``, so your question will be visible at http://stackoverflow.com/questions/tagged/tx_news.
+Please use https://stackoverflow.com to get best support. Tags you should use are `typo3` and `tx-news`, so your question will be visible at http://stackoverflow.com/questions/tagged/tx_news.
 
 Slack
 -----

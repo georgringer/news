@@ -3,25 +3,19 @@
 namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
+use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 /**
  * Tests for NewsDemand
- *
  */
-class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class NewsDemandTest extends UnitTestCase
 {
 
     /** @var  NewsDemand */
@@ -34,7 +28,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function categoriesCanBeSet()
     {
@@ -45,7 +38,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function categoryConjunctionCanBeSet()
     {
@@ -56,7 +48,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function includeSubCategoriesCanBeSet()
     {
@@ -67,7 +58,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function authorCanBeSet()
     {
@@ -78,7 +68,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function tagsCanBeSet()
     {
@@ -89,7 +78,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function archiveRestrictionCanBeSet()
     {
@@ -100,7 +88,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function timeRestrictionCanBeSet()
     {
@@ -111,7 +98,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function timeRestrictionHighCanBeSet()
     {
@@ -122,7 +108,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function topNewsRestrictionCanBeSet()
     {
@@ -133,7 +118,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function dateFieldCanBeSet()
     {
@@ -152,7 +136,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function monthCanBeSet()
     {
@@ -163,7 +146,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function yearCanBeSet()
     {
@@ -174,7 +156,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function dayCanBeSet()
     {
@@ -185,7 +166,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function searchFieldsCanBeSet()
     {
@@ -196,7 +176,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function searchCanBeSet()
     {
@@ -208,7 +187,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function orderCanBeSet()
     {
@@ -219,7 +197,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function orderByAllowedCanBeSet()
     {
@@ -230,7 +207,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function topNewsFirstCanBeSet()
     {
@@ -241,7 +217,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function storagePageCanBeSet()
     {
@@ -252,7 +227,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function limitCanBeSet()
     {
@@ -263,7 +237,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function offsetCanBeSet()
     {
@@ -274,7 +247,6 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     /**
      * @test
-     * @return void
      */
     public function excludeAlreadyDisplayedNewsCanBeSet()
     {
@@ -291,5 +263,36 @@ class NewsDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $value = '123,456';
         $this->instance->setHideIdList($value);
         $this->assertEquals($value, $this->instance->getHideIdList());
+    }
+
+    /**
+     * @test
+     */
+    public function actionCanBeSet()
+    {
+        $value = 'anAction';
+        $this->instance->setAction($value);
+        $this->assertEquals($value, $this->instance->getAction());
+    }
+
+    /**
+     * @test
+     */
+    public function classCanBeSet()
+    {
+        $value = 'FooBar';
+        $this->instance->setClass($value);
+        $this->assertEquals($value, $this->instance->getClass());
+    }
+
+
+    /**
+     * @test
+     */
+    public function typesCanBeSet()
+    {
+        $value = ['12', '34'];
+        $this->instance->setTypes($value);
+        $this->assertEquals($value, $this->instance->getTypes());
     }
 }

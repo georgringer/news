@@ -2,16 +2,10 @@
 namespace GeorgRinger\News\Controller;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
@@ -69,7 +63,6 @@ class AdministrationController extends NewsController
     /**
      * Function will be called before every other action
      *
-     * @return void
      */
     public function initializeAction()
     {
@@ -113,7 +106,9 @@ class AdministrationController extends NewsController
         $pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ClickMenu');
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/Tooltip');
-
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/DateTimePicker');
+        $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
+        $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
         $this->createMenu();
         $this->createButtons();
     }
@@ -121,7 +116,6 @@ class AdministrationController extends NewsController
     /**
      * Create menu
      *
-     * @return void
      */
     protected function createMenu()
     {
@@ -153,13 +147,23 @@ class AdministrationController extends NewsController
     /**
      * Create the panel of buttons
      *
-     * @return void
      */
     protected function createButtons()
     {
         $buttonBar = $this->view->getModuleTemplate()->getDocHeaderComponent()->getButtonBar();
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
+
+        $toggleButton = $buttonBar->makeLinkButton()
+            ->setHref('#')
+            ->setDataAttributes([
+                'togglelink' => '1',
+                'toggle' => 'tooltip',
+                'placement' => 'bottom',
+                ])
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.toggleForm'))
+            ->setIcon($this->iconFactory->getIcon('actions-filter', Icon::SIZE_SMALL));
+        $buttonBar->addButton($toggleButton, ButtonBar::BUTTON_POSITION_LEFT, 0);
 
         $buttons = [
             [
@@ -195,7 +199,7 @@ class AdministrationController extends NewsController
                         'title' => $title])
                     ->setTitle($title)
                     ->setIcon($this->iconFactory->getIcon($tableConfiguration['icon'], Icon::SIZE_SMALL, 'overlay-new'));
-                $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key);
+                $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key + 1);
             }
         }
 
@@ -218,7 +222,6 @@ class AdministrationController extends NewsController
      * Inject a news repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     * @return void
      */
     public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
@@ -314,7 +317,6 @@ class AdministrationController extends NewsController
      * Shows a page tree including count of news + category records
      *
      * @param int $treeLevel
-     * @return void
      */
     public function newsPidListingAction($treeLevel = 2)
     {
@@ -339,7 +341,6 @@ class AdministrationController extends NewsController
     /**
      * Redirect to form to create a news record
      *
-     * @return void
      */
     public function newNewsAction()
     {
@@ -349,7 +350,6 @@ class AdministrationController extends NewsController
     /**
      * Redirect to form to create a category record
      *
-     * @return void
      */
     public function newCategoryAction()
     {
@@ -359,7 +359,6 @@ class AdministrationController extends NewsController
     /**
      * Redirect to form to create a tag record
      *
-     * @return void
      */
     public function newTagAction()
     {
@@ -370,7 +369,6 @@ class AdministrationController extends NewsController
      * Update page record array with count of news & category records
      *
      * @param array $row page record
-     * @return void
      */
     private function countRecordsOnPage(array &$row)
     {
@@ -395,7 +393,6 @@ class AdministrationController extends NewsController
      * Redirect to tceform creating a new record
      *
      * @param string $table table name
-     * @return void
      */
     private function redirectToCreateNewRecord($table)
     {
@@ -419,7 +416,6 @@ class AdministrationController extends NewsController
     /**
      * Set the TsConfig configuration for the extension
      *
-     * @return void
      */
     protected function setTsConfig()
     {
@@ -433,7 +429,6 @@ class AdministrationController extends NewsController
      * If defined in TsConfig with tx_news.module.redirectToPageOnStart = 123
      * and the current page id is 0, a redirect to the given page will be done
      *
-     * @return void
      */
     protected function redirectToPageOnStart()
     {

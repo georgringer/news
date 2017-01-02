@@ -58,6 +58,7 @@ return Symfony\CS\Config\Config::create()
         'concat_with_spaces',
         'whitespacy_lines',
         'ordered_use',
+        'ordered_imports',
         'single_quote',
         'duplicate_semicolon',
         'extra_empty_lines',
@@ -74,7 +75,9 @@ return Symfony\CS\Config\Config::create()
         'native_function_casing',
         'no_empty_statement',
         'self_accessor',
-        'short_bool_cast',
-        'unneeded_control_parentheses'
+        'short_scalar_cast',
+        'unneeded_control_parentheses',
+        'phpdoc_no_package',
+        'phpdoc_no_empty_return'
     ])
     ->finder($finder);

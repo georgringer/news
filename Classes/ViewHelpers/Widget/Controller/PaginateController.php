@@ -3,17 +3,11 @@
 namespace GeorgRinger\News\ViewHelpers\Widget\Controller;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * Paginate controller to create the pagination.
@@ -63,11 +57,12 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
     protected $initialOffset = 0;
     /** @var int */
     protected $initialLimit = 0;
+    /** @var int */
+    protected $recordId = 0;
 
     /**
      * Initialize the action and get correct configuration
      *
-     * @return void
      */
     public function initializeAction()
     {
@@ -94,13 +89,15 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
         if (isset($this->widgetConfiguration['initial']['limit'])) {
             $this->initialLimit = (int)$this->widgetConfiguration['initial']['limit'];
         }
+        if (isset($this->widgetConfiguration['initial']['recordId'])) {
+            $this->recordId = (int)$this->widgetConfiguration['initial']['recordId'];
+        }
     }
 
     /**
      * Main action
      *
      * @param int $currentPage
-     * @return void
      */
     public function indexAction($currentPage = 1)
     {
@@ -143,6 +140,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
             $this->widgetConfiguration['as'] => $modifiedObjects
         ]);
         $this->view->assign('configuration', $this->configuration);
+        $this->view->assign('recordId', $this->recordId);
         $this->view->assign('pagination', $this->buildPagination());
 
         if (!empty($this->templatePath)) {
@@ -184,7 +182,6 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
      * If a certain number of links should be displayed, adjust before and after
      * amounts accordingly.
      *
-     * @return void
      */
     protected function calculateDisplayRange()
     {

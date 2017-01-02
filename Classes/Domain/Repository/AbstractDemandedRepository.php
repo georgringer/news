@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Domain\Repository;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
@@ -35,11 +29,9 @@ abstract class AbstractDemandedRepository
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-     * @return void
      */
     public function injectStorageBackend(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-    )
-    {
+    ) {
         $this->storageBackend = $storageBackend;
     }
 
@@ -97,7 +89,7 @@ abstract class AbstractDemandedRepository
 
         $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
         if ($isBelow8_4) {
-            if($isBelow8) {
+            if ($isBelow8) {
                 list($hash, $parameters) = $queryParser->preparseQuery($query);
             }
 
@@ -256,7 +248,6 @@ abstract class AbstractDemandedRepository
      * @param string $tableName
      *
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
-     * @return void
      */
     protected function replacePlaceholders(&$sqlString, array $parameters, $tableName = 'foo')
     {

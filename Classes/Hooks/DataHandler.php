@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Hooks;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Service\AccessControlService;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -31,7 +25,6 @@ class DataHandler
      * This happens on two levels: by UID and by PID.
      *
      * @param array $params
-     * @return void
      */
     public function clearCachePostProc(array $params)
     {
@@ -59,7 +52,6 @@ class DataHandler
      * @param int $recordUid id of the record
      * @param array $fields fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject parent Object
-     * @return void
      */
     public function processDatamap_afterDatabaseOperations(
         $status,

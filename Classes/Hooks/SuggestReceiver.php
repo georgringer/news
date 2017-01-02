@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Hooks;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Backend\Form\Wizard\SuggestWizardDefaultReceiver;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -65,15 +59,13 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
             $link = implode(' ', explode(LF, $javaScriptCode));
 
             $records['tx_news_domain_model_tag_' . strlen($text)] = [
-                'text' => '<div onclick="' . $link . '">
-							<span class="suggest-path">
-								<a>' .
-                    sprintf($GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest'),
-                        $text) .
-                    '</a>
-							</span></div>',
+                'text' =>  '<div onclick="' . $link . '">
+                                <span class="suggest-label">' . htmlspecialchars($params['value']) . '</span><span class="suggest-uid"></span><br />
+								<span class="suggest-path">' . htmlspecialchars($GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest2')) . '</span>
+							</div>',
                 'table' => 'tx_news_domain_model_tag',
                 'class' => 'suggest-noresults',
+                'sprite' => '',
                 'icon' => $this->getDummyIcon()->render()
             ];
         }

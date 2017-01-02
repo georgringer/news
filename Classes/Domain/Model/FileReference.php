@@ -2,21 +2,14 @@
 namespace GeorgRinger\News\Domain\Model;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * File Reference
- *
  */
 class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
 {
@@ -57,7 +50,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set File uid
      *
      * @param int $fileUid
-     * @return void
      */
     public function setFileUid($fileUid)
     {
@@ -78,7 +70,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set alternative
      *
      * @param string $alternative
-     * @return void
      */
     public function setAlternative($alternative)
     {
@@ -99,7 +90,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set description
      *
      * @param string $description
-     * @return void
      */
     public function setDescription($description)
     {
@@ -120,7 +110,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set link
      *
      * @param string $link
-     * @return void
      */
     public function setLink($link)
     {
@@ -131,7 +120,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Get link
      *
      * @return mixed
-     * @return void
      */
     public function getLink()
     {
@@ -142,7 +130,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set title
      *
      * @param string $title
-     * @return void
      */
     public function setTitle($title)
     {
@@ -163,7 +150,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set showinpreview
      *
      * @param bool $showinpreview
-     * @return void
      */
     public function setShowinpreview($showinpreview)
     {

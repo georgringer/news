@@ -4,6 +4,7 @@
 	<tx_news_domain_model_news>
 		<uid>1</uid>
 		<pid>1</pid>
+		<type>0</type>
 		<title>findRecordsByUid</title>
 	</tx_news_domain_model_news>
 
@@ -11,6 +12,7 @@
 	<tx_news_domain_model_news>
 		<uid>456</uid>
 		<pid>1</pid>
+		<type>0</type>
 		<title>findRecordsByImportSource</title>
 		<import_source>functional_test</import_source>
 		<import_id>2</import_id>
@@ -19,22 +21,27 @@
 	<!--findTopNewsRecords-->
 	<tx_news_domain_model_news>
 		<pid>2</pid>
+		<type>1</type>
 		<istopnews>1</istopnews>
 	</tx_news_domain_model_news>
 	<tx_news_domain_model_news>
 		<pid>2</pid>
+		<type>1</type>
 		<istopnews>1</istopnews>
 	</tx_news_domain_model_news>
 	<tx_news_domain_model_news>
 		<pid>2</pid>
+		<type>2</type>
 		<istopnews>1</istopnews>
 	</tx_news_domain_model_news>
 	<tx_news_domain_model_news>
 		<pid>2</pid>
+		<type>2</type>
 		<istopnews>0</istopnews>
 	</tx_news_domain_model_news>
 	<tx_news_domain_model_news>
 		<pid>2</pid>
+		<type>2</type>
 		<istopnews>0</istopnews>
 	</tx_news_domain_model_news>
 

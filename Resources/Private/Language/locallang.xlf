@@ -129,6 +129,9 @@
 			<trans-unit id="list_nocategoriesfound" xml:space="preserve">
 				<source>No categories available.</source>
 			</trans-unit>
+			<trans-unit id="newsNotFound" xml:space="preserve">
+				<source>The news record is not available anymore.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
