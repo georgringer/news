@@ -86,22 +86,24 @@
 </f:section>
 
 <f:section name="inner-content">
-	<f:if condition="{newsItem.teaser}">
-		<!-- teaser -->
-		<div class="lead" itemprop="description">
-			<f:format.html>{newsItem.teaser}</f:format.html>
+	<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+		<f:if condition="{newsItem.teaser}">
+			<!-- teaser -->
+			<div class="lead" itemprop="description">
+				<f:format.html>{newsItem.teaser}</f:format.html>
+			</div>
+		</f:if>
+
+		<f:if condition="{newsItem.contentElements}">
+			<!-- content elements -->
+			<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+		</f:if>
+
+		<!-- main text -->
+		<div class="news-text-wrap" itemprop="articleBody">
+			<f:format.html>{newsItem.bodytext}</f:format.html>
 		</div>
-	</f:if>
-
-	<f:if condition="{newsItem.contentElements}">
-		<!-- content elements -->
-		<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
-	</f:if>
-
-	<!-- main text -->
-	<div class="news-text-wrap" itemprop="articleBody">
-		<f:format.html>{newsItem.bodytext}</f:format.html>
-	</div>
+	</n:renderMedia>
 
 	<f:if condition="{settings.backPid}">
 		<!-- Link Back -->
