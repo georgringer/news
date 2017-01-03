@@ -21,7 +21,6 @@ use TYPO3\CMS\Recordlist\RecordList\AbstractDatabaseRecordList;
  */
 class RecordListQueryHook
 {
-
     protected static $count = 0;
 
     /** @var RecordListConstraint */

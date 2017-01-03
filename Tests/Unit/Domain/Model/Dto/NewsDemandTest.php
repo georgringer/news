@@ -285,7 +285,6 @@ class NewsDemandTest extends UnitTestCase
         $this->assertEquals($value, $this->instance->getClass());
     }
 
-
     /**
      * @test
      */

@@ -16,7 +16,6 @@ use GeorgRinger\News\Utility\Validation;
  */
 class ValidationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
-
     const ALLOWED_FIELDS = 'author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title';
 
     /**

@@ -225,7 +225,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->assertEquals($expected, $dateMenuData);
     }
 
-
     /**
      * Test if records are found by type
      * @test

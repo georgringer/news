@@ -13,7 +13,6 @@ namespace GeorgRinger\News\Controller;
  */
 class TagController extends NewsController
 {
-
     const SIGNAL_TAG_LIST_ACTION = 'listAction';
 
     /**

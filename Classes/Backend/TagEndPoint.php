@@ -22,7 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class TagEndPoint
 {
-
     const TAG = 'tx_news_domain_model_tag';
     const NEWS = 'tx_news_domain_model_news';
     const LL_PATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest_';

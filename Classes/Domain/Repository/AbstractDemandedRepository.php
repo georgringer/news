@@ -17,9 +17,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
  * Abstract demanded repository
  *
  */
-abstract class AbstractDemandedRepository
-    extends \TYPO3\CMS\Extbase\Persistence\Repository
-    implements \GeorgRinger\News\Domain\Repository\DemandedRepositoryInterface
+abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence\Repository implements \GeorgRinger\News\Domain\Repository\DemandedRepositoryInterface
 {
 
     /**

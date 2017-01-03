@@ -17,7 +17,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class NewsController extends NewsBaseController
 {
-
     const SIGNAL_NEWS_LIST_ACTION = 'listAction';
     const SIGNAL_NEWS_DETAIL_ACTION = 'detailAction';
     const SIGNAL_NEWS_DATEMENU_ACTION = 'dateMenuAction';

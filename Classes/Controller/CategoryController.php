@@ -13,7 +13,6 @@ namespace GeorgRinger\News\Controller;
  */
 class CategoryController extends NewsController
 {
-
     const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
 
     /**

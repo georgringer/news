@@ -30,7 +30,6 @@ use TYPO3\CMS\Lang\LanguageService;
  */
 class AdministrationController extends NewsController
 {
-
     const SIGNAL_ADMINISTRATION_INDEX_ACTION = 'indexAction';
     const SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION = 'newsPidListingAction';
 

@@ -12,7 +12,6 @@ use GeorgRinger\News\Utility\EmConfiguration;
 
 class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
 {
-
     const UPLOAD_PATH = 'uploads/tx_news/';
 
     /**

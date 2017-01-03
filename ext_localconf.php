@@ -141,7 +141,6 @@ $boot = function () {
     }
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \GeorgRinger\News\Command\NewsImportCommandController::class;
-
 };
 
 $boot();

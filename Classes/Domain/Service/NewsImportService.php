@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class NewsImportService extends AbstractImportService
 {
-
     const ACTION_IMPORT_L10N_OVERLAY = 1;
 
     /**
