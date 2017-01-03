@@ -55,3 +55,6 @@
 .news-administration .hide_line td {
   border: none;
 }
+.news-administration #sortingDirection {
+  min-width: 90px;
+}
