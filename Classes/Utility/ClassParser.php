@@ -10,7 +10,6 @@ namespace GeorgRinger\News\Utility;
  */
 class ClassParser
 {
-
     private $classes = [];
     private $extends = [];
     private $implements = [];

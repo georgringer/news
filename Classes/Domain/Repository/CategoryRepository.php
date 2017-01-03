@@ -20,7 +20,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
 {
-
     protected function createConstraintsFromDemand(
         QueryInterface $query,
         DemandInterface $demand

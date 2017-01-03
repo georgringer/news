@@ -17,7 +17,6 @@ use TYPO3\CMS\Core\Tests\UnitTestCase;
  */
 class IsCheckboxActiveViewhelperTest extends UnitTestCase
 {
-
     const OK_RESULT = 'checked="checked"';
 
     /**

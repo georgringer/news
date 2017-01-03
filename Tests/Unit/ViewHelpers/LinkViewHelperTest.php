@@ -17,7 +17,6 @@ use GeorgRinger\News\Service\SettingsService;
  */
 class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
-
     protected $mockedContentObjectRenderer;
 
     protected $mockedViewHelper;

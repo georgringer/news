@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class CategoryImportService extends AbstractImportService
 {
-
     const ACTION_SET_PARENT_CATEGORY = 1;
     const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 

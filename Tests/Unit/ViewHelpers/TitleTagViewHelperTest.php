@@ -41,7 +41,9 @@ class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $title = 'Some title';
         /** @var TitleTagViewHelper|\PHPUnit_Framework_MockObject_MockObject $viewHelper */
         $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['dummy']);
-        $viewHelper::renderStatic([], function() { return 'Some title'; }, $this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());
+        $viewHelper::renderStatic([], function () {
+            return 'Some title';
+        }, $this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());
         $this->assertEquals($title, $GLOBALS['TSFE']->altPageTitle);
         $this->assertEquals($title, $GLOBALS['TSFE']->indexedDocTitle);
     }
