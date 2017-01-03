@@ -1,4 +1,7 @@
-# TYPO3 Extension ``news`` [![Build Status](https://travis-ci.org/georgringer/news.png)](https://travis-ci.org/georgringer/news)
+# TYPO3 Extension ``news`` 
+
+[![Build Status](https://travis-ci.org/georgringer/news.png)](https://travis-ci.org/georgringer/news)
+[![StyleCI](https://styleci.io/repos/11733164/shield?branch=master)](https://styleci.io/repos/11733164/)
 
 Versatile news extension, based on extbase & fluid. It is editor friendly, default integration of social sharing and many other features.
 
