@@ -364,7 +364,7 @@ $tx_news_domain_model_news = [
             ]
         ],
         'type' => [
-            'exclude' => 0,
+            'exclude' => 1,
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.doktype_formlabel',
             'config' => [
                 'type' => 'select',
