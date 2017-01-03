@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Test for TargetLinkViewHelper
@@ -22,7 +23,7 @@ class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     protected function getPreparedInstance()
     {
-        $instance = new TargetLinkViewHelper();
+        $instance = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(['dummy'])->getMock();
         return $instance;
     }
 
@@ -43,7 +44,8 @@ class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function correctTargetIsReturned($link, $expectedResult)
     {
-        $viewHelper = new TargetLinkViewHelper();
+        $viewHelper = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(['dummy'])->getMock();
+        $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContextInterface::class)->getMock());
         $viewHelper->setArguments([
             'link' => $link,
         ]);
