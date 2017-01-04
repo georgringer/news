@@ -263,6 +263,9 @@
 			<trans-unit id="extmng.contentElementRelation" xml:space="preserve">
 				<source>Use content element relation:If set, content elements can be added to news records.</source>
 			</trans-unit>
+			<trans-unit id="extmng.contentElementPreview" xml:space="preserve">
+				<source>Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</source>
+			</trans-unit>
 			<trans-unit id="extmng.tagPid" xml:space="preserve">
 				<source>Define pid of tag records:Tags are collected on one central page.</source>
 			</trans-unit>
@@ -308,6 +311,9 @@
 			<trans-unit id="tag_suggest" xml:space="preserve">
 				<source>Tag &quot;%s&quot; could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
 			</trans-unit>
+			<trans-unit id="tag_suggest2" xml:space="preserve">
+				<source>Tag could not be found, wanna create it? Click here!</source>
+			</trans-unit>
 			<trans-unit id="tag_suggest_error_no-tag" xml:space="preserve">
 				<source>No tag submitted!</source>
 			</trans-unit>
@@ -328,6 +334,9 @@
 			</trans-unit>
 			<trans-unit id="module.recursive" xml:space="preserve">
 				<source>Recursive</source>
+			</trans-unit>
+			<trans-unit id="module.timeRange" xml:space="preserve">
+				<source>Time range</source>
 			</trans-unit>
 			<trans-unit id="module.timeRestriction" xml:space="preserve">
 				<source>Time Restriction</source>

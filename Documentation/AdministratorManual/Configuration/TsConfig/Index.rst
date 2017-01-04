@@ -24,22 +24,24 @@ Properties
 
 .. container:: ts-properties
 
-	==================================      =====================================
+	====================================    =====================================
 	Property                                Data type
-	==================================      =====================================
+	====================================    =====================================
 	templateLayouts_                        array
 	archive_                                string
 	tagPid_                                 integer
 	categoryRestrictionForFlexForms_        bool
-	==================================      =====================================
+	showContentElementsInNewsSysFolder_     string
+	====================================    =====================================
 
 .. _tsconfigTemplateLayouts:
 
 templateLayouts
 ^^^^^^^^^^^^^^^
-The selectbox “Template Layout” inside a plugin can be easily be extended by using TsConfig.::
+The selectbox “Template Layout” inside a plugin can be easily be extended by using TsConfig
 
-	# Example:
+.. code-block:: typoscript
+
 	tx_news.templateLayouts {
 			1 = Fobar
 			2 = Another one
@@ -54,7 +56,9 @@ Inside the template it is then possible to define conditions with fluid by check
 
 archive
 ^^^^^^^
-Use strtotime (see `http://www.php.net/strtotime <http://www.php.net/strtotime>`_ ) to predefine the archive date.::
+Use strtotime (see `http://www.php.net/strtotime <http://www.php.net/strtotime>`_ ) to predefine the archive date
+
+.. code-block:: typoscript
 
 	# Example:
 	tx_news.predefine.archive = next friday
@@ -65,7 +69,9 @@ will set the archive date on the the next friday.
 
 tagPid
 ^^^^^^
-Besides the configuration in the :ref:`Extension Manager <extensionManagerTagPid>` it is also possible to define the pid of tags created directly in the news record by Using TsConfig: ::
+Besides the configuration in the :ref:`Extension Manager <extensionManagerTagPid>` it is also possible to define the pid of tags created directly in the news record by Using TsConfig:
+
+.. code-block:: typoscript
 
 	# Example:
 	tx_news.tagPid = 123
@@ -75,10 +81,25 @@ Besides the configuration in the :ref:`Extension Manager <extensionManagerTagPid
 
 categoryRestrictionForFlexForms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-After defining the category restriction in the :ref:`Extension Manager <extensionManagerCategoryRestriction>` it is also possible to restrict the categories in the news plugin. This needs to enabled by TsConfig: ::
+After defining the category restriction in the :ref:`Extension Manager <extensionManagerCategoryRestriction>` it is also possible to restrict the categories in the news plugin. This needs to enabled by TsConfig:
+
+.. code-block:: typoscript
 
 	# Example:
 	tx_news.categoryRestrictionForFlexForms = 1
+
+
+.. _tsconfigShowContentElementsInNewsSysFolder:
+
+showContentElementsInNewsSysFolder
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If a sys folder is configured with **Contains PLugin:** `News`, content elements are hidden on those pages in the page and list module. If the content elements should be shown, use the PageTsConfig
+
+.. code-block:: typoscript
+
+	# Example:
+	tx_news.showContentElementsInNewsSysFolder = 1
+
 
 .. _tsconfigAdministration:
 
@@ -115,7 +136,7 @@ Predefine the form in the administration module. The possible fields for the pre
 - sortingDirection
 - categoryConjunction
 
-::
+.. code-block:: typoscript
 
 	# Example:
 	tx_news.module {
@@ -141,7 +162,9 @@ Define a list of columns which are displayed in the administration module. Defau
 defaultPid
 ^^^^^^^^^^
 If no page is selected in the page tree, any record created in the administration module would be saved on the root page.
-If this is not desired, the pid can be defined by using defaultPid.<tablename>::
+If this is not desired, the pid can be defined by using defaultPid.<tablename>:
+
+.. code-block:: typoscript
 
 	# Example
 	tx_news.module.defaultPid.tx_news_domain_model_news = 123
@@ -152,7 +175,9 @@ News records will be saved on page with ID 123.
 
 redirectToPageOnStart
 ^^^^^^^^^^^^^^^^^^^^^
-If no page is selected, the user will be redirected to the given page. ::
+If no page is selected, the user will be redirected to the given page.
+
+.. code-block:: typoscript
 
 	# Example:
 	tx_news.module.redirectToPageOnStart = 456
@@ -163,7 +188,9 @@ The user will be redirected to the page with the uid 456.
 
 allowedPage
 ^^^^^^^^^^^
-If defined, the administration module will redirect the user always to the given page, no matter what defined in the page tree. ::
+If defined, the administration module will redirect the user always to the given page, no matter what defined in the page tree.
+
+.. code-block:: typoscript
 
 	# Example:
 	tx_news.module.allowedPage = 123
@@ -176,6 +203,8 @@ alwaysShowFilter
 ^^^^^^^^^^^^^^^^
 If defined, the administration module will always show the filter opened.
 
+.. code-block:: typoscript
+
 	# Example:
 	tx_news.module.alwaysShowFilter = 1
 
@@ -187,7 +216,9 @@ This section covers settings which influence the News Plugin
 
 switchableControllerAction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-To remove a specific action from the News Plugin selectbox, use this snippet. ::
+To remove a specific action from the News Plugin selectbox, use this snippet.
+
+.. code-block:: typoscript
 
 	# Example:
 	TCEFORM.tt_content.pi_flexform.news_pi1.sDEF.switchableControllerActions.removeItems = Tag->list

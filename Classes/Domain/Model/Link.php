@@ -2,21 +2,14 @@
 namespace GeorgRinger\News\Domain\Model;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * Link model
- *
  */
 class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 {
@@ -65,7 +58,6 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set creation date
      *
      * @param int $crdate creation date
-     * @return void
      */
     public function setCrdate($crdate)
     {
@@ -86,7 +78,6 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set timestamp
      *
      * @param int $tstamp timestamp
-     * @return void
      */
     public function setTstamp($tstamp)
     {
@@ -107,7 +98,6 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set title
      *
      * @param string $title title
-     * @return void
      */
     public function setTitle($title)
     {
@@ -128,7 +118,6 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set description
      *
      * @param string $description description
-     * @return void
      */
     public function setDescription($description)
     {
@@ -149,7 +138,6 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set uri
      *
      * @param string $uri uri
-     * @return void
      */
     public function setUri($uri)
     {
@@ -160,7 +148,6 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set sys language
      *
      * @param int $sysLanguageUid
-     * @return void
      */
     public function setSysLanguageUid($sysLanguageUid)
     {
@@ -181,7 +168,6 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      * Set l10n parent
      *
      * @param int $l10nParent
-     * @return void
      */
     public function setL10nParent($l10nParent)
     {

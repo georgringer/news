@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-01-04T11:47:18Z" product-name="news">
+		<header/>
+		<body>
+			<trans-unit id="adminModule.title" xml:space="preserve">
+				<source>EXT:news - Administration module</source>
+			</trans-unit>
+			<trans-unit id="adminModule.description" xml:space="preserve">
+				<source>The administration module of EXT:news is a powerful tool for editors to create, edit and find news records.</source>
+			</trans-unit>
+			<trans-unit id="adminModule.general.title" xml:space="preserve">
+				<source>Administration module</source>
+			</trans-unit>
+			<trans-unit id="adminModule.general.content" xml:space="preserve">
+				<source>This is the best place for creating new records and editing existing ones</source>
+			</trans-unit>
+			<trans-unit id="adminModule.filter.title" xml:space="preserve">
+				<source>Toggle filter</source>
+			</trans-unit>
+			<trans-unit id="adminModule.filter.content" xml:space="preserve">
+				<source>Show and hide a filter which helps you finding news records</source>
+			</trans-unit>
+			<trans-unit id="adminModule.filter2.title" xml:space="preserve">
+				<source>Please click the filter icon!</source>
+			</trans-unit>
+			<trans-unit id="adminModule.filter2.content" xml:space="preserve">
+				<source>Open the filter settings!</source>
+			</trans-unit>
+			<trans-unit id="adminModule.searchWord.title" xml:space="preserve">
+				<source>Search by text</source>
+			</trans-unit>
+			<trans-unit id="adminModule.searchWord.content" xml:space="preserve">
+				<source>Search in title, teaser and text</source>
+			</trans-unit>
+			<trans-unit id="adminModule.timeRestriction.title" xml:space="preserve">
+				<source>Filter by time range</source>
+			</trans-unit>
+			<trans-unit id="adminModule.timeRestriction.content" xml:space="preserve">
+				<source>Use one of the 2 date fields to filter for news records between the defined dates.</source>
+			</trans-unit>
+			<trans-unit id="adminModule.topNewsRestriction.title" xml:space="preserve">
+				<source>Filter top news records</source>
+			</trans-unit>
+			<trans-unit id="adminModule.topNewsRestriction.content" xml:space="preserve">
+				<source>News records can be flagged as "top news". Use this filter to search for top news records or non top news records.</source>
+			</trans-unit>
+			<trans-unit id="adminModule.sortingField.title" xml:space="preserve">
+				<source>Sort the result</source>
+			</trans-unit>
+			<trans-unit id="adminModule.sortingField.content" xml:space="preserve">
+				<source>Sort the result by the defined field and sorting direction</source>
+			</trans-unit>
+			<trans-unit id="adminModule.recursive.title" xml:space="preserve">
+				<source>Extend search to child pages</source>
+			</trans-unit>
+			<trans-unit id="adminModule.recursive.content" xml:space="preserve">
+				<source>Set the level of pages which are searched for news records</source>
+			</trans-unit>
+			<trans-unit id="adminModule.categoryTree.title" xml:space="preserve">
+				<source>Category filter</source>
+			</trans-unit>
+			<trans-unit id="adminModule.categoryTree.content" xml:space="preserve">
+				<source>Select categories you want to use for additional filtering</source>
+			</trans-unit>
+			<trans-unit id="adminModule.categoryConjunction.title" xml:space="preserve">
+				<source>Category conjunction</source>
+			</trans-unit>
+			<trans-unit id="adminModule.categoryConjunction.content" xml:space="preserve">
+				<source>Select how the category selection should be used</source>
+			</trans-unit>
+			<trans-unit id="adminModule.actionSwitch.title" xml:space="preserve">
+				<source>Switch to the pid listing</source>
+			</trans-unit>
+			<trans-unit id="adminModule.actionSwitch.content" xml:space="preserve">
+				<source>A powerful view is hidden here! It enables you to find those pages which contain news records.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -2,21 +2,14 @@
 namespace GeorgRinger\News\Domain\Model\Dto;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * Extension Manager configuration
- *
  */
 class EmConfiguration
 {
@@ -58,7 +51,10 @@ class EmConfiguration
     /**
      * @var bool
      */
-    protected $contentElementRelation = false;
+    protected $contentElementRelation = true;
+
+    /** @var bool */
+    protected $contentElementPreview = true;
 
     /**
      * @var bool
@@ -133,7 +129,7 @@ class EmConfiguration
      */
     public function getCategoryBeGroupTceFormsRestriction()
     {
-        return $this->categoryBeGroupTceFormsRestriction;
+        return (bool)$this->categoryBeGroupTceFormsRestriction;
     }
 
     /**
@@ -142,6 +138,14 @@ class EmConfiguration
     public function getContentElementRelation()
     {
         return (boolean)$this->contentElementRelation;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getContentElementPreview()
+    {
+        return (bool)$this->contentElementPreview;
     }
 
     /**
@@ -170,7 +174,6 @@ class EmConfiguration
 
     /**
      * @param bool $showAdministrationModule
-     * @return void
      */
     public function setShowAdministrationModule($showAdministrationModule)
     {

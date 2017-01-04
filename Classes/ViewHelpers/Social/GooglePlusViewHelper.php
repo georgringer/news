@@ -3,17 +3,11 @@
 namespace GeorgRinger\News\ViewHelpers\Social;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * ViewHelper to add a google+ button
@@ -46,7 +40,6 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
 
     /**
      * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
-     * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
     {
@@ -56,7 +49,6 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
     /**
      * Arguments initialization
      *
-     * @return void
      */
     public function initializeArguments()
     {
@@ -74,6 +66,8 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
      */
     public function render($jsCode = '')
     {
+        GeneralUtility::deprecationLog(sprintf('The ViewHelper "%s" has been deprecated and will be removed with version 7.0.0 of EXT:news', self::class));
+
         if (empty($jsCode)) {
             $jsCode = 'https://apis.google.com/js/platform.js';
         } elseif ($jsCode != '-1') {

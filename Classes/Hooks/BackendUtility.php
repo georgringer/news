@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Hooks;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -120,7 +114,6 @@ class BackendUtility
      * @param array $conf some strange configuration
      * @param array $row row of current record
      * @param string $table table name
-     * @return void
      */
     public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table)
     {
@@ -138,7 +131,6 @@ class BackendUtility
      *
      * @param array|string &$dataStructure flexform structure
      * @param array $row row of current record
-     * @return void
      */
     protected function updateFlexforms(array &$dataStructure, array $row)
     {
@@ -231,7 +223,6 @@ class BackendUtility
      *
      * @param array &$dataStructure flexform structure
      * @param array $fieldsToBeRemoved fields which need to be removed
-     * @return void
      */
     protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved)
     {

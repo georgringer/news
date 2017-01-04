@@ -2,21 +2,14 @@
 namespace GeorgRinger\News\Domain\Model;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * Model of tt_content
- *
  */
 class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
@@ -151,7 +144,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $crdate
-     * @return void
      */
     public function setCrdate($crdate)
     {
@@ -168,7 +160,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $tstamp
-     * @return void
      */
     public function setTstamp($tstamp)
     {
@@ -185,7 +176,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $ctype
-     * @return void
      */
     public function setCType($ctype)
     {
@@ -202,7 +192,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $header
-     * @return void
      */
     public function setHeader($header)
     {
@@ -219,7 +208,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $headerPosition
-     * @return void
      */
     public function setHeaderPosition($headerPosition)
     {
@@ -236,7 +224,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $bodytext
-     * @return void
      */
     public function setBodytext($bodytext)
     {
@@ -257,7 +244,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set colpos
      *
      * @param int $colPos
-     * @return void
      */
     public function setColPos($colPos)
     {
@@ -274,7 +260,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $image
-     * @return void
      */
     public function setImage($image)
     {
@@ -291,7 +276,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $imagewidth
-     * @return void
      */
     public function setImagewidth($imagewidth)
     {
@@ -308,7 +292,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $imageorient
-     * @return void
      */
     public function setImageorient($imageorient)
     {
@@ -325,7 +308,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $imagecaption
-     * @return void
      */
     public function setImagecaption($imagecaption)
     {
@@ -342,7 +324,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $imagecols
-     * @return void
      */
     public function setImagecols($imagecols)
     {
@@ -359,7 +340,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $imageborder
-     * @return void
      */
     public function setImageborder($imageborder)
     {
@@ -376,7 +356,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $media
-     * @return void
      */
     public function setMedia($media)
     {
@@ -393,7 +372,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $layout
-     * @return void
      */
     public function setLayout($layout)
     {
@@ -410,7 +388,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $cols
-     * @return void
      */
     public function setCols($cols)
     {
@@ -427,7 +404,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $subheader
-     * @return void
      */
     public function setSubheader($subheader)
     {
@@ -444,7 +420,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $headerLink
-     * @return void
      */
     public function setHeaderLink($headerLink)
     {
@@ -461,7 +436,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $imageLink
-     * @return void
      */
     public function setImageLink($imageLink)
     {
@@ -478,7 +452,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $imageZoom
-     * @return void
      */
     public function setImageZoom($imageZoom)
     {
@@ -495,7 +468,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $altText
-     * @return void
      */
     public function setAltText($altText)
     {
@@ -512,7 +484,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $titleText
-     * @return void
      */
     public function setTitleText($titleText)
     {
@@ -529,7 +500,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $headerLayout
-     * @return void
      */
     public function setHeaderLayout($headerLayout)
     {
@@ -546,7 +516,6 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param $listType
-     * @return void
      */
     public function setListType($listType)
     {

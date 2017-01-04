@@ -3,18 +3,13 @@
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Test for TargetLinkViewHelper
@@ -28,7 +23,7 @@ class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     protected function getPreparedInstance()
     {
-        $instance = new TargetLinkViewHelper();
+        $instance = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(['dummy'])->getMock();
         return $instance;
     }
 
@@ -46,11 +41,11 @@ class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      * @dataProvider correctTargetIsReturnedDataProvider
-     * @return void
      */
     public function correctTargetIsReturned($link, $expectedResult)
     {
-        $viewHelper = new TargetLinkViewHelper();
+        $viewHelper = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(['dummy'])->getMock();
+        $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContextInterface::class)->getMock());
         $viewHelper->setArguments([
             'link' => $link,
         ]);

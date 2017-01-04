@@ -10,7 +10,10 @@ tagPid = 1
 rteForTeaser = 0
 
 # cat=records/enable/110; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.contentElementRelation
-contentElementRelation = 0
+contentElementRelation = 1
+
+# cat=records/enable/111; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.contentElementPreview
+contentElementPreview = 1
 
 # cat=records/enable/120; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.manualSorting
 manualSorting = 0

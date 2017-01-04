@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Domain\Service;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
@@ -24,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class NewsImportService extends AbstractImportService
 {
-
     const ACTION_IMPORT_L10N_OVERLAY = 1;
 
     /**
@@ -64,7 +57,6 @@ class NewsImportService extends AbstractImportService
      * Inject the news repository
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
-     * @return void
      */
     public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
     {
@@ -75,7 +67,6 @@ class NewsImportService extends AbstractImportService
      * Inject the category repository
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     * @return void
      */
     public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
@@ -86,7 +77,6 @@ class NewsImportService extends AbstractImportService
      * Inject the ttcontent repository
      *
      * @param \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
-     * @return void
      */
     public function injectTtContentRepository(
         \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
@@ -98,7 +88,6 @@ class NewsImportService extends AbstractImportService
      * Inject SignalSlotDispatcher
      *
      * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
-     * @return void
      */
     public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
     {
@@ -322,7 +311,6 @@ class NewsImportService extends AbstractImportService
      * @param array $importData
      * @param array $importItemOverwrite
      * @param array $settings
-     * @return void
      */
     public function import(array $importData, array $importItemOverwrite = [], $settings = [])
     {
@@ -363,7 +351,6 @@ class NewsImportService extends AbstractImportService
     /**
      * @param array $queueItem
      * @param array $importItemOverwrite
-     * @return void
      */
     protected function importL10nOverlay(array $queueItem, array $importItemOverwrite)
     {
