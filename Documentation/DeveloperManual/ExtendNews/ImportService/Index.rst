@@ -58,7 +58,7 @@ Register the slot in the `ext_localconf.php`
 	}
 
 	\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher')->connect(
-		'GeorgRainger\\News\\Domain\\Service\\NewsImportService',
+		'GeorgRinger\\News\\Domain\\Service\\NewsImportService',
 		'preHydrate',
 		'GeorgRinger\\NewsImportextended\\Aspect\\NewsImportAspect',
 		'preHydrate'
