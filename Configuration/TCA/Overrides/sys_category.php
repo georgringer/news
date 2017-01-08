@@ -32,7 +32,7 @@ $newSysCategoryColumns = [
         ]
     ],
     'images' => [
-        'exclude' => 1,
+        'exclude' => true,
         'l10n_mode' => 'mergeIfNotBlank',
         'label' => $ll . 'tx_news_domain_model_category.image',
         'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
@@ -40,10 +40,10 @@ $newSysCategoryColumns = [
             [
                 'appearance' => [
                     'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
-                    'showPossibleLocalizationRecords' => 1,
-                    'showRemovedLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1,
-                    'showSynchronizationLink' => 1
+                    'showPossibleLocalizationRecords' => true,
+                    'showRemovedLocalizationRecords' => true,
+                    'showAllLocalizationLink' => true,
+                    'showSynchronizationLink' => true
                 ],
                 'foreign_match_fields' => [
                     'fieldname' => 'images',
@@ -55,7 +55,7 @@ $newSysCategoryColumns = [
         )
     ],
     'single_pid' => [
-        'exclude' => 1,
+        'exclude' => true,
         'l10n_mode' => 'mergeIfNotBlank',
         'label' => $ll . 'tx_news_domain_model_category.single_pid',
         'config' => [
@@ -64,7 +64,6 @@ $newSysCategoryColumns = [
             'allowed' => 'pages',
             'size' => 1,
             'maxitems' => 1,
-            'minitems' => 0,
             'show_thumbs' => 1,
             'default' => 0,
             'wizards' => [
@@ -78,7 +77,7 @@ $newSysCategoryColumns = [
         ]
     ],
     'shortcut' => [
-        'exclude' => 1,
+        'exclude' => true,
         'l10n_mode' => 'mergeIfNotBlank',
         'label' => $ll . 'tx_news_domain_model_category.shortcut',
         'config' => [
@@ -87,8 +86,7 @@ $newSysCategoryColumns = [
             'allowed' => 'pages',
             'size' => 1,
             'maxitems' => 1,
-            'minitems' => 0,
-            'show_thumbs' => 1,
+            'show_thumbs' => true,
             'default' => 0,
             'wizards' => [
                 'suggest' => [
@@ -113,28 +111,28 @@ $newSysCategoryColumns = [
         ]
     ],
     'seo_headline' => [
-        'exclude' => 1,
+        'exclude' => true,
         'label' => $ll . 'tx_news_domain_model_category.seo.seo_headline',
         'config' => [
             'type' => 'input',
         ],
     ],
     'seo_title' => [
-        'exclude' => 1,
+        'exclude' => true,
         'label' => $ll . 'tx_news_domain_model_category.seo.seo_title',
         'config' => [
             'type' => 'input',
         ],
     ],
     'seo_description' => [
-        'exclude' => 1,
+        'exclude' => true,
         'label' => $ll . 'tx_news_domain_model_category.seo.seo_description',
         'config' => [
             'type' => 'text',
         ],
     ],
     'seo_text' => [
-        'exclude' => 1,
+        'exclude' => true,
         'label' => $ll . 'tx_news_domain_model_category.seo.seo_text',
         'config' => [
             'type' => 'text',
