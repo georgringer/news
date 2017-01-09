@@ -38,17 +38,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     public function emptyNoNewsFoundConfigurationReturnsNull()
     {
         $mockedController = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController', ['dummy']);
-        $result = $mockedController->_call('handleNoNewsFoundError', '');
-        $this->assertNull($result);
-    }
-
-    /**
-     * @test
-     */
-    public function invalidNoNewsFoundConfigurationReturnsNull()
-    {
-        $mockedController = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController', ['dummy']);
-        $result = $mockedController->_call('handleNoNewsFoundError', 'fo');
+        $result = $mockedController->_call('handleNoNewsFoundError', array());
         $this->assertNull($result);
     }
 
@@ -61,7 +51,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             ['redirect']);
         $mock->expects($this->once())
             ->method('redirect')->with('list');
-        $mock->_call('handleNoNewsFoundError', 'redirectToListView');
+        $mock->_call('handleNoNewsFoundError', array('detail' => array('errorHandling' => 'redirectToListView')));
     }
 
     /**
@@ -74,7 +64,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
         $this->tsfe->expects($this->once())
             ->method('pageNotFoundAndExit');
-        $mock->_call('handleNoNewsFoundError', 'pageNotFoundHandler');
+        $mock->_call('handleNoNewsFoundError', array('detail' => array('errorHandling' => 'pageNotFoundHandler')));
     }
 
     /**
@@ -85,7 +75,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     {
         $mock = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController',
             ['dummy']);
-        $mock->_call('handleNoNewsFoundError', 'redirectToPage');
+        $mock->_call('handleNoNewsFoundError', array('detail' => array('errorHandling' => 'redirectToPage')));
     }
 
     /**
@@ -96,7 +86,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     {
         $mock = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController',
             ['dummy']);
-        $mock->_call('handleNoNewsFoundError', 'redirectToPage,argumentOne,argumentTwo,argumentThree');
+        $mock->_call('handleNoNewsFoundError', array('detail' => array('errorHandling' => 'redirectToPage,argumentOne,argumentTwo,argumentThree')));
     }
 
     /**
@@ -114,7 +104,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $mockUriBuilder->expects($this->once())
             ->method('build');
 
-        $mockController->_call('handleNoNewsFoundError', 'redirectToPage,123');
+        $mockController->_call('handleNoNewsFoundError', array('detail' => array('errorHandling' => 'redirectToPage,123')));
     }
 
     /**
@@ -133,7 +123,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             ->method('build');
         $mockController->expects($this->once())
             ->method('redirectToUri')->with(null, 0, 301);
-        $mockController->_call('handleNoNewsFoundError', 'redirectToPage,456,301');
+        $mockController->_call('handleNoNewsFoundError', array('detail' => array('errorHandling' => 'redirectToPage,456,301')));
     }
 
     /**

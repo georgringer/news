@@ -71,21 +71,30 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * Error handling if no news entry is found
      *
-     * @param string $configuration configuration what will be done
+     * @param array $settings view settings
      * @throws \InvalidArgumentException
      * @return string
      */
-    protected function handleNoNewsFoundError($configuration)
+    protected function handleNoNewsFoundError($settings)
     {
-        if (empty($configuration)) {
+        if (empty($settings['detail']['errorHandling'])) {
             return null;
         }
 
-        $configuration = GeneralUtility::trimExplode(',', $configuration, true);
+        $configuration = GeneralUtility::trimExplode(',', $settings['detail']['errorHandling'], true);
 
         switch ($configuration[0]) {
             case 'redirectToListView':
-                $this->redirect('list');
+				$this->uriBuilder->reset();
+				$this->uriBuilder->setTargetPageUid($settings['backPid']);
+				$this->uriBuilder->setCreateAbsoluteUri(TRUE);
+				if (GeneralUtility::getIndpEnv('TYPO3_SSL')) {
+					$this->uriBuilder->setAbsoluteUriScheme('https');
+				}
+				$url = $this->uriBuilder->build();
+
+                $this->redirectToUri($url);
+
                 break;
             case 'redirectToPage':
                 if (count($configuration) === 1 || count($configuration) > 3) {

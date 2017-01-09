@@ -247,7 +247,7 @@ class NewsController extends NewsBaseController
         }
 
         if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
-            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
+            $errorContent = $this->handleNoNewsFoundError($this->settings);
             if ($errorContent) {
                 return $errorContent;
             }
