@@ -7,20 +7,32 @@ namespace GeorgRinger\News\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Exception;
 use GeorgRinger\News\Jobs\ImportJobInterface;
 use GeorgRinger\News\Utility\EmConfiguration;
 use GeorgRinger\News\Utility\ImportJob;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\HttpUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use UnexpectedValueException;
 
 /**
  * Controller to import news records
- *
  */
-class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class ImportController extends ActionController
 {
+
+    /**
+     * Backend Template Container
+     *
+     * @var BackendTemplateView
+     */
+    protected $defaultViewObjectName = BackendTemplateView::class;
 
     /**
      * Retrieve all available import jobs by traversing trough registered
@@ -49,6 +61,9 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function indexAction()
     {
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/Import');
+
         $this->view->assignMultiple([
                 'error' => $this->checkCorrectConfiguration(),
                 'availableJobs' => array_merge([0 => ''], $this->getAvailableJobs()),
@@ -61,7 +76,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * Check for correct configuration
      *
      * @return string
-     * @throws \Exception
+     * @throws Exception
      * @throws \TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsException
      */
     protected function checkCorrectConfiguration()
@@ -100,6 +115,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function runJobAction($jobClassName, $offset = 0)
     {
+        /** @var ImportJobInterface $job */
         $job = $this->objectManager->get($jobClassName);
         $job->run($offset);
 
@@ -114,8 +130,20 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function jobInfoAction($jobClassName)
     {
-        $job = $this->objectManager->get($jobClassName);
-        return json_encode($job->getInfo());
+        $response = null;
+        try {
+            /** @var ImportJobInterface $job */
+            $job = $this->objectManager->get($jobClassName);
+            $response = $job->getInfo();
+        } catch (Exception $e) {
+            $response['message'] = $e->getMessage();
+            $response['line'] = $e->getLine();
+            $response['trace'] = $e->getTrace();
+
+            HttpUtility::setResponseCode(HttpUtility::HTTP_STATUS_400);
+        }
+
+        return json_encode($response);
     }
 
     /**
