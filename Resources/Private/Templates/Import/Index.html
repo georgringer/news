@@ -1,176 +1,75 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:layout name="Backend/Simple" />
+<f:layout name="Backend/Default" />
 
 <f:section name="content">
-	<h3 class="uppercase">
-		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.header" />
-	</h3>
+    <h1>
+        <f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.header"/>
+    </h1>
+    <p class="lead">
+        <f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.description"/>
+    </p>
+    <div class="callout callout-warning">
+        <div class="media">
+            <div class="media-left">
+                <span class="fa-stack fa-lg callout-icon">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-warning fa-stack-1x"></i>
+                </span>
+            </div>
+            <div class="media-body">
+                <h4 class="callout-title">
+                    {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.backupwarning.header')}
+                </h4>
+                <div class="callout-body">
+                    {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.backupwarning')}
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<p class="description">
-		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.description" />
-	</p>
-	<div class="alert alert-warning">
-		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.backupwarning" />
-	</div>
-	<br />
-	<f:if condition="{error}">
-			<div class="alert alert-danger">
-				<div class="message-header">
-					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.error.configuration.title" />
-				</div>
-				<div class="message-body">
-					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:{error}" default="{error}" />
-				</div>
-			</div>
-	</f:if>
-	<f:if condition="{availableJobs -> f:count()} > 1">
-		<f:then>
-			<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.choose_a_job" />:
-			<f:form.select id="jobSelector" options="{availableJobs}" />
-			<br /><br />
-		</f:then>
-		<f:else>
-			<div class="alert alert-info">
-				<f:form.select id="jobSelector" options="{}" style="display:none" />
-				<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.nojobs" />
-			</div>
-		</f:else>
-	</f:if>
+    <f:if condition="{error}">
+        <div class="alert alert-danger">
+            <div class="message-header">
+                {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.error.configuration.title')}
+            </div>
+            <div class="message-body">
+                <f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:{error}" default="{error}"/>
+            </div>
+        </div>
+    </f:if>
+    <f:if condition="{availableJobs -> f:count()} > 1">
+        <f:then>
+            <div class="form-group">
+                <label for="jobSelector" class="col-xs-2 control-label">
+                    {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.choose_a_job')}
+                </label>
 
-	<div id="job" style="display:none;">
-		<div id="progressBar" style="width:300px;"></div>
-		<button id="startButton">Start</button>
-		<br />
-	</div>
+                <div class="col-xs-3">
+                    <f:form.select id="jobSelector" options="{availableJobs}" class="form-control"/>
+                </div>
+            </div>
+            <br/><br/>
+        </f:then>
+        <f:else>
+            <div class="alert alert-info">
+                <f:form.select id="jobSelector" options="{}" style="display:none"/>
+                {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:import.nojobs')}
+            </div>
+        </f:else>
+    </f:if>
 
-	<script type="text/javascript">
-		var moduleUrl = '{f:format.raw(value: moduleUrl)}';
-		//<![CDATA[
-		Ext.namespace('Tx_News');
+    <div id="job" style="display:none;">
+        <div class="progress">
 
-		Tx_News.Common = function () {
-			var pub = {};
-			var extKey = 'news';
+            <div id="progressBar" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                 style="width: 0;">0%</div>
+        </div>
+        <button id="startButton" class="btn btn-primary">Start</button>
+    </div>
 
-			var underscoreToUpperCamelCase = function (subject) {
-				var matches = subject.match(/(_\w)/g);
-				if (matches) {
-					matches.each(function (m) {
-						subject = subject.replace(m, m.charAt(1).toUpperCase());
-					});
-				}
-				return subject.charAt(0).toUpperCase() + subject.substr(1);
-			};
-
-			var getParameterPrefix = function (mainModuleName, subModuleName) {
-				return 'tx_' + extKey + '_' + mainModuleName + '_' + extKey + subModuleName.replace(/_/g, '');
-			};
-
-			pub.getExtKey = function () {
-				return extKey;
-			};
-
-			pub.getBackendRequest = function (mainModuleName, subModuleName, controller, action, parameters) {
-				var parameterPrefix = getParameterPrefix(mainModuleName, subModuleName);
-				var params = {};
-
-				Ext.apply(parameters, {controller: controller, action: action});
-
-				Ext.iterate(parameters, function (key, value) {
-					params[parameterPrefix + '[' + key + ']'] = value;
-				});
-
-				return {
-					'url': moduleUrl,
-					'params': params
-				};
-			};
-
-			return pub;
-		}();
-
-
-		Tx_News.Importer = function () {
-			var pub = {};
-			var jobInfo = {};
-			var progressBar;
-
-			var runCounter = 0;
-
-			var run = function () {
-				var request = Ext.apply(Tx_News.Common.getBackendRequest('system', 'tx_news_m1', 'Import',
-						'runJob', {jobClassName: jobInfo.jobClassName, offset: runCounter * jobInfo.increaseOffsetPerRunBy}));
-
-				Ext.apply(request, {
-					success: function () {
-						var progress = runCounter / jobInfo.runsToComplete;
-
-						progressBar.updateProgress(progress, Math.round(100 * progress) + '%');
-						runCounter++;
-
-						if (runCounter <= jobInfo.runsToComplete) {
-							run();
-						} else {
-							progressBar.updateText('Done.');
-							progressBar.reset();
-							runCounter = 1;
-						}
-					},
-					failure: function () {
-						alert('error');
-					}
-				});
-
-				Ext.Ajax.request(request);
-			};
-
-			var initJob = function () {
-				Ext.get('job').show();
-
-				progressBar = new Ext.ProgressBar({
-					renderTo: 'progressBar'
-				});
-
-				Ext.get('startButton').on('click', function () {
-					// reset run counter
-					runCounter = 0;
-					run();
-				});
-			};
-
-			var loadJobInfo = function (jobClassName) {
-				var request = Ext.apply(Tx_News.Common.getBackendRequest('system', 'tx_news_m1', 'Import',
-						'jobInfo', {jobClassName: jobClassName}));
-
-				Ext.apply(request, {
-					success: function (response) {
-						jobInfo = (Ext.decode(response.responseText));
-						Ext.apply(jobInfo, {jobClassName: jobClassName});
-						initJob();
-					}
-				});
-
-				Ext.Ajax.request(request);
-			};
-
-			pub.init = function () {
-				Ext.get('jobSelector').on('change', function () {
-					var jobClassName = this.getValue();
-					if (jobClassName != '0') {
-						loadJobInfo(jobClassName);
-					} else {
-						Ext.get('job').hide();
-					}
-				});
-			};
-			return pub;
-		}();
-
-		Ext.onReady(function () {
-			Tx_News.Importer.init();
-		});
-		//]]>
-	</script>
+    <script type="text/javascript">
+        var moduleUrl = '{f:format.raw(value: moduleUrl)}';
+    </script>
 </f:section>
 </html>

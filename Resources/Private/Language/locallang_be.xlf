@@ -417,6 +417,9 @@
 			<trans-unit id="import.backupwarning" xml:space="preserve">
 				<source>It's strongly recommended to backup all news tables before running an import job.</source>
 			</trans-unit>
+			<trans-unit id="import.backupwarning.header" xml:space="preserve">
+				<source>Important!</source>
+			</trans-unit>
 			<trans-unit id="import.nojobs" xml:space="preserve">
 				<source>No jobs available for the importer.</source>
 			</trans-unit>
