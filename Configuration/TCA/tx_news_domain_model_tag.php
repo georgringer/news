@@ -43,7 +43,7 @@ return [
             ]
         ],
         'hidden' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
@@ -51,7 +51,7 @@ return [
             ]
         ],
         'title' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => $ll . 'tx_news_domain_model_tag.title',
             'config' => [
                 'type' => 'input',
@@ -60,28 +60,28 @@ return [
             ]
         ],
         'seo_headline' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_headline',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'seo_title' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_title',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'seo_description' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_description',
             'config' => [
                 'type' => 'text',
             ],
         ],
         'seo_text' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_text',
             'config' => [
                 'type' => 'text',
@@ -98,7 +98,6 @@ return [
     'palettes' => [
         'paletteCore' => [
             'showitem' => 'hidden,',
-            'canNotCollapse' => true
         ],
     ]
 ];

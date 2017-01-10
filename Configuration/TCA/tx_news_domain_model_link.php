@@ -9,7 +9,7 @@ return [
         'descriptionColumn' => 'description',
         'label' => 'title',
         'label_alt' => 'uri',
-        'label_alt_force' => 1,
+        'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
@@ -52,7 +52,7 @@ return [
             ]
         ],
         'sys_language_uid' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
@@ -70,7 +70,7 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
@@ -89,7 +89,7 @@ return [
             ]
         ],
         'hidden' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
@@ -97,7 +97,7 @@ return [
             ]
         ],
         'title' => [
-            'exclude' => 0,
+            'exclude' => false,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.title',
             'config' => [
@@ -106,7 +106,7 @@ return [
             ]
         ],
         'description' => [
-            'exclude' => 1,
+            'exclude' => true,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.description',
             'config' => [
@@ -116,7 +116,7 @@ return [
             ]
         ],
         'uri' => [
-            'exclude' => 0,
+            'exclude' => false,
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.uri',
             'config' => [
@@ -126,7 +126,6 @@ return [
                 'eval' => 'trim,required',
                 'softref' => 'typolink',
                 'wizards' => [
-                    '_PADDING' => 2,
                     'link' => [
                         'type' => 'popup',
                         'title' => 'Link',
@@ -148,11 +147,9 @@ return [
     'palettes' => [
         'paletteCore' => [
             'showitem' => 'hidden,sys_language_uid,l10n_parent, l10n_diffsource,',
-            'canNotCollapse' => true
         ],
         'paletteDescription' => [
             'showitem' => 'description',
-            'canNotCollapse' => false
         ]
     ]
 ];

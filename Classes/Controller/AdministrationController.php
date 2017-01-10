@@ -103,9 +103,8 @@ class AdministrationController extends NewsController
         $view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation([]);
 
         $pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ClickMenu');
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/Tooltip');
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/DateTimePicker');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/AdministrationModule');
         $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
         $this->createMenu();
@@ -150,19 +149,22 @@ class AdministrationController extends NewsController
     protected function createButtons()
     {
         $buttonBar = $this->view->getModuleTemplate()->getDocHeaderComponent()->getButtonBar();
+
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
-        $toggleButton = $buttonBar->makeLinkButton()
-            ->setHref('#')
-            ->setDataAttributes([
-                'togglelink' => '1',
-                'toggle' => 'tooltip',
-                'placement' => 'bottom',
+        if ($this->request->getControllerActionName() === 'index') {
+            $toggleButton = $buttonBar->makeLinkButton()
+                ->setHref('#')
+                ->setDataAttributes([
+                    'togglelink' => '1',
+                    'toggle' => 'tooltip',
+                    'placement' => 'bottom',
                 ])
-            ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.toggleForm'))
-            ->setIcon($this->iconFactory->getIcon('actions-filter', Icon::SIZE_SMALL));
-        $buttonBar->addButton($toggleButton, ButtonBar::BUTTON_POSITION_LEFT, 0);
+                ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.toggleForm'))
+                ->setIcon($this->iconFactory->getIcon('actions-filter', Icon::SIZE_SMALL));
+            $buttonBar->addButton($toggleButton, ButtonBar::BUTTON_POSITION_LEFT, 0);
+        }
 
         $buttons = [
             [
@@ -215,6 +217,13 @@ class AdministrationController extends NewsController
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));
             $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);
         }
+
+        // Refresh
+        $refreshButton = $buttonBar->makeLinkButton()
+            ->setHref(GeneralUtility::getIndpEnv('REQUEST_URI'))
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.reload'))
+            ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
+        $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
     }
 
     /**
