@@ -149,6 +149,7 @@ class AdministrationController extends NewsController
     protected function createButtons()
     {
         $buttonBar = $this->view->getModuleTemplate()->getDocHeaderComponent()->getButtonBar();
+
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
@@ -216,6 +217,14 @@ class AdministrationController extends NewsController
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));
             $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);
         }
+
+        // Refresh
+        $refreshButton = $buttonBar->makeLinkButton()
+            ->setHref(GeneralUtility::getIndpEnv('REQUEST_URI'))
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.reload'))
+            ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
+        $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
+
     }
 
     /**
