@@ -103,9 +103,8 @@ class AdministrationController extends NewsController
         $view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation([]);
 
         $pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ClickMenu');
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/Tooltip');
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/DateTimePicker');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/AdministrationModule');
         $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
         $this->createMenu();
