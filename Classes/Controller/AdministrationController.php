@@ -152,16 +152,18 @@ class AdministrationController extends NewsController
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
-        $toggleButton = $buttonBar->makeLinkButton()
-            ->setHref('#')
-            ->setDataAttributes([
-                'togglelink' => '1',
-                'toggle' => 'tooltip',
-                'placement' => 'bottom',
+        if ($this->request->getControllerActionName() === 'index') {
+            $toggleButton = $buttonBar->makeLinkButton()
+                ->setHref('#')
+                ->setDataAttributes([
+                    'togglelink' => '1',
+                    'toggle' => 'tooltip',
+                    'placement' => 'bottom',
                 ])
-            ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.toggleForm'))
-            ->setIcon($this->iconFactory->getIcon('actions-filter', Icon::SIZE_SMALL));
-        $buttonBar->addButton($toggleButton, ButtonBar::BUTTON_POSITION_LEFT, 0);
+                ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.toggleForm'))
+                ->setIcon($this->iconFactory->getIcon('actions-filter', Icon::SIZE_SMALL));
+            $buttonBar->addButton($toggleButton, ButtonBar::BUTTON_POSITION_LEFT, 0);
+        }
 
         $buttons = [
             [
