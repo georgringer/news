@@ -43,3 +43,8 @@
 .. :border: 0
 .. :align: left
 .. :name: Contentelement relation
+
+.. |img-admin-module-guide|      image:: /Images/Administration/admin-module-guide.png
+.. :border: 0
+.. :align: left
+.. :name: Support of EXT:guide for the administration module

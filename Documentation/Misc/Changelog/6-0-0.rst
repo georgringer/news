@@ -42,8 +42,8 @@ The ViewHelpers will be removed with the version 7.0.0.
 
 Install & configure the extension `rx_shariff` which takes care of the privacy of your users!
 
-Error msg if news not found
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error message if news not found
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 While rendering a **detail view** and a news record is not found anymore (e.g. because it has been deleted or set to hidden) an error message is now shown instead of an exception.
 This has been achived by setting the following default TypoScript:
 
@@ -74,16 +74,21 @@ Width and height of images can be set in the plugin. Previously those values hav
 
         <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
 
-Move toggle link in admin module to toolbar
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Improved Administration module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The administration module recived again some more love!
 
 The link in the administration module to toggle the filter form has been moved to the toolbar.
 
 |img-admin-module-filter|
 
+Furthermore the template has been improved to work on smaller screens.
+
+
 Features
 --------
 List of all features.
+
 
 Provide filter by type
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -120,10 +125,53 @@ To improve the usability of content elements added to a news item, the preview i
 
 |img-content-element-relation|
 
+Support for EXT:guide
+^^^^^^^^^^^^^^^^^^^^^
+The extension guide shows guides to editors and makes it easy to explain features. A guide for the administration module has been added
+
+|img-admin-module-guide|
+
+Improved Import module
+^^^^^^^^^^^^^^^^^^^^^^
+The import module has been rewritten:
+
+- Use requireJS
+- Use jQuery instead of ExtJS
+- Use bootstrap for the forms
+- Use a callout for the backup info
+
 All Changes
 -----------
 This is a list of all changes in this release: ::
 
+        2017-01-10 [FEATURE] Rewrite import module (Commit 8378944 by Georg Ringer)
+        2017-01-10 Apply fixes from StyleCI (#210) (Commit 2ce49e2 by Georg Ringer)
+        2017-01-10 [TASK] Add refresh button to Administration module (Commit e151596 by Georg Ringer)
+        2017-01-10 [BUGFIX] Show filter button only if in proper action (Commit be546a0 by Georg Ringer)
+        2017-01-10 Merge branch 'master' of github.com:georgringer/news (Commit 7aa1705 by Georg Ringer)
+        2017-01-10 [TASK] Use requireJS module for Administration module (Commit 29ecddd by Georg Ringer)
+        2017-01-08 [TASK] Improve TCA code (Commit a18ecd6 by Georg Ringer)
+        2017-01-07 [TASK] Increase category tree in flexform (Commit ab45cc6 by Georg Ringer)
+        2017-01-07 Merge branch 'master' of github.com:georgringer/news (Commit 2958850 by Georg Ringer)
+        2017-01-07 [!!!][TASK] Restrict version dependencies (Commit fd9ae2d by Georg Ringer)
+        2017-01-04 [DOCU] Change Vendor in code example (#203) (Commit 2c1c99b by Stefan Frömken)
+        2017-01-04 [BUGFIX] Exclude gridelements from advanced inline preview (Commit 9ac8056 by Georg Ringer)
+        2017-01-04 [FEATURE] Provide tour for EXT:guide (Commit 97adb88 by Georg Ringer)
+        2017-01-03 [DOC] Improve Readme in root dir (Commit 295ee40 by Georg Ringer)
+        2017-01-03 [TASK] Add StyleCI to Readme.md (Commit 1774b52 by Georg Ringer)
+        2017-01-03 [TASK] Add style ci configuration (Commit b515bb6 by Georg Ringer)
+        2017-01-03 Apply fixes from StyleCI (#201) (Commit 726ad6b by Georg Ringer)
+        2017-01-03 Merge branch 'master' of github.com:georgringer/news (Commit fcfceb5 by Georg Ringer)
+        2017-01-03 [TASK] Optimize administration module (Commit 69a0d83 by Georg Ringer)
+        2017-01-02 [TASK] Make ViewHelpers static callable (#119) (Commit 8157447 by Claus Due)
+        2017-01-02 [TASK] Improve category tree in administration module (Commit e43bf42 by Georg Ringer)
+        2017-01-02 [TASK] Use a datepicker in the administration module (Commit f7a72f1 by Georg Ringer)
+        2017-01-02 [DOC] Mention OpenHub in manual (Commit b9c4772 by Georg Ringer)
+        2017-01-02 [!!!][TASK] Raise version constraints for the core (Commit bc6aa06 by Georg Ringer)
+        2017-01-02 [DOC] Update documentation (Commit 870d075 by Georg Ringer)
+        2017-01-02 [TASK] Deprecate ViewHelpers for Facebook, Google+, Twitter (Commit c986b92 by Georg Ringer)
+        2017-01-02 [TASK] Use mediaTag VH also in TWB templates (Commit 89a880c by Georg Ringer)
+        2016-12-31 [DOC] Add documentation for upcoming release (Commit b569351 by Georg Ringer)
         2016-12-30 [TASK] Move toggle link in admin module to toolbar (Commit d7ace3f by Georg Ringer)
         2016-12-30 [FEATURE] Provide filter by type (Commit bed8a25 by Georg Ringer)
         2016-12-29 [FEATURE] Document the AJAX pagination (Commit 572fee8 by Georg Ringer)
