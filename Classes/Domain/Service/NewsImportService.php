@@ -157,8 +157,7 @@ class NewsImportService extends AbstractImportService
         $news->setDatetime(new \DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
         $news->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
 
-        $contentElementUidArray = \TYPO3\CMS\Extbase\Utility\ArrayUtility::trimExplode(',',
-            $importItem['content_elements'], true);
+        $contentElementUidArray = GeneralUtility::trimExplode(',', $importItem['content_elements'], true);
         foreach ($contentElementUidArray as $contentElementUid) {
             if (is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))) {
                 $news->addContentElement($contentElement);
