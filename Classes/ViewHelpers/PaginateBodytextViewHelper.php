@@ -86,7 +86,7 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
         $as = $this->arguments['as'];
         $currentPage = $this->arguments['currentPage'];
 
-        $parts = GeneralUtility::trimExplode($this->arguments['token'], $this->arguments['newsItem']->getBodytext(), true);
+        $parts = GeneralUtility::trimExplode($this->arguments['token'], $this->arguments['object']->getBodytext(), true);
         $numberOfPages = count($parts);
 
         if ($numberOfPages === 1) {
