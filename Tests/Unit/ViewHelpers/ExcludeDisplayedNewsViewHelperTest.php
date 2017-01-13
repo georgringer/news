@@ -10,6 +10,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 
 /**
  * Tests for ExcludeDisplayedNewsViewHelper
@@ -24,6 +25,7 @@ class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestC
     public function newsIsAddedToExcludedList()
     {
         $viewHelper = new ExcludeDisplayedNewsViewHelper();
+        $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());
         $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], null);
 
         $newsItem1 = new News();

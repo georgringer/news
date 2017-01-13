@@ -2,8 +2,11 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -15,8 +18,9 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 /**
  * Class ImageSizeViewHelper
  */
-class ImageSizeViewHelper extends AbstractViewHelper
+class ImageSizeViewHelper extends AbstractViewHelper implements CompilableInterface
 {
+    use CompileWithRenderStatic;
 
     /**
      * Initialize arguments
@@ -28,14 +32,20 @@ class ImageSizeViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @return int
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return intt
      */
-    public function render()
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
         $value = 0;
-        $tsfe = $this->getTypoScriptFrontendController();
+        $tsfe = static::getTypoScriptFrontendController();
         if (!is_null($tsfe)) {
-            switch ($this->arguments['property']) {
+            switch ($arguments['property']) {
                 case 'width':
                     $value = $tsfe->lastImageInfo[0];
                     break;
@@ -43,7 +53,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
                     $value = $tsfe->lastImageInfo[1];
                     break;
                 default:
-                    throw new \RuntimeException(sprintf('The value "%s" is not supported in ImageSizeViewHelper', $this->arguments['property']));
+                    throw new \RuntimeException(sprintf('The value "%s" is not supported in ImageSizeViewHelper', $arguments['property']));
             }
         }
         return $value;
@@ -52,7 +62,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
     /**
      * @return TypoScriptFrontendController
      */
-    protected function getTypoScriptFrontendController()
+    protected static function getTypoScriptFrontendController()
     {
         return $GLOBALS['TSFE'];
     }
