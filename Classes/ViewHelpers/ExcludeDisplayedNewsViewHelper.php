@@ -9,6 +9,9 @@ namespace GeorgRinger\News\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * ViewHelper to exclude news items in other plugins
@@ -23,8 +26,9 @@ use GeorgRinger\News\Domain\Model\News;
  * </output>
  *
  */
-class ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper implements CompilableInterface
 {
+    use CompileWithRenderStatic;
 
     /**
      * Initialize arguments
@@ -36,12 +40,17 @@ class ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Ab
     }
 
     /**
-     * Add the news uid to a global variable to be able to exclude it later
-     *
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return void
      */
-    public function render()
-    {
-        $newsItem = $this->arguments['newsItem'];
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
+        $newsItem = $arguments['newsItem'];
         $uid = $newsItem->getUid();
 
         if (empty($GLOBALS['EXT']['news']['alreadyDisplayed'])) {

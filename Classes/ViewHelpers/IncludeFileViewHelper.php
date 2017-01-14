@@ -10,6 +10,9 @@ namespace GeorgRinger\News\ViewHelpers;
  */
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * ViewHelper to include a css/js file
@@ -23,17 +26,32 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * </output>
  *
  */
-class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper implements CompilableInterface
 {
+    use CompileWithRenderStatic;
 
     /**
-     * Include a CSS/JS file
-     *
-     * @param string $path Path to the CSS/JS file which should be included
-     * @param bool $compress Define if file should be compressed
+     * @return void
      */
-    public function render($path, $compress = false)
+    public function initializeArguments()
     {
+        $this->registerArgument('path', 'string', 'Path to the CSS/JS file which should be included', true);
+        $this->registerArgument('compress', 'bool', 'Define if file should be compressed', false, false);
+    }
+
+    /**
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return void
+     */
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
+        $path = $arguments['path'];
+        $compress = (bool)$arguments['compress'];
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         if (TYPO3_MODE === 'FE') {
             $path = $GLOBALS['TSFE']->tmpl->getFileName($path);
