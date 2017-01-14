@@ -51,7 +51,20 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             ['redirect']);
         $mock->expects($this->once())
             ->method('redirect')->with('list');
-        $mock->_call('handleNoNewsFoundError', ['detail' => ['errorHandling' => 'redirectToListView']]);
+
+        $mockUriBuilder = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder');
+        $mock->_set('uriBuilder', $mockUriBuilder);
+
+        $mockUriBuilder->expects($this->once())
+            ->method('reset');
+        $mockUriBuilder->expects($this->once())
+            ->method('setCreateAbsoluteUri')->with(true);
+        $mockUriBuilder->expects($this->once())
+            ->method('setTargetPageUid')->with(123);
+        $mockUriBuilder->expects($this->once())
+            ->method('build');
+
+        $mock->_call('handleNoNewsFoundError', ['backPid' => 123, 'detail' => ['errorHandling' => 'redirectToListView']]);
     }
 
     /**
