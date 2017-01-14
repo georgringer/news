@@ -85,13 +85,13 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         switch ($configuration[0]) {
             case 'redirectToListView':
-				$this->uriBuilder->reset();
-				$this->uriBuilder->setTargetPageUid($settings['backPid']);
-				$this->uriBuilder->setCreateAbsoluteUri(TRUE);
-				if (GeneralUtility::getIndpEnv('TYPO3_SSL')) {
-					$this->uriBuilder->setAbsoluteUriScheme('https');
-				}
-				$url = $this->uriBuilder->build();
+                $this->uriBuilder->reset();
+                $this->uriBuilder->setTargetPageUid($settings['backPid']);
+                $this->uriBuilder->setCreateAbsoluteUri(true);
+                if (GeneralUtility::getIndpEnv('TYPO3_SSL')) {
+                    $this->uriBuilder->setAbsoluteUriScheme('https');
+                }
+                $url = $this->uriBuilder->build();
 
                 $this->redirectToUri($url);
 
