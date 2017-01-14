@@ -48,11 +48,11 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     public function NoNewsFoundConfigurationRedirectsToListView()
     {
         $mock = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController',
-            ['redirect']);
+            ['redirectToUri']);
         $mock->expects($this->once())
-            ->method('redirect')->with('list');
+            ->method('redirectToUri')->with('built-url');
 
-        $mockUriBuilder = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder');
+        $mockUriBuilder = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder', ['build']);
         $mock->_set('uriBuilder', $mockUriBuilder);
 
         $mockUriBuilder->expects($this->once())
@@ -62,7 +62,7 @@ class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $mockUriBuilder->expects($this->once())
             ->method('setTargetPageUid')->with(123);
         $mockUriBuilder->expects($this->once())
-            ->method('build');
+            ->method('build')->willReturn('built-url');
 
         $mock->_call('handleNoNewsFoundError', ['backPid' => 123, 'detail' => ['errorHandling' => 'redirectToListView']]);
     }
