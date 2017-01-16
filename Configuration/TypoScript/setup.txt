@@ -189,7 +189,7 @@ plugin.tx_news {
 			keywords = 1
 			description = 1
 			opengraph = 1
-			twitter =< plugin.tx_news.settings.opengraph.twitter.site
+			twitter = {$plugin.tx_news.opengraph.twitter.site}
 		}
 	}
 }
