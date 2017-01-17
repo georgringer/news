@@ -32,7 +32,7 @@ This needs then to be referenced in the template.
 
 .. code-block:: html
 
-   <f:if condition="{newsItem.contentElements">
+   <f:if condition="{newsItem.contentElements}">
            <f:cObject typoscriptObjectPath="lib.yourownTypoScript">{newsItem.contentElements}</f:cObject>
    </f:if>
 
@@ -44,7 +44,7 @@ You can also use fluid render the content elements. As an example:
 
 .. code-block:: html
 
-	<f:if condition="{newsItem.contentElements">
+	<f:if condition="{newsItem.contentElements}">
 		<f:for each="{newsItem.contentElements}" as="element">
 			<h3>{element.title}</h3>
 			<f:if condition="{element.CType} == 'text'">
