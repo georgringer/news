@@ -200,7 +200,9 @@ class NewsController extends NewsBaseController
             if (!is_array($categoriesList)) {
                 $categoriesList = GeneralUtility::trimExplode(',', $categoriesList);
             }
-            $assignedValues['categories'] = $this->categoryRepository->findByIdList($categoriesList);
+            if (!empty($categoriesList)) {
+                $assignedValues['categories'] = $this->categoryRepository->findByIdList($categoriesList);
+            }
         }
 
         if ($demand->getTags() !== '') {
@@ -208,7 +210,9 @@ class NewsController extends NewsBaseController
             if (!is_array($tagList)) {
                 $tagList = GeneralUtility::trimExplode(',', $tagList);
             }
-            $assignedValues['tags'] = $this->tagRepository->findByIdList($tagList);
+            if (!empty($tagList)) {
+                $assignedValues['tags'] = $this->tagRepository->findByIdList($tagList);
+            }
         }
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
