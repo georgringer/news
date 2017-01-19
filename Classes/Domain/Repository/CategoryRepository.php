@@ -71,15 +71,21 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      * Find category tree
      *
      * @param array $rootIdList list of id s
-     * @return QueryInterface
+     * @return QueryInterface|array
      */
     public function findTree(array $rootIdList, $startingPoint = null)
     {
         $subCategories = CategoryService::getChildrenCategories(implode(',', $rootIdList));
-        $ordering = ['sorting' => QueryInterface::ORDER_ASCENDING];
 
-        $categories = $this->findByIdList(explode(',', $subCategories), $ordering, $startingPoint);
+        $idList = explode(',', $subCategories);
+        if (empty($idList)) {
+            return [];
+        }
+
+        $ordering = ['sorting' => QueryInterface::ORDER_ASCENDING];
+        $categories = $this->findByIdList($idList, $ordering, $startingPoint);
         $flatCategories = [];
+        /** @var Category $category */
         foreach ($categories as $category) {
             $flatCategories[$category->getUid()] = [
                 'item' => $category,
@@ -116,6 +122,9 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      */
     public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {
+        if (empty($idList)) {
+            throw new \InvalidArgumentException('The given id list is empty.', 1484823597);
+        }
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setRespectSysLanguage(false);
