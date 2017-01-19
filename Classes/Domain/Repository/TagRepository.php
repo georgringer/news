@@ -35,6 +35,9 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
      */
     public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {
+        if (empty($idList)) {
+            throw new \InvalidArgumentException('The given id list is empty.', 1484823596);
+        }
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setRespectSysLanguage(false);
