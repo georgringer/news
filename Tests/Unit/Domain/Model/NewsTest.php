@@ -303,6 +303,7 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $news->addFalMedia($mediaItem);
 
         $this->assertEquals($news->getFalMedia()->current(), $mediaItem);
+        $this->assertEquals($news->getMedia()->current(), $mediaItem);
     }
 
     /**
@@ -340,7 +341,10 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $news->addFalMedia($mediaItem3);
 
         $this->assertEquals(2, count($news->getFalMediaPreviews()));
+        $this->assertEquals(2, count($news->getMediaPreviews()));
         $this->assertEquals(1, count($news->getFalMediaNonPreviews()));
+        $this->assertEquals(1, count($news->getMediaNonPreviews()));
         $this->assertEquals(3, count($news->getFalMedia()));
+        $this->assertEquals(3, count($news->getMedia()));
     }
 }

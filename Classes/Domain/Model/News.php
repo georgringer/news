@@ -240,7 +240,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->media = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->falRelatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
@@ -627,6 +626,16 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * Short method for getFalRelatedFiles
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     */
+    public function getRelatedFiles()
+    {
+        return $this->getFalRelatedFiles();
+    }
+
+    /**
      * Set FAL related files
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $falRelatedFiles FAL related files
@@ -719,69 +728,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->description = $description;
     }
 
-    /**
-     * Load Media elements
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
-     */
-    public function getMedia()
-    {
-        return $this->media;
-    }
-
-    /**
-     * Get all media elements which are tagged as preview
-     *
-     * @return array
-     */
-    public function getMediaPreviews()
-    {
-        $mediaElements = $this->getMedia();
-
-        if (is_null($mediaElements)) {
-            return null;
-        }
-
-        $previewCollection = [];
-        foreach ($mediaElements as $mediaElement) {
-            if ($mediaElement->getShowinpreview()) {
-                $previewCollection[] = $mediaElement;
-            }
-        }
-
-        if (count($previewCollection) > 0) {
-            return $previewCollection;
-        }
-
-        return null;
-    }
-
-    /**
-     * Get all media elements which are not tagged as preview
-     *
-     * @return array
-     */
-    public function getNonMediaPreviews()
-    {
-        $mediaElements = $this->getMedia();
-
-        if (is_null($mediaElements)) {
-            return null;
-        }
-
-        $collection = [];
-        foreach ($mediaElements as $mediaElement) {
-            if (!$mediaElement->getShowinpreview()) {
-                $collection[] = $mediaElement;
-            }
-        }
-
-        if (count($collection) > 0) {
-            return $collection;
-        }
-
-        return null;
-    }
 
     /**
      * Adds a related link.
@@ -804,6 +750,16 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getFalMedia()
     {
         return $this->falMedia;
+    }
+
+    /**
+     * Short method for getFalMedia()
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     */
+    public function getMedia()
+    {
+        return $this->getFalMedia();
     }
 
     /**
@@ -849,6 +805,16 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * Short method for getFalMediaPreviews
+     *
+     * @return array
+     */
+    public function getMediaPreviews()
+    {
+        return $this->getFalMediaPreviews();
+    }
+
+    /**
      * Get all media elements which are not tagged as preview
      *
      * @return array
@@ -868,6 +834,16 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * Short method for getFalMediaNonPreviews
+     *
+     * @return array
+     */
+    public function getMediaNonPreviews()
+    {
+        return $this->getFalMediaNonPreviews();
+    }
+
+    /**
      * Get first media element which is tagged as preview and is of type image
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
@@ -881,6 +857,16 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
             }
         }
         return null;
+    }
+
+    /**
+     * Short method for getFirstFalImagePreview
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     */
+    public function getFirstPreview()
+    {
+        return $this->getFirstFalImagePreview();
     }
 
     /**
@@ -1433,31 +1419,4 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $this->importSource;
     }
 
-    /**
-     * Get a sub selection of media elements
-     *
-     * @param $type
-     * @return array|null
-     */
-    protected function getMediaSelection($type)
-    {
-        $mediaElements = $this->getMedia();
-
-        if ($mediaElements === null) {
-            return null;
-        }
-
-        $collection = [];
-        foreach ($mediaElements as $mediaElement) {
-            if ((int)$mediaElement->getType() === $type) {
-                $collection[] = $mediaElement;
-            }
-        }
-
-        if (count($collection) > 0) {
-            return $collection;
-        }
-
-        return null;
-    }
 }

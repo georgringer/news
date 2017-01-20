@@ -51,7 +51,7 @@
 			</n:simplePrevNext>
 		</f:if>
 
-		<f:if condition="{newsItem.falMedia}">
+		<f:if condition="{newsItem.media}">
 			<f:then>
 				<f:render section="headline" arguments="{_all}" />
 				<div class="row">
@@ -59,7 +59,7 @@
 						<f:render section="inner-content" arguments="{_all}" />
 					</div>
 					<div class="col-md-4">
-						<f:for each="{newsItem.falMedia}" as="mediaElement">
+						<f:for each="{newsItem.media}" as="mediaElement">
 							<div class="thumbnail">
 								<f:media file="{mediaElement}" class="img-responsive" />
 								<f:if condition="{mediaElement.description}">
@@ -154,14 +154,14 @@
 	</f:if>
 
 
-	<f:if condition="{newsItem.falRelatedFiles}">
-		<!-- FAL related files -->
+	<f:if condition="{newsItem.relatedFiles}">
+		<!-- related files -->
 		<div class="news-related news-related-files">
 			<h4>
 				<f:translate key="related-files" />
 			</h4>
 			<ul>
-				<f:for each="{newsItem.falRelatedFiles}" as="relatedFile">
+				<f:for each="{newsItem.relatedFiles}" as="relatedFile">
 					<li>
 						<span class="news-related-files-link">
 							<a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
