@@ -728,7 +728,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->description = $description;
     }
 
-
     /**
      * Adds a related link.
      *
@@ -1418,5 +1417,4 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->importSource;
     }
-
 }
