@@ -13,7 +13,7 @@ $teaserRteConfiguration = $configuration->getRteForTeaser() ? 'richtext:rte_tran
 $tx_news_domain_model_news = [
     'ctrl' => [
         'title' => $ll . 'tx_news_domain_model_news',
-        'descriptionColumn' => 'tag',
+        'descriptionColumn' => 'notes',
         'label' => 'title',
         'prependAtCopy' => $configuration->getPrependAtCopy() ? 'LLL:EXT:lang/locallang_general.xlf:LGL.prependAtCopy' : '',
         'hideAtCopy' => true,
@@ -610,7 +610,7 @@ $tx_news_domain_model_news = [
         'fal_related_files' => [
             'exclude' => true,
             'l10n_mode' => 'mergeIfNotBlank',
-            'label' => '' . $ll . 'tx_news_domain_model_news.fal_related_files',
+            'label' => $ll . 'tx_news_domain_model_news.fal_related_files',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'fal_related_files',
                 [
@@ -631,7 +631,15 @@ $tx_news_domain_model_news = [
                     ],
                 ]
             )
-        ]
+        ],
+        'notes' => [
+            'label' => $ll . 'notes',
+            'config' => [
+                'type' => 'text',
+                'rows' => 10,
+                'cols' => 48
+            ]
+        ],
     ],
     'types' => [
         // default news
@@ -659,6 +667,8 @@ $tx_news_domain_model_news = [
 				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
 					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
 					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
+				--div--;' . $ll . 'notes,
+                    notes,
 				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
         // internal url

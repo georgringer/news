@@ -150,6 +150,9 @@
 			<trans-unit id="be_user.tx_news_categorymounts" xml:space="preserve">
 				<source>News: Category restriction</source>
 			</trans-unit>
+			<trans-unit id="notes" xml:space="preserve">
+				<source>Notes</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

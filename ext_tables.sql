@@ -52,6 +52,7 @@ CREATE TABLE tx_news_domain_model_news (
 	content_elements text,
 	path_segment tinytext,
 	alternative_title tinytext,
+	notes text,
 
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
@@ -207,6 +208,7 @@ CREATE TABLE tx_news_domain_model_tag (
 	seo_description text,
 	seo_headline varchar(255) NOT NULL DEFAULT '',
 	seo_text text,
+	notes text,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

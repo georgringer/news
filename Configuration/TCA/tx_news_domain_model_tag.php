@@ -6,6 +6,7 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 return [
     'ctrl' => [
         'title' => $ll . 'tx_news_domain_model_tag',
+        'descriptionColumn' => 'notes',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -88,11 +89,22 @@ return [
             ],
             'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
         ],
+        'notes' => [
+            'label' => $ll . 'notes',
+            'config' => [
+                'type' => 'text',
+                'rows' => 10,
+                'cols' => 48
+            ]
+        ],
     ],
     'types' => [
         0 => [
             'showitem' => 'title, --palette--;;paletteCore,
-            --div--;' . $ll . 'tx_news_domain_model_tag.tabs.seo, seo_title, seo_description, seo_headline, seo_text'
+            --div--;' . $ll . 'tx_news_domain_model_tag.tabs.seo, seo_title, seo_description, seo_headline, seo_text,
+            --div--;' . $ll . 'notes,
+                    notes,
+			--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ]
     ],
     'palettes' => [
