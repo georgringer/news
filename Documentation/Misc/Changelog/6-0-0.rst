@@ -42,6 +42,15 @@ The ViewHelpers will be removed with the version 7.0.0.
 
 Install & configure the extension `rx_shariff` which takes care of the privacy of your users!
 
+Renaming of partials
+^^^^^^^^^^^^^^^^^^^^
+The following partials have been renamed
+
+- `Detail/FalMediaContainer` to `Detail/MediaContainer`
+- `Detail/FalMediaImageContainer` to `Detail/MediaImageContainer`
+- `Detail/FalMediaVideoContainer` to `Detail/MediaVideoContainer`
+
+
 Error message if news not found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 While rendering a **detail view** and a news record is not found anymore (e.g. because it has been deleted or set to hidden) an error message is now shown instead of an exception.
@@ -139,6 +148,17 @@ The import module has been rewritten:
 - Use jQuery instead of ExtJS
 - Use bootstrap for the forms
 - Use a callout for the backup info
+
+Simplify getters for FAL fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Add easier names for the getters of fields to FAL. As the non-FAL fields have been removed, the simplified getters
+have been reactivated to fetch the FAL fields. This makes the templates far easier to read.
+
+- `newsItem.falMedia` => `newsItem.media`
+- `newsItem.falMMediaPreviews` => `newsItem.mediaPreviews`
+- `newsItem.falMediaNonPreviews` => `newsIten.nonMediaPreviews`
+- `newsItem.firstFalImagePreview` => `newsItem.firstPreview`
+- `newsItem.falRelatedFiles` => `newsItem.relatedFiles`
 
 All Changes
 -----------
