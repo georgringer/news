@@ -16,7 +16,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * Examples
  * ==============
- * <social.facebook.comment appId="165193833530000" xid="news-{newsItem.uid}" />
+ * <n:social.facebook.comment appId="165193833530000" xid="news-{newsItem.uid}" />
  * Result: Facebook widget to comment an article
  *
  */
