@@ -49,6 +49,16 @@ class RecordListConstraint
             }
         }
 
+        // hidden
+        $topNewsSetting = (int)$arguments['hidden'];
+        if ($topNewsSetting > 0) {
+            if ($topNewsSetting === 1) {
+                $parameters['where'][] = 'hidden=1';
+            } elseif ($topNewsSetting === 2) {
+                $parameters['where'][] = 'hidden=0';
+            }
+        }
+
         // time constraint low
         if (isset($arguments['timeRestriction']) && !empty($arguments['timeRestriction'])) {
             try {

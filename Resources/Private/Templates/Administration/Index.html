@@ -97,6 +97,20 @@
 							</div>
 
 							<div class="form-group">
+								<label for="hidden" class="col-xs-4 control-label">
+									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.filter.hidden" />
+								</label>
+
+								<div class="col-xs-8">
+									<f:form.select property="hidden" class="form-control" options="{
+						0:'',
+						1:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.filter.hidden.hidden\')}',
+						2:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.filter.hidden.nonHidden\')}'
+					}" id="hidden" />
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label for="sortingField" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy" />
 								</label>

@@ -72,4 +72,14 @@ class AdministrationDemandTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->instance->setSortingDirection($value);
         $this->assertEquals($value, $this->instance->getSortingDirection());
     }
+
+    /**
+     * @test
+     */
+    public function hiddenCanBeSet()
+    {
+        $value = 2;
+        $this->instance->setHidden($value);
+        $this->assertEquals($value, $this->instance->getHidden());
+    }
 }

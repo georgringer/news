@@ -40,6 +40,11 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     protected $searchWord;
 
     /**
+     * @var int
+     */
+    protected $hidden;
+
+    /**
      * @return string
      */
     public function getRecursive()
@@ -123,5 +128,21 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     public function setSearchWord($searchWord)
     {
         $this->searchWord = $searchWord;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @param int $hidden
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
     }
 }
