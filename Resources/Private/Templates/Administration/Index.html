@@ -111,6 +111,20 @@
 							</div>
 
 							<div class="form-group">
+								<label for="archived" class="col-xs-4 control-label">
+									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction" />
+								</label>
+
+								<div class="col-xs-8">
+									<f:form.select property="archived" class="form-control" options="{
+						0:'',
+						1:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.active\')}',
+						2:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.archived\')}'
+					}" id="archived" />
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label for="sortingField" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy" />
 								</label>

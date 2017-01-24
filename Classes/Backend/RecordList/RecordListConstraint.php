@@ -49,12 +49,23 @@ class RecordListConstraint
             }
         }
 
+        // archived (1==active, 2==archived)
+        $archived = (int)$arguments['archived'];
+        if ($archived > 0) {
+            $currentTime = $GLOBALS['EXEC_TIME'];
+            if ($archived === 1) {
+                $parameters['where'][] = '(archive > ' . $currentTime . ' OR archive=0)';
+            } elseif ($archived === 2) {
+                $parameters['where'][] = 'archive > 0 AND archive <' . $currentTime;
+            }
+        }
+
         // hidden
-        $topNewsSetting = (int)$arguments['hidden'];
-        if ($topNewsSetting > 0) {
-            if ($topNewsSetting === 1) {
+        $hidden = (int)$arguments['hidden'];
+        if ($hidden > 0) {
+            if ($hidden === 1) {
                 $parameters['where'][] = 'hidden=1';
-            } elseif ($topNewsSetting === 2) {
+            } elseif ($hidden === 2) {
                 $parameters['where'][] = 'hidden=0';
             }
         }

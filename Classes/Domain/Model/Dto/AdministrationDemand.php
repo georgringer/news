@@ -45,6 +45,11 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     protected $hidden;
 
     /**
+     * @var int
+     */
+    protected $archived;
+
+    /**
      * @return string
      */
     public function getRecursive()
@@ -144,5 +149,21 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     public function setHidden($hidden)
     {
         $this->hidden = $hidden;
+    }
+
+    /**
+     * @return int
+     */
+    public function getArchived()
+    {
+        return $this->archived;
+    }
+
+    /**
+     * @param int $archived
+     */
+    public function setArchived($archived)
+    {
+        $this->archived = $archived;
     }
 }
