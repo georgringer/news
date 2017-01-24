@@ -143,6 +143,7 @@ class PageLayoutView
                         $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     default:
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                 }
 
                 if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'])) {
@@ -527,8 +528,9 @@ class PageLayoutView
 
         // Find correct title by looping over all options
         if (!empty($field)) {
-            foreach ($this->templateLayoutsUtility->getAvailableTemplateLayouts($pageUid) as $layout) {
-                if ($layout[1] === $field) {
+            $layouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageUid);
+            foreach ($layouts as $layout) {
+                if ((string)$layout[1] === (string)$field) {
                     $title = $layout[0];
                 }
             }
