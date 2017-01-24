@@ -27,7 +27,6 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
 class IfIsActiveViewHelper extends AbstractConditionViewHelper implements CompilableInterface
 {
     /**
-     * @return void
      */
     public function initializeArguments()
     {

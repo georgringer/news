@@ -52,7 +52,6 @@ class ObjectViewHelper extends AbstractViewHelper implements CompilableInterface
     protected $escapeOutput = false;
 
     /**
-     * @return void
      */
     public function initializeArguments()
     {

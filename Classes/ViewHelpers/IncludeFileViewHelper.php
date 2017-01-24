@@ -31,7 +31,6 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
     use CompileWithRenderStatic;
 
     /**
-     * @return void
      */
     public function initializeArguments()
     {
@@ -43,7 +42,6 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
-     * @return void
      */
     public static function renderStatic(
         array $arguments,

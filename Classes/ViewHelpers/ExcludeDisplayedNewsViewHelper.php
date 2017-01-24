@@ -43,7 +43,6 @@ class ExcludeDisplayedNewsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Ab
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
-     * @return void
      */
     public static function renderStatic(
         array $arguments,
