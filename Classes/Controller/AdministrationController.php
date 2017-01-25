@@ -291,7 +291,7 @@ class AdministrationController extends NewsController
         $dblist->dontShowClipControlPanels = true;
         $dblist->counter++;
         $dblist->MOD_MENU = ['bigControlPanel' => '', 'clipBoard' => '', 'localization' => ''];
-        $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0, 1000);
+        $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0);
         $limit = isset($this->settings['list']['paginate']['itemsPerPage']) ? (int)$this->settings['list']['paginate']['itemsPerPage'] : 20;
         $dblist->start($this->pageUid, 'tx_news_domain_model_news', $pointer, '',
             $demand->getRecursive(), $limit);
