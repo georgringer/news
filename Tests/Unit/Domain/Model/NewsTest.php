@@ -315,7 +315,7 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
         $mockedElement1 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
         $mockedElement1->_set('uid', 1);
-        $mockedElement1->_set('showinpreview', true);
+        $mockedElement1->_set('showinpreview', 1);
         $mockedElement1->expects($this->any())->method('getProperty')->will($this->returnValue(true));
 
         $mediaItem1 = new FileReference();
@@ -324,7 +324,7 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
         $mockedElement2 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
         $mockedElement2->_set('uid', 2);
-        $mockedElement2->_set('showinpreview', true);
+        $mockedElement2->_set('showinpreview', 1);
         $mockedElement2->expects($this->any())->method('getProperty')->will($this->returnValue(false));
 
         $mediaItem2 = new FileReference();
@@ -333,7 +333,7 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
         $mockedElement3 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
         $mockedElement3->_set('uid', 3);
-        $mockedElement3->_set('showinpreview', true);
+        $mockedElement3->_set('showinpreview', 1);
         $mockedElement3->expects($this->any())->method('getProperty')->will($this->returnValue(true));
 
         $mediaItem3 = new FileReference();

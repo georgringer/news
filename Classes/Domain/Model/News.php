@@ -154,7 +154,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $description;
 
     /**
-     * Fal media items
+     * All fal media items
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
      * @lazy
@@ -162,7 +162,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $falMedia;
 
     /**
-     * Fal media items with showinpreview set
+     * Fal media items with showinpreview set to 'show in list and detail views' or 'Show only in list views'
      *
      * @var array
      * @transient
@@ -170,12 +170,29 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $falMediaPreviews;
 
     /**
-     * Fal media items with showinpreview not set
+     * Fal media items with showinpreview set to 'show only in detail views'
      *
      * @var array
      * @transient
      */
     protected $falMediaNonPreviews;
+
+
+    /**
+     * Fal media items with showinpreview set to 'show in list and detail views' or 'show only in detail views'
+     *
+     * @var array
+     * @transient
+     */
+    protected $falMediaDetail;
+
+    /**
+     * Fal media items with showinpreview set to 'Show only in list views'
+     *
+     * @var array
+     * @transient
+     */
+    protected $falMediaOnlyPreview;
 
     /**
      * @var string
@@ -785,22 +802,13 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get the Fal media items
+     * Get media elements with preview mode 'show in list and detail views' or 'show only in list views'
      *
      * @return array
      */
     public function getFalMediaPreviews()
     {
-        if ($this->falMediaPreviews === null && $this->getFalMedia()) {
-            $this->falMediaPreviews = [];
-            /** @var $mediaItem FileReference */
-            foreach ($this->getFalMedia() as $mediaItem) {
-                if ($mediaItem->getOriginalResource()->getProperty('showinpreview')) {
-                    $this->falMediaPreviews[] = $mediaItem;
-                }
-            }
-        }
-        return $this->falMediaPreviews;
+        return $this->getFalMediaByPreviewMode($this->falMediaPreviews, [1, 2]);
     }
 
     /**
@@ -810,26 +818,17 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMediaPreviews()
     {
-        return $this->getFalMediaPreviews();
+        return $this->getFalMediaByPreviewMode($this->falMediaPreviews, [1, 2]);
     }
 
     /**
-     * Get all media elements which are not tagged as preview
+     * Get media elements with preview mode 'show only in detail views'
      *
      * @return array
      */
     public function getFalMediaNonPreviews()
     {
-        if ($this->falMediaNonPreviews === null && $this->getFalMedia()) {
-            $this->falMediaNonPreviews = [];
-            /** @var $mediaItem FileReference */
-            foreach ($this->getFalMedia() as $mediaItem) {
-                if (!$mediaItem->getOriginalResource()->getProperty('showinpreview')) {
-                    $this->falMediaNonPreviews[] = $mediaItem;
-                }
-            }
-        }
-        return $this->falMediaNonPreviews;
+        return $this->getFalMediaByPreviewMode($this->falMediaNonPreviews, [0]);
     }
 
     /**
@@ -839,7 +838,70 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMediaNonPreviews()
     {
-        return $this->getFalMediaNonPreviews();
+        return $this->getFalMediaByPreviewMode($this->falMediaNonPreviews, [0]);
+    }
+
+    /**
+     * Get media elements with preview mode 'show only in detail views' or 'show in list and detail views'
+     *
+     * @return array
+     */
+    public function getFalMediaDetail()
+    {
+        return $this->getFalMediaByPreviewMode($this->falMediaDetail, [0, 1]);
+    }
+
+    /**
+     * Short method for getFalMediaDetail
+     *
+     * @return array
+     */
+    public function getMediaDetail()
+    {
+        return $this->getFalMediaByPreviewMode($this->falMediaDetail, [0, 1]);
+    }
+
+    /**
+     * Get media elements with preview mode 'show only in list views'
+     *
+     * @return array
+     */
+    public function getFalMediaOnlyPreview()
+    {
+        return $this->getFalMediaByPreviewMode($this->falMediaOnlyPreview, [2]);
+    }
+
+    /**
+     * Short method for getFalMediaOnlyPreview
+     *
+     * @return array
+     */
+    public function getMediaOnlyPreview()
+    {
+        return $this->getFalMediaByPreviewMode($this->falMediaOnlyPreview, [2]);
+    }
+
+    /**
+     * Get media elements by preview mode
+     *
+     * @param array|null $falMedia
+     * @param array $previewModes
+     * @return array
+     */
+    public function getFalMediaByPreviewMode(&$falMedia, $previewModes)
+    {
+        if ($falMedia === null && $this->getFalMedia()) {
+            $falMedia = [];
+            /** @var $mediaItem FileReference */
+            foreach ($this->getFalMedia() as $mediaItem) {
+                foreach ($previewModes as $previewMode) {
+                    if ($mediaItem->getOriginalResource()->getProperty('showinpreview') === $previewMode) {
+                        $falMedia[] = $mediaItem;
+                    }
+                }
+            }
+        }
+        return $falMedia;
     }
 
     /**
