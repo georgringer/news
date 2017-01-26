@@ -134,7 +134,6 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 16,
-                'max' => 20,
                 'eval' => 'datetime',
                 'default' => 0,
             ]
@@ -146,7 +145,6 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 16,
-                'max' => 20,
                 'eval' => 'datetime',
                 'default' => 0,
             ]
