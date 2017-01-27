@@ -2,7 +2,7 @@
 <f:if condition="{media}">
 	<!-- media files -->
 	<div class="news-img-wrap">
-		<f:for each="{mediaDetail}" as="mediaElement">
+		<f:for each="{media}" as="mediaElement">
 			<div class="outer">
 				<f:if condition="{mediaElement.originalResource.type} == 2">
 					<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
