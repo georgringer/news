@@ -895,7 +895,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
             /** @var $mediaItem FileReference */
             foreach ($this->getFalMedia() as $mediaItem) {
                 foreach ($previewModes as $previewMode) {
-                    if ($mediaItem->getOriginalResource()->getProperty('showinpreview') === $previewMode) {
+                    if ((int)$mediaItem->getOriginalResource()->getProperty('showinpreview') === $previewMode) {
                         $falMedia[] = $mediaItem;
                     }
                 }
