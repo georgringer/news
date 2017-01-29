@@ -177,7 +177,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $falMediaNonPreviews;
 
-
     /**
      * Fal media items with showinpreview set to 'show in list and detail views' or 'show only in detail views'
      *
