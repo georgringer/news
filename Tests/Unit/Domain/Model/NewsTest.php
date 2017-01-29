@@ -311,40 +311,42 @@ class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function falMediaPreviewsAreReturned()
     {
+        $media = [
+            0, // Don't show in preview
+            1, // Show in preview and detail
+            2, // Show only in detail
+            1,
+            0,
+            2,
+            0
+        ];
+
         $news = new News();
 
-        $mockedElement1 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
-        $mockedElement1->_set('uid', 1);
-        $mockedElement1->_set('showinpreview', 1);
-        $mockedElement1->expects($this->any())->method('getProperty')->will($this->returnValue(true));
+        foreach ($media as $key => $previewMode) {
+            $mockedElements[$key] = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
+            $mockedElements[$key]->_set('uid', $key + 1);
+            $mockedElements[$key]->_set('showinpreview', true);
+            $mockedElements[$key]->expects($this->any())->method('getProperty')->will($this->returnValue($previewMode));
 
-        $mediaItem1 = new FileReference();
-        $mediaItem1->_setProperty('originalResource', $mockedElement1);
-        $news->addFalMedia($mediaItem1);
+            $fileReferences[$key] = new FileReference();
+            $fileReferences[$key]->_setProperty('originalResource', $mockedElements[$key]);
+            $news->addFalMedia($fileReferences[$key]);
+        }
 
-        $mockedElement2 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
-        $mockedElement2->_set('uid', 2);
-        $mockedElement2->_set('showinpreview', 1);
-        $mockedElement2->expects($this->any())->method('getProperty')->will($this->returnValue(false));
+        $this->assertEquals(7, count($news->getFalMedia()));
+        $this->assertEquals(7, count($news->getMedia()));
 
-        $mediaItem2 = new FileReference();
-        $mediaItem2->_setProperty('originalResource', $mockedElement2);
-        $news->addFalMedia($mediaItem2);
+        $this->assertEquals(4, count($news->getFalMediaPreviews()));
+        $this->assertEquals(4, count($news->getMediaPreviews()));
 
-        $mockedElement3 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
-        $mockedElement3->_set('uid', 3);
-        $mockedElement3->_set('showinpreview', 1);
-        $mockedElement3->expects($this->any())->method('getProperty')->will($this->returnValue(true));
+        $this->assertEquals(3, count($news->getFalMediaNonPreviews()));
+        $this->assertEquals(3, count($news->getMediaNonPreviews()));
 
-        $mediaItem3 = new FileReference();
-        $mediaItem3->_setProperty('originalResource', $mockedElement3);
-        $news->addFalMedia($mediaItem3);
+        $this->assertEquals(2, count($news->getFalMediaOnlyPreview()));
+        $this->assertEquals(2, count($news->getMediaOnlyPreview()));
 
-        $this->assertEquals(2, count($news->getFalMediaPreviews()));
-        $this->assertEquals(2, count($news->getMediaPreviews()));
-        $this->assertEquals(1, count($news->getFalMediaNonPreviews()));
-        $this->assertEquals(1, count($news->getMediaNonPreviews()));
-        $this->assertEquals(3, count($news->getFalMedia()));
-        $this->assertEquals(3, count($news->getMedia()));
+        $this->assertEquals(5, count($news->getFalMediaDetail()));
+        $this->assertEquals(5, count($news->getMediaDetail()));
     }
 }
