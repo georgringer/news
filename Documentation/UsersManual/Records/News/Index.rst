@@ -147,9 +147,10 @@ This relation handles all media files you want to attach to a news record.
    :Description:
          Description:
  - :Field:
-         Show in list views
+         Show in views
    :Description:
-         If set, this media element will be rendered in the list view (or where it is desired by changing the templates).
+         Select the preview mode to control in which views the media is displayed.
+         Detail only, detail and list or list only
  - :Field:
          Title
    :Description:
