@@ -49,12 +49,7 @@
   },
   "config": {
     "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin",
-    "preferred-install": {
-      "typo3/cms": "source",
-      "typo3/cms-core": "source",
-      "*": "dist"
-    }
+    "bin-dir": ".Build/bin"
   },
   "scripts": {
     "post-autoload-dump": [
