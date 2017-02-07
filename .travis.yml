@@ -56,6 +56,11 @@ script:
 
   - >
     echo;
+    echo "Running PHP Coding Standards Fixer checks";
+    .Build/bin/php-cs-fixer fix --config=Build/.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $COMMIT_RANGE`
+
+  - >
+    echo;
     export typo3DatabaseName="typo3";
     export typo3DatabaseHost="localhost";
     export typo3DatabaseUsername="root";
