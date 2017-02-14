@@ -17,6 +17,7 @@ namespace GeorgRinger\News\Backend\FormDataProvider;
 
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Fill the news records with default values
@@ -38,10 +39,25 @@ class NewsRowInitializeNew implements FormDataProviderInterface
      */
     public function addData(array $result)
     {
-        if ($result['command'] !== 'new' || $result['tableName'] !== 'tx_news_domain_model_news') {
+        if ($result['tableName'] !== 'tx_news_domain_model_news') {
             return $result;
         }
 
+        $result = $this->setTagListingId($result);
+
+        if ($result['command'] === 'new') {
+            $result = $this->fillDateField($result);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param array $result
+     * @return array
+     */
+    protected function fillDateField(array $result)
+    {
         if ($this->emConfiguration->getDateTimeRequired()) {
             $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
         }
@@ -63,6 +79,28 @@ class NewsRowInitializeNew implements FormDataProviderInterface
             }
         }
 
+        return $result;
+    }
+
+    /**
+     * @param array $result
+     * @return array
+     */
+    protected function setTagListingId(array $result)
+    {
+        if (!is_array($result['pageTsConfig']['tx_news.']) || !isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
+            return $result;
+        }
+        $tagPid = (int)$result['pageTsConfig']['tx_news.']['tagPid'];
+        if ($tagPid <= 0) {
+            return $result;
+        }
+
+        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8006000) {
+            $result['processedTca']['columns']['tags']['config']['fieldControl']['listModule']['options']['pid'] = $tagPid;
+        } else {
+            $result['processedTca']['columns']['tags']['config']['wizards']['list']['params']['pid'] = $tagPid;
+        }
         return $result;
     }
 }
