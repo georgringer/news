@@ -43,7 +43,7 @@ $tx_news_domain_model_news = [
             'endtime' => 'endtime',
             'fe_group' => 'fe_group',
         ],
-        'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.gif',
+        'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.svg',
         'searchFields' => 'uid,title',
         'thumbnail' => 'fal_media',
     ],
