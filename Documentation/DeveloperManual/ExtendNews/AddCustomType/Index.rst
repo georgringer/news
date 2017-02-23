@@ -21,7 +21,7 @@ To add your custom type, you have to follow the steps below.
 In this example the new type will be called 'myCustomNewsType' and is configured to only show the fields 'title' and 'bodytext'.
 
 1) Typoscript
----------------------------------
+-------------
 
 .. code-block:: typoscript
 
@@ -31,7 +31,7 @@ In this example the new type will be called 'myCustomNewsType' and is configured
         3 = Vendor\ExtName\Domain\Model\MyCustomNewsType
       }
     }
-    
+
     Vendor\ExtName\Domain\Model\MyCustomNewsType {
       mapping {
         recordType = 3
@@ -40,9 +40,9 @@ In this example the new type will be called 'myCustomNewsType' and is configured
       }
     }
   }
-         
+
 2) TCA
----------------------------------
+------
 
 In this example, the new type is configured to show the fields `bodytext` and `title`.
 Therefore, create the file ``Configuration/TCA/Overrides/tx_news_domain_model_news.php``.
@@ -53,16 +53,16 @@ Therefore, create the file ``Configuration/TCA/Overrides/tx_news_domain_model_ne
     if (!defined('TYPO3_MODE')) {
       die ('Access denied.');
     }
-  
+
     $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['config']['items']['3'] =
       ['myCustomNewsType', 3] ;
-      
+
     $GLOBALS['TCA']['tx_news_domain_model_news']['types']['3'] = [
       'showitem' => 'title, bodytext'
     ];
-    
+
 3) Custom class
---------------------------------- 
+---------------
 
 .. code-block:: php
 

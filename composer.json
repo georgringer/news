@@ -20,7 +20,7 @@
     "GPL-2.0+"
   ],
   "require": {
-    "typo3/cms-core": ">=7.6.0,<8.9.99"
+    "typo3/cms-core": "^7.6.13 || ^8.5"
   },
   "suggest": {
     "dmitryd/typo3-dd-googlesitemap": "~2.0",
@@ -28,7 +28,8 @@
   },
   "require-dev": {
     "mikey179/vfsStream": "1.4.*@dev",
-    "phpunit/phpunit": "~4.8.0"
+    "phpunit/phpunit": "~4.8.0",
+    "friendsofphp/php-cs-fixer": "^2.0"
   },
   "autoload": {
     "psr-4": {

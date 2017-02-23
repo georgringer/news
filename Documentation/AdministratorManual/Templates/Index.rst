@@ -21,5 +21,6 @@ Templates
 	Start/Index
 	TwitterBootstrap/Index
 	TemplateSelector/Index
+	AjaxBasedPagination/Index
 	ViewHelpers/Index
 	Snippets/Index

@@ -6,6 +6,7 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 return [
     'ctrl' => [
         'title' => $ll . 'tx_news_domain_model_tag',
+        'descriptionColumn' => 'notes',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -43,7 +44,7 @@ return [
             ]
         ],
         'hidden' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
@@ -51,7 +52,7 @@ return [
             ]
         ],
         'title' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => $ll . 'tx_news_domain_model_tag.title',
             'config' => [
                 'type' => 'input',
@@ -60,45 +61,55 @@ return [
             ]
         ],
         'seo_headline' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_headline',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'seo_title' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_title',
             'config' => [
                 'type' => 'input',
             ],
         ],
         'seo_description' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_description',
             'config' => [
                 'type' => 'text',
             ],
         ],
         'seo_text' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_text',
             'config' => [
                 'type' => 'text',
             ],
             'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
         ],
+        'notes' => [
+            'label' => $ll . 'notes',
+            'config' => [
+                'type' => 'text',
+                'rows' => 10,
+                'cols' => 48
+            ]
+        ],
     ],
     'types' => [
         0 => [
             'showitem' => 'title, --palette--;;paletteCore,
-            --div--;' . $ll . 'tx_news_domain_model_tag.tabs.seo, seo_title, seo_description, seo_headline, seo_text'
+            --div--;' . $ll . 'tx_news_domain_model_tag.tabs.seo, seo_title, seo_description, seo_headline, seo_text,
+            --div--;' . $ll . 'notes,
+                    notes,
+			--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ]
     ],
     'palettes' => [
         'paletteCore' => [
             'showitem' => 'hidden,',
-            'canNotCollapse' => true
         ],
     ]
 ];

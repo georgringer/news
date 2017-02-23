@@ -18,3 +18,4 @@ Extend News
 	ProxyClassGenerator/Index
 	ImportService/Index
 	AddCustomType/Index
+	ExtensionBasedOnNews/Index

@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Domain\Repository;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\DemandInterface;
@@ -26,7 +20,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
 {
-
     protected function createConstraintsFromDemand(
         QueryInterface $query,
         DemandInterface $demand
@@ -78,15 +71,21 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      * Find category tree
      *
      * @param array $rootIdList list of id s
-     * @return QueryInterface
+     * @return QueryInterface|array
      */
     public function findTree(array $rootIdList, $startingPoint = null)
     {
         $subCategories = CategoryService::getChildrenCategories(implode(',', $rootIdList));
-        $ordering = ['sorting' => QueryInterface::ORDER_ASCENDING];
 
-        $categories = $this->findByIdList(explode(',', $subCategories), $ordering, $startingPoint);
+        $idList = explode(',', $subCategories);
+        if (empty($idList)) {
+            return [];
+        }
+
+        $ordering = ['sorting' => QueryInterface::ORDER_ASCENDING];
+        $categories = $this->findByIdList($idList, $ordering, $startingPoint);
         $flatCategories = [];
+        /** @var Category $category */
         foreach ($categories as $category) {
             $flatCategories[$category->getUid()] = [
                 'item' => $category,
@@ -123,6 +122,9 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      */
     public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {
+        if (empty($idList)) {
+            throw new \InvalidArgumentException('The given id list is empty.', 1484823597);
+        }
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setRespectSysLanguage(false);
@@ -174,7 +176,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
             if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
                 $whereClause = 'sys_language_uid=' . $language . ' AND l10n_parent IN(' . implode(',',
                         $idList) . ')' . $GLOBALS['TSFE']->sys_page->enableFields('sys_category');
-                $rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'sys_category',
+                $rows = (array)$GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'sys_category',
                     $whereClause);
 
                 $idList = $this->replaceCategoryIds($idList, $rows);

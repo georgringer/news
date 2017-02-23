@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Hooks;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Template\DocumentTemplate;
@@ -23,6 +17,7 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
@@ -148,6 +143,7 @@ class PageLayoutView
                         $this->getTemplateLayoutSettings($params['row']['pid']);
                         break;
                     default:
+                        $this->getTemplateLayoutSettings($params['row']['pid']);
                 }
 
                 if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'])) {
@@ -172,7 +168,6 @@ class PageLayoutView
     /**
      * Render archive settings
      *
-     * @return void
      */
     public function getArchiveSettings()
     {
@@ -189,7 +184,6 @@ class PageLayoutView
     /**
      * Render single news settings
      *
-     * @return void
      */
     public function getSingleNewsSettings()
     {
@@ -224,7 +218,6 @@ class PageLayoutView
     /**
      * Render single news settings
      *
-     * @return void
      */
     public function getDetailPidSetting()
     {
@@ -243,7 +236,6 @@ class PageLayoutView
     /**
      * Render listPid news settings
      *
-     * @return void
      */
     public function getListPidSetting()
     {
@@ -310,7 +302,6 @@ class PageLayoutView
     /**
      * Get order settings
      *
-     * @return void
      */
     public function getOrderSettings()
     {
@@ -374,7 +365,6 @@ class PageLayoutView
      * Render category settings
      *
      * @param bool $showCategoryMode show the category conjunction
-     * @return void
      */
     public function getCategorySettings($showCategoryMode = true)
     {
@@ -424,7 +414,6 @@ class PageLayoutView
     /**
      * Get the restriction for tags
      *
-     * @return void
      */
     public function getTagRestrictionSetting()
     {
@@ -447,7 +436,6 @@ class PageLayoutView
     /**
      * Render offset & limit configuration
      *
-     * @return void
      */
     public function getOffsetLimitSettings()
     {
@@ -478,7 +466,6 @@ class PageLayoutView
     /**
      * Render date menu configuration
      *
-     * @return void
      */
     public function getDateMenuSettings()
     {
@@ -493,7 +480,6 @@ class PageLayoutView
     /**
      * Render time restriction configuration
      *
-     * @return void
      */
     public function getTimeRestrictionSetting()
     {
@@ -518,7 +504,6 @@ class PageLayoutView
     /**
      * Render top news restriction configuration
      *
-     * @return void
      */
     public function getTopNewsRestrictionSetting()
     {
@@ -535,7 +520,6 @@ class PageLayoutView
      * Render template layout configuration
      *
      * @param int $pageUid
-     * @return void
      */
     public function getTemplateLayoutSettings($pageUid)
     {
@@ -544,8 +528,9 @@ class PageLayoutView
 
         // Find correct title by looping over all options
         if (!empty($field)) {
-            foreach ($this->templateLayoutsUtility->getAvailableTemplateLayouts($pageUid) as $layout) {
-                if ($layout[1] === $field) {
+            $layouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageUid);
+            foreach ($layouts as $layout) {
+                if ((string)$layout[1] === (string)$field) {
                     $title = $layout[0];
                 }
             }
@@ -562,7 +547,6 @@ class PageLayoutView
     /**
      * Get information if override demand setting is disabled or not
      *
-     * @return void
      */
     public function getOverrideDemandSettings()
     {
@@ -580,7 +564,6 @@ class PageLayoutView
     /**
      * Get the startingpoint
      *
-     * @return void
      */
     public function getStartingPoint()
     {
@@ -609,7 +592,7 @@ class PageLayoutView
             }
 
             $this->tableData[] = [
-                $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
+                $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.startingpoint'),
                 implode(', ', $pagesOut) . $recursiveLevelText
             ];
         }
@@ -640,7 +623,11 @@ class PageLayoutView
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/PageLayout');
-        $pageRenderer->addCssFile(ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Css/Backend/PageLayoutView.css');
+        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= VersionNumberUtility::convertVersionNumberToInteger('8.4')) {
+            $pageRenderer->addCssFile('EXT:news/Resources/Public/Css/Backend/PageLayoutView.css');
+        } else {
+            $pageRenderer->addCssFile(ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Css/Backend/PageLayoutView.css');
+        }
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:news/Resources/Private/Backend/PageLayoutView.html'));

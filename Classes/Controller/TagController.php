@@ -2,24 +2,17 @@
 namespace GeorgRinger\News\Controller;
 
 /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * Tag controller
  */
 class TagController extends NewsController
 {
-
     const SIGNAL_TAG_LIST_ACTION = 'listAction';
 
     /**
@@ -31,7 +24,6 @@ class TagController extends NewsController
      * Inject a tag repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
-     * @return void
      */
     public function injectTagRepository(\GeorgRinger\News\Domain\Repository\TagRepository $tagRepository)
     {
@@ -42,7 +34,6 @@ class TagController extends NewsController
      * List tags
      *
      * @param array $overwriteDemand
-     * @return void
      */
     public function listAction(array $overwriteDemand = null)
     {

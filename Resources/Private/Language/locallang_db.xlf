@@ -142,13 +142,16 @@
 				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_media.showinpreview" xml:space="preserve">
-				<source>Show in preview views</source>
+				<source>Show in list views</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve">
 				<source>Speaking URL path segment</source>
 			</trans-unit>
 			<trans-unit id="be_user.tx_news_categorymounts" xml:space="preserve">
 				<source>News: Category restriction</source>
+			</trans-unit>
+			<trans-unit id="notes" xml:space="preserve">
+				<source>Notes</source>
 			</trans-unit>
 		</body>
 	</file>

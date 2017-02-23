@@ -85,25 +85,26 @@
 					</f:if>
 				</p>
 			</div>
+			<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+				<f:if condition="{newsItem.teaser}">
+					<!-- teaser -->
+					<div class="teaser-text" itemprop="description">
+						<f:format.html>{newsItem.teaser}</f:format.html>
+					</div>
+				</f:if>
 
-			<f:if condition="{newsItem.teaser}">
-				<!-- teaser -->
-				<div class="teaser-text" itemprop="description">
-					<f:format.html>{newsItem.teaser}</f:format.html>
+				<f:if condition="{newsItem.contentElements}">
+					<!-- content elements -->
+					<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+				</f:if>
+
+				<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}" />
+
+				<!-- main text -->
+				<div class="news-text-wrap" itemprop="articleBody">
+					<f:format.html>{newsItem.bodytext}</f:format.html>
 				</div>
-			</f:if>
-
-			<f:if condition="{newsItem.contentElements}">
-				<!-- content elements -->
-				<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
-			</f:if>
-
-			<f:render partial="Detail/FalMediaContainer" arguments="{media: newsItem.falMedia, settings:settings}" />
-
-			<!-- main text -->
-			<div class="news-text-wrap" itemprop="articleBody">
-				<f:format.html>{newsItem.bodytext}</f:format.html>
-			</div>
+			</n:renderMedia>
 
 			<f:if condition="{settings.backPid}">
 				<!-- Link Back -->
@@ -121,22 +122,7 @@
 					and it will be used automatically!
 				</f:comment>
 				<n:extensionLoaded extensionKey="rx_shariff">
-					<f:then>
-						<f:render partial="Detail/Shariff" />
-					</f:then>
-					<f:else>
-						<div class="social">
-							<div class="like">
-								<n:social.facebook.like />
-							</div>
-							<div class="share">
-								<n:social.facebook.share />
-							</div>
-							<div class="twitter">
-								<n:social.twitter>Twitter</n:social.twitter>
-							</div>
-						</div>
-					</f:else>
+					<f:render partial="Detail/Shariff" />
 				</n:extensionLoaded>
 			</f:if>
 
@@ -170,14 +156,14 @@
 					</div>
 				</f:if>
 
-				<f:if condition="{newsItem.falRelatedFiles}">
-					<!-- FAL related files -->
+				<f:if condition="{newsItem.relatedFiles}">
+					<!-- related files -->
 					<div class="news-related news-related-files">
 						<h4>
 							<f:translate key="related-files" />
 						</h4>
 						<ul>
-							<f:for each="{newsItem.falRelatedFiles}" as="relatedFile">
+							<f:for each="{newsItem.relatedFiles}" as="relatedFile">
 								<li>
 									<span class="news-related-files-link">
 										<a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">

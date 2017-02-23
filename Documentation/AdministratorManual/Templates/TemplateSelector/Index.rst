@@ -11,7 +11,9 @@ Template selector
 
 This entry should help you to use different templates for different (list) views.
 
-Using the following Page TsConfig the editor can select the layouts in the news plugin: ::
+Using the following Page TsConfig the editor can select the layouts in the news plugin:
+
+.. code-block:: typoscript
 
 	tx_news.templateLayouts {
 		1 = A custom layout
@@ -58,7 +60,9 @@ Custom Templates by using TypoScript
 
 You can define a custom TypoScript setting which you can check in the view later on.
 
-The TypoScript could look like: ::
+The TypoScript could look like:
+
+.. code-block:: typoscript
 
 	plugin.tx_news {
 		settings {

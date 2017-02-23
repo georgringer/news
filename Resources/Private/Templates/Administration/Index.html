@@ -38,57 +38,56 @@
 			<input type="hidden" name="id" value="{page}">
 			<f:form.checkbox style="display:none" property="selectedCategories" value="0" />
 
-			<a id="toggle-settings"><i class="fa fa-minus"></i> {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.toggleForm')}</a>
-
 			<div id="setting-container" style="{f:if(condition:hideForm,then:'display:none',else:'')}">
-				<h2>
-					<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.headline" />
-				</h2>
 				<div class="settings">
-					<div class="row">
-						<div class="col-sm-4 form-horizontal">
+					<div class="row form-horizontal">
+						<div class="col-xs-6">
 							<div class="form-group">
-								<label for="searchWord" class="col-sm-4 control-label">
+								<label for="searchWord" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.searchWord" />
 								</label>
 
-								<div class="col-sm-8">
-									<f:form.textfield property="searchWord" id="searchWord" class="form-control" />
+								<div class="col-xs-8">
+									<f:form.textfield property="searchWord" id="searchWord" class="form-control t3js-clearable" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="recursive" class="col-sm-4 control-label">
-									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.recursive" />
+								<label for="timeRestriction" class="col-xs-4 control-label">
+									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.timeRange" />
 								</label>
 
-								<div class="col-sm-8">
-									<f:form.select property="recursive" options="{0:0,1:1,2:2,3:3,4:4,5:5}" id="recursive" class="form-control" />
+								<div class="col-xs-8">
+									<div class="input-group">
+										<f:form.textfield type="datetime" property="timeRestriction" id="timeRestriction" class="form-control t3js-datetimepicker t3js-clearable" data="{date-type:'datetime',date-offset:'0'}" />
+										<span class="input-group-btn">
+											<label class="btn btn-default" for="timeRestriction">
+												<span class="fa fa-calendar"></span>
+											</label>
+										</span>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="timeRestriction" class="col-sm-4 control-label">
-									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.timeRestriction" />
+								<label for="timeRestriction" class="col-xs-4 control-label">
+									-
 								</label>
-
-								<div class="col-sm-8">
-									<f:form.textfield property="timeRestriction" id="timeRestriction" class="form-control" />
+								<div class="col-xs-8">
+									<div class="input-group">
+										<f:form.textfield type="datetime" property="timeRestrictionHigh" id="timeRestrictionHigh" class="form-control t3js-datetimepicker t3js-clearable" data="{date-type:'datetime',date-offset:'0'}" />
+										<span class="input-group-btn">
+											<label class="btn btn-default" for="timeRestrictionHigh">
+												<span class="fa fa-calendar"></span>
+											</label>
+										</span>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="timeRestrictionHigh" class="col-sm-4 control-label">
-									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.timeRestrictionHigh" />
-								</label>
-
-								<div class="col-sm-8">
-									<f:form.textfield property="timeRestrictionHigh" id="timeRestrictionHigh" class="form-control" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="topNewsRestriction" class="col-sm-4 control-label">
+								<label for="topNewsRestriction" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction" />
 								</label>
 
-								<div class="col-sm-8">
+								<div class="col-xs-8">
 									<f:form.select property="topNewsRestriction" class="form-control" options="{
 						0:'',
 						1:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction.1\')}',
@@ -98,11 +97,39 @@
 							</div>
 
 							<div class="form-group">
-								<label for="sortingField" class="col-sm-4 control-label">
+								<label for="hidden" class="col-xs-4 control-label">
+									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.filter.hidden" />
+								</label>
+
+								<div class="col-xs-8">
+									<f:form.select property="hidden" class="form-control" options="{
+						0:'',
+						1:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.filter.hidden.hidden\')}',
+						2:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.filter.hidden.nonHidden\')}'
+					}" id="hidden" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="archived" class="col-xs-4 control-label">
+									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction" />
+								</label>
+
+								<div class="col-xs-8">
+									<f:form.select property="archived" class="form-control" options="{
+						0:'',
+						1:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.active\')}',
+						2:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction.archived\')}'
+					}" id="archived" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="sortingField" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy" />
 								</label>
 
-								<div class="col-sm-4">
+								<div class="col-xs-4">
 									<f:form.select class="form-control" property="sortingField" options="{
 					title:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.title\')}',
 					datetime:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.datetime\')}',
@@ -111,43 +138,53 @@
 					author:'{f:translate(key: \'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.author_formlabel\')}'
 				}" id="sortingField" />
 								</div>
-								<div class="col-sm-offset-1 col-sm-2">
+								<div class="col-xs-1">
 									<f:form.select class="form-control" property="sortingDirection" options="{
 					asc:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.asc\')}',
 					desc:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.desc\')}'
 				}" id="sortingDirection" />
 								</div>
 							</div>
-
 							<div class="form-group">
-								<div class="col-sm-offset-4 col-sm-8">
-									<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xlf:search')}" class="btn btn-default" />
+								<label for="recursive" class="col-xs-4 control-label">
+									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.recursive" />
+								</label>
+
+								<div class="col-xs-1">
+									<f:form.textfield type="number" additionalAttributes="{min:'0'}" property="recursive" id="recursive" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-xs-offset-4 col-xs-8">
+									<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xlf:search')}" class="btn btn-primary" />
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-8">
+						<div class="col-xs-6">
 							<div class="category-tree">
-								<div class="tree-wrapper">
-									<f:render section="categoryTree" arguments="{demand:demand,categories: categories, class:'list-tree'}" />
+								<div class="form-group">
+									<div class="tree-wrapper">
+										<f:render section="categoryTree" arguments="{demand:demand,categories: categories, class:'list-tree'}" />
+									</div>
 								</div>
 
 								<f:if condition="{categories}">
 									<div class="form-group">
-										<label for="categoryConjunction" class="col-sm-6 control-label">
+										<label for="categoryConjunction" class="col-xs-4 control-label">
 											<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction" />
 										</label>
 
-										<div class="col-sm-6">
-											<f:form.select class="form-control" property="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" id="categoryConjunction" />
+										<div class="col-xs-4">
+											<f:form.select class="form-control" property="categoryConjunction" id="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="includeSubCategories" class="col-sm-6 control-label">
+										<label for="includeSubCategories" class="col-xs-4 control-label">
 											<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.includeSubCategories" />
 										</label>
 
-										<div class="col-sm-6">
-											<f:form.checkbox class="form-control" property="includeSubCategories" value="1" id="includeSubCategories" />
+										<div class="col-xs-8">
+											<f:form.checkbox class="checkbox" property="includeSubCategories" value="1" id="includeSubCategories" />
 										</div>
 									</div>
 								</f:if>
@@ -189,13 +226,6 @@
 	</f:if>
 	<script type="text/javascript">
 		T3_THIS_LOCATION = {requestUri -> f:format.raw()};
-		TYPO3.jQuery(document).ready(function () {
-			TYPO3.jQuery('#toggle-settings').click(function () {
-				TYPO3.jQuery(this).children('i').toggleClass('fa-minus');
-				TYPO3.jQuery(this).children('i').toggleClass('fa-plus');
-				TYPO3.jQuery('#setting-container').toggle();
-			});
-		});
 	</script>
 </f:section>
 </html>

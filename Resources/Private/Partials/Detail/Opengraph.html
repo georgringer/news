@@ -9,10 +9,10 @@
 <n:metaTag property="og:type" content="{settings.opengraph.type}" />
 <n:metaTag property="og:url" content="" useCurrentDomain="1" />
 <n:metaTag property="og:site_name" content="{settings.opengraph.site_name}" />
-<f:if condition="{newsItem.firstFalImagePreview}">
+<f:if condition="{newsItem.firstPreview}">
 	<n:metaTag
 		property="og:image"
-		content="{f:uri.image(src:'{newsItem.firstFalImagePreview.uid}', treatIdAsReference:1, maxWidth:'500')}"
+		content="{f:uri.image(src:'{newsItem.firstPreview.uid}', treatIdAsReference:1, maxWidth:'500')}"
 		forceAbsoluteUrl="1" />
 	<n:metaTag property="og:image:width" content="{n:imageSize(property:'width')}" />
 	<n:metaTag property="og:image:height" content="{n:imageSize(property:'height')}" />

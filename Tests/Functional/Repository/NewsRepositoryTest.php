@@ -3,17 +3,12 @@
 namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -44,7 +39,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if startingpoint is working
      *
      * @test
-     * @return void
      */
     public function findRecordsByUid()
     {
@@ -57,7 +51,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if by import source is done
      *
      * @test
-     * @return void
      */
     public function findRecordsByImportSource()
     {
@@ -70,7 +63,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if top news constraint works
      *
      * @test
-     * @return void
      */
     public function findTopNewsRecords()
     {
@@ -95,7 +87,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if startingpoint is working
      *
      * @test
-     * @return void
      */
     public function findRecordsByStartingpointRestriction()
     {
@@ -119,7 +110,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if record are found by archived/non archived flag
      *
      * @test
-     * @return void
      */
     public function findRecordsByArchiveRestriction()
     {
@@ -147,7 +137,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if record by month/year constraint works
      *
      * @test
-     * @return void
      */
     public function findRecordsByMonthAndYear()
     {
@@ -166,7 +155,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if latest limit constraint works
      *
      * @test
-     * @return void
      */
     public function findLatestLimitRecords()
     {
@@ -189,7 +177,6 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * Test if by import source is done
      *
      * @test
-     * @return void
      */
     public function findRecordsByTags()
     {
@@ -213,6 +200,50 @@ class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $demand->setTags('5,3,1,10');
         $news = $this->newsRepository->findDemanded($demand);
         $this->assertEquals('130,131,133,134', $this->getIdListOfNews($news));
+    }
+
+    /**
+     * @test
+     */
+    public function findRecordsForDateMenu()
+    {
+        $demand = $this->objectManager->get(NewsDemand::class);
+        $demand->setStoragePage('9');
+        $demand->setDateField('datetime');
+        $expected = [
+            'single' => [
+                '2014' => [
+                    '03' => 4,
+                    '04' => 2
+                ]
+            ],
+            'total' => [
+                '2014' => 6
+            ]
+        ];
+        $dateMenuData = $this->newsRepository->countByDate($demand);
+        $this->assertEquals($expected, $dateMenuData);
+    }
+
+    /**
+     * Test if records are found by type
+     * @test
+     */
+    public function findRecordsByType()
+    {
+        /** @var \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand */
+        $demand = $this->objectManager->get(NewsDemand::class);
+        $demand->setStoragePage('1,2');
+
+        // given is 1 tag
+        $demand->setTypes(['1']);
+        $count = $this->newsRepository->findDemanded($demand)->count();
+        $this->assertEquals(2, $count);
+
+        // given are 2 tags
+        $demand->setTypes(['1', 2]);
+        $count = $this->newsRepository->findDemanded($demand)->count();
+        $this->assertEquals(5, $count);
     }
 
     /**

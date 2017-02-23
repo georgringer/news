@@ -13,7 +13,7 @@ Thanks to
 ---------
 Open-Source is all about community and support! I want to thank everyone who contributed reports on forge, feedback on any channel and code!
 
-Especially I want to thank my employer **Sup7even Digital**. Check out our the website http://www.sup7even.digital/!
+Especially I want to thank my employer **Sup7even Digital**. Check out our website http://www.sup7even.digital/!
 
 Switch to GitHub
 ----------------

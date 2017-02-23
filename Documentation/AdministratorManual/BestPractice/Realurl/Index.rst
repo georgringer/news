@@ -44,7 +44,6 @@ the *postVarSets/_DEFAULT* section:
 				'languageExceptionUids' => '',
 				'languageField' => 'sys_language_uid',
 				'transOrigPointerField' => 'l10n_parent',
-				'autoUpdate' => 1,
 				'expireDays' => 180,
 			),
 		),
@@ -148,7 +147,6 @@ Here is a full RealURL configuration with the explanation below.
 						'languageExceptionUids' => '',
 						'languageField' => 'sys_language_uid',
 						'transOrigPointerField' => 'l10n_parent',
-						'autoUpdate' => 1,
 						'expireDays' => 180,
 					)
 				)
@@ -322,7 +320,7 @@ The following snippet shows how to use this field: ::
 			/** OR ***************/
 			'alias_field' => 'IF(path_segment!="",path_segment,title)',
 			/** OR ***************/
-			'alias_field' => "CONCAT(uid, '-', title))",
+			'alias_field' => "CONCAT(uid, '-', title)",
 
 			'addWhereClause' => ' AND NOT deleted',
 			'useUniqueCache' => 1,
@@ -334,7 +332,6 @@ The following snippet shows how to use this field: ::
 			'languageExceptionUids' => '',
 			'languageField' => 'sys_language_uid',
 			'transOrigPointerField' => 'l10n_parent',
-			'autoUpdate' => 1,
 			'expireDays' => 180,
 		)
 	)

@@ -3,24 +3,19 @@
 namespace GeorgRinger\News\Hooks;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
  * Userfunc to render alternative label for media elements
- *
  */
 class ItemsProcFunc
 {
@@ -37,18 +32,40 @@ class ItemsProcFunc
      * Itemsproc function to extend the selection of templateLayouts in the plugin
      *
      * @param array &$config configuration array
-     * @return void
      */
     public function user_templateLayout(array &$config)
     {
-        $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
-        $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
-        foreach ($templateLayouts as $layout) {
-            $additionalLayout = [
-                htmlspecialchars($this->getLanguageService()->sL($layout[0])),
-                $layout[1]
-            ];
-            array_push($config['items'], $additionalLayout);
+        $pageId = 0;
+        if (ExtensionManagementUtility::isLoaded('compatibility6')) {
+            if (StringUtility::beginsWith($config['row']['uid'], 'NEW')) {
+                $getVars = GeneralUtility::_GET('edit');
+                if (is_array($getVars) && isset($getVars['tt_content']) && is_array($getVars['tt_content'])) {
+                    $keys = array_keys($getVars['tt_content']);
+                    $firstKey = (int)$keys[0];
+                    if ($firstKey > 0) {
+                        $pageId = $firstKey;
+                    } else {
+                        $row = $this->getContentElementRow(abs($firstKey));
+                        $pageId = $row['pid'];
+                    }
+                }
+            } else {
+                $row = $this->getContentElementRow($config['row']['uid']);
+                $pageId = $row['pid'];
+            }
+        } else {
+            $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
+        }
+
+        if ($pageId > 0) {
+            $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
+            foreach ($templateLayouts as $layout) {
+                $additionalLayout = [
+                    htmlspecialchars($this->getLanguageService()->sL($layout[0])),
+                    $layout[1]
+                ];
+                array_push($config['items'], $additionalLayout);
+            }
         }
     }
 
@@ -57,7 +74,6 @@ class ItemsProcFunc
      * needs different ones then a news action
      *
      * @param array &$config configuration array
-     * @return void
      */
     public function user_orderBy(array &$config)
     {
@@ -107,7 +123,6 @@ class ItemsProcFunc
      *
      * @param array $config tca items
      * @param string $tableName table name
-     * @return void
      */
     protected function removeNonValidOrderFields(array &$config, $tableName)
     {
@@ -124,7 +139,6 @@ class ItemsProcFunc
      * Modifies the selectbox of available actions
      *
      * @param array &$config
-     * @return void
      */
     public function user_switchableControllerActions(array &$config)
     {
@@ -156,7 +170,6 @@ class ItemsProcFunc
      *
      * @param array $config available items
      * @param string $action action to be removed
-     * @return void
      */
     private function removeActionFromList(array &$config, $action)
     {
@@ -191,11 +204,11 @@ class ItemsProcFunc
 
         // if any language is available
         if (count($languages) > 0) {
-            $html = '<select name="data[newsoverlay]" id="field_newsoverlay">
+            $html = '<select name="data[newsoverlay]" id="field_newsoverlay" class="form-control">
 						<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.default_value')) . '</option>';
 
             foreach ($languages as $language) {
-                $selected = ($GLOBALS['BE_USER']->uc['newsoverlay'] == $language['uid']) ? ' selected="selected" ' : '';
+                $selected = ((int)$GLOBALS['BE_USER']->uc['newsoverlay'] === (int)$language['uid']) ? ' selected="selected" ' : '';
                 $html .= '<option ' . $selected . 'value="' . $language['uid'] . '">' . htmlspecialchars($language['title']) . '</option>';
             }
 

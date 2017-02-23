@@ -3,17 +3,12 @@
 namespace GeorgRinger\News\Utility;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
+use DateTime;
 use Exception;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
@@ -34,18 +29,22 @@ class ConstraintHelper
         // integer = timestamp
         if (MathUtility::canBeInterpretedAsInteger($timeInput)) {
             $timeLimit = $GLOBALS['EXEC_TIME'] - $timeInput;
-            return $timeLimit;
         } else {
-            // try to check strtotime
-            $timeFromString = strtotime($timeInput);
-
-            if ($timeFromString) {
-                $timeLimit = $timeFromString;
-                return $timeLimit;
+            $timeByFormat = DateTime::createFromFormat('HH:mm DD-MM-YYYY', $timeInput);
+            if ($timeByFormat) {
+                $timeLimit = $timeByFormat->getTimestamp();
             } else {
-                throw new Exception('Time limit Low could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+                // try to check strtotime
+                $timeFromString = strtotime($timeInput);
+
+                if ($timeFromString) {
+                    $timeLimit = $timeFromString;
+                } else {
+                    throw new Exception('Time limit Low could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+                }
             }
         }
+        return $timeLimit;
     }
 
     /**

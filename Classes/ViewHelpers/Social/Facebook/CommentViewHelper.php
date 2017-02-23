@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\ViewHelpers\Social\Facebook;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -22,7 +16,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * Examples
  * ==============
- * <social.facebook.comment appId="165193833530000" xid="news-{newsItem.uid}" />
+ * <n:social.facebook.comment appId="165193833530000" xid="news-{newsItem.uid}" />
  * Result: Facebook widget to comment an article
  *
  */
@@ -41,7 +35,6 @@ class CommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
 
     /**
      * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
-     * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
     {
@@ -51,7 +44,6 @@ class CommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
     /**
      * Arguments initialization
      *
-     * @return void
      */
     public function initializeArguments()
     {
@@ -72,6 +64,8 @@ class CommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
      */
     public function render($appId)
     {
+        GeneralUtility::deprecationLog(sprintf('The ViewHelper "%s" has been deprecated and will be removed with version 7.0.0 of EXT:news', self::class));
+
         $tsSettings = $this->pluginSettingsService->getSettings();
         $this->tag->addAttribute('data-href', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
         $this->tag->forceClosingTag(true);

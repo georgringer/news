@@ -3,21 +3,14 @@
 namespace GeorgRinger\News\Tests\Unit\Hooks;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 
 /**
  * Tests for Labels
- *
  */
 class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
@@ -25,7 +18,6 @@ class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      * @dataProvider correctFieldOfArrayIsReturnedDataProvider
-     * @return void
      */
     public function correctFieldOfArrayIsReturned($input, $expectedResult)
     {
@@ -58,7 +50,6 @@ class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      * @dataProvider splitOfFileNameReturnsCorrectPartialDataProvider
-     * @return void
      */
     public function splitOfFileNameReturnsCorrectPartial($string, $expectedResult)
     {

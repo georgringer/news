@@ -7,21 +7,6 @@
 .news-administration .clear {
   clear: both;
 }
-.news-administration .category-tree {
-  float: left;
-  margin: 0 150px;
-}
-.news-administration .category-tree ul {
-  margin: 4px;
-}
-.news-administration .category-tree ul ul {
-  margin: 2px 0 4px 12px;
-}
-.news-administration .form {
-  float: left;
-  border-right: 1px solid #ccc;
-  padding-right: 10px;
-}
 .news-administration .settings {
   background-color: #ededed;
   border-top: 1px solid #cdcdcd;
@@ -31,18 +16,6 @@
 }
 .news-administration .settings .field {
   padding: 2px 0;
-}
-.news-administration .settings .category-tree li {
-  margin: 2px 0;
-}
-.news-administration .settings .category-tree li label {
-  padding: 0;
-  margin: 0;
-  min-height: 12px;
-  line-height: 1;
-}
-.news-administration .settings .category-tree input {
-  margin: 0;
 }
 .news-administration .settings .category-tree .tree-wrapper {
   background: white;
@@ -82,6 +55,6 @@
 .news-administration .hide_line td {
   border: none;
 }
-.news-administration #toggle-settings {
-  /*cursor: pointer;*/
+.news-administration #sortingDirection {
+  min-width: 90px;
 }

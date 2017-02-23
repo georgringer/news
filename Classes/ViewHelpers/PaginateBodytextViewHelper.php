@@ -3,17 +3,12 @@
 namespace GeorgRinger\News\ViewHelpers;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
+use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -78,7 +73,7 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
         $this->registerArgument('object', News::class, 'news item', true);
         $this->registerArgument('as', 'string', 'as', true);
         $this->registerArgument('currentPage', 'int', 'current page', true);
-        $this->registerArgument('tolen', 'string', 'token', '###more###');
+        $this->registerArgument('token', 'string', 'token', '###more###');
     }
 
     /**
@@ -91,7 +86,7 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
         $as = $this->arguments['as'];
         $currentPage = $this->arguments['currentPage'];
 
-        $parts = GeneralUtility::trimExplode($this->arguments['token'], $this->arguments['newsItem']->getBodytext(), true);
+        $parts = GeneralUtility::trimExplode($this->arguments['token'], $this->arguments['object']->getBodytext(), true);
         $numberOfPages = count($parts);
 
         if ($numberOfPages === 1) {

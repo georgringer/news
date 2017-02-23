@@ -9,9 +9,9 @@
 <div class="row news-list-item">
 	<div class="col-md-3">
 		<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
-			<f:if condition="{newsItem.falMediaPreviews}">
+			<f:if condition="{newsItem.mediaPreviews}">
 				<f:then>
-					<f:media class="img-responsive" file="{newsItem.falMediaPreviews.0}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" width="{settings.list.media.image.width}" />
+					<f:media class="img-responsive" file="{newsItem.mediaPreviews.0}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" width="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.width)}" height="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else:'')}" />
 				</f:then>
 				<f:else>
 					<f:if condition="{settings.displayDummyIfNoMedia}">
@@ -33,14 +33,16 @@
 
 		<!-- teaser -->
 		<div class="lead" itemprop="description">
-			<f:if condition="{newsItem.teaser}">
-				<f:then>
-					{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
-				</f:then>
-				<f:else>
-					{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
-				</f:else>
-			</f:if>
+			<n:removeMediaTags>
+				<f:if condition="{newsItem.teaser}">
+					<f:then>
+						{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+					</f:then>
+					<f:else>
+						{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries:'1') -> f:format.html()}
+					</f:else>
+				</f:if>
+			</n:removeMediaTags>
 		</div>
 
 		<n:link newsItem="{newsItem}" settings="{settings}" class="btn btn-default btn-read-more" title="{newsItem.title}">

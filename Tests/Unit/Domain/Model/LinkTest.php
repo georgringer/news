@@ -5,21 +5,14 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 use GeorgRinger\News\Domain\Model\Link;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 
 /**
  * Tests for domains model Link
- *
  */
 class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
@@ -32,7 +25,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * Setup
      *
-     * @return void
      */
     protected function setUp()
     {
@@ -43,7 +35,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if title can be set
      *
      * @test
-     * @return void
      */
     public function titleCanBeSet()
     {
@@ -56,7 +47,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if crdate can be set
      *
      * @test
-     * @return void
      */
     public function crdateCanBeSet()
     {
@@ -69,7 +59,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if tstamp can be set
      *
      * @test
-     * @return void
      */
     public function tstampCanBeSet()
     {
@@ -82,7 +71,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if description can be set
      *
      * @test
-     * @return void
      */
     public function descriptionCanBeSet()
     {
@@ -95,7 +83,6 @@ class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if uri can be set
      *
      * @test
-     * @return void
      */
     public function uriCanBeSet()
     {

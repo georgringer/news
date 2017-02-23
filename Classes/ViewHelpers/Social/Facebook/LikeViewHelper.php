@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\ViewHelpers\Social\Facebook;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Utility\Url;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -50,7 +44,6 @@ class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 
     /**
      * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
-     * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
     {
@@ -60,7 +53,6 @@ class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
     /**
      * Arguments initialization
      *
-     * @return void
      */
     public function initializeArguments()
     {
@@ -80,6 +72,8 @@ class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
      */
     public function render()
     {
+        GeneralUtility::deprecationLog(sprintf('The ViewHelper "%s" has been deprecated and will be removed with version 7.0.0 of EXT:news', self::class));
+
         $code = '';
 
         $url = (!empty($this->arguments['href'])) ?

@@ -6,7 +6,7 @@ defined('TYPO3_MODE') or die();
  */
 $newSysFileReferenceColumns = [
     'showinpreview' => [
-        'exclude' => 1,
+        'exclude' => true,
         'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinpreview',
         'config' => [
             'type' => 'check',
@@ -18,7 +18,4 @@ $newSysFileReferenceColumns = [
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_file_reference', $newSysFileReferenceColumns);
 
 // add special news palette
-$GLOBALS['TCA']['sys_file_reference']['palettes']['newsPalette'] = [
-    'showitem' => 'showinpreview',
-    'canNotCollapse' => true
-];
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'newsPalette', 'showinpreview');

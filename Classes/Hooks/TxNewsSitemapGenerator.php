@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Hooks;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use DmitryDulepov\DdGooglesitemap\Generator\AbstractSitemapGenerator;
 use DmitryDulepov\DdGooglesitemap\Renderers\NewsSitemapRenderer;
@@ -86,7 +80,6 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     /**
      * Generates news site map.
      *
-     * @return void
      */
     protected function generateSitemapContent()
     {
@@ -196,7 +189,6 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      * Checks that page list is in the rootline of the current page and excludes
      * pages that are outside of the rootline.
      *
-     * @return    void
      */
     protected function validateAndCreatePageList()
     {

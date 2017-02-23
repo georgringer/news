@@ -199,11 +199,12 @@
 										<maxLevels>99</maxLevels>
 										<expandAll>TRUE</expandAll>
 										<showHeader>TRUE</showHeader>
+										<width>600</width>
 									</appearance>
 								</treeConfig>
 								<foreign_table>sys_category</foreign_table>
 								<foreign_table_where>AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting</foreign_table_where>
-								<size>10</size>
+								<size>15</size>
 								<minitems>0</minitems>
 								<maxitems>99</maxitems>
 							</config>
@@ -595,6 +596,7 @@
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.disableOverrideDemand</label>
 							<config>
 								<type>check</type>
+								<default>1</default>
 							</config>
 						</TCEforms>
 					</settings.disableOverrideDemand>

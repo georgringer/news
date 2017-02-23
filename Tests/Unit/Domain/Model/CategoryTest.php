@@ -3,16 +3,10 @@
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\Domain\Model\Category;
 
@@ -31,7 +25,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * Setup
      *
-     * @return void
      */
     protected function setUp()
     {
@@ -42,7 +35,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if sorting can be set
      *
      * @test
-     * @return void
      */
     public function sortingCanBeSet()
     {
@@ -55,7 +47,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if crdate can be set
      *
      * @test
-     * @return void
      */
     public function crdateCanBeSet()
     {
@@ -68,7 +59,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if tstamp can be set
      *
      * @test
-     * @return void
      */
     public function tstampCanBeSet()
     {
@@ -81,7 +71,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if starttime can be set
      *
      * @test
-     * @return void
      */
     public function starttimeCanBeSet()
     {
@@ -94,7 +83,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if starttime can be set
      *
      * @test
-     * @return void
      */
     public function endtimeCanBeSet()
     {
@@ -107,7 +95,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if hidden can be set
      *
      * @test
-     * @return void
      */
     public function hiddenCanBeSet()
     {
@@ -120,7 +107,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if sysLanguageUid can be set
      *
      * @test
-     * @return void
      */
     public function sysLanguageUidCanBeSet()
     {
@@ -133,7 +119,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if l10nParent can be set
      *
      * @test
-     * @return void
      */
     public function l10nParentCanBeSet()
     {
@@ -146,7 +131,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if title can be set
      *
      * @test
-     * @return void
      */
     public function titleCanBeSet()
     {
@@ -159,7 +143,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if description can be set
      *
      * @test
-     * @return void
      */
     public function descriptionCanBeSet()
     {
@@ -172,7 +155,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if description can be set
      *
      * @test
-     * @return void
      */
     public function parentCategoryCanBeSet()
     {
@@ -186,7 +168,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if images can be set
      *
      * @test
-     * @return void
      */
     public function imagesCanBeSet()
     {
@@ -199,7 +180,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if first image can be get
      *
      * @test
-     * @return void
      */
     public function firstImageCanBeGet()
     {
@@ -219,7 +199,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if shortcut can be set
      *
      * @test
-     * @return void
      */
     public function shortcutCanBeSet()
     {
@@ -232,7 +211,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if singlePid can be set
      *
      * @test
-     * @return void
      */
     public function singlePidCanBeSet()
     {
@@ -245,7 +223,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if importId can be set
      *
      * @test
-     * @return void
      */
     public function importIdCanBeSet()
     {
@@ -257,7 +234,6 @@ class CategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test if importSource can be set
      *
      * @test
-     * @return void
      */
     public function importSourceCanBeSet()
     {

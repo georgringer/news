@@ -3,18 +3,13 @@
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
 /**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
 use GeorgRinger\News\ViewHelpers\TitleTagViewHelper;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 
 /**
  * Test for TitleTagViewHelper
@@ -40,16 +35,15 @@ class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      * Test of strip tags viewhelper
      *
      * @test
-     * @return void
      */
     public function titleTagIsSet()
     {
         $title = 'Some title';
         /** @var TitleTagViewHelper|\PHPUnit_Framework_MockObject_MockObject $viewHelper */
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['renderChildren']);
-        $viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue($title));
-
-        $viewHelper->render();
+        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['dummy']);
+        $viewHelper::renderStatic([], function () {
+            return 'Some title';
+        }, $this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());
         $this->assertEquals($title, $GLOBALS['TSFE']->altPageTitle);
         $this->assertEquals($title, $GLOBALS['TSFE']->indexedDocTitle);
     }
