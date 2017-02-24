@@ -596,6 +596,7 @@
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.disableOverrideDemand</label>
 							<config>
 								<type>check</type>
+								<default>1</default>
 							</config>
 						</TCEforms>
 					</settings.disableOverrideDemand>

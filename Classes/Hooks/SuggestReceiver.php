@@ -12,6 +12,7 @@ use TYPO3\CMS\Backend\Form\Wizard\SuggestWizardDefaultReceiver;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Custom suggest receiver for tags
@@ -58,7 +59,7 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
             $javaScriptCode = trim(str_replace('"', '\'', $javaScriptCode));
             $link = implode(' ', explode(LF, $javaScriptCode));
 
-            $records['tx_news_domain_model_tag_' . strlen($text)] = [
+            $createNewRecord = [
                 'text' =>  '<div onclick="' . $link . '">
                                 <span class="suggest-label">' . htmlspecialchars($params['value']) . '</span><span class="suggest-uid"></span><br />
 								<span class="suggest-path">' . htmlspecialchars($GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest2')) . '</span>
@@ -68,6 +69,13 @@ class SuggestReceiver extends SuggestWizardDefaultReceiver
                 'sprite' => '',
                 'icon' => $this->getDummyIcon()->render()
             ];
+
+            if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8006000) {
+                array_splice($records, $this->maxItems - 1);
+                array_unshift($records, $createNewRecord);
+            } else {
+                $records['tx_news_domain_model_tag_aNewRecord'] = $createNewRecord;
+            }
         }
 
         return $records;

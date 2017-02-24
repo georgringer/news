@@ -8,6 +8,10 @@
     width: 40%;
 }
 
+table.news-table > tbody > tr > th {
+    white-space: normal;
+}
+
 .news-table .setting-switcher .up {
     display: none;
 }
@@ -25,5 +29,23 @@
 }
 
 .news-table > tbody > tr > td {
-    padding:3px 6px;
+    padding: 3px 6px;
+}
+
+/**
+ * For small cols
+ */
+.news-table-small td, .news-table-small th {
+    display: block;
+    float: left;
+}
+
+.news-table-small tr {
+    border-bottom: 1px solid #ccc;
+}
+
+table.news-table-small > tbody > tr > th,
+table.news-table-small > tbody > tr > td {
+    border: 0;
+    width:100%
 }
