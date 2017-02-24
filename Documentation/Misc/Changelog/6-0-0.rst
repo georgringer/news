@@ -93,6 +93,9 @@ The link in the administration module to toggle the filter form has been moved t
 
 Furthermore the template has been improved to work on smaller screens.
 
+Disable override demand default on
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The checkbox `Disable override demand` in the plugin is now by default enabled.
 
 Features
 --------

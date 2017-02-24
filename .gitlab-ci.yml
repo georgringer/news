@@ -1,0 +1,74 @@
+cache:
+  key: "$CI_BUILD_REF_NAME/$CI_BUILD_STAGE"
+  paths:
+  - .composer/
+  - .php_cs.cache
+
+variables:
+  COMPOSER_CACHE_DIR: ".composer"
+  COMPOSER_PROCESS_TIMEOUT: "1800"
+  COMPOSER_ALLOW_SUPERUSER: "1"
+  TYPO3_VERSION: ^7.6
+  TYPO3_PATH_WEB: "$CI_PROJECT_DIR/.Build/Web"
+  MYSQL_DATABASE: "typo3"
+  MYSQL_ROOT_PASSWORD: "joh316"
+  typo3DatabaseName: "typo3"
+  typo3DatabaseHost: "mysql"
+  typo3DatabaseUsername: "root"
+  typo3DatabasePassword: "joh316"
+
+test:cgl:
+  image: composer:1.3
+  stage: test
+  before_script:
+  - composer remove typo3/cms-core --no-update
+  - composer install
+  script:
+  - .Build/bin/php-cs-fixer fix --config=Build/.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $COMMIT_RANGE`
+
+.test: &test_php
+  stage: test
+  services:
+  - mysql:5
+  before_script:
+  - apk --no-cache add bash curl git mercurial openssh openssl parallel subversion tini
+  - docker-php-ext-install mysqli
+  - wget https://composer.github.io/installer.sig -O - -q | tr -d '\n' > installer.sig
+  - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+  - php -r "if (hash_file('SHA384', 'composer-setup.php') === file_get_contents('installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+  - php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer
+  - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
+  - composer remove typo3/cms-core --no-update
+  - composer require typo3/cms="${TYPO3_VERSION}"
+  script:
+  - .Build/bin/phpunit --colors  -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit/
+  - find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null
+  - find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/FunctionalTests.xml {}'
+
+test:php5.5:typo3_76:
+  <<: *test_php
+  image: php:5.5-alpine
+
+test:php5.6:typo3_76:
+  <<: *test_php
+  image: php:5.6-alpine
+
+test:php7.0:typo3_76:
+  <<: *test_php
+  image: php:7.0-alpine
+
+test:php7.1:typo3_76:
+  <<: *test_php
+  image: php:7.1-alpine
+
+test:php7.0:typo3_85:
+  <<: *test_php
+  image: php:7.0-alpine
+  variables:
+    TYPO3_VERSION: ^8.5
+
+test:php7.1:typo3_85:
+  <<: *test_php
+  image: php:7.1-alpine
+  variables:
+    TYPO3_VERSION: ^8.5
