@@ -36,16 +36,19 @@ class Page
             return $pidList;
         }
 
+        /** @var \TYPO3\CMS\Core\Database\QueryGenerator $queryGenerator */
         $queryGenerator = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\QueryGenerator::class);
         $recursiveStoragePids = $pidList;
         $storagePids = GeneralUtility::intExplode(',', $pidList);
         foreach ($storagePids as $startPid) {
-            $pids = $queryGenerator->getTreeList($startPid, $recursive, 0, 1);
-            if (strlen($pids) > 0) {
-                $recursiveStoragePids .= ',' . $pids;
+            if ($startPid >= 0) {
+                $pids = $queryGenerator->getTreeList($startPid, $recursive, 0, 1);
+                if (strlen($pids) > 0) {
+                    $recursiveStoragePids .= ',' . $pids;
+                }
             }
         }
-        return $recursiveStoragePids;
+        return GeneralUtility::uniqueList($recursiveStoragePids);
     }
 
     /**
