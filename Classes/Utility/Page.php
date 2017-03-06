@@ -36,7 +36,6 @@ class Page
             return $pidList;
         }
 
-        /** @var \TYPO3\CMS\Core\Database\QueryGenerator $queryGenerator */
         $queryGenerator = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\QueryGenerator::class);
         $recursiveStoragePids = $pidList;
         $storagePids = GeneralUtility::intExplode(',', $pidList);
