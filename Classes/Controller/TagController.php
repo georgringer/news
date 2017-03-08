@@ -16,21 +16,6 @@ class TagController extends NewsController
     const SIGNAL_TAG_LIST_ACTION = 'listAction';
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\TagRepository
-     */
-    protected $tagRepository;
-
-    /**
-     * Inject a tag repository to enable DI
-     *
-     * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
-     */
-    public function injectTagRepository(\GeorgRinger\News\Domain\Repository\TagRepository $tagRepository)
-    {
-        $this->tagRepository = $tagRepository;
-    }
-
-    /**
      * List tags
      *
      * @param array $overwriteDemand
@@ -45,7 +30,7 @@ class TagController extends NewsController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ($overwriteDemand !== null && $this->settings['disableOverrideDemand'] != 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 

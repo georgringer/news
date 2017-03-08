@@ -9,7 +9,9 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
+use GeorgRinger\News\Utility\TypoScript;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
 /**
  * Controller of news records
@@ -228,7 +230,7 @@ class NewsController extends NewsBaseController
      */
     public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
     {
-        if (is_null($news)) {
+        if ($news === null) {
             $previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
             if ($this->request->hasArgument('news_preview')) {
                 $previewNewsId = (int)$this->request->getArgument('news_preview');
@@ -426,15 +428,15 @@ class NewsController extends NewsBaseController
     }
 
     /**
-     * initialize search form action
+     * initialize search result action
      */
-    public function initializesearchResultAction()
+    public function initializeSearchResultAction()
     {
         $this->initializeSearchActions();
     }
 
     /**
-     * initialize search result action
+     * Initialize search form action
      */
     public function initializeSearchFormAction()
     {
@@ -483,7 +485,7 @@ class NewsController extends NewsBaseController
 
         // Use stdWrap for given defined settings
         if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
-            $typoScriptService = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\TypoScriptService::class);
+            $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
             $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
             $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
             foreach ($stdWrapProperties as $key) {
@@ -498,7 +500,7 @@ class NewsController extends NewsBaseController
 
         // start override
         if (isset($tsSettings['settings']['overrideFlexformSettingsIfEmpty'])) {
-            $typoScriptUtility = GeneralUtility::makeInstance(\GeorgRinger\News\Utility\TypoScript::class);
+            $typoScriptUtility = GeneralUtility::makeInstance(TypoScript::class);
             $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
         }
 
