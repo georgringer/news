@@ -1,0 +1,14 @@
+{namespace n=GeorgRinger\News\ViewHelpers}
+<item>
+    <guid isPermaLink="false">news-{newsItem.uid}</guid>
+    <pubDate><f:format.date format="r">{newsItem.datetime}</f:format.date></pubDate>
+    <title><f:format.htmlspecialchars>{newsItem.title}</f:format.htmlspecialchars></title>
+    <link><f:format.htmlentities><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></f:format.htmlentities></link>
+    <f:if condition="{newsItem.author}"><author>{newsItem.author}</author></f:if>
+    <description><f:format.htmlspecialchars><f:format.stripTags>{newsItem.teaser}</f:format.stripTags></f:format.htmlspecialchars></description>
+    <content:encoded>
+        <f:format.cdata>
+            <f:render partial="Content" section="Content" arguments="{settings: settings, newsItem: newsItem}" />
+        </f:format.cdata>
+    </content:encoded>
+</item>

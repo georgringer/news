@@ -1,0 +1,8 @@
+plugin.tx_news.settings {
+	instantarticles {
+		# cat=plugin.tx_news/instantarticles/0010; type=string; label=Language (two letters)
+		language = en
+		# cat=plugin.tx_news/instantarticles/0020; type=string; label=Facebook Article Style
+		articleStyle = default
+	}
+}

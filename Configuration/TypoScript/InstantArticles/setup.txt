@@ -1,0 +1,45 @@
+tx_news_instantarticles = PAGE
+tx_news_instantarticles {
+	typeNum = 800
+
+	10 = USER
+	10 {
+		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		vendorName = GeorgRinger
+		extensionName = News
+		pluginName = Pi1
+		controller = News
+		action = list
+
+		view {
+			templateRootPaths {
+				100 = EXT:news/Resources/Private/Templates/InstantArticles/
+			}
+			partialRootPaths {
+				100 = EXT:news/Resources/Private/Partials/InstantArticles/
+			}
+		}
+
+        settings {
+            format = xml
+
+			instantarticles {
+				language = {$plugin.tx_news.settings.instantarticles.language}
+				articleStyle = {$plugin.tx_news.settings.instantarticles.articleStyle}
+			}
+        }
+
+		switchableControllerActions {
+			News {
+				1 = list
+			}
+		}
+	}
+
+	config {
+    	disableAllHeaderCode = 1
+    	additionalHeaders = Content-type:application/xml
+    	no_cache = 0
+    	xhtml_cleaning = 0
+	}
+}

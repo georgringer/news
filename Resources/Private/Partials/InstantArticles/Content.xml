@@ -1,0 +1,57 @@
+{namespace n=GeorgRinger\News\ViewHelpers}
+<f:section name="Content">
+    <!doctype html>
+    <html lang="{settings.instantarticles.language}" prefix="op: http://media.facebook.com/op#">
+        <head>
+            <meta charset="utf-8">
+            <link rel="canonical" href="{n:link(newsItem: newsItem, settings: settings, uriOnly: 1)}">
+            <title><f:format.htmlspecialchars>{newsItem.title}</f:format.htmlspecialchars></title>
+            <meta property="fb:article_style" content="{settings.instantarticles.articleStyle}">
+        </head>
+        <body>
+            <article>
+                <f:render section="Header" arguments="{settings: settings, newsItem: newsItem}" />
+                <f:render section="Body" arguments="{settings: settings, newsItem: newsItem}" />
+                <f:render section="Footer" arguments="{settings: settings, newsItem: newsItem}" />
+            </article>
+        </body>
+    </html>
+</f:section>
+
+<f:section name="Header">
+    <header>
+        <f:if condition="{newsItem.falMedia}">
+            <f:render partial="Media" section="Media" arguments="{media: newsItem.falMedia}" />
+        </f:if>
+        <h1>{newsItem.title}</h1>
+        <f:if condition="{newsItem.teaser}"><h2>{newsItem.teaser}</h2></f:if>
+        <f:if condition="{newsItem.author}"><address>{newsItem.author}</address></f:if>
+    </header>
+</f:section>
+
+<f:section name="Body">
+    <n:format.instantArticles>
+        <f:format.html>{newsItem.bodytext}</f:format.html>
+        <f:if condition="{newsItem.contentElements}">
+    		<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+    	</f:if>
+    </n:format.instantArticles>
+</f:section>
+
+<f:section name="Footer">
+    <footer>
+        <f:if condition="{newsItem.related}">
+            <ul class="op-related-articles">
+                <f:for each="{newsItem.related}" as="related">
+                    <li><a href="{n:link(newsItem: related, settings: settings, uriOnly: 1)}"></a></li>
+                </f:for>
+            </ul>
+        </f:if>
+        <f:if condition="{settings.list.rss.channel.description}">
+            <aside>{settings.list.rss.channel.description}</aside>
+        </f:if>
+        <f:if condition="{settings.list.rss.channel.copyright}">
+			<small>{settings.list.rss.channel.copyright}</small>
+		</f:if>
+    </footer>
+</f:section>
