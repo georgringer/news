@@ -9,6 +9,22 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+ /**
+  * ViewHelper to render Facebook Instant Articles conform output
+  *
+  * # Example: Basic example
+  * <code>
+  * <n:format.instantArticles>
+  *    <h4>I am a headline</h4>
+  *    <p class="bodytext">This is the text.</p>
+  * </n:format.instantArticles>
+  * </code>
+  * <output>
+  *     <h2>I am a headline</h2>
+  *     <p>This is the text.</p>
+  * </output>
+  *
+  */
 class InstantArticlesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
