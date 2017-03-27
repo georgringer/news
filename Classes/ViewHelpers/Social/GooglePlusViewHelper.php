@@ -8,6 +8,7 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to add a google+ button
