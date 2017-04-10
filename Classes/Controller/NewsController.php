@@ -51,7 +51,7 @@ class NewsController extends NewsBaseController
     protected $configurationManager;
 
     /** @var array */
-    protected $ignoredSettingsForOverride = ['demandClass', 'orderByAllowed'];
+    protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
 
     /**
      * Inject a news repository to enable DI
@@ -178,6 +178,9 @@ class NewsController extends NewsBaseController
         }
 
         foreach ($overwriteDemand as $propertyName => $propertyValue) {
+            if(in_array(strtolower($propertyName), $this->ignoredSettingsForOverride, true)) {
+                continue;
+            }
             if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
                 \TYPO3\CMS\Extbase\Reflection\ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
