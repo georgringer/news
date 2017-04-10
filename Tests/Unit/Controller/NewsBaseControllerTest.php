@@ -8,6 +8,8 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
@@ -15,11 +17,11 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  *
  *
  */
-class NewsBaseControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class NewsBaseControllerTest extends UnitTestCase
 {
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|TypoScriptFrontendController|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface
+     * @var \PHPUnit_Framework_MockObject_MockObject|TypoScriptFrontendController|AccessibleMockObjectInterface
      */
     protected $tsfe = null;
 

@@ -10,14 +10,13 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  */
 use GeorgRinger\News\Controller\NewsController;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Class NewsControllerTest
  */
-class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class NewsControllerTest extends UnitTestCase
 {
-
-
     /**
      * @test
      */
@@ -30,5 +29,4 @@ class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $result = $mockedController->_call('overwriteDemandObject', $demand, $input);
         $this->assertEmpty($result->getOrderByAllowed());
     }
-
 }
