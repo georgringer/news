@@ -28,7 +28,7 @@ class NewsControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $mockedController = $this->getAccessibleMock(NewsController::class, ['dummy']);
         /** @var NewsDemand $result */
         $result = $mockedController->_call('overwriteDemandObject', $demand, $input);
-        $this->assertEmpty($result->getOrderByAllowed());o
+        $this->assertEmpty($result->getOrderByAllowed());
     }
 
 }
