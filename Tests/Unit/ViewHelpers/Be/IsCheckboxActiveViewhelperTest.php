@@ -9,7 +9,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Be;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\ViewHelpers\Be\IsCheckboxActiveViewHelper;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for IsCheckboxActiveViewhelper

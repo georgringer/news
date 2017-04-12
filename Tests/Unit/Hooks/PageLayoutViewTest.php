@@ -8,6 +8,9 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Lang\LanguageService;
 
 
@@ -15,10 +18,10 @@ use TYPO3\CMS\Lang\LanguageService;
  * Tests for PageLayoutView
  *
  */
-class PageLayoutViewTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class PageLayoutViewTest extends UnitTestCase
 {
 
-    /** @var  \TYPO3\CMS\Core\Tests\AccessibleObjectInterface */
+    /** @var AccessibleMockObjectInterface */
     protected $pageLayoutView;
 
     public function setUp()

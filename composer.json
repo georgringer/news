@@ -27,9 +27,9 @@
     "reelworx/rx-shariff": "~7.0"
   },
   "require-dev": {
-    "mikey179/vfsStream": "1.4.*@dev",
     "phpunit/phpunit": "~4.8.0",
-    "friendsofphp/php-cs-fixer": "^2.0"
+    "friendsofphp/php-cs-fixer": "^2.0",
+    "nimut/testing-framework": "^1.0"
   },
   "autoload": {
     "psr-4": {
@@ -38,9 +38,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "GeorgRinger\\News\\Tests\\": "Tests",
-      "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/",
-      "TYPO3\\CMS\\Fluid\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/fluid/Tests/"
+      "GeorgRinger\\News\\Tests\\": "Tests"
     }
   },
   "replace": {
@@ -49,12 +47,7 @@
   },
   "config": {
     "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin",
-    "preferred-install": {
-      "typo3/cms": "source",
-      "typo3/cms-core": "source",
-      "*": "dist"
-    }
+    "bin-dir": ".Build/bin"
   },
   "scripts": {
     "post-autoload-dump": [

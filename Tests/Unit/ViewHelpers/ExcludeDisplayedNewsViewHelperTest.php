@@ -10,13 +10,14 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 
 /**
  * Tests for ExcludeDisplayedNewsViewHelper
  *
  */
-class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class ExcludeDisplayedNewsViewHelperTest extends UnitTestCase
 {
 
     /**

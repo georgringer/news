@@ -9,11 +9,12 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\News;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for IfIsActiveViewHelper
  */
-class IfIsActiveViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class IfIsActiveViewHelperTest extends UnitTestCase
 {
 
     /**

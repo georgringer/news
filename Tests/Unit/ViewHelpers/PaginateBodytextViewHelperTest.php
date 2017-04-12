@@ -8,11 +8,12 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for PaginateBodytextViewHelper
  */
-class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class PaginateBodytextViewHelperTest extends UnitTestCase
 {
 
     /**

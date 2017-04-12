@@ -10,16 +10,18 @@ namespace GeorgRinger\News\Tests\Unit\Functional\ViewHelpers;
  */
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
+use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
+use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
 
 /**
  * Class SimplePrevNextViewHelperTest
  *
  */
-class SimplePrevNextViewHelperTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
+class SimplePrevNextViewHelperTest extends FunctionalTestCase
 {
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface|\GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper */
+    /** @var \PHPUnit_Framework_MockObject_MockObject|AccessibleMockObjectInterface|\GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper */
     protected $mockedViewHelper;
 
     /** @var \GeorgRinger\News\Domain\Model\News */

@@ -10,7 +10,7 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
  */
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for NewsDemand
