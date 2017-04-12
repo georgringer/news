@@ -169,7 +169,7 @@ class NewsController extends NewsBaseController
         }
 
         foreach ($overwriteDemand as $propertyName => $propertyValue) {
-            if(in_array(strtolower($propertyName), $this->ignoredSettingsForOverride, true)) {
+            if (in_array(strtolower($propertyName), $this->ignoredSettingsForOverride, true)) {
                 continue;
             }
             if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
