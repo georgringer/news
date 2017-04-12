@@ -43,7 +43,7 @@ class NewsController extends NewsBaseController {
 	protected $configurationManager;
 
 	/** @var array */
-    protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
+    protected $ignoredSettingsForOverride = array('demandclass', 'orderbyallowed');
 
 	/**
 	 * Inject a news repository to enable DI
