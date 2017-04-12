@@ -205,7 +205,7 @@ class NewsImportService extends AbstractImportService {
 		if (is_array($importItem['media'])) {
 
 			foreach ($importItem['media'] as $mediaItem) {
-                $arguments = ['importItem' => $importItem];
+                $arguments = array('importItem' => $importItem);
                 $return = $this->emitSignal('preHydrate', $arguments);
                 $importItem = $return['importItem'];
 

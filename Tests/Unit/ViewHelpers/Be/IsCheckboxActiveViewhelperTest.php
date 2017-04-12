@@ -34,7 +34,7 @@ class IsCheckboxActiveViewhelperTest extends UnitTestCase
     public function activeCheckboxReturnsCorrectValue()
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
-        $actualResult = $viewHelper->render(10, [5, 7, 10, 12]);
+        $actualResult = $viewHelper->render(10, array(5, 7, 10, 12));
 
         $this->assertEquals(self::OK_RESULT, $actualResult);
     }
@@ -45,7 +45,7 @@ class IsCheckboxActiveViewhelperTest extends UnitTestCase
     public function nonActiveCheckboxReturnsNothing()
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
-        $actualResult = $viewHelper->render(8, [5, 7, 10, 12]);
+        $actualResult = $viewHelper->render(8, array(5, 7, 10, 12));
 
         $this->assertEquals('', $actualResult);
     }
