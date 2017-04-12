@@ -8,9 +8,11 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Rtehtmlarea\Extension\Language;
+use TYPO3\CMS\Lang\LanguageService;
+
 
 /**
  * Tests for PageLayoutView
@@ -26,7 +28,7 @@ class PageLayoutViewTest extends UnitTestCase
     {
         parent::setUp();
 
-        $languageService = $this->getAccessibleMock(Language::class, ['sL']);
+        $languageService = $this->getAccessibleMock(LanguageService::class, ['sL']);
         $languageService->expects($this->any())->method('sL')->will($this->returnValue('any language'));
 
         $GLOBALS['LANG'] = $languageService;
