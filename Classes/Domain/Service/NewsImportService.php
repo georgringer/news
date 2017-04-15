@@ -167,9 +167,6 @@ class NewsImportService extends AbstractImportService
         $news->setInternalurl($importItem['internalurl']);
         $news->setExternalurl($importItem['externalurl']);
 
-        $news->setType($importItem['type']);
-        $news->setKeywords($importItem['keywords']);
-
         $news->setAuthor($importItem['author']);
         $news->setAuthorEmail($importItem['author_email']);
 
