@@ -20,11 +20,11 @@
     "GPL-2.0+"
   ],
   "require": {
-    "typo3/cms-core": "^7.6.13 || ^8.5"
+    "typo3/cms-core": "^7.6.13 || >=8.5.0 <9"
   },
   "suggest": {
     "dmitryd/typo3-dd-googlesitemap": "~2.0",
-    "reelworx/rx-shariff": "~7.0"
+    "reelworx/rx-shariff": "~10.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.8.0",
@@ -57,7 +57,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "5.x-dev"
+      "dev-master": "6.x-dev"
     },
     "typo3/cms": {
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
