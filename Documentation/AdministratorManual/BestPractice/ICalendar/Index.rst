@@ -40,7 +40,7 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
     	xhtml_cleaning = none
     	admPanel = 0
     	metaCharset = utf-8
-    	additionalHeaders = Content-Type:text/calendar;charset=utf-8
+    	additionalHeaders.876.header = Content-Type:text/calendar;charset=utf-8
     	disablePrefixComment = 1
     }
 
@@ -103,7 +103,7 @@ To create an ICalendar feed based on a plugin follow this steps:
 			 admPanel = 0
 			 metaCharset = utf-8
 			 # define charset
-			 additionalHeaders = Content-Type:text/calendar;charset=utf-8
+			 additionalHeaders.876.header = Content-Type:text/calendar;charset=utf-8
 			 disablePrefixComment = 1
 		}
 
@@ -153,7 +153,7 @@ The TypoScript code looks like this.
     		# you need an english locale to get correct rfc values for <lastBuildDate>, ...
     		locale_all = en_EN
     		# define charset
-    		additionalHeaders = Content-Type:text/calendar;charset=utf-8
+    		additionalHeaders.876.header = Content-Type:text/calendar;charset=utf-8
     		disablePrefixComment = 1
     	}
 
