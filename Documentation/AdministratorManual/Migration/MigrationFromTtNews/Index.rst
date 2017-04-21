@@ -38,7 +38,7 @@ The plugins of tt_news can be migrated to plugins of EXT:news as well. This is d
 .. code-block:: bash
 
 	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:run
-	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:removeOldPlugins
+	./typo3/cli_dispatch.phpsh extbase ttnewspluginmigrate:removeoldplugins
 
 Read more about the migration and its limitation in the documentation of news_ttnewsimport at https://github.com/fsaris/news_ttnewsimport.
 
