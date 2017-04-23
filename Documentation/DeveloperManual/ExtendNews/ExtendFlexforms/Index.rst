@@ -69,8 +69,12 @@ Add this to the ``ext_localconf.php`` of your extension:
 
 .. code-block:: php
 
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][]
-        = \Vendor\ExtKey\Hooks\FlexFormHook::class;
+   // For 7x
+   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][]
+      = \Vendor\ExtKey\Hooks\FlexFormHook::class;
+   // For 8x
+   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing'][]
+      = \Vendor\ExtKey\Hooks\FlexFormHook::class;
 
 **Add the hook**
 
@@ -79,25 +83,44 @@ flexform file.
 
 .. code-block:: php
 
-    <?php
+   <?php
 
-    namespace Vendor\ExtKey\Hooks;
+   namespace Vendor\ExtKey\Hooks;
 
-    class FlexFormHook
-    {
-        /**
-         * @param array $dataStructArray
-         * @param array $conf
-         * @param array $row
-         * @param string $table
-         */
-        public function getFlexFormDS_postProcessDS(&$dataStructArray, $conf, $row, $table)
-        {
-            if ($table === 'tt_content' && $row['CType'] === 'list' && $row['list_type'] === 'news_pi1') {
-                $dataStructArray['sheets']['extraEntry'] = 'typo3conf/ext/extKey/Configuration/Example.xml';
+   class FlexFormHook
+   {
+      // For 7x
+      /**
+      * @param array $dataStructArray
+      * @param array $conf
+      * @param array $row
+      * @param string $table
+      */
+      public function getFlexFormDS_postProcessDS(&$dataStructArray, $conf, $row, $table)
+      {
+         if ($table === 'tt_content' && $row['CType'] === 'list' && $row['list_type'] === 'news_pi1') {
+             $dataStructArray['sheets']['extraEntry'] = 'typo3conf/ext/extKey/Configuration/Example.xml';
+         }
+      }
+
+      // For 8x
+      /**
+      * @param array $dataStructure
+      * @param array $identifier
+      * @return array
+      */
+      public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
+      {
+        if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
+            $file = PATH_site . 'typo3conf/ext/extKey/Configuration/Example.xml';
+            $content = file_get_contents($file);
+            if ($content) {
+                $dataStructure['sheets']['extraEntry'] = GeneralUtility::xml2array($content);
             }
         }
-    }
+        return $dataStructure;
+      }
+   }
 
 **Create the flexform file**
 

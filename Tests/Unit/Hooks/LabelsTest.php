@@ -8,11 +8,12 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for Labels
  */
-class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class LabelsTest extends UnitTestCase
 {
 
     /**

@@ -42,13 +42,12 @@ before_script:
   # Restore composer.json
   - git checkout composer.json
   - export TYPO3_PATH_WEB=$PWD/.Build/Web
-  - if [ -d .Build/vendor/typo3/cms/components/testing_framework/Resources/Core/Build ]; then export TYPO3_BUILD_DIR=".Build/vendor/typo3/cms/components/testing_framework/Resources/Core/Build"; else export TYPO3_BUILD_DIR=".Build/vendor/typo3/cms/typo3/sysext/core/Build"; fi
 
 script:
   - >
     echo;
     echo "Running unit tests";
-    .Build/bin/phpunit --colors -c $TYPO3_BUILD_DIR/UnitTests.xml Tests/Unit/
+    .Build/bin/phpunit --colors -c .Build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
 
   - >
     echo;
@@ -66,4 +65,4 @@ script:
     export typo3DatabaseHost="localhost";
     export typo3DatabaseUsername="root";
     export typo3DatabasePassword="";
-    find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c $TYPO3_BUILD_DIR/FunctionalTests.xml {}'
+    find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c .Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml {}'

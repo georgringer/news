@@ -9,12 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\EmConfiguration;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Test for EmConfiguration
  *
  */
-class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class EmConfigurationTest extends UnitTestCase
 {
 
     /**

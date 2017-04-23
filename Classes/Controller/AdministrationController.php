@@ -410,14 +410,13 @@ class AdministrationController extends NewsController
     private function redirectToCreateNewRecord($table)
     {
         $pid = $this->pageUid;
-        if ($pid === 0) {
-            if (isset($this->tsConfiguration['defaultPid.'])
-                && is_array($this->tsConfiguration['defaultPid.'])
-                && isset($this->tsConfiguration['defaultPid.'][$table])
-            ) {
-                $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
-            }
+        if ($pid === 0 && isset($this->tsConfiguration['defaultPid.'])
+            && is_array($this->tsConfiguration['defaultPid.'])
+            && isset($this->tsConfiguration['defaultPid.'][$table])
+        ) {
+            $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
         }
+
         $returnUrl = 'index.php?M=web_NewsTxNewsM2&id=' . $this->pageUid . $this->getToken();
         $url = BackendUtilityCore::getModuleUrl('record_edit', [
             'edit[' . $table . '][' . $pid . ']' => 'new',

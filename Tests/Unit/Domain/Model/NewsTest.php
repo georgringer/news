@@ -9,17 +9,17 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\Category;
-use GeorgRinger\News\Domain\Model\File;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Model\Tag;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for domains model News
  *
  */
-class NewsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class NewsTest extends UnitTestCase
 {
 
     /**
