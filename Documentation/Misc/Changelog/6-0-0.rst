@@ -40,8 +40,8 @@ Renaming of partials
 The following partials have been renamed
 
 - `Detail/FalMediaContainer` to `Detail/MediaContainer`
-- `Detail/FalMediaImageContainer` to `Detail/MediaImageContainer`
-- `Detail/FalMediaVideoContainer` to `Detail/MediaVideoContainer`
+- `Detail/FalMediaImage` to `Detail/MediaImage`
+- `Detail/FalMediaVideo` to `Detail/MediaVideo`
 
 
 Error message if news not found
