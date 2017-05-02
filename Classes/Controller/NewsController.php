@@ -198,6 +198,8 @@ class NewsController extends NewsBaseController
             'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
+            'categories' => null,
+            'tags' => null,
         ];
 
         if ($demand->getCategories() !== '') {
