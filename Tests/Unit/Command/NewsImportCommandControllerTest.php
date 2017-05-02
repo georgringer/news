@@ -9,11 +9,12 @@ namespace GeorgRinger\News\Tests\Unit\Command;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Command\NewsImportCommandController;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Testcase for the GeorgRinger\\News\\Controller\\NewsImportCommandControllerTest class.
  */
-class NewsImportCommandControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class NewsImportCommandControllerTest extends UnitTestCase
 {
 
     /**

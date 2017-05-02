@@ -2,19 +2,19 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
-use GeorgRinger\News\Domain\Model\Link;
-
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use GeorgRinger\News\Domain\Model\Link;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for domains model Link
  */
-class LinkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class LinkTest extends UnitTestCase
 {
 
     /**

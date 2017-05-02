@@ -11,11 +11,12 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\SettingsService;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Test for LinkViewHelper
  */
-class LinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class LinkViewHelperTest extends UnitTestCase
 {
     protected $mockedContentObjectRenderer;
 

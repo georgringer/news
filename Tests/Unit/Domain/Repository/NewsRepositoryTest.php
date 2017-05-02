@@ -10,13 +10,14 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  */
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for domain repository newsRepository
  *
  *
  */
-class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class NewsRepositoryTest extends UnitTestCase
 {
 
     /**

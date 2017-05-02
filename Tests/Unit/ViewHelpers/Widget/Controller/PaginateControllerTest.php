@@ -8,11 +8,12 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Widget\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for PaginateController
  */
-class PaginateControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class PaginateControllerTest extends UnitTestCase
 {
 
     /**

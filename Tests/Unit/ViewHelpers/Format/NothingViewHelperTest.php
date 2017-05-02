@@ -8,12 +8,13 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for NothingViewHelper
  *
  */
-class NothingViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class NothingViewHelperTest extends UnitTestCase
 {
 
     /**

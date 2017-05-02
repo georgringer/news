@@ -16,18 +16,6 @@ class CategoryController extends NewsController
     const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
 
     /**
-     * Page uid
-     *
-     * @var int
-     */
-    protected $pageUid = 0;
-
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\NewsRepository
-     */
-    protected $newsRepository;
-
-    /**
      * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
      */
     protected $categoryRepository;
@@ -52,7 +40,7 @@ class CategoryController extends NewsController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ($overwriteDemand !== null && $this->settings['disableOverrideDemand'] != 1) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
