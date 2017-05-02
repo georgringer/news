@@ -9,16 +9,18 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\ViewHelpers\TitleTagViewHelper;
+use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 
 /**
  * Test for TitleTagViewHelper
  */
-class TitleTagViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class TitleTagViewHelperTest extends UnitTestCase
 {
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController|\TYPO3\CMS\Core\Tests\AccessibleObjectInterface
+     * @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController|AccessibleMockObjectInterface
      */
     protected $tsfe = null;
 

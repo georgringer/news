@@ -251,9 +251,10 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
         }
 
         if (!empty($categoryRestriction)) {
-            $structure['sheets']['sDEF']['ROOT']['el']['settings.categories']['TCEforms']['config']['foreign_table_where'] = $categoryRestriction . $structure['sheets']['sDEF']['ROOT']['el']['settings.categories']['TCEforms']['config']['foreign_table_where'];
+            $structure['sheets']['sDEF']['ROOT']['el']['settings.categories']['config']['foreign_table_where'] = $categoryRestriction . $structure['sheets']['sDEF']['ROOT']['el']['settings.categories']['config']['foreign_table_where'];
         }
         $result['processedTca']['columns']['pi_flexform']['config']['ds'] = $structure;
+        return $result;
     }
 
     /**

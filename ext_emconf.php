@@ -21,12 +21,12 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '6.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '7.6.13-8.5.99',
+            'typo3' => '7.6.13-8.7.99',
         ],
         'conflicts' => [],
         'suggests' => [
             'dd_googlesitemap' => '2.0.5-2.99.99',
-            'rx_shariff' => '7.0.0-7.99.99'
+            'rx_shariff' => '7.0.0-10.99.99'
         ],
     ],
     'suggests' => [],

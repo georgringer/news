@@ -8,12 +8,13 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for domain repository categoryRepository
  *
  */
-class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class CategoryRepositoryTest extends UnitTestCase
 {
 
     /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
