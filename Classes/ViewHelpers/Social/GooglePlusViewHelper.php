@@ -66,7 +66,7 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
      */
     public function render($jsCode = '')
     {
-        GeneralUtility::deprecationLog(sprintf('The ViewHelper "%s" has been deprecated and will be removed with version 7.0.0 of EXT:news', self::class));
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(sprintf('The ViewHelper "%s" has been deprecated and will be removed with version 7.0.0 of EXT:news', self::class));
 
         if (empty($jsCode)) {
             $jsCode = 'https://apis.google.com/js/platform.js';
