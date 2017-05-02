@@ -1,4 +1,4 @@
-define(['jquery', 'TYPO3/CMS/Backend/Tooltip', 'TYPO3/CMS/Backend/ClickMenu'], function ($) {
+define(['jquery', 'TYPO3/CMS/Backend/Tooltip'], function ($) {
 
     if ($('.t3js-clearable').length) {
         require(['TYPO3/CMS/Backend/jquery.clearable'], function() {

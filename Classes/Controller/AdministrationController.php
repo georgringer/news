@@ -104,6 +104,11 @@ class AdministrationController extends NewsController
 
         $pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/DateTimePicker');
+        if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8006000) {
+            $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ContextMenu');
+        } else {
+            $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ClickMenu');
+        }
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/AdministrationModule');
         $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
@@ -221,7 +226,7 @@ class AdministrationController extends NewsController
         // Refresh
         $refreshButton = $buttonBar->makeLinkButton()
             ->setHref(GeneralUtility::getIndpEnv('REQUEST_URI'))
-            ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.reload'))
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/locallang_core.xlf:labels.reload'))
             ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
         $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
     }
@@ -405,14 +410,13 @@ class AdministrationController extends NewsController
     private function redirectToCreateNewRecord($table)
     {
         $pid = $this->pageUid;
-        if ($pid === 0) {
-            if (isset($this->tsConfiguration['defaultPid.'])
-                && is_array($this->tsConfiguration['defaultPid.'])
-                && isset($this->tsConfiguration['defaultPid.'][$table])
-            ) {
-                $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
-            }
+        if ($pid === 0 && isset($this->tsConfiguration['defaultPid.'])
+            && is_array($this->tsConfiguration['defaultPid.'])
+            && isset($this->tsConfiguration['defaultPid.'][$table])
+        ) {
+            $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
         }
+
         $returnUrl = 'index.php?M=web_NewsTxNewsM2&id=' . $this->pageUid . $this->getToken();
         $url = BackendUtilityCore::getModuleUrl('record_edit', [
             'edit[' . $table . '][' . $pid . ']' => 'new',

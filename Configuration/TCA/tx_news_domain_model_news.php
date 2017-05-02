@@ -43,7 +43,7 @@ $tx_news_domain_model_news = [
             'endtime' => 'endtime',
             'fe_group' => 'fe_group',
         ],
-        'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.gif',
+        'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.svg',
         'searchFields' => 'uid,title',
         'thumbnail' => 'fal_media',
     ],
@@ -80,7 +80,8 @@ $tx_news_domain_model_news = [
                 ],
                 'foreign_table' => 'tx_news_domain_model_news',
                 'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
-                'showIconTable' => false
+                'showIconTable' => false,
+                'default' => 0,
             ]
         ],
         'l10n_diffsource' => [

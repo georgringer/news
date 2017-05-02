@@ -9,12 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Functional test for the \GeorgRinger\News\Domain\Repository\NewsRepository
  */
-class NewsRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
+class NewsRepositoryTest extends FunctionalTestCase
 {
 
     /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */

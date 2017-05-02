@@ -90,7 +90,7 @@ class DataHandler
                 } else {
 
                     // If the category relation has been modified, no | is found anymore
-                    if (strpos($fieldArray['categories'], '|') === false) {
+                    if (isset($fieldArray['categories']) && strpos($fieldArray['categories'], '|') === false) {
                         $deniedCategories = AccessControlService::getAccessDeniedCategories($newsRecord);
                         if (is_array($deniedCategories)) {
                             foreach ($deniedCategories as $deniedCategory) {

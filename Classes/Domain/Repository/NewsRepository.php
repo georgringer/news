@@ -194,7 +194,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         // Tags
         $tags = $demand->getTags();
-        if ($tags) {
+        if ($tags && is_string($tags)) {
             $tagList = explode(',', $tags);
 
             $subConstraints = [];

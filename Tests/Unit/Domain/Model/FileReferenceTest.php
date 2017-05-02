@@ -9,11 +9,12 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\FileReference;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for GeorgRinger\News\Domain\Model\FileReference
  */
-class FileReferenceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class FileReferenceTest extends UnitTestCase
 {
 
     /**

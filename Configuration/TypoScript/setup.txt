@@ -24,11 +24,11 @@ plugin.tx_news {
 	}
 
 	# Modify the translation
-	_LOCAL_LANG {
-		default {
-			more-link_more = more >>
-		}
-	}
+	#_LOCAL_LANG {
+	#	default {
+	#		more-link = more >>
+	#	}
+	#}
 
 	# ====================================
 	# Settings available inside Controller and View by accessing $this->settings or {settings.xyz}

@@ -191,12 +191,12 @@ Don't forget to configure the RSS feed properly as the sample template won't ful
 
 .. code-block:: typoscript
 
-    plugin.tx_news.settings.list {
+    plugin.tx_news {
     	rss.channel {
     		title = Dummy Title
     		description =
     		link = http://example.com
-    		language = en_GB
+    		language = en-gb
     		copyright = TYPO3 News
     		category =
     		generator = TYPO3 EXT:news
