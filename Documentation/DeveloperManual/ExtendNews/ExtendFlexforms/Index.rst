@@ -45,7 +45,7 @@ take a look at the hook inside the class Hooks/BackendUtility.php:
 
 .. code-block:: php
 
-	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/T3libBefunc.php']['updateFlexforms']
+	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms']
 
 Additional Template Selector
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
