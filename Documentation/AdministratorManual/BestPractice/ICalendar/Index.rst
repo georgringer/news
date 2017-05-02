@@ -206,4 +206,4 @@ If you want to rewrite the URL, use a configuration like this one.
     	)
     );
 
-This will change the URL to :code:`/feed.ical`.
+This will change the URL to :code:`/calendar.ical`.

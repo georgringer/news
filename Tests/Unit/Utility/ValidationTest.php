@@ -9,12 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\Validation;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for Validation
  *
  */
-class ValidationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class ValidationTest extends UnitTestCase
 {
     const ALLOWED_FIELDS = 'author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title';
 

@@ -9,12 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\ImportJob;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Test class for ImportJob
  *
  */
-class ImportJobTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class ImportJobTest extends UnitTestCase
 {
 
     /**

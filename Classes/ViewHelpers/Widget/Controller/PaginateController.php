@@ -141,6 +141,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
         ]);
         $this->view->assign('configuration', $this->configuration);
         $this->view->assign('recordId', $this->recordId);
+        $this->view->assign('pageId', $this->getCurrentPageId());
         $this->view->assign('pagination', $this->buildPagination());
 
         if (!empty($this->templatePath)) {
@@ -200,5 +201,16 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
         }
         $this->displayRangeStart = (integer)max($this->displayRangeStart, 1);
         $this->displayRangeEnd = (integer)min($this->displayRangeEnd, $this->numberOfPages);
+    }
+
+    /**
+     * @return int
+     */
+    protected function getCurrentPageId()
+    {
+        if (is_object($GLOBALS['TSFE'])) {
+            return (int)$GLOBALS['TSFE']->id;
+        }
+        return 0;
     }
 }

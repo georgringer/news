@@ -9,12 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\Tag;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for domains model Tag
  *
  */
-class TagTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class TagTest extends UnitTestCase
 {
 
     /**

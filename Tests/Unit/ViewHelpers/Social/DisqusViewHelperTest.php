@@ -10,12 +10,13 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Social;
  */
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\Social\DisqusViewHelper;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Tests for DisqusSizeViewHelper
  */
-class DisqusViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class DisqusViewHelperTest extends UnitTestCase
 {
 
     /**

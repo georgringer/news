@@ -8,12 +8,13 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Functional test for the DataHandler
  */
-class CategoryRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
+class CategoryRepositoryTest extends FunctionalTestCase
 {
 
     /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */

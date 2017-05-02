@@ -9,12 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\Dto\Search;
+use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
  * Tests for domains model News
  *
  */
-class SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class SearchTest extends UnitTestCase
 {
 
     /**
