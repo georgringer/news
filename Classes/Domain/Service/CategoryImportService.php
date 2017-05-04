@@ -66,41 +66,47 @@ class CategoryImportService extends AbstractImportService
     {
         $this->logger->info(sprintf('Starting import for %s categories', count($importArray)));
 
-        // Sort import array to import the default language first
         foreach ($importArray as $importItem) {
+            $postPersistQueueItem = array();
             $category = $this->hydrateCategory($importItem);
 
             if (!empty($importItem['title_lang_ol'])) {
-                $this->postPersistQueue[$importItem['import_id']] = [
+                $postPersistQueueItem = array(
                     'category' => $category,
                     'importItem' => $importItem,
-                    'action' => self::ACTION_CREATE_L10N_CHILDREN_CATEGORY,
+                    'action' => array(self::ACTION_CREATE_L10N_CHILDREN_CATEGORY),
                     'titleLanguageOverlay' => $importItem['title_lang_ol']
-                ];
+                );
             }
 
             if ($importItem['parentcategory']) {
-                $this->postPersistQueue[$importItem['import_id']] = [
-                    'category' => $category,
-                    'action' => self::ACTION_SET_PARENT_CATEGORY,
-                    'parentCategoryOriginUid' => $importItem['parentcategory']
-                ];
+                $postPersistQueueItem = \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge(
+                    array(
+                        'category' => $category,
+                        'parentCategoryOriginUid' => $importItem['parentcategory']
+                    ),
+                    $postPersistQueueItem
+                );
+                if(!isset($postPersistQueueItem['action'])) {
+                    $postPersistQueueItem['action'] = array(self::ACTION_SET_PARENT_CATEGORY);
+                } else {
+                    $postPersistQueueItem['action'][] = self::ACTION_SET_PARENT_CATEGORY;
+                }
+            }
+
+            if(!empty($postPersistQueueItem)) {
+                $this->postPersistQueue[$importItem['import_id']] = $postPersistQueueItem;
             }
         }
 
         $this->persistenceManager->persistAll();
 
         foreach ($this->postPersistQueue as $queueItem) {
-            switch ($queueItem['action']) {
-                case self::ACTION_SET_PARENT_CATEGORY:
-                    $this->setParentCategory($queueItem);
-                    break;
-                case self::ACTION_CREATE_L10N_CHILDREN_CATEGORY:
-                    $this->createL10nChildrenCategory($queueItem);
-                    break;
-                default:
-                    // do nothing
-                    break;
+            if(in_array(self::ACTION_SET_PARENT_CATEGORY, $queueItem['action']) !== false) {
+                $this->setParentCategory($queueItem);
+            }
+            if(in_array(self::ACTION_CREATE_L10N_CHILDREN_CATEGORY, $queueItem['action']) !== false) {
+                $this->createL10nChildrenCategory($queueItem);
             }
         }
 
