@@ -154,6 +154,7 @@ class NewsImportService extends AbstractImportService
 
         $news->setType((string)$importItem['type']);
         $news->setKeywords($importItem['keywords']);
+        $news->setDescription($importItem['description']);
         $news->setDatetime(new \DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
         $news->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
 
@@ -166,9 +167,6 @@ class NewsImportService extends AbstractImportService
 
         $news->setInternalurl($importItem['internalurl']);
         $news->setExternalurl($importItem['externalurl']);
-
-        $news->setType($importItem['type']);
-        $news->setKeywords($importItem['keywords']);
 
         $news->setAuthor($importItem['author']);
         $news->setAuthorEmail($importItem['author_email']);

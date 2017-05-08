@@ -39,6 +39,9 @@ use TYPO3\CMS\Core\Database\DatabaseConnection;
  *    </f:if>
  * </n:simplePrevNext>
  *
+ * The attributes includeExternalType & includeInternalType allow to include internal and
+ * external news types.
+ *
  * </code>
  * <output>
  *  Menu with 2 li items with the link to the previous and next news item.
@@ -84,6 +87,8 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         $this->registerArgument('pidList', 'string', 'pid list', false, '');
         $this->registerArgument('sortField', 'string', 'sort field', false, 'datetime');
         $this->registerArgument('as', 'string', 'as', true);
+        $this->registerArgument('includeInternalType', 'boolean', 'Include internal news types');
+        $this->registerArgument('includeExternalType', 'bool', 'Include external news types');
     }
 
     /**
@@ -157,11 +162,19 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      */
     protected function getEnableFieldsWhereClauseForTable()
     {
+        $whereClause = '';
         if (is_object($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']->sys_page)) {
-            return $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
+            $whereClause = $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
         }
 
-        return '';
+        if ((bool)$this->arguments['includeInternalType'] === false) {
+            $whereClause .= ' AND tx_news_domain_model_news.type !="1"';
+        }
+        if ((bool)$this->arguments['includeExternalType'] === false) {
+            $whereClause .= ' AND tx_news_domain_model_news.type !="2"';
+        }
+
+        return $whereClause;
     }
 
     /**
