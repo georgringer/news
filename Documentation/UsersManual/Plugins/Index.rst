@@ -42,6 +42,10 @@ List view (without overloading detail view)
 The described behaviour of the first implementation might not be desired all the time.
 A typical example is to show a list view in the sidebar of a detail view page. If the above action would be used, the detail view would be shown in the sidebar too.
 
+List of articles
+""""""""""""""""
+Show a specific list of articles
+
 .. _plugin-detail:
 
 Detail

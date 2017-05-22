@@ -39,6 +39,9 @@
 			<trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve">
 				<source>Date menu</source>
 			</trans-unit>
+			<trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve">
+				<source>List of selected items</source>
+			</trans-unit>
 			<trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
 				<source>Category Menu</source>
 			</trans-unit>
@@ -161,6 +164,9 @@
 			</trans-unit>
 			<trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
 				<source>[no constraint]</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.selectedList" xml:space="preserve">
+				<source>List of articles</source>
 			</trans-unit>
 			<trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
 				<source>Max width for media elements</source>
