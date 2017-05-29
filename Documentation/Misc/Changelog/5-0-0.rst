@@ -109,7 +109,7 @@ The following deprecated ViewHelpers have been removed:
 
 - ``<n:format.date />``
 - ``<n:format.hsc />``: Use ``<f:format.htmlspecialchars />``
-- ``<n:format.htmlentities />``: Use ``<f:format.htmlentitiesDecode />``
+- ``<n:format.htmlentitiesDecode />``: Use ``<f:format.htmlentitiesDecode />``
 - ``<n:format.striptags />``: Use ``<f:format.striptags />``
 - ``<n:format.fileDownload />``: Use the native implementation of FAL
 - ``<n:format.fileSize />``: Use the native implementation of FAL
