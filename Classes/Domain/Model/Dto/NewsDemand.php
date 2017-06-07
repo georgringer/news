@@ -542,7 +542,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      */
     public function getDateField()
     {
-        if (empty($this->dateField) || in_array($this->dateField, ['datetime', 'archive'])) {
+        if (!empty($this->dateField) || in_array($this->dateField, ['datetime', 'archive'])) {
             return $this->dateField;
         } else {
             return '';
