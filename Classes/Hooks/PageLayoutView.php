@@ -604,7 +604,8 @@ class PageLayoutView
     /**
      * Get list of selected news items
      */
-    protected function getSelectedListSetting() {
+    protected function getSelectedListSetting()
+    {
         $value = $this->getFieldFromFlexform('settings.selectedList');
 
         if (!empty($value)) {
