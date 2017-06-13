@@ -117,7 +117,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                     HttpUtility::setResponseCode($statusCode);
                 }
                 $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
-                $standaloneTemplate->setTemplatePathAndFilename($configuration[1]);
+                $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($configuration[1]));
                 return $standaloneTemplate->render();
                 break;
             default:
