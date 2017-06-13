@@ -302,3 +302,27 @@ Of course you need to adopt the snippet to your own needs, like setting the ``de
 
 By defining a custom property like ``relatedView = 1`` you can differ in the ``List.html`` if it is called by this snippet or by a regular plugin.
 
+Show Category Menu with Typoscript
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: typoscript
+
+	lib.categoryMenu = USER
+	lib.categoryMenu {
+		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		extensionName = News
+		pluginName = Pi1
+		vendorName = GeorgRinger
+
+		action = category
+		switchableControllerActions {
+			Category {
+				1 = list
+			}
+		}
+
+		settings < plugin.tx_news.settings
+		settings {
+			listPid = 11
+		}
+	}
