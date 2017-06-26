@@ -43,7 +43,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
         $iconImg = '<span title="' . $altText . '" id="' . htmlspecialchars($objectId) . '_icon' . '">' . $this->iconFactory->getIconForRecord($foreignTable, $rec, Icon::SIZE_SMALL)->render() . '</span>';
 
         $raw = BackendUtility::getRecord('tt_content', $rec['uid']);
-        if (is_array($raw) && !empty($raw) && $raw['CType'] !== 'gridelements_pi1') {
+        if (is_array($raw) && !empty($raw) && $raw['CType'] !== 'gridelements_pi1' && $raw['CType'] !== 'html') {
             $pageLayoutView = GeneralUtility::makeInstance(PageLayoutView::class);
             $pageLayoutView->doEdit = false;
 
