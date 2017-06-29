@@ -38,6 +38,7 @@ before_install:
   - composer --version
 
 before_script:
+  - phpenv config-rm xdebug.ini
   - composer require typo3/cms=$TYPO3_VERSION
   # Restore composer.json
   - git checkout composer.json
