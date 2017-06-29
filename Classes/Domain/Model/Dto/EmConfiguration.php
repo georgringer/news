@@ -97,6 +97,9 @@ class EmConfiguration
      */
     protected $resourceFolderImporter = '/news_import';
 
+    /** @var bool */
+    protected $mediaPreview = false;
+
     /**
      * @return int
      */
@@ -235,4 +238,13 @@ class EmConfiguration
     {
         return (bool)$this->hidePageTreeForAdministrationModule;
     }
+
+    /**
+     * @return bool
+     */
+    public function isMediaPreview()
+    {
+        return (bool)$this->mediaPreview;
+    }
+
 }

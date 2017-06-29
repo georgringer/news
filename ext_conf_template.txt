@@ -30,6 +30,9 @@ dateTimeNotRequired = 0
 # cat=records/enable/2; type=options[LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.archiveDate.date=date,LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.archiveDate.datetime=datetime]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.archiveDate
 archiveDate = date
 
+# cat=records/enable/150; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.mediaPreview
+mediaPreview = false
+
 # Backend module
 
 # cat=backend module/enable/10; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.showAdministrationModule

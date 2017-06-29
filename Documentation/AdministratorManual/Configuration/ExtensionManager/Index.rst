@@ -34,6 +34,7 @@ Properties
 	contentElementRelation_               records                               0
 	manualSorting_                        records                               0
 	dateTimeNotRequired_                  records                               fal
+	mediaPreview_                         records                               0
 	showAdministrationModule_             backend modules                       0
 	hidePageTreeForAdministrationModule_  backend modules                       0
 	showImporter_                         import module                         0
@@ -146,13 +147,19 @@ manualSorting
 """""""""""""
 If set, news records can be manually sorted in the list view by the well known icons "up" and "down".
 
-.. _extensionManagerUseFal:
+.. _extensionManagerDateTimeNotRequired:
 
 dateTimeNotRequired
 """""""""""""""""""
 If set, the date field of the news record is not a required field anymore. Furthermore if creating a new record, it is not filled anymore with the current date.
 
 Be aware that using this feature may lead to unexpected results if using e.g. the date menu if the field is not used anymore.
+
+.. _extensionManagerMediaPreview:
+
+mediaPreview
+""""""""""""
+If enabled, the list module will show thumbnails of the media items.
 
 .. _extensionManagerShowAdministrationModule:
 
