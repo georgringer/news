@@ -246,5 +246,4 @@ class EmConfiguration
     {
         return (bool)$this->mediaPreview;
     }
-
 }
