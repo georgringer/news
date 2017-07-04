@@ -17,11 +17,11 @@ variables:
   typo3DatabaseUsername: "root"
   typo3DatabasePassword: "joh316"
 
-test:cgl:
-  image: composer:1.3
+cgl:
+  image: composer
   stage: test
   before_script:
-  - composer remove typo3/cms-core --no-update
+  - composer require typo3/cms="${TYPO3_VERSION}"
   - composer install
   script:
   - .Build/bin/php-cs-fixer fix --config=Build/.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $COMMIT_RANGE`
@@ -38,37 +38,36 @@ test:cgl:
   - php -r "if (hash_file('SHA384', 'composer-setup.php') === file_get_contents('installer.sig')) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
   - php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer
   - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
-  - composer remove typo3/cms-core --no-update
   - composer require typo3/cms="${TYPO3_VERSION}"
   script:
-  - .Build/bin/phpunit --colors  -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit/
+  - .Build/bin/phpunit --colors  -c .Build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
   - find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null
-  - find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/FunctionalTests.xml {}'
+  - find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c .Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml {}'
 
-test:php5.5:typo3_76:
+typo3_7lts 1/4:
   <<: *test_php
   image: php:5.5-alpine
 
-test:php5.6:typo3_76:
+typo3_7lts 2/4:
   <<: *test_php
   image: php:5.6-alpine
 
-test:php7.0:typo3_76:
+typo3_7lts 3/4:
   <<: *test_php
   image: php:7.0-alpine
 
-test:php7.1:typo3_76:
+typo3_7lts 4/4:
   <<: *test_php
   image: php:7.1-alpine
 
-test:php7.0:typo3_85:
+typo3_8lts 1/2:
   <<: *test_php
   image: php:7.0-alpine
   variables:
-    TYPO3_VERSION: ^8.5
+    TYPO3_VERSION: ^8
 
-test:php7.1:typo3_85:
+typo3_8lts 2/2:
   <<: *test_php
   image: php:7.1-alpine
   variables:
-    TYPO3_VERSION: ^8.5
+    TYPO3_VERSION: ^8

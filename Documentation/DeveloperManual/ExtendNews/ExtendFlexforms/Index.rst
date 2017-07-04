@@ -115,7 +115,7 @@ flexform file.
             $file = PATH_site . 'typo3conf/ext/extKey/Configuration/Example.xml';
             $content = file_get_contents($file);
             if ($content) {
-                $dataStructure['sheets']['extraEntry'] = GeneralUtility::xml2array($content);
+                $dataStructure['sheets']['extraEntry'] = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($content);
             }
         }
         return $dataStructure;

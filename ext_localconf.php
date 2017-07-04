@@ -6,7 +6,7 @@ $boot = function () {
         'GeorgRinger.news',
         'Pi1',
         [
-            'News' => 'list,detail,dateMenu,searchForm,searchResult',
+            'News' => 'list,detail,selectedList,dateMenu,searchForm,searchResult',
             'Category' => 'list',
             'Tag' => 'list',
         ],
@@ -37,6 +37,8 @@ $boot = function () {
     // Modify flexform values
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass']['news'] =
         \GeorgRinger\News\Hooks\BackendUtility::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing']['news']
+        = \GeorgRinger\News\Hooks\BackendUtility::class;
 
     // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
     if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8005000) {

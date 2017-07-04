@@ -151,7 +151,7 @@ Add easier names for the getters of fields to FAL. As the non-FAL fields have be
 have been reactivated to fetch the FAL fields. This makes the templates far easier to read.
 
 - `newsItem.falMedia` => `newsItem.media`
-- `newsItem.falMMediaPreviews` => `newsItem.mediaPreviews`
+- `newsItem.falMediaPreviews` => `newsItem.mediaPreviews`
 - `newsItem.falMediaNonPreviews` => `newsIten.nonMediaPreviews`
 - `newsItem.firstFalImagePreview` => `newsItem.firstPreview`
 - `newsItem.falRelatedFiles` => `newsItem.relatedFiles`
