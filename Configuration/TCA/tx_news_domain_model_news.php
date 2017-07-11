@@ -25,8 +25,8 @@ $tx_news_domain_model_news = [
         'typeicon_column' => 'type',
         'typeicon_classes' => [
             'default' => 'ext-news-type-default',
-            '1' => 'ext-news-type-internal',
-            '2' => 'ext-news-type-external',
+            '2' => 'ext-news-type-internal',
+            '1' => 'ext-news-type-external',
         ],
         'useColumnsForDefaultValues' => 'type',
         'languageField' => 'sys_language_uid',
@@ -368,8 +368,8 @@ $tx_news_domain_model_news = [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [$ll . 'tx_news_domain_model_news.type.I.0', 0, 'ext-news-type-default'],
-                    [$ll . 'tx_news_domain_model_news.type.I.1', 1, 'ext-news-type-internal'],
-                    [$ll . 'tx_news_domain_model_news.type.I.2', 2, 'ext-news-type-external'],
+                    [$ll . 'tx_news_domain_model_news.type.I.1', 2, 'ext-news-type-internal'],
+                    [$ll . 'tx_news_domain_model_news.type.I.2', 1, 'ext-news-type-external'],
                 ],
                 'showIconTable' => true,
                 'size' => 1,
@@ -669,7 +669,7 @@ $tx_news_domain_model_news = [
 				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
         // internal url
-        '1' => [
+        '2' => [
             'columnsOverrides' => [
                 'bodytext' => [
                     'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
@@ -695,7 +695,7 @@ $tx_news_domain_model_news = [
 				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
         // external url
-        '2' => [
+        '1' => [
             'columnsOverrides' => [
                 'bodytext' => [
                     'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
