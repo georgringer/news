@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -320,6 +321,7 @@ class AdministrationController extends NewsController
             'showSearchForm' => (!is_null($demand) || $dblist->counter > 0),
             'requestUri' => GeneralUtility::quoteJSvalue(rawurlencode(GeneralUtility::getIndpEnv('REQUEST_URI'))),
             'categories' => $this->categoryRepository->findTree($idList),
+            'filters' => $this->tsConfiguration['filters.'],
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];
 

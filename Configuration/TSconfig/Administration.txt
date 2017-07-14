@@ -1,0 +1,5 @@
+tx_news.module {
+    filters {
+        searchWord = 1
+    }
+}

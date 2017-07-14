@@ -42,6 +42,7 @@
 				<div class="settings">
 					<div class="row form-horizontal">
 						<div class="col-xs-6">
+							<f:if condition="{filters.searchWord}">
 							<div class="form-group">
 								<label for="searchWord" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.searchWord" />
@@ -51,6 +52,7 @@
 									<f:form.textfield property="searchWord" id="searchWord" class="form-control t3js-clearable" />
 								</div>
 							</div>
+							</f:if>
 							<div class="form-group">
 								<label for="timeRestriction" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.timeRange" />
