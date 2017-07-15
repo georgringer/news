@@ -90,10 +90,16 @@ class ObjectViewHelper extends AbstractViewHelper implements CompilableInterface
         $records = $dataMapper->map($className, [$rawRecord]);
         $record = array_shift($records);
 
-        // @TODO: getTemplateVariableContainer() deprecated on 8.0+, use getVariableProvider() after raising minimum
-        $renderingContext->getTemplateVariableContainer()->templateVariableContainer->add($as, $record);
-        $output = $renderChildrenClosure();
-        $renderingContext->getTemplateVariableContainer()->templateVariableContainer->remove($as);
+        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= VersionNumberUtility::convertVersionNumberToInteger('9.0')) {
+            $renderingContext->getVariableProvider()->add($as, $record);
+            $output = $renderChildrenClosure();
+            $renderingContext->getVariableProvider()->remove($as);
+        } else {
+            $renderingContext->getTemplateVariableContainer()->templateVariableContainer->add($as, $record);
+            $output = $renderChildrenClosure();
+            $renderingContext->getTemplateVariableContainer()->templateVariableContainer->remove($as);
+        }
+
         return $output;
     }
 }
