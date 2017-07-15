@@ -452,7 +452,7 @@ class AdministrationController extends NewsController
         foreach ($this->tsConfiguration['filters.'] as $filter => $enabled) {
             if ($enabled == 1) {
                 // Check dependencies on other filter
-                if (($filter === "categoryConjunction" || $filter === "includeSubCategories")
+                if (($filter === 'categoryConjunction' || $filter === 'includeSubCategories')
                     && $this->tsConfiguration['filters.']['categories'] == 0) {
                     continue;
                 }
