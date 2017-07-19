@@ -64,7 +64,7 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCatgegoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

@@ -6,17 +6,9 @@ $EM_CONF[$_EXTKEY] = [
     'category' => 'fe',
     'author' => 'Georg Ringer',
     'author_email' => 'typo3@ringerge.org',
-    'shy' => '',
-    'dependencies' => '',
-    'conflicts' => '',
-    'priority' => '',
-    'module' => '',
     'state' => 'stable',
-    'internal' => '',
     'uploadfolder' => 1,
-    'modify_tables' => '',
     'clearCacheOnLoad' => 1,
-    'lockType' => '',
     'author_company' => '',
     'version' => '6.1.0-dev',
     'constraints' => [
@@ -29,5 +21,4 @@ $EM_CONF[$_EXTKEY] = [
             'rx_shariff' => '7.0.0-10.99.99'
         ],
     ],
-    'suggests' => [],
 ];
