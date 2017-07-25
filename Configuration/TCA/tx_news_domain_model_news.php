@@ -599,7 +599,16 @@ $tx_news_domain_model_news = [
 						--palette--;;imageoverlayPalette,
 						--palette--;;filePalette'
                         ]
-                    ]
+                    ],
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
                 ],
                 $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
             )
