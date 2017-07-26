@@ -1,28 +1,27 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * Extension Manager configuration
- *
+ * Extension Manager configuration.
  */
 class EmConfiguration
 {
-
     /**
-     * Fill the properties properly
+     * Fill the properties properly.
      *
      * @param array $configuration em configuration
      */
@@ -128,7 +127,7 @@ class EmConfiguration
      */
     public function getRemoveListActionFromFlexforms()
     {
-        return (int)$this->removeListActionFromFlexforms;
+        return (int) $this->removeListActionFromFlexforms;
     }
 
     /**
@@ -152,16 +151,15 @@ class EmConfiguration
      */
     public function getTagPid()
     {
-        return (int)$this->tagPid;
+        return (int) $this->tagPid;
     }
 
     /**
-     *
      * @return bool
      */
     public function getPrependAtCopy()
     {
-        return (boolean)$this->prependAtCopy;
+        return (bool) $this->prependAtCopy;
     }
 
     /**
@@ -173,7 +171,7 @@ class EmConfiguration
     }
 
     /**
-     * Get categoryBeGroupTceFormsRestriction
+     * Get categoryBeGroupTceFormsRestriction.
      *
      * @return bool
      */
@@ -187,7 +185,7 @@ class EmConfiguration
      */
     public function getContentElementRelation()
     {
-        return (boolean)$this->contentElementRelation;
+        return (bool) $this->contentElementRelation;
     }
 
     /**
@@ -195,7 +193,7 @@ class EmConfiguration
      */
     public function getManualSorting()
     {
-        return (boolean)$this->manualSorting;
+        return (bool) $this->manualSorting;
     }
 
     /**
@@ -211,11 +209,12 @@ class EmConfiguration
      */
     public function getShowImporter()
     {
-        return (boolean)$this->showImporter;
+        return (bool) $this->showImporter;
     }
 
     /**
      * @param bool $showAdministrationModule
+     *
      * @return void
      */
     public function setShowAdministrationModule($showAdministrationModule)
@@ -233,6 +232,7 @@ class EmConfiguration
 
     /**
      * @param bool $showMediaDescriptionField
+     *
      * @return void
      */
     public function setShowMediaDescriptionField($showMediaDescriptionField)
@@ -261,7 +261,7 @@ class EmConfiguration
      */
     public function getUseFal()
     {
-        return version_compare(TYPO3_branch, '6.0', '>=') ? (int)$this->useFal : 0;
+        return version_compare(TYPO3_branch, '6.0', '>=') ? (int) $this->useFal : 0;
     }
 
     /**
@@ -285,7 +285,7 @@ class EmConfiguration
      */
     public function getDateTimeNotRequired()
     {
-        return (bool)$this->dateTimeNotRequired;
+        return (bool) $this->dateTimeNotRequired;
     }
 
     /**
@@ -293,7 +293,6 @@ class EmConfiguration
      */
     public function getDateTimeRequired()
     {
-        return !(bool)$this->dateTimeNotRequired;
+        return !(bool) $this->dateTimeNotRequired;
     }
-
 }

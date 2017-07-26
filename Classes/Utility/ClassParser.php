@@ -4,7 +4,6 @@ namespace GeorgRinger\News\Utility;
 
 class ClassParser
 {
-
     private $classes = [];
     private $extends = [];
     private $implements = [];
@@ -30,6 +29,7 @@ class ClassParser
                 $implementers[$name] = $this->classes[$name];
             }
         }
+
         return $implementers;
     }
 
@@ -41,6 +41,7 @@ class ClassParser
                 $extenders[$name] = $this->classes[$name];
             }
         }
+
         return $extenders;
     }
 
@@ -89,10 +90,10 @@ class ClassParser
                                 $state = self::STATE_CLASS_HEAD;
                                 $si = $token[1];
                                 $classes[] = [
-                                    'name' => $token[1],
+                                    'name'      => $token[1],
                                     'modifiers' => $mod,
-                                    'doc' => $doc,
-                                    'start' => $token[2]
+                                    'doc'       => $doc,
+                                    'start'     => $token[2],
                                 ];
                                 break;
                             case T_FUNCTION:
@@ -101,7 +102,7 @@ class ClassParser
                                 if ($depth > 0 && $clsc) {
                                     $classes[$clsc - 1]['functions'][$token[1]] = [
                                         'modifiers' => $mod,
-                                        'doc' => $doc
+                                        'doc'       => $doc,
                                     ];
                                 }
                                 break;

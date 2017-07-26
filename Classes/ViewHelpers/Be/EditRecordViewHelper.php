@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\ViewHelpers\Be;
 
 /*
@@ -22,22 +23,24 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
 
 /**
- * Edit Record ViewHelper, see FormEngine logic
+ * Edit Record ViewHelper, see FormEngine logic.
  */
 class EditRecordViewHelper extends AbstractViewHelper implements CompilableInterface
 {
     /**
-     * Returns a URL to link to FormEngine
+     * Returns a URL to link to FormEngine.
      *
      * @param string $parameters Is a set of GET params to send to FormEngine
+     *
      * @return string URL to FormEngine module + parameters
+     *
      * @see \TYPO3\CMS\Backend\Utility\BackendUtility::getModuleUrl()
      */
     public function render($parameters)
     {
         return static::renderStatic(
             [
-                'parameters' => $parameters
+                'parameters' => $parameters,
             ],
             $this->buildRenderChildrenClosure(),
             $this->renderingContext
@@ -45,8 +48,8 @@ class EditRecordViewHelper extends AbstractViewHelper implements CompilableInter
     }
 
     /**
-     * @param array $arguments
-     * @param callable $renderChildrenClosure
+     * @param array                     $arguments
+     * @param callable                  $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
      *
      * @return string
@@ -58,8 +61,8 @@ class EditRecordViewHelper extends AbstractViewHelper implements CompilableInter
     ) {
         $parameters = GeneralUtility::explodeUrl2Array($arguments['parameters']);
 
-        $parameters['returnUrl'] = 'index.php?M=web_NewsTxNewsM2&id=' . (int)GeneralUtility::_GET('id')
-            . '&moduleToken=' . FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
+        $parameters['returnUrl'] = 'index.php?M=web_NewsTxNewsM2&id='.(int) GeneralUtility::_GET('id')
+            .'&moduleToken='.FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
 
         return BackendUtility::getModuleUrl('record_edit', $parameters);
     }

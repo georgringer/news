@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\TreeProvider;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -21,18 +21,17 @@ use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * TCA tree data provider which considers
+ * TCA tree data provider which considers.
  */
 class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeDataProvider
 {
-
     /**
      * @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
     protected $backendUserAuthentication;
 
     /**
-     * Required constructor
+     * Required constructor.
      *
      * @param array $configuration TCA configuration
      */
@@ -42,12 +41,13 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
     }
 
     /**
-     * Builds a complete node including children
+     * Builds a complete node including children.
      *
      * @param \TYPO3\CMS\Backend\Tree\TreeNode|\TYPO3\CMS\Backend\Tree\TreeNode $basicNode
-     * @param NULL|\TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode $parent
-     * @param int $level
-     * @param bool $restriction
+     * @param null|\TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode     $parent
+     * @param int                                                               $level
+     * @param bool                                                              $restriction
+     *
      * @return \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode node
      */
     protected function buildRepresentationForNode(
@@ -82,7 +82,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
 
         // Break to force single category activation
         if ($parent != null && $level != 0 && $this->isSingleCategoryAclActivated() && !$this->isCategoryAllowed($node)) {
-            return null;
+            return;
         }
         $node->setSelectable(!GeneralUtility::inList($this->getNonSelectableLevelList(),
                 $level) && !in_array($basicNode->getId(), $this->getItemUnselectableList()));
@@ -114,13 +114,15 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
                 $node->setChildNodes($childNodes);
             }
         }
+
         return $node;
     }
 
     /**
-     * Check if given category is allowed by the access rights
+     * Check if given category is allowed by the access rights.
      *
      * @param \TYPO3\CMS\Backend\Tree\TreeNode $child
+     *
      * @return bool
      */
     protected function isCategoryAllowed($child)
@@ -135,7 +137,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
 
     /**
      * By setting "tx_news.singleCategoryAcl = 1" in UserTsConfig
-     * every category needs to be activated, no recursive enabling
+     * every category needs to be activated, no recursive enabling.
      *
      * @return bool
      */
@@ -149,5 +151,4 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
 
         return false;
     }
-
 }

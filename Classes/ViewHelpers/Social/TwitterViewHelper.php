@@ -2,22 +2,22 @@
 
 namespace GeorgRinger\News\ViewHelpers\Social;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
  * ViewHelper to add a twitter button
- * Details: http://twitter.com/about/resources/tweetbutton
+ * Details: http://twitter.com/about/resources/tweetbutton.
  *
  * Examples
  * ==============
@@ -28,18 +28,17 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * <n:social.twitter datacount="vertical" datalang="de"
  * dataurl="http://www.mydomain.tld">Twitter</n:social.twitter>
  * Result: Twitter widget to share www.mydomain.tld with a german twitter text
- *
  */
 class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
-
     /**
      * @var \GeorgRinger\News\Service\SettingsService
      */
     protected $pluginSettingsService;
 
     /**
-     * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     * @var \GeorgRinger\News\Service\SettingsService
+     *
      * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
@@ -48,12 +47,12 @@ class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
     }
 
     /**
-     * @var    string
+     * @var string
      */
     protected $tagName = 'a';
 
     /**
-     * Arguments initialization
+     * Arguments initialization.
      *
      * @return void
      */
@@ -74,7 +73,7 @@ class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
     }
 
     /**
-     * Render twitter viewhelper
+     * Render twitter viewhelper.
      *
      * @return string
      */
@@ -100,7 +99,7 @@ class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
             if (empty($this->arguments['javaScript'])) {
                 $code = '<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>';
             } else {
-                $code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
+                $code = '<script src="'.htmlspecialchars($this->arguments['javaScript']).'"></script>';
             }
         }
 
@@ -122,7 +121,8 @@ class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
         $this->tag->removeAttribute('javaScript');
         $this->tag->setContent($this->renderChildren());
 
-        $code = $this->tag->render() . $code;
+        $code = $this->tag->render().$code;
+
         return $code;
     }
 }

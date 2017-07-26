@@ -16,92 +16,94 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  */
 
 /**
- * TemplateLayout utility class unit tests
+ * TemplateLayout utility class unit tests.
  */
-class TemplateLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TemplateLayoutTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     */
+    public function templatesFoundInTypo3ConfVars()
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] = [
+            0 => [
+                0 => 'Layout 1',
+                1 => 'layout1',
+            ],
+            1 => [
+                0 => 'Layout 2',
+                1 => 'layout2',
+            ],
+        ];
 
-	/**
-	 * @test
-	 */
-	public function templatesFoundInTypo3ConfVars() {
+        $templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getTemplateLayoutsFromTsConfig']);
+        $templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue([]));
+        $templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
+        $this->assertSame($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'], $templateLayouts);
+    }
 
-		$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] = [
-			0 => [
-				0 => 'Layout 1',
-				1 => 'layout1'
-			],
-			1 => [
-				0 => 'Layout 2',
-				1 => 'layout2'
-			],
-		];
+    /**
+     * @test
+     */
+    public function templatesFoundInPageTsConfig()
+    {
+        $tsConfigArray = [
+            'layout1' => 'Layout 1',
+            'layout2' => 'Layout 2',
+        ];
+        $result = [
+            0 => [
+                0 => 'Layout 1',
+                1 => 'layout1',
+            ],
+            1 => [
+                0 => 'Layout 2',
+                1 => 'layout2',
+            ],
+        ];
 
-		$templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getTemplateLayoutsFromTsConfig']);
-		$templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue([]));
-		$templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
-		$this->assertSame($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'], $templateLayouts);
-	}
+        // clear TYPO3_CONF_VARS
+        unset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']);
 
-	/**
-	 * @test
-	 */
-	public function templatesFoundInPageTsConfig() {
-		$tsConfigArray = [
-			'layout1' => 'Layout 1',
-			'layout2' => 'Layout 2',
-		];
-		$result = [
-			0 => [
-				0 => 'Layout 1',
-				1 => 'layout1'
-			],
-			1 => [
-				0 => 'Layout 2',
-				1 => 'layout2'
-			],
-		];
+        $templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getTemplateLayoutsFromTsConfig']);
+        $templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue($tsConfigArray));
+        $templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
+        $this->assertSame($result, $templateLayouts);
+    }
 
-		// clear TYPO3_CONF_VARS
-		unset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']);
+    /**
+     * @test
+     */
+    public function templatesFoundInCombinedResources()
+    {
+        $tsConfigArray = [
+            'layout1' => 'Layout 1',
+            'layout2' => 'Layout 2',
+        ];
+        $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] = [
+            0 => [
+                0 => 'Layout 4',
+                1 => 'layout4',
+            ],
+        ];
+        $result = [
+            0 => [
+                0 => 'Layout 4',
+                1 => 'layout4',
+            ],
+            1 => [
+                0 => 'Layout 1',
+                1 => 'layout1',
+            ],
+            2 => [
+                0 => 'Layout 2',
+                1 => 'layout2',
+            ],
+        ];
 
-		$templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getTemplateLayoutsFromTsConfig']);
-		$templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue($tsConfigArray));
-		$templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
-		$this->assertSame($result, $templateLayouts);
-	}
-
-	/**
-	 * @test
-	 */
-	public function templatesFoundInCombinedResources() {
-		$tsConfigArray = [
-			'layout1' => 'Layout 1',
-			'layout2' => 'Layout 2',
-		];
-		$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] = [
-			0 => [
-				0 => 'Layout 4',
-				1 => 'layout4'
-			],
-		];
-		$result = [
-			0 => [
-				0 => 'Layout 4',
-				1 => 'layout4'
-			],
-			1 => [
-				0 => 'Layout 1',
-				1 => 'layout1'
-			],
-			2 => [
-				0 => 'Layout 2',
-				1 => 'layout2'
-			],
-		];
-
-		$templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getTemplateLayoutsFromTsConfig']);
-		$templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue($tsConfigArray));
-		$templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
-		$this->assertSame($result, $templateLayouts);
-	}
+        $templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getTemplateLayoutsFromTsConfig']);
+        $templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue($tsConfigArray));
+        $templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
+        $this->assertSame($result, $templateLayouts);
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -20,14 +20,10 @@ use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 
 /**
- * Abstract demanded repository
- *
+ * Abstract demanded repository.
  */
-abstract class AbstractDemandedRepository
-    extends \TYPO3\CMS\Extbase\Persistence\Repository
-    implements \GeorgRinger\News\Domain\Repository\DemandedRepositoryInterface
+abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence\Repository implements \GeorgRinger\News\Domain\Repository\DemandedRepositoryInterface
 {
-
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface
      */
@@ -35,6 +31,7 @@ abstract class AbstractDemandedRepository
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
+     *
      * @return void
      */
     public function injectStorageBackend(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
@@ -46,7 +43,8 @@ abstract class AbstractDemandedRepository
      * Returns an array of constraints created from a given demand object.
      *
      * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-     * @param DemandInterface $demand
+     * @param DemandInterface                               $demand
+     *
      * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
      * @abstract
      */
@@ -59,6 +57,7 @@ abstract class AbstractDemandedRepository
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
+     *
      * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
      * @abstract
      */
@@ -68,7 +67,8 @@ abstract class AbstractDemandedRepository
      * Returns the objects of this repository matching the demand.
      *
      * @param DemandInterface $demand
-     * @param bool $respectEnableFields
+     * @param bool            $respectEnableFields
+     *
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findDemanded(DemandInterface $demand, $respectEnableFields = true)
@@ -79,10 +79,11 @@ abstract class AbstractDemandedRepository
     }
 
     /**
-     * Returns the database query to get the matching result
+     * Returns the database query to get the matching result.
      *
      * @param DemandInterface $demand
-     * @param bool $respectEnableFields
+     * @param bool            $respectEnableFields
+     *
      * @return string
      */
     public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true)
@@ -94,8 +95,8 @@ abstract class AbstractDemandedRepository
         $statementParts = $queryParser->parseQuery($query);
 
         // Limit and offset are not cached to allow caching of pagebrowser queries.
-        $statementParts['limit'] = ((int)$query->getLimit() ?: null);
-        $statementParts['offset'] = ((int)$query->getOffset() ?: null);
+        $statementParts['limit'] = ((int) $query->getLimit() ?: null);
+        $statementParts['offset'] = ((int) $query->getOffset() ?: null);
 
         $tableNameForEscape = (reset($statementParts['tables']) ?: 'foo');
         foreach ($parameters as $parameterPlaceholder => $parameter) {
@@ -106,7 +107,7 @@ abstract class AbstractDemandedRepository
             if ($parameter instanceof \DateTime) {
                 $parameter = $parameter->format('U');
             } elseif ($parameter instanceof DomainObjectInterface) {
-                $parameter = (int)$parameter->getUid();
+                $parameter = (int) $parameter->getUid();
             } elseif (is_array($parameter)) {
                 $subParameters = [];
                 foreach ($parameter as $subParameter) {
@@ -116,25 +117,25 @@ abstract class AbstractDemandedRepository
             } elseif ($parameter === null) {
                 $parameter = 'NULL';
             } elseif (is_bool($parameter)) {
-                return ($parameter === true ? 1 : 0);
+                return $parameter === true ? 1 : 0;
             } else {
-                $parameter = $GLOBALS['TYPO3_DB']->fullQuoteStr((string)$parameter, $tableNameForEscape);
+                $parameter = $GLOBALS['TYPO3_DB']->fullQuoteStr((string) $parameter, $tableNameForEscape);
             }
 
             $statementParts['where'] = str_replace($parameterPlaceholder, $parameter, $statementParts['where']);
         }
 
         $statementParts = [
-            'selectFields' => implode(' ', $statementParts['keywords']) . ' ' . implode(',', $statementParts['fields']),
-            'fromTable' => implode(' ', $statementParts['tables']) . ' ' . implode(' ', $statementParts['unions']),
-            'whereClause' => (!empty($statementParts['where']) ? implode('', $statementParts['where']) : '1')
-                . (!empty($statementParts['additionalWhereClause'])
-                    ? ' AND ' . implode(' AND ', $statementParts['additionalWhereClause'])
+            'selectFields' => implode(' ', $statementParts['keywords']).' '.implode(',', $statementParts['fields']),
+            'fromTable'    => implode(' ', $statementParts['tables']).' '.implode(' ', $statementParts['unions']),
+            'whereClause'  => (!empty($statementParts['where']) ? implode('', $statementParts['where']) : '1')
+                .(!empty($statementParts['additionalWhereClause'])
+                    ? ' AND '.implode(' AND ', $statementParts['additionalWhereClause'])
                     : ''
                 ),
             'orderBy' => (!empty($statementParts['orderings']) ? implode(', ', $statementParts['orderings']) : ''),
-            'limit' => ($statementParts['offset'] ? $statementParts['offset'] . ', ' : '')
-                . ($statementParts['limit'] ? $statementParts['limit'] : '')
+            'limit'   => ($statementParts['offset'] ? $statementParts['offset'].', ' : '')
+                .($statementParts['limit'] ? $statementParts['limit'] : ''),
         ];
 
         $sql = $GLOBALS['TYPO3_DB']->SELECTquery(
@@ -160,10 +161,10 @@ abstract class AbstractDemandedRepository
         // Call hook functions for additional constraints
         if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'])) {
             $params = [
-                'demand' => $demand,
+                'demand'              => $demand,
                 'respectEnableFields' => &$respectEnableFields,
-                'query' => $query,
-                'constraints' => &$constraints,
+                'query'               => $query,
+                'constraints'         => &$constraints,
             ];
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] as $reference) {
                 \TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
@@ -188,7 +189,7 @@ abstract class AbstractDemandedRepository
 
         // @todo consider moving this to a separate function as well
         if ($demand->getLimit() != null) {
-            $query->setLimit((int)$demand->getLimit());
+            $query->setLimit((int) $demand->getLimit());
         }
 
         // @todo consider moving this to a separate function as well
@@ -196,7 +197,7 @@ abstract class AbstractDemandedRepository
             if (!$query->getLimit()) {
                 $query->setLimit(PHP_INT_MAX);
             }
-            $query->setOffset((int)$demand->getOffset());
+            $query->setOffset((int) $demand->getOffset());
         }
 
         return $query;
@@ -206,6 +207,7 @@ abstract class AbstractDemandedRepository
      * Returns the total number objects of this repository matching the demand.
      *
      * @param DemandInterface $demand
+     *
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function countDemanded(DemandInterface $demand)
@@ -219,6 +221,7 @@ abstract class AbstractDemandedRepository
         }
 
         $result = $query->execute();
+
         return $result->count();
     }
 
@@ -227,11 +230,12 @@ abstract class AbstractDemandedRepository
      * Replace query placeholders in a query part by the given
      * parameters.
      *
-     * @param string $sqlString The query part with placeholders
-     * @param array $parameters The parameters
+     * @param string $sqlString  The query part with placeholders
+     * @param array  $parameters The parameters
      * @param string $tableName
      *
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     *
      * @return void
      */
     protected function replacePlaceholders(&$sqlString, array $parameters, $tableName = 'foo')
@@ -251,11 +255,11 @@ abstract class AbstractDemandedRepository
                     foreach ($parameter as $item) {
                         $items[] = $GLOBALS['TYPO3_DB']->fullQuoteStr($item, $tableName);
                     }
-                    $parameter = '(' . implode(',', $items) . ')';
+                    $parameter = '('.implode(',', $items).')';
                 } else {
                     $parameter = $GLOBALS['TYPO3_DB']->fullQuoteStr($parameter, $tableName);
                 }
-                $sqlString = substr($sqlString, 0, $markPosition) . $parameter . substr($sqlString,
+                $sqlString = substr($sqlString, 0, $markPosition).$parameter.substr($sqlString,
                         ($markPosition + 1));
             }
             $offset = $markPosition + strlen($parameter);

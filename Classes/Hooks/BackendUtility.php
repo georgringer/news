@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,14 +18,12 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into \TYPO3\CMS\Backend\Utility\BackendUtility to change flexform behaviour
- * depending on action selection
- *
+ * depending on action selection.
  */
 class BackendUtility
 {
-
     /**
-     * Fields which are removed in detail view
+     * Fields which are removed in detail view.
      *
      * @var array
      */
@@ -34,34 +32,34 @@ class BackendUtility
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						dateField',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,list.paginate.itemsPerPage',
-        'template' => 'cropMaxCharacters'
+        'template'   => 'cropMaxCharacters',
     ];
 
     /**
-     * Fields which are removed in list view
+     * Fields which are removed in list view.
      *
      * @var array
      */
     public $removedFieldsInListView = [
-        'sDEF' => 'dateField,singleNews,previewHiddenRecords',
+        'sDEF'       => 'dateField,singleNews,previewHiddenRecords',
         'additional' => '',
-        'template' => ''
+        'template'   => '',
     ];
 
     /**
-     * Fields which are removed in dateMenu view
+     * Fields which are removed in dateMenu view.
      *
      * @var array
      */
     public $removedFieldsInDateMenuView = [
-        'sDEF' => 'orderBy,singleNews',
+        'sDEF'       => 'orderBy,singleNews',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,backPid,previewHiddenRecords,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
-        'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
+        'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight',
     ];
 
     /**
-     * Fields which are removed in search form view
+     * Fields which are removed in search form view.
      *
      * @var array
      */
@@ -71,11 +69,11 @@ class BackendUtility
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
-        'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
+        'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight',
     ];
 
     /**
-     * Fields which are removed in category list view
+     * Fields which are removed in category list view.
      *
      * @var array
      */
@@ -85,11 +83,11 @@ class BackendUtility
 						recursive,dateField,singleNews,previewHiddenRecords',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
-        'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
+        'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight',
     ];
 
     /**
-     * Fields which are removed in tag list view
+     * Fields which are removed in tag list view.
      *
      * @var array
      */
@@ -99,17 +97,18 @@ class BackendUtility
 						dateField,singleNews,previewHiddenRecords',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
-        'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
+        'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight',
     ];
 
     /**
      * Hook function of \TYPO3\CMS\Backend\Utility\BackendUtility
-     * It is used to change the flexform if it is about news
+     * It is used to change the flexform if it is about news.
      *
-     * @param array &$dataStructure Flexform structure
-     * @param array $conf some strange configuration
-     * @param array $row row of current record
-     * @param string $table table name
+     * @param array  &$dataStructure Flexform structure
+     * @param array  $conf           some strange configuration
+     * @param array  $row            row of current record
+     * @param string $table          table name
+     *
      * @return void
      */
     public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table)
@@ -120,10 +119,11 @@ class BackendUtility
     }
 
     /**
-     * Update flexform configuration if a action is selected
+     * Update flexform configuration if a action is selected.
      *
      * @param array|string &$dataStructure flexform structure
-     * @param array $row row of current record
+     * @param array        $row            row of current record
+     *
      * @return void
      */
     protected function updateFlexforms(array &$dataStructure, array $row)
@@ -176,7 +176,7 @@ class BackendUtility
 
             if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'])) {
                 $params = [
-                    'selectedView' => $selectedView,
+                    'selectedView'  => $selectedView,
                     'dataStructure' => &$dataStructure,
                 ];
                 foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] as $reference) {
@@ -187,10 +187,11 @@ class BackendUtility
     }
 
     /**
-     * Remove fields from flexform structure
+     * Remove fields from flexform structure.
      *
-     * @param array &$dataStructure flexform structure
+     * @param array &$dataStructure    flexform structure
      * @param array $fieldsToBeRemoved fields which need to be removed
+     *
      * @return void
      */
     protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved)
@@ -199,7 +200,7 @@ class BackendUtility
             $fieldsInSheet = GeneralUtility::trimExplode(',', $sheetFields, true);
 
             foreach ($fieldsInSheet as $fieldName) {
-                unset($dataStructure['sheets'][$sheetName]['ROOT']['el']['settings.' . $fieldName]);
+                unset($dataStructure['sheets'][$sheetName]['ROOT']['el']['settings.'.$fieldName]);
             }
         }
     }

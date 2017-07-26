@@ -1,7 +1,8 @@
 <?php
+
 namespace GeorgRinger\News\Utility;
 
-/**
+/*
  * (c) 2014 Sebastian Fischer <typo3@evoweb.de>
  *
  * This file is part of the TYPO3 CMS project.
@@ -20,18 +21,17 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class ClassLoader
+ * Class ClassLoader.
  */
 class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
 {
-
     /**
      * @var \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
      */
     protected $cacheInstance;
 
     /**
-     * Register instance of this class as spl autoloader
+     * Register instance of this class as spl autoloader.
      *
      * @return void
      */
@@ -41,7 +41,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
     }
 
     /**
-     * Initialize cache
+     * Initialize cache.
      *
      * @return \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
      */
@@ -52,6 +52,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
             $this->cacheInstance = $cacheManager->getCache('news');
         }
+
         return $this->cacheInstance;
     }
 
@@ -60,6 +61,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      * classes directory of an extension.
      *
      * @param string $className Name of the class/interface to load
+     *
      * @return bool
      */
     public function loadClass($className)
@@ -70,11 +72,11 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
             return false;
         }
 
-        $cacheEntryIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $this->changeClassName($className)));
+        $cacheEntryIdentifier = 'tx_news_'.strtolower(str_replace('/', '_', $this->changeClassName($className)));
 
         $classCache = $this->initializeCache();
         if (!empty($cacheEntryIdentifier) && !$classCache->has($cacheEntryIdentifier)) {
-            require_once(ExtensionManagementUtility::extPath('news') . 'Classes/Utility/ClassCacheManager.php');
+            require_once ExtensionManagementUtility::extPath('news').'Classes/Utility/ClassCacheManager.php';
 
             /** @var ClassCacheManager $classCacheManager */
             $classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
@@ -89,9 +91,10 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
     }
 
     /**
-     * Get extension key from namespaced classname
+     * Get extension key from namespaced classname.
      *
      * @param string $className
+     *
      * @return string
      */
     protected function getExtensionKey($className)
@@ -109,9 +112,10 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
     }
 
     /**
-     * Find out if a class name is valid
+     * Find out if a class name is valid.
      *
      * @param string $className
+     *
      * @return bool
      */
     protected function isValidClassName($className)
@@ -122,6 +126,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
                 return true;
             }
         }
+
         return false;
     }
 

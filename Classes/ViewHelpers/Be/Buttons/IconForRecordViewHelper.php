@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Be\Buttons;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -20,7 +20,7 @@ use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * ViewHelper to show sprite icon for a record
+ * ViewHelper to show sprite icon for a record.
  *
  * # Example: Basic example
  * <code>
@@ -29,7 +29,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <output>
  * Icon of the news record with the given uid
  * </output>
- *
  */
 class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper
 {
@@ -39,11 +38,12 @@ class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBa
     protected $escapeOutput = false;
 
     /**
-     * Render the sprite icon
+     * Render the sprite icon.
      *
      * @param string $table table name
-     * @param int $uid uid of record
+     * @param int    $uid   uid of record
      * @param string $title title
+     *
      * @return string sprite icon
      */
     public function render($table, $uid, $title)
@@ -53,9 +53,9 @@ class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBa
         if (is_array($row)) {
             /** @var IconFactory $iconFactory */
             $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
-            $icon = '<span title="' . htmlspecialchars($title) . '">'
-                . $iconFactory->getIconForRecord($table, $row, Icon::SIZE_SMALL)->render()
-                . '</span>';
+            $icon = '<span title="'.htmlspecialchars($title).'">'
+                .$iconFactory->getIconForRecord($table, $row, Icon::SIZE_SMALL)->render()
+                .'</span>';
         }
 
         return $icon;

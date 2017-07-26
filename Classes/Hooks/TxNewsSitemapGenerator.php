@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,8 +17,7 @@ namespace GeorgRinger\News\Hooks;
 
 use DmitryDulepov\DdGooglesitemap\Generator\AbstractSitemapGenerator;
 use DmitryDulepov\DdGooglesitemap\Renderers\NewsSitemapRenderer;
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\MathUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class implements news sitemap
@@ -38,37 +37,36 @@ use TYPO3\CMS\Core\Utility\MathUtility;
  */
 class TxNewsSitemapGenerator extends AbstractSitemapGenerator
 {
-
     /**
-     * List of storage pages where news items are located
+     * List of storage pages where news items are located.
      *
-     * @var    array
+     * @var array
      */
-    protected $pidList = array();
+    protected $pidList = [];
 
     /**
-     * Indicates sitemap type
+     * Indicates sitemap type.
      *
-     * @var boolean
+     * @var bool
      */
     protected $isNewsSitemap;
 
     /**
-     * Single view page
+     * Single view page.
      *
      * @var int
      */
     protected $singlePid;
 
     /**
-     * If true, try to get the single pid for a news item from its (first) category with fallback to $this->singlePid
+     * If true, try to get the single pid for a news item from its (first) category with fallback to $this->singlePid.
      *
-     * @var boolean
+     * @var bool
      */
     protected $useCategorySinglePid;
 
     /**
-     * Creates an instance of this class
+     * Creates an instance of this class.
      */
     public function __construct()
     {
@@ -80,7 +78,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
 
         $singlePid = intval(GeneralUtility::_GP('singlePid'));
         $this->singlePid = $singlePid && $this->isInRootline($singlePid) ? $singlePid : $GLOBALS['TSFE']->id;
-        $this->useCategorySinglePid = (bool)GeneralUtility::_GP('useCategorySinglePid');
+        $this->useCategorySinglePid = (bool) GeneralUtility::_GP('useCategorySinglePid');
 
         $this->validateAndCreatePageList();
     }
@@ -93,13 +91,12 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     protected function generateSitemapContent()
     {
         if (count($this->pidList) > 0) {
-
             $res = $this->getDatabaseConnection()->exec_SELECTquery('*',
-                'tx_news_domain_model_news', 'pid IN (' . implode(',', $this->pidList) . ')' .
-                ($this->isNewsSitemap ? ' AND crdate>=' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '') .
-                ' AND sys_language_uid=' . (int)GeneralUtility::_GP('L') .
+                'tx_news_domain_model_news', 'pid IN ('.implode(',', $this->pidList).')'.
+                ($this->isNewsSitemap ? ' AND crdate>='.($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '').
+                ' AND sys_language_uid='.(int) GeneralUtility::_GP('L').
                 $this->cObj->enableFields('tx_news_domain_model_news'), '', 'datetime DESC',
-                $this->offset . ',' . $this->limit
+                $this->offset.','.$this->limit
             );
             $rowCount = $this->getDatabaseConnection()->sql_num_rows($res);
             while (false !== ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res))) {
@@ -115,11 +112,11 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
             $this->getDatabaseConnection()->sql_free_result($res);
 
             if ($rowCount === 0) {
-                echo '<!-- It appears that there are no tx_news entries. If your ' .
-                    'news storage sysfolder is outside of the rootline, you may ' .
-                    'want to use the dd_googlesitemap.skipRootlineCheck=1 TS ' .
-                    'setup option. Beware: it is insecure and may cause certain ' .
-                    'undesired effects! Better move your news sysfolder ' .
+                echo '<!-- It appears that there are no tx_news entries. If your '.
+                    'news storage sysfolder is outside of the rootline, you may '.
+                    'want to use the dd_googlesitemap.skipRootlineCheck=1 TS '.
+                    'setup option. Beware: it is insecure and may cause certain '.
+                    'undesired effects! Better move your news sysfolder '.
                     'inside the rootline! -->';
             }
         }
@@ -129,6 +126,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      * Obtains a pid for the single view from the category.
      *
      * @param int $newsId
+     *
      * @return int|null
      */
     protected function getSinglePidFromCategory($newsId)
@@ -138,7 +136,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
             'tx_news_domain_model_news',
             'sys_category_record_mm',
             'sys_category',
-            ' AND sys_category_record_mm.uid_foreign = ' . intval($newsId)
+            ' AND sys_category_record_mm.uid_foreign = '.intval($newsId)
         );
         $categoryRecord = $this->getDatabaseConnection()->sql_fetch_assoc($res);
 
@@ -146,10 +144,11 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     }
 
     /**
-     * Creates a link to the news item
+     * Creates a link to the news item.
      *
-     * @param array $newsRow News item
-     * @param  int $forceSinglePid Single View page for this news item
+     * @param array $newsRow        News item
+     * @param int   $forceSinglePid Single View page for this news item
+     *
      * @return string
      */
     protected function getNewsItemUrl($newsRow, $forceSinglePid = null)
@@ -157,7 +156,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
         $link = '';
         if (is_string($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink']) && is_array($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink'])) {
             $cObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
-            /** @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj */
+            /* @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj */
             $cObj->start($newsRow, 'tx_news_domain_model_news');
             $cObj->setCurrentVal($forceSinglePid ?: $this->singlePid);
             $link = $cObj->cObjGetSingle($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_newsLink'],
@@ -169,15 +168,16 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
             && $GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['tx_news.']['skipControllerAndAction'] == 1;
 
         if ($link == '') {
-            $conf = array(
-                'additionalParams' => (!$skipControllerAndAction ? '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail' : '') . '&tx_news_pi1[news]=' . $newsRow['uid'],
+            $conf = [
+                'additionalParams' => (!$skipControllerAndAction ? '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail' : '').'&tx_news_pi1[news]='.$newsRow['uid'],
                 'forceAbsoluteUrl' => 1,
-                'parameter' => $forceSinglePid ?: $this->singlePid,
-                'returnLast' => 'url',
-                'useCacheHash' => true,
-            );
+                'parameter'        => $forceSinglePid ?: $this->singlePid,
+                'returnLast'       => 'url',
+                'useCacheHash'     => true,
+            ];
             $link = htmlspecialchars($this->cObj->typoLink('', $conf));
         }
+
         return $link;
     }
 
@@ -185,7 +185,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      * Checks that page list is in the rootline of the current page and excludes
      * pages that are outside of the rootline.
      *
-     * @return    void
+     * @return void
      */
     protected function validateAndCreatePageList()
     {
@@ -200,10 +200,11 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     }
 
     /**
-     * Check if supplied page id and current page are in the same root line
+     * Check if supplied page id and current page are in the same root line.
      *
-     * @param    int $pid Page id to check
-     * @return    boolean    true if page is in the root line
+     * @param int $pid Page id to check
+     *
+     * @return bool true if page is in the root line
      */
     protected function isInRootline($pid)
     {
@@ -228,6 +229,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
                 }
             }
         }
+
         return $result;
     }
 

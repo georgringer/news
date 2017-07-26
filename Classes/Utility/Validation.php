@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,17 +17,16 @@ namespace GeorgRinger\News\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Validation
- *
+ * Validation.
  */
 class Validation
 {
-
     /**
-     * Validate ordering as extbase can't handle that currently
+     * Validate ordering as extbase can't handle that currently.
      *
      * @param string $fieldToCheck
      * @param string $allowedSettings
+     *
      * @return bool
      */
     public static function isValidOrdering($fieldToCheck, $allowedSettings)

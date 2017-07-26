@@ -1,4 +1,5 @@
 <?php
+
 defined('TYPO3_MODE') or die();
 
 $boot = function () {
@@ -9,9 +10,9 @@ $boot = function () {
         'GeorgRinger.news',
         'Pi1',
         [
-            'News' => 'list,detail,dateMenu,searchForm,searchResult',
+            'News'     => 'list,detail,dateMenu,searchForm,searchResult',
             'Category' => 'list',
-            'Tag' => 'list',
+            'Tag'      => 'list',
         ],
         [
             'News' => 'searchForm,searchResult',
@@ -19,11 +20,11 @@ $boot = function () {
     );
 
     // Page module hook
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['news' . '_pi1']['news'] =
-        \GeorgRinger\News\Hooks\PageLayoutView::class . '->getExtensionSummary';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['news'.'_pi1']['news'] =
+        \GeorgRinger\News\Hooks\PageLayoutView::class.'->getExtensionSummary';
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news_clearcache'] =
-        \GeorgRinger\News\Hooks\DataHandler::class . '->clearCachePostProc';
+        \GeorgRinger\News\Hooks\DataHandler::class.'->clearCachePostProc';
 
     // Edit restriction for news records
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['news'] =
@@ -76,7 +77,7 @@ $boot = function () {
     =========================================================================== */
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['news'] =
-            \GeorgRinger\News\Hooks\RealUrlAutoConfiguration::class . '->addNewsConfig';
+            \GeorgRinger\News\Hooks\RealUrlAutoConfiguration::class.'->addNewsConfig';
     }
 
     /* ===========================================================================
@@ -88,20 +89,20 @@ $boot = function () {
     // Register cache frontend for proxy class generation
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = [
         'frontend' => \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend::class,
-        'backend' => \TYPO3\CMS\Core\Cache\Backend\FileBackend::class,
-        'groups' => [
+        'backend'  => \TYPO3\CMS\Core\Cache\Backend\FileBackend::class,
+        'groups'   => [
             'all',
             'system',
         ],
         'options' => [
             'defaultLifetime' => 0,
-        ]
+        ],
     ];
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = [
         'depends' => [
             \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew::class,
-        ]
+        ],
     ];
     \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
 
@@ -137,7 +138,7 @@ $boot = function () {
 
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('dd_googlesitemap')) {
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['dd_googlesitemap']['sitemap']['txnews']
-            = \GeorgRinger\News\Hooks\TxNewsSitemapGenerator::class . '->main';
+            = \GeorgRinger\News\Hooks\TxNewsSitemapGenerator::class.'->main';
     }
 };
 

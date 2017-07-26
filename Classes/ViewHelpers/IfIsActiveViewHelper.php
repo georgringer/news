@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 /**
- * ViewHelper to check if the current news item is rendered as single view on the same page
+ * ViewHelper to check if the current news item is rendered as single view on the same page.
  *
  * # Example: Basic example
  * <code>
@@ -27,7 +27,6 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
  * <output>
  * Renders the string "active" if the current news item is active
  * </output>
- *
  */
 class IfIsActiveViewHelper extends AbstractConditionViewHelper
 {
@@ -40,6 +39,7 @@ class IfIsActiveViewHelper extends AbstractConditionViewHelper
     protected static function evaluateCondition(array $arguments = null)
     {
         $vars = GeneralUtility::_GET('tx_news_pi1');
-        return (isset($vars['news']) && isset($vars['newsItem']) && (int)$arguments['newsItem']->getUid() === (int)$vars['news']);
+
+        return isset($vars['news']) && isset($vars['newsItem']) && (int) $arguments['newsItem']->getUid() === (int) $vars['news'];
     }
 }

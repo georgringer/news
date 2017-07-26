@@ -1,26 +1,25 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * Link model
- *
+ * Link model.
  */
 class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 {
-
     /**
      * @var \DateTime
      */
@@ -52,7 +51,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     protected $l10nParent;
 
     /**
-     * Get creation date
+     * Get creation date.
      *
      * @return int
      */
@@ -62,9 +61,10 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set creation date
+     * Set creation date.
      *
      * @param int $crdate creation date
+     *
      * @return void
      */
     public function setCrdate($crdate)
@@ -73,7 +73,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get timestamp
+     * Get timestamp.
      *
      * @return int
      */
@@ -83,9 +83,10 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set timestamp
+     * Set timestamp.
      *
      * @param int $tstamp timestamp
+     *
      * @return void
      */
     public function setTstamp($tstamp)
@@ -94,7 +95,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -104,9 +105,10 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title title
+     *
      * @return void
      */
     public function setTitle($title)
@@ -115,7 +117,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -125,9 +127,10 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description description
+     *
      * @return void
      */
     public function setDescription($description)
@@ -136,7 +139,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get uri
+     * Get uri.
      *
      * @return string
      */
@@ -146,9 +149,10 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set uri
+     * Set uri.
      *
      * @param string $uri uri
+     *
      * @return void
      */
     public function setUri($uri)
@@ -157,9 +161,10 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set sys language
+     * Set sys language.
      *
      * @param int $sysLanguageUid
+     *
      * @return void
      */
     public function setSysLanguageUid($sysLanguageUid)
@@ -168,7 +173,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get sys language
+     * Get sys language.
      *
      * @return int
      */
@@ -178,9 +183,10 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set l10n parent
+     * Set l10n parent.
      *
      * @param int $l10nParent
+     *
      * @return void
      */
     public function setL10nParent($l10nParent)
@@ -189,7 +195,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get l10n parent
+     * Get l10n parent.
      *
      * @return int
      */
@@ -197,5 +203,4 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     {
         return $this->l10nParent;
     }
-
 }

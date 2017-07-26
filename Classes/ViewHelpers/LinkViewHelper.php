@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,7 +19,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
- * ViewHelper to render links from news records to detail view or page
+ * ViewHelper to render links from news records to detail view or page.
  *
  * # Example: Basic link
  * <code>
@@ -47,11 +47,9 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * <output>
  * The uri is returned
  * </output>
- *
  */
 class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
-
     /**
      * @var string
      */
@@ -66,9 +64,9 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
      * @var array
      */
     protected $detailPidDeterminationCallbacks = [
-        'flexform' => 'getDetailPidFromFlexform',
+        'flexform'   => 'getDetailPidFromFlexform',
         'categories' => 'getDetailPidFromCategories',
-        'default' => 'getDetailPidFromDefaultDetailPid',
+        'default'    => 'getDetailPidFromDefaultDetailPid',
     ];
 
     /** @var $cObj ContentObjectRenderer */
@@ -76,6 +74,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 
     /**
      * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     *
      * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
@@ -90,13 +89,14 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
     }
 
     /**
-     * Render link to news item or internal/external pages
+     * Render link to news item or internal/external pages.
      *
-     * @param \GeorgRinger\News\Domain\Model\News $newsItem current news object
-     * @param array $settings
-     * @param bool $uriOnly return only the url without the a-tag
-     * @param array $configuration optional typolink configuration
-     * @param string $content optional content which is linked
+     * @param \GeorgRinger\News\Domain\Model\News $newsItem      current news object
+     * @param array                               $settings
+     * @param bool                                $uriOnly       return only the url without the a-tag
+     * @param array                               $configuration optional typolink configuration
+     * @param string                              $content       optional content which is linked
+     *
      * @return string link
      */
     public function render(
@@ -106,12 +106,12 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         $configuration = [],
         $content = ''
     ) {
-        $tsSettings = (array)$this->pluginSettingsService->getSettings();
-        ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array)$settings);
+        $tsSettings = (array) $this->pluginSettingsService->getSettings();
+        ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array) $settings);
 
         $this->init();
 
-        $newsType = (int)$newsItem->getType();
+        $newsType = (int) $newsItem->getType();
         switch ($newsType) {
             // internal news
             case 1:
@@ -137,7 +137,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         }
 
         if ($this->hasArgument('section')) {
-            $url .= '#' . $this->arguments['section'];
+            $url .= '#'.$this->arguments['section'];
         }
 
         $this->tag->addAttribute('href', $url);
@@ -151,11 +151,12 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
     }
 
     /**
-     * Generate the link configuration for the link to the news item
+     * Generate the link configuration for the link to the news item.
      *
      * @param \GeorgRinger\News\Domain\Model\News $newsItem
-     * @param array $tsSettings
-     * @param array $configuration
+     * @param array                               $tsSettings
+     * @param array                               $configuration
+     *
      * @return array
      */
     protected function getLinkToNewsItem(
@@ -163,7 +164,6 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         $tsSettings,
         array $configuration = []
     ) {
-
         if (!isset($configuration['parameter'])) {
             $detailPid = 0;
             $detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'],
@@ -189,10 +189,10 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         }
 
         $configuration['useCacheHash'] = $GLOBALS['TSFE']->sys_page->versioningPreview ? 0 : 1;
-        $configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
+        $configuration['additionalParams'] .= '&tx_news_pi1[news]='.$this->getNewsId($newsItem);
 
-        if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
-            $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
+        if ((int) $tsSettings['link']['skipControllerAndAction'] !== 1) {
+            $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News'.
                 '&tx_news_pi1[action]=detail';
         }
 
@@ -202,21 +202,23 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 
             if (!is_null($dateTime)) {
                 if (!empty($tsSettings['link']['hrDate']['day'])) {
-                    $configuration['additionalParams'] .= '&tx_news_pi1[day]=' . $dateTime->format($tsSettings['link']['hrDate']['day']);
+                    $configuration['additionalParams'] .= '&tx_news_pi1[day]='.$dateTime->format($tsSettings['link']['hrDate']['day']);
                 }
                 if (!empty($tsSettings['link']['hrDate']['month'])) {
-                    $configuration['additionalParams'] .= '&tx_news_pi1[month]=' . $dateTime->format($tsSettings['link']['hrDate']['month']);
+                    $configuration['additionalParams'] .= '&tx_news_pi1[month]='.$dateTime->format($tsSettings['link']['hrDate']['month']);
                 }
                 if (!empty($tsSettings['link']['hrDate']['year'])) {
-                    $configuration['additionalParams'] .= '&tx_news_pi1[year]=' . $dateTime->format($tsSettings['link']['hrDate']['year']);
+                    $configuration['additionalParams'] .= '&tx_news_pi1[year]='.$dateTime->format($tsSettings['link']['hrDate']['year']);
                 }
             }
         }
+
         return $configuration;
     }
 
     /**
      * @param \GeorgRinger\News\Domain\Model\News $newsItem
+     *
      * @return int
      */
     protected function getNewsId(\GeorgRinger\News\Domain\Model\News $newsItem)
@@ -237,8 +239,9 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
     /**
      * Gets detailPid from categories of the given news item. First will be return.
      *
-     * @param  array $settings
-     * @param  \GeorgRinger\News\Domain\Model\News $newsItem
+     * @param array                               $settings
+     * @param \GeorgRinger\News\Domain\Model\News $newsItem
+     *
      * @return int
      */
     protected function getDetailPidFromCategories($settings, $newsItem)
@@ -246,40 +249,43 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         $detailPid = 0;
         if ($newsItem->getCategories()) {
             foreach ($newsItem->getCategories() as $category) {
-                if ($detailPid = (int)$category->getSinglePid()) {
+                if ($detailPid = (int) $category->getSinglePid()) {
                     break;
                 }
             }
         }
+
         return $detailPid;
     }
 
     /**
-     * Gets detailPid from defaultDetailPid setting
+     * Gets detailPid from defaultDetailPid setting.
      *
-     * @param  array $settings
-     * @param  \GeorgRinger\News\Domain\Model\News $newsItem
+     * @param array                               $settings
+     * @param \GeorgRinger\News\Domain\Model\News $newsItem
+     *
      * @return int
      */
     protected function getDetailPidFromDefaultDetailPid($settings, $newsItem)
     {
-        return (int)$settings['defaultDetailPid'];
+        return (int) $settings['defaultDetailPid'];
     }
 
     /**
      * Gets detailPid from flexform of current plugin.
      *
-     * @param  array $settings
-     * @param  \GeorgRinger\News\Domain\Model\News $newsItem
+     * @param array                               $settings
+     * @param \GeorgRinger\News\Domain\Model\News $newsItem
+     *
      * @return int
      */
     protected function getDetailPidFromFlexform($settings, $newsItem)
     {
-        return (int)$settings['detailPid'];
+        return (int) $settings['detailPid'];
     }
 
     /**
-     * Initialize properties
+     * Initialize properties.
      *
      * @return void
      */
