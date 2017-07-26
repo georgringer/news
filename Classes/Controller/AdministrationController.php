@@ -400,7 +400,7 @@ class AdministrationController extends NewsController
         }
         $returnUrl = 'index.php?M=web_NewsTxNewsM2&id='.$this->pageUid.$this->getToken();
         $url = BackendUtilityCore::getModuleUrl('record_edit', [
-            'edit['.$table.']['.$pid.']' => 'new',
+            'edit['.$table.']['.$pid.']'         => 'new',
             'returnUrl'                          => $returnUrl,
         ]);
         HttpUtility::redirect($url);
