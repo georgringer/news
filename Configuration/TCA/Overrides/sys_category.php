@@ -1,116 +1,117 @@
 <?php
+
 defined('TYPO3_MODE') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
 /**
- * Add extra fields to the sys_category record
+ * Add extra fields to the sys_category record.
  */
 $newSysCategoryColumns = [
     'pid' => [
-        'label' => 'pid',
+        'label'  => 'pid',
         'config' => [
-            'type' => 'passthrough'
-        ]
+            'type' => 'passthrough',
+        ],
     ],
     'sorting' => [
-        'label' => 'sorting',
+        'label'  => 'sorting',
         'config' => [
-            'type' => 'passthrough'
-        ]
+            'type' => 'passthrough',
+        ],
     ],
     'crdate' => [
-        'label' => 'crdate',
+        'label'  => 'crdate',
         'config' => [
             'type' => 'passthrough',
-        ]
+        ],
     ],
     'tstamp' => [
-        'label' => 'tstamp',
+        'label'  => 'tstamp',
         'config' => [
             'type' => 'passthrough',
-        ]
+        ],
     ],
     'images' => [
-        'exclude' => 1,
+        'exclude'   => 1,
         'l10n_mode' => 'mergeIfNotBlank',
-        'label' => $ll . 'tx_news_domain_model_category.image',
-        'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+        'label'     => $ll.'tx_news_domain_model_category.image',
+        'config'    => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
             'images',
             [
                 'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+                    'createNewRelationLinkTitle'      => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => 1,
-                    'showRemovedLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1,
-                    'showSynchronizationLink' => 1
+                    'showRemovedLocalizationRecords'  => 1,
+                    'showAllLocalizationLink'         => 1,
+                    'showSynchronizationLink'         => 1,
                 ],
                 'foreign_match_fields' => [
-                    'fieldname' => 'images',
-                    'tablenames' => 'sys_category',
+                    'fieldname'   => 'images',
+                    'tablenames'  => 'sys_category',
                     'table_local' => 'sys_file',
                 ],
             ],
             $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-        )
+        ),
     ],
     'single_pid' => [
-        'exclude' => 1,
+        'exclude'   => 1,
         'l10n_mode' => 'mergeIfNotBlank',
-        'label' => $ll . 'tx_news_domain_model_category.single_pid',
-        'config' => [
-            'type' => 'group',
+        'label'     => $ll.'tx_news_domain_model_category.single_pid',
+        'config'    => [
+            'type'          => 'group',
             'internal_type' => 'db',
-            'allowed' => 'pages',
-            'size' => 1,
-            'maxitems' => 1,
-            'minitems' => 0,
-            'show_thumbs' => 1,
-            'default' => 0,
-            'wizards' => [
+            'allowed'       => 'pages',
+            'size'          => 1,
+            'maxitems'      => 1,
+            'minitems'      => 0,
+            'show_thumbs'   => 1,
+            'default'       => 0,
+            'wizards'       => [
                 'suggest' => [
-                    'type' => 'suggest',
+                    'type'    => 'suggest',
                     'default' => [
-                        'searchWholePhrase' => true
-                    ]
+                        'searchWholePhrase' => true,
+                    ],
                 ],
             ],
-        ]
+        ],
     ],
     'shortcut' => [
-        'exclude' => 1,
+        'exclude'   => 1,
         'l10n_mode' => 'mergeIfNotBlank',
-        'label' => $ll . 'tx_news_domain_model_category.shortcut',
-        'config' => [
-            'type' => 'group',
+        'label'     => $ll.'tx_news_domain_model_category.shortcut',
+        'config'    => [
+            'type'          => 'group',
             'internal_type' => 'db',
-            'allowed' => 'pages',
-            'size' => 1,
-            'maxitems' => 1,
-            'minitems' => 0,
-            'show_thumbs' => 1,
-            'default' => 0,
-            'wizards' => [
+            'allowed'       => 'pages',
+            'size'          => 1,
+            'maxitems'      => 1,
+            'minitems'      => 0,
+            'show_thumbs'   => 1,
+            'default'       => 0,
+            'wizards'       => [
                 'suggest' => [
-                    'type' => 'suggest',
+                    'type'    => 'suggest',
                     'default' => [
-                        'searchWholePhrase' => true
-                    ]
+                        'searchWholePhrase' => true,
+                    ],
                 ],
             ],
-        ]
+        ],
     ],
     'import_id' => [
-        'label' => $ll . 'tx_news_domain_model_news.import_id',
+        'label'  => $ll.'tx_news_domain_model_news.import_id',
         'config' => [
-            'type' => 'passthrough'
-        ]
+            'type' => 'passthrough',
+        ],
     ],
     'import_source' => [
-        'label' => $ll . 'tx_news_domain_model_news.import_source',
+        'label'  => $ll.'tx_news_domain_model_news.import_source',
         'config' => [
-            'type' => 'passthrough'
-        ]
+            'type' => 'passthrough',
+        ],
     ],
 ];
 
@@ -126,4 +127,4 @@ $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage'
     = [0 => 'categories'];
 
 $GLOBALS['TCA']['sys_category']['ctrl']['label_userFunc'] =
-    \GeorgRinger\News\Hooks\Labels::class . '->getUserLabelCategory';
+    \GeorgRinger\News\Hooks\Labels::class.'->getUserLabelCategory';

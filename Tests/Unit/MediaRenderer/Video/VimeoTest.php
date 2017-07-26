@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\MediaRenderer\Video;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,45 +18,47 @@ use GeorgRinger\News\Domain\Model\Media;
 use GeorgRinger\News\MediaRenderer\Video\Vimeo;
 
 /**
- * Tests for Vimeo
+ * Tests for Vimeo.
  */
-class VimeoTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class VimeoTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     * @dataProvider fileIsRecognizedDataProvider
+     *
+     * @return void
+     */
+    public function VimeoLinkIsRecognized($expected, $expectedOutput)
+    {
+        $mediaElement = new Media();
+        $mediaElement->setMultimedia($expected);
+        $mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
 
-	/**
-	 * @test
-	 * @dataProvider fileIsRecognizedDataProvider
-	 * @return void
-	 */
-	public function VimeoLinkIsRecognized($expected, $expectedOutput) {
-		$mediaElement = new Media();
-		$mediaElement->setMultimedia($expected);
-		$mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
+        $renderer = new Vimeo();
+        $this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
+    }
 
-		$renderer = new Vimeo();
-		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
-	}
-
-	/**
-	 * @return array
-	 */
-	public function fileIsRecognizedDataProvider() {
-		return [
-			'defaultUrl' => [
-				'http://vimeo.com/16850096', TRUE
-			],
-			'noMediaFileGiven' => [
-				NULL, FALSE
-			],
-			'emptyMediaFileGiven' => [
-				'', FALSE
-			],
-			'localFileGiven' => [
-				'fileadmin/fobar.flv', FALSE
-			],
-			'wrongDomainGiven' => [
-				'http://youtu.be/ko5CCSomDMY', FALSE
-			],
-		];
-	}
-
+    /**
+     * @return array
+     */
+    public function fileIsRecognizedDataProvider()
+    {
+        return [
+            'defaultUrl' => [
+                'http://vimeo.com/16850096', true,
+            ],
+            'noMediaFileGiven' => [
+                null, false,
+            ],
+            'emptyMediaFileGiven' => [
+                '', false,
+            ],
+            'localFileGiven' => [
+                'fileadmin/fobar.flv', false,
+            ],
+            'wrongDomainGiven' => [
+                'http://youtu.be/ko5CCSomDMY', false,
+            ],
+        ];
+    }
 }

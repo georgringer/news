@@ -1,7 +1,8 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,11 +19,9 @@ use GeorgRinger\News\Domain\Model\DemandInterface;
 /**
  * News Demand object which holds all information to get the correct
  * news records.
- *
  */
 class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implements DemandInterface
 {
-
     /**
      * @var array
      */
@@ -111,9 +110,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     protected $class;
 
     /**
-     * Set archive settings
+     * Set archive settings.
      *
      * @param string $archiveRestriction archive setting
+     *
      * @return void
      */
     public function setArchiveRestriction($archiveRestriction)
@@ -122,7 +122,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get archive setting
+     * Get archive setting.
      *
      * @return string
      */
@@ -132,9 +132,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * List of allowed categories
+     * List of allowed categories.
      *
      * @param array $categories categories
+     *
      * @return void
      */
     public function setCategories($categories)
@@ -143,7 +144,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get allowed categories
+     * Get allowed categories.
      *
      * @return array
      */
@@ -153,9 +154,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set category mode
+     * Set category mode.
      *
      * @param string $categoryConjunction
+     *
      * @return void
      */
     public function setCategoryConjunction($categoryConjunction)
@@ -164,7 +166,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get category mode
+     * Get category mode.
      *
      * @return string
      */
@@ -174,16 +176,18 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get include sub categories
+     * Get include sub categories.
+     *
      * @return bool
      */
     public function getIncludeSubCategories()
     {
-        return (boolean)$this->includeSubCategories;
+        return (bool) $this->includeSubCategories;
     }
 
     /**
      * @param bool $includeSubCategories
+     *
      * @return void
      */
     public function setIncludeSubCategories($includeSubCategories)
@@ -192,9 +196,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set author
+     * Set author.
      *
      * @param string $author
+     *
      * @return void
      */
     public function setAuthor($author)
@@ -203,7 +208,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get author
+     * Get author.
      *
      * @return string
      */
@@ -213,7 +218,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get Tags
+     * Get Tags.
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
@@ -223,9 +228,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set Tags
+     * Set Tags.
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags tags
+     *
      * @return void
      */
     public function setTags($tags)
@@ -234,9 +240,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set time limit low, either integer or string
+     * Set time limit low, either integer or string.
      *
      * @param mixed $timeRestriction
+     *
      * @return void
      */
     public function setTimeRestriction($timeRestriction)
@@ -245,7 +252,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get time limit low
+     * Get time limit low.
      *
      * @return mixed
      */
@@ -255,7 +262,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get time limit high
+     * Get time limit high.
      *
      * @return mixed
      */
@@ -265,9 +272,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set time limit high
+     * Set time limit high.
      *
      * @param mixed $timeRestrictionHigh
+     *
      * @return void
      */
     public function setTimeRestrictionHigh($timeRestrictionHigh)
@@ -276,9 +284,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set order
+     * Set order.
      *
      * @param string $order order
+     *
      * @return void
      */
     public function setOrder($order)
@@ -287,7 +296,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get order
+     * Get order.
      *
      * @return string
      */
@@ -297,9 +306,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set order allowed
+     * Set order allowed.
      *
      * @param string $orderByAllowed allowed fields for ordering
+     *
      * @return void
      */
     public function setOrderByAllowed($orderByAllowed)
@@ -308,7 +318,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get allowed order fields
+     * Get allowed order fields.
      *
      * @return string
      */
@@ -318,9 +328,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set order respect top news flag
+     * Set order respect top news flag.
      *
      * @param bool $topNewsFirst respect top news flag
+     *
      * @return void
      */
     public function setTopNewsFirst($topNewsFirst)
@@ -329,7 +340,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get order respect top news flag
+     * Get order respect top news flag.
      *
      * @return int
      */
@@ -339,9 +350,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set search fields
+     * Set search fields.
      *
      * @param string $searchFields search fields
+     *
      * @return void
      */
     public function setSearchFields($searchFields)
@@ -350,7 +362,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get search fields
+     * Get search fields.
      *
      * @return string
      */
@@ -360,9 +372,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set top news setting
+     * Set top news setting.
      *
      * @param string $topNewsRestriction top news settings
+     *
      * @return void
      */
     public function setTopNewsRestriction($topNewsRestriction)
@@ -371,7 +384,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get top news setting
+     * Get top news setting.
      *
      * @return string
      */
@@ -381,9 +394,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set list of storage pages
+     * Set list of storage pages.
      *
      * @param string $storagePage storage page list
+     *
      * @return void
      */
     public function setStoragePage($storagePage)
@@ -392,7 +406,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get list of storage pages
+     * Get list of storage pages.
      *
      * @return string
      */
@@ -402,7 +416,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get day restriction
+     * Get day restriction.
      *
      * @return int
      */
@@ -412,9 +426,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set day restriction
+     * Set day restriction.
      *
      * @param int $day
+     *
      * @return void
      */
     public function setDay($day)
@@ -423,7 +438,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get month restriction
+     * Get month restriction.
      *
      * @return int
      */
@@ -433,9 +448,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set month restriction
+     * Set month restriction.
      *
      * @param int $month month
+     *
      * @return void
      */
     public function setMonth($month)
@@ -444,7 +460,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get year restriction
+     * Get year restriction.
      *
      * @return int
      */
@@ -454,9 +470,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set year restriction
+     * Set year restriction.
      *
      * @param int $year year
+     *
      * @return void
      */
     public function setYear($year)
@@ -465,18 +482,19 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set limit
+     * Set limit.
      *
      * @param int $limit limit
+     *
      * @return void
      */
     public function setLimit($limit)
     {
-        $this->limit = (int)$limit;
+        $this->limit = (int) $limit;
     }
 
     /**
-     * Get limit
+     * Get limit.
      *
      * @return int
      */
@@ -486,18 +504,19 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set offset
+     * Set offset.
      *
      * @param int $offset offset
+     *
      * @return void
      */
     public function setOffset($offset)
     {
-        $this->offset = (int)$offset;
+        $this->offset = (int) $offset;
     }
 
     /**
-     * Get offset
+     * Get offset.
      *
      * @return int
      */
@@ -507,9 +526,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set date field which is used for datemenu
+     * Set date field which is used for datemenu.
      *
      * @param string $dateField datefield
+     *
      * @return void
      */
     public function setDateField($dateField)
@@ -518,7 +538,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get datefield which is used for datemenu
+     * Get datefield which is used for datemenu.
      *
      * @return string
      */
@@ -528,7 +548,7 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Get search object
+     * Get search object.
      *
      * @return \GeorgRinger\News\Domain\Model\Dto\Search
      */
@@ -538,9 +558,10 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set search object
+     * Set search object.
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\Search $search search object
+     *
      * @return void
      */
     public function setSearch($search = null)
@@ -549,18 +570,19 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
     }
 
     /**
-     * Set flag if displayed news records should be excluded
+     * Set flag if displayed news records should be excluded.
      *
      * @param bool $excludeAlreadyDisplayedNews
+     *
      * @return void
      */
     public function setExcludeAlreadyDisplayedNews($excludeAlreadyDisplayedNews)
     {
-        $this->excludeAlreadyDisplayedNews = (bool)$excludeAlreadyDisplayedNews;
+        $this->excludeAlreadyDisplayedNews = (bool) $excludeAlreadyDisplayedNews;
     }
 
     /**
-     * Get flag if displayed news records should be excluded
+     * Get flag if displayed news records should be excluded.
      *
      * @return bool
      */
@@ -626,5 +648,4 @@ class NewsDemand extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity implemen
         $this->action = $action;
         $this->class = $controller;
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -22,20 +22,19 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
- * News repository with all the callable functionality
- *
+ * News repository with all the callable functionality.
  */
 class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
 {
-
     /**
      * Returns a category constraint created by
-     * a given list of categories and a junction string
+     * a given list of categories and a junction string.
      *
      * @param QueryInterface $query
-     * @param  array $categories
-     * @param  string $conjunction
-     * @param  bool $includeSubCategories
+     * @param array          $categories
+     * @param string         $conjunction
+     * @param bool           $includeSubCategories
+     *
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|null
      */
     protected function createCategoryConstraint(
@@ -69,7 +68,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 if ($subCategoryConstraint) {
                     $categoryConstraints[] = $query->logicalOr($subCategoryConstraint);
                 }
-
             } else {
                 $categoryConstraints[] = $query->contains('categories', $category);
             }
@@ -98,11 +96,13 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
     /**
      * Returns an array of constraints created from a given demand object.
      *
-     * @param QueryInterface $query
+     * @param QueryInterface  $query
      * @param DemandInterface $demand
+     *
      * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
+     *
      * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
@@ -152,7 +152,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 if ($timeFromString) {
                     $timeLimit = $timeFromString;
                 } else {
-                    throw new \Exception('Time limit Low could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+                    throw new \Exception('Time limit Low could not be resolved to an integer. Given was: '.htmlspecialchars($timeLimit));
                 }
             }
 
@@ -175,7 +175,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 if ($timeFromString) {
                     $timeLimit = $timeFromString;
                 } else {
-                    throw new \Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
+                    throw new \Exception('Time limit High could not be resolved to an integer. Given was: '.htmlspecialchars($timeLimit));
                 }
             }
 
@@ -226,7 +226,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         if ($tags) {
             $tagList = explode(',', $tags);
 
-            $subConstraints = array();
+            $subConstraints = [];
             foreach ($tagList as $singleTag) {
                 $subConstraints[] = $query->contains('tags', $singleTag);
             }
@@ -276,6 +276,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
+     *
      * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
      */
     protected function createOrderingsFromDemand(DemandInterface $demand)
@@ -308,10 +309,11 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
     }
 
     /**
-     * Find first news by import and source id
+     * Find first news by import and source id.
      *
      * @param string $importSource import source
-     * @param int $importId import id
+     * @param int    $importId     import id
+     *
      * @return \GeorgRinger\News\Domain\Model\News
      */
     public function findOneByImportSourceAndImportId($importSource, $importId)
@@ -330,10 +332,11 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
     /**
      * Override default findByUid function to enable also the option to turn of
-     * the enableField setting
+     * the enableField setting.
      *
-     * @param int $uid id of record
+     * @param int  $uid                 id of record
      * @param bool $respectEnableFields if set to false, hidden records are shown
+     *
      * @return \GeorgRinger\News\Domain\Model\News
      */
     public function findByUid($uid, $respectEnableFields = true)
@@ -352,9 +355,10 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
     /**
      * Get the count of news records by month/year and
-     * returns the result compiled as array
+     * returns the result compiled as array.
      *
      * @param DemandInterface $demand
+     *
      * @return array
      */
     public function countByDate(DemandInterface $demand)
@@ -366,16 +370,16 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $field = $demand->getDateField();
         $field = empty($field) ? 'datetime' : $field;
 
-        $sql = 'SELECT FROM_UNIXTIME(' . $field . ', "%m") AS "_Month",' .
-            ' FROM_UNIXTIME(' . $field . ', "%Y") AS "_Year" ,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%m")) as count_month,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
-            ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
+        $sql = 'SELECT FROM_UNIXTIME('.$field.', "%m") AS "_Month",'.
+            ' FROM_UNIXTIME('.$field.', "%Y") AS "_Year" ,'.
+            ' count(FROM_UNIXTIME('.$field.', "%m")) as count_month,'.
+            ' count(FROM_UNIXTIME('.$field.', "%y")) as count_year'.
+            ' FROM tx_news_domain_model_news '.substr($sql, strpos($sql, 'WHERE '));
 
         if (TYPO3_MODE === 'FE') {
             $sql .= $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
         } else {
-            $sql .= \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('tx_news_domain_model_news') .
+            $sql .= \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('tx_news_domain_model_news').
                 \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause('tx_news_domain_model_news');
         }
 
@@ -387,7 +391,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         if ($orderDirection !== 'desc' && $orderDirection != 'asc') {
             $orderDirection = 'asc';
         }
-        $sql .= ' GROUP BY _Month, _Year ORDER BY _Year ' . $orderDirection . ', _Month ' . $orderDirection;
+        $sql .= ' GROUP BY _Month, _Year ORDER BY _Year '.$orderDirection.', _Month '.$orderDirection;
 
         $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
         while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
@@ -410,12 +414,14 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
     }
 
     /**
-     * Get the search constraints
+     * Get the search constraints.
      *
-     * @param QueryInterface $query
+     * @param QueryInterface  $query
      * @param DemandInterface $demand
-     * @return array
+     *
      * @throws \UnexpectedValueException
+     *
+     * @return array
      */
     protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand)
     {
@@ -438,7 +444,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
             foreach ($searchFields as $field) {
                 if (!empty($searchSubject)) {
-                    $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
+                    $searchConstraints[] = $query->like($field, '%'.$searchSubject.'%');
                 }
             }
 
@@ -466,5 +472,4 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         return $constraints;
     }
-
 }

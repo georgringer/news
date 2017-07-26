@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\MediaRenderer\Video;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,18 +18,17 @@ use GeorgRinger\News\MediaRenderer\MediaInterface;
 use GeorgRinger\News\Service\FileService;
 
 /**
- * Implementation of quicktime support
- *
+ * Implementation of quicktime support.
  */
 class Quicktime implements MediaInterface
 {
-
     /**
-     * Render quicktime files
+     * Render quicktime files.
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param int $width
-     * @param int $height
+     * @param int                                  $width
+     * @param int                                  $height
+     *
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height)
@@ -43,20 +42,21 @@ class Quicktime implements MediaInterface
         }
 
         $content =
-            '<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="' . (int)$width . '" height="' . (int)$height . '" >
-					<param name="src" value="' . htmlspecialchars($url) . '">
+            '<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="'.(int) $width.'" height="'.(int) $height.'" >
+					<param name="src" value="'.htmlspecialchars($url).'">
 					<param name="autoplay" value="true">
-					<param name="type" value="video/quicktime" width="' . (int)$width . '" height="' . (int)$height . '">
-					<embed src="' . htmlspecialchars($url) . '" width="' . (int)$width . '" height="' . (int)$height . '" autoplay="false" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
+					<param name="type" value="video/quicktime" width="'.(int) $width.'" height="'.(int) $height.'">
+					<embed src="'.htmlspecialchars($url).'" width="'.(int) $width.'" height="'.(int) $height.'" autoplay="false" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/">
 				</object>';
 
         return $content;
     }
 
     /**
-     * Implementation is used if file extension is mov
+     * Implementation is used if file extension is mov.
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
+     *
      * @return bool
      */
     public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
@@ -64,7 +64,6 @@ class Quicktime implements MediaInterface
         $url = FileService::getFalFilename($element->getContent());
         $fileEnding = strtolower(substr($url, -3));
 
-        return ($fileEnding === 'mov');
+        return $fileEnding === 'mov';
     }
-
 }

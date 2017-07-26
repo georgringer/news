@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,28 +18,28 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Utility class to get the settings from Extension Manager
- *
+ * Utility class to get the settings from Extension Manager.
  */
 class EmConfiguration
 {
-
     /**
      * Parses the extension settings.
      *
-     * @return \GeorgRinger\News\Domain\Model\Dto\EmConfiguration
      * @throws \Exception If the configuration is invalid.
+     *
+     * @return \GeorgRinger\News\Domain\Model\Dto\EmConfiguration
      */
     public static function getSettings()
     {
         $configuration = self::parseSettings();
-        GeneralUtility::requireOnce(ExtensionManagementUtility::extPath('news') . 'Classes/Domain/Model/Dto/EmConfiguration.php');
+        GeneralUtility::requireOnce(ExtensionManagementUtility::extPath('news').'Classes/Domain/Model/Dto/EmConfiguration.php');
         $settings = new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration($configuration);
+
         return $settings;
     }
 
     /**
-     * Parse settings and return it as array
+     * Parse settings and return it as array.
      *
      * @return array unserialized extconf settings
      */
@@ -50,7 +50,7 @@ class EmConfiguration
         if (!is_array($settings)) {
             $settings = [];
         }
+
         return $settings;
     }
-
 }

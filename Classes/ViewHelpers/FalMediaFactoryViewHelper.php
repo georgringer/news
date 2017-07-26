@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,18 +18,17 @@ use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\MediaRenderer\FalMediaInterface;
 
 /**
- * ViewHelper to show videos
- *
+ * ViewHelper to show videos.
  */
 class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
     /**
      * If the escaping interceptor should be disabled inside this ViewHelper,
      * then set this value to FALSE.
      * This is internal and NO part of the API. It is very likely to change.
      *
      * @var bool
+     *
      * @internal
      */
     protected $escapingInterceptorEnabled = false;
@@ -41,14 +40,16 @@ class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 
     /**
      * Go through all given classes which implement the mediainterface
-     * and use the proper ones to render the media element
+     * and use the proper ones to render the media element.
      *
-     * @param string $classes list of classes which are used to render the media object
+     * @param string        $classes list of classes which are used to render the media object
      * @param FileReference $element Current media object
-     * @param int $width width
-     * @param int $height height
-     * @return string
+     * @param int           $width   width
+     * @param int           $height  height
+     *
      * @throws \UnexpectedValueException
+     *
+     * @return string
      */
     public function render($classes, FileReference $element, $width, $height)
     {
@@ -78,5 +79,4 @@ class FalMediaFactoryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 
         return $content;
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\MediaRenderer;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,28 +17,27 @@ namespace GeorgRinger\News\MediaRenderer;
 use GeorgRinger\News\Domain\Model\FileReference;
 
 /**
- * Interface to implement video views
- *
+ * Interface to implement video views.
  */
 interface FalMediaInterface
 {
-
     /**
-     * Render a media element
+     * Render a media element.
      *
      * @param FileReference $element
-     * @param int $width
-     * @param int $height
+     * @param int           $width
+     * @param int           $height
+     *
      * @return string
      */
     public function render(FileReference $element, $width, $height);
 
     /**
-     * If enabled
+     * If enabled.
      *
      * @param FileReference $element
+     *
      * @return string
      */
     public function enabled(FileReference $element);
-
 }

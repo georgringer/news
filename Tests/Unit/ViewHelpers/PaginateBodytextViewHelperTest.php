@@ -16,101 +16,111 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 
 /**
- * Tests for PaginateBodytextViewHelper
- *
+ * Tests for PaginateBodytextViewHelper.
  */
-class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class PaginateBodytextViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * Test if given tag is a closing tag.
+     *
+     * @test
+     * @dataProvider givenTagIsAClosingTagDataProvider
+     *
+     * @return void
+     */
+    public function givenTagIsAClosingTag($tag, $expectedResult)
+    {
+        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
+        $result = $mockTemplateParser->_call('isClosingTag', $tag);
+        $this->assertEquals($expectedResult, $result);
+    }
 
-	/**
-	 * Test if given tag is a closing tag
-	 *
-	 * @test
-	 * @dataProvider givenTagIsAClosingTagDataProvider
-	 * @return void
-	 */
-	public function givenTagIsAClosingTag($tag, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
-		$result = $mockTemplateParser->_call('isClosingTag', $tag);
-		$this->assertEquals($expectedResult, $result);
-	}
+    public function givenTagIsAClosingTagDataProvider()
+    {
+        return [
+            'working example 1' => [
+                '</div>', true,
+            ],
+            'working example 2' => [
+                '<div>', false,
+            ],
+        ];
+    }
 
-	public function givenTagIsAClosingTagDataProvider() {
-		return [
-			'working example 1' => [
-				'</div>', TRUE
-			],
-			'working example 2' => [
-				'<div>', FALSE
-			],
-		];
-	}
+    /**
+     * Test if given tag is a self closing tag.
+     *
+     * @test
+     * @dataProvider givenTagIsSelfClosingTagDataProvider
+     *
+     * @return void
+     */
+    public function givenTagIsSelfClosingTag($tag, $expectedResult)
+    {
+        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
+        $result = $mockTemplateParser->_call('isSelfClosingTag', $tag);
+        $this->assertEquals($expectedResult, $result);
+    }
 
-	/**
-	 * Test if given tag is a self closing tag
-	 *
-	 * @test
-	 * @dataProvider givenTagIsSelfClosingTagDataProvider
-	 * @return void
-	 */
-	public function givenTagIsSelfClosingTag($tag, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
-		$result = $mockTemplateParser->_call('isSelfClosingTag', $tag);
-		$this->assertEquals($expectedResult, $result);
-	}
+    public function givenTagIsSelfClosingTagDataProvider()
+    {
+        return [
+            'working example 1' => [
+                '<hr />', true,
+            ],
+            'working example 2' => [
+                '<div>', false,
+            ],
+        ];
+    }
 
-	public function givenTagIsSelfClosingTagDataProvider() {
-		return [
-			'working example 1' => [
-				'<hr />', TRUE
-			],
-			'working example 2' => [
-				'<div>', FALSE
-			],
-		];
-	}
+    /**
+     * Test if given tag is an opening tag.
+     *
+     * @test
+     * @dataProvider givenTagIsAnOpeningTagDataProvider
+     *
+     * @return void
+     */
+    public function givenTagIsAnOpeningTag($tag, $expectedResult)
+    {
+        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
+        $result = $mockTemplateParser->_call('isOpeningTag', $tag);
+        $this->assertEquals($expectedResult, $result);
+    }
 
-	/**
-	 * Test if given tag is an opening tag
-	 *
-	 * @test
-	 * @dataProvider givenTagIsAnOpeningTagDataProvider
-	 * @return void
-	 */
-	public function givenTagIsAnOpeningTag($tag, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
-		$result = $mockTemplateParser->_call('isOpeningTag', $tag);
-		$this->assertEquals($expectedResult, $result);
-	}
+    public function givenTagIsAnOpeningTagDataProvider()
+    {
+        return [
+            ['<div>', true],
+            ['</div>', false],
+            ['<div/>', false],
+            ['<div />', false],
+        ];
+    }
 
-	public function givenTagIsAnOpeningTagDataProvider() {
-		return [
-			['<div>', TRUE],
-			['</div>', FALSE],
-			['<div/>', FALSE],
-			['<div />', FALSE]
-		];
-	}
+    /**
+     * Test if given tag is an opening tag.
+     *
+     * @test
+     * @dataProvider extractTagReturnsCorrectOneDataProvider
+     *
+     * @return void
+     */
+    public function extractTagReturnsCorrectOne($tag, $expectedResult)
+    {
+        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
+        $result = $mockTemplateParser->_call('extractTag', $tag);
+        $this->assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)), 1);
+    }
 
-	/**
-	 * Test if given tag is an opening tag
-	 *
-	 * @test
-	 * @dataProvider extractTagReturnsCorrectOneDataProvider
-	 * @return void
-	 */
-	public function extractTagReturnsCorrectOne($tag, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
-		$result = $mockTemplateParser->_call('extractTag', $tag);
-		$this->assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)), 1);
-	}
-
-	public function extractTagReturnsCorrectOneDataProvider() {
-		return [
-			['this <strong>is</strong> a <div>real</div>test', 'this <strong>'],
-			['this <br /> linebreak', 'this <br />'],
-			['this <br> linebreak', 'this <br>'],
-			['this is a test', 'this is a test'],
-		];
-	}
-
+    public function extractTagReturnsCorrectOneDataProvider()
+    {
+        return [
+            ['this <strong>is</strong> a <div>real</div>test', 'this <strong>'],
+            ['this <br /> linebreak', 'this <br />'],
+            ['this <br> linebreak', 'this <br>'],
+            ['this is a test', 'this is a test'],
+        ];
+    }
 }

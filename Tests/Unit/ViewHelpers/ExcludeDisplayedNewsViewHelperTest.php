@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,39 +18,39 @@ use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
 
 /**
- * Tests for ExcludeDisplayedNewsViewHelper
- *
+ * Tests for ExcludeDisplayedNewsViewHelper.
  */
-class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ExcludeDisplayedNewsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function newsIsAddedToExcludedList()
+    {
+        $viewHelper = new ExcludeDisplayedNewsViewHelper();
+        $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], null);
 
-	/**
-	 * @test
-	 * @return void
-	 */
-	public function newsIsAddedToExcludedList() {
+        $newsItem1 = new News();
+        $newsItem1->_setProperty('uid', '123');
 
-		$viewHelper = new ExcludeDisplayedNewsViewHelper();
-		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], NULL);
+        $viewHelper->render($newsItem1);
+        $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123']);
 
-		$newsItem1 = new News();
-		$newsItem1->_setProperty('uid', '123');
+        $newsItem1 = new News();
+        $newsItem1->_setProperty('uid', '123');
+        $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123']);
 
-		$viewHelper->render($newsItem1);
-		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123']);
+        $newsItem2 = new News();
+        $newsItem2->_setProperty('uid', '12');
+        $viewHelper->render($newsItem2);
+        $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123', '12' => '12']);
 
-		$newsItem1 = new News();
-		$newsItem1->_setProperty('uid', '123');
-		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123']);
-
-		$newsItem2 = new News();
-		$newsItem2->_setProperty('uid', '12');
-		$viewHelper->render($newsItem2);
-		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123', '12' => '12']);
-
-		$newsItem3 = new News();
-		$newsItem3->_setProperty('uid', '12');
-		$newsItem3->_setProperty('_localizedUid', '456');
-		$viewHelper->render($newsItem3);
-		$this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123', '12' => '12', '456' => '456']);
-	}
+        $newsItem3 = new News();
+        $newsItem3->_setProperty('uid', '12');
+        $newsItem3->_setProperty('_localizedUid', '456');
+        $viewHelper->render($newsItem3);
+        $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], ['123' => '123', '12' => '12', '456' => '456']);
+    }
 }

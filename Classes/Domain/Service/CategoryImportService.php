@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,12 +19,10 @@ use GeorgRinger\News\Domain\Model\FileReference;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Category Import Service
- *
+ * Category Import Service.
  */
 class CategoryImportService extends AbstractImportService
 {
-
     const ACTION_SET_PARENT_CATEGORY = 1;
     const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 
@@ -51,6 +49,7 @@ class CategoryImportService extends AbstractImportService
      * Inject the category repository.
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     *
      * @return void
      */
     public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
@@ -59,9 +58,10 @@ class CategoryImportService extends AbstractImportService
     }
 
     /**
-     * Inject SignalSlotDispatcher
+     * Inject SignalSlotDispatcher.
      *
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
+     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+     *
      * @return void
      */
     public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
@@ -71,6 +71,7 @@ class CategoryImportService extends AbstractImportService
 
     /**
      * @param array $importArray
+     *
      * @return void
      */
     public function import(array $importArray)
@@ -83,18 +84,18 @@ class CategoryImportService extends AbstractImportService
 
             if (!empty($importItem['title_lang_ol'])) {
                 $this->postPersistQueue[$importItem['import_id']] = [
-                    'category' => $category,
-                    'importItem' => $importItem,
-                    'action' => self::ACTION_CREATE_L10N_CHILDREN_CATEGORY,
-                    'titleLanguageOverlay' => $importItem['title_lang_ol']
+                    'category'             => $category,
+                    'importItem'           => $importItem,
+                    'action'               => self::ACTION_CREATE_L10N_CHILDREN_CATEGORY,
+                    'titleLanguageOverlay' => $importItem['title_lang_ol'],
                 ];
             }
 
             if ($importItem['parentcategory']) {
                 $this->postPersistQueue[$importItem['import_id']] = [
-                    'category' => $category,
-                    'action' => self::ACTION_SET_PARENT_CATEGORY,
-                    'parentCategoryOriginUid' => $importItem['parentcategory']
+                    'category'                => $category,
+                    'action'                  => self::ACTION_SET_PARENT_CATEGORY,
+                    'parentCategoryOriginUid' => $importItem['parentcategory'],
                 ];
             }
         }
@@ -113,16 +114,16 @@ class CategoryImportService extends AbstractImportService
                     // do nothing
                     break;
             }
-
         }
 
         $this->persistenceManager->persistAll();
     }
 
     /**
-     * Hydrate a category record with the given array
+     * Hydrate a category record with the given array.
      *
      * @param array $importItem
+     *
      * @return Category
      */
     protected function hydrateCategory(array $importItem)
@@ -167,7 +168,7 @@ class CategoryImportService extends AbstractImportService
     }
 
     /**
-     * Add category image when not already present
+     * Add category image when not already present.
      *
      * @param Category $category
      * @param $image
@@ -193,11 +194,11 @@ class CategoryImportService extends AbstractImportService
             /** @var $item FileReference */
             foreach ($existingImages as $item) {
                 // only check already persisted items
-                if ($item->getFileUid() === (int)$newImage->getUid()
+                if ($item->getFileUid() === (int) $newImage->getUid()
                     ||
                     ($item->getUid() &&
                         $item->getOriginalResource()->getName() === $newImage->getName() &&
-                        $item->getOriginalResource()->getSize() === (int)$newImage->getSize())
+                        $item->getOriginalResource()->getSize() === (int) $newImage->getSize())
                 ) {
                     $newImage = false;
                     break;
@@ -229,9 +230,10 @@ class CategoryImportService extends AbstractImportService
     }
 
     /**
-     * Set parent category
+     * Set parent category.
      *
      * @param array $queueItem
+     *
      * @return void
      */
     protected function setParentCategory(array $queueItem)
@@ -254,9 +256,10 @@ class CategoryImportService extends AbstractImportService
     }
 
     /**
-     * Create l10n relation
+     * Create l10n relation.
      *
      * @param array $queueItem
+     *
      * @return void
      */
     protected function createL10nChildrenCategory(array $queueItem)
@@ -269,29 +272,27 @@ class CategoryImportService extends AbstractImportService
             $sysLanguageUid = $key + 1;
 
             $importItem = $queueItem['importItem'];
-            $importItem['import_id'] = $importItem['import_id'] . '|L:' . $sysLanguageUid;
+            $importItem['import_id'] = $importItem['import_id'].'|L:'.$sysLanguageUid;
 
             /** @var $l10nChildrenCategory Category */
             $l10nChildrenCategory = $this->hydrateCategory($importItem);
             $this->categoryRepository->add($l10nChildrenCategory);
 
             $l10nChildrenCategory->setTitle($title);
-            $l10nChildrenCategory->setL10nParent((int)$category->getUid());
-            $l10nChildrenCategory->setSysLanguageUid((int)$sysLanguageUid);
+            $l10nChildrenCategory->setL10nParent((int) $category->getUid());
+            $l10nChildrenCategory->setSysLanguageUid((int) $sysLanguageUid);
         }
-
     }
 
     /**
-     * Emits signal
+     * Emits signal.
      *
-     * @param string $signalName name of the signal slot
-     * @param array $signalArguments arguments for the signal slot
+     * @param string $signalName      name of the signal slot
+     * @param array  $signalArguments arguments for the signal slot
      */
     protected function emitSignal($signalName, array $signalArguments)
     {
         $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\CategoryImportService', $signalName,
             $signalArguments);
     }
-
 }

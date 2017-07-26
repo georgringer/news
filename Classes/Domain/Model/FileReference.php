@@ -1,28 +1,27 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * File Reference
- *
+ * File Reference.
  */
 class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
 {
-
     /**
-     * Obsolete when foreign_selector is supported by ExtBase persistence layer
+     * Obsolete when foreign_selector is supported by ExtBase persistence layer.
      *
      * @var int
      */
@@ -54,9 +53,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     protected $showinpreview;
 
     /**
-     * Set File uid
+     * Set File uid.
      *
      * @param int $fileUid
+     *
      * @return void
      */
     public function setFileUid($fileUid)
@@ -65,7 +65,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get File UID
+     * Get File UID.
      *
      * @return int
      */
@@ -75,9 +75,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set alternative
+     * Set alternative.
      *
      * @param string $alternative
+     *
      * @return void
      */
     public function setAlternative($alternative)
@@ -86,7 +87,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get alternative
+     * Get alternative.
      *
      * @return string
      */
@@ -96,9 +97,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return void
      */
     public function setDescription($description)
@@ -107,7 +109,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -117,9 +119,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set link
+     * Set link.
      *
      * @param string $link
+     *
      * @return void
      */
     public function setLink($link)
@@ -128,7 +131,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get link
+     * Get link.
      *
      * @return mixed
      * @return void
@@ -139,9 +142,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return void
      */
     public function setTitle($title)
@@ -150,7 +154,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -160,9 +164,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Set showinpreview
+     * Set showinpreview.
      *
      * @param bool $showinpreview
+     *
      * @return void
      */
     public function setShowinpreview($showinpreview)
@@ -171,7 +176,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     }
 
     /**
-     * Get showinpreview
+     * Get showinpreview.
      *
      * @return bool
      */
@@ -179,5 +184,4 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     {
         return $this->showinpreview;
     }
-
 }

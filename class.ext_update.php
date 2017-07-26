@@ -16,15 +16,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Update class for the extension manager.
- *
  */
 class ext_update
 {
-
     const FOLDER_CATEGORY_IMAGES = '/_migrated/news_categories';
 
     /**
-     * Array of flash messages (params) array[][status,title,message]
+     * Array of flash messages (params) array[][status,title,message].
      *
      * @var array
      */
@@ -46,14 +44,13 @@ class ext_update
     protected $categoryImageFolder;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
         $this->databaseConnection = $GLOBALS['TYPO3_DB'];
 
         $this->resourceFactory = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
-
     }
 
     /**
@@ -64,6 +61,7 @@ class ext_update
     public function main()
     {
         $this->processUpdates();
+
         return $this->generateOutput();
     }
 
@@ -72,6 +70,7 @@ class ext_update
      * should by showed.
      *
      * @return bool
+     *
      * @todo find a better way to determine if update is needed or not.
      */
     public function access()
@@ -86,7 +85,6 @@ class ext_update
      */
     protected function processUpdates()
     {
-
         $this->updateContentRelationToMm();
         $this->updateFileRelations();
 
@@ -116,29 +114,29 @@ class ext_update
                 $relatedFilesUids = explode(',', $newsRow['related_files']);
                 // update news
                 $update = ['related_files' => count($relatedFilesUids)];
-                $GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_news_domain_model_news', 'uid=' . $news, $update);
+                $GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_news_domain_model_news', 'uid='.$news, $update);
                 foreach ($relatedFilesUids as $relatedFile) {
                     // update file
                     $update = ['parent' => $news];
-                    $GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_news_domain_model_file', 'uid=' . $relatedFile, $update);
+                    $GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_news_domain_model_file', 'uid='.$relatedFile, $update);
                 }
             }
             $GLOBALS['TYPO3_DB']->sql_free_result($newsQuery);
 
-            $this->messageArray[] = [FlashMessage::OK, $title, $newsCount . ' news records have been updated!'];
+            $this->messageArray[] = [FlashMessage::OK, $title, $newsCount.' news records have been updated!'];
         } else {
             if ($countNewsWithFileRelation == 0) {
                 $this->messageArray[] = [
                     FlashMessage::NOTICE,
                     $title,
-                    'Nothing to do! There are no news with related files'
+                    'Nothing to do! There are no news with related files',
                 ];
             }
             if ($countFilesWithParent != 0) {
                 $this->messageArray[] = [
                     FlashMessage::NOTICE,
                     $title,
-                    'Can not update because there are files with new relation model!'
+                    'Can not update because there are files with new relation model!',
                 ];
             }
         }
@@ -146,7 +144,7 @@ class ext_update
 
     /**
      * news records got a relation to content elements and the relation uses now a mm query
-     * This method allows to update the mm table to got everything in sync again
+     * This method allows to update the mm table to got everything in sync again.
      *
      * @return void
      */
@@ -169,25 +167,25 @@ class ext_update
                 foreach ($contentElementUids as $contentElement) {
                     // Insert mm relation
                     $insert = [
-                        'uid_local' => $row['uid'],
+                        'uid_local'   => $row['uid'],
                         'uid_foreign' => $contentElement,
-                        'sorting' => $i++
+                        'sorting'     => $i++,
                     ];
                     $this->databaseConnection->exec_INSERTquery('tx_news_domain_model_news_ttcontent_mm', $insert);
                 }
 
                 // Update new record
                 $update = ['content_elements' => count($contentElementUids)];
-                $this->databaseConnection->exec_UPDATEquery('tx_news_domain_model_news', 'uid=' . $row['uid'], $update);
+                $this->databaseConnection->exec_UPDATEquery('tx_news_domain_model_news', 'uid='.$row['uid'], $update);
             }
             $this->databaseConnection->sql_free_result($res);
 
-            $this->messageArray[] = [FlashMessage::OK, $title, $newsCount . ' news records have been updated!'];
+            $this->messageArray[] = [FlashMessage::OK, $title, $newsCount.' news records have been updated!'];
         } else {
             $this->messageArray[] = [
                 FlashMessage::NOTICE,
                 $title,
-                'Not needed/possible anymore as the mm table is already filled!'
+                'Not needed/possible anymore as the mm table is already filled!',
             ];
         }
     }
@@ -195,66 +193,68 @@ class ext_update
     /**
      * Renames a tabled field and does some plausibility checks.
      *
-     * @param  string $table
-     * @param  string $oldFieldName
-     * @param  string $newFieldName
+     * @param string $table
+     * @param string $oldFieldName
+     * @param string $newFieldName
+     *
      * @return int
      */
     protected function renameDatabaseTableField($table, $oldFieldName, $newFieldName)
     {
-        $title = 'Renaming "' . $table . ':' . $oldFieldName . '" to "' . $table . ':' . $newFieldName . '": ';
+        $title = 'Renaming "'.$table.':'.$oldFieldName.'" to "'.$table.':'.$newFieldName.'": ';
 
         $currentTableFields = $this->databaseConnection->admin_get_fields($table);
 
         if ($currentTableFields[$newFieldName]) {
-            $message = 'Field ' . $table . ':' . $newFieldName . ' already existing.';
+            $message = 'Field '.$table.':'.$newFieldName.' already existing.';
             $status = FlashMessage::OK;
         } else {
             if (!$currentTableFields[$oldFieldName]) {
-                $message = 'Field ' . $table . ':' . $oldFieldName . ' not existing';
+                $message = 'Field '.$table.':'.$oldFieldName.' not existing';
                 $status = FlashMessage::ERROR;
             } else {
-                $sql = 'ALTER TABLE ' . $table . ' CHANGE COLUMN ' . $oldFieldName . ' ' . $newFieldName . ' ' .
+                $sql = 'ALTER TABLE '.$table.' CHANGE COLUMN '.$oldFieldName.' '.$newFieldName.' '.
                     $currentTableFields[$oldFieldName]['Type'];
 
                 if ($this->databaseConnection->admin_query($sql) === false) {
-                    $message = ' SQL ERROR: ' . $this->databaseConnection->sql_error();
+                    $message = ' SQL ERROR: '.$this->databaseConnection->sql_error();
                     $status = FlashMessage::ERROR;
                 } else {
                     $message = 'OK!';
                     $status = FlashMessage::OK;
                 }
-
             }
         }
 
         $this->messageArray[] = [$status, $title, $message];
+
         return $status;
     }
 
     /**
-     * Rename a DB  table
+     * Rename a DB  table.
      *
      * @param string $oldTableName old table name
      * @param string $newTableName new table name
+     *
      * @return bool
      */
     protected function renameDatabaseTable($oldTableName, $newTableName)
     {
-        $title = 'Renaming "' . $oldTableName . '" to "' . $newTableName . '" ';
+        $title = 'Renaming "'.$oldTableName.'" to "'.$newTableName.'" ';
 
         $tables = $this->databaseConnection->admin_get_tables();
         if (isset($tables[$newTableName])) {
-            $message = 'Table ' . $newTableName . ' already exists';
+            $message = 'Table '.$newTableName.' already exists';
             $status = FlashMessage::OK;
         } elseif (!isset($tables[$oldTableName])) {
-            $message = 'Table ' . $oldTableName . ' does not exist';
+            $message = 'Table '.$oldTableName.' does not exist';
             $status = FlashMessage::ERROR;
         } else {
-            $sql = 'RENAME TABLE ' . $oldTableName . ' TO ' . $newTableName . ';';
+            $sql = 'RENAME TABLE '.$oldTableName.' TO '.$newTableName.';';
 
             if ($this->databaseConnection->admin_query($sql) === false) {
-                $message = ' SQL ERROR: ' . $this->databaseConnection->sql_error();
+                $message = ' SQL ERROR: '.$this->databaseConnection->sql_error();
                 $status = FlashMessage::ERROR;
             } else {
                 $message = 'OK!';
@@ -263,49 +263,49 @@ class ext_update
         }
 
         $this->messageArray[] = [$status, $title, $message];
+
         return $status;
     }
 
     /**
-     * Renames a flex form field
+     * Renames a flex form field.
      *
-     * @param  string $pluginName The pluginName used in list_type
-     * @param  array $oldFieldPointer Pointer array the old field. E.g. array('sheetName', 'fieldName');
-     * @param  array $newFieldPointer Pointer array the new field. E.g. array('sheetName', 'fieldName');
+     * @param string $pluginName      The pluginName used in list_type
+     * @param array  $oldFieldPointer Pointer array the old field. E.g. array('sheetName', 'fieldName');
+     * @param array  $newFieldPointer Pointer array the new field. E.g. array('sheetName', 'fieldName');
+     *
      * @return void
      */
     protected function renameFlexformField($pluginName, array $oldFieldPointer, array $newFieldPointer)
     {
-        $title = 'Renaming flexform field for "' . $pluginName . '" - ' .
-            ' sheet: ' . $oldFieldPointer[0] . ', field: ' . $oldFieldPointer[1] . ' to ' .
-            ' sheet: ' . $newFieldPointer[0] . ', field: ' . $newFieldPointer[1];
+        $title = 'Renaming flexform field for "'.$pluginName.'" - '.
+            ' sheet: '.$oldFieldPointer[0].', field: '.$oldFieldPointer[1].' to '.
+            ' sheet: '.$newFieldPointer[0].', field: '.$newFieldPointer[1];
 
         $res = $this->databaseConnection->exec_SELECTquery('uid, pi_flexform',
             'tt_content',
-            'CType=\'list\' AND list_type=\'' . $pluginName . '\'');
+            'CType=\'list\' AND list_type=\''.$pluginName.'\'');
 
         /** @var \TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools $flexformTools */
         $flexformTools = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\FlexForm\\FlexFormTools');
 
         while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
-
             $xmlArray = GeneralUtility::xml2array($row['pi_flexform']);
 
             if (!is_array($xmlArray) || !isset($xmlArray['data'])) {
                 $status = FlashMessage::ERROR;
                 // @todo: This will happen when trying to update news2 > news but pluginName is already set to news
                 // proposal for future: check for news2 somehow?
-                $message = 'Flexform data of plugin "' . $pluginName . '" not found.';
+                $message = 'Flexform data of plugin "'.$pluginName.'" not found.';
             } elseif (!$xmlArray['data'][$oldFieldPointer[0]]) {
                 $status = FlashMessage::WARNING;
-                $message = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain ' .
-                    'sheet: ' . $oldFieldPointer[0];
+                $message = 'Flexform data of record tt_content:'.$row['uid'].' did not contain '.
+                    'sheet: '.$oldFieldPointer[0];
             } else {
                 $updated = false;
 
                 foreach ($xmlArray['data'][$oldFieldPointer[0]] as $language => $fields) {
                     if ($fields[$oldFieldPointer[1]]) {
-
                         $xmlArray['data'][$newFieldPointer[0]][$language][$newFieldPointer[1]] = $fields[$oldFieldPointer[1]];
                         unset($xmlArray['data'][$oldFieldPointer[0]][$language][$oldFieldPointer[1]]);
 
@@ -314,15 +314,15 @@ class ext_update
                 }
 
                 if ($updated === true) {
-                    $this->databaseConnection->exec_UPDATEquery('tt_content', 'uid=' . $row['uid'], [
-                        'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray)
+                    $this->databaseConnection->exec_UPDATEquery('tt_content', 'uid='.$row['uid'], [
+                        'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray),
                     ]);
                     $message = 'OK!';
                     $status = FlashMessage::OK;
                 } else {
                     $status = FlashMessage::NOTICE;
-                    $message = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain ' .
-                        'sheet: ' . $oldFieldPointer[0] . ', field: ' . $oldFieldPointer[1] . '. This can
+                    $message = 'Flexform data of record tt_content:'.$row['uid'].' did not contain '.
+                        'sheet: '.$oldFieldPointer[0].', field: '.$oldFieldPointer[1].'. This can
 						also be because field has been updated already...';
                 }
             }
@@ -333,7 +333,7 @@ class ext_update
 
     /**
      * Check if there are records in the old category table and transfer
-     * these to sys_category when needed
+     * these to sys_category when needed.
      */
     protected function migrateNewsCategoriesToSysCategories()
     {
@@ -345,6 +345,7 @@ class ext_update
             $title = '';
             $message = 'Old category table does not exist anymore so no update needed';
             $this->messageArray[] = [$status, $title, $message];
+
             return;
         }
 
@@ -360,6 +361,7 @@ class ext_update
             $title = '';
             $message = 'No categories found in old table so no update needed';
             $this->messageArray[] = [$status, $title, $message];
+
             return;
         }
 
@@ -382,7 +384,7 @@ class ext_update
         $this->updateFlexformCategories('news_pi1', $oldNewCategoryUidMapping, 'settings.categories');
 
         /**
-         * Finished category migration
+         * Finished category migration.
          */
         $message = 'All categories are updated. Run <strong>DB compare</strong> in the install tool to remove the now obsolete `tx_news_domain_model_category` table and run the <strong>DB check</strong> to update the reference index.';
         $status = FlashMessage::OK;
@@ -391,23 +393,23 @@ class ext_update
     }
 
     /**
-     * Process not yet migrated tx_news category records to sys_category records
+     * Process not yet migrated tx_news category records to sys_category records.
      */
     protected function migrateNewsCategoryRecords()
     {
 
         // migrate default language category records
         $rows = $this->databaseConnection->exec_SELECTgetRows(
-            'uid, pid, tstamp, crdate, cruser_id, starttime, endtime, sorting, ' .
-            'sys_language_uid, l10n_parent, l10n_diffsource, ' .
-            'title, description, ' .
+            'uid, pid, tstamp, crdate, cruser_id, starttime, endtime, sorting, '.
+            'sys_language_uid, l10n_parent, l10n_diffsource, '.
+            'title, description, '.
             'fe_group, single_pid, shortcut, import_id, import_source',
             'tx_news_domain_model_category',
             'migrate_sys_category_uid = 0 AND deleted = 0 AND sys_language_uid = 0'
         );
 
         if ($this->databaseConnection->sql_error()) {
-            $message = ' SQL ERROR: ' . $this->databaseConnection->sql_error();
+            $message = ' SQL ERROR: '.$this->databaseConnection->sql_error();
             $status = FlashMessage::ERROR;
             $title = 'Failed selecting old default language category records';
             $this->messageArray[] = [$status, $title, $message];
@@ -434,30 +436,30 @@ class ext_update
                 $oldNewDefaultLanguageCategoryUidMapping[$oldUid] = $newUid;
                 $this->databaseConnection->exec_UPDATEquery(
                     'tx_news_domain_model_category',
-                    'uid=' . $oldUid,
+                    'uid='.$oldUid,
                     ['migrate_sys_category_uid' => $newUid]
                 );
                 $newCategoryRecords++;
             } else {
-                $message = ' SQL ERROR: ' . $this->databaseConnection->sql_error();
+                $message = ' SQL ERROR: '.$this->databaseConnection->sql_error();
                 $status = FlashMessage::ERROR;
-                $title = 'Failed copying [' . $oldUid . '] ' . htmlspecialchars($row['title']) . ' to sys_category';
+                $title = 'Failed copying ['.$oldUid.'] '.htmlspecialchars($row['title']).' to sys_category';
                 $this->messageArray[] = [$status, $title, $message];
             }
         }
 
         // migrate non-default language category records
         $rows = $this->databaseConnection->exec_SELECTgetRows(
-            'uid, pid, tstamp, crdate, cruser_id, starttime, endtime, sorting, ' .
-            'sys_language_uid, l10n_parent, l10n_diffsource, ' .
-            'title, description, ' .
+            'uid, pid, tstamp, crdate, cruser_id, starttime, endtime, sorting, '.
+            'sys_language_uid, l10n_parent, l10n_diffsource, '.
+            'title, description, '.
             'fe_group, single_pid, shortcut, import_id, import_source',
             'tx_news_domain_model_category',
             'migrate_sys_category_uid = 0 AND deleted = 0 AND sys_language_uid != 0'
         );
 
         if ($this->databaseConnection->sql_error()) {
-            $message = ' SQL ERROR: ' . $this->databaseConnection->sql_error();
+            $message = ' SQL ERROR: '.$this->databaseConnection->sql_error();
             $status = FlashMessage::ERROR;
             $title = 'Failed selecting old non-default language category records';
             $this->messageArray[] = [$status, $title, $message];
@@ -484,26 +486,26 @@ class ext_update
                 $oldNewDefaultLanguageCategoryUidMapping[$oldUid] = $newUid;
                 $this->databaseConnection->exec_UPDATEquery(
                     'tx_news_domain_model_category',
-                    'uid=' . $oldUid,
+                    'uid='.$oldUid,
                     ['migrate_sys_category_uid' => $newUid]
                 );
                 $newCategoryRecords++;
             } else {
-                $message = ' SQL ERROR: ' . $this->databaseConnection->sql_error();
+                $message = ' SQL ERROR: '.$this->databaseConnection->sql_error();
                 $status = FlashMessage::ERROR;
-                $title = 'Failed copying [' . $oldUid . '] ' . htmlspecialchars($row['title']) . ' to sys_category';
+                $title = 'Failed copying ['.$oldUid.'] '.htmlspecialchars($row['title']).' to sys_category';
                 $this->messageArray[] = [$status, $title, $message];
             }
         }
 
-        $message = 'Created ' . $newCategoryRecords . ' sys_category records';
+        $message = 'Created '.$newCategoryRecords.' sys_category records';
         $status = FlashMessage::INFO;
         $title = '';
         $this->messageArray[] = [$status, $title, $message];
     }
 
     /**
-     * Create a mapping array of old->new category uids
+     * Create a mapping array of old->new category uids.
      *
      * @return array
      */
@@ -524,7 +526,7 @@ class ext_update
     }
 
     /**
-     * Update parent column of migrated categories
+     * Update parent column of migrated categories.
      *
      * @param array $oldNewCategoryUidMapping
      */
@@ -537,20 +539,20 @@ class ext_update
             if (!empty($oldNewCategoryUidMapping[$row['parentcategory']])) {
                 $sysCategoryUid = $oldNewCategoryUidMapping[$row['uid']];
                 $newParentUId = $oldNewCategoryUidMapping[$row['parentcategory']];
-                $this->databaseConnection->exec_UPDATEquery('sys_category', 'uid=' . $sysCategoryUid,
+                $this->databaseConnection->exec_UPDATEquery('sys_category', 'uid='.$sysCategoryUid,
                     ['parent' => $newParentUId]);
                 $updatedRecords++;
             }
         }
 
-        $message = 'Set for ' . $updatedRecords . ' sys_category records the parent field';
+        $message = 'Set for '.$updatedRecords.' sys_category records the parent field';
         $status = FlashMessage::INFO;
         $title = '';
         $this->messageArray[] = [$status, $title, $message];
     }
 
     /**
-     * Create new category MM records
+     * Create new category MM records.
      *
      * @param array $oldNewCategoryUidMapping
      */
@@ -560,26 +562,25 @@ class ext_update
         $oldMmRecords = $this->databaseConnection->exec_SELECTgetRows('uid_local, uid_foreign, tablenames, sorting',
             'tx_news_domain_model_news_category_mm', '');
         foreach ($oldMmRecords as $oldMmRecord) {
-
             $oldCategoryUid = $oldMmRecord['uid_foreign'];
 
             if (!empty($oldNewCategoryUidMapping[$oldCategoryUid])) {
                 $newMmRecord = [
-                    'uid_local' => $oldNewCategoryUidMapping[$oldCategoryUid],
-                    'uid_foreign' => $oldMmRecord['uid_local'],
-                    'tablenames' => $oldMmRecord['tablenames'] ?: 'tx_news_domain_model_news',
+                    'uid_local'       => $oldNewCategoryUidMapping[$oldCategoryUid],
+                    'uid_foreign'     => $oldMmRecord['uid_local'],
+                    'tablenames'      => $oldMmRecord['tablenames'] ?: 'tx_news_domain_model_news',
                     'sorting_foreign' => $oldMmRecord['sorting'],
-                    'fieldname' => 'categories',
+                    'fieldname'       => 'categories',
                 ];
 
                 // check if relation already exists
                 $foundRelations = $this->databaseConnection->exec_SELECTcountRows(
                     'uid_local',
                     'sys_category_record_mm',
-                    'uid_local=' . $newMmRecord['uid_local'] .
-                    ' AND uid_foreign=' . $newMmRecord['uid_foreign'] .
-                    ' AND tablenames="' . $newMmRecord['tablenames'] . '"' .
-                    ' AND fieldname="' . $newMmRecord['fieldname'] . '"'
+                    'uid_local='.$newMmRecord['uid_local'].
+                    ' AND uid_foreign='.$newMmRecord['uid_foreign'].
+                    ' AND tablenames="'.$newMmRecord['tablenames'].'"'.
+                    ' AND fieldname="'.$newMmRecord['fieldname'].'"'
                 );
 
                 if ($foundRelations === 0) {
@@ -591,21 +592,20 @@ class ext_update
             }
         }
 
-        $message = 'Created ' . $newMmCount . ' new MM relations';
+        $message = 'Created '.$newMmCount.' new MM relations';
         $status = FlashMessage::INFO;
         $title = '';
         $this->messageArray[] = [$status, $title, $message];
     }
 
     /**
-     * Update be_groups with tx_news_categorymounts set
+     * Update be_groups with tx_news_categorymounts set.
      *
      * @param string $table
-     * @param array $oldNewCategoryUidMapping
+     * @param array  $oldNewCategoryUidMapping
      */
     protected function updateCategoryPermissionFields($table, array $oldNewCategoryUidMapping)
     {
-
         $updatedRecords = 0;
         $rows = $this->databaseConnection->exec_SELECTgetRows(
             '*',
@@ -614,7 +614,7 @@ class ext_update
         );
 
         foreach ($rows as $row) {
-            $oldUids = GeneralUtility::trimExplode(',', (string)$row['tx_news_categorymounts']);
+            $oldUids = GeneralUtility::trimExplode(',', (string) $row['tx_news_categorymounts']);
             $newUids = $row['category_perms'] ? GeneralUtility::trimExplode(',', $row['category_perms']) : [];
             foreach ($oldUids as $oldUid) {
                 if (!empty($oldNewCategoryUidMapping[$oldUid])) {
@@ -624,26 +624,25 @@ class ext_update
 
             $newCategoryPerms = implode(',', array_unique($newUids));
             if ($newCategoryPerms !== $row['category_perms']) {
-                $this->databaseConnection->exec_UPDATEquery($table, 'uid=' . $row['uid'],
+                $this->databaseConnection->exec_UPDATEquery($table, 'uid='.$row['uid'],
                     ['category_perms' => $newCategoryPerms]);
                 $updatedRecords++;
             }
         }
 
-        $message = 'Updated ' . $updatedRecords . ' "' . $table . '" records';
+        $message = 'Updated '.$updatedRecords.' "'.$table.'" records';
         $status = FlashMessage::INFO;
         $title = '';
         $this->messageArray[] = [$status, $title, $message];
     }
 
     /**
-     * Migrate news_category.image (CSV) to sys_category.images (sys_file_reference)
+     * Migrate news_category.image (CSV) to sys_category.images (sys_file_reference).
      *
      * @return void
      */
     protected function migrateCategoryImages()
     {
-
         $oldCategories = $this->databaseConnection->exec_SELECTgetRows(
             'uid, pid, image, migrate_sys_category_uid',
             'tx_news_domain_model_category',
@@ -661,18 +660,18 @@ class ext_update
 
             $i = 0;
             foreach ($files as $file) {
-                if (file_exists(PATH_site . 'uploads/tx_news/' . $file)) {
-                    $fileObject = $this->getCategoryImageFolder()->addFile(PATH_site . 'uploads/tx_news/' . $file);
+                if (file_exists(PATH_site.'uploads/tx_news/'.$file)) {
+                    $fileObject = $this->getCategoryImageFolder()->addFile(PATH_site.'uploads/tx_news/'.$file);
                     $dataArray = [
-                        'uid_local' => $fileObject->getUid(),
-                        'tstamp' => $_SERVER['REQUEST_TIME'],
-                        'crdate' => $_SERVER['REQUEST_TIME'],
-                        'tablenames' => 'sys_category',
-                        'uid_foreign' => $oldCategory['migrate_sys_category_uid'],
-                        'pid' => $oldCategory['pid'],
-                        'fieldname' => 'images',
-                        'table_local' => 'sys_file',
-                        'sorting_foreign' => $i
+                        'uid_local'       => $fileObject->getUid(),
+                        'tstamp'          => $_SERVER['REQUEST_TIME'],
+                        'crdate'          => $_SERVER['REQUEST_TIME'],
+                        'tablenames'      => 'sys_category',
+                        'uid_foreign'     => $oldCategory['migrate_sys_category_uid'],
+                        'pid'             => $oldCategory['pid'],
+                        'fieldname'       => 'images',
+                        'table_local'     => 'sys_file',
+                        'sorting_foreign' => $i,
                     ];
                     $this->databaseConnection->exec_INSERTquery('sys_file_reference', $dataArray);
                     $processedImages++;
@@ -681,45 +680,45 @@ class ext_update
             }
         }
 
-        $message = 'Migrated ' . $processedImages . ' category images';
+        $message = 'Migrated '.$processedImages.' category images';
         $status = FlashMessage::INFO;
         $title = '';
         $this->messageArray[] = [$status, $title, $message];
     }
 
     /**
-     * Update categories in flexforms
+     * Update categories in flexforms.
      *
      * @param string $pluginName
-     * @param array $oldNewCategoryUidMapping
-     * @param string $flexformField name of the flexform's field to look for
+     * @param array  $oldNewCategoryUidMapping
+     * @param string $flexformField            name of the flexform's field to look for
+     *
      * @return void
      */
     protected function updateFlexformCategories($pluginName, $oldNewCategoryUidMapping, $flexformField)
     {
         $count = 0;
-        $title = 'Update flexforms categories (' . $pluginName . ':' . $flexformField . ')';
+        $title = 'Update flexforms categories ('.$pluginName.':'.$flexformField.')';
         $res = $this->databaseConnection->exec_SELECTquery('uid, pi_flexform',
             'tt_content',
-            'CType=\'list\' AND list_type=\'' . $pluginName . '\' AND deleted=0');
+            'CType=\'list\' AND list_type=\''.$pluginName.'\' AND deleted=0');
 
         /** @var \TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools $flexformTools */
         $flexformTools = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\FlexForm\\FlexFormTools');
 
         while ($row = $this->databaseConnection->sql_fetch_assoc($res)) {
-
             $status = null;
             $xmlArray = GeneralUtility::xml2array($row['pi_flexform']);
 
             if (!is_array($xmlArray) || !isset($xmlArray['data'])) {
                 $status = FlashMessage::ERROR;
-                $message = 'Flexform data of plugin "' . $pluginName . '" not found.';
+                $message = 'Flexform data of plugin "'.$pluginName.'" not found.';
             } elseif (!isset($xmlArray['data']['sDEF']['lDEF'])) {
                 $status = FlashMessage::WARNING;
-                $message = 'Flexform data of record tt_content:' . $row['uid'] . ' did not contain sheet: sDEF';
-            } elseif (isset($xmlArray[$flexformField . '_updated'])) {
+                $message = 'Flexform data of record tt_content:'.$row['uid'].' did not contain sheet: sDEF';
+            } elseif (isset($xmlArray[$flexformField.'_updated'])) {
                 $status = FlashMessage::NOTICE;
-                $message = 'Flexform data of record tt_content:' . $row['uid'] . ' is already updated for ' . $flexformField . '. No update needed...';
+                $message = 'Flexform data of record tt_content:'.$row['uid'].' is already updated for '.$flexformField.'. No update needed...';
             } else {
                 // Some flexforms may have displayCond
                 if (isset($xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'])) {
@@ -736,16 +735,16 @@ class ext_update
                                 $updated = true;
                             } else {
                                 $status = FlashMessage::WARNING;
-                                $message = 'The category ' . $uid . ' of record tt_content:' . $row['uid'] . ' was not found in sys_category records. Maybe the category was deleted before the migration? Please check manually...';
+                                $message = 'The category '.$uid.' of record tt_content:'.$row['uid'].' was not found in sys_category records. Maybe the category was deleted before the migration? Please check manually...';
                             }
                         }
 
                         if ($updated) {
                             $count++;
-                            $xmlArray[$flexformField . '_updated'] = 1;
+                            $xmlArray[$flexformField.'_updated'] = 1;
                             $xmlArray['data']['sDEF']['lDEF'][$flexformField]['vDEF'] = implode(',', $newCategories);
-                            $this->databaseConnection->exec_UPDATEquery('tt_content', 'uid=' . $row['uid'], [
-                                'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray)
+                            $this->databaseConnection->exec_UPDATEquery('tt_content', 'uid='.$row['uid'], [
+                                'pi_flexform' => $flexformTools->flexArray2Xml($xmlArray),
                             ]);
                         }
                     }
@@ -758,20 +757,20 @@ class ext_update
         }
 
         $status = FlashMessage::INFO;
-        $message = 'Updated ' . $count . ' tt_content flexforms for  "' . $pluginName . ':' . $flexformField . '"';
+        $message = 'Updated '.$count.' tt_content flexforms for  "'.$pluginName.':'.$flexformField.'"';
         $this->messageArray[] = [$status, $title, $message];
     }
 
     /**
-     * Get Category Image folder
+     * Get Category Image folder.
+     *
+     * @throws \Exception
      *
      * @return \TYPO3\CMS\Core\Resource\Folder|void
-     * @throws \Exception
      */
     protected function getCategoryImageFolder()
     {
         if ($this->categoryImageFolder === null) {
-
             $storage = $this->resourceFactory->getDefaultStorage();
             if (!$storage) {
                 throw new \Exception('No default storage set!');
@@ -782,11 +781,12 @@ class ext_update
                 $this->categoryImageFolder = $storage->createFolder(self::FOLDER_CATEGORY_IMAGES);
             }
         }
+
         return $this->categoryImageFolder;
     }
 
     /**
-     * Generates output by using flash messages
+     * Generates output by using flash messages.
      *
      * @return string
      */
@@ -802,7 +802,7 @@ class ext_update
                 $messageItem[0]);
             $output .= $flashMessage->render();
         }
+
         return $output;
     }
-
 }

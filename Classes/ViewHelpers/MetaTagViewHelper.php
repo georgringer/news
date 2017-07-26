@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * ViewHelper to render meta tags
+ * ViewHelper to render meta tags.
  *
  * # Example: Basic Example: News title as og:title meta tag
  * <code>
@@ -38,14 +38,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
-
     /**
      * @var string
      */
     protected $tagName = 'meta';
 
     /**
-     * Arguments initialization
+     * Arguments initialization.
      *
      * @return void
      */
@@ -57,10 +56,11 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
     }
 
     /**
-     * Renders a meta tag
+     * Renders a meta tag.
      *
      * @param bool $useCurrentDomain If set, current domain is used
      * @param bool $forceAbsoluteUrl If set, absolute url is forced
+     *
      * @return void
      */
     public function render($useCurrentDomain = false, $forceAbsoluteUrl = false)
@@ -76,8 +76,8 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
             if (!GeneralUtility::isFirstPartOfStr($path, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
                 $this->tag->addAttribute('content',
                     rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
-                    . '/'
-                    . ltrim($this->arguments['content'], '/')
+                    .'/'
+                    .ltrim($this->arguments['content'], '/')
                 );
             }
         }

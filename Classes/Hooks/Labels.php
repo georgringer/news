@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -22,17 +22,16 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Userfunc to get alternative label
- *
+ * Userfunc to get alternative label.
  */
 class Labels
 {
-
     /**
      * Generate additional label for category records
-     * including the title of the parent category
+     * including the title of the parent category.
      *
      * @param array $params
+     *
      * @return void
      */
     public function getUserLabelCategory(array &$params)
@@ -55,9 +54,10 @@ class Labels
     }
 
     /**
-     * Render different label for media elements
+     * Render different label for media elements.
      *
      * @param array $params configuration
+     *
      * @return void
      */
     public function getUserLabelMedia(array &$params)
@@ -65,10 +65,10 @@ class Labels
         $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
         $typeInfo = $additionalHtmlContent = '';
 
-        $type = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.type.I.' . $params['row']['type']);
+        $type = $GLOBALS['LANG']->sL($ll.'tx_news_domain_model_media.type.I.'.$params['row']['type']);
 
         // Add additional info based on type
-        switch ((int)$params['row']['type']) {
+        switch ((int) $params['row']['type']) {
             // Image
             case Media::MEDIA_TYPE_IMAGE:
                 $typeInfo .= $this->getTitleFromFields('title,alt,caption,image', $params['row']);
@@ -76,11 +76,11 @@ class Labels
                 if (!empty($params['row']['image'])) {
                     $params['row']['image'] = $this->splitFileName($params['row']['image']);
                     try {
-                        $additionalHtmlContent = '<br />' . BackendUtilityCore::thumbCode($params['row'],
+                        $additionalHtmlContent = '<br />'.BackendUtilityCore::thumbCode($params['row'],
                                 'tx_news_domain_model_media', 'image', $GLOBALS['BACK_PATH'], '', null, 0, '', '',
                                 false);
                     } catch (FolderDoesNotExistException $exception) {
-                        $additionalHtmlContent = '<br />' . htmlspecialchars($params['row']['image']);
+                        $additionalHtmlContent = '<br />'.htmlspecialchars($params['row']['image']);
                     }
                 }
                 break;
@@ -97,8 +97,8 @@ class Labels
                 $typeInfo .= $params['row']['caption'];
         }
 
-        $title = (!empty($typeInfo)) ? $type . ': ' . $typeInfo : $type;
-        $title = htmlspecialchars($title) . $additionalHtmlContent;
+        $title = (!empty($typeInfo)) ? $type.': '.$typeInfo : $type;
+        $title = htmlspecialchars($title).$additionalHtmlContent;
 
         // Hook to modify the label, especially useful when using custom media relations
         if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['mediaLabel'])) {
@@ -110,9 +110,9 @@ class Labels
 
         // Preview
         if ($params['row']['showinpreview']) {
-            $label = htmlspecialchars($GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.show'));
-            $icon = '../' . ExtensionManagementUtility::siteRelPath('news') . 'Resources/Public/Icons/preview.gif';
-            $title .= ' <img title="' . $label . '" src="' . $icon . '" />';
+            $label = htmlspecialchars($GLOBALS['LANG']->sL($ll.'tx_news_domain_model_media.show'));
+            $icon = '../'.ExtensionManagementUtility::siteRelPath('news').'Resources/Public/Icons/preview.gif';
+            $title .= ' <img title="'.$label.'" src="'.$icon.'" />';
         }
 
         // Show the [No title] if empty
@@ -124,10 +124,11 @@ class Labels
     }
 
     /**
-     * Get news categories based on the news id
+     * Get news categories based on the news id.
      *
      * @param int $newsUid
      * @param int $catMm
+     *
      * @return string list of categories
      */
     protected function getCategories($newsUid, $catMm)
@@ -142,7 +143,7 @@ class Labels
             'tx_news_domain_model_news',
             'sys_category_mm',
             'sys_category',
-            ' AND tx_news_domain_model_news.uid=' . (int)$newsUid
+            ' AND tx_news_domain_model_news.uid='.(int) $newsUid
         );
         while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
             $catTitles[] = $row['title'];
@@ -153,10 +154,11 @@ class Labels
     }
 
     /**
-     * Get the first filled field of a record
+     * Get the first filled field of a record.
      *
      * @param string $fieldList comma separated list of fields
-     * @param array $record record
+     * @param array  $record    record
+     *
      * @return string 1st used field
      */
     protected function getTitleFromFields($fieldList, $record = [])
@@ -180,9 +182,10 @@ class Labels
     }
 
     /**
-     * Split the filename
+     * Split the filename.
      *
      * @param string $title
+     *
      * @return string
      */
     protected function splitFileName($title)
@@ -194,5 +197,4 @@ class Labels
 
         return $title;
     }
-
 }

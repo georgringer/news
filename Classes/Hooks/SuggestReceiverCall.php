@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -20,23 +20,23 @@ use TYPO3\CMS\Core\DataHandling\DataHandler as DataHandlerCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Ajax response for the custom suggest receiver
- *
+ * Ajax response for the custom suggest receiver.
  */
 class SuggestReceiverCall
 {
-
     const TAG = 'tx_news_domain_model_tag';
     const NEWS = 'tx_news_domain_model_news';
     const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest_';
 
     /**
-     * Create a tag
+     * Create a tag.
      *
-     * @param array $params
+     * @param array                                   $params
      * @param \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function createTag(array $params, \TYPO3\CMS\Core\Http\AjaxRequestHandler $ajaxObj)
     {
@@ -49,7 +49,7 @@ class SuggestReceiverCall
             }
 
             $newsUid = $request['newsid'];
-            if ((int)$newsUid === 0 && (strlen($newsUid) == 16 && !GeneralUtility::isFirstPartOfStr($newsUid, 'NEW'))) {
+            if ((int) $newsUid === 0 && (strlen($newsUid) == 16 && !GeneralUtility::isFirstPartOfStr($newsUid, 'NEW'))) {
                 throw new \Exception('error_no-newsid');
             }
 
@@ -64,22 +64,24 @@ class SuggestReceiverCall
                 self::TAG,
                 self::NEWS,
                 'tags',
-                'data[tx_news_domain_model_news][' . $newsUid . '][tags]',
-                $newsUid
+                'data[tx_news_domain_model_news]['.$newsUid.'][tags]',
+                $newsUid,
             ];
             $ajaxObj->setJavascriptCallbackWrap(implode('-', $response));
         } catch (\Exception $e) {
-            $errorMsg = $GLOBALS['LANG']->sL(self::LLPATH . $e->getMessage());
+            $errorMsg = $GLOBALS['LANG']->sL(self::LLPATH.$e->getMessage());
             $ajaxObj->setError($errorMsg);
         }
     }
 
     /**
-     * Get the uid of the tag, either bei inserting as new or get existing
+     * Get the uid of the tag, either bei inserting as new or get existing.
      *
      * @param array $request ajax request
-     * @return int
+     *
      * @throws \Exception
+     *
+     * @return int
      */
     protected function getTagUid(array $request)
     {
@@ -98,8 +100,8 @@ class SuggestReceiverCall
         $record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
             '*',
             self::TAG,
-            'deleted=0 AND pid=' . $pid .
-            ' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], self::TAG)
+            'deleted=0 AND pid='.$pid.
+            ' AND title='.$GLOBALS['TYPO3_DB']->fullQuoteStr($request['item'], self::TAG)
         );
         if (isset($record['uid'])) {
             $tagUid = $record['uid'];
@@ -107,10 +109,10 @@ class SuggestReceiverCall
             $tcemainData = [
                 self::TAG => [
                     'NEW' => [
-                        'pid' => $pid,
-                        'title' => $request['item']
-                    ]
-                ]
+                        'pid'   => $pid,
+                        'title' => $request['item'],
+                    ],
+                ],
             ];
 
             /** @var DataHandlerCore $dataHandler */
@@ -129,23 +131,23 @@ class SuggestReceiverCall
     }
 
     /**
-     * Get pid for tags from TsConfig
+     * Get pid for tags from TsConfig.
      *
      * @param int $newsUid uid of current news record
+     *
      * @return int
      */
     protected function getTagPidFromTsConfig($newsUid)
     {
         $pid = 0;
 
-        $newsRecord = BackendUtilityCore::getRecord('tx_news_domain_model_news', (int)$newsUid);
+        $newsRecord = BackendUtilityCore::getRecord('tx_news_domain_model_news', (int) $newsUid);
 
         $pagesTsConfig = BackendUtilityCore::getPagesTSconfig($newsRecord['pid']);
         if (isset($pagesTsConfig['tx_news.']) && isset($pagesTsConfig['tx_news.']['tagPid'])) {
-            $pid = (int)$pagesTsConfig['tx_news.']['tagPid'];
+            $pid = (int) $pagesTsConfig['tx_news.']['tagPid'];
         }
 
         return $pid;
     }
-
 }

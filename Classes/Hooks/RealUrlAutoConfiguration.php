@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,17 +17,16 @@ namespace GeorgRinger\News\Hooks;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /**
- * AutoConfiguration-Hook for RealURL
- *
+ * AutoConfiguration-Hook for RealURL.
  */
 class RealUrlAutoConfiguration
 {
-
     /**
-     * Generates additional RealURL configuration and merges it with provided configuration
+     * Generates additional RealURL configuration and merges it with provided configuration.
      *
-     * @param       array $params Default configuration
-     * @return      array Updated configuration
+     * @param array $params Default configuration
+     *
+     * @return array Updated configuration
      */
     public function addNewsConfig($params)
     {
@@ -40,21 +39,21 @@ class RealUrlAutoConfiguration
                     '_DEFAULT' => [
                         $postVar => [
                             [
-                                'GETvar' => 'tx_news_pi1[news]',
+                                'GETvar'      => 'tx_news_pi1[news]',
                                 'lookUpTable' => [
-                                    'table' => 'tx_news_domain_model_news',
-                                    'id_field' => 'uid',
-                                    'alias_field' => 'title',
-                                    'useUniqueCache' => 1,
+                                    'table'               => 'tx_news_domain_model_news',
+                                    'id_field'            => 'uid',
+                                    'alias_field'         => 'title',
+                                    'useUniqueCache'      => 1,
                                     'useUniqueCache_conf' => [
-                                        'strtolower' => 1,
+                                        'strtolower'     => 1,
                                         'spaceCharacter' => '-',
                                     ],
                                 ],
                             ],
                         ],
-                    ]
-                ]
+                    ],
+                ],
             ]
         );
     }

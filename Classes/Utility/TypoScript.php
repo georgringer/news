@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,14 +17,14 @@ namespace GeorgRinger\News\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * TypoScript Utility class
+ * TypoScript Utility class.
  */
 class TypoScript
 {
-
     /**
      * @param array $base
      * @param array $overload
+     *
      * @return array
      */
     public function override(array $base, array $overload)
@@ -53,14 +53,16 @@ class TypoScript
                 }
             }
         }
+
         return $base;
     }
 
     /**
-     * Get value from array by path
+     * Get value from array by path.
      *
      * @param array $data
      * @param array $path
+     *
      * @return array|null
      */
     protected function getValue(array $data, array $path)
@@ -80,15 +82,15 @@ class TypoScript
         if ($found) {
             return $data;
         }
-        return null;
     }
 
     /**
-     * Set value in array by path
+     * Set value in array by path.
      *
      * @param array $array
      * @param $path
      * @param $value
+     *
      * @return array
      */
     protected function setValue(array $array, $path, $value)
@@ -96,11 +98,12 @@ class TypoScript
         $this->setValueByReference($array, $path, $value);
 
         $final = array_merge_recursive([], $array);
+
         return $final;
     }
 
     /**
-     * Set value by reference
+     * Set value by reference.
      *
      * @param array $array
      * @param array $path

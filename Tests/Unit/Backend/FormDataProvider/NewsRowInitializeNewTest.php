@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 class NewsRowInitializeNewTest extends UnitTestCase
 {
-
     /**
      * @test
      */
@@ -32,16 +31,16 @@ class NewsRowInitializeNewTest extends UnitTestCase
         $GLOBALS['EXEC_TIME'] = time();
 
         $result = [
-            'command' => 'new',
-            'tableName' => 'tx_news_domain_model_news'
+            'command'   => 'new',
+            'tableName' => 'tx_news_domain_model_news',
         ];
 
         $expected = [
-            'command' => 'new',
-            'tableName' => 'tx_news_domain_model_news',
+            'command'     => 'new',
+            'tableName'   => 'tx_news_domain_model_news',
             'databaseRow' => [
-                'datetime' => $GLOBALS['EXEC_TIME']
-            ]
+                'datetime' => $GLOBALS['EXEC_TIME'],
+            ],
         ];
 
         $this->assertEquals($expected, $provider->addData($result));
@@ -58,11 +57,11 @@ class NewsRowInitializeNewTest extends UnitTestCase
         $mockedProvider->_set('emConfiguration', $settings);
 
         $result = [
-            'command' => 'new',
-            'tableName' => 'tx_news_domain_model_news'
+            'command'   => 'new',
+            'tableName' => 'tx_news_domain_model_news',
         ];
         $expected = [
-            'command' => 'new',
+            'command'   => 'new',
             'tableName' => 'tx_news_domain_model_news',
         ];
 
@@ -78,15 +77,15 @@ class NewsRowInitializeNewTest extends UnitTestCase
         $GLOBALS['EXEC_TIME'] = time();
 
         $result = [
-            'command' => 'new',
-            'tableName' => 'tx_news_domain_model_news',
+            'command'      => 'new',
+            'tableName'    => 'tx_news_domain_model_news',
             'pageTsConfig' => [
                 'tx_news.' => [
                     'predefine.' => [
-                        'archive' => '+10 days'
-                    ]
-                ]
-            ]
+                        'archive' => '+10 days',
+                    ],
+                ],
+            ],
         ];
 
         $expected = $result;
@@ -95,5 +94,4 @@ class NewsRowInitializeNewTest extends UnitTestCase
 
         $this->assertEquals($expected, $provider->addData($result));
     }
-
 }

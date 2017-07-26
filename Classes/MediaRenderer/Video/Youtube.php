@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\MediaRenderer\Video;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,19 +17,18 @@ namespace GeorgRinger\News\MediaRenderer\Video;
 use GeorgRinger\News\MediaRenderer\MediaInterface;
 
 /**
- * Implementation of youtube support
- *
+ * Implementation of youtube support.
  */
 class Youtube implements MediaInterface
 {
-
     /**
      * @var \GeorgRinger\News\Service\SettingsService
      */
     protected $pluginSettingsService;
 
     /**
-     * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     * @var \GeorgRinger\News\Service\SettingsService
+     *
      * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
@@ -38,11 +37,12 @@ class Youtube implements MediaInterface
     }
 
     /**
-     * Render videos from youtube
+     * Render videos from youtube.
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param int $width
-     * @param int $height
+     * @param int                                  $width
+     * @param int                                  $height
+     *
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height)
@@ -63,16 +63,17 @@ class Youtube implements MediaInterface
                 $frameBorderAttribute = ' frameborder="0"';
             }
 
-            $content = '<iframe allowfullscreen="allowfullscreen" width="' . (int)$width . '" height="' . (int)$height . '" src="' . htmlspecialchars($url) . '"' . $frameBorderAttribute . '></iframe>';
+            $content = '<iframe allowfullscreen="allowfullscreen" width="'.(int) $width.'" height="'.(int) $height.'" src="'.htmlspecialchars($url).'"'.$frameBorderAttribute.'></iframe>';
         }
 
         return $content;
     }
 
     /**
-     * Check if given element includes an url to a youtube video
+     * Check if given element includes an url to a youtube video.
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
+     *
      * @return bool
      */
     public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
@@ -84,11 +85,13 @@ class Youtube implements MediaInterface
         if (!is_null($url)) {
             $result = true;
         }
+
         return $result;
     }
 
     /**
      * @param \GeorgRinger\News\Domain\Model\Media $element
+     *
      * @return null|string
      */
     public function getYoutubeUrl(\GeorgRinger\News\Domain\Model\Media $element)
@@ -100,7 +103,7 @@ class Youtube implements MediaInterface
             $videoId = $matches[2];
         }
         if ($videoId) {
-            $youtubeUrl = '//www.youtube.com/embed/' . $videoId . '?fs=1&wmode=opaque';
+            $youtubeUrl = '//www.youtube.com/embed/'.$videoId.'?fs=1&wmode=opaque';
             $settings = $this->pluginSettingsService->getSettings();
             if (isset($settings['mediaRenderer']) && isset($settings['mediaRenderer']['youtube'])
                 && isset($settings['mediaRenderer']['youtube']['additionalParams'])
@@ -111,6 +114,4 @@ class Youtube implements MediaInterface
 
         return $youtubeUrl;
     }
-
 }
-

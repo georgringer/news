@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Service;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,55 +17,58 @@ namespace GeorgRinger\News\Tests\Unit\Service;
 use GeorgRinger\News\Service\FileService;
 
 /**
- * Test class for FileService
- *
+ * Test class for FileService.
  */
-class FileServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class FileServiceTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     * @expectedException \UnexpectedValueException
+     */
+    public function emptyUrlThrowsException()
+    {
+        FileService::getCorrectUrl('');
+    }
 
-	/**
-	 * @test
-	 * @expectedException \UnexpectedValueException
-	 */
-	public function emptyUrlThrowsException() {
-		FileService::getCorrectUrl('');
-	}
+    /**
+     * @test
+     * @expectedException \UnexpectedValueException
+     */
+    public function notAllowedPathThrowsException()
+    {
+        FileService::getCorrectUrl('../../fo.mp3');
+    }
 
-	/**
-	 * @test
-	 * @expectedException \UnexpectedValueException
-	 */
-	public function notAllowedPathThrowsException() {
-		FileService::getCorrectUrl('../../fo.mp3');
-	}
+    /**
+     * @test
+     * @dataProvider validUrlIsReturnedDataProvider
+     */
+    public function validUrlIsReturned($expected, $actual)
+    {
+        $result = FileService::getCorrectUrl($actual);
 
-	/**
-	 * @test
-	 * @dataProvider validUrlIsReturnedDataProvider
-	 */
-	public function validUrlIsReturned($expected, $actual) {
-		$result = FileService::getCorrectUrl($actual);
+        $this->assertEquals($expected, $result, 'exp:'.$expected.', <br />'.$result);
+    }
 
-		$this->assertEquals($expected, $result, 'exp:' . $expected .  ', <br />' . $result);
-	}
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function validUrlIsReturnedDataProvider()
+    {
+        $siteURL = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
 
-	/**
-	 * Data provider
-	 *
-	 * @return array
-	 */
-	public function validUrlIsReturnedDataProvider() {
-		$siteURL = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
-		return [
-			'validUrl' => [
-				'http://www.domain.com/file.flv', 'http://www.domain.com/file.flv'
-			],
-			'simpleRelativeFileInFileadmin' => [
-				$siteURL . 'fileadmin/fo.flv', 'fileadmin/fo.flv'
-			],
-			'simpleRelativeFileInRoot' => [
-				$siteURL . 'bar.flv', 'bar.flv'
-			]
-		];
-	}
+        return [
+            'validUrl' => [
+                'http://www.domain.com/file.flv', 'http://www.domain.com/file.flv',
+            ],
+            'simpleRelativeFileInFileadmin' => [
+                $siteURL.'fileadmin/fo.flv', 'fileadmin/fo.flv',
+            ],
+            'simpleRelativeFileInRoot' => [
+                $siteURL.'bar.flv', 'bar.flv',
+            ],
+        ];
+    }
 }
-

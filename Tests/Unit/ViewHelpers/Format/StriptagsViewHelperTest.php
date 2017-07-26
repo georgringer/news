@@ -16,34 +16,37 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
  */
 
 /**
- * Tests for StriptagsViewHelper
- *
+ * Tests for StriptagsViewHelper.
  */
-class StriptagsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class StriptagsViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * Test of strip tags viewhelper.
+     *
+     * @test
+     *
+     * @return void
+     */
+    public function stripTagsFromContent()
+    {
+        $viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', ['renderChildren']);
+        $viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p>'));
+        $actualResult = $viewHelper->render();
+        $this->assertEquals('TestFo', $actualResult);
+    }
 
-	/**
-	 * Test of strip tags viewhelper
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function stripTagsFromContent() {
-		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', ['renderChildren']);
-		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p>'));
-		$actualResult = $viewHelper->render();
-		$this->assertEquals('TestFo', $actualResult);
-	}
-
-	/**
-	 * Test if given format works
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function stripTagsFromContentWithAllowedTags() {
-		$viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', ['renderChildren']);
-		$viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p><strong>Bar</strong>'));
-		$actualResult = $viewHelper->render('<strong>');
-		$this->assertEquals('TestFo<strong>Bar</strong>', $actualResult);
-	}
+    /**
+     * Test if given format works.
+     *
+     * @test
+     *
+     * @return void
+     */
+    public function stripTagsFromContentWithAllowedTags()
+    {
+        $viewHelper = $this->getMock('GeorgRinger\\News\\ViewHelpers\\Format\\StriptagsViewHelper', ['renderChildren']);
+        $viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('Test<p>Fo</p><strong>Bar</strong>'));
+        $actualResult = $viewHelper->render('<strong>');
+        $this->assertEquals('TestFo<strong>Bar</strong>', $actualResult);
+    }
 }

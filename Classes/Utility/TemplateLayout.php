@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,15 +19,15 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * TemplateLayout utility class
+ * TemplateLayout utility class.
  */
 class TemplateLayout implements SingletonInterface
 {
-
     /**
-     * Get available template layouts for a certain page
+     * Get available template layouts for a certain page.
      *
      * @param int $pageUid
+     *
      * @return array
      */
     public function getAvailableTemplateLayouts($pageUid)
@@ -55,9 +55,10 @@ class TemplateLayout implements SingletonInterface
     }
 
     /**
-     * Get template layouts defined in TsConfig
+     * Get template layouts defined in TsConfig.
      *
      * @param $pageUid
+     *
      * @return array
      */
     protected function getTemplateLayoutsFromTsConfig($pageUid)
@@ -67,6 +68,7 @@ class TemplateLayout implements SingletonInterface
         if (isset($pagesTsConfig['tx_news.']['templateLayouts.']) && is_array($pagesTsConfig['tx_news.']['templateLayouts.'])) {
             $templateLayouts = $pagesTsConfig['tx_news.']['templateLayouts.'];
         }
+
         return $templateLayouts;
     }
 }
