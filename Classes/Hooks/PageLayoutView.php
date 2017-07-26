@@ -118,6 +118,9 @@ class PageLayoutView
                         $this->getListPidSetting();
                         $this->getTagRestrictionSetting();
                         break;
+                    case 'news_selectedlist':
+                        $this->getSelectedListSetting();
+                        break;
                     case 'news_detail':
                         $this->getSingleNewsSettings();
                         $this->getDetailPidSetting();
@@ -594,6 +597,28 @@ class PageLayoutView
             $this->tableData[] = [
                 $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.startingpoint'),
                 implode(', ', $pagesOut) . $recursiveLevelText
+            ];
+        }
+    }
+
+    /**
+     * Get list of selected news items
+     */
+    protected function getSelectedListSetting()
+    {
+        $value = $this->getFieldFromFlexform('settings.selectedList');
+
+        if (!empty($value)) {
+            $idList = GeneralUtility::intExplode(',', $value, true);
+            $out = [];
+
+            foreach ($idList as $id) {
+                $out[] = $this->getRecordData($id, 'tx_news_domain_model_news');
+            }
+
+            $this->tableData[] = [
+                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.selectedList'),
+                implode('<br>', $out)
             ];
         }
     }

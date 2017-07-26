@@ -31,10 +31,14 @@
 										<numIndex index="1">News->list</numIndex>
 									</numIndex>
 									<numIndex index="3">
+										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_selectedlist</numIndex>
+										<numIndex index="1">News->selectedList</numIndex>
+									</numIndex>
+									<numIndex index="8">
 										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_detail</numIndex>
 										<numIndex index="1">News->detail</numIndex>
 									</numIndex>
-									<numIndex index="6">
+									<numIndex index="10">
 										<numIndex index="0">LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_datemenu</numIndex>
 										<numIndex index="1">News->dateMenu</numIndex>
 									</numIndex>
@@ -413,6 +417,30 @@
 							</config>
 						</TCEforms>
 					</settings.recursive>
+
+					<!-- selectedList -->
+					<settings.selectedList>
+						<TCEforms>
+							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.selectedList</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>tx_news_domain_model_news</allowed>
+								<size>3</size>
+								<maxitems>50</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+										<default>
+											<searchWholePhrase>1</searchWholePhrase>
+										</default>
+									</suggest>
+								</wizards>
+							</config>
+						</TCEforms>
+					</settings.selectedList>
 
 				</el>
 			</ROOT>

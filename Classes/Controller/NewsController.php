@@ -20,6 +20,7 @@ use TYPO3\CMS\Extbase\Service\TypoScriptService;
 class NewsController extends NewsBaseController
 {
     const SIGNAL_NEWS_LIST_ACTION = 'listAction';
+    const SIGNAL_NEWS_LIST_SELECTED_ACTION = 'selectedListAction';
     const SIGNAL_NEWS_DETAIL_ACTION = 'detailAction';
     const SIGNAL_NEWS_DATEMENU_ACTION = 'dateMenuAction';
     const SIGNAL_NEWS_SEARCHFORM_ACTION = 'searchFormAction';
@@ -46,7 +47,7 @@ class NewsController extends NewsBaseController
     protected $configurationManager;
 
     /** @var array */
-    protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
+    protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed', 'selectedList'];
 
     /**
      * Inject a news repository to enable DI
@@ -63,7 +64,7 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCatgegoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -225,6 +226,28 @@ class NewsController extends NewsBaseController
         $this->view->assignMultiple($assignedValues);
 
         Cache::addPageCacheTagsByDemandObject($demand);
+    }
+
+    /**
+     * Output a selected list view of news
+     */
+    public function selectedListAction()
+    {
+        $newsRecords = [];
+        $idList = GeneralUtility::trimExplode(',', $this->settings['selectedList'], true);
+        foreach ($idList as $id) {
+            $news = $this->newsRepository->findByIdentifier($id);
+            if ($news) {
+                $newsRecords[] = $news;
+            }
+        }
+
+        $assignedValues = [
+            'news' => $newsRecords
+        ];
+
+        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_SELECTED_ACTION, $assignedValues);
+        $this->view->assignMultiple($assignedValues);
     }
 
     /**
