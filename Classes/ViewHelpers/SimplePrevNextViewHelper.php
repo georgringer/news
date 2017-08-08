@@ -187,7 +187,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     {
         $data = [];
         $pidList = empty($pidList) ? $news->getPid() : $pidList;
-		$tableName = 'tx_news_domain_model_news';
+        $tableName = 'tx_news_domain_model_news';
 
         foreach (['prev', 'next'] as $label) {
             $whereClause = 'sys_language_uid = 0 AND pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
