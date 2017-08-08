@@ -33,7 +33,6 @@ Properties
 
  - :Field: Field
    :Description: Description
-   :Default value: Default value
 
  - :Field:
          Title
