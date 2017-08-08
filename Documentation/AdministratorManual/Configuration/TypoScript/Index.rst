@@ -295,7 +295,7 @@ previewHiddenRecords
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.enablePreviewOfHiddenRecords =1`
+         :typoscript:`plugin.tx_news.settings.previewHiddenRecords = 1`
 
          If set, also records which are normally hidden are displayed. This is especially helpful when using a detail view as preview mode for editors.
 
