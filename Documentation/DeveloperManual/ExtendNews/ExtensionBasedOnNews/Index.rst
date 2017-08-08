@@ -141,6 +141,7 @@ Create a basic controller with the mentioned action.
 
 		/**
 		 * @var \GeorgRinger\News\Domain\Repository\NewsRepository
+		 * @inject
 		 */
 		protected $newsRepository;
 	}
