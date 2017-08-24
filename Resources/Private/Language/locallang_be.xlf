@@ -245,7 +245,7 @@
 			</trans-unit>
 			<trans-unit id="extmng.categoryRestriction" xml:space="preserve">
 				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
-				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
 			</source>
 			</trans-unit>
 			<trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
