@@ -37,7 +37,7 @@ class NewsRepositoryTest extends UnitTestCase
 
         $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
-//
+    //
     /**
      * @test
      * @expectedException \UnexpectedValueException
@@ -55,7 +55,7 @@ class NewsRepositoryTest extends UnitTestCase
 
         $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
-//
+    //
     /**
      * @test
      * @expectedException \UnexpectedValueException
@@ -73,7 +73,7 @@ class NewsRepositoryTest extends UnitTestCase
 
         $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
-//
+    //
     /**
      * @test
      */
