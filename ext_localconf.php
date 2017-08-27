@@ -25,6 +25,8 @@ $boot = function () {
     // Edit restriction for news records
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['news'] =
         \GeorgRinger\News\Hooks\DataHandler::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
+        \GeorgRinger\News\Hooks\DataHandler::class;
 
     // FormEngine: Rendering of fields
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass']['news'] =
