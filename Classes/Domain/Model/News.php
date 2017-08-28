@@ -242,6 +242,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->falRelatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -996,6 +997,26 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTags($tags)
     {
         $this->tags = $tags;
+    }
+
+    /**
+     * Adds a tag
+     *
+     * @param \GeorgRinger\News\Domain\Model\Tag $tag
+     */
+    public function addTag(\GeorgRinger\News\Domain\Model\Tag $tag)
+    {
+        $this->tags->attach($tag);
+    }
+
+    /**
+     * Removes a tag
+     *
+     * @param \GeorgRinger\News\Domain\Model\Tag $tag
+     */
+    public function removeTag(\GeorgRinger\News\Domain\Model\Tag $tag)
+    {
+        $this->tags->detach($tag);
     }
 
     /**
