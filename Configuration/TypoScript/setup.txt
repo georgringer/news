@@ -226,6 +226,7 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 		singleNews.field = uid
 		useStdWrap = singleNews
 		insertRecord = 1
+		isShortcut = 1
 	}
 }
 # For fluid_styled_content
