@@ -289,7 +289,7 @@ class AdministrationController extends NewsController
         $dblist->script = GeneralUtility::getIndpEnv('REQUEST_URI');
         $dblist->thumbs = $this->getBackendUser()->uc['thumbnailsByDefault'];
         $dblist->allFields = 1;
-        $dblist->localizationView = 1;
+        $dblist->localizationView = $this->tsConfiguration['localizationView'] ? MathUtility::forceIntegerInRange($this->tsConfiguration['localizationView'], 0) : 1;
         $dblist->clickTitleMode = 'edit';
         $dblist->calcPerms = $this->getBackendUser()->calcPerms($this->pageInformation);
         $dblist->showClipboard = 0;
@@ -449,14 +449,16 @@ class AdministrationController extends NewsController
      */
     protected function isFilteringEnabled()
     {
-        foreach ($this->tsConfiguration['filters.'] as $filter => $enabled) {
-            if ($enabled == 1) {
-                // Check dependencies on other filter
-                if (($filter === 'categoryConjunction' || $filter === 'includeSubCategories')
-                    && $this->tsConfiguration['filters.']['categories'] == 0) {
-                    continue;
+        if (isset($this->tsConfiguration['filters.'])) {
+            foreach ($this->tsConfiguration['filters.'] as $filter => $enabled) {
+                if ($enabled == 1) {
+                    // Check dependencies on other filter
+                    if (($filter === 'categoryConjunction' || $filter === 'includeSubCategories')
+                        && $this->tsConfiguration['filters.']['categories'] == 0) {
+                        continue;
+                    }
+                    return true;
                 }
-                return true;
             }
         }
         return false;

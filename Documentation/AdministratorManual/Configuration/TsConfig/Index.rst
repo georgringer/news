@@ -172,6 +172,15 @@ If this is not desired, the pid can be defined by using defaultPid.<tablename>:
 
 News records will be saved on page with ID 123.
 
+localizationView
+^^^^^^^
+
+Ability to disable the localizationView in the administration module. Default is 1. Example:
+
+.. code-block:: typoscript
+
+    tx_news.module.localizationView = 0
+
 .. _tsconfigRedirectToPageOnStart:
 
 redirectToPageOnStart
