@@ -245,10 +245,10 @@ class ItemsProcFunc
 
         if ($pid > 0) {
             return $pid;
-        } else {
-            $row = BackendUtilityCore::getRecord('tt_content', abs($pid), 'uid,pid');
-            return $row['pid'];
         }
+
+        $row = BackendUtilityCore::getRecord('tt_content', abs($pid), 'uid,pid');
+        return $row['pid'];
     }
 
     /**
