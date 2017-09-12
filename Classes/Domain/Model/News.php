@@ -238,7 +238,6 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->falRelatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
