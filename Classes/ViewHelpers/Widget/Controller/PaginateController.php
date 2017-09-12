@@ -128,7 +128,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
 
             if ($this->currentPage > 1) {
                 $offset = (integer)($itemsPerPage * ($this->currentPage - 1));
-                $offset = $offset + $this->initialOffset;
+                $offset += $this->initialOffset;
                 $query->setOffset($offset);
             } elseif ($this->initialOffset > 0) {
                 $query->setOffset($this->initialOffset);
