@@ -1091,7 +1091,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get timestamp
      *
-     * @return int
+     * @return \DateTime
      */
     public function getTstamp()
     {
@@ -1101,7 +1101,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set time stamp
      *
-     * @param int $tstamp time stamp
+     * @param \DateTime $tstamp time stamp
      */
     public function setTstamp($tstamp)
     {
