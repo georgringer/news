@@ -1,14 +1,17 @@
-<div class="extra" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<div class="extra">
 	<!-- author -->
 	<f:if condition="{newsItem.author}">
 		<span class="glyphicon glyphicon-user"></span>
-		<f:translate key="author" arguments="{0:newsItem.author}" /> |
+		<f:translate key="author" arguments="{0:newsItem.author}"/>
+		|
 	</f:if>
 
-	<!-- date -->          <span class="glyphicon glyphicon-calendar"> </span>
+	<!-- date -->
+	<span class="glyphicon glyphicon-calendar"> </span>
 	<time datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
 		<f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
-		<meta itemprop="datePublished" content="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}" />
+		<meta itemprop="datePublished" content="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}"/>
 	</time>
 
 	<!-- category -->
@@ -25,3 +28,4 @@
 	</span>
 	</f:if>
 </div>
+</html>
