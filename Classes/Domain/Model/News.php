@@ -972,7 +972,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $contentElements = $this->getContentElements();
         if ($contentElements) {
             foreach ($this->getContentElements() as $contentElement) {
-                $idList[] = $contentElement->getUid();
+                $idList[] = $contentElement->_getProperty('_localizedUid');
             }
         }
         return implode(',', $idList);
