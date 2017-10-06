@@ -8,7 +8,7 @@
 	<ul class="{class}">
 		<f:for each="{categories}" as="category">
 			<li>
-				<label>
+				<label title="{category.item.uid}: {category.item.title -> f:format.htmlspecialchars()}">
 					<input type="checkbox" {n:be.isCheckboxActive(id:category.item.uid,categories:demand.selectedCategories)} name="tx_news_web_newstxnewsm2[demand][selectedCategories][]" value="{category.item.uid}" /> {category.item.title}
 				</label>
 
@@ -42,6 +42,7 @@
 				<div class="settings">
 					<div class="row form-horizontal">
 						<div class="col-xs-6">
+							<f:if condition="{filters.searchWord}">
 							<div class="form-group">
 								<label for="searchWord" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.searchWord" />
@@ -51,6 +52,9 @@
 									<f:form.textfield property="searchWord" id="searchWord" class="form-control t3js-clearable" />
 								</div>
 							</div>
+							</f:if>
+
+							<f:if condition="{filters.timeRestriction}">
 							<div class="form-group">
 								<label for="timeRestriction" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.timeRange" />
@@ -82,6 +86,9 @@
 									</div>
 								</div>
 							</div>
+							</f:if>
+
+							<f:if condition="{filters.topNewsRestriction}">
 							<div class="form-group">
 								<label for="topNewsRestriction" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction" />
@@ -95,7 +102,9 @@
 					}" id="topNewsRestriction" />
 								</div>
 							</div>
+							</f:if>
 
+							<f:if condition="{filters.hidden}">
 							<div class="form-group">
 								<label for="hidden" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.filter.hidden" />
@@ -109,7 +118,9 @@
 					}" id="hidden" />
 								</div>
 							</div>
+							</f:if>
 
+							<f:if condition="{filters.archived}">
 							<div class="form-group">
 								<label for="archived" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction" />
@@ -123,7 +134,9 @@
 					}" id="archived" />
 								</div>
 							</div>
+							</f:if>
 
+							<f:if condition="{filters.sortingField}">
 							<div class="form-group">
 								<label for="sortingField" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy" />
@@ -138,22 +151,26 @@
 					author:'{f:translate(key: \'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.author_formlabel\')}'
 				}" id="sortingField" />
 								</div>
-								<div class="col-xs-1">
+								<div class="col-xs-4">
 									<f:form.select class="form-control" property="sortingDirection" options="{
 					asc:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.asc\')}',
 					desc:'{f:translate(key: \'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.desc\')}'
 				}" id="sortingDirection" />
 								</div>
 							</div>
+							</f:if>
+
+							<f:if condition="{filters.number}">
 							<div class="form-group">
 								<label for="recursive" class="col-xs-4 control-label">
 									<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.recursive" />
 								</label>
 
-								<div class="col-xs-1">
+								<div class="col-xs-4">
 									<f:form.textfield type="number" additionalAttributes="{min:'0'}" property="recursive" id="recursive" class="form-control" />
 								</div>
 							</div>
+							</f:if>
 							<div class="form-group">
 								<div class="col-xs-offset-4 col-xs-8">
 									<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xlf:search')}" class="btn btn-primary" />
@@ -161,6 +178,7 @@
 							</div>
 						</div>
 						<div class="col-xs-6">
+							<f:if condition="{filters.categories}">
 							<div class="category-tree">
 								<div class="form-group">
 									<div class="tree-wrapper">
@@ -169,6 +187,7 @@
 								</div>
 
 								<f:if condition="{categories}">
+									<f:if condition="{filters.categoryConjunction}">
 									<div class="form-group">
 										<label for="categoryConjunction" class="col-xs-4 control-label">
 											<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction" />
@@ -178,6 +197,9 @@
 											<f:form.select class="form-control" property="categoryConjunction" id="categoryConjunction" options="{AND:'AND', OR:'OR', notor:'notor', notand:'notand'}" />
 										</div>
 									</div>
+									</f:if>
+
+									<f:if condition="{filters.includeSubCategories}">
 									<div class="form-group">
 										<label for="includeSubCategories" class="col-xs-4 control-label">
 											<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.includeSubCategories" />
@@ -187,8 +209,10 @@
 											<f:form.checkbox class="checkbox" property="includeSubCategories" value="1" id="includeSubCategories" />
 										</div>
 									</div>
+									</f:if>
 								</f:if>
 							</div>
+							</f:if>
 						</div>
 					</div>
 				</div>

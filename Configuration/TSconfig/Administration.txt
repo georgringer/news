@@ -1,0 +1,14 @@
+tx_news.module {
+    filters {
+        searchWord = 1
+        timeRestriction = 1
+        topNewsRestriction = 1
+        hidden = 1
+        archived = 1
+        sortingField = 1
+        number = 1
+        categories = 1
+        categoryConjunction = 1
+        includeSubCategories = 1
+    }
+}

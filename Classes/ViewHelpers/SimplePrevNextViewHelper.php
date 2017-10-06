@@ -115,6 +115,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      */
     protected function mapResultToObjects(array $result)
     {
+        $out = [];
         foreach ($result as $_id => $single) {
             $out[$_id] = $this->getObject($single['uid']);
         }
@@ -187,6 +188,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     {
         $data = [];
         $pidList = empty($pidList) ? $news->getPid() : $pidList;
+        $tableName = 'tx_news_domain_model_news';
 
         foreach (['prev', 'next'] as $label) {
             $whereClause = 'sys_language_uid = 0 AND pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
@@ -201,10 +203,14 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
                     $order = 'asc';
             }
             $getter = 'get' . ucfirst($sortField) . '';
-            $whereClause .= sprintf(' AND %s %s %s', $sortField, $selector, $news->$getter()->getTimeStamp());
+            if ($news->$getter() instanceof \DateTime) {
+                $whereClause .= sprintf(' AND %s %s %s', $sortField, $selector, $news->$getter()->getTimestamp());
+            } else {
+                $whereClause .= sprintf(' AND %s %s "%s"', $sortField, $selector, $this->getDb()->quoteStr($news->$getter(), $tableName));
+            }
             $row = $this->getDb()->exec_SELECTgetSingleRow(
                 '*',
-                'tx_news_domain_model_news',
+                $tableName,
                 $whereClause,
                 '',
                 $sortField . ' ' . $order);

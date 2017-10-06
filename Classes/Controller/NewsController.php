@@ -64,7 +64,7 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCatgegoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -258,7 +258,7 @@ class NewsController extends NewsBaseController
      */
     public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
     {
-        if ($news === null) {
+        if ($news === null || $this->settings['isShortcut']) {
             $previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
             if ($this->request->hasArgument('news_preview')) {
                 $previewNewsId = (int)$this->request->getArgument('news_preview');

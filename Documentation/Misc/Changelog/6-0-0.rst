@@ -152,7 +152,7 @@ have been reactivated to fetch the FAL fields. This makes the templates far easi
 
 - `newsItem.falMedia` => `newsItem.media`
 - `newsItem.falMediaPreviews` => `newsItem.mediaPreviews`
-- `newsItem.falMediaNonPreviews` => `newsIten.nonMediaPreviews`
+- `newsItem.falMediaNonPreviews` => `newsIten.mediaNonPreviews`
 - `newsItem.firstFalImagePreview` => `newsItem.firstPreview`
 - `newsItem.falRelatedFiles` => `newsItem.relatedFiles`
 

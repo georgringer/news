@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -159,7 +160,7 @@ class AdministrationController extends NewsController
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
-        if ($this->request->getControllerActionName() === 'index') {
+        if ($this->request->getControllerActionName() === 'index' && $this->isFilteringEnabled()) {
             $toggleButton = $buttonBar->makeLinkButton()
                 ->setHref('#')
                 ->setDataAttributes([
@@ -270,7 +271,7 @@ class AdministrationController extends NewsController
                     ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
                 }
             }
-            if (!(bool)$this->tsConfiguration['alwaysShowFilter']) {
+            if (!(bool)$this->tsConfiguration['alwaysShowFilter'] || !$this->isFilteringEnabled()) {
                 $this->view->assign('hideForm', true);
             }
         }
@@ -320,6 +321,8 @@ class AdministrationController extends NewsController
             'showSearchForm' => (!is_null($demand) || $dblist->counter > 0),
             'requestUri' => GeneralUtility::quoteJSvalue(rawurlencode(GeneralUtility::getIndpEnv('REQUEST_URI'))),
             'categories' => $this->categoryRepository->findTree($idList),
+            'filters' => $this->tsConfiguration['filters.'],
+            'enableFiltering' => $this->isFilteringEnabled(),
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];
 
@@ -437,6 +440,26 @@ class AdministrationController extends NewsController
         if (isset($tsConfig['tx_news.']['module.']) && is_array($tsConfig['tx_news.']['module.'])) {
             $this->tsConfiguration = $tsConfig['tx_news.']['module.'];
         }
+    }
+
+    /**
+     * Check if at least one filter is enabled
+     *
+     * @return bool
+     */
+    protected function isFilteringEnabled()
+    {
+        foreach ($this->tsConfiguration['filters.'] as $filter => $enabled) {
+            if ($enabled == 1) {
+                // Check dependencies on other filter
+                if (($filter === 'categoryConjunction' || $filter === 'includeSubCategories')
+                    && $this->tsConfiguration['filters.']['categories'] == 0) {
+                    continue;
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

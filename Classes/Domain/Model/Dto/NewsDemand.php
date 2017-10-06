@@ -204,6 +204,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
     }
 
     /**

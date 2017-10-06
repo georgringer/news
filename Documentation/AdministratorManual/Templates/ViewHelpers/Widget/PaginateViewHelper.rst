@@ -12,26 +12,26 @@ General properties
 .. t3-field-list-table::
  :header-rows: 1
 
- - :Name: Name:
-   :Type: Type:
-   :Description: Description:
-   :Default value: Default value:
+ - :Name: Name
+   :Type: Type
+   :Description: Description
+   :Default value: Default value
 
  - :Name:
          \* as
    :Type:
          string
    :Description:
-         
+
    :Default value:
-         
+
 
  - :Name:
          configuration
    :Type:
          mixed
    :Description:
-         
+
    :Default value:
          Array
 
@@ -40,6 +40,6 @@ General properties
    :Type:
          TYPO3\\CMS\\Extbase\\Persistence\\QueryResultInterface
    :Description:
-         
+
    :Default value:
 

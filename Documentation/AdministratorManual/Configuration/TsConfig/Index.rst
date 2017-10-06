@@ -119,6 +119,7 @@ Properties
 	redirectToPageOnStart_       integer
 	allowedPage_                 integer
 	alwaysShowFilter_            bool
+	filters_                     array
 	=========================== =====================================
 
 .. _tsconfigPreselect:
@@ -209,6 +210,34 @@ If defined, the administration module will always show the filter opened.
 	tx_news.module.alwaysShowFilter = 1
 
 The user will be redirected to the page with the uid 123.
+
+filters
+^^^^^^^
+Define whether filters should be available or not. By default, all the filters are enabled. The available filters are:
+
+- searchWord
+- timeRestriction
+- topNewsRestriction
+- hidden
+- archived
+- sortingField
+- number
+- categories
+- categoryConjunction
+- includeSubCategories
+
+.. code-block:: typoscript
+
+	# Example:
+	tx_news.module {
+		filters {
+			topNewsRestriction = 0
+		}
+	}
+
+
+.. note::
+ ``categoryConjunction`` and ``includeSubCategories`` can only be enabled when ``categories`` is enabled.
 
 Additional Configuration
 ------------------------

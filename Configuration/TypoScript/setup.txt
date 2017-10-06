@@ -226,6 +226,7 @@ tt_content.shortcut.20.conf.tx_news_domain_model_news {
 		singleNews.field = uid
 		useStdWrap = singleNews
 		insertRecord = 1
+		isShortcut = 1
 	}
 }
 # For fluid_styled_content
@@ -247,8 +248,8 @@ config.tx_extbase.persistence.classes {
 	GeorgRinger\News\Domain\Model\News {
 		subclasses {
 			0 = GeorgRinger\News\Domain\Model\NewsDefault
-			1 = GeorgRinger\News\Domain\Model\NewsExternal
-			2 = GeorgRinger\News\Domain\Model\NewsInternal
+			1 = GeorgRinger\News\Domain\Model\NewsInternal
+			2 = GeorgRinger\News\Domain\Model\NewsExternal
 		}
 	}
 
@@ -259,17 +260,18 @@ config.tx_extbase.persistence.classes {
 		}
 	}
 
-	GeorgRinger\News\Domain\Model\NewsExternal {
+	GeorgRinger\News\Domain\Model\NewsInternal {
 		mapping {
 			recordType = 1
 			tableName = tx_news_domain_model_news
 		}
 	}
 
-	GeorgRinger\News\Domain\Model\NewsInternal {
+	GeorgRinger\News\Domain\Model\NewsExternal {
 		mapping {
 			recordType = 2
 			tableName = tx_news_domain_model_news
 		}
 	}
+
 }

@@ -238,10 +238,10 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->relatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->falRelatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -999,6 +999,26 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * Adds a tag
+     *
+     * @param \GeorgRinger\News\Domain\Model\Tag $tag
+     */
+    public function addTag(\GeorgRinger\News\Domain\Model\Tag $tag)
+    {
+        $this->tags->attach($tag);
+    }
+
+    /**
+     * Removes a tag
+     *
+     * @param \GeorgRinger\News\Domain\Model\Tag $tag
+     */
+    public function removeTag(\GeorgRinger\News\Domain\Model\Tag $tag)
+    {
+        $this->tags->detach($tag);
+    }
+
+    /**
      * Get path segment
      *
      * @return string
@@ -1071,7 +1091,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get timestamp
      *
-     * @return int
+     * @return \DateTime
      */
     public function getTstamp()
     {
@@ -1081,7 +1101,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set time stamp
      *
-     * @param int $tstamp time stamp
+     * @param \DateTime $tstamp time stamp
      */
     public function setTstamp($tstamp)
     {
