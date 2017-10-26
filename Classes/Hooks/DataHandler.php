@@ -139,5 +139,4 @@ class DataHandler
     {
         return $GLOBALS['BE_USER'];
     }
-
 }
