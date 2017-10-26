@@ -15,6 +15,7 @@ use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
@@ -392,17 +393,35 @@ class AdministrationController extends NewsController
     {
         $pageUid = (int)$row['row']['uid'];
 
-        /* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
-        $db = $GLOBALS['TYPO3_DB'];
+        if (class_exists(ConnectionPool::class)) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('tx_news_domain_model_news');
+            $row['countNews'] = $queryBuilder->count('*')
+                ->from('tx_news_domain_model_news')
+                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+                ->execute()
+                ->fetchColumn(0);
 
-        $row['countNews'] = $db->exec_SELECTcountRows(
-            '*',
-            'tx_news_domain_model_news',
-            'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
-        $row['countCategories'] = $db->exec_SELECTcountRows(
-            '*',
-            'sys_category',
-            'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('sys_category');
+            $row['countCategories'] = $queryBuilder->count('*')
+                ->from('sys_category')
+                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+                ->execute()
+                ->fetchColumn(0);
+        } else {
+            /* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
+            $db = $GLOBALS['TYPO3_DB'];
+
+            $row['countNews'] = $db->exec_SELECTcountRows(
+                '*',
+                'tx_news_domain_model_news',
+                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
+            $row['countCategories'] = $db->exec_SELECTcountRows(
+                '*',
+                'sys_category',
+                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
+        }
 
         $row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
     }
