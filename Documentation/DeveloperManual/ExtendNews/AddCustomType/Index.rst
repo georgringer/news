@@ -25,21 +25,20 @@ In this example the new type will be called 'myCustomNewsType' and is configured
 
 .. code-block:: typoscript
 
-  config.tx_extbase.persistence.classes {
+config.tx_extbase.persistence.classes {
     GeorgRinger\News\Domain\Model\News {
-      subclasses {
-        3 = Vendor\ExtName\Domain\Model\MyCustomNewsType
-      }
+        subclasses {
+            3 = Vendor\ExtName\Domain\Model\MyCustomNewsType
+        }
     }
 
     Vendor\ExtName\Domain\Model\MyCustomNewsType {
-      mapping {
-        recordType = 3
-          tableName = tx_news_domain_model_news
+        mapping {
+            recordType = 3
+            tableName = tx_news_domain_model_news
         }
-      }
     }
-  }
+}
 
 2) TCA
 ------

@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -14,6 +15,7 @@ use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
@@ -159,7 +161,7 @@ class AdministrationController extends NewsController
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
-        if ($this->request->getControllerActionName() === 'index') {
+        if ($this->request->getControllerActionName() === 'index' && $this->isFilteringEnabled()) {
             $toggleButton = $buttonBar->makeLinkButton()
                 ->setHref('#')
                 ->setDataAttributes([
@@ -270,7 +272,7 @@ class AdministrationController extends NewsController
                     ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
                 }
             }
-            if (!(bool)$this->tsConfiguration['alwaysShowFilter']) {
+            if (!(bool)$this->tsConfiguration['alwaysShowFilter'] || !$this->isFilteringEnabled()) {
                 $this->view->assign('hideForm', true);
             }
         }
@@ -320,6 +322,8 @@ class AdministrationController extends NewsController
             'showSearchForm' => (!is_null($demand) || $dblist->counter > 0),
             'requestUri' => GeneralUtility::quoteJSvalue(rawurlencode(GeneralUtility::getIndpEnv('REQUEST_URI'))),
             'categories' => $this->categoryRepository->findTree($idList),
+            'filters' => $this->tsConfiguration['filters.'],
+            'enableFiltering' => $this->isFilteringEnabled(),
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];
 
@@ -389,17 +393,35 @@ class AdministrationController extends NewsController
     {
         $pageUid = (int)$row['row']['uid'];
 
-        /* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
-        $db = $GLOBALS['TYPO3_DB'];
+        if (class_exists(ConnectionPool::class)) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('tx_news_domain_model_news');
+            $row['countNews'] = $queryBuilder->count('*')
+                ->from('tx_news_domain_model_news')
+                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+                ->execute()
+                ->fetchColumn(0);
 
-        $row['countNews'] = $db->exec_SELECTcountRows(
-            '*',
-            'tx_news_domain_model_news',
-            'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
-        $row['countCategories'] = $db->exec_SELECTcountRows(
-            '*',
-            'sys_category',
-            'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('sys_category');
+            $row['countCategories'] = $queryBuilder->count('*')
+                ->from('sys_category')
+                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+                ->execute()
+                ->fetchColumn(0);
+        } else {
+            /* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
+            $db = $GLOBALS['TYPO3_DB'];
+
+            $row['countNews'] = $db->exec_SELECTcountRows(
+                '*',
+                'tx_news_domain_model_news',
+                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
+            $row['countCategories'] = $db->exec_SELECTcountRows(
+                '*',
+                'sys_category',
+                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
+        }
 
         $row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
     }
@@ -437,6 +459,26 @@ class AdministrationController extends NewsController
         if (isset($tsConfig['tx_news.']['module.']) && is_array($tsConfig['tx_news.']['module.'])) {
             $this->tsConfiguration = $tsConfig['tx_news.']['module.'];
         }
+    }
+
+    /**
+     * Check if at least one filter is enabled
+     *
+     * @return bool
+     */
+    protected function isFilteringEnabled()
+    {
+        foreach ($this->tsConfiguration['filters.'] as $filter => $enabled) {
+            if ($enabled == 1) {
+                // Check dependencies on other filter
+                if (($filter === 'categoryConjunction' || $filter === 'includeSubCategories')
+                    && $this->tsConfiguration['filters.']['categories'] == 0) {
+                    continue;
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -54,7 +54,7 @@ class BackendUtility
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords,
                         previewHiddenRecords,startingpoint,recursive',
-        'additional' => 'tags,limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
+        'additional' => 'tags,limit,offset,hidePagination,topNewsFirst,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage,disableOverrideDemand',
         'template' => ''
     ];

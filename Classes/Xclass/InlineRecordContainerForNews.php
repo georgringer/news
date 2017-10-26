@@ -48,6 +48,9 @@ class InlineRecordContainerForNews extends InlineRecordContainer
             $renderFallback = false;
             $pageLayoutView = GeneralUtility::makeInstance(PageLayoutView::class);
             $pageLayoutView->doEdit = false;
+            foreach ($GLOBALS['TCA']['tt_content']['columns']['CType']['config']['items'] as $val) {
+                $pageLayoutView->CType_labels[$val[1]] = $this->getLanguageService()->sL($val[0]);
+            }
 
             $label = trim($pageLayoutView->tt_content_drawItem($raw));
             if ($label === $this->getWarningLabel($raw['CType'])) {

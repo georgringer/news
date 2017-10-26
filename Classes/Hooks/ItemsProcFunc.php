@@ -10,6 +10,7 @@ namespace GeorgRinger\News\Hooks;
  */
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
@@ -190,18 +191,7 @@ class ItemsProcFunc
     {
         $html = '';
 
-        $orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ?
-            $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] :
-            $GLOBALS['TYPO3_DB']->stripOrderBy($GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']);
-
-        $languages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            '*',
-            'sys_language',
-            '1=1 ' . BackendUtilityCore::deleteClause('sys_language'),
-            '',
-            $orderBy
-        );
-
+        $languages = $this->getAllLanguages();
         // if any language is available
         if (count($languages) > 0) {
             $html = '<select name="data[newsoverlay]" id="field_newsoverlay" class="form-control">
@@ -220,6 +210,36 @@ class ItemsProcFunc
         }
 
         return $html;
+    }
+
+    /**
+     * Get all languages
+     *
+     * @return array
+     */
+    protected function getAllLanguages()
+    {
+        if (class_exists(ConnectionPool::class)) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('sys_language');
+            return $queryBuilder->select('*')
+                ->from('sys_language')
+                ->orderBy('sorting')
+                ->execute()
+                ->fetchAll();
+        } else {
+            $orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ?
+                $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] :
+                $GLOBALS['TYPO3_DB']->stripOrderBy($GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']);
+
+            return $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+                '*',
+                'sys_language',
+                '1=1 ' . BackendUtilityCore::deleteClause('sys_language'),
+                '',
+                $orderBy
+            );
+        }
     }
 
     /**
@@ -245,10 +265,10 @@ class ItemsProcFunc
 
         if ($pid > 0) {
             return $pid;
-        } else {
-            $row = BackendUtilityCore::getRecord('tt_content', abs($pid), 'uid,pid');
-            return $row['pid'];
         }
+
+        $row = BackendUtilityCore::getRecord('tt_content', abs($pid), 'uid,pid');
+        return $row['pid'];
     }
 
     /**

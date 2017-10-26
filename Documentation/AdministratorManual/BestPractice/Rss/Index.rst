@@ -191,7 +191,7 @@ Don't forget to configure the RSS feed properly as the sample template won't ful
 
 .. code-block:: typoscript
 
-    plugin.tx_news {
+    plugin.tx_news.settings.list {
     	rss.channel {
     		title = Dummy Title
     		description =

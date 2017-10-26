@@ -1,5 +1,6 @@
 # TYPO3 Extension ``news`` 
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/19.99)
 [![Build Status](https://travis-ci.org/georgringer/news.png)](https://travis-ci.org/georgringer/news)
 [![StyleCI](https://styleci.io/repos/11733164/shield?branch=master)](https://styleci.io/repos/11733164/)
 [![Latest Stable Version](https://poser.pugx.org/georgringer/news/v/stable)](https://packagist.org/packages/georgringer/news)
