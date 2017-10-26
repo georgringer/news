@@ -987,7 +987,8 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param bool $original
      * @return string
      */
-    protected function getIdOfContentElements($original = true) {
+    protected function getIdOfContentElements($original = true)
+    {
         $idList = [];
         $contentElements = $this->getContentElements();
         if ($contentElements) {
