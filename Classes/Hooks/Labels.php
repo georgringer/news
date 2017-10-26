@@ -42,5 +42,4 @@ class Labels
             $params['title'] = $params['row']['title'];
         }
     }
-
 }
