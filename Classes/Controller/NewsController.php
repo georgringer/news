@@ -1,7 +1,8 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -13,17 +14,15 @@ namespace GeorgRinger\News\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Controller of news records
- *
+ * Controller of news records.
  */
 class NewsController extends NewsBaseController
 {
-
     const SIGNAL_NEWS_LIST_ACTION = 'listAction';
     const SIGNAL_NEWS_DETAIL_ACTION = 'detailAction';
     const SIGNAL_NEWS_DATEMENU_ACTION = 'dateMenuAction';
@@ -44,9 +43,10 @@ class NewsController extends NewsBaseController
     protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
 
     /**
-     * Inject a news repository to enable DI
+     * Inject a news repository to enable DI.
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
+     *
      * @return void
      */
     public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
@@ -55,7 +55,7 @@ class NewsController extends NewsBaseController
     }
 
     /**
-     * Initializes the current action
+     * Initializes the current action.
      *
      * @return void
      */
@@ -76,14 +76,14 @@ class NewsController extends NewsBaseController
                 $cacheTagsSet = true;
             }
         }
-
     }
 
     /**
-     * Create the demand object which define which records will get shown
+     * Create the demand object which define which records will get shown.
      *
-     * @param array $settings
-     * @param string $class optional class which must be an instance of \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+     * @param array  $settings
+     * @param string $class    optional class which must be an instance of \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+     *
      * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
      */
     protected function createDemandObjectFromSettings(
@@ -114,7 +114,7 @@ class NewsController extends NewsBaseController
         $demand->setHideIdList($settings['hideIdList']);
 
         if ($settings['orderBy']) {
-            $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
+            $demand->setOrder($settings['orderBy'].' '.$settings['orderDirection']);
         }
         $demand->setOrderByAllowed($settings['orderByAllowed']);
 
@@ -130,38 +130,41 @@ class NewsController extends NewsBaseController
 
         $demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
             $settings['recursive']));
+
         return $demand;
     }
 
     /**
-     * Overwrites a given demand object by an propertyName =>  $propertyValue array
+     * Overwrites a given demand object by an propertyName =>  $propertyValue array.
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
-     * @param array $overwriteDemand
+     * @param array                                         $overwriteDemand
+     *
      * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
      */
     protected function overwriteDemandObject($demand, $overwriteDemand)
     {
-
         foreach ($this->ignoredSettingsForOverride as $property) {
             unset($overwriteDemand[$property]);
         }
 
         foreach ($overwriteDemand as $propertyName => $propertyValue) {
-            if(in_array(strtolower($propertyName), $this->ignoredSettingsForOverride, true)) {
+            if (in_array(strtolower($propertyName), $this->ignoredSettingsForOverride, true)) {
                 continue;
             }
             if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
                 \TYPO3\CMS\Extbase\Reflection\ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
         }
+
         return $demand;
     }
 
     /**
-     * Output a list view of news
+     * Output a list view of news.
      *
      * @param array $overwriteDemand
+     *
      * @return void
      */
     public function listAction(array $overwriteDemand = null)
@@ -175,9 +178,9 @@ class NewsController extends NewsBaseController
         $newsRecords = $this->newsRepository->findDemanded($demand);
 
         $assignedValues = [
-            'news' => $newsRecords,
+            'news'            => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
-            'demand' => $demand,
+            'demand'          => $demand,
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
@@ -187,18 +190,19 @@ class NewsController extends NewsBaseController
     }
 
     /**
-     * Single view of a news record
+     * Single view of a news record.
      *
-     * @param \GeorgRinger\News\Domain\Model\News $news news item
-     * @param int $currentPage current page for optional pagination
+     * @param \GeorgRinger\News\Domain\Model\News $news        news item
+     * @param int                                 $currentPage current page for optional pagination
+     *
      * @return void
      */
     public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
     {
         if (is_null($news)) {
-            $previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
+            $previewNewsId = ((int) $this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
             if ($this->request->hasArgument('news_preview')) {
-                $previewNewsId = (int)$this->request->getArgument('news_preview');
+                $previewNewsId = (int) $this->request->getArgument('news_preview');
             }
 
             if ($previewNewsId > 0) {
@@ -225,9 +229,9 @@ class NewsController extends NewsBaseController
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
         $assignedValues = [
-            'newsItem' => $news,
-            'currentPage' => (int)$currentPage,
-            'demand' => $demand,
+            'newsItem'    => $news,
+            'currentPage' => (int) $currentPage,
+            'demand'      => $demand,
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
@@ -244,7 +248,8 @@ class NewsController extends NewsBaseController
      * if the pid could not be found it return NULL instead of the news object.
      *
      * @param \GeorgRinger\News\Domain\Model\News $news
-     * @return NULL|\GeorgRinger\News\Domain\Model\News
+     *
+     * @return null|\GeorgRinger\News\Domain\Model\News
      */
     protected function checkPidOfNewsRecord(\GeorgRinger\News\Domain\Model\News $news)
     {
@@ -261,17 +266,18 @@ class NewsController extends NewsBaseController
                 __CLASS__,
                 'checkPidOfNewsRecordFailedInDetailAction',
                 [
-                    'news' => $news,
-                    'newsController' => $this
+                    'news'           => $news,
+                    'newsController' => $this,
                 ]
             );
             $news = null;
         }
+
         return $news;
     }
 
     /**
-     * Checks if preview is enabled either in TS or FlexForm
+     * Checks if preview is enabled either in TS or FlexForm.
      *
      * @return bool
      */
@@ -282,13 +288,15 @@ class NewsController extends NewsBaseController
         } else {
             $previewEnabled = !empty($this->settings['previewHiddenRecords']);
         }
+
         return $previewEnabled;
     }
 
     /**
-     * Render a menu by dates, e.g. years, months or dates
+     * Render a menu by dates, e.g. years, months or dates.
      *
      * @param array $overwriteDemand
+     *
      * @return void
      */
     public function dateMenuAction(array $overwriteDemand = null)
@@ -303,19 +311,19 @@ class NewsController extends NewsBaseController
         if (!$dateField = $this->settings['dateField']) {
             $dateField = 'datetime';
         }
-        $demand->setOrder($dateField . ' ' . $this->settings['orderDirection']);
+        $demand->setOrder($dateField.' '.$this->settings['orderDirection']);
         $newsRecords = $this->newsRepository->findDemanded($demand);
 
         $demand->setOrder($this->settings['orderDirection']);
         $statistics = $this->newsRepository->countByDate($demand);
 
         $assignedValues = [
-            'listPid' => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
-            'dateField' => $dateField,
-            'data' => $statistics,
-            'news' => $newsRecords,
+            'listPid'         => ($this->settings['listPid'] ? $this->settings['listPid'] : $GLOBALS['TSFE']->id),
+            'dateField'       => $dateField,
+            'data'            => $statistics,
+            'news'            => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
-            'demand' => $demand,
+            'demand'          => $demand,
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DATEMENU_ACTION, $assignedValues);
@@ -323,10 +331,11 @@ class NewsController extends NewsBaseController
     }
 
     /**
-     * Display the search form
+     * Display the search form.
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
-     * @param array $overwriteDemand
+     * @param array                                     $overwriteDemand
+     *
      * @return void
      */
     public function searchFormAction(
@@ -346,9 +355,9 @@ class NewsController extends NewsBaseController
         $demand->setSearch($search);
 
         $assignedValues = [
-            'search' => $search,
+            'search'          => $search,
             'overwriteDemand' => $overwriteDemand,
-            'demand' => $demand,
+            'demand'          => $demand,
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHFORM_ACTION,
@@ -357,10 +366,11 @@ class NewsController extends NewsBaseController
     }
 
     /**
-     * Displays the search result
+     * Displays the search result.
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
-     * @param array $overwriteDemand
+     * @param array                                     $overwriteDemand
+     *
      * @return void
      */
     public function searchResultAction(
@@ -381,10 +391,10 @@ class NewsController extends NewsBaseController
         $demand->setSearch($search);
 
         $assignedValues = [
-            'news' => $this->newsRepository->findDemanded($demand),
+            'news'            => $this->newsRepository->findDemanded($demand),
             'overwriteDemand' => $overwriteDemand,
-            'search' => $search,
-            'demand' => $demand,
+            'search'          => $search,
+            'demand'          => $demand,
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHRESULT_ACTION,
@@ -397,9 +407,10 @@ class NewsController extends NewsBaseController
      **********************/
 
     /**
-     * Injects the Configuration Manager and is initializing the framework settings
+     * Injects the Configuration Manager and is initializing the framework settings.
      *
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
+     *
      * @return void
      */
     public function injectConfigurationManager(
@@ -423,15 +434,15 @@ class NewsController extends NewsBaseController
 
         // Use stdWrap for given defined settings
         if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
-            /** @var  \TYPO3\CMS\Extbase\Service\TypoScriptService $typoScriptService */
+            /** @var \TYPO3\CMS\Extbase\Service\TypoScriptService $typoScriptService */
             $typoScriptService = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\TypoScriptService::class);
             $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
             $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
             foreach ($stdWrapProperties as $key) {
-                if (is_array($typoScriptArray[$key . '.'])) {
+                if (is_array($typoScriptArray[$key.'.'])) {
                     $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
                         $originalSettings[$key],
-                        $typoScriptArray[$key . '.']
+                        $typoScriptArray[$key.'.']
                     );
                 }
             }
@@ -446,10 +457,10 @@ class NewsController extends NewsBaseController
 
         if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'])) {
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'] as $_funcRef) {
-                $_params = array(
+                $_params = [
                     'originalSettings' => $originalSettings,
-                    'tsSettings' => $tsSettings,
-                );
+                    'tsSettings'       => $tsSettings,
+                ];
                 $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
             }
         }
@@ -462,11 +473,11 @@ class NewsController extends NewsBaseController
      * This function is for testing purposes only.
      *
      * @param \TYPO3\CMS\Fluid\View\TemplateView $view the view to inject
+     *
      * @return void
      */
     public function setView(\TYPO3\CMS\Fluid\View\TemplateView $view)
     {
         $this->view = $view;
     }
-
 }

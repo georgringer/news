@@ -2,22 +2,22 @@
 
 namespace GeorgRinger\News\ViewHelpers\Social;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
  * ViewHelper to add a google+ button
- * Details: http://www.google.com/webmasters/+1/button/
+ * Details: http://www.google.com/webmasters/+1/button/.
  *
  * Examples
  * ==============
@@ -29,23 +29,22 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  *        href="http://www.mydomain.tld" count="false"></n:social.googlePlus>
  * Result: Small Google Plus Button to share www.mydomain.tld
  *    without showing the counter
- *
  */
 class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
-
     /**
      * @var \GeorgRinger\News\Service\SettingsService
      */
     protected $pluginSettingsService;
 
     /**
-     * @var    string
+     * @var string
      */
     protected $tagName = 'div';
 
     /**
-     * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     * @var \GeorgRinger\News\Service\SettingsService
+     *
      * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
@@ -54,7 +53,7 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
     }
 
     /**
-     * Arguments initialization
+     * Arguments initialization.
      *
      * @return void
      */
@@ -67,9 +66,10 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
     }
 
     /**
-     * Render the Google+ button
+     * Render the Google+ button.
      *
      * @param string $jsCode Alternative JavaScript code which is used
+     *
      * @return string
      */
     public function render($jsCode = '')
@@ -81,9 +81,9 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
         }
 
         $tsSettings = $this->pluginSettingsService->getSettings();
-        $locale = (!empty($tsSettings['googlePlusLocale']) && strlen($tsSettings['googlePlusLocale']) <= 5) ? '{lang:\'' . $tsSettings['googlePlusLocale'] . '\'}' : '';
+        $locale = (!empty($tsSettings['googlePlusLocale']) && strlen($tsSettings['googlePlusLocale']) <= 5) ? '{lang:\''.$tsSettings['googlePlusLocale'].'\'}' : '';
 
-        $code = '<script type="text/javascript" src="' . $jsCode . '" async="async" defer="defer">' . $locale . '</script>';
+        $code = '<script type="text/javascript" src="'.$jsCode.'" async="async" defer="defer">'.$locale.'</script>';
 
         $this->tag->setContent(' ');
         $this->tag->addAttribute('class', 'g-plusone');
@@ -93,6 +93,7 @@ class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagB
         }
 
         $code .= $this->tag->render();
+
         return $code;
     }
 }

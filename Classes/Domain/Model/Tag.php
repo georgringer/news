@@ -1,26 +1,25 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * Tag model
- *
+ * Tag model.
  */
 class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 {
-
     /**
      * @var \DateTime
      */
@@ -37,7 +36,7 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     protected $title;
 
     /**
-     * Get crdate
+     * Get crdate.
      *
      * @return \DateTime
      */
@@ -47,9 +46,10 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set crdate
+     * Set crdate.
      *
      * @param \DateTime $crdate crdate
+     *
      * @return void
      */
     public function setCrdate($crdate)
@@ -58,7 +58,7 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get Tstamp
+     * Get Tstamp.
      *
      * @return \DateTime
      */
@@ -68,9 +68,10 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set tstamp
+     * Set tstamp.
      *
      * @param \DateTime $tstamp tstamp
+     *
      * @return void
      */
     public function setTstamp($tstamp)
@@ -79,7 +80,7 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -89,9 +90,10 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title title
+     *
      * @return void
      */
     public function setTitle($title)

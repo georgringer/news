@@ -2,21 +2,21 @@
 
 namespace GeorgRinger\News\ViewHelpers\Be;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * ViewHelper to create a clickmenu
+ * ViewHelper to create a clickmenu.
  *
  * # Example: Basic example
  * <code>
@@ -27,7 +27,6 @@ namespace GeorgRinger\News\ViewHelpers\Be;
  * <output>
  * Linked icon (<n:be.button.iconForRecord /> with a click menu for the given record (table + uid)
  * </output>
- *
  */
 class ClickmenuViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -35,12 +34,13 @@ class ClickmenuViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewH
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
-     * Render the clickmenu
+     * Render the clickmenu.
      *
      * @param string $table Name of the table
-     * @param int $uid uid of the record
+     * @param int    $uid   uid of the record
+     *
      * @return string
      */
     public function render($table, $uid)
@@ -52,6 +52,7 @@ class ClickmenuViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewH
      * @param $str
      * @param $table
      * @param string $uid
+     *
      * @return string
      */
     private function wrapClickMenuOnIcon($str, $table, $uid = '')
@@ -61,10 +62,11 @@ class ClickmenuViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewH
         $enDisItems = '';
         $returnOnClick = false;
 
-        $backPath = rawurlencode($GLOBALS['BACK_PATH']) . '|' . \TYPO3\CMS\Core\Utility\GeneralUtility::shortMD5($GLOBALS['BACK_PATH'] . '|' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']);
-        $onClick = 'Clickmenu.show("' . $table . '","' . $uid . '","' . $listFr . '","' . str_replace('+', '%2B',
-                $enDisItems) . '","' . str_replace('&', '&amp;', addcslashes($backPath, '"')) . '","' . str_replace('&',
-                '&amp;', addcslashes($addParams, '"')) . '");return false;';
-        return $returnOnClick ? $onClick : '<a href="#" onclick="' . htmlspecialchars($onClick) . '" oncontextmenu="' . htmlspecialchars($onClick) . '">' . $str . '</a>';
+        $backPath = rawurlencode($GLOBALS['BACK_PATH']).'|'.\TYPO3\CMS\Core\Utility\GeneralUtility::shortMD5($GLOBALS['BACK_PATH'].'|'.$GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']);
+        $onClick = 'Clickmenu.show("'.$table.'","'.$uid.'","'.$listFr.'","'.str_replace('+', '%2B',
+                $enDisItems).'","'.str_replace('&', '&amp;', addcslashes($backPath, '"')).'","'.str_replace('&',
+                '&amp;', addcslashes($addParams, '"')).'");return false;';
+
+        return $returnOnClick ? $onClick : '<a href="#" onclick="'.htmlspecialchars($onClick).'" oncontextmenu="'.htmlspecialchars($onClick).'">'.$str.'</a>';
     }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -20,16 +20,16 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
- * Repository for tag objects
+ * Repository for tag objects.
  */
 class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
 {
-
     /**
      * Returns an array of constraints created from a given demand object.
      *
-     * @param QueryInterface $query
+     * @param QueryInterface  $query
      * @param DemandInterface $demand
+     *
      * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
@@ -62,6 +62,7 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
+     *
      * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
      */
     protected function createOrderingsFromDemand(DemandInterface $demand)
@@ -89,5 +90,4 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
 
         return $orderings;
     }
-
 }

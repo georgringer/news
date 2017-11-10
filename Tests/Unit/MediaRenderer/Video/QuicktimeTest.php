@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\MediaRenderer\Video;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,45 +18,47 @@ use GeorgRinger\News\Domain\Model\Media;
 use GeorgRinger\News\MediaRenderer\Video\Quicktime;
 
 /**
- * Tests for Quicktime
+ * Tests for Quicktime.
  */
-class QuicktimeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class QuicktimeTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     * @dataProvider quicktimeFileIsRecognizedDataProvider
+     *
+     * @return void
+     */
+    public function flvFileIsRecognized($expected, $expectedOutput)
+    {
+        $mediaElement = new Media();
+        $mediaElement->setMultimedia($expected);
+        $mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
 
-	/**
-	 * @test
-	 * @dataProvider quicktimeFileIsRecognizedDataProvider
-	 * @return void
-	 */
-	public function flvFileIsRecognized($expected, $expectedOutput) {
-		$mediaElement = new Media();
-		$mediaElement->setMultimedia($expected);
-		$mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
+        $renderer = new Quicktime();
+        $this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
+    }
 
-		$renderer = new Quicktime();
-		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
-	}
-
-	/**
-	 * @return array
-	 */
-	public function quicktimeFileIsRecognizedDataProvider() {
-		return [
-			'workingFile' => [
-				'fileadmin/fo/bar.mov', TRUE
-			],
-			'workingFileWithUpperCaseFileType' => [
-				'fileadmin/fo/bar.mov', TRUE
-			],
-			'otherFileType' => [
-				'fileadmin/someMusic.mp3', FALSE
-			],
-			'noMediaFileGiven' => [
-				NULL, FALSE
-			],
-			'emptyMediaFileGiven' => [
-				'', FALSE
-			],
-		];
-	}
-
+    /**
+     * @return array
+     */
+    public function quicktimeFileIsRecognizedDataProvider()
+    {
+        return [
+            'workingFile' => [
+                'fileadmin/fo/bar.mov', true,
+            ],
+            'workingFileWithUpperCaseFileType' => [
+                'fileadmin/fo/bar.mov', true,
+            ],
+            'otherFileType' => [
+                'fileadmin/someMusic.mp3', false,
+            ],
+            'noMediaFileGiven' => [
+                null, false,
+            ],
+            'emptyMediaFileGiven' => [
+                '', false,
+            ],
+        ];
+    }
 }

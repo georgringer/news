@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Format;
 
-    /**
+/*
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -28,29 +28,29 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * </code>
  * <output>
  *  Link to download the file "uploads/tx_news/{relatedFile.file}"
- * </output>
- *
+ * </output>.
  */
 class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
     /**
      * @var bool
      */
     protected $escapeOutput = false;
 
     /**
-     * Download a file
+     * Download a file.
      *
-     * @param string $file Path to the file
-     * @param array $configuration configuration used to render the filelink cObject
-     * @param bool $hideError define if an error should be displayed if file not found
-     *     * @param string $class optional class
-     *     * @param string $target target
-     *     * @param string $alt alt text
-     *     * @param string $title title text
-     * @return string
+     * @param string $file          Path to the file
+     * @param array  $configuration configuration used to render the filelink cObject
+     * @param bool   $hideError     define if an error should be displayed if file not found
+     *                              * @param string $class optional class
+     *                              * @param string $target target
+     *                              * @param string $alt alt text
+     *                              * @param string $title title text
+     *
      * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
+     *
+     * @return string
      */
     public function render(
         $file,
@@ -70,7 +70,7 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
 
             if (!$hideError) {
                 throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException(
-                    'Given file is not a valid file: ' . htmlspecialchars($file));
+                    'Given file is not a valid file: '.htmlspecialchars($file));
             }
         }
 
@@ -83,12 +83,12 @@ class FileDownloadViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVi
 
         // set a basic configuration for cObj->filelink
         $tsConfiguration = [
-            'path' => $fileInformation['dirname'] . '/',
-            'ATagParams' => 'class="download-link basic-class ' . strtolower($fileInformation['extension']) . (!empty($class) ? ' ' . $class : '') . '"',
+            'path'          => $fileInformation['dirname'].'/',
+            'ATagParams'    => 'class="download-link basic-class '.strtolower($fileInformation['extension']).(!empty($class) ? ' '.$class : '').'"',
             'labelStdWrap.' => [
                 'cObject.' => [
-                    'value' => $this->renderChildren()
-                ]
+                    'value' => $this->renderChildren(),
+                ],
             ],
 
         ];

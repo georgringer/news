@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -60,7 +60,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *        </div>
  *    </f:if>
  * </n:paginateBodytext>
- *
  */
 class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
@@ -68,14 +67,15 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
-     * Render everything
+     * Render everything.
      *
-     * @param \GeorgRinger\News\Domain\Model\News $object current news object
-     * @param string $as name of property which holds the text
-     * @param int $currentPage Selected page
-     * @param string $token Token used to split the text
+     * @param \GeorgRinger\News\Domain\Model\News $object      current news object
+     * @param string                              $as          name of property which holds the text
+     * @param int                                 $currentPage Selected page
+     * @param string                              $token       Token used to split the text
+     *
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\News $object, $as, $currentPage, $token = '###more###')
@@ -86,7 +86,7 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
         if ($numberOfPages === 1) {
             $result = $parts[0];
         } else {
-            $currentPage = (int)$currentPage;
+            $currentPage = (int) $currentPage;
             if ($currentPage < 1) {
                 $currentPage = 1;
             } elseif ($currentPage > $numberOfPages) {
@@ -122,7 +122,7 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
                 }
             }
 
-            $result = join('', $tagsToOpen) . $parts[$currentPage - 1];
+            $result = implode('', $tagsToOpen).$parts[$currentPage - 1];
 
             while ($tag = array_pop($tagsToClose)) {
                 $result .= $this->getClosingTagByOpeningTag($tag);
@@ -135,9 +135,9 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
         }
 
         $pagination = [
-            'pages' => $pages,
+            'pages'         => $pages,
             'numberOfPages' => $numberOfPages,
-            'current' => $currentPage
+            'current'       => $currentPage,
         ];
 
         if ($currentPage < $numberOfPages) {
@@ -154,9 +154,10 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
     }
 
     /**
-     * Extracts the first html tag for a given html string
+     * Extracts the first html tag for a given html string.
      *
      * @param string $html
+     *
      * @return string
      */
     protected function extractTag($html)
@@ -170,13 +171,15 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
                 break;
             }
         }
+
         return $tag;
     }
 
     /**
-     * Checks whether a given tag is self closing
+     * Checks whether a given tag is self closing.
      *
      * @param string $tag
+     *
      * @return bool
      */
     protected function isSelfClosingTag($tag)
@@ -185,9 +188,10 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
     }
 
     /**
-     * Checks whether a given tag is closing tag
+     * Checks whether a given tag is closing tag.
      *
      * @param string $tag
+     *
      * @return bool
      */
     protected function isClosingTag($tag)
@@ -196,9 +200,10 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
     }
 
     /**
-     * Checks whether a given Tag is a an opening tag
+     * Checks whether a given Tag is a an opening tag.
      *
      * @param string $tag
+     *
      * @return bool
      */
     protected function isOpeningTag($tag)
@@ -207,9 +212,10 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
     }
 
     /**
-     * Gets a closing tag from a given opening tag
+     * Gets a closing tag from a given opening tag.
      *
      * @param string $openingTag
+     *
      * @return string
      */
     protected function getClosingTagByOpeningTag($openingTag)
@@ -218,6 +224,6 @@ class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstra
             $tag = mb_strstr(mb_substr($openingTag, 1), '>', true);
         }
 
-        return '</' . $tag . '>';
+        return '</'.$tag.'>';
     }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Social\Facebook;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,7 +19,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to add a like button
- * Details: http://developers.facebook.com/docs/reference/plugins/like
+ * Details: http://developers.facebook.com/docs/reference/plugins/like.
  *
  * Examples
  * ==============
@@ -33,23 +33,22 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *        font="arial" />
  * Result: Facebook widget to share www.typo3.org within a plugin styled with
  * width 300 and arial as font
- *
  */
 class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
-
     /**
      * @var \GeorgRinger\News\Service\SettingsService
      */
     protected $pluginSettingsService;
 
     /**
-     * @var    string
+     * @var string
      */
     protected $tagName = 'fb:like';
 
     /**
-     * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     * @var \GeorgRinger\News\Service\SettingsService
+     *
      * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
@@ -58,7 +57,7 @@ class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
     }
 
     /**
-     * Arguments initialization
+     * Arguments initialization.
      *
      * @return void
      */
@@ -74,7 +73,7 @@ class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
     }
 
     /**
-     * Render the facebook like viewhelper
+     * Render the facebook like viewhelper.
      *
      * @return string
      */
@@ -97,7 +96,7 @@ class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 
                 $locale = (!empty($tsSettings['facebookLocale']) && strlen($tsSettings['facebookLocale']) <= 5) ? $tsSettings['facebookLocale'] : 'en_US';
 
-                $code = '<script src="https://connect.facebook.net/' . $locale . '/all.js#xfbml=1"></script>';
+                $code = '<script src="https://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>';
 
                 // Social interaction Google Analytics
                 if ($this->pluginSettingsService->getByPath('analytics.social.facebookLike') == 1) {
@@ -111,15 +110,15 @@ class LikeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 					");
                 }
             } else {
-                $code = '<script src="' . htmlspecialchars($this->arguments['javaScript']) . '"></script>';
+                $code = '<script src="'.htmlspecialchars($this->arguments['javaScript']).'"></script>';
             }
         }
 
         // seems as if a div with id fb-root is needed this is just a dirty
         // workaround to make things work again Perhaps we should
         // use the iframe variation.
-        $code .= '<div id="fb-root"></div>' . $this->tag->render();
+        $code .= '<div id="fb-root"></div>'.$this->tag->render();
+
         return $code;
     }
-
 }

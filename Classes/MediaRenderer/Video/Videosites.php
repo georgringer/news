@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\MediaRenderer\Video;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,18 +19,17 @@ use GeorgRinger\News\Service\FileService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Implementation of video portal support
- *
+ * Implementation of video portal support.
  */
 class Videosites implements MediaInterface
 {
-
     /**
-     * Render videos from various video portals
+     * Render videos from various video portals.
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param int $width
-     * @param int $height
+     * @param int                                  $width
+     * @param int                                  $height
+     *
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height)
@@ -53,14 +52,14 @@ class Videosites implements MediaInterface
         if (!empty($finalUrl)) {
             $pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
             $pageRenderer->addJsFile('typo3conf/ext/news/Resources/Public/JavaScript/Contrib/swfobject-2-2.js');
-            $uniqueDivId = 'mediaelement' . FileService::getUniqueId($element);
+            $uniqueDivId = 'mediaelement'.FileService::getUniqueId($element);
 
-            $content .= '<div id="' . htmlspecialchars($uniqueDivId) . '"></div>
+            $content .= '<div id="'.htmlspecialchars($uniqueDivId).'"></div>
 						<script type="text/javascript">
 							var params = { allowScriptAccess: "always", allowfullscreen : "true" };
-							var atts = { id: ' . GeneralUtility::quoteJSvalue($uniqueDivId) . ' };
-							swfobject.embedSWF(' . GeneralUtility::quoteJSvalue($finalUrl) . ',
-							' . GeneralUtility::quoteJSvalue($uniqueDivId) . ', "' . (int)$width . '", "' . (int)$height . '", "8", null, null, params, atts);
+							var atts = { id: '.GeneralUtility::quoteJSvalue($uniqueDivId).' };
+							swfobject.embedSWF('.GeneralUtility::quoteJSvalue($finalUrl).',
+							'.GeneralUtility::quoteJSvalue($uniqueDivId).', "'.(int) $width.'", "'.(int) $height.'", "8", null, null, params, atts);
 						</script>';
         }
 
@@ -69,9 +68,10 @@ class Videosites implements MediaInterface
 
     /**
      * Videosites implementation is always enabled if any file given,
-     * the check is done in tslib_mediaWizardManager
+     * the check is done in tslib_mediaWizardManager.
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
+     *
      * @return bool
      */
     public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
@@ -81,7 +81,7 @@ class Videosites implements MediaInterface
         if (empty($file)) {
             $result = false;
         }
+
         return $result;
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -21,12 +21,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
- * Category repository with all callable functionality
- *
+ * Category repository with all callable functionality.
  */
 class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
 {
-
     protected function createConstraintsFromDemand(
         QueryInterface $query,
         DemandInterface $demand
@@ -38,10 +36,11 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     }
 
     /**
-     * Find category by import source and import id
+     * Find category by import source and import id.
      *
      * @param string $importSource import source
-     * @param int $importId import id
+     * @param int    $importId     import id
+     *
      * @return Category
      */
     public function findOneByImportSourceAndImportId($importSource, $importId)
@@ -58,26 +57,29 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     }
 
     /**
-     * Find categories by a given pid
+     * Find categories by a given pid.
      *
      * @param int $pid pid
+     *
      * @return QueryInterface
      */
     public function findParentCategoriesByPid($pid)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
+
         return $query->matching(
             $query->logicalAnd(
-                $query->equals('pid', (int)$pid),
+                $query->equals('pid', (int) $pid),
                 $query->equals('parentcategory', 0)
             ))->execute();
     }
 
     /**
-     * Find category tree
+     * Find category tree.
      *
      * @param array $rootIdList list of id s
+     *
      * @return QueryInterface
      */
     public function findTree(array $rootIdList, $startingPoint = null)
@@ -89,8 +91,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         $flatCategories = [];
         foreach ($categories as $category) {
             $flatCategories[$category->getUid()] = [
-                'item' => $category,
-                'parent' => ($category->getParentcategory()) ? $category->getParentcategory()->getUid() : null
+                'item'   => $category,
+                'parent' => ($category->getParentcategory()) ? $category->getParentcategory()->getUid() : null,
             ];
         }
 
@@ -115,10 +117,11 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     }
 
     /**
-     * Find categories by a given pid
+     * Find categories by a given pid.
      *
-     * @param array $idList list of id s
+     * @param array $idList   list of id s
      * @param array $ordering ordering
+     *
      * @return QueryInterface
      */
     public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
@@ -135,7 +138,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         $conditions = [];
         $conditions[] = $query->in('uid', $idList);
 
-        if(is_null($startingPoint) === false) {
+        if (is_null($startingPoint) === false) {
             $conditions[] = $query->in('pid', GeneralUtility::trimExplode(',', $startingPoint, true));
         }
 
@@ -146,26 +149,28 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     }
 
     /**
-     * Find categories by a given parent
+     * Find categories by a given parent.
      *
      * @param int $parent parent
+     *
      * @return QueryInterface
      */
     public function findChildren($parent)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
+
         return $query->matching(
             $query->logicalAnd(
-                $query->equals('parentcategory', (int)$parent)
+                $query->equals('parentcategory', (int) $parent)
             ))->execute();
     }
 
     /**
-     * Overlay the category ids with the ones from current language
+     * Overlay the category ids with the ones from current language.
      *
      * @param array $idList
-     * return void
+     *                      return void
      */
     protected function overlayTranslatedCategoryIds(array &$idList)
     {
@@ -173,8 +178,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
 
         if ($language > 0) {
             if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-                $whereClause = 'sys_language_uid=' . $language . ' AND l10n_parent IN(' . implode(',',
-                        $idList) . ')' . $GLOBALS['TSFE']->sys_page->enableFields('sys_category');
+                $whereClause = 'sys_language_uid='.$language.' AND l10n_parent IN('.implode(',',
+                        $idList).')'.$GLOBALS['TSFE']->sys_page->enableFields('sys_category');
                 $rows = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'sys_category',
                     $whereClause);
 
@@ -185,7 +190,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     }
 
     /**
-     * Get the current sys language uid
+     * Get the current sys language uid.
      *
      * @return int
      */
@@ -202,10 +207,11 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     }
 
     /**
-     * Replace ids in array by the given ones
+     * Replace ids in array by the given ones.
      *
      * @param array $idList
      * @param array $rows
+     *
      * @return array
      */
     protected function replaceCategoryIds(array $idList, array $rows)
@@ -213,7 +219,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         foreach ($rows as $row) {
             $pos = array_search($row['l10n_parent'], $idList);
             if ($pos !== false) {
-                $idList[$pos] = (int)$row['uid'];
+                $idList[$pos] = (int) $row['uid'];
             }
         }
 

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Service;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,20 +18,19 @@ use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Service for category related stuff
- *
+ * Service for category related stuff.
  */
 class CategoryService
 {
-
     /**
      * Get child categories by calling recursive function
-     * and using the caching framework to save some queries
+     * and using the caching framework to save some queries.
      *
-     * @param string $idList list of category ids to start
-     * @param int $counter
-     * @param string $additionalWhere additional where clause
-     * @param bool $removeGivenIdListFromResult remove the given id list from result
+     * @param string $idList                      list of category ids to start
+     * @param int    $counter
+     * @param string $additionalWhere             additional where clause
+     * @param bool   $removeGivenIdListFromResult remove the given id list from result
+     *
      * @return string comma separated list of category ids
      */
     public static function getChildrenCategories(
@@ -42,7 +41,7 @@ class CategoryService
     ) {
         /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
         $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
-        $cacheIdentifier = sha1('children' . $idList);
+        $cacheIdentifier = sha1('children'.$idList);
 
         $entry = $cache->get($cacheIdentifier);
         if (!$entry) {
@@ -58,10 +57,11 @@ class CategoryService
     }
 
     /**
-     * Remove values of a comma separated list from another comma separated list
+     * Remove values of a comma separated list from another comma separated list.
      *
      * @param string $result string comma separated list
      * @param $toBeRemoved string comma separated list
+     *
      * @return string
      */
     public static function removeValuesFromString($result, $toBeRemoved)
@@ -70,37 +70,41 @@ class CategoryService
         $idListAsArray = GeneralUtility::trimExplode(',', $toBeRemoved, true);
 
         $result = implode(',', array_diff($resultAsArray, $idListAsArray));
+
         return $result;
     }
 
     /**
      * Get rootline up by calling recursive function
-     * and using the caching framework to save some queries
+     * and using the caching framework to save some queries.
      *
-     * @param int $id category id to start
+     * @param int    $id              category id to start
      * @param string $additionalWhere additional where clause
+     *
      * @return string comma separated list of category ids
      */
     public static function getRootline($id, $additionalWhere = '')
     {
         /** @var \TYPO3\CMS\Core\Cache\Frontend\FrontendInterface $cache */
         $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
-        $cacheIdentifier = sha1('rootline' . $id);
+        $cacheIdentifier = sha1('rootline'.$id);
 
         $entry = $cache->get($cacheIdentifier);
         if (!$entry) {
             $entry = self::getRootlineRecursive($id, $additionalWhere);
             $cache->set($cacheIdentifier, $entry);
         }
+
         return $entry;
     }
 
     /**
-     * Get child categories
+     * Get child categories.
      *
-     * @param string $idList list of category ids to start
-     * @param int $counter
+     * @param string $idList          list of category ids to start
+     * @param int    $counter
      * @param string $additionalWhere additional where clause
+     *
      * @return string comma separated list of category ids
      */
     private static function getChildrenCategoriesRecursive($idList, $counter = 0, $additionalWhere = '')
@@ -115,46 +119,50 @@ class CategoryService
         $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
             'uid',
             'sys_category',
-            'sys_category.parent IN (' . $GLOBALS['TYPO3_DB']->cleanIntList($idList) . ')
-				AND deleted=0 ' . $additionalWhere);
+            'sys_category.parent IN ('.$GLOBALS['TYPO3_DB']->cleanIntList($idList).')
+				AND deleted=0 '.$additionalWhere);
 
         while (($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
             $counter++;
             if ($counter > 10000) {
                 $GLOBALS['TT']->setTSlogMessage('EXT:news: one or more recursive categories where found');
+
                 return implode(',', $result);
             }
             $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter, $additionalWhere);
-            $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
+            $result[] = $row['uid'].($subcategories ? ','.$subcategories : '');
         }
         $GLOBALS['TYPO3_DB']->sql_free_result($res);
 
         $result = implode(',', $result);
+
         return $result;
     }
 
     /**
-     * Get rootline categories
+     * Get rootline categories.
      *
-     * @param int $id category id to start
-     * @param int $counter counter
+     * @param int    $id              category id to start
+     * @param int    $counter         counter
      * @param string $additionalWhere additional where clause
+     *
      * @return string comma separated list of category ids
      */
     public static function getRootlineRecursive($id, $counter = 0, $additionalWhere = '')
     {
-        $id = (int)$id;
+        $id = (int) $id;
         $result = [];
 
         $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
             'uid,parent',
             'sys_category',
-            'uid=' . $id . ' AND deleted=0 ' . $additionalWhere);
+            'uid='.$id.' AND deleted=0 '.$additionalWhere);
 
         $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
         $GLOBALS['TYPO3_DB']->sql_free_result($res);
         if ($id === 0 || !$row || $counter > 10000) {
             $GLOBALS['TT']->setTSlogMessage('EXT:news: one or more recursive categories where found');
+
             return $id;
         }
 
@@ -165,16 +173,19 @@ class CategoryService
         }
 
         $result = implode(',', $result);
+
         return $result;
     }
 
     /**
-     * Translate a category record in the backend
+     * Translate a category record in the backend.
      *
      * @param string $default default label
-     * @param array $row category record
-     * @return string
+     * @param array  $row     category record
+     *
      * @throws \UnexpectedValueException
+     *
+     * @return string
      */
     public static function translateCategoryRecord($default, array $row = [])
     {
@@ -182,7 +193,7 @@ class CategoryService
             throw new \UnexpectedValueException('TYPO3 Mode must be BE');
         }
 
-        $overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];
+        $overlayLanguage = (int) $GLOBALS['BE_USER']->uc['newsoverlay'];
 
         $title = '';
 
@@ -190,10 +201,10 @@ class CategoryService
             $overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
                 '*',
                 'sys_category',
-                'deleted=0 AND sys_language_uid=' . $overlayLanguage . ' AND l10n_parent=' . $row['uid']
+                'deleted=0 AND sys_language_uid='.$overlayLanguage.' AND l10n_parent='.$row['uid']
             );
             if (isset($overlayRecord[0]['title'])) {
-                $title = $overlayRecord[0]['title'] . ' (' . $row['title'] . ')';
+                $title = $overlayRecord[0]['title'].' ('.$row['title'].')';
             }
         }
 
@@ -201,5 +212,4 @@ class CategoryService
 
         return $title;
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\MediaRenderer\Audio;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,45 +18,47 @@ use GeorgRinger\News\Domain\Model\Media;
 use GeorgRinger\News\MediaRenderer\Audio\Mp3;
 
 /**
- * Tests for Mp3
+ * Tests for Mp3.
  */
-class Mp3Test extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class Mp3Test extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     * @dataProvider fileIsRecognizedDataProvider
+     *
+     * @return void
+     */
+    public function fileIsRecognized($expected, $expectedOutput)
+    {
+        $mediaElement = new Media();
+        $mediaElement->setMultimedia($expected);
+        $mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
 
-	/**
-	 * @test
-	 * @dataProvider fileIsRecognizedDataProvider
-	 * @return void
-	 */
-	public function fileIsRecognized($expected, $expectedOutput) {
-		$mediaElement = new Media();
-		$mediaElement->setMultimedia($expected);
-		$mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
+        $renderer = new Mp3();
+        $this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
+    }
 
-		$renderer = new Mp3();
-		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
-	}
-
-	/**
-	 * @return array
-	 */
-	public function fileIsRecognizedDataProvider() {
-		return [
-			'workingMp3' => [
-				'fileadmin/fo/bar.mp3', TRUE
-			],
-			'workingMp3WithUpperCaseFileType' => [
-				'fileadmin/fo/bar.MP3', TRUE
-			],
-			'otherFileType' => [
-				'fileadmin/someMusic.flv', FALSE
-			],
-			'noMediaFileGiven' => [
-				NULL, FALSE
-			],
-			'emptyMediaFileGiven' => [
-				'', FALSE
-			],
-		];
-	}
-
+    /**
+     * @return array
+     */
+    public function fileIsRecognizedDataProvider()
+    {
+        return [
+            'workingMp3' => [
+                'fileadmin/fo/bar.mp3', true,
+            ],
+            'workingMp3WithUpperCaseFileType' => [
+                'fileadmin/fo/bar.MP3', true,
+            ],
+            'otherFileType' => [
+                'fileadmin/someMusic.flv', false,
+            ],
+            'noMediaFileGiven' => [
+                null, false,
+            ],
+            'emptyMediaFileGiven' => [
+                '', false,
+            ],
+        ];
+    }
 }

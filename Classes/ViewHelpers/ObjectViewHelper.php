@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-    /**
+/*
      * This file is part of the TYPO3 CMS project.
      *
      * It is free software; you can redistribute it and/or modify it under
@@ -19,7 +19,7 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 
 /**
- * ViewHelper to render extended objects
+ * ViewHelper to render extended objects.
  *
  * # Example: Basic example
  * <code>
@@ -42,23 +42,22 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
  *        }
  *    }
  * </output>
- *
  */
 class ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
     /**
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
-     * Output different objects
+     * Output different objects.
      *
-     * @param \GeorgRinger\News\Domain\Model\News $newsItem current newsitem
-     * @param string $as output variable
-     * @param string $className custom class which handles the new objects
-     * @param string $extendedTable table which is extended
+     * @param \GeorgRinger\News\Domain\Model\News $newsItem      current newsitem
+     * @param string                              $as            output variable
+     * @param string                              $className     custom class which handles the new objects
+     * @param string                              $extendedTable table which is extended
+     *
      * @return string output
      */
     public function render(
@@ -68,7 +67,7 @@ class ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         $extendedTable = 'tx_news_domain_model_news'
     ) {
         $rawRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', $extendedTable,
-            'uid=' . (int)$newsItem->getUid());
+            'uid='.(int) $newsItem->getUid());
         $rawRecord = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
             $extendedTable,
             $rawRecord,
@@ -85,6 +84,7 @@ class ObjectViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         $this->templateVariableContainer->add($as, $record);
         $output = $this->renderChildren();
         $this->templateVariableContainer->remove($as);
+
         return $output;
     }
 }

@@ -1,7 +1,8 @@
 <?php
+
 namespace GeorgRinger\News\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,7 +18,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class ClassCacheManager
+ * Class ClassCacheManager.
  */
 class ClassCacheManager
 {
@@ -27,7 +28,7 @@ class ClassCacheManager
     protected $cacheInstance;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @return self
      */
@@ -45,15 +46,15 @@ class ClassCacheManager
         foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'] as $key => $extensionsWithThisClass) {
             $extendingClassFound = false;
 
-            $path = ExtensionManagementUtility::extPath('news') . $classPath . $key . '.php';
+            $path = ExtensionManagementUtility::extPath('news').$classPath.$key.'.php';
             if (!is_file($path)) {
-                throw new \Exception('Given file "' . $path . '" does not exist');
+                throw new \Exception('Given file "'.$path.'" does not exist');
             }
             $code = $this->parseSingleFile($path, true);
 
             // Get the files from all other extensions
             foreach ($extensionsWithThisClass as $extensionKey) {
-                $path = ExtensionManagementUtility::extPath($extensionKey) . $classPath . $key . '.php';
+                $path = ExtensionManagementUtility::extPath($extensionKey).$classPath.$key.'.php';
                 if (is_file($path)) {
                     $extendingClassFound = true;
                     $code .= $this->parseSingleFile($path, false);
@@ -64,7 +65,8 @@ class ClassCacheManager
             // If an extending class is found, the file is written and
             // added to the autoloader info
             if ($extendingClassFound) {
-                $cacheEntryIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $key));
+                $cacheEntryIdentifier = 'tx_news_'.strtolower(str_replace('/', '_', $key));
+
                 try {
                     $this->cacheInstance->set($cacheEntryIdentifier, $code);
                 } catch (\Exception $e) {
@@ -72,19 +74,20 @@ class ClassCacheManager
                 }
             }
         }
-
     }
 
     /**
      * Parse a single file and does some magic
      * - Remove the <?php tags
-     * - Remove the class definition (if set)
+     * - Remove the class definition (if set).
      *
-     * @param string $filePath path of the file
-     * @param bool $baseClass If class definition should be removed
-     * @return string path of the saved file
+     * @param string $filePath  path of the file
+     * @param bool   $baseClass If class definition should be removed
+     *
      * @throws \Exception
      * @throws \InvalidArgumentException
+     *
+     * @return string path of the saved file
      */
     protected function parseSingleFile($filePath, $baseClass = false)
     {
@@ -97,6 +100,7 @@ class ClassCacheManager
             $closingBracket = strrpos($code, '}');
             $content = substr($code, 0, $closingBracket);
             $content = str_replace('<?php', '', $content);
+
             return $content;
         } else {
             /** @var ClassParser $classParser */
@@ -117,28 +121,31 @@ class ClassCacheManager
             }
             $codePart = implode(LF, $innerPart);
             $closingBracket = strrpos($codePart, '}');
-            $content = $this->getPartialInfo($filePath) . substr($codePart, 0, $closingBracket);
+            $content = $this->getPartialInfo($filePath).substr($codePart, 0, $closingBracket);
+
             return $content;
         }
     }
 
     /**
      * @param string $filePath
+     *
      * @return string
      */
     protected function getPartialInfo($filePath)
     {
-        return LF . '/*' . str_repeat('*', 70) . LF . TAB .
-        'this is partial from: ' . LF . TAB . str_replace(PATH_site, '', $filePath) . LF . str_repeat('*',
-            70) . '*/' . LF;
+        return LF.'/*'.str_repeat('*', 70).LF.TAB.
+        'this is partial from: '.LF.TAB.str_replace(PATH_site, '', $filePath).LF.str_repeat('*',
+            70).'*/'.LF;
     }
 
     /**
      * @param string $code
+     *
      * @return string
      */
     protected function closeClassDefinition($code)
     {
-        return $code . LF . '}';
+        return $code.LF.'}';
     }
 }

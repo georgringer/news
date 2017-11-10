@@ -19,7 +19,6 @@ use TYPO3\CMS\Install\Updates\AbstractUpdate;
  */
 class TtContentRelation extends AbstractUpdate
 {
-
     const MM_TABLE = 'tx_news_domain_model_news_ttcontent_mm';
 
     protected $title = 'EXT:news Migrate from tt_content mm relation';
@@ -28,6 +27,7 @@ class TtContentRelation extends AbstractUpdate
      * Checks whether updates are required.
      *
      * @param string &$description The description for the update
+     *
      * @return bool Whether an update is required (TRUE) or not (FALSE)
      */
     public function checkForUpdate(&$description)
@@ -54,7 +54,6 @@ class TtContentRelation extends AbstractUpdate
                 } else {
                     $status = true;
                 }
-
             }
         }
 
@@ -64,8 +63,9 @@ class TtContentRelation extends AbstractUpdate
     /**
      * Performs the accordant updates.
      *
-     * @param array &$dbQueries Queries done in this update
+     * @param array &$dbQueries      Queries done in this update
      * @param mixed &$customMessages Custom messages
+     *
      * @return bool Whether everything went smoothly or not
      */
     public function performUpdate(array &$dbQueries, &$customMessages)
@@ -74,11 +74,11 @@ class TtContentRelation extends AbstractUpdate
         foreach ($rows as $row) {
             $update = [
                 'tx_news_related_news' => $row['uid_local'],
-                'sorting' => $row['sorting']
+                'sorting'              => $row['sorting'],
             ];
             $this->getDatabaseConnection()->exec_UPDATEquery(
                 'tt_content',
-                'uid=' . $row['uid_foreign'],
+                'uid='.$row['uid_foreign'],
                 $update
             );
         }

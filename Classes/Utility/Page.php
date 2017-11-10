@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -22,22 +22,21 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
- * Page Utility class
- *
+ * Page Utility class.
  */
 class Page
 {
-
     /**
-     * Find all ids from given ids and level
+     * Find all ids from given ids and level.
      *
-     * @param string $pidList comma separated list of ids
-     * @param int $recursive recursive levels
+     * @param string $pidList   comma separated list of ids
+     * @param int    $recursive recursive levels
+     *
      * @return string comma separated list of ids
      */
     public static function extendPidListByChildren($pidList = '', $recursive = 0)
     {
-        $recursive = (int)$recursive;
+        $recursive = (int) $recursive;
         if ($recursive <= 0) {
             return $pidList;
         }
@@ -48,19 +47,21 @@ class Page
         foreach ($storagePids as $startPid) {
             $pids = $queryGenerator->getTreeList($startPid, $recursive, 0, 1);
             if (strlen($pids) > 0) {
-                $recursiveStoragePids .= ',' . $pids;
+                $recursiveStoragePids .= ','.$pids;
             }
         }
+
         return $recursiveStoragePids;
     }
 
     /**
      * Set properties of an object/array in cobj->LOAD_REGISTER which can then
-     * be used to be loaded via TS with register:name
+     * be used to be loaded via TS with register:name.
      *
      * @param string $properties comma separated list of properties
-     * @param mixed $object object or array to get the properties
-     * @param string $prefix optional prefix
+     * @param mixed  $object     object or array to get the properties
+     * @param string $prefix     optional prefix
+     *
      * @return void
      */
     public static function setRegisterProperties($properties, $object, $prefix = 'news')
@@ -72,7 +73,8 @@ class Page
 
             $register = [];
             foreach ($items as $item) {
-                $key = $prefix . ucfirst($item);
+                $key = $prefix.ucfirst($item);
+
                 try {
                     $register[$key] = \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getProperty($object, $item);
                 } catch (\Exception $e) {
@@ -84,12 +86,14 @@ class Page
     }
 
     /**
-     * Return a page tree
+     * Return a page tree.
      *
-     * @param int $pageUid page to start with
+     * @param int $pageUid   page to start with
      * @param int $treeLevel count of levels
-     * @return PageTreeView
+     *
      * @throws \Exception
+     *
+     * @return PageTreeView
      */
     public static function pageTree($pageUid, $treeLevel)
     {
@@ -97,7 +101,7 @@ class Page
             throw new \Exception('Page::pageTree does only work in the backend!');
         }
 
-        $pageUid = (int)$pageUid;
+        $pageUid = (int) $pageUid;
         if ($pageUid === 0 && !self::getBackendUser()->isAdmin()) {
             $mounts = self::getBackendUser()->returnWebmounts();
             $pageUid = array_shift($mounts);
@@ -105,7 +109,7 @@ class Page
 
         /* @var $tree PageTreeView */
         $tree = GeneralUtility::makeInstance(PageTreeView::class);
-        $tree->init('AND ' . self::getBackendUser()->getPagePermsClause(1));
+        $tree->init('AND '.self::getBackendUser()->getPagePermsClause(1));
 
         $treeStartingRecord = BackendUtility::getRecord('pages', $pageUid);
         BackendUtility::workspaceOL('pages', $treeStartingRecord);
@@ -114,22 +118,22 @@ class Page
 
         // Creating top icon; the current page
         $tree->tree[] = [
-            'row' => $treeStartingRecord,
-            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, Icon::SIZE_SMALL)->render() : ''
+            'row'  => $treeStartingRecord,
+            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, Icon::SIZE_SMALL)->render() : '',
         ];
 
         $tree->getTree($pageUid, $treeLevel, '');
+
         return $tree;
     }
 
     /**
-     * Get backend user
+     * Get backend user.
      *
      * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
-    static protected function getBackendUser()
+    protected static function getBackendUser()
     {
         return $GLOBALS['BE_USER'];
     }
-
 }

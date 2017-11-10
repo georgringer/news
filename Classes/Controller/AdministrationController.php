@@ -1,7 +1,8 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -30,24 +31,22 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Lang\LanguageService;
 
 /**
- * Administration controller
- *
+ * Administration controller.
  */
 class AdministrationController extends NewsController
 {
-
     const SIGNAL_ADMINISTRATION_INDEX_ACTION = 'indexAction';
     const SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION = 'newsPidListingAction';
 
     /**
-     * Page uid
+     * Page uid.
      *
      * @var int
      */
     protected $pageUid = 0;
 
     /**
-     * TsConfig configuration
+     * TsConfig configuration.
      *
      * @var array
      */
@@ -64,19 +63,19 @@ class AdministrationController extends NewsController
     protected $configurationManager;
 
     /**
-     * Function will be called before every other action
+     * Function will be called before every other action.
      *
      * @return void
      */
     public function initializeAction()
     {
-        $this->pageUid = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id');
+        $this->pageUid = (int) \TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id');
         $this->setTsConfig();
         parent::initializeAction();
     }
 
     /**
-     * BackendTemplateContainer
+     * BackendTemplateContainer.
      *
      * @var BackendTemplateView
      */
@@ -88,21 +87,21 @@ class AdministrationController extends NewsController
     protected $iconFactory;
 
     /**
-     * Backend Template Container
+     * Backend Template Container.
      *
      * @var BackendTemplateView
      */
     protected $defaultViewObjectName = BackendTemplateView::class;
 
     /**
-     * Set up the doc header properly here
+     * Set up the doc header properly here.
      *
      * @param ViewInterface $view
      */
     protected function initializeView(ViewInterface $view)
     {
         $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
-        /** @var BackendTemplateView $view */
+        /* @var BackendTemplateView $view */
         parent::initializeView($view);
         $view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation([]);
 
@@ -114,7 +113,7 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Create menu
+     * Create menu.
      *
      * @return void
      */
@@ -129,12 +128,12 @@ class AdministrationController extends NewsController
 
         $actions = [
             ['action' => 'index', 'label' => 'newsListing'],
-            ['action' => 'newsPidListing', 'label' => 'newsPidListing']
+            ['action' => 'newsPidListing', 'label' => 'newsPidListing'],
         ];
 
         foreach ($actions as $action) {
             $item = $menu->makeMenuItem()
-                ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.' . $action['label']))
+                ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.'.$action['label']))
                 ->setHref($uriBuilder->reset()->uriFor($action['action'], [], 'Administration'))
                 ->setActive($this->request->getControllerActionName() === $action['action']);
             $menu->addMenuItem($item);
@@ -148,7 +147,7 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Create the panel of buttons
+     * Create the panel of buttons.
      *
      * @return void
      */
@@ -160,20 +159,20 @@ class AdministrationController extends NewsController
 
         $buttons = [
             [
-                'table' => 'tx_news_domain_model_news',
-                'label' => 'module.createNewNewsRecord',
-                'action' => 'newNews'
+                'table'  => 'tx_news_domain_model_news',
+                'label'  => 'module.createNewNewsRecord',
+                'action' => 'newNews',
             ],
             [
-                'table' => 'tx_news_domain_model_tag',
-                'label' => 'module.createNewTag',
-                'action' => 'newTag'
+                'table'  => 'tx_news_domain_model_tag',
+                'label'  => 'module.createNewTag',
+                'action' => 'newTag',
             ],
             [
-                'table' => 'sys_category',
-                'label' => 'module.createNewCategory',
-                'action' => 'newCategory'
-            ]
+                'table'  => 'sys_category',
+                'label'  => 'module.createNewCategory',
+                'action' => 'newCategory',
+            ],
         ];
         foreach ($buttons as $key => $tableConfiguration) {
             if ($this->getBackendUser()->isAdmin() || GeneralUtility::inList($this->getBackendUser()->groupData['tables_modify'],
@@ -182,7 +181,7 @@ class AdministrationController extends NewsController
                 $viewButton = $buttonBar->makeLinkButton()
                     ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor($tableConfiguration['action'],
                         [], 'Administration'))
-                    ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label']))
+                    ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:'.$tableConfiguration['label']))
                     ->setIcon($this->iconFactory->getIconForRecord($tableConfiguration['table'], [], Icon::SIZE_SMALL));
                 $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, $key);
             }
@@ -195,7 +194,7 @@ class AdministrationController extends NewsController
         if (!empty($elFromTable)) {
             $viewButton = $buttonBar->makeLinkButton()
                 ->setHref($clipBoard->pasteUrl('', $this->pageUid))
-                ->setOnClick('return ' . $clipBoard->confirmMsg('pages', BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
+                ->setOnClick('return '.$clipBoard->confirmMsg('pages', BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
                         $elFromTable))
                 ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/locallang_mod_web_list.xlf:clip_pasteInto'))
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', ICON::SIZE_SMALL));
@@ -204,9 +203,10 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Inject a news repository to enable DI
+     * Inject a news repository to enable DI.
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     *
      * @return void
      */
     public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
@@ -215,17 +215,17 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Main action for administration
+     * Main action for administration.
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand
      * @dontvalidate  $demand
+     *
      * @return void
      */
     public function indexAction(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand = null)
     {
         $this->redirectToPageOnStart();
         if (is_null($demand)) {
-
             $demand = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand::class);
 
             // Preselect by TsConfig (e.g. tx_news.module.preselect.topNewsRestriction = 1)
@@ -255,13 +255,13 @@ class AdministrationController extends NewsController
         $newsItems = $this->newsRepository->findDemanded($demand, false);
 
         $assignedValues = [
-            'moduleToken' => $this->getToken(true),
-            'page' => $this->pageUid,
-            'demand' => $demand,
-            'news' => $newsItems,
+            'moduleToken'    => $this->getToken(true),
+            'page'           => $this->pageUid,
+            'demand'         => $demand,
+            'news'           => $newsItems,
             'showSearchForm' => (!is_null($demand) || count($newsItems) > 0),
-            'categories' => $this->categoryRepository->findTree($idList),
-            'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
+            'categories'     => $this->categoryRepository->findTree($idList),
+            'dateformat'     => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'],
         ];
 
         $assignedValues = $this->emitActionSignal('AdministrationController', self::SIGNAL_ADMINISTRATION_INDEX_ACTION,
@@ -270,9 +270,10 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Shows a page tree including count of news + category records
+     * Shows a page tree including count of news + category records.
      *
      * @param int $treeLevel
+     *
      * @return void
      */
     public function newsPidListingAction($treeLevel = 2)
@@ -286,7 +287,7 @@ class AdministrationController extends NewsController
         }
 
         $assignedValues = [
-            'tree' => $rawTree,
+            'tree'      => $rawTree,
             'treeLevel' => $treeLevel,
         ];
 
@@ -296,7 +297,7 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Redirect to form to create a news record
+     * Redirect to form to create a news record.
      *
      * @return void
      */
@@ -306,7 +307,7 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Redirect to form to create a category record
+     * Redirect to form to create a category record.
      *
      * @return void
      */
@@ -316,7 +317,7 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Redirect to form to create a tag record
+     * Redirect to form to create a tag record.
      *
      * @return void
      */
@@ -326,16 +327,17 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Create the demand object which define which records will get shown
+     * Create the demand object which define which records will get shown.
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand
+     *
      * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
      */
     protected function createDemandObject(\GeorgRinger\News\Domain\Model\Dto\AdministrationDemand $demand)
     {
         $demand->setCategories($demand->getSelectedCategories());
-        $demand->setOrder($demand->getSortingField() . ' ' . $demand->getSortingDirection());
-        $demand->setStoragePage(Page::extendPidListByChildren($this->pageUid, (int)$demand->getRecursive()));
+        $demand->setOrder($demand->getSortingField().' '.$demand->getSortingDirection());
+        $demand->setStoragePage(Page::extendPidListByChildren($this->pageUid, (int) $demand->getRecursive()));
         $demand->setOrderByAllowed($this->settings['orderByAllowed']);
 
         if ($demand->getSearchWord()) {
@@ -345,7 +347,7 @@ class AdministrationController extends NewsController
             $demand->setSearch($searchDto);
         }
         // Ensure that always a storage page is set
-        if ((int)$demand->getStoragePage() === 0) {
+        if ((int) $demand->getStoragePage() === 0) {
             $demand->setStoragePage('-3');
         }
 
@@ -353,14 +355,15 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Update page record array with count of news & category records
+     * Update page record array with count of news & category records.
      *
      * @param array $row page record
+     *
      * @return void
      */
     private function countRecordsOnPage(array &$row)
     {
-        $pageUid = (int)$row['row']['uid'];
+        $pageUid = (int) $row['row']['uid'];
 
         /* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
         $db = $GLOBALS['TYPO3_DB'];
@@ -368,19 +371,20 @@ class AdministrationController extends NewsController
         $row['countNews'] = $db->exec_SELECTcountRows(
             '*',
             'tx_news_domain_model_news',
-            'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
+            'pid='.$pageUid.BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
         $row['countCategories'] = $db->exec_SELECTcountRows(
             '*',
             'sys_category',
-            'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
+            'pid='.$pageUid.BackendUtilityCore::BEenableFields('sys_category'));
 
         $row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
     }
 
     /**
-     * Redirect to tceform creating a new record
+     * Redirect to tceform creating a new record.
      *
      * @param string $table table name
+     *
      * @return void
      */
     private function redirectToCreateNewRecord($table)
@@ -391,19 +395,19 @@ class AdministrationController extends NewsController
                 && is_array($this->tsConfiguration['defaultPid.'])
                 && isset($this->tsConfiguration['defaultPid.'][$table])
             ) {
-                $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
+                $pid = (int) $this->tsConfiguration['defaultPid.'][$table];
             }
         }
-        $returnUrl = 'index.php?M=web_NewsTxNewsM2&id=' . $this->pageUid . $this->getToken();
+        $returnUrl = 'index.php?M=web_NewsTxNewsM2&id='.$this->pageUid.$this->getToken();
         $url = BackendUtilityCore::getModuleUrl('record_edit', [
-            'edit[' . $table . '][' . $pid . ']' => 'new',
-            'returnUrl' => $returnUrl
+            'edit['.$table.']['.$pid.']' => 'new',
+            'returnUrl'                  => $returnUrl,
         ]);
         HttpUtility::redirect($url);
     }
 
     /**
-     * Set the TsConfig configuration for the extension
+     * Set the TsConfig configuration for the extension.
      *
      * @return void
      */
@@ -417,25 +421,26 @@ class AdministrationController extends NewsController
 
     /**
      * If defined in TsConfig with tx_news.module.redirectToPageOnStart = 123
-     * and the current page id is 0, a redirect to the given page will be done
+     * and the current page id is 0, a redirect to the given page will be done.
      *
      * @return void
      */
     protected function redirectToPageOnStart()
     {
-        if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
-            $url = 'index.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
+        if ((int) $this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int) $this->tsConfiguration['allowedPage']) {
+            $url = 'index.php?M=web_NewsTxNewsM2&id='.(int) $this->tsConfiguration['allowedPage'].$this->getToken();
             HttpUtility::redirect($url);
-        } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
-            $url = 'index.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
+        } elseif ($this->pageUid === 0 && (int) $this->tsConfiguration['redirectToPageOnStart'] > 0) {
+            $url = 'index.php?M=web_NewsTxNewsM2&id='.(int) $this->tsConfiguration['redirectToPageOnStart'].$this->getToken();
             HttpUtility::redirect($url);
         }
     }
 
     /**
-     * Get a CSRF token
+     * Get a CSRF token.
      *
      * @param bool $tokenOnly Set it to TRUE to get only the token, otherwise including the &moduleToken= as prefix
+     *
      * @return string
      */
     protected function getToken($tokenOnly = false)
@@ -444,12 +449,12 @@ class AdministrationController extends NewsController
         if ($tokenOnly) {
             return $token;
         } else {
-            return '&moduleToken=' . $token;
+            return '&moduleToken='.$token;
         }
     }
 
     /**
-     * Returns the LanguageService
+     * Returns the LanguageService.
      *
      * @return LanguageService
      */
@@ -459,7 +464,7 @@ class AdministrationController extends NewsController
     }
 
     /**
-     * Get backend user
+     * Get backend user.
      *
      * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */

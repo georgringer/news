@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Social\Facebook;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,17 +18,15 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper to share content
- * Details: https://developers.facebook.com/docs/plugins/share-button/
+ * Details: https://developers.facebook.com/docs/plugins/share-button/.
  *
  * Examples
  * ==============
  * <n:social.facebook.share />
  * Result: Facebook widget to share current URL with the Facebook button
- *
  */
 class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
-
     /**
      * @var \GeorgRinger\News\Service\SettingsService
      */
@@ -38,7 +36,8 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     protected $tagName = 'div';
 
     /**
-     * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     * @var \GeorgRinger\News\Service\SettingsService
+     *
      * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
@@ -47,7 +46,7 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     }
 
     /**
-     * Arguments initialization
+     * Arguments initialization.
      *
      * @return void
      */
@@ -58,9 +57,10 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     }
 
     /**
-     * Render a share button
+     * Render a share button.
      *
      * @param bool $loadJs
+     *
      * @return string
      */
     public function render($loadJs = true)
@@ -101,5 +101,4 @@ class ShareViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
 
         return $code;
     }
-
 }

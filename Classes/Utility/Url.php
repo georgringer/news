@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,22 +17,21 @@ namespace GeorgRinger\News\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Url Utility class
- *
+ * Url Utility class.
  */
 class Url
 {
-
     /**
-     * Prepend current url if url is relative
+     * Prepend current url if url is relative.
      *
      * @param string $url given url
+     *
      * @return string
      */
     public static function prependDomain($url)
     {
         if (!GeneralUtility::isFirstPartOfStr($url, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
-            $url = GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $url;
+            $url = GeneralUtility::getIndpEnv('TYPO3_SITE_URL').$url;
         }
 
         return $url;

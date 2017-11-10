@@ -2,18 +2,18 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
  * ViewHelper for a **simple** prev/next link.
@@ -47,11 +47,9 @@ namespace GeorgRinger\News\ViewHelpers;
  * <output>
  *  Menu with 2 li items with the link to the previous and next news item.
  * </output>
- *
  */
 class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
     /** @var \TYPO3\CMS\Core\Database\DatabaseConnection */
     protected $databaseConnection;
 
@@ -69,9 +67,10 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     }
 
     /**
-     * Inject the DataMapper
+     * Inject the DataMapper.
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
+     *
      * @return void
      */
     public function injectDataMapper(\TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper)
@@ -81,13 +80,15 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
 
     /**
      * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param string $pidList this is something
-     * @param string $sortField
-     * @param string $as
+     * @param string                              $pidList   this is something
+     * @param string                              $sortField
+     * @param string                              $as
+     *
      * @throws TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
+     *
      * @return string
      */
-    public function render(\GeorgRinger\News\Domain\Model\News $news, $pidList = '', $sortField = 'datetime', $as)
+    public function render(\GeorgRinger\News\Domain\Model\News $news, $pidList, $sortField, $as)
     {
         $neighbours = $this->getNeighbours($news, $pidList, $sortField);
 
@@ -96,13 +97,15 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         $this->templateVariableContainer->add($as, $mapped);
         $output = $this->renderChildren();
         $this->templateVariableContainer->remove($as);
+
         return $output;
     }
 
     /**
-     * Map the array from DB to an understandable output
+     * Map the array from DB to an understandable output.
      *
      * @param array $result
+     *
      * @return array
      */
     protected function mapResultToObjects(array $result)
@@ -136,9 +139,10 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     }
 
     /**
-     * Get the news object from the given id
+     * Get the news object from the given id.
      *
      * @param int $id
+     *
      * @return mixed|null
      */
     protected function getObject($id)
@@ -146,7 +150,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         $record = null;
 
         $rawRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news',
-            'uid=' . (int)$id);
+            'uid='.(int) $id);
 
         if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->sys_language_content > 0) {
             $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
@@ -171,7 +175,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     }
 
     /**
-     * Returns where clause for the news table
+     * Returns where clause for the news table.
      *
      * @return string
      */
@@ -181,12 +185,12 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         if (is_object($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']->sys_page)) {
             return $GLOBALS['TSFE']->sys_page->enableFields($table);
         } elseif (is_object($GLOBALS['BE_USER'])) {
-            return \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause($table) .
-            \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields($table) .
+            return \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause($table).
+            \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields($table).
             \TYPO3\CMS\Core\Resource\Utility\BackendUtility::getWorkspaceWhereClause($table);
         } elseif (TYPO3_MODE === 'BE' && TYPO3_cliMode === true) {
             return '';
-        } elseif(TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_CLI) {
+        } elseif (TYPO3_REQUESTTYPE & TYPO3_REQUESTTYPE_CLI) {
             return '';
         }
 
@@ -197,6 +201,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      * @param \GeorgRinger\News\Domain\Model\News $news
      * @param $pidList
      * @param $sortField
+     *
      * @return array
      */
     protected function getNeighbours(\GeorgRinger\News\Domain\Model\News $news, $pidList, $sortField)
@@ -205,25 +210,25 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
 
         $select = 'SELECT tx_news_domain_model_news.uid,tx_news_domain_model_news.title ';
         $from = 'FROM tx_news_domain_model_news';
-        $whereClause = 'tx_news_domain_model_news.pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
-            . $this->getEnableFieldsWhereClauseForTable();
+        $whereClause = 'tx_news_domain_model_news.pid IN('.$this->databaseConnection->cleanIntList($pidList).') '
+            .$this->getEnableFieldsWhereClauseForTable();
 
-        $query = $select . $from . '
-					WHERE ' . $whereClause . ' && ' . $sortField . ' >= (SELECT MAX(' . $sortField . ')
-						' . $from . '
-					WHERE ' . $whereClause . ' AND ' . $sortField . ' < (SELECT ' . $sortField . '
+        $query = $select.$from.'
+					WHERE '.$whereClause.' && '.$sortField.' >= (SELECT MAX('.$sortField.')
+						'.$from.'
+					WHERE '.$whereClause.' AND '.$sortField.' < (SELECT '.$sortField.'
 						FROM tx_news_domain_model_news
-						WHERE tx_news_domain_model_news.uid = ' . $news->getUid() . '))
-					ORDER BY ' . $sortField . ' ASC
+						WHERE tx_news_domain_model_news.uid = '.$news->getUid().'))
+					ORDER BY '.$sortField.' ASC
 					LIMIT 3';
 
-        $query2 = $select . $from . '
-			WHERE ' . $whereClause . ' AND ' . $sortField . '= (SELECT MIN(' . $sortField . ')
+        $query2 = $select.$from.'
+			WHERE '.$whereClause.' AND '.$sortField.'= (SELECT MIN('.$sortField.')
 				FROM tx_news_domain_model_news
-				WHERE ' . $whereClause . ' AND ' . $sortField . ' >
-					(SELECT ' . $sortField . '
+				WHERE '.$whereClause.' AND '.$sortField.' >
+					(SELECT '.$sortField.'
 					FROM tx_news_domain_model_news
-					WHERE tx_news_domain_model_news.uid = ' . $news->getUid() . '))
+					WHERE tx_news_domain_model_news.uid = '.$news->getUid().'))
 			';
 
         $res = $this->databaseConnection->sql_query($query);
@@ -239,8 +244,10 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
                 $out[] = $row;
             }
             $this->databaseConnection->sql_free_result($res);
+
             return $out;
         }
+
         return $out;
     }
 }

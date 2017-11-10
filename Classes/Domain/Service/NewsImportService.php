@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -22,12 +22,10 @@ use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * News Import Service
- *
+ * News Import Service.
  */
 class NewsImportService extends AbstractImportService
 {
-
     const ACTION_IMPORT_L10N_OVERLAY = 1;
 
     /**
@@ -65,9 +63,10 @@ class NewsImportService extends AbstractImportService
     }
 
     /**
-     * Inject the news repository
+     * Inject the news repository.
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
+     *
      * @return void
      */
     public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
@@ -76,9 +75,10 @@ class NewsImportService extends AbstractImportService
     }
 
     /**
-     * Inject the category repository
+     * Inject the category repository.
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     *
      * @return void
      */
     public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
@@ -87,9 +87,10 @@ class NewsImportService extends AbstractImportService
     }
 
     /**
-     * Inject the ttcontent repository
+     * Inject the ttcontent repository.
      *
      * @param \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
+     *
      * @return void
      */
     public function injectTtContentRepository(
@@ -99,9 +100,10 @@ class NewsImportService extends AbstractImportService
     }
 
     /**
-     * Inject SignalSlotDispatcher
+     * Inject SignalSlotDispatcher.
      *
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
+     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+     *
      * @return void
      */
     public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
@@ -111,6 +113,7 @@ class NewsImportService extends AbstractImportService
 
     /**
      * @param array $importItem
+     *
      * @return null|\GeorgRinger\News\Domain\Model\News
      */
     protected function initializeNewsRecord(array $importItem)
@@ -138,8 +141,9 @@ class NewsImportService extends AbstractImportService
 
     /**
      * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param array $importItem
-     * @param array $importItemOverwrite
+     * @param array                               $importItem
+     * @param array                               $importItemOverwrite
+     *
      * @return \GeorgRinger\News\Domain\Model\News
      */
     protected function hydrateNewsRecord(
@@ -147,7 +151,6 @@ class NewsImportService extends AbstractImportService
         array $importItem,
         array $importItemOverwrite
     ) {
-
         if (!empty($importItemOverwrite)) {
             $importItem = array_merge($importItem, $importItemOverwrite);
         }
@@ -160,7 +163,7 @@ class NewsImportService extends AbstractImportService
         $news->setTstamp($importItem['tstamp']);
         $news->setCrdate($importItem['crdate']);
         $news->setSysLanguageUid($importItem['sys_language_uid']);
-        $news->setSorting((int)$importItem['sorting']);
+        $news->setSorting((int) $importItem['sorting']);
 
         $news->setTitle($importItem['title']);
         $news->setTeaser($importItem['teaser']);
@@ -213,12 +216,10 @@ class NewsImportService extends AbstractImportService
 
         // media relation
         if (is_array($importItem['media'])) {
-
             foreach ($importItem['media'] as $mediaItem) {
 
                 // multi media
-                if ((int)$mediaItem['type'] === Media::MEDIA_TYPE_MULTIMEDIA) {
-
+                if ((int) $mediaItem['type'] === Media::MEDIA_TYPE_MULTIMEDIA) {
                     if (($media = $this->getMultiMediaIfAlreadyExists($news, $mediaItem['multimedia'])) === false) {
                         /** @var Media $media */
                         $media = $this->objectManager->get(Media::class);
@@ -282,14 +283,12 @@ class NewsImportService extends AbstractImportService
                         $media->setPid($importItem['pid']);
                     }
                 } else {
-
                     if (!$media = $this->getMediaIfAlreadyExists($news, $mediaItem['image'])) {
-
                         $uniqueName = $basicFileFunctions->getUniqueName($mediaItem['image'],
-                            PATH_site . self::UPLOAD_PATH);
+                            PATH_site.self::UPLOAD_PATH);
 
                         copy(
-                            PATH_site . $mediaItem['image'],
+                            PATH_site.$mediaItem['image'],
                             $uniqueName
                         );
 
@@ -314,7 +313,6 @@ class NewsImportService extends AbstractImportService
 
             // FAL enabled
             if ($this->emSettings->getUseFal() > 0) {
-
                 foreach ($importItem['related_files'] as $fileItem) {
 
                     // get fileObject by given identifier (file UID, combined identifier or path/filename)
@@ -356,17 +354,14 @@ class NewsImportService extends AbstractImportService
                         $relatedFile->setPid($importItem['pid']);
                     }
                 }
-
             } else {
-
                 foreach ($importItem['related_files'] as $file) {
                     if (!$relatedFile = $this->getRelatedFileIfAlreadyExists($news, $file['file'])) {
-
                         $uniqueName = $basicFileFunctions->getUniqueName($file['file'],
-                            PATH_site . self::UPLOAD_PATH);
+                            PATH_site.self::UPLOAD_PATH);
 
                         copy(
-                            PATH_site . $file['file'],
+                            PATH_site.$file['file'],
                             $uniqueName
                         );
 
@@ -403,11 +398,12 @@ class NewsImportService extends AbstractImportService
     }
 
     /**
-     * Import
+     * Import.
      *
      * @param array $importData
      * @param array $importItemOverwrite
      * @param array $settings
+     *
      * @return void
      */
     public function import(array $importData, array $importItemOverwrite = [], $settings = [])
@@ -418,11 +414,11 @@ class NewsImportService extends AbstractImportService
         foreach ($importData as $importItem) {
 
             // Store language overlay in post persist queue
-            if ((int)$importItem['sys_language_uid'] > 0 && (string)$importItem['l10n_parent'] !== '0') {
+            if ((int) $importItem['sys_language_uid'] > 0 && (string) $importItem['l10n_parent'] !== '0') {
                 $this->postPersistQueue[$importItem['import_id']] = [
-                    'action' => self::ACTION_IMPORT_L10N_OVERLAY,
-                    'category' => null,
-                    'importItem' => $importItem
+                    'action'     => self::ACTION_IMPORT_L10N_OVERLAY,
+                    'category'   => null,
+                    'importItem' => $importItem,
                 ];
                 continue;
             }
@@ -430,7 +426,6 @@ class NewsImportService extends AbstractImportService
             $news = $this->initializeNewsRecord($importItem);
 
             $this->hydrateNewsRecord($news, $importItem, $importItemOverwrite);
-
         }
 
         $this->persistenceManager->persistAll();
@@ -447,6 +442,7 @@ class NewsImportService extends AbstractImportService
     /**
      * @param array $queueItem
      * @param array $importItemOverwrite
+     *
      * @return void
      */
     protected function importL10nOverlay(array $queueItem, array $importItemOverwrite)
@@ -465,15 +461,15 @@ class NewsImportService extends AbstractImportService
             $news->setSysLanguageUid($importItem['sys_language_uid']);
             $news->setL10nParent($parentNews->getUid());
         }
-
     }
 
     /**
-     * Get media file if it exists
+     * Get media file if it exists.
      *
      * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param string $mediaFile
-     * @return Boolean|\GeorgRinger\News\Domain\Model\Media
+     * @param string                              $mediaFile
+     *
+     * @return bool|\GeorgRinger\News\Domain\Model\Media
      */
     protected function getMediaIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $mediaFile)
     {
@@ -483,24 +479,26 @@ class NewsImportService extends AbstractImportService
         if (isset($mediaItems) && $mediaItems->count() !== 0) {
             foreach ($mediaItems as $mediaItem) {
                 $pathInfoItem = pathinfo($mediaItem->getImage());
-                $pathInfoMediaFile = pathInfo($mediaFile);
+                $pathInfoMediaFile = pathinfo($mediaFile);
                 if (GeneralUtility::isFirstPartOfStr($pathInfoItem['filename'], $pathInfoMediaFile['filename']) &&
-                    $this->filesAreEqual(PATH_site . $mediaFile, PATH_site . self::UPLOAD_PATH . $mediaItem->getImage())
+                    $this->filesAreEqual(PATH_site.$mediaFile, PATH_site.self::UPLOAD_PATH.$mediaItem->getImage())
                 ) {
                     $result = $mediaItem;
                     break;
                 }
             }
         }
+
         return $result;
     }
 
     /**
-     * Get multimedia object if it exists
+     * Get multimedia object if it exists.
      *
      * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param string $url
-     * @return Boolean|\GeorgRinger\News\Domain\Model\Media
+     * @param string                              $url
+     *
+     * @return bool|\GeorgRinger\News\Domain\Model\Media
      */
     protected function getMultiMediaIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $url)
     {
@@ -515,15 +513,17 @@ class NewsImportService extends AbstractImportService
                 }
             }
         }
+
         return $result;
     }
 
     /**
-     * Get related file if it exists
+     * Get related file if it exists.
      *
      * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param string $relatedFile
-     * @return Boolean|File
+     * @param string                              $relatedFile
+     *
+     * @return bool|File
      */
     protected function getRelatedFileIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $relatedFile)
     {
@@ -534,8 +534,8 @@ class NewsImportService extends AbstractImportService
             foreach ($relatedItems as $relatedItem) {
                 if ($relatedItem->getFile() == basename($relatedFile) &&
                     $this->filesAreEqual(
-                        PATH_site . $relatedFile,
-                        PATH_site . self::UPLOAD_PATH . $relatedItem->getFile()
+                        PATH_site.$relatedFile,
+                        PATH_site.self::UPLOAD_PATH.$relatedItem->getFile()
                     )
                 ) {
                     $result = $relatedItem;
@@ -543,14 +543,16 @@ class NewsImportService extends AbstractImportService
                 }
             }
         }
+
         return $result;
     }
 
     /**
-     * Get an existing items from the references that matches the file
+     * Get an existing items from the references that matches the file.
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference> $items
-     * @param \TYPO3\CMS\Core\Resource\File $file
+     * @param \TYPO3\CMS\Core\Resource\File                                                              $file
+     *
      * @return bool|FileReference
      */
     protected function getIfFalRelationIfAlreadyExists(
@@ -562,25 +564,27 @@ class NewsImportService extends AbstractImportService
             /** @var $item FileReference */
             foreach ($items as $item) {
                 // only check already persisted items
-                if ($item->getFileUid() === (int)$file->getUid()
+                if ($item->getFileUid() === (int) $file->getUid()
                     ||
                     ($item->getUid() &&
                         $item->getOriginalResource()->getName() === $file->getName() &&
-                        $item->getOriginalResource()->getSize() === (int)$file->getSize())
+                        $item->getOriginalResource()->getSize() === (int) $file->getSize())
                 ) {
                     $result = $item;
                     break;
                 }
             }
         }
+
         return $result;
     }
 
     /**
-     * Get an existing related link object
+     * Get an existing related link object.
      *
      * @param \GeorgRinger\News\Domain\Model\News $news
-     * @param string $uri
+     * @param string                              $uri
+     *
      * @return bool|Link
      */
     protected function getRelatedLinkIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $uri)
@@ -596,14 +600,15 @@ class NewsImportService extends AbstractImportService
                 }
             }
         }
+
         return $result;
     }
 
     /**
-     * Emits signal
+     * Emits signal.
      *
-     * @param string $signalName name of the signal slot
-     * @param array $signalArguments arguments for the signal slot
+     * @param string $signalName      name of the signal slot
+     * @param array  $signalArguments arguments for the signal slot
      */
     protected function emitSignal($signalName, array $signalArguments)
     {

@@ -11,7 +11,6 @@ use GeorgRinger\News\Utility\EmConfiguration;
 
 class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
 {
-
     const UPLOAD_PATH = 'uploads/tx_news/';
 
     /**
@@ -45,9 +44,10 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
     protected $logger;
 
     /**
-     * Inject the object manager
+     * Inject the object manager.
      *
      * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     *
      * @return void
      */
     public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
@@ -56,9 +56,10 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
     }
 
     /**
-     * Inject Persistence Manager
+     * Inject Persistence Manager.
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
+     *
      * @return void
      */
     public function injectPersistenceManager(
@@ -68,7 +69,7 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
     }
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -76,22 +77,24 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
     }
 
     /**
-     * Compares 2 files by using its filesize
+     * Compares 2 files by using its filesize.
      *
      * @param string $file1 Absolute path and filename to file1
      * @param string $file2 Absolute path and filename to file2
+     *
      * @return bool
      */
     protected function filesAreEqual($file1, $file2)
     {
-        return (filesize($file1) === filesize($file2));
+        return filesize($file1) === filesize($file2);
     }
 
     /**
-     * Find a existing file by its hash
+     * Find a existing file by its hash.
      *
      * @param string $hash
-     * @return NULL|\TYPO3\CMS\Core\Resource\File
+     *
+     * @return null|\TYPO3\CMS\Core\Resource\File
      */
     protected function findFileByHash($hash)
     {
@@ -100,12 +103,12 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
         /**
          * As of 6.2 we can use
          * $files = FileIndexRepository->findByContentHash($hash);
-         * Until then a direct DB query
+         * Until then a direct DB query.
          */
         $files = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
             'storage,identifier',
             'sys_file',
-            'sha1=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($hash, 'sys_file')
+            'sha1='.$GLOBALS['TYPO3_DB']->fullQuoteStr($hash, 'sys_file')
         );
         if (count($files)) {
             foreach ($files as $fileInfo) {
@@ -116,11 +119,12 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
                 }
             }
         }
+
         return $file;
     }
 
     /**
-     * Get import Folder
+     * Get import Folder.
      *
      * TODO: catch exception when storage/folder does not exist and return readable message to the user
      *
@@ -129,13 +133,14 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
     protected function getImportFolder()
     {
         if ($this->importFolder === null) {
-            $this->importFolder = $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter() . ':' . $this->emSettings->getResourceFolderImporter());
+            $this->importFolder = $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter().':'.$this->emSettings->getResourceFolderImporter());
         }
+
         return $this->importFolder;
     }
 
     /**
-     * Get resource storage
+     * Get resource storage.
      *
      * @return \TYPO3\CMS\Core\Resource\ResourceStorage
      */

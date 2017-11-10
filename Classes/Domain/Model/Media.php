@@ -1,26 +1,25 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * Media model
- *
+ * Media model.
  */
 class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
     const MEDIA_TYPE_IMAGE = 0;
     const MEDIA_TYPE_MULTIMEDIA = 1;
     const MEDIA_TYPE_HTML = 2;
@@ -116,7 +115,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $description;
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -126,9 +125,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title title
+     *
      * @return void
      */
     public function setTitle($title)
@@ -137,7 +137,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get caption
+     * Get caption.
      *
      * @return string
      */
@@ -147,9 +147,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set caption
+     * Set caption.
      *
      * @param string $caption caption
+     *
      * @return void
      */
     public function setCaption($caption)
@@ -158,7 +159,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get alt text
+     * Get alt text.
      *
      * @return string
      */
@@ -168,9 +169,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set alt text
+     * Set alt text.
      *
      * @param string $alt alt text
+     *
      * @return void
      */
     public function setAlt($alt)
@@ -179,7 +181,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return int
      */
@@ -189,9 +191,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param int $type type
+     *
      * @return void
      */
     public function setType($type)
@@ -200,7 +203,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get flag if shown in preview
+     * Get flag if shown in preview.
      *
      * @return int
      */
@@ -210,9 +213,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set show in preview flag
+     * Set show in preview flag.
      *
      * @param int $showinpreview flag if shown in preview
+     *
      * @return void
      */
     public function setShowinpreview($showinpreview)
@@ -221,7 +225,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get creation date
+     * Get creation date.
      *
      * @return \DateTime
      */
@@ -231,9 +235,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set creation date
+     * Set creation date.
      *
      * @param \DateTime $crdate creation date
+     *
      * @return void
      */
     public function setCrdate($crdate)
@@ -242,7 +247,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get timestamp
+     * Get timestamp.
      *
      * @return \DateTime
      */
@@ -252,9 +257,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set timestamp
+     * Set timestamp.
      *
      * @param \DateTime $tstamp timestamp
+     *
      * @return void
      */
     public function setTstamp($tstamp)
@@ -263,7 +269,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get hidden flag
+     * Get hidden flag.
      *
      * @return int
      */
@@ -273,9 +279,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set hidden flag
+     * Set hidden flag.
      *
      * @param int $hidden hidden flag
+     *
      * @return void
      */
     public function setHidden($hidden)
@@ -284,7 +291,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get deleted flag
+     * Get deleted flag.
      *
      * @return int
      */
@@ -294,9 +301,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set deleted flag
+     * Set deleted flag.
      *
      * @param int $deleted deleted flag
+     *
      * @return void
      */
     public function setDeleted($deleted)
@@ -305,7 +313,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get creators user id
+     * Get creators user id.
      *
      * @return int
      */
@@ -315,9 +323,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set creators user id
+     * Set creators user id.
      *
      * @param int $cruserId creators user id
+     *
      * @return void
      */
     public function setCruserId($cruserId)
@@ -326,7 +335,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get width of element
+     * Get width of element.
      *
      * @return int
      */
@@ -336,9 +345,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set with of element
+     * Set with of element.
      *
      * @param int $width integer
+     *
      * @return void
      */
     public function setWidth($width)
@@ -347,7 +357,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get height of element
+     * Get height of element.
      *
      * @return int
      */
@@ -357,9 +367,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set height of element
+     * Set height of element.
      *
      * @param int $height height
+     *
      * @return void
      */
     public function setHeight($height)
@@ -368,7 +379,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get sorting
+     * Get sorting.
      *
      * @return int
      */
@@ -378,9 +389,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set sorting
+     * Set sorting.
      *
      * @param int $sorting sorting
+     *
      * @return void
      */
     public function setSorting($sorting)
@@ -389,7 +401,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get image
+     * Get image.
      *
      * @return string
      */
@@ -399,9 +411,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image image
+     *
      * @return void
      */
     public function setImage($image)
@@ -410,7 +423,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get multimedia url
+     * Get multimedia url.
      *
      * @return string
      */
@@ -420,9 +433,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set multimedia
+     * Set multimedia.
      *
      * @param string $multimedia multimedia url
+     *
      * @return void
      */
     public function setMultimedia($multimedia)
@@ -431,7 +445,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get html
+     * Get html.
      *
      * @return string
      */
@@ -441,9 +455,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set html
+     * Set html.
      *
      * @param string $html html
+     *
      * @return void
      */
     public function setHtml($html)
@@ -452,9 +467,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set copyright text
+     * Set copyright text.
      *
      * @param string $copyright
+     *
      * @return void
      */
     public function setCopyright($copyright)
@@ -463,7 +479,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get copyright text
+     * Get copyright text.
      *
      * @return string
      */
@@ -473,7 +489,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get content of media element depending on its type
+     * Get content of media element depending on its type.
      *
      * @return mixed content of media element
      */
@@ -496,9 +512,10 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return void
      */
     public function setDescription($description)
@@ -507,7 +524,7 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -515,5 +532,4 @@ class Media extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->description;
     }
-
 }
