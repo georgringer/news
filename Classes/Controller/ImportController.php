@@ -1,7 +1,8 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -21,12 +22,10 @@ use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 
 /**
- * Controller to import news records
- *
+ * Controller to import news records.
  */
 class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-
     /**
      * Retrieve all available import jobs by traversing trough registered
      * import jobs and checking "isEnabled".
@@ -56,19 +55,20 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function indexAction()
     {
         $this->view->assignMultiple([
-                'error' => $this->checkCorrectConfiguration(),
+                'error'         => $this->checkCorrectConfiguration(),
                 'availableJobs' => array_merge([0 => ''], $this->getAvailableJobs()),
-                'moduleUrl' => BackendUtility::getModuleUrl($this->request->getPluginName())
+                'moduleUrl'     => BackendUtility::getModuleUrl($this->request->getPluginName()),
             ]
         );
     }
 
     /**
-     * Check for correct configuration
+     * Check for correct configuration.
      *
-     * @return string
      * @throws \Exception
      * @throws \TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsException
+     *
+     * @return string
      */
     protected function checkCorrectConfiguration()
     {
@@ -76,7 +76,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $settings = EmConfiguration::getSettings();
 
         try {
-            $storageId = (int)$settings->getStorageUidImporter();
+            $storageId = (int) $settings->getStorageUidImporter();
             $path = $settings->getResourceFolderImporter();
             if ($storageId === 0) {
                 throw new \UnexpectedValueException('import.error.configuration.storageUidImporter');
@@ -90,6 +90,7 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         } catch (\UnexpectedValueException $e) {
             $error = $e->getMessage();
         }
+
         return $error;
     }
 
@@ -97,7 +98,8 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * Runs an actual job.
      *
      * @param string $jobClassName
-     * @param int $offset
+     * @param int    $offset
+     *
      * @return string
      */
     public function runJobAction($jobClassName, $offset = 0)
@@ -109,14 +111,16 @@ class ImportController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
     /**
-     * Retrieves the job info of a given jobClass
+     * Retrieves the job info of a given jobClass.
      *
-     * @param  string $jobClassName
+     * @param string $jobClassName
+     *
      * @return string
      */
     public function jobInfoAction($jobClassName)
     {
         $job = $this->objectManager->get($jobClassName);
+
         return json_encode($job->getInfo());
     }
 

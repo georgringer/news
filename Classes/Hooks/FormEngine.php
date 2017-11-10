@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -20,25 +20,24 @@ use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Hook into FormEngine
- *
+ * Hook into FormEngine.
  */
 class FormEngine
 {
-
     /**
-     * Path to the locallang file
+     * Path to the locallang file.
      *
      * @var string
      */
     const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
 
     /**
-     * Pre-processing of the whole TCEform
+     * Pre-processing of the whole TCEform.
      *
-     * @param string $table
-     * @param array $row
+     * @param string                             $table
+     * @param array                              $row
      * @param \TYPO3\CMS\Backend\Form\FormEngine $parentObject
+     *
      * @todo this hook won't work, do we need it?
      */
     public function getMainFields_preProcess($table, $row, $parentObject)
@@ -52,11 +51,11 @@ class FormEngine
             } else {
                 $parentObject->renderReadonly = true;
             }
-            $flashMessageContent = $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.content', true);
+            $flashMessageContent = $GLOBALS['LANG']->sL(self::LLPATH.'record.savingdisabled.content', true);
             $flashMessageContent .= '<ul>';
             $accessDeniedCategories = AccessControlService::getAccessDeniedCategories($row);
             foreach ($accessDeniedCategories as $accessDeniedCategory) {
-                $flashMessageContent .= '<li>' . htmlspecialchars($accessDeniedCategory['title']) . ' [' . $accessDeniedCategory['uid'] . ']</li>';
+                $flashMessageContent .= '<li>'.htmlspecialchars($accessDeniedCategory['title']).' ['.$accessDeniedCategory['uid'].']</li>';
             }
             $flashMessageContent .= '</ul>';
 
@@ -64,7 +63,7 @@ class FormEngine
             $flashMessage = GeneralUtility::makeInstance(
                 'TYPO3\CMS\Core\Messaging\FlashMessage',
                 $flashMessageContent,
-                $GLOBALS['LANG']->sL(self::LLPATH . 'record.savingdisabled.header', true),
+                $GLOBALS['LANG']->sL(self::LLPATH.'record.savingdisabled.header', true),
                 FlashMessage::WARNING
             );
 
@@ -75,5 +74,4 @@ class FormEngine
             $defaultFlashMessageQueue->enqueue($flashMessage);
         }
     }
-
 }

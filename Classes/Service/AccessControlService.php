@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Service;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,16 +19,15 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Service for access control related stuff
- *
+ * Service for access control related stuff.
  */
 class AccessControlService
 {
-
     /**
-     * Check if a user has access to all categories of a news record
+     * Check if a user has access to all categories of a news record.
      *
      * @param array $newsRecord
+     *
      * @return bool
      */
     public static function userHasCategoryPermissionsForRecord(array $newsRecord)
@@ -51,9 +50,10 @@ class AccessControlService
     }
 
     /**
-     * Get an array with the uid and title of all categories the user doesn't have access to
+     * Get an array with the uid and title of all categories the user doesn't have access to.
      *
      * @param array $newsRecord
+     *
      * @return array
      */
     public static function getAccessDeniedCategories(array $newsRecord)
@@ -89,9 +89,10 @@ class AccessControlService
     }
 
     /**
-     * Get all categories for a news record respecting l10n_mode
+     * Get all categories for a news record respecting l10n_mode.
      *
      * @param array $newsRecord
+     *
      * @return array
      */
     public static function getCategoriesForNewsRecord($newsRecord)
@@ -102,7 +103,7 @@ class AccessControlService
             $categoryL10nMode = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['categories']['l10n_mode'];
             if ($categoryL10nMode === 'mergeIfNotBlank') {
                 // mergeIfNotBlank: If there are categories in the localized version, take these, if not, inherit from parent
-                $whereClause = 'tablenames=\'tx_news_domain_model_news\' AND uid_foreign=' . $newsRecord['uid'];
+                $whereClause = 'tablenames=\'tx_news_domain_model_news\' AND uid_foreign='.$newsRecord['uid'];
                 $newsRecordCategoriesCount = self::getDatabaseConnection()->exec_SELECTcountRows('*',
                     'sys_category_record_mm', $whereClause, '', '', '', 'uid_local');
                 if ($newsRecordCategoriesCount > 0) {
@@ -123,8 +124,8 @@ class AccessControlService
             $newsRecordUid = $newsRecord['uid'];
         }
 
-        $whereClause = 'AND sys_category_record_mm.tablenames="tx_news_domain_model_news" AND sys_category_record_mm.fieldname="categories" AND sys_category_record_mm.uid_foreign=' . $newsRecordUid .
-            BackendUtility::deleteClause('sys_category') . BackendUtility::BEenableFields('sys_category');
+        $whereClause = 'AND sys_category_record_mm.tablenames="tx_news_domain_model_news" AND sys_category_record_mm.fieldname="categories" AND sys_category_record_mm.uid_foreign='.$newsRecordUid.
+            BackendUtility::deleteClause('sys_category').BackendUtility::BEenableFields('sys_category');
 
         $res = self::getDatabaseConnection()->exec_SELECT_mm_query(
             'sys_category_record_mm.uid_local, sys_category.title',
@@ -137,11 +138,12 @@ class AccessControlService
         $categories = [];
         while (($row = self::getDatabaseConnection()->sql_fetch_assoc($res))) {
             $categories[] = [
-                'uid' => $row['uid_local'],
-                'title' => $row['title']
+                'uid'   => $row['uid_local'],
+                'title' => $row['title'],
             ];
         }
         self::getDatabaseConnection()->sql_free_result($res);
+
         return $categories;
     }
 

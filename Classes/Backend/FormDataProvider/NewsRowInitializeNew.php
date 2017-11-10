@@ -19,12 +19,11 @@ use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 
 /**
- * Fill the news records with default values
+ * Fill the news records with default values.
  */
 class NewsRowInitializeNew implements FormDataProviderInterface
 {
-
-    /** @var  EmConfiguration */
+    /** @var EmConfiguration */
     protected $emConfiguration;
 
     public function __construct()
@@ -34,6 +33,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
 
     /**
      * @param array $result
+     *
      * @return array
      */
     public function addData(array $result)
@@ -49,7 +49,6 @@ class NewsRowInitializeNew implements FormDataProviderInterface
         if (is_array($result['pageTsConfig']['tx_news.'])
             && is_array($result['pageTsConfig']['tx_news.']['predefine.'])
         ) {
-
             if (isset($result['pageTsConfig']['tx_news.']['predefine.']['author'])) {
                 $result['databaseRow']['author'] = $GLOBALS['BE_USER']->user['realName'];
                 $result['databaseRow']['author_email'] = $GLOBALS['BE_USER']->user['email'];

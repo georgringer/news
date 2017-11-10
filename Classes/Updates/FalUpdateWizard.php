@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
 {
-
     const FOLDER_ContentUploads = '_migrated/news_uploads';
 
     /**
@@ -56,7 +55,7 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
      */
     protected function init()
     {
-        $fileadminDirectory = rtrim($GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'], '/') . '/';
+        $fileadminDirectory = rtrim($GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'], '/').'/';
         /** @var $storageRepository StorageRepository */
         $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
         $storages = $storageRepository->findAll();
@@ -76,13 +75,14 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
         }
         $this->fileFactory = GeneralUtility::makeInstance(ResourceFactory::class);
         $this->fileRepository = GeneralUtility::makeInstance(FileRepository::class);
-        $this->targetDirectory = PATH_site . $fileadminDirectory . self::FOLDER_ContentUploads . '/';
+        $this->targetDirectory = PATH_site.$fileadminDirectory.self::FOLDER_ContentUploads.'/';
     }
 
     /**
-     * Checks if an update is needed
+     * Checks if an update is needed.
      *
      * @param string &$description : The description for the update
+     *
      * @return bool TRUE if an update is needed, FALSE otherwise
      */
     public function checkForUpdate(&$description)
@@ -98,8 +98,8 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
 			'
         );
         if ($notMigratedMediaRowsCount > 0) {
-            $description = 'There are <strong>' . $notMigratedMediaRowsCount . '</strong> media records which are using the old media relation. '
-                . 'This wizard will copy the files to "fileadmin/' . self::FOLDER_ContentUploads . '".';
+            $description = 'There are <strong>'.$notMigratedMediaRowsCount.'</strong> media records which are using the old media relation. '
+                .'This wizard will copy the files to "fileadmin/'.self::FOLDER_ContentUploads.'".';
             $updateNeeded = true;
         }
 
@@ -112,13 +112,13 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
 			'
         );
         if ($notMigratedRelatedFileRowsCount > 0) {
-            $description .= '<br /><br />There are <strong>' . $notMigratedRelatedFileRowsCount . '</strong> related file records which are using the old relation. '
-                . 'This wizard will copy the files to "fileadmin/' . self::FOLDER_ContentUploads . '".';
+            $description .= '<br /><br />There are <strong>'.$notMigratedRelatedFileRowsCount.'</strong> related file records which are using the old relation. '
+                .'This wizard will copy the files to "fileadmin/'.self::FOLDER_ContentUploads.'".';
             $updateNeeded = true;
         }
 
         if ($updateNeeded) {
-            $description .= '<br /><br /><strong>Important:</strong> The <strong>first</strong> local storage inside "' . $GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'] . '" will
+            $description .= '<br /><br /><strong>Important:</strong> The <strong>first</strong> local storage inside "'.$GLOBALS['TYPO3_CONF_VARS']['BE']['fileadminDir'].'" will
 			be used for the migration. If you have multiple storages, only enable the one which should be used for the migration.';
         }
 
@@ -128,8 +128,9 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
     /**
      * Performs the database update.
      *
-     * @param array &$dbQueries Queries done in this update
+     * @param array &$dbQueries      Queries done in this update
      * @param mixed &$customMessages Custom messages
+     *
      * @return bool TRUE on success, FALSE on error
      */
     public function performUpdate(array &$dbQueries, &$customMessages)
@@ -157,9 +158,10 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
     }
 
     /**
-     * Update the news table and set the count of relations
+     * Update the news table and set the count of relations.
      *
      * @param string $field
+     *
      * @return void
      */
     protected function setCountInNewsRecord($field)
@@ -168,14 +170,14 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
             'count(*) as count, uid_foreign as uid',
             'sys_file_reference',
             'deleted=0 AND hidden=0 AND
-				cruser_id=999 AND fieldname= "' . $field . '" AND tablenames= "tx_news_domain_model_news"',
+				cruser_id=999 AND fieldname= "'.$field.'" AND tablenames= "tx_news_domain_model_news"',
             'uid_foreign'
         );
 
         foreach ($rows as $row) {
             $GLOBALS['TYPO3_DB']->exec_UPDATEquery(
                 'tx_news_domain_model_news',
-                $field . '= 0 AND uid=' . (int)$row['uid'],
+                $field.'= 0 AND uid='.(int) $row['uid'],
                 [$field => $row['count']]
             );
         }
@@ -194,10 +196,11 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
     }
 
     /**
-     * Processes the actual transformation from CSV to sys_file_references
+     * Processes the actual transformation from CSV to sys_file_references.
      *
-     * @param array $record
+     * @param array  $record
      * @param string $field
+     *
      * @return void
      */
     protected function migrateRecord(array $record, $field)
@@ -208,26 +211,26 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
             $file = $record['image'];
         }
 
-        if (!empty($file) && file_exists(PATH_site . 'uploads/tx_news/' . $file)) {
+        if (!empty($file) && file_exists(PATH_site.'uploads/tx_news/'.$file)) {
             GeneralUtility::upload_copy_move(
-                PATH_site . 'uploads/tx_news/' . $file,
-                $this->targetDirectory . $file);
+                PATH_site.'uploads/tx_news/'.$file,
+                $this->targetDirectory.$file);
 
-            $fileObject = $this->storage->getFile(self::FOLDER_ContentUploads . '/' . $file);
+            $fileObject = $this->storage->getFile(self::FOLDER_ContentUploads.'/'.$file);
             $this->fileRepository->add($fileObject);
             $dataArray = [
-                'uid_local' => $fileObject->getUid(),
-                'tablenames' => 'tx_news_domain_model_news',
-                'fieldname' => $field,
+                'uid_local'   => $fileObject->getUid(),
+                'tablenames'  => 'tx_news_domain_model_news',
+                'fieldname'   => $field,
                 'uid_foreign' => $record['newsUid'],
                 'table_local' => 'sys_file',
                 // the sys_file_reference record should always placed on the same page
                 // as the record to link to, see issue #46497
-                'cruser_id' => 999,
-                'pid' => $record['newsPid'],
+                'cruser_id'       => 999,
+                'pid'             => $record['newsPid'],
                 'sorting_foreign' => $record['sorting'],
-                'title' => $record['title'],
-                'hidden' => $record['hidden'],
+                'title'           => $record['title'],
+                'hidden'          => $record['hidden'],
             ];
 
             if ($field === 'fal_media') {
@@ -240,13 +243,13 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
                 }
                 $additionalData = [
                     // @todo how to proceed with: copyright
-                    'description' => implode(LF . LF, $description),
-                    'alternative' => $record['alt'],
-                    'showinpreview' => $record['showinpreview']
+                    'description'   => implode(LF.LF, $description),
+                    'alternative'   => $record['alt'],
+                    'showinpreview' => $record['showinpreview'],
                 ];
             } else {
                 $additionalData = [
-                    'description' => $record['description']
+                    'description' => $record['description'],
                 ];
             }
             $dataArray += $additionalData;
@@ -256,10 +259,11 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
     }
 
     /**
-     * Retrieve every record which needs to be processed
+     * Retrieve every record which needs to be processed.
      *
      * @param $table string table name
      * @param $field string field name
+     *
      * @return array
      */
     protected function getMediaRecordsFromTable($table, $field)
@@ -269,10 +273,10 @@ class FalUpdateWizard extends \TYPO3\CMS\Install\Updates\AbstractUpdate
             $additionalWhereClause = ' AND tx_news_domain_model_media.type = 0 AND tx_news_domain_model_media.image != ""';
         }
         $records = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            $table . '.*, tx_news_domain_model_news.uid AS newsUid, tx_news_domain_model_news.pid as newsPid',
-            $table . ' LEFT JOIN tx_news_domain_model_news ON ' . $table . '.parent = tx_news_domain_model_news.uid',
-            'tx_news_domain_model_news.' . $field . ' = 0 AND
-' . $table . '.deleted=0 AND tx_news_domain_model_news.deleted=0' . $additionalWhereClause
+            $table.'.*, tx_news_domain_model_news.uid AS newsUid, tx_news_domain_model_news.pid as newsPid',
+            $table.' LEFT JOIN tx_news_domain_model_news ON '.$table.'.parent = tx_news_domain_model_news.uid',
+            'tx_news_domain_model_news.'.$field.' = 0 AND
+'.$table.'.deleted=0 AND tx_news_domain_model_news.deleted=0'.$additionalWhereClause
         );
 
         return $records;

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Social;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -24,12 +24,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <div id="disqus_thread"></div>
  * <n:social.disqus newsItem="{newsItem}"
  *         shortName="demo123"
- *         link="{n:link(newsItem:newsItem,settings:settings,uriOnly:1,configuration:'{forceAbsoluteUrl:1}')}" />
- *
+ *         link="{n:link(newsItem:newsItem,settings:settings,uriOnly:1,configuration:'{forceAbsoluteUrl:1}')}" />.
  */
 class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
     /**
      * @var bool
      */
@@ -46,7 +44,8 @@ class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
     protected $pluginSettingsService;
 
     /**
-     * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     * @var \GeorgRinger\News\Service\SettingsService
+     *
      * @return void
      */
     public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
@@ -55,11 +54,12 @@ class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
     }
 
     /**
-     * Render disqus thread
+     * Render disqus thread.
      *
-     * @param \GeorgRinger\News\Domain\Model\News $newsItem news item
-     * @param string $shortName shortname
-     * @param string $link link
+     * @param \GeorgRinger\News\Domain\Model\News $newsItem  news item
+     * @param string                              $shortName shortname
+     * @param string                              $link      link
+     *
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\News $newsItem, $shortName, $link)
@@ -67,12 +67,12 @@ class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
         $tsSettings = $this->pluginSettingsService->getSettings();
 
         $code = '<script type="text/javascript">
-					var disqus_shortname = ' . GeneralUtility::quoteJSvalue($shortName, true) . ';
-					var disqus_identifier = \'news_' . $newsItem->getUid() . '\';
-					var disqus_url = ' . GeneralUtility::quoteJSvalue($link, true) . ';
-					var disqus_title = ' . GeneralUtility::quoteJSvalue($newsItem->getTitle(), true) . ';
+					var disqus_shortname = '.GeneralUtility::quoteJSvalue($shortName, true).';
+					var disqus_identifier = \'news_'.$newsItem->getUid().'\';
+					var disqus_url = '.GeneralUtility::quoteJSvalue($link, true).';
+					var disqus_title = '.GeneralUtility::quoteJSvalue($newsItem->getTitle(), true).';
 					var disqus_config = function () {
-						this.language = ' . GeneralUtility::quoteJSvalue($tsSettings['disqusLocale']) . ';
+						this.language = '.GeneralUtility::quoteJSvalue($tsSettings['disqusLocale']).';
 					};
 
 					(function() {

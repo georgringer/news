@@ -26,7 +26,7 @@ use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Viewhelper which returns save button with icon
+ * Viewhelper which returns save button with icon.
  *
  * # Example: Basic example
  * <code>
@@ -54,28 +54,29 @@ class IconViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendView
      * @var bool
      */
     protected $escapeOutput = false;
-    
+
     /**
-     * Renders an icon link as known from the TYPO3 backend
+     * Renders an icon link as known from the TYPO3 backend.
      *
-     * @param string $icon Icon to be used
-     * @param string $uri the target URI for the link
-     * @param string $title Title attribute of the resulting link
+     * @param string $icon    Icon to be used
+     * @param string $uri     the target URI for the link
+     * @param string $title   Title attribute of the resulting link
      * @param string $onclick onclick setting
-     * @param string $class css class
+     * @param string $class   css class
+     *
      * @return string the rendered icon link
      */
     public function render($icon = 'closedok', $uri = '', $title = '', $onclick = '', $class = '')
     {
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
-        $icon = '<span title="' . htmlspecialchars($title) . '">'
-            . $iconFactory->getIcon($icon, Icon::SIZE_SMALL)
-            . '</span>';
+        $icon = '<span title="'.htmlspecialchars($title).'">'
+            .$iconFactory->getIcon($icon, Icon::SIZE_SMALL)
+            .'</span>';
 
         if (empty($uri) && empty($onclick)) {
             $content = $icon;
         } else {
-            $content = '<a onclick="' . htmlspecialchars($onclick) . '" href="' . htmlspecialchars($uri) . '" class="' . htmlspecialchars($class) . '">' . $icon . '</a>';
+            $content = '<a onclick="'.htmlspecialchars($onclick).'" href="'.htmlspecialchars($uri).'" class="'.htmlspecialchars($class).'">'.$icon.'</a>';
         }
 
         return $content;

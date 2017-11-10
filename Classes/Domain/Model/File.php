@@ -1,27 +1,27 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * File model
+ * File model.
  *
  * @version $Id$
  */
 class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 {
-
     /**
      * @var \DateTime
      */
@@ -48,7 +48,7 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     protected $file;
 
     /**
-     * Get crdate
+     * Get crdate.
      *
      * @return \DateTime
      */
@@ -58,9 +58,10 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set crdate
+     * Set crdate.
      *
      * @param \DateTime $crdate crdate
+     *
      * @return void
      */
     public function setCrdate($crdate)
@@ -69,7 +70,7 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get Tstamp
+     * Get Tstamp.
      *
      * @return \DateTime
      */
@@ -79,9 +80,10 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set tstamp
+     * Set tstamp.
      *
      * @param \DateTime $tstamp tstamp
+     *
      * @return void
      */
     public function setTstamp($tstamp)
@@ -90,7 +92,7 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -100,9 +102,10 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title title
+     *
      * @return void
      */
     public function setTitle($title)
@@ -111,7 +114,7 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -121,9 +124,10 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description description
+     *
      * @return void
      */
     public function setDescription($description)
@@ -132,7 +136,7 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get file
+     * Get file.
      *
      * @return string
      */
@@ -142,9 +146,10 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Set File
+     * Set File.
      *
      * @param string $file file
+     *
      * @return void
      */
     public function setFile($file)
@@ -153,7 +158,7 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get file extension
+     * Get file extension.
      *
      * @return string
      */
@@ -163,7 +168,7 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     }
 
     /**
-     * Get boolean if file ending is registered as image type
+     * Get boolean if file ending is registered as image type.
      *
      * @return bool
      */
@@ -171,7 +176,7 @@ class File extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     {
         $fileEndings = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',',
             $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'], true);
+
         return in_array($this->getFileExtension(), $fileEndings);
     }
-
 }

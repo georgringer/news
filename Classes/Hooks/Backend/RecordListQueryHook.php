@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks\Backend;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -22,20 +22,18 @@ use TYPO3\CMS\Lang\LanguageService;
 use TYPO3\CMS\Recordlist\RecordList\AbstractDatabaseRecordList;
 
 /**
- * Hook into AbstractDatabaseRecordList to hide tt_content elements in list view
- *
+ * Hook into AbstractDatabaseRecordList to hide tt_content elements in list view.
  */
 class RecordListQueryHook
 {
-
     /**
-     * @param array $queryParts
+     * @param array                      $queryParts
      * @param AbstractDatabaseRecordList $recordList
-     * @param string $table
+     * @param string                     $table
      */
     public function makeQueryArray_post(array &$queryParts, AbstractDatabaseRecordList $recordList, $table)
     {
-        if ($table === 'tt_content' && (int)$recordList->searchLevels === 0 && $recordList->id > 0) {
+        if ($table === 'tt_content' && (int) $recordList->searchLevels === 0 && $recordList->id > 0) {
             $pageRecord = BackendUtility::getRecord('pages', $recordList->id, 'uid', ' AND doktype="254" AND module="news"');
             if (is_array($pageRecord)) {
                 $tsConfig = BackendUtility::getPagesTSconfig($recordList->id);

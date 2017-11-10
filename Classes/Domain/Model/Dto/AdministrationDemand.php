@@ -1,26 +1,25 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
 
-    /**
-     * This file is part of the TYPO3 CMS project.
-     *
-     * It is free software; you can redistribute it and/or modify it under
-     * the terms of the GNU General Public License, either version 2
-     * of the License, or any later version.
-     *
-     * For the full copyright and license information, please read the
-     * LICENSE.txt file that was distributed with this source code.
-     *
-     * The TYPO3 project - inspiring people to share!
-     */
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * Administration Demand model
- *
+ * Administration Demand model.
  */
 class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 {
-
     /**
      * @var string
      */
@@ -53,6 +52,7 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 
     /**
      * @param $recursive
+     *
      * @return void
      */
     public function setRecursive($recursive)
@@ -70,6 +70,7 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 
     /**
      * @param $selectedCategories
+     *
      * @return void
      */
     public function setSelectedCategories($selectedCategories)
@@ -87,6 +88,7 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 
     /**
      * @param $sortingField
+     *
      * @return void
      */
     public function setSortingField($sortingField)
@@ -104,6 +106,7 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
 
     /**
      * @param $sortingDirection
+     *
      * @return void
      */
     public function setSortingDirection($sortingDirection)

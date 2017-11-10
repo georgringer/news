@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\MediaRenderer\Video;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,18 +17,17 @@ namespace GeorgRinger\News\MediaRenderer\Video;
 use GeorgRinger\News\MediaRenderer\MediaInterface;
 
 /**
- * Implementation of Vimeo support
- *
+ * Implementation of Vimeo support.
  */
 class Vimeo implements MediaInterface
 {
-
     /**
-     * Render videos from vimeo
+     * Render videos from vimeo.
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
-     * @param int $width
-     * @param int $height
+     * @param int                                  $width
+     * @param int                                  $height
+     *
      * @return string
      */
     public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height)
@@ -43,16 +42,17 @@ class Vimeo implements MediaInterface
                 $width = $element->getWidth();
                 $height = $element->getHeight();
             }
-            $content = '<iframe src="' . htmlspecialchars($url) . '" width="' . (int)$width . '" height="' . (int)$height . '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+            $content = '<iframe src="'.htmlspecialchars($url).'" width="'.(int) $width.'" height="'.(int) $height.'" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
         }
 
         return $content;
     }
 
     /**
-     * Check if given element includes an url to a vimeo video
+     * Check if given element includes an url to a vimeo video.
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
+     *
      * @return bool
      */
     public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
@@ -62,13 +62,15 @@ class Vimeo implements MediaInterface
         if ($url !== null) {
             $result = true;
         }
+
         return $result;
     }
 
     /**
-     * Get Vimeo url
+     * Get Vimeo url.
      *
      * @param \GeorgRinger\News\Domain\Model\Media $element
+     *
      * @return null|string
      */
     public function getVimeoUrl(\GeorgRinger\News\Domain\Model\Media $element)
@@ -81,11 +83,9 @@ class Vimeo implements MediaInterface
         }
 
         if ($videoId) {
-            $vimeoUrl = '//player.vimeo.com/video/' . $videoId . '';
+            $vimeoUrl = '//player.vimeo.com/video/'.$videoId.'';
         }
 
         return $vimeoUrl;
     }
-
 }
-

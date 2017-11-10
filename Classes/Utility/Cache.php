@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,14 +17,13 @@ namespace GeorgRinger\News\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Cache Utility class
- *
+ * Cache Utility class.
  */
 class Cache
 {
-
     /**
      * Stack for processed cObjs which has added news relevant cache tags.
+     *
      * @var array
      */
     protected static $processedContentRecords = [];
@@ -33,11 +32,12 @@ class Cache
      * Marks as cObj as processed.
      *
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
+     *
      * @return void
      */
     public function markContentRecordAsProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj)
     {
-        $key = 'tt_content_' . $cObj->data['uid'];
+        $key = 'tt_content_'.$cObj->data['uid'];
         self::$processedContentRecords[$key] = true;
     }
 
@@ -45,11 +45,13 @@ class Cache
      * Checks if a cObj has already added cache tags.
      *
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
+     *
      * @return bool
      */
     public function isContentRecordAlreadyProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj)
     {
-        $key = 'tt_content_' . $cObj->data['uid'];
+        $key = 'tt_content_'.$cObj->data['uid'];
+
         return array_key_exists($key, self::$processedContentRecords);
     }
 
@@ -60,6 +62,7 @@ class Cache
      * "tx_news_uid_[news:uid]"
      *
      * @param array $newsRecords array with news records
+     *
      * @return void
      */
     public static function addCacheTagsByNewsRecords(array $newsRecords)
@@ -67,7 +70,7 @@ class Cache
         $cacheTags = [];
         foreach ($newsRecords as $news) {
             // cache tag for each news record
-            $cacheTags[] = 'tx_news_uid_' . $news->getUid();
+            $cacheTags[] = 'tx_news_uid_'.$news->getUid();
         }
         if (count($cacheTags) > 0) {
             $GLOBALS['TSFE']->addCacheTags($cacheTags);
@@ -76,9 +79,10 @@ class Cache
 
     /**
      * Adds page cache tags by used storagePages.
-     * This adds tags with the scheme tx_news_pid_[news:pid]
+     * This adds tags with the scheme tx_news_pid_[news:pid].
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
+     *
      * @return void
      */
     public static function addPageCacheTagsByDemandObject(\GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand)
@@ -87,7 +91,7 @@ class Cache
         if ($demand->getStoragePage()) {
             // Add cache tags for each storage page
             foreach (GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
-                $cacheTags[] = 'tx_news_pid_' . $pageId;
+                $cacheTags[] = 'tx_news_pid_'.$pageId;
             }
         }
         if (count($cacheTags) > 0) {

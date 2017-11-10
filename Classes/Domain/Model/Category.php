@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
 /**
@@ -15,12 +16,10 @@ namespace GeorgRinger\News\Domain\Model;
  */
 
 /**
- * Category Model
- *
+ * Category Model.
  */
 class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
     /**
      * @var int
      */
@@ -104,7 +103,8 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $importSource;
 
     /**
-     * keep it as string as it should be only used during imports
+     * keep it as string as it should be only used during imports.
+     *
      * @var string
      */
     protected $feGroup;
@@ -115,7 +115,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $countRelatedNews = 0;
 
     /**
-     * Initialize images
+     * Initialize images.
      *
      * @return \GeorgRinger\News\Domain\Model\Category
      */
@@ -125,7 +125,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get creation date
+     * Get creation date.
      *
      * @return \DateTime
      */
@@ -135,9 +135,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set Creation Date
+     * Set Creation Date.
      *
      * @param \DateTime $crdate crdate
+     *
      * @return void
      */
     public function setCrdate($crdate)
@@ -146,7 +147,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get Tstamp
+     * Get Tstamp.
      *
      * @return \DateTime
      */
@@ -156,9 +157,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set tstamp
+     * Set tstamp.
      *
      * @param \DateTime $tstamp tstamp
+     *
      * @return void
      */
     public function setTstamp($tstamp)
@@ -167,7 +169,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get starttime
+     * Get starttime.
      *
      * @return \DateTime
      */
@@ -177,9 +179,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set starttime
+     * Set starttime.
      *
      * @param \DateTime $starttime starttime
+     *
      * @return void
      */
     public function setStarttime($starttime)
@@ -188,7 +191,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get Endtime
+     * Get Endtime.
      *
      * @return \DateTime
      */
@@ -198,9 +201,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set Endtime
+     * Set Endtime.
      *
      * @param \DateTime $endtime endttime
+     *
      * @return void
      */
     public function setEndtime($endtime)
@@ -209,7 +213,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get Hidden
+     * Get Hidden.
      *
      * @return bool
      */
@@ -219,9 +223,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set Hidden
+     * Set Hidden.
      *
      * @param bool $hidden
+     *
      * @return void
      */
     public function setHidden($hidden)
@@ -230,7 +235,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get sys language
+     * Get sys language.
      *
      * @return int
      */
@@ -240,9 +245,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set sys language
+     * Set sys language.
      *
      * @param int $sysLanguageUid language uid
+     *
      * @return void
      */
     public function setSysLanguageUid($sysLanguageUid)
@@ -251,7 +257,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get language parent
+     * Get language parent.
      *
      * @return int
      */
@@ -261,9 +267,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set language parent
+     * Set language parent.
      *
      * @param int $l10nParent l10nParent
+     *
      * @return void
      */
     public function setL10nParent($l10nParent)
@@ -272,7 +279,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get category title
+     * Get category title.
      *
      * @return string
      */
@@ -282,9 +289,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set category title
+     * Set category title.
      *
      * @param string $title title
+     *
      * @return void
      */
     public function setTitle($title)
@@ -293,7 +301,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -303,9 +311,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description description
+     *
      * @return void
      */
     public function setDescription($description)
@@ -330,7 +339,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Add image
+     * Add image.
      *
      * @param FileReference $image
      */
@@ -340,7 +349,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Remove image
+     * Remove image.
      *
      * @param FileReference $image
      */
@@ -350,7 +359,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get the first image
+     * Get the first image.
      *
      * @return FileReference|null
      */
@@ -360,12 +369,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         foreach ($images as $image) {
             return $image;
         }
-
-        return null;
     }
 
     /**
-     * Get parent category
+     * Get parent category.
      *
      * @return \GeorgRinger\News\Domain\Model\Category
      */
@@ -375,18 +382,19 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set parent category
+     * Set parent category.
      *
      * @param \GeorgRinger\News\Domain\Model\Category $category parent category
+     *
      * @return void
      */
-    public function setParentcategory(Category $category)
+    public function setParentcategory(self $category)
     {
         $this->parentcategory = $category;
     }
 
     /**
-     * Get shortcut
+     * Get shortcut.
      *
      * @return int
      */
@@ -396,9 +404,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set shortcut
+     * Set shortcut.
      *
      * @param int $shortcut shortcut
+     *
      * @return void
      */
     public function setShortcut($shortcut)
@@ -407,7 +416,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get single pid of category
+     * Get single pid of category.
      *
      * @return int
      */
@@ -417,9 +426,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set single pid
+     * Set single pid.
      *
      * @param int $singlePid single pid
+     *
      * @return void
      */
     public function setSinglePid($singlePid)
@@ -428,7 +438,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get import id
+     * Get import id.
      *
      * @return string
      */
@@ -438,9 +448,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set import id
+     * Set import id.
      *
      * @param string $importId import id
+     *
      * @return void
      */
     public function setImportId($importId)
@@ -449,7 +460,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get sorting id
+     * Get sorting id.
      *
      * @return int sorting id
      */
@@ -459,9 +470,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set sorting id
+     * Set sorting id.
      *
      * @param int $sorting sorting id
+     *
      * @return void
      */
     public function setSorting($sorting)
@@ -470,7 +482,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get feGroup
+     * Get feGroup.
      *
      * @return string
      */
@@ -480,9 +492,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get feGroup
+     * Get feGroup.
      *
      * @param string $feGroup feGroup
+     *
      * @return void
      */
     public function setFeGroup($feGroup)
@@ -491,9 +504,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Set importSource
+     * Set importSource.
      *
-     * @param  string $importSource
+     * @param string $importSource
+     *
      * @return void
      */
     public function setImportSource($importSource)
@@ -502,7 +516,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get importSource
+     * Get importSource.
      *
      * @return string
      */
