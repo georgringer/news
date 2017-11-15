@@ -71,7 +71,7 @@ $boot = function () {
     /* ===========================================================================
         Custom cache, done with the caching framework
     =========================================================================== */
-    if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category'])) {
+    if (empty($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category'])) {
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category'] = [];
     }
     // Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
