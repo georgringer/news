@@ -228,16 +228,12 @@ class ItemsProcFunc
                 ->execute()
                 ->fetchAll();
         } else {
-            $orderBy = $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] ?
-                $GLOBALS['TCA']['sys_language']['ctrl']['sortby'] :
-                $GLOBALS['TYPO3_DB']->stripOrderBy($GLOBALS['TCA']['sys_language']['ctrl']['default_sortby']);
-
             return $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
                 '*',
                 'sys_language',
                 '1=1 ' . BackendUtilityCore::deleteClause('sys_language'),
                 '',
-                $orderBy
+                'sorting'
             );
         }
     }
