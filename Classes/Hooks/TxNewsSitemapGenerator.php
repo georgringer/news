@@ -123,13 +123,17 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      */
     protected function getSinglePidFromCategory($newsId)
     {
-        $res = $this->getDatabaseConnection()->exec_SELECT_mm_query(
-            'sys_category.single_pid',
-            'tx_news_domain_model_news',
-            'sys_category_record_mm',
-            'sys_category',
-            ' AND sys_category_record_mm.uid_foreign = ' . intval($newsId)
-        );
+        $query = 'SELECT sys_category.title,sys_category.single_pid
+                    FROM tx_news_domain_model_news
+                        LEFT JOIN  sys_category_record_mm on sys_category_record_mm.uid_foreign=tx_news_domain_model_news.uid
+                        LEFT JOIN sys_category ON sys_category_record_mm.uid_local = sys_category.uid
+                    WHERE sys_category.deleted=0 AND sys_category.hidden=0
+                        AND sys_category_record_mm.tablenames="tx_news_domain_model_news"
+                        AND sys_category.single_pid > 0 AND sys_category_record_mm.uid_foreign = ' . (int)$newsId . '
+                    LIMIT 1
+                   ';
+        $res = $this->getDatabaseConnection()->sql_query($query);
+
         $categoryRecord = $this->getDatabaseConnection()->sql_fetch_assoc($res);
 
         return $categoryRecord['single_pid'] ?: null;
