@@ -52,12 +52,14 @@ $boot = function () {
         ];
     }
 
-    // Hide content elements in page module for 7
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list.inc']['makeQueryArray']['news'] =
-        \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
-    // Hide content elements in page module for 8
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\\CMS\\Recordlist\\RecordList\\DatabaseRecordList']['buildQueryParameters'][]
-        = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+    // Hide content elements in page module
+    if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8000000) {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\\CMS\\Recordlist\\RecordList\\DatabaseRecordList']['buildQueryParameters'][]
+            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+    } else {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list.inc']['makeQueryArray']['news'] =
+            \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
+    }
 
     // Inline records hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] =
