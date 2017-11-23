@@ -136,6 +136,12 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
             $modifiedObjects = $query->execute();
         }
 
+        // Set SEO page title for paginated list view
+        if ($this->currentPage > 1) {
+            $pageLabel = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('page','news');
+            $GLOBALS['TSFE']->page['title'] = $GLOBALS['TSFE']->page['title'].' - '.$pageLabel.' '.$this->currentPage;
+        }
+
         $this->view->assign('contentArguments', [
             $this->widgetConfiguration['as'] => $modifiedObjects
         ]);
