@@ -71,7 +71,7 @@ class NewsDemandTest extends UnitTestCase
      */
     public function tagsCanBeSet()
     {
-        $value = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $value = '1,2,3';
         $this->instance->setTags($value);
         $this->assertEquals($value, $this->instance->getTags());
     }
