@@ -409,7 +409,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
             foreach ($searchFields as $field) {
                 if (!empty($searchSubject)) {
-                    $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
+                    $searchConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubject) . '%');
                 }
             }
 
