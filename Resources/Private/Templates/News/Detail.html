@@ -135,6 +135,14 @@
 
 			<!-- related things -->
 			<div class="news-related-wrap">
+				<f:comment>
+					Various options exist to fetch different related information:
+					- {newsItem.allRelatedSorted}: all related news, related und related from, sorted by date
+					- {newsItem.related}: all related
+					- {newsItem.relatedSorted}: all related, sorted by date
+					- {newsItem.relatedFrom}: all related from
+					- {newsItem.relatedFromSorted}: all related from, sorted by date
+				</f:comment>
 
 				<f:if condition="{newsItem.allRelatedSorted}">
 					<!-- Related news records -->
