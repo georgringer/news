@@ -378,7 +378,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param \GeorgRinger\News\Domain\Model\Category $category parent category
      */
-    public function setParentcategory(Category $category)
+    public function setParentcategory(self $category)
     {
         $this->parentcategory = $category;
     }
