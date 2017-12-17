@@ -123,12 +123,12 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         // archived
         if ($demand->getArchiveRestriction() == 'archived') {
             $constraints['archived'] = $query->logicalAnd(
-                $query->lessThan('archive', $GLOBALS['EXEC_TIME']),
+                $query->lessThan('archive', $GLOBALS['SIM_EXEC_TIME']),
                 $query->greaterThan('archive', 0)
             );
         } elseif ($demand->getArchiveRestriction() == 'active') {
             $constraints['active'] = $query->logicalOr(
-                $query->greaterThanOrEqual('archive', $GLOBALS['EXEC_TIME']),
+                $query->greaterThanOrEqual('archive', $GLOBALS['SIM_EXEC_TIME']),
                 $query->equals('archive', 0)
             );
         }
