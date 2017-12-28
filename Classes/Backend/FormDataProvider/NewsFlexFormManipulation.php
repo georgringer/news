@@ -115,10 +115,10 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
             'archiveRestriction', 'timeRestriction', 'timeRestrictionHigh', 'topNewsRestriction',
             'dateField', 'singleNews', 'previewHiddenRecords'
         ],
-        'additional' => [
-            'limit', 'offset', 'hidePagination', 'topNewsFirst', 'detailPid', 'backPid', 'excludeAlreadyDisplayedNews',
-            'list.paginate.itemsPerPage'
-        ],
+        'additional' => [], //[
+//            'hidePagination', 'topNewsFirst', 'detailPid', 'backPid', 'excludeAlreadyDisplayedNews',
+//            'list.paginate.itemsPerPage'
+//        ],
         'template' => [
             'cropMaxCharacters', 'media.maxWidth', 'media.maxHeight'
         ]
