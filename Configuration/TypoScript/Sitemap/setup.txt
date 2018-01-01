@@ -23,7 +23,7 @@ tx_news_sitemap {
 			orderBy = tstamp DESC
 			max = {$plugin.tx_news.settings.sitemap.limit}
 			languageField = sys_language_uid
-			where = type=0
+			# Add where = type=0 if you want to exclude all but standard news
 		}
 
 		renderObj = COA
