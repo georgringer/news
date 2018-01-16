@@ -97,7 +97,6 @@ class NewsRepositoryTest extends UnitTestCase
         $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
         $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
-
         $mockedTypo3DB = $this->getAccessibleMock(DatabaseConnection::class, ['escapeStrForLike']);
         $mockedTypo3DB->expects($this->any())->method('escapeStrForLike')->withAnyParameters()->will($this->returnValue(''));
         $GLOBALS['TYPO3_DB'] = $mockedTypo3DB;
