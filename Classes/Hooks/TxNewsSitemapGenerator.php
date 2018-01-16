@@ -230,6 +230,13 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
                 'returnLast' => 'url',
                 'useCacheHash' => true,
             ];
+            if (1 === (int)$newsRow['type'] && !empty($newsRow['internalurl'])) {
+                $conf['additionalParams'] = $additionalParams;
+                $conf['parameter'] = $newsRow['internalurl'];
+            } elseif (2 === (int)$newsRow['type'] && !empty($newsRow['externalurl'])) {
+                $conf['additionalParams'] = $additionalParams;
+                $conf['parameter'] = $newsRow['externalurl'];
+            }
             $link = htmlspecialchars($this->cObj->typoLink('', $conf));
         }
         return $link;
