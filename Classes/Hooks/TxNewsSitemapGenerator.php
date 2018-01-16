@@ -86,7 +86,6 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     protected function generateSitemapContent()
     {
         if (count($this->pidList) > 0) {
-
             if (class_exists(ConnectionPool::class)) {
                 $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                     ->getQueryBuilderForTable('tx_news_domain_model_news');
@@ -118,7 +117,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
                     ->setMaxResults($this->limit)
                     ->execute();
 
-                while($row = $statement->fetch()) {
+                while ($row = $statement->fetch()) {
                     $this->generateSingleLine($row);
                 }
             } else {
@@ -150,7 +149,8 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     /**
      * @param array $row
      */
-    protected function generateSingleLine(array $row) {
+    protected function generateSingleLine(array $row)
+    {
         $forceSinglePid = null;
         if ($row['categories'] && $this->useCategorySinglePid) {
             $forceSinglePid = $this->getSinglePidFromCategory($row['uid']);
