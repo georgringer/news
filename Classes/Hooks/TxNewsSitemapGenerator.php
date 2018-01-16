@@ -223,6 +223,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
         }
 
         if ($link == '') {
+            $newsType = (int)$newsRow['type'];
             $conf = [
                 'additionalParams' => '&tx_news_pi1[news]=' . $newsRow['uid'] . $additionalParams,
                 'forceAbsoluteUrl' => 1,
@@ -230,6 +231,14 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
                 'returnLast' => 'url',
                 'useCacheHash' => true,
             ];
+            if ($newsType === 1 && !empty($newsRow['internalurl'])) {
+                $conf['additionalParams'] = $additionalParams;
+                $conf['parameter'] = $newsRow['internalurl'];
+            } elseif ($newsType === 2 && !empty($newsRow['externalurl'])) {
+                $conf['additionalParams'] = $additionalParams;
+                $conf['parameter'] = $newsRow['externalurl'];
+            }
+
             $link = htmlspecialchars($this->cObj->typoLink('', $conf));
         }
         return $link;
