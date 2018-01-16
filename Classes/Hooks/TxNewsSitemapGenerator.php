@@ -10,6 +10,8 @@ namespace GeorgRinger\News\Hooks;
  */
 use DmitryDulepov\DdGooglesitemap\Generator\AbstractSitemapGenerator;
 use DmitryDulepov\DdGooglesitemap\Renderers\NewsSitemapRenderer;
+use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -84,25 +86,55 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     protected function generateSitemapContent()
     {
         if (count($this->pidList) > 0) {
-            $res = $this->getDatabaseConnection()->exec_SELECTquery('*',
-                'tx_news_domain_model_news', 'pid IN (' . implode(',', $this->pidList) . ')' .
-                ($this->isNewsSitemap ? ' AND crdate>=' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '') .
-                ' AND sys_language_uid=' . (int)GeneralUtility::_GP('L') .
-                $this->cObj->enableFields('tx_news_domain_model_news'), '', 'datetime DESC',
-                $this->offset . ',' . $this->limit
-            );
-            $rowCount = $this->getDatabaseConnection()->sql_num_rows($res);
-            while (false !== ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res))) {
-                $forceSinglePid = null;
-                if ($row['categories'] && $this->useCategorySinglePid) {
-                    $forceSinglePid = $this->getSinglePidFromCategory($row['uid']);
+
+            if (class_exists(ConnectionPool::class)) {
+                $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                    ->getQueryBuilderForTable('tx_news_domain_model_news');
+
+                $where = [
+                    $queryBuilder->expr()->in(
+                        'pid',
+                        $queryBuilder->createNamedParameter($this->pidList, Connection::PARAM_INT_ARRAY)
+                    ),
+                    $where[] = $queryBuilder->expr()->eq(
+                        'sys_language_uid',
+                        $queryBuilder->createNamedParameter((int)GeneralUtility::_GP('L'), \PDO::PARAM_INT)
+                    )
+                ];
+                if ($this->isNewsSitemap) {
+                    $where[] = $queryBuilder->expr()->gte(
+                        'crdate',
+                        $queryBuilder->createNamedParameter($GLOBALS['EXEC_TIME'] - 48 * 60 * 60, \PDO::PARAM_INT)
+                    );
                 }
-                if (($url = $this->getNewsItemUrl($row, $forceSinglePid))) {
-                    echo $this->renderer->renderEntry($url, $row['title'], $row['datetime'],
-                        '', $row['keywords']);
+
+                $statement = $queryBuilder->select('*')
+                    ->from('tx_news_domain_model_news')
+                    ->where(
+                        ...$where
+                    )
+                    ->orderBy('datetime', 'desc')
+                    ->setFirstResult($this->offset)
+                    ->setMaxResults($this->limit)
+                    ->execute();
+
+                while($row = $statement->fetch()) {
+                    $this->generateSingleLine($row);
                 }
+            } else {
+                $res = $this->getDatabaseConnection()->exec_SELECTquery('*',
+                    'tx_news_domain_model_news', 'pid IN (' . implode(',', $this->pidList) . ')' .
+                    ($this->isNewsSitemap ? ' AND crdate>=' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '') .
+                    ' AND sys_language_uid=' . (int)GeneralUtility::_GP('L') .
+                    $this->cObj->enableFields('tx_news_domain_model_news'), '', 'datetime DESC',
+                    $this->offset . ',' . $this->limit
+                );
+                $rowCount = $this->getDatabaseConnection()->sql_num_rows($res);
+                while (false !== ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res))) {
+                    $this->generateSingleLine($row);
+                }
+                $this->getDatabaseConnection()->sql_free_result($res);
             }
-            $this->getDatabaseConnection()->sql_free_result($res);
 
             if ($rowCount === 0) {
                 echo '<!-- It appears that there are no tx_news entries. If your ' .
@@ -112,6 +144,20 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
                     'undesired effects! Better move your news sysfolder ' .
                     'inside the rootline! -->';
             }
+        }
+    }
+
+    /**
+     * @param array $row
+     */
+    protected function generateSingleLine(array $row) {
+        $forceSinglePid = null;
+        if ($row['categories'] && $this->useCategorySinglePid) {
+            $forceSinglePid = $this->getSinglePidFromCategory($row['uid']);
+        }
+        if (($url = $this->getNewsItemUrl($row, $forceSinglePid))) {
+            echo $this->renderer->renderEntry($url, $row['title'], $row['datetime'],
+                '', $row['keywords']);
         }
     }
 
