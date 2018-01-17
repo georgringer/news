@@ -145,7 +145,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return bool
      */
-    public function isSplitSubjectWords(): bool
+    public function isSplitSubjectWords()
     {
         return $this->splitSubjectWords;
     }
