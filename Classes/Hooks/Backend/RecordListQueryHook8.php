@@ -48,12 +48,12 @@ class RecordListQueryHook8
                     return;
                 }
 
-                // CMS9
-                if ($queryBuilder !== null) {
-                    $queryBuilder->where(...['1=1']);
-                } else {
+//                 CMS9
+//                if ($queryBuilder !== null) {
+//                    $queryBuilder->where(...['1=1']);
+//                } else {
                     $parameters['where'][] = '1=2';
-                }
+//                }
 
                 if (self::$count === 0) {
                     $message = GeneralUtility::makeInstance(
