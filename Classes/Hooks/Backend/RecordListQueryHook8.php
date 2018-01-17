@@ -52,7 +52,7 @@ class RecordListQueryHook8
 //                if ($queryBuilder !== null) {
 //                    $queryBuilder->where(...['1=1']);
 //                } else {
-                    $parameters['where'][] = '1=2';
+                $parameters['where'][] = '1=2';
 //                }
 
                 if (self::$count === 0) {
