@@ -22,8 +22,8 @@ $boot = function () {
         $isVersion9Up = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
         if ($isVersion9Up) {
             $mappings = ['common', 'general', 'mod_web_list', 'tca'];
-            foreach ($mappings as $maping) {
-                $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:lang/locallang_' . $maping . '.xlf'][] = 'EXT:lang/Resources/Private/Language/locallang_' . $maping . '.xlf';
+            foreach ($mappings as $mapping) {
+                $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:lang/locallang_' . $mapping . '.xlf'][] = 'EXT:lang/Resources/Private/Language/locallang_' . $mapping . '.xlf';
             }
         }
 
