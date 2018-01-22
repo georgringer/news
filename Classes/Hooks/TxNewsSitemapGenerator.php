@@ -121,18 +121,18 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
 //                    $this->generateSingleLine($row);
 //                }
 //            } else {
-                $res = $this->getDatabaseConnection()->exec_SELECTquery('*',
+            $res = $this->getDatabaseConnection()->exec_SELECTquery('*',
                     'tx_news_domain_model_news', 'pid IN (' . implode(',', $this->pidList) . ')' .
                     ($this->isNewsSitemap ? ' AND crdate>=' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '') .
                     ' AND sys_language_uid=' . (int)GeneralUtility::_GP('L') .
                     $this->cObj->enableFields('tx_news_domain_model_news'), '', 'datetime DESC',
                     $this->offset . ',' . $this->limit
                 );
-                $rowCount = $this->getDatabaseConnection()->sql_num_rows($res);
-                while (false !== ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res))) {
-                    $this->generateSingleLine($row);
-                }
-                $this->getDatabaseConnection()->sql_free_result($res);
+            $rowCount = $this->getDatabaseConnection()->sql_num_rows($res);
+            while (false !== ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res))) {
+                $this->generateSingleLine($row);
+            }
+            $this->getDatabaseConnection()->sql_free_result($res);
 //            }
 
             if ($rowCount === 0) {
