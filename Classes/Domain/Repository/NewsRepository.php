@@ -37,8 +37,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $categories,
         $conjunction,
         $includeSubCategories = false
-    )
-    {
+    ) {
         $constraint = null;
         $categoryConstraints = [];
 
@@ -412,7 +411,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if ($searchObject->isSplitSubjectWords() && count($searchSubjectSplitted) > 1) {
                 foreach ($searchFields as $field) {
                     $subConstraints = [];
-                    foreach($searchSubjectSplitted as $searchSubjectSplittedPart) {
+                    foreach ($searchSubjectSplitted as $searchSubjectSplittedPart) {
                         $subConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubjectSplittedPart, '') . '%');
                     }
                     $searchConstraints[] = $query->logicalAnd($subConstraints);
@@ -421,7 +420,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 if (count($searchConstraints)) {
                     $constraints[] = $query->logicalOr($searchConstraints);
                 }
-
             } else {
                 foreach ($searchFields as $field) {
                     if (!empty($searchSubject)) {
