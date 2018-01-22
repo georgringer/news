@@ -9,6 +9,8 @@ namespace GeorgRinger\News\ViewHelpers\Widget;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+
 /**
  * This ViewHelper renders a Pagination of objects.
  *
@@ -41,6 +43,18 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
     }
 
     /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('objects', QueryResultInterface::class, 'Objects to auto-complete', true);
+        $this->registerArgument('as', 'string', 'Property to fill', true);
+        $this->registerArgument('configuration', 'array', 'Configuration', false, ['itemsPerPage' => 10, 'insertAbove' => false, 'insertBelow' => true]);
+        $this->registerArgument('initial', 'array', 'Initial configuration', false, []);
+    }
+
+    /**
      * Render everything
      *
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects
@@ -50,12 +64,8 @@ class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetView
      * @internal param array $initial
      * @return string
      */
-    public function render(
-        \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects,
-        $as,
-        $configuration = ['itemsPerPage' => 10, 'insertAbove' => false, 'insertBelow' => true],
-        $initial = []
-    ) {
+    public function render()
+    {
         return $this->initiateSubRequest();
     }
 }
