@@ -59,8 +59,20 @@ class AdministrationController extends NewsController
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      */
     protected $configurationManager;
-
+    /**
+     * @var array
+     */
     protected $pageInformation = [];
+
+    /**
+     * @var array
+     */
+    protected $allowedNewTables = [];
+
+    /**
+     * @var array
+     */
+    protected $deniedNewTables = [];
 
     /**
      * Function will be called before every other action
@@ -115,6 +127,19 @@ class AdministrationController extends NewsController
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/AdministrationModule');
         $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
+
+        $web_list_modTSconfig = BackendUtilityCore::getModTSconfig($this->pageUid, 'mod.web_list');
+        $this->allowedNewTables = GeneralUtility::trimExplode(
+            ',',
+            $web_list_modTSconfig['properties']['allowedNewTables'],
+            true
+        );
+        $this->deniedNewTables = GeneralUtility::trimExplode(
+            ',',
+            $web_list_modTSconfig['properties']['deniedNewTables'],
+            true
+        );
+
         $this->createMenu();
         $this->createButtons();
     }
@@ -195,9 +220,7 @@ class AdministrationController extends NewsController
             ]
         ];
         foreach ($buttons as $key => $tableConfiguration) {
-            if ($this->getBackendUser()->isAdmin() || GeneralUtility::inList($this->getBackendUser()->groupData['tables_modify'],
-                    $tableConfiguration['table'])
-            ) {
+            if ($this->showButton($tableConfiguration['table'])) {
                 $title = $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label']);
                 $viewButton = $buttonBar->makeLinkButton()
                     ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor($tableConfiguration['action'],
@@ -233,6 +256,27 @@ class AdministrationController extends NewsController
             ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/' . $path . 'locallang_core.xlf:labels.reload'))
             ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
         $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
+    }
+
+    /**
+     * @param string $table
+     * @return bool
+     */
+    protected function showButton($table)
+    {
+        if (!$this->getBackendUser()->check('tables_modify', $table)) {
+            return false;
+        }
+
+        // No deny/allow tables are set:
+        if (empty($this->allowedNewTables) && empty($this->deniedNewTables)) {
+            return true;
+        }
+
+        $showButton = !in_array($table, $this->deniedNewTables, true) &&
+            (empty($this->allowedNewTables) || in_array($table, $this->allowedNewTables, true));
+
+        return $showButton;
     }
 
     /**
