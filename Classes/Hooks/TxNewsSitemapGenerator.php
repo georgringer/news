@@ -102,7 +102,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
 //                ];
 //                if ($this->isNewsSitemap) {
 //                    $where[] = $queryBuilder->expr()->gte(
-//                        'crdate',
+//                        'datetime',
 //                        $queryBuilder->createNamedParameter($GLOBALS['EXEC_TIME'] - 48 * 60 * 60, \PDO::PARAM_INT)
 //                    );
 //                }
@@ -123,7 +123,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
 //            } else {
             $res = $this->getDatabaseConnection()->exec_SELECTquery('*',
                     'tx_news_domain_model_news', 'pid IN (' . implode(',', $this->pidList) . ')' .
-                    ($this->isNewsSitemap ? ' AND crdate>=' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '') .
+                    ($this->isNewsSitemap ? ' AND datetime>=' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '') .
                     ' AND sys_language_uid=' . (int)GeneralUtility::_GP('L') .
                     $this->cObj->enableFields('tx_news_domain_model_news'), '', 'datetime DESC',
                     $this->offset . ',' . $this->limit
