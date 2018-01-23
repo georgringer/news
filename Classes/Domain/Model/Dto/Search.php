@@ -51,6 +51,9 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $dateField;
 
+    /** @var bool */
+    protected $splitSubjectWords = false;
+
     /**
      * Get the subject
      *
@@ -137,5 +140,21 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getDateField()
     {
         return $this->dateField;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSplitSubjectWords()
+    {
+        return $this->splitSubjectWords;
+    }
+
+    /**
+     * @param bool $splitSubjectWords
+     */
+    public function setSplitSubjectWords(bool $splitSubjectWords)
+    {
+        $this->splitSubjectWords = $splitSubjectWords;
     }
 }

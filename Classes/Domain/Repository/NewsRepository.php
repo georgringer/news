@@ -123,12 +123,12 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         // archived
         if ($demand->getArchiveRestriction() == 'archived') {
             $constraints['archived'] = $query->logicalAnd(
-                $query->lessThan('archive', $GLOBALS['EXEC_TIME']),
+                $query->lessThan('archive', $GLOBALS['SIM_EXEC_TIME']),
                 $query->greaterThan('archive', 0)
             );
         } elseif ($demand->getArchiveRestriction() == 'active') {
             $constraints['active'] = $query->logicalOr(
-                $query->greaterThanOrEqual('archive', $GLOBALS['EXEC_TIME']),
+                $query->greaterThanOrEqual('archive', $GLOBALS['SIM_EXEC_TIME']),
                 $query->equals('archive', 0)
             );
         }
@@ -407,14 +407,29 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);
             }
 
-            foreach ($searchFields as $field) {
-                if (!empty($searchSubject)) {
-                    $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
+            $searchSubjectSplitted = GeneralUtility::trimExplode(' ', $searchSubject, true);
+            if ($searchObject->isSplitSubjectWords() && count($searchSubjectSplitted) > 1) {
+                foreach ($searchFields as $field) {
+                    $subConstraints = [];
+                    foreach ($searchSubjectSplitted as $searchSubjectSplittedPart) {
+                        $subConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubjectSplittedPart, '') . '%');
+                    }
+                    $searchConstraints[] = $query->logicalAnd($subConstraints);
                 }
-            }
 
-            if (count($searchConstraints)) {
-                $constraints[] = $query->logicalOr($searchConstraints);
+                if (count($searchConstraints)) {
+                    $constraints[] = $query->logicalOr($searchConstraints);
+                }
+            } else {
+                foreach ($searchFields as $field) {
+                    if (!empty($searchSubject)) {
+                        $searchConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubject, '') . '%');
+                    }
+                }
+
+                if (count($searchConstraints)) {
+                    $constraints[] = $query->logicalOr($searchConstraints);
+                }
             }
         }
 

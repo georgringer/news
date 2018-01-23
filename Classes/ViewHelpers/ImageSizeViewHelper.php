@@ -35,7 +35,7 @@ class ImageSizeViewHelper extends AbstractViewHelper implements CompilableInterf
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
-     * @return intt
+     * @return int
      */
     public static function renderStatic(
         array $arguments,

@@ -115,6 +115,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      */
     protected function mapResultToObjects(array $result)
     {
+        $out = [];
         foreach ($result as $_id => $single) {
             $out[$_id] = $this->getObject($single['uid']);
         }

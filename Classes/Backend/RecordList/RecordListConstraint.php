@@ -184,6 +184,7 @@ class RecordListConstraint
                 RIGHT JOIN `sys_category_record_mm` ON tx_news_domain_model_news.uid = sys_category_record_mm.uid_foreign
                 RIGHT JOIN sys_category ON sys_category.uid = sys_category_record_mm.uid_local
             WHERE
+              sys_category_record_mm.tablenames="tx_news_domain_model_news" AND
               tx_news_domain_model_news.uid IS NOT NULL AND sys_category.uid=' . (int)$categoryId . $pidConstraint
             . BackendUtility::deleteClause('sys_category')
             . BackendUtility::deleteClause('tx_news_domain_model_news')

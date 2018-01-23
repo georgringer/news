@@ -114,7 +114,7 @@ class NewsRepositoryTest extends FunctionalTestCase
      */
     public function findRecordsByArchiveRestriction()
     {
-        $GLOBALS['EXEC_TIME'] = 1396812099;
+        $GLOBALS['SIM_EXEC_TIME'] = 1396812099;
         $newsRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\NewsRepository');
 
         /** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
@@ -163,7 +163,7 @@ class NewsRepositoryTest extends FunctionalTestCase
         $demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
         $demand->setStoragePage(9);
 
-        $GLOBALS['EXEC_TIME'] = strtotime('2014-04-03');
+        $GLOBALS['SIM_EXEC_TIME'] = strtotime('2014-04-03');
 
         // get all news maximum 6 days old
         $demand->setTimeRestriction((6 * 86400));
