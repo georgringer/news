@@ -8,6 +8,7 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -48,6 +49,17 @@ class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
     }
 
     /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('newsItem', News::class, 'news item', true);
+        $this->registerArgument('shortName', 'string', 'short name', true);
+        $this->registerArgument('link', 'string', 'link', true);
+    }
+
+    /**
      * Render disqus thread
      *
      * @param \GeorgRinger\News\Domain\Model\News $newsItem news item
@@ -55,14 +67,15 @@ class DisqusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
      * @param string $link link
      * @return string
      */
-    public function render(\GeorgRinger\News\Domain\Model\News $newsItem, $shortName, $link)
+    public function render()
     {
         $tsSettings = $this->pluginSettingsService->getSettings();
+        $newsItem = $this->arguments['newsItem'];
 
         $code = '<script type="text/javascript">
-					var disqus_shortname = ' . GeneralUtility::quoteJSvalue($shortName, true) . ';
+					var disqus_shortname = ' . GeneralUtility::quoteJSvalue($this->arguments['shortName'], true) . ';
 					var disqus_identifier = \'news_' . $newsItem->getUid() . '\';
-					var disqus_url = ' . GeneralUtility::quoteJSvalue($link, true) . ';
+					var disqus_url = ' . GeneralUtility::quoteJSvalue($this->arguments['link'], true) . ';
 					var disqus_title = ' . GeneralUtility::quoteJSvalue($newsItem->getTitle(), true) . ';
 					var disqus_config = function () {
 						this.language = ' . GeneralUtility::quoteJSvalue($tsSettings['disqusLocale']) . ';

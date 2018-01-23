@@ -245,7 +245,7 @@ look at the given TypoScript snippet:
 			table = tx_news_domain_model_news
 			select {
 				max = 1
-				orderBy = datetime
+				orderBy = datetime desc
 				pidInList = 3
 			}
 			renderObj = TEXT

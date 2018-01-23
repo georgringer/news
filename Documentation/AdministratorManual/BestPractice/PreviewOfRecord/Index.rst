@@ -15,6 +15,9 @@ It is possible to activate the action "Save & Preview" for news records by using
 
 	TCEMAIN.preview {
 		tx_news_domain_model_news {
+			# Available with latest 8.7+ only
+			# see https://forge.typo3.org/issues/78336
+			useCacheHash = 1
 			previewPageId = 123
 			useDefaultLanguageRecord = 0
 			fieldToParameterMap {
@@ -37,7 +40,7 @@ If a news plugin is placed on this page, the news article will be shown.
 .. Hint::
 
 	If the setting ``[FE][disableNoCacheParameter]`` is enabled, this won't work as the cHash is not set in the URL.
-	
+
 .. Hint::
 
 	Watch out for the Breaking Change "#78002 - Enforce cHash argument for Extbase actions" (https://docs.typo3.org/typo3cms/extensions/core/8.7/Changelog/8.5/Breaking-78002-EnforceCHashArgumentForExtbaseActions.html)  if you're using TYPO3 >=8.5. You need to set ``plugin.tx_news.feature.requireCHashArgumentForActionArguments  = 0`` if you want to use this feature. Otherwise you'll receive a "cHash empty" validation error and most likely see a 404, if you have ``[FE] [pageNotFoundOnCHashError]`` enabled.

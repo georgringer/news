@@ -449,7 +449,9 @@ class NewsController extends NewsBaseController
         if (!is_null($search)) {
             $search->setFields($this->settings['search']['fields']);
             $search->setDateField($this->settings['dateField']);
+            $search->setSplitSubjectWords((bool)$this->settings['search']['splitSearchWord']);
         }
+
         $demand->setSearch($search);
 
         $assignedValues = [

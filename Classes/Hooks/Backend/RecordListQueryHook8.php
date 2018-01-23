@@ -14,7 +14,6 @@ use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Lang\LanguageService;
-use TYPO3\CMS\Recordlist\RecordList\AbstractDatabaseRecordList;
 
 /**
  * Hook into DatabaseRecordList to hide tt_content elements in list view
@@ -38,7 +37,8 @@ class RecordListQueryHook8
         int $pageId,
         array $additionalConstraints,
         array $fieldList,
-        AbstractDatabaseRecordList $parentObject
+        $parentObject,
+        $queryBuilder = null
     ) {
         if ($table === 'tt_content' && (int)$parentObject->searchLevels === 0 && $parentObject->id > 0) {
             $pageRecord = BackendUtility::getRecord('pages', $parentObject->id, 'uid', ' AND doktype="254" AND module="news"');
@@ -47,7 +47,13 @@ class RecordListQueryHook8
                 if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
                     return;
                 }
+
+//                 CMS9
+//                if ($queryBuilder !== null) {
+//                    $queryBuilder->where(...['1=1']);
+//                } else {
                 $parameters['where'][] = '1=2';
+//                }
 
                 if (self::$count === 0) {
                     $message = GeneralUtility::makeInstance(
