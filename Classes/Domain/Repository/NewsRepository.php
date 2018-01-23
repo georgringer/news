@@ -407,14 +407,29 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);
             }
 
-            foreach ($searchFields as $field) {
-                if (!empty($searchSubject)) {
-                    $searchConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubject) . '%');
+            $searchSubjectSplitted = GeneralUtility::trimExplode(' ', $searchSubject, true);
+            if ($searchObject->isSplitSubjectWords() && count($searchSubjectSplitted) > 1) {
+                foreach ($searchFields as $field) {
+                    $subConstraints = [];
+                    foreach ($searchSubjectSplitted as $searchSubjectSplittedPart) {
+                        $subConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubjectSplittedPart, '') . '%');
+                    }
+                    $searchConstraints[] = $query->logicalAnd($subConstraints);
                 }
-            }
 
-            if (count($searchConstraints)) {
-                $constraints[] = $query->logicalOr($searchConstraints);
+                if (count($searchConstraints)) {
+                    $constraints[] = $query->logicalOr($searchConstraints);
+                }
+            } else {
+                foreach ($searchFields as $field) {
+                    if (!empty($searchSubject)) {
+                        $searchConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubject, '') . '%');
+                    }
+                }
+
+                if (count($searchConstraints)) {
+                    $constraints[] = $query->logicalOr($searchConstraints);
+                }
             }
         }
 
