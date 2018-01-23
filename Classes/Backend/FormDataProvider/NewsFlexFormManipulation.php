@@ -116,7 +116,7 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
             'dateField', 'singleNews', 'previewHiddenRecords'
         ],
         'additional' => [
-            'limit', 'offset', 'hidePagination', 'topNewsFirst', 'detailPid', 'backPid', 'excludeAlreadyDisplayedNews',
+            'hidePagination', 'topNewsFirst', 'detailPid', 'backPid', 'excludeAlreadyDisplayedNews',
             'list.paginate.itemsPerPage'
         ],
         'template' => [
