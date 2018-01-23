@@ -62,7 +62,6 @@ All ViewHelpers
    LinkViewHelper
    MediaFactoryViewHelper
    MetaTagViewHelper
-   ObjectViewHelper
    PaginateBodytextViewHelper
    TargetLinkViewHelper
    TitleTagViewHelper

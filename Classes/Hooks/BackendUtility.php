@@ -28,7 +28,7 @@ class BackendUtility
     public $removedFieldsInDetailView = [
         'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
-						dateField',
+						dateField,selectedList',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,listPid,list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters'
     ];
@@ -39,8 +39,23 @@ class BackendUtility
      * @var array
      */
     public $removedFieldsInListView = [
-        'sDEF' => 'dateField,singleNews,previewHiddenRecords',
+        'sDEF' => 'dateField,singleNews,previewHiddenRecords,selectedList',
         'additional' => '',
+        'template' => ''
+    ];
+
+    /**
+     * Fields which are removed in selected list view
+     *
+     * @var array
+     */
+    public $removedFieldsInSelectedListView = [
+        'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
+						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
+						startingpoint,recursive,dateField,singleNews,previewHiddenRecords,
+                        previewHiddenRecords,startingpoint,recursive',
+        'additional' => 'tags,limit,offset,hidePagination,topNewsFirst,backPid,excludeAlreadyDisplayedNews,
+								list.paginate.itemsPerPage,disableOverrideDemand',
         'template' => ''
     ];
 
@@ -50,7 +65,7 @@ class BackendUtility
      * @var array
      */
     public $removedFieldsInDateMenuView = [
-        'sDEF' => 'orderBy,singleNews',
+        'sDEF' => 'orderBy,singleNews,selectedList',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,backPid,previewHiddenRecords,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
@@ -64,7 +79,7 @@ class BackendUtility
     public $removedFieldsInSearchFormView = [
         'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
-						startingpoint,recursive,dateField,singleNews,previewHiddenRecords',
+						startingpoint,recursive,dateField,singleNews,previewHiddenRecords,selectedList',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
@@ -78,7 +93,7 @@ class BackendUtility
     public $removedFieldsInCategoryListView = [
         'sDEF' => 'orderBy,orderDirection,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
-						recursive,dateField,singleNews,previewHiddenRecords',
+						recursive,dateField,singleNews,previewHiddenRecords,selectedList',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
@@ -92,7 +107,7 @@ class BackendUtility
     public $removedFieldsInTagListView = [
         'sDEF' => 'categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
-						dateField,singleNews,previewHiddenRecords',
+						dateField,singleNews,previewHiddenRecords,selectedList',
         'additional' => 'limit,offset,hidePagination,topNewsFirst,detailPid,backPid,excludeAlreadyDisplayedNews,
 								list.paginate.itemsPerPage',
         'template' => 'cropMaxCharacters,media.maxWidth,media.maxHeight'
@@ -124,6 +139,26 @@ class BackendUtility
                 $this->addCategoryConstraints($dataStructure);
             }
         }
+    }
+
+    /**
+     * @param array $dataStructure
+     * @param array $identifier
+     * @return array
+     */
+    public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier)
+    {
+        if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
+            $getVars = GeneralUtility::_GET('edit');
+            if (is_array($getVars['tt_content'])) {
+                $item = array_keys($getVars['tt_content']);
+                $row = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tt_content', (int)$item[0]);
+                if (is_array($row)) {
+                    $this->updateFlexforms($dataStructure, $row);
+                }
+            }
+        }
+        return $dataStructure;
     }
 
     /**
@@ -164,6 +199,9 @@ class BackendUtility
                     break;
                 case 'News->detail':
                     $this->deleteFromStructure($dataStructure, $this->removedFieldsInDetailView);
+                    break;
+                case 'News->selectedList':
+                    $this->deleteFromStructure($dataStructure, $this->removedFieldsInSelectedListView);
                     break;
                 case 'News->searchForm':
                     $this->deleteFromStructure($dataStructure, $this->removedFieldsInSearchFormView);

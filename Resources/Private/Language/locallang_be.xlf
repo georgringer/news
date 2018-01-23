@@ -39,6 +39,9 @@
 			<trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve">
 				<source>Date menu</source>
 			</trans-unit>
+			<trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve">
+				<source>List of selected items</source>
+			</trans-unit>
 			<trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
 				<source>Category Menu</source>
 			</trans-unit>
@@ -162,6 +165,9 @@
 			<trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
 				<source>[no constraint]</source>
 			</trans-unit>
+			<trans-unit id="flexforms_general.selectedList" xml:space="preserve">
+				<source>List of articles</source>
+			</trans-unit>
 			<trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
 				<source>Max width for media elements</source>
 			</trans-unit>
@@ -239,7 +245,7 @@
 			</trans-unit>
 			<trans-unit id="extmng.categoryRestriction" xml:space="preserve">
 				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
-				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
 			</source>
 			</trans-unit>
 			<trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
@@ -298,6 +304,9 @@
 			</trans-unit>
 			<trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
 				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
+			</trans-unit>
+			<trans-unit id="extmng.mediaPreview" xml:space="preserve">
+				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
 			</trans-unit>
 			<trans-unit id="usersettings.overlay" xml:space="preserve">
 				<source>Use this overlay for news categories in the Backend</source>

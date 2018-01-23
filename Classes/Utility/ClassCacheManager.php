@@ -35,6 +35,10 @@ class ClassCacheManager
     {
         $classPath = 'Classes/';
 
+        if (!function_exists('token_get_all')) {
+            throw new \Exception(('The function token_get_all must exist. Please install the module PHP Module Tokenizer'));
+        }
+
         foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'] as $key => $extensionsWithThisClass) {
             $extendingClassFound = false;
 

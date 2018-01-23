@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"
-	 xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	 xmlns:atom="http://www.w3.org/2005/Atom"
-	 xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-	 xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers">
-	<channel>
-		<title>{settings.list.rss.channel.title}</title>
-		<link>{settings.list.rss.channel.link}</link>
-		<description>{settings.list.rss.channel.description}</description>
-		<language>{settings.list.rss.channel.language}</language>
-		<f:if condition="{settings.list.rss.channel.copyright}">
-			<copyright>{settings.list.rss.channel.copyright}</copyright>
-		</f:if>
-		<pubDate><f:format.date format="r" date="now" /></pubDate>
-		<lastBuildDate><f:format.date format="r" date="now" /></lastBuildDate>
-		<f:if condition="{settings.list.rss.channel.category}">
-			<category>{settings.list.rss.channel.category}</category>
-		</f:if>
-		<atom:link href="{f:uri.page(pageType: 9818) -> f:format.htmlentities()}" rel="self" type="application/rss+xml" />
-		<generator>{settings.list.rss.channel.generator}</generator>
-			<f:if condition="{news}">
-				<f:for each="{news}" as="newsItem">
-					<item>
-						<guid isPermaLink="false">news-{newsItem.uid}</guid>
-						<pubDate><f:format.date format="r">{newsItem.datetime}</f:format.date></pubDate>
-						<title>{newsItem.title -> f:format.htmlspecialchars()}</title>
-						<link><f:format.htmlentities><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></f:format.htmlentities></link>
-						<description>{newsItem.teaser -> f:format.stripTags() -> f:format.htmlspecialchars()}</description>
-						<f:if condition="{newsItem.firstPreview}"><enclosure url="{f:uri.image(image:'{newsItem.firstPreview}',absolute:1) -> f:format.htmlentities()}" length="{newsItem.firstPreview.originalResource.size}" type="{newsItem.firstPreview.originalResource.mimeType}" /></f:if>
-						<content:encoded><f:format.cdata><f:format.html>{newsItem.bodytext}</f:format.html></f:format.cdata></content:encoded>
-						<f:if condition="{newsItem.categories}">
-							<f:for each="{newsItem.categories}" as="newsItemCategory">
-								<category>{newsItemCategory.title -> f:format.htmlspecialchars()}</category>
-							</f:for>
-						</f:if>
-						<f:if condition="{newsItem.firstPreview}">
-						    <enclosure url="{f:uri.image(image:'{newsItem.firstPreview}', absolute:1, maxWidth: '1920', maxHeight: '1920')}" lenght="{newsItem.firstPreview.originalResource.size}" type="{newsItem.firstPreview.originalResource.mimeType}"/>
-				                </f:if>
-					</item>
-				</f:for>
-			</f:if>
-	</channel>
-</rss>
+<html xmlns:content="http://purl.org/rss/1.0/modules/content/"
+      xmlns:atom="http://www.w3.org/2005/Atom"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+    <rss version="2.0"
+         xmlns:content="http://purl.org/rss/1.0/modules/content/"
+         xmlns:atom="http://www.w3.org/2005/Atom">
+        <channel>
+            <title>{settings.list.rss.channel.title}</title>
+            <link>{settings.list.rss.channel.link}</link>
+            <description>{settings.list.rss.channel.description}</description>
+            <language>{settings.list.rss.channel.language}</language>
+            <f:if condition="{settings.list.rss.channel.copyright}">
+                <copyright>{settings.list.rss.channel.copyright}</copyright>
+            </f:if>
+            <pubDate><f:format.date format="r" date="now" /></pubDate>
+            <lastBuildDate><f:format.date format="r" date="now" /></lastBuildDate>
+            <f:if condition="{settings.list.rss.channel.category}">
+                <category>{settings.list.rss.channel.category}</category>
+            </f:if>
+            <atom:link href="{f:uri.page(pageType: 9818, absolute: 'true') -> f:format.htmlentities()}" rel="self" type="application/rss+xml" />
+            <generator>{settings.list.rss.channel.generator}</generator>
+            <f:if condition="{news}">
+                <f:for each="{news}" as="newsItem">
+                    <item>
+                        <guid isPermaLink="false">news-{newsItem.uid}</guid>
+                        <pubDate><f:format.date format="r">{newsItem.datetime}</f:format.date></pubDate>
+                        <title>{newsItem.title -> f:format.htmlspecialchars()}</title>
+                        <link><f:format.htmlentities><n:link newsItem="{newsItem}" settings="{settings}" configuration="{forceAbsoluteUrl: 1}" uriOnly="1" /></f:format.htmlentities></link>
+                        <description>{newsItem.teaser -> f:format.stripTags() -> f:format.htmlspecialchars()}</description>
+                        <f:if condition="{newsItem.firstPreview}"><enclosure url="{f:uri.image(image:newsItem.firstPreview,absolute:1) -> f:format.htmlentities()}" length="{newsItem.firstPreview.originalResource.size}" type="{newsItem.firstPreview.originalResource.mimeType}" /></f:if>
+                        <content:encoded><f:format.cdata><f:format.html>{newsItem.bodytext}</f:format.html></f:format.cdata></content:encoded>
+                        <f:if condition="{newsItem.categories}">
+                            <f:for each="{newsItem.categories}" as="newsItemCategory">
+                                <category>{newsItemCategory.title -> f:format.htmlspecialchars()}</category>
+                            </f:for>
+                        </f:if>
+                        <f:if condition="{newsItem.firstPreview}">
+                            <enclosure url="{f:uri.image(image:newsItem.firstPreview, absolute:1, maxWidth: '1920', maxHeight: '1920')}" length="{newsItem.firstPreview.originalResource.size}" type="{newsItem.firstPreview.originalResource.mimeType}"/>
+                        </f:if>
+                    </item>
+                </f:for>
+            </f:if>
+        </channel>
+    </rss>
+</html>

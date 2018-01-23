@@ -32,6 +32,9 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     {
         $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
         $view->assign('emConfiguration', EmConfiguration::getSettings());
+        if (is_object($GLOBALS['TSFE'])) {
+            $view->assign('pageData', $GLOBALS['TSFE']->page);
+        }
         parent::initializeView($view);
     }
 
@@ -117,7 +120,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                     HttpUtility::setResponseCode($statusCode);
                 }
                 $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
-                $standaloneTemplate->setTemplatePathAndFilename($configuration[1]);
+                $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($configuration[1]));
                 return $standaloneTemplate->render();
                 break;
             default:

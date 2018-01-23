@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Domain\Service;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\EmConfiguration;
+use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
 
 class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
 {
@@ -95,16 +96,7 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
     {
         $file = null;
 
-        /**
-         * As of 6.2 we can use
-         * $files = FileIndexRepository->findByContentHash($hash);
-         * Until then a direct DB query
-         */
-        $files = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-            'storage,identifier',
-            'sys_file',
-            'sha1=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($hash, 'sys_file')
-        );
+        $files = $this->getFileIndexRepository()->findByContentHash($hash);
         if (count($files)) {
             foreach ($files as $fileInfo) {
                 if ($fileInfo['storage'] > 0) {
@@ -130,6 +122,16 @@ class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
             $this->importFolder = $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter() . ':' . $this->emSettings->getResourceFolderImporter());
         }
         return $this->importFolder;
+    }
+
+    /**
+     * Returns an instance of the FileIndexRepository
+     *
+     * @return FileIndexRepository
+     */
+    protected function getFileIndexRepository()
+    {
+        return FileIndexRepository::getInstance();
     }
 
     /**

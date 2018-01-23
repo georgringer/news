@@ -20,6 +20,7 @@ use TYPO3\CMS\Extbase\Service\TypoScriptService;
 class NewsController extends NewsBaseController
 {
     const SIGNAL_NEWS_LIST_ACTION = 'listAction';
+    const SIGNAL_NEWS_LIST_SELECTED_ACTION = 'selectedListAction';
     const SIGNAL_NEWS_DETAIL_ACTION = 'detailAction';
     const SIGNAL_NEWS_DATEMENU_ACTION = 'dateMenuAction';
     const SIGNAL_NEWS_SEARCHFORM_ACTION = 'searchFormAction';
@@ -46,7 +47,7 @@ class NewsController extends NewsBaseController
     protected $configurationManager;
 
     /** @var array */
-    protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed'];
+    protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed', 'selectedList'];
 
     /**
      * Inject a news repository to enable DI
@@ -63,7 +64,7 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCatgegoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -198,6 +199,8 @@ class NewsController extends NewsBaseController
             'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
+            'categories' => null,
+            'tags' => null,
         ];
 
         if ($demand->getCategories() !== '') {
@@ -226,6 +229,28 @@ class NewsController extends NewsBaseController
     }
 
     /**
+     * Output a selected list view of news
+     */
+    public function selectedListAction()
+    {
+        $newsRecords = [];
+        $idList = GeneralUtility::trimExplode(',', $this->settings['selectedList'], true);
+        foreach ($idList as $id) {
+            $news = $this->newsRepository->findByIdentifier($id);
+            if ($news) {
+                $newsRecords[] = $news;
+            }
+        }
+
+        $assignedValues = [
+            'news' => $newsRecords
+        ];
+
+        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_SELECTED_ACTION, $assignedValues);
+        $this->view->assignMultiple($assignedValues);
+    }
+
+    /**
      * Single view of a news record
      *
      * @param \GeorgRinger\News\Domain\Model\News $news news item
@@ -233,7 +258,7 @@ class NewsController extends NewsBaseController
      */
     public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
     {
-        if ($news === null) {
+        if ($news === null || $this->settings['isShortcut']) {
             $previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
             if ($this->request->hasArgument('news_preview')) {
                 $previewNewsId = (int)$this->request->getArgument('news_preview');
@@ -415,7 +440,9 @@ class NewsController extends NewsBaseController
         if (!is_null($search)) {
             $search->setFields($this->settings['search']['fields']);
             $search->setDateField($this->settings['dateField']);
+            $search->setSplitSubjectWords((bool)$this->settings['search']['splitSearchWord']);
         }
+
         $demand->setSearch($search);
 
         $assignedValues = [

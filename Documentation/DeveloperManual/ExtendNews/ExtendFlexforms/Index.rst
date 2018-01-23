@@ -45,7 +45,7 @@ take a look at the hook inside the class Hooks/BackendUtility.php:
 
 .. code-block:: php
 
-	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/T3libBefunc.php']['updateFlexforms']
+	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms']
 
 Additional Template Selector
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -115,7 +115,7 @@ flexform file.
             $file = PATH_site . 'typo3conf/ext/extKey/Configuration/Example.xml';
             $content = file_get_contents($file);
             if ($content) {
-                $dataStructure['sheets']['extraEntry'] = GeneralUtility::xml2array($content);
+                $dataStructure['sheets']['extraEntry'] = \TYPO3\CMS\Core\Utility\GeneralUtility::xml2array($content);
             }
         }
         return $dataStructure;

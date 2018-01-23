@@ -15,7 +15,15 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['news_pi1'] =
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('news_pi1',
     'FILE:EXT:news/Configuration/FlexForms/flexform_news.xml');
 
-// TypoScript
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('news', 'Configuration/TypoScript', 'News');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('news', 'Configuration/TypoScript/Sitemap', 'News Sitemap');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('news', 'Configuration/TypoScript/Styles/Twb', 'News Styles Twitter Bootstrap');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
+
+foreach (['crdate', 'tstamp'] as $fakeField) {
+    if (!isset($GLOBALS['TCA']['tt_content']['columns'][$fakeField])) {
+        $GLOBALS['TCA']['tt_content']['columns'][$fakeField] = [
+            'label' => $fakeField,
+            'config' => [
+                'type' => 'passthrough',
+            ]
+        ];
+    }
+}

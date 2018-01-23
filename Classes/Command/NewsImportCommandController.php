@@ -20,6 +20,8 @@ class NewsImportCommandController extends CommandController
 
     /**
      * Import for EXT:news
+     *
+     * @cli
      */
     public function runCommand()
     {
