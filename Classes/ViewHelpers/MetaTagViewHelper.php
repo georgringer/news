@@ -47,16 +47,19 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
         $this->registerTagAttribute('property', 'string', 'Property of meta tag');
         $this->registerTagAttribute('name', 'string', 'Content of meta tag using the name attribute');
         $this->registerTagAttribute('content', 'string', 'Content of meta tag');
+        $this->registerTagAttribute('useCurrentDomain', 'boolean', 'Use current domain', false, false);
+        $this->registerTagAttribute('forceAbsoluteUrl', 'boolean', 'Force absolut domain', false, false);
     }
 
     /**
      * Renders a meta tag
-     *
-     * @param bool $useCurrentDomain If set, current domain is used
-     * @param bool $forceAbsoluteUrl If set, absolute url is forced
+
      */
-    public function render($useCurrentDomain = false, $forceAbsoluteUrl = false)
+    public function render()
     {
+        $useCurrentDomain = $this->arguments['useCurrentDomain'];
+        $forceAbsoluteUrl = $this->arguments['forceAbsoluteUrl'];
+
         // set current domain
         if ($useCurrentDomain) {
             $this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));

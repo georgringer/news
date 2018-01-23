@@ -737,14 +737,8 @@ $tx_news_domain_model_news = [
         'paletteDate' => [
             'showitem' => 'datetime,archive,',
         ],
-        'paletteArchive' => [
-            'showitem' => 'archive,',
-        ],
         'paletteCore' => [
             'showitem' => 'istopnews, type, sys_language_uid, hidden,',
-        ],
-        'paletteNavtitle' => [
-            'showitem' => 'alternative_title,path_segment',
         ],
         'paletteAccess' => [
             'showitem' => 'starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,

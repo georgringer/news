@@ -19,10 +19,11 @@ $boot = function () {
     $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
     if (TYPO3_MODE === 'BE') {
-        if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000) {
+        $isVersion9Up = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
+        if ($isVersion9Up) {
             $mappings = ['common', 'general', 'mod_web_list', 'tca'];
-            foreach ($mappings as $maping) {
-                $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:lang/locallang_' . $maping . '.xlf'][] = 'EXT:lang/Resources/Private/Language/locallang_' . $maping . '.xlf';
+            foreach ($mappings as $mapping) {
+                $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:lang/locallang_' . $mapping . '.xlf'][] = 'EXT:lang/Resources/Private/Language/locallang_' . $mapping . '.xlf';
             }
         }
 
@@ -71,7 +72,7 @@ $boot = function () {
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
                     'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
-                    'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'typo3-pagetree'
+                    'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree')
                 ]
             );
         }

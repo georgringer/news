@@ -38,13 +38,18 @@ class DisqusViewHelperTest extends UnitTestCase
             ->will($this->returnValue(['disqusLocale' => $language]));
 
         $viewHelper->injectSettingsService($settingsService);
-        $actualResult = $viewHelper->render($newsItem, 'abcdef', 'http://typo3.org/dummy/fobar.html');
+        $viewHelper->setArguments([
+            'newsItem' => $newsItem,
+            'shortName' => 'abcdef',
+            'link' => 'http://typo3.org/dummy/fobar.html'
+        ]);
+        $actualResult = $viewHelper->render();
 
         $expectedCode = '<script type="text/javascript">
-					var disqus_shortname = ' . GeneralUtility::quoteJSvalue('abcdef', true) . ';
-					var disqus_identifier = ' . GeneralUtility::quoteJSvalue('news_' . $newUid, true) . ';
+					var disqus_shortname = ' . GeneralUtility::quoteJSvalue('abcdef') . ';
+					var disqus_identifier = ' . GeneralUtility::quoteJSvalue('news_' . $newUid) . ';
 					var disqus_url = ' . GeneralUtility::quoteJSvalue('http://typo3.org/dummy/fobar.html') . ';
-					var disqus_title = ' . GeneralUtility::quoteJSvalue('fobar', true) . ';
+					var disqus_title = ' . GeneralUtility::quoteJSvalue('fobar') . ';
 					var disqus_config = function () {
 						this.language = ' . GeneralUtility::quoteJSvalue($language) . ';
 					};

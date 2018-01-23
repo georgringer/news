@@ -40,10 +40,12 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
     	xhtml_cleaning = none
     	admPanel = 0
     	metaCharset = utf-8
+    	# For 7 LTS
     	additionalHeaders = Content-Type:text/calendar;charset=utf-8
+    	# Since 8 LTS
+    	additionalHeaders.10.header = Content-Type:text/calendar;charset=utf-8
     	disablePrefixComment = 1
     }
-
     pageNewsICalendar = PAGE
     pageNewsICalendar {
     	typeNum = 9819
