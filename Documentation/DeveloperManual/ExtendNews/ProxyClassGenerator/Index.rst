@@ -66,8 +66,8 @@ The file  ``ext_emconf.php`` holds all basic information about the extension lik
 		'version' => '1.0.0',
 		'constraints' => array(
 			'depends' => array(
-				'typo3' => '6.2.0-7.2.99',
-				'news' => '3.2.0-3.2.99',
+				'typo3' => '7.6.13-8.7.99',
+				'news' => '6.2.0-6.9.99',
 			),
 			'conflicts' => array(),
 			'suggests' => array(),
