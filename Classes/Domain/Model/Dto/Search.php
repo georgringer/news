@@ -153,7 +153,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param bool $splitSubjectWords
      */
-    public function setSplitSubjectWords(bool $splitSubjectWords)
+    public function setSplitSubjectWords($splitSubjectWords)
     {
         $this->splitSubjectWords = $splitSubjectWords;
     }
