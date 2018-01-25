@@ -77,7 +77,6 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
                 1400741142);
         }
 
-        $this->numberOfPages = intval(ceil(count($this->objects) / $itemsPerPage));
         $this->maximumNumberOfLinks = (integer)$this->configuration['maximumNumberOfLinks'];
         if (isset($this->configuration['templatePath']) && !empty($this->configuration['templatePath'])) {
             $this->templatePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->configuration['templatePath']);
@@ -92,6 +91,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
         if (isset($this->widgetConfiguration['initial']['recordId'])) {
             $this->recordId = (int)$this->widgetConfiguration['initial']['recordId'];
         }
+        $this->numberOfPages = intval(ceil((count($this->objects)-$this->initialOffset) / $itemsPerPage));
     }
 
     /**
