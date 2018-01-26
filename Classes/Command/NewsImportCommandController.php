@@ -49,7 +49,7 @@ class NewsImportCommandController extends CommandController
                 continue;
             }
         }
-      
+
         if (is_null($classToBeUsed)) {
             $this->output('<error>Sorry, the class could not be found!</error>');
             $this->sendAndExit();
