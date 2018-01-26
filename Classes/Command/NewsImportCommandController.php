@@ -28,7 +28,7 @@ class NewsImportCommandController extends CommandController
         $jobs = $this->getAvailableJobs();
         $index = $this->output->select('Which class to import from?', array_values($jobs), null, false, 10);
 
-        $class = $this->getChosenClass($jobs, $index);
+        $class = $this->getChosenClass($jobs, intval($index));
         $job = $this->objectManager->get($class);
         $job->run(0);
     }
@@ -43,13 +43,13 @@ class NewsImportCommandController extends CommandController
     protected function getChosenClass(array $jobs, $index)
     {
         $classToBeUsed = null;
-        foreach ($jobs as $class => $title) {
-            if ($index === $title) {
+        foreach (array_keys($jobs) as $i => $class) {
+            if ($index === $i) {
                 $classToBeUsed = $class;
                 continue;
             }
         }
-
+      
         if (is_null($classToBeUsed)) {
             $this->output('<error>Sorry, the class could not be found!</error>');
             $this->sendAndExit();
