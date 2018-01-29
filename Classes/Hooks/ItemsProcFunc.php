@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Hooks;
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
@@ -37,6 +38,7 @@ class ItemsProcFunc
     public function user_templateLayout(array &$config)
     {
         $pageId = 0;
+        $currentColPos = null;
         if (ExtensionManagementUtility::isLoaded('compatibility6')) {
             if (StringUtility::beginsWith($config['row']['uid'], 'NEW')) {
                 $getVars = GeneralUtility::_GET('edit');
@@ -54,12 +56,18 @@ class ItemsProcFunc
                 $row = $this->getContentElementRow($config['row']['uid']);
                 $pageId = $row['pid'];
             }
+            if (isset($config['row']['colPos'])) {
+                $currentColPos = $config['row']['colPos'];
+            }
         } else {
+            $currentColPos = $config['flexParentDatabaseRow']['colPos'];
             $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
         }
 
         if ($pageId > 0) {
             $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
+
+            $templateLayouts = $this->reduceTemplateLayouts($templateLayouts, $currentColPos);
             foreach ($templateLayouts as $layout) {
                 $additionalLayout = [
                     htmlspecialchars($this->getLanguageService()->sL($layout[0])),
@@ -68,6 +76,39 @@ class ItemsProcFunc
                 array_push($config['items'], $additionalLayout);
             }
         }
+    }
+
+    /**
+     * Reduce the template layouts by the once which are not allowed in given colPos
+     * @param array $templateLayouts
+     * @param int $currentColPos
+     * @return array
+     */
+    protected function reduceTemplateLayouts($templateLayouts, $currentColPos)
+    {
+        $currentColPos = (int)$currentColPos;
+        $restrictions = [];
+        $allLayouts = [];
+        foreach ($templateLayouts as $key => $layout) {
+            if (is_array($layout[0])) {
+                if (isset($layout[0]['allowedColPos']) && StringUtility::endsWith($layout[1], '.')) {
+                    $layoutKey = substr($layout[1], 0, -1);
+                    $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
+                }
+            } else {
+                $allLayouts[$layout[1]] = $layout;
+            }
+        }
+
+        if (!empty($restrictions)) {
+            foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
+                if (!in_array($currentColPos, $restrictedColPosList, true)) {
+                    unset($allLayouts[$restrictedIdentifier]);
+                }
+            }
+        }
+
+        return $allLayouts;
     }
 
     /**
