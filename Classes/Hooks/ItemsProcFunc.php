@@ -231,9 +231,7 @@ class ItemsProcFunc
             return $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
                 '*',
                 'sys_language',
-                '1=1 ' . BackendUtilityCore::deleteClause('sys_language'),
-                '',
-                'sorting'
+                '1=1 ' . BackendUtilityCore::deleteClause('sys_language')
             );
         }
     }
