@@ -16,7 +16,7 @@ namespace GeorgRinger\News\ViewHelpers;
  */
 
 /**
- * ViewHelper to render the page title
+ * ViewHelper to render the page title.
  *
  * # Example: Basic Example
  * # Description: Render the content of the VH as page title
@@ -26,20 +26,20 @@ namespace GeorgRinger\News\ViewHelpers;
  * <output>
  *	<title>TYPO3 is awesome</title>
  * </output>
- *
  */
-class TitleTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-
-	/**
-	 * Override the title tag
-	 *
-	 * @return void
-	 */
-	public function render() {
-		$content = trim($this->renderChildren());
-		if (!empty($content)) {
-			$GLOBALS['TSFE']->altPageTitle = $content;
-			$GLOBALS['TSFE']->indexedDocTitle = $content;
-		}
-	}
+class TitleTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * Override the title tag.
+     *
+     * @return void
+     */
+    public function render()
+    {
+        $content = trim($this->renderChildren());
+        if (!empty($content)) {
+            $GLOBALS['TSFE']->altPageTitle = $content;
+            $GLOBALS['TSFE']->indexedDocTitle = $content;
+        }
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,58 +17,58 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Format;
 use GeorgRinger\News\ViewHelpers\Format\DateViewHelper;
 
 /**
- * Tests for \GeorgRinger\News\ViewHelpers\Format\DateViewHelper
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Tests for \GeorgRinger\News\ViewHelpers\Format\DateViewHelper.
  */
-class DateViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class DateViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * Test if given format works.
+     *
+     * @test
+     * @dataProvider correctDateIsReturnedDataProvider
+     *
+     * @return void
+     */
+    public function correctDateIsReturned($expectedResult, $settings)
+    {
+        $viewHelper = new DateViewHelper();
+        $this->assertEquals($viewHelper->render($settings['date'], $settings['format'], $settings['currentDate'], $settings['strftime']), $expectedResult);
+    }
 
-	/**
-	 * Test if given format works
-	 *
-	 * @test
-	 * @dataProvider correctDateIsReturnedDataProvider
-	 * @return void
-	 */
-	public function correctDateIsReturned($expectedResult, $settings) {
-		$viewHelper = new DateViewHelper();
-		$this->assertEquals($viewHelper->render($settings['date'], $settings['format'], $settings['currentDate'], $settings['strftime']), $expectedResult);
-	}
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function correctDateIsReturnedDataProvider()
+    {
+        $currentDate = new \DateTime('@'.$GLOBALS['EXEC_TIME']);
 
-	/**
-	 * Data provider
-	 *
-	 * @return array
-	 */
-	public function correctDateIsReturnedDataProvider() {
-		$currentDate = new \DateTime('@' . $GLOBALS['EXEC_TIME']);
-
-		return array(
-			'stfTimeDateGiven' => array(
-				'08 2012', array(
-					'date' => new \DateTime('2012-07-08 11:14:15'),
-					'format' => '%d %Y',
-					'currentDate' => FALSE,
-					'strftime' => TRUE
-				)
-			),
-			'dateTimeGiven' => array(
-				'2012', array(
-					'date' => new \DateTime('2012-07-08 11:14:15'),
-					'format' => 'Y',
-					'currentDate' => FALSE,
-					'strftime' => FALSE
-				)
-			),
-			'currentDate' => array(
-				strftime('%Y', $currentDate->format('U')), array(
-					'date' => $currentDate,
-					'format' => 'Y',
-					'currentDate' => TRUE,
-					'strftime' => FALSE
-				)
-			),
-		);
-	}
+        return [
+            'stfTimeDateGiven' => [
+                '08 2012', [
+                    'date'        => new \DateTime('2012-07-08 11:14:15'),
+                    'format'      => '%d %Y',
+                    'currentDate' => false,
+                    'strftime'    => true,
+                ],
+            ],
+            'dateTimeGiven' => [
+                '2012', [
+                    'date'        => new \DateTime('2012-07-08 11:14:15'),
+                    'format'      => 'Y',
+                    'currentDate' => false,
+                    'strftime'    => false,
+                ],
+            ],
+            'currentDate' => [
+                strftime('%Y', $currentDate->format('U')), [
+                    'date'        => $currentDate,
+                    'format'      => 'Y',
+                    'currentDate' => true,
+                    'strftime'    => false,
+                ],
+            ],
+        ];
+    }
 }

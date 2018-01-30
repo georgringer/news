@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,38 +18,38 @@ use GeorgRinger\News\Utility\Url;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Test class for Url
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Test class for Url.
  */
-class UrlTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class UrlTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     * @dataProvider correctUrlIsDeliveredDataProvider
+     */
+    public function correctUrlIsDelivered($actual, $expected)
+    {
+        $this->assertEquals($expected, Url::prependDomain($actual));
+    }
 
-	/**
-	 * @test
-	 * @dataProvider correctUrlIsDeliveredDataProvider
-	 */
-	public function correctUrlIsDelivered($actual, $expected) {
-		$this->assertEquals($expected, Url::prependDomain($actual));
-	}
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function correctUrlIsDeliveredDataProvider()
+    {
+        $currentDomain = GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
 
-	/**
-	 * Data provider
-	 *
-	 * @return array
-	 */
-	public function correctUrlIsDeliveredDataProvider() {
-		$currentDomain = GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
-		return array(
-			'absoluteUrlIsUsed' => array(
-				$currentDomain . 'index.php?id=123', $currentDomain . 'index.php?id=123'
-			),
-			'relativeUrlIsUsed' => array(
-				'index.php?id=123', $currentDomain . 'index.php?id=123'
-			),
-			'domainOnlyIsGiven' => array(
-				$currentDomain, $currentDomain
-			),
-		);
-	}
+        return [
+            'absoluteUrlIsUsed' => [
+                $currentDomain.'index.php?id=123', $currentDomain.'index.php?id=123',
+            ],
+            'relativeUrlIsUsed' => [
+                'index.php?id=123', $currentDomain.'index.php?id=123',
+            ],
+            'domainOnlyIsGiven' => [
+                $currentDomain, $currentDomain,
+            ],
+        ];
+    }
 }

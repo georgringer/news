@@ -18,14 +18,14 @@ namespace GeorgRinger\News\ViewHelpers\Be;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Check if the checkbox should be active or not
+ * Check if the checkbox should be active or not.
  */
 class IsCheckboxActiveViewHelper extends AbstractViewHelper
 {
-
     /**
-     * @param int $id
+     * @param int   $id
      * @param array $categories
+     *
      * @return string
      */
     public function render($id, array $categories = null)

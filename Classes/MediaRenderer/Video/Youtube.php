@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\MediaRenderer\Video;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,98 +17,101 @@ namespace GeorgRinger\News\MediaRenderer\Video;
 use GeorgRinger\News\MediaRenderer\MediaInterface;
 
 /**
- * Implementation of youtube support
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Implementation of youtube support.
  */
-class Youtube implements MediaInterface {
+class Youtube implements MediaInterface
+{
+    /**
+     * @var \GeorgRinger\News\Service\SettingsService
+     */
+    protected $pluginSettingsService;
 
-	/**
-	 * @var \GeorgRinger\News\Service\SettingsService
-	 */
-	protected $pluginSettingsService;
+    /**
+     * @var \GeorgRinger\News\Service\SettingsService
+     *
+     * @return void
+     */
+    public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
+    {
+        $this->pluginSettingsService = $pluginSettingsService;
+    }
 
-	/**
-	 * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
-	 * @return void
-	 */
-	public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService) {
-		$this->pluginSettingsService = $pluginSettingsService;
-	}
+    /**
+     * Render videos from youtube.
+     *
+     * @param \GeorgRinger\News\Domain\Model\Media $element
+     * @param int                                  $width
+     * @param int                                  $height
+     *
+     * @return string
+     */
+    public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height)
+    {
+        $content = '';
 
-	/**
-	 * Render videos from youtube
-	 *
-	 * @param \GeorgRinger\News\Domain\Model\Media $element
-	 * @param integer $width
-	 * @param integer $height
-	 * @return string
-	 */
-	public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height) {
-		$content = '';
+        $url = $this->getYoutubeUrl($element);
 
-		$url = $this->getYoutubeUrl($element);
+        if (!is_null($url)) {
+            // override width & height if both are set
+            if ($element->getWidth() > 0 && $element->getHeight() > 0) {
+                $width = $element->getWidth();
+                $height = $element->getHeight();
+            }
 
-		if (!is_null($url)) {
-			// override width & height if both are set
-			if ($element->getWidth() > 0 && $element->getHeight() > 0) {
-				$width = $element->getWidth();
-				$height = $element->getHeight();
-			}
+            $frameBorderAttribute = '';
+            if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->config['config']['doctype'] !== 'html5') {
+                $frameBorderAttribute = ' frameborder="0"';
+            }
 
-			$frameBorderAttribute = '';
-			if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->config['config']['doctype'] !== 'html5') {
-				$frameBorderAttribute = ' frameborder="0"';
-			}
+            $content = '<iframe width="'.(int) $width.'" height="'.(int) $height.'" src="'.htmlspecialchars($url).'"'.$frameBorderAttribute.'></iframe>';
+        }
 
-			$content = '<iframe width="' . (int)$width . '" height="' . (int)$height . '" src="' . htmlspecialchars($url) . '"' . $frameBorderAttribute . '></iframe>';
-		}
+        return $content;
+    }
 
-		return $content;
-	}
+    /**
+     * Check if given element includes an url to a youtube video.
+     *
+     * @param \GeorgRinger\News\Domain\Model\Media $element
+     *
+     * @return bool
+     */
+    public function enabled(\GeorgRinger\News\Domain\Model\Media $element)
+    {
+        $result = false;
 
-	/**
-	 * Check if given element includes an url to a youtube video
-	 *
-	 * @param \GeorgRinger\News\Domain\Model\Media $element
-	 * @return boolean
-	 */
-	public function enabled(\GeorgRinger\News\Domain\Model\Media $element) {
-		$result = FALSE;
+        $url = $this->getYoutubeUrl($element);
 
-		$url = $this->getYoutubeUrl($element);
+        if (!is_null($url)) {
+            $result = true;
+        }
 
-		if (!is_null($url)) {
-			$result = TRUE;
-		}
-		return $result;
-	}
+        return $result;
+    }
 
+    /**
+     * @param \GeorgRinger\News\Domain\Model\Media $element
+     *
+     * @return null|string
+     */
+    public function getYoutubeUrl(\GeorgRinger\News\Domain\Model\Media $element)
+    {
+        $videoId = null;
+        $youtubeUrl = null;
 
-	/**
-	 * @param \GeorgRinger\News\Domain\Model\Media $element
-	 * @return null|string
-	 */
-	public function getYoutubeUrl(\GeorgRinger\News\Domain\Model\Media $element) {
-		$videoId = NULL;
-		$youtubeUrl = NULL;
+        if (preg_match('/(v=|v\\/|.be\\/)([^(\\&|$)]*)/', $element->getContent(), $matches)) {
+            $videoId = $matches[2];
+        }
+        if ($videoId) {
+            $youtubeUrl = '//www.youtube.com/embed/'.$videoId.'?fs=1&wmode=opaque';
+            $settings = $this->pluginSettingsService->getSettings();
+            if (isset($settings['mediaRenderer']) && isset($settings['mediaRenderer']['youtube'])
+                && isset($settings['mediaRenderer']['youtube']['additionalParams'])
+            ) {
+                $youtubeUrl .= $settings['mediaRenderer']['youtube']['additionalParams'];
+            }
+        }
 
-		if (preg_match('/(v=|v\\/|.be\\/)([^(\\&|$)]*)/', $element->getContent(), $matches)) {
-			$videoId = $matches[2];
-		}
-		if ($videoId) {
-			$youtubeUrl = '//www.youtube.com/embed/' . $videoId . '?fs=1&wmode=opaque';
-			$settings = $this->pluginSettingsService->getSettings();
-			if (isset($settings['mediaRenderer']) && isset($settings['mediaRenderer']['youtube'])
-				&& isset($settings['mediaRenderer']['youtube']['additionalParams'])
-			) {
-				$youtubeUrl .= $settings['mediaRenderer']['youtube']['additionalParams'];
-			}
-		}
-
-		return $youtubeUrl;
-	}
-
+        return $youtubeUrl;
+    }
 }
-

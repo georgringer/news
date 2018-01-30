@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\MediaRenderer;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -16,29 +16,27 @@ namespace GeorgRinger\News\MediaRenderer;
  */
 
 /**
- * Interface to implement video views
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Interface to implement video views.
  */
-interface MediaInterface {
+interface MediaInterface
+{
+    /**
+     * Render a media element.
+     *
+     * @param \GeorgRinger\News\Domain\Model\Media $element
+     * @param int                                  $width
+     * @param int                                  $height
+     *
+     * @return string
+     */
+    public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height);
 
-	/**
-	 * Render a media element
-	 *
-	 * @param \GeorgRinger\News\Domain\Model\Media $element
-	 * @param integer $width
-	 * @param integer $height
-	 * @return string
-	 */
-	public function render(\GeorgRinger\News\Domain\Model\Media $element, $width, $height);
-
-	/**
-	 * If enabled
-	 *
-	 * @param \GeorgRinger\News\Domain\Model\Media $element
-	 * @return string
-	 */
-	public function enabled(\GeorgRinger\News\Domain\Model\Media $element);
-
+    /**
+     * If enabled.
+     *
+     * @param \GeorgRinger\News\Domain\Model\Media $element
+     *
+     * @return string
+     */
+    public function enabled(\GeorgRinger\News\Domain\Model\Media $element);
 }

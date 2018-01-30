@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\MediaRenderer\Video;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,42 +18,44 @@ use GeorgRinger\News\Domain\Model\Media;
 use GeorgRinger\News\MediaRenderer\Video\Videosites;
 
 /**
- * Tests for Videosites
+ * Tests for Videosites.
  */
-class VideositesTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class VideositesTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     * @dataProvider fileIsRecognizedDataProvider
+     *
+     * @return void
+     */
+    public function flvFileIsRecognized($expected, $expectedOutput)
+    {
+        $mediaElement = new Media();
+        $mediaElement->setMultimedia($expected);
+        $mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
 
-	/**
-	 * @test
-	 * @dataProvider fileIsRecognizedDataProvider
-	 * @return void
-	 */
-	public function flvFileIsRecognized($expected, $expectedOutput) {
-		$mediaElement = new Media();
-		$mediaElement->setMultimedia($expected);
-		$mediaElement->setType(Media::MEDIA_TYPE_MULTIMEDIA);
+        $renderer = new Videosites();
+        $this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
+    }
 
-		$renderer = new Videosites();
-		$this->assertEquals($expectedOutput, $renderer->enabled($mediaElement));
-	}
-
-	/**
-	 * @return array
-	 */
-	public function fileIsRecognizedDataProvider() {
-		return array(
-			'workingFlv' => array(
-				'fileadmin/fo/bar.flv', TRUE
-			),
-			'workingFlvWithUpperCaseFileType' => array(
-				'fileadmin/fo/bar.FLV', TRUE
-			),
-			'noMediaFileGiven' => array(
-				NULL, FALSE
-			),
-			'emptyMediaFileGiven' => array(
-				'', FALSE
-			),
-		);
-	}
-
+    /**
+     * @return array
+     */
+    public function fileIsRecognizedDataProvider()
+    {
+        return [
+            'workingFlv' => [
+                'fileadmin/fo/bar.flv', true,
+            ],
+            'workingFlvWithUpperCaseFileType' => [
+                'fileadmin/fo/bar.FLV', true,
+            ],
+            'noMediaFileGiven' => [
+                null, false,
+            ],
+            'emptyMediaFileGiven' => [
+                '', false,
+            ],
+        ];
+    }
 }

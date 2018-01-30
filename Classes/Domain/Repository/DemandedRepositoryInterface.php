@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,12 +18,11 @@ namespace GeorgRinger\News\Domain\Repository;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 
 /**
- * Demand domain model interface
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Demand domain model interface.
  */
-interface DemandedRepositoryInterface {
-	public function findDemanded(DemandInterface $demand, $respectEnableFields = TRUE);
-	public function countDemanded(DemandInterface $demand);
+interface DemandedRepositoryInterface
+{
+    public function findDemanded(DemandInterface $demand, $respectEnableFields = true);
+
+    public function countDemanded(DemandInterface $demand);
 }

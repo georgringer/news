@@ -1,7 +1,8 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,465 +15,513 @@ namespace GeorgRinger\News\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-use GeorgRinger\News\Domain\Model\FileReference;
-
 /**
- * Category Model
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Category Model.
  */
-class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+{
+    /**
+     * @var int
+     */
+    protected $sorting;
 
-	/**
-	 * @var integer
-	 */
-	protected $sorting;
+    /**
+     * @var \DateTime
+     */
+    protected $crdate;
 
-	/**
-	 * @var \DateTime
-	 */
-	protected $crdate;
+    /**
+     * @var \DateTime
+     */
+    protected $tstamp;
 
-	/**
-	 * @var \DateTime
-	 */
-	protected $tstamp;
+    /**
+     * @var \DateTime
+     */
+    protected $starttime;
 
-	/**
-	 * @var \DateTime
-	 */
-	protected $starttime;
+    /**
+     * @var bool
+     */
+    protected $hidden;
 
-	/**
-	 * @var boolean
-	 */
-	protected $hidden;
+    /**
+     * @var \DateTime
+     */
+    protected $endtime;
 
-	/**
-	 * @var \DateTime
-	 */
-	protected $endtime;
+    /**
+     * @var int
+     */
+    protected $sysLanguageUid;
 
-	/**
-	 * @var integer
-	 */
-	protected $sysLanguageUid;
+    /**
+     * @var int
+     */
+    protected $l10nParent;
 
-	/**
-	 * @var integer
-	 */
-	protected $l10nParent;
+    /**
+     * @var string
+     */
+    protected $title;
 
-	/**
-	 * @var string
-	 */
-	protected $title;
+    /**
+     * @var string
+     */
+    protected $description;
 
-	/**
-	 * @var string
-	 */
-	protected $description;
+    /**
+     * @var \GeorgRinger\News\Domain\Model\Category
+     * @lazy
+     */
+    protected $parentcategory;
 
-	/**
-	 * @var \GeorgRinger\News\Domain\Model\Category
-	 * @lazy
-	 */
-	protected $parentcategory;
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
+     * @lazy
+     */
+    protected $images;
 
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-	 * @lazy
-	 */
-	protected $images;
+    /**
+     * @var int
+     */
+    protected $shortcut;
 
-	/**
-	 * @var integer
-	 */
-	protected $shortcut;
+    /**
+     * @var int
+     */
+    protected $singlePid;
 
-	/**
-	 * @var integer
-	 */
-	protected $singlePid;
+    /**
+     * @var string
+     */
+    protected $importId;
 
-	/**
-	 * @var string
-	 */
-	protected $importId;
+    /**
+     * @var string
+     */
+    protected $importSource;
 
-	/**
-	 * @var string
-	 */
-	protected $importSource;
+    /**
+     * keep it as string as it should be only used during imports.
+     *
+     * @var string
+     */
+    protected $feGroup;
 
-	/**
-	 * keep it as string as it should be only used during imports
-	 * @var string
-	 */
-	protected $feGroup;
+    /**
+     * @var int
+     */
+    protected $countRelatedNews = 0;
 
-	/**
-	 * @var integer
-	 */
-	protected $countRelatedNews = 0;
+    /**
+     * Initialize images.
+     *
+     * @return \GeorgRinger\News\Domain\Model\Category
+     */
+    public function __construct()
+    {
+        $this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
 
-	/**
-	 * Initialize images
-	 *
-	 * @return \GeorgRinger\News\Domain\Model\Category
-	 */
-	public function __construct() {
-		$this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-	}
+    /**
+     * Get creation date.
+     *
+     * @return \DateTime
+     */
+    public function getCrdate()
+    {
+        return $this->crdate;
+    }
 
-	/**
-	 * Get creation date
-	 *
-	 * @return \DateTime
-	 */
-	public function getCrdate() {
-		return $this->crdate;
-	}
+    /**
+     * Set Creation Date.
+     *
+     * @param \DateTime $crdate crdate
+     *
+     * @return void
+     */
+    public function setCrdate($crdate)
+    {
+        $this->crdate = $crdate;
+    }
 
-	/**
-	 * Set Creation Date
-	 *
-	 * @param \DateTime $crdate crdate
-	 * @return void
-	 */
-	public function setCrdate($crdate) {
-		$this->crdate = $crdate;
-	}
+    /**
+     * Get Tstamp.
+     *
+     * @return \DateTime
+     */
+    public function getTstamp()
+    {
+        return $this->tstamp;
+    }
 
-	/**
-	 * Get Tstamp
-	 *
-	 * @return \DateTime
-	 */
-	public function getTstamp() {
-		return $this->tstamp;
-	}
+    /**
+     * Set tstamp.
+     *
+     * @param \DateTime $tstamp tstamp
+     *
+     * @return void
+     */
+    public function setTstamp($tstamp)
+    {
+        $this->tstamp = $tstamp;
+    }
 
-	/**
-	 * Set tstamp
-	 *
-	 * @param \DateTime $tstamp tstamp
-	 * @return void
-	 */
-	public function setTstamp($tstamp) {
-		$this->tstamp = $tstamp;
-	}
+    /**
+     * Get starttime.
+     *
+     * @return \DateTime
+     */
+    public function getStarttime()
+    {
+        return $this->starttime;
+    }
 
-	/**
-	 * Get starttime
-	 *
-	 * @return \DateTime
-	 */
-	public function getStarttime() {
-		return $this->starttime;
-	}
+    /**
+     * Set starttime.
+     *
+     * @param \DateTime $starttime starttime
+     *
+     * @return void
+     */
+    public function setStarttime($starttime)
+    {
+        $this->starttime = $starttime;
+    }
 
-	/**
-	 * Set starttime
-	 *
-	 * @param \DateTime $starttime starttime
-	 * @return void
-	 */
-	public function setStarttime($starttime) {
-		$this->starttime = $starttime;
-	}
+    /**
+     * Get Endtime.
+     *
+     * @return \DateTime
+     */
+    public function getEndtime()
+    {
+        return $this->endtime;
+    }
 
-	/**
-	 * Get Endtime
-	 *
-	 * @return \DateTime
-	 */
-	public function getEndtime() {
-		return $this->endtime;
-	}
+    /**
+     * Set Endtime.
+     *
+     * @param \DateTime $endtime endttime
+     *
+     * @return void
+     */
+    public function setEndtime($endtime)
+    {
+        $this->endtime = $endtime;
+    }
 
-	/**
-	 * Set Endtime
-	 *
-	 * @param \DateTime $endtime endttime
-	 * @return void
-	 */
-	public function setEndtime($endtime) {
-		$this->endtime = $endtime;
-	}
+    /**
+     * Get Hidden.
+     *
+     * @return bool
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
+    }
 
-	/**
-	 * Get Hidden
-	 *
-	 * @return boolean
-	 */
-	public function getHidden() {
-		return $this->hidden;
-	}
+    /**
+     * Set Hidden.
+     *
+     * @param bool $hidden
+     *
+     * @return void
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+    }
 
-	/**
-	 * Set Hidden
-	 *
-	 * @param boolean $hidden
-	 * @return void
-	 */
-	public function setHidden($hidden) {
-		$this->hidden = $hidden;
-	}
+    /**
+     * Get sys language.
+     *
+     * @return int
+     */
+    public function getSysLanguageUid()
+    {
+        return $this->_languageUid;
+    }
 
-	/**
-	 * Get sys language
-	 *
-	 * @return integer
-	 */
-	public function getSysLanguageUid() {
-		return $this->_languageUid;
-	}
+    /**
+     * Set sys language.
+     *
+     * @param int $sysLanguageUid language uid
+     *
+     * @return void
+     */
+    public function setSysLanguageUid($sysLanguageUid)
+    {
+        $this->_languageUid = $sysLanguageUid;
+    }
 
-	/**
-	 * Set sys language
-	 *
-	 * @param integer $sysLanguageUid language uid
-	 * @return void
-	 */
-	public function setSysLanguageUid($sysLanguageUid) {
-		$this->_languageUid = $sysLanguageUid;
-	}
+    /**
+     * Get language parent.
+     *
+     * @return int
+     */
+    public function getL10nParent()
+    {
+        return $this->l10nParent;
+    }
 
-	/**
-	 * Get language parent
-	 *
-	 * @return integer
-	 */
-	public function getL10nParent() {
-		return $this->l10nParent;
-	}
+    /**
+     * Set language parent.
+     *
+     * @param int $l10nParent l10nParent
+     *
+     * @return void
+     */
+    public function setL10nParent($l10nParent)
+    {
+        $this->l10nParent = $l10nParent;
+    }
 
-	/**
-	 * Set language parent
-	 *
-	 * @param integer $l10nParent l10nParent
-	 * @return void
-	 */
-	public function setL10nParent($l10nParent) {
-		$this->l10nParent = $l10nParent;
-	}
+    /**
+     * Get category title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
-	/**
-	 * Get category title
-	 *
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
+    /**
+     * Set category title.
+     *
+     * @param string $title title
+     *
+     * @return void
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 
-	/**
-	 * Set category title
-	 *
-	 * @param string $title title
-	 * @return void
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
+    /**
+     * Get description.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
-	/**
-	 * Get description
-	 *
-	 * @return string
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
+    /**
+     * Set description.
+     *
+     * @param string $description description
+     *
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 
-	/**
-	 * Set description
-	 *
-	 * @param string $description description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
 
-	/**
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
-	 */
-	public function setImages($images) {
-		$this->images = $images;
-	}
+    /**
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
 
-	/**
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-	 */
-	public function getImages() {
-		return $this->images;
-	}
+    /**
+     * Add image.
+     *
+     * @param FileReference $image
+     */
+    public function addImage(FileReference $image)
+    {
+        $this->images->attach($image);
+    }
 
-	/**
-	 * Add image
-	 *
-	 * @param FileReference $image
-	 */
-	public function addImage(FileReference $image) {
-		$this->images->attach($image);
-	}
+    /**
+     * Remove image.
+     *
+     * @param FileReference $image
+     */
+    public function removeImage(FileReference $image)
+    {
+        $this->images->detach($image);
+    }
 
-	/**
-	 * Remove image
-	 *
-	 * @param FileReference $image
-	 */
-	public function removeImage(FileReference $image) {
-		$this->images->detach($image);
-	}
+    /**
+     * Get the first image.
+     *
+     * @return FileReference|null
+     */
+    public function getFirstImage()
+    {
+        $images = $this->getImages();
+        foreach ($images as $image) {
+            return $image;
+        }
+    }
 
-	/**
-	 * Get the first image
-	 *
-	 * @return FileReference|null
-	 */
-	public function getFirstImage() {
-		$images = $this->getImages();
-		foreach ($images as $image) {
-			return $image;
-		}
+    /**
+     * Get parent category.
+     *
+     * @return \GeorgRinger\News\Domain\Model\Category
+     */
+    public function getParentcategory()
+    {
+        return $this->parentcategory;
+    }
 
-		return NULL;
-	}
+    /**
+     * Set parent category.
+     *
+     * @param \GeorgRinger\News\Domain\Model\Category $category parent category
+     *
+     * @return void
+     */
+    public function setParentcategory(self $category)
+    {
+        $this->parentcategory = $category;
+    }
 
-	/**
-	 * Get parent category
-	 *
-	 * @return \GeorgRinger\News\Domain\Model\Category
-	 */
-	public function getParentcategory() {
-		return $this->parentcategory;
-	}
+    /**
+     * Get shortcut.
+     *
+     * @return int
+     */
+    public function getShortcut()
+    {
+        return $this->shortcut;
+    }
 
-	/**
-	 * Set parent category
-	 *
-	 * @param \GeorgRinger\News\Domain\Model\Category $category parent category
-	 * @return void
-	 */
-	public function setParentcategory(Category $category) {
-		$this->parentcategory = $category;
-	}
+    /**
+     * Set shortcut.
+     *
+     * @param int $shortcut shortcut
+     *
+     * @return void
+     */
+    public function setShortcut($shortcut)
+    {
+        $this->shortcut = $shortcut;
+    }
 
-	/**
-	 * Get shortcut
-	 *
-	 * @return integer
-	 */
-	public function getShortcut() {
-		return $this->shortcut;
-	}
+    /**
+     * Get single pid of category.
+     *
+     * @return int
+     */
+    public function getSinglePid()
+    {
+        return $this->singlePid;
+    }
 
-	/**
-	 * Set shortcut
-	 *
-	 * @param integer $shortcut shortcut
-	 * @return void
-	 */
-	public function setShortcut($shortcut) {
-		$this->shortcut = $shortcut;
-	}
+    /**
+     * Set single pid.
+     *
+     * @param int $singlePid single pid
+     *
+     * @return void
+     */
+    public function setSinglePid($singlePid)
+    {
+        $this->singlePid = $singlePid;
+    }
 
-	/**
-	 * Get single pid of category
-	 *
-	 * @return integer
-	 */
-	public function getSinglePid() {
-		return $this->singlePid;
-	}
+    /**
+     * Get import id.
+     *
+     * @return string
+     */
+    public function getImportId()
+    {
+        return $this->importId;
+    }
 
-	/**
-	 * Set single pid
-	 *
-	 * @param integer $singlePid single pid
-	 * @return void
-	 */
-	public function setSinglePid($singlePid) {
-		$this->singlePid = $singlePid;
-	}
+    /**
+     * Set import id.
+     *
+     * @param string $importId import id
+     *
+     * @return void
+     */
+    public function setImportId($importId)
+    {
+        $this->importId = $importId;
+    }
 
-	/**
-	 * Get import id
-	 *
-	 * @return string
-	 */
-	public function getImportId() {
-		return $this->importId;
-	}
+    /**
+     * Get sorting id.
+     *
+     * @return int sorting id
+     */
+    public function getSorting()
+    {
+        return $this->sorting;
+    }
 
-	/**
-	 * Set import id
-	 *
-	 * @param string $importId import id
-	 * @return void
-	 */
-	public function setImportId($importId) {
-		$this->importId = $importId;
-	}
+    /**
+     * Set sorting id.
+     *
+     * @param int $sorting sorting id
+     *
+     * @return void
+     */
+    public function setSorting($sorting)
+    {
+        $this->sorting = $sorting;
+    }
 
-	/**
-	 * Get sorting id
-	 *
-	 * @return integer sorting id
-	 */
-	public function getSorting() {
-		return $this->sorting;
-	}
+    /**
+     * Get feGroup.
+     *
+     * @return string
+     */
+    public function getFeGroup()
+    {
+        return $this->feGroup;
+    }
 
-	/**
-	 * Set sorting id
-	 *
-	 * @param integer $sorting sorting id
-	 * @return void
-	 */
-	public function setSorting($sorting) {
-		$this->sorting = $sorting;
-	}
+    /**
+     * Get feGroup.
+     *
+     * @param string $feGroup feGroup
+     *
+     * @return void
+     */
+    public function setFeGroup($feGroup)
+    {
+        $this->feGroup = $feGroup;
+    }
 
-	/**
-	 * Get feGroup
-	 *
-	 * @return string
-	 */
-	public function getFeGroup() {
-		return $this->feGroup;
-	}
+    /**
+     * Set importSource.
+     *
+     * @param string $importSource
+     *
+     * @return void
+     */
+    public function setImportSource($importSource)
+    {
+        $this->importSource = $importSource;
+    }
 
-	/**
-	 * Get feGroup
-	 *
-	 * @param string $feGroup feGroup
-	 * @return void
-	 */
-	public function setFeGroup($feGroup) {
-		$this->feGroup = $feGroup;
-	}
-
-	/**
-	 * Set importSource
-	 *
-	 * @param  string $importSource
-	 * @return void
-	 */
-	public function setImportSource($importSource) {
-		$this->importSource = $importSource;
-	}
-
-	/**
-	 * Get importSource
-	 *
-	 * @return string
-	 */
-	public function getImportSource() {
-		return $this->importSource;
-	}
+    /**
+     * Get importSource.
+     *
+     * @return string
+     */
+    public function getImportSource()
+    {
+        return $this->importSource;
+    }
 }

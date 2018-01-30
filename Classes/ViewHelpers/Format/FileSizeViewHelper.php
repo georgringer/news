@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Format;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -16,7 +16,7 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  */
 
 /**
- * ViewHelper to render the filesize
+ * ViewHelper to render the filesize.
  *
  * # Example: Basic example
  * # Description: If format is empty, the default from \TYPO3\CMS\Core\Utility\GeneralUtility:::formatSize() is taken.
@@ -35,41 +35,40 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  * <output>
  *  3 M
  * </output>
- *
- * @package TYPO3
- * @subpackage tx_news
  */
-class FileSizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FileSizeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * Renders the size of a file using \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize.
+     *
+     * @param string $file      Path to the file
+     * @param string $format    Labels for bytes, kilo, mega and giga separated by vertical bar (|) and possibly encapsulated in "". Eg: " | K| M| G" (which is the default value)
+     * @param bool   $hideError Define if an error should be displayed if file not found
+     * @param int    $fileSize  File size
+     *
+     * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
+     *
+     * @return string
+     */
+    public function render($file = null, $format = '', $hideError = false, $fileSize = null)
+    {
+        if (!is_null($file) && !is_file($file)) {
+            $errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
+            \TYPO3\CMS\Core\Utility\GeneralUtility::devLog($errorMessage, 'news', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
 
-	/**
-	 * Renders the size of a file using \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize
-	 *
-	 * @param string $file Path to the file
-	 * @param string $format Labels for bytes, kilo, mega and giga separated by vertical bar (|) and possibly encapsulated in "". Eg: " | K| M| G" (which is the default value)
-	 * @param boolean $hideError Define if an error should be displayed if file not found
-	 * @param integer $fileSize File size
-	 * @return string
-	 * @throws \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException
-	 */
-	public function render($file = NULL, $format = '', $hideError = FALSE, $fileSize = NULL) {
+            if (!$hideError) {
+                throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException(
+                    'Given file is not a valid file: '.htmlspecialchars($file));
+            }
+        }
 
-		if (!is_null($file) && !is_file($file)) {
-			$errorMessage = sprintf('Given file "%s" for %s is not valid', htmlspecialchars($file), get_class());
-			\TYPO3\CMS\Core\Utility\GeneralUtility::devLog($errorMessage, 'news', \TYPO3\CMS\Core\Utility\GeneralUtility::SYSLOG_SEVERITY_WARNING);
+        if ($fileSize === null) {
+            $result = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize(filesize($file), $format);
+        } else {
+            $result = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize($fileSize, $format);
+        }
+        $result = htmlspecialchars($result);
 
-			if (!$hideError) {
-				throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception\InvalidVariableException(
-					'Given file is not a valid file: ' . htmlspecialchars($file));
-			}
-		}
-
-		if ($fileSize === NULL) {
-			$result = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize(filesize($file), $format);
-		} else {
-			$result = \TYPO3\CMS\Core\Utility\GeneralUtility::formatSize($fileSize, $format);
-		}
-		$result = htmlspecialchars($result);
-
-		return $result;
-	}
+        return $result;
+    }
 }

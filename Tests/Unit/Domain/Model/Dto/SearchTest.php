@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,63 +17,67 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
 use GeorgRinger\News\Domain\Model\Dto\Search;
 
 /**
- * Tests for domains model News
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Tests for domains model News.
  */
-class SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class SearchTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * Test if subject can be set.
+     *
+     * @test
+     *
+     * @return void
+     */
+    public function subjectCanBeSet()
+    {
+        $domainModelInstance = new Search();
+        $subject = 'Test 123';
+        $domainModelInstance->setSubject($subject);
+        $this->assertEquals($subject, $domainModelInstance->getSubject());
+    }
 
-	/**
-	 * Test if subject can be set
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function subjectCanBeSet() {
-		$domainModelInstance = new Search();
-		$subject = 'Test 123';
-		$domainModelInstance->setSubject($subject);
-		$this->assertEquals($subject, $domainModelInstance->getSubject());
-	}
+    /**
+     * Test if fields can be set.
+     *
+     * @test
+     *
+     * @return void
+     */
+    public function fieldsCanBeSet()
+    {
+        $domainModelInstance = new Search();
+        $fields = 'field1,field2';
+        $domainModelInstance->setFields($fields);
+        $this->assertEquals($fields, $domainModelInstance->getFields());
+    }
 
-	/**
-	 * Test if fields can be set
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function fieldsCanBeSet() {
-		$domainModelInstance = new Search();
-		$fields = 'field1,field2';
-		$domainModelInstance->setFields($fields);
-		$this->assertEquals($fields, $domainModelInstance->getFields());
-	}
+    /**
+     * Test if minimumDate can be set.
+     *
+     * @test
+     *
+     * @return void
+     */
+    public function minimumDateCanBeSet()
+    {
+        $domainModelInstance = new Search();
+        $value = '123';
+        $domainModelInstance->setMinimumDate($value);
+        $this->assertEquals($value, $domainModelInstance->getMinimumDate());
+    }
 
-	/**
-	 * Test if minimumDate can be set
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function minimumDateCanBeSet() {
-		$domainModelInstance = new Search();
-		$value = '123';
-		$domainModelInstance->setMinimumDate($value);
-		$this->assertEquals($value, $domainModelInstance->getMinimumDate());
-	}
-
-	/**
-	 * Test if minimumDate can be set
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function maximumDateCanBeSet() {
-		$domainModelInstance = new Search();
-		$value = '456';
-		$domainModelInstance->setMaximumDate($value);
-		$this->assertEquals($value, $domainModelInstance->getMaximumDate());
-	}
-
+    /**
+     * Test if minimumDate can be set.
+     *
+     * @test
+     *
+     * @return void
+     */
+    public function maximumDateCanBeSet()
+    {
+        $domainModelInstance = new Search();
+        $value = '456';
+        $domainModelInstance->setMaximumDate($value);
+        $this->assertEquals($value, $domainModelInstance->getMaximumDate());
+    }
 }

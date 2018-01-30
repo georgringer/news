@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -16,11 +16,8 @@ namespace GeorgRinger\News\Domain\Repository;
  */
 
 /**
- * News repository with all the callable functionality
- *
- * @package TYPO3
- * @subpackage tx_news
+ * News repository with all the callable functionality.
  */
-class NewsDefaultRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository  {
-
+class NewsDefaultRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
+{
 }

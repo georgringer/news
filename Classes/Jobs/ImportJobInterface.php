@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Jobs;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,17 +15,15 @@ namespace GeorgRinger\News\Jobs;
  * The TYPO3 project - inspiring people to share!
  */
 /**
- * Import job interface
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Import job interface.
  */
-interface ImportJobInterface {
-	public function getNumberOfRecordsPerRun();
+interface ImportJobInterface
+{
+    public function getNumberOfRecordsPerRun();
 
-	public function getInfo();
+    public function getInfo();
 
-	public function isEnabled();
+    public function isEnabled();
 
-	public function run($offset);
+    public function run($offset);
 }

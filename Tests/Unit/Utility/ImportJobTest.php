@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,38 +17,36 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
 use GeorgRinger\News\Utility\ImportJob;
 
 /**
- * Test class for ImportJob
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Test class for ImportJob.
  */
-class ImportJobTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ImportJobTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     */
+    public function classCanBeRegistered()
+    {
+        $importJobInstance = new ImportJob();
 
-	/**
- 	 * @test
-	 */
-	public function classCanBeRegistered() {
-		$importJobInstance = new ImportJob();
+        $jobs = [];
+        $this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
 
-		$jobs = array();
-		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
+        // Add job #1
+        $jobs[] = [
+            'className'   => 'Class 1',
+            'title'       => 'Some title',
+            'description' => '',
+        ];
+        $importJobInstance->register('Class 1', 'Some title', '');
+        $this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
 
-		// Add job #1
-		$jobs[] = array(
-			'className' => 'Class 1',
-			'title' => 'Some title',
-			'description' => ''
-		);
-		$importJobInstance->register('Class 1', 'Some title', '');
-		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
-
-		// Add job #2
-		$jobs[] = array(
-			'className' => 'Class 2',
-			'title' => '',
-			'description' => 'Some description'
-		);
-		$importJobInstance->register('Class 2', '', 'Some description');
-		$this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
-	}
+        // Add job #2
+        $jobs[] = [
+            'className'   => 'Class 2',
+            'title'       => '',
+            'description' => 'Some description',
+        ];
+        $importJobInstance->register('Class 2', '', 'Some description');
+        $this->assertEquals($importJobInstance->getRegisteredJobs(), $jobs);
+    }
 }

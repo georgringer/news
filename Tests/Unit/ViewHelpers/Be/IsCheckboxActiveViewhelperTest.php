@@ -14,18 +14,14 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Be;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\Be\IsCheckboxActiveViewHelper;
-use GeorgRinger\News\ViewHelpers\Be\MultiEditLinkViewHelper;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 /**
- * Tests for IsCheckboxActiveViewhelper
- *
+ * Tests for IsCheckboxActiveViewhelper.
  */
 class IsCheckboxActiveViewhelperTest extends UnitTestCase
 {
-
     const OK_RESULT = 'checked="checked"';
 
     /**
@@ -34,7 +30,7 @@ class IsCheckboxActiveViewhelperTest extends UnitTestCase
     public function activeCheckboxReturnsCorrectValue()
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
-        $actualResult = $viewHelper->render(10, array(5, 7, 10, 12));
+        $actualResult = $viewHelper->render(10, [5, 7, 10, 12]);
 
         $this->assertEquals(self::OK_RESULT, $actualResult);
     }
@@ -45,7 +41,7 @@ class IsCheckboxActiveViewhelperTest extends UnitTestCase
     public function nonActiveCheckboxReturnsNothing()
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
-        $actualResult = $viewHelper->render(8, array(5, 7, 10, 12));
+        $actualResult = $viewHelper->render(8, [5, 7, 10, 12]);
 
         $this->assertEquals('', $actualResult);
     }

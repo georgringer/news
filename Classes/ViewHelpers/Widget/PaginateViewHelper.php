@@ -26,38 +26,40 @@ namespace GeorgRinger\News\ViewHelpers\Widget;
  *   // a <f:for> loop.
  * </f:widget.paginate>
  * </code>
- *
- * @package TYPO3
- * @subpackage tx_news
  */
-class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper {
+class PaginateViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
+{
+    /**
+     * @var \GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController
+     */
+    protected $controller;
 
-	/**
-	 * @var \GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController
-	 */
-	protected $controller;
+    /**
+     * Inject controller.
+     *
+     * @param \GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController $controller
+     *
+     * @return void
+     */
+    public function injectController(\GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController $controller)
+    {
+        $this->controller = $controller;
+    }
 
-	/**
-	 * Inject controller
-	 *
-	 * @param \GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController $controller
-	 * @return void
-	 */
-	public function injectController(\GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController $controller) {
-		$this->controller = $controller;
-	}
-
-	/**
-	 * Render everything
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects
-	 * @param string $as
-	 * @param mixed $configuration
-	 * @param array $initial
-	 * @internal param array $initial
-	 * @return string
-	 */
-	public function render(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects, $as, $configuration = array('itemsPerPage' => 10, 'insertAbove' => FALSE, 'insertBelow' => TRUE), $initial = array()) {
-		return $this->initiateSubRequest();
-	}
+    /**
+     * Render everything.
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects
+     * @param string                                              $as
+     * @param mixed                                               $configuration
+     * @param array                                               $initial
+     *
+     * @internal param array $initial
+     *
+     * @return string
+     */
+    public function render(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $objects, $as, $configuration = ['itemsPerPage' => 10, 'insertAbove' => false, 'insertBelow' => true], $initial = [])
+    {
+        return $this->initiateSubRequest();
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-	/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,7 +17,7 @@ namespace GeorgRinger\News\ViewHelpers;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * ViewHelper to render data in <head> section of website
+ * ViewHelper to render data in <head> section of website.
  *
  * # Example: Basic example
  * <code>
@@ -31,17 +31,17 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <output>
  * Added to the header: <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="uri to this page and type 9818" />
  * </output>
- *
  */
-class HeaderDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-
-	/**
-	 * Renders HeaderData
-	 *
-	 * @return void
-	*/
-	public function render() {
-		$pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
-		$pageRenderer->addHeaderData($this->renderChildren());
-	}
+class HeaderDataViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * Renders HeaderData.
+     *
+     * @return void
+     */
+    public function render()
+    {
+        $pageRenderer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Page\\PageRenderer');
+        $pageRenderer->addHeaderData($this->renderChildren());
+    }
 }

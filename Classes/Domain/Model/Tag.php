@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
 /**
@@ -15,82 +16,88 @@ namespace GeorgRinger\News\Domain\Model;
  */
 
 /**
- * Tag model
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Tag model.
  */
-class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
+class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
+{
+    /**
+     * @var \DateTime
+     */
+    protected $crdate;
 
-	/**
-	 * @var \DateTime
-	 */
-	protected $crdate;
+    /**
+     * @var \DateTime
+     */
+    protected $tstamp;
 
-	/**
-	 * @var \DateTime
-	 */
-	protected $tstamp;
+    /**
+     * @var string
+     */
+    protected $title;
 
-	/**
-	 * @var string
-	 */
-	protected $title;
+    /**
+     * Get crdate.
+     *
+     * @return \DateTime
+     */
+    public function getCrdate()
+    {
+        return $this->crdate;
+    }
 
-	/**
-	 * Get crdate
-	 *
-	 * @return \DateTime
-	 */
-	public function getCrdate() {
-		return $this->crdate;
-	}
+    /**
+     * Set crdate.
+     *
+     * @param \DateTime $crdate crdate
+     *
+     * @return void
+     */
+    public function setCrdate($crdate)
+    {
+        $this->crdate = $crdate;
+    }
 
-	/**
-	 * Set crdate
-	 *
-	 * @param \DateTime $crdate crdate
-	 * @return void
-	 */
-	public function setCrdate($crdate) {
-		$this->crdate = $crdate;
-	}
+    /**
+     * Get Tstamp.
+     *
+     * @return \DateTime
+     */
+    public function getTstamp()
+    {
+        return $this->tstamp;
+    }
 
-	/**
-	 * Get Tstamp
-	 *
-	 * @return \DateTime
-	 */
-	public function getTstamp() {
-		return $this->tstamp;
-	}
+    /**
+     * Set tstamp.
+     *
+     * @param \DateTime $tstamp tstamp
+     *
+     * @return void
+     */
+    public function setTstamp($tstamp)
+    {
+        $this->tstamp = $tstamp;
+    }
 
-	/**
-	 * Set tstamp
-	 *
-	 * @param \DateTime $tstamp tstamp
-	 * @return void
-	 */
-	public function setTstamp($tstamp) {
-		$this->tstamp = $tstamp;
-	}
+    /**
+     * Get title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
-	/**
-	 * Get title
-	 *
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
-
-	/**
-	 * Set title
-	 *
-	 * @param string $title title
-	 * @return void
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
+    /**
+     * Set title.
+     *
+     * @param string $title title
+     *
+     * @return void
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 }

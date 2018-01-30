@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,77 +17,78 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 
 /**
- * Tests for domains model News
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Tests for domains model News.
  */
-class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class EmConfigurationTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * Test if the settings can be read.
+     *
+     * @test
+     *
+     * @return void
+     */
+    public function settingsCanBeRead()
+    {
+        $configuration = [
+            'removeListActionFromFlexforms' => '2',
+            'pageModuleFieldsNews'          => 'test',
+            'pageModuleFieldsCategory'      => 'test',
+            'tagPid'                        => 123,
+            'prependAtCopy'                 => true,
+            'categoryRestriction'           => 'fo',
+            'contentElementRelation'        => false,
+            'manualSorting'                 => false,
+            'archiveDate'                   => 'bar',
+            'showImporter'                  => true,
+            'showAdministrationModule'      => false,
+            'showMediaDescriptionField'     => false,
+            'rteForTeaser'                  => false,
+            'storageUidImporter'            => 1,
+            'resourceFolderImporter'        => 'fo',
+        ];
 
-	/**
-	 * Test if the settings can be read
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function settingsCanBeRead() {
-		$configuration = array(
-			'removeListActionFromFlexforms' => '2',
-			'pageModuleFieldsNews' => 'test',
-			'pageModuleFieldsCategory' => 'test',
-			'tagPid' => 123,
-			'prependAtCopy' => TRUE,
-			'categoryRestriction' => 'fo',
-			'contentElementRelation' => FALSE,
-			'manualSorting' => FALSE,
-			'archiveDate' => 'bar',
-			'showImporter' => TRUE,
-			'showAdministrationModule' => FALSE,
-			'showMediaDescriptionField' => FALSE,
-			'rteForTeaser' => FALSE,
-			'storageUidImporter' => 1,
-			'resourceFolderImporter' => 'fo',
-		);
+        $configurationInstance = new EmConfiguration($configuration);
 
-		$configurationInstance = new EmConfiguration($configuration);
+        foreach ($configuration as $key => $value) {
+            $functionName = 'get'.ucwords($key);
+            $this->assertEquals($value, $configurationInstance->$functionName());
+        }
+    }
 
-		foreach ($configuration as $key => $value) {
-			$functionName = 'get' . ucwords($key);
-			$this->assertEquals($value, $configurationInstance->$functionName());
-		}
-	}
+    /**
+     * Test if default settings can be read.
+     *
+     * @test
+     *
+     * @return void
+     */
+    public function defaultSettingsCanBeRead()
+    {
+        $configuration = [
+            'removeListActionFromFlexforms' => '2',
+            'removeListActionFromFlexforms' => 2,
+            'pageModuleFieldsNews'          => '',
+            'pageModuleFieldsCategory'      => '',
+            'tagPid'                        => 0,
+            'prependAtCopy'                 => true,
+            'categoryRestriction'           => '',
+            'contentElementRelation'        => false,
+            'manualSorting'                 => false,
+            'archiveDate'                   => 'date',
+            'showImporter'                  => false,
+            'showAdministrationModule'      => true,
+            'showMediaDescriptionField'     => false,
+            'rteForTeaser'                  => false,
+            'storageUidImporter'            => 1,
+            'resourceFolderImporter'        => '/news_import',
+        ];
 
-	/**
-	 * Test if default settings can be read
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function defaultSettingsCanBeRead() {
-		$configuration = array(
-			'removeListActionFromFlexforms' => '2',
-			'removeListActionFromFlexforms' => 2,
-			'pageModuleFieldsNews' => '',
-			'pageModuleFieldsCategory' => '',
-			'tagPid' => 0,
-			'prependAtCopy' => TRUE,
-			'categoryRestriction' => '',
-			'contentElementRelation' => FALSE,
-			'manualSorting' => FALSE,
-			'archiveDate' => 'date',
-			'showImporter' => FALSE,
-			'showAdministrationModule' => TRUE,
-			'showMediaDescriptionField' => FALSE,
-			'rteForTeaser' => FALSE,
-			'storageUidImporter' => 1,
-			'resourceFolderImporter' => '/news_import',
-		);
+        $configurationInstance = new EmConfiguration([]);
 
-		$configurationInstance = new EmConfiguration(array());
-
-		foreach ($configuration as $key => $value) {
-			$functionName = 'get' . ucwords($key);
-			$this->assertEquals($value, $configurationInstance->$functionName());
-		}
-	}
+        foreach ($configuration as $key => $value) {
+            $functionName = 'get'.ucwords($key);
+            $this->assertEquals($value, $configurationInstance->$functionName());
+        }
+    }
 }
