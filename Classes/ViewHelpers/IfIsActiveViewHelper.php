@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-	/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,7 +17,7 @@ namespace GeorgRinger\News\ViewHelpers;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * ViewHelper to check if the current news item is rendered as single view on the same page
+ * ViewHelper to check if the current news item is rendered as single view on the same page.
  *
  * # Example: Basic example
  * <code>
@@ -26,17 +26,17 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <output>
  * Renders the string "active" if the current news item is active
  * </output>
- *
  */
-class IfIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
+class IfIsActiveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper
+{
+    public function render(\GeorgRinger\News\Domain\Model\News $newsItem)
+    {
+        $vars = GeneralUtility::_GET('tx_news_pi1');
 
-	public function render(\GeorgRinger\News\Domain\Model\News $newsItem) {
-		$vars = GeneralUtility::_GET('tx_news_pi1');
-
-		if (isset($vars['news']) && (int)$newsItem->getUid() === (int)$vars['news']) {
-			return $this->renderThenChild();
-		} else {
-			return $this->renderElseChild();
-		}
-	}
+        if (isset($vars['news']) && (int) $newsItem->getUid() === (int) $vars['news']) {
+            return $this->renderThenChild();
+        } else {
+            return $this->renderElseChild();
+        }
+    }
 }

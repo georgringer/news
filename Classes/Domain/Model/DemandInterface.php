@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
 /**
@@ -14,9 +15,8 @@ namespace GeorgRinger\News\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 /**
- * Demanded repository interface
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Demanded repository interface.
  */
-interface DemandInterface {}
+interface DemandInterface
+{
+}

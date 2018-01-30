@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,64 +17,68 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
 
 /**
- * Test for TargetLinkViewHelper
+ * Test for TargetLinkViewHelper.
  */
-class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TargetLinkViewHelperTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @return \GeorgRinger\News\ViewHelpers\TargetLinkViewHelper
+     * @support
+     */
+    protected function getPreparedInstance()
+    {
+        $instance = new TargetLinkViewHelper();
 
-	/**
-	 * @return \GeorgRinger\News\ViewHelpers\TargetLinkViewHelper
-	 * @support
-	 */
-	protected function getPreparedInstance() {
-		$instance = new TargetLinkViewHelper();
-		return $instance;
-	}
+        return $instance;
+    }
 
-	/**
-	 * @test
-	 */
-	public function canCreateViewHelperClassInstance() {
-		$instance = $this->getPreparedInstance();
-		$this->assertInstanceOf('GeorgRinger\\News\\ViewHelpers\\TargetLinkViewHelper', $instance);
-	}
+    /**
+     * @test
+     */
+    public function canCreateViewHelperClassInstance()
+    {
+        $instance = $this->getPreparedInstance();
+        $this->assertInstanceOf('GeorgRinger\\News\\ViewHelpers\\TargetLinkViewHelper', $instance);
+    }
 
+    /**
+     * Test if correct target is returned.
+     *
+     * @test
+     * @dataProvider correctTargetIsReturnedDataProvider
+     *
+     * @return void
+     */
+    public function correctTargetIsReturned($link, $expectedResult)
+    {
+        $viewHelper = new TargetLinkViewHelper();
+        $this->assertEquals($viewHelper->render($link), $expectedResult);
+    }
 
-	/**
-	 * Test if correct target is returned
-	 *
-	 * @test
-	 * @dataProvider correctTargetIsReturnedDataProvider
-	 * @return void
-	 */
-	public function correctTargetIsReturned($link, $expectedResult) {
-		$viewHelper = new TargetLinkViewHelper();
-		$this->assertEquals($viewHelper->render($link), $expectedResult);
-	}
+    /**
+     * Data provider.
+     *
+     * @return array
+     */
+    public function correctTargetIsReturnedDataProvider()
+    {
+        return [
+            'noTargetSetAndUrlDefined' => [
+                'www.typo3.org', '',
+            ],
+            'noTargetSetAndIdDefined' => [
+                '123', '',
+            ],
+            'IdAndTargetDefined' => [
+                '123 _blank', '_blank',
+            ],
+            'UrlAndPopupDefined' => [
+                'www.typo3.org 300x400', '',
+            ],
+            'ComplexExample' => [
+                'www.typo3.org _fo my-class', '_fo',
+            ],
 
-	/**
-	 * Data provider
-	 *
-	 * @return array
-	 */
-	public function correctTargetIsReturnedDataProvider() {
-		return array(
-			'noTargetSetAndUrlDefined' => array(
-				'www.typo3.org', ''
-			),
-			'noTargetSetAndIdDefined' => array(
-				'123', ''
-			),
-			'IdAndTargetDefined' => array(
-				'123 _blank', '_blank'
-			),
-			'UrlAndPopupDefined' => array(
-				'www.typo3.org 300x400', ''
-			),
-			'ComplexExample' => array(
-				'www.typo3.org _fo my-class', '_fo'
-			),
-
-		);
-	}
-
+        ];
+    }
 }

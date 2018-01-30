@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -21,71 +21,74 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
- * Repository for tag objects
+ * Repository for tag objects.
  */
-class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository {
+class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
+{
+    /**
+     * Returns an array of constraints created from a given demand object.
+     *
+     * @param QueryInterface  $query
+     * @param DemandInterface $demand
+     *
+     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     */
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
+    {
+        $constraints = [];
 
-	/**
-	 * Returns an array of constraints created from a given demand object.
-	 *
-	 * @param QueryInterface $query
-	 * @param DemandInterface $demand
-	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
-	 */
-	protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand) {
-		$constraints = array();
+        // Storage page
+        if ($demand->getStoragePage() != 0) {
+            $pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), true);
+            $constraints[] = $query->in('pid', $pidList);
+        }
 
-		// Storage page
-		if ($demand->getStoragePage() != 0) {
-			$pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), TRUE);
-			$constraints[] = $query->in('pid', $pidList);
-		}
+        // Tags
+        if ($demand->getTags()) {
+            $tagList = GeneralUtility::intExplode(',', $demand->getTags(), true);
+            $constraints[] = $query->in('uid', $tagList);
+        }
 
-		// Tags
-		if ($demand->getTags()) {
-			$tagList = GeneralUtility::intExplode(',', $demand->getTags(), TRUE);
-			$constraints[] = $query->in('uid', $tagList);
-		}
+        // Clean not used constraints
+        foreach ($constraints as $key => $value) {
+            if (is_null($value)) {
+                unset($constraints[$key]);
+            }
+        }
 
-		// Clean not used constraints
-		foreach ($constraints as $key => $value) {
-			if (is_null($value)) {
-				unset($constraints[$key]);
-			}
-		}
+        return $constraints;
+    }
 
-		return $constraints;
-	}
+    /**
+     * Returns an array of orderings created from a given demand object.
+     *
+     * @param DemandInterface $demand
+     *
+     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     */
+    protected function createOrderingsFromDemand(DemandInterface $demand)
+    {
+        $orderings = [];
 
-	/**
-	 * Returns an array of orderings created from a given demand object.
-	 *
-	 * @param DemandInterface $demand
-	 * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
-	 */
-	protected function createOrderingsFromDemand(DemandInterface $demand) {
-		$orderings = array();
+        if (Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
+            $orderList = GeneralUtility::trimExplode(',', $demand->getOrder(), true);
 
-		if (Validation::isValidOrdering($demand->getOrder(), $demand->getOrderByAllowed())) {
-			$orderList = GeneralUtility::trimExplode(',', $demand->getOrder(), TRUE);
+            if (!empty($orderList)) {
+                // go through every order statement
+                foreach ($orderList as $orderItem) {
+                    list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
+                    // count == 1 means that no direction is given
+                    if ($ascDesc) {
+                        $orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
+                            QueryInterface::ORDER_DESCENDING :
+                            QueryInterface::ORDER_ASCENDING);
+                    } else {
+                        $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
+                    }
+                }
+            }
+        }
 
-			if (!empty($orderList)) {
-				// go through every order statement
-				foreach ($orderList as $orderItem) {
-					list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, TRUE);
-					// count == 1 means that no direction is given
-					if ($ascDesc) {
-						$orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
-							QueryInterface::ORDER_DESCENDING :
-							QueryInterface::ORDER_ASCENDING);
-					} else {
-						$orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
-					}
-				}
-			}
-		}
-
-		return $orderings;
-	}
-
+        return $orderings;
+    }
 }

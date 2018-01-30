@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
 
 /**
@@ -15,244 +16,262 @@ namespace GeorgRinger\News\Domain\Model\Dto;
  */
 
 /**
- * Extension Manager configuration
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Extension Manager configuration.
  */
-class EmConfiguration {
+class EmConfiguration
+{
+    /**
+     * Fill the properties properly.
+     *
+     * @param array $configuration em configuration
+     */
+    public function __construct(array $configuration)
+    {
+        foreach ($configuration as $key => $value) {
+            if (property_exists(__CLASS__, $key)) {
+                $this->$key = $value;
+            }
+        }
+    }
 
-	/**
-	 * Fill the properties properly
-	 *
-	 * @param array $configuration em configuration
-	 */
-	public function __construct(array $configuration) {
-		foreach ($configuration as $key => $value) {
-			if (property_exists(__CLASS__, $key)) {
-				$this->$key = $value;
-			}
-		}
-	}
+    /**
+     * @var int
+     */
+    protected $removeListActionFromFlexforms = 2;
 
-	/**
-	 * @var integer
-	 */
-	protected $removeListActionFromFlexforms = 2;
+    /**
+     * @var string
+     */
+    protected $pageModuleFieldsNews = '';
 
-	/**
-	 * @var string
-	 */
-	protected $pageModuleFieldsNews = '';
+    /**
+     * @var string
+     */
+    protected $pageModuleFieldsCategory = '';
 
-	/**
-	 * @var string
-	 */
-	protected $pageModuleFieldsCategory = '';
+    /**
+     * @var int
+     */
+    protected $tagPid = 0;
 
-	/**
-	 * @var integer
-	 */
-	protected $tagPid = 0;
+    /**
+     * @var boolean;
+     */
+    protected $prependAtCopy = true;
 
-	/**
-	 * @var boolean;
-	 */
-	protected $prependAtCopy = TRUE;
+    /**
+     * @var string;
+     */
+    protected $categoryRestriction = '';
 
-	/**
-	 * @var string;
-	 */
-	protected $categoryRestriction = '';
+    /**
+     * @var bool
+     */
+    protected $categoryBeGroupTceFormsRestriction = false;
 
-	/**
-	 * @var bool
-	 */
-	protected $categoryBeGroupTceFormsRestriction = FALSE;
+    /**
+     * @var bool
+     */
+    protected $contentElementRelation = false;
 
-	/**
-	 * @var boolean
-	 */
-	protected $contentElementRelation = FALSE;
+    /**
+     * @var bool
+     */
+    protected $manualSorting = false;
 
-	/**
-	 * @var boolean
-	 */
-	protected $manualSorting = FALSE;
+    /**
+     * @var string
+     */
+    protected $archiveDate = 'date';
 
-	/**
-	 * @var string
-	 */
-	protected $archiveDate = 'date';
+    /**
+     * @var bool
+     */
+    protected $showImporter = false;
 
-	/**
-	 * @var boolean
-	 */
-	protected $showImporter = FALSE;
+    /** @var bool */
+    protected $rteForTeaser = false;
 
-	/** @var boolean */
-	protected $rteForTeaser = FALSE;
+    /**
+     * @var bool
+     */
+    protected $showAdministrationModule = true;
 
-	/**
-	 * @var boolean
-	 */
-	protected $showAdministrationModule = TRUE;
+    /**
+     * @var bool
+     */
+    protected $showMediaDescriptionField = false;
 
-	/**
-	 * @var boolean
-	 */
-	protected $showMediaDescriptionField = FALSE;
+    /**
+     * @var int
+     */
+    protected $useFal = 1;
 
-	/**
-	 * @var int
-	 */
-	protected $useFal = 1;
+    /**
+     * @var int
+     */
+    protected $storageUidImporter = 1;
 
-	/**
-	 * @var int
-	 */
-	protected $storageUidImporter = 1;
+    /**
+     * @var string
+     */
+    protected $resourceFolderImporter = '/news_import';
 
-	/**
-	 * @var string
-	 */
-	protected $resourceFolderImporter = '/news_import';
+    /**
+     * @return int
+     */
+    public function getRemoveListActionFromFlexforms()
+    {
+        return (int) $this->removeListActionFromFlexforms;
+    }
 
-	/**
-	 * @return integer
-	 */
-	public function getRemoveListActionFromFlexforms() {
-		return (int)$this->removeListActionFromFlexforms;
-	}
+    /**
+     * @return string
+     */
+    public function getPageModuleFieldsNews()
+    {
+        return $this->pageModuleFieldsNews;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getPageModuleFieldsNews() {
-		return $this->pageModuleFieldsNews;
-	}
+    /**
+     * @return string
+     */
+    public function getPageModuleFieldsCategory()
+    {
+        return $this->pageModuleFieldsCategory;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getPageModuleFieldsCategory() {
-		return $this->pageModuleFieldsCategory;
-	}
+    /**
+     * @return int
+     */
+    public function getTagPid()
+    {
+        return (int) $this->tagPid;
+    }
 
-	/**
-	 * @return integer
-	 */
-	public function getTagPid() {
-		return (int)$this->tagPid;
-	}
+    /**
+     * @return bool
+     */
+    public function getPrependAtCopy()
+    {
+        return (bool) $this->prependAtCopy;
+    }
 
-	/**
-	 *
-	 * @return boolean
-	 */
-	public function getPrependAtCopy() {
-		return (boolean)$this->prependAtCopy;
-	}
+    /**
+     * @return string
+     */
+    public function getCategoryRestriction()
+    {
+        return $this->categoryRestriction;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getCategoryRestriction() {
-		return $this->categoryRestriction;
-	}
+    /**
+     * Get categoryBeGroupTceFormsRestriction.
+     *
+     * @return bool
+     */
+    public function getCategoryBeGroupTceFormsRestriction()
+    {
+        return $this->categoryBeGroupTceFormsRestriction;
+    }
 
-	/**
-	 * Get categoryBeGroupTceFormsRestriction
-	 *
-	 * @return boolean
-	 */
-	public function getCategoryBeGroupTceFormsRestriction() {
-		return $this->categoryBeGroupTceFormsRestriction;
-	}
+    /**
+     * @return bool
+     */
+    public function getContentElementRelation()
+    {
+        return (bool) $this->contentElementRelation;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function getContentElementRelation() {
-		return (boolean)$this->contentElementRelation;
-	}
+    /**
+     * @return bool
+     */
+    public function getManualSorting()
+    {
+        return (bool) $this->manualSorting;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function getManualSorting() {
-		return (boolean)$this->manualSorting;
-	}
+    /**
+     * @return string
+     */
+    public function getArchiveDate()
+    {
+        return $this->archiveDate;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getArchiveDate() {
-		return $this->archiveDate;
-	}
+    /**
+     * @return bool
+     */
+    public function getShowImporter()
+    {
+        return (bool) $this->showImporter;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function getShowImporter() {
-		return (boolean)$this->showImporter;
-	}
+    /**
+     * @param bool $showAdministrationModule
+     *
+     * @return void
+     */
+    public function setShowAdministrationModule($showAdministrationModule)
+    {
+        $this->showAdministrationModule = $showAdministrationModule;
+    }
 
-	/**
-	 * @param boolean $showAdministrationModule
-	 * @return void
-	 */
-	public function setShowAdministrationModule($showAdministrationModule) {
-		$this->showAdministrationModule = $showAdministrationModule;
-	}
+    /**
+     * @return bool
+     */
+    public function getShowAdministrationModule()
+    {
+        return $this->showAdministrationModule;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function getShowAdministrationModule() {
-		return $this->showAdministrationModule;
-	}
+    /**
+     * @param bool $showMediaDescriptionField
+     *
+     * @return void
+     */
+    public function setShowMediaDescriptionField($showMediaDescriptionField)
+    {
+        $this->showMediaDescriptionField = $showMediaDescriptionField;
+    }
 
-	/**
-	 * @param boolean $showMediaDescriptionField
-	 * @return void
-	 */
-	public function setShowMediaDescriptionField($showMediaDescriptionField) {
-		$this->showMediaDescriptionField = $showMediaDescriptionField;
-	}
+    /**
+     * @return bool
+     */
+    public function getShowMediaDescriptionField()
+    {
+        return $this->showMediaDescriptionField;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function getShowMediaDescriptionField() {
-		return $this->showMediaDescriptionField;
-	}
+    /**
+     * @return bool
+     */
+    public function getRteForTeaser()
+    {
+        return $this->rteForTeaser;
+    }
 
-	/**
-	 * @return boolean
-	 */
-	public function getRteForTeaser() {
-		return $this->rteForTeaser;
-	}
+    /**
+     * @return int
+     */
+    public function getUseFal()
+    {
+        return version_compare(TYPO3_branch, '6.0', '>=') ? (int) $this->useFal : 0;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getUseFal() {
-		return version_compare(TYPO3_branch, '6.0', '>=') ? (int) $this->useFal : 0;
-	}
+    /**
+     * @return string
+     */
+    public function getResourceFolderImporter()
+    {
+        return $this->resourceFolderImporter;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getResourceFolderImporter() {
-		return $this->resourceFolderImporter;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getStorageUidImporter() {
-		return $this->storageUidImporter;
-	}
+    /**
+     * @return int
+     */
+    public function getStorageUidImporter()
+    {
+        return $this->storageUidImporter;
+    }
 }

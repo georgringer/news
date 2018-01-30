@@ -16,48 +16,50 @@ namespace GeorgRinger\News\Tests\Unit\TreeProvider;
  */
 
 /**
- * Tests for DatabaseTreeDataProvider
+ * Tests for DatabaseTreeDataProvider.
  */
-class DatabaseTreeDataProviderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class DatabaseTreeDataProviderTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @var array
+     */
+    private $backupGlobalVariables;
 
-	/**
-	 * @var array
-	 */
-	private $backupGlobalVariables;
+    public function setUp()
+    {
+        $this->backupGlobalVariables = [
+            'BE_USER' => $GLOBALS['BE_USER'],
+        ];
+    }
 
-	public function setUp() {
-		$this->backupGlobalVariables = array(
-			'BE_USER' => $GLOBALS['BE_USER'],
-		);
-	}
+    public function tearDown()
+    {
+        foreach ($this->backupGlobalVariables as $key => $data) {
+            $GLOBALS[$key] = $data;
+        }
+        unset($this->backupGlobalVariables);
+    }
 
-	public function tearDown() {
-		foreach ($this->backupGlobalVariables as $key => $data) {
-			$GLOBALS[$key] = $data;
-		}
-		unset($this->backupGlobalVariables);
-	}
+    /**
+     * @test
+     */
+    public function canSingleCategoryAclSettingBeActivated()
+    {
+        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\TreeProvider\\DatabaseTreeDataProvider',['dummy'], [], '',
+            $callOriginalConstructor = false);
 
-	/**
-	 * @test
-	 */
-	public function canSingleCategoryAclSettingBeActivated() {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\TreeProvider\\DatabaseTreeDataProvider',array('dummy'), array(), '',
-			$callOriginalConstructor = FALSE);
+        $this->assertEquals(false, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
 
-		$this->assertEquals(FALSE, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
+        // Add TsConfig array
+        $GLOBALS['BE_USER']->userTS['tx_news.'] = [];
+        $this->assertEquals(false, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
 
-		// Add TsConfig array
-		$GLOBALS['BE_USER']->userTS['tx_news.'] = array();
-		$this->assertEquals(FALSE, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
+        // Set the access
+        $GLOBALS['BE_USER']->userTS['tx_news.']['singleCategoryAcl'] = '1';
+        $this->assertEquals(true, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
 
-		// Set the access
-		$GLOBALS['BE_USER']->userTS['tx_news.']['singleCategoryAcl'] = '1';
-		$this->assertEquals(TRUE, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
-
-		// Remove access again
-		$GLOBALS['BE_USER']->userTS['tx_news.']['singleCategoryAcl'] = '0';
-		$this->assertEquals(FALSE, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
-	}
-
+        // Remove access again
+        $GLOBALS['BE_USER']->userTS['tx_news.']['singleCategoryAcl'] = '0';
+        $this->assertEquals(false, $mockTemplateParser->_call('isSingleCategoryAclActivated'));
+    }
 }

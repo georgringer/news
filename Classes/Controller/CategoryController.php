@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -15,66 +16,66 @@ namespace GeorgRinger\News\Controller;
  */
 
 /**
- * Category controller
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Category controller.
  */
-class CategoryController extends NewsController {
+class CategoryController extends NewsController
+{
+    const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
 
-	const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
+    /**
+     * Page uid.
+     *
+     * @var int
+     */
+    protected $pageUid = 0;
 
-	/**
-	 * Page uid
-	 *
-	 * @var integer
-	 */
-	protected $pageUid = 0;
+    /**
+     * @var \GeorgRinger\News\Domain\Repository\NewsRepository
+     */
+    protected $newsRepository;
 
-	/**
-	 * @var \GeorgRinger\News\Domain\Repository\NewsRepository
-	 */
-	protected $newsRepository;
+    /**
+     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
+     */
+    protected $categoryRepository;
 
-	/**
-	 * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
-	 */
-	protected $categoryRepository;
+    /**
+     * Inject a category repository to enable DI.
+     *
+     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     *
+     * @return void
+     */
+    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
 
-	/**
-	 * Inject a category repository to enable DI
-	 *
-	 * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-	 * @return void
-	 */
-	public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository) {
-		$this->categoryRepository = $categoryRepository;
-	}
+    /**
+     * List categories.
+     *
+     * @param array $overwriteDemand
+     *
+     * @return void
+     */
+    public function listAction(array $overwriteDemand = null)
+    {
+        $demand = $this->createDemandObjectFromSettings($this->settings);
+        $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-	/**
-	 * List categories
-	 *
-	 * @param array $overwriteDemand
-	 * @return void
-	 */
-	public function listAction(array $overwriteDemand = NULL) {
-		$demand = $this->createDemandObjectFromSettings($this->settings);
-		$demand->setActionAndClass(__METHOD__, __CLASS__);
+        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+            $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
+        }
 
-		if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== NULL) {
-			$demand = $this->overwriteDemandObject($demand, $overwriteDemand);
-		}
+        $idList = explode(',', $this->settings['categories']);
 
-		$idList = explode(',', $this->settings['categories']);
+        $assignedValues = [
+            'categories'      => $this->categoryRepository->findTree($idList),
+            'overwriteDemand' => $overwriteDemand,
+            'demand'          => $demand,
+        ];
 
-		$assignedValues = array(
-			'categories' => $this->categoryRepository->findTree($idList),
-			'overwriteDemand' => $overwriteDemand,
-			'demand' => $demand,
-		);
-
-		$assignedValues = $this->emitActionSignal('CategoryController', self::SIGNAL_CATEGORY_LIST_ACTION, $assignedValues);
-		$this->view->assignMultiple($assignedValues);
-	}
-
+        $assignedValues = $this->emitActionSignal('CategoryController', self::SIGNAL_CATEGORY_LIST_ACTION, $assignedValues);
+        $this->view->assignMultiple($assignedValues);
+    }
 }

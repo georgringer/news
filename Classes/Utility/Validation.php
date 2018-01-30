@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-	/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,52 +17,51 @@ namespace GeorgRinger\News\Utility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Validation
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Validation.
  */
-class Validation {
+class Validation
+{
+    /**
+     * Validate ordering as extbase can't handle that currently.
+     *
+     * @param string $fieldToCheck
+     * @param string $allowedSettings
+     *
+     * @return bool
+     */
+    public static function isValidOrdering($fieldToCheck, $allowedSettings)
+    {
+        $isValid = true;
 
-	/**
-	 * Validate ordering as extbase can't handle that currently
-	 *
-	 * @param string $fieldToCheck
-	 * @param string $allowedSettings
-	 * @return boolean
-	 */
-	public static function isValidOrdering($fieldToCheck, $allowedSettings) {
-		$isValid = TRUE;
+        if (empty($fieldToCheck)) {
+            return $isValid;
+        } elseif (empty($allowedSettings)) {
+            return false;
+        }
 
-		if (empty($fieldToCheck)) {
-			return $isValid;
-		} elseif (empty($allowedSettings)) {
-			return FALSE;
-		}
+        $fields = GeneralUtility::trimExplode(',', $fieldToCheck, true);
+        foreach ($fields as $field) {
+            if ($isValid === true) {
+                $split = GeneralUtility::trimExplode(' ', $field, true);
+                $count = count($split);
+                switch ($count) {
+                    case 1:
+                        if (!GeneralUtility::inList($allowedSettings, $split[0])) {
+                            $isValid = false;
+                        }
+                        break;
+                    case 2:
+                        if ((strtolower($split[1]) !== 'desc' && strtolower($split[1]) !== 'asc') ||
+                            !GeneralUtility::inList($allowedSettings, $split[0])) {
+                            $isValid = false;
+                        }
+                        break;
+                    default:
+                        $isValid = false;
+                }
+            }
+        }
 
-		$fields = GeneralUtility::trimExplode(',', $fieldToCheck, TRUE);
-		foreach ($fields as $field) {
-			if ($isValid === TRUE) {
-				$split = GeneralUtility::trimExplode(' ', $field, TRUE);
-				$count = count($split);
-				switch ($count) {
-					case 1:
-						if (!GeneralUtility::inList($allowedSettings, $split[0])) {
-							$isValid = FALSE;
-						}
-						break;
-					case 2:
-						if ((strtolower($split[1]) !== 'desc' && strtolower($split[1]) !== 'asc') ||
-							!GeneralUtility::inList($allowedSettings, $split[0])) {
-							$isValid = FALSE;
-						}
-						break;
-					default:
-						$isValid = FALSE;
-				}
-			}
-		}
-
-		return $isValid;
-	}
+        return $isValid;
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
 /**
@@ -15,158 +16,172 @@ namespace GeorgRinger\News\Domain\Model;
  */
 
 /**
- * File Reference
- *
- * @package TYPO3
- * @subpackage tx_news
+ * File Reference.
  */
-class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference {
+class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
+{
+    /**
+     * Obsolete when foreign_selector is supported by ExtBase persistence layer.
+     *
+     * @var int
+     */
+    protected $uidLocal;
 
-	/**
-	 * Obsolete when foreign_selector is supported by ExtBase persistence layer
-	 *
-	 * @var integer
-	 */
-	protected $uidLocal;
+    /**
+     * @var string
+     */
+    protected $title;
 
-	/**
-	 * @var string
-	 */
-	protected $title;
+    /**
+     * @var string
+     */
+    protected $description;
 
-	/**
-	 * @var string
-	 */
-	protected $description;
+    /**
+     * @var string
+     */
+    protected $alternative;
 
-	/**
-	 * @var string
-	 */
-	protected $alternative;
+    /**
+     * @var string
+     */
+    protected $link;
 
-	/**
-	 * @var string
-	 */
-	protected $link;
+    /**
+     * @var bool
+     */
+    protected $showinpreview;
 
-	/**
-	 * @var boolean
-	 */
-	protected $showinpreview;
+    /**
+     * Set File uid.
+     *
+     * @param int $fileUid
+     *
+     * @return void
+     */
+    public function setFileUid($fileUid)
+    {
+        $this->uidLocal = $fileUid;
+    }
 
-	/**
-	 * Set File uid
-	 *
-	 * @param integer $fileUid
-	 * @return void
-	 */
-	public function setFileUid($fileUid) {
-		$this->uidLocal = $fileUid;
-	}
+    /**
+     * Get File UID.
+     *
+     * @return int
+     */
+    public function getFileUid()
+    {
+        return $this->uidLocal;
+    }
 
-	/**
-	 * Get File UID
-	 *
-	 * @return int
-	 */
-	public function getFileUid() {
-		return $this->uidLocal;
-	}
+    /**
+     * Set alternative.
+     *
+     * @param string $alternative
+     *
+     * @return void
+     */
+    public function setAlternative($alternative)
+    {
+        $this->alternative = $alternative;
+    }
 
-	/**
-	 * Set alternative
-	 *
-	 * @param string $alternative
-	 * @return void
-	 */
-	public function setAlternative($alternative) {
-		$this->alternative = $alternative;
-	}
+    /**
+     * Get alternative.
+     *
+     * @return string
+     */
+    public function getAlternative()
+    {
+        return $this->alternative !== null ? $this->alternative : $this->getOriginalResource()->getAlternative();
+    }
 
-	/**
-	 * Get alternative
-	 *
-	 * @return string
-	 */
-	public function getAlternative() {
-		return $this->alternative !== NULL ? $this->alternative : $this->getOriginalResource()->getAlternative();
-	}
+    /**
+     * Set description.
+     *
+     * @param string $description
+     *
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 
-	/**
-	 * Set description
-	 *
-	 * @param string $description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
+    /**
+     * Get description.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description !== null ? $this->description : $this->getOriginalResource()->getDescription();
+    }
 
-	/**
-	 * Get description
-	 *
-	 * @return string
-	 */
-	public function getDescription() {
-		return $this->description !== NULL ? $this->description : $this->getOriginalResource()->getDescription();
-	}
+    /**
+     * Set link.
+     *
+     * @param string $link
+     *
+     * @return void
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+    }
 
-	/**
-	 * Set link
-	 *
-	 * @param string $link
-	 * @return void
-	 */
-	public function setLink($link) {
-		$this->link = $link;
-	}
+    /**
+     * Get link.
+     *
+     * @return mixed
+     * @return void
+     */
+    public function getLink()
+    {
+        return $this->link !== null ? $this->link : $this->getOriginalResource()->getLink();
+    }
 
-	/**
-	 * Get link
-	 *
-	 * @return mixed
-	 * @return void
-	 */
-	public function getLink() {
-		return $this->link !== NULL ? $this->link : $this->getOriginalResource()->getLink();
-	}
+    /**
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return void
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 
-	/**
-	 * Set title
-	 *
-	 * @param string $title
-	 * @return void
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
+    /**
+     * Get title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title !== null ? $this->title : $this->getOriginalResource()->getTitle();
+    }
 
-	/**
-	 * Get title
-	 *
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title !== NULL ? $this->title : $this->getOriginalResource()->getTitle();
-	}
+    /**
+     * Set showinpreview.
+     *
+     * @param bool $showinpreview
+     *
+     * @return void
+     */
+    public function setShowinpreview($showinpreview)
+    {
+        $this->showinpreview = $showinpreview;
+    }
 
-	/**
-	 * Set showinpreview
-	 *
-	 * @param boolean $showinpreview
-	 * @return void
-	 */
-	public function setShowinpreview($showinpreview) {
-		$this->showinpreview = $showinpreview;
-	}
-
-	/**
-	 * Get showinpreview
-	 *
-	 * @return boolean
-	 */
-	public function getShowinpreview() {
-		return $this->showinpreview;
-	}
-
+    /**
+     * Get showinpreview.
+     *
+     * @return bool
+     */
+    public function getShowinpreview()
+    {
+        return $this->showinpreview;
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,12 +15,9 @@ namespace GeorgRinger\News\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 /**
- * Repository for tt_content objects
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Repository for tt_content objects.
  */
-class TtContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
-	protected $objectType = '\GeorgRinger\News\Domain\Model\Ttcontent';
+class TtContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+{
+    protected $objectType = '\GeorgRinger\News\Domain\Model\Ttcontent';
 }

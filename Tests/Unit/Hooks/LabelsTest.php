@@ -16,70 +16,72 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  */
 
 /**
- * Tests for Labels
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Tests for Labels.
  */
-class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class LabelsTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @test
+     * @dataProvider correctFieldOfArrayIsReturnedDataProvider
+     *
+     * @return void
+     */
+    public function correctFieldOfArrayIsReturned($input, $expectedResult)
+    {
+        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', ['dummy']);
+        $result = $mockTemplateParser->_call('getTitleFromFields', $input[0], $input[1]);
+        $this->assertEquals($expectedResult, $result);
+    }
 
+    public function correctFieldOfArrayIsReturnedDataProvider()
+    {
+        return [
+            'working example 1' => [
+                ['uid, title', ['title' => 'fobar']], 'fobar',
+            ],
+            '1st found result is returned' => [
+                ['uid, title', ['uid' => '123', 'title' => 'fobar']], '123',
+            ],
+            'empty fieldlist returns empty string' => [
+                ['', ['title' => 'fobar']], '',
+            ],
+            'empty array returns empty string' => [
+                ['uid, title', []], '',
+            ],
+            'null returns empty string' => [
+                ['uid, title', null], '',
+            ],
+        ];
+    }
 
-	/**
-	 * @test
-	 * @dataProvider correctFieldOfArrayIsReturnedDataProvider
-	 * @return void
-	 */
-	public function correctFieldOfArrayIsReturned($input, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', array('dummy'));
-		$result = $mockTemplateParser->_call('getTitleFromFields', $input[0], $input[1]);
-		$this->assertEquals($expectedResult, $result);
-	}
+    /**
+     * @test
+     * @dataProvider splitOfFileNameReturnsCorrectPartialDataProvider
+     *
+     * @return void
+     */
+    public function splitOfFileNameReturnsCorrectPartial($string, $expectedResult)
+    {
+        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', ['dummy']);
+        $result = $mockTemplateParser->_call('splitFileName', $string);
+        $this->assertEquals($expectedResult, $result);
+    }
 
-	public function correctFieldOfArrayIsReturnedDataProvider() {
-		return array(
-			'working example 1' => array(
-				array('uid, title', array('title' => 'fobar')), 'fobar'
-			),
-			'1st found result is returned' => array(
-				array('uid, title', array('uid' => '123', 'title' => 'fobar')), '123'
-			),
-			'empty fieldlist returns empty string' => array(
-				array('', array('title' => 'fobar')), ''
-			),
-			'empty array returns empty string' => array(
-				array('uid, title', array()), ''
-			),
-			'null returns empty string' => array(
-				array('uid, title', NULL), ''
-			),
-		);
-	}
-
-	/**
-	 * @test
-	 * @dataProvider splitOfFileNameReturnsCorrectPartialDataProvider
-	 * @return void
-	 */
-	public function splitOfFileNameReturnsCorrectPartial($string, $expectedResult) {
-		$mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\Labels', array('dummy'));
-		$result = $mockTemplateParser->_call('splitFileName', $string);
-		$this->assertEquals($expectedResult, $result);
-	}
-
-	public function splitOfFileNameReturnsCorrectPartialDataProvider() {
-		return array(
-			'working example 1' => array(
-				'fobar|fobar', 'fobar'
-			),
-			'different strings' => array(
-				'fo|bar', 'fo|bar'
-			),
-			'wrong count 1' => array(
-				'fo|bar|xxx', 'fo|bar|xxx'
-			),
-			'wrong count 2' => array(
-				'fobar', 'fobar'
-			),
-		);
-	}
+    public function splitOfFileNameReturnsCorrectPartialDataProvider()
+    {
+        return [
+            'working example 1' => [
+                'fobar|fobar', 'fobar',
+            ],
+            'different strings' => [
+                'fo|bar', 'fo|bar',
+            ],
+            'wrong count 1' => [
+                'fo|bar|xxx', 'fo|bar|xxx',
+            ],
+            'wrong count 2' => [
+                'fobar', 'fobar',
+            ],
+        ];
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Social;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,7 +17,7 @@ namespace GeorgRinger\News\ViewHelpers\Social;
 
 /**
  * ViewHelper to add a google+ button
- * Details: http://www.google.com/webmasters/+1/button/
+ * Details: http://www.google.com/webmasters/+1/button/.
  *
  * Examples
  * ==============
@@ -29,64 +29,66 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * 		href="http://www.mydomain.tld" count="false"></n:social.googlePlus>
  * Result: Small Google Plus Button to share www.mydomain.tld
  * 	without showing the counter
- *
- * @package TYPO3
- * @subpackage tx_news
  */
-class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+{
+    /**
+     * @var \GeorgRinger\News\Service\SettingsService
+     */
+    protected $pluginSettingsService;
 
-	/**
-	 * @var \GeorgRinger\News\Service\SettingsService
-	 */
-	protected $pluginSettingsService;
+    /**
+     * @var string
+     */
+    protected $tagName = 'g:plusone';
 
-	/**
-	 * @var	string
-	 */
-	protected $tagName = 'g:plusone';
+    /**
+     * @var \GeorgRinger\News\Service\SettingsService
+     *
+     * @return void
+     */
+    public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
+    {
+        $this->pluginSettingsService = $pluginSettingsService;
+    }
 
-	/**
-	 * @var \GeorgRinger\News\Service\SettingsService $pluginSettingsService
-	 * @return void
-	 */
-	public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService) {
-		$this->pluginSettingsService = $pluginSettingsService;
-	}
+    /**
+     * Arguments initialization.
+     *
+     * @return void
+     */
+    public function initializeArguments()
+    {
+        $this->registerTagAttribute('size', 'string', 'Size of the icon. Can be small,medium,tall.');
+        $this->registerTagAttribute('callback', 'string', 'Callback function');
+        $this->registerTagAttribute('href', 'string', 'URL to be +1, default is current URL');
+        $this->registerTagAttribute('count', 'string', 'Set it to false to hide counter');
+    }
 
+    /**
+     * Render the Google+ button.
+     *
+     * @param string $jsCode Alternative JavaScript code which is used
+     *
+     * @return string
+     */
+    public function render($jsCode = '')
+    {
+        if (empty($jsCode)) {
+            $jsCode = 'https://apis.google.com/js/plusone.js';
+        } elseif ($jsCode != '-1') {
+            $jsCode = htmlspecialchars($jsCode);
+        }
 
-	/**
-	 * Arguments initialization
-	 *
-	 * @return void
-	 */
-	public function initializeArguments() {
-		$this->registerTagAttribute('size', 'string', 'Size of the icon. Can be small,medium,tall.');
-		$this->registerTagAttribute('callback', 'string', 'Callback function');
-		$this->registerTagAttribute('href', 'string', 'URL to be +1, default is current URL');
-		$this->registerTagAttribute('count', 'string', 'Set it to false to hide counter');
-	}
+        $tsSettings = $this->pluginSettingsService->getSettings();
+        $locale = (!empty($tsSettings['googlePlusLocale']) && strlen($tsSettings['googlePlusLocale']) <= 5) ? '{lang:\''.$tsSettings['googlePlusLocale'].'\'}' : '';
 
-	/**
-	 * Render the Google+ button
-	 *
-	 * @param string $jsCode Alternative JavaScript code which is used
-	 * @return string
-	 */
-	public function render($jsCode = '') {
-		if (empty($jsCode)) {
-			$jsCode = 'https://apis.google.com/js/plusone.js';
-		} elseif ($jsCode != '-1') {
-			$jsCode = htmlspecialchars($jsCode);
-		}
+        $code = '<script type="text/javascript" src="'.$jsCode.'">'.$locale.'</script>';
 
-		$tsSettings = $this->pluginSettingsService->getSettings();
-		$locale = (!empty($tsSettings['googlePlusLocale']) && strlen($tsSettings['googlePlusLocale']) <= 5) ? '{lang:\'' . $tsSettings['googlePlusLocale'] . '\'}' : '';
+        $this->tag->setContent(' ');
 
-		$code = '<script type="text/javascript" src="' . $jsCode . '">' . $locale . '</script>';
+        $code .= $this->tag->render();
 
-		$this->tag->setContent(' ');
-
-		$code .= $this->tag->render();
-		return $code;
-	}
+        return $code;
+    }
 }

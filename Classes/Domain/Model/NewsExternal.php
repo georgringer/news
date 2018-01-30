@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
 /**
@@ -15,11 +16,8 @@ namespace GeorgRinger\News\Domain\Model;
  */
 
 /**
- * News model for external news
- *
- * @package TYPO3
- * @subpackage tx_news
+ * News model for external news.
  */
-class NewsExternal extends \GeorgRinger\News\Domain\Model\News {
-
+class NewsExternal extends \GeorgRinger\News\Domain\Model\News
+{
 }

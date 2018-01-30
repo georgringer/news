@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Format;
 
-	/**
+/**
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -16,7 +16,7 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  */
 
 /**
- * ViewHelper to render children which don't print out any actual content
+ * ViewHelper to render children which don't print out any actual content.
  *
  * # Example: Basic example
  * <code>
@@ -28,18 +28,16 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  * <output>
  * nothing
  * </output>
- *
- * @package TYPO3
- * @subpackage tx_news
  */
-class NothingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
-
-	/**
-	 * Render children but do nothing else
-	 *
-	 * @return void
-	 */
-	public function render() {
-		$this->renderChildren();
-	}
+class NothingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
+    /**
+     * Render children but do nothing else.
+     *
+     * @return void
+     */
+    public function render()
+    {
+        $this->renderChildren();
+    }
 }

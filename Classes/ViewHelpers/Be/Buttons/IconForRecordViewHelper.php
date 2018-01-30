@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers\Be\Buttons;
 
-	/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\Utility\IconUtility;
 
 /**
- * ViewHelper to show sprite icon for a record
+ * ViewHelper to show sprite icon for a record.
  *
  * # Example: Basic example
  * <code>
@@ -27,27 +27,26 @@ use TYPO3\CMS\Backend\Utility\IconUtility;
  * <output>
  * Icon of the news record with the given uid
  * </output>
- *
- * @package TYPO3
- * @subpackage tx_news
  */
-class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper {
+class IconForRecordViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Be\AbstractBackendViewHelper
+{
+    /**
+     * Render the sprite icon.
+     *
+     * @param string $table table name
+     * @param int    $uid   uid of record
+     * @param string $title title
+     *
+     * @return string sprite icon
+     */
+    public function render($table, $uid, $title)
+    {
+        $icon = '';
+        $row = BackendUtility::getRecord($table, $uid);
+        if (is_array($row)) {
+            $icon = IconUtility::getSpriteIconForRecord($table, $row, ['title' => htmlspecialchars($title)]);
+        }
 
-	/**
-	 * Render the sprite icon
-	 *
-	 * @param string $table table name
-	 * @param integer $uid uid of record
-	 * @param string $title title
-	 * @return string sprite icon
-	 */
-	public function render($table, $uid, $title) {
-		$icon = '';
-		$row = BackendUtility::getRecord($table, $uid);
-		if (is_array($row)) {
-			$icon = IconUtility::getSpriteIconForRecord($table, $row, array('title' => htmlspecialchars($title)));
-		}
-
-		return $icon;
-	}
+        return $icon;
+    }
 }

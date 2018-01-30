@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
 
 /**
@@ -15,106 +16,117 @@ namespace GeorgRinger\News\Domain\Model\Dto;
  */
 
 /**
- * Administration Demand model
- *
- * @package TYPO3
- * @subpackage tx_news
+ * Administration Demand model.
  */
-class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand {
+class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+{
+    /**
+     * @var string
+     */
+    protected $recursive;
 
-	/**
-	 * @var string
-	 */
-	protected $recursive;
+    /**
+     * @var array
+     */
+    protected $selectedCategories = [];
 
-	/**
-	 * @var array
-	 */
-	protected $selectedCategories = array();
+    /**
+     * @var string
+     */
+    protected $sortingField;
 
-	/**
-	 * @var string
-	 */
-	protected $sortingField;
+    /**
+     * @var string
+     */
+    protected $sortingDirection;
 
-	/**
-	 * @var string
-	 */
-	protected $sortingDirection;
+    /**
+     * @var string
+     */
+    protected $searchWord;
 
-	/**
-	 * @var string
-	 */
-	protected $searchWord;
+    public function getRecursive()
+    {
+        return $this->recursive;
+    }
 
-	public function getRecursive() {
-		return $this->recursive;
-	}
+    /**
+     * @param $recursive
+     *
+     * @return void
+     */
+    public function setRecursive($recursive)
+    {
+        $this->recursive = $recursive;
+    }
 
-	/**
-	 * @param $recursive
-	 * @return void
-	 */
-	public function setRecursive($recursive) {
-		$this->recursive = $recursive;
-	}
+    /**
+     * @return array
+     */
+    public function getSelectedCategories()
+    {
+        return $this->selectedCategories;
+    }
 
-	/**
-	 * @return array
-	 */
-	public function getSelectedCategories() {
-		return $this->selectedCategories;
-	}
+    /**
+     * @param $selectedCategories
+     *
+     * @return void
+     */
+    public function setSelectedCategories($selectedCategories)
+    {
+        $this->selectedCategories = $selectedCategories;
+    }
 
-	/**
-	 * @param $selectedCategories
-	 * @return void
-	 */
-	public function setSelectedCategories($selectedCategories) {
-		$this->selectedCategories = $selectedCategories;
-	}
+    /**
+     * @return string
+     */
+    public function getSortingField()
+    {
+        return $this->sortingField;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getSortingField() {
-		return $this->sortingField;
-	}
+    /**
+     * @param $sortingField
+     *
+     * @return void
+     */
+    public function setSortingField($sortingField)
+    {
+        $this->sortingField = $sortingField;
+    }
 
-	/**
-	 * @param $sortingField
-	 * @return void
-	 */
-	public function setSortingField($sortingField) {
-		$this->sortingField = $sortingField;
-	}
+    /**
+     * @return string
+     */
+    public function getSortingDirection()
+    {
+        return $this->sortingDirection;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getSortingDirection() {
-		return $this->sortingDirection;
-	}
+    /**
+     * @param $sortingDirection
+     *
+     * @return void
+     */
+    public function setSortingDirection($sortingDirection)
+    {
+        $this->sortingDirection = $sortingDirection;
+    }
 
-	/**
-	 * @param $sortingDirection
-	 * @return void
-	 */
-	public function setSortingDirection($sortingDirection) {
-		$this->sortingDirection = $sortingDirection;
-	}
+    /**
+     * @return string
+     */
+    public function getSearchWord()
+    {
+        return $this->searchWord;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getSearchWord() {
-		return $this->searchWord;
-	}
-
-	/**
-	 * @param string $searchWord
-	 */
-	public function setSearchWord($searchWord) {
-		$this->searchWord = $searchWord;
-	}
+    /**
+     * @param string $searchWord
+     */
+    public function setSearchWord($searchWord)
+    {
+        $this->searchWord = $searchWord;
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,85 +19,82 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 
 /**
  * Testcase for the TagController class.
- *
- * @package TYPO3
- * @subpackage tx_news
- *
  */
-class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class TagControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @var TagController
+     */
+    private $fixture = null;
 
+    /**
+     * @var \GeorgRinger\News\Domain\Repository\TagRepository
+     */
+    private $tagRepository = null;
 
-	/**
-	 * @var TagController
-	 */
-	private $fixture = NULL;
+    /**
+     * Set up framework.
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        $this->fixture = new TagController();
 
-	/**
-	 * @var \GeorgRinger\News\Domain\Repository\TagRepository
-	 */
-	private $tagRepository = NULL;
+        $this->tagRepository = $this->getMock(
+            'GeorgRinger\\News\\Domain\\Repository\\TagRepository', [], [], '', false
+        );
+        $this->fixture->injectTagRepository($this->tagRepository);
+    }
 
-	/**
-	 * Set up framework
-	 *
-	 * @return void
-	 */
-	public function setUp() {
-		$this->fixture = new TagController();
+    /**
+     * Tear down framework.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        unset($this->fixture, $this->tagRepository);
+    }
 
-		$this->tagRepository = $this->getMock(
-			'GeorgRinger\\News\\Domain\\Repository\\TagRepository', array(), array(), '', FALSE
-		);
-		$this->fixture->injectTagRepository($this->tagRepository);
-	}
+    /**
+     * Test for creating correct demand call.
+     *
+     * @test
+     *
+     * @return void
+     */
+    public function listActionFindsDemandedTagsByDemandFromSettings()
+    {
+        $demand = new NewsDemand();
+        $settings = ['list' => 'foo', 'orderBy' => 'datetime'];
 
-	/**
-	 * Tear down framework
-	 *
-	 * @return void
-	 */
-	public function tearDown() {
-		unset($this->fixture, $this->tagRepository);
-	}
+        $mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch']);
+        $configurationManager = $this->getMock(
+            'TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'
+        );
 
-	/**
-	 * Test for creating correct demand call
-	 *
-	 * @test
-	 * @return void
-	 */
-	public function listActionFindsDemandedTagsByDemandFromSettings() {
-		$demand = new NewsDemand();
-		$settings = array('list' => 'foo', 'orderBy' => 'datetime');
+        $fixture = $this->getAccessibleMock(
+            'GeorgRinger\\News\\Controller\\TagController',
+            ['createDemandObjectFromSettings', 'emitActionSignal']
+        );
+        $fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
-		$mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', array('dispatch'));
-		$configurationManager = $this->getMock(
-			'TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface'
-		);
+        $fixture->injectTagRepository($this->tagRepository);
+        $fixture->injectConfigurationManager($configurationManager);
+        $fixture->setView($this->getMock('TYPO3\CMS\Fluid\View\TemplateView', [], [], '', false));
+        $fixture->_set('settings', $settings);
 
-		$fixture = $this->getAccessibleMock(
-			'GeorgRinger\\News\\Controller\\TagController',
-			array('createDemandObjectFromSettings', 'emitActionSignal')
-		);
-		$fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
+        $fixture->expects($this->once())->method('createDemandObjectFromSettings')
+            ->will($this->returnValue($demand));
+        $fixture->expects($this->once())->method('emitActionSignal')->will($this->returnValue([]));
 
-		$fixture->injectTagRepository($this->tagRepository);
-		$fixture->injectConfigurationManager($configurationManager);
-		$fixture->setView($this->getMock('TYPO3\CMS\Fluid\View\TemplateView', array(), array(), '', FALSE));
-		$fixture->_set('settings', $settings);
+        $this->tagRepository->expects($this->once())->method('findDemanded')
+            ->with($demand);
 
-		$fixture->expects($this->once())->method('createDemandObjectFromSettings')
-			->will($this->returnValue($demand));
-		$fixture->expects($this->once())->method('emitActionSignal')->will($this->returnValue(array()));
+        $fixture->listAction();
 
-		$this->tagRepository->expects($this->once())->method('findDemanded')
-			->with($demand);
-
-		$fixture->listAction();
-
-		// datetime must be removed
-		$this->assertEquals($fixture->_get('settings'), array('list' => 'foo'));
-	}
-
-
+        // datetime must be removed
+        $this->assertEquals($fixture->_get('settings'), ['list' => 'foo']);
+    }
 }
