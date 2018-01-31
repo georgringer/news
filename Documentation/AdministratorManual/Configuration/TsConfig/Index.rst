@@ -52,6 +52,19 @@ The selectbox “Template Layout” inside a plugin can be easily be extended by
 will show 2 layout options with 123/456 as keys and Fobar/Blub as values.
 Inside the template it is then possible to define conditions with fluid by checking {settings.templateLayout}
 
+By using the configuration `allowedColPos` it is possible to restrict a template layout to a specific list of colPos values.
+
+.. code-block:: typoscript
+
+   tx_news.templateLayouts {
+      1 = Fobar
+      2 = Another one
+      2.allowedColPos = 1,2,3
+      3 =  --div--,Group 2
+      4 = Blub
+      4.allowedColPos = 0,1
+   }
+
 .. _tsconfigArchive:
 
 archive
