@@ -123,7 +123,6 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
                 $rowCount++;
             }
 
-
             if ($rowCount === 0) {
                 echo '<!-- It appears that there are no tx_news entries. If your ' .
                     'news storage sysfolder is outside of the rootline, you may ' .
@@ -146,7 +145,6 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
         }
         $url = $this->getNewsItemUrl($row, $forceSinglePid);
         if ($url) {
-
             echo $this->renderer->renderEntry($url, $row['title'], $row['tstamp'],
                 '', $row['keywords']);
         } else {
