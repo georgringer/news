@@ -77,7 +77,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
                 1400741142);
         }
 
-        $this->numberOfPages = (int)(ceil((count($this->objects) - (int)$this->initialOffset) / $itemsPerPage);
+        $this->numberOfPages = (int)ceil((count($this->objects) - (int)$this->initialOffset) / $itemsPerPage);
         $this->maximumNumberOfLinks = (integer)$this->configuration['maximumNumberOfLinks'];
         if (isset($this->configuration['templatePath']) && !empty($this->configuration['templatePath'])) {
             $this->templatePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->configuration['templatePath']);
