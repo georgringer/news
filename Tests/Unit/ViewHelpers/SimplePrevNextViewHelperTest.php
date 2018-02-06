@@ -28,11 +28,6 @@ class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
     public function setUp()
     {
         $this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['dummy']);
-        $mockedDatabaseConnection = $this
-            ->getMockBuilder('TYPO3\\CMS\\Core\\Database\\DatabaseConnection')
-            ->setMethods(['exec_SELECTgetSingleRow'])
-            ->disableOriginalConstructor();
-        $this->viewHelper->_set('databaseConnection', $mockedDatabaseConnection->getMock());
     }
 
     /**
