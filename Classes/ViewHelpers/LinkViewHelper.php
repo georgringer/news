@@ -205,7 +205,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
             $configuration['parameter'] = $detailPid;
         }
 
-        $configuration['useCacheHash'] = $GLOBALS['TSFE']->sys_page->versioningPreview ? 0 : 1;
+        $configuration['useCacheHash'] = 1;
         $configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
 
         if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {

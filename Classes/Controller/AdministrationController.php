@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -14,6 +15,7 @@ use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
@@ -57,8 +59,20 @@ class AdministrationController extends NewsController
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      */
     protected $configurationManager;
-
+    /**
+     * @var array
+     */
     protected $pageInformation = [];
+
+    /**
+     * @var array
+     */
+    protected $allowedNewTables = [];
+
+    /**
+     * @var array
+     */
+    protected $deniedNewTables = [];
 
     /**
      * Function will be called before every other action
@@ -113,6 +127,19 @@ class AdministrationController extends NewsController
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/AdministrationModule');
         $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
+
+        $web_list_modTSconfig = BackendUtilityCore::getModTSconfig($this->pageUid, 'mod.web_list');
+        $this->allowedNewTables = GeneralUtility::trimExplode(
+            ',',
+            $web_list_modTSconfig['properties']['allowedNewTables'],
+            true
+        );
+        $this->deniedNewTables = GeneralUtility::trimExplode(
+            ',',
+            $web_list_modTSconfig['properties']['deniedNewTables'],
+            true
+        );
+
         $this->createMenu();
         $this->createButtons();
     }
@@ -159,7 +186,7 @@ class AdministrationController extends NewsController
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
-        if ($this->request->getControllerActionName() === 'index') {
+        if ($this->request->getControllerActionName() === 'index' && $this->isFilteringEnabled()) {
             $toggleButton = $buttonBar->makeLinkButton()
                 ->setHref('#')
                 ->setDataAttributes([
@@ -193,9 +220,7 @@ class AdministrationController extends NewsController
             ]
         ];
         foreach ($buttons as $key => $tableConfiguration) {
-            if ($this->getBackendUser()->isAdmin() || GeneralUtility::inList($this->getBackendUser()->groupData['tables_modify'],
-                    $tableConfiguration['table'])
-            ) {
+            if ($this->showButton($tableConfiguration['table'])) {
                 $title = $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label']);
                 $viewButton = $buttonBar->makeLinkButton()
                     ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor($tableConfiguration['action'],
@@ -231,6 +256,27 @@ class AdministrationController extends NewsController
             ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/' . $path . 'locallang_core.xlf:labels.reload'))
             ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
         $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
+    }
+
+    /**
+     * @param string $table
+     * @return bool
+     */
+    protected function showButton($table)
+    {
+        if (!$this->getBackendUser()->check('tables_modify', $table)) {
+            return false;
+        }
+
+        // No deny/allow tables are set:
+        if (empty($this->allowedNewTables) && empty($this->deniedNewTables)) {
+            return true;
+        }
+
+        $showButton = !in_array($table, $this->deniedNewTables, true) &&
+            (empty($this->allowedNewTables) || in_array($table, $this->allowedNewTables, true));
+
+        return $showButton;
     }
 
     /**
@@ -270,7 +316,7 @@ class AdministrationController extends NewsController
                     ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
                 }
             }
-            if (!(bool)$this->tsConfiguration['alwaysShowFilter']) {
+            if (!(bool)$this->tsConfiguration['alwaysShowFilter'] || !$this->isFilteringEnabled()) {
                 $this->view->assign('hideForm', true);
             }
         }
@@ -288,7 +334,7 @@ class AdministrationController extends NewsController
         $dblist->script = GeneralUtility::getIndpEnv('REQUEST_URI');
         $dblist->thumbs = $this->getBackendUser()->uc['thumbnailsByDefault'];
         $dblist->allFields = 1;
-        $dblist->localizationView = 1;
+        $dblist->localizationView = $this->tsConfiguration['localizationView'] ? MathUtility::forceIntegerInRange($this->tsConfiguration['localizationView'], 0) : 1;
         $dblist->clickTitleMode = 'edit';
         $dblist->calcPerms = $this->getBackendUser()->calcPerms($this->pageInformation);
         $dblist->showClipboard = 0;
@@ -320,6 +366,8 @@ class AdministrationController extends NewsController
             'showSearchForm' => (!is_null($demand) || $dblist->counter > 0),
             'requestUri' => GeneralUtility::quoteJSvalue(rawurlencode(GeneralUtility::getIndpEnv('REQUEST_URI'))),
             'categories' => $this->categoryRepository->findTree($idList),
+            'filters' => $this->tsConfiguration['filters.'],
+            'enableFiltering' => $this->isFilteringEnabled(),
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];
 
@@ -389,17 +437,35 @@ class AdministrationController extends NewsController
     {
         $pageUid = (int)$row['row']['uid'];
 
-        /* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
-        $db = $GLOBALS['TYPO3_DB'];
+        if (class_exists(ConnectionPool::class)) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('tx_news_domain_model_news');
+            $row['countNews'] = $queryBuilder->count('*')
+                ->from('tx_news_domain_model_news')
+                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+                ->execute()
+                ->fetchColumn(0);
 
-        $row['countNews'] = $db->exec_SELECTcountRows(
-            '*',
-            'tx_news_domain_model_news',
-            'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
-        $row['countCategories'] = $db->exec_SELECTcountRows(
-            '*',
-            'sys_category',
-            'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('sys_category');
+            $row['countCategories'] = $queryBuilder->count('*')
+                ->from('sys_category')
+                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+                ->execute()
+                ->fetchColumn(0);
+        } else {
+            /* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
+            $db = $GLOBALS['TYPO3_DB'];
+
+            $row['countNews'] = $db->exec_SELECTcountRows(
+                '*',
+                'tx_news_domain_model_news',
+                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
+            $row['countCategories'] = $db->exec_SELECTcountRows(
+                '*',
+                'sys_category',
+                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
+        }
 
         $row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
     }
@@ -437,6 +503,28 @@ class AdministrationController extends NewsController
         if (isset($tsConfig['tx_news.']['module.']) && is_array($tsConfig['tx_news.']['module.'])) {
             $this->tsConfiguration = $tsConfig['tx_news.']['module.'];
         }
+    }
+
+    /**
+     * Check if at least one filter is enabled
+     *
+     * @return bool
+     */
+    protected function isFilteringEnabled()
+    {
+        if (isset($this->tsConfiguration['filters.'])) {
+            foreach ($this->tsConfiguration['filters.'] as $filter => $enabled) {
+                if ($enabled == 1) {
+                    // Check dependencies on other filter
+                    if (($filter === 'categoryConjunction' || $filter === 'includeSubCategories')
+                        && $this->tsConfiguration['filters.']['categories'] == 0) {
+                        continue;
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**

@@ -28,7 +28,7 @@ class ConstraintHelper
         $timeLimit = 0;
         // integer = timestamp
         if (MathUtility::canBeInterpretedAsInteger($timeInput)) {
-            $timeLimit = $GLOBALS['EXEC_TIME'] - $timeInput;
+            $timeLimit = $GLOBALS['SIM_EXEC_TIME'] - $timeInput;
         } else {
             $timeByFormat = DateTime::createFromFormat('HH:mm DD-MM-YYYY', $timeInput);
             if ($timeByFormat) {
@@ -57,7 +57,7 @@ class ConstraintHelper
         $timeLimit = 0;
         // integer = timestamp
         if (MathUtility::canBeInterpretedAsInteger($timeInput)) {
-            $timeLimit = $GLOBALS['EXEC_TIME'] + $timeInput;
+            $timeLimit = $GLOBALS['SIM_EXEC_TIME'] + $timeInput;
             return $timeLimit;
         } else {
             // try to check strtotime

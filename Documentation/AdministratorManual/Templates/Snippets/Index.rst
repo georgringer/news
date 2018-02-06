@@ -66,9 +66,13 @@ and
 		</f:if>
 	</f:section>
 
-Use current content element in the Template
+Use current content element in the template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you ever need information from the content element itself, you can use ``{contentObjectData.header}``.
+
+Use current page in the template
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you ever need information from the current page, you can use ``{pageData.uid}``.
 
 Sort tags
 ^^^^^^^^^

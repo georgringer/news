@@ -52,6 +52,19 @@ The selectbox “Template Layout” inside a plugin can be easily be extended by
 will show 2 layout options with 123/456 as keys and Fobar/Blub as values.
 Inside the template it is then possible to define conditions with fluid by checking {settings.templateLayout}
 
+By using the configuration `allowedColPos` it is possible to restrict a template layout to a specific list of colPos values.
+
+.. code-block:: typoscript
+
+   tx_news.templateLayouts {
+      1 = Fobar
+      2 = Another one
+      2.allowedColPos = 1,2,3
+      3 =  --div--,Group 2
+      4 = Blub
+      4.allowedColPos = 0,1
+   }
+
 .. _tsconfigArchive:
 
 archive
@@ -119,6 +132,7 @@ Properties
 	redirectToPageOnStart_       integer
 	allowedPage_                 integer
 	alwaysShowFilter_            bool
+	filters_                     array
 	=========================== =====================================
 
 .. _tsconfigPreselect:
@@ -171,6 +185,15 @@ If this is not desired, the pid can be defined by using defaultPid.<tablename>:
 
 News records will be saved on page with ID 123.
 
+localizationView
+^^^^^^^
+
+Ability to disable the localizationView in the administration module. Default is 1. Example:
+
+.. code-block:: typoscript
+
+    tx_news.module.localizationView = 0
+
 .. _tsconfigRedirectToPageOnStart:
 
 redirectToPageOnStart
@@ -209,6 +232,34 @@ If defined, the administration module will always show the filter opened.
 	tx_news.module.alwaysShowFilter = 1
 
 The user will be redirected to the page with the uid 123.
+
+filters
+^^^^^^^
+Define whether filters should be available or not. By default, all the filters are enabled. The available filters are:
+
+- searchWord
+- timeRestriction
+- topNewsRestriction
+- hidden
+- archived
+- sortingField
+- number
+- categories
+- categoryConjunction
+- includeSubCategories
+
+.. code-block:: typoscript
+
+	# Example:
+	tx_news.module {
+		filters {
+			topNewsRestriction = 0
+		}
+	}
+
+
+.. note::
+ ``categoryConjunction`` and ``includeSubCategories`` can only be enabled when ``categories`` is enabled.
 
 Additional Configuration
 ------------------------

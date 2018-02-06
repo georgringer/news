@@ -64,7 +64,7 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCatgegoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -258,7 +258,7 @@ class NewsController extends NewsBaseController
      */
     public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
     {
-        if ($news === null) {
+        if ($news === null || $this->settings['isShortcut']) {
             $previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
             if ($this->request->hasArgument('news_preview')) {
                 $previewNewsId = (int)$this->request->getArgument('news_preview');
@@ -361,6 +361,15 @@ class NewsController extends NewsBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
+        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+            $overwriteDemandTemp = $overwriteDemand;
+            unset($overwriteDemandTemp['year']);
+            unset($overwriteDemandTemp['month']);
+            $demand = $this->overwriteDemandObject($demand,
+                $overwriteDemandTemp);
+            unset($overwriteDemandTemp);
+        }
+
         // It might be that those are set, @see http://forge.typo3.org/issues/44759
         $demand->setLimit(0);
         $demand->setOffset(0);
@@ -440,7 +449,9 @@ class NewsController extends NewsBaseController
         if (!is_null($search)) {
             $search->setFields($this->settings['search']['fields']);
             $search->setDateField($this->settings['dateField']);
+            $search->setSplitSubjectWords((bool)$this->settings['search']['splitSearchWord']);
         }
+
         $demand->setSearch($search);
 
         $assignedValues = [

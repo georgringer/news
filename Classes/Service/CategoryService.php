@@ -135,6 +135,7 @@ class CategoryService
      */
     public static function getRootlineRecursive($id, $counter = 0, $additionalWhere = '')
     {
+        $counter++;
         $id = (int)$id;
         $result = [];
 
@@ -170,7 +171,7 @@ class CategoryService
      */
     public static function translateCategoryRecord($default, array $row = [])
     {
-        if (TYPO3_MODE != 'BE') {
+        if (TYPO3_MODE !== 'BE') {
             throw new \UnexpectedValueException('TYPO3 Mode must be BE');
         }
 

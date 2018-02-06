@@ -43,7 +43,7 @@ $tx_news_domain_model_news = [
         ],
         'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.svg',
         'searchFields' => 'uid,title',
-        'thumbnail' => 'fal_media',
+        'thumbnail' => $configuration->isMediaPreview() ? 'fal_media' : '',
     ],
     'interface' => [
         'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements,tags,path_segment,alternative_title,fal_related_files'
@@ -599,7 +599,16 @@ $tx_news_domain_model_news = [
 						--palette--;;imageoverlayPalette,
 						--palette--;;filePalette'
                         ]
-                    ]
+                    ],
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
                 ],
                 $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
             )
@@ -728,14 +737,8 @@ $tx_news_domain_model_news = [
         'paletteDate' => [
             'showitem' => 'datetime,archive,',
         ],
-        'paletteArchive' => [
-            'showitem' => 'archive,',
-        ],
         'paletteCore' => [
             'showitem' => 'istopnews, type, sys_language_uid, hidden,',
-        ],
-        'paletteNavtitle' => [
-            'showitem' => 'alternative_title,path_segment',
         ],
         'paletteAccess' => [
             'showitem' => 'starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,

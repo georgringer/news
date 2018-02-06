@@ -128,12 +128,17 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
 
             if ($this->currentPage > 1) {
                 $offset = (integer)($itemsPerPage * ($this->currentPage - 1));
-                $offset = $offset + $this->initialOffset;
+                $offset += $this->initialOffset;
                 $query->setOffset($offset);
             } elseif ($this->initialOffset > 0) {
                 $query->setOffset($this->initialOffset);
             }
             $modifiedObjects = $query->execute();
+        }
+
+        if ($this->currentPage > 1) {
+            $pageLabel = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('paginate_overall', 'news', [$this->currentPage, $this->numberOfPages]);
+            $GLOBALS['TSFE']->page['title'] = $GLOBALS['TSFE']->page['title'] . ' - ' . trim($pageLabel, '.');
         }
 
         $this->view->assign('contentArguments', [
