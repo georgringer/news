@@ -191,7 +191,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         $tableName = 'tx_news_domain_model_news';
 
         foreach (['prev', 'next'] as $label) {
-            $whereClause = 'sys_language_uid = 0 AND pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
+            $whereClause = 'sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid . ' AND pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
                 . $this->getEnableFieldsWhereClauseForTable();
             switch ($label) {
                 case 'prev':
