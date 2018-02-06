@@ -13,6 +13,8 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -37,7 +39,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $categories,
         $conjunction,
         $includeSubCategories = false
-    ) {
+    )
+    {
         $constraint = null;
         $categoryConstraints = [];
 
@@ -343,28 +346,33 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             ' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
             ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_news_domain_model_news');
+
         if (TYPO3_MODE === 'FE') {
             $sql .= $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
         } else {
-            $sql .= \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('tx_news_domain_model_news') .
-                \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause('tx_news_domain_model_news');
+            $expressionBuilder = $connection
+                ->createQueryBuilder()
+                ->expr();
+            $sql .= BackendUtility::BEenableFields('tx_news_domain_model_news') .
+                ' AND ' . $expressionBuilder->eq('deleted', 0);
         }
 
         // strip unwanted order by
-        $sql = $GLOBALS['TYPO3_DB']->stripOrderBy($sql);
+        $sql = $this->stripOrderBy($sql);
 
         // group by custom month/year fields
         $orderDirection = strtolower($demand->getOrder());
-        if ($orderDirection !== 'desc' && $orderDirection != 'asc') {
+        if ($orderDirection !== 'desc' && $orderDirection !== 'asc') {
             $orderDirection = 'asc';
         }
         $sql .= ' GROUP BY _Month, _Year ORDER BY _Year ' . $orderDirection . ', _Month ' . $orderDirection;
 
-        $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+        $res = $connection->query($sql);
+        while ($row = $res->fetch()) {
             $data['single'][$row['_Year']][$row['_Month']] = $row['count_month'];
         }
-        $GLOBALS['TYPO3_DB']->sql_free_result($res);
 
         // Add totals
         if (is_array($data['single'])) {
@@ -451,5 +459,16 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
 
         return $constraints;
+    }
+
+    /**
+     * Return stripped order sql
+     *
+     * @param string $str
+     * @return string
+     */
+    private function stripOrderBy(string $str)
+    {
+        return preg_replace('/^(?:ORDER[[:space:]]*BY[[:space:]]*)+/i', '', trim($str));
     }
 }
