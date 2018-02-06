@@ -6,8 +6,8 @@
 conf.py:
   copyright: 2018
   project: News system
-  version: 6.2
-  release: 6.2.1
+  version: 6.3
+  release: 6.3.0
   latex_documents:
   - - Index
     - news.tex
