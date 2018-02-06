@@ -139,12 +139,4 @@ class DataHandler
     {
         return $GLOBALS['BE_USER'];
     }
-
-    /**
-     * @return \TYPO3\Cms\Core\Database\DatabaseConnection
-     */
-    protected static function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
-    }
 }

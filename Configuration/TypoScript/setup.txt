@@ -91,6 +91,7 @@ plugin.tx_news {
 		# --------------
 		search {
 			fields = teaser,title,bodytext
+			splitSearchWord = 0
 		}
 
 		# --------------

@@ -968,11 +968,32 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getContentElementIdList()
     {
+        return $this->getIdOfContentElements();
+    }
+
+    /**
+     * Get translated id list of content elements
+     *
+     * @return string
+     */
+    public function getTranslatedContentElementIdList()
+    {
+        return $this->getIdOfContentElements(false);
+    }
+
+    /**
+     * Collect id list
+     *
+     * @param bool $original
+     * @return string
+     */
+    protected function getIdOfContentElements($original = true)
+    {
         $idList = [];
         $contentElements = $this->getContentElements();
         if ($contentElements) {
             foreach ($this->getContentElements() as $contentElement) {
-                $idList[] = $contentElement->getUid();
+                $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
             }
         }
         return implode(',', $idList);

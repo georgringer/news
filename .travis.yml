@@ -3,8 +3,6 @@ language: php
 matrix:
   fast_finish: true
   include:
-    - php: 5.5
-      env: TYPO3_VERSION=^7.6
     - php: 5.6
       env: TYPO3_VERSION=^7.6
     - php: 7.0
@@ -54,11 +52,6 @@ script:
     echo;
     echo "Running php lint";
     find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
-
-  - >
-    echo;
-    echo "Running PHP Coding Standards Fixer checks";
-    .Build/bin/php-cs-fixer fix --config=Build/.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $COMMIT_RANGE`
 
   - >
     echo;
