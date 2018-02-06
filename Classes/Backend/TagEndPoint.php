@@ -12,6 +12,7 @@ use Exception;
 use GeorgRinger\News\Utility\EmConfiguration;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler as DataHandlerCore;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -87,12 +88,18 @@ class TagEndPoint
             throw new Exception('error_no-pid-defined');
         }
 
-        $record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
-            '*',
-            self::TAG,
-            'deleted=0 AND pid=' . $pid .
-            ' AND title=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($title, self::TAG)
-        );
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable(self::TAG);
+        $record = $queryBuilder
+            ->select('*')
+            ->from(self::TAG)
+            ->where(
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title, \PDO::PARAM_STR))
+            )
+            ->setMaxResults(1)
+            ->execute()->fetch();
+
         if (isset($record['uid'])) {
             $tagUid = $record['uid'];
         } else {
