@@ -9,7 +9,7 @@
 
 > It is a highly customizable framework for chronological organized content - much more than just a news list! (Quote by an user)
 
-## Features
+## 1. Features
 
 - Based on extbase & fluid, implementing best practices from TYPO3 CMS
 - Supporting editors & authors by providing
@@ -18,7 +18,7 @@
 - Frontend template variant based on Twitter Bootstrap (v3) 
 - (Well documented)[1]
 
-## Usage
+## 2. Usage
 
 
 ### 1) Installation
@@ -36,6 +36,40 @@ Download and install the extension with the extension manager module.
 1) Include the static TypoScript of the extension. **Optional:** If you are templates are based on Twitter Bootstrap, add the TWB styles as well to get optimized templates.
 2) Create some news records on a sysfolder.
 3) Create a plugin on a page and select at least the sysfolder as startingpoint.
+
+## 3. Administration corner
+
+### 3.1. Versions and support
+
+| News        | TYPO3      | PHP       | Support/Development                     |
+| ----------- | ---------- | ----------|---------------------------------------- |
+| 7.x         | 8.7 - 9.x  | 7.0 - 7.2 | Features, Bugfixes, Security Updates    |
+| 6.x         | 7.6 - 8.7  | 5.6 - 7.2 | Features, Bugfixes, Security Updates    |
+| 5.x         | 7.6 - 8.7  | 5.6 - 7.2 | none                                    |
+| 4.x         | 7.6        | 5.5 - 5.6 | none                                    |
+| 3.x         | 6.2        | 5.5 - 5.6 | Security Updates                        |
+
+### 3.2. Changelog
+
+Please look into the [official extension documentation in changelog chapter](https://docs.typo3.org/typo3cms/drafts/github/georgringer/news/Misc/Changelog/Index.html)
+
+### 3.3. Release Management
+
+News uses **semantic versioning** which basically means for you, that 
+- **bugfix updates** (e.g. 1.0.0 => 1.0.1) just includes small bugfixes or security relevant stuff without breaking changes.
+- **minor updates** (e.g. 1.0.0 => 1.1.0) includes new features and smaller tasks without breaking changes.
+- **major updates** (e.g. 1.0.0 => 2.0.0) breaking changes wich can be refactorings, features or bugfixes.
+
+### 3.4. Contribution
+
+**Pull requests** are welcome in general! Nevertheless please don't forget to add an issue and connect it to your pull requests. This
+is very helpful to understand what kind of issue the **PR** is going to solve.
+
+- Bugfixes: Please describe what kind of bug your fix solve and give us feedback how to reproduce the issue. We're going
+to accept only bugfixes if I can reproduce the issue.
+- Features: Not every feature is relevant for the bulk of powermail users. In addition: We don't want to make powermail
+even more complicated in usability for an edge case feature. Please discuss a new feature before.
+
 
 
 
