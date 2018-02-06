@@ -106,6 +106,14 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
 
         $tsSettings = (array)$this->pluginSettingsService->getSettings();
         ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array)$settings);
+        // Options with stdWrap enabled won't override $tsSettings as intended here: override them explicit.
+        if ($settings['useStdWrap']) {
+            foreach (GeneralUtility::trimExplode(',', $settings['useStdWrap'], true) as $stdWrapProperty) {
+                if (is_array($tsSettings[$stdWrapProperty]) && array_key_exists($stdWrapProperty, $settings)) {
+                    $tsSettings[$stdWrapProperty] = $settings[$stdWrapProperty];
+                }
+            }
+        }
 
         $this->init();
 
