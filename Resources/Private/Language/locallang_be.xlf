@@ -245,7 +245,7 @@
 			</trans-unit>
 			<trans-unit id="extmng.categoryRestriction" xml:space="preserve">
 				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
-				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_ID=120. This feature is currently under development and not beeing expected to work!
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
 			</source>
 			</trans-unit>
 			<trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
@@ -304,6 +304,9 @@
 			</trans-unit>
 			<trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
 				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
+			</trans-unit>
+			<trans-unit id="extmng.mediaPreview" xml:space="preserve">
+				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
 			</trans-unit>
 			<trans-unit id="usersettings.overlay" xml:space="preserve">
 				<source>Use this overlay for news categories in the Backend</source>

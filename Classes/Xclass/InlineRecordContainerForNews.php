@@ -43,12 +43,22 @@ class InlineRecordContainerForNews extends InlineRecordContainer
         $iconImg = '<span title="' . $altText . '" id="' . htmlspecialchars($objectId) . '_icon' . '">' . $this->iconFactory->getIconForRecord($foreignTable, $rec, Icon::SIZE_SMALL)->render() . '</span>';
 
         $raw = BackendUtility::getRecord('tt_content', $rec['uid']);
+        $renderFallback = true;
         if (is_array($raw) && !empty($raw) && $raw['CType'] !== 'gridelements_pi1') {
+            $renderFallback = false;
             $pageLayoutView = GeneralUtility::makeInstance(PageLayoutView::class);
             $pageLayoutView->doEdit = false;
+            foreach ($GLOBALS['TCA']['tt_content']['columns']['CType']['config']['items'] as $val) {
+                $pageLayoutView->CType_labels[$val[1]] = $this->getLanguageService()->sL($val[0]);
+            }
 
-            $label = $pageLayoutView->tt_content_drawItem($raw);
-        } else {
+            $label = trim($pageLayoutView->tt_content_drawItem($raw));
+            if ($label === $this->getWarningLabel($raw['CType'])) {
+                $renderFallback = true;
+            }
+        }
+
+        if ($renderFallback) {
             $label = $data['recordTitle'];
             if (!empty($recordTitle)) {
                 // The user function may return HTML, therefore we can't escape it
@@ -67,5 +77,18 @@ class InlineRecordContainerForNews extends InlineRecordContainer
 				<div class="form-irre-header-cell form-irre-header-control t3js-formengine-irre-control">' . $this->renderForeignRecordHeaderControl($data) . '</div>';
 
         return $header;
+    }
+
+    /**
+     * @param string $cType
+     * @return string
+     */
+    protected function getWarningLabel($cType)
+    {
+        $message = sprintf(
+            $this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.noMatchingValue'),
+            $cType
+        );
+        return '<span class="exampleContent"><span class="label label-warning">' . htmlspecialchars($message) . '</span></span>';
     }
 }

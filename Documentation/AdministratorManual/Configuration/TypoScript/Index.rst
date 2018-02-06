@@ -295,7 +295,7 @@ previewHiddenRecords
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.enablePreviewOfHiddenRecords =1`
+         :typoscript:`plugin.tx_news.settings.previewHiddenRecords = 1`
 
          If set, also records which are normally hidden are displayed. This is especially helpful when using a detail view as preview mode for editors.
 
@@ -596,6 +596,7 @@ Properties
 	`list\.paginate`_                     array
 	`list\.rss`_                          array
 	`search\.fields`_                     string
+	`search\.splitSearchWord`_            boolean
 	==================================== ===============
 
 .. _tsCssFile:
@@ -1285,4 +1286,24 @@ search.fields
 
    Default
         teaser,title,bodytext
+
+search.splitSearchWord
+"""""""""""""
+
+.. container:: table-row
+
+   Property
+         search.splitSearchWord
+   Data type
+         boolean
+   Description
+        If set to `1`, the search subject will be splitted by spaces and it will not only find the phrase but also if the search terms are scattered in a field.
+
+        As an example: Searching for *hello world* will give you as result also the news item with the title `hello the world`. The search terms must be found in the same field, which means that a news item with the world *hello* in the `title` and the word *world* in the bodytext won\'t be found.
+
+        .. hint::
+        If you need a better search experience, think about using something like EXT:solr!
+
+   Default
+        0
 

@@ -36,7 +36,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      */
     protected $author;
 
-    /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage */
+    /** @var string */
     protected $tags;
 
     /**
@@ -204,6 +204,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     public function setAuthor($author)
     {
         $this->author = $author;
+        return $this;
     }
 
     /**
@@ -219,7 +220,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get Tags
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return string
      */
     public function getTags()
     {
@@ -229,7 +230,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Set Tags
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags tags
+     * @param string $tags tags
      * @return NewsDemand
      */
     public function setTags($tags)

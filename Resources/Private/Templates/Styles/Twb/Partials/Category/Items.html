@@ -1,5 +1,6 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
 <!-- categories -->
-<span class="news-list-category" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<span class="news-list-category">
 	<f:for each="{categories}" as="category">
 		<f:if condition="{category.shortcut}">
 			<f:then>
@@ -13,3 +14,4 @@
 		</f:if>
 	</f:for>
 </span>
+</html>
