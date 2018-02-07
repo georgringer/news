@@ -39,8 +39,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $categories,
         $conjunction,
         $includeSubCategories = false
-    )
-    {
+    ) {
         $constraint = null;
         $categoryConstraints = [];
 

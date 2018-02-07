@@ -9,8 +9,6 @@ namespace GeorgRinger\News\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\DemandInterface;
-use TYPO3\CMS\Extbase\DomainObject\DomainObjectInterface;
-use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 
 /**
