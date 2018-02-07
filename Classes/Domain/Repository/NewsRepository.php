@@ -422,7 +422,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 foreach ($searchFields as $field) {
                     $subConstraints = [];
                     foreach ($searchSubjectSplitted as $searchSubjectSplittedPart) {
-//                        $subConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubjectSplittedPart, '') . '%');
                         $subConstraints[] = $queryBuilder->createNamedParameter(
                             '%' . $queryBuilder->escapeLikeWildcards($field) . '%',
                             \PDO::PARAM_STR
