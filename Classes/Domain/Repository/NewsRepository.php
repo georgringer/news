@@ -174,7 +174,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         // month & year OR year only
         if ($demand->getYear() > 0) {
-            if (is_null($demand->getDateField())) {
+            if (null === $demand->getDateField()) {
                 throw new \InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
             }
             if ($demand->getMonth() > 0) {
@@ -238,7 +238,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         // Clean not used constraints
         foreach ($constraints as $key => $value) {
-            if (is_null($value)) {
+            if (null === $value) {
                 unset($constraints[$key]);
             }
         }
@@ -268,7 +268,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                     list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
                     // count == 1 means that no direction is given
                     if ($ascDesc) {
-                        $orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
+                        $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
                             QueryInterface::ORDER_DESCENDING :
                             QueryInterface::ORDER_ASCENDING);
                     } else {
@@ -408,6 +408,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         $searchSubject = $searchObject->getSubject();
         if (!empty($searchSubject)) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
+
             $searchFields = GeneralUtility::trimExplode(',', $searchObject->getFields(), true);
             $searchConstraints = [];
 
@@ -420,7 +422,11 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 foreach ($searchFields as $field) {
                     $subConstraints = [];
                     foreach ($searchSubjectSplitted as $searchSubjectSplittedPart) {
-                        $subConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubjectSplittedPart, '') . '%');
+//                        $subConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubjectSplittedPart, '') . '%');
+                        $subConstraints[] = $queryBuilder->createNamedParameter(
+                            '%' . $queryBuilder->escapeLikeWildcards($field) . '%',
+                            \PDO::PARAM_STR
+                        );
                     }
                     $searchConstraints[] = $query->logicalAnd($subConstraints);
                 }
@@ -431,7 +437,10 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             } else {
                 foreach ($searchFields as $field) {
                     if (!empty($searchSubject)) {
-                        $searchConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubject, '') . '%');
+                        $searchConstraints[] =$queryBuilder->createNamedParameter(
+                            '%' . $queryBuilder->escapeLikeWildcards($field) . '%',
+                            \PDO::PARAM_STR
+                        );
                     }
                 }
 
@@ -469,6 +478,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      */
     private function stripOrderBy(string $str)
     {
+        /** @noinspection NotOptimalRegularExpressionsInspection */
         return preg_replace('/^(?:ORDER[[:space:]]*BY[[:space:]]*)+/i', '', trim($str));
     }
 }
