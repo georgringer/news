@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Service;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -34,7 +35,11 @@ class CategoryService
         $counter = 0,
         $additionalWhere = '',
         $removeGivenIdListFromResult = false
-    ) {
+    )
+    {
+        if ($additionalWhere !== '') {
+            throw new \UnexpectedValueException('The argument $additionalWhere is not supported anymore');
+        }
         $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
         $cacheIdentifier = sha1('children' . $idList);
 
@@ -58,34 +63,13 @@ class CategoryService
      * @param $toBeRemoved string comma separated list
      * @return string
      */
-    public static function removeValuesFromString($result, $toBeRemoved)
+    public static function removeValuesFromString($result, $toBeRemoved): string
     {
         $resultAsArray = GeneralUtility::trimExplode(',', $result, true);
         $idListAsArray = GeneralUtility::trimExplode(',', $toBeRemoved, true);
 
         $result = implode(',', array_diff($resultAsArray, $idListAsArray));
         return $result;
-    }
-
-    /**
-     * Get rootline up by calling recursive function
-     * and using the caching framework to save some queries
-     *
-     * @param int $id category id to start
-     * @param string $additionalWhere additional where clause
-     * @return string comma separated list of category ids
-     */
-    public static function getRootline($id, $additionalWhere = '')
-    {
-        $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
-        $cacheIdentifier = sha1('rootline' . $id);
-
-        $entry = $cache->get($cacheIdentifier);
-        if (!$entry) {
-            $entry = self::getRootlineRecursive($id, $additionalWhere);
-            $cache->set($cacheIdentifier, $entry);
-        }
-        return $entry;
     }
 
     /**
@@ -96,64 +80,33 @@ class CategoryService
      * @param string $additionalWhere additional where clause
      * @return string comma separated list of category ids
      */
-    private static function getChildrenCategoriesRecursive($idList, $counter = 0, $additionalWhere = '')
+    private static function getChildrenCategoriesRecursive($idList, $counter = 0, $additionalWhere = ''): string
     {
         $result = [];
 
         // add idlist to the output too
         if ($counter === 0) {
-            $result[] = $GLOBALS['TYPO3_DB']->cleanIntList($idList);
+            $result[] = self::cleanIntList($idList);
         }
 
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-            'uid',
-            'sys_category',
-            'sys_category.parent IN (' . $GLOBALS['TYPO3_DB']->cleanIntList($idList) . ')
-				AND deleted=0 ' . $additionalWhere);
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_category');
+        $res = $queryBuilder
+            ->select('uid')
+            ->from('sys_category')
+            ->where(
+                $queryBuilder->expr()->in('parent', $queryBuilder->createNamedParameter(explode(',', $idList), Connection::PARAM_INT_ARRAY))
+            )
+            ->execute();
 
-        while (($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
+        while (($row = $res->fetch())) {
             $counter++;
             if ($counter > 10000) {
                 $GLOBALS['TT']->setTSlogMessage('EXT:news: one or more recursive categories where found');
                 return implode(',', $result);
             }
-            $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter, $additionalWhere);
+            $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter);
             $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
-        }
-
-        $result = implode(',', $result);
-        return $result;
-    }
-
-    /**
-     * Get rootline categories
-     *
-     * @param int $id category id to start
-     * @param int $counter counter
-     * @param string $additionalWhere additional where clause
-     * @return string comma separated list of category ids
-     */
-    public static function getRootlineRecursive($id, $counter = 0, $additionalWhere = '')
-    {
-        $counter++;
-        $id = (int)$id;
-        $result = [];
-
-        $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-            'uid,parent',
-            'sys_category',
-            'uid=' . $id . ' AND deleted=0 ' . $additionalWhere);
-
-        $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
-        if ($id === 0 || !$row || $counter > 10000) {
-            $GLOBALS['TT']->setTSlogMessage('EXT:news: one or more recursive categories where found');
-            return $id;
-        }
-
-        $parent = self::getRootlineRecursive($row['parent'], $counter, $additionalWhere);
-        $result[] = $row['parent'];
-        if ($parent > 0) {
-            $result[] = $parent;
         }
 
         $result = implode(',', $result);
@@ -200,5 +153,16 @@ class CategoryService
         $title = $title ?: $default;
 
         return $title;
+    }
+
+    /**
+     * Clean list of integers
+     *
+     * @param string $list
+     * @return string
+     */
+    private static function cleanIntList($list): string
+    {
+        return implode(',', GeneralUtility::intExplode(',', $list));
     }
 }
