@@ -35,8 +35,7 @@ class CategoryService
         $counter = 0,
         $additionalWhere = '',
         $removeGivenIdListFromResult = false
-    )
-    {
+    ) {
         if ($additionalWhere !== '') {
             throw new \UnexpectedValueException('The argument $additionalWhere is not supported anymore');
         }
