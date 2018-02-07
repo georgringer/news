@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Service;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -119,7 +120,6 @@ class CategoryService
             $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter, $additionalWhere);
             $result[] = $row['uid'] . ($subcategories ? ',' . $subcategories : '');
         }
-        $GLOBALS['TYPO3_DB']->sql_free_result($res);
 
         $result = implode(',', $result);
         return $result;
@@ -145,7 +145,6 @@ class CategoryService
             'uid=' . $id . ' AND deleted=0 ' . $additionalWhere);
 
         $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
-        $GLOBALS['TYPO3_DB']->sql_free_result($res);
         if ($id === 0 || !$row || $counter > 10000) {
             $GLOBALS['TT']->setTSlogMessage('EXT:news: one or more recursive categories where found');
             return $id;
@@ -180,17 +179,25 @@ class CategoryService
         $title = '';
 
         if ($row['uid'] > 0 && $overlayLanguage > 0 && $row['sys_language_uid'] == 0) {
-            $overlayRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-                '*',
-                'sys_category',
-                'deleted=0 AND sys_language_uid=' . $overlayLanguage . ' AND l10n_parent=' . $row['uid']
-            );
-            if (isset($overlayRecord[0]['title'])) {
-                $title = $overlayRecord[0]['title'] . ' (' . $row['title'] . ')';
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('sys_category');
+            $overlayRecord = $queryBuilder
+                ->select('title')
+                ->from('sys_category')
+                ->where(
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($overlayLanguage, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($row['uid'], \PDO::PARAM_INT))
+
+                )
+                ->setMaxResults(1)
+                ->execute()->fetch();
+
+            if (is_array($overlayRecord) && !empty($overlayRecord)) {
+                $title = $overlayRecord['title'] . ' (' . $row['title'] . ')';
             }
         }
 
-        $title = ($title ? $title : $default);
+        $title = $title ?: $default;
 
         return $title;
     }
