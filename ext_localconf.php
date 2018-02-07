@@ -51,7 +51,9 @@ $boot = function () {
     ];
 
     // Hide content elements in page module
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\\CMS\\Recordlist\\RecordList\\DatabaseRecordList']['buildQueryParameters'][]
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['buildQueryParameters'][]
+        = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList::class]['buildQueryParameters'][]
         = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
 
     // Inline records hook
