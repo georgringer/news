@@ -159,28 +159,6 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     }
 
     /**
-     * Returns where clause for the news table
-     *
-     * @return string
-     */
-    protected function getEnableFieldsWhereClauseForTable()
-    {
-        $whereClause = '';
-        if (is_object($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']->sys_page)) {
-            $whereClause = $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
-        }
-
-        if ((bool)$this->arguments['includeInternalType'] === false) {
-            $whereClause .= ' AND tx_news_domain_model_news.type !="1"';
-        }
-        if ((bool)$this->arguments['includeExternalType'] === false) {
-            $whereClause .= ' AND tx_news_domain_model_news.type !="2"';
-        }
-
-        return $whereClause;
-    }
-
-    /**
      * @param News $news
      * @param $pidList
      * @param $sortField
