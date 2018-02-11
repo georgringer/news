@@ -10,6 +10,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
 use Nimut\TestingFramework\TestCase\ViewHelperBaseTestcase;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
 /**
  * Test for SimplePrevNextViewHelper
@@ -27,7 +28,7 @@ class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
      */
     public function setUp()
     {
-        $this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['dummy']);
+        $this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getRawRecord']);
     }
 
     /**
@@ -35,6 +36,8 @@ class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
      */
     public function wrongIdWillReturnNullForObject()
     {
+        $this->viewHelper->expects($this->any())->method('getRawRecord')->withAnyParameters()->will($this->returnValue(null));
+
         $out = $this->viewHelper->_call('getObject', 0);
         $this->assertEquals($out, null);
     }

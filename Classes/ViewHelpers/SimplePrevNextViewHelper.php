@@ -11,6 +11,7 @@ namespace GeorgRinger\News\ViewHelpers;
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -127,16 +128,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     {
         $record = null;
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_news_domain_model_news');
-        $rawRecord = $queryBuilder
-            ->select('*')
-            ->from('tx_news_domain_model_news')
-            ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
-            )
-            ->setMaxResults(1)
-            ->execute()->fetch();
+        $rawRecord = $this->getRawRecord($id);
 
         if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->sys_language_content > 0) {
             $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
@@ -214,5 +206,33 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
             }
         }
         return $data;
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    protected function getQueryBuilder(): QueryBuilder
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_news_domain_model_news');
+        return $queryBuilder;
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    protected function getRawRecord($id)
+    {
+        $queryBuilder = $this->getQueryBuilder();
+        $rawRecord = $queryBuilder
+            ->select('*')
+            ->from('tx_news_domain_model_news')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
+            )
+            ->setMaxResults(1)
+            ->execute()->fetch();
+        return $rawRecord;
     }
 }

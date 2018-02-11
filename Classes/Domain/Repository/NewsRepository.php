@@ -15,6 +15,7 @@ use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -408,7 +409,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         $searchSubject = $searchObject->getSubject();
         if (!empty($searchSubject)) {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
+            $queryBuilder = $this->getQueryBuilder('tx_news_domain_model_news');
 
             $searchFields = GeneralUtility::trimExplode(',', $searchObject->getFields(), true);
             $searchConstraints = [];
@@ -467,6 +468,15 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
 
         return $constraints;
+    }
+
+    /**
+     * @param string $table table name
+     * @return QueryBuilder
+     */
+    protected function getQueryBuilder(string $table): QueryBuilder
+    {
+        return GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
     }
 
     /**
