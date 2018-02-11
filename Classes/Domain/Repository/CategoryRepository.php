@@ -25,8 +25,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     protected function createConstraintsFromDemand(
         QueryInterface $query,
         DemandInterface $demand
-    )
-    {
+    ) {
     }
 
     protected function createOrderingsFromDemand(DemandInterface $demand)
