@@ -191,7 +191,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
             }
 
             $row = $queryBuilder
-                ->select('uid', 'title', 'pid')
+                ->select('*')
                 ->from('tx_news_domain_model_news')
                 ->where(
                     $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
@@ -213,9 +213,8 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      */
     protected function getQueryBuilder()
     {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        return GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
-        return $queryBuilder;
     }
 
     /**

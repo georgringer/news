@@ -25,7 +25,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     /** @var \PHPUnit_Framework_MockObject_MockObject|AccessibleMockObjectInterface|\GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper */
     protected $mockedViewHelper;
 
-    /** @var \GeorgRinger\News\Domain\Model\News */
+    /** @var News */
     protected $news;
 
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
@@ -48,7 +48,6 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     public function allNeighboursCanBeFound()
     {
         $this->setDate(1396035186);
-
         $actual = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
 
         $exp = [
