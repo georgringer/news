@@ -211,7 +211,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     /**
      * @return QueryBuilder
      */
-    protected function getQueryBuilder(): QueryBuilder
+    protected function getQueryBuilder()
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');

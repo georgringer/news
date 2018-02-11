@@ -474,7 +474,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @param string $table table name
      * @return QueryBuilder
      */
-    protected function getQueryBuilder(string $table): QueryBuilder
+    protected function getQueryBuilder(string $table)
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
     }
