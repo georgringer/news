@@ -10,7 +10,6 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
 use Nimut\TestingFramework\TestCase\ViewHelperBaseTestcase;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
 /**
  * Test for SimplePrevNextViewHelper
