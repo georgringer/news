@@ -422,6 +422,7 @@ class NewsController extends NewsBaseController
             'search' => $search,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
+            'currentPageId' => $GLOBALS['TSFE']->id
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHFORM_ACTION,

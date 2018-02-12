@@ -1,4 +1,6 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
 <f:layout name="General" />
 <!--
 	=====================
@@ -13,9 +15,22 @@
 					<div class="count-msg">
 						<f:translate key="search-text" arguments="{0:'{f:count(subject:news)}',1:search.subject}" />
 					</div>
-					<f:for each="{news}" as="newsItem">
-						<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}" />
-					</f:for>
+					<f:if condition="{settings.hidePagination}">
+						<f:then>
+							<f:for each="{news}" as="newsItem" iteration="iterator">
+								<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}" />
+							</f:for>
+						</f:then>
+						<f:else>
+							<n:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}" initial="{offset:settings.offset,limit:settings.limit,recordId:contentObjectData.uid}">
+								<f:for each="{paginatedNews}" as="newsItem" iteration="iterator">
+									<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}" />
+								</f:for>
+							</n:widget.paginate>
+						</f:else>
+					</f:if>
+
+
 				</f:then>
 				<f:else>
 					<div class="no-news-found">
