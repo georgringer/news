@@ -108,5 +108,4 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
             ->setMaxResults(1)
             ->execute()->fetch();
     }
-
 }

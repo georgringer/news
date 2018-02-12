@@ -153,7 +153,8 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * @return TypoScriptFrontendController
      */
-    protected function getTypoScriptFrontendController() {
+    protected function getTypoScriptFrontendController()
+    {
         return $GLOBALS['TSFE'];
     }
 }
