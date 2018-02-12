@@ -13,6 +13,7 @@ use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Base controller
@@ -117,8 +118,13 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             case 'showStandaloneTemplate':
                 if (isset($configuration[2])) {
                     $statusCode = constant(HttpUtility::class . '::HTTP_STATUS_' . $configuration[2]);
-                    HttpUtility::setResponseCode($statusCode);
+                } else {
+                    $statusCode = HttpUtility::HTTP_STATUS_404;
                 }
+                HttpUtility::setResponseCode($statusCode);
+
+                $this->getTypoScriptFrontendController()->set_no_cache('News record not found');
+
                 $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
                 $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($configuration[1]));
                 return $standaloneTemplate->render();
@@ -142,5 +148,12 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $signalArguments['extendedVariables'] = [];
         return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Controller\\' . $classPart, $signalName,
             $signalArguments);
+    }
+
+    /**
+     * @return TypoScriptFrontendController
+     */
+    protected function getTypoScriptFrontendController() {
+        return $GLOBALS['TSFE'];
     }
 }
