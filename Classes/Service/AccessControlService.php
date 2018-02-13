@@ -11,6 +11,9 @@ namespace GeorgRinger\News\Service;
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\StartTimeRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -40,9 +43,9 @@ class AccessControlService
         // If there are any categories with denied access, the user has no permission
         if (count(self::getAccessDeniedCategories($newsRecord))) {
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 
     /**
@@ -123,33 +126,36 @@ class AccessControlService
             $newsRecordUid = $newsRecord['uid'];
         }
 
-        $whereClause = 'AND sys_category_record_mm.tablenames="tx_news_domain_model_news" AND sys_category_record_mm.fieldname="categories" AND sys_category_record_mm.uid_foreign=' . $newsRecordUid .
-            BackendUtility::deleteClause('sys_category') . BackendUtility::BEenableFields('sys_category');
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_category');
+        $queryBuilder->getRestrictions()
+            ->removeByType(StartTimeRestriction::class)
+            ->removeByType(HiddenRestriction::class)
+            ->removeByType(EndTimeRestriction::class);
+        $res = $queryBuilder
+            ->select('sys_category_record_mm.uid_local', 'sys_category.title')
+            ->from('sys_category')
+            ->leftJoin(
+                'sys_category',
+                'sys_category_record_mm',
+                'sys_category_record_mm',
+                $queryBuilder->expr()->eq('sys_category_record_mm.uid_local', $queryBuilder->quoteIdentifier('sys_category.uid'))
+            )
+            ->where(
+                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsRecordUid, \PDO::PARAM_INT))
 
-        $res = self::getDatabaseConnection()->exec_SELECT_mm_query(
-            'sys_category_record_mm.uid_local, sys_category.title',
-            'sys_category',
-            'sys_category_record_mm',
-            'tx_news_domain_model_news',
-            $whereClause
-        );
+            )
+            ->execute();
 
         $categories = [];
-        while (($row = self::getDatabaseConnection()->sql_fetch_assoc($res))) {
+        while ($row =$res->fetch()) {
             $categories[] = [
                 'uid' => $row['uid_local'],
                 'title' => $row['title']
             ];
         }
         return $categories;
-    }
-
-    /**
-     * @return \TYPO3\Cms\Core\Database\DatabaseConnection
-     */
-    protected static function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
     }
 
     /**
