@@ -50,11 +50,14 @@ $boot = function () {
         ],
     ];
 
-    // Hide content elements in page module
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['buildQueryParameters'][]
-        = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList::class]['buildQueryParameters'][]
-        = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+    // Hide content elements in page module & filter in administration module
+    if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9002000) {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
+            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+    } else {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['buildQueryParameters'][]
+            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+    }
 
     // Inline records hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] =
