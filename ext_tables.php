@@ -19,6 +19,7 @@ $boot = function () {
     $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
     if (TYPO3_MODE === 'BE') {
+        $isVersion9Up = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
 
         // Extend user settings
         $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = [
