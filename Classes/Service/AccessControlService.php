@@ -10,6 +10,7 @@ namespace GeorgRinger\News\Service;
  */
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -94,10 +95,16 @@ class AccessControlService
             // localized version of a news record
             $categoryL10nMode = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['categories']['l10n_mode'];
             if ($categoryL10nMode === 'mergeIfNotBlank') {
-                // mergeIfNotBlank: If there are categories in the localized version, take these, if not, inherit from parent
-                $whereClause = 'tablenames=\'tx_news_domain_model_news\' AND uid_foreign=' . $newsRecord['uid'];
-                $newsRecordCategoriesCount = self::getDatabaseConnection()->exec_SELECTcountRows('*',
-                    'sys_category_record_mm', $whereClause, '', '', '', 'uid_local');
+                $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                    ->getQueryBuilderForTable('sys_category_record_mm');
+                $newsRecordCategoriesCount = $queryBuilder->count('*')
+                    ->from('sys_category_record_mm')
+                    ->where(
+                        $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($newsRecord['uid'], \PDO::PARAM_INT)),
+                        $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR))
+                    )
+                    ->execute()
+                    ->fetchColumn(0);
                 if ($newsRecordCategoriesCount > 0) {
                     // take categories from localized version
                     $newsRecordUid = $newsRecord['uid'];
@@ -134,7 +141,6 @@ class AccessControlService
                 'title' => $row['title']
             ];
         }
-        self::getDatabaseConnection()->sql_free_result($res);
         return $categories;
     }
 
