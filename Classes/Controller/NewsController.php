@@ -10,8 +10,8 @@ namespace GeorgRinger\News\Controller;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
 /**
  * Controller of news records
@@ -530,7 +530,7 @@ class NewsController extends NewsBaseController
             foreach ($stdWrapProperties as $key) {
                 if (is_array($typoScriptArray[$key . '.'])) {
                     $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
-                        $originalSettings[$key],
+                        $typoScriptArray[$key],
                         $typoScriptArray[$key . '.']
                     );
                 }
