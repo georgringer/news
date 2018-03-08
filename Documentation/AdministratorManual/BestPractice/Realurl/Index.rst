@@ -120,14 +120,14 @@ Here is a full RealURL configuration with the explanation below.
 				array(
 					'GETvar' => 'tx_news_pi1[action]',
 					'valueMap' => array(
-						'detail' => '',
+						'' => 'detail',
 					),
 					'noMatch' => 'bypass'
 				),
 				array(
 					'GETvar' => 'tx_news_pi1[controller]',
 					'valueMap' => array(
-						'News' => '',
+						'' => 'detail',
 					),
 					'noMatch' => 'bypass'
 				),
