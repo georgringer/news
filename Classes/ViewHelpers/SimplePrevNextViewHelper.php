@@ -9,7 +9,10 @@ namespace GeorgRinger\News\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\News;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper for a **simple** prev/next link.
@@ -51,9 +54,6 @@ use TYPO3\CMS\Core\Database\DatabaseConnection;
 class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
-    /** @var \TYPO3\CMS\Core\Database\DatabaseConnection */
-    protected $databaseConnection;
-
     /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
     protected $dataMapper;
 
@@ -61,11 +61,6 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      * @var bool
      */
     protected $escapeOutput = false;
-
-    public function __construct()
-    {
-        $this->databaseConnection = $GLOBALS['TYPO3_DB'];
-    }
 
     /**
      * Inject the DataMapper
@@ -113,7 +108,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      * @param array $result
      * @return array
      */
-    protected function mapResultToObjects(array $result)
+    protected function mapResultToObjects(array $result): array
     {
         $out = [];
         foreach ($result as $_id => $single) {
@@ -133,8 +128,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     {
         $record = null;
 
-        $rawRecord = $this->databaseConnection->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news',
-            'uid=' . (int)$id);
+        $rawRecord = $this->getRawRecord($id);
 
         if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->sys_language_content > 0) {
             $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
@@ -157,28 +151,6 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     }
 
     /**
-     * Returns where clause for the news table
-     *
-     * @return string
-     */
-    protected function getEnableFieldsWhereClauseForTable()
-    {
-        $whereClause = '';
-        if (is_object($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']->sys_page)) {
-            $whereClause = $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
-        }
-
-        if ((bool)$this->arguments['includeInternalType'] === false) {
-            $whereClause .= ' AND tx_news_domain_model_news.type !="1"';
-        }
-        if ((bool)$this->arguments['includeExternalType'] === false) {
-            $whereClause .= ' AND tx_news_domain_model_news.type !="2"';
-        }
-
-        return $whereClause;
-    }
-
-    /**
      * @param News $news
      * @param $pidList
      * @param $sortField
@@ -188,32 +160,47 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     {
         $data = [];
         $pidList = empty($pidList) ? $news->getPid() : $pidList;
-        $tableName = 'tx_news_domain_model_news';
+
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_news_domain_model_news');
 
         foreach (['prev', 'next'] as $label) {
-            $whereClause = 'sys_language_uid = 0 AND pid IN(' . $this->databaseConnection->cleanIntList($pidList) . ') '
-                . $this->getEnableFieldsWhereClauseForTable();
-            switch ($label) {
-                case 'prev':
-                    $selector = '<';
-                    $order = 'desc';
-                    break;
-                case 'next':
-                    $selector = '>';
-                    $order = 'asc';
+            $queryBuilder = $connection->createQueryBuilder();
+
+            $extraWhere = [];
+            if ((bool)$this->arguments['includeInternalType'] === false) {
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
             }
+            if ((bool)$this->arguments['includeExternalType'] === false) {
+                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, \PDO::PARAM_INT));
+            }
+
             $getter = 'get' . ucfirst($sortField) . '';
             if ($news->$getter() instanceof \DateTime) {
-                $whereClause .= sprintf(' AND %s %s %s', $sortField, $selector, $news->$getter()->getTimestamp());
+                if ($label === 'prev') {
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                } else {
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter()->getTimestamp(), \PDO::PARAM_INT));
+                }
             } else {
-                $whereClause .= sprintf(' AND %s %s "%s"', $sortField, $selector, $this->getDb()->quoteStr($news->$getter(), $tableName));
+                if ($label === 'prev') {
+                    $extraWhere[] = $queryBuilder->expr()->lt($sortField, $queryBuilder->createNamedParameter($news->$getter(), \PDO::PARAM_STR));
+                } else {
+                    $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter(), \PDO::PARAM_STR));
+                }
             }
-            $row = $this->getDb()->exec_SELECTgetSingleRow(
-                '*',
-                $tableName,
-                $whereClause,
-                '',
-                $sortField . ' ' . $order);
+
+            $row = $queryBuilder
+                ->select('*')
+                ->from('tx_news_domain_model_news')
+                ->where(
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter(explode(',', $pidList), Connection::PARAM_INT_ARRAY))
+                )
+                ->andWhere(...$extraWhere)
+                ->setMaxResults(1)
+                ->orderBy($sortField, ($label === 'prev' ? 'desc' : 'asc'))
+                ->execute()->fetch();
             if (is_array($row)) {
                 $data[$label] = $row;
             }
@@ -222,10 +209,29 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     }
 
     /**
-     * @return DatabaseConnection
+     * @return QueryBuilder
      */
-    protected function getDb()
+    protected function getQueryBuilder()
     {
-        return $GLOBALS['TYPO3_DB'];
+        return GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_news_domain_model_news');
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    protected function getRawRecord($id)
+    {
+        $queryBuilder = $this->getQueryBuilder();
+        $rawRecord = $queryBuilder
+            ->select('*')
+            ->from('tx_news_domain_model_news')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
+            )
+            ->setMaxResults(1)
+            ->execute()->fetch();
+        return $rawRecord;
     }
 }

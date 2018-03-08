@@ -13,6 +13,9 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -171,7 +174,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         // month & year OR year only
         if ($demand->getYear() > 0) {
-            if (is_null($demand->getDateField())) {
+            if (null === $demand->getDateField()) {
                 throw new \InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
             }
             if ($demand->getMonth() > 0) {
@@ -235,7 +238,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         // Clean not used constraints
         foreach ($constraints as $key => $value) {
-            if (is_null($value)) {
+            if (null === $value) {
                 unset($constraints[$key]);
             }
         }
@@ -265,7 +268,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                     list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
                     // count == 1 means that no direction is given
                     if ($ascDesc) {
-                        $orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
+                        $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
                             QueryInterface::ORDER_DESCENDING :
                             QueryInterface::ORDER_ASCENDING);
                     } else {
@@ -343,28 +346,33 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             ' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
             ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_news_domain_model_news');
+
         if (TYPO3_MODE === 'FE') {
             $sql .= $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
         } else {
-            $sql .= \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('tx_news_domain_model_news') .
-                \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause('tx_news_domain_model_news');
+            $expressionBuilder = $connection
+                ->createQueryBuilder()
+                ->expr();
+            $sql .= BackendUtility::BEenableFields('tx_news_domain_model_news') .
+                ' AND ' . $expressionBuilder->eq('deleted', 0);
         }
 
         // strip unwanted order by
-        $sql = $GLOBALS['TYPO3_DB']->stripOrderBy($sql);
+        $sql = $this->stripOrderBy($sql);
 
         // group by custom month/year fields
         $orderDirection = strtolower($demand->getOrder());
-        if ($orderDirection !== 'desc' && $orderDirection != 'asc') {
+        if ($orderDirection !== 'desc' && $orderDirection !== 'asc') {
             $orderDirection = 'asc';
         }
         $sql .= ' GROUP BY _Month, _Year ORDER BY _Year ' . $orderDirection . ', _Month ' . $orderDirection;
 
-        $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
+        $res = $connection->query($sql);
+        while ($row = $res->fetch()) {
             $data['single'][$row['_Year']][$row['_Month']] = $row['count_month'];
         }
-        $GLOBALS['TYPO3_DB']->sql_free_result($res);
 
         // Add totals
         if (is_array($data['single'])) {
@@ -400,6 +408,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         $searchSubject = $searchObject->getSubject();
         if (!empty($searchSubject)) {
+            $queryBuilder = $this->getQueryBuilder('tx_news_domain_model_news');
+
             $searchFields = GeneralUtility::trimExplode(',', $searchObject->getFields(), true);
             $searchConstraints = [];
 
@@ -412,7 +422,10 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 foreach ($searchFields as $field) {
                     $subConstraints = [];
                     foreach ($searchSubjectSplitted as $searchSubjectSplittedPart) {
-                        $subConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubjectSplittedPart, '') . '%');
+                        $subConstraints[] = $queryBuilder->createNamedParameter(
+                            '%' . $queryBuilder->escapeLikeWildcards($field) . '%',
+                            \PDO::PARAM_STR
+                        );
                     }
                     $searchConstraints[] = $query->logicalAnd($subConstraints);
                 }
@@ -423,7 +436,10 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             } else {
                 foreach ($searchFields as $field) {
                     if (!empty($searchSubject)) {
-                        $searchConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubject, '') . '%');
+                        $searchConstraints[] =$queryBuilder->createNamedParameter(
+                            '%' . $queryBuilder->escapeLikeWildcards($field) . '%',
+                            \PDO::PARAM_STR
+                        );
                     }
                 }
 
@@ -451,5 +467,26 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
 
         return $constraints;
+    }
+
+    /**
+     * @param string $table table name
+     * @return QueryBuilder
+     */
+    protected function getQueryBuilder(string $table)
+    {
+        return GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+    }
+
+    /**
+     * Return stripped order sql
+     *
+     * @param string $str
+     * @return string
+     */
+    private function stripOrderBy(string $str)
+    {
+        /** @noinspection NotOptimalRegularExpressionsInspection */
+        return preg_replace('/^(?:ORDER[[:space:]]*BY[[:space:]]*)+/i', '', trim($str));
     }
 }

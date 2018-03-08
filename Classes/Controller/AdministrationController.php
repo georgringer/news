@@ -10,6 +10,7 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
+use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
@@ -22,7 +23,6 @@ use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
@@ -55,6 +55,9 @@ class AdministrationController extends NewsController
      */
     protected $categoryRepository;
 
+    /** @var AdministrationRepository */
+    protected $administrationRepository;
+
     /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      */
@@ -83,6 +86,7 @@ class AdministrationController extends NewsController
         $this->pageUid = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id');
         $this->pageInformation = BackendUtilityCore::readPageAccess($this->pageUid, '');
         $this->setTsConfig();
+        $this->administrationRepository = GeneralUtility::makeInstance(AdministrationRepository::class);
         parent::initializeAction();
     }
 
@@ -119,11 +123,7 @@ class AdministrationController extends NewsController
 
         $pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/DateTimePicker');
-        if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8006000) {
-            $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ContextMenu');
-        } else {
-            $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ClickMenu');
-        }
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ContextMenu');
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/AdministrationModule');
         $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
@@ -158,7 +158,8 @@ class AdministrationController extends NewsController
 
         $actions = [
             ['action' => 'index', 'label' => 'newsListing'],
-            ['action' => 'newsPidListing', 'label' => 'newsPidListing']
+            ['action' => 'newsPidListing', 'label' => 'newsPidListing'],
+            ['action' => 'donate', 'label' => 'donate']
         ];
 
         foreach ($actions as $action) {
@@ -244,16 +245,23 @@ class AdministrationController extends NewsController
                 ->setOnClick('return ' . $clipBoard->confirmMsg('pages',
                         BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
                         $elFromTable))
-                ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/locallang_mod_web_list.xlf:clip_pasteInto'))
+                ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_mod_web_list.xlf:clip_pasteInto'))
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));
             $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);
         }
 
+        // Donation
+        $donationButton = $buttonBar->makeLinkButton()
+            ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor('donate',
+                [], 'Administration'))
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.title'))
+            ->setIcon($this->iconFactory->getIcon('ext-news-donation', Icon::SIZE_SMALL));
+        $buttonBar->addButton($donationButton, ButtonBar::BUTTON_POSITION_RIGHT);
+
         // Refresh
-        $path = VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= VersionNumberUtility::convertVersionNumberToInteger('8.6') ? 'Resources/Private/Language/' : '';
         $refreshButton = $buttonBar->makeLinkButton()
             ->setHref(GeneralUtility::getIndpEnv('REQUEST_URI'))
-            ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/' . $path . 'locallang_core.xlf:labels.reload'))
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.reload'))
             ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
         $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
     }
@@ -401,9 +409,15 @@ class AdministrationController extends NewsController
         $this->view->assignMultiple($assignedValues);
     }
 
+    public function donateAction()
+    {
+        $this->view->assignMultiple([
+            'counts' => $this->administrationRepository->getTotalCounts()
+        ]);
+    }
+
     /**
      * Redirect to form to create a news record
-     *
      */
     public function newNewsAction()
     {
@@ -412,7 +426,6 @@ class AdministrationController extends NewsController
 
     /**
      * Redirect to form to create a category record
-     *
      */
     public function newCategoryAction()
     {
@@ -421,7 +434,6 @@ class AdministrationController extends NewsController
 
     /**
      * Redirect to form to create a tag record
-     *
      */
     public function newTagAction()
     {
@@ -437,35 +449,21 @@ class AdministrationController extends NewsController
     {
         $pageUid = (int)$row['row']['uid'];
 
-        if (class_exists(ConnectionPool::class)) {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('tx_news_domain_model_news');
-            $row['countNews'] = $queryBuilder->count('*')
-                ->from('tx_news_domain_model_news')
-                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
-                ->execute()
-                ->fetchColumn(0);
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_news_domain_model_news');
+        $row['countNews'] = $queryBuilder->count('*')
+            ->from('tx_news_domain_model_news')
+            ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+            ->execute()
+            ->fetchColumn(0);
 
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('sys_category');
-            $row['countCategories'] = $queryBuilder->count('*')
-                ->from('sys_category')
-                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
-                ->execute()
-                ->fetchColumn(0);
-        } else {
-            /* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
-            $db = $GLOBALS['TYPO3_DB'];
-
-            $row['countNews'] = $db->exec_SELECTcountRows(
-                '*',
-                'tx_news_domain_model_news',
-                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
-            $row['countCategories'] = $db->exec_SELECTcountRows(
-                '*',
-                'sys_category',
-                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
-        }
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_category');
+        $row['countCategories'] = $queryBuilder->count('*')
+            ->from('sys_category')
+            ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+            ->execute()
+            ->fetchColumn(0);
 
         $row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
     }

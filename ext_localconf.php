@@ -41,24 +41,22 @@ $boot = function () {
         = \GeorgRinger\News\Hooks\BackendUtility::class;
 
     // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
-    if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8005000) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
-            'depends' => [
-                \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexPrepare::class,
-            ],
-            'before' => [
-                \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexProcess::class,
-            ],
-        ];
-    }
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
+        'depends' => [
+            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexPrepare::class,
+        ],
+        'before' => [
+            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexProcess::class,
+        ],
+    ];
 
-    // Hide content elements in page module
-    if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8000000) {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['TYPO3\\CMS\\Recordlist\\RecordList\\DatabaseRecordList']['buildQueryParameters'][]
+    // Hide content elements in page module & filter in administration module
+    if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9002000) {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
             = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
     } else {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list.inc']['makeQueryArray']['news'] =
-            \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['buildQueryParameters'][]
+            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
     }
 
     // Inline records hook
@@ -79,7 +77,7 @@ $boot = function () {
     // Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
     // and overrides the default variable frontend of 4.6
     if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'])) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\StringFrontend::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class;
     }
 
     /* ===========================================================================
@@ -134,7 +132,11 @@ $boot = function () {
             'ext-news-type-internal' => 'news_domain_model_news_internal.svg',
             'ext-news-type-external' => 'news_domain_model_news_external.svg',
             'ext-news-tag' => 'news_domain_model_tag.svg',
-            'ext-news-link' => 'news_domain_model_link.svg'
+            'ext-news-link' => 'news_domain_model_link.svg',
+            'ext-news-donation' => 'donation.svg',
+            'ext-news-paypal' => 'donation_paypal.svg',
+            'ext-news-patreon' => 'donation_patreon.svg',
+            'ext-news-amazon' => 'donation_amazon.svg',
         ];
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         foreach ($icons as $identifier => $path) {

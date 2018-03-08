@@ -20,12 +20,6 @@ $boot = function () {
 
     if (TYPO3_MODE === 'BE') {
         $isVersion9Up = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
-        if ($isVersion9Up) {
-            $mappings = ['common', 'general', 'mod_web_list', 'tca'];
-            foreach ($mappings as $mapping) {
-                $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:lang/locallang_' . $mapping . '.xlf'][] = 'EXT:lang/Resources/Private/Language/locallang_' . $mapping . '.xlf';
-            }
-        }
 
         // Extend user settings
         $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = [
@@ -67,7 +61,7 @@ $boot = function () {
                 'web',
                 'tx_news_m2',
                 '',
-                ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing'],
+                ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
                 [
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',

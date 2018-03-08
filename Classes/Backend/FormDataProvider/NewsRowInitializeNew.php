@@ -10,7 +10,6 @@ namespace GeorgRinger\News\Backend\FormDataProvider;
  */
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Fill the news records with default values
@@ -89,11 +88,8 @@ class NewsRowInitializeNew implements FormDataProviderInterface
             return $result;
         }
 
-        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8006000) {
-            $result['processedTca']['columns']['tags']['config']['fieldControl']['listModule']['options']['pid'] = $tagPid;
-        } else {
-            $result['processedTca']['columns']['tags']['config']['wizards']['list']['params']['pid'] = $tagPid;
-        }
+        $result['processedTca']['columns']['tags']['config']['fieldControl']['listModule']['options']['pid'] = $tagPid;
+
         return $result;
     }
 }

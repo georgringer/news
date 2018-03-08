@@ -15,9 +15,7 @@ use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
@@ -590,12 +588,12 @@ class PageLayoutView
 
             if (!empty($recursiveLevelText)) {
                 $recursiveLevelText = '<br />' .
-                    htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.recursive')) . ' ' .
+                    htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.recursive')) . ' ' .
                     $recursiveLevelText;
             }
 
             $this->tableData[] = [
-                $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.startingpoint'),
+                $this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint'),
                 implode(', ', $pagesOut) . $recursiveLevelText
             ];
         }
@@ -648,11 +646,7 @@ class PageLayoutView
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/PageLayout');
-        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= VersionNumberUtility::convertVersionNumberToInteger('8.4')) {
-            $pageRenderer->addCssFile('EXT:news/Resources/Public/Css/Backend/PageLayoutView.css');
-        } else {
-            $pageRenderer->addCssFile(ExtensionManagementUtility::extRelPath('news') . 'Resources/Public/Css/Backend/PageLayoutView.css');
-        }
+        $pageRenderer->addCssFile('EXT:news/Resources/Public/Css/Backend/PageLayoutView.css');
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:news/Resources/Private/Backend/PageLayoutView.html'));

@@ -9,8 +9,11 @@ namespace GeorgRinger\News\Backend\RecordList;
  */
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\StartTimeRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -176,20 +179,37 @@ class RecordListConstraint
 
         if (!empty($pidConstraint)) {
             $pidConstraint = ' AND ' . $pidConstraint;
+            die('todo ' . $pidConstraint);
         }
 
-        $res = $this->getDatabaseConnection()->sql_query(
-            'SELECT tx_news_domain_model_news.uid, sys_category.title
-            FROM tx_news_domain_model_news
-                RIGHT JOIN `sys_category_record_mm` ON tx_news_domain_model_news.uid = sys_category_record_mm.uid_foreign
-                RIGHT JOIN sys_category ON sys_category.uid = sys_category_record_mm.uid_local
-            WHERE
-              sys_category_record_mm.tablenames="tx_news_domain_model_news" AND
-              tx_news_domain_model_news.uid IS NOT NULL AND sys_category.uid=' . (int)$categoryId . $pidConstraint
-            . BackendUtility::deleteClause('sys_category')
-            . BackendUtility::deleteClause('tx_news_domain_model_news')
-        );
-        while ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res)) {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_news_domain_model_news');
+        $queryBuilder->getRestrictions()
+            ->removeByType(StartTimeRestriction::class)
+            ->removeByType(HiddenRestriction::class)
+            ->removeByType(EndTimeRestriction::class);
+        $res = $queryBuilder
+            ->select('tx_news_domain_model_news.uid', 'sys_category.title')
+            ->from('tx_news_domain_model_news')
+            ->rightJoin(
+                'tx_news_domain_model_news',
+                'sys_category_record_mm',
+                'sys_category_record_mm',
+                $queryBuilder->expr()->eq('tx_news_domain_model_news.uid', $queryBuilder->quoteIdentifier('sys_category_record_mm.uid_foreign'))
+            )
+            ->rightJoin(
+                'sys_category_record_mm',
+                'sys_category',
+                'sys_category',
+                $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->quoteIdentifier('sys_category_record_mm.uid_local'))
+            )
+            ->where(
+                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
+                $queryBuilder->expr()->isNotNull('tx_news_domain_model_news.uid'),
+                $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->createNamedParameter($categoryId, \PDO::PARAM_INT))
+            )->execute();
+
+        while ($row = $res->fetch()) {
             $idList[] = $row['uid'];
         }
 

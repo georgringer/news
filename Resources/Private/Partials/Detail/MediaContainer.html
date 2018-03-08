@@ -7,6 +7,9 @@
 				<f:if condition="{mediaElement.originalResource.type} == 2">
 					<f:render partial="Detail/MediaImage" arguments="{mediaElement: mediaElement, settings:settings}"/>
 				</f:if>
+				<f:if condition="{mediaElement.originalResource.type} == 3">
+					<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
+				</f:if>
 				<f:if condition="{mediaElement.originalResource.type} == 4">
 					<f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings:settings}"/>
 				</f:if>

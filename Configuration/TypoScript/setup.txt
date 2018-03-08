@@ -176,6 +176,7 @@ plugin.tx_news {
 			longitude =
 			street-address =
 			locality =
+			locale =
 			region =
 			postal-code =
 			country-name =

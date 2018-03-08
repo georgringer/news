@@ -11,8 +11,6 @@ namespace GeorgRinger\News\Hooks;
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\DebugUtility;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
@@ -38,31 +36,9 @@ class ItemsProcFunc
     public function user_templateLayout(array &$config)
     {
         $pageId = 0;
-        $currentColPos = null;
-        if (ExtensionManagementUtility::isLoaded('compatibility6')) {
-            if (StringUtility::beginsWith($config['row']['uid'], 'NEW')) {
-                $getVars = GeneralUtility::_GET('edit');
-                if (is_array($getVars) && isset($getVars['tt_content']) && is_array($getVars['tt_content'])) {
-                    $keys = array_keys($getVars['tt_content']);
-                    $firstKey = (int)$keys[0];
-                    if ($firstKey > 0) {
-                        $pageId = $firstKey;
-                    } else {
-                        $row = $this->getContentElementRow(abs($firstKey));
-                        $pageId = $row['pid'];
-                    }
-                }
-            } else {
-                $row = $this->getContentElementRow($config['row']['uid']);
-                $pageId = $row['pid'];
-            }
-            if (isset($config['row']['colPos'])) {
-                $currentColPos = $config['row']['colPos'];
-            }
-        } else {
-            $currentColPos = $config['flexParentDatabaseRow']['colPos'];
-            $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
-        }
+
+        $currentColPos = $config['flexParentDatabaseRow']['colPos'];
+        $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
 
         if ($pageId > 0) {
             $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
@@ -236,7 +212,7 @@ class ItemsProcFunc
         // if any language is available
         if (count($languages) > 0) {
             $html = '<select name="data[newsoverlay]" id="field_newsoverlay" class="form-control">
-						<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.default_value')) . '</option>';
+						<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.default_value')) . '</option>';
 
             foreach ($languages as $language) {
                 $selected = ((int)$GLOBALS['BE_USER']->uc['newsoverlay'] === (int)$language['uid']) ? ' selected="selected" ' : '';
@@ -260,21 +236,13 @@ class ItemsProcFunc
      */
     protected function getAllLanguages()
     {
-        if (class_exists(ConnectionPool::class)) {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('sys_language');
-            return $queryBuilder->select('*')
-                ->from('sys_language')
-                ->orderBy('sorting')
-                ->execute()
-                ->fetchAll();
-        } else {
-            return $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
-                '*',
-                'sys_language',
-                '1=1 ' . BackendUtilityCore::deleteClause('sys_language')
-            );
-        }
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_language');
+        return $queryBuilder->select('*')
+            ->from('sys_language')
+            ->orderBy('sorting')
+            ->execute()
+            ->fetchAll();
     }
 
     /**
