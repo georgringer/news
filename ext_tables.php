@@ -61,7 +61,7 @@ $boot = function () {
                 'web',
                 'tx_news_m2',
                 '',
-                ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing'],
+                ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
                 [
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',

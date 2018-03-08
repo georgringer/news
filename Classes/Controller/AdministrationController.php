@@ -10,6 +10,7 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
+use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
@@ -54,6 +55,9 @@ class AdministrationController extends NewsController
      */
     protected $categoryRepository;
 
+    /** @var AdministrationRepository */
+    protected $administrationRepository;
+
     /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      */
@@ -82,6 +86,7 @@ class AdministrationController extends NewsController
         $this->pageUid = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id');
         $this->pageInformation = BackendUtilityCore::readPageAccess($this->pageUid, '');
         $this->setTsConfig();
+        $this->administrationRepository = GeneralUtility::makeInstance(AdministrationRepository::class);
         parent::initializeAction();
     }
 
@@ -153,7 +158,8 @@ class AdministrationController extends NewsController
 
         $actions = [
             ['action' => 'index', 'label' => 'newsListing'],
-            ['action' => 'newsPidListing', 'label' => 'newsPidListing']
+            ['action' => 'newsPidListing', 'label' => 'newsPidListing'],
+            ['action' => 'donate', 'label' => 'donate']
         ];
 
         foreach ($actions as $action) {
@@ -243,6 +249,14 @@ class AdministrationController extends NewsController
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));
             $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);
         }
+
+        // Donation
+        $donationButton = $buttonBar->makeLinkButton()
+            ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor('donate',
+                [], 'Administration'))
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.title'))
+            ->setIcon($this->iconFactory->getIcon('ext-news-donation', Icon::SIZE_SMALL));
+        $buttonBar->addButton($donationButton, ButtonBar::BUTTON_POSITION_RIGHT);
 
         // Refresh
         $refreshButton = $buttonBar->makeLinkButton()
@@ -395,9 +409,15 @@ class AdministrationController extends NewsController
         $this->view->assignMultiple($assignedValues);
     }
 
+    public function donateAction()
+    {
+        $this->view->assignMultiple([
+            'counts' => $this->administrationRepository->getTotalCounts()
+        ]);
+    }
+
     /**
      * Redirect to form to create a news record
-     *
      */
     public function newNewsAction()
     {
@@ -406,7 +426,6 @@ class AdministrationController extends NewsController
 
     /**
      * Redirect to form to create a category record
-     *
      */
     public function newCategoryAction()
     {
@@ -415,7 +434,6 @@ class AdministrationController extends NewsController
 
     /**
      * Redirect to form to create a tag record
-     *
      */
     public function newTagAction()
     {

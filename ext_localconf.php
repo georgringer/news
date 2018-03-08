@@ -132,7 +132,11 @@ $boot = function () {
             'ext-news-type-internal' => 'news_domain_model_news_internal.svg',
             'ext-news-type-external' => 'news_domain_model_news_external.svg',
             'ext-news-tag' => 'news_domain_model_tag.svg',
-            'ext-news-link' => 'news_domain_model_link.svg'
+            'ext-news-link' => 'news_domain_model_link.svg',
+            'ext-news-donation' => 'donation.svg',
+            'ext-news-paypal' => 'donation_paypal.svg',
+            'ext-news-patreon' => 'donation_patreon.svg',
+            'ext-news-amazon' => 'donation_amazon.svg',
         ];
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         foreach ($icons as $identifier => $path) {
