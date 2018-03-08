@@ -48,12 +48,12 @@
 							<li class="previous">
 								<f:if condition="{pagination.previousPage} > 1">
 									<f:then>
-										<f:widget.link arguments="{currentPage: pagination.previousPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.previousPage)}\')}'}">
+										<f:widget.link arguments="{currentPage: pagination.previousPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.previousPage)}\')}'}">
 											<f:translate key="paginate_previous" />
 										</f:widget.link>
 									</f:then>
 									<f:else>
-										<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:0)}\')}'}">
+										<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:0)}\')}'}">
 											<f:translate key="paginate_previous" />
 										</f:widget.link>
 									</f:else>
@@ -62,7 +62,7 @@
 						</f:if>
 						<f:if condition="{pagination.displayRangeStart} > 1">
 							<li class="first">
-								<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:1)}\')}'}">1</f:widget.link>
+								<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:1)}\')}'}">1</f:widget.link>
 							</li>
 						</f:if>
 						<f:if condition="{pagination.hasLessPages}">
@@ -77,10 +77,10 @@
 									<li>
 										<f:if condition="{page.number} > 1">
 											<f:then>
-												<f:widget.link arguments="{currentPage: page.number}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:page.number)}\')}'}">{page.number}</f:widget.link>
+												<f:widget.link arguments="{currentPage: page.number}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:page.number)}\')}'}">{page.number}</f:widget.link>
 											</f:then>
 											<f:else>
-												<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:0)}\')}'}">{page.number}</f:widget.link>
+												<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:0)}\')}'}">{page.number}</f:widget.link>
 											</f:else>
 										</f:if>
 									</li>
@@ -92,12 +92,12 @@
 						</f:if>
 						<f:if condition="{pagination.displayRangeEnd} < {pagination.numberOfPages}">
 							<li class="last">
-								<f:widget.link arguments="{currentPage: pagination.numberOfPages}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.numberOfPages)}\')}'}">{pagination.numberOfPages}</f:widget.link>
+								<f:widget.link arguments="{currentPage: pagination.numberOfPages}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.numberOfPages)}\')}'}">{pagination.numberOfPages}</f:widget.link>
 							</li>
 						</f:if>
 						<f:if condition="{pagination.nextPage}">
 							<li class="last next">
-								<f:widget.link arguments="{currentPage: pagination.nextPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\',pageUid:7, pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.nextPage)}\')}'}">
+								<f:widget.link arguments="{currentPage: pagination.nextPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.nextPage)}\')}'}">
 									<f:translate key="paginate_next" />
 								</f:widget.link>
 							</li>
