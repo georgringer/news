@@ -432,7 +432,7 @@
 				<el>
 
 
-					<!-- PID Single Page -->
+					<!-- PID Detail Page -->
 					<settings.detailPid>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.detailPid</label>
@@ -447,7 +447,7 @@
 						</TCEforms>
 					</settings.detailPid>
 
-					<!-- PID Single Page -->
+					<!-- PID List Page -->
 					<settings.listPid>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid</label>
