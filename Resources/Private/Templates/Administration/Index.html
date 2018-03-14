@@ -32,9 +32,19 @@
 		</div>
 	</f:if>
 	<f:if condition="{showSearchForm}">
-		<f:form name="demand" object="{demand}" method="get">
-			<input type="hidden" name="M" value="web_NewsTxNewsM2">
-			<input type="hidden" name="moduleToken" value="{moduleToken}">
+		<f:form name="demand" object="{demand}" method="get">zzz
+			<f:if condition="{is9up}">
+				<f:then>
+					<input type="hidden" name="route" value="/web/NewsTxNewsM2/">
+					<input type="hidden" name="token" value="7f071240d2af48dadf48506401b18052f5c77520">
+					<input type="hidden" name="tokenx" value="{moduleToken}">
+				</f:then>
+				<f:else>
+					<input type="hidden" name="M" value="web_NewsTxNewsM2">
+					<input type="hidden" name="moduleToken" value="{moduleToken}">
+				</f:else>
+			</f:if>
+
 			<input type="hidden" name="id" value="{page}">
 			<f:form.checkbox style="display:none" property="selectedCategories" value="0" />
 
