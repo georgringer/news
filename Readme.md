@@ -67,7 +67,7 @@ is very helpful to understand what kind of issue the **PR** is going to solve.
 
 - Bugfixes: Please describe what kind of bug your fix solve and give us feedback how to reproduce the issue. We're going
 to accept only bugfixes if I can reproduce the issue.
-- Features: Not every feature is relevant for the bulk of powermail users. In addition: We don't want to make powermail
+- Features: Not every feature is relevant for the bulk of news users. In addition: We don't want to make news
 even more complicated in usability for an edge case feature. Please discuss a new feature before.
 
 
