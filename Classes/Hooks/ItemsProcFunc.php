@@ -56,7 +56,7 @@ class ItemsProcFunc
 
     /**
      * Reduce the template layouts by the ones that are not allowed in given colPos
-     * 
+     *
      * @param array $templateLayouts
      * @param int $currentColPos
      * @return array
@@ -73,10 +73,9 @@ class ItemsProcFunc
                     $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
                 }
             } else {
-                $allLayouts[$layout[1]] = $layout;
+                $allLayouts[$key] = $layout;
             }
         }
-
         if (!empty($restrictions)) {
             foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
                 if (!in_array($currentColPos, $restrictedColPosList, true)) {
