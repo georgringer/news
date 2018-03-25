@@ -550,7 +550,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $items = $this->getRelatedFrom();
         if ($items) {
             $items = $items->toArray();
-            usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+            usort($items, function ($a, $b) {
+                return $a->getDatetime() < $b->getDatetime();
+            });
         }
         return $items;
     }
@@ -575,7 +577,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $all = array_unique($all);
 
         if (count($all) > 0) {
-            usort($all, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+            usort($all, function ($a, $b) {
+                return $a->getDatetime() < $b->getDatetime();
+            });
         }
         return $all;
     }
@@ -590,7 +594,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $items = $this->getRelated();
         if ($items) {
             $items = $items->toArray();
-            usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+            usort($items, function ($a, $b) {
+                return $a->getDatetime() < $b->getDatetime();
+            });
         }
         return $items;
     }
