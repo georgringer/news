@@ -1,4 +1,4 @@
-# TYPO3 Extension ``news`` 
+# TYPO3 Extension ``news``
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/19.99)
 [![Build Status](https://travis-ci.org/georgringer/news.png)](https://travis-ci.org/georgringer/news)
@@ -15,7 +15,7 @@
 - Supporting editors & authors by providing
  - well structured plugins with good preview functionality
  - backend module with filter & search
-- Frontend template variant based on Twitter Bootstrap (v3) 
+- Frontend template variant based on Twitter Bootstrap (v3)
 - (Well documented)[1]
 
 ## 2. Usage
@@ -25,7 +25,7 @@
 
 #### Installation using Composer
 
-The recommended way to install the extension is by using (Composer)[2]. In your Composer based TYPO3 project root, just do `composer require georgringer/news`. 
+The recommended way to install the extension is by using [Composer][2]. In your Composer based TYPO3 project root, just do `composer require georgringer/news`. 
 
 #### Installation as extension from TYPO3 Extension Repository (TER)
 
@@ -55,7 +55,7 @@ Please look into the [official extension documentation in changelog chapter](htt
 
 ### 3.3. Release Management
 
-News uses **semantic versioning** which basically means for you, that 
+News uses **semantic versioning** which basically means for you, that
 - **bugfix updates** (e.g. 1.0.0 => 1.0.1) just includes small bugfixes or security relevant stuff without breaking changes.
 - **minor updates** (e.g. 1.0.0 => 1.1.0) includes new features and smaller tasks without breaking changes.
 - **major updates** (e.g. 1.0.0 => 2.0.0) breaking changes wich can be refactorings, features or bugfixes.
@@ -67,7 +67,7 @@ is very helpful to understand what kind of issue the **PR** is going to solve.
 
 - Bugfixes: Please describe what kind of bug your fix solve and give us feedback how to reproduce the issue. We're going
 to accept only bugfixes if I can reproduce the issue.
-- Features: Not every feature is relevant for the bulk of ``news`` users. In addition: We don't want to make ``news`` 
+- Features: Not every feature is relevant for the bulk of ``news`` users. In addition: We don't want to make ``news``
 even more complicated in usability for an edge case feature. Please discuss a new feature before.
 
 
