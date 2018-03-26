@@ -133,7 +133,7 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 16,
-                'eval' => 'datetime',
+                'eval' => 'datetime,int',
                 'default' => 0,
             ]
         ],
@@ -144,7 +144,7 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 16,
-                'eval' => 'datetime',
+                'eval' => 'datetime,int',
                 'default' => 0,
             ]
         ],
@@ -232,7 +232,7 @@ $tx_news_domain_model_news = [
             'config' => [
                 'type' => 'input',
                 'size' => 16,
-                'eval' => 'datetime' . ($configuration->getDateTimeRequired() ? ',required' : ''),
+                'eval' => 'datetime,int' . ($configuration->getDateTimeRequired() ? ',required' : ''),
             ]
         ],
         'archive' => [
