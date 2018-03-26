@@ -18,7 +18,7 @@
   ],
   "license": ["GPL-2.0-or-later"],
   "require": {
-    "typo3/cms-core": "^8.7|| >=9.0.0 <10.0.0"
+    "typo3/cms-core": "^8.7|| >=9.2.0 <9.3.0"
   },
   "suggest": {
     "dmitryd/typo3-dd-googlesitemap": "~2.0",
