@@ -20,7 +20,7 @@ use TYPO3\CMS\Lang\LanguageService;
  * Hook into DatabaseRecordList to hide tt_content elements in list view
  *
  */
-class RecordListQueryHook8
+class RecordListQueryHook
 {
     protected static $count = 0;
 
@@ -59,6 +59,14 @@ class RecordListQueryHook8
             if (is_array($vars) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];
                 $this->recordListConstraint->extendQuery($parameters, $vars, $pageId);
+                if (isset($parameters['orderBy'][0])) {
+                    $queryBuilder->orderBy($parameters['orderBy'][0][0], $parameters['orderBy'][0][1]);
+                    unset($parameters['orderBy']);
+                }
+                if (!empty($parameters['whereDoctrine'])) {
+                    $queryBuilder->andWhere(...$parameters['whereDoctrine']);
+                    unset($parameters['where']);
+                }
             }
         }
     }
@@ -112,7 +120,7 @@ class RecordListQueryHook8
     /**
      * @return LanguageService
      */
-    protected function getLanguageService()
+    protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }

@@ -55,10 +55,10 @@ $boot = function () {
     // Hide content elements in page module & filter in administration module
     if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9002000) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
-            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
     } else {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['buildQueryParameters'][]
-            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook8::class;
+            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
     }
 
     // Inline records hook
