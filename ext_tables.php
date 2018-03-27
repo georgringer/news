@@ -27,8 +27,7 @@ $boot = function () {
             'type' => 'select',
             'itemsProcFunc' => \GeorgRinger\News\Hooks\ItemsProcFunc::class . '->user_categoryOverlay',
         ];
-        $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
-            --div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay';
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToUserSettings('--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay');
 
         // Add tables to livesearch (e.g. "#news:fo" or "#newscat:fo")
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['news'] = 'tx_news_domain_model_news';
