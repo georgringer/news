@@ -79,6 +79,14 @@ class AdministrationController extends NewsController
     protected $deniedNewTables = [];
 
     /**
+     * @return bool
+     */
+    private static function is9up(): bool
+    {
+        return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
+    }
+
+    /**
      * Function will be called before every other action
      *
      */
@@ -144,7 +152,7 @@ class AdministrationController extends NewsController
         $this->createMenu();
         $this->createButtons();
 
-        $view->assign('is9up', VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000);
+        $view->assign('is9up', self::is9up());
     }
 
     /**
@@ -550,14 +558,19 @@ class AdministrationController extends NewsController
      * @param bool $tokenOnly Set it to TRUE to get only the token, otherwise including the &moduleToken= as prefix
      * @return string
      */
-    protected function getToken($tokenOnly = false)
+    protected function getToken(bool $tokenOnly = false): string
     {
-        $token = FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
+        if (self::is9up()) {
+            $token = FormProtectionFactory::get('backend')->generateToken('route', 'web_NewsTxNewsM2');
+        } else {
+            $token = FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
+        }
+
         if ($tokenOnly) {
             return $token;
-        } else {
-            return '&moduleToken=' . $token;
         }
+
+        return '&moduleToken=' . $token;
     }
 
     /**
