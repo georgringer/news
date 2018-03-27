@@ -16,6 +16,7 @@ use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -77,14 +78,6 @@ class AdministrationController extends NewsController
      * @var array
      */
     protected $deniedNewTables = [];
-
-    /**
-     * @return bool
-     */
-    private static function is9up(): bool
-    {
-        return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
-    }
 
     /**
      * Function will be called before every other action
@@ -153,6 +146,7 @@ class AdministrationController extends NewsController
         $this->createButtons();
 
         $view->assign('is9up', self::is9up());
+        $view->assign('showSupportArea', $this->showSupportArea());
     }
 
     /**
@@ -573,12 +567,40 @@ class AdministrationController extends NewsController
         return '&moduleToken=' . $token;
     }
 
+
+    /**
+     * @return bool
+     */
+    private static function is9up(): bool
+    {
+        return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
+    }
+
+    /**
+     * Show support area only for admins in given percent of time
+     *
+     * @param int $probabilityInPercent
+     * @return bool
+     */
+    private function showSupportArea(int $probabilityInPercent = 10): bool
+    {
+        if (!$this->getBackendUser()->isAdmin()) {
+            return false;
+        }
+
+        if (mt_rand() % 100 <= $probabilityInPercent) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Returns the LanguageService
      *
      * @return LanguageService
      */
-    protected function getLanguageService()
+    protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }
@@ -586,9 +608,9 @@ class AdministrationController extends NewsController
     /**
      * Get backend user
      *
-     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     * @return BackendUserAuthentication
      */
-    protected function getBackendUser()
+    protected function getBackendUser(): BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

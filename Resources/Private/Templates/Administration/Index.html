@@ -24,6 +24,18 @@
 	<h1>
 		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.title" />
 	</h1>
+
+	<f:if condition="{showSupportArea}">
+		<f:be.infobox title=" {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.support')}" state="-1">
+			{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.why.text')}
+			<br>
+			<f:link.action action="donate" class="btn btn-default">
+				<core:icon identifier="ext-news-donation" />
+				{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.link')}
+				</f:link.action>
+		</f:be.infobox>
+	</f:if>
+
 	<f:if condition="{page} == 0">
 		<div class="alert alert-info">
 			<div class="message-body">

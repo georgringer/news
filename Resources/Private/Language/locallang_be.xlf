@@ -423,6 +423,9 @@
 			<trans-unit id="administration.donation.title" xml:space="preserve">
 				<source>Support &amp; Donate</source>
 			</trans-unit>
+			<trans-unit id="administration.donation.link" xml:space="preserve">
+				<source>Click so see all options</source>
+			</trans-unit>
 			<trans-unit id="administration.donation.lead_intro" xml:space="preserve">
 				<source>Great that you are using this extension!</source>
 			</trans-unit>
