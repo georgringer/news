@@ -135,6 +135,7 @@ Properties
 	filters_                     array
 	localizationView_            bool
 	controlPanels_               bool
+	allowedCategoryRootIds_      string
 	=========================== =====================================
 
 .. _tsconfigPreselect:
@@ -204,6 +205,29 @@ Ability to control panel to sort, hide and delete in the administration module. 
 .. code-block:: typoscript
 
     tx_news.module.controlPanels = 1
+
+allowedCategoryRootIds
+^^^^^^^^^^^^^^^^^^^^^^
+
+Reduce the shown categories by defining a list of **root* category IDs.
+
+Example:
+
+.. code-block:: typoscript
+
+    # Example category tree (value in brackets is the uid)
+    [10] Cat 1
+    [12] Cat 2
+        [13] Cat 2 b
+    [14] Cat 3
+    [15] Cat 4
+
+    tx_news.module.allowedCategoryRootIds = 12,15
+
+    # Category tree shown
+    [12] Cat 2
+        [13] Cat 2 b
+    [15] Cat 4
 
 .. _tsconfigRedirectToPageOnStart:
 

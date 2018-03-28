@@ -344,6 +344,13 @@ class AdministrationController extends NewsController
             $idList = $this->getBackendUser()->getCategoryMountPoints();
         }
 
+        if (!empty($this->tsConfiguration['allowedCategoryRootIds'])) {
+            $allowedList = GeneralUtility::intExplode(',', $this->tsConfiguration['allowedCategoryRootIds'], true);
+            if (!empty($allowedList)) {
+                $idList = array_intersect($idList, $allowedList);
+            }
+        }
+
         // Initialize the dblist object:
         $dblist = GeneralUtility::makeInstance(NewsDatabaseRecordList::class);
         $dblist->script = GeneralUtility::getIndpEnv('REQUEST_URI');
@@ -371,6 +378,7 @@ class AdministrationController extends NewsController
 
         $dblist->script = $_SERVER['REQUEST_URI'];
         $dblist->generateList();
+
 
         $assignedValues = [
             'moduleToken' => $this->getToken(true),
