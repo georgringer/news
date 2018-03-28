@@ -341,7 +341,7 @@ As you can see, it is possible to combine any of the fields of the record.
 Add category (or any other additional property) to URL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you need to add an additional property (like the category title) to the URL, you can do so by adding the property with the typolink configuration ``additionalParams``.
+If you need to add an additional property (like the category title) to the URL, you can do so by adding the property with the typolink configuration `additionalParams`.
 
 .. code-block:: html
 
