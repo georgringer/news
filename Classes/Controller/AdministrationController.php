@@ -379,7 +379,6 @@ class AdministrationController extends NewsController
         $dblist->script = $_SERVER['REQUEST_URI'];
         $dblist->generateList();
 
-
         $assignedValues = [
             'moduleToken' => $this->getToken(true),
             'page' => $this->pageUid,
@@ -576,7 +575,6 @@ class AdministrationController extends NewsController
 
         return '&moduleToken=' . $token;
     }
-
 
     /**
      * @return bool
