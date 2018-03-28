@@ -537,17 +537,18 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Get datefield which is used for datemenu
+     * Get date field which is used for datemenu
      *
      * @return string
      */
     public function getDateField()
     {
-        if (empty($this->dateField) || in_array($this->dateField, ['datetime', 'archive'])) {
+        if (in_array($this->dateField, ['datetime', 'archive'])
+            || isset($GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$this->dateField])) {
             return $this->dateField;
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     /**
