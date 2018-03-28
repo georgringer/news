@@ -37,9 +37,20 @@ Download and install the extension with the extension manager module.
 2) Create some news records on a sysfolder.
 3) Create a plugin on a page and select at least the sysfolder as startingpoint.
 
-## 3. Administration corner
+## 3. Help supporting further development
 
-### 3.1. Versions and support
+**Why?** The news extension is a powerful tool with a lot of features, always trying to thrive on the latest possibilities of the TYPO3 core. This implies a lot of work bringing this to the TYPO3 community.
+
+**How?** There are multiple ways to support the further development
+
+- **Patreon**: Support me on [patreon.com](https://www.patreon.com/georgringer) and get access to additional extensions and snippets as reward.
+- **PayPal**: Support me by a donation on [paypal.com](https://www.paypal.me/GeorgRinger/25). It is just one click away.
+- **Amazon Wishlist**: Satisfy a wish of my [Amazon wishlist](https://www.amazon.de/hz/wishlist/ls/8F573K08TSDG).
+
+
+## 4. Administration corner
+
+### 4.1. Versions and support
 
 | News        | TYPO3      | PHP       | Support/Development                     |
 | ----------- | ---------- | ----------|---------------------------------------- |
@@ -49,18 +60,18 @@ Download and install the extension with the extension manager module.
 | 4.x         | 7.6        | 5.5 - 5.6 | none                                    |
 | 3.x         | 6.2        | 5.5 - 5.6 | Security Updates                        |
 
-### 3.2. Changelog
+### 4.2. Changelog
 
 Please look into the [official extension documentation in changelog chapter](https://docs.typo3.org/typo3cms/drafts/github/georgringer/news/Misc/Changelog/Index.html)
 
-### 3.3. Release Management
+### 4.3. Release Management
 
 News uses **semantic versioning** which basically means for you, that
 - **bugfix updates** (e.g. 1.0.0 => 1.0.1) just includes small bugfixes or security relevant stuff without breaking changes.
 - **minor updates** (e.g. 1.0.0 => 1.1.0) includes new features and smaller tasks without breaking changes.
 - **major updates** (e.g. 1.0.0 => 2.0.0) breaking changes wich can be refactorings, features or bugfixes.
 
-### 3.4. Contribution
+### 4.4. Contribution
 
 **Pull requests** are welcome in general! Nevertheless please don't forget to add an issue and connect it to your pull requests. This
 is very helpful to understand what kind of issue the **PR** is going to solve.

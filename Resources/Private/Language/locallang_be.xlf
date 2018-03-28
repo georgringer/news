@@ -474,7 +474,7 @@
 				<source>Donate via PayPal</source>
 			</trans-unit>
             <trans-unit id="administration.donation.paypal.text" xml:space="preserve">
-				<source>Support me by a donation on paypal.com is just one click away.</source>
+				<source>Support me by a donation on paypal.com. It is just one click away.</source>
 			</trans-unit>
 			<trans-unit id="administration.donation.amazon" xml:space="preserve">
 				<source>Amazon wishlist</source>
