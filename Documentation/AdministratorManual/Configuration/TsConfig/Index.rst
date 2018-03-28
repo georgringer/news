@@ -133,6 +133,8 @@ Properties
 	allowedPage_                 integer
 	alwaysShowFilter_            bool
 	filters_                     array
+	localizationView_            bool
+	controlPanels_               bool
 	=========================== =====================================
 
 .. _tsconfigPreselect:
@@ -186,13 +188,22 @@ If this is not desired, the pid can be defined by using defaultPid.<tablename>:
 News records will be saved on page with ID 123.
 
 localizationView
-^^^^^^^
+^^^^^^^^^^^^^^^^
 
 Ability to disable the localizationView in the administration module. Default is 1. Example:
 
 .. code-block:: typoscript
 
     tx_news.module.localizationView = 0
+
+controlPanels
+^^^^^^^^^^^^^
+
+Ability to control panel to sort, hide and delete in the administration module. Default is 0. Example:
+
+.. code-block:: typoscript
+
+    tx_news.module.controlPanels = 1
 
 .. _tsconfigRedirectToPageOnStart:
 
