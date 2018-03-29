@@ -22,7 +22,7 @@
 						<f:if condition="{pagination.previousPage} > 1">
 							<f:then>
 								<n:headerData>
-									<link rel="prev" href="{f:widget.uri(arguments: {currentPage: pagination.previousPage})}" />
+									<link rel="prev" href="{f:widget.uri(useCacheHash:1,arguments: {currentPage: pagination.previousPage})}" />
 								</n:headerData>
 							</f:then>
 							<f:else>
@@ -34,7 +34,7 @@
 					</f:if>
 					<f:if condition="{pagination.nextPage}">
 						<n:headerData>
-							<link rel="next" href="{f:widget.uri(arguments: {currentPage: pagination.nextPage})}" />
+							<link rel="next" href="{f:widget.uri(useCacheHash:1, arguments: {currentPage: pagination.nextPage})}" />
 						</n:headerData>
 					</f:if>
 				</f:if>
@@ -48,7 +48,7 @@
 							<li class="previous">
 								<f:if condition="{pagination.previousPage} > 1">
 									<f:then>
-										<f:widget.link arguments="{currentPage: pagination.previousPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.previousPage)}\')}'}">
+										<f:widget.link useCacheHash="1" arguments="{currentPage: pagination.previousPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.previousPage)}\')}'}">
 											<f:translate key="paginate_previous" />
 										</f:widget.link>
 									</f:then>
@@ -77,7 +77,7 @@
 									<li>
 										<f:if condition="{page.number} > 1">
 											<f:then>
-												<f:widget.link arguments="{currentPage: page.number}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:page.number)}\')}'}">{page.number}</f:widget.link>
+												<f:widget.link useCacheHash="1" arguments="{currentPage: page.number}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:page.number)}\')}'}">{page.number}</f:widget.link>
 											</f:then>
 											<f:else>
 												<f:widget.link data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:0)}\')}'}">{page.number}</f:widget.link>
@@ -92,12 +92,12 @@
 						</f:if>
 						<f:if condition="{pagination.displayRangeEnd} < {pagination.numberOfPages}">
 							<li class="last">
-								<f:widget.link arguments="{currentPage: pagination.numberOfPages}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.numberOfPages)}\')}'}">{pagination.numberOfPages}</f:widget.link>
+								<f:widget.link useCacheHash="1" arguments="{currentPage: pagination.numberOfPages}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.numberOfPages)}\')}'}">{pagination.numberOfPages}</f:widget.link>
 							</li>
 						</f:if>
 						<f:if condition="{pagination.nextPage}">
 							<li class="last next">
-								<f:widget.link arguments="{currentPage: pagination.nextPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.nextPage)}\')}'}">
+								<f:widget.link useCacheHash="1" arguments="{currentPage: pagination.nextPage}" data="{container:recordId,link:'{t:uri.ajaxAction(contextRecord:\'tt_content:{recordId}\', pluginName: \'pi1\',additionalParams:\'{n:widget.ajax.paginateAdditionalParams(page:pagination.nextPage)}\')}'}">
 									<f:translate key="paginate_next" />
 								</f:widget.link>
 							</li>
