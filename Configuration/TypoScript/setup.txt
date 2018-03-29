@@ -103,6 +103,7 @@ plugin.tx_news {
 			registerProperties = keywords,title
 			showPrevNext = 0
 			showSocialShareButtons = 1
+			showMetaTags = 1
 			disqusShortname =
 
 			# media configuration

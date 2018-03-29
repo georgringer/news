@@ -589,6 +589,7 @@ Properties
 	`detail\.errorHandling`_              string
 	`detail\.checkPidOfNewsRecord`_       boolean
 	`detail\.registerProperties`_         string
+	`detail\.showMetaTags`_               boolean
 	`detail\.showPrevNext`_               boolean
 	`detail\.showSocialShareButtons`_     boolean
 	`detail\.disqusShortname`_            string
@@ -1062,7 +1063,7 @@ detail.errorHandling
          showStandaloneTemplate
 
 .. _tsDetailCheckPidOfNewsRecord:
-`
+
 detail.checkPidOfNewsRecord
 """""""""""""""""""""""""""
 .. container:: table-row
@@ -1077,10 +1078,25 @@ detail.checkPidOfNewsRecord
    Default
          0
 
+.. _tsDetailShowMetaTags:
+
+detail.showMetaTags
+"""""""""""""""""""
+.. container:: table-row
+
+   Property
+         detail.showMetaTags
+   Data type
+         boolean
+   Description
+         If enabled, the meta tags including title, description and various open graph tags are rendered
+   Default
+          1
+
 .. _tsDetailShowPrevNext:
 
 detail.showPrevNext
-"""""""""""""""""""""""""
+"""""""""""""""""""
 .. container:: table-row
 
    Property
