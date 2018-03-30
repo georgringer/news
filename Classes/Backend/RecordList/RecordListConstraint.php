@@ -45,7 +45,7 @@ class RecordListConstraint
     {
         $parameters['whereDoctrine'] = [];
 
-        $queryBuilder =  GeneralUtility::makeInstance(ConnectionPool::class)
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
 
         $expressionBuilder = $queryBuilder->expr();
@@ -54,25 +54,22 @@ class RecordListConstraint
         if (isset($arguments['searchWord']) && !empty($arguments['searchWord'])) {
             $words = GeneralUtility::trimExplode(' ', $arguments['searchWord'], true);
             $fields = ['title', 'teaser', 'bodytext'];
-            if (self::is9Up()) {
-                $fieldParts = [];
-                foreach ($fields as $field) {
-                    $likeParts = [];
-                    $nameParts = str_getcsv($arguments['searchWord'], ' ');
-                    foreach ($nameParts as $part) {
-                        $part = trim($part);
-                        if ($part !== '') {
-                            $likeParts[] =$expressionBuilder->like($field, $queryBuilder->quote('%' . $queryBuilder->escapeLikeWildcards($part) . '%'));
-                        }
-                    }
-                    if (!empty($likeParts)) {
-                        $fieldParts[] = $expressionBuilder->andX(...$likeParts);
+            $fieldParts = [];
+            foreach ($fields as $field) {
+                $likeParts = [];
+                $nameParts = str_getcsv($arguments['searchWord'], ' ');
+                foreach ($nameParts as $part) {
+                    $part = trim($part);
+                    if ($part !== '') {
+                        $likeParts[] = $expressionBuilder->like($field, $queryBuilder->quote('%' . $queryBuilder->escapeLikeWildcards($part) . '%'));
                     }
                 }
-                $parameters['whereDoctrine'][] = $expressionBuilder->orX(...$fieldParts);
-            } else {
-                $parameters['where'][] = $this->getDatabaseConnection()->searchQuery($words, $fields, self::TABLE);
+                if (!empty($likeParts)) {
+                    $fieldParts[] = $expressionBuilder->orX(...$likeParts);
+                }
             }
+            $parameters['whereDoctrine'][] = $expressionBuilder->orX(...$fieldParts);
+            $parameters['where'][] = $expressionBuilder->orX(...$fieldParts);
         }
         // top news
         $topNewsSetting = (int)$arguments['topNewsRestriction'];
