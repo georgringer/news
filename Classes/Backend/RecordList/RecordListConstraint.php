@@ -45,15 +45,34 @@ class RecordListConstraint
     {
         $parameters['whereDoctrine'] = [];
 
-        $expressionBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_news_domain_model_news')
-            ->expr();
+        $queryBuilder =  GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_news_domain_model_news');
+
+        $expressionBuilder = $queryBuilder->expr();
 
         // search word
         if (isset($arguments['searchWord']) && !empty($arguments['searchWord'])) {
             $words = GeneralUtility::trimExplode(' ', $arguments['searchWord'], true);
             $fields = ['title', 'teaser', 'bodytext'];
-            $parameters['where'][] = $this->getDatabaseConnection()->searchQuery($words, $fields, self::TABLE);
+            if (self::is9Up()) {
+                $fieldParts = [];
+                foreach ($fields as $field) {
+                    $likeParts = [];
+                    $nameParts = str_getcsv($arguments['searchWord'], ' ');
+                    foreach ($nameParts as $part) {
+                        $part = trim($part);
+                        if ($part !== '') {
+                            $likeParts[] =$expressionBuilder->like($field, $queryBuilder->quote('%' . $queryBuilder->escapeLikeWildcards($part) . '%'));
+                        }
+                    }
+                    if (!empty($likeParts)) {
+                        $fieldParts[] = $expressionBuilder->andX(...$likeParts);
+                    }
+                }
+                $parameters['whereDoctrine'][] = $expressionBuilder->orX(...$fieldParts);
+            } else {
+                $parameters['where'][] = $this->getDatabaseConnection()->searchQuery($words, $fields, self::TABLE);
+            }
         }
         // top news
         $topNewsSetting = (int)$arguments['topNewsRestriction'];
