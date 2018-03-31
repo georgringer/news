@@ -271,6 +271,15 @@ class AdministrationController extends NewsController
             ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.reload'))
             ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
         $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
+
+        // Shortcut
+        if ($this->getBackendUser()->mayMakeShortcut()) {
+            $shortcutButton = $buttonBar->makeShortcutButton()
+                ->setModuleName('web_NewsTxNewsM2')
+                ->setGetVariables(['route', 'module', 'id'])
+                ->setDisplayName('Shortcut');
+            $buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
+        }
     }
 
     /**
