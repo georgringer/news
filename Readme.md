@@ -33,7 +33,7 @@ Download and install the extension with the extension manager module.
 
 ### 2) Minimal setup
 
-1) Include the static TypoScript of the extension. **Optional:** If you are templates are based on Twitter Bootstrap, add the TWB styles as well to get optimized templates.
+1) Include the static TypoScript of the extension. **Optional:** If your templates are based on Twitter Bootstrap, add the TWB styles as well to get optimized templates.
 2) Create some news records on a sysfolder.
 3) Create a plugin on a page and select at least the sysfolder as startingpoint.
 
