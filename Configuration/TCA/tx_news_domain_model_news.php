@@ -658,24 +658,31 @@ $tx_news_domain_model_news = [
                     'defaultExtras' => $teaserRteConfiguration
                 ],
             ],
-            'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore,teaser,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
-					--palette--;;paletteDate,
-					bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
-                --div--;' . $ll . 'tx_news_domain_model_news.content_elements,content_elements,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
-				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,fal_media,fal_related_files,related_links,related,related_from,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
-					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
-				--div--;' . $ll . 'notes,
+            'showitem' => '
+                    title,--palette--;;paletteCore,teaser,
+                    --palette--;;paletteDate,
+                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
+                --div--;' . $ll . 'tx_news_domain_model_news.content_elements,
+                    content_elements,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
+                    fal_media,fal_related_files,
+                --div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,
+                    related_links,related,related_from,
+                    tags,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                    --palette--;;paletteLanguage,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+                    categories,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+                    --palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                    --palette--;;paletteHidden,
+                    --palette--;;paletteAccess,
+                --div--;' . $ll . 'notes,
                     notes,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
         // internal url
         '1' => [
@@ -687,21 +694,29 @@ $tx_news_domain_model_news = [
                     'defaultExtras' => $teaserRteConfiguration
                 ],
             ],
-            'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
-					--palette--;;paletteDate,
-					internalurl,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
-				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,fal_media,fal_related_files,related_links,related,related_from,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
-					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+            'showitem' => '
+                    title,--palette--;;paletteCore,teaser,
+                    --palette--;;paletteDate,
+                    internalurl,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
+                    fal_media,fal_related_files,
+                --div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,
+                    related_links,related,related_from,
+                    tags,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                    --palette--;;paletteLanguage,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+                    categories,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+                    --palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                    --palette--;;paletteHidden,
+                    --palette--;;paletteAccess,
+                --div--;' . $ll . 'notes,
+                    notes,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
         // external url
         '2' => [
@@ -713,21 +728,29 @@ $tx_news_domain_model_news = [
                     'defaultExtras' => $teaserRteConfiguration
                 ],
             ],
-            'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
-					--palette--;;paletteDate,
-					externalurl,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
-				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,fal_media,fal_related_files,related_links,related,related_from,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
-					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+            'showitem' => '
+                    title,--palette--;;paletteCore,teaser,
+                    --palette--;;paletteDate,
+                    externalurl,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
+                    fal_media,fal_related_files,
+                --div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,
+                    related_links,related,related_from,
+                    tags,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                    --palette--;;paletteLanguage,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+                    categories,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+                    --palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                    --palette--;;paletteHidden,
+                    --palette--;;paletteAccess,
+                --div--;' . $ll . 'notes,
+                    notes,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
     ],
     'palettes' => [
@@ -735,22 +758,38 @@ $tx_news_domain_model_news = [
             'showitem' => 'author,author_email,',
         ],
         'paletteDate' => [
+            'label' => $ll . 'tx_news_domain_model_news.palettes.dates',
             'showitem' => 'datetime,archive,',
         ],
         'paletteCore' => [
-            'showitem' => 'istopnews, type, sys_language_uid, hidden,',
-        ],
-        'paletteAccess' => [
-            'showitem' => 'starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
-					endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,
-					--linebreak--, fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:fe_group_formlabel,
-					--linebreak--,editlock,',
+            'showitem' => 'type,istopnews,',
         ],
         'metatags' => [
-            'showitem' => 'keywords,--linebreak--,description,',
+            'showitem' => 'keywords,description,',
         ],
         'alternativeTitles' => [
             'showitem' => 'alternative_title,--linebreak--,path_segment',
+        ],
+
+        'paletteHidden' => [
+            'showitem' => '
+                hidden
+            ',
+        ],
+        'paletteAccess' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access',
+            'showitem' => '
+                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
+                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,
+                --linebreak--,
+                fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:fe_group_formlabel,
+                --linebreak--,editlock
+            ',
+        ],
+        'paletteLanguage' => [
+            'showitem' => '
+                sys_language_uid;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:sys_language_uid_formlabel,l10n_parent, l10n_diffsource,
+            ',
         ],
     ]
 ];
