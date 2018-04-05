@@ -50,4 +50,15 @@ class IsCategoryActiveViewHelper extends AbstractConditionViewHelper implements 
         }
         return GeneralUtility::inList($arguments['list'], $arguments['item']);
     }
+
+    /**
+     * @return mixed
+     */
+    public function render()
+    {
+        if (static::evaluateCondition($this->arguments)) {
+            return $this->renderThenChild();
+        }
+        return $this->renderElseChild();
+    }
 }

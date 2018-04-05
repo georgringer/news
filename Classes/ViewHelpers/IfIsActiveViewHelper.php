@@ -43,4 +43,15 @@ class IfIsActiveViewHelper extends AbstractConditionViewHelper implements Compil
         $vars = GeneralUtility::_GET('tx_news_pi1');
         return isset($vars['news']) && isset($arguments['newsItem']) && (int)$arguments['newsItem']->getUid() === (int)$vars['news'];
     }
+
+    /**
+     * @return mixed
+     */
+    public function render()
+    {
+        if (static::evaluateCondition($this->arguments)) {
+            return $this->renderThenChild();
+        }
+        return $this->renderElseChild();
+    }
 }

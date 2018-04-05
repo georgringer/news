@@ -34,4 +34,15 @@ class ExtensionLoadedViewHelper extends AbstractConditionViewHelper
     {
         return ExtensionManagementUtility::isLoaded($arguments['extensionKey']);
     }
+
+    /**
+     * @return mixed
+     */
+    public function render()
+    {
+        if (static::evaluateCondition($this->arguments)) {
+            return $this->renderThenChild();
+        }
+        return $this->renderElseChild();
+    }
 }
