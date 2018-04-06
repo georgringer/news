@@ -201,6 +201,7 @@ class NewsController extends NewsBaseController
             'demand' => $demand,
             'categories' => null,
             'tags' => null,
+            'settings' => $this->settings,
         ];
 
         if ($demand->getCategories() !== '') {
@@ -243,7 +244,8 @@ class NewsController extends NewsBaseController
         }
 
         $assignedValues = [
-            'news' => $newsRecords
+            'news' => $newsRecords,
+            'settings' => $this->settings
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_SELECTED_ACTION, $assignedValues);
@@ -294,6 +296,7 @@ class NewsController extends NewsBaseController
             'newsItem' => $news,
             'currentPage' => (int)$currentPage,
             'demand' => $demand,
+            'settings' => $this->settings
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
@@ -390,6 +393,7 @@ class NewsController extends NewsBaseController
             'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
+            'settings' => $this->settings
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DATEMENU_ACTION, $assignedValues);
@@ -422,6 +426,7 @@ class NewsController extends NewsBaseController
             'search' => $search,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
+            'settings' => $this->settings
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHFORM_ACTION,
@@ -459,6 +464,7 @@ class NewsController extends NewsBaseController
             'overwriteDemand' => $overwriteDemand,
             'search' => $search,
             'demand' => $demand,
+            'settings' => $this->settings
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHRESULT_ACTION,
