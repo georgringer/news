@@ -147,8 +147,6 @@ Predefine the form in the administration module. The possible fields for the pre
 - recursive
 - timeRestriction
 - topNewsRestriction
-- limit
-- offset
 - sortingField
 - sortingDirection
 - categoryConjunction

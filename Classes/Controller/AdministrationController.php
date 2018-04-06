@@ -322,6 +322,7 @@ class AdministrationController extends NewsController
 
         $demandVars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
         $demand = $this->objectManager->get(AdministrationDemand::class);
+        $autoSubmitForm = 0;
         if (is_array($demandVars['demand'])) {
             foreach ($demandVars['demand'] as $key => $value) {
                 if (property_exists(AdministrationDemand::class, $key)) {
@@ -334,16 +335,26 @@ class AdministrationController extends NewsController
             if (isset($this->tsConfiguration['preselect.'])
                 && is_array($this->tsConfiguration['preselect.'])
             ) {
+                $anyPropertySet = false;
                 unset($this->tsConfiguration['preselect.']['orderByAllowed']);
 
                 foreach ($this->tsConfiguration['preselect.'] as $propertyName => $propertyValue) {
-                    ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+                    $propertySet = ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+                    if ($propertySet) {
+                        $anyPropertySet = true;
+                    }
+                }
+
+                if($anyPropertySet && !GeneralUtility::_GET('formSubmitted')) {
+                    $autoSubmitForm = 1;
                 }
             }
             if (!(bool)$this->tsConfiguration['alwaysShowFilter'] || !$this->isFilteringEnabled()) {
                 $this->view->assign('hideForm', true);
             }
         }
+        $this->view->assign('autoSubmitForm',$autoSubmitForm);
+
         $categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
         $idList = [];
         foreach ($categories as $c) {

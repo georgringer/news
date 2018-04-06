@@ -44,7 +44,8 @@
 		</div>
 	</f:if>
 	<f:if condition="{showSearchForm}">
-		<f:form name="demand" object="{demand}" method="get">
+		<f:form id="administrationForm" name="demand" object="{demand}" method="get" data="{autoSubmitForm:autoSubmitForm}">
+			<input type="hidden" name="formSubmitted" value="1">
 			<f:if condition="{is9up}">
 				<f:then>
 					<input type="hidden" name="route" value="/web/NewsTxNewsM2/">
