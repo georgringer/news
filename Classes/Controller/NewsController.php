@@ -50,6 +50,13 @@ class NewsController extends NewsBaseController
     protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed', 'selectedList'];
 
     /**
+     * Original settings without any magic done by stdWrap and skipping empty values
+     *
+     * @var array
+     */
+    protected $originalSettings = [];
+
+    /**
      * Inject a news repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
@@ -235,16 +242,26 @@ class NewsController extends NewsBaseController
     public function selectedListAction()
     {
         $newsRecords = [];
-        $idList = GeneralUtility::trimExplode(',', $this->settings['selectedList'], true);
-        foreach ($idList as $id) {
-            $news = $this->newsRepository->findByIdentifier($id);
-            if ($news) {
-                $newsRecords[] = $news;
+
+        $demand = $this->createDemandObjectFromSettings($this->settings);
+        $demand->setActionAndClass(__METHOD__, __CLASS__);
+
+        if (empty($this->originalSettings['orderBy'])) {
+            $idList = GeneralUtility::trimExplode(',', $this->settings['selectedList'], true);
+            foreach ($idList as $id) {
+                $news = $this->newsRepository->findByIdentifier($id);
+                if ($news) {
+                    $newsRecords[] = $news;
+                }
             }
+        } else {
+            $demand->setIdList($this->settings['selectedList']);
+            $newsRecords = $this->newsRepository->findDemanded($demand);
         }
 
         $assignedValues = [
             'news' => $newsRecords,
+            'demand' => $demand,
             'settings' => $this->settings
         ];
 
@@ -527,6 +544,7 @@ class NewsController extends NewsBaseController
         foreach ($propertiesNotAllowedViaFlexForms as $property) {
             $originalSettings[$property] = $tsSettings['settings'][$property];
         }
+        $this->originalSettings = $originalSettings;
 
         // Use stdWrap for given defined settings
         if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {

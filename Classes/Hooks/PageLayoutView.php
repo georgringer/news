@@ -118,6 +118,7 @@ class PageLayoutView
                         break;
                     case 'news_selectedlist':
                         $this->getSelectedListSetting();
+                        $this->getOrderSettings();
                         break;
                     case 'news_detail':
                         $this->getSingleNewsSettings();

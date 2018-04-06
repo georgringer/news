@@ -98,6 +98,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     protected $hideIdList;
 
     /** @var string */
+    protected $idList = '';
+
+    /** @var string */
     protected $action = '';
 
     /** @var string */
@@ -610,6 +613,24 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     public function setHideIdList($hideIdList)
     {
         $this->hideIdList = $hideIdList;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdList()
+    {
+        return $this->idList;
+    }
+
+    /**
+     * @param string $idList
+     * @return NewsDemand
+     */
+    public function setIdList($idList)
+    {
+        $this->idList = $idList;
         return $this;
     }
 

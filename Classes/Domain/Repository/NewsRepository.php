@@ -232,9 +232,15 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             $constraints['excludeAlreadyDisplayedNews'] = $query->logicalNot(
                 $query->in(
                     'uid',
-                    GeneralUtility::intExplode(',', $hideIdList)
+                    GeneralUtility::intExplode(',', $hideIdList, true)
                 )
             );
+        }
+
+        // Id list
+        $idList = $demand->getIdList();
+        if ($idList) {
+            $constraints['idList'] = $query->in('uid', GeneralUtility::intExplode(',', $idList, true));
         }
 
         // Clean not used constraints
