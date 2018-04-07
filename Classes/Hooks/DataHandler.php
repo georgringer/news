@@ -107,6 +107,28 @@ class DataHandler
         }
     }
 
+
+    /**
+     * Fill path_segment/slug field with title
+     *
+     * @param string $status
+     * @param string $table
+     * @param string|int $id
+     * @param array $fieldArray
+     * @param \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject
+     */
+    public function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray, \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject)
+    {
+        if ($table === 'tx_news_domain_model_news' && $status === 'new') {
+            if (!isset($fieldArray['path_segment']) || empty($fieldArray['path_segment'])) {
+                $evaluations = GeneralUtility::trimExplode(',', $GLOBALS['TCA'][$table]['columns']['path_segment']['config']['eval'], true);
+                $modifiedTitle = str_replace(' ', '-', trim($fieldArray['title']));
+                $newValue = $parentObject->checkValue_input_Eval($modifiedTitle, $evaluations, '');
+                $fieldArray['path_segment'] = $newValue['value'];
+            }
+        }
+    }
+
     /**
      * Prevent deleting/moving of a news record if the editor doesn't have access to all categories of the news record
      *

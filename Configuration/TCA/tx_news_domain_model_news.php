@@ -659,7 +659,7 @@ $tx_news_domain_model_news = [
                 ],
             ],
             'showitem' => '
-                    --palette--;;paletteCore,title,teaser,
+                    --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     --palette--;;paletteDate,
                     bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
                 --div--;' . $ll . 'tx_news_domain_model_news.content_elements,
@@ -695,7 +695,7 @@ $tx_news_domain_model_news = [
                 ],
             ],
             'showitem' => '
-                    --palette--;;paletteCore,title,teaser,
+                    --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     internalurl,
                     --palette--;;paletteDate,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
@@ -729,7 +729,7 @@ $tx_news_domain_model_news = [
                 ],
             ],
             'showitem' => '
-                    --palette--;;paletteCore,title,teaser,
+                    --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     externalurl,
                     --palette--;;paletteDate,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
@@ -768,7 +768,7 @@ $tx_news_domain_model_news = [
             'showitem' => 'keywords,description,',
         ],
         'alternativeTitles' => [
-            'showitem' => 'alternative_title,--linebreak--,path_segment',
+            'showitem' => 'alternative_title',
         ],
 
         'paletteHidden' => [
@@ -789,6 +789,11 @@ $tx_news_domain_model_news = [
         'paletteLanguage' => [
             'showitem' => '
                 sys_language_uid;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:sys_language_uid_formlabel,l10n_parent, l10n_diffsource,
+            ',
+        ],
+        'paletteSlug' => [
+            'showitem' => '
+                path_segment
             ',
         ],
     ]
