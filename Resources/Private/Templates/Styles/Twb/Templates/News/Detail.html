@@ -53,7 +53,7 @@
 			</n:simplePrevNext>
 		</f:if>
 
-		<f:if condition="{newsItem.media}">
+		<f:if condition="{newsItem.mediaNonPreviews}">
 			<f:then>
 				<f:render section="headline" arguments="{_all}" />
 				<div class="row">
@@ -61,7 +61,7 @@
 						<f:render section="inner-content" arguments="{_all}" />
 					</div>
 					<div class="col-md-4">
-						<f:for each="{newsItem.media}" as="mediaElement">
+						<f:for each="{newsItem.mediaNonPreviews}" as="mediaElement">
 							<div class="thumbnail">
 								<f:media file="{mediaElement}" class="img-responsive" />
 								<f:if condition="{mediaElement.description}">

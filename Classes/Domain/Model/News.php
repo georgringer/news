@@ -795,83 +795,66 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return array
      */
-    public function getFalMediaPreviews()
-    {
-        if ($this->falMediaPreviews === null && $this->getFalMedia()) {
-            $this->falMediaPreviews = [];
-            /** @var $mediaItem FileReference */
-            foreach ($this->getFalMedia() as $mediaItem) {
-                if ($mediaItem->getOriginalResource()->getProperty('showinpreview')) {
-                    $this->falMediaPreviews[] = $mediaItem;
-                }
-            }
-        }
-        return $this->falMediaPreviews;
-    }
-
-    /**
-     * Short method for getFalMediaPreviews
-     *
-     * @return array
-     */
     public function getMediaPreviews()
     {
-        return $this->getFalMediaPreviews();
+        $configuration = [FileReference::VIEW_LIST_AND_DETAIL, FileReference::VIEW_LIST_ONLY];
+        return $this->getMediaItemsByConfiguration($configuration);
     }
 
     /**
-     * Get all media elements which are not tagged as preview
-     *
-     * @return array
-     */
-    public function getFalMediaNonPreviews()
-    {
-        if ($this->falMediaNonPreviews === null && $this->getFalMedia()) {
-            $this->falMediaNonPreviews = [];
-            /** @var $mediaItem FileReference */
-            foreach ($this->getFalMedia() as $mediaItem) {
-                if (!$mediaItem->getOriginalResource()->getProperty('showinpreview')) {
-                    $this->falMediaNonPreviews[] = $mediaItem;
-                }
-            }
-        }
-        return $this->falMediaNonPreviews;
-    }
-
-    /**
-     * Short method for getFalMediaNonPreviews
+     * Get all media elements which are allowed for detail views
      *
      * @return array
      */
     public function getMediaNonPreviews()
     {
-        return $this->getFalMediaNonPreviews();
+        $configuration = [FileReference::VIEW_DETAIL_ONLY, FileReference::VIEW_LIST_AND_DETAIL];
+        return $this->getMediaItemsByConfiguration($configuration);
     }
 
     /**
-     * Get first media element which is tagged as preview and is of type image
+     * Get first preview
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
-    public function getFirstFalImagePreview()
+    public function getFirstPreview()
     {
-        $mediaElements = $this->getFalMediaPreviews();
-        if (is_array($mediaElements)) {
-            foreach ($mediaElements as $mediaElement) {
-                return $mediaElement;
-            }
+        foreach ($this->getMediaPreviews() as $mediaElement) {
+            return $mediaElement;
         }
         return null;
     }
 
     /**
-     * Short method for getFirstFalImagePreview
+     * Get first non preview
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
-    public function getFirstPreview()
+    public function getFirstNonePreview()
     {
-        return $this->getFirstFalImagePreview();
+        foreach ($this->getMediaNonPreviews() as $mediaElement) {
+            return $mediaElement;
+        }
+        return null;
+    }
+
+    /**
+     * @param array $list
+     * @return array
+     */
+    protected function getMediaItemsByConfiguration(array $list): array
+    {
+        $items = [];
+        if ($this->getFalMedia()) {
+            foreach ($this->getFalMedia() as $mediaItem) {
+                /** @var $mediaItem FileReference */
+                $configuration = (int)$mediaItem->getOriginalResource()->getProperty('showinpreview');
+                if (in_array($configuration, $list, true)) {
+//                    $items[] = $mediaItem;
+                }
+            }
+        }
+        return $items;
     }
 
     /**
