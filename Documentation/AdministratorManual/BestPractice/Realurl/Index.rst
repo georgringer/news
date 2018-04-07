@@ -21,7 +21,7 @@ the *postVarSets/_DEFAULT* section:
 .. code-block:: php
 
 	// EXT:news start
-	'news' => array(
+	'a' => array(
 		array(
 			'GETvar' => 'tx_news_pi1[action]',
 		),
@@ -104,13 +104,6 @@ Here is a full RealURL configuration with the explanation below.
 				'GETvar' => 'L',
 				'valueMap' => array(
 					'en' => '1',
-				),
-				'noMatch' => 'bypass',
-			),
-			array(
-				'GETvar' => 'no_cache',
-				'valueMap' => array(
-					'nc' => 1,
 				),
 				'noMatch' => 'bypass',
 			),
