@@ -42,9 +42,9 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     protected $link;
 
     /**
-     * @var bool
+     * @var int
      */
-    protected $showinpreview;
+    protected $showinpreview = 0;
 
     /**
      * Set File uid
@@ -149,7 +149,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     /**
      * Set showinpreview
      *
-     * @param bool $showinpreview
+     * @param int $showinpreview
      */
     public function setShowinpreview($showinpreview)
     {
@@ -159,7 +159,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
     /**
      * Get showinpreview
      *
-     * @return bool
+     * @return int
      */
     public function getShowinpreview()
     {
