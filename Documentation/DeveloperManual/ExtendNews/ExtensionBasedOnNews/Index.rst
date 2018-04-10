@@ -270,7 +270,6 @@ The syntax of ``FlexForms`` is identical to the one of ``TCA`` with the only dif
 									<size>3</size>
 									<maxitems>50</maxitems>
 									<minitems>0</minitems>
-									<show_thumbs>1</show_thumbs>
 									<wizards>
 										<suggest>
 											<type>suggest</type>
