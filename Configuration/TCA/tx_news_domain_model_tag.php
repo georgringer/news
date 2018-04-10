@@ -86,8 +86,9 @@ return [
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_text',
             'config' => [
                 'type' => 'text',
+                'enableRichtext' => true,
+                'richtextConfiguration' => 'default',
             ],
-            'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
         ],
         'notes' => [
             'label' => $ll . 'notes',

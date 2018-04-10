@@ -134,8 +134,9 @@ $newSysCategoryColumns = [
         'label' => $ll . 'tx_news_domain_model_category.seo.seo_text',
         'config' => [
             'type' => 'text',
+            'enableRichtext' => true,
+            'richtextConfiguration' => 'default',
         ],
-        'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
     ],
 ];
 

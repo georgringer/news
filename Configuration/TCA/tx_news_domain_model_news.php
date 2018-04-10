@@ -6,8 +6,6 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 // Extension manager configuration
 $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
-$teaserRteConfiguration = $configuration->getRteForTeaser() ? 'richtext:rte_transform[mode=ts_css]' : '';
-
 $tx_news_domain_model_news = [
     'ctrl' => [
         'title' => $ll . 'tx_news_domain_model_news',
@@ -210,6 +208,8 @@ $tx_news_domain_model_news = [
                 'type' => 'text',
                 'cols' => 60,
                 'rows' => 5,
+                'enableRichtext' => $configuration->getRteForTeaser(),
+                'richtextConfiguration' => 'default',
             ]
         ],
         'bodytext' => [
@@ -675,14 +675,6 @@ $tx_news_domain_model_news = [
     'types' => [
         // default news
         '0' => [
-            'columnsOverrides' => [
-                'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-                ],
-                'teaser' => [
-                    'defaultExtras' => $teaserRteConfiguration
-                ],
-            ],
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     --palette--;;paletteDate,
@@ -711,14 +703,6 @@ $tx_news_domain_model_news = [
         ],
         // internal url
         '1' => [
-            'columnsOverrides' => [
-                'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-                ],
-                'teaser' => [
-                    'defaultExtras' => $teaserRteConfiguration
-                ],
-            ],
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     internalurl,
@@ -745,14 +729,6 @@ $tx_news_domain_model_news = [
         ],
         // external url
         '2' => [
-            'columnsOverrides' => [
-                'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-                ],
-                'teaser' => [
-                    'defaultExtras' => $teaserRteConfiguration
-                ],
-            ],
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     externalurl,
