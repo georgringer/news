@@ -132,7 +132,6 @@ $tx_news_domain_model_news = [
         ],
         'starttime' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
             'config' => [
                 'type' => 'input',
@@ -140,11 +139,13 @@ $tx_news_domain_model_news = [
                 'size' => 16,
                 'eval' => 'datetime,int',
                 'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'endtime' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
             'config' => [
                 'type' => 'input',
@@ -152,6 +153,9 @@ $tx_news_domain_model_news = [
                 'size' => 16,
                 'eval' => 'datetime,int',
                 'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'fe_group' => [
@@ -244,25 +248,28 @@ $tx_news_domain_model_news = [
         ],
         'author' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.author_formlabel',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'author_email' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.author_email_formlabel',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'categories' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.categories',
             'config' => [
                 'type' => 'select',
@@ -287,11 +294,13 @@ $tx_news_domain_model_news = [
                 'size' => 10,
                 'minitems' => 0,
                 'maxitems' => 99,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'related' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.related',
             'config' => [
                 'type' => 'group',
@@ -308,7 +317,10 @@ $tx_news_domain_model_news = [
                         'suggestOptions' => true,
                         'addWhere' => ' AND tx_news_domain_model_news.uid != ###THIS_UID###'
                     ]
-                ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'related_from' => [
@@ -327,7 +339,6 @@ $tx_news_domain_model_news = [
         ],
         'related_links' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.related_links',
             'config' => [
                 'type' => 'inline',
@@ -350,7 +361,10 @@ $tx_news_domain_model_news = [
                     'enabledControls' => [
                         'info' => false,
                     ]
-                ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'type' => [
@@ -375,23 +389,27 @@ $tx_news_domain_model_news = [
         ],
         'keywords' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $GLOBALS['TCA']['pages']['columns']['keywords']['label'],
             'config' => [
                 'type' => 'text',
                 'placeholder' => $ll . 'tx_news_domain_model_news.keywords.placeholder',
                 'cols' => 30,
                 'rows' => 5,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'description' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.description_formlabel',
             'config' => [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'internalurl' => [
@@ -437,15 +455,17 @@ $tx_news_domain_model_news = [
         ],
         'editlock' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:editlock',
             'config' => [
-                'type' => 'check'
+                'type' => 'check',
+                'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'content_elements' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.content_elements',
             'config' => [
                 'type' => 'inline',
@@ -468,12 +488,14 @@ $tx_news_domain_model_news = [
                     'enabledControls' => [
                         'info' => false,
                     ]
-                ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'tags' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.tags',
             'config' => [
                 'type' => 'group',
@@ -521,6 +543,9 @@ $tx_news_domain_model_news = [
                         ],
                     ],
                 ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'path_segment' => [
@@ -546,11 +571,13 @@ $tx_news_domain_model_news = [
         ],
         'fal_media' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.fal_media',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'fal_media',
                 [
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ],
                     'appearance' => [
                         'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add',
                         'showPossibleLocalizationRecords' => true,
@@ -611,11 +638,13 @@ $tx_news_domain_model_news = [
         ],
         'fal_related_files' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.fal_related_files',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'fal_related_files',
                 [
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ],
                     'appearance' => [
                         'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_related_files.add',
                         'showPossibleLocalizationRecords' => true,

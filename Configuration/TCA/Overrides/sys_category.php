@@ -33,11 +33,13 @@ $newSysCategoryColumns = [
     ],
     'images' => [
         'exclude' => true,
-        'l10n_mode' => 'mergeIfNotBlank',
         'label' => $ll . 'tx_news_domain_model_category.image',
         'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
             'images',
             [
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
                 'appearance' => [
                     'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
@@ -56,7 +58,6 @@ $newSysCategoryColumns = [
     ],
     'single_pid' => [
         'exclude' => true,
-        'l10n_mode' => 'mergeIfNotBlank',
         'label' => $ll . 'tx_news_domain_model_category.single_pid',
         'config' => [
             'type' => 'group',
@@ -70,11 +71,13 @@ $newSysCategoryColumns = [
                     'searchWholePhrase' => true,
                 ]
             ],
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
+            ],
         ]
     ],
     'shortcut' => [
         'exclude' => true,
-        'l10n_mode' => 'mergeIfNotBlank',
         'label' => $ll . 'tx_news_domain_model_category.shortcut',
         'config' => [
             'type' => 'group',
@@ -87,6 +90,9 @@ $newSysCategoryColumns = [
                 'default' => [
                     'searchWholePhrase' => true,
                 ]
+            ],
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
             ],
         ]
     ],

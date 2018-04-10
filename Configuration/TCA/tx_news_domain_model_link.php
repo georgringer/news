@@ -99,26 +99,29 @@ return [
         ],
         'title' => [
             'exclude' => false,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.title',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'description' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.description',
             'config' => [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'uri' => [
             'exclude' => false,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.uri',
             'config' => [
                 'type' => 'input',
@@ -137,7 +140,10 @@ return [
                         ],
                         'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
                     ]
-                ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
     ],
