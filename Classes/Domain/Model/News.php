@@ -808,7 +808,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMediaNonPreviews()
     {
-        $configuration = [FileReference::VIEW_DETAIL_ONLY, FileReference::VIEW_LIST_AND_DETAIL];
+        $configuration = [FileReference::VIEW_DETAIL_ONLY];
         return $this->getMediaItemsByConfiguration($configuration);
     }
 
@@ -850,7 +850,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
                 /** @var $mediaItem FileReference */
                 $configuration = (int)$mediaItem->getOriginalResource()->getProperty('showinpreview');
                 if (in_array($configuration, $list, true)) {
-//                    $items[] = $mediaItem;
+                    $items[] = $mediaItem;
                 }
             }
         }
