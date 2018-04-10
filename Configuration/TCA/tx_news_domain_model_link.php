@@ -122,6 +122,7 @@ return [
             'label' => $ll . 'tx_news_domain_model_link.uri',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
                 'size' => 30,
                 'eval' => 'trim,required',
