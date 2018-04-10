@@ -201,7 +201,6 @@ $tx_news_domain_model_news = [
         ],
         'teaser' => [
             'exclude' => true,
-            'l10n_mode' => 'noCopy',
             'label' => $ll . 'tx_news_domain_model_news.teaser',
             'config' => [
                 'type' => 'text',
@@ -211,7 +210,6 @@ $tx_news_domain_model_news = [
         ],
         'bodytext' => [
             'exclude' => false,
-            'l10n_mode' => 'noCopy',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext_formlabel',
             'config' => [
                 'type' => 'text',
