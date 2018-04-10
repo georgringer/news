@@ -65,13 +65,10 @@ $newSysCategoryColumns = [
             'size' => 1,
             'maxitems' => 1,
             'default' => 0,
-            'wizards' => [
-                'suggest' => [
-                    'type' => 'suggest',
-                    'default' => [
-                        'searchWholePhrase' => true
-                    ]
-                ],
+            'suggestOptions' => [
+                'default' => [
+                    'searchWholePhrase' => true,
+                ]
             ],
         ]
     ],
@@ -86,13 +83,10 @@ $newSysCategoryColumns = [
             'size' => 1,
             'maxitems' => 1,
             'default' => 0,
-            'wizards' => [
-                'suggest' => [
-                    'type' => 'suggest',
-                    'default' => [
-                        'searchWholePhrase' => true
-                    ]
-                ],
+            'suggestOptions' => [
+                'default' => [
+                    'searchWholePhrase' => true,
+                ]
             ],
         ]
     ],

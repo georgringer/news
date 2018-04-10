@@ -315,15 +315,12 @@ $tx_news_domain_model_news = [
                 'minitems' => 0,
                 'maxitems' => 100,
                 'MM' => 'tx_news_domain_model_news_related_mm',
-                'wizards' => [
-                    'suggest' => [
-                        'type' => 'suggest',
-                        'default' => [
-                            'searchWholePhrase' => true,
-                            'addWhere' => ' AND tx_news_domain_model_news.uid != ###THIS_UID###'
-                        ]
-                    ],
-                ],
+                'suggestOptions' => [
+                    'default' => [
+                        'suggestOptions' => true,
+                        'addWhere' => ' AND tx_news_domain_model_news.uid != ###THIS_UID###'
+                    ]
+                ]
             ]
         ],
         'related_from' => [
@@ -499,14 +496,13 @@ $tx_news_domain_model_news = [
                 'size' => 10,
                 'minitems' => 0,
                 'maxitems' => 99,
+                'suggestOptions' => [
+                    'default' => [
+                        'searchWholePhrase' => true,
+                        'receiverClass' => \GeorgRinger\News\Hooks\SuggestReceiver::class
+                    ]
+                ],
                 'wizards' => [
-                    'suggest' => [
-                        'type' => 'suggest',
-                        'default' => [
-                            'searchWholePhrase' => true,
-                            'receiverClass' => \GeorgRinger\News\Hooks\SuggestReceiver::class
-                        ],
-                    ],
                     'list' => [
                         'type' => 'script',
                         'title' => $ll . 'tx_news_domain_model_news.tags.list',
