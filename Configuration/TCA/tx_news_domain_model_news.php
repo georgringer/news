@@ -492,28 +492,34 @@ $tx_news_domain_model_news = [
                         'receiverClass' => \GeorgRinger\News\Hooks\SuggestReceiver::class
                     ]
                 ],
-                'wizards' => [
-                    'list' => [
-                        'type' => 'script',
-                        'title' => $ll . 'tx_news_domain_model_news.tags.list',
-                        'icon' => 'actions-system-list-open',
-                        'params' => [
-                            'table' => 'tx_news_domain_model_tag',
-                            'pid' => $configuration->getTagPid(),
-                        ],
-                        'module' => [
-                            'name' => 'wizard_list',
+                'fieldControl' => [
+                    'editPopup' => [
+                        'disabled' => false,
+                        'options' => [
+                            'type' => 'popup',
+                            'title' => $ll . 'tx_news_domain_model_news.tags.edit',
+                            'module' => [
+                                'name' => 'wizard_edit',
+                            ],
+                            'popup_onlyOpenIfSelected' => true,
+                            'icon' => 'actions-open',
+                            'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
                         ],
                     ],
-                    'edit' => [
-                        'type' => 'popup',
-                        'title' => $ll . 'tx_news_domain_model_news.tags.edit',
-                        'module' => [
-                            'name' => 'wizard_edit',
+                    'listModule' => [
+                        'disabled' => false,
+                        'options' => [
+                            'type' => 'script',
+                            'title' => $ll . 'tx_news_domain_model_news.tags.list',
+                            'icon' => 'actions-system-list-open',
+                            'params' => [
+                                'table' => 'tx_news_domain_model_tag',
+                                'pid' => $configuration->getTagPid(),
+                            ],
+                            'module' => [
+                                'name' => 'wizard_list',
+                            ],
                         ],
-                        'popup_onlyOpenIfSelected' => true,
-                        'icon' => 'actions-open',
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
                     ],
                 ],
             ],
