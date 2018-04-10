@@ -13,7 +13,6 @@ $newSysFileReferenceColumns = [
                 ['LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinviews.1', 1, ''],
                 ['LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinviews.2', 2, ''],
             ],
-            'showIconTable' => true,
             'default' => 0,
         ]
     ],

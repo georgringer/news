@@ -78,7 +78,11 @@ $tx_news_domain_model_news = [
                 ],
                 'foreign_table' => 'tx_news_domain_model_news',
                 'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
-                'showIconTable' => false,
+                'fieldWizard' => [
+                    'selectIcons' => [
+                        'disabled' => true,
+                    ],
+                ],
                 'default' => 0,
             ]
         ],
@@ -371,7 +375,11 @@ $tx_news_domain_model_news = [
                     [$ll . 'tx_news_domain_model_news.type.I.1', 1, 'ext-news-type-internal'],
                     [$ll . 'tx_news_domain_model_news.type.I.2', 2, 'ext-news-type-external'],
                 ],
-                'showIconTable' => true,
+                'fieldWizard' => [
+                    'selectIcons' => [
+                        'disabled' => false,
+                    ],
+                ],
                 'size' => 1,
                 'maxitems' => 1,
             ]
