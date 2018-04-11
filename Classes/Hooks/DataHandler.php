@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Hooks;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Service\AccessControlService;
+use GeorgRinger\News\Service\Transliterator\Transliterator;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -121,10 +122,7 @@ class DataHandler
     {
         if ($table === 'tx_news_domain_model_news' && $status === 'new') {
             if (!isset($fieldArray['path_segment']) || empty($fieldArray['path_segment'])) {
-                $evaluations = GeneralUtility::trimExplode(',', $GLOBALS['TCA'][$table]['columns']['path_segment']['config']['eval'], true);
-                $modifiedTitle = str_replace(' ', '-', trim($fieldArray['title']));
-                $newValue = $parentObject->checkValue_input_Eval($modifiedTitle, $evaluations, '');
-                $fieldArray['path_segment'] = $newValue['value'];
+                $fieldArray['path_segment'] = Transliterator::urlize($fieldArray['title']);
             }
         }
     }

@@ -156,6 +156,10 @@ $boot = function () {
     }
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \GeorgRinger\News\Command\NewsImportCommandController::class;
+
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['adminPanelInstall']
+        = \GeorgRinger\News\Updates\NewsSlugUpdater::class;
+
 };
 
 $boot();
