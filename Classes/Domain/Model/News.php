@@ -229,6 +229,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $sorting;
 
+    /** @var string */
+    protected $notes;
+
     /**
      * Initialize categories and media relation
      *
@@ -1447,4 +1450,21 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->importSource;
     }
+
+    /**
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @param string $notes
+     */
+    public function setNotes(string $notes)
+    {
+        $this->notes = $notes;
+    }
+
 }
