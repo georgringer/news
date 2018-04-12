@@ -15,6 +15,15 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class SlugService
 {
 
+    /**
+     * @param string $string
+     * @return string
+     */
+    public function generateSlug(string $string): string
+    {
+        return Transliterator::urlize($string);
+    }
+
 
     public function countOfSlugUpdates(): int
     {
@@ -58,7 +67,7 @@ class SlugService
                         $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
                     )
                 )
-                ->set('path_segment', Transliterator::urlize($record['title']));
+                ->set('path_segment', $this->generateSlug($record['title']));
             $databaseQueries[] = $queryBuilder->getSQL();
             $queryBuilder->execute();
         }
