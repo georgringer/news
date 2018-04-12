@@ -816,6 +816,17 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * Get all media elements which are only for list views
+     *
+     * @return array
+     */
+    public function getMediaListOnly()
+    {
+        $configuration = [FileReference::VIEW_LIST_ONLY];
+        return $this->getMediaItemsByConfiguration($configuration);
+    }
+
+    /**
      * Get first preview
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
