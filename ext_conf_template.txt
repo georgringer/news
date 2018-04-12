@@ -33,6 +33,9 @@ archiveDate = date
 # cat=records/enable/150; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.mediaPreview
 mediaPreview = false
 
+# cat=records/enable/153; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.advancedMediaPreview
+advancedMediaPreview = true
+
 # Backend module
 
 # cat=backend module/enable/10; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.showAdministrationModule

@@ -308,6 +308,9 @@
 			<trans-unit id="extmng.mediaPreview" xml:space="preserve">
 				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
 			</trans-unit>
+			<trans-unit id="extmng.advancedMediaPreview" xml:space="preserve">
+				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
+			</trans-unit>
 			<trans-unit id="usersettings.overlay" xml:space="preserve">
 				<source>Use this overlay for news categories in the Backend</source>
 			</trans-unit>

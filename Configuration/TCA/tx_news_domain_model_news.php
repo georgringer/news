@@ -3,7 +3,6 @@ defined('TYPO3_MODE') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
-// Extension manager configuration
 $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
 
 $tx_news_domain_model_news = [

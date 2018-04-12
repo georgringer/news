@@ -35,6 +35,14 @@ Since a long time, there has been a field called `path_segment` which has been w
 
 **Now** this field has been moved right below the title and is automatically filled by the title. If the title changes, the slug field will stay the same to keep the URL in the frontend.
 
+|img-release700-slug-field|
+
+.. Important::
+
+    As long as you don't change your realurl configuration, you don't benefit from the the slug field.
+    But if you change, be aware that URLs might change. An upgrade wizard in the Install Tools cares about filling the slug field automatically.
+
+
 The documentation about realurl configuration as been adopted:
 
 
@@ -69,14 +77,6 @@ The documentation about realurl configuration as been adopted:
         ]
     ],
 	// EXT:news end
-
-
-|img-release700-slug-field|
-
-.. Important::
-
-    As long as you don't change your realurl configuration, you don't benefit from the the slug field.
-    But if you change, be aware that URLs might change. An upgrade wizard in the Install Tools cares about filling the slug field automatically.
 
 
 Improved field ordering
