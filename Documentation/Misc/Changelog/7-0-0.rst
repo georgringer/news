@@ -1,4 +1,4 @@
-7.0.0 - 2018/21/04
+7.0.0 - 2018/xx/04
 ==================
 
 .. include:: ../../Includes.txt
@@ -10,8 +10,6 @@
         :depth: 3
 
 
-    tbd
-
 Important changes
 -----------------
 
@@ -19,10 +17,10 @@ The following changes might be important for your installation.
 
 Support for TYPO3 9 & 8
 ^^^^^^^^^^^^^^^^^^^^^^^
-This is the 1st version which supports the upcoming TYPO3 9 version and version 8 LTS.
+This is the 1st version which supports the upcoming TYPO3 9 version. Version 8 LTS is supported as well but requires version **8.7.13**.
 
 - Every usage of `$GLOBALS['TYPO3_DB']` has been migrated to *Doctrine DBAL*.
-- Adopt TCA to the best practice of the core without any deprecations.^
+- Adopt TCA to the best practice of the core without any deprecations.
 
 .. Important::
 
@@ -112,6 +110,12 @@ A new view has been added to the administration module to show how you can suppo
 
 |img-donation-module|
 
+.. tip::
+
+    Supported are:
+        - Patreon https://www.patreon.com/georgringer
+        - Paypal https://www.paypal.me/GeorgRinger/25
+        - Amazon Wishlist http://www.amazon.de/registry/wishlist/8F573K08TSDG
 
 Improved administration module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
