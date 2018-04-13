@@ -9,6 +9,8 @@ namespace GeorgRinger\News\Hooks;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Backend\Form\Element\InlineElement;
+
 /**
  * Inline Element Hook
  */
@@ -18,7 +20,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
     /**
      * Initializes this hook object.
      *
-     * @param \TYPO3\CMS\Backend\Form\Element\InlineElement $parentObject
+     * @param InlineElement $parentObject
      */
     public function init(&$parentObject)
     {
@@ -41,7 +43,8 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         array $childConfig,
         $isVirtual,
         array &$enabledControls
-    ) {
+    )
+    {
     }
 
     /**
@@ -61,11 +64,26 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         array $childConfig,
         $isVirtual,
         array &$controlItems
-    ) {
-        if ($foreignTable === 'sys_file_reference' && !empty($childRecord['showinpreview'])) {
-            $label = $GLOBALS['LANG']->sL('LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinpreview');
-            $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];
-            $controlItems = $extraItem + $controlItems;
+    )
+    {
+        $previewSetting = (int)$childRecord['showinpreview'];
+        if ($foreignTable === 'sys_file_reference' && $previewSetting > 0) {
+            $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
+
+            if (\GeorgRinger\News\Utility\EmConfiguration::getSettings()->isAdvancedMediaPreview()) {
+                if ($previewSetting === 1) {
+                    $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinviews.1');
+                    $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];
+                } elseif ($previewSetting === 2) {
+                    $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinviews.2');
+                    $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i><i class="fa fa-check"></i></span>'];
+                }
+                $controlItems = $extraItem + $controlItems;
+            } elseif ($previewSetting === 1) {
+                $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinpreview');
+                $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];
+                $controlItems = $extraItem + $controlItems;
+            }
         }
     }
 }
