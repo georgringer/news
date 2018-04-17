@@ -128,7 +128,6 @@ $boot = function () {
 
     if (TYPO3_MODE === 'BE') {
         $icons = [
-            'apps-pagetree-folder-contains-news' => 'ext-news-folder-tree.svg',
             'ext-news-wizard-icon' => 'plugin_wizard.svg',
             'ext-news-type-default' => 'news_domain_model_news.svg',
             'ext-news-type-internal' => 'news_domain_model_news_internal.svg',
@@ -148,6 +147,8 @@ $boot = function () {
                 ['source' => 'EXT:news/Resources/Public/Icons/' . $path]
             );
         }
+
+        $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['apps-pagetree-folder-contains-news'] = 'apps-pagetree-folder-contains-news';
     }
 
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('dd_googlesitemap')) {
