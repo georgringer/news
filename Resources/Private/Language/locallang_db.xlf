@@ -21,6 +21,9 @@
 			<trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve">
 				<source>Teaser</source>
 			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.bodytext" xml:space="preserve">
+				<source>Description</source>
+			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve">
 				<source>Date &amp; Time</source>
 			</trans-unit>
