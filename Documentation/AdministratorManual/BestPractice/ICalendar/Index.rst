@@ -45,6 +45,7 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
     	# Since 8 LTS
     	additionalHeaders.10.header = Content-Type:text/calendar;charset=utf-8
     	disablePrefixComment = 1
+    	linkVars >
     }
     pageNewsICalendar = PAGE
     pageNewsICalendar {
@@ -107,6 +108,7 @@ To create an ICalendar feed based on a plugin follow this steps:
 			 # define charset
 			 additionalHeaders = Content-Type:text/calendar;charset=utf-8
 			 disablePrefixComment = 1
+			 linkVars >
 		}
 
 		# set the format
@@ -157,6 +159,7 @@ The TypoScript code looks like this.
     		# define charset
     		additionalHeaders = Content-Type:text/calendar;charset=utf-8
     		disablePrefixComment = 1
+    		linkVars >
     	}
 
     	# set the format

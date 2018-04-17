@@ -47,6 +47,7 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
         metaCharset = utf-8
         additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
         absRefPrefix = {$plugin.tx_news.rss.channel.link}
+        linkVars >
     }
 
     pageNewsRSS = PAGE
@@ -108,6 +109,7 @@ To create a RSS feed based on a plugin follow this steps:
          metaCharset = utf-8
          additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
          disablePrefixComment = 1
+         linkVars >
       }
 
       # set the format
@@ -161,6 +163,7 @@ The TypoScript code looks like this.
     		disablePrefixComment = 1
     		baseURL = {$plugin.tx_news.rss.channel.link}
     		absRefPrefix = {$plugin.tx_news.rss.channel.link}
+    		linkVars >
     	}
 
     	# set the format
