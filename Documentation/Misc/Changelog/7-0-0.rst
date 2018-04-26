@@ -1,4 +1,4 @@
-7.0.0 - 2018/xx/04
+7.0.0 - 2018/26/04
 ==================
 
 .. include:: ../../Includes.txt
@@ -24,7 +24,7 @@ This is the 1st version which supports the upcoming TYPO3 9 version. Version 8 L
 
 .. Important::
 
-        Support for version 7.6 has been dropped. With October 2018 7.6 wil have reached end of life.
+        Support for version 7.6 has been dropped. With October 2018 7.6 wil have reached end of life. Check out https://typo3.com/services/extended-support/ if you need an extended support.
 
 Improved SEO support
 ^^^^^^^^^^^^^^^^^^^^
@@ -167,6 +167,17 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+        2018-04-17 [DOC] Document linkVars for RSS (Commit 98af3b45 by Georg Ringer)
+        2018-04-17 [TASK] Raise requirements to 8.7.13 (Commit 5eb5257d by Georg Ringer)
+        2018-04-17 [TASK] Allow core 9.2 in ext_emconf (Commit a985dfdb by Georg Ringer)
+        2018-04-17 [TASK] Adopt versions (Commit 52e0204c by Georg Ringer)
+        2018-04-17 [TASK] Add DB fields for multilanguage tags (Commit d34a1f11 by Georg Ringer)
+        2018-04-13 [TASK] Improve hook for showinpreview (Commit 6284ecba by Georg Ringer)
+        2018-04-13 [DOC] Finalize release notes (Commit 5b2f58cb by Georg Ringer)
+        2018-04-12 [DOC] Fix toc in manual (Commit 2059f921 by Georg Ringer)
+        2018-04-12 [TASK] Make new showinpreview configurable (Commit 1da6d732 by Georg Ringer)
+        2018-04-12 [TASK] Add seperate getter for list only (Commit 2738823f by Georg Ringer)
+        2018-04-12 [DOC] Start release notes for 7.0 (Commit 518667c5 by Georg Ringer)
         2018-04-12 [TASK] Add method to generate slug (Commit c254c522 by Georg Ringer)
         2018-04-12 [DOCS] Add docs about multi category filtering (Commit 579c51af by Georg Ringer)
         2018-04-12 [TASK] Include sponsor imgs base64 decoded (Commit 4d74d214 by Georg Ringer)
