@@ -36,15 +36,12 @@ the *postVarSets/_DEFAULT* section:
                 'alias_field' => 'IF(path_segment!="",path_segment,title)',
                 'addWhereClause' => ' AND NOT deleted',
                 'useUniqueCache' => 1,
-                'useUniqueCache_conf' => [
-                    'strtolower' => 1,
-                    'spaceCharacter' => '-',
-                ],
                 'languageGetVar' => 'L',
                 'languageExceptionUids' => '',
                 'languageField' => 'sys_language_uid',
                 'transOrigPointerField' => 'l10n_parent',
                 'expireDays' => 180,
+                'enable404forInvalidAlias' => true
             ]
         ]
     ],
@@ -132,15 +129,12 @@ Here is a full RealURL configuration with the explanation below.
                         'alias_field' => 'IF(path_segment!="",path_segment,title)',
                         'addWhereClause' => ' AND NOT deleted',
                         'useUniqueCache' => 1,
-                        'useUniqueCache_conf' => [
-                            'strtolower' => 1,
-                            'spaceCharacter' => '-'
-                        ],
                         'languageGetVar' => 'L',
                         'languageExceptionUids' => '',
                         'languageField' => 'sys_language_uid',
                         'transOrigPointerField' => 'l10n_parent',
                         'expireDays' => 180,
+                        'enable404forInvalidAlias' => true
                     ]
                 ]
             ],
@@ -153,10 +147,7 @@ Here is a full RealURL configuration with the explanation below.
                         'alias_field' => 'title',
                         'addWhereClause' => ' AND NOT deleted',
                         'useUniqueCache' => 1,
-                        'useUniqueCache_conf' => [
-                            'strtolower' => 1,
-                            'spaceCharacter' => '-'
-                        ]
+                        'enable404forInvalidAlias' => true
                     ]
                 ]
             ],
@@ -169,10 +160,7 @@ Here is a full RealURL configuration with the explanation below.
                         'alias_field' => 'title',
                         'addWhereClause' => ' AND NOT deleted',
                         'useUniqueCache' => 1,
-                        'useUniqueCache_conf' => [
-                            'strtolower' => 1,
-                            'spaceCharacter' => '-'
-                        ]
+                        'enable404forInvalidAlias' => true
                     ]
                 ]
             ],
@@ -317,15 +305,12 @@ The following snippet shows how to use this field: ::
 
             'addWhereClause' => ' AND NOT deleted',
             'useUniqueCache' => 1,
-            'useUniqueCache_conf' => [
-                'strtolower' => 1,
-                'spaceCharacter' => '-'
-            ],
             'languageGetVar' => 'L',
             'languageExceptionUids' => '',
             'languageField' => 'sys_language_uid',
             'transOrigPointerField' => 'l10n_parent',
             'expireDays' => 180,
+            'enable404forInvalidAlias' => true
         ]
     ]
 
@@ -354,10 +339,7 @@ All you now need is to add an additional section in your realurl configuration.
             'alias_field' => 'title',
             'addWhereClause' => ' AND NOT deleted',
             'useUniqueCache' => 1,
-            'useUniqueCache_conf' => [
-                'strtolower' => 1,
-                'spaceCharacter' => '-',
-            ],
+            'enable404forInvalidAlias' => true
         ],
     ],
 

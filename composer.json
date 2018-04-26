@@ -25,6 +25,7 @@
   },
   "suggest": {
     "dmitryd/typo3-dd-googlesitemap": "~2.1",
+    "dmitryd/typo3-realurl": "^2.3",
     "reelworx/rx-shariff": "~10.0"
   },
   "require-dev": {
