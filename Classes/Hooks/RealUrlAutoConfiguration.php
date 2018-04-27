@@ -38,12 +38,11 @@ class RealUrlAutoConfiguration
                                 'lookUpTable' => [
                                     'table' => 'tx_news_domain_model_news',
                                     'id_field' => 'uid',
-                                    'alias_field' => 'title',
+                                    'alias_field' => 'IF(path_segment!="",path_segment,title)',
+                                    'addWhereClause' => ' AND NOT deleted',
                                     'useUniqueCache' => 1,
-                                    'useUniqueCache_conf' => [
-                                        'strtolower' => 1,
-                                        'spaceCharacter' => '-',
-                                    ],
+                                    'expireDays' => 180,
+                                    'enable404forInvalidAlias' => true,
                                 ],
                             ],
                         ],
