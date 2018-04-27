@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
 /**
@@ -1477,5 +1478,23 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->notes = $notes;
     }
+
+    /**
+     * @return array
+     */
+    public function getFalMediaPreviews()
+    {
+        return $this->getMediaPreviews();
+    }
+
+    public function getFirstFalImagePreview()
+    {
+        return $this->getFirstPreview();
+    }
+
+    public function getFalMediaNonPreviews() {
+        return $this->getMediaNonPreviews();
+    }
+
 
 }
