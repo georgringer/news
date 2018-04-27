@@ -17,7 +17,7 @@ $EM_CONF[$_EXTKEY] = [
         'suggests' => [
             'dd_googlesitemap' => '2.0.5-2.99.99',
             'realurl' => '2.3.0-2.99.99',
-            'rx_shariff' => '10.0.0-10.99.99'
+            'rx_shariff' => '11.0.0-11.99.99'
         ],
     ],
 ];
