@@ -67,7 +67,7 @@ class SlugService
                         $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
                     )
                 )
-                ->set('path_segment', $this->generateSlug($record['title']));
+                ->set('path_segment', $this->generateSlug((string)$record['title']));
             $databaseQueries[] = $queryBuilder->getSQL();
             $queryBuilder->execute();
         }
