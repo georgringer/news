@@ -67,8 +67,8 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
 
         // prepend current domain
         if ($forceAbsoluteUrl) {
-            $path = $this->arguments['content'];
-            if (!GeneralUtility::isFirstPartOfStr($path, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
+            $parsedPath = parse_url($this->arguments['content']);
+            if (is_array($parsedPath) && !isset($parsedPath['host'])) {
                 $this->tag->addAttribute('content',
                     rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
                     . '/'
