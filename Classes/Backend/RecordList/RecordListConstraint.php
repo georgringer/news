@@ -231,7 +231,6 @@ class RecordListConstraint
 
         if (!empty($pidConstraint)) {
             $pidConstraint = ' AND ' . $pidConstraint;
-            die('todo ' . $pidConstraint);
         }
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
