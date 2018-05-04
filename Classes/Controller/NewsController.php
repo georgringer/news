@@ -194,6 +194,8 @@ class NewsController extends NewsBaseController
      */
     public function listAction(array $overwriteDemand = null)
     {
+        $this->forwardToDetailActionWhenRequested();
+
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -234,6 +236,36 @@ class NewsController extends NewsBaseController
         $this->view->assignMultiple($assignedValues);
 
         Cache::addPageCacheTagsByDemandObject($demand);
+    }
+
+    /**
+     * When list action is called and skipControllerAndAction is set
+     * along with a news argument, we forward to detail action.
+     */
+    protected function forwardToDetailActionWhenRequested()
+    {
+        if (empty($this->settings['link']['skipControllerAndAction'])
+            || !$this->isActionAllowed('detail')
+            || !$this->request->hasArgument('news')
+        ) {
+            return;
+        }
+
+        $this->forward('detail', null, null, ['news' => $this->request->getArgument('news')]);
+    }
+
+    /**
+     * Checks whether an action is enabled in switchableControllerActions configuration
+     *
+     * @param string $action
+     * @return bool
+     */
+    protected function isActionAllowed(string $action): bool
+    {
+        $frameworkConfiguration = $this->configurationManager->getConfiguration($this->configurationManager::CONFIGURATION_TYPE_FRAMEWORK);
+        $allowedActions = $frameworkConfiguration['controllerConfiguration']['News']['actions'] ?? [];
+
+        return \in_array($action, $allowedActions, true);
     }
 
     /**
