@@ -227,13 +227,6 @@ class RecordListConstraint
      */
     protected function getNewsIdsOfCategory($categoryId, $pidConstraint = ''): array
     {
-        $idList = [];
-
-        if (!empty($pidConstraint)) {
-            $pidConstraint = ' AND ' . $pidConstraint;
-            die('todo ' . $pidConstraint);
-        }
-
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
         $queryBuilder->getRestrictions()
@@ -259,8 +252,11 @@ class RecordListConstraint
                 $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
                 $queryBuilder->expr()->isNotNull('tx_news_domain_model_news.uid'),
                 $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->createNamedParameter($categoryId, \PDO::PARAM_INT))
-            )->execute();
+            )
+            ->andWhere(($pidConstraint ?: ''))
+            ->execute();
 
+        $idList = [];
         while ($row = $res->fetch()) {
             $idList[] = $row['uid'];
         }
