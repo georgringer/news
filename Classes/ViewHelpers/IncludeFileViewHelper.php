@@ -56,20 +56,20 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
 
             // JS
             if (strtolower(substr($path, -3)) === '.js') {
-                $pageRenderer->addJsFile($path, null, $compress);
+                $pageRenderer->addJsFile($path, null, $compress, false, '', true);
 
             // CSS
             } elseif (strtolower(substr($path, -4)) === '.css') {
-                $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress);
+                $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
             }
         } else {
             // JS
             if (strtolower(substr($path, -3)) === '.js') {
-                $pageRenderer->addJsFile($path, null, $compress);
+                $pageRenderer->addJsFile($path, null, $compress, false, '', true);
 
             // CSS
             } elseif (strtolower(substr($path, -4)) === '.css') {
-                $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress);
+                $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
             }
         }
     }
