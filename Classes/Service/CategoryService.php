@@ -94,7 +94,7 @@ class CategoryService
             ->select('uid')
             ->from('sys_category')
             ->where(
-                $queryBuilder->expr()->in('parent', $queryBuilder->createNamedParameter(explode(',', $idList), Connection::PARAM_INT_ARRAY))
+                $queryBuilder->expr()->in('parent', $queryBuilder->createNamedParameter(array_map('intval', explode(',', $idList)), Connection::PARAM_INT_ARRAY))
             )
             ->execute();
 
