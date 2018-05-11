@@ -40,7 +40,7 @@ class RecordListQueryHook
                                 QueryBuilder $queryBuilder)
     {
         if ($table === 'tt_content' && $pageId > 0) {
-            $pageRecord = BackendUtility::getRecord('pages', $pageId, 'uid', ' AND doktype="254" AND module="news"');
+            $pageRecord = BackendUtility::getRecord('pages', $pageId, 'uid', " AND doktype='254' AND module='news'");
             if (is_array($pageRecord)) {
                 $tsConfig = BackendUtility::getPagesTSconfig($pageId);
                 if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
@@ -81,7 +81,7 @@ class RecordListQueryHook
         $queryBuilder = null
     ) {
         if ($table === 'tt_content' && (int)$parentObject->searchLevels === 0 && $parentObject->id > 0) {
-            $pageRecord = BackendUtility::getRecord('pages', $parentObject->id, 'uid', ' AND doktype="254" AND module="news"');
+            $pageRecord = BackendUtility::getRecord('pages', $parentObject->id, 'uid', " AND doktype='254' AND module='news'");
             if (is_array($pageRecord)) {
                 $tsConfig = BackendUtility::getPagesTSconfig($parentObject->id);
                 if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
