@@ -43,7 +43,7 @@ class CategoryService
         $cacheIdentifier = sha1('children' . $idList);
 
         $entry = $cache->get($cacheIdentifier);
-		  if (!$entry) {
+        if (!$entry) {
             $entry = self::getChildrenCategoriesRecursive($idList, $counter, $additionalWhere);
             $cache->set($cacheIdentifier, $entry);
         }
@@ -82,8 +82,8 @@ class CategoryService
     private static function getChildrenCategoriesRecursive($idList, $counter = 0, $additionalWhere = ''): string
     {
         $result = [];
-		  
-		  // add idlist to the output too
+
+        // add idlist to the output too
         if ($counter === 0) {
             $result[] = self::cleanIntList($idList);
         }
