@@ -1,4 +1,4 @@
-7.0.3 - 2018/16/05
+7.0.4 - 2018/16/05
 ==================
 
 .. include:: ../../Includes.txt
@@ -14,6 +14,8 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+        2018-05-16 [DOC] Fix changelog (Commit 3a894566 by Georg Ringer)
+        2018-05-16 [TASK] Release 7.0.2 (Commit 6f219cb7 by Georg Ringer)
         2018-05-16 [BUGFIX] Use correct key for type query (Commit 54ca8316 by Georg Ringer)
         2018-05-14 [DOC] Fix wrong code block in custom type example (Commit 49baecb3 by Georg Ringer)
         2018-05-11 Improved compatibility for postgres installations (#666) (Commit 52815427 by Damir Andrašević)
