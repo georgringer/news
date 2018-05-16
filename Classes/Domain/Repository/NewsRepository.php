@@ -121,7 +121,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
 
         if ($demand->getTypes()) {
-            $constraints['author'] = $query->in('type', $demand->getTypes());
+            $constraints['types'] = $query->in('type', $demand->getTypes());
         }
 
         // archived
