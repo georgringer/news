@@ -354,7 +354,7 @@ class NewsTest extends UnitTestCase
         $news->addFalMedia($mediaItem4);
 
         $this->assertEquals(3, count($news->getMediaPreviews()));
-        $this->assertEquals(1, count($news->getMediaNonPreviews()));
+        $this->assertEquals(3, count($news->getMediaNonPreviews()));
 
         $this->assertEquals(4, count($news->getFalMedia()));
         $this->assertEquals(4, count($news->getMedia()));

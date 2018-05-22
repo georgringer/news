@@ -812,7 +812,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMediaNonPreviews()
     {
-        $configuration = [FileReference::VIEW_DETAIL_ONLY];
+        $configuration = [FileReference::VIEW_LIST_AND_DETAIL, FileReference::VIEW_DETAIL_ONLY];
         return $this->getMediaItemsByConfiguration($configuration);
     }
 
