@@ -56,6 +56,7 @@ It hides the controller and action name by using fixedPostVars.
 Here is a full RealURL configuration with the explanation below.
 
 .. code-block:: php
+   :linenos:
 
     <?php
 
