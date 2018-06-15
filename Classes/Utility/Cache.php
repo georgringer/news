@@ -60,6 +60,10 @@ class Cache
         foreach ($newsRecords as $news) {
             // cache tag for each news record
             $cacheTags[] = 'tx_news_uid_' . $news->getUid();
+            
+            if ($news->_getProperty('_localizedUid')) {
+                $cacheTags[] = 'tx_news_uid_' . $news->_getProperty('_localizedUid');
+            }
         }
         if (count($cacheTags) > 0) {
             $GLOBALS['TSFE']->addCacheTags($cacheTags);
