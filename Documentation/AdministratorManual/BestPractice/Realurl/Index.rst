@@ -56,6 +56,7 @@ It hides the controller and action name by using fixedPostVars.
 Here is a full RealURL configuration with the explanation below.
 
 .. code-block:: php
+   :linenos:
 
     <?php
 
@@ -204,7 +205,7 @@ Here is a full RealURL configuration with the explanation below.
 **Explanation**
 
 The configuration of *newsDetailConfiguration* is used for the single view.
-Its name is not that important but the same name has to be used in line 86 where the uid of the single view page is set.
+Its name is not that important but the same name has to be used in line 108 where the uid of the single view page is set.
 In this example it is *70*. Of course you need to set the uid of your single view page.
 
 The same happens for a single view of categories and tags by using newsCategoryConfiguration and newsTagConfiguration.
