@@ -124,7 +124,7 @@ plugin.tx_news {
 
 				video {
 					width = 282
-					height = 300
+					height = 159
 				}
 			}
 		}
