@@ -12,6 +12,7 @@ use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 
 /**
  * Service for category related stuff
@@ -101,7 +102,7 @@ class CategoryService
         while (($row = $res->fetch())) {
             $counter++;
             if ($counter > 10000) {
-                $GLOBALS['TT']->setTSlogMessage('EXT:news: one or more recursive categories where found');
+                GeneralUtility::makeInstance(TimeTracker::class)->setTSlogMessage('EXT:news: one or more recursive categories where found');
                 return implode(',', $result);
             }
             $subcategories = self::getChildrenCategoriesRecursive($row['uid'], $counter);
