@@ -141,6 +141,9 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         if ($uriOnly) {
             return $url;
         }
+        if (empty($url)) {
+            $content = $this->renderChildren();
+        }
 
         // link could not be generated
         if ($url === '' || $linkedContent === $url) {
