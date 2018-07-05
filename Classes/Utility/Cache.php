@@ -84,6 +84,8 @@ class Cache
             foreach (GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
                 $cacheTags[] = 'tx_news_pid_' . $pageId;
             }
+        } else {
+            $cacheTags[] = 'tx_news_domain_model_news';
         }
         if (count($cacheTags) > 0) {
             $GLOBALS['TSFE']->addCacheTags($cacheTags);
