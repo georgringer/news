@@ -97,7 +97,7 @@ The well known checkbox `Show in list views` inside every FAL relation is change
 
 .. Important::
 
-    This feature must be activated inside the extension manager settings.
+    This feature must be activated inside the extension manager settings: `records.advancedMediaPreview`.
 
 |img-release700-filereference-select|
 
