@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Domain\Service;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * News Import Service
@@ -354,16 +355,17 @@ class NewsImportService extends AbstractImportService
         $importItem = $queueItem['importItem'];
         $parentNews = $this->newsRepository->findOneByImportSourceAndImportId(
             $importItem['import_source'],
-            $importItem['l10n_parent']
+            $importItem['l10n_parent'],
+            true
         );
 
-        if ($parentNews !== null) {
+        if (!empty($parentNews)) {
             $news = $this->initializeNewsRecord($importItem);
 
             $this->hydrateNewsRecord($news, $importItem, $importItemOverwrite);
 
             $news->setSysLanguageUid($importItem['sys_language_uid']);
-            $news->setL10nParent($parentNews->getUid());
+            $news->setL10nParent($parentNews['sys_language_uid']);
         }
     }
 
