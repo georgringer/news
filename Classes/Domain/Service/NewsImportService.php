@@ -365,7 +365,7 @@ class NewsImportService extends AbstractImportService
             $this->hydrateNewsRecord($news, $importItem, $importItemOverwrite);
 
             $news->setSysLanguageUid($importItem['sys_language_uid']);
-            $news->setL10nParent($parentNews['sys_language_uid']);
+            $news->setL10nParent($parentNews['uid']);
         }
     }
 
