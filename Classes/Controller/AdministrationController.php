@@ -189,8 +189,8 @@ class AdministrationController extends NewsController
     /**
      * Extends menu selextor with items from 3rd party extensions.
      *
-     * @param \TYPO3\CMS\Backend\Template\Components\Menu\Menu $menu
-     * @return \TYPO3\CMS\Backend\Template\Components\Menu\Menu
+     * @param Menu $menu
+     * @return Menu
      */
     protected function extendMenu(Menu $menu)
     {
