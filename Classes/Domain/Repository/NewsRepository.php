@@ -293,20 +293,28 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      *
      * @param string $importSource import source
      * @param int $importId import id
-     * @return \GeorgRinger\News\Domain\Model\News
+     * @param bool $asArray return result as array
+     * @return \GeorgRinger\News\Domain\Model\News|array
      */
-    public function findOneByImportSourceAndImportId($importSource, $importId)
+    public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setRespectSysLanguage(false);
         $query->getQuerySettings()->setIgnoreEnableFields(true);
 
-        return $query->matching(
+        $result = $query->matching(
             $query->logicalAnd(
                 $query->equals('importSource', $importSource),
                 $query->equals('importId', $importId)
-            ))->execute()->getFirst();
+            ))->execute($asArray);
+        if ($asArray) {
+            if (isset($result[0])) {
+                return $result[0];
+            }
+            return [];
+        }
+        return $result->getFirst();
     }
 
     /**

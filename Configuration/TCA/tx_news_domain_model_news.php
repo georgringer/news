@@ -241,7 +241,7 @@ $tx_news_domain_model_news = [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'size' => 30,
-                'eval' => $configuration->getArchiveDate(),
+                'eval' => 'int,' . $configuration->getArchiveDate(),
                 'default' => 0
             ]
         ],
