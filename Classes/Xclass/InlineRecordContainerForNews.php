@@ -66,7 +66,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
                     $label = BackendUtility::getRecordTitlePrep($recordTitle);
                 }
             } else {
-                $label = '<em>[' . htmlspecialchars($languageService->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.no_title')) . ']</em>';
+                $label = '<em>[' . htmlspecialchars($languageService->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.no_title')) . ']</em>';
             }
         }
 
@@ -86,7 +86,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
     protected function getWarningLabel($cType)
     {
         $message = sprintf(
-            $this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.noMatchingValue'),
+            $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.noMatchingValue'),
             $cType
         );
         return '<span class="exampleContent"><span class="label label-warning">' . htmlspecialchars($message) . '</span></span>';
