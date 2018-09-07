@@ -53,7 +53,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
             }
 
             $label = trim($pageLayoutView->tt_content_drawItem($raw));
-            if ($label === $this->getWarningLabel($raw['CType'])) {
+            if (strpos($label, $this->getWarningLabel($raw['CType'])) !== false) {
                 $renderFallback = true;
             }
         }
@@ -89,6 +89,6 @@ class InlineRecordContainerForNews extends InlineRecordContainer
             $this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.noMatchingValue'),
             $cType
         );
-        return '<span class="exampleContent"><span class="label label-warning">' . htmlspecialchars($message) . '</span></span>';
+        return htmlspecialchars($message);
     }
 }
