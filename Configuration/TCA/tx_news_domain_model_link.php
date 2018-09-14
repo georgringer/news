@@ -130,17 +130,6 @@ return [
                 'size' => 30,
                 'eval' => 'trim,required',
                 'softref' => 'typolink',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'Link',
-                        'icon' => 'actions-wizard-link',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
-                    ]
-                ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],

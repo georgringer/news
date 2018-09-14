@@ -420,17 +420,6 @@ $tx_news_domain_model_news = [
                 'size' => 30,
                 'max' => 255,
                 'eval' => 'trim,required',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'actions-wizard-link',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1'
-                    ]
-                ],
                 'softref' => 'typolink'
             ]
         ],
