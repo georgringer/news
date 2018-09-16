@@ -79,9 +79,9 @@ plugin.tx_news {
 		topNewsFirst = 0
 		orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
 
-		facebookLocale = en_US
-		googlePlusLocale = en
-		disqusLocale = en
+		facebookLocale < config.htmlTag_langKey
+		googlePlusLocale  < config.language
+		disqusLocale  < config.language
 
 		demandClass =
 
