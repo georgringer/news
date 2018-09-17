@@ -134,8 +134,7 @@ Use this hook to change the final settings which are for building queries, for t
 
 Example
 """""""
-This examples modifies the query and adds a constraint that only news records are shown which contain the word *yeah*.
-
+This examples modifies the settings by changing the category selection.
 
 First, register your implementation in the file ``ext_localconf.php``:
 
@@ -159,9 +158,10 @@ Now create the file ``Classes/Hooks/NewsControllerSettings.php``:
 
 		public function modify(array $params) {
 			$settings = $params['originalSettings'];
-			$settings['fo'] = bar;
+			$settings['categories'] = '2,3';
 
-			return $settings
+			return $settings;
 		}
+	}
 
 .. hint:: Please change the vendor and extension key to your real life code.
