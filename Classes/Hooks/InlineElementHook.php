@@ -74,11 +74,12 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
                 if ($previewSetting === 1) {
                     $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinviews.1');
                     $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];
+                    $controlItems = $extraItem + $controlItems;
                 } elseif ($previewSetting === 2) {
                     $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinviews.2');
                     $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check-square"></i></span>'];
+                    $controlItems = $extraItem + $controlItems;
                 }
-                $controlItems = $extraItem + $controlItems;
             } elseif ($previewSetting === 1) {
                 $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinpreview');
                 $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];
