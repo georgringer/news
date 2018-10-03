@@ -18,7 +18,7 @@
   ],
   "license": ["GPL-2.0-or-later"],
   "require": {
-    "typo3/cms-core": "^8.7.13|| >=9.1.0 <9.5.0"
+    "typo3/cms-core": "^8.7.13|| >=9.1.0 <9.6.0"
   },
   "conflict": {
     "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
@@ -30,7 +30,7 @@
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.0",
-    "nimut/testing-framework": "^1.0 || ^2.0 || ^3.0"
+    "nimut/testing-framework": "^1.0 || ^2.0 || ^3.0 || ^4.0"
   },
   "autoload": {
     "psr-4": {
