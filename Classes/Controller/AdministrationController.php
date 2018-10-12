@@ -573,11 +573,17 @@ class AdministrationController extends NewsController
      */
     protected function redirectToPageOnStart()
     {
+        if (self::is9up()) {
+            $url = 'index.php?route=/web/NewsTxNewsM2/';
+        } else {
+            $url = 'index.php?M=web_NewsTxNewsM2';
+        }
+
         if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
-            $url = 'index.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
+            $url .= '&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
             HttpUtility::redirect($url);
         } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
-            $url = 'index.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
+            $url .= '&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
             HttpUtility::redirect($url);
         }
     }
