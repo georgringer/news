@@ -197,7 +197,7 @@
 						<ul>
 							<f:for each="{newsItem.relatedLinks}" as="relatedLink">
 								<li>
-									<f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.page>
+									<f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>
 									<f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span></f:if>
 								</li>
 							</f:for>
