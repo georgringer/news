@@ -250,7 +250,7 @@ class AdministrationController extends NewsController
         if (!empty($elFromTable)) {
             $viewButton = $buttonBar->makeLinkButton()
                 ->setHref($clipBoard->pasteUrl('', $this->pageUid))
-                ->setOnClick('return ' . $clipBoard->confirmMsg('pages',
+                ->setOnClick('return ' . $clipBoard->confirmMsgText('pages',
                         BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
                         $elFromTable))
                 ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_mod_web_list.xlf:clip_pasteInto'))
