@@ -22,6 +22,9 @@ class NewsImportCommandControllerTest extends UnitTestCase
      */
     public function chosenJobsExitsWithNoJobFound()
     {
+        if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+            $this->markTestSkipped('Skipped for 9+');
+        }
         $mockedCommand = $this->getAccessibleMock(NewsImportCommandController::class, ['output', 'sendAndExit']);
         $mockedCommand->expects($this->once())->method('output');
         $classes = ['class 1' => 'title 1', 'class 2' => 'title 2'];
@@ -33,6 +36,9 @@ class NewsImportCommandControllerTest extends UnitTestCase
      */
     public function chosenJobsReturnsCorrectClass()
     {
+        if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+            $this->markTestSkipped('Skipped for 9+');
+        }
         $mockedCommand = $this->getAccessibleMock(NewsImportCommandController::class, ['dummy']);
         $classes = ['class 1' => 'title 1', 'class 2' => 'title 2'];
         $class = $mockedCommand->_call('getChosenClass', $classes, 'title 2');
