@@ -24,7 +24,6 @@ class SlugService
         return Transliterator::urlize($string);
     }
 
-
     public function countOfSlugUpdates(): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');

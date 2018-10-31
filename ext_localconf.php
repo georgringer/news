@@ -159,7 +159,6 @@ $boot = function () {
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['newsSlug']
         = \GeorgRinger\News\Updates\NewsSlugUpdater::class;
-
 };
 
 $boot();
