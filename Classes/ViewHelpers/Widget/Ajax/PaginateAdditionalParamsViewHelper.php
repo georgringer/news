@@ -16,11 +16,21 @@ class PaginateAdditionalParamsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
 {
 
     /**
-     * @param int $page
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('page', 'int', 'current page', false, 0);
+    }
+
+
+    /**
      * @return array
      */
-    public function render($page = 0)
+    public function render()
     {
+        $page = (int)$this->arguments['page'];
         if ($page === 0) {
             return [];
         }

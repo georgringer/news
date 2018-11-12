@@ -47,6 +47,9 @@ class CategoryRepositoryTest extends UnitTestCase
      */
     public function correctSysLanguageIsReturnedUsingTsfe()
     {
+        if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+            $this->markTestSkipped('Skipped for 9+');
+        }
         $objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
         $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
         $result = $mockTemplateParser->_call('getSysLanguageUid');

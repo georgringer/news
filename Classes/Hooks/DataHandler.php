@@ -120,7 +120,7 @@ class DataHandler
      */
     public function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray, \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject)
     {
-        if ($table === 'tx_news_domain_model_news' && $status === 'new') {
+        if ($table === 'tx_news_domain_model_news' && $status === 'new' && version_compare(TYPO3_branch, '9.5', '<=')) {
             if (!isset($fieldArray['path_segment']) || empty($fieldArray['path_segment'])) {
                 $fieldArray['path_segment'] = Transliterator::urlize($fieldArray['title']);
             }

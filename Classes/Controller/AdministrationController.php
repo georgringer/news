@@ -8,6 +8,7 @@ namespace GeorgRinger\News\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
@@ -273,7 +274,7 @@ class AdministrationController extends NewsController
         if (!empty($elFromTable)) {
             $viewButton = $buttonBar->makeLinkButton()
                 ->setHref($clipBoard->pasteUrl('', $this->pageUid))
-                ->setOnClick('return ' . $clipBoard->confirmMsg('pages',
+                ->setOnClick('return ' . $clipBoard->confirmMsgText('pages',
                         BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
                         $elFromTable))
                 ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_mod_web_list.xlf:clip_pasteInto'))
@@ -369,7 +370,7 @@ class AdministrationController extends NewsController
                     }
                 }
 
-                if($anyPropertySet && !GeneralUtility::_GET('formSubmitted')) {
+                if ($anyPropertySet && !GeneralUtility::_GET('formSubmitted')) {
                     $autoSubmitForm = 1;
                 }
             }
@@ -377,7 +378,7 @@ class AdministrationController extends NewsController
                 $this->view->assign('hideForm', true);
             }
         }
-        $this->view->assign('autoSubmitForm',$autoSubmitForm);
+        $this->view->assign('autoSubmitForm', $autoSubmitForm);
 
         $categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
         $idList = [];
@@ -541,7 +542,13 @@ class AdministrationController extends NewsController
             $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
         }
 
-        $returnUrl = 'index.php?M=web_NewsTxNewsM2&id=' . $this->pageUid . $this->getToken();
+        if (self::is9up()) {
+            $returnUrl = 'index.php?route=/web/NewsTxNewsM2/';
+        } else {
+            $returnUrl = 'index.php?M=web_NewsTxNewsM2';
+        }
+
+        $returnUrl .= '&id=' . $this->pageUid . $this->getToken();
         $url = BackendUtilityCore::getModuleUrl('record_edit', [
             'edit[' . $table . '][' . $pid . ']' => 'new',
             'returnUrl' => $returnUrl
@@ -590,11 +597,17 @@ class AdministrationController extends NewsController
      */
     protected function redirectToPageOnStart()
     {
+        if (self::is9up()) {
+            $url = 'index.php?route=/web/NewsTxNewsM2/';
+        } else {
+            $url = 'index.php?M=web_NewsTxNewsM2';
+        }
+
         if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
-            $url = 'index.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
+            $url .= '&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
             HttpUtility::redirect($url);
         } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
-            $url = 'index.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
+            $url .= '&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
             HttpUtility::redirect($url);
         }
     }
@@ -608,8 +621,10 @@ class AdministrationController extends NewsController
     protected function getToken(bool $tokenOnly = false): string
     {
         if (self::is9up()) {
+            $tokenParameterName = 'token';
             $token = FormProtectionFactory::get('backend')->generateToken('route', 'web_NewsTxNewsM2');
         } else {
+            $tokenParameterName = 'moduleToken';
             $token = FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
         }
 
@@ -617,7 +632,7 @@ class AdministrationController extends NewsController
             return $token;
         }
 
-        return '&moduleToken=' . $token;
+        return '&' . $tokenParameterName . '=' . $token;
     }
 
     /**
