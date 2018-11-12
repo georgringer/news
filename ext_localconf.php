@@ -28,14 +28,6 @@ $boot = function () {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
         \GeorgRinger\News\Hooks\DataHandler::class;
 
-    // FormEngine: Rendering of fields
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass']['news'] =
-        \GeorgRinger\News\Hooks\FormEngine::class;
-
-    // FormEngine: Rendering of the whole FormEngine
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass']['news'] =
-        \GeorgRinger\News\Hooks\FormEngine::class;
-
     // Modify flexform values
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass']['news'] =
         \GeorgRinger\News\Hooks\BackendUtility::class;
