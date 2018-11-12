@@ -473,6 +473,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if (empty($field)) {
                 throw new \UnexpectedValueException('No date field is defined', 1396348733);
             }
+            $maximumDate += 86400;
             $constraints[] = $query->lessThanOrEqual($field, $maximumDate);
         }
 

@@ -29,6 +29,7 @@ $tx_news_domain_model_news = [
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
+        'translationSource' => 'l10n_source',
         'default_sortby' => 'ORDER BY datetime DESC',
         'sortby' => ($configuration->getManualSorting() ? 'sorting' : ''),
         'delete' => 'deleted',
@@ -241,7 +242,7 @@ $tx_news_domain_model_news = [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'size' => 30,
-                'eval' => 'int,' . $configuration->getArchiveDate(),
+                'eval' => $configuration->getArchiveDate() . ',int',
                 'default' => 0
             ]
         ],
