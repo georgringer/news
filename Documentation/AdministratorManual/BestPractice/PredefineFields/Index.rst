@@ -75,3 +75,34 @@ For example:
 - next Monday
 - +1 week 2 days 4 hours
 
+
+
+Modify flexform values
+^^^^^^^^^^^^^^^^^^^^^^
+The flexform values can be modified by using TsConfig.
+
+.. code-block:: typoscript
+
+    TCEFORM {
+        tt_content {
+            pi_flexform {
+                news_pi1 {
+                    sDEF {
+                      settings\.orderDirection.disabled = 1
+                      settings\.orderBy.addItems {
+                        teaser = teaser
+                      }
+                    }
+                }
+            }
+        }
+    }
+
+
+.. attention::
+
+   The dot inside the field name must be escaped!
+
+To identify the key of the tab (e.g. `sDEF`) and the field name (e.g. `settings.orderBy`)
+look either in the source code while checking the flexforms or look into the configuration itself
+which can be found at `EXT:news/Configuration/FlexForms/flexform_news.xml`.
