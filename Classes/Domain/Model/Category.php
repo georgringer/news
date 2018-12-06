@@ -122,6 +122,9 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $seoText;
 
+    /** @var string */
+    protected $slug;
+
     /**
      * Initialize images
      *
@@ -565,5 +568,21 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setSeoText($seoText)
     {
         $this->seoText = $seoText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }
