@@ -82,6 +82,7 @@ CREATE TABLE sys_category (
 	seo_description text,
 	seo_headline varchar(255) NOT NULL DEFAULT '',
 	seo_text text,
+	slug varchar(2048),
 
 	KEY import (import_id,import_source)
 );
@@ -174,6 +175,7 @@ CREATE TABLE tx_news_domain_model_tag (
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
 	title tinytext,
+	slug varchar(2048),
 	seo_title varchar(255) NOT NULL DEFAULT '',
 	seo_description text,
 	seo_headline varchar(255) NOT NULL DEFAULT '',

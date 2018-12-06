@@ -152,6 +152,12 @@ $boot = function () {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['newsSlug']
         = \GeorgRinger\News\Updates\NewsSlugUpdater::class;
 
+    if (version_compare(TYPO3_branch, '9.5', '>=')) {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sysCategorySlugs']
+            = \GeorgRinger\News\Updates\PopulateCategorySlugs::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsTagSlugs']
+            = \GeorgRinger\News\Updates\PopulateTagSlugs::class;
+    }
 };
 
 $boot();
