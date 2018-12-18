@@ -10,10 +10,10 @@ namespace GeorgRinger\News\Hooks;
  */
 use DmitryDulepov\DdGooglesitemap\Generator\AbstractSitemapGenerator;
 use DmitryDulepov\DdGooglesitemap\Renderers\NewsSitemapRenderer;
-use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * This class implements news sitemap
@@ -87,43 +87,24 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     protected function generateSitemapContent()
     {
         if (count($this->pidList) > 0) {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('tx_news_domain_model_news');
+            /** @var TypoScriptFrontendController $tsfe */
+            $tsfe = $GLOBALS['TSFE'];
+            $tsfe->sys_language_content = (int)$GLOBALS['TSFE']->config['config']['sys_language_uid'];
 
-            $where = [
-                $queryBuilder->expr()->in(
-                    'pid',
-                    $queryBuilder->createNamedParameter($this->pidList, Connection::PARAM_INT_ARRAY)
-                ),
-                $where[] = $queryBuilder->expr()->eq(
-                    'sys_language_uid',
-                    $queryBuilder->createNamedParameter((int)GeneralUtility::_GP('L'), \PDO::PARAM_INT)
-                )
-            ];
-            if ($this->isNewsSitemap) {
-                $where[] = $queryBuilder->expr()->gte(
-                    'datetime',
-                    $queryBuilder->createNamedParameter($GLOBALS['EXEC_TIME'] - 48 * 60 * 60, \PDO::PARAM_INT)
-                );
-            }
+            $rows = $this->cObj->getRecords('tx_news_domain_model_news', [
+                'selectFields' => '*',
+                'pidInList' => implode('',$this->pidList),
+                'where' => $this->isNewsSitemap ? 'datetime >= ' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '',
+                'orderBy' => 'datetime DESC',
+                'begin' => $this->offset,
+                'max' => $this->limit
+            ]);
 
-            $statement = $queryBuilder->select('*')
-                ->from('tx_news_domain_model_news')
-                ->where(
-                    ...$where
-                )
-                ->orderBy('datetime', 'desc')
-                ->setFirstResult($this->offset)
-                ->setMaxResults($this->limit)
-                ->execute();
-
-            $rowCount = 0;
-            while ($row = $statement->fetch()) {
+            foreach ($rows as $row) {
                 $this->generateSingleLine($row);
-                $rowCount++;
             }
 
-            if ($rowCount === 0) {
+            if (empty($rows)) {
                 echo '<!-- It appears that there are no tx_news entries. If your ' .
                     'news storage sysfolder is outside of the rootline, you may ' .
                     'want to use the dd_googlesitemap.skipRootlineCheck=1 TS ' .
@@ -262,25 +243,31 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     /**
      * Check if supplied page id and current page are in the same root line
      *
-     * @param    int $pid Page id to check
-     * @return    bool    true if page is in the root line
+     * @param int $pid Page id to check
+     * @return bool true if page is in the root line
      */
     protected function isInRootline($pid)
     {
-        if (isset($GLOBALS['TSFE']->config['config']['tx_ddgooglesitemap_skipRootlineCheck'])) {
-            $skipRootlineCheck = $GLOBALS['TSFE']->config['config']['tx_ddgooglesitemap_skipRootlineCheck'];
+        /** @var TypoScriptFrontendController $tsfe */
+        $tsfe = $GLOBALS['TSFE'];
+        if (isset($tsfe->config['config']['tx_ddgooglesitemap_skipRootlineCheck'])) {
+            $skipRootlineCheck = $tsfe->config['config']['tx_ddgooglesitemap_skipRootlineCheck'];
         } else {
-            $skipRootlineCheck = $GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['skipRootlineCheck'];
+            $skipRootlineCheck = $tsfe->tmpl->setup['tx_ddgooglesitemap.']['skipRootlineCheck'];
         }
         if ($skipRootlineCheck) {
             $result = true;
         } else {
             $result = false;
-            $rootPid = intval($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['forceStartPid']);
+            $rootPid = intval($tsfe->tmpl->setup['tx_ddgooglesitemap.']['forceStartPid']);
             if ($rootPid == 0) {
-                $rootPid = $GLOBALS['TSFE']->id;
+                $rootPid = $tsfe->id;
             }
-            $rootline = $GLOBALS['TSFE']->sys_page->getRootLine($pid);
+            try {
+                $rootline = $tsfe->sys_page->getRootLine($pid);
+            } catch (\Exception $e) {
+                $rootline = [];
+            }
             foreach ($rootline as $row) {
                 if ($row['uid'] == $rootPid) {
                     $result = true;
