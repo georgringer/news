@@ -118,7 +118,7 @@ Here is a full RealURL configuration with the explanation below.
                 [
                     'GETvar' => 'tx_news_pi1[controller]',
                     'valueMap' => [
-                        '' => 'detail',
+                        '' => 'News',
                     ],
                     'noMatch' => 'bypass'
                 ],
