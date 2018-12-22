@@ -160,6 +160,17 @@ class NewsController extends NewsBaseController
 
         $demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
             $settings['recursive']));
+
+        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'])) {
+            $params = [
+                'demand' => $demand,
+                'settings' => $settings,
+                'class' => $class,
+            ];
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] as $reference) {
+                GeneralUtility::callUserFunction($reference, $params, $this);
+            }
+        }
         return $demand;
     }
 
