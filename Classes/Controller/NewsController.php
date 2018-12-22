@@ -342,13 +342,6 @@ class NewsController extends NewsBaseController
             $news = $this->checkPidOfNewsRecord($news);
         }
 
-        if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
-            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
-            if ($errorContent) {
-                return $errorContent;
-            }
-        }
-
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -360,7 +353,15 @@ class NewsController extends NewsBaseController
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
+        $news = $assignedValues['newsItem'];
         $this->view->assignMultiple($assignedValues);
+
+        if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
+            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
+            if ($errorContent) {
+                return $errorContent;
+            }
+        }
 
         Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
         if (!is_null($news) && is_a($news, 'GeorgRinger\\News\\Domain\\Model\\News')) {
