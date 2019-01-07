@@ -71,6 +71,7 @@ plugin.tx_news {
 			}
 
 			skipControllerAndAction = 0
+			disableExternalRelAttribute = 0
 		}
 
 		cropMaxCharacters = 150

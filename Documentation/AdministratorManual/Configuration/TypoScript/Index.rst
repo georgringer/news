@@ -580,6 +580,7 @@ Properties
 	demandClass_                          string
 	`link\.hrDate`_                       integer
 	`link\.typesOpeningInNewWindow`_      string
+	`link\.disableExternalRelAttribute`_  string
 	`link\.skipControllerAndAction`_      integer
 	facebookLocale_                       string
 	disqusLocale_                         string
@@ -881,6 +882,23 @@ link.typesOpeningInNewWindow
          Default is 2 which is the type "Link to external page"
    Default
          2
+
+.. _tsLinkDisableExternalRelAttribute:
+
+link.disableExternalRelAttribute
+""""""""""""""""""""""""""""""""
+
+.. container:: table-row
+
+   Property
+         link.disableExternalRelAttribute
+   Data type
+         bool
+   Description
+         By default, the link tag of external link is extended with `rel="noopener noreferrer"`.
+         By setting `link.disableExternalRelAttribute = 1` this is disabled.
+   Default
+         0
 
 .. _tsLinkSkipControllerAndAction:
 

@@ -44,7 +44,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * </output>
  *
  */
-class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
     /**
@@ -131,6 +131,9 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
             // external news
             case 2:
                 $configuration['parameter'] = $newsItem->getExternalurl();
+                if (isset($tsSettings['link']['disableExternalRelAttribute']) && !$tsSettings['link']['disableExternalRelAttribute']) {
+                    $this->tag->addAttribute('rel', 'noopener noreferrer');
+                }
                 break;
             // normal news record
             default:
