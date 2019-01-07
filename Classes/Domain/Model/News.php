@@ -1503,9 +1503,8 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $this->getFirstPreview();
     }
 
-    public function getFalMediaNonPreviews() {
+    public function getFalMediaNonPreviews()
+    {
         return $this->getMediaNonPreviews();
     }
-
-
 }
