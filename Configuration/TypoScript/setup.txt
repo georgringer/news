@@ -112,12 +112,12 @@ plugin.tx_news {
 					maxWidth = 282
 					maxHeight =
 
-					# Get lightbox settings from css_styled_content
+					# Get lightbox settings from fluid_styled_content
 					lightbox {
-						enabled = {$styles.content.imgtext.linkWrap.lightboxEnabled}
-						class = {$styles.content.imgtext.linkWrap.lightboxCssClass}
-						width = {$styles.content.imgtext.linkWrap.width}
-						height = {$styles.content.imgtext.linkWrap.height}
+						enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
+						class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
+						width = {$styles.content.textmedia.linkWrap.width}
+						height = {$styles.content.textmedia.linkWrap.height}
 						rel = lightbox[myImageSet]
 					}
 				}
@@ -190,17 +190,6 @@ plugin.tx_news {
 		}
 	}
 }
-
-# EXT:fluid_styled_content uses different constants
-[globalVar = LIT:0<{$styles.content.textmedia.maxW}]
-	plugin.tx_news.settings.detail.media.image.lightbox {
-		enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
-		class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
-		width = {$styles.content.textmedia.linkWrap.width}
-		height = {$styles.content.textmedia.linkWrap.height}
-	}
-[global]
-
 
 # Rendering of content elements in detail view
 lib.tx_news.contentElementRendering = RECORDS
