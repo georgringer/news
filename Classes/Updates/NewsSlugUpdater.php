@@ -9,10 +9,7 @@ namespace GeorgRinger\News\Updates;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use GeorgRinger\News\Service\SlugService;
-use GeorgRinger\News\Service\Transliterator\Transliterator;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
 
@@ -21,7 +18,6 @@ use TYPO3\CMS\Install\Updates\AbstractUpdate;
  */
 class NewsSlugUpdater extends AbstractUpdate
 {
-
     const TABLE = 'tx_news_domain_model_news';
 
     /** @var SlugService */
@@ -41,7 +37,6 @@ class NewsSlugUpdater extends AbstractUpdate
     {
         return 'Updates slug field "path_segment" of EXT:news records';
     }
-
 
     /**
      * Checks if an update is needed
@@ -77,5 +72,4 @@ class NewsSlugUpdater extends AbstractUpdate
         $this->markWizardAsDone();
         return true;
     }
-
 }

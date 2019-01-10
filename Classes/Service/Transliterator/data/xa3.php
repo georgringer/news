@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xa3] = array(
+$UTF8_TO_ASCII[0xa3] = [
 'nzup', 'nzurx', 'nzur', 'nzyt', 'nzyx', 'nzy', 'nzyp', 'nzyrx', 'nzyr', 'sit', 'six', 'si', 'sip', 'siex', 'sie', 'siep',
 'sat', 'sax', 'sa', 'sap', 'suox', 'suo', 'suop', 'sot', 'sox', 'so', 'sop', 'sex', 'se', 'sep', 'sut', 'sux',
 'su', 'sup', 'surx', 'sur', 'syt', 'syx', 'sy', 'syp', 'syrx', 'syr', 'ssit', 'ssix', 'ssi', 'ssip', 'ssiex', 'ssie',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xa3] = array(
 'rop', 'rex', 're', 'rep', 'rut', 'rux', 'ru', 'rup', 'rurx', 'rur', 'ryt', 'ryx', 'ry', 'ryp', 'ryrx', 'ryr',
 'jit', 'jix', 'ji', 'jip', 'jiet', 'jiex', 'jie', 'jiep', 'juot', 'juox', 'juo', 'juop', 'jot', 'jox', 'jo', 'jop',
 'jut', 'jux', 'ju', 'jup', 'jurx', 'jur', 'jyt', 'jyx', 'jy', 'jyp', 'jyrx', 'jyr', 'qit', 'qix', 'qi', 'qip',
-);
+];
