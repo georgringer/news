@@ -310,6 +310,10 @@ class NewsController extends NewsBaseController
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_SELECTED_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
+
+        if (!empty($newsRecords) && is_a($newsRecords[0], 'GeorgRinger\\News\\Domain\\Model\\News')) {
+            Cache::addCacheTagsByNewsRecords($newsRecords);
+        }
     }
 
     /**
