@@ -24,17 +24,17 @@
 
 <f:if condition="{newsItem.description}">
 	<f:then>
-		<n:metaTag property="description" content="{newsItem.description}" />
+		<n:metaTag name="description" content="{newsItem.description}" />
 		<n:metaTag property="og:description" content="{newsItem.description}" />
 		<n:metaTag property="twitter:description" content="{newsItem.description}" />
 	</f:then>
 	<f:else>
-		<n:metaTag property="description" content="{newsItem.teaser -> f:format.stripTags()}" />
+		<n:metaTag name="description" content="{newsItem.teaser -> f:format.stripTags()}" />
 		<n:metaTag property="og:description" content="{newsItem.teaser -> f:format.stripTags()}" />
 		<n:metaTag property="twitter:description" content="{newsItem.teaser -> f:format.stripTags()}" />
 	</f:else>
 </f:if>
-<n:metaTag property="keywords" content="{newsItem.keywords}" />
+<n:metaTag name="keywords" content="{newsItem.keywords}" />
 <n:metaTag property="fb:admins" content="{settings.opengraph.admins}" />
 <n:metaTag property="og:email" content="{settings.opengraph.email}" />
 <n:metaTag property="og:phone_number" content="{settings.opengraph.phone_number}" />
@@ -48,8 +48,8 @@
 <n:metaTag property="og:postal-code" content="{settings.opengraph.postal-code}" />
 <n:metaTag property="og:country-name" content="{settings.opengraph.country-name}" />
 
-<n:metaTag property="twitter:card" content="{settings.opengraph.twitter.card}" />
-<n:metaTag property="twitter:site" content="{settings.opengraph.twitter.site}" />
-<n:metaTag property="twitter:creator" content="{settings.opengraph.twitter.creator}" />
+<n:metaTag name="twitter:card" content="{settings.opengraph.twitter.card}" />
+<n:metaTag name="twitter:site" content="{settings.opengraph.twitter.site}" />
+<n:metaTag name="twitter:creator" content="{settings.opengraph.twitter.creator}" />
 
 </html>

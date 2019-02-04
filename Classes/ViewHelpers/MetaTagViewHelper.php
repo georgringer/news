@@ -33,6 +33,10 @@ use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
  */
 class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
+    /**
+     * @var string
+     */
+    protected $tagName = 'meta';
 
     /**
      * Arguments initialization
@@ -41,7 +45,8 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
     public function initializeArguments()
     {
         if (version_compare(TYPO3_version, '9.0.0') >= 0) {
-            $this->registerArgument('property', 'string', 'Property of meta tag', true);
+            $this->registerArgument('property', 'string', 'Property of meta tag');
+            $this->registerArgument('name', 'string', 'Content of meta tag using the name attribute');
             $this->registerArgument('content', 'string', 'Content of meta tag');
         }else{
             $this->registerTagAttribute('property', 'string', 'Property of meta tag');
@@ -68,13 +73,21 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
         }
 
         if (version_compare(TYPO3_version, '9.0.0') >= 0) {
-            $metaTagManagerRegistry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
-            $manager = $metaTagManagerRegistry->getManagerForProperty($this->arguments['property']);
+            if(isset($this->arguments['property']) && !empty($this->arguments['property'])){
+                $property = $this->arguments['property'];
+            }else if(isset($this->arguments['name']) && !empty($this->arguments['name'])){
+                $property = $this->arguments['name'];
+            }
 
-            if ($this->arguments['useCurrentDomain']) {
-                $manager->addProperty($this->arguments['property'], GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
-            } else if (isset($this->arguments['content']) && !empty($this->arguments['content'])) {
-                $manager->addProperty($this->arguments['property'], $this->arguments['content']);
+            if($property) {
+                $metaTagManagerRegistry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
+                $manager = $metaTagManagerRegistry->getManagerForProperty($property);
+
+                if ($this->arguments['useCurrentDomain']) {
+                    $manager->addProperty($property, GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+                } else if (isset($this->arguments['content']) && !empty($this->arguments['content'])) {
+                    $manager->addProperty($property, $this->arguments['content']);
+                }
             }
         }else{
             if ($this->arguments['useCurrentDomain']) {
