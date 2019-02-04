@@ -8,6 +8,7 @@ namespace GeorgRinger\News\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
 
@@ -30,7 +31,7 @@ use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
  * <meta name="keywords" content="news 1, news 2" />
  * </output>
  */
-class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
     /**
@@ -39,8 +40,14 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
      */
     public function initializeArguments()
     {
-        $this->registerArgument('property', 'string', 'Property of meta tag', true);
-        $this->registerArgument('content', 'string', 'Content of meta tag');
+        if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+            $this->registerArgument('property', 'string', 'Property of meta tag', true);
+            $this->registerArgument('content', 'string', 'Content of meta tag');
+        }else{
+            $this->registerTagAttribute('property', 'string', 'Property of meta tag');
+            $this->registerTagAttribute('name', 'string', 'Content of meta tag using the name attribute');
+            $this->registerTagAttribute('content', 'string', 'Content of meta tag');
+        }
         $this->registerArgument('useCurrentDomain', 'boolean', 'Use current domain', false, false);
     }
 
@@ -60,13 +67,23 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
             return;
         }
 
-        $metaTagManagerRegistry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
-        $manager = $metaTagManagerRegistry->getManagerForProperty($this->arguments['property']);
+        if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+            $metaTagManagerRegistry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
+            $manager = $metaTagManagerRegistry->getManagerForProperty($this->arguments['property']);
 
-        if ($this->arguments['useCurrentDomain']) {
-            $manager->addProperty($this->arguments['property'], GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
-        }else if(isset($this->arguments['content']) && !empty($this->arguments['content'])){
-            $manager->addProperty($this->arguments['property'], $this->arguments['content']);
+            if ($this->arguments['useCurrentDomain']) {
+                $manager->addProperty($this->arguments['property'], GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+            } else if (isset($this->arguments['content']) && !empty($this->arguments['content'])) {
+                $manager->addProperty($this->arguments['property'], $this->arguments['content']);
+            }
+        }else{
+            if ($this->arguments['useCurrentDomain']) {
+                $this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+            }
+            if ($this->arguments['useCurrentDomain'] || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
+                $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+                $pageRenderer->addMetaTag($this->tag->render());
+            }
         }
     }
 }

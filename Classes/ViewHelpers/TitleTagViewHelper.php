@@ -53,8 +53,13 @@ class TitleTagViewHelper extends AbstractViewHelper implements CompilableInterfa
 
         $content = trim($renderChildrenClosure());
         if (!empty($content)) {
-            $titleProvider = GeneralUtility::makeInstance(\GeorgRinger\News\Seo\NewsPageTitleProvider::class);
-            $titleProvider->setTitle($content);
+            if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+                $titleProvider = GeneralUtility::makeInstance(\GeorgRinger\News\Seo\NewsPageTitleProvider::class);
+                $titleProvider->setTitle($content);
+            }else{
+                $GLOBALS['TSFE']->altPageTitle = $content;
+                $GLOBALS['TSFE']->indexedDocTitle = $content;
+            }
         }
     }
 }
