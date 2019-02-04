@@ -40,6 +40,9 @@ class TitleTagViewHelperTest extends UnitTestCase
      */
     public function titleTagIsSet()
     {
+        if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+            $this->markTestSkipped('Skipped for 9+');
+        }
         $title = 'Some title';
         /** @var TitleTagViewHelper|\PHPUnit_Framework_MockObject_MockObject $viewHelper */
         $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['dummy']);
