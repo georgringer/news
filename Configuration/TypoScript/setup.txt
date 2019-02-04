@@ -234,6 +234,16 @@ module.tx_news {
 }
 
 # ==============================================
+# Page Title Provider for EXT:news
+# ==============================================
+config.pageTitleProviders{
+	newsPageTitle {
+		provider = GeorgRinger\News\Seo\NewsPageTitleProvider
+		before = record, seo
+	}
+}
+
+# ==============================================
 # Persistence object mapping configuration
 # ==============================================
 config.tx_extbase.persistence.classes {
