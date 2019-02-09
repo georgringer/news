@@ -42,6 +42,15 @@ class NewsSlugUpdater extends AbstractUpdate
         return 'Updates slug field "path_segment" of EXT:news records';
     }
 
+    /**
+     * Get description
+     *
+     * @return string Longer description of this updater
+     */
+    public function getDescription(): string
+    {
+        return 'Fills empty slug field "path_segment" of EXT:news records with urlized title.';
+    }
 
     /**
      * Checks if an update is needed
