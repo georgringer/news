@@ -151,7 +151,7 @@ if (version_compare(TYPO3_branch, '9.5', '>=')) {
             'generatorOptions' => [
                 'fields' => ['title'],
                 'replacements' => [
-                    '/' => ''
+                    '/' => '-'
                 ],
             ],
             'fallbackCharacter' => '-',
