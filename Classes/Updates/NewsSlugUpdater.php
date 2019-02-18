@@ -11,8 +11,6 @@ namespace GeorgRinger\News\Updates;
  */
 
 use GeorgRinger\News\Service\SlugService;
-use GeorgRinger\News\Service\Transliterator\Transliterator;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
 
@@ -50,6 +48,14 @@ class NewsSlugUpdater extends AbstractUpdate
     public function getDescription(): string
     {
         return 'Fills empty slug field "path_segment" of EXT:news records with urlized title.';
+    }
+
+    /**
+     * @return string Unique identifier of this updater
+     */
+    public function getIdentifier(): string
+    {
+        return 'newsSlug';
     }
 
     /**
