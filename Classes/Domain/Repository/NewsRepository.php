@@ -431,7 +431,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if (count($searchFields) === 0) {
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);
             }
-            $searchObject->setSplitSubjectWords(true);
             $searchSubjectSplitted = str_getcsv($searchSubject, ' ');
             if ($searchObject->isSplitSubjectWords()) {
                 foreach ($searchFields as $field) {
