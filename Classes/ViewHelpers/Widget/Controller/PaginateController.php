@@ -137,8 +137,28 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
         }
 
         if ($this->currentPage > 1) {
-            $pageLabel = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('paginate_overall', 'news', [$this->currentPage, $this->numberOfPages]);
-            $GLOBALS['TSFE']->page['title'] = $GLOBALS['TSFE']->page['title'] . ' - ' . trim($pageLabel, '.');
+            $pageLabel = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                'paginate_overall',
+                'news',
+                [
+                    $this->currentPage,
+                    $this->numberOfPages
+                ]
+            );
+            $titleAddition = ' - ' . trim($pageLabel, '.');
+
+            $GLOBALS['TSFE']->page['title'] .= $titleAddition;
+
+            $registerProperties = [
+                'currentPage' => $this->currentPage,
+                'numberOfPages' => $this->numberOfPages,
+                'titleAddition' => $titleAddition,
+            ];
+            \GeorgRinger\News\Utility\Page::setRegisterProperties(
+                implode(',', array_keys($registerProperties)),
+                $registerProperties,
+                'newsPagination'
+            );
         }
 
         $this->view->assign('contentArguments', [
