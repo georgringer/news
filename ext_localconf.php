@@ -161,6 +161,12 @@ $boot = function () {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsTagSlugs']
             = \GeorgRinger\News\Updates\PopulateTagSlugs::class;
     }
+
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1552726986] = [
+        'nodeName' => 'NewsStaticText',
+        'priority' => 70,
+        'class' => \GeorgRinger\News\Backend\FieldInformation\StaticText::class
+    ];
 };
 
 $boot();

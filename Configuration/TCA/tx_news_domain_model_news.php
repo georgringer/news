@@ -497,11 +497,27 @@ $tx_news_domain_model_news = [
                 'size' => 10,
                 'minitems' => 0,
                 'maxitems' => 99,
+
+                'fieldInformation' => [
+                    'tagInformation' => [
+                        'renderType' => 'NewsStaticText',
+                        'options' => [
+                            'labels' => [
+                                [
+                                    'label' => '',
+                                    'bold' => true,
+                                    'italic' => true,
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
                 'suggestOptions' => [
                     'default' => [
+                        'minimumCharacters' => 2,
                         'searchWholePhrase' => true,
-                        'receiverClass' => \GeorgRinger\News\Hooks\SuggestReceiver::class
-                    ]
+                        'receiverClass' => \GeorgRinger\News\Backend\Wizard\SuggestWizardReceiver::class
+                    ],
                 ],
                 'fieldControl' => [
                     'editPopup' => [
