@@ -181,7 +181,9 @@ class AdministrationController extends NewsController
 
         $menu = $this->extendMenu($menu);
 
-        $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
+        if ($menu instanceof Menu) {
+            $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
+        }
         if (is_array($this->pageInformation)) {
             $this->view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation($this->pageInformation);
         }
