@@ -203,7 +203,7 @@ class NewsImportService extends AbstractImportService
                 }
 
                 // no file found skip processing of this item
-                if ($file === false) {
+                if ($file === false || $file === NULL) {
                     continue;
                 }
 
@@ -250,7 +250,7 @@ class NewsImportService extends AbstractImportService
                 }
 
                 // no file found skip processing of this item
-                if ($file === false) {
+                if ($file === false || $file === NULL) {
                     continue;
                 }
 
