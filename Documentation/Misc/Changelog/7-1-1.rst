@@ -1,0 +1,37 @@
+7.1.1 - 2019/04/08
+==================
+
+.. include:: ../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+On the fly creation of tags
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A special thanks to Nicole Cordes who provided a new implementation of creating tags on the fly.
+The code has been taken from https://github.com/IchHabRecht/t3tags.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2019-04-05 [BUGFIX] Add missing l10n_source columns (#890) (Commit a9c907bd by Oliver Hader)
+   2019-04-04 - parameter disableLanguageOverlayMode has been added to the generateQuery method (#889) (Commit 40709195 by Alex)
+   2019-04-03 Fix strip of "ORDER BY" in statistics query (#883) (Commit 6a796eb4 by Markus Poerschke)
+   2019-03-25 [BUGFIX] Handle array's within method Page::setRegisterProperties (#881) (Commit 9752108d by Jörg Kummer)
+   2019-03-22 [BUGFIX] Restore dummy-preview-image (#875) (Commit 676c5319 by Jörg Kummer)
+   2019-03-20 FIX #870 Exception when importing tt_news with news_ttnewsimport (#872) (Commit 8adf2987 by Peter Linzenkirchner)
+   2019-03-16 [BUGFIX] Fix creating tags on the fly (Commit f8ed372f by Georg Ringer)
+   2019-03-14 [BUGFIX] Create a unique slug value in SlugService (#846) (#847) (Commit 20602e8e by Wolfgang Klinger)
+   2019-03-09 [FEATURE] Provide pagination information to TSFE register (#781) (Commit 2c61711e by p2 media GmbH & Co. KG)
+   2019-03-08 [TASK] Add archiveRestriction to overrideFlexformSettingsIfEmpty (Commit 1dc2ff92 by Georg Ringer)
+   2019-03-08 [BUGFIX] Fix slugservice with non ascii (Commit 466b44e8 by Georg Ringer)
+
+
+This list has been created by using `git log 7.1.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
