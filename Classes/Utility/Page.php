@@ -67,15 +67,21 @@ class Page
             $register = [];
             foreach ($items as $item) {
                 $key = $prefix . ucfirst($item);
-                $getter = 'get' . ucfirst($item);
-                try {
-                    $value = $object->$getter();
-                    if ($value instanceof \DateTime) {
-                        $value = $value->getTimestamp();
+                if (is_object($object)) {
+                    $getter = 'get' . ucfirst($item);
+                    try {
+                        $value = $object->$getter();
+                        if ($value instanceof \DateTime) {
+                            $value = $value->getTimestamp();
+                        }
+                        $register[$key] = $value;
+                    } catch (\Exception $e) {
+                        GeneralUtility::devLog($e->getMessage(), 'news', GeneralUtility::SYSLOG_SEVERITY_WARNING);
                     }
+                }
+                if (is_array($object)) {
+                    $value = $object[$item];
                     $register[$key] = $value;
-                } catch (\Exception $e) {
-                    GeneralUtility::devLog($e->getMessage(), 'news', GeneralUtility::SYSLOG_SEVERITY_WARNING);
                 }
             }
             $cObj->cObjGetSingle('LOAD_REGISTER', $register);
