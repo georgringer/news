@@ -52,9 +52,9 @@ class Cache
      * Following cache tags will be added to tsfe:
      * "tx_news_uid_[news:uid]"
      *
-     * @param array $newsRecords array with news records
+     * @param array|\TYPO3\CMS\Extbase\Persistence\QueryResult $newsRecords with news records
      */
-    public static function addCacheTagsByNewsRecords(array $newsRecords)
+    public static function addCacheTagsByNewsRecords($newsRecords)
     {
         $cacheTags = [];
         foreach ($newsRecords as $news) {
