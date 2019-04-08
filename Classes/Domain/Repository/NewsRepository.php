@@ -441,7 +441,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                             $subConstraints[] = $query->like($field, '%' . $searchSubjectSplittedPart . '%');
                         }
                     }
-                    $searchConstraints[] = $query->logicalOr($subConstraints);
+                    $searchConstraints[] = $query->logicalAnd($subConstraints);
                 }
                 if (count($searchConstraints)) {
                     $constraints[] = $query->logicalOr($searchConstraints);
