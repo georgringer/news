@@ -46,7 +46,7 @@ $boot = function () {
 
     // Hide content elements in list and page module & filter in administration module
     if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9002000) {
-        
+
         // Hide content elements in list module & filter in administration module
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
             = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
@@ -58,7 +58,7 @@ $boot = function () {
             = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
     }
 
-   
+
 
     // Inline records hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] =
@@ -128,6 +128,7 @@ $boot = function () {
     if (TYPO3_MODE === 'BE') {
         $icons = [
             'apps-pagetree-folder-contains-news' => 'ext-news-folder-tree.svg',
+            'apps-pagetree-page-contains-news' => 'ext-news-page-tree.svg',
             'ext-news-wizard-icon' => 'plugin_wizard.svg',
             'ext-news-type-default' => 'news_domain_model_news.svg',
             'ext-news-type-internal' => 'news_domain_model_news_internal.svg',
