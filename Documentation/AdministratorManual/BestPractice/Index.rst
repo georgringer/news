@@ -20,6 +20,7 @@ Best practice
 	PreviewOfRecord/Index
 	IntegrationWithTypoScript/Index
 	ClearCache/Index
+	Routing/Index
 	Realurl/Index
 	PredefineFields/Index
 	Rss/Index
