@@ -15,6 +15,7 @@ use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
+use TYPO3\CMS\Backend\Template\Components\Menu\Menu;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -178,10 +179,35 @@ class AdministrationController extends NewsController
             $menu->addMenuItem($item);
         }
 
-        $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
+        $menu = $this->extendMenu($menu);
+
+        if ($menu instanceof Menu) {
+            $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
+        }
         if (is_array($this->pageInformation)) {
             $this->view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation($this->pageInformation);
         }
+    }
+
+    /**
+     * Extends menu selextor with items from 3rd party extensions.
+     *
+     * @param Menu $menu
+     * @return Menu
+     */
+    protected function extendMenu(Menu $menu)
+    {
+        $signalParameters = [
+            'menu' => $menu,
+        ];
+        try {
+            $menu = $this->signalSlotDispatcher->dispatch(__CLASS__, 'createMenu', $signalParameters);
+        } catch (\Exception $exception) {
+            // Nothing to do
+            $menu = $signalParameters['menu'];
+        }
+
+        return $menu;
     }
 
     /**
