@@ -118,13 +118,15 @@ $tx_news_domain_model_news = [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'eval' => 'datetime'
             ]
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'eval' => 'datetime'
             ]
         ],
         'sorting' => [
