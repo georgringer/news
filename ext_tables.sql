@@ -31,7 +31,7 @@ CREATE TABLE tx_news_domain_model_news (
 	title tinytext,
 	teaser text,
 	bodytext mediumtext,
-	datetime int(11) DEFAULT '0' NOT NULL,
+	datetime bigint(20) DEFAULT '0' NOT NULL,
 	archive int(11) DEFAULT '0' NOT NULL,
 	author tinytext,
 	author_email tinytext,
