@@ -151,6 +151,7 @@ plugin.tx_news {
 				templatePath =
 				prevNextHeaderTags = 1
 				maximumNumberOfLinks = 3
+				throw404whenPageExceedsLimit = 0
 			}
 
 			rss {

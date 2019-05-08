@@ -2,6 +2,12 @@
 
 namespace GeorgRinger\News\ViewHelpers\Widget\Controller;
 
+use TYPO3\CMS\Core\Error\Http\PageNotFoundException;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Controller\ErrorController;
+use TYPO3\CMS\Frontend\Page\PageAccessFailureReasons;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -98,6 +104,8 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
      * Main action
      *
      * @param int $currentPage
+     * @throws ImmediateResponseException
+     * @throws PageNotFoundException
      */
     public function indexAction($currentPage = 1)
     {
@@ -110,6 +118,16 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
         if ($this->currentPage > $this->numberOfPages) {
             // set $modifiedObjects to NULL if the page does not exist
             $modifiedObjects = null;
+
+            if (isset($this->settings['list']['paginate']['throw404whenPageExceedsLimit']) && (bool)$this->settings['list']['paginate']['throw404whenPageExceedsLimit'] === true) {
+                $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
+                    $GLOBALS['TYPO3_REQUEST'],
+                    'Current page exceeds number of existing pages.',
+                    $GLOBALS['TSFE']->getPageAccessFailureReasons(PageAccessFailureReasons::ACCESS_DENIED_HOST_PAGE_MISMATCH)
+                );
+
+                throw new ImmediateResponseException($response, 1557327131);
+            }
         } else {
             // modify query
             $itemsPerPage = (integer)$this->configuration['itemsPerPage'];
