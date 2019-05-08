@@ -123,7 +123,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
                 $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
                     $GLOBALS['TYPO3_REQUEST'],
                     'Current page exceeds number of existing pages.',
-                    $GLOBALS['TSFE']->getPageAccessFailureReasons(PageAccessFailureReasons::ACCESS_DENIED_HOST_PAGE_MISMATCH)
+                    $GLOBALS['TSFE']->getPageAccessFailureReasons(PageAccessFailureReasons::PAGE_NOT_FOUND)
                 );
 
                 throw new ImmediateResponseException($response, 1557327131);
