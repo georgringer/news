@@ -84,6 +84,11 @@ $tx_news_domain_model_news = [
                 'default' => 0,
             ]
         ],
+        'l10n_source' => [
+            'config' => [
+                'type' => 'passthrough'
+            ]
+        ],
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
@@ -113,13 +118,15 @@ $tx_news_domain_model_news = [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'eval' => 'datetime'
             ]
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'eval' => 'datetime'
             ]
         ],
         'sorting' => [
@@ -684,7 +691,7 @@ $tx_news_domain_model_news = [
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     --palette--;;paletteDate,
-                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
+                    bodytext,
                 --div--;' . $ll . 'tx_news_domain_model_news.content_elements,
                     content_elements,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,

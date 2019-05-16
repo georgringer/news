@@ -360,6 +360,11 @@ class NewsController extends NewsBaseController
         $news = $assignedValues['newsItem'];
         $this->view->assignMultiple($assignedValues);
 
+        // reset news if type is internal or external
+        if ($news && ($news->getType() === '1' || $news->getType() === '2')) {
+            $news = null;
+        }
+
         if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
             $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
             if ($errorContent) {
@@ -581,8 +586,8 @@ class NewsController extends NewsBaseController
 
         $tsSettings = $this->configurationManager->getConfiguration(
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
-            'news',
-            'news_pi1'
+            $this->extensionName,
+            $this->pluginName
         );
         $originalSettings = $this->configurationManager->getConfiguration(
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS

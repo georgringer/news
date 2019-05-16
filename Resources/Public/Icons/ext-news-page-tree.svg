@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#EFEFEF" d="M2 0v16h12V4l-4-4H2z"/>
+    <path opacity=".65" fill="#FFF" d="M10 4V0l4 4h-4z"/>
+    <path opacity=".2" d="M13 5v5L9 5h4z"/>
+    <path fill="#999" d="M2 0v16h12V4l-4-4H2zm1 1h6v4h4v10H3V1zm7 .4L12.6 4H10V1.4z"/>
+    <g transform="matrix(0.5, 0, 0, 0.5, 3, 7.5)">
+        <path fill="#7E86DC" d="M 18 3 L 18 13 L 2 13 L 2 1 L 9 1 L 10 3 L 18 3 Z"/>
+        <path opacity=".43" d="M 18 4 L 10 4 L 9 6 L 2 6 L 2 3 L 18 3 L 18 4 Z"/>
+    </g>
+</svg>

@@ -16,7 +16,7 @@
 				</author>
 				<published><f:format.date format="c">{newsItem.datetime}</f:format.date></published>
 				<updated><f:format.date format="c">{newsItem.tstamp}</f:format.date></updated>
-				<link rel="alternate" type="text/html" href="<f:format.htmlspecialchars><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" /></f:format.htmlspecialchars>"/>
+				<link rel="alternate" type="text/html" href="<f:format.htmlspecialchars><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" configuration="{forceAbsoluteUrl: 1}" /></f:format.htmlspecialchars>"/>
 				<summary>{newsItem.teaser -> f:format.stripTags() -> f:format.htmlspecialchars()}</summary>
 				<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
 					<f:format.html>{newsItem.bodytext}</f:format.html>
