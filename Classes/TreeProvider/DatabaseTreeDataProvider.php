@@ -1,5 +1,4 @@
 <?php
-
 namespace GeorgRinger\News\TreeProvider;
 
 /**
@@ -8,8 +7,10 @@ namespace GeorgRinger\News\TreeProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Service\CategoryService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -19,9 +20,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeDataProvider
 {
-
     /**
-     * @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     * @var BackendUserAuthentication
      */
     protected $backendUserAuthentication;
 
@@ -138,12 +138,29 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      */
     protected function isSingleCategoryAclActivated()
     {
-        if (is_array($GLOBALS['BE_USER']->userTS['tx_news.'])
-            && $GLOBALS['BE_USER']->userTS['tx_news.']['singleCategoryAcl'] === '1'
-        ) {
+        if (($this->getUserTsConfig()['tx_news.']['singleCategoryAcl'] ?? null) === '1') {
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getUserTsConfig(): array
+    {
+        // prior to TYPO3 v10
+        if (in_array('userTS', get_object_vars($this->backendUserAuthentication), true)) {
+            return $backendUser->userTS ?? [];
+        }
+        // since TYPO3 v10
+        if (method_exists($this->backendUserAuthentication, 'getTSConfig')) {
+            return $this->backendUserAuthentication->getTSConfig() ?? [];
+        }
+        throw new \RuntimeException(
+            'Cannot resolve UserTsConfig of backend user',
+            1559843153
+        );
     }
 }

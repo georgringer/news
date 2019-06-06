@@ -1,5 +1,4 @@
 <?php
-
 namespace GeorgRinger\News\Tests\Unit\TreeProvider;
 
 /**
@@ -8,6 +7,8 @@ namespace GeorgRinger\News\Tests\Unit\TreeProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
@@ -15,7 +16,6 @@ use Nimut\TestingFramework\TestCase\UnitTestCase;
  */
 class DatabaseTreeDataProviderTest extends UnitTestCase
 {
-
     /**
      * @var array
      */
@@ -38,9 +38,16 @@ class DatabaseTreeDataProviderTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @todo
+     *  + use prophecy instead of $GLOBALS['BE_USER']
+     *  + $mockTemplateParser->_set('backendUserAuthentication', $backendUserProphecy);
+     *  + test against $backendUserProphecy->userTS = [...]
+     *  + test against $backendUserProphecy->getTSConfig()->willReturn([...])
      */
     public function canSingleCategoryAclSettingBeActivated()
     {
+        /** @var AccessibleMockObjectInterface $mockTemplateParser */
         $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\TreeProvider\\DatabaseTreeDataProvider', ['dummy'], [], '',
             $callOriginalConstructor = false);
 
