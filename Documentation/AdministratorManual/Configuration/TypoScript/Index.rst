@@ -193,7 +193,7 @@ archiveRestriction
 
          **active: Only active (non archived)**
 
-         All news records with an archive date before the current date are shown.
+         All news records with an archive date in the future are shown.
 
          **archived: Archived**
 
