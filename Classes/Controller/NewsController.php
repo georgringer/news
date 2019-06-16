@@ -586,8 +586,8 @@ class NewsController extends NewsBaseController
 
         $tsSettings = $this->configurationManager->getConfiguration(
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
-            $this->extensionName,
-            $this->pluginName
+            $this->request->getControllerExtensionName(),
+            $this->request->getPluginName()
         );
         $originalSettings = $this->configurationManager->getConfiguration(
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
