@@ -216,7 +216,6 @@ $tx_news_domain_model_news = [
                 'cols' => 60,
                 'rows' => 5,
                 'enableRichtext' => $configuration->getRteForTeaser(),
-                'richtextConfiguration' => 'default',
             ]
         ],
         'bodytext' => [
@@ -228,7 +227,6 @@ $tx_news_domain_model_news = [
                 'rows' => 5,
                 'softref' => 'rtehtmlarea_images,typolink_tag,images,email[subst],url',
                 'enableRichtext' => true,
-                'richtextConfiguration' => 'default',
             ]
         ],
         'datetime' => [
