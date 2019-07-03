@@ -36,6 +36,7 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
     {
         $this->registerArgument('path', 'string', 'Path to the CSS/JS file which should be included', true);
         $this->registerArgument('compress', 'bool', 'Define if file should be compressed', false, false);
+        $this->registerArgument('footer', 'bool', 'Define if JS file should be loaded in the footer', false, false);
     }
 
     /**
@@ -50,13 +51,19 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
     ) {
         $path = $arguments['path'];
         $compress = (bool)$arguments['compress'];
+        $footer = (bool)$arguments['footer'];
+
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         if (TYPO3_MODE === 'FE') {
             $path = $GLOBALS['TSFE']->tmpl->getFileName($path);
 
             // JS
             if (strtolower(substr($path, -3)) === '.js') {
-                $pageRenderer->addJsFile($path, null, $compress, false, '', true);
+                if ( $footer === true ) {
+                    $pageRenderer->addJsFooterFile($path, null, $compress, false, '', true);
+                } else {
+                    $pageRenderer->addJsFile($path, null, $compress, false, '', true);
+                }
 
             // CSS
             } elseif (strtolower(substr($path, -4)) === '.css') {
