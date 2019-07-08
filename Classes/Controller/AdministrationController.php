@@ -201,11 +201,11 @@ class AdministrationController extends NewsController
             'menu' => $menu,
         ];
         try {
-            $menu = $this->signalSlotDispatcher->dispatch(__CLASS__, 'createMenu', $signalParameters);
+            $signalParameters = $this->signalSlotDispatcher->dispatch(__CLASS__, 'createMenu', $signalParameters);
         } catch (\Exception $exception) {
             // Nothing to do
-            $menu = $signalParameters['menu'];
         }
+        $menu = $signalParameters['menu'];
 
         return $menu;
     }
