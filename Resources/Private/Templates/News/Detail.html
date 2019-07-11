@@ -176,7 +176,7 @@
 								<li>
 									<span class="news-related-files-link">
 										<a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
-											{f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+											{f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name) -> f:format.htmlentities()}
 										</a>
 									</span>
 									<span class="news-related-files-size">
@@ -197,7 +197,9 @@
 						<ul>
 							<f:for each="{newsItem.relatedLinks}" as="relatedLink">
 								<li>
-									<f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>
+									<f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}">
+										{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri) -> f:format.htmlentities()}
+									</f:link.typolink>
 									<f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span></f:if>
 								</li>
 							</f:for>
