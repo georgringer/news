@@ -17,6 +17,9 @@ addons:
     packages:
       - parallel
 
+services:
+  - mysql
+
 cache:
   directories:
     - $HOME/.composer/cache
