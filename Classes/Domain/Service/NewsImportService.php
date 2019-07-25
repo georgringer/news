@@ -199,11 +199,11 @@ class NewsImportService extends AbstractImportService
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
                 } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
-                    $file = false;
+                    $file = null;
                 }
 
                 // no file found skip processing of this item
-                if ($file === false) {
+                if ($file === null) {
                     continue;
                 }
 
@@ -246,11 +246,11 @@ class NewsImportService extends AbstractImportService
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
                 } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
-                    $file = false;
+                    $file = null;
                 }
 
                 // no file found skip processing of this item
-                if ($file === false) {
+                if ($file === null) {
                     continue;
                 }
 

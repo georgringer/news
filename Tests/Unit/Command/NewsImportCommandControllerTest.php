@@ -12,7 +12,7 @@ use GeorgRinger\News\Command\NewsImportCommandController;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 
 /**
- * Testcase for the GeorgRinger\\News\\Controller\\NewsImportCommandControllerTest class.
+ * Testcase for the GeorgRinger\\News\\Controller\\NewsImportCommandController class.
  */
 class NewsImportCommandControllerTest extends UnitTestCase
 {

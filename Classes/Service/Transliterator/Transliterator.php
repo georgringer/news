@@ -577,10 +577,10 @@ abstract class Transliterator
         $text = preg_replace('/(\\w)\'(\\w)/', '${1}${2}', $text);
 
         // Replace all none word characters with a space
-        $text = preg_replace('/\W/', ' ', $text);
+        $text = preg_replace('/[\W_]/u', ' ', $text);
 
         // More stripping. Replace spaces with dashes
-        $text = strtolower(preg_replace('/[^A-Za-z0-9\/]+/', $separator,
+        $text = strtolower(preg_replace('/[\W]+/u', $separator,
             preg_replace('/([a-z\d])([A-Z])/', '\1_\2',
                 preg_replace('/([A-Z]+)([A-Z][a-z])/', '\1_\2',
                     preg_replace('/::/', '/', $text)))));

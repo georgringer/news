@@ -114,6 +114,13 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     protected $types = [];
 
     /**
+     * Holding custom data, use e.g. your ext key as array key
+     *
+     * @var array
+     */
+    protected $_customSettings = [];
+
+    /**
      * Set archive settings
      *
      * @param string $archiveRestriction archive setting
@@ -701,4 +708,21 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     {
         $this->types = $types;
     }
+
+    /**
+     * @return array
+     */
+    public function getCustomSettings(): array
+    {
+        return $this->_customSettings;
+    }
+
+    /**
+     * @param array $customSettings
+     */
+    public function setCustomSettings(array $customSettings)
+    {
+        $this->_customSettings = $customSettings;
+    }
+
 }

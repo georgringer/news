@@ -351,6 +351,9 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $data = [];
         $sql = $this->findDemandedRaw($demand);
 
+        // strip unwanted order by
+        $sql = $this->stripOrderBy($sql);
+
         // Get the month/year into the result
         $field = $demand->getDateField();
         $field = empty($field) ? 'datetime' : $field;
@@ -373,9 +376,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             $sql .= BackendUtility::BEenableFields('tx_news_domain_model_news') .
                 ' AND ' . $expressionBuilder->eq('deleted', 0);
         }
-
-        // strip unwanted order by
-        $sql = $this->stripOrderBy($sql);
 
         // group by custom month/year fields
         $orderDirection = strtolower($demand->getOrder());
@@ -431,7 +431,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if (count($searchFields) === 0) {
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);
             }
-            $searchObject->setSplitSubjectWords(true);
             $searchSubjectSplitted = str_getcsv($searchSubject, ' ');
             if ($searchObject->isSplitSubjectWords()) {
                 foreach ($searchFields as $field) {
@@ -442,7 +441,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                             $subConstraints[] = $query->like($field, '%' . $searchSubjectSplittedPart . '%');
                         }
                     }
-                    $searchConstraints[] = $query->logicalOr($subConstraints);
+                    $searchConstraints[] = $query->logicalAnd($subConstraints);
                 }
                 if (count($searchConstraints)) {
                     $constraints[] = $query->logicalOr($searchConstraints);
@@ -498,6 +497,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
     private function stripOrderBy(string $str)
     {
         /** @noinspection NotOptimalRegularExpressionsInspection */
-        return preg_replace('/^(?:ORDER[[:space:]]*BY[[:space:]]*)+/i', '', trim($str));
+        return preg_replace('/(?:ORDER[[:space:]]*BY[[:space:]]*.*)+/i', '', trim($str));
     }
 }
