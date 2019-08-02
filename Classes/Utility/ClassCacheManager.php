@@ -45,6 +45,7 @@ class ClassCacheManager
         }
 
         foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'] as $key => $extensionsWithThisClass) {
+            $this->constructorLines = [];
             $extendingClassFound = false;
 
             $path = ExtensionManagementUtility::extPath('news') . $classPath . $key . '.php';
