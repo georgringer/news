@@ -126,7 +126,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
         }
         $url = $this->getNewsItemUrl($row, $forceSinglePid);
         if ($url) {
-            echo $this->renderer->renderEntry($url, $row['title'], $row['tstamp'],
+            echo $this->renderer->renderEntry($url, $row['title'], $row['datetime'],
                 '', $row['keywords']);
         } else {
             echo 'xx';
