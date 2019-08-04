@@ -119,14 +119,16 @@ $tx_news_domain_model_news = [
             'label' => 'crdate',
             'config' => [
                 'type' => 'input',
-                'eval' => 'datetime'
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
                 'type' => 'input',
-                'eval' => 'datetime'
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'sorting' => [
