@@ -47,6 +47,7 @@ plugin.tx_news {
 		allowEmptyStringsForOverwriteDemand = 0
 
 		includeSubCategories = 0
+		respectSysLanguageInFindInList = 0
 
 		analytics {
 			social {
