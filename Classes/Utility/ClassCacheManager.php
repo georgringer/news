@@ -151,8 +151,8 @@ class ClassCacheManager
      */
     protected function getPartialInfo($filePath)
     {
-        return LF . '/*' . str_repeat('*', 70) . LF . TAB .
-        'this is partial from: ' . LF . TAB . str_replace(PATH_site, '', $filePath) . LF . str_repeat('*',
+        return LF . '/*' . str_repeat('*', 70) . LF . "\t" .
+        'this is partial from: ' . LF . "\t" . str_replace(PATH_site, '', $filePath) . LF . str_repeat('*',
             70) . '*/' . LF;
     }
 
