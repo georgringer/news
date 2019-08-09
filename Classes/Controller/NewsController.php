@@ -107,6 +107,8 @@ class NewsController extends NewsBaseController
                 $cacheTagsSet = true;
             }
         }
+
+        $this->categoryRepository->setRespectSysLanguageInFindInList((bool)$this->settings['respectSysLanguageInFindInList']);
     }
 
     /**
@@ -586,8 +588,8 @@ class NewsController extends NewsBaseController
 
         $tsSettings = $this->configurationManager->getConfiguration(
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
-            $this->extensionName,
-            $this->pluginName
+            'news',
+            'news_pi1'
         );
         $originalSettings = $this->configurationManager->getConfiguration(
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS

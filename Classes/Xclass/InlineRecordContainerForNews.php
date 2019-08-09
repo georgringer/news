@@ -60,10 +60,10 @@ class InlineRecordContainerForNews extends InlineRecordContainer
 
         if ($renderFallback) {
             $label = $data['recordTitle'];
-            if (!empty($recordTitle)) {
+            if (!empty($label)) {
                 // The user function may return HTML, therefore we can't escape it
                 if (empty($data['processedTca']['ctrl']['formattedLabel_userFunc'])) {
-                    $label = BackendUtility::getRecordTitlePrep($recordTitle);
+                    $label = BackendUtility::getRecordTitlePrep($label);
                 }
             } else {
                 $label = '<em>[' . htmlspecialchars($languageService->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.no_title')) . ']</em>';
