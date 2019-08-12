@@ -185,7 +185,7 @@ class RecordListConstraint
                         foreach ($arguments['selectedCategories'] as $category) {
                             $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
                             if (!empty($idList)) {
-                                $orConstraint[] = sprintf('uid IN(%s)', implode(',', $idList));
+                                $orConstraint[] = sprintf('(uid IN (%s))', implode(',', $idList));
                                 $orConstraintDoctrine[] = $expressionBuilder->notIn('uid', $idList);
                             } else {
                                 $orConstraint[] = '1=2';
@@ -196,7 +196,8 @@ class RecordListConstraint
                             $parameters['where'][] = '1=2';
                             $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
                         } else {
-                            $parameters['where'][] = implode(' NOT OR ', $orConstraint);
+                            $orConstraint = array_unique($orConstraint);
+                            $parameters['where'][] = ' NOT (' . implode(' OR ', $orConstraint) . ')';
                             $parameters['whereDoctrine'][] = $expressionBuilder->andX(...$orConstraintDoctrine);
                         }
                         break;
