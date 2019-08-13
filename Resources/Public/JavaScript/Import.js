@@ -1,7 +1,6 @@
 define([
     'jquery',
-    'TYPO3/CMS/Backend/Notification',
-    'TYPO3/CMS/Backend/DebugConsole'], function ($, Notification, DebugConsole) {
+    'TYPO3/CMS/Backend/Notification'], function ($, Notification) {
 
     var NewsImport = function () {
         var me = this;
