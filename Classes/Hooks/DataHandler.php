@@ -108,7 +108,6 @@ class DataHandler
         }
     }
 
-
     /**
      * Fill path_segment/slug field with title
      *
