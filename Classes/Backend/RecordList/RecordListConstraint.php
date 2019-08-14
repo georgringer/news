@@ -269,5 +269,4 @@ class RecordListConstraint
     {
         return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
     }
-
 }

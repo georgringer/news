@@ -41,7 +41,7 @@ class TitleTagViewHelper extends AbstractViewHelper implements CompilableInterfa
         RenderingContextInterface $renderingContext
     ) {
         // Skip if current record is part of tt_content CType shortcut
-        if(!empty($GLOBALS['TSFE']->recordRegister)
+        if (!empty($GLOBALS['TSFE']->recordRegister)
             && is_array($GLOBALS['TSFE']->recordRegister)
             && strpos(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:') !== false
             && !empty($GLOBALS['TSFE']->currentRecord)
