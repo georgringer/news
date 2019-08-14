@@ -63,9 +63,9 @@
       <trans-unit id="settings.listPid.description" xml:space="preserve">
 				<source>Select the page on which the list view is shown.</source>
 			<target state="needs-translation">Select the page on which the list view is shown.</target></trans-unit>
-      <trans-unit id="settings.limit.description" xml:space="preserve">
+      <trans-unit id="settings.limit.description" xml:space="preserve" approved="yes">
 				<source>Set the maximum amount of news records to be displayed</source>
-			<target state="needs-translation">Set the maximum amount of news records to be displayed</target></trans-unit>
+			<target state="translated">កំណត់​ចំនួន​អតិបរមា​នៃព័ត៌មាន​ដែលត្រូវបង្ហាញ</target></trans-unit>
       <trans-unit id="settings.offset.description" xml:space="preserve">
 				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
 			<target state="needs-translation">Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</target></trans-unit>
