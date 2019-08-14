@@ -3,27 +3,27 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:52Z" product-name="news" target-language="sv-SE">
     <header/>
     <body>
-      <trans-unit id=".description" xml:space="preserve">
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Link record</source>
-			<target state="needs-translation">Link record</target></trans-unit>
-      <trans-unit id=".details" xml:space="preserve">
+			<target state="translated">Länkpost</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Relation to other pages and records.</source>
-			<target state="needs-translation">Relation to other pages and records.</target></trans-unit>
-      <trans-unit id="_.seeAlso" xml:space="preserve">
+			<target state="translated">Relation till andra sidor och poster.</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
-			<target state="needs-translation">See also the website http://www.news.com/</target></trans-unit>
-      <trans-unit id="hidden.description" xml:space="preserve">
+			<target state="translated">Se även webbplatsen http://www.news.com/</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden elements are never shown in the frontend.</source>
-			<target state="needs-translation">Hidden elements are never shown in the frontend.</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
+			<target state="translated">Dolda element visas aldrig i frontend.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Optional title of a link.</source>
-			<target state="needs-translation">Optional title of a link.</target></trans-unit>
-      <trans-unit id="description.description" xml:space="preserve">
+			<target state="translated">Frivillig titel för länk.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Description of a link.</source>
-			<target state="needs-translation">Description of a link.</target></trans-unit>
-      <trans-unit id="uri.description" xml:space="preserve">
+			<target state="translated">Beskrivning för länk.</target></trans-unit>
+      <trans-unit id="uri.description" xml:space="preserve" approved="yes">
 				<source>Link to a file, ... .</source>
-			<target state="needs-translation">Link to a file, ... .</target></trans-unit>
+			<target state="translated">Länka till en fil, ... .</target></trans-unit>
     </body>
   </file>
 </xliff>
