@@ -17,15 +17,12 @@ namespace GeorgRinger\News\Updates;
  */
 
 use GeorgRinger\News\Service\SlugService;
-use GeorgRinger\News\Service\Transliterator\Transliterator;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\AbstractUpdate;
-use TYPO3\CMS\Install\Updates\Confirmation;
 
 /**
  * Migrate EXT:realurl unique alias into empty news slugs
- * 
+ *
  * If a lot of similar titles are used it might be a good a idea
  * to migrate the unique aliases from realurl to be sure that the same alias is used
  *
@@ -35,7 +32,6 @@ use TYPO3\CMS\Install\Updates\Confirmation;
  */
 class RealurlAliasNewsSlugUpdater extends AbstractUpdate
 {
-
     const TABLE = 'tx_news_domain_model_news';
 
     /** @var SlugService */
