@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xac] = array(
+$UTF8_TO_ASCII[0xac] = [
 'ga', 'gag', 'gagg', 'gags', 'gan', 'ganj', 'ganh', 'gad', 'gal', 'galg', 'galm', 'galb', 'gals', 'galt', 'galp', 'galh',
 'gam', 'gab', 'gabs', 'gas', 'gass', 'gang', 'gaj', 'gac', 'gak', 'gat', 'gap', 'gah', 'gae', 'gaeg', 'gaegg', 'gaegs',
 'gaen', 'gaenj', 'gaenh', 'gaed', 'gael', 'gaelg', 'gaelm', 'gaelb', 'gaels', 'gaelt', 'gaelp', 'gaelh', 'gaem', 'gaeb', 'gaebs', 'gaes',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xac] = array(
 'gyels', 'gyelt', 'gyelp', 'gyelh', 'gyem', 'gyeb', 'gyebs', 'gyes', 'gyess', 'gyeng', 'gyej', 'gyec', 'gyek', 'gyet', 'gyep', 'gyeh',
 'go', 'gog', 'gogg', 'gogs', 'gon', 'gonj', 'gonh', 'god', 'gol', 'golg', 'golm', 'golb', 'gols', 'golt', 'golp', 'golh',
 'gom', 'gob', 'gobs', 'gos', 'goss', 'gong', 'goj', 'goc', 'gok', 'got', 'gop', 'goh', 'gwa', 'gwag', 'gwagg', 'gwags',
-);
+];
