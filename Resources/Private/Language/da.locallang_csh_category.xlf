@@ -3,39 +3,39 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:26Z" product-name="news" target-language="da">
     <header/>
     <body>
-      <trans-unit id=".description" xml:space="preserve">
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Category record</source>
-			<target state="needs-translation">Category record</target></trans-unit>
-      <trans-unit id=".details" xml:space="preserve">
+			<target state="translated">Tag element</target><alt-trans><target>Medieelement</target></alt-trans><alt-trans><target>Filreference</target></alt-trans><alt-trans><target>Kategori</target></alt-trans></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Category for news records.</source>
-			<target state="needs-translation">Category for news records.</target></trans-unit>
-      <trans-unit id="_.seeAlso" xml:space="preserve">
+			<target state="translated">Nyhedselementer kan tagges gennem disse elementer</target><alt-trans><target>Relation til medieelementer</target></alt-trans><alt-trans><target>Relaterer til filer</target></alt-trans><alt-trans><target>Kategori for nyhedselementer.</target></alt-trans></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
-			<target state="needs-translation">See also the website http://www.news.com/</target></trans-unit>
-      <trans-unit id="sys_language_uid.description" xml:space="preserve">
+			<target state="translated">Se også websitet http://www.news.com/</target><alt-trans><target>Se også hjemmesiden http://www.news.com/</target></alt-trans></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
 				<source>Language of the category</source>
-			<target state="needs-translation">Language of the category</target></trans-unit>
-      <trans-unit id="hidden.description" xml:space="preserve">
+			<target state="translated">Kategoriens sprog</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden categories are never shown in the frontend.</source>
-			<target state="needs-translation">Hidden categories are never shown in the frontend.</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
+			<target state="translated">Skjulte elementer vises aldrig i frontend.</target><alt-trans><target>Skjulte kategorier bliver ikke vist på hjemmesiden.</target></alt-trans></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Title of the category</source>
-			<target state="needs-translation">Title of the category</target></trans-unit>
-      <trans-unit id="parentcategory.description" xml:space="preserve">
+			<target state="translated">Titel på tag.</target><alt-trans><target>Yderligere information til titel-tag.</target></alt-trans><alt-trans><target>Valgfri titel for valgt fil.</target></alt-trans><alt-trans><target>Kategorititel</target></alt-trans></trans-unit>
+      <trans-unit id="parentcategory.description" xml:space="preserve" approved="yes">
 				<source>Select a parent category of this record to build a category tree.</source>
-			<target state="needs-translation">Select a parent category of this record to build a category tree.</target></trans-unit>
-      <trans-unit id="image.description" xml:space="preserve">
+			<target state="translated">Vælg en overkategori for at opbygge en hierarkisk struktur.</target></trans-unit>
+      <trans-unit id="image.description" xml:space="preserve" approved="yes">
 				<source>Optional image of a category.</source>
-			<target state="needs-translation">Optional image of a category.</target></trans-unit>
-      <trans-unit id="description.description" xml:space="preserve">
+			<target state="translated">Valgfrit kategoribillede.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Optional description of a category.</source>
-			<target state="needs-translation">Optional description of a category.</target></trans-unit>
-      <trans-unit id="single_pid.description" xml:space="preserve">
+			<target state="translated">Valgfri beskrivelse af valgt fil.</target><alt-trans><target>Valgfri kategoribeskrivelse.</target></alt-trans></trans-unit>
+      <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
 				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
-			<target state="needs-translation">Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</target></trans-unit>
-      <trans-unit id="shortcut.description" xml:space="preserve">
+			<target state="translated">Vælg hvilken side, der skal benyttes til detaljevisning af nyheder relateret til denne kategori. Indstillingen kan overskrives i nyhedsmodulets indstillinger.</target></trans-unit>
+      <trans-unit id="shortcut.description" xml:space="preserve" approved="yes">
 				<source>Optional link of a category.</source>
-			<target state="needs-translation">Optional link of a category.</target></trans-unit>
+			<target state="translated">Valgfrit kategorilink.</target></trans-unit>
     </body>
   </file>
 </xliff>
