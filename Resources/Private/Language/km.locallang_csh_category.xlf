@@ -3,33 +3,33 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:26Z" product-name="news" target-language="km">
     <header/>
     <body>
-      <trans-unit id=".description" xml:space="preserve">
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Category record</source>
-			<target state="needs-translation">Category record</target></trans-unit>
-      <trans-unit id=".details" xml:space="preserve">
+			<target state="translated">កំណត់​សម្គាល់</target><alt-trans><target>ឯកសារ​ពត៌មាន</target></alt-trans></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Category for news records.</source>
-			<target state="needs-translation">Category for news records.</target></trans-unit>
-      <trans-unit id="_.seeAlso" xml:space="preserve">
+			<target state="translated">កំណត់ត្រា​ព័ត៌មាន​អាចត្រូវបាន​ដាក់ស្លាក​ដោយកំណត់ត្រា​ទាំងនោះ</target><alt-trans><target>មានទំនាក់ទំនង​ទៅនឹងឯកសារ</target></alt-trans></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
-			<target state="needs-translation">See also the website http://www.news.com/</target></trans-unit>
+			<target state="translated">អ្នកអាច​មើលគំរូ​វែបសាយ http://www.news.com/</target><alt-trans><target>អ្នកអាច​មើលវែបសាយ http://www.news.com/ ផងដែរ</target></alt-trans></trans-unit>
       <trans-unit id="sys_language_uid.description" xml:space="preserve">
 				<source>Language of the category</source>
 			<target state="needs-translation">Language of the category</target></trans-unit>
-      <trans-unit id="hidden.description" xml:space="preserve">
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden categories are never shown in the frontend.</source>
-			<target state="needs-translation">Hidden categories are never shown in the frontend.</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
+			<target state="translated">ធាតុ​ដែលបានលាក់​មិនត្រូវ​បានបង្ហាញ​នៅក្នុងផ្នែក​ខាងមុខ។</target><alt-trans><target>ធាតុ​ដែលបានលាក់​មិនត្រូវ​បានបង្ហាញ​នៅក្នុង​ផ្នែកខាងមុខ។</target></alt-trans></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Title of the category</source>
-			<target state="needs-translation">Title of the category</target></trans-unit>
+			<target state="translated">ចំណងជើង​នៃស្លាក</target><alt-trans><target>ចំណងជើង​នៃ​ឯកសារ​ដែលបានរើស​(មិនដាក់ក៏បាន)</target></alt-trans><alt-trans><target>ចំណងជើង​របស់​ប្រភេទ</target></alt-trans></trans-unit>
       <trans-unit id="parentcategory.description" xml:space="preserve">
 				<source>Select a parent category of this record to build a category tree.</source>
 			<target state="needs-translation">Select a parent category of this record to build a category tree.</target></trans-unit>
       <trans-unit id="image.description" xml:space="preserve">
 				<source>Optional image of a category.</source>
 			<target state="needs-translation">Optional image of a category.</target></trans-unit>
-      <trans-unit id="description.description" xml:space="preserve">
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Optional description of a category.</source>
-			<target state="needs-translation">Optional description of a category.</target></trans-unit>
+			<target state="translated">ការពិពណ៌នា​អំពីឯកសារ​ដែលបានជ្រើសរើស​(មិនបាច់ក៏បាន)</target></trans-unit>
       <trans-unit id="single_pid.description" xml:space="preserve">
 				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
 			<target state="needs-translation">Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</target></trans-unit>
