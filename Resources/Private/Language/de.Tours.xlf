@@ -6,16 +6,16 @@
       <trans-unit id="adminModule.title" xml:space="preserve" approved="yes">
 				<source>EXT:news - Administration module</source>
 			<target state="translated">EXT:news - Administrationsmodul</target></trans-unit>
-      <trans-unit id="adminModule.description" xml:space="preserve" approved="yes">
+      <trans-unit id="adminModule.description" xml:space="preserve">
 				<source>The administration module of EXT:news is a powerful tool for editors to create, edit and find news records.</source>
 			<target state="translated">Das Verwaltungsmodul von EXT:news ist ein leistungsstarkes Werkzeug für Redakteure, um Artikel zu finden, erstellen und bearbeiten.</target></trans-unit>
-      <trans-unit id="adminModule.general.title" xml:space="preserve">
+      <trans-unit id="adminModule.general.title" xml:space="preserve" approved="yes">
 				<source>Administration module</source>
 			<target state="translated">Administrationsmodul</target></trans-unit>
-      <trans-unit id="adminModule.general.content" xml:space="preserve" approved="yes">
+      <trans-unit id="adminModule.general.content" xml:space="preserve">
 				<source>This is the best place for creating new records and editing existing ones</source>
 			<target state="translated">Dies ist der beste Ort, um neue Datensätze zu erstellen und bestehende zu bearbeiten</target></trans-unit>
-      <trans-unit id="adminModule.filter.title" xml:space="preserve">
+      <trans-unit id="adminModule.filter.title" xml:space="preserve" approved="yes">
 				<source>Toggle filter</source>
 			<target state="translated">Filter ein-/ausblenden</target></trans-unit>
       <trans-unit id="adminModule.filter.content" xml:space="preserve">
@@ -71,7 +71,7 @@
 			<target state="translated">Wählen Sie, wie die Kategorie-Auswahl verwendet werden soll</target></trans-unit>
       <trans-unit id="adminModule.actionSwitch.title" xml:space="preserve">
 				<source>Switch to the pid listing</source>
-			<target state="needs-translation">Switch to the pid listing</target></trans-unit>
+			<target state="translated">Zu PID Übersicht wechseln</target></trans-unit>
       <trans-unit id="adminModule.actionSwitch.content" xml:space="preserve">
 				<source>A powerful view is hidden here! It enables you to find those pages which contain news records.</source>
 			<target state="translated">Eine mächtige Ansicht ist hier versteckt! Es ermöglicht Ihnen, die Seiten zu finden, die Artikel enthalten.</target></trans-unit>
