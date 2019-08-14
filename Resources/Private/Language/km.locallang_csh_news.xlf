@@ -27,9 +27,9 @@
       <trans-unit id="hidden.description" xml:space="preserve">
 				<source>Hidden records are not shown in the frontend.</source>
 			<target state="needs-translation">Hidden records are not shown in the frontend.</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>News title</source>
-			<target state="needs-translation">News title</target></trans-unit>
+			<target state="translated">ចំណងជើង​ព័ត៌មាន</target></trans-unit>
       <trans-unit id="alternative_title.description" xml:space="preserve">
 				<source>Alternative Title will be used as the title for the browser window / tab</source>
 			<target state="needs-translation">Alternative Title will be used as the title for the browser window / tab</target></trans-unit>
@@ -72,9 +72,9 @@
       <trans-unit id="description.description" xml:space="preserve">
 				<source>Define a description which can be used for SEO optimizations.</source>
 			<target state="needs-translation">Define a description which can be used for SEO optimizations.</target></trans-unit>
-      <trans-unit id="related.description" xml:space="preserve">
+      <trans-unit id="related.description" xml:space="preserve" approved="yes">
 				<source>Select related news records.</source>
-			<target state="needs-translation">Select related news records.</target></trans-unit>
+			<target state="translated">ជ្រើសរើស​ព័ត៌មាន​ដែលទាក់ទង។</target></trans-unit>
       <trans-unit id="related_from.description" xml:space="preserve">
 				<source>Show news which select current news record as related.</source>
 			<target state="needs-translation">Show news which select current news record as related.</target></trans-unit>
