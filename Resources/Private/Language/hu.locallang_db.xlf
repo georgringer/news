@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="news" target-language="hu">
+    <header/>
+    <body>
+      <trans-unit id="tx_news_domain_model_news.tabs.relations" xml:space="preserve">
+				<source>Relations</source>
+			<target state="needs-translation">Relations</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve">
+				<source>Alternative Titles</source>
+			<target state="needs-translation">Alternative Titles</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.palettes.dates" xml:space="preserve">
+				<source>Dates</source>
+			<target state="needs-translation">Dates</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news" xml:space="preserve">
+				<source>News</source>
+			<target state="needs-translation">News</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.alternative_title" xml:space="preserve">
+				<source>Alternative title</source>
+			<target state="needs-translation">Alternative title</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve">
+				<source>Teaser</source>
+			<target state="needs-translation">Teaser</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve">
+				<source>Date &amp; Time</source>
+			<target state="needs-translation">Date &amp; Time</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive" xml:space="preserve">
+				<source>Archive</source>
+			<target state="needs-translation">Archive</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive.placeholder" xml:space="preserve">
+				<source>Define when the news should be listed in the archive</source>
+			<target state="needs-translation">Define when the news should be listed in the archive</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.categories" xml:space="preserve">
+				<source>Categories</source>
+			<target state="needs-translation">Categories</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related" xml:space="preserve">
+				<source>Related News</source>
+			<target state="needs-translation">Related News</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_from" xml:space="preserve">
+				<source>Related News (from)</source>
+			<target state="needs-translation">Related News (from)</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files" xml:space="preserve">
+				<source>Related Files</source>
+			<target state="needs-translation">Related Files</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files.add" xml:space="preserve">
+				<source>Add related file</source>
+			<target state="needs-translation">Add related file</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_links" xml:space="preserve">
+				<source>Related Links</source>
+			<target state="needs-translation">Related Links</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.0" xml:space="preserve">
+				<source>News</source>
+			<target state="needs-translation">News</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.1" xml:space="preserve">
+				<source>Internal link</source>
+			<target state="needs-translation">Internal link</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.2" xml:space="preserve">
+				<source>External Page</source>
+			<target state="needs-translation">External Page</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media" xml:space="preserve">
+				<source>Media file</source>
+			<target state="needs-translation">Media file</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media.add" xml:space="preserve">
+				<source>Add media file</source>
+			<target state="needs-translation">Add media file</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.istopnews" xml:space="preserve">
+				<source>Top news</source>
+			<target state="needs-translation">Top news</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.content_elements" xml:space="preserve">
+				<source>Content elements</source>
+			<target state="needs-translation">Content elements</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags" xml:space="preserve">
+				<source>Tags</source>
+			<target state="needs-translation">Tags</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.add" xml:space="preserve">
+				<source>Add a new tag</source>
+			<target state="needs-translation">Add a new tag</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.list" xml:space="preserve">
+				<source>List all tags</source>
+			<target state="needs-translation">List all tags</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.edit" xml:space="preserve">
+				<source>Edit tag</source>
+			<target state="needs-translation">Edit tag</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.keywords.placeholder" xml:space="preserve">
+				<source>Keyword1, keyword2, keyword3</source>
+			<target state="needs-translation">Keyword1, keyword2, keyword3</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target state="needs-translation"><![CDATA[<title>-Tag]]></target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			<target state="needs-translation">Meta-Description</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			<target state="needs-translation">Headline (H1)</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
+			<target state="needs-translation">SEO Text-Container</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			<target state="needs-translation">SEO</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve">
+				<source>Image</source>
+			<target state="needs-translation">Image</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.single_pid" xml:space="preserve">
+				<source>Single-view page for news from this category</source>
+			<target state="needs-translation">Single-view page for news from this category</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.shortcut" xml:space="preserve">
+				<source>News category shortcut</source>
+			<target state="needs-translation">News category shortcut</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target state="needs-translation"><![CDATA[<title>-Tag]]></target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			<target state="needs-translation">Meta-Description</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			<target state="needs-translation">Headline (H1)</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.seo.seo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
+			<target state="needs-translation">SEO Text-Container</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link" xml:space="preserve">
+				<source>News Link Element</source>
+			<target state="needs-translation">News Link Element</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.title" xml:space="preserve">
+				<source>Title</source>
+			<target state="needs-translation">Title</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.description" xml:space="preserve">
+				<source>Description</source>
+			<target state="needs-translation">Description</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve">
+				<source>URL</source>
+			<target state="needs-translation">URL</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve">
+				<source>www.domain.org</source>
+			<target state="needs-translation">www.domain.org</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			<target state="needs-translation">SEO</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag" xml:space="preserve">
+				<source>News Tag</source>
+			<target state="needs-translation">News Tag</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.title" xml:space="preserve">
+				<source>Title</source>
+			<target state="needs-translation">Title</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinpreview" xml:space="preserve">
+				<source>Show in list views</source>
+			<target state="needs-translation">Show in list views</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinviews" xml:space="preserve">
+				<source>Show in views</source>
+			<target state="needs-translation">Show in views</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinviews.0" xml:space="preserve">
+				<source>Show only in detail views</source>
+			<target state="needs-translation">Show only in detail views</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinviews.1" xml:space="preserve">
+				<source>Show in all views</source>
+			<target state="needs-translation">Show in all views</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinviews.2" xml:space="preserve">
+				<source>Show only in list views</source>
+			<target state="needs-translation">Show only in list views</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve">
+				<source>Speaking URL path segment</source>
+			<target state="needs-translation">Speaking URL path segment</target></trans-unit>
+      <trans-unit id="be_user.tx_news_categorymounts" xml:space="preserve">
+				<source>News: Category restriction</source>
+			<target state="needs-translation">News: Category restriction</target></trans-unit>
+      <trans-unit id="notes" xml:space="preserve">
+				<source>Notes</source>
+			<target state="needs-translation">Notes</target></trans-unit>
+    </body>
+  </file>
+</xliff>
