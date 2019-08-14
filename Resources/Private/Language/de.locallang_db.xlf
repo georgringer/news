@@ -9,7 +9,7 @@
       <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve" approved="yes">
 				<source>Alternative Titles</source>
 			<target state="translated">Alternative Titel</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.palettes.dates" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news.palettes.dates" xml:space="preserve" approved="yes">
 				<source>Dates</source>
 			<target state="translated">Daten</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news" xml:space="preserve" approved="yes">
@@ -18,7 +18,7 @@
       <trans-unit id="tx_news_domain_model_news.alternative_title" xml:space="preserve" approved="yes">
 				<source>Alternative title</source>
 			<target state="translated">Alternativer Titel</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve" approved="yes">
 				<source>Teaser</source>
 			<target state="translated">Teaser</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve" approved="yes">
@@ -69,7 +69,7 @@
       <trans-unit id="tx_news_domain_model_news.content_elements" xml:space="preserve" approved="yes">
 				<source>Content elements</source>
 			<target state="translated">Inhaltselemente</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.tags" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news.tags" xml:space="preserve" approved="yes">
 				<source>Tags</source>
 			<target state="translated">Schlagworte</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.tags.add" xml:space="preserve" approved="yes">
@@ -84,10 +84,10 @@
       <trans-unit id="tx_news_domain_model_news.keywords.placeholder" xml:space="preserve" approved="yes">
 				<source>Keyword1, keyword2, keyword3</source>
 			<target state="translated">Schlüsselwort1, Schlüsselwort2, Schlüsselwort3</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve" approved="yes">
 				<source><![CDATA[<title>-Tag]]></source>
 			<target state="translated"><![CDATA[&lt;title&gt;-Tag]]></target></trans-unit>
-      <trans-unit id="tx_news_domain_model_tag.seo.seo_description" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_description" xml:space="preserve" approved="yes">
 				<source>Meta-Description</source>
 			<target state="translated">Meta-Beschreibung</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve">
