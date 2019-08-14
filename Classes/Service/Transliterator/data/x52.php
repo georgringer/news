@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0x52] = array(
+$UTF8_TO_ASCII[0x52] = [
 'Dao ', 'Diao ', 'Dao ', 'Ren ', 'Ren ', 'Chuang ', 'Fen ', 'Qie ', 'Yi ', 'Ji ', 'Kan ', 'Qian ', 'Cun ', 'Chu ', 'Wen ', 'Ji ',
 'Dan ', 'Xing ', 'Hua ', 'Wan ', 'Jue ', 'Li ', 'Yue ', 'Lie ', 'Liu ', 'Ze ', 'Gang ', 'Chuang ', 'Fu ', 'Chu ', 'Qu ', 'Ju ',
 'Shan ', 'Min ', 'Ling ', 'Zhong ', 'Pan ', 'Bie ', 'Jie ', 'Jie ', 'Bao ', 'Li ', 'Shan ', 'Bie ', 'Chan ', 'Jing ', 'Gua ', 'Gen ',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0x52] = array(
 'Meng ', 'Lai ', 'Le ', 'Kai ', 'Mian ', 'Dong ', 'Xu ', 'Xu ', 'Kan ', 'Wu ', 'Yi ', 'Xun ', 'Weng ', 'Sheng ', 'Lao ', 'Mu ',
 'Lu ', 'Piao ', 'Shi ', 'Ji ', 'Qin ', 'Qiang ', 'Jiao ', 'Quan ', 'Yang ', 'Yi ', 'Jue ', 'Fan ', 'Juan ', 'Tong ', 'Ju ', 'Dan ',
 'Xie ', 'Mai ', 'Xun ', 'Xun ', 'Lu ', 'Li ', 'Che ', 'Rang ', 'Quan ', 'Bao ', 'Shao ', 'Yun ', 'Jiu ', 'Bao ', 'Gou ', 'Wu ',
-);
+];
