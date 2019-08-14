@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xbc] = array(
+$UTF8_TO_ASCII[0xbc] = [
 'mil', 'milg', 'milm', 'milb', 'mils', 'milt', 'milp', 'milh', 'mim', 'mib', 'mibs', 'mis', 'miss', 'ming', 'mij', 'mic',
 'mik', 'mit', 'mip', 'mih', 'ba', 'bag', 'bagg', 'bags', 'ban', 'banj', 'banh', 'bad', 'bal', 'balg', 'balm', 'balb',
 'bals', 'balt', 'balp', 'balh', 'bam', 'bab', 'babs', 'bas', 'bass', 'bang', 'baj', 'bac', 'bak', 'bat', 'bap', 'bah',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xbc] = array(
 'byeoss', 'byeong', 'byeoj', 'byeoc', 'byeok', 'byeot', 'byeop', 'byeoh', 'bye', 'byeg', 'byegg', 'byegs', 'byen', 'byenj', 'byenh', 'byed',
 'byel', 'byelg', 'byelm', 'byelb', 'byels', 'byelt', 'byelp', 'byelh', 'byem', 'byeb', 'byebs', 'byes', 'byess', 'byeng', 'byej', 'byec',
 'byek', 'byet', 'byep', 'byeh', 'bo', 'bog', 'bogg', 'bogs', 'bon', 'bonj', 'bonh', 'bod', 'bol', 'bolg', 'bolm', 'bolb',
-);
+];
