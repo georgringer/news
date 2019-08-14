@@ -5,10 +5,10 @@
     <body>
       <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Category record</source>
-			<target state="translated">Tag record</target><alt-trans><target>Media record</target></alt-trans><alt-trans><target>Bestandsrecord</target></alt-trans><alt-trans><target>Categorie record</target></alt-trans></trans-unit>
+			<target state="translated">Tag record</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Category for news records.</source>
-			<target state="translated">Nieuws records kunnen worden getagged door die records</target><alt-trans><target>Relatie naar media records</target></alt-trans><alt-trans><target>Relatie met bestanden</target></alt-trans><alt-trans><target>Categorie voor nieuws records.</target></alt-trans></trans-unit>
+			<target state="translated">Nieuws records kunnen worden getagged door die records</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
 			<target state="translated">Zie ook de website http://www.news.com/</target></trans-unit>
@@ -17,10 +17,10 @@
 			<target state="translated">Taal van de categorie</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden categories are never shown in the frontend.</source>
-			<target state="translated">Verborgen elementen worden nooit getoond aan de voorkant.</target><alt-trans><target>Verborgen elementen worden nooit getoond aan de voorzijde.</target></alt-trans><alt-trans><target>Verborgen elementen worden nooit getoond in de frontend.</target></alt-trans><alt-trans><target>Verborgen categorieën worden nooit getoond in de frontend.</target></alt-trans></trans-unit>
+			<target state="translated">Verborgen elementen worden nooit getoond aan de voorkant.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Title of the category</source>
-			<target state="translated">Titel van de tag.</target><alt-trans><target>Additionele informatie voor de titel tag.</target></alt-trans><alt-trans><target>Optionele titel van het geselecteerde bestand.</target></alt-trans><alt-trans><target>Titel van de categorie</target></alt-trans></trans-unit>
+			<target state="translated">Titel van de tag.</target></trans-unit>
       <trans-unit id="parentcategory.description" xml:space="preserve" approved="yes">
 				<source>Select a parent category of this record to build a category tree.</source>
 			<target state="translated">Selecteer een bovenliggende categorie om een categorieboom te maken.</target></trans-unit>
@@ -29,7 +29,7 @@
 			<target state="translated">Optionele afbeelding voor de categorie.</target></trans-unit>
       <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Optional description of a category.</source>
-			<target state="translated">Optionele beschrijving van het geselecteerde bestand.</target><alt-trans><target>Optionele beschrijving van de categorie.</target></alt-trans></trans-unit>
+			<target state="translated">Optionele beschrijving van het geselecteerde bestand.</target></trans-unit>
       <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
 				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
 			<target state="translated">Kies een pagina die wordt gebruikt om de detailweergave van nieuws records te tonen die gerelateerd zijn aan deze categorie. Deze instelling wordt overschreven met een geconfigureerde pagina in de instellingen van de plugin.</target></trans-unit>
