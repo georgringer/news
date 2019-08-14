@@ -12,9 +12,9 @@
       <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
 				<source>No news found.</source>
 			<target state="translated">Keine Nachrichten gefunden.</target></trans-unit>
-      <trans-unit id="search-subject" xml:space="preserve" approved="yes">
+      <trans-unit id="search-subject" xml:space="preserve">
 				<source>Text</source>
-			<target state="translated">Text</target></trans-unit>
+			<target state="needs-translation">Text</target></trans-unit>
       <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
 				<source>Minimum Date</source>
 			<target state="translated">Datum (Untergrenze)</target></trans-unit>
@@ -72,9 +72,9 @@
       <trans-unit id="month.03" xml:space="preserve" approved="yes">
 				<source>March</source>
 			<target state="translated">März</target></trans-unit>
-      <trans-unit id="month.04" xml:space="preserve" approved="yes">
+      <trans-unit id="month.04" xml:space="preserve">
 				<source>April</source>
-			<target state="translated">April</target></trans-unit>
+			<target state="needs-translation">April</target></trans-unit>
       <trans-unit id="month.05" xml:space="preserve" approved="yes">
 				<source>May</source>
 			<target state="translated">Mai</target></trans-unit>
@@ -84,18 +84,18 @@
       <trans-unit id="month.07" xml:space="preserve" approved="yes">
 				<source>July</source>
 			<target state="translated">Juli</target></trans-unit>
-      <trans-unit id="month.08" xml:space="preserve" approved="yes">
+      <trans-unit id="month.08" xml:space="preserve">
 				<source>August</source>
-			<target state="translated">August</target></trans-unit>
-      <trans-unit id="month.09" xml:space="preserve" approved="yes">
+			<target state="needs-translation">August</target></trans-unit>
+      <trans-unit id="month.09" xml:space="preserve">
 				<source>September</source>
-			<target state="translated">September</target></trans-unit>
+			<target state="needs-translation">September</target></trans-unit>
       <trans-unit id="month.10" xml:space="preserve" approved="yes">
 				<source>October</source>
 			<target state="translated">Oktober</target></trans-unit>
-      <trans-unit id="month.11" xml:space="preserve" approved="yes">
+      <trans-unit id="month.11" xml:space="preserve">
 				<source>November</source>
-			<target state="translated">November</target></trans-unit>
+			<target state="needs-translation">November</target></trans-unit>
       <trans-unit id="month.12" xml:space="preserve" approved="yes">
 				<source>December</source>
 			<target state="translated">Dezember</target></trans-unit>
