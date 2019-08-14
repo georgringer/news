@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xd6] = array(
+$UTF8_TO_ASCII[0xd6] = [
 'hyeo', 'hyeog', 'hyeogg', 'hyeogs', 'hyeon', 'hyeonj', 'hyeonh', 'hyeod', 'hyeol', 'hyeolg', 'hyeolm', 'hyeolb', 'hyeols', 'hyeolt', 'hyeolp', 'hyeolh',
 'hyeom', 'hyeob', 'hyeobs', 'hyeos', 'hyeoss', 'hyeong', 'hyeoj', 'hyeoc', 'hyeok', 'hyeot', 'hyeop', 'hyeoh', 'hye', 'hyeg', 'hyegg', 'hyegs',
 'hyen', 'hyenj', 'hyenh', 'hyed', 'hyel', 'hyelg', 'hyelm', 'hyelb', 'hyels', 'hyelt', 'hyelp', 'hyelh', 'hyem', 'hyeb', 'hyebs', 'hyes',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xd6] = array(
 'huls', 'hult', 'hulp', 'hulh', 'hum', 'hub', 'hubs', 'hus', 'huss', 'hung', 'huj', 'huc', 'huk', 'hut', 'hup', 'huh',
 'hweo', 'hweog', 'hweogg', 'hweogs', 'hweon', 'hweonj', 'hweonh', 'hweod', 'hweol', 'hweolg', 'hweolm', 'hweolb', 'hweols', 'hweolt', 'hweolp', 'hweolh',
 'hweom', 'hweob', 'hweobs', 'hweos', 'hweoss', 'hweong', 'hweoj', 'hweoc', 'hweok', 'hweot', 'hweop', 'hweoh', 'hwe', 'hweg', 'hwegg', 'hwegs',
-);
+];
