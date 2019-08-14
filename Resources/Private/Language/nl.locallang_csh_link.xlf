@@ -3,9 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:52Z" product-name="news" target-language="nl">
     <header/>
     <body>
-      <trans-unit id=".description" xml:space="preserve">
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Link record</source>
-			<target state="needs-translation">Link record</target></trans-unit>
+			<target state="translated">Link record</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Relation to other pages and records.</source>
 			<target state="translated">Relatie naar andere pagina's en records.</target></trans-unit>
