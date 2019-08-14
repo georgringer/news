@@ -3,66 +3,66 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="news" target-language="hr">
     <header/>
     <body>
-      <trans-unit id=".description" xml:space="preserve">
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>News record</source>
-			<target state="needs-translation">News record</target></trans-unit>
-      <trans-unit id=".details" xml:space="preserve">
+			<target state="translated">Vijest</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Versatile news system.</source>
-			<target state="needs-translation">Versatile news system.</target></trans-unit>
-      <trans-unit id="sys_language_uid.description" xml:space="preserve">
+			<target state="translated">Sustav vijesti</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
 				<source>Language of the news record.</source>
-			<target state="needs-translation">Language of the news record.</target></trans-unit>
-      <trans-unit id="starttime.description" xml:space="preserve">
+			<target state="translated">Jezik vijesti</target></trans-unit>
+      <trans-unit id="starttime.description" xml:space="preserve" approved="yes">
 				<source>Define a date on which the news record should be shown.</source>
-			<target state="needs-translation">Define a date on which the news record should be shown.</target></trans-unit>
-      <trans-unit id="endtime.description" xml:space="preserve">
+			<target state="translated">Odredi datum kada će vijest biti prikazana</target></trans-unit>
+      <trans-unit id="endtime.description" xml:space="preserve" approved="yes">
 				<source>Define a date on which the news record should be hidden.</source>
-			<target state="needs-translation">Define a date on which the news record should be hidden.</target></trans-unit>
-      <trans-unit id="fe_group.description" xml:space="preserve">
+			<target state="translated">Odredi datum kada će vijest biti skrivena</target></trans-unit>
+      <trans-unit id="fe_group.description" xml:space="preserve" approved="yes">
 				<source>Select the user groups which are allowed to see the news record.</source>
-			<target state="needs-translation">Select the user groups which are allowed to see the news record.</target></trans-unit>
-      <trans-unit id="editlock.description" xml:space="preserve">
+			<target state="translated">Odredi grupe korisnika kojima je dopušten prikaz vijesti.</target></trans-unit>
+      <trans-unit id="editlock.description" xml:space="preserve" approved="yes">
 				<source>If checked, this news record can only be edited by administrators.</source>
-			<target state="needs-translation">If checked, this news record can only be edited by administrators.</target></trans-unit>
-      <trans-unit id="hidden.description" xml:space="preserve">
+			<target state="translated">Ako je označeno, vijest može uređivati samo administrator.</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden records are not shown in the frontend.</source>
-			<target state="needs-translation">Hidden records are not shown in the frontend.</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
+			<target state="translated">Skrivene vijesti nisu prikazane javno.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>News title</source>
-			<target state="needs-translation">News title</target></trans-unit>
-      <trans-unit id="alternative_title.description" xml:space="preserve">
+			<target state="translated">Naslov vijesti</target></trans-unit>
+      <trans-unit id="alternative_title.description" xml:space="preserve" approved="yes">
 				<source>Alternative Title will be used as the title for the browser window / tab</source>
-			<target state="needs-translation">Alternative Title will be used as the title for the browser window / tab</target></trans-unit>
-      <trans-unit id="teaser.description" xml:space="preserve">
+			<target state="translated">Zamjenski naslov biti će prikazan kao naslov u prozoru / kartici preglednika</target></trans-unit>
+      <trans-unit id="teaser.description" xml:space="preserve" approved="yes">
 				<source>Be aware that it can be cropped.</source>
-			<target state="needs-translation">Be aware that it can be cropped.</target></trans-unit>
-      <trans-unit id="type.description" xml:space="preserve">
+			<target state="translated">Uvod može biti odrezan</target></trans-unit>
+      <trans-unit id="type.description" xml:space="preserve" approved="yes">
 				<source>Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</source>
-			<target state="needs-translation">Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</target></trans-unit>
-      <trans-unit id="istopnews.description" xml:space="preserve">
+			<target state="translated">Odredi vrstu: vijest, poveznica na unutarnju stranicu ili poveznica na vanjsku stranicu</target></trans-unit>
+      <trans-unit id="istopnews.description" xml:space="preserve" approved="yes">
 				<source>Top news records can get a special treated concerning layout, sorting, ...</source>
-			<target state="needs-translation">Top news records can get a special treated concerning layout, sorting, ...</target></trans-unit>
-      <trans-unit id="author.description" xml:space="preserve">
+			<target state="translated">Posebne vijesti mogu imati poseban izgled, sortiranje...</target></trans-unit>
+      <trans-unit id="author.description" xml:space="preserve" approved="yes">
 				<source>Author of the news record</source>
-			<target state="needs-translation">Author of the news record</target></trans-unit>
-      <trans-unit id="author_email.description" xml:space="preserve">
+			<target state="translated">Autor vijesti</target></trans-unit>
+      <trans-unit id="author_email.description" xml:space="preserve" approved="yes">
 				<source>Email address of the author</source>
-			<target state="needs-translation">Email address of the author</target></trans-unit>
-      <trans-unit id="datetime.description" xml:space="preserve">
+			<target state="translated">Email autora vijesti</target></trans-unit>
+      <trans-unit id="datetime.description" xml:space="preserve" approved="yes">
 				<source>Date of the news record</source>
-			<target state="needs-translation">Date of the news record</target></trans-unit>
-      <trans-unit id="archive.description" xml:space="preserve">
+			<target state="translated">Datum vijesti</target></trans-unit>
+      <trans-unit id="archive.description" xml:space="preserve" approved="yes">
 				<source>Archive date. A date is required if the news record should once be treated as archived news.</source>
-			<target state="needs-translation">Archive date. A date is required if the news record should once be treated as archived news.</target></trans-unit>
-      <trans-unit id="bodytext.description" xml:space="preserve">
+			<target state="translated">Datum arhiviranja</target></trans-unit>
+      <trans-unit id="bodytext.description" xml:space="preserve" approved="yes">
 				<source>Main content of the news record</source>
-			<target state="needs-translation">Main content of the news record</target></trans-unit>
-      <trans-unit id="categories.description" xml:space="preserve">
+			<target state="translated">Glavni sadržaj vijesti</target></trans-unit>
+      <trans-unit id="categories.description" xml:space="preserve" approved="yes">
 				<source>Select the categories which are related to this record.</source>
-			<target state="needs-translation">Select the categories which are related to this record.</target></trans-unit>
-      <trans-unit id="tags.description" xml:space="preserve">
+			<target state="translated">Odaberi kategorije za ovu vijest</target></trans-unit>
+      <trans-unit id="tags.description" xml:space="preserve" approved="yes">
 				<source>Define and select tags which fit to the article.</source>
-			<target state="needs-translation">Define and select tags which fit to the article.</target></trans-unit>
+			<target state="translated">Odaberi oznake za ovu vijest</target></trans-unit>
       <trans-unit id="content_elements.description" xml:space="preserve">
 				<source>Content elements can be used to generate feature rich news articles.</source>
 			<target state="needs-translation">Content elements can be used to generate feature rich news articles.</target></trans-unit>
@@ -72,15 +72,15 @@
       <trans-unit id="description.description" xml:space="preserve">
 				<source>Define a description which can be used for SEO optimizations.</source>
 			<target state="needs-translation">Define a description which can be used for SEO optimizations.</target></trans-unit>
-      <trans-unit id="related.description" xml:space="preserve">
+      <trans-unit id="related.description" xml:space="preserve" approved="yes">
 				<source>Select related news records.</source>
-			<target state="needs-translation">Select related news records.</target></trans-unit>
-      <trans-unit id="related_from.description" xml:space="preserve">
+			<target state="translated">Odaberi povezane vijesti</target></trans-unit>
+      <trans-unit id="related_from.description" xml:space="preserve" approved="yes">
 				<source>Show news which select current news record as related.</source>
-			<target state="needs-translation">Show news which select current news record as related.</target></trans-unit>
-      <trans-unit id="related_links.description" xml:space="preserve">
+			<target state="translated">Prikaži vijesti kojima je ova vijest povezana</target></trans-unit>
+      <trans-unit id="related_links.description" xml:space="preserve" approved="yes">
 				<source>Define related links to internal and external pages.</source>
-			<target state="needs-translation">Define related links to internal and external pages.</target></trans-unit>
+			<target state="translated">Odredi poveznice prema unutarnjim i vanjskim stranicama</target></trans-unit>
     </body>
   </file>
 </xliff>
