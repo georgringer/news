@@ -438,59 +438,57 @@
 			<target state="translated">Toll, dass Sie diese TYPO3-Extension verwenden!</target></trans-unit>
       <trans-unit id="administration.donation.lead_full" xml:space="preserve">
 				<source>The editors have created %d articles with %d relations to categories.</source>
-			<target state="needs-translation">The editors have created %d articles with %d relations to categories.</target></trans-unit>
+			<target state="translated">Die Redakteure haben %d Artikel mit %d Relationen zu Kategorien erstellt.</target></trans-unit>
       <trans-unit id="administration.donation.lead_news_only" xml:space="preserve">
 				<source>The editors have created %d articles.</source>
-			<target state="needs-translation">The editors have created %d articles.</target></trans-unit>
+			<target state="translated">Die Redakteure haben %d Artikel erstellt.</target></trans-unit>
       <trans-unit id="administration.donation.lead_none" xml:space="preserve">
 				<source>Did you just setup the system? No articles yet created.</source>
-			<target state="needs-translation">Did you just setup the system? No articles yet created.</target></trans-unit>
+			<target state="translated">Haben Sie das Newssystem gerade neu eingerichtet? Noch sind keine Artikel erstellt.</target></trans-unit>
       <trans-unit id="administration.donation.support" xml:space="preserve">
 				<source>Help supporting further development</source>
-			<target state="needs-translation">Help supporting further development</target></trans-unit>
+			<target state="translated">Unterstützen Sie die Weiterentwicklung</target></trans-unit>
       <trans-unit id="administration.donation.why" xml:space="preserve">
 				<source>Why?</source>
-			<target state="needs-translation">Why?</target></trans-unit>
+			<target state="translated">Warum?</target></trans-unit>
       <trans-unit id="administration.donation.why.text" xml:space="preserve">
 				<source>The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
             possibilities of the TYPO3 core.
             This implies a lot of work bringing this to the TYPO3 community.</source>
-			<target state="needs-translation">The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
-            possibilities of the TYPO3 core.
-            This implies a lot of work bringing this to the TYPO3 community.</target></trans-unit>
+			<target state="translated">Die News-Extension ist ein mächtiges Werkzeug mit einer Vielzahl an Funktionen, welche immer versucht, die neuesten Möglichkeiten des TYPO3-Kerns zu verwenden. Im Umkehrschluss bedeutet dies eine Menge an Arbeit, um die Extension stets aktuell zu halten.</target></trans-unit>
       <trans-unit id="administration.donation.how" xml:space="preserve">
 				<source>How?</source>
-			<target state="needs-translation">How?</target></trans-unit>
+			<target state="translated">Wie?</target></trans-unit>
       <trans-unit id="administration.donation.how.text" xml:space="preserve">
 				<source>There are multiple ways to support the further development:</source>
-			<target state="needs-translation">There are multiple ways to support the further development:</target></trans-unit>
+			<target state="translated">Es gibt mehrere Möglichkeiten, die Weiterentwicklung zu unterstützen:</target></trans-unit>
       <trans-unit id="administration.donation.invoice" xml:space="preserve">
 				<source>Invoice</source>
-			<target state="needs-translation">Invoice</target></trans-unit>
+			<target state="translated">Rechnung</target></trans-unit>
       <trans-unit id="administration.donation.invoice.sub" xml:space="preserve">
 				<source>An invoice is possible!</source>
-			<target state="needs-translation">An invoice is possible!</target></trans-unit>
+			<target state="translated">Eine Rechnung ist möglich!</target></trans-unit>
       <trans-unit id="administration.donation.invoice.text" xml:space="preserve">
 				<source>I can create a proper invoice to keep your accounting happy - contact me for details.</source>
-			<target state="needs-translation">I can create a proper invoice to keep your accounting happy - contact me for details.</target></trans-unit>
+			<target state="translated">Ich kann eine offizielle Rechnung ausstellen, um Ihre Buchhaltung glücklich zu machen - kontaktieren Sie mich für Details.</target></trans-unit>
       <trans-unit id="administration.donation.patreon.sub" xml:space="preserve">
 				<source>Support me on patreon.com</source>
-			<target state="needs-translation">Support me on patreon.com</target></trans-unit>
+			<target state="translated">Unterstütze mich auf patreon.com</target><alt-trans><target>Unterstützen Sie mich auf patreon.com</target></alt-trans></trans-unit>
       <trans-unit id="administration.donation.patreon.text" xml:space="preserve">
 				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
-			<target state="needs-translation">Support me on patreon and get access to additional extensions and snippets as reward.</target></trans-unit>
+			<target state="translated">Unterstütze mich auf patreon.com und erhalte Zugriff auf zusätzliche Erweiterungen sowie Snippets als Belohnung.</target></trans-unit>
       <trans-unit id="administration.donation.paypal.sub" xml:space="preserve">
 				<source>Donate via PayPal</source>
-			<target state="needs-translation">Donate via PayPal</target></trans-unit>
+			<target state="translated">Spenden über PayPal</target></trans-unit>
       <trans-unit id="administration.donation.paypal.text" xml:space="preserve">
 				<source>Support me by a donation on paypal.com. It is just one click away.</source>
-			<target state="needs-translation">Support me by a donation on paypal.com. It is just one click away.</target></trans-unit>
+			<target state="translated">Unterstütze mich mittels einer Spende auf paypal.com. Es ist nur einen Klick entfernt.</target></trans-unit>
       <trans-unit id="administration.donation.amazon" xml:space="preserve">
 				<source>Amazon wishlist</source>
-			<target state="needs-translation">Amazon wishlist</target></trans-unit>
+			<target state="translated">Amazon Wunschzettel</target></trans-unit>
       <trans-unit id="administration.donation.amazon.sub" xml:space="preserve">
 				<source>Satisfy a wish of my Amazon wishlist</source>
-			<target state="needs-translation">Satisfy a wish of my Amazon wishlist</target></trans-unit>
+			<target state="translated">Erfülle mir einen Wunsch aus meinem Amazon Wunschzettel</target></trans-unit>
       <trans-unit id="administration.donation.amazon.text" xml:space="preserve">
 				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
 			<target state="needs-translation">Most of the listed products are for my family and our hobby cooking. Make us happy!</target></trans-unit>
