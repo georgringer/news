@@ -3,39 +3,39 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:26Z" product-name="news" target-language="cs">
     <header/>
     <body>
-      <trans-unit id=".description" xml:space="preserve">
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Category record</source>
-			<target state="needs-translation">Category record</target></trans-unit>
-      <trans-unit id=".details" xml:space="preserve">
+			<target state="translated">Záznam značky</target><alt-trans><target>Záznam médií</target></alt-trans><alt-trans><target>Záznam souboru</target></alt-trans><alt-trans><target>Záznam kategorie</target></alt-trans></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Category for news records.</source>
-			<target state="needs-translation">Category for news records.</target></trans-unit>
-      <trans-unit id="_.seeAlso" xml:space="preserve">
+			<target state="translated">Záznamy zpráv mohou být označeny těmito záznamy</target><alt-trans><target>Vztah k záznamům médií</target></alt-trans><alt-trans><target>Vztah k souborům</target></alt-trans><alt-trans><target>Kategorie pro záznamy zpráv</target></alt-trans></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
-			<target state="needs-translation">See also the website http://www.news.com/</target></trans-unit>
-      <trans-unit id="sys_language_uid.description" xml:space="preserve">
+			<target state="translated">Viz též webové stránky http://www.news.com/</target><alt-trans><target>Viz také stránky http://www.news.com/</target></alt-trans></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
 				<source>Language of the category</source>
-			<target state="needs-translation">Language of the category</target></trans-unit>
-      <trans-unit id="hidden.description" xml:space="preserve">
+			<target state="translated">Jazyk kategorie</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden categories are never shown in the frontend.</source>
-			<target state="needs-translation">Hidden categories are never shown in the frontend.</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
+			<target state="translated">Skryté prvky se nikdy nezobrazují na frontendu.</target><alt-trans><target>Skryté prvky nejsou nikdy zobrazeny ve frontendu.</target></alt-trans><alt-trans><target>Skryté kategorie nejsou nikdy zobrazeny ve frontendu.</target></alt-trans></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Title of the category</source>
-			<target state="needs-translation">Title of the category</target></trans-unit>
-      <trans-unit id="parentcategory.description" xml:space="preserve">
+			<target state="translated">Název značky.</target><alt-trans><target>Další informace pro značku titulku.</target></alt-trans><alt-trans><target>Volitelný název vybraného souboru.</target></alt-trans><alt-trans><target>Název kategorie</target></alt-trans></trans-unit>
+      <trans-unit id="parentcategory.description" xml:space="preserve" approved="yes">
 				<source>Select a parent category of this record to build a category tree.</source>
-			<target state="needs-translation">Select a parent category of this record to build a category tree.</target></trans-unit>
-      <trans-unit id="image.description" xml:space="preserve">
+			<target state="translated">Zvolte nadřazenou kategorii tohoto záznamu pro vybudování stromu kategorií.</target></trans-unit>
+      <trans-unit id="image.description" xml:space="preserve" approved="yes">
 				<source>Optional image of a category.</source>
-			<target state="needs-translation">Optional image of a category.</target></trans-unit>
-      <trans-unit id="description.description" xml:space="preserve">
+			<target state="translated">Volitelný obrázek kategorie.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Optional description of a category.</source>
-			<target state="needs-translation">Optional description of a category.</target></trans-unit>
-      <trans-unit id="single_pid.description" xml:space="preserve">
+			<target state="translated">Volitelný popis vybraného souboru.</target><alt-trans><target>Volitelný popis kategorie.</target></alt-trans></trans-unit>
+      <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
 				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
-			<target state="needs-translation">Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</target></trans-unit>
-      <trans-unit id="shortcut.description" xml:space="preserve">
+			<target state="translated">Vyberte stránku, která se používá k zobrazení detailu záznamů zpráv souvisejících s touto kategorií. Toto nastavení je přepsáno pomocí nakonfigurované stránky v nastavení pluginu.</target></trans-unit>
+      <trans-unit id="shortcut.description" xml:space="preserve" approved="yes">
 				<source>Optional link of a category.</source>
-			<target state="needs-translation">Optional link of a category.</target></trans-unit>
+			<target state="translated">Volitelný odkaz kategorie.</target></trans-unit>
     </body>
   </file>
 </xliff>
