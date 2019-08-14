@@ -93,7 +93,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
 
             $rows = $this->cObj->getRecords('tx_news_domain_model_news', [
                 'selectFields' => '*',
-                'pidInList' => implode(',',$this->pidList),
+                'pidInList' => implode(',', $this->pidList),
                 'where' => $this->isNewsSitemap ? 'datetime >= ' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '',
                 'orderBy' => 'datetime DESC',
                 'begin' => $this->offset,
