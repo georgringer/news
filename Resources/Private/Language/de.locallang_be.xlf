@@ -180,12 +180,12 @@
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
 				<source>Template Layout</source>
 			<target state="translated">Template-Layout</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve" approved="yes">
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
 				<source>1</source>
-			<target state="translated">1</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve" approved="yes">
+			<target state="needs-translation">1</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
 				<source>2</source>
-			<target state="translated">2</target></trans-unit>
+			<target state="needs-translation">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
 				<source>PageId for single news display</source>
 			<target state="translated">Seiten-ID für Einzelnachrichten-Ansicht</target></trans-unit>
@@ -250,10 +250,7 @@
 			<target state="translated">Kategorienbeschränkung: Beschränkt die verfügbaren Kategorien in neuen Artikeldatensätzen. PageTSConfig:
 
 TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Feature ist aktuell in Entwicklung und kann möglicherweise nicht korrekt funktionieren!
-			</target><alt-trans><target>Kategorienbeschränkung: Beschränkt die verfügbaren Kategorien in neuen Newsdatensätzen. PageTSConfig:
-
-TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Feature ist aktuell in Entwicklung und kann möglicherweise nicht korrekt funktionieren!
-			</target></alt-trans></trans-unit>
+			</target></trans-unit>
       <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
 				<source>Categories from current page</source>
 			<target state="translated">Kategorien aus aktueller Seite: Kategorien in der aktuellen Seite suchen.</target></trans-unit>
@@ -331,7 +328,7 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Fe
 			<target state="translated">Der Tag "%s" wurde nicht gefunden. Um ihn zu erstellen, bitte &lt;strong&gt;hier klicken&lt;/strong&gt;.</target></trans-unit>
       <trans-unit id="tag_suggest2" xml:space="preserve" approved="yes">
 				<source>Tag could not be found, wanna create it? Click here!</source>
-			<target state="translated">Das Schlagwort wurde nicht gefunden, soll es erstellt werden? Klicke hier!</target><alt-trans><target>Tag wurde nicht gefunden, soll er erstellt werden? Klicke hier!</target></alt-trans></trans-unit>
+			<target state="translated">Das Schlagwort wurde nicht gefunden, soll es erstellt werden? Klicke hier!</target></trans-unit>
       <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve" approved="yes">
 				<source>No tag submitted!</source>
 			<target state="translated">Es wurde kein Tag übermittelt!</target></trans-unit>
@@ -355,7 +352,7 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Fe
 			<target state="translated">Rekursiv</target></trans-unit>
       <trans-unit id="module.timeRange" xml:space="preserve" approved="yes">
 				<source>Time range</source>
-			<target state="translated">Zeitraum</target><alt-trans><target>Zeitspanne</target></alt-trans></trans-unit>
+			<target state="translated">Zeitraum</target></trans-unit>
       <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
 				<source>Time Restriction</source>
 			<target state="translated">Zeitbeschränkung</target></trans-unit>
@@ -477,7 +474,7 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Fe
 			<target state="translated">Ich kann eine offizielle Rechnung ausstellen, um Ihre Buchhaltung glücklich zu machen - kontaktieren Sie mich für Details.</target></trans-unit>
       <trans-unit id="administration.donation.patreon.sub" xml:space="preserve" approved="yes">
 				<source>Support me on patreon.com</source>
-			<target state="translated">Unterstützen Sie mich auf patreon.com</target><alt-trans><target>Unterstütze mich auf patreon.com</target></alt-trans></trans-unit>
+			<target state="translated">Unterstützen Sie mich auf patreon.com</target></trans-unit>
       <trans-unit id="administration.donation.patreon.text" xml:space="preserve" approved="yes">
 				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
 			<target state="translated">Unterstütze mich auf patreon.com und erhalte Zugriff auf zusätzliche Erweiterungen sowie Snippets als Belohnung.</target></trans-unit>
