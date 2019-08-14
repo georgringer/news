@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xc1] = array(
+$UTF8_TO_ASCII[0xc1] = [
 'syae', 'syaeg', 'syaegg', 'syaegs', 'syaen', 'syaenj', 'syaenh', 'syaed', 'syael', 'syaelg', 'syaelm', 'syaelb', 'syaels', 'syaelt', 'syaelp', 'syaelh',
 'syaem', 'syaeb', 'syaebs', 'syaes', 'syaess', 'syaeng', 'syaej', 'syaec', 'syaek', 'syaet', 'syaep', 'syaeh', 'seo', 'seog', 'seogg', 'seogs',
 'seon', 'seonj', 'seonh', 'seod', 'seol', 'seolg', 'seolm', 'seolb', 'seols', 'seolt', 'seolp', 'seolh', 'seom', 'seob', 'seobs', 'seos',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xc1] = array(
 'swaels', 'swaelt', 'swaelp', 'swaelh', 'swaem', 'swaeb', 'swaebs', 'swaes', 'swaess', 'swaeng', 'swaej', 'swaec', 'swaek', 'swaet', 'swaep', 'swaeh',
 'soe', 'soeg', 'soegg', 'soegs', 'soen', 'soenj', 'soenh', 'soed', 'soel', 'soelg', 'soelm', 'soelb', 'soels', 'soelt', 'soelp', 'soelh',
 'soem', 'soeb', 'soebs', 'soes', 'soess', 'soeng', 'soej', 'soec', 'soek', 'soet', 'soep', 'soeh', 'syo', 'syog', 'syogg', 'syogs',
-);
+];

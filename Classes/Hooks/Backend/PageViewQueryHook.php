@@ -8,7 +8,6 @@ namespace GeorgRinger\News\Hooks\Backend;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
@@ -45,9 +44,8 @@ class PageViewQueryHook
         $fieldList,
         QueryBuilder $queryBuilder
     ): void {
-
         if ($table === 'tt_content' && $pageId > 0) {
-            
+
             // Get page record base on page uid
             $pageRecord = BackendUtility::getRecord('pages', $pageId, 'uid', " AND doktype='254' AND module='news'");
 
