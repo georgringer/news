@@ -47,7 +47,7 @@
 			<target state="translated">Anzeige es einzelnen Artikels,</target></trans-unit>
       <trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve">
 				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
-			<target state="needs-translation">If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</target></trans-unit>
+			<target state="translated">Wenn gesetzt, werden auch versteckte Datensätze angezeigt. Dies ist erforderlich, wenn Sie noch versteckte Datensätze ansehen möchten. Beachten Sie, dass auch versteckte Datensätze auf der aktuellen Seite angezeigt werden.</target></trans-unit>
       <trans-unit id="settings.startingpoint.description" xml:space="preserve" approved="yes">
 				<source>Define the pages/sysfolders which hold the news records</source>
 			<target state="translated">Geben Sie die Seiten an, auf denen die Artikel gespeichert sind die Sie anzeigen wollen.</target></trans-unit>
