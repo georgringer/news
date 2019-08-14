@@ -75,9 +75,9 @@
       <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve">
 				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
 			<target state="needs-translation">If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</target></trans-unit>
-      <trans-unit id="settings.tags.description" xml:space="preserve">
+      <trans-unit id="settings.tags.description" xml:space="preserve" approved="yes">
 				<source>Filter by given tags.</source>
-			<target state="needs-translation">Filter by given tags.</target></trans-unit>
+			<target state="translated">Filtrert ved følgende tagger.</target></trans-unit>
       <trans-unit id="settings.media.maxWidth.description" xml:space="preserve">
 				<source>Maximal width of media elements (images, videos, ...)</source>
 			<target state="needs-translation">Maximal width of media elements (images, videos, ...)</target></trans-unit>
