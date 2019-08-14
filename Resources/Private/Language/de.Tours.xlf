@@ -54,7 +54,7 @@
       <trans-unit id="adminModule.recursive.title" xml:space="preserve" approved="yes">
 				<source>Extend search to child pages</source>
 			<target state="translated">Suche auf Unterseiten erweitern</target></trans-unit>
-      <trans-unit id="adminModule.recursive.content" xml:space="preserve">
+      <trans-unit id="adminModule.recursive.content" xml:space="preserve" approved="yes">
 				<source>Set the level of pages which are searched for news records</source>
 			<target state="translated">Setze die Ebene der Seiten auf denen nach Artikeln gesucht werden</target></trans-unit>
       <trans-unit id="adminModule.categoryTree.title" xml:space="preserve" approved="yes">
@@ -69,9 +69,9 @@
       <trans-unit id="adminModule.categoryConjunction.content" xml:space="preserve" approved="yes">
 				<source>Select how the category selection should be used</source>
 			<target state="translated">Wählen Sie, wie die Kategorie-Auswahl verwendet werden soll</target></trans-unit>
-      <trans-unit id="adminModule.actionSwitch.title" xml:space="preserve">
+      <trans-unit id="adminModule.actionSwitch.title" xml:space="preserve" approved="yes">
 				<source>Switch to the pid listing</source>
-			<target state="translated">Zur PID Übersicht wechseln</target><alt-trans><target>Zu PID Übersicht wechseln</target></alt-trans></trans-unit>
+			<target state="translated">Zur Seiten-Übersicht wechseln</target><alt-trans><target>Zur PID Übersicht wechseln</target></alt-trans><alt-trans><target>Zu PID Übersicht wechseln</target></alt-trans></trans-unit>
       <trans-unit id="adminModule.actionSwitch.content" xml:space="preserve" approved="yes">
 				<source>A powerful view is hidden here! It enables you to find those pages which contain news records.</source>
 			<target state="translated">Eine mächtige Ansicht ist hier versteckt! Es ermöglicht Ihnen, die Seiten zu finden, die Artikel enthalten.</target></trans-unit>
