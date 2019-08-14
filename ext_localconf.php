@@ -58,8 +58,6 @@ $boot = function () {
             = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
     }
 
-
-
     // Inline records hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] =
         \GeorgRinger\News\Hooks\InlineElementHook::class;

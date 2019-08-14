@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xd1] = array(
+$UTF8_TO_ASCII[0xd1] = [
 'tyal', 'tyalg', 'tyalm', 'tyalb', 'tyals', 'tyalt', 'tyalp', 'tyalh', 'tyam', 'tyab', 'tyabs', 'tyas', 'tyass', 'tyang', 'tyaj', 'tyac',
 'tyak', 'tyat', 'tyap', 'tyah', 'tyae', 'tyaeg', 'tyaegg', 'tyaegs', 'tyaen', 'tyaenj', 'tyaenh', 'tyaed', 'tyael', 'tyaelg', 'tyaelm', 'tyaelb',
 'tyaels', 'tyaelt', 'tyaelp', 'tyaelh', 'tyaem', 'tyaeb', 'tyaebs', 'tyaes', 'tyaess', 'tyaeng', 'tyaej', 'tyaec', 'tyaek', 'tyaet', 'tyaep', 'tyaeh',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xd1] = array(
 'twass', 'twang', 'twaj', 'twac', 'twak', 'twat', 'twap', 'twah', 'twae', 'twaeg', 'twaegg', 'twaegs', 'twaen', 'twaenj', 'twaenh', 'twaed',
 'twael', 'twaelg', 'twaelm', 'twaelb', 'twaels', 'twaelt', 'twaelp', 'twaelh', 'twaem', 'twaeb', 'twaebs', 'twaes', 'twaess', 'twaeng', 'twaej', 'twaec',
 'twaek', 'twaet', 'twaep', 'twaeh', 'toe', 'toeg', 'toegg', 'toegs', 'toen', 'toenj', 'toenh', 'toed', 'toel', 'toelg', 'toelm', 'toelb',
-);
+];
