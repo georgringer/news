@@ -8,7 +8,6 @@ namespace GeorgRinger\News\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
