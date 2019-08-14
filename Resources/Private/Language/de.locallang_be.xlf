@@ -222,7 +222,7 @@
       <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
 				<source>Page with uid "%s" is not available anymore!</source>
 			<target state="translated">Die Seite mit der uid "%s" ist nicht mehr verfügbar!</target></trans-unit>
-      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
+      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve" approved="yes">
 				<source>Record with uid "%s" is not available anymore!</source>
 			<target state="translated">Der Datensatz mit UID "%s" ist nicht mehr verfügbar!</target></trans-unit>
       <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve" approved="yes">
@@ -412,7 +412,7 @@
       <trans-unit id="administration.nonewsfound" xml:space="preserve" approved="yes">
 				<source>No news found</source>
 			<target state="translated">Keine Nachrichten gefunden</target></trans-unit>
-      <trans-unit id="administration.nonewsfoundText" xml:space="preserve">
+      <trans-unit id="administration.nonewsfoundText" xml:space="preserve" approved="yes">
 				<source>The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</source>
 			<target state="translated">Die aktuelle Seite beinhaltet keine Newsdatensätze. Wählen Sie entweder eine andere Seite im Seitenbaum links oder erstellen Sie den ersten Newsdatensatz auf dieser Seite.</target></trans-unit>
       <trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve" approved="yes">
@@ -442,7 +442,7 @@
       <trans-unit id="administration.donation.lead_news_only" xml:space="preserve">
 				<source>The editors have created %d articles.</source>
 			<target state="translated">Die Redakteure haben %d Artikel erstellt.</target></trans-unit>
-      <trans-unit id="administration.donation.lead_none" xml:space="preserve">
+      <trans-unit id="administration.donation.lead_none" xml:space="preserve" approved="yes">
 				<source>Did you just setup the system? No articles yet created.</source>
 			<target state="translated">Haben Sie das Newssystem gerade neu eingerichtet? Noch sind keine Artikel erstellt.</target></trans-unit>
       <trans-unit id="administration.donation.support" xml:space="preserve">
