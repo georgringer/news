@@ -8,7 +8,6 @@ namespace GeorgRinger\News\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use TYPO3\CMS\Backend\Form\Element\InlineElement;
 
 /**
@@ -43,8 +42,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         array $childConfig,
         $isVirtual,
         array &$enabledControls
-    )
-    {
+    ) {
     }
 
     /**
@@ -64,8 +62,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         array $childConfig,
         $isVirtual,
         array &$controlItems
-    )
-    {
+    ) {
         $previewSetting = (int)$childRecord['showinpreview'];
         if ($foreignTable === 'sys_file_reference' && $previewSetting > 0) {
             $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';

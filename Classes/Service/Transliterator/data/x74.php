@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0x74] = array(
+$UTF8_TO_ASCII[0x74] = [
 'Han ', 'Xuan ', 'Yan ', 'Qiu ', 'Quan ', 'Lang ', 'Li ', 'Xiu ', 'Fu ', 'Liu ', 'Ye ', 'Xi ', 'Ling ', 'Li ', 'Jin ', 'Lian ',
 'Suo ', 'Chiisai ', '[?]', 'Wan ', 'Dian ', 'Pin ', 'Zhan ', 'Cui ', 'Min ', 'Yu ', 'Ju ', 'Chen ', 'Lai ', 'Wen ', 'Sheng ', 'Wei ',
 'Dian ', 'Chu ', 'Zhuo ', 'Pei ', 'Cheng ', 'Hu ', 'Qi ', 'E ', 'Kun ', 'Chang ', 'Qi ', 'Beng ', 'Wan ', 'Lu ', 'Cong ', 'Guan ',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0x74] = array(
 'Lu ', 'Li ', 'Zan ', 'Lan ', 'Ying ', 'Mi ', 'Xiang ', 'Xi ', 'Guan ', 'Dao ', 'Zan ', 'Huan ', 'Gua ', 'Bo ', 'Die ', 'Bao ',
 'Hu ', 'Zhi ', 'Piao ', 'Ban ', 'Rang ', 'Li ', 'Wa ', 'Dekaguramu ', 'Jiang ', 'Qian ', 'Fan ', 'Pen ', 'Fang ', 'Dan ', 'Weng ', 'Ou ',
 'Deshiguramu ', 'Miriguramu ', 'Thon ', 'Hu ', 'Ling ', 'Yi ', 'Ping ', 'Ci ', 'Hekutogura ', 'Juan ', 'Chang ', 'Chi ', 'Sarake ', 'Dang ', 'Meng ', 'Pou ',
-);
+];
