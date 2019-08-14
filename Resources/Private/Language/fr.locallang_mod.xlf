@@ -1,17 +1,17 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:33Z" product-name="news" target-language="fr">
-		<header/>
-		<body>
-			<trans-unit id="mlang_tabs_tab" xml:space="preserve" approved="yes">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:33Z" product-name="news" target-language="fr">
+    <header/>
+    <body>
+      <trans-unit id="mlang_tabs_tab" xml:space="preserve">
 				<source>News Import</source>
-			<target state="translated">Importer les actualités</target></trans-unit>
-			<trans-unit id="mlang_labels_tablabel" xml:space="preserve" approved="yes">
+			<target state="needs-translation">News Import</target></trans-unit>
+      <trans-unit id="mlang_labels_tablabel" xml:space="preserve">
 				<source>Generic import module</source>
-			<target state="translated">Importer les actualités</target></trans-unit>
-			<trans-unit id="mlang_labels_tabdescr" xml:space="preserve" approved="yes">
+			<target state="needs-translation">Generic import module</target></trans-unit>
+      <trans-unit id="mlang_labels_tabdescr" xml:space="preserve">
 				<source>Extensions can provide an import service from various sources (e.g. RSS).</source>
-			<target state="translated">Les extensions peuvent fournir un service d’importation à partir de diverses sources (RSS, par exemple).</target></trans-unit>
-		</body>
-	</file>
+			<target state="needs-translation">Extensions can provide an import service from various sources (e.g. RSS).</target></trans-unit>
+    </body>
+  </file>
 </xliff>
