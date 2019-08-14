@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xd7] = array(
+$UTF8_TO_ASCII[0xd7] = [
 'hwen', 'hwenj', 'hwenh', 'hwed', 'hwel', 'hwelg', 'hwelm', 'hwelb', 'hwels', 'hwelt', 'hwelp', 'hwelh', 'hwem', 'hweb', 'hwebs', 'hwes',
 'hwess', 'hweng', 'hwej', 'hwec', 'hwek', 'hwet', 'hwep', 'hweh', 'hwi', 'hwig', 'hwigg', 'hwigs', 'hwin', 'hwinj', 'hwinh', 'hwid',
 'hwil', 'hwilg', 'hwilm', 'hwilb', 'hwils', 'hwilt', 'hwilp', 'hwilh', 'hwim', 'hwib', 'hwibs', 'hwis', 'hwiss', 'hwing', 'hwij', 'hwic',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xd7] = array(
 '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]',
 '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]',
 '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]',
-);
+];
