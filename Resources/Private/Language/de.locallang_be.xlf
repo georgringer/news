@@ -71,7 +71,7 @@
 			<target state="translated">Sortieren nach</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
 				<source>Uid</source>
-			<target state="needs-translation">Uid</target></trans-unit>
+			<target state="translated">UID</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
 				<source>Manual sorting</source>
 			<target state="translated">Manuelle Sortierung</target></trans-unit>
@@ -159,7 +159,7 @@
       <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve" approved="yes">
 				<source>Defined in TypoScript</source>
 			<target state="translated">Definiert im TypoScript</target></trans-unit>
-      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve">
+      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
 				<source>Defined in TypoScript</source>
 			<target state="translated">Definiert in TypoScript</target></trans-unit>
       <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
@@ -182,10 +182,10 @@
 			<target state="translated">Template-Layout</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
 				<source>1</source>
-			<target state="needs-translation">1</target></trans-unit>
+			<target state="translated">1</target></trans-unit>
       <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
 				<source>2</source>
-			<target state="needs-translation">2</target></trans-unit>
+			<target state="translated">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
 				<source>PageId for single news display</source>
 			<target state="translated">Seiten-ID für Einzelnachrichten-Ansicht</target></trans-unit>
@@ -303,16 +303,16 @@
 			<target state="translated">Aktiviere den RTE für den Anreisser.</target></trans-unit>
       <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve">
 				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
-			<target state="needs-translation">Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</target></trans-unit>
+			<target state="translated">Datumsfeld als Pflichtfeld: Wenn gesetzt, ist das Datumsfeld kein Pflichtfeld mehr und wird nicht automatisch ausgefüllt, wenn ein neuer Datensatz erstellt wird.</target></trans-unit>
       <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
 				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
-			<target state="needs-translation">Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</target></trans-unit>
+			<target state="translated">Seitenbaum für das Administrationsmodul ausblenden: Um die Benutzerfreundlichkeit zu vereinfachen, verstecken Sie den Seitenbaum für das Administrationsmodul.</target></trans-unit>
       <trans-unit id="extmng.mediaPreview" xml:space="preserve">
 				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
-			<target state="needs-translation">Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</target></trans-unit>
+			<target state="translated">Vorschaubilder im Backend Listenmodul anzeigen: Wenn aktiviert, werden im Listenmodul die Vorschaubilder angezeigt.</target></trans-unit>
       <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve">
 				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
-			<target state="needs-translation">Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</target></trans-unit>
+			<target state="translated">Erweiterte Vorschau-Konfiguration für Mediendateien: Wenn aktiviert, stehen weitere Optionen für Editoren zur Verfügung, die festlegen, wo ein Medienelement angezeigt werden soll.</target></trans-unit>
       <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
 				<source>Use this overlay for news categories in the Backend</source>
 			<target state="translated">Benutze folgenden Overlay für Kategorien im Backend</target></trans-unit>
@@ -327,7 +327,7 @@
 			<target state="translated">Der Tag "%s" wurde nicht gefunden. Um ihn zu erstellen, bitte &lt;strong&gt;hier klicken&lt;/strong&gt;.</target></trans-unit>
       <trans-unit id="tag_suggest2" xml:space="preserve">
 				<source>Tag could not be found, wanna create it? Click here!</source>
-			<target state="translated">Tag wurde nicht gefunden, soll er erstellt werden? Klicke hier!</target></trans-unit>
+			<target state="translated">Das Schlagwort wurde nicht gefunden, soll es erstellt werden? Klicke hier!</target><alt-trans><target>Tag wurde nicht gefunden, soll er erstellt werden? Klicke hier!</target></alt-trans></trans-unit>
       <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve" approved="yes">
 				<source>No tag submitted!</source>
 			<target state="translated">Es wurde kein Tag übermittelt!</target></trans-unit>
@@ -351,7 +351,7 @@
 			<target state="translated">Rekursiv</target></trans-unit>
       <trans-unit id="module.timeRange" xml:space="preserve">
 				<source>Time range</source>
-			<target state="translated">Zeitspanne</target></trans-unit>
+			<target state="translated">Zeitraum</target><alt-trans><target>Zeitspanne</target></alt-trans></trans-unit>
       <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
 				<source>Time Restriction</source>
 			<target state="translated">Zeitbeschränkung</target></trans-unit>
@@ -468,45 +468,45 @@
       <trans-unit id="administration.donation.invoice.sub" xml:space="preserve">
 				<source>An invoice is possible!</source>
 			<target state="translated">Eine Rechnung ist möglich!</target></trans-unit>
-      <trans-unit id="administration.donation.invoice.text" xml:space="preserve">
+      <trans-unit id="administration.donation.invoice.text" xml:space="preserve" approved="yes">
 				<source>I can create a proper invoice to keep your accounting happy - contact me for details.</source>
 			<target state="translated">Ich kann eine offizielle Rechnung ausstellen, um Ihre Buchhaltung glücklich zu machen - kontaktieren Sie mich für Details.</target></trans-unit>
-      <trans-unit id="administration.donation.patreon.sub" xml:space="preserve">
+      <trans-unit id="administration.donation.patreon.sub" xml:space="preserve" approved="yes">
 				<source>Support me on patreon.com</source>
-			<target state="translated">Unterstütze mich auf patreon.com</target><alt-trans><target>Unterstützen Sie mich auf patreon.com</target></alt-trans></trans-unit>
+			<target state="translated">Unterstützen Sie mich auf patreon.com</target><alt-trans><target>Unterstütze mich auf patreon.com</target></alt-trans></trans-unit>
       <trans-unit id="administration.donation.patreon.text" xml:space="preserve">
 				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
 			<target state="translated">Unterstütze mich auf patreon.com und erhalte Zugriff auf zusätzliche Erweiterungen sowie Snippets als Belohnung.</target></trans-unit>
-      <trans-unit id="administration.donation.paypal.sub" xml:space="preserve">
+      <trans-unit id="administration.donation.paypal.sub" xml:space="preserve" approved="yes">
 				<source>Donate via PayPal</source>
 			<target state="translated">Spenden über PayPal</target></trans-unit>
-      <trans-unit id="administration.donation.paypal.text" xml:space="preserve">
+      <trans-unit id="administration.donation.paypal.text" xml:space="preserve" approved="yes">
 				<source>Support me by a donation on paypal.com. It is just one click away.</source>
 			<target state="translated">Unterstütze mich mittels einer Spende auf paypal.com. Es ist nur einen Klick entfernt.</target></trans-unit>
-      <trans-unit id="administration.donation.amazon" xml:space="preserve">
+      <trans-unit id="administration.donation.amazon" xml:space="preserve" approved="yes">
 				<source>Amazon wishlist</source>
 			<target state="translated">Amazon Wunschzettel</target></trans-unit>
-      <trans-unit id="administration.donation.amazon.sub" xml:space="preserve">
+      <trans-unit id="administration.donation.amazon.sub" xml:space="preserve" approved="yes">
 				<source>Satisfy a wish of my Amazon wishlist</source>
 			<target state="translated">Erfülle mir einen Wunsch aus meinem Amazon Wunschzettel</target></trans-unit>
-      <trans-unit id="administration.donation.amazon.text" xml:space="preserve">
+      <trans-unit id="administration.donation.amazon.text" xml:space="preserve" approved="yes">
 				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
-			<target state="needs-translation">Most of the listed products are for my family and our hobby cooking. Make us happy!</target></trans-unit>
+			<target state="translated">Die meisten der aufgeführten Produkte sind für meine Familie und Hobbies.</target></trans-unit>
       <trans-unit id="administration.donation.sponsors" xml:space="preserve">
 				<source>Current sponsors</source>
-			<target state="needs-translation">Current sponsors</target></trans-unit>
+			<target state="translated">Aktuelle Sponsoren</target></trans-unit>
       <trans-unit id="administration.donation.sponsors.text" xml:space="preserve">
 				<source>The following companies and people have already supported me.</source>
-			<target state="needs-translation">The following companies and people have already supported me.</target></trans-unit>
+			<target state="translated">Die folgenden Unternehmen und Personen haben mich bereits unterstützt.</target></trans-unit>
       <trans-unit id="news-folder" xml:space="preserve" approved="yes">
 				<source>News</source>
 			<target state="translated">Nachrichten</target></trans-unit>
       <trans-unit id="news-page" xml:space="preserve">
 				<source>Page with news plugins</source>
-			<target state="needs-translation">Page with news plugins</target></trans-unit>
+			<target state="translated">Seite mit News Plugins</target></trans-unit>
       <trans-unit id="import.header" xml:space="preserve">
 				<source>News Importer</source>
-			<target state="needs-translation">News Importer</target></trans-unit>
+			<target state="translated">Artikel-Importer</target></trans-unit>
       <trans-unit id="import.choose_a_job" xml:space="preserve" approved="yes">
 				<source>Choose a job</source>
 			<target state="translated">Wähle den Import-Job</target></trans-unit>
