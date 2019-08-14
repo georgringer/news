@@ -137,7 +137,7 @@
 			<target state="needs-translation">www.domain.org</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
 				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
+			<target state="translated">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag" xml:space="preserve" approved="yes">
 				<source>News Tag</source>
 			<target state="translated">Nachrichten-Tag</target></trans-unit>
