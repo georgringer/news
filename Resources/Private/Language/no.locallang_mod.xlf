@@ -5,13 +5,13 @@
     <body>
       <trans-unit id="mlang_tabs_tab" xml:space="preserve" approved="yes">
 				<source>News Import</source>
-			<target state="translated">Nyhetsadministasjon</target><alt-trans><target>Import av nyheter</target></alt-trans></trans-unit>
+			<target state="translated">Nyhetsadministasjon</target></trans-unit>
       <trans-unit id="mlang_labels_tablabel" xml:space="preserve" approved="yes">
 				<source>Generic import module</source>
-			<target state="translated">Administrer nyheter i en separat modul</target><alt-trans><target>Import av nyheter</target></alt-trans></trans-unit>
+			<target state="translated">Administrer nyheter i en separat modul</target></trans-unit>
       <trans-unit id="mlang_labels_tabdescr" xml:space="preserve" approved="yes">
 				<source>Extensions can provide an import service from various sources (e.g. RSS).</source>
-			<target state="translated">Denne modulen gir en enkel måte å administrere nyheter og kategorier.</target><alt-trans><target>Utvidelser kan gi importtjenester fra ulike kilder (f.eks RSS).</target></alt-trans></trans-unit>
+			<target state="translated">Denne modulen gir en enkel måte å administrere nyheter og kategorier.</target></trans-unit>
     </body>
   </file>
 </xliff>
