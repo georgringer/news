@@ -69,7 +69,7 @@
       <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
 				<source>Sort by</source>
 			<target state="translated">Sortieren nach</target></trans-unit>
-      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve" approved="yes">
 				<source>Uid</source>
 			<target state="translated">UID</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
@@ -180,10 +180,10 @@
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
 				<source>Template Layout</source>
 			<target state="translated">Template-Layout</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve" approved="yes">
 				<source>1</source>
 			<target state="translated">1</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve" approved="yes">
 				<source>2</source>
 			<target state="translated">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
@@ -301,16 +301,16 @@
       <trans-unit id="extmng.rteForTeaser" xml:space="preserve" approved="yes">
 				<source>Enable a RTE for the teaser field.</source>
 			<target state="translated">Aktiviere den RTE für den Anreisser.</target></trans-unit>
-      <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve">
+      <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve" approved="yes">
 				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
 			<target state="translated">Datumsfeld als Pflichtfeld: Wenn gesetzt, ist das Datumsfeld kein Pflichtfeld mehr und wird nicht automatisch ausgefüllt, wenn ein neuer Datensatz erstellt wird.</target></trans-unit>
-      <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
+      <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve" approved="yes">
 				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
 			<target state="translated">Seitenbaum für das Administrationsmodul ausblenden: Um die Benutzerfreundlichkeit zu vereinfachen, verstecken Sie den Seitenbaum für das Administrationsmodul.</target></trans-unit>
-      <trans-unit id="extmng.mediaPreview" xml:space="preserve">
+      <trans-unit id="extmng.mediaPreview" xml:space="preserve" approved="yes">
 				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
 			<target state="translated">Vorschaubilder im Backend Listenmodul anzeigen: Wenn aktiviert, werden im Listenmodul die Vorschaubilder angezeigt.</target></trans-unit>
-      <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve">
+      <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
 				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
 			<target state="translated">Erweiterte Vorschau-Konfiguration für Mediendateien: Wenn aktiviert, stehen weitere Optionen für Editoren zur Verfügung, die festlegen, wo ein Medienelement angezeigt werden soll.</target></trans-unit>
       <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
@@ -325,7 +325,7 @@
       <trans-unit id="tag_suggest" xml:space="preserve" approved="yes">
 				<source>Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
 			<target state="translated">Der Tag "%s" wurde nicht gefunden. Um ihn zu erstellen, bitte &lt;strong&gt;hier klicken&lt;/strong&gt;.</target></trans-unit>
-      <trans-unit id="tag_suggest2" xml:space="preserve">
+      <trans-unit id="tag_suggest2" xml:space="preserve" approved="yes">
 				<source>Tag could not be found, wanna create it? Click here!</source>
 			<target state="translated">Das Schlagwort wurde nicht gefunden, soll es erstellt werden? Klicke hier!</target><alt-trans><target>Tag wurde nicht gefunden, soll er erstellt werden? Klicke hier!</target></alt-trans></trans-unit>
       <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve" approved="yes">
@@ -349,7 +349,7 @@
       <trans-unit id="module.recursive" xml:space="preserve" approved="yes">
 				<source>Recursive</source>
 			<target state="translated">Rekursiv</target></trans-unit>
-      <trans-unit id="module.timeRange" xml:space="preserve">
+      <trans-unit id="module.timeRange" xml:space="preserve" approved="yes">
 				<source>Time range</source>
 			<target state="translated">Zeitraum</target><alt-trans><target>Zeitspanne</target></alt-trans></trans-unit>
       <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
@@ -385,7 +385,7 @@
       <trans-unit id="module.newsPidListing" xml:space="preserve" approved="yes">
 				<source>News Pid listing</source>
 			<target state="translated">Anzeige der Artikelseiten</target></trans-unit>
-      <trans-unit id="module.donate" xml:space="preserve">
+      <trans-unit id="module.donate" xml:space="preserve" approved="yes">
 				<source>Support &amp; Donate</source>
 			<target state="translated">Unterstützung &amp; Spenden</target></trans-unit>
       <trans-unit id="administration.title" xml:space="preserve" approved="yes">
@@ -418,54 +418,54 @@
       <trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve" approved="yes">
 				<source>See all pages containing news records</source>
 			<target state="translated">Zeige alle Seiten mit Nachrichten-Beiträgen.</target></trans-unit>
-      <trans-unit id="administration.filter.hidden" xml:space="preserve">
+      <trans-unit id="administration.filter.hidden" xml:space="preserve" approved="yes">
 				<source>Hidden</source>
 			<target state="translated">Versteckt</target></trans-unit>
-      <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve">
+      <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve" approved="yes">
 				<source>only hidden</source>
 			<target state="translated">nur versteckt</target></trans-unit>
-      <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve">
+      <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve" approved="yes">
 				<source>only non-hidden</source>
 			<target state="translated">nur nicht-versteckt</target></trans-unit>
-      <trans-unit id="administration.donation.title" xml:space="preserve">
+      <trans-unit id="administration.donation.title" xml:space="preserve" approved="yes">
 				<source>Support &amp; Donate</source>
 			<target state="translated">Unterstützung &amp; Spenden</target></trans-unit>
-      <trans-unit id="administration.donation.link" xml:space="preserve">
+      <trans-unit id="administration.donation.link" xml:space="preserve" approved="yes">
 				<source>Click so see all options</source>
 			<target state="translated">Klicken, um alle Optionen anzuzeigen</target></trans-unit>
-      <trans-unit id="administration.donation.lead_intro" xml:space="preserve">
+      <trans-unit id="administration.donation.lead_intro" xml:space="preserve" approved="yes">
 				<source>Great that you are using this extension!</source>
 			<target state="translated">Toll, dass Sie diese TYPO3-Extension verwenden!</target></trans-unit>
-      <trans-unit id="administration.donation.lead_full" xml:space="preserve">
+      <trans-unit id="administration.donation.lead_full" xml:space="preserve" approved="yes">
 				<source>The editors have created %d articles with %d relations to categories.</source>
 			<target state="translated">Die Redakteure haben %d Artikel mit %d Relationen zu Kategorien erstellt.</target></trans-unit>
-      <trans-unit id="administration.donation.lead_news_only" xml:space="preserve">
+      <trans-unit id="administration.donation.lead_news_only" xml:space="preserve" approved="yes">
 				<source>The editors have created %d articles.</source>
 			<target state="translated">Die Redakteure haben %d Artikel erstellt.</target></trans-unit>
       <trans-unit id="administration.donation.lead_none" xml:space="preserve" approved="yes">
 				<source>Did you just setup the system? No articles yet created.</source>
 			<target state="translated">Haben Sie das Newssystem gerade neu eingerichtet? Noch sind keine Artikel erstellt.</target></trans-unit>
-      <trans-unit id="administration.donation.support" xml:space="preserve">
+      <trans-unit id="administration.donation.support" xml:space="preserve" approved="yes">
 				<source>Help supporting further development</source>
 			<target state="translated">Unterstützen Sie die Weiterentwicklung</target></trans-unit>
-      <trans-unit id="administration.donation.why" xml:space="preserve">
+      <trans-unit id="administration.donation.why" xml:space="preserve" approved="yes">
 				<source>Why?</source>
 			<target state="translated">Warum?</target></trans-unit>
-      <trans-unit id="administration.donation.why.text" xml:space="preserve">
+      <trans-unit id="administration.donation.why.text" xml:space="preserve" approved="yes">
 				<source>The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
             possibilities of the TYPO3 core.
             This implies a lot of work bringing this to the TYPO3 community.</source>
 			<target state="translated">Die News-Extension ist ein mächtiges Werkzeug mit einer Vielzahl an Funktionen, welche immer versucht, die neuesten Möglichkeiten des TYPO3-Kerns zu verwenden. Im Umkehrschluss bedeutet dies eine Menge an Arbeit, um die Extension stets aktuell zu halten.</target></trans-unit>
-      <trans-unit id="administration.donation.how" xml:space="preserve">
+      <trans-unit id="administration.donation.how" xml:space="preserve" approved="yes">
 				<source>How?</source>
 			<target state="translated">Wie?</target></trans-unit>
-      <trans-unit id="administration.donation.how.text" xml:space="preserve">
+      <trans-unit id="administration.donation.how.text" xml:space="preserve" approved="yes">
 				<source>There are multiple ways to support the further development:</source>
 			<target state="translated">Es gibt mehrere Möglichkeiten, die Weiterentwicklung zu unterstützen:</target></trans-unit>
-      <trans-unit id="administration.donation.invoice" xml:space="preserve">
+      <trans-unit id="administration.donation.invoice" xml:space="preserve" approved="yes">
 				<source>Invoice</source>
 			<target state="translated">Rechnung</target></trans-unit>
-      <trans-unit id="administration.donation.invoice.sub" xml:space="preserve">
+      <trans-unit id="administration.donation.invoice.sub" xml:space="preserve" approved="yes">
 				<source>An invoice is possible!</source>
 			<target state="translated">Eine Rechnung ist möglich!</target></trans-unit>
       <trans-unit id="administration.donation.invoice.text" xml:space="preserve" approved="yes">
@@ -474,7 +474,7 @@
       <trans-unit id="administration.donation.patreon.sub" xml:space="preserve" approved="yes">
 				<source>Support me on patreon.com</source>
 			<target state="translated">Unterstützen Sie mich auf patreon.com</target><alt-trans><target>Unterstütze mich auf patreon.com</target></alt-trans></trans-unit>
-      <trans-unit id="administration.donation.patreon.text" xml:space="preserve">
+      <trans-unit id="administration.donation.patreon.text" xml:space="preserve" approved="yes">
 				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
 			<target state="translated">Unterstütze mich auf patreon.com und erhalte Zugriff auf zusätzliche Erweiterungen sowie Snippets als Belohnung.</target></trans-unit>
       <trans-unit id="administration.donation.paypal.sub" xml:space="preserve" approved="yes">
@@ -492,19 +492,19 @@
       <trans-unit id="administration.donation.amazon.text" xml:space="preserve" approved="yes">
 				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
 			<target state="translated">Die meisten der aufgeführten Produkte sind für meine Familie und Hobbies.</target></trans-unit>
-      <trans-unit id="administration.donation.sponsors" xml:space="preserve">
+      <trans-unit id="administration.donation.sponsors" xml:space="preserve" approved="yes">
 				<source>Current sponsors</source>
 			<target state="translated">Aktuelle Sponsoren</target></trans-unit>
-      <trans-unit id="administration.donation.sponsors.text" xml:space="preserve">
+      <trans-unit id="administration.donation.sponsors.text" xml:space="preserve" approved="yes">
 				<source>The following companies and people have already supported me.</source>
 			<target state="translated">Die folgenden Unternehmen und Personen haben mich bereits unterstützt.</target></trans-unit>
       <trans-unit id="news-folder" xml:space="preserve" approved="yes">
 				<source>News</source>
 			<target state="translated">Nachrichten</target></trans-unit>
-      <trans-unit id="news-page" xml:space="preserve">
+      <trans-unit id="news-page" xml:space="preserve" approved="yes">
 				<source>Page with news plugins</source>
 			<target state="translated">Seite mit News Plugins</target></trans-unit>
-      <trans-unit id="import.header" xml:space="preserve">
+      <trans-unit id="import.header" xml:space="preserve" approved="yes">
 				<source>News Importer</source>
 			<target state="translated">Artikel-Importer</target></trans-unit>
       <trans-unit id="import.choose_a_job" xml:space="preserve" approved="yes">
@@ -513,13 +513,13 @@
       <trans-unit id="import.description" xml:space="preserve" approved="yes">
 				<source>This is the "News importer module". </source>
 			<target state="translated">Dies ist das "Nachrichten Import Modul". </target></trans-unit>
-      <trans-unit id="import.done" xml:space="preserve">
+      <trans-unit id="import.done" xml:space="preserve" approved="yes">
 				<source>The import has been completed. Reload the module to start a new one.</source>
 			<target state="translated">Der Import wurde erfolgreich abgeschlossen. Laden Sie das Modul neu um einen neuen Import zu starten.</target></trans-unit>
       <trans-unit id="import.backupwarning" xml:space="preserve" approved="yes">
 				<source>It's strongly recommended to backup all news tables before running an import job.</source>
 			<target state="translated">Es wird dringend dazu geraten, ein Backup der Datenbank und Dateien zu erstellen, bevor der Import Job durchgeführt wird</target></trans-unit>
-      <trans-unit id="import.backupwarning.header" xml:space="preserve">
+      <trans-unit id="import.backupwarning.header" xml:space="preserve" approved="yes">
 				<source>Important!</source>
 			<target state="translated">Wichtig!</target></trans-unit>
       <trans-unit id="import.nojobs" xml:space="preserve" approved="yes">
@@ -545,11 +545,11 @@
         <source>This record has the following categories assigned that are not defined in your permissions:</source>
         <target state="translated">Diesem Datensatz sind die folgenden Kategorien zugeordnet, für die Sie keine Berechtigungen zugewiesen bekommen haben:</target>
       </trans-unit>
-      <trans-unit id="hiddenContentElements.title">
+      <trans-unit id="hiddenContentElements.title" approved="yes">
         <source>Content elements are hidden</source>
         <target state="translated">Content Elemente werden versteckt</target>
       </trans-unit>
-      <trans-unit id="hiddenContentElements.description">
+      <trans-unit id="hiddenContentElements.description" approved="yes">
         <source>Content elements are hidden in sys folders of type "news"!</source>
         <target state="translated">Inhaltselemente sind in Ordnern des Typs "Nachrichten" versteckt!</target>
       </trans-unit>
