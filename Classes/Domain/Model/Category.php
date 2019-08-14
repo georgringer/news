@@ -375,7 +375,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getParentcategory()
     {
-        return ($this->parentcategory instanceof LazyLoadingProxy ? $this->parentcategory->_loadRealInstance() : $this->parentcategory);
+        return $this->parentcategory instanceof LazyLoadingProxy ? $this->parentcategory->_loadRealInstance() : $this->parentcategory;
     }
 
     /**
