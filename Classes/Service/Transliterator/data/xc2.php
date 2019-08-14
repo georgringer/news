@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xc2] = array(
+$UTF8_TO_ASCII[0xc2] = [
 'syon', 'syonj', 'syonh', 'syod', 'syol', 'syolg', 'syolm', 'syolb', 'syols', 'syolt', 'syolp', 'syolh', 'syom', 'syob', 'syobs', 'syos',
 'syoss', 'syong', 'syoj', 'syoc', 'syok', 'syot', 'syop', 'syoh', 'su', 'sug', 'sugg', 'sugs', 'sun', 'sunj', 'sunh', 'sud',
 'sul', 'sulg', 'sulm', 'sulb', 'suls', 'sult', 'sulp', 'sulh', 'sum', 'sub', 'subs', 'sus', 'suss', 'sung', 'suj', 'suc',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xc2] = array(
 'syim', 'syib', 'syibs', 'syis', 'syiss', 'sying', 'syij', 'syic', 'syik', 'syit', 'syip', 'syih', 'si', 'sig', 'sigg', 'sigs',
 'sin', 'sinj', 'sinh', 'sid', 'sil', 'silg', 'silm', 'silb', 'sils', 'silt', 'silp', 'silh', 'sim', 'sib', 'sibs', 'sis',
 'siss', 'sing', 'sij', 'sic', 'sik', 'sit', 'sip', 'sih', 'ssa', 'ssag', 'ssagg', 'ssags', 'ssan', 'ssanj', 'ssanh', 'ssad',
-);
+];
