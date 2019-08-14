@@ -18,9 +18,9 @@
       <trans-unit id="tx_news_domain_model_news.alternative_title" xml:space="preserve" approved="yes">
 				<source>Alternative title</source>
 			<target state="translated">Alternatieve titel</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve" approved="yes">
 				<source>Teaser</source>
-			<target state="needs-translation">Teaser</target></trans-unit>
+			<target state="translated">Teaser</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve" approved="yes">
 				<source>Date &amp; Time</source>
 			<target state="translated">Datum &amp; Tijd</target></trans-unit>
@@ -69,9 +69,9 @@
       <trans-unit id="tx_news_domain_model_news.content_elements" xml:space="preserve" approved="yes">
 				<source>Content elements</source>
 			<target state="translated">Content elementen</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.tags" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news.tags" xml:space="preserve" approved="yes">
 				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
+			<target state="translated">Tags</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.tags.add" xml:space="preserve" approved="yes">
 				<source>Add a new tag</source>
 			<target state="translated">Voeg een nieuwe tag toe</target></trans-unit>
@@ -87,18 +87,18 @@
       <trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve" approved="yes">
 				<source><![CDATA[<title>-Tag]]></source>
 			<target state="translated"><![CDATA[&lt;title&gt;-tag]]></target></trans-unit>
-      <trans-unit id="tx_news_domain_model_tag.seo.seo_description" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_description" xml:space="preserve" approved="yes">
 				<source>Meta-Description</source>
-			<target state="needs-translation">Meta-Description</target></trans-unit>
+			<target state="translated">Metabeschrijving</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve" approved="yes">
 				<source>Headline (H1)</source>
 			<target state="translated">Kopregel (H1)</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve" approved="yes">
 				<source>SEO Text-Container</source>
 			<target state="translated">SEO-tekstvak</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve" approved="yes">
 				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
+			<target state="translated">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
 				<source>Image</source>
 			<target state="translated">Afbeelding</target></trans-unit>
@@ -111,9 +111,9 @@
       <trans-unit id="tx_news_domain_model_category.seo.seo_title" xml:space="preserve" approved="yes">
 				<source><![CDATA[<title>-Tag]]></source>
 			<target state="translated"><![CDATA[&lt;title&gt;-tag]]></target></trans-unit>
-      <trans-unit id="tx_news_domain_model_category.seo.seo_description" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_category.seo.seo_description" xml:space="preserve" approved="yes">
 				<source>Meta-Description</source>
-			<target state="needs-translation">Meta-Description</target></trans-unit>
+			<target state="translated">Metabeschrijving</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.seo.seo_headline" xml:space="preserve" approved="yes">
 				<source>Headline (H1)</source>
 			<target state="translated">Kopregel (H1)</target></trans-unit>
@@ -129,15 +129,15 @@
       <trans-unit id="tx_news_domain_model_link.description" xml:space="preserve" approved="yes">
 				<source>Description</source>
 			<target state="translated">Beschrijving</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve" approved="yes">
 				<source>URL</source>
-			<target state="needs-translation">URL</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve">
+			<target state="translated">URL</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve" approved="yes">
 				<source>www.domain.org</source>
-			<target state="needs-translation">www.domain.org</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
+			<target state="translated">www.domain.org</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve" approved="yes">
 				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
+			<target state="translated">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag" xml:space="preserve" approved="yes">
 				<source>News Tag</source>
 			<target state="translated">Nieuws Tag</target></trans-unit>
@@ -159,9 +159,9 @@
       <trans-unit id="tx_news_domain_model_media.showinviews.2" xml:space="preserve" approved="yes">
 				<source>Show only in list views</source>
 			<target state="translated">Toon alleen in lijst weergaven</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve" approved="yes">
 				<source>Speaking URL path segment</source>
-			<target state="needs-translation">Speaking URL path segment</target></trans-unit>
+			<target state="translated">Leesbare URL</target></trans-unit>
       <trans-unit id="be_user.tx_news_categorymounts" xml:space="preserve" approved="yes">
 				<source>News: Category restriction</source>
 			<target state="translated">Nieuws: categoriebeperking</target></trans-unit>

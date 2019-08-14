@@ -5,22 +5,22 @@
     <body>
       <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Category record</source>
-			<target state="translated">Enregistrement de balise</target><alt-trans><target>Enregistrement Media</target></alt-trans><alt-trans><target>Enregistrement de type fichier</target></alt-trans><alt-trans><target>Enregistrement de catégorie</target></alt-trans></trans-unit>
+			<target state="translated">Enregistrement de balise</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Category for news records.</source>
-			<target state="translated">Les enregistrements d'actualités peuvent être balisés par ces enregistrements</target><alt-trans><target>Relation vers des enregistements Media</target></alt-trans><alt-trans><target>Relation vers les fichiers</target></alt-trans><alt-trans><target>Catégorie pour les enregistrements d'actualités.</target></alt-trans></trans-unit>
+			<target state="translated">Les enregistrements d'actualités peuvent être balisés par ces enregistrements</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
-			<target state="translated">Voir également le site http://www.news.com/</target><alt-trans><target>Visitez aussi le site http://www.news.com/</target></alt-trans></trans-unit>
+			<target state="translated">Voir également le site http://www.news.com/</target></trans-unit>
       <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
 				<source>Language of the category</source>
 			<target state="translated">Langue de la catégorie</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden categories are never shown in the frontend.</source>
-			<target state="translated">Les éléments cachés ne sont jamais affichés dans le Frontend</target><alt-trans><target>Les éléments cachés ne sont jamais affichés sur le Frontend</target></alt-trans><alt-trans><target>Les catégories cachées ne sont jamais affichées dans le Frontend.</target></alt-trans></trans-unit>
+			<target state="translated">Les éléments cachés ne sont jamais affichés dans le Frontend</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Title of the category</source>
-			<target state="translated">Titre de la balise.</target><alt-trans><target>Information complémentaire à la balise Titre.</target></alt-trans><alt-trans><target>Titre facultatif du fichier sélectionné.</target></alt-trans><alt-trans><target>Titre de la catégorie</target></alt-trans></trans-unit>
+			<target state="translated">Titre de la balise.</target></trans-unit>
       <trans-unit id="parentcategory.description" xml:space="preserve" approved="yes">
 				<source>Select a parent category of this record to build a category tree.</source>
 			<target state="translated">Sélectionner une catégorie parente de cet enregistrement pour construire un arbre de catégorie.</target></trans-unit>
@@ -29,7 +29,7 @@
 			<target state="translated">Image facultative d'une catégorie.</target></trans-unit>
       <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Optional description of a category.</source>
-			<target state="translated">Description facultative du fichier sélectionné.</target><alt-trans><target>Description facultative d'une catégorie.</target></alt-trans></trans-unit>
+			<target state="translated">Description facultative du fichier sélectionné.</target></trans-unit>
       <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
 				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
 			<target state="translated">Choisissez une page qui est utilisée pour montrer la vue de détail des enregistrements d’actualités en relation avec cette catégorie. Une page configuré à l'intérieur des configurations de plugin passe avant cette configuration.</target></trans-unit>
