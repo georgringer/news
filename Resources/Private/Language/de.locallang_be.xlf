@@ -247,8 +247,9 @@
 				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
 				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
 			</source>
-			<target state="needs-translation">Category restriction: Restrict the available categories in news records. PageTsConfig:
-				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			<target state="translated">Kategorienbeschränkung: Beschränkt die verfügbaren Kategorien in neuen Newsdatensätzen. PageTSConfig:
+
+TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Feature ist aktuell in Entwicklung und kann möglicherweise nicht korrekt funktionieren!
 			</target></trans-unit>
       <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
 				<source>Categories from current page</source>
