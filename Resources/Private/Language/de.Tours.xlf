@@ -60,7 +60,7 @@
       <trans-unit id="adminModule.categoryTree.title" xml:space="preserve" approved="yes">
 				<source>Category filter</source>
 			<target state="translated">Kategoriefilter</target></trans-unit>
-      <trans-unit id="adminModule.categoryTree.content" xml:space="preserve">
+      <trans-unit id="adminModule.categoryTree.content" xml:space="preserve" approved="yes">
 				<source>Select categories you want to use for additional filtering</source>
 			<target state="translated">Kategorien auswählen, welche für zusätzliche Filterung verwendet werden soll</target><alt-trans><target>Kategorien auswählen, die Sie für zusätzliche Filterung verwenden möchten</target></alt-trans></trans-unit>
       <trans-unit id="adminModule.categoryConjunction.title" xml:space="preserve" approved="yes">
