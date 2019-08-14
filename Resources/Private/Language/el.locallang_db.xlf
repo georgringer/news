@@ -3,30 +3,30 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="news" target-language="el">
     <header/>
     <body>
-      <trans-unit id="tx_news_domain_model_news.tabs.relations" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news.tabs.relations" xml:space="preserve" approved="yes">
 				<source>Relations</source>
-			<target state="needs-translation">Relations</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve">
+			<target state="translated">Σχέσεις</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve" approved="yes">
 				<source>Alternative Titles</source>
-			<target state="needs-translation">Alternative Titles</target></trans-unit>
+			<target state="translated">Εναλλακτικοί τίτλοι</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.palettes.dates" xml:space="preserve">
 				<source>Dates</source>
 			<target state="needs-translation">Dates</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news" xml:space="preserve" approved="yes">
 				<source>News</source>
-			<target state="needs-translation">News</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.alternative_title" xml:space="preserve">
+			<target state="translated">Νέα</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.alternative_title" xml:space="preserve" approved="yes">
 				<source>Alternative title</source>
-			<target state="needs-translation">Alternative title</target></trans-unit>
+			<target state="translated">Εναλλακτικός τίτλος</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve">
 				<source>Teaser</source>
 			<target state="needs-translation">Teaser</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve" approved="yes">
 				<source>Date &amp; Time</source>
-			<target state="needs-translation">Date &amp; Time</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.archive" xml:space="preserve">
+			<target state="translated">Ημερομηνία &amp; Ώρα</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive" xml:space="preserve" approved="yes">
 				<source>Archive</source>
-			<target state="needs-translation">Archive</target></trans-unit>
+			<target state="translated">Αρχείο</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.archive.placeholder" xml:space="preserve">
 				<source>Define when the news should be listed in the archive</source>
 			<target state="needs-translation">Define when the news should be listed in the archive</target></trans-unit>
@@ -48,9 +48,9 @@
       <trans-unit id="tx_news_domain_model_news.related_links" xml:space="preserve">
 				<source>Related Links</source>
 			<target state="needs-translation">Related Links</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.type.I.0" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_news.type.I.0" xml:space="preserve" approved="yes">
 				<source>News</source>
-			<target state="needs-translation">News</target></trans-unit>
+			<target state="translated">Νέα</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.type.I.1" xml:space="preserve">
 				<source>Internal link</source>
 			<target state="needs-translation">Internal link</target></trans-unit>
