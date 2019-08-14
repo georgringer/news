@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:52Z" product-name="news" target-language="fr">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Link record</source>
+			<target state="translated">Enregistrement de lien</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Relation to other pages and records.</source>
+			<target state="translated">Relation vers les autres pages et enregistrements</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="translated">Visitez aussi le site http://www.news.com/</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target state="translated">Les éléments cachés ne sont jamais affichés sur le Frontend</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Optional title of a link.</source>
+			<target state="translated">Titre optionnel d'un lien.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Description of a link.</source>
+			<target state="translated">Description d'un lien.</target></trans-unit>
+      <trans-unit id="uri.description" xml:space="preserve" approved="yes">
+				<source>Link to a file, ... .</source>
+			<target state="translated">Lien vers un fichier, ...</target></trans-unit>
+    </body>
+  </file>
+</xliff>

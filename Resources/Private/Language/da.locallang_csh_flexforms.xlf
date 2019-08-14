@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:43Z" product-name="news" target-language="da">
+    <header/>
+    <body>
+      <trans-unit id="switchableControllerActions.description" xml:space="preserve" approved="yes">
+				<source>Set the view you want to display</source>
+			<target state="translated">Indstil hvilken visning du ønsker vist</target></trans-unit>
+      <trans-unit id="switchableControllerActions.details" xml:space="preserve" approved="yes">
+				<source>List view shows all news records. Latest uses a time restriction, the rest should be understandable</source>
+			<target state="translated">Listevisning viser alle nyhedselementer. Senest bruger en tidsbegrænsning, resten bør være selvforklarende</target></trans-unit>
+      <trans-unit id="settings.orderBy.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting field</source>
+			<target state="translated">Angiv felt til sortering</target></trans-unit>
+      <trans-unit id="settings.orderDirection.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting direction</source>
+			<target state="translated">Angiv sorteringsorden</target></trans-unit>
+      <trans-unit id="settings.dateField.description" xml:space="preserve" approved="yes">
+				<source>Select the field which is used to build the date menu.</source>
+			<target state="translated">Vælg hvilket felt datomenuen skal genereres fra.</target></trans-unit>
+      <trans-unit id="settings.categories.description" xml:space="preserve" approved="yes">
+				<source>Choose the categories to define which news items are displayed</source>
+			<target state="translated">Vælg kategorier for at angive hvilke nyheder som skal vises</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.description" xml:space="preserve" approved="yes">
+				<source>Define how the selected categories are used</source>
+			<target state="translated">Definér hvordan de valgte kategorier bruges</target></trans-unit>
+      <trans-unit id="settings.includeSubCategories.description" xml:space="preserve" approved="yes">
+				<source>Include all subcategories of the selected categories too.</source>
+			<target state="translated">Inkludér også alle underkategorier af de valgte kategorier.</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.details" xml:space="preserve" approved="yes">
+				<source>"Don't care": No category restriction is set. "Show items with selected categories OR": A news records need to be related with at least one of the selected categories. "Show selected categories AND". A news record need to be related to all selected categories. "Do not show" is the opposite of above.</source>
+			<target state="translated">"Lige meget": Ingen begrænsning på kategori er angivet. "Vis emner med valgte kategorier ELLER": Et nyhedselement skal være relateret til mindst et af de valgte kategorier. "Vis valgte kategorier OG": Et nyhedselement skal være relateret til alle valgte kategorier. "Vis ikke" er det modsatte af ovenfor.</target></trans-unit>
+      <trans-unit id="settings.archiveRestriction.description" xml:space="preserve" approved="yes">
+				<source>Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</source>
+			<target state="translated">Vælg mellem: 1) Vis alle nyhedselementer, 2) Vis kun aktive nyhedselementer, 3) Vis kun arkiverede nyhedselementer. Arkivdatoen er angivet i hvert nyhedselement. Hvis ingen arkivdato er angivet, kan nyhedselementet ikke arkiveres.</target></trans-unit>
+      <trans-unit id="settings.timeRestriction.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items after the given time are shown.</source>
+			<target state="translated">Angiv en tidsgrænse. Det kan enten være et heltal som sekunder, eksempelvis 86400, som betyder 1 dag (60 * 60 * 24) eller en streng som "-4 days" eller "-3 hours". Det foranstillede - er vigtigt! Kun nyhedselementer efter den angivne tid vises.</target></trans-unit>
+      <trans-unit id="settings.timeRestrictionHigh.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items before the given time are shown.</source>
+			<target state="translated">Angiv en tidsbegrænsning. Det kan enten være et heltal og betyder sekunder, f. eks betyder 86400 et døgn (60*60*24) eller en streng som "-4 days" eller "-3 hours". Det foranstillede - er vigtigt! Kun nyhedselementer før den angivne tid vises.</target></trans-unit>
+      <trans-unit id="settings.topNewsRestriction.description" xml:space="preserve" approved="yes">
+				<source>A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</source>
+			<target state="translated">Et nyhedselement kan sættes som top-nyhed. Derfor kan det defineres til at vise alle nyhedselementer, kun top-nyheder eller ikke-top nyheder.</target></trans-unit>
+      <trans-unit id="settings.singleNews.description" xml:space="preserve" approved="yes">
+				<source>Display the selected single news record.</source>
+			<target state="translated">Vis det valgte nyhedselement.</target></trans-unit>
+      <trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve" approved="yes">
+				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
+			<target state="translated">Hvis angivet, skjulte nyhedselementer vil også blive vist. Det kan bruges, hvis du også ønsker at få forhåndsvist skjulte nyhedselementer. Vær opmærksom på at alle skjulte elementer på den aktuelle side også vises.</target></trans-unit>
+      <trans-unit id="settings.startingpoint.description" xml:space="preserve" approved="yes">
+				<source>Define the pages/sysfolders which hold the news records</source>
+			<target state="translated">Angiv siden/systemmappen som indeholder nyhedselementer</target></trans-unit>
+      <trans-unit id="settings.recursive.description" xml:space="preserve" approved="yes">
+				<source>Select the recursion level of the startingpoint.</source>
+			<target state="translated">Vælg gentagelsesniveau for startpunkt.</target></trans-unit>
+      <trans-unit id="settings.detailPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the detail view should be shown.</source>
+			<target state="translated">Vælg hvilken side, der skal bruges til at vise detaljer.</target></trans-unit>
+      <trans-unit id="settings.backPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page which is used to return to on detail view.</source>
+			<target state="translated">Vælg hvilken side, der skal returneres til fra detaljevisning.</target></trans-unit>
+      <trans-unit id="settings.listPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the list view is shown.</source>
+			<target state="translated">Vælg hvilken side listevisninger optræder.</target></trans-unit>
+      <trans-unit id="settings.limit.description" xml:space="preserve" approved="yes">
+				<source>Set the maximum amount of news records to be displayed</source>
+			<target state="translated">Angiv maksimum antal nyhedselementer, der skal vises</target></trans-unit>
+      <trans-unit id="settings.offset.description" xml:space="preserve" approved="yes">
+				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
+			<target state="translated">Angiv begyndelsen der startes ved. Eksempelvis 3 betyder at de to første elementer ikke indlæses.</target></trans-unit>
+      <trans-unit id="settings.topNewsFirst.description" xml:space="preserve" approved="yes">
+				<source>If checked: No matter which sorting is defined, top news are shown as first news records.</source>
+			<target state="translated">Hvis angivet: Lige meget hvilken sortering der er defineret, vises top-nyheder som det første element.</target></trans-unit>
+      <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve" approved="yes">
+				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
+			<target state="translated">Hvis angivet, vil denne plugin ikke blive påvirket gennem overskrivning af krævede indstillinger, som eksempelvis kan være en kategori gennem et URL parameter.</target></trans-unit>
+      <trans-unit id="settings.tags.description" xml:space="preserve" approved="yes">
+				<source>Filter by given tags.</source>
+			<target state="translated">Filter gennem givne tags.</target></trans-unit>
+      <trans-unit id="settings.media.maxWidth.description" xml:space="preserve" approved="yes">
+				<source>Maximal width of media elements (images, videos, ...)</source>
+			<target state="translated">Maksimum bredde på medieelementer (billeder, videoer, ...)</target></trans-unit>
+      <trans-unit id="settings.media.maxHeight.description" xml:space="preserve" approved="yes">
+				<source>Maximal height of media elements (images, videos, ...)</source>
+			<target state="translated">Maksimum højde på medieelementer (billeder, videoer, ...)</target></trans-unit>
+      <trans-unit id="settings.cropMaxCharacters.description" xml:space="preserve" approved="yes">
+				<source>Define the length of the teaser in chars. The teaser is typically cropped in the list view.</source>
+			<target state="translated">Definér længden på koncentratet i antal karakterer. Koncentratet er som regel beskåret i listevisning.</target></trans-unit>
+      <trans-unit id="settings.templateLayout.description" xml:space="preserve" approved="yes">
+				<source>Select a special layout for displaying news records.</source>
+			<target state="translated">Vælg et specielt layout til visning af nyhedselementer.</target></trans-unit>
+    </body>
+  </file>
+</xliff>
