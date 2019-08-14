@@ -131,10 +131,10 @@
 			<target state="translated">Beschreibung</target></trans-unit>
       <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve">
 				<source>URL</source>
-			<target state="needs-translation">URL</target></trans-unit>
+			<target state="translated">URL</target></trans-unit>
       <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve">
 				<source>www.domain.org</source>
-			<target state="needs-translation">www.domain.org</target></trans-unit>
+			<target state="translated">www.domain.org</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
 				<source>SEO</source>
 			<target state="translated">SEO</target></trans-unit>
