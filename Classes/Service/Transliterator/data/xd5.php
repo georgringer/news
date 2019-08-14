@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xd5] = array(
+$UTF8_TO_ASCII[0xd5] = [
 'pyuk', 'pyut', 'pyup', 'pyuh', 'peu', 'peug', 'peugg', 'peugs', 'peun', 'peunj', 'peunh', 'peud', 'peul', 'peulg', 'peulm', 'peulb',
 'peuls', 'peult', 'peulp', 'peulh', 'peum', 'peub', 'peubs', 'peus', 'peuss', 'peung', 'peuj', 'peuc', 'peuk', 'peut', 'peup', 'peuh',
 'pyi', 'pyig', 'pyigg', 'pyigs', 'pyin', 'pyinj', 'pyinh', 'pyid', 'pyil', 'pyilg', 'pyilm', 'pyilb', 'pyils', 'pyilt', 'pyilp', 'pyilh',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xd5] = array(
 'heol', 'heolg', 'heolm', 'heolb', 'heols', 'heolt', 'heolp', 'heolh', 'heom', 'heob', 'heobs', 'heos', 'heoss', 'heong', 'heoj', 'heoc',
 'heok', 'heot', 'heop', 'heoh', 'he', 'heg', 'hegg', 'hegs', 'hen', 'henj', 'henh', 'hed', 'hel', 'helg', 'helm', 'helb',
 'hels', 'helt', 'help', 'helh', 'hem', 'heb', 'hebs', 'hes', 'hess', 'heng', 'hej', 'hec', 'hek', 'het', 'hep', 'heh',
-);
+];
