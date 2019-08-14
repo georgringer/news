@@ -12,60 +12,60 @@
       <trans-unit id="flexforms_tab.settings" xml:space="preserve">
 				<source>Settings</source>
 			<target state="needs-translation">Settings</target></trans-unit>
-      <trans-unit id="flexforms_tab.additional" xml:space="preserve">
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
 				<source>Additional</source>
-			<target state="needs-translation">Additional</target></trans-unit>
-      <trans-unit id="flexforms_tab.template" xml:space="preserve">
+			<target state="translated">Επιπρόσθετο</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
 				<source>Template</source>
-			<target state="needs-translation">Template</target></trans-unit>
-      <trans-unit id="flexforms_general.mode" xml:space="preserve">
+			<target state="translated">Πρότυπο (Template)</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
 				<source>What to display</source>
-			<target state="needs-translation">What to display</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve">
+			<target state="translated">Τι να εμφανιστεί</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve" approved="yes">
 				<source>List view</source>
-			<target state="needs-translation">List view</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve">
+			<target state="translated">Προβολή λίστας</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve" approved="yes">
 				<source>List view (without overloading detail view)</source>
-			<target state="needs-translation">List view (without overloading detail view)</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve">
+			<target state="translated">Προβολή λίστας (without overloading detail view)</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve" approved="yes">
 				<source>Detail view</source>
-			<target state="needs-translation">Detail view</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve">
+			<target state="translated">Λεπτομερής Προβολή</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve" approved="yes">
 				<source>Search form</source>
-			<target state="needs-translation">Search form</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve">
+			<target state="translated">Φόρμα αναζήτησης</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve" approved="yes">
 				<source>Search result</source>
-			<target state="needs-translation">Search result</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve">
+			<target state="translated">Αποτέλεσμα αναζήτησης</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve" approved="yes">
 				<source>Date menu</source>
-			<target state="needs-translation">Date menu</target></trans-unit>
+			<target state="translated">Επιλογές ημερομηνίας</target></trans-unit>
       <trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve">
 				<source>List of selected items</source>
 			<target state="needs-translation">List of selected items</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve" approved="yes">
 				<source>Category Menu</source>
-			<target state="needs-translation">Category Menu</target></trans-unit>
+			<target state="translated">Μενού κατηγοριών</target></trans-unit>
       <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve">
 				<source>No view yet configured</source>
 			<target state="needs-translation">No view yet configured</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve">
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
 				<source>Search</source>
-			<target state="needs-translation">Search</target></trans-unit>
-      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
+			<target state="translated">Αναζήτηση</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve" approved="yes">
 				<source>Others</source>
-			<target state="needs-translation">Others</target></trans-unit>
+			<target state="translated">Άλλα</target></trans-unit>
       <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve">
 				<source>Tag list</source>
 			<target state="needs-translation">Tag list</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve">
 				<source>Archive</source>
 			<target state="needs-translation">Archive</target></trans-unit>
-      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve">
+      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
 				<source>Only active (non archived)</source>
-			<target state="needs-translation">Only active (non archived)</target></trans-unit>
-      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve">
+			<target state="translated">Μόνο ενεργά (όχι αρχειοθετημένα)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
 				<source>Archived</source>
-			<target state="needs-translation">Archived</target></trans-unit>
+			<target state="translated">Αρχειοθετημένο</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy" xml:space="preserve">
 				<source>Sort by</source>
 			<target state="needs-translation">Sort by</target></trans-unit>
@@ -105,9 +105,9 @@
       <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve">
 				<source>Archive date</source>
 			<target state="needs-translation">Archive date</target></trans-unit>
-      <trans-unit id="flexforms_general.categories" xml:space="preserve">
+      <trans-unit id="flexforms_general.categories" xml:space="preserve" approved="yes">
 				<source>Category selection</source>
-			<target state="needs-translation">Category selection</target></trans-unit>
+			<target state="translated">Επιλογή κατηγορίας</target></trans-unit>
       <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve">
 				<source>Category mode</source>
 			<target state="needs-translation">Category mode</target></trans-unit>
@@ -150,9 +150,9 @@
       <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve">
 				<source>Allow preview of hidden records</source>
 			<target state="needs-translation">Allow preview of hidden records</target></trans-unit>
-      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve">
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve" approved="yes">
 				<source>No</source>
-			<target state="needs-translation">No</target></trans-unit>
+			<target state="translated">Όχι</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve">
 				<source>Yes</source>
 			<target state="needs-translation">Yes</target></trans-unit>
@@ -370,12 +370,12 @@
       <trans-unit id="module.topNewsYes" xml:space="preserve">
 				<source>Yes</source>
 			<target state="needs-translation">Yes</target></trans-unit>
-      <trans-unit id="module.topNewsNo" xml:space="preserve">
+      <trans-unit id="module.topNewsNo" xml:space="preserve" approved="yes">
 				<source>No</source>
-			<target state="needs-translation">No</target></trans-unit>
-      <trans-unit id="module.searchWord" xml:space="preserve">
+			<target state="translated">Όχι</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
 				<source>Search</source>
-			<target state="needs-translation">Search</target></trans-unit>
+			<target state="translated">Αναζήτηση</target></trans-unit>
       <trans-unit id="module.newsListing" xml:space="preserve">
 				<source>News Listing</source>
 			<target state="needs-translation">News Listing</target></trans-unit>
