@@ -161,7 +161,7 @@
 			<target state="translated">Definiert im TypoScript</target></trans-unit>
       <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve">
 				<source>Defined in TypoScript</source>
-			<target state="needs-translation">Defined in TypoScript</target></trans-unit>
+			<target state="translated">Definiert in TypoScript</target></trans-unit>
       <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
 				<source>[no constraint]</source>
 			<target state="translated">keine Einschränkung</target></trans-unit>
@@ -224,7 +224,7 @@
 			<target state="translated">Die Seite mit der uid "%s" ist nicht mehr verfügbar!</target></trans-unit>
       <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
 				<source>Record with uid "%s" is not available anymore!</source>
-			<target state="needs-translation">Record with uid "%s" is not available anymore!</target></trans-unit>
+			<target state="translated">Der Datensatz mit UID "%s" ist nicht mehr verfügbar!</target></trans-unit>
       <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve" approved="yes">
 				<source>News record with uid "%s" is not available anymore!</source>
 			<target state="translated">Der Nachrichten-Datensatz mit der uid "%s" ist nicht mehr verfügbar!</target></trans-unit>
