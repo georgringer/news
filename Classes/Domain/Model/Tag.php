@@ -175,7 +175,7 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     {
         $this->seoText = $seoText;
     }
-    
+
     /**
      * @return string
      */
