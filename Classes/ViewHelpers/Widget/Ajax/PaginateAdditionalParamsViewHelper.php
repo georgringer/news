@@ -24,7 +24,6 @@ class PaginateAdditionalParamsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
         $this->registerArgument('page', 'int', 'current page', false, 0);
     }
 
-
     /**
      * @return array
      */
