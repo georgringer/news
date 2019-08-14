@@ -3,24 +3,24 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:43Z" product-name="news" target-language="hu">
     <header/>
     <body>
-      <trans-unit id="switchableControllerActions.description" xml:space="preserve">
+      <trans-unit id="switchableControllerActions.description" xml:space="preserve" approved="yes">
 				<source>Set the view you want to display</source>
-			<target state="needs-translation">Set the view you want to display</target></trans-unit>
-      <trans-unit id="switchableControllerActions.details" xml:space="preserve">
+			<target state="translated">Állítsa be a megjelenítendő nézetet</target></trans-unit>
+      <trans-unit id="switchableControllerActions.details" xml:space="preserve" approved="yes">
 				<source>List view shows all news records. Latest uses a time restriction, the rest should be understandable</source>
-			<target state="needs-translation">List view shows all news records. Latest uses a time restriction, the rest should be understandable</target></trans-unit>
-      <trans-unit id="settings.orderBy.description" xml:space="preserve">
+			<target state="translated">A lista nézet megjelenít minden hír rekordot. A legfrissebb időkorlátot használ, a maradék nyilvánvaló</target></trans-unit>
+      <trans-unit id="settings.orderBy.description" xml:space="preserve" approved="yes">
 				<source>Define the sorting field</source>
-			<target state="needs-translation">Define the sorting field</target></trans-unit>
-      <trans-unit id="settings.orderDirection.description" xml:space="preserve">
+			<target state="translated">Rendezés beállítása</target></trans-unit>
+      <trans-unit id="settings.orderDirection.description" xml:space="preserve" approved="yes">
 				<source>Define the sorting direction</source>
-			<target state="needs-translation">Define the sorting direction</target></trans-unit>
-      <trans-unit id="settings.dateField.description" xml:space="preserve">
+			<target state="translated">Rendezés irányának beállítása</target></trans-unit>
+      <trans-unit id="settings.dateField.description" xml:space="preserve" approved="yes">
 				<source>Select the field which is used to build the date menu.</source>
-			<target state="needs-translation">Select the field which is used to build the date menu.</target></trans-unit>
-      <trans-unit id="settings.categories.description" xml:space="preserve">
+			<target state="translated">Dátum menühöz használandó mező kiválasztása.</target></trans-unit>
+      <trans-unit id="settings.categories.description" xml:space="preserve" approved="yes">
 				<source>Choose the categories to define which news items are displayed</source>
-			<target state="needs-translation">Choose the categories to define which news items are displayed</target></trans-unit>
+			<target state="translated">A megjelenítendő hírkategóriák kiválasztása.</target></trans-unit>
       <trans-unit id="settings.categoryConjunction.description" xml:space="preserve">
 				<source>Define how the selected categories are used</source>
 			<target state="needs-translation">Define how the selected categories are used</target></trans-unit>
@@ -48,27 +48,27 @@
       <trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve">
 				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
 			<target state="needs-translation">If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</target></trans-unit>
-      <trans-unit id="settings.startingpoint.description" xml:space="preserve">
+      <trans-unit id="settings.startingpoint.description" xml:space="preserve" approved="yes">
 				<source>Define the pages/sysfolders which hold the news records</source>
-			<target state="needs-translation">Define the pages/sysfolders which hold the news records</target></trans-unit>
-      <trans-unit id="settings.recursive.description" xml:space="preserve">
+			<target state="translated">A megjelenítendő hír rekordok tárolásához használt oldalak/tárolók beállítása.</target></trans-unit>
+      <trans-unit id="settings.recursive.description" xml:space="preserve" approved="yes">
 				<source>Select the recursion level of the startingpoint.</source>
-			<target state="needs-translation">Select the recursion level of the startingpoint.</target></trans-unit>
-      <trans-unit id="settings.detailPid.description" xml:space="preserve">
+			<target state="translated">A rekurzió szintjének megadása a kiválasztott oldaltól kezdődően.</target></trans-unit>
+      <trans-unit id="settings.detailPid.description" xml:space="preserve" approved="yes">
 				<source>Select the page on which the detail view should be shown.</source>
-			<target state="needs-translation">Select the page on which the detail view should be shown.</target></trans-unit>
-      <trans-unit id="settings.backPid.description" xml:space="preserve">
+			<target state="translated">A hírek részleteinek megjelenítéséhez használatos oldal (UID).</target></trans-unit>
+      <trans-unit id="settings.backPid.description" xml:space="preserve" approved="yes">
 				<source>Select the page which is used to return to on detail view.</source>
-			<target state="needs-translation">Select the page which is used to return to on detail view.</target></trans-unit>
-      <trans-unit id="settings.listPid.description" xml:space="preserve">
+			<target state="translated">A vissza oldalhoz használandó oldal (UID).</target></trans-unit>
+      <trans-unit id="settings.listPid.description" xml:space="preserve" approved="yes">
 				<source>Select the page on which the list view is shown.</source>
-			<target state="needs-translation">Select the page on which the list view is shown.</target></trans-unit>
-      <trans-unit id="settings.limit.description" xml:space="preserve">
+			<target state="translated">A hírek lista nézetéhez használandó oldal (UID).</target></trans-unit>
+      <trans-unit id="settings.limit.description" xml:space="preserve" approved="yes">
 				<source>Set the maximum amount of news records to be displayed</source>
-			<target state="needs-translation">Set the maximum amount of news records to be displayed</target></trans-unit>
-      <trans-unit id="settings.offset.description" xml:space="preserve">
+			<target state="translated">A maximálisan megjelenítendő hírek számának beállítása.</target></trans-unit>
+      <trans-unit id="settings.offset.description" xml:space="preserve" approved="yes">
 				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
-			<target state="needs-translation">Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</target></trans-unit>
+			<target state="translated">A kezdő érték megadása. Pl. 3 azt jeleníti, hogy az első 2 nem jelenik meg. (0-tól kezdődik)</target></trans-unit>
       <trans-unit id="settings.topNewsFirst.description" xml:space="preserve">
 				<source>If checked: No matter which sorting is defined, top news are shown as first news records.</source>
 			<target state="needs-translation">If checked: No matter which sorting is defined, top news are shown as first news records.</target></trans-unit>
