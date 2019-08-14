@@ -3,30 +3,30 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="uk">
     <header/>
     <body>
-      <trans-unit id="search-text" xml:space="preserve">
+      <trans-unit id="search-text" xml:space="preserve" approved="yes">
 				<source>There are %1$s results for "%2$s".</source>
-			<target state="needs-translation">There are %1$s results for "%2$s".</target></trans-unit>
-      <trans-unit id="search-start" xml:space="preserve">
+			<target state="translated">Знайдено %1$s результатів для "%2$s".</target></trans-unit>
+      <trans-unit id="search-start" xml:space="preserve" approved="yes">
 				<source>Start search</source>
-			<target state="needs-translation">Start search</target></trans-unit>
-      <trans-unit id="search-noresult" xml:space="preserve">
+			<target state="translated">Почати пошук</target></trans-unit>
+      <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
 				<source>No news found.</source>
-			<target state="needs-translation">No news found.</target></trans-unit>
+			<target state="translated">Новин не знайдено</target></trans-unit>
       <trans-unit id="search-subject" xml:space="preserve">
 				<source>Text</source>
 			<target state="needs-translation">Text</target></trans-unit>
       <trans-unit id="search-minimumDate" xml:space="preserve">
 				<source>Minimum Date</source>
-			<target state="needs-translation">Minimum Date</target></trans-unit>
+			<target state="translated">Мінімальна дата</target></trans-unit>
       <trans-unit id="search-maximumDate" xml:space="preserve">
 				<source>Maximum Date</source>
-			<target state="needs-translation">Maximum Date</target></trans-unit>
-      <trans-unit id="more-link" xml:space="preserve">
+			<target state="translated">Максимальна дата</target></trans-unit>
+      <trans-unit id="more-link" xml:space="preserve" approved="yes">
 				<source>Read more</source>
-			<target state="needs-translation">Read more</target></trans-unit>
-      <trans-unit id="back-link" xml:space="preserve">
+			<target state="translated">Далі</target></trans-unit>
+      <trans-unit id="back-link" xml:space="preserve" approved="yes">
 				<source>Back</source>
-			<target state="needs-translation">Back</target></trans-unit>
+			<target state="translated">Назад</target></trans-unit>
       <trans-unit id="related-news" xml:space="preserve">
 				<source>Related News</source>
 			<target state="needs-translation">Related News</target></trans-unit>
@@ -42,96 +42,96 @@
       <trans-unit id="author_simple" xml:space="preserve">
 				<source>Created by</source>
 			<target state="needs-translation">Created by</target></trans-unit>
-      <trans-unit id="paginate_overall" xml:space="preserve">
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
 				<source>Page %s of %s.</source>
-			<target state="needs-translation">Page %s of %s.</target></trans-unit>
-      <trans-unit id="paginate_next" xml:space="preserve">
+			<target state="translated">Сторінка %s із %s.</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
 				<source>Next</source>
-			<target state="needs-translation">Next</target></trans-unit>
-      <trans-unit id="paginate_previous" xml:space="preserve">
+			<target state="translated">Далі</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
 				<source>Previous</source>
-			<target state="needs-translation">Previous</target></trans-unit>
+			<target state="translated">Назад</target></trans-unit>
       <trans-unit id="categories" xml:space="preserve">
 				<source>Categories</source>
-			<target state="needs-translation">Categories</target></trans-unit>
+			<target state="translated">Категорії</target></trans-unit>
       <trans-unit id="tags" xml:space="preserve">
 				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
-      <trans-unit id="entry" xml:space="preserve">
+			<target state="translated">Теги</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve" approved="yes">
 				<source>entry</source>
-			<target state="needs-translation">entry</target></trans-unit>
-      <trans-unit id="entries" xml:space="preserve">
+			<target state="translated">Стаття</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve" approved="yes">
 				<source>entries</source>
-			<target state="needs-translation">entries</target></trans-unit>
-      <trans-unit id="month.01" xml:space="preserve">
+			<target state="translated">Статей</target></trans-unit>
+      <trans-unit id="month.01" xml:space="preserve" approved="yes">
 				<source>January</source>
-			<target state="needs-translation">January</target></trans-unit>
-      <trans-unit id="month.02" xml:space="preserve">
+			<target state="translated">Січень</target></trans-unit>
+      <trans-unit id="month.02" xml:space="preserve" approved="yes">
 				<source>February</source>
-			<target state="needs-translation">February</target></trans-unit>
-      <trans-unit id="month.03" xml:space="preserve">
+			<target state="translated">Лютий</target></trans-unit>
+      <trans-unit id="month.03" xml:space="preserve" approved="yes">
 				<source>March</source>
-			<target state="needs-translation">March</target></trans-unit>
-      <trans-unit id="month.04" xml:space="preserve">
+			<target state="translated">Березень</target></trans-unit>
+      <trans-unit id="month.04" xml:space="preserve" approved="yes">
 				<source>April</source>
-			<target state="needs-translation">April</target></trans-unit>
-      <trans-unit id="month.05" xml:space="preserve">
+			<target state="translated">Квітень</target></trans-unit>
+      <trans-unit id="month.05" xml:space="preserve" approved="yes">
 				<source>May</source>
-			<target state="needs-translation">May</target></trans-unit>
-      <trans-unit id="month.06" xml:space="preserve">
+			<target state="translated">Травень</target></trans-unit>
+      <trans-unit id="month.06" xml:space="preserve" approved="yes">
 				<source>June</source>
-			<target state="needs-translation">June</target></trans-unit>
-      <trans-unit id="month.07" xml:space="preserve">
+			<target state="translated">Червень</target></trans-unit>
+      <trans-unit id="month.07" xml:space="preserve" approved="yes">
 				<source>July</source>
-			<target state="needs-translation">July</target></trans-unit>
-      <trans-unit id="month.08" xml:space="preserve">
+			<target state="translated">Липень</target></trans-unit>
+      <trans-unit id="month.08" xml:space="preserve" approved="yes">
 				<source>August</source>
-			<target state="needs-translation">August</target></trans-unit>
-      <trans-unit id="month.09" xml:space="preserve">
+			<target state="translated">Серпень</target></trans-unit>
+      <trans-unit id="month.09" xml:space="preserve" approved="yes">
 				<source>September</source>
-			<target state="needs-translation">September</target></trans-unit>
-      <trans-unit id="month.10" xml:space="preserve">
+			<target state="translated">Вересень</target></trans-unit>
+      <trans-unit id="month.10" xml:space="preserve" approved="yes">
 				<source>October</source>
-			<target state="needs-translation">October</target></trans-unit>
-      <trans-unit id="month.11" xml:space="preserve">
+			<target state="translated">Жовтень</target></trans-unit>
+      <trans-unit id="month.11" xml:space="preserve" approved="yes">
 				<source>November</source>
-			<target state="needs-translation">November</target></trans-unit>
-      <trans-unit id="month.12" xml:space="preserve">
+			<target state="translated">Листопад</target></trans-unit>
+      <trans-unit id="month.12" xml:space="preserve" approved="yes">
 				<source>December</source>
-			<target state="needs-translation">December</target></trans-unit>
+			<target state="translated">Грудень</target></trans-unit>
       <trans-unit id="day.1" xml:space="preserve">
 				<source>Monday</source>
-			<target state="needs-translation">Monday</target></trans-unit>
+			<target state="translated">Понеділок</target></trans-unit>
       <trans-unit id="day.2" xml:space="preserve">
 				<source>Tuesday</source>
-			<target state="needs-translation">Tuesday</target></trans-unit>
+			<target state="translated">Вівторок</target></trans-unit>
       <trans-unit id="day.3" xml:space="preserve">
 				<source>Wednesday</source>
-			<target state="needs-translation">Wednesday</target></trans-unit>
+			<target state="translated">Середа</target></trans-unit>
       <trans-unit id="day.4" xml:space="preserve">
 				<source>Thursday</source>
-			<target state="needs-translation">Thursday</target></trans-unit>
+			<target state="translated">Четвер</target></trans-unit>
       <trans-unit id="day.5" xml:space="preserve">
 				<source>Friday</source>
-			<target state="needs-translation">Friday</target></trans-unit>
+			<target state="translated">П'ятниця</target></trans-unit>
       <trans-unit id="day.6" xml:space="preserve">
 				<source>Saturday</source>
-			<target state="needs-translation">Saturday</target></trans-unit>
+			<target state="translated">Субота</target></trans-unit>
       <trans-unit id="day.7" xml:space="preserve">
 				<source>Sunday</source>
-			<target state="needs-translation">Sunday</target></trans-unit>
+			<target state="translated">Неділя</target></trans-unit>
       <trans-unit id="dateFormat" xml:space="preserve">
 				<source>%m/%d/%Y</source>
-			<target state="needs-translation">%m/%d/%Y</target></trans-unit>
-      <trans-unit id="list_nonewsfound" xml:space="preserve">
+			<target state="translated">%d/%m/%Y</target></trans-unit>
+      <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
 				<source>No news available.</source>
-			<target state="needs-translation">No news available.</target></trans-unit>
+			<target state="translated">Новини відсутні.</target></trans-unit>
       <trans-unit id="list_nocategoriesfound" xml:space="preserve">
 				<source>No categories available.</source>
-			<target state="needs-translation">No categories available.</target></trans-unit>
+			<target state="translated">Немає доступних категорій.</target></trans-unit>
       <trans-unit id="newsNotFound" xml:space="preserve">
 				<source>The news record is not available anymore.</source>
-			<target state="needs-translation">The news record is not available anymore.</target></trans-unit>
+			<target state="translated">Запис новини більше не доступний.</target></trans-unit>
     </body>
   </file>
 </xliff>
