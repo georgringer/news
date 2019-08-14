@@ -76,7 +76,6 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
         ];
     }
 
-
     /**
      * Get the news record including possible translations
      *
@@ -140,5 +139,4 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
     {
         return $GLOBALS['TSFE'];
     }
-
 }
