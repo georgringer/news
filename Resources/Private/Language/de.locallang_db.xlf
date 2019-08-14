@@ -20,7 +20,7 @@
 			<target state="translated">Alternativer Titel</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve">
 				<source>Teaser</source>
-			<target state="needs-translation">Teaser</target></trans-unit>
+			<target state="translated">Teaser</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve" approved="yes">
 				<source>Date &amp; Time</source>
 			<target state="translated">Datum &amp; Zeit</target></trans-unit>
@@ -71,7 +71,7 @@
 			<target state="translated">Inhaltselemente</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.tags" xml:space="preserve">
 				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
+			<target state="translated">Schlagworte</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.tags.add" xml:space="preserve" approved="yes">
 				<source>Add a new tag</source>
 			<target state="translated">Einen Tag hinzufügen</target></trans-unit>
@@ -98,7 +98,7 @@
 			<target state="translated">SEO Text-Abschnitt</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
 				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
+			<target state="translated">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
 				<source>Image</source>
 			<target state="translated">Bild</target></trans-unit>
@@ -116,10 +116,10 @@
 			<target state="translated">Meta-Beschreibung</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.seo.seo_headline" xml:space="preserve">
 				<source>Headline (H1)</source>
-			<target state="needs-translation">Headline (H1)</target></trans-unit>
+			<target state="translated">Überschrift (H1)</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.seo.seo_text" xml:space="preserve">
 				<source>SEO Text-Container</source>
-			<target state="needs-translation">SEO Text-Container</target></trans-unit>
+			<target state="translated">SEO Text-Abschnitt</target></trans-unit>
       <trans-unit id="tx_news_domain_model_link" xml:space="preserve" approved="yes">
 				<source>News Link Element</source>
 			<target state="translated">Nachrichten-Linkelement</target></trans-unit>
@@ -146,13 +146,13 @@
 			<target state="translated">Titel</target></trans-unit>
       <trans-unit id="tx_news_domain_model_media.showinpreview" xml:space="preserve">
 				<source>Show in list views</source>
-			<target state="needs-translation">Show in list views</target></trans-unit>
+			<target state="translated">Nur in Listenansichten anzeigen</target></trans-unit>
       <trans-unit id="tx_news_domain_model_media.showinviews" xml:space="preserve">
 				<source>Show in views</source>
-			<target state="needs-translation">Show in views</target></trans-unit>
+			<target state="translated">Zeige in Ansichten</target></trans-unit>
       <trans-unit id="tx_news_domain_model_media.showinviews.0" xml:space="preserve">
 				<source>Show only in detail views</source>
-			<target state="needs-translation">Show only in detail views</target></trans-unit>
+			<target state="translated">Nur in Detailansichten anzeigen</target></trans-unit>
       <trans-unit id="tx_news_domain_model_media.showinviews.1" xml:space="preserve" approved="yes">
 				<source>Show in all views</source>
 			<target state="translated">In Ansichten anzeigen</target></trans-unit>
