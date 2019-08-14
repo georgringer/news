@@ -180,12 +180,12 @@
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
 				<source>Template Layout</source>
 			<target state="translated">Template-Layout</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve" approved="yes">
 				<source>1</source>
-			<target state="needs-translation">1</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
+			<target state="translated">1</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve" approved="yes">
 				<source>2</source>
-			<target state="needs-translation">2</target></trans-unit>
+			<target state="translated">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
 				<source>PageId for single news display</source>
 			<target state="translated">Seiten-ID für Einzelnachrichten-Ansicht</target></trans-unit>
