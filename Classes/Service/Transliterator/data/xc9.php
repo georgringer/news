@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0xc9] = array(
+$UTF8_TO_ASCII[0xc9] = [
 'jun', 'junj', 'junh', 'jud', 'jul', 'julg', 'julm', 'julb', 'juls', 'jult', 'julp', 'julh', 'jum', 'jub', 'jubs', 'jus',
 'juss', 'jung', 'juj', 'juc', 'juk', 'jut', 'jup', 'juh', 'jweo', 'jweog', 'jweogg', 'jweogs', 'jweon', 'jweonj', 'jweonh', 'jweod',
 'jweol', 'jweolg', 'jweolm', 'jweolb', 'jweols', 'jweolt', 'jweolp', 'jweolh', 'jweom', 'jweob', 'jweobs', 'jweos', 'jweoss', 'jweong', 'jweoj', 'jweoc',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0xc9] = array(
 'jim', 'jib', 'jibs', 'jis', 'jiss', 'jing', 'jij', 'jic', 'jik', 'jit', 'jip', 'jih', 'jja', 'jjag', 'jjagg', 'jjags',
 'jjan', 'jjanj', 'jjanh', 'jjad', 'jjal', 'jjalg', 'jjalm', 'jjalb', 'jjals', 'jjalt', 'jjalp', 'jjalh', 'jjam', 'jjab', 'jjabs', 'jjas',
 'jjass', 'jjang', 'jjaj', 'jjac', 'jjak', 'jjat', 'jjap', 'jjah', 'jjae', 'jjaeg', 'jjaegg', 'jjaegs', 'jjaen', 'jjaenj', 'jjaenh', 'jjaed',
-);
+];
