@@ -1,5 +1,5 @@
 <?php
-$UTF8_TO_ASCII[0x16] = array(
+$UTF8_TO_ASCII[0x16] = [
 'kka', 'kk', 'nu', 'no', 'ne', 'nee', 'ni', 'na', 'mu', 'mo', 'me', 'mee', 'mi', 'ma', 'yu', 'yo',
 'ye', 'yee', 'yi', 'ya', 'ju', 'ju', 'jo', 'je', 'jee', 'ji', 'ji', 'ja', 'jju', 'jjo', 'jje', 'jjee',
 'jji', 'jja', 'lu', 'lo', 'le', 'lee', 'li', 'la', 'dlu', 'dlo', 'dle', 'dlee', 'dli', 'dla', 'lhu', 'lho',
@@ -16,4 +16,4 @@ $UTF8_TO_ASCII[0x16] = array(
 't', 'd', 'b', 'b', 'p', 'p', 'e', 'm', 'm', 'm', 'l', 'l', 'ng', 'ng', 'd', 'o',
 'ear', 'ior', 'qu', 'qu', 'qu', 's', 'yr', 'yr', 'yr', 'q', 'x', '.', ':', '+', '17', '18',
 '19', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]', '[?]',
-);
+];
