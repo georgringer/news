@@ -414,7 +414,7 @@
 			<target state="translated">Keine Nachrichten gefunden</target></trans-unit>
       <trans-unit id="administration.nonewsfoundText" xml:space="preserve">
 				<source>The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</source>
-			<target state="needs-translation">The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</target></trans-unit>
+			<target state="translated">Die aktuelle Seite beinhaltet keine Newsdatensätze. Wählen Sie entweder eine andere Seite im Seitenbaum links oder erstellen Sie den ersten Newsdatensatz auf dieser Seite.</target></trans-unit>
       <trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve" approved="yes">
 				<source>See all pages containing news records</source>
 			<target state="translated">Zeige alle Seiten mit Nachrichten-Beiträgen.</target></trans-unit>
@@ -429,13 +429,13 @@
 			<target state="translated">nur nicht-versteckt</target></trans-unit>
       <trans-unit id="administration.donation.title" xml:space="preserve">
 				<source>Support &amp; Donate</source>
-			<target state="needs-translation">Support &amp; Donate</target></trans-unit>
+			<target state="translated">Unterstützung &amp; Spenden</target></trans-unit>
       <trans-unit id="administration.donation.link" xml:space="preserve">
 				<source>Click so see all options</source>
-			<target state="needs-translation">Click so see all options</target></trans-unit>
+			<target state="translated">Klicken, um alle Optionen anzuzeigen</target></trans-unit>
       <trans-unit id="administration.donation.lead_intro" xml:space="preserve">
 				<source>Great that you are using this extension!</source>
-			<target state="needs-translation">Great that you are using this extension!</target></trans-unit>
+			<target state="translated">Toll, dass Sie diese TYPO3-Extension verwenden!</target></trans-unit>
       <trans-unit id="administration.donation.lead_full" xml:space="preserve">
 				<source>The editors have created %d articles with %d relations to categories.</source>
 			<target state="needs-translation">The editors have created %d articles with %d relations to categories.</target></trans-unit>
