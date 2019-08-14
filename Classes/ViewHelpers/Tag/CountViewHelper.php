@@ -47,9 +47,7 @@ class CountViewHelper extends AbstractViewHelper implements CompilableInterface
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
-
+    ) {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
 
@@ -76,5 +74,4 @@ class CountViewHelper extends AbstractViewHelper implements CompilableInterface
 
         return $count;
     }
-
 }
