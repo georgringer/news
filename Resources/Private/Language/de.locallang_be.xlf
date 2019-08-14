@@ -387,7 +387,7 @@
 			<target state="translated">Anzeige der Artikelseiten</target></trans-unit>
       <trans-unit id="module.donate" xml:space="preserve">
 				<source>Support &amp; Donate</source>
-			<target state="needs-translation">Support &amp; Donate</target></trans-unit>
+			<target state="translated">Unterstützung &amp; Spenden</target></trans-unit>
       <trans-unit id="administration.title" xml:space="preserve" approved="yes">
 				<source>News administration</source>
 			<target state="translated">Nachrichten Verwaltung</target></trans-unit>
