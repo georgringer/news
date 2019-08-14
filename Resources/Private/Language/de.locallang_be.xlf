@@ -243,14 +243,17 @@
       <trans-unit id="extmng.prependAtCopy" xml:space="preserve" approved="yes">
 				<source>Prepend at copy: Prepend string "copy X".</source>
 			<target state="translated">Kopie-Präfix: Der eingestellte Text wird beim Kopieren einer Nachricht dem Titel vorangestellt "Kopie X".</target></trans-unit>
-      <trans-unit id="extmng.categoryRestriction" xml:space="preserve">
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve" approved="yes">
 				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
 				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
 			</source>
-			<target state="translated">Kategorienbeschränkung: Beschränkt die verfügbaren Kategorien in neuen Newsdatensätzen. PageTSConfig:
+			<target state="translated">Kategorienbeschränkung: Beschränkt die verfügbaren Kategorien in neuen Artikeldatensätzen. PageTSConfig:
 
 TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Feature ist aktuell in Entwicklung und kann möglicherweise nicht korrekt funktionieren!
-			</target></trans-unit>
+			</target><alt-trans><target>Kategorienbeschränkung: Beschränkt die verfügbaren Kategorien in neuen Newsdatensätzen. PageTSConfig:
+
+TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Feature ist aktuell in Entwicklung und kann möglicherweise nicht korrekt funktionieren!
+			</target></alt-trans></trans-unit>
       <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
 				<source>Categories from current page</source>
 			<target state="translated">Kategorien aus aktueller Seite: Kategorien in der aktuellen Seite suchen.</target></trans-unit>
