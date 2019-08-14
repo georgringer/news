@@ -3,33 +3,33 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="news" target-language="no">
     <header/>
     <body>
-      <trans-unit id=".description" xml:space="preserve">
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>News record</source>
-			<target state="needs-translation">News record</target></trans-unit>
-      <trans-unit id=".details" xml:space="preserve">
+			<target state="translated">Nyhet</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Versatile news system.</source>
-			<target state="needs-translation">Versatile news system.</target></trans-unit>
-      <trans-unit id="sys_language_uid.description" xml:space="preserve">
+			<target state="translated">Nyhetssystem.</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
 				<source>Language of the news record.</source>
-			<target state="needs-translation">Language of the news record.</target></trans-unit>
-      <trans-unit id="starttime.description" xml:space="preserve">
+			<target state="translated">Språk på nyheten.</target></trans-unit>
+      <trans-unit id="starttime.description" xml:space="preserve" approved="yes">
 				<source>Define a date on which the news record should be shown.</source>
-			<target state="needs-translation">Define a date on which the news record should be shown.</target></trans-unit>
-      <trans-unit id="endtime.description" xml:space="preserve">
+			<target state="translated">Definer en dato når nyheten skal vises.</target></trans-unit>
+      <trans-unit id="endtime.description" xml:space="preserve" approved="yes">
 				<source>Define a date on which the news record should be hidden.</source>
-			<target state="needs-translation">Define a date on which the news record should be hidden.</target></trans-unit>
-      <trans-unit id="fe_group.description" xml:space="preserve">
+			<target state="translated">Definer en dato når nyheten skal skjules.</target></trans-unit>
+      <trans-unit id="fe_group.description" xml:space="preserve" approved="yes">
 				<source>Select the user groups which are allowed to see the news record.</source>
-			<target state="needs-translation">Select the user groups which are allowed to see the news record.</target></trans-unit>
-      <trans-unit id="editlock.description" xml:space="preserve">
+			<target state="translated">Velg brukergrupper som er tillatt å se nyheten.</target></trans-unit>
+      <trans-unit id="editlock.description" xml:space="preserve" approved="yes">
 				<source>If checked, this news record can only be edited by administrators.</source>
-			<target state="needs-translation">If checked, this news record can only be edited by administrators.</target></trans-unit>
-      <trans-unit id="hidden.description" xml:space="preserve">
+			<target state="translated">Om avkrysset, kan nyhetene bare redigeres av administratorer.</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden records are not shown in the frontend.</source>
-			<target state="needs-translation">Hidden records are not shown in the frontend.</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
+			<target state="translated">Skjulte nyheter blir ikke vist på nettsidene.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>News title</source>
-			<target state="needs-translation">News title</target></trans-unit>
+			<target state="translated">Tittel på nyhet</target></trans-unit>
       <trans-unit id="alternative_title.description" xml:space="preserve">
 				<source>Alternative Title will be used as the title for the browser window / tab</source>
 			<target state="needs-translation">Alternative Title will be used as the title for the browser window / tab</target></trans-unit>
