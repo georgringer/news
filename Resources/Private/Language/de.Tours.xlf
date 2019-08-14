@@ -3,16 +3,16 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2017-01-04T11:47:18Z" product-name="news" target-language="de">
     <header/>
     <body>
-      <trans-unit id="adminModule.title" xml:space="preserve">
+      <trans-unit id="adminModule.title" xml:space="preserve" approved="yes">
 				<source>EXT:news - Administration module</source>
 			<target state="translated">EXT:news - Administrationsmodul</target></trans-unit>
-      <trans-unit id="adminModule.description" xml:space="preserve">
+      <trans-unit id="adminModule.description" xml:space="preserve" approved="yes">
 				<source>The administration module of EXT:news is a powerful tool for editors to create, edit and find news records.</source>
 			<target state="translated">Das Verwaltungsmodul von EXT:news ist ein leistungsstarkes Werkzeug für Redakteure, um Artikel zu finden, erstellen und bearbeiten.</target></trans-unit>
       <trans-unit id="adminModule.general.title" xml:space="preserve">
 				<source>Administration module</source>
 			<target state="translated">Administrationsmodul</target></trans-unit>
-      <trans-unit id="adminModule.general.content" xml:space="preserve">
+      <trans-unit id="adminModule.general.content" xml:space="preserve" approved="yes">
 				<source>This is the best place for creating new records and editing existing ones</source>
 			<target state="translated">Dies ist der beste Ort, um neue Datensätze zu erstellen und bestehende zu bearbeiten</target></trans-unit>
       <trans-unit id="adminModule.filter.title" xml:space="preserve">
