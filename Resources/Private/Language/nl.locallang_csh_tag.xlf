@@ -5,19 +5,19 @@
     <body>
       <trans-unit id=".description" xml:space="preserve">
 				<source>Tag record</source>
-			<target state="needs-translation">Tag record</target></trans-unit>
+			<target state="translated">Tag record</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve">
 				<source>News records can be tagged by those records</source>
-			<target state="needs-translation">News records can be tagged by those records</target></trans-unit>
+			<target state="translated">Nieuws items kunnen worden getagd door deze records</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve">
 				<source>See also the website http://www.news.com/</source>
-			<target state="needs-translation">See also the website http://www.news.com/</target></trans-unit>
+			<target state="translated">Zie ook de website https://www.news.com/</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve">
 				<source>Hidden elements are never shown in the frontend.</source>
-			<target state="needs-translation">Hidden elements are never shown in the frontend.</target></trans-unit>
+			<target state="translated">Verborgen elementen worden nooit getoond aan de voorkant.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve">
 				<source>Title of the tag.</source>
-			<target state="needs-translation">Title of the tag.</target></trans-unit>
+			<target state="translated">Titel van de tag.</target></trans-unit>
     </body>
   </file>
 </xliff>
