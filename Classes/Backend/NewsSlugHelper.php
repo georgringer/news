@@ -56,7 +56,6 @@ class NewsSlugHelper
         return $slug;
     }
 
-
     /**
      * Extracts payload of slug and removes wrapping delimiters,
      * e.g. `/hello/world/` will become `hello/world`.
@@ -70,5 +69,4 @@ class NewsSlugHelper
         $fallbackCharacter = '-';
         return trim($slug, $fallbackCharacter . '/');
     }
-
 }
