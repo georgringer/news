@@ -155,7 +155,7 @@
 			<target state="translated">Nur in Detailansichten anzeigen</target></trans-unit>
       <trans-unit id="tx_news_domain_model_media.showinviews.1" xml:space="preserve" approved="yes">
 				<source>Show in all views</source>
-			<target state="translated">In Ansichten anzeigen</target></trans-unit>
+			<target state="translated">In allen Ansichten anzeigen</target></trans-unit>
       <trans-unit id="tx_news_domain_model_media.showinviews.2" xml:space="preserve" approved="yes">
 				<source>Show only in list views</source>
 			<target state="translated">Nur in Listenansichten anzeigen</target></trans-unit>
