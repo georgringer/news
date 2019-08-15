@@ -24,7 +24,7 @@ class SlugService
 
     public function __construct()
     {
-        if (version_compare(TYPO3_branch, '9.5', '<=')) {
+        if (version_compare(TYPO3_branch, '9.5', '<')) {
             $this->slugService = GeneralUtility::makeInstance(NewsSlugHelper::class);
         } else {
             $fieldConfig = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['path_segment']['config'];
