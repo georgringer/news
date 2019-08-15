@@ -357,10 +357,10 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $field = $demand->getDateField();
         $field = empty($field) ? 'datetime' : $field;
 
-        $sql = 'SELECT FROM_UNIXTIME(' . $field . ', "%m") AS "_Month",' .
-            ' FROM_UNIXTIME(' . $field . ', "%Y") AS "_Year" ,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%m")) as count_month,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
+        $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_Month",' .
+            ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_Year" ,' .
+            ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
+            ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
             ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -385,7 +385,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         $res = $connection->query($sql);
         while ($row = $res->fetch()) {
-            $data['single'][$row['_Year']][$row['_Month']] = $row['count_month'];
+            $month = strlen($row['_Month']) === 1 ? ('0' . $row['_Month']) : $row['_Month'];
+            $data['single'][$row['_Year']][$month] = $row['count_month'];
         }
 
         // Add totals

@@ -63,6 +63,14 @@ class RealurlAliasNewsSlugUpdater extends AbstractUpdate
     }
 
     /**
+     * @return string Unique identifier of this updater
+     */
+    public function getIdentifier(): string
+    {
+        return 'realurlAliasNewsSlug';
+    }
+
+    /**
      * Checks if an update is needed
      *
      * @param string &$description The description for the update
