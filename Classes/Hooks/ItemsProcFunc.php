@@ -73,7 +73,7 @@ class ItemsProcFunc
                     $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
                 }
             } else {
-                $allLayouts[$layout[1]] = $layout;
+                $allLayouts[$key] = $layout;
             }
         }
         if (!empty($restrictions)) {
