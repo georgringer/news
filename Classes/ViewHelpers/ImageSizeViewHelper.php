@@ -2,6 +2,8 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\ProcessedFile;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
@@ -41,7 +43,8 @@ class ImageSizeViewHelper extends AbstractViewHelper implements CompilableInterf
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    )
+    {
         $value = 0;
         $tsfe = static::getTypoScriptFrontendController();
         if (!is_null($tsfe)) {
@@ -51,6 +54,16 @@ class ImageSizeViewHelper extends AbstractViewHelper implements CompilableInterf
                     break;
                 case 'height':
                     $value = $tsfe->lastImageInfo[1];
+                    break;
+                case 'size':
+                    /** @var ProcessedFile $processedImage */
+                    $processedImage = $tsfe->lastImageInfo['processedFile'];
+                    if ($processedImage) {
+                        $value = $processedImage->getSize();
+                    } elseif ($originalFile = $tsfe->lastImageInfo['originalFile']) {
+                        /** @var File $originalFile */
+                        $value = $originalFile->getSize();
+                    }
                     break;
                 default:
                     throw new \RuntimeException(sprintf('The value "%s" is not supported in ImageSizeViewHelper', $arguments['property']));
