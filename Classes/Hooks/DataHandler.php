@@ -8,8 +8,9 @@ namespace GeorgRinger\News\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Backend\NewsSlugHelper;
 use GeorgRinger\News\Service\AccessControlService;
-use GeorgRinger\News\Service\Transliterator\Transliterator;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -121,7 +122,8 @@ class DataHandler
     {
         if ($table === 'tx_news_domain_model_news' && $status === 'new' && version_compare(TYPO3_branch, '9.5', '<=')) {
             if (!isset($fieldArray['path_segment']) || empty($fieldArray['path_segment'])) {
-                $fieldArray['path_segment'] = Transliterator::urlize($fieldArray['title']);
+                $slugHelperFor8 = GeneralUtility::makeInstance(NewsSlugHelper::class);
+                $fieldArray['path_segment'] = $slugHelperFor8->sanitize($fieldArray['title']);
             }
         }
     }
