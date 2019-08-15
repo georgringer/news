@@ -8,7 +8,6 @@ namespace GeorgRinger\News\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use GeorgRinger\News\Backend\NewsSlugHelper;
 use GeorgRinger\News\Service\AccessControlService;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
