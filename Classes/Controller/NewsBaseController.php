@@ -119,7 +119,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                 break;
             case 'pageNotFoundHandler':
-                if(version_compare(TYPO3_branch, '9.5', '<')) {
+                if (version_compare(TYPO3_branch, '9.5', '<')) {
                     $GLOBALS['TSFE']->pageNotFoundAndExit('No news entry found.');
                 } else {
                     $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
