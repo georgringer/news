@@ -1,0 +1,56 @@
+7.3.0 - 2019/xx/xx
+==================
+
+.. include:: ../../Includes.txt
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+Starting major refactoring
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Features
+--------
+
+Sitemap
+^^^^^^^^^^^^^^^^^^^^^
+
+Translations
+^^^^^^^^^^^^
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2019-08-16 [TASK] Update german translations (Commit b01b0b6f by Georg Ringer)
+   2019-08-15 [DOC] Example how to render news with same tags (Commit 1d69a13a by Georg Ringer)
+   2019-08-15 [BUGFIX] Use correct lenght attribute in rss feed (Commit f109bf49 by Georg Ringer)
+   2019-08-15 [FEATURE] Add itemprop="image" to image elements (Commit ff368f09 by Georg Ringer)
+   2019-08-15 [BUGFIX] Get only last defined optiongroup (#963) (Commit daa6f485 by 123AltmarkAgentur)
+   2019-08-15 [TASK] Change slug generation for 8 and wizards (#1002) (Commit b9aedf7a by Georg Ringer)
+   2019-08-15 [BUGFIX] Respect dates before 1970 in datemenu (Commit a2795e21 by Georg Ringer)
+   2019-08-15 [BUGFIX] Provide identifir for RealurlAliasNewsSlugUpdater (Commit 34d7023f by Georg Ringer)
+   2019-08-14 [TASK] Add more translations (Commit fcd1b573 by Georg Ringer)
+   2019-08-14 Update Crowdin configuration file (Commit 4dec05e7 by Georg Ringer)
+   2019-08-14 [TASK] Add translations to the extension (Commit ad9e13bd by Georg Ringer)
+   2019-08-14 [TASK]Apply fixes from StyleCI (Commit 1717655a by Georg Ringer)
+   2019-08-14 [BUGFIX] Add support for tag lists with pagination in twb template (#988) (Commit 889920c9 by Johannes)
+   2019-08-14 Update Crowdin configuration file (Commit 43bbad50 by Georg Ringer)
+   2019-08-14 [TASK] Add isRegistered check for custom icons (Commit ebad625e by Georg Ringer)
+   2019-08-14 [BUGFIX] Check for the category setting to exist when adding category constraints. (#905) (Commit db50d859 by Simon Fischer)
+   2019-08-13 [BUGFIX] #960: SQL error in the search module (#961) (Commit 81fb114d by Dmitry Dulepov)
+   2019-08-13 [TASK] Remove DebugConsole from import js (Commit aa96a55b by Georg Ringer)
+   2019-08-12 [FEATURE] Provide custom Sitemap provider (Commit 8f3c7a8d by Georg Ringer)
+   2019-08-12 [DOC] Use 7.2.3 instead of 7.2.2 in Changelog/7-2-3.rst (#959) (Commit e47ed862 by Georg Tiefenbrunn)
+   2019-08-08 [TASK] Replace deprecated constant TAB (Commit b9f72a82 by Georg Ringer)
+
+
+
+This list has been created by using `git log 7.2.3..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
