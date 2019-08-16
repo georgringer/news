@@ -8,11 +8,14 @@ namespace GeorgRinger\News\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\EmConfiguration;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
@@ -76,8 +79,11 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * Error handling if no news entry is found
      *
      * @param string $configuration configuration what will be done
-     * @throws \InvalidArgumentException
      * @return string
+     * @throws ImmediateResponseException
+     * @throws \TYPO3\CMS\Core\Error\Http\PageNotFoundException
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
      */
     protected function handleNoNewsFoundError($configuration)
     {
@@ -113,7 +119,15 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                 break;
             case 'pageNotFoundHandler':
-                $GLOBALS['TSFE']->pageNotFoundAndExit('No news entry found.');
+                if(version_compare(TYPO3_branch, '9.5', '<')) {
+                    $GLOBALS['TSFE']->pageNotFoundAndExit('No news entry found.');
+                } else {
+                    $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
+                        $GLOBALS['TYPO3_REQUEST'],
+                        'No news entry found.'
+                    );
+                    throw new StopActionException($response, 1565981333);
+                }
                 break;
             case 'showStandaloneTemplate':
                 if (isset($configuration[2])) {
