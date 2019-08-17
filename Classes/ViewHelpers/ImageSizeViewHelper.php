@@ -43,8 +43,7 @@ class ImageSizeViewHelper extends AbstractViewHelper implements CompilableInterf
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         $value = 0;
         $tsfe = static::getTypoScriptFrontendController();
         if (!is_null($tsfe)) {
