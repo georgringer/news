@@ -78,6 +78,7 @@ The :php:`GeorgRinger\News\Seo\NewsXmlSitemapDataProvider` provides the same fea
 
 - If you are using the feature to define the detail page through the field
 *Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
+- If you are need urls containing day, month or year information
 - Setting `excludedTypes` to exclude certain news types from the sitemap
 
 To enable the category detail page handling, checkout the setting `useCategorySinglePid = 1` in the following full example:
@@ -101,6 +102,13 @@ To enable the category detail page handling, checkout the setting `useCategorySi
                            url {
                                pageId = 116
                                useCategorySinglePid = 1
+
+                               hrDate = 0
+                               hrDate {
+                                   day = j
+                                   month = n
+                                   year = Y
+                               }
 
                                fieldToParameterMap {
                                    uid = tx_news_pi1[news]

@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Seo;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\Connection;
@@ -128,6 +129,19 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         $additionalParams = [];
         $additionalParams = $this->getUrlFieldParameterMap($additionalParams, $data['data']);
         $additionalParams = $this->getUrlAdditionalParams($additionalParams);
+
+        if (isset($this->config['url']['hrDate']) && (int)$this->config['url']['hrDate'] === 1
+            && $dateTime = \DateTime::createFromFormat('U', (string)$data['data']['datetime'])) {
+            if (!empty($this->config['url']['hrDate']['day'])) {
+                $additionalParams['tx_news_pi1[day]'] = $dateTime->format($this->config['url']['hrDate']['day']);
+            }
+            if (!empty($this->config['url']['hrDate']['month'])) {
+                $additionalParams['tx_news_pi1[month]'] = $dateTime->format($this->config['url']['hrDate']['month']);
+            }
+            if (!empty($this->config['url']['hrDate']['year'])) {
+                $additionalParams['tx_news_pi1[year]'] = $dateTime->format($this->config['url']['hrDate']['year']);
+            }
+        }
 
         $additionalParamsString = http_build_query(
             $additionalParams,
