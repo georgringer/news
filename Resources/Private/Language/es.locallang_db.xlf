@@ -96,9 +96,6 @@
       <trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve" approved="yes">
 				<source>SEO Text-Container</source>
 			<target state="translated">Contenedor de texto SEO</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
-				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
 				<source>Image</source>
 			<target state="translated">Imagen</target></trans-unit>
@@ -129,15 +126,9 @@
       <trans-unit id="tx_news_domain_model_link.description" xml:space="preserve" approved="yes">
 				<source>Description</source>
 			<target state="translated">Descripción</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve">
-				<source>URL</source>
-			<target state="needs-translation">URL</target></trans-unit>
       <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve" approved="yes">
 				<source>www.domain.org</source>
 			<target state="translated">www.dominio.org</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
-				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag" xml:space="preserve" approved="yes">
 				<source>News Tag</source>
 			<target state="translated">Nuevas etiqueta</target></trans-unit>
