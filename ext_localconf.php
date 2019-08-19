@@ -66,6 +66,10 @@ $boot = function () {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Backend\Form\Container\InlineRecordContainer::class] = [
         'className' => \GeorgRinger\News\Xclass\InlineRecordContainerForNews::class,
     ];
+    // Xclass Xfliff parser
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Localization\Parser\XliffParser::class] = [
+        'className' => \GeorgRinger\News\Xclass\XclassedXliffParser::class
+    ];
 
     /* ===========================================================================
         Custom cache, done with the caching framework
