@@ -96,9 +96,6 @@
       <trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve" approved="yes">
 				<source>SEO Text-Container</source>
 			<target state="translated">دربردارندۀ متن SEO</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
-				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
 				<source>Image</source>
 			<target state="translated">تصویر</target></trans-unit>
@@ -132,9 +129,6 @@
       <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve" approved="yes">
 				<source>URL</source>
 			<target state="translated">نشانی</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve">
-				<source>www.domain.org</source>
-			<target state="needs-translation">www.domain.org</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve" approved="yes">
 				<source>SEO</source>
 			<target state="translated">سئو</target></trans-unit>
