@@ -18,7 +18,7 @@
 			<f:if condition="{pagination.previousPage}">
 				<f:if condition="{pagination.previousPage} > 1">
 					<f:then>
-						<n:headerData><link rel="prev" href="{f:widget.uri(useCacheHash:1,arguments: {currentPage: pagination.previousPage}) -> f:format.htmlentities()}" /></n:headerData>
+						<n:headerData><link rel="prev" href="{f:widget.uri(useCacheHash:1,arguments: '{currentPage: pagination.previousPage}') -> f:format.htmlentities()}" /></n:headerData>
 					</f:then>
 					<f:else>
 						<n:headerData><link rel="prev" href="{f:widget.uri() -> f:format.htmlentities()}" /></n:headerData>
@@ -26,7 +26,7 @@
 				</f:if>
 			</f:if>
 			<f:if condition="{pagination.nextPage}">
-				<n:headerData><link rel="next" href="{f:widget.uri(useCacheHash:1,arguments: {currentPage: pagination.nextPage}) -> f:format.htmlentities()}" /></n:headerData>
+				<n:headerData><link rel="next" href="{f:widget.uri(useCacheHash:1,arguments: '{currentPage: pagination.nextPage}') -> f:format.htmlentities()}" /></n:headerData>
 			</f:if>
 		</f:if>
 
