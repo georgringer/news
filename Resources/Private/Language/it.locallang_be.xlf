@@ -66,6 +66,9 @@
       <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
 				<source>Sort by</source>
 			<target state="translated">Ordina per</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
+				<source>Uid</source>
+			<target state="translated">Uid</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
 				<source>Manual sorting</source>
 			<target state="translated">Ordinamento manuale</target></trans-unit>
@@ -144,6 +147,9 @@
       <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve" approved="yes">
 				<source>Allow preview of hidden records</source>
 			<target state="translated">Consenti anteprima per i record nascosti</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve">
+				<source>No</source>
+			<target state="translated">No</target></trans-unit>
       <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve" approved="yes">
 				<source>Yes</source>
 			<target state="translated">Sì</target></trans-unit>
@@ -171,6 +177,12 @@
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
 				<source>Template Layout</source>
 			<target state="translated">Impostazione Template</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
+				<source>1</source>
+			<target state="translated">1</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
+				<source>2</source>
+			<target state="translated">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
 				<source>PageId for single news display</source>
 			<target state="translated">PageId per la visualizzazione della singola news</target></trans-unit>
@@ -346,6 +358,9 @@
       <trans-unit id="module.topNewsYes" xml:space="preserve" approved="yes">
 				<source>Yes</source>
 			<target state="translated">Sì</target></trans-unit>
+      <trans-unit id="module.topNewsNo" xml:space="preserve">
+				<source>No</source>
+			<target state="translated">No</target></trans-unit>
       <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
 				<source>Search</source>
 			<target state="translated">Cerca</target></trans-unit>
@@ -372,6 +387,9 @@
 			</source>
 			<target state="translated">Imposta il numero di livelli ricorsivi da mostrare con le relative voci. Clicca sul titolo della pagina per mostrare le news della pagina.
 			</target></trans-unit>
+      <trans-unit id="administration.nolimit" xml:space="preserve">
+				<source>No limit defined in setting "%s"! Include the default TypoScript in the root page.</source>
+			<target state="translated">Nessun limite definito nell'impostazione "%s"! Includi il TypoScript predefinito nella pagina principale.</target></trans-unit>
       <trans-unit id="administration.toggleForm" xml:space="preserve" approved="yes">
 				<source>Show/Hide filter</source>
 			<target state="translated">Visualizza/Nascondi filtri</target></trans-unit>
@@ -414,6 +432,27 @@
       <trans-unit id="administration.donation.how" xml:space="preserve">
 				<source>How?</source>
 			<target state="translated">Come?</target></trans-unit>
+      <trans-unit id="administration.donation.invoice" xml:space="preserve">
+				<source>Invoice</source>
+			<target state="translated">Fattura</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.sub" xml:space="preserve">
+				<source>Support me on patreon.com</source>
+			<target state="translated">Supportami su patreon.com</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.sub" xml:space="preserve">
+				<source>Donate via PayPal</source>
+			<target state="translated">Dona tramite PayPal</target></trans-unit>
+      <trans-unit id="administration.donation.amazon" xml:space="preserve">
+				<source>Amazon wishlist</source>
+			<target state="translated">Lista Desideri su Amazon</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors" xml:space="preserve">
+				<source>Current sponsors</source>
+			<target state="translated">Sponsor attuali</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors.text" xml:space="preserve">
+				<source>The following companies and people have already supported me.</source>
+			<target state="translated">Le seguenti imprese e persone mi hanno già sostenuto.</target></trans-unit>
+      <trans-unit id="news-folder" xml:space="preserve">
+				<source>News</source>
+			<target state="translated">Notizie</target></trans-unit>
       <trans-unit id="import.header" xml:space="preserve" approved="yes">
 				<source>News Importer</source>
 			<target state="translated">Importatore News</target></trans-unit>
