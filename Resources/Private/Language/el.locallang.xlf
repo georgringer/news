@@ -23,13 +23,28 @@
 			<target state="translated">Έως</target></trans-unit>
       <trans-unit id="more-link" xml:space="preserve" approved="yes">
 				<source>Read more</source>
-			<target state="translated">περισσότερα</target></trans-unit>
+			<target state="translated">Περισσότερα</target><alt-trans><target>περισσότερα</target></alt-trans></trans-unit>
       <trans-unit id="back-link" xml:space="preserve" approved="yes">
 				<source>Back</source>
 			<target state="translated">Επιστροφή</target></trans-unit>
+      <trans-unit id="related-news" xml:space="preserve" approved="yes">
+				<source>Related News</source>
+			<target state="translated">Σχετικά Νέα</target></trans-unit>
+      <trans-unit id="related-files" xml:space="preserve" approved="yes">
+				<source>Related Files</source>
+			<target state="translated">Σχετικά Αρχεία</target></trans-unit>
+      <trans-unit id="related-links" xml:space="preserve" approved="yes">
+				<source>Related Links</source>
+			<target state="translated">Σχετικοί Σύνδεσμοι</target></trans-unit>
+      <trans-unit id="author" xml:space="preserve" approved="yes">
+				<source>Created by %s</source>
+			<target state="translated">Δημιουργήθηκε από %s</target></trans-unit>
+      <trans-unit id="author_simple" xml:space="preserve" approved="yes">
+				<source>Created by</source>
+			<target state="translated">Δημιουργήθηκε από</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
 				<source>Page %s of %s.</source>
-			<target state="translated">Σελίδα %s από %s</target></trans-unit>
+			<target state="translated">Σελίδα %s από %s.</target><alt-trans><target>Σελίδα %s από %s</target></alt-trans></trans-unit>
       <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
 				<source>Next</source>
 			<target state="translated">Επόμενο</target></trans-unit>
@@ -47,7 +62,7 @@
 			<target state="translated">καταχώρηση</target></trans-unit>
       <trans-unit id="entries" xml:space="preserve" approved="yes">
 				<source>entries</source>
-			<target state="translated">Καταχωρήσεις</target></trans-unit>
+			<target state="translated">καταχωρήσεις</target><alt-trans><target>Καταχωρήσεις</target></alt-trans></trans-unit>
       <trans-unit id="month.01" xml:space="preserve" approved="yes">
 				<source>January</source>
 			<target state="translated">Ιανουάριος</target></trans-unit>
@@ -114,6 +129,9 @@
       <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
 				<source>No categories available.</source>
 			<target state="translated">Δεν υπάρχουν κατηγορίες.</target></trans-unit>
+      <trans-unit id="newsNotFound" xml:space="preserve" approved="yes">
+				<source>The news record is not available anymore.</source>
+			<target state="translated">Αυτό η εγγραφή νέου δεν είναι πλέον διαθέσιμη.</target></trans-unit>
     </body>
   </file>
 </xliff>
