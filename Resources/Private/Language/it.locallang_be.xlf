@@ -438,6 +438,13 @@
       <trans-unit id="administration.donation.why" xml:space="preserve">
 				<source>Why?</source>
 			<target state="translated">Perché?</target><alt-trans><target>Perchè?</target></alt-trans></trans-unit>
+      <trans-unit id="administration.donation.why.text" xml:space="preserve">
+				<source>The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
+            possibilities of the TYPO3 core.
+            This implies a lot of work bringing this to the TYPO3 community.</source>
+			<target state="translated">L'estensione news è un potente strumento con molte caratteristiche, che cerca di svilupparsi grazie alle ultime
+            possibilità del core TYPO3.
+            Questo implica moltissimo lavoro per portare tutto questo alla comunità TYPO3.</target></trans-unit>
       <trans-unit id="administration.donation.how" xml:space="preserve">
 				<source>How?</source>
 			<target state="translated">Come?</target></trans-unit>
