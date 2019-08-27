@@ -23,7 +23,7 @@
 			<target state="translated">Data massima</target></trans-unit>
       <trans-unit id="more-link" xml:space="preserve" approved="yes">
 				<source>Read more</source>
-			<target state="translated">Leggi tutto</target><alt-trans><target>Approfondisci</target></alt-trans></trans-unit>
+			<target state="translated">Approfondisci</target><alt-trans><target>Leggi tutto</target></alt-trans></trans-unit>
       <trans-unit id="back-link" xml:space="preserve" approved="yes">
 				<source>Back</source>
 			<target state="translated">Indietro</target></trans-unit>
