@@ -3,9 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:40Z" product-name="news" target-language="it">
     <header/>
     <body>
-			
-			
-			
-		</body>
+      <trans-unit id="mlang_tabs_tab" xml:space="preserve">
+				<source>News Administration</source>
+			<target state="translated">Amministrazione Notizie</target></trans-unit>
+    </body>
   </file>
 </xliff>
