@@ -373,6 +373,9 @@
       <trans-unit id="module.newsPidListing" xml:space="preserve" approved="yes">
 				<source>News Pid listing</source>
 			<target state="translated">Elenco pid delle news</target></trans-unit>
+      <trans-unit id="module.donate" xml:space="preserve">
+				<source>Support &amp; Donate</source>
+			<target state="translated">Supporta &amp; Dona</target></trans-unit>
       <trans-unit id="administration.title" xml:space="preserve" approved="yes">
 				<source>News administration</source>
 			<target state="translated">Amministrazione news</target></trans-unit>
@@ -411,6 +414,9 @@
       <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve">
 				<source>only non-hidden</source>
 			<target state="translated">solo visibili</target></trans-unit>
+      <trans-unit id="administration.donation.title" xml:space="preserve">
+				<source>Support &amp; Donate</source>
+			<target state="translated">Supporta &amp; Dona</target></trans-unit>
       <trans-unit id="administration.donation.link" xml:space="preserve">
 				<source>Click so see all options</source>
 			<target state="translated">Fai clic per vedere tutte le opzioni</target></trans-unit>
@@ -426,24 +432,48 @@
       <trans-unit id="administration.donation.lead_none" xml:space="preserve">
 				<source>Did you just setup the system? No articles yet created.</source>
 			<target state="translated">Hai appena configurato il sistema? Non ci sono ancora articoli.</target></trans-unit>
+      <trans-unit id="administration.donation.support" xml:space="preserve">
+				<source>Help supporting further development</source>
+			<target state="translated">Aiuta a sostenere ulteriori sviluppi</target></trans-unit>
       <trans-unit id="administration.donation.why" xml:space="preserve">
 				<source>Why?</source>
-			<target state="translated">Perchè?</target></trans-unit>
+			<target state="translated">Perché?</target><alt-trans><target>Perchè?</target></alt-trans></trans-unit>
       <trans-unit id="administration.donation.how" xml:space="preserve">
 				<source>How?</source>
 			<target state="translated">Come?</target></trans-unit>
+      <trans-unit id="administration.donation.how.text" xml:space="preserve">
+				<source>There are multiple ways to support the further development:</source>
+			<target state="translated">Ci sono diversi modi per sostenere ulteriori sviluppi:</target></trans-unit>
       <trans-unit id="administration.donation.invoice" xml:space="preserve">
 				<source>Invoice</source>
 			<target state="translated">Fattura</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.sub" xml:space="preserve">
+				<source>An invoice is possible!</source>
+			<target state="translated">È disponibile una fattura!</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.text" xml:space="preserve">
+				<source>I can create a proper invoice to keep your accounting happy - contact me for details.</source>
+			<target state="translated">Posso creare una regolare fattura per far felice la tua contabilità - contattami per i dettagli.</target></trans-unit>
       <trans-unit id="administration.donation.patreon.sub" xml:space="preserve">
 				<source>Support me on patreon.com</source>
 			<target state="translated">Supportami su patreon.com</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.text" xml:space="preserve">
+				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
+			<target state="translated">Supportami su patreon e ottieni l'accesso a estensioni aggiuntive e snippet come ricompensa.</target></trans-unit>
       <trans-unit id="administration.donation.paypal.sub" xml:space="preserve">
 				<source>Donate via PayPal</source>
 			<target state="translated">Dona tramite PayPal</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.text" xml:space="preserve">
+				<source>Support me by a donation on paypal.com. It is just one click away.</source>
+			<target state="translated">Supportami con una donazione su paypal.com. È solo ad un click di distanza.</target></trans-unit>
       <trans-unit id="administration.donation.amazon" xml:space="preserve">
 				<source>Amazon wishlist</source>
 			<target state="translated">Lista Desideri su Amazon</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.sub" xml:space="preserve">
+				<source>Satisfy a wish of my Amazon wishlist</source>
+			<target state="translated">Soddisfa un desiderio della mia Lista Desideri su Amazon</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.text" xml:space="preserve">
+				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
+			<target state="translated">La maggior parte dei prodotti elencati sono per la mia famiglia e il nostro hobby della cucina. Rendici felici!</target></trans-unit>
       <trans-unit id="administration.donation.sponsors" xml:space="preserve">
 				<source>Current sponsors</source>
 			<target state="translated">Sponsor attuali</target></trans-unit>
