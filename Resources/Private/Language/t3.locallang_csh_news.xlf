@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="news" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve">
+				<source>News record</source>
+			<target>crwdns18440:0crwdne18440:0</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve">
+				<source>Versatile news system.</source>
+			<target>crwdns18442:0crwdne18442:0</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve">
+				<source>Language of the news record.</source>
+			<target>crwdns18444:0crwdne18444:0</target></trans-unit>
+      <trans-unit id="starttime.description" xml:space="preserve">
+				<source>Define a date on which the news record should be shown.</source>
+			<target>crwdns18446:0crwdne18446:0</target></trans-unit>
+      <trans-unit id="endtime.description" xml:space="preserve">
+				<source>Define a date on which the news record should be hidden.</source>
+			<target>crwdns18448:0crwdne18448:0</target></trans-unit>
+      <trans-unit id="fe_group.description" xml:space="preserve">
+				<source>Select the user groups which are allowed to see the news record.</source>
+			<target>crwdns18450:0crwdne18450:0</target></trans-unit>
+      <trans-unit id="editlock.description" xml:space="preserve">
+				<source>If checked, this news record can only be edited by administrators.</source>
+			<target>crwdns18452:0crwdne18452:0</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve">
+				<source>Hidden records are not shown in the frontend.</source>
+			<target>crwdns18454:0crwdne18454:0</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve">
+				<source>News title</source>
+			<target>crwdns18456:0crwdne18456:0</target></trans-unit>
+      <trans-unit id="alternative_title.description" xml:space="preserve">
+				<source>Alternative Title will be used as the title for the browser window / tab</source>
+			<target>crwdns18458:0crwdne18458:0</target></trans-unit>
+      <trans-unit id="teaser.description" xml:space="preserve">
+				<source>Be aware that it can be cropped.</source>
+			<target>crwdns18460:0crwdne18460:0</target></trans-unit>
+      <trans-unit id="type.description" xml:space="preserve">
+				<source>Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</source>
+			<target>crwdns18462:0crwdne18462:0</target></trans-unit>
+      <trans-unit id="istopnews.description" xml:space="preserve">
+				<source>Top news records can get a special treated concerning layout, sorting, ...</source>
+			<target>crwdns18464:0crwdne18464:0</target></trans-unit>
+      <trans-unit id="author.description" xml:space="preserve">
+				<source>Author of the news record</source>
+			<target>crwdns18466:0crwdne18466:0</target></trans-unit>
+      <trans-unit id="author_email.description" xml:space="preserve">
+				<source>Email address of the author</source>
+			<target>crwdns18468:0crwdne18468:0</target></trans-unit>
+      <trans-unit id="datetime.description" xml:space="preserve">
+				<source>Date of the news record</source>
+			<target>crwdns18470:0crwdne18470:0</target></trans-unit>
+      <trans-unit id="archive.description" xml:space="preserve">
+				<source>Archive date. A date is required if the news record should once be treated as archived news.</source>
+			<target>crwdns18472:0crwdne18472:0</target></trans-unit>
+      <trans-unit id="bodytext.description" xml:space="preserve">
+				<source>Main content of the news record</source>
+			<target>crwdns18474:0crwdne18474:0</target></trans-unit>
+      <trans-unit id="categories.description" xml:space="preserve">
+				<source>Select the categories which are related to this record.</source>
+			<target>crwdns18476:0crwdne18476:0</target></trans-unit>
+      <trans-unit id="tags.description" xml:space="preserve">
+				<source>Define and select tags which fit to the article.</source>
+			<target>crwdns18478:0crwdne18478:0</target></trans-unit>
+      <trans-unit id="content_elements.description" xml:space="preserve">
+				<source>Content elements can be used to generate feature rich news articles.</source>
+			<target>crwdns18480:0crwdne18480:0</target></trans-unit>
+      <trans-unit id="keywords.description" xml:space="preserve">
+				<source>Define keywords which can be used for SEO optimizations.</source>
+			<target>crwdns18482:0crwdne18482:0</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve">
+				<source>Define a description which can be used for SEO optimizations.</source>
+			<target>crwdns18484:0crwdne18484:0</target></trans-unit>
+      <trans-unit id="related.description" xml:space="preserve">
+				<source>Select related news records.</source>
+			<target>crwdns18486:0crwdne18486:0</target></trans-unit>
+      <trans-unit id="related_from.description" xml:space="preserve">
+				<source>Show news which select current news record as related.</source>
+			<target>crwdns18488:0crwdne18488:0</target></trans-unit>
+      <trans-unit id="related_links.description" xml:space="preserve">
+				<source>Define related links to internal and external pages.</source>
+			<target>crwdns18490:0crwdne18490:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>
