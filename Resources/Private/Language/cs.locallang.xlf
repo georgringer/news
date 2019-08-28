@@ -12,9 +12,6 @@
       <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
 				<source>No news found.</source>
 			<target state="translated">Nenalezeny žádné zprávy.</target></trans-unit>
-      <trans-unit id="search-subject" xml:space="preserve">
-				<source>Text</source>
-			<target state="needs-translation">Text</target></trans-unit>
       <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
 				<source>Minimum Date</source>
 			<target state="translated">Minimální datum</target></trans-unit>
@@ -36,12 +33,6 @@
       <trans-unit id="related-links" xml:space="preserve" approved="yes">
 				<source>Related Links</source>
 			<target state="translated">Související odkazy</target></trans-unit>
-      <trans-unit id="author" xml:space="preserve">
-				<source>Created by %s</source>
-			<target state="needs-translation">Created by %s</target></trans-unit>
-      <trans-unit id="author_simple" xml:space="preserve">
-				<source>Created by</source>
-			<target state="needs-translation">Created by</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
 				<source>Page %s of %s.</source>
 			<target state="translated">Stránka %s z %s.</target></trans-unit>

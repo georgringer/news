@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="search-text" xml:space="preserve">
+				<source>There are %1$s results for "%2$s".</source>
+			<target>crwdns17902:0%1$scrwdnd17902:0%2$scrwdne17902:0</target></trans-unit>
+      <trans-unit id="search-start" xml:space="preserve">
+				<source>Start search</source>
+			<target>crwdns17904:0crwdne17904:0</target></trans-unit>
+      <trans-unit id="search-noresult" xml:space="preserve">
+				<source>No news found.</source>
+			<target>crwdns17906:0crwdne17906:0</target></trans-unit>
+      <trans-unit id="search-subject" xml:space="preserve">
+				<source>Text</source>
+			<target>crwdns17908:0crwdne17908:0</target></trans-unit>
+      <trans-unit id="search-minimumDate" xml:space="preserve">
+				<source>Minimum Date</source>
+			<target>crwdns17910:0crwdne17910:0</target></trans-unit>
+      <trans-unit id="search-maximumDate" xml:space="preserve">
+				<source>Maximum Date</source>
+			<target>crwdns17912:0crwdne17912:0</target></trans-unit>
+      <trans-unit id="more-link" xml:space="preserve">
+				<source>Read more</source>
+			<target>crwdns17914:0crwdne17914:0</target></trans-unit>
+      <trans-unit id="back-link" xml:space="preserve">
+				<source>Back</source>
+			<target>crwdns17916:0crwdne17916:0</target></trans-unit>
+      <trans-unit id="related-news" xml:space="preserve">
+				<source>Related News</source>
+			<target>crwdns17918:0crwdne17918:0</target></trans-unit>
+      <trans-unit id="related-files" xml:space="preserve">
+				<source>Related Files</source>
+			<target>crwdns17920:0crwdne17920:0</target></trans-unit>
+      <trans-unit id="related-links" xml:space="preserve">
+				<source>Related Links</source>
+			<target>crwdns17922:0crwdne17922:0</target></trans-unit>
+      <trans-unit id="author" xml:space="preserve">
+				<source>Created by %s</source>
+			<target>crwdns17924:0%scrwdne17924:0</target></trans-unit>
+      <trans-unit id="author_simple" xml:space="preserve">
+				<source>Created by</source>
+			<target>crwdns17926:0crwdne17926:0</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve">
+				<source>Page %s of %s.</source>
+			<target>crwdns17928:0%scrwdnd17928:0%scrwdne17928:0</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve">
+				<source>Next</source>
+			<target>crwdns17930:0crwdne17930:0</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve">
+				<source>Previous</source>
+			<target>crwdns17932:0crwdne17932:0</target></trans-unit>
+      <trans-unit id="categories" xml:space="preserve">
+				<source>Categories</source>
+			<target>crwdns17934:0crwdne17934:0</target></trans-unit>
+      <trans-unit id="tags" xml:space="preserve">
+				<source>Tags</source>
+			<target>crwdns17936:0crwdne17936:0</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve">
+				<source>entry</source>
+			<target>crwdns17938:0crwdne17938:0</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve">
+				<source>entries</source>
+			<target>crwdns17940:0crwdne17940:0</target></trans-unit>
+      <trans-unit id="month.01" xml:space="preserve">
+				<source>January</source>
+			<target>crwdns17942:0crwdne17942:0</target></trans-unit>
+      <trans-unit id="month.02" xml:space="preserve">
+				<source>February</source>
+			<target>crwdns17944:0crwdne17944:0</target></trans-unit>
+      <trans-unit id="month.03" xml:space="preserve">
+				<source>March</source>
+			<target>crwdns17946:0crwdne17946:0</target></trans-unit>
+      <trans-unit id="month.04" xml:space="preserve">
+				<source>April</source>
+			<target>crwdns17948:0crwdne17948:0</target></trans-unit>
+      <trans-unit id="month.05" xml:space="preserve">
+				<source>May</source>
+			<target>crwdns17950:0crwdne17950:0</target></trans-unit>
+      <trans-unit id="month.06" xml:space="preserve">
+				<source>June</source>
+			<target>crwdns17952:0crwdne17952:0</target></trans-unit>
+      <trans-unit id="month.07" xml:space="preserve">
+				<source>July</source>
+			<target>crwdns17954:0crwdne17954:0</target></trans-unit>
+      <trans-unit id="month.08" xml:space="preserve">
+				<source>August</source>
+			<target>crwdns17956:0crwdne17956:0</target></trans-unit>
+      <trans-unit id="month.09" xml:space="preserve">
+				<source>September</source>
+			<target>crwdns17958:0crwdne17958:0</target></trans-unit>
+      <trans-unit id="month.10" xml:space="preserve">
+				<source>October</source>
+			<target>crwdns17960:0crwdne17960:0</target></trans-unit>
+      <trans-unit id="month.11" xml:space="preserve">
+				<source>November</source>
+			<target>crwdns17962:0crwdne17962:0</target></trans-unit>
+      <trans-unit id="month.12" xml:space="preserve">
+				<source>December</source>
+			<target>crwdns17964:0crwdne17964:0</target></trans-unit>
+      <trans-unit id="day.1" xml:space="preserve">
+				<source>Monday</source>
+			<target>crwdns17966:0crwdne17966:0</target></trans-unit>
+      <trans-unit id="day.2" xml:space="preserve">
+				<source>Tuesday</source>
+			<target>crwdns17968:0crwdne17968:0</target></trans-unit>
+      <trans-unit id="day.3" xml:space="preserve">
+				<source>Wednesday</source>
+			<target>crwdns17970:0crwdne17970:0</target></trans-unit>
+      <trans-unit id="day.4" xml:space="preserve">
+				<source>Thursday</source>
+			<target>crwdns17972:0crwdne17972:0</target></trans-unit>
+      <trans-unit id="day.5" xml:space="preserve">
+				<source>Friday</source>
+			<target>crwdns17974:0crwdne17974:0</target></trans-unit>
+      <trans-unit id="day.6" xml:space="preserve">
+				<source>Saturday</source>
+			<target>crwdns17976:0crwdne17976:0</target></trans-unit>
+      <trans-unit id="day.7" xml:space="preserve">
+				<source>Sunday</source>
+			<target>crwdns17978:0crwdne17978:0</target></trans-unit>
+      <trans-unit id="dateFormat" xml:space="preserve">
+				<source>%m/%d/%Y</source>
+			<target>crwdns17980:0%mcrwdnd17980:0%dcrwdnd17980:0%Ycrwdne17980:0</target></trans-unit>
+      <trans-unit id="list_nonewsfound" xml:space="preserve">
+				<source>No news available.</source>
+			<target>crwdns17982:0crwdne17982:0</target></trans-unit>
+      <trans-unit id="list_nocategoriesfound" xml:space="preserve">
+				<source>No categories available.</source>
+			<target>crwdns17984:0crwdne17984:0</target></trans-unit>
+      <trans-unit id="newsNotFound" xml:space="preserve">
+				<source>The news record is not available anymore.</source>
+			<target>crwdns17986:0crwdne17986:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>

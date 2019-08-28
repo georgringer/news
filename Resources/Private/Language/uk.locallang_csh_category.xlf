@@ -33,9 +33,6 @@
       <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
 				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
 			<target state="translated">Виберіть сторінку, яка використовується для виводу повного тексту статей пов'язаних з цією категорією. Цей параметр може бути перевизначений з конфігураційної сторінки в налаштуваннях плагіна.</target></trans-unit>
-      <trans-unit id="shortcut.description" xml:space="preserve">
-				<source>Optional link of a category.</source>
-			<target state="needs-translation">Optional link of a category.</target></trans-unit>
     </body>
   </file>
 </xliff>

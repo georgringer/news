@@ -15,9 +15,6 @@
       <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
 				<source>Additional</source>
 			<target state="translated">Adicional</target></trans-unit>
-      <trans-unit id="flexforms_tab.template" xml:space="preserve">
-				<source>Template</source>
-			<target state="needs-translation">Template</target></trans-unit>
       <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
 				<source>What to display</source>
 			<target state="translated">Lo que hay que mostrar</target></trans-unit>
@@ -69,9 +66,6 @@
       <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
 				<source>Sort by</source>
 			<target state="translated">Ordenar por</target></trans-unit>
-      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
-				<source>Uid</source>
-			<target state="needs-translation">Uid</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
 				<source>Manual sorting</source>
 			<target state="translated">Orden manual</target></trans-unit>
@@ -180,12 +174,6 @@
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
 				<source>Template Layout</source>
 			<target state="translated">Diseño de la plantilla</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
-				<source>1</source>
-			<target state="needs-translation">1</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
-				<source>2</source>
-			<target state="needs-translation">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
 				<source>PageId for single news display</source>
 			<target state="translated">PageId para una sola pantalla de noticias</target></trans-unit>
@@ -370,9 +358,6 @@
       <trans-unit id="module.topNewsYes" xml:space="preserve" approved="yes">
 				<source>Yes</source>
 			<target state="translated">Sí</target></trans-unit>
-      <trans-unit id="module.topNewsNo" xml:space="preserve">
-				<source>No</source>
-			<target state="needs-translation">No</target></trans-unit>
       <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
 				<source>Search</source>
 			<target state="translated">Buscar</target></trans-unit>

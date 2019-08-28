@@ -180,12 +180,6 @@
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
 				<source>Template Layout</source>
 			<target state="translated">حالت قالب</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
-				<source>1</source>
-			<target state="needs-translation">1</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
-				<source>2</source>
-			<target state="needs-translation">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
 				<source>PageId for single news display</source>
 			<target state="translated">شناسۀ صفحه برای نمایش جزئیات خبر</target></trans-unit>
@@ -502,9 +496,6 @@
       <trans-unit id="news-folder" xml:space="preserve" approved="yes">
 				<source>News</source>
 			<target state="translated">اخبار</target></trans-unit>
-      <trans-unit id="news-page" xml:space="preserve">
-				<source>Page with news plugins</source>
-			<target state="needs-translation">Page with news plugins</target></trans-unit>
       <trans-unit id="import.header" xml:space="preserve" approved="yes">
 				<source>News Importer</source>
 			<target state="translated">واردات خبر</target></trans-unit>

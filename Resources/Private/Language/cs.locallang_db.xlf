@@ -9,9 +9,6 @@
       <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve" approved="yes">
 				<source>Alternative Titles</source>
 			<target state="translated">Alternativní názvy</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_news.palettes.dates" xml:space="preserve">
-				<source>Dates</source>
-			<target state="needs-translation">Dates</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news" xml:space="preserve" approved="yes">
 				<source>News</source>
 			<target state="translated">Zprávy</target></trans-unit>
@@ -96,9 +93,6 @@
       <trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve" approved="yes">
 				<source>SEO Text-Container</source>
 			<target state="translated">SEO textový kontejner</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
-				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
 				<source>Image</source>
 			<target state="translated">Obrázek</target></trans-unit>
@@ -129,15 +123,9 @@
       <trans-unit id="tx_news_domain_model_link.description" xml:space="preserve" approved="yes">
 				<source>Description</source>
 			<target state="translated">Popis</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve">
-				<source>URL</source>
-			<target state="needs-translation">URL</target></trans-unit>
       <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve" approved="yes">
 				<source>www.domain.org</source>
 			<target state="translated">www.doména.cz</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
-				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag" xml:space="preserve" approved="yes">
 				<source>News Tag</source>
 			<target state="translated">Značka zpráv</target></trans-unit>
@@ -147,18 +135,6 @@
       <trans-unit id="tx_news_domain_model_media.showinpreview" xml:space="preserve" approved="yes">
 				<source>Show in list views</source>
 			<target state="translated">Ukázat v zobrazeních seznamu</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_media.showinviews" xml:space="preserve">
-				<source>Show in views</source>
-			<target state="needs-translation">Show in views</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_media.showinviews.0" xml:space="preserve">
-				<source>Show only in detail views</source>
-			<target state="needs-translation">Show only in detail views</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_media.showinviews.1" xml:space="preserve">
-				<source>Show in all views</source>
-			<target state="needs-translation">Show in all views</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_media.showinviews.2" xml:space="preserve">
-				<source>Show only in list views</source>
-			<target state="needs-translation">Show only in list views</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve" approved="yes">
 				<source>Speaking URL path segment</source>
 			<target state="translated">Segment cesty Speaking URL</target></trans-unit>

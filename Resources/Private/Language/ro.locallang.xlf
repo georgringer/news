@@ -12,36 +12,12 @@
       <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
 				<source>No news found.</source>
 			<target state="translated">Nu s-au găsit articole.</target></trans-unit>
-      <trans-unit id="search-subject" xml:space="preserve">
-				<source>Text</source>
-			<target state="needs-translation">Text</target></trans-unit>
-      <trans-unit id="search-minimumDate" xml:space="preserve">
-				<source>Minimum Date</source>
-			<target state="needs-translation">Minimum Date</target></trans-unit>
-      <trans-unit id="search-maximumDate" xml:space="preserve">
-				<source>Maximum Date</source>
-			<target state="needs-translation">Maximum Date</target></trans-unit>
       <trans-unit id="more-link" xml:space="preserve" approved="yes">
 				<source>Read more</source>
 			<target state="translated">Detalii</target></trans-unit>
       <trans-unit id="back-link" xml:space="preserve" approved="yes">
 				<source>Back</source>
 			<target state="translated">Înapoi</target></trans-unit>
-      <trans-unit id="related-news" xml:space="preserve">
-				<source>Related News</source>
-			<target state="needs-translation">Related News</target></trans-unit>
-      <trans-unit id="related-files" xml:space="preserve">
-				<source>Related Files</source>
-			<target state="needs-translation">Related Files</target></trans-unit>
-      <trans-unit id="related-links" xml:space="preserve">
-				<source>Related Links</source>
-			<target state="needs-translation">Related Links</target></trans-unit>
-      <trans-unit id="author" xml:space="preserve">
-				<source>Created by %s</source>
-			<target state="needs-translation">Created by %s</target></trans-unit>
-      <trans-unit id="author_simple" xml:space="preserve">
-				<source>Created by</source>
-			<target state="needs-translation">Created by</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
 				<source>Page %s of %s.</source>
 			<target state="translated">Pagina %s din %s.</target></trans-unit>
@@ -51,12 +27,6 @@
       <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
 				<source>Previous</source>
 			<target state="translated">Înapoi</target></trans-unit>
-      <trans-unit id="categories" xml:space="preserve">
-				<source>Categories</source>
-			<target state="needs-translation">Categories</target></trans-unit>
-      <trans-unit id="tags" xml:space="preserve">
-				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
       <trans-unit id="entry" xml:space="preserve" approved="yes">
 				<source>entry</source>
 			<target state="translated">articol</target></trans-unit>
@@ -84,9 +54,6 @@
       <trans-unit id="month.07" xml:space="preserve" approved="yes">
 				<source>July</source>
 			<target state="translated">Iulie</target></trans-unit>
-      <trans-unit id="month.08" xml:space="preserve">
-				<source>August</source>
-			<target state="needs-translation">August</target></trans-unit>
       <trans-unit id="month.09" xml:space="preserve" approved="yes">
 				<source>September</source>
 			<target state="translated">Septembrie</target></trans-unit>
@@ -99,39 +66,9 @@
       <trans-unit id="month.12" xml:space="preserve" approved="yes">
 				<source>December</source>
 			<target state="translated">Decembrie</target></trans-unit>
-      <trans-unit id="day.1" xml:space="preserve">
-				<source>Monday</source>
-			<target state="needs-translation">Monday</target></trans-unit>
-      <trans-unit id="day.2" xml:space="preserve">
-				<source>Tuesday</source>
-			<target state="needs-translation">Tuesday</target></trans-unit>
-      <trans-unit id="day.3" xml:space="preserve">
-				<source>Wednesday</source>
-			<target state="needs-translation">Wednesday</target></trans-unit>
-      <trans-unit id="day.4" xml:space="preserve">
-				<source>Thursday</source>
-			<target state="needs-translation">Thursday</target></trans-unit>
-      <trans-unit id="day.5" xml:space="preserve">
-				<source>Friday</source>
-			<target state="needs-translation">Friday</target></trans-unit>
-      <trans-unit id="day.6" xml:space="preserve">
-				<source>Saturday</source>
-			<target state="needs-translation">Saturday</target></trans-unit>
-      <trans-unit id="day.7" xml:space="preserve">
-				<source>Sunday</source>
-			<target state="needs-translation">Sunday</target></trans-unit>
-      <trans-unit id="dateFormat" xml:space="preserve">
-				<source>%m/%d/%Y</source>
-			<target state="needs-translation">%m/%d/%Y</target></trans-unit>
       <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
 				<source>No news available.</source>
 			<target state="translated">Nu sunt articole.</target></trans-unit>
-      <trans-unit id="list_nocategoriesfound" xml:space="preserve">
-				<source>No categories available.</source>
-			<target state="needs-translation">No categories available.</target></trans-unit>
-      <trans-unit id="newsNotFound" xml:space="preserve">
-				<source>The news record is not available anymore.</source>
-			<target state="needs-translation">The news record is not available anymore.</target></trans-unit>
     </body>
   </file>
 </xliff>

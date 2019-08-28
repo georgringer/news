@@ -129,9 +129,6 @@
       <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
 				<source>No categories available.</source>
 			<target state="translated">Nema kategorija.</target></trans-unit>
-      <trans-unit id="newsNotFound" xml:space="preserve">
-				<source>The news record is not available anymore.</source>
-			<target state="needs-translation">The news record is not available anymore.</target></trans-unit>
     </body>
   </file>
 </xliff>

@@ -6,9 +6,6 @@
       <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>News record</source>
 			<target state="translated">Uutistietue</target></trans-unit>
-      <trans-unit id=".details" xml:space="preserve">
-				<source>Versatile news system.</source>
-			<target state="needs-translation">Versatile news system.</target></trans-unit>
       <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
 				<source>Language of the news record.</source>
 			<target state="translated">Uutisen kieli</target></trans-unit>
@@ -39,9 +36,6 @@
       <trans-unit id="type.description" xml:space="preserve" approved="yes">
 				<source>Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</source>
 			<target state="translated">Valitse uutisen tyyppi; normaali uutinen tai linkki sisäiseen/ulkoiseen www-sivuun.</target></trans-unit>
-      <trans-unit id="istopnews.description" xml:space="preserve">
-				<source>Top news records can get a special treated concerning layout, sorting, ...</source>
-			<target state="needs-translation">Top news records can get a special treated concerning layout, sorting, ...</target></trans-unit>
       <trans-unit id="author.description" xml:space="preserve" approved="yes">
 				<source>Author of the news record</source>
 			<target state="translated">Kirjoittaja</target></trans-unit>
@@ -60,12 +54,6 @@
       <trans-unit id="categories.description" xml:space="preserve" approved="yes">
 				<source>Select the categories which are related to this record.</source>
 			<target state="translated">Valitse kategoriat</target></trans-unit>
-      <trans-unit id="tags.description" xml:space="preserve">
-				<source>Define and select tags which fit to the article.</source>
-			<target state="needs-translation">Define and select tags which fit to the article.</target></trans-unit>
-      <trans-unit id="content_elements.description" xml:space="preserve">
-				<source>Content elements can be used to generate feature rich news articles.</source>
-			<target state="needs-translation">Content elements can be used to generate feature rich news articles.</target></trans-unit>
       <trans-unit id="keywords.description" xml:space="preserve" approved="yes">
 				<source>Define keywords which can be used for SEO optimizations.</source>
 			<target state="translated">Määrittele hakukoneoptimointiin liittyvät avainsanat (keywords).</target></trans-unit>

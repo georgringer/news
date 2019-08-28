@@ -45,9 +45,6 @@
       <trans-unit id="settings.singleNews.description" xml:space="preserve" approved="yes">
 				<source>Display the selected single news record.</source>
 			<target state="translated">Mostra la singola news selezionata.</target></trans-unit>
-      <trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve">
-				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
-			<target state="needs-translation">If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</target></trans-unit>
       <trans-unit id="settings.startingpoint.description" xml:space="preserve" approved="yes">
 				<source>Define the pages/sysfolders which hold the news records</source>
 			<target state="translated">Definisci la pagina/cartella che contiene i record delle news</target></trans-unit>
@@ -75,9 +72,6 @@
       <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve" approved="yes">
 				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
 			<target state="translated">Se selezionato, il plugin non verrà influenzato dalla sovrascrittura delle impostazioni, ad esempio della categoria tramite un parametro nell'URL.</target></trans-unit>
-      <trans-unit id="settings.tags.description" xml:space="preserve">
-				<source>Filter by given tags.</source>
-			<target state="needs-translation">Filter by given tags.</target></trans-unit>
       <trans-unit id="settings.media.maxWidth.description" xml:space="preserve" approved="yes">
 				<source>Maximal width of media elements (images, videos, ...)</source>
 			<target state="translated">Larghezza massima degli elementi multimediali (immagini, video, ...)</target></trans-unit>

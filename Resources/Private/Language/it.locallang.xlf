@@ -11,7 +11,7 @@
 			<target state="translated">Avvia la ricerca</target></trans-unit>
       <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
 				<source>No news found.</source>
-			<target state="translated">Nessuna news trovata</target></trans-unit>
+			<target state="translated">Nessuna notizia trovata.</target><alt-trans><target>Nessuna news trovata</target></alt-trans></trans-unit>
       <trans-unit id="search-subject" xml:space="preserve" approved="yes">
 				<source>Text</source>
 			<target state="translated">Testo</target></trans-unit>
@@ -23,25 +23,22 @@
 			<target state="translated">Data massima</target></trans-unit>
       <trans-unit id="more-link" xml:space="preserve" approved="yes">
 				<source>Read more</source>
-			<target state="translated">Leggi tutto</target></trans-unit>
+			<target state="translated">Approfondisci</target><alt-trans><target>Leggi tutto</target></alt-trans></trans-unit>
       <trans-unit id="back-link" xml:space="preserve" approved="yes">
 				<source>Back</source>
 			<target state="translated">Indietro</target></trans-unit>
       <trans-unit id="related-news" xml:space="preserve">
 				<source>Related News</source>
-			<target state="needs-translation">Related News</target></trans-unit>
+			<target state="translated">News correlate</target></trans-unit>
       <trans-unit id="related-files" xml:space="preserve" approved="yes">
 				<source>Related Files</source>
 			<target state="translated">File correlati</target></trans-unit>
       <trans-unit id="related-links" xml:space="preserve">
 				<source>Related Links</source>
-			<target state="needs-translation">Related Links</target></trans-unit>
+			<target state="translated">Link correlati</target></trans-unit>
       <trans-unit id="author" xml:space="preserve" approved="yes">
 				<source>Created by %s</source>
 			<target state="translated">Creato da %s</target></trans-unit>
-      <trans-unit id="author_simple" xml:space="preserve">
-				<source>Created by</source>
-			<target state="needs-translation">Created by</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
 				<source>Page %s of %s.</source>
 			<target state="translated">Pagina %s di %s</target></trans-unit>
@@ -54,9 +51,6 @@
       <trans-unit id="categories" xml:space="preserve" approved="yes">
 				<source>Categories</source>
 			<target state="translated">Categorie</target></trans-unit>
-      <trans-unit id="tags" xml:space="preserve">
-				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
       <trans-unit id="entry" xml:space="preserve" approved="yes">
 				<source>entry</source>
 			<target state="translated">voce</target></trans-unit>

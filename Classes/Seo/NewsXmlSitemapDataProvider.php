@@ -129,6 +129,19 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         $additionalParams = $this->getUrlFieldParameterMap($additionalParams, $data['data']);
         $additionalParams = $this->getUrlAdditionalParams($additionalParams);
 
+        if (isset($this->config['url']['hrDate']) && (int)$this->config['url']['hrDate'] === 1
+            && $dateTime = \DateTime::createFromFormat('U', (string)$data['data']['datetime'])) {
+            if (!empty($this->config['url']['hrDate']['day'])) {
+                $additionalParams['tx_news_pi1[day]'] = $dateTime->format($this->config['url']['hrDate']['day']);
+            }
+            if (!empty($this->config['url']['hrDate']['month'])) {
+                $additionalParams['tx_news_pi1[month]'] = $dateTime->format($this->config['url']['hrDate']['month']);
+            }
+            if (!empty($this->config['url']['hrDate']['year'])) {
+                $additionalParams['tx_news_pi1[year]'] = $dateTime->format($this->config['url']['hrDate']['year']);
+            }
+        }
+
         $additionalParamsString = http_build_query(
             $additionalParams,
             '',
