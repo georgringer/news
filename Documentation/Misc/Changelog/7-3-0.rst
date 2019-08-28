@@ -1,4 +1,4 @@
-7.3.0 - 2019/xx/xx
+7.3.0 - 2019/28/08
 ==================
 
 .. include:: ../../Includes.txt
@@ -21,6 +21,7 @@ Providing support for 2 LTS versions has got the following advantages:
 - Upgrade to 10 is therefore easier because it means that the extension is already compatible
 
 So what is it all about:
+
 - *SEO*: Support for MetaTag-API, custom TitleTag-Provider, custom Sitemap-Provider
 - *Translations*: With 9 the translations changed a lot, so this needs to be all checked and tested
 - *Code adoption*: Fix deprecations, remove code specific to 8
@@ -48,6 +49,14 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+   2019-08-28 [TASK] Update translations (Commit f2b95587 by Georg Ringer)
+   2019-08-19 [TASK] Fix CI issues (Commit 209bc55d by Georg Ringer)
+   2019-08-19 [TASK] Prioritize local language files over global ones (Commit 0bf8c488 by Georg Ringer)
+   2019-08-18 [FEATURE] Support hrDate in sitemap (Commit f5fd8def by Georg Ringer)
+   2019-08-17 [BUGFIX] Fix wrong handling of singal dispatcher result (Commit f21ff259 by Dmitry Dulepov)
+   2019-08-17 Apply fixes from StyleCI (#1009) (Commit cdcf2c70 by Georg Ringer)
+   2019-08-17 [TASK] Finish docs (Commit 340e47f9 by Georg Ringer)
+   2019-08-16 [DOC] Start 7.3.0 notes (Commit 7b165f3d by Georg Ringer)
    2019-08-16 [TASK] Update german translations (Commit b01b0b6f by Georg Ringer)
    2019-08-15 [DOC] Example how to render news with same tags (Commit 1d69a13a by Georg Ringer)
    2019-08-15 [BUGFIX] Use correct lenght attribute in rss feed (Commit f109bf49 by Georg Ringer)
