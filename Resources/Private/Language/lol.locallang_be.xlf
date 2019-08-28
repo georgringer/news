@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="lol">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve">
+				<source>News system</source>
+			<target>crwdns17988:0crwdne17988:0</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
+				<source>Versatile news system</source>
+			<target>crwdns17990:0crwdne17990:0</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve">
+				<source>Settings</source>
+			<target>crwdns17992:0crwdne17992:0</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve">
+				<source>Additional</source>
+			<target>crwdns17994:0crwdne17994:0</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve">
+				<source>Template</source>
+			<target>crwdns17996:0crwdne17996:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve">
+				<source>What to display</source>
+			<target>crwdns17998:0crwdne17998:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve">
+				<source>List view</source>
+			<target>crwdns18000:0crwdne18000:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve">
+				<source>List view (without overloading detail view)</source>
+			<target>crwdns18002:0crwdne18002:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve">
+				<source>Detail view</source>
+			<target>crwdns18004:0crwdne18004:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve">
+				<source>Search form</source>
+			<target>crwdns18006:0crwdne18006:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve">
+				<source>Search result</source>
+			<target>crwdns18008:0crwdne18008:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve">
+				<source>Date menu</source>
+			<target>crwdns18010:0crwdne18010:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve">
+				<source>List of selected items</source>
+			<target>crwdns18012:0crwdne18012:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
+				<source>Category Menu</source>
+			<target>crwdns18014:0crwdne18014:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve">
+				<source>No view yet configured</source>
+			<target>crwdns18016:0crwdne18016:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve">
+				<source>Search</source>
+			<target>crwdns18018:0crwdne18018:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
+				<source>Others</source>
+			<target>crwdns18020:0crwdne18020:0</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve">
+				<source>Tag list</source>
+			<target>crwdns18022:0crwdne18022:0</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve">
+				<source>Archive</source>
+			<target>crwdns18024:0crwdne18024:0</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve">
+				<source>Only active (non archived)</source>
+			<target>crwdns18026:0crwdne18026:0</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve">
+				<source>Archived</source>
+			<target>crwdns18028:0crwdne18028:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy" xml:space="preserve">
+				<source>Sort by</source>
+			<target>crwdns18030:0crwdne18030:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
+				<source>Uid</source>
+			<target>crwdns18032:0crwdne18032:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve">
+				<source>Manual sorting</source>
+			<target>crwdns18034:0crwdne18034:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve">
+				<source>Last edited</source>
+			<target>crwdns18036:0crwdne18036:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve">
+				<source>Created</source>
+			<target>crwdns18038:0crwdne18038:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve">
+				<source>Given date/time</source>
+			<target>crwdns18040:0crwdne18040:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
+				<source>Title</source>
+			<target>crwdns18042:0crwdne18042:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
+				<source>Sort direction</source>
+			<target>crwdns18044:0crwdne18044:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve">
+				<source>Ascending</source>
+			<target>crwdns18046:0crwdne18046:0</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve">
+				<source>Descending</source>
+			<target>crwdns18048:0crwdne18048:0</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField" xml:space="preserve">
+				<source>Date field to use</source>
+			<target>crwdns18050:0crwdne18050:0</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve">
+				<source>Given date/time</source>
+			<target>crwdns18052:0crwdne18052:0</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve">
+				<source>Archive date</source>
+			<target>crwdns18054:0crwdne18054:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categories" xml:space="preserve">
+				<source>Category selection</source>
+			<target>crwdns18056:0crwdne18056:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve">
+				<source>Category mode</source>
+			<target>crwdns18058:0crwdne18058:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve">
+				<source>Don't care, show all</source>
+			<target>crwdns18060:0crwdne18060:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve">
+				<source>Show items with selected categories (OR)</source>
+			<target>crwdns18062:0crwdne18062:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve">
+				<source>Show items with selected categories (AND)</source>
+			<target>crwdns18064:0crwdne18064:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve">
+				<source>Do NOT show items with selected categories (AND)</source>
+			<target>crwdns18066:0crwdne18066:0</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve">
+				<source>Do NOT show items with selected categories (OR)</source>
+			<target>crwdns18068:0crwdne18068:0</target></trans-unit>
+      <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve">
+				<source>Include subcategories</source>
+			<target>crwdns18070:0crwdne18070:0</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
+				<source>Time limit (LOW): higher than given time</source>
+			<target>crwdns18072:0crwdne18072:0</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve">
+				<source>Time limit (HIGH): News less than given time</source>
+			<target>crwdns18074:0crwdne18074:0</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve">
+				<source>Top News</source>
+			<target>crwdns18076:0crwdne18076:0</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.1" xml:space="preserve">
+				<source>only Top News records</source>
+			<target>crwdns18078:0crwdne18078:0</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.2" xml:space="preserve">
+				<source>except Top News records</source>
+			<target>crwdns18080:0crwdne18080:0</target></trans-unit>
+      <trans-unit id="flexforms_general.singleNews" xml:space="preserve">
+				<source>Show a single news record</source>
+			<target>crwdns18082:0crwdne18082:0</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve">
+				<source>Allow preview of hidden records</source>
+			<target>crwdns18084:0crwdne18084:0</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve">
+				<source>No</source>
+			<target>crwdns18086:0crwdne18086:0</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve">
+				<source>Yes</source>
+			<target>crwdns18088:0crwdne18088:0</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve">
+				<source>Defined in TypoScript</source>
+			<target>crwdns18090:0crwdne18090:0</target></trans-unit>
+      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve">
+				<source>Defined in TypoScript</source>
+			<target>crwdns18092:0crwdne18092:0</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
+				<source>[no constraint]</source>
+			<target>crwdns18094:0crwdne18094:0</target></trans-unit>
+      <trans-unit id="flexforms_general.selectedList" xml:space="preserve">
+				<source>List of articles</source>
+			<target>crwdns18096:0crwdne18096:0</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
+				<source>Max width for media elements</source>
+			<target>crwdns18098:0crwdne18098:0</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve">
+				<source>Max height for media elements</source>
+			<target>crwdns18100:0crwdne18100:0</target></trans-unit>
+      <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve">
+				<source>Length of teaser (in chars)</source>
+			<target>crwdns18102:0crwdne18102:0</target></trans-unit>
+      <trans-unit id="flexforms_template.templateLayout" xml:space="preserve">
+				<source>Template Layout</source>
+			<target>crwdns18104:0crwdne18104:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
+				<source>1</source>
+			<target>crwdns18106:0crwdne18106:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
+				<source>2</source>
+			<target>crwdns18108:0crwdne18108:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.detailPid" xml:space="preserve">
+				<source>PageId for single news display</source>
+			<target>crwdns18110:0crwdne18110:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.backPid" xml:space="preserve">
+				<source>PageId to return to</source>
+			<target>crwdns18112:0crwdne18112:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.listPid" xml:space="preserve">
+				<source>PageId for list display</source>
+			<target>crwdns18114:0crwdne18114:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.limit" xml:space="preserve">
+				<source>Max records displayed</source>
+			<target>crwdns18116:0crwdne18116:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.offset" xml:space="preserve">
+				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
+			<target>crwdns18118:0crwdne18118:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve">
+				<source>Hide the pagination</source>
+			<target>crwdns18120:0crwdne18120:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve">
+				<source>Items per Page</source>
+			<target>crwdns18122:0crwdne18122:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve">
+				<source>Sort "Top news" before</source>
+			<target>crwdns18124:0crwdne18124:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve">
+				<source>Disable override demand</source>
+			<target>crwdns18126:0crwdne18126:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve">
+				<source>Exclude already displayed news</source>
+			<target>crwdns18128:0crwdne18128:0</target></trans-unit>
+      <trans-unit id="flexforms_additional.tags" xml:space="preserve">
+				<source>Tags</source>
+			<target>crwdns18130:0crwdne18130:0</target></trans-unit>
+      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
+				<source>Page with uid "%s" is not available anymore!</source>
+			<target>crwdns18132:0%scrwdne18132:0</target></trans-unit>
+      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
+				<source>Record with uid "%s" is not available anymore!</source>
+			<target>crwdns18134:0%scrwdne18134:0</target></trans-unit>
+      <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve">
+				<source>News record with uid "%s" is not available anymore!</source>
+			<target>crwdns18136:0%scrwdne18136:0</target></trans-unit>
+      <trans-unit id="pagemodule.switchToPage" xml:space="preserve">
+				<source>Switch to this page</source>
+			<target>crwdns18138:0crwdne18138:0</target></trans-unit>
+      <trans-unit id="pagemodule_simple" xml:space="preserve">
+				<source>Simple list</source>
+			<target>crwdns18140:0crwdne18140:0</target></trans-unit>
+      <trans-unit id="pagemodule_advanced" xml:space="preserve">
+				<source>Advanced list</source>
+			<target>crwdns18142:0crwdne18142:0</target></trans-unit>
+      <trans-unit id="pagemodule_complex" xml:space="preserve">
+				<source>Full list</source>
+			<target>crwdns18144:0crwdne18144:0</target></trans-unit>
+      <trans-unit id="extmng.prependAtCopy" xml:space="preserve">
+				<source>Prepend at copy: Prepend string "copy X".</source>
+			<target>crwdns18146:0crwdne18146:0</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve">
+				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			</source>
+			<target>crwdns18148:0crwdne18148:0
+			</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
+				<source>Categories from current page</source>
+			<target>crwdns18150:0crwdne18150:0</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve">
+				<source>Categories from site root</source>
+			<target>crwdns18152:0crwdne18152:0</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve">
+				<source>Page TsConfig</source>
+			<target>crwdns18154:0crwdne18154:0</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.none" xml:space="preserve">
+				<source>No restriction</source>
+			<target>crwdns18156:0crwdne18156:0</target></trans-unit>
+      <trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve">
+				<source>Editor needs to have permissions to all selected categories to save a news item</source>
+			<target>crwdns18158:0crwdne18158:0</target></trans-unit>
+      <trans-unit id="extmng.manualSorting" xml:space="preserve">
+				<source>Enable manual sorting of news records</source>
+			<target>crwdns18160:0crwdne18160:0</target></trans-unit>
+      <trans-unit id="extmng.contentElementRelation" xml:space="preserve">
+				<source>Use content element relation:If set, content elements can be added to news records.</source>
+			<target>crwdns18162:0crwdne18162:0</target></trans-unit>
+      <trans-unit id="extmng.contentElementPreview" xml:space="preserve">
+				<source>Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</source>
+			<target>crwdns18164:0crwdne18164:0</target></trans-unit>
+      <trans-unit id="extmng.tagPid" xml:space="preserve">
+				<source>Define pid of tag records:Tags are collected on one central page.</source>
+			<target>crwdns18166:0crwdne18166:0</target></trans-unit>
+      <trans-unit id="extmng.archiveDate" xml:space="preserve">
+				<source>Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</source>
+			<target>crwdns18168:0crwdne18168:0</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.date" xml:space="preserve">
+				<source>Date</source>
+			<target>crwdns18170:0crwdne18170:0</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve">
+				<source>Date &amp; Time</source>
+			<target>crwdns18172:0crwdne18172:0</target></trans-unit>
+      <trans-unit id="extmng.showImporter" xml:space="preserve">
+				<source>Show importer:Backend module to import into news</source>
+			<target>crwdns18174:0crwdne18174:0</target></trans-unit>
+      <trans-unit id="extmng.storageUidImporter" xml:space="preserve">
+				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
+			<target>crwdns18176:0crwdne18176:0</target></trans-unit>
+      <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve">
+				<source>In which folder should the importer save files/images (has to exist)</source>
+			<target>crwdns18178:0crwdne18178:0</target></trans-unit>
+      <trans-unit id="extmng.showAdministrationModule" xml:space="preserve">
+				<source>Show administration module:Backend module to administrate news records</source>
+			<target>crwdns18180:0crwdne18180:0</target></trans-unit>
+      <trans-unit id="extmng.rteForTeaser" xml:space="preserve">
+				<source>Enable a RTE for the teaser field.</source>
+			<target>crwdns18182:0crwdne18182:0</target></trans-unit>
+      <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve">
+				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
+			<target>crwdns18184:0crwdne18184:0</target></trans-unit>
+      <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
+				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
+			<target>crwdns18186:0crwdne18186:0</target></trans-unit>
+      <trans-unit id="extmng.mediaPreview" xml:space="preserve">
+				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
+			<target>crwdns18188:0crwdne18188:0</target></trans-unit>
+      <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve">
+				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
+			<target>crwdns18190:0crwdne18190:0</target></trans-unit>
+      <trans-unit id="usersettings.overlay" xml:space="preserve">
+				<source>Use this overlay for news categories in the Backend</source>
+			<target>crwdns18192:0crwdne18192:0</target></trans-unit>
+      <trans-unit id="usersettings.no-languages-available" xml:space="preserve">
+				<source>There are no languages available, so nothing to choose.</source>
+			<target>crwdns18194:0crwdne18194:0</target></trans-unit>
+      <trans-unit id="start_import" xml:space="preserve">
+				<source>Start import with %s record(s).</source>
+			<target>crwdns18196:0%scrwdne18196:0</target></trans-unit>
+      <trans-unit id="tag_suggest" xml:space="preserve">
+				<source>Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
+			<target>crwdns18198:0%scrwdne18198:0</target></trans-unit>
+      <trans-unit id="tag_suggest2" xml:space="preserve">
+				<source>Tag could not be found, wanna create it? Click here!</source>
+			<target>crwdns18200:0crwdne18200:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve">
+				<source>No tag submitted!</source>
+			<target>crwdns18202:0crwdne18202:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-newsid" xml:space="preserve">
+				<source>No news id given!</source>
+			<target>crwdns18204:0crwdne18204:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve">
+				<source>No pid for the tag record could be found by reading settings of Extension Manager!</source>
+			<target>crwdns18206:0crwdne18206:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve">
+				<source>No new tag created!</source>
+			<target>crwdns18208:0crwdne18208:0</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve">
+				<source>No page defined to save tag. Please add the id in the settings of the extension manager.</source>
+			<target>crwdns18210:0crwdne18210:0</target></trans-unit>
+      <trans-unit id="module.headline" xml:space="preserve">
+				<source>Settings</source>
+			<target>crwdns18212:0crwdne18212:0</target></trans-unit>
+      <trans-unit id="module.recursive" xml:space="preserve">
+				<source>Recursive</source>
+			<target>crwdns18214:0crwdne18214:0</target></trans-unit>
+      <trans-unit id="module.timeRange" xml:space="preserve">
+				<source>Time range</source>
+			<target>crwdns18216:0crwdne18216:0</target></trans-unit>
+      <trans-unit id="module.timeRestriction" xml:space="preserve">
+				<source>Time Restriction</source>
+			<target>crwdns18218:0crwdne18218:0</target></trans-unit>
+      <trans-unit id="module.timeRestrictionHigh" xml:space="preserve">
+				<source>Time Restriction High</source>
+			<target>crwdns18220:0crwdne18220:0</target></trans-unit>
+      <trans-unit id="module.createNewCategory" xml:space="preserve">
+				<source>Create a new category</source>
+			<target>crwdns18222:0crwdne18222:0</target></trans-unit>
+      <trans-unit id="module.createNewNewsRecord" xml:space="preserve">
+				<source>Create new news record</source>
+			<target>crwdns18224:0crwdne18224:0</target></trans-unit>
+      <trans-unit id="module.createNewTag" xml:space="preserve">
+				<source>Create new tag record</source>
+			<target>crwdns18226:0crwdne18226:0</target></trans-unit>
+      <trans-unit id="module.topNewsYes" xml:space="preserve">
+				<source>Yes</source>
+			<target>crwdns18228:0crwdne18228:0</target></trans-unit>
+      <trans-unit id="module.topNewsNo" xml:space="preserve">
+				<source>No</source>
+			<target>crwdns18230:0crwdne18230:0</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve">
+				<source>Search</source>
+			<target>crwdns18232:0crwdne18232:0</target></trans-unit>
+      <trans-unit id="module.newsListing" xml:space="preserve">
+				<source>News Listing</source>
+			<target>crwdns18234:0crwdne18234:0</target></trans-unit>
+      <trans-unit id="module.newsCount" xml:space="preserve">
+				<source>%s news records</source>
+			<target>crwdns18236:0%scrwdne18236:0</target></trans-unit>
+      <trans-unit id="module.newsPidListing" xml:space="preserve">
+				<source>News Pid listing</source>
+			<target>crwdns18238:0crwdne18238:0</target></trans-unit>
+      <trans-unit id="module.donate" xml:space="preserve">
+				<source>Support &amp; Donate</source>
+			<target>crwdns18240:0crwdne18240:0</target></trans-unit>
+      <trans-unit id="administration.title" xml:space="preserve">
+				<source>News administration</source>
+			<target>crwdns18242:0crwdne18242:0</target></trans-unit>
+      <trans-unit id="administration.nopageselected" xml:space="preserve">
+				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
+			<target>crwdns18244:0crwdne18244:0</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.header" xml:space="preserve">
+				<source>List pages with count of news &amp; category records</source>
+			<target>crwdns18246:0crwdne18246:0</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target>crwdns18248:0crwdne18248:0
+			</target></trans-unit>
+      <trans-unit id="administration.nolimit" xml:space="preserve">
+				<source>No limit defined in setting "%s"! Include the default TypoScript in the root page.</source>
+			<target>crwdns18250:0%scrwdne18250:0</target></trans-unit>
+      <trans-unit id="administration.toggleForm" xml:space="preserve">
+				<source>Show/Hide filter</source>
+			<target>crwdns18252:0crwdne18252:0</target></trans-unit>
+      <trans-unit id="administration.nonewsfound" xml:space="preserve">
+				<source>No news found</source>
+			<target>crwdns18254:0crwdne18254:0</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundText" xml:space="preserve">
+				<source>The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</source>
+			<target>crwdns18256:0crwdne18256:0</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve">
+				<source>See all pages containing news records</source>
+			<target>crwdns18258:0crwdne18258:0</target></trans-unit>
+      <trans-unit id="administration.filter.hidden" xml:space="preserve">
+				<source>Hidden</source>
+			<target>crwdns18260:0crwdne18260:0</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve">
+				<source>only hidden</source>
+			<target>crwdns18262:0crwdne18262:0</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve">
+				<source>only non-hidden</source>
+			<target>crwdns18264:0crwdne18264:0</target></trans-unit>
+      <trans-unit id="administration.donation.title" xml:space="preserve">
+				<source>Support &amp; Donate</source>
+			<target>crwdns18266:0crwdne18266:0</target></trans-unit>
+      <trans-unit id="administration.donation.link" xml:space="preserve">
+				<source>Click so see all options</source>
+			<target>crwdns18268:0crwdne18268:0</target></trans-unit>
+      <trans-unit id="administration.donation.lead_intro" xml:space="preserve">
+				<source>Great that you are using this extension!</source>
+			<target>crwdns18270:0crwdne18270:0</target></trans-unit>
+      <trans-unit id="administration.donation.lead_full" xml:space="preserve">
+				<source>The editors have created %d articles with %d relations to categories.</source>
+			<target>crwdns18272:0%dcrwdnd18272:0%dcrwdne18272:0</target></trans-unit>
+      <trans-unit id="administration.donation.lead_news_only" xml:space="preserve">
+				<source>The editors have created %d articles.</source>
+			<target>crwdns18274:0%dcrwdne18274:0</target></trans-unit>
+      <trans-unit id="administration.donation.lead_none" xml:space="preserve">
+				<source>Did you just setup the system? No articles yet created.</source>
+			<target>crwdns18276:0crwdne18276:0</target></trans-unit>
+      <trans-unit id="administration.donation.support" xml:space="preserve">
+				<source>Help supporting further development</source>
+			<target>crwdns18278:0crwdne18278:0</target></trans-unit>
+      <trans-unit id="administration.donation.why" xml:space="preserve">
+				<source>Why?</source>
+			<target>crwdns18280:0crwdne18280:0</target></trans-unit>
+      <trans-unit id="administration.donation.why.text" xml:space="preserve">
+				<source>The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
+            possibilities of the TYPO3 core.
+            This implies a lot of work bringing this to the TYPO3 community.</source>
+			<target>crwdns18282:0crwdne18282:0</target></trans-unit>
+      <trans-unit id="administration.donation.how" xml:space="preserve">
+				<source>How?</source>
+			<target>crwdns18284:0crwdne18284:0</target></trans-unit>
+      <trans-unit id="administration.donation.how.text" xml:space="preserve">
+				<source>There are multiple ways to support the further development:</source>
+			<target>crwdns18286:0crwdne18286:0</target></trans-unit>
+      <trans-unit id="administration.donation.invoice" xml:space="preserve">
+				<source>Invoice</source>
+			<target>crwdns18288:0crwdne18288:0</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.sub" xml:space="preserve">
+				<source>An invoice is possible!</source>
+			<target>crwdns18290:0crwdne18290:0</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.text" xml:space="preserve">
+				<source>I can create a proper invoice to keep your accounting happy - contact me for details.</source>
+			<target>crwdns18292:0crwdne18292:0</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.sub" xml:space="preserve">
+				<source>Support me on patreon.com</source>
+			<target>crwdns18294:0crwdne18294:0</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.text" xml:space="preserve">
+				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
+			<target>crwdns18296:0crwdne18296:0</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.sub" xml:space="preserve">
+				<source>Donate via PayPal</source>
+			<target>crwdns18298:0crwdne18298:0</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.text" xml:space="preserve">
+				<source>Support me by a donation on paypal.com. It is just one click away.</source>
+			<target>crwdns18300:0crwdne18300:0</target></trans-unit>
+      <trans-unit id="administration.donation.amazon" xml:space="preserve">
+				<source>Amazon wishlist</source>
+			<target>crwdns18302:0crwdne18302:0</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.sub" xml:space="preserve">
+				<source>Satisfy a wish of my Amazon wishlist</source>
+			<target>crwdns18304:0crwdne18304:0</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.text" xml:space="preserve">
+				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
+			<target>crwdns18306:0crwdne18306:0</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors" xml:space="preserve">
+				<source>Current sponsors</source>
+			<target>crwdns18308:0crwdne18308:0</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors.text" xml:space="preserve">
+				<source>The following companies and people have already supported me.</source>
+			<target>crwdns18310:0crwdne18310:0</target></trans-unit>
+      <trans-unit id="news-folder" xml:space="preserve">
+				<source>News</source>
+			<target>crwdns18312:0crwdne18312:0</target></trans-unit>
+      <trans-unit id="news-page" xml:space="preserve">
+				<source>Page with news plugins</source>
+			<target>crwdns18314:0crwdne18314:0</target></trans-unit>
+      <trans-unit id="import.header" xml:space="preserve">
+				<source>News Importer</source>
+			<target>crwdns18316:0crwdne18316:0</target></trans-unit>
+      <trans-unit id="import.choose_a_job" xml:space="preserve">
+				<source>Choose a job</source>
+			<target>crwdns18318:0crwdne18318:0</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve">
+				<source>This is the "News importer module". </source>
+			<target>crwdns18320:0crwdne18320:0 </target></trans-unit>
+      <trans-unit id="import.done" xml:space="preserve">
+				<source>The import has been completed. Reload the module to start a new one.</source>
+			<target>crwdns18322:0crwdne18322:0</target></trans-unit>
+      <trans-unit id="import.backupwarning" xml:space="preserve">
+				<source>It's strongly recommended to backup all news tables before running an import job.</source>
+			<target>crwdns18324:0crwdne18324:0</target></trans-unit>
+      <trans-unit id="import.backupwarning.header" xml:space="preserve">
+				<source>Important!</source>
+			<target>crwdns18326:0crwdne18326:0</target></trans-unit>
+      <trans-unit id="import.nojobs" xml:space="preserve">
+				<source>No jobs available for the importer.</source>
+			<target>crwdns18328:0crwdne18328:0</target></trans-unit>
+      <trans-unit id="import.error.configuration.title" xml:space="preserve">
+				<source>The configuration for the import is incomplete!</source>
+			<target>crwdns18330:0crwdne18330:0</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve">
+				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
+			<target>crwdns18332:0crwdne18332:0</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve">
+				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
+			<target>crwdns18334:0crwdne18334:0</target></trans-unit>
+      <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve">
+				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
+			<target>crwdns18336:0crwdne18336:0</target></trans-unit>
+      <trans-unit id="record.savingdisabled.header">
+        <source>Saving is disabled</source>
+        <target>crwdns18338:0crwdne18338:0</target>
+      </trans-unit>
+      <trans-unit id="record.savingdisabled.content">
+        <source>This record has the following categories assigned that are not defined in your permissions:</source>
+        <target>crwdns18340:0crwdne18340:0</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.title">
+        <source>Content elements are hidden</source>
+        <target>crwdns18342:0crwdne18342:0</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.description">
+        <source>Content elements are hidden in sys folders of type "news"!</source>
+        <target>crwdns18344:0crwdne18344:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

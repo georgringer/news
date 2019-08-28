@@ -3,84 +3,32 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="news" target-language="hu">
     <header/>
     <body>
-      <trans-unit id=".description" xml:space="preserve">
-				<source>News record</source>
-			<target state="needs-translation">News record</target></trans-unit>
-      <trans-unit id=".details" xml:space="preserve">
-				<source>Versatile news system.</source>
-			<target state="needs-translation">Versatile news system.</target></trans-unit>
-      <trans-unit id="sys_language_uid.description" xml:space="preserve">
-				<source>Language of the news record.</source>
-			<target state="needs-translation">Language of the news record.</target></trans-unit>
-      <trans-unit id="starttime.description" xml:space="preserve">
-				<source>Define a date on which the news record should be shown.</source>
-			<target state="needs-translation">Define a date on which the news record should be shown.</target></trans-unit>
-      <trans-unit id="endtime.description" xml:space="preserve">
-				<source>Define a date on which the news record should be hidden.</source>
-			<target state="needs-translation">Define a date on which the news record should be hidden.</target></trans-unit>
-      <trans-unit id="fe_group.description" xml:space="preserve">
-				<source>Select the user groups which are allowed to see the news record.</source>
-			<target state="needs-translation">Select the user groups which are allowed to see the news record.</target></trans-unit>
-      <trans-unit id="editlock.description" xml:space="preserve">
-				<source>If checked, this news record can only be edited by administrators.</source>
-			<target state="needs-translation">If checked, this news record can only be edited by administrators.</target></trans-unit>
-      <trans-unit id="hidden.description" xml:space="preserve">
-				<source>Hidden records are not shown in the frontend.</source>
-			<target state="needs-translation">Hidden records are not shown in the frontend.</target></trans-unit>
-      <trans-unit id="title.description" xml:space="preserve">
-				<source>News title</source>
-			<target state="needs-translation">News title</target></trans-unit>
-      <trans-unit id="alternative_title.description" xml:space="preserve">
-				<source>Alternative Title will be used as the title for the browser window / tab</source>
-			<target state="needs-translation">Alternative Title will be used as the title for the browser window / tab</target></trans-unit>
-      <trans-unit id="teaser.description" xml:space="preserve">
-				<source>Be aware that it can be cropped.</source>
-			<target state="needs-translation">Be aware that it can be cropped.</target></trans-unit>
-      <trans-unit id="type.description" xml:space="preserve">
-				<source>Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</source>
-			<target state="needs-translation">Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</target></trans-unit>
-      <trans-unit id="istopnews.description" xml:space="preserve">
-				<source>Top news records can get a special treated concerning layout, sorting, ...</source>
-			<target state="needs-translation">Top news records can get a special treated concerning layout, sorting, ...</target></trans-unit>
-      <trans-unit id="author.description" xml:space="preserve">
-				<source>Author of the news record</source>
-			<target state="needs-translation">Author of the news record</target></trans-unit>
-      <trans-unit id="author_email.description" xml:space="preserve">
-				<source>Email address of the author</source>
-			<target state="needs-translation">Email address of the author</target></trans-unit>
-      <trans-unit id="datetime.description" xml:space="preserve">
-				<source>Date of the news record</source>
-			<target state="needs-translation">Date of the news record</target></trans-unit>
-      <trans-unit id="archive.description" xml:space="preserve">
-				<source>Archive date. A date is required if the news record should once be treated as archived news.</source>
-			<target state="needs-translation">Archive date. A date is required if the news record should once be treated as archived news.</target></trans-unit>
-      <trans-unit id="bodytext.description" xml:space="preserve">
-				<source>Main content of the news record</source>
-			<target state="needs-translation">Main content of the news record</target></trans-unit>
-      <trans-unit id="categories.description" xml:space="preserve">
-				<source>Select the categories which are related to this record.</source>
-			<target state="needs-translation">Select the categories which are related to this record.</target></trans-unit>
-      <trans-unit id="tags.description" xml:space="preserve">
-				<source>Define and select tags which fit to the article.</source>
-			<target state="needs-translation">Define and select tags which fit to the article.</target></trans-unit>
-      <trans-unit id="content_elements.description" xml:space="preserve">
-				<source>Content elements can be used to generate feature rich news articles.</source>
-			<target state="needs-translation">Content elements can be used to generate feature rich news articles.</target></trans-unit>
-      <trans-unit id="keywords.description" xml:space="preserve">
-				<source>Define keywords which can be used for SEO optimizations.</source>
-			<target state="needs-translation">Define keywords which can be used for SEO optimizations.</target></trans-unit>
-      <trans-unit id="description.description" xml:space="preserve">
-				<source>Define a description which can be used for SEO optimizations.</source>
-			<target state="needs-translation">Define a description which can be used for SEO optimizations.</target></trans-unit>
-      <trans-unit id="related.description" xml:space="preserve">
-				<source>Select related news records.</source>
-			<target state="needs-translation">Select related news records.</target></trans-unit>
-      <trans-unit id="related_from.description" xml:space="preserve">
-				<source>Show news which select current news record as related.</source>
-			<target state="needs-translation">Show news which select current news record as related.</target></trans-unit>
-      <trans-unit id="related_links.description" xml:space="preserve">
-				<source>Define related links to internal and external pages.</source>
-			<target state="needs-translation">Define related links to internal and external pages.</target></trans-unit>
-    </body>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</body>
   </file>
 </xliff>

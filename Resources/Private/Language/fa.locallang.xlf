@@ -120,9 +120,6 @@
       <trans-unit id="day.7" xml:space="preserve" approved="yes">
 				<source>Sunday</source>
 			<target state="translated">یک‌شنبه</target></trans-unit>
-      <trans-unit id="dateFormat" xml:space="preserve">
-				<source>%m/%d/%Y</source>
-			<target state="needs-translation">%m/%d/%Y</target></trans-unit>
       <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
 				<source>No news available.</source>
 			<target state="translated">اخباری موجود نیست.</target></trans-unit>

@@ -57,9 +57,6 @@
       <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve" approved="yes">
 				<source>Tag list</source>
 			<target state="translated">Liste de tags</target></trans-unit>
-      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve">
-				<source>Archive</source>
-			<target state="needs-translation">Archive</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
 				<source>Only active (non archived)</source>
 			<target state="translated">Seulement les éléments actifs (pas les éléments archivés)</target></trans-unit>
@@ -69,9 +66,6 @@
       <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
 				<source>Sort by</source>
 			<target state="translated">Trier par</target></trans-unit>
-      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
-				<source>Uid</source>
-			<target state="needs-translation">Uid</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
 				<source>Manual sorting</source>
 			<target state="translated">Tri manuel</target></trans-unit>
@@ -129,9 +123,6 @@
       <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve" approved="yes">
 				<source>Include subcategories</source>
 			<target state="translated">Inclure les sous-catégories</target></trans-unit>
-      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
-				<source>Time limit (LOW): higher than given time</source>
-			<target state="needs-translation">Time limit (LOW): higher than given time</target></trans-unit>
       <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve" approved="yes">
 				<source>Time limit (HIGH): News less than given time</source>
 			<target state="translated">Limite de temps (haute) : actualité antérieure au temps imparti.</target></trans-unit>
@@ -180,12 +171,6 @@
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
 				<source>Template Layout</source>
 			<target state="translated">Disposition du Template</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
-				<source>1</source>
-			<target state="needs-translation">1</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
-				<source>2</source>
-			<target state="needs-translation">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
 				<source>PageId for single news display</source>
 			<target state="translated">Id de la page pour l'affichage en mode "vue détaillée"</target></trans-unit>
@@ -216,9 +201,6 @@
       <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve" approved="yes">
 				<source>Exclude already displayed news</source>
 			<target state="translated">Exclure les actualités déjà affichées</target></trans-unit>
-      <trans-unit id="flexforms_additional.tags" xml:space="preserve">
-				<source>Tags</source>
-			<target state="needs-translation">Tags</target></trans-unit>
       <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
 				<source>Page with uid "%s" is not available anymore!</source>
 			<target state="translated">La page avec l'uid "%s" n'est plus disponible!</target></trans-unit>
@@ -247,8 +229,7 @@
 				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
 				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
 			</source>
-			<target state="needs-translation">Category restriction: Restrict the available categories in news records. PageTsConfig:
-				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			<target state="needs-translation">
 			</target></trans-unit>
       <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
 				<source>Categories from current page</source>
@@ -280,9 +261,6 @@
       <trans-unit id="extmng.archiveDate" xml:space="preserve" approved="yes">
 				<source>Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</source>
 			<target state="translated">Date d'archivage : définit si la date d'archivage est du type "Date" ou "Date et heure"</target></trans-unit>
-      <trans-unit id="extmng.archiveDate.date" xml:space="preserve">
-				<source>Date</source>
-			<target state="needs-translation">Date</target></trans-unit>
       <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve" approved="yes">
 				<source>Date &amp; Time</source>
 			<target state="translated">Date et heure</target></trans-unit>
@@ -441,9 +419,6 @@
       <trans-unit id="administration.donation.lead_news_only" xml:space="preserve" approved="yes">
 				<source>The editors have created %d articles.</source>
 			<target state="translated">Les éditeurs ont créé %d actualités.</target></trans-unit>
-      <trans-unit id="administration.donation.lead_none" xml:space="preserve">
-				<source>Did you just setup the system? No articles yet created.</source>
-			<target state="needs-translation">Did you just setup the system? No articles yet created.</target></trans-unit>
       <trans-unit id="administration.donation.support" xml:space="preserve" approved="yes">
 				<source>Help supporting further development</source>
 			<target state="translated">Aider à soutenir le développement ultérieur</target></trans-unit>

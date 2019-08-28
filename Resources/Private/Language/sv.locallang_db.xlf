@@ -93,12 +93,6 @@
       <trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve" approved="yes">
 				<source>Headline (H1)</source>
 			<target state="translated">Rubrik (H1)</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve">
-				<source>SEO Text-Container</source>
-			<target state="needs-translation">SEO Text-Container</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
-				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
 				<source>Image</source>
 			<target state="translated">Bild</target></trans-unit>
@@ -117,9 +111,6 @@
       <trans-unit id="tx_news_domain_model_category.seo.seo_headline" xml:space="preserve" approved="yes">
 				<source>Headline (H1)</source>
 			<target state="translated">Rubrik (H1)</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_category.seo.seo_text" xml:space="preserve">
-				<source>SEO Text-Container</source>
-			<target state="needs-translation">SEO Text-Container</target></trans-unit>
       <trans-unit id="tx_news_domain_model_link" xml:space="preserve" approved="yes">
 				<source>News Link Element</source>
 			<target state="translated">Nyhetslänkelement</target></trans-unit>
@@ -129,15 +120,6 @@
       <trans-unit id="tx_news_domain_model_link.description" xml:space="preserve" approved="yes">
 				<source>Description</source>
 			<target state="translated">Beskrivning</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve">
-				<source>URL</source>
-			<target state="needs-translation">URL</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve">
-				<source>www.domain.org</source>
-			<target state="needs-translation">www.domain.org</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
-				<source>SEO</source>
-			<target state="needs-translation">SEO</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag" xml:space="preserve" approved="yes">
 				<source>News Tag</source>
 			<target state="translated">Nyhetstagg</target></trans-unit>

@@ -12,9 +12,6 @@
       <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
 				<source>No news found.</source>
 			<target state="translated">Inga nyheter hittades.</target></trans-unit>
-      <trans-unit id="search-subject" xml:space="preserve">
-				<source>Text</source>
-			<target state="needs-translation">Text</target></trans-unit>
       <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
 				<source>Minimum Date</source>
 			<target state="translated">Från datum</target></trans-unit>

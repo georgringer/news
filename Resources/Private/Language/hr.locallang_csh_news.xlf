@@ -63,15 +63,6 @@
       <trans-unit id="tags.description" xml:space="preserve" approved="yes">
 				<source>Define and select tags which fit to the article.</source>
 			<target state="translated">Odaberi oznake za ovu vijest</target></trans-unit>
-      <trans-unit id="content_elements.description" xml:space="preserve">
-				<source>Content elements can be used to generate feature rich news articles.</source>
-			<target state="needs-translation">Content elements can be used to generate feature rich news articles.</target></trans-unit>
-      <trans-unit id="keywords.description" xml:space="preserve">
-				<source>Define keywords which can be used for SEO optimizations.</source>
-			<target state="needs-translation">Define keywords which can be used for SEO optimizations.</target></trans-unit>
-      <trans-unit id="description.description" xml:space="preserve">
-				<source>Define a description which can be used for SEO optimizations.</source>
-			<target state="needs-translation">Define a description which can be used for SEO optimizations.</target></trans-unit>
       <trans-unit id="related.description" xml:space="preserve" approved="yes">
 				<source>Select related news records.</source>
 			<target state="translated">Odaberi povezane vijesti</target></trans-unit>

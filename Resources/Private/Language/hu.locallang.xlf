@@ -27,21 +27,6 @@
       <trans-unit id="back-link" xml:space="preserve" approved="yes">
 				<source>Back</source>
 			<target state="translated">Vissza</target></trans-unit>
-      <trans-unit id="related-news" xml:space="preserve">
-				<source>Related News</source>
-			<target state="needs-translation">Related News</target></trans-unit>
-      <trans-unit id="related-files" xml:space="preserve">
-				<source>Related Files</source>
-			<target state="needs-translation">Related Files</target></trans-unit>
-      <trans-unit id="related-links" xml:space="preserve">
-				<source>Related Links</source>
-			<target state="needs-translation">Related Links</target></trans-unit>
-      <trans-unit id="author" xml:space="preserve">
-				<source>Created by %s</source>
-			<target state="needs-translation">Created by %s</target></trans-unit>
-      <trans-unit id="author_simple" xml:space="preserve">
-				<source>Created by</source>
-			<target state="needs-translation">Created by</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
 				<source>Page %s of %s.</source>
 			<target state="translated">%s / %s. oldal.</target></trans-unit>
@@ -93,12 +78,6 @@
       <trans-unit id="month.10" xml:space="preserve" approved="yes">
 				<source>October</source>
 			<target state="translated">Október</target></trans-unit>
-      <trans-unit id="month.11" xml:space="preserve">
-				<source>November</source>
-			<target state="needs-translation">November</target></trans-unit>
-      <trans-unit id="month.12" xml:space="preserve">
-				<source>December</source>
-			<target state="needs-translation">December</target></trans-unit>
       <trans-unit id="day.1" xml:space="preserve" approved="yes">
 				<source>Monday</source>
 			<target state="translated">Hétfő</target></trans-unit>
@@ -129,9 +108,6 @@
       <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
 				<source>No categories available.</source>
 			<target state="translated">Nincsenek kategóriák.</target></trans-unit>
-      <trans-unit id="newsNotFound" xml:space="preserve">
-				<source>The news record is not available anymore.</source>
-			<target state="needs-translation">The news record is not available anymore.</target></trans-unit>
     </body>
   </file>
 </xliff>
