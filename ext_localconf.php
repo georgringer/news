@@ -67,9 +67,15 @@ $boot = function () {
         'className' => \GeorgRinger\News\Xclass\InlineRecordContainerForNews::class,
     ];
     // Xclass Xfliff parser
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Localization\Parser\XliffParser::class] = [
-        'className' => \GeorgRinger\News\Xclass\XclassedXliffParser::class
-    ];
+    if (version_compare(TYPO3_branch, '9.5', '>=')) {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Localization\Parser\XliffParser::class] = [
+            'className' => \GeorgRinger\News\Xclass\XclassedXliffParser::class
+        ];
+    } else {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Localization\Parser\XliffParser::class] = [
+            'className' => \GeorgRinger\News\Xclass\XclassedXliffParser8::class
+        ];
+    }
 
     /* ===========================================================================
         Custom cache, done with the caching framework
