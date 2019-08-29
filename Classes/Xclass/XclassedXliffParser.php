@@ -23,7 +23,7 @@ class XclassedXliffParser extends XliffParser
     /**
      * @inheritDoc
      */
-    public function getParsedData($sourcePath, $languageKey)
+    public function getParsedData($sourcePath, $languageKey, $charset = '')
     {
         if (strpos($sourcePath, '/news/Resources/Private/') === false) {
             return parent::getParsedData($sourcePath, $languageKey);
