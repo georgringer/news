@@ -27,9 +27,15 @@
       <trans-unit id="back-link" xml:space="preserve" approved="yes">
 				<source>Back</source>
 			<target state="translated">Indietro</target></trans-unit>
+      <trans-unit id="related-news" xml:space="preserve" approved="yes">
+				<source>Related News</source>
+			<target state="translated">News correlate</target></trans-unit>
       <trans-unit id="related-files" xml:space="preserve" approved="yes">
 				<source>Related Files</source>
 			<target state="translated">File correlati</target></trans-unit>
+      <trans-unit id="related-links" xml:space="preserve" approved="yes">
+				<source>Related Links</source>
+			<target state="translated">Link correlati</target></trans-unit>
       <trans-unit id="author" xml:space="preserve" approved="yes">
 				<source>Created by %s</source>
 			<target state="translated">Creato da %s</target></trans-unit>
