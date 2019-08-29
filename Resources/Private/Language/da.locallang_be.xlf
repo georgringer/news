@@ -180,12 +180,6 @@
       <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
 				<source>Template Layout</source>
 			<target state="translated">Skabelon-layout</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
-				<source>1</source>
-			<target state="translated">1</target></trans-unit>
-      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
-				<source>2</source>
-			<target state="translated">2</target></trans-unit>
       <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
 				<source>PageId for single news display</source>
 			<target state="translated">Side der håndterer enkeltvisning af nyheder</target></trans-unit>
@@ -216,9 +210,6 @@
       <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve" approved="yes">
 				<source>Exclude already displayed news</source>
 			<target state="translated">Udeluk allerede viste nyheder</target></trans-unit>
-      <trans-unit id="flexforms_additional.tags" xml:space="preserve">
-				<source>Tags</source>
-			<target state="translated">Tags</target></trans-unit>
       <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
 				<source>Page with uid "%s" is not available anymore!</source>
 			<target state="translated">Siden med uid "%s" er ikke længere tilgængelig!</target></trans-unit>
