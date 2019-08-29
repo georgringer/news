@@ -72,12 +72,6 @@
       <trans-unit id="tx_news_domain_model_category.shortcut" xml:space="preserve" approved="yes">
 				<source>News category shortcut</source>
 			<target state="translated">Uutiskategorian oikopolku</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_media.showinviews" xml:space="preserve">
-				<source>Show in views</source>
-			<target state="translated">Näytä houkutinlistoissa</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_media.showinviews.0" xml:space="preserve">
-				<source>Show only in detail views</source>
-			<target state="translated">Näytä houkutinlistoissa</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve" approved="yes">
 				<source>Speaking URL path segment</source>
 			<target state="translated">uutisen osoite (osoitepolun loppuosa)</target></trans-unit>

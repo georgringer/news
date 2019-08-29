@@ -23,7 +23,7 @@
 			<target state="translated">Έως</target></trans-unit>
       <trans-unit id="more-link" xml:space="preserve" approved="yes">
 				<source>Read more</source>
-			<target state="translated">Περισσότερα</target><alt-trans><target>περισσότερα</target></alt-trans></trans-unit>
+			<target state="translated">Περισσότερα</target></trans-unit>
       <trans-unit id="back-link" xml:space="preserve" approved="yes">
 				<source>Back</source>
 			<target state="translated">Επιστροφή</target></trans-unit>
@@ -44,7 +44,7 @@
 			<target state="translated">Δημιουργήθηκε από</target></trans-unit>
       <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
 				<source>Page %s of %s.</source>
-			<target state="translated">Σελίδα %s από %s.</target><alt-trans><target>Σελίδα %s από %s</target></alt-trans></trans-unit>
+			<target state="translated">Σελίδα %s από %s.</target></trans-unit>
       <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
 				<source>Next</source>
 			<target state="translated">Επόμενο</target></trans-unit>
@@ -62,7 +62,7 @@
 			<target state="translated">καταχώρηση</target></trans-unit>
       <trans-unit id="entries" xml:space="preserve" approved="yes">
 				<source>entries</source>
-			<target state="translated">καταχωρήσεις</target><alt-trans><target>Καταχωρήσεις</target></alt-trans></trans-unit>
+			<target state="translated">καταχωρήσεις</target></trans-unit>
       <trans-unit id="month.01" xml:space="preserve" approved="yes">
 				<source>January</source>
 			<target state="translated">Ιανουάριος</target></trans-unit>

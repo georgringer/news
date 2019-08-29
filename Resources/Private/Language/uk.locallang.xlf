@@ -12,10 +12,10 @@
       <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
 				<source>No news found.</source>
 			<target state="translated">Новин не знайдено</target></trans-unit>
-      <trans-unit id="search-minimumDate" xml:space="preserve">
+      <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
 				<source>Minimum Date</source>
 			<target state="translated">Мінімальна дата</target></trans-unit>
-      <trans-unit id="search-maximumDate" xml:space="preserve">
+      <trans-unit id="search-maximumDate" xml:space="preserve" approved="yes">
 				<source>Maximum Date</source>
 			<target state="translated">Максимальна дата</target></trans-unit>
       <trans-unit id="more-link" xml:space="preserve" approved="yes">
@@ -33,10 +33,10 @@
       <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
 				<source>Previous</source>
 			<target state="translated">Назад</target></trans-unit>
-      <trans-unit id="categories" xml:space="preserve">
+      <trans-unit id="categories" xml:space="preserve" approved="yes">
 				<source>Categories</source>
 			<target state="translated">Категорії</target></trans-unit>
-      <trans-unit id="tags" xml:space="preserve">
+      <trans-unit id="tags" xml:space="preserve" approved="yes">
 				<source>Tags</source>
 			<target state="translated">Теги</target></trans-unit>
       <trans-unit id="entry" xml:space="preserve" approved="yes">
@@ -81,37 +81,37 @@
       <trans-unit id="month.12" xml:space="preserve" approved="yes">
 				<source>December</source>
 			<target state="translated">Грудень</target></trans-unit>
-      <trans-unit id="day.1" xml:space="preserve">
+      <trans-unit id="day.1" xml:space="preserve" approved="yes">
 				<source>Monday</source>
 			<target state="translated">Понеділок</target></trans-unit>
-      <trans-unit id="day.2" xml:space="preserve">
+      <trans-unit id="day.2" xml:space="preserve" approved="yes">
 				<source>Tuesday</source>
 			<target state="translated">Вівторок</target></trans-unit>
-      <trans-unit id="day.3" xml:space="preserve">
+      <trans-unit id="day.3" xml:space="preserve" approved="yes">
 				<source>Wednesday</source>
 			<target state="translated">Середа</target></trans-unit>
-      <trans-unit id="day.4" xml:space="preserve">
+      <trans-unit id="day.4" xml:space="preserve" approved="yes">
 				<source>Thursday</source>
 			<target state="translated">Четвер</target></trans-unit>
-      <trans-unit id="day.5" xml:space="preserve">
+      <trans-unit id="day.5" xml:space="preserve" approved="yes">
 				<source>Friday</source>
 			<target state="translated">П'ятниця</target></trans-unit>
-      <trans-unit id="day.6" xml:space="preserve">
+      <trans-unit id="day.6" xml:space="preserve" approved="yes">
 				<source>Saturday</source>
 			<target state="translated">Субота</target></trans-unit>
-      <trans-unit id="day.7" xml:space="preserve">
+      <trans-unit id="day.7" xml:space="preserve" approved="yes">
 				<source>Sunday</source>
 			<target state="translated">Неділя</target></trans-unit>
-      <trans-unit id="dateFormat" xml:space="preserve">
+      <trans-unit id="dateFormat" xml:space="preserve" approved="yes">
 				<source>%m/%d/%Y</source>
 			<target state="translated">%d/%m/%Y</target></trans-unit>
       <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
 				<source>No news available.</source>
 			<target state="translated">Новини відсутні.</target></trans-unit>
-      <trans-unit id="list_nocategoriesfound" xml:space="preserve">
+      <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
 				<source>No categories available.</source>
 			<target state="translated">Немає доступних категорій.</target></trans-unit>
-      <trans-unit id="newsNotFound" xml:space="preserve">
+      <trans-unit id="newsNotFound" xml:space="preserve" approved="yes">
 				<source>The news record is not available anymore.</source>
 			<target state="translated">Запис новини більше не доступний.</target></trans-unit>
     </body>

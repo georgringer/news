@@ -96,10 +96,10 @@
       <trans-unit id="tx_news_domain_model_tag.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
 			<target state="translated">Título</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_media.showinviews" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_media.showinviews" xml:space="preserve" approved="yes">
 				<source>Show in views</source>
 			<target state="translated">Exibir em pré-visualização</target></trans-unit>
-      <trans-unit id="tx_news_domain_model_media.showinviews.0" xml:space="preserve">
+      <trans-unit id="tx_news_domain_model_media.showinviews.0" xml:space="preserve" approved="yes">
 				<source>Show only in detail views</source>
 			<target state="translated">Exibir em pré-visualização</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve" approved="yes">
