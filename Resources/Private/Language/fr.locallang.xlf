@@ -3,49 +3,33 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="fr">
     <header/>
     <body>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		</body>
+      <trans-unit id="search-text" xml:space="preserve">
+				<source>There are %1$s results for "%2$s".</source>
+			<target state="translated">%1$s résultats pour "%2$s".</target></trans-unit>
+      <trans-unit id="search-start" xml:space="preserve">
+				<source>Start search</source>
+			<target state="translated">Rechercher</target></trans-unit>
+      <trans-unit id="search-noresult" xml:space="preserve">
+				<source>No news found.</source>
+			<target state="translated">Aucune actualité trouvée.</target></trans-unit>
+      <trans-unit id="search-subject" xml:space="preserve">
+				<source>Text</source>
+			<target state="translated">Texte</target></trans-unit>
+      <trans-unit id="search-minimumDate" xml:space="preserve">
+				<source>Minimum Date</source>
+			<target state="translated">Date minimum</target></trans-unit>
+      <trans-unit id="search-maximumDate" xml:space="preserve">
+				<source>Maximum Date</source>
+			<target state="translated">Date maximum</target></trans-unit>
+      <trans-unit id="more-link" xml:space="preserve">
+				<source>Read more</source>
+			<target state="translated">Lire la suite</target></trans-unit>
+      <trans-unit id="back-link" xml:space="preserve">
+				<source>Back</source>
+			<target state="translated">Retour</target></trans-unit>
+      <trans-unit id="related-news" xml:space="preserve">
+				<source>Related News</source>
+			<target state="translated">Actualités liées</target><alt-trans><target>Actualités associées</target></alt-trans></trans-unit>
+    </body>
   </file>
 </xliff>
