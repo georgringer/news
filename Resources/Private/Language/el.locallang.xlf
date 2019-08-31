@@ -11,7 +11,7 @@
 			<target state="translated">Έναρξη αναζήτησης</target></trans-unit>
       <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
 				<source>No news found.</source>
-			<target state="translated">Δε βρέθηκαν νέα</target></trans-unit>
+			<target state="translated">Δε βρέθηκαν νέα.</target></trans-unit>
       <trans-unit id="search-subject" xml:space="preserve" approved="yes">
 				<source>Text</source>
 			<target state="translated">Κείμενο</target></trans-unit>
@@ -23,7 +23,7 @@
 			<target state="translated">Έως</target></trans-unit>
       <trans-unit id="more-link" xml:space="preserve" approved="yes">
 				<source>Read more</source>
-			<target state="translated">Περισσότερα</target></trans-unit>
+			<target state="translated">Διαβάστε περισσότερα</target></trans-unit>
       <trans-unit id="back-link" xml:space="preserve" approved="yes">
 				<source>Back</source>
 			<target state="translated">Επιστροφή</target></trans-unit>
