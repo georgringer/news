@@ -3,9 +3,15 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="news" target-language="fr">
     <header/>
     <body>
+      <trans-unit id="tx_news_domain_model_news.tabs.relations" xml:space="preserve" approved="yes">
+				<source>Relations</source>
+			<target state="translated">Relations</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve" approved="yes">
 				<source>Alternative Titles</source>
 			<target state="translated">Titres alternatifs</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.palettes.dates" xml:space="preserve" approved="yes">
+				<source>Dates</source>
+			<target state="translated">Dates</target></trans-unit>
       <trans-unit id="tx_news_domain_model_news" xml:space="preserve" approved="yes">
 				<source>News</source>
 			<target state="translated">Actualités</target></trans-unit>
@@ -81,6 +87,9 @@
       <trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve" approved="yes">
 				<source><![CDATA[<title>-Tag]]></source>
 			<target state="translated"><![CDATA[&lt;title&gt;-Balise]]></target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_description" xml:space="preserve" approved="yes">
+				<source>Meta-Description</source>
+			<target state="translated">Méta-Description</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve" approved="yes">
 				<source>Headline (H1)</source>
 			<target state="translated">Titre (H1)</target></trans-unit>
@@ -90,6 +99,9 @@
       <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve" approved="yes">
 				<source>SEO</source>
 			<target state="translated">Référencement</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
+				<source>Image</source>
+			<target state="translated">Image</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.single_pid" xml:space="preserve" approved="yes">
 				<source>Single-view page for news from this category</source>
 			<target state="translated">Page de détail pour les actualités de cette catégorie</target></trans-unit>
@@ -114,6 +126,12 @@
       <trans-unit id="tx_news_domain_model_link.title" xml:space="preserve" approved="yes">
 				<source>Title</source>
 			<target state="translated">Titre</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.description" xml:space="preserve" approved="yes">
+				<source>Description</source>
+			<target state="translated">Description</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve" approved="yes">
+				<source>URL</source>
+			<target state="translated">URL</target></trans-unit>
       <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve" approved="yes">
 				<source>www.domain.org</source>
 			<target state="translated">www.nom-de-domaine.org</target></trans-unit>
