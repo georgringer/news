@@ -75,6 +75,9 @@
       <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve" approved="yes">
 				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
 			<target state="translated">Si l'option est cochée, ce plugin ne sera pas surchargé par les paramètres de la demande qui peut remplacer par exemple une catégorie via le paramètre URL.</target></trans-unit>
+      <trans-unit id="settings.tags.description" xml:space="preserve" approved="yes">
+				<source>Filter by given tags.</source>
+			<target state="translated">Filtrer par tags.</target></trans-unit>
       <trans-unit id="settings.media.maxWidth.description" xml:space="preserve" approved="yes">
 				<source>Maximal width of media elements (images, videos, ...)</source>
 			<target state="translated">Largeur maximale des éléments multimédias (images, vidéos, ...)</target></trans-unit>
