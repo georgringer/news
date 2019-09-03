@@ -69,6 +69,9 @@
       <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
 				<source>Sort by</source>
 			<target state="translated">Trier par</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve" approved="yes">
+				<source>Uid</source>
+			<target state="translated">Uid</target></trans-unit>
       <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
 				<source>Manual sorting</source>
 			<target state="translated">Tri manuel</target></trans-unit>
@@ -126,6 +129,9 @@
       <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve" approved="yes">
 				<source>Include subcategories</source>
 			<target state="translated">Inclure les sous-catégories</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time limit (LOW): higher than given time</source>
+			<target state="translated">Limite de temps (BASSE) : supérieur au temps imparti</target></trans-unit>
       <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve" approved="yes">
 				<source>Time limit (HIGH): News less than given time</source>
 			<target state="translated">Limite de temps (haute) : actualité antérieure au temps imparti.</target></trans-unit>
