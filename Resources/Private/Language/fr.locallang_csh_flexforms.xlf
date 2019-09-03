@@ -36,12 +36,18 @@
       <trans-unit id="settings.timeRestriction.description" xml:space="preserve" approved="yes">
 				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items after the given time are shown.</source>
 			<target state="translated">Fixez une limite de temps. Cela peut être soit un entier et signifie des secondes, par exemple: 86400 signifie un jour (60 * 60 * 24) ou une chaîne représente "-4 jours" ou "-3 heures". Le préfixe - est important!</target></trans-unit>
+      <trans-unit id="settings.timeRestrictionHigh.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items before the given time are shown.</source>
+			<target state="translated">Fixez une limite de temps. Il peut s'agir soit d'un nombre entier de secondes, par exemple 86400 signifie 1 jour (60 * 60 * 60 * 24) ou d'une chaîne de caractères comme "-4 days" ou "-3 hours". Le préfixe - est important ! Seules les actualités antérieures à l'heure indiquée sont affichées.</target></trans-unit>
       <trans-unit id="settings.topNewsRestriction.description" xml:space="preserve" approved="yes">
 				<source>A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</source>
 			<target state="translated">Un enregistrement de type "nouvelle" peut être définit comme actualité importante. Par conséquent, on peut définir d'afficher soit tous les enregistrements de type "nouvelle", soit seulement les actualités importantes ou seulement les actualités secondaires.</target></trans-unit>
       <trans-unit id="settings.singleNews.description" xml:space="preserve" approved="yes">
 				<source>Display the selected single news record.</source>
 			<target state="translated">Affichez l'unique enregistrement de type "nouvelle" sélectionné.</target></trans-unit>
+      <trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve" approved="yes">
+				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
+			<target state="translated">Si cette option est activée, les enregistrements masqués sont également affichés. Ceci est nécessaire si vous voulez prévisualiser les enregistrements encore cachés. Sachez que tous les enregistrements cachés sur la page en cours sont également affichés.</target></trans-unit>
       <trans-unit id="settings.startingpoint.description" xml:space="preserve" approved="yes">
 				<source>Define the pages/sysfolders which hold the news records</source>
 			<target state="translated">Définit les pages / Dossiers systèmes qui détiennent les enregistrements de type "nouvelle"</target></trans-unit>
