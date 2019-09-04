@@ -29,10 +29,10 @@
 			<target state="translated">Сторінка %s із %s.</target></trans-unit>
       <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
 				<source>Next</source>
-			<target state="translated">Далі</target></trans-unit>
+			<target state="translated">Наступна</target></trans-unit>
       <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
 				<source>Previous</source>
-			<target state="translated">Назад</target></trans-unit>
+			<target state="translated">Попередня</target></trans-unit>
       <trans-unit id="categories" xml:space="preserve" approved="yes">
 				<source>Categories</source>
 			<target state="translated">Категорії</target></trans-unit>
