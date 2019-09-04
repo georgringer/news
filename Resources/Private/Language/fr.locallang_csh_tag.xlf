@@ -3,11 +3,21 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:17Z" product-name="news" target-language="fr">
     <header/>
     <body>
-			
-			
-			
-			
-			
-		</body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Tag record</source>
+			<target state="translated">Tag</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>News records can be tagged by those records</source>
+			<target state="translated">Les actualités peuvent être taggées par ces enregistrements</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="translated">Voir aussi le site http://www.news.com/</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target state="translated">Les éléments cachés ne sont jamais affichés dans le frontend.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Title of the tag.</source>
+			<target state="translated">Titre du tag.</target></trans-unit>
+    </body>
   </file>
 </xliff>
