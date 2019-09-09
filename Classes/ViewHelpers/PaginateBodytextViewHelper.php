@@ -57,7 +57,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * </n:paginateBodytext>
  *
  */
-class PaginateBodytextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class PaginateBodytextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * @var bool

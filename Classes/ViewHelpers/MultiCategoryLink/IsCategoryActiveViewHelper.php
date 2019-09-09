@@ -11,7 +11,7 @@ namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to check if th
@@ -27,7 +27,7 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
  * </output>
  *
  */
-class IsCategoryActiveViewHelper extends AbstractConditionViewHelper implements CompilableInterface
+class IsCategoryActiveViewHelper extends AbstractConditionViewHelper implements ViewHelperInterface
 {
     /**
      * Initialize arguments

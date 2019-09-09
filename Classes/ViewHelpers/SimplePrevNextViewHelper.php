@@ -51,7 +51,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * </output>
  *
  */
-class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
     /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
