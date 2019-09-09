@@ -118,15 +118,11 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
     protected function getCurrentLanguage(): int
     {
         $languageId = 0;
-        if (class_exists(LanguageAspect::class)) {
-            $context = GeneralUtility::makeInstance(Context::class);
-            try {
-                $languageId = $context->getPropertyFromAspect('language', 'contentId');
-            } catch (AspectNotFoundException $e) {
-                // do nothing
-            }
-        } else {
-            $languageId = $this->getTsfe()->sys_language_content;
+        $context = GeneralUtility::makeInstance(Context::class);
+        try {
+            $languageId = $context->getPropertyFromAspect('language', 'contentId');
+        } catch (AspectNotFoundException $e) {
+            // do nothing
         }
 
         return (int)$languageId;
