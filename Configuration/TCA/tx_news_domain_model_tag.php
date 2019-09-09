@@ -116,6 +116,24 @@ return [
                 'eval' => 'required,unique,trim',
             ]
         ],
+        'slug' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
+            'displayCond' => 'USER:' . \TYPO3\CMS\Core\Compatibility\PseudoSiteTcaDisplayCondition::class . '->isInPseudoSite:pages:false',
+            'config' => [
+                'type' => 'slug',
+                'size' => 50,
+                'generatorOptions' => [
+                    'fields' => ['title'],
+                    'replacements' => [
+                        '/' => '-'
+                    ],
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInSite',
+                'default' => ''
+            ]
+        ],
         'seo_headline' => [
             'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_headline',
@@ -157,7 +175,7 @@ return [
     ],
     'types' => [
         0 => [
-            'showitem' => 'title, --palette--;;paletteCore,
+            'showitem' => 'title, slug, --palette--;;paletteCore,
             --div--;' . $ll . 'tx_news_domain_model_tag.tabs.seo, seo_title, seo_description, seo_headline, seo_text,
             --div--;' . $ll . 'notes,
                     notes,

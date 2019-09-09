@@ -100,7 +100,12 @@ $tx_news_domain_model_news = [
             'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
-                'default' => 0
+                'renderType' => 'checkboxToggle',
+                'default' => 0,
+                'items' => [
+                    0 => '',
+                    1 => '',
+                ]
             ]
         ],
         'cruser_id' => [
@@ -448,7 +453,12 @@ $tx_news_domain_model_news = [
             'label' => $ll . 'tx_news_domain_model_news.istopnews',
             'config' => [
                 'type' => 'check',
-                'default' => 0
+                'renderType' => 'checkboxToggle',
+                'default' => 0,
+                'items' => [
+                    0 => '',
+                    1 => '',
+                ]
             ]
         ],
         'editlock' => [
@@ -456,7 +466,12 @@ $tx_news_domain_model_news = [
             'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:editlock',
             'config' => [
                 'type' => 'check',
+                'renderType' => 'checkboxToggle',
                 'default' => 0,
+                'items' => [
+                    0 => '',
+                    1 => '',
+                ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
@@ -567,9 +582,17 @@ $tx_news_domain_model_news = [
             'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_news.path_segment',
             'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'nospace,alphanum_x,lower,unique',
+                'type' => 'slug',
+                'size' => 50,
+                'generatorOptions' => [
+                    'fields' => ['title'],
+                    'replacements' => [
+                        '/' => '-'
+                    ],
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInSite',
+                'default' => ''
             ]
         ],
         'import_id' => [

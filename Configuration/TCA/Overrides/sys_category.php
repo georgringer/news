@@ -138,10 +138,7 @@ $newSysCategoryColumns = [
             'richtextConfiguration' => 'default',
         ],
     ],
-];
-
-if (version_compare(TYPO3_branch, '9.5', '>=')) {
-    $newSysCategoryColumns['slug'] = [
+    'slug' =>[
         'exclude' => true,
         'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
         'displayCond' => 'USER:' . \TYPO3\CMS\Core\Compatibility\PseudoSiteTcaDisplayCondition::class . '->isInPseudoSite:pages:false',
@@ -158,8 +155,8 @@ if (version_compare(TYPO3_branch, '9.5', '>=')) {
             'eval' => 'uniqueInSite',
             'default' => ''
         ]
-    ];
-}
+    ],
+];
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_category', $newSysCategoryColumns);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category',
@@ -170,11 +167,8 @@ if (version_compare(TYPO3_branch, '9.5', '>=')) {
     'after:single_pid');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category',
     '--div--;' . $ll . 'tx_news_domain_model_category.tabs.seo, seo_title, seo_description, seo_headline, seo_text', '', 'after:endtime');
-
-if (version_compare(TYPO3_branch, '9.2', '>=')) {
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category', 'slug', '',
-        'after:title');
-}
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category', 'slug', '',
+    'after:title');
 
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_news_domain_model_news']
     = [0 => 'categories'];

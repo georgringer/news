@@ -67,15 +67,10 @@ $boot = function () {
         'className' => \GeorgRinger\News\Xclass\InlineRecordContainerForNews::class,
     ];
     // Xclass Xfliff parser
-    if (version_compare(TYPO3_branch, '9.5', '>=')) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Localization\Parser\XliffParser::class] = [
-            'className' => \GeorgRinger\News\Xclass\XclassedXliffParser::class
-        ];
-    } else {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Localization\Parser\XliffParser::class] = [
-            'className' => \GeorgRinger\News\Xclass\XclassedXliffParser8::class
-        ];
-    }
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Localization\Parser\XliffParser::class] = [
+        'className' => \GeorgRinger\News\Xclass\XclassedXliffParser::class
+    ];
+
 
     /* ===========================================================================
         Custom cache, done with the caching framework
@@ -108,11 +103,6 @@ $boot = function () {
     /* ===========================================================================
         Hooks
     =========================================================================== */
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['news'] =
-            \GeorgRinger\News\Hooks\RealUrlAutoConfiguration::class . '->addNewsConfig';
-    }
-
     // Register cache frontend for proxy class generation
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = [
         'frontend' => \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend::class,
@@ -166,19 +156,6 @@ $boot = function () {
     }
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \GeorgRinger\News\Command\NewsImportCommandController::class;
-
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['realurlAliasNewsSlug']
-        = \GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater::class; // Recommended before 'newsSlug'
-
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['newsSlug']
-        = \GeorgRinger\News\Updates\NewsSlugUpdater::class;
-
-    if (version_compare(TYPO3_branch, '9.5', '>=')) {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sysCategorySlugs']
-            = \GeorgRinger\News\Updates\PopulateCategorySlugs::class;
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsTagSlugs']
-            = \GeorgRinger\News\Updates\PopulateTagSlugs::class;
-    }
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1552726986] = [
         'nodeName' => 'NewsStaticText',
