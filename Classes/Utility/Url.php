@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace GeorgRinger\News\Utility;
 
 /**
@@ -23,7 +23,7 @@ class Url
      * @param string $url given url
      * @return string
      */
-    public static function prependDomain($url)
+    public static function prependDomain(string$url): string
     {
         if (!GeneralUtility::isFirstPartOfStr($url, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
             $url = GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $url;
