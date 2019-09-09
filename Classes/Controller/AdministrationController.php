@@ -148,7 +148,6 @@ class AdministrationController extends NewsController
         $this->createMenu();
         $this->createButtons();
 
-        $view->assign('is9up', self::is9up());
         $view->assign('showSupportArea', $this->showSupportArea());
     }
 
@@ -543,11 +542,7 @@ class AdministrationController extends NewsController
             $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
         }
 
-        if (self::is9up()) {
-            $returnUrl = 'index.php?route=/web/NewsTxNewsM2/';
-        } else {
-            $returnUrl = 'index.php?M=web_NewsTxNewsM2';
-        }
+        $returnUrl = 'index.php?route=/web/NewsTxNewsM2/';
 
         $returnUrl .= '&id=' . $this->pageUid . $this->getToken();
         $url = BackendUtilityCore::getModuleUrl('record_edit', [
@@ -598,11 +593,7 @@ class AdministrationController extends NewsController
      */
     protected function redirectToPageOnStart()
     {
-        if (self::is9up()) {
-            $url = 'index.php?route=/web/NewsTxNewsM2/';
-        } else {
-            $url = 'index.php?M=web_NewsTxNewsM2';
-        }
+        $url = 'index.php?route=/web/NewsTxNewsM2/';
 
         if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
             $url .= '&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
@@ -621,27 +612,14 @@ class AdministrationController extends NewsController
      */
     protected function getToken(bool $tokenOnly = false): string
     {
-        if (self::is9up()) {
-            $tokenParameterName = 'token';
-            $token = FormProtectionFactory::get('backend')->generateToken('route', 'web_NewsTxNewsM2');
-        } else {
-            $tokenParameterName = 'moduleToken';
-            $token = FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
-        }
+        $tokenParameterName = 'token';
+        $token = FormProtectionFactory::get('backend')->generateToken('route', 'web_NewsTxNewsM2');
 
         if ($tokenOnly) {
             return $token;
         }
 
         return '&' . $tokenParameterName . '=' . $token;
-    }
-
-    /**
-     * @return bool
-     */
-    private static function is9up(): bool
-    {
-        return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
     }
 
     /**
