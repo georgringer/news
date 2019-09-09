@@ -10,8 +10,8 @@ namespace GeorgRinger\News\ViewHelpers;
  */
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to exclude news items in other plugins
