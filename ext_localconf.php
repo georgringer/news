@@ -65,7 +65,6 @@ $boot = function () {
         'className' => \GeorgRinger\News\Xclass\XclassedXliffParser::class
     ];
 
-
     /* ===========================================================================
         Custom cache, done with the caching framework
     =========================================================================== */
