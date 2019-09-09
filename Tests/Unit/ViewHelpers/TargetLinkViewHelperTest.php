@@ -10,7 +10,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Test for TargetLinkViewHelper
