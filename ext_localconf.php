@@ -44,7 +44,6 @@ $boot = function () {
         ],
     ];
 
-
     // Hide content elements in list module & filter in administration module
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
         = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
@@ -64,7 +63,6 @@ $boot = function () {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Localization\Parser\XliffParser::class] = [
         'className' => \GeorgRinger\News\Xclass\XclassedXliffParser::class
     ];
-
 
     /* ===========================================================================
         Custom cache, done with the caching framework
