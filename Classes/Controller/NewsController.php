@@ -363,7 +363,7 @@ class NewsController extends NewsBaseController
         $this->view->assignMultiple($assignedValues);
 
         // reset news if type is internal or external
-        if ($news && ($news->getType() === '1' || $news->getType() === '2')) {
+        if ($news && !$this->settings['isShortcut'] && ($news->getType() === '1' || $news->getType() === '2')) {
             $news = null;
         }
 
