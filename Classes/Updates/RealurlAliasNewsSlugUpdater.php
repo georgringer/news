@@ -158,9 +158,10 @@ class RealurlAliasNewsSlugUpdater extends AbstractUpdate
                 foreach ($queries as $query) {
                     $databaseQueries[] = $query;
                 }
-                $this->markWizardAsDone();
-                return true;
             }
+            // Queries may be empty, if news.path_segment update not necessary
+            $this->markWizardAsDone();
+            return true;
         } else {
             // user decided to not migrate, mark wizard as done
             $this->markWizardAsDone();
