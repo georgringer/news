@@ -80,6 +80,7 @@ The :php:`GeorgRinger\News\Seo\NewsXmlSitemapDataProvider` provides the same fea
 *Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
 - If you are need urls containing day, month or year information
 - Setting `excludedTypes` to exclude certain news types from the sitemap
+- Setting `googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
 
 To enable the category detail page handling, checkout the setting `useCategorySinglePid = 1` in the following full example:
 
@@ -94,6 +95,7 @@ To enable the category detail page handling, checkout the setting `useCategorySi
                        config {
                            excludedTypes = 1,2
                            additionalWhere =
+                           googleNews = 0
 
                            sortField = datetime
                            lastModifiedField = tstamp
