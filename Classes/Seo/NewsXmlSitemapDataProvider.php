@@ -48,6 +48,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         $pids = !empty($this->config['pid']) ? GeneralUtility::intExplode(',', $this->config['pid']) : [];
         $lastModifiedField = $this->config['lastModifiedField'] ?? 'tstamp';
         $sortField = $this->config['sortField'] ?? 'datetime';
+        $forGoogleNews = $this->config['googleNews'] ?? false;
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable($table);
@@ -79,6 +80,10 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             $constraints[] = $queryBuilder->expr()->in('pid', $pids);
         }
 
+        if ($forGoogleNews) {
+            $constraints[] = $queryBuilder->expr()->gt($sortField, (new \DateTime('-2 days'))->getTimestamp());
+        }
+
         if (!empty($this->config['excludedTypes'])) {
             $excludedTypes = GeneralUtility::trimExplode(',', $this->config['excludedTypes'], true);
             if (!empty($excludedTypes)) {
@@ -102,7 +107,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             );
         }
 
-        $rows = $queryBuilder->orderBy($sortField)
+        $rows = $queryBuilder->orderBy($sortField, $forGoogleNews ? 'DESC' : 'ASC')
             ->execute()
             ->fetchAll();
 
