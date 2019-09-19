@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:43Z" product-name="news" target-language="no">
+    <header/>
+    <body>
+      <trans-unit id="settings.tags.description" xml:space="preserve" approved="yes">
+				<source>Filter by given tags.</source>
+			<target state="translated">Filtrert ved følgende tagger.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

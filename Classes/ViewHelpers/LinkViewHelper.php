@@ -116,9 +116,10 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         }
 
         $this->init();
+        $linkedContent = $this->renderChildren();
 
-        if (is_null($newsItem)) {
-            return $this->renderChildren();
+        if ($newsItem === null) {
+            return $linkedContent;
         }
 
         $newsType = (int)$newsItem->getType();
@@ -141,6 +142,11 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
             return $url;
         }
 
+        // link could not be generated
+        if ($url === '' || $linkedContent === $url) {
+            return $linkedContent;
+        }
+
         if (isset($tsSettings['link']['typesOpeningInNewWindow'])) {
             if (GeneralUtility::inList($tsSettings['link']['typesOpeningInNewWindow'], $newsType)) {
                 $this->tag->addAttribute('target', '_blank');
@@ -161,7 +167,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVi
         $this->tag->addAttribute('href', $url);
 
         if (empty($content)) {
-            $content = $this->renderChildren();
+            $content = $linkedContent;
         }
         $this->tag->setContent($content);
 

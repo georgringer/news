@@ -33,11 +33,13 @@ $newSysCategoryColumns = [
     ],
     'images' => [
         'exclude' => true,
-        'l10n_mode' => 'mergeIfNotBlank',
         'label' => $ll . 'tx_news_domain_model_category.image',
         'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
             'images',
             [
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
                 'appearance' => [
                     'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                     'showPossibleLocalizationRecords' => true,
@@ -56,7 +58,6 @@ $newSysCategoryColumns = [
     ],
     'single_pid' => [
         'exclude' => true,
-        'l10n_mode' => 'mergeIfNotBlank',
         'label' => $ll . 'tx_news_domain_model_category.single_pid',
         'config' => [
             'type' => 'group',
@@ -64,21 +65,19 @@ $newSysCategoryColumns = [
             'allowed' => 'pages',
             'size' => 1,
             'maxitems' => 1,
-            'show_thumbs' => 1,
             'default' => 0,
-            'wizards' => [
-                'suggest' => [
-                    'type' => 'suggest',
-                    'default' => [
-                        'searchWholePhrase' => true
-                    ]
-                ],
+            'suggestOptions' => [
+                'default' => [
+                    'searchWholePhrase' => true,
+                ]
+            ],
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
             ],
         ]
     ],
     'shortcut' => [
         'exclude' => true,
-        'l10n_mode' => 'mergeIfNotBlank',
         'label' => $ll . 'tx_news_domain_model_category.shortcut',
         'config' => [
             'type' => 'group',
@@ -86,15 +85,14 @@ $newSysCategoryColumns = [
             'allowed' => 'pages',
             'size' => 1,
             'maxitems' => 1,
-            'show_thumbs' => true,
             'default' => 0,
-            'wizards' => [
-                'suggest' => [
-                    'type' => 'suggest',
-                    'default' => [
-                        'searchWholePhrase' => true
-                    ]
-                ],
+            'suggestOptions' => [
+                'default' => [
+                    'searchWholePhrase' => true,
+                ]
+            ],
+            'behaviour' => [
+                'allowLanguageSynchronization' => true,
             ],
         ]
     ],
@@ -136,10 +134,32 @@ $newSysCategoryColumns = [
         'label' => $ll . 'tx_news_domain_model_category.seo.seo_text',
         'config' => [
             'type' => 'text',
+            'enableRichtext' => true,
+            'richtextConfiguration' => 'default',
         ],
-        'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
     ],
 ];
+
+if (version_compare(TYPO3_branch, '9.5', '>=')) {
+    $newSysCategoryColumns['slug'] = [
+        'exclude' => true,
+        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
+        'displayCond' => 'USER:' . \TYPO3\CMS\Core\Compatibility\PseudoSiteTcaDisplayCondition::class . '->isInPseudoSite:pages:false',
+        'config' => [
+            'type' => 'slug',
+            'size' => 50,
+            'generatorOptions' => [
+                'fields' => ['title'],
+                'replacements' => [
+                    '/' => '-'
+                ],
+            ],
+            'fallbackCharacter' => '-',
+            'eval' => 'uniqueInSite',
+            'default' => ''
+        ]
+    ];
+}
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_category', $newSysCategoryColumns);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category',
@@ -150,6 +170,11 @@ $newSysCategoryColumns = [
     'after:single_pid');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category',
     '--div--;' . $ll . 'tx_news_domain_model_category.tabs.seo, seo_title, seo_description, seo_headline, seo_text', '', 'after:endtime');
+
+if (version_compare(TYPO3_branch, '9.2', '>=')) {
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('sys_category', 'slug', '',
+        'after:title');
+}
 
 $GLOBALS['TCA']['sys_category']['columns']['items']['config']['MM_oppositeUsage']['tx_news_domain_model_news']
     = [0 => 'categories'];

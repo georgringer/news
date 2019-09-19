@@ -13,6 +13,9 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -117,7 +120,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
 
         if ($demand->getTypes()) {
-            $constraints['author'] = $query->in('type', $demand->getTypes());
+            $constraints['types'] = $query->in('type', $demand->getTypes());
         }
 
         // archived
@@ -171,7 +174,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         // month & year OR year only
         if ($demand->getYear() > 0) {
-            if (is_null($demand->getDateField())) {
+            if (null === $demand->getDateField()) {
                 throw new \InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
             }
             if ($demand->getMonth() > 0) {
@@ -228,14 +231,20 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             $constraints['excludeAlreadyDisplayedNews'] = $query->logicalNot(
                 $query->in(
                     'uid',
-                    GeneralUtility::intExplode(',', $hideIdList)
+                    GeneralUtility::intExplode(',', $hideIdList, true)
                 )
             );
         }
 
+        // Id list
+        $idList = $demand->getIdList();
+        if ($idList) {
+            $constraints['idList'] = $query->in('uid', GeneralUtility::intExplode(',', $idList, true));
+        }
+
         // Clean not used constraints
         foreach ($constraints as $key => $value) {
-            if (is_null($value)) {
+            if (null === $value) {
                 unset($constraints[$key]);
             }
         }
@@ -265,7 +274,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                     list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
                     // count == 1 means that no direction is given
                     if ($ascDesc) {
-                        $orderings[$orderField] = ((strtolower($ascDesc) == 'desc') ?
+                        $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
                             QueryInterface::ORDER_DESCENDING :
                             QueryInterface::ORDER_ASCENDING);
                     } else {
@@ -283,20 +292,28 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      *
      * @param string $importSource import source
      * @param int $importId import id
-     * @return \GeorgRinger\News\Domain\Model\News
+     * @param bool $asArray return result as array
+     * @return \GeorgRinger\News\Domain\Model\News|array
      */
-    public function findOneByImportSourceAndImportId($importSource, $importId)
+    public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setRespectSysLanguage(false);
         $query->getQuerySettings()->setIgnoreEnableFields(true);
 
-        return $query->matching(
+        $result = $query->matching(
             $query->logicalAnd(
                 $query->equals('importSource', $importSource),
                 $query->equals('importId', $importId)
-            ))->execute()->getFirst();
+            ))->execute($asArray);
+        if ($asArray) {
+            if (isset($result[0])) {
+                return $result[0];
+            }
+            return [];
+        }
+        return $result->getFirst();
     }
 
     /**
@@ -333,38 +350,44 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $data = [];
         $sql = $this->findDemandedRaw($demand);
 
+        // strip unwanted order by
+        $sql = $this->stripOrderBy($sql);
+
         // Get the month/year into the result
         $field = $demand->getDateField();
         $field = empty($field) ? 'datetime' : $field;
 
-        $sql = 'SELECT FROM_UNIXTIME(' . $field . ', "%m") AS "_Month",' .
-            ' FROM_UNIXTIME(' . $field . ', "%Y") AS "_Year" ,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%m")) as count_month,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
+        $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_Month",' .
+            ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_Year" ,' .
+            ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
+            ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
             ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
+
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_news_domain_model_news');
 
         if (TYPO3_MODE === 'FE') {
             $sql .= $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
         } else {
-            $sql .= \TYPO3\CMS\Backend\Utility\BackendUtility::BEenableFields('tx_news_domain_model_news') .
-                \TYPO3\CMS\Backend\Utility\BackendUtility::deleteClause('tx_news_domain_model_news');
+            $expressionBuilder = $connection
+                ->createQueryBuilder()
+                ->expr();
+            $sql .= BackendUtility::BEenableFields('tx_news_domain_model_news') .
+                ' AND ' . $expressionBuilder->eq('deleted', 0);
         }
-
-        // strip unwanted order by
-        $sql = $GLOBALS['TYPO3_DB']->stripOrderBy($sql);
 
         // group by custom month/year fields
         $orderDirection = strtolower($demand->getOrder());
-        if ($orderDirection !== 'desc' && $orderDirection != 'asc') {
+        if ($orderDirection !== 'desc' && $orderDirection !== 'asc') {
             $orderDirection = 'asc';
         }
         $sql .= ' GROUP BY _Month, _Year ORDER BY _Year ' . $orderDirection . ', _Month ' . $orderDirection;
 
-        $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
-        while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-            $data['single'][$row['_Year']][$row['_Month']] = $row['count_month'];
+        $res = $connection->query($sql);
+        while ($row = $res->fetch()) {
+            $month = strlen($row['_Month']) === 1 ? ('0' . $row['_Month']) : $row['_Month'];
+            $data['single'][$row['_Year']][$month] = $row['count_month'];
         }
-        $GLOBALS['TYPO3_DB']->sql_free_result($res);
 
         // Add totals
         if (is_array($data['single'])) {
@@ -400,33 +423,35 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         $searchSubject = $searchObject->getSubject();
         if (!empty($searchSubject)) {
+            $queryBuilder = $this->getQueryBuilder('tx_news_domain_model_news');
+
             $searchFields = GeneralUtility::trimExplode(',', $searchObject->getFields(), true);
             $searchConstraints = [];
 
             if (count($searchFields) === 0) {
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);
             }
-
-            $searchSubjectSplitted = GeneralUtility::trimExplode(' ', $searchSubject, true);
-            if ($searchObject->isSplitSubjectWords() && count($searchSubjectSplitted) > 1) {
+            $searchSubjectSplitted = str_getcsv($searchSubject, ' ');
+            if ($searchObject->isSplitSubjectWords()) {
                 foreach ($searchFields as $field) {
                     $subConstraints = [];
                     foreach ($searchSubjectSplitted as $searchSubjectSplittedPart) {
-                        $subConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubjectSplittedPart, '') . '%');
+                        $searchSubjectSplittedPart = trim($searchSubjectSplittedPart);
+                        if ($searchSubjectSplittedPart) {
+                            $subConstraints[] = $query->like($field, '%' . $searchSubjectSplittedPart . '%');
+                        }
                     }
                     $searchConstraints[] = $query->logicalAnd($subConstraints);
                 }
-
                 if (count($searchConstraints)) {
                     $constraints[] = $query->logicalOr($searchConstraints);
                 }
             } else {
-                foreach ($searchFields as $field) {
-                    if (!empty($searchSubject)) {
-                        $searchConstraints[] = $query->like($field, '%' . $GLOBALS['TYPO3_DB']->escapeStrForLike($searchSubject, '') . '%');
+                if (!empty($searchSubject)) {
+                    foreach ($searchFields as $field) {
+                        $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
                     }
                 }
-
                 if (count($searchConstraints)) {
                     $constraints[] = $query->logicalOr($searchConstraints);
                 }
@@ -447,9 +472,31 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if (empty($field)) {
                 throw new \UnexpectedValueException('No date field is defined', 1396348733);
             }
+            $maximumDate += 86400;
             $constraints[] = $query->lessThanOrEqual($field, $maximumDate);
         }
 
         return $constraints;
+    }
+
+    /**
+     * @param string $table table name
+     * @return QueryBuilder
+     */
+    protected function getQueryBuilder(string $table)
+    {
+        return GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+    }
+
+    /**
+     * Return stripped order sql
+     *
+     * @param string $str
+     * @return string
+     */
+    private function stripOrderBy(string $str)
+    {
+        /** @noinspection NotOptimalRegularExpressionsInspection */
+        return preg_replace('/(?:ORDER[[:space:]]*BY[[:space:]]*.*)+/i', '', trim($str));
     }
 }

@@ -4,10 +4,10 @@
 
 ---
 conf.py:
-  copyright: 2018
+  copyright: 2019
   project: News system
-  version: 6.3
-  release: 6.3.0
+  version: 7.3
+  release: 7.3.1
   latex_documents:
   - - Index
     - news.tex

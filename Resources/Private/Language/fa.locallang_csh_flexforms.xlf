@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:43Z" product-name="news" target-language="fa">
+    <header/>
+    <body>
+      <trans-unit id="switchableControllerActions.description" xml:space="preserve" approved="yes">
+				<source>Set the view you want to display</source>
+			<target state="translated">نمائی که می‌خواهید نمایش بدهید انتخاب کنید</target></trans-unit>
+      <trans-unit id="switchableControllerActions.details" xml:space="preserve" approved="yes">
+				<source>List view shows all news records. Latest uses a time restriction, the rest should be understandable</source>
+			<target state="translated">نمای فهرست همۀ ردیف‌های خبری را نمایش می‌دهد. نمای آخرین‌ها قید زمانی دارد و سایر موارد باید واضح باشد.</target></trans-unit>
+      <trans-unit id="settings.orderBy.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting field</source>
+			<target state="translated">بخشی که ترتیب بر اساس آن صورت می‌گیرد</target></trans-unit>
+      <trans-unit id="settings.orderDirection.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting direction</source>
+			<target state="translated">تعیین جهت ترتیب</target></trans-unit>
+      <trans-unit id="settings.dateField.description" xml:space="preserve" approved="yes">
+				<source>Select the field which is used to build the date menu.</source>
+			<target state="translated">بخشی را که برای ساخت فهرست مبتنی بر تاریخ به کار می‌رود انتخاب کنید.</target></trans-unit>
+      <trans-unit id="settings.categories.description" xml:space="preserve" approved="yes">
+				<source>Choose the categories to define which news items are displayed</source>
+			<target state="translated">دسته‌هائی که اخبار باید از آن‌ها نمایش داده شوند انتخاب کنید</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.description" xml:space="preserve" approved="yes">
+				<source>Define how the selected categories are used</source>
+			<target state="translated">چگونگی استفاده از دسته‌های منتخب را تعیین کنید</target></trans-unit>
+      <trans-unit id="settings.includeSubCategories.description" xml:space="preserve" approved="yes">
+				<source>Include all subcategories of the selected categories too.</source>
+			<target state="translated">شامل کردن همۀ زیردسته‌ها از دسته‌های انتخاب شده.</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.details" xml:space="preserve" approved="yes">
+				<source>"Don't care": No category restriction is set. "Show items with selected categories OR": A news records need to be related with at least one of the selected categories. "Show selected categories AND". A news record need to be related to all selected categories. "Do not show" is the opposite of above.</source>
+			<target state="translated">"بدون توجه": هیچ محدودیتی برای دسته‌ها وجود ندارد. "نمایش اخبار از دسته‌های انتخاب شده (یا)": ردیف خبری حداقل باید در یکی از گروه‌های انتخاب شده باشد. "نمایش اخبار از دسته‌های انتخاب شده (و)": ردیف خبری باید در همۀ دسته‌های انتخاب شده باشد. "عدم نمایش" برعکس موارد فوق هست.</target></trans-unit>
+      <trans-unit id="settings.archiveRestriction.description" xml:space="preserve" approved="yes">
+				<source>Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</source>
+			<target state="translated">انتخاب بین این موارد: 1) نمایش همۀ ردیف‌های خبری، 2) نمایش محدود به ردیف‌های فعال خبری، 3) نمایش محدود به ردیف‌های خبری بایگانی شده. تاریخ بایگانی در هر ردیف خبری قابل تعیین است. در صورت عدم تعیین این تاریخ بایگانی، اخبار مربوطه قابل بایگانی شدن نخواهد بود.</target></trans-unit>
+      <trans-unit id="settings.timeRestriction.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items after the given time are shown.</source>
+			<target state="translated">تعیین یک محدودۀ زمانی. این ممکن است عدد صحیح باشد که به معنای ثانیه است، مثلا 86400 به معنای 1 روز است(60 * 60 * 24) یا یک عبارت مثل "-4 days" یا "-3 hours". علامت - مهم است! اخبار فقط پس از این محدودۀ زمانی نمایش داده خواهند شد.</target></trans-unit>
+      <trans-unit id="settings.timeRestrictionHigh.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items before the given time are shown.</source>
+			<target state="translated">تعیین یک محدودۀ زمانی. این ممکن است عدد صحیح باشد که به معنای ثانیه است، مثلا 86400 به معنای 1 روز است(60 * 60 * 24) یا یک عبارت مثل "-4 days" یا "-3 hours". علامت - مهم است! اخبار فقط پس از این محدودۀ زمانی نمایش داده خواهند شد.</target></trans-unit>
+      <trans-unit id="settings.topNewsRestriction.description" xml:space="preserve" approved="yes">
+				<source>A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</source>
+			<target state="translated">یک ردیف خبر می‌توان بعنوان "خبر داغ" نشان شود. بنابراین امکان نمایش همۀ ردیف‌های خبری، تنها اخبار داغ و یا اخباری که داغ نیستند قابل انتخاب برای نمایش خواهند بود.</target></trans-unit>
+      <trans-unit id="settings.singleNews.description" xml:space="preserve" approved="yes">
+				<source>Display the selected single news record.</source>
+			<target state="translated">نمایش یک ردیف خبری انتخاب شده و مشخص.</target></trans-unit>
+      <trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve" approved="yes">
+				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
+			<target state="translated">در صورت تنظیم، ردیف‌های مخفی نیز نمایش داده خواهند شد. این در صورتی مورد نیاز است که شما بخواهید ردیف‌های مخفی را نیز پیش نمایش کنید. توجه کنید هر ردیف پنهان صفحۀ کنونی نیز نمایش داده خواهد شد.</target></trans-unit>
+      <trans-unit id="settings.startingpoint.description" xml:space="preserve" approved="yes">
+				<source>Define the pages/sysfolders which hold the news records</source>
+			<target state="translated">صفحات یا پوشه‌هائی را که باید ردیف‌های خبر را ذخیره کننده انتخاب کنید</target></trans-unit>
+      <trans-unit id="settings.recursive.description" xml:space="preserve" approved="yes">
+				<source>Select the recursion level of the startingpoint.</source>
+			<target state="translated">عمق سطوح برداشت نسبت به نقطۀ شروع را انتخاب کنید.</target></trans-unit>
+      <trans-unit id="settings.detailPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the detail view should be shown.</source>
+			<target state="translated">صفحه‌ای را که جزئیات خبر باید در آن نمایش داده شود انتخاب کنید.</target></trans-unit>
+      <trans-unit id="settings.backPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page which is used to return to on detail view.</source>
+			<target state="translated">صفحه‌ای را که در صفحۀ جزئیات برای بازگشت پیوند داده می‌شود انتخاب کنید.</target></trans-unit>
+      <trans-unit id="settings.listPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the list view is shown.</source>
+			<target state="translated">صفحه‌ای را که فهرست اخبار در آن نمایش داده می‌شود انتخاب کنید.</target></trans-unit>
+      <trans-unit id="settings.limit.description" xml:space="preserve" approved="yes">
+				<source>Set the maximum amount of news records to be displayed</source>
+			<target state="translated">تعداد اخباری را که باید نمایش داده شود انتخاب کنید</target></trans-unit>
+      <trans-unit id="settings.offset.description" xml:space="preserve" approved="yes">
+				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
+			<target state="translated">عددنسبی شروع را وارد کنید. برای مثال مقدار 3 به معنای آن است که 2 ردیف اول نمایش داده نمی‌شوند.</target></trans-unit>
+      <trans-unit id="settings.topNewsFirst.description" xml:space="preserve" approved="yes">
+				<source>If checked: No matter which sorting is defined, top news are shown as first news records.</source>
+			<target state="translated">در صورت انتخاب: بدون توجه به نوع ترتیب و توالی انتخاب شده، اخبار داغ اول نمایش داده می‌شوند.</target></trans-unit>
+      <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve" approved="yes">
+				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
+			<target state="translated">در صورت انتخاب، این افزونه در تنظیمات override demand تاثیری نخواهد داشت، مثلا بازنویسی گروه بواسطۀ مؤلفۀ URL.</target></trans-unit>
+      <trans-unit id="settings.tags.description" xml:space="preserve" approved="yes">
+				<source>Filter by given tags.</source>
+			<target state="translated">تصفیه بواسطۀ برچسب‌های انتخابی.</target></trans-unit>
+      <trans-unit id="settings.media.maxWidth.description" xml:space="preserve" approved="yes">
+				<source>Maximal width of media elements (images, videos, ...)</source>
+			<target state="translated">حداکثر عرض عناصر رسانه‌ای (تصاویر، ویدیو و...)</target></trans-unit>
+      <trans-unit id="settings.media.maxHeight.description" xml:space="preserve" approved="yes">
+				<source>Maximal height of media elements (images, videos, ...)</source>
+			<target state="translated">حداکثر ارتفاع عناصر رسانه‌ای (تصاویر، ویدیو و...)</target></trans-unit>
+      <trans-unit id="settings.cropMaxCharacters.description" xml:space="preserve" approved="yes">
+				<source>Define the length of the teaser in chars. The teaser is typically cropped in the list view.</source>
+			<target state="translated">طول بخش خلاصه بر حسب تعداد حروف را تعیین کنید. بخش خلاصه یا لید معمولا در نمای فهرست بریده می‌شود.</target></trans-unit>
+      <trans-unit id="settings.templateLayout.description" xml:space="preserve" approved="yes">
+				<source>Select a special layout for displaying news records.</source>
+			<target state="translated">یک حالت خاص برای نمایش ردیف‌های خبری انتخاب کنید.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

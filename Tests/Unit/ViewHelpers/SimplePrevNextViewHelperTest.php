@@ -27,12 +27,7 @@ class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
      */
     public function setUp()
     {
-        $this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['dummy']);
-        $mockedDatabaseConnection = $this
-            ->getMockBuilder('TYPO3\\CMS\\Core\\Database\\DatabaseConnection')
-            ->setMethods(['exec_SELECTgetSingleRow'])
-            ->disableOriginalConstructor();
-        $this->viewHelper->_set('databaseConnection', $mockedDatabaseConnection->getMock());
+        $this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getRawRecord']);
     }
 
     /**
@@ -40,6 +35,8 @@ class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
      */
     public function wrongIdWillReturnNullForObject()
     {
+        $this->viewHelper->expects($this->any())->method('getRawRecord')->withAnyParameters()->will($this->returnValue(null));
+
         $out = $this->viewHelper->_call('getObject', 0);
         $this->assertEquals($out, null);
     }

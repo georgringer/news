@@ -134,8 +134,7 @@ Use this hook to change the final settings which are for building queries, for t
 
 Example
 """""""
-This examples modifies the query and adds a constraint that only news records are shown which contain the word *yeah*.
-
+This examples modifies the settings by changing the category selection.
 
 First, register your implementation in the file ``ext_localconf.php``:
 
@@ -159,9 +158,62 @@ Now create the file ``Classes/Hooks/NewsControllerSettings.php``:
 
 		public function modify(array $params) {
 			$settings = $params['originalSettings'];
-			$settings['fo'] = bar;
+			$settings['categories'] = '2,3';
 
-			return $settings
+			return $settings;
 		}
+	}
 
 .. hint:: Please change the vendor and extension key to your real life code.
+
+
+
+Controller/AdministrationController createMenu
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use this hook to add functions to the news administration controller.
+
+Example
+"""""""
+
+This example shows how you can add new items to the news administration controller.
+
+Add signal registration in your ``ext_localconf.php``:
+
+.. code-block:: php
+
+	$signalSlotDispatcher = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
+	$signalSlotDispatcher->connect(
+		\GeorgRinger\News\Controller\AdministrationController::class,
+		'createMenu',
+		\Vendor\Extension\Hooks\NewVendorBackendModuleMenuAction::class,
+		'addVendorMenuItemAction'
+	);
+
+In your ``Classes/Hooks/NewVendorBackendModuleMenuAction.php``:
+
+.. code-block:: php
+
+	class NewVendorBackendModuleMenuAction
+	{
+		/**
+	     * Adds a new menu item.
+	     *
+	     * @param Menu $menu
+	     * @return Menu
+	     */
+	    public function addVendorMenuItemAction(Menu $menu)
+	    {
+			// Prepare item title and url to your own Backend controller here
+			...
+			$item = $menu->makeMenuItem()
+				->setTitle($menuItemTitle)
+				->setHref($menuItemUrl)
+				->setActive(false);
+			$menu->addMenuItem($item);
+
+			return $menu;
+		}
+	}
+
+

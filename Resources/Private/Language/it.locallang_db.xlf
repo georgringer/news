@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="news" target-language="it">
+    <header/>
+    <body>
+      <trans-unit id="tx_news_domain_model_news.tabs.relations" xml:space="preserve" approved="yes">
+				<source>Relations</source>
+			<target state="translated">Correlati</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve" approved="yes">
+				<source>Alternative Titles</source>
+			<target state="translated">Titolo Alternativo</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.alternative_title" xml:space="preserve" approved="yes">
+				<source>Alternative title</source>
+			<target state="translated">Titolo Alternativo</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve" approved="yes">
+				<source>Teaser</source>
+			<target state="translated">Introduzione</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="translated">Data &amp; Ora</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="translated">Archivio</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive.placeholder" xml:space="preserve" approved="yes">
+				<source>Define when the news should be listed in the archive</source>
+			<target state="translated">Definisce quando la news è inserita in archivio</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.categories" xml:space="preserve" approved="yes">
+				<source>Categories</source>
+			<target state="translated">Categorie</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related" xml:space="preserve" approved="yes">
+				<source>Related News</source>
+			<target state="translated">News correlate</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_from" xml:space="preserve" approved="yes">
+				<source>Related News (from)</source>
+			<target state="translated">News collegate (da)</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files" xml:space="preserve" approved="yes">
+				<source>Related Files</source>
+			<target state="translated">File correlati</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files.add" xml:space="preserve" approved="yes">
+				<source>Add related file</source>
+			<target state="translated">Aggiungi file correlati</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_links" xml:space="preserve" approved="yes">
+				<source>Related Links</source>
+			<target state="translated">Link correlati</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.1" xml:space="preserve" approved="yes">
+				<source>Internal link</source>
+			<target state="translated">Pagina Interna</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.2" xml:space="preserve" approved="yes">
+				<source>External Page</source>
+			<target state="translated">Pagina esterna</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media" xml:space="preserve" approved="yes">
+				<source>Media file</source>
+			<target state="translated">File multimediale</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media.add" xml:space="preserve" approved="yes">
+				<source>Add media file</source>
+			<target state="translated">Aggiungi file multimediale</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.istopnews" xml:space="preserve" approved="yes">
+				<source>Top news</source>
+			<target state="translated">News in evidenza</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.content_elements" xml:space="preserve" approved="yes">
+				<source>Content elements</source>
+			<target state="translated">Elementi di contenuto</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.add" xml:space="preserve" approved="yes">
+				<source>Add a new tag</source>
+			<target state="translated">Aggiungi un nuovo tag</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.list" xml:space="preserve" approved="yes">
+				<source>List all tags</source>
+			<target state="translated">Elenca tutti i tag</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.edit" xml:space="preserve" approved="yes">
+				<source>Edit tag</source>
+			<target state="translated">Modifica etichetta</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve" approved="yes">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target state="translated"><![CDATA[&lt;title&gt;-Tag]]></target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve" approved="yes">
+				<source>Headline (H1)</source>
+			<target state="translated">Testata (H1)</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve" approved="yes">
+				<source>SEO</source>
+			<target state="translated">SEO</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
+				<source>Image</source>
+			<target state="translated">Immagine</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.single_pid" xml:space="preserve" approved="yes">
+				<source>Single-view page for news from this category</source>
+			<target state="translated">Pagina di visualizzazione singola per le notizie di questa categoria</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.shortcut" xml:space="preserve" approved="yes">
+				<source>News category shortcut</source>
+			<target state="translated">Shortcut per la categoria delle news</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.seo.seo_title" xml:space="preserve" approved="yes">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target state="translated"><![CDATA[&lt;title&gt;-Tag]]></target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link" xml:space="preserve" approved="yes">
+				<source>News Link Element</source>
+			<target state="translated">Elemento link della news</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="translated">Titolo</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.description" xml:space="preserve" approved="yes">
+				<source>Description</source>
+			<target state="translated">Descrizione</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve" approved="yes">
+				<source>URL</source>
+			<target state="translated">URL</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve" approved="yes">
+				<source>www.domain.org</source>
+			<target state="translated">www.domain.it</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve" approved="yes">
+				<source>SEO</source>
+			<target state="translated">SEO</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag" xml:space="preserve" approved="yes">
+				<source>News Tag</source>
+			<target state="translated">Tag della news</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="translated">Titolo</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve" approved="yes">
+				<source>Speaking URL path segment</source>
+			<target state="translated">Path del segmento per URL semplificato</target></trans-unit>
+      <trans-unit id="be_user.tx_news_categorymounts" xml:space="preserve" approved="yes">
+				<source>News: Category restriction</source>
+			<target state="translated">News: Restrizioni di categorie</target></trans-unit>
+      <trans-unit id="notes" xml:space="preserve" approved="yes">
+				<source>Notes</source>
+			<target state="translated">Note</target></trans-unit>
+    </body>
+  </file>
+</xliff>

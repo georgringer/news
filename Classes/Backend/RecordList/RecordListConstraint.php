@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Backend\RecordList;
 
 /**
@@ -9,9 +10,12 @@ namespace GeorgRinger\News\Backend\RecordList;
  */
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\StartTimeRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Class for the list rendering of administration module
@@ -25,27 +29,56 @@ class RecordListConstraint
      *
      * @return bool
      */
-    public function isInAdministrationModule()
+    public function isInAdministrationModule(): bool
     {
+        if (self::is9Up()) {
+            $vars = GeneralUtility::_GET('route');
+            return $vars === '/web/NewsTxNewsM2/';
+        }
+
         $vars = GeneralUtility::_GET('M');
         return $vars === 'web_NewsTxNewsM2';
     }
 
     public function extendQuery(array &$parameters, array $arguments)
     {
+        $parameters['whereDoctrine'] = [];
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_news_domain_model_news');
+
+        $expressionBuilder = $queryBuilder->expr();
+
         // search word
         if (isset($arguments['searchWord']) && !empty($arguments['searchWord'])) {
             $words = GeneralUtility::trimExplode(' ', $arguments['searchWord'], true);
             $fields = ['title', 'teaser', 'bodytext'];
-            $parameters['where'][] = $this->getDatabaseConnection()->searchQuery($words, $fields, self::TABLE);
+            $fieldParts = [];
+            foreach ($fields as $field) {
+                $likeParts = [];
+                $nameParts = str_getcsv($arguments['searchWord'], ' ');
+                foreach ($nameParts as $part) {
+                    $part = trim($part);
+                    if ($part !== '') {
+                        $likeParts[] = $expressionBuilder->like($field, $queryBuilder->quote('%' . $queryBuilder->escapeLikeWildcards($part) . '%'));
+                    }
+                }
+                if (!empty($likeParts)) {
+                    $fieldParts[] = $expressionBuilder->orX(...$likeParts);
+                }
+            }
+            $parameters['whereDoctrine'][] = $expressionBuilder->orX(...$fieldParts);
+            $parameters['where'][] = $expressionBuilder->orX(...$fieldParts);
         }
         // top news
         $topNewsSetting = (int)$arguments['topNewsRestriction'];
         if ($topNewsSetting > 0) {
             if ($topNewsSetting === 1) {
                 $parameters['where'][] = 'istopnews=1';
+                $parameters['whereDoctrine'][] = $expressionBuilder->eq('istopnews', 1);
             } elseif ($topNewsSetting === 2) {
                 $parameters['where'][] = 'istopnews=0';
+                $parameters['whereDoctrine'][] = $expressionBuilder->eq('istopnews', 0);
             }
         }
 
@@ -55,8 +88,16 @@ class RecordListConstraint
             $currentTime = $GLOBALS['EXEC_TIME'];
             if ($archived === 1) {
                 $parameters['where'][] = '(archive > ' . $currentTime . ' OR archive=0)';
+                $parameters['whereDoctrine'][] = $expressionBuilder->orX(
+                    $expressionBuilder->gt('archive', $currentTime),
+                    $expressionBuilder->eq('archive', 0)
+                );
             } elseif ($archived === 2) {
                 $parameters['where'][] = 'archive > 0 AND archive <' . $currentTime;
+                $parameters['whereDoctrine'][] = $expressionBuilder->andX(
+                    $expressionBuilder->gt('archive', 0),
+                    $expressionBuilder->lt('archive', $currentTime)
+                );
             }
         }
 
@@ -65,8 +106,10 @@ class RecordListConstraint
         if ($hidden > 0) {
             if ($hidden === 1) {
                 $parameters['where'][] = 'hidden=1';
+                $parameters['whereDoctrine'][] = $expressionBuilder->eq('hidden', 1);
             } elseif ($hidden === 2) {
                 $parameters['where'][] = 'hidden=0';
+                $parameters['whereDoctrine'][] = $expressionBuilder->eq('hidden', 0);
             }
         }
 
@@ -75,6 +118,7 @@ class RecordListConstraint
             try {
                 $limit = ConstraintHelper::getTimeRestrictionLow($arguments['timeRestriction']);
                 $parameters['where'][] = 'datetime >=' . $limit;
+                $parameters['whereDoctrine'][] = $expressionBuilder->gte('datetime', $limit);
             } catch (\Exception $e) {
                 // @todo add flash message
             }
@@ -85,6 +129,7 @@ class RecordListConstraint
             try {
                 $limit = ConstraintHelper::getTimeRestrictionHigh($arguments['timeRestrictionHigh']);
                 $parameters['where'][] = 'datetime <=' . $limit;
+                $parameters['whereDoctrine'][] = $expressionBuilder->lte('datetime', $limit);
             } catch (\Exception $e) {
                 // @todo add flash message
             }
@@ -110,40 +155,50 @@ class RecordListConstraint
                             $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
                             if (empty($idList)) {
                                 $parameters['where'][] = '1=2';
+                                $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
                             } else {
                                 $parameters['where'][] = sprintf('uid IN(%s)', implode(',', $idList));
+                                $parameters['whereDoctrine'][] = $expressionBuilder->in('uid', $idList);
                             }
                         }
                         break;
                     case 'or':
-                        $orConstraint = [];
+                        $orConstraint = $orConstraintDoctrine = [];
                         foreach ($arguments['selectedCategories'] as $category) {
                             $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
                             if (!empty($idList)) {
                                 $orConstraint[] = sprintf('uid IN(%s)', implode(',', $idList));
+                                $orConstraintDoctrine[] = $expressionBuilder->in('uid', $idList);
                             }
                         }
                         if (empty($orConstraint)) {
                             $parameters['where'][] = '1=2';
+                            $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
                         } else {
                             $parameters['where'][] = implode(' OR ', $orConstraint);
+                            $parameters['whereDoctrine'][] = $expressionBuilder->orX(...$orConstraintDoctrine);
                         }
                         break;
                     // @todo test that
                     case 'notor':
-                        $orConstraint = [];
+                        $orConstraint = $orConstraintDoctrine = [];
                         foreach ($arguments['selectedCategories'] as $category) {
                             $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
                             if (!empty($idList)) {
-                                $orConstraint[] = sprintf('uid IN(%s)', implode(',', $idList));
+                                $orConstraint[] = sprintf('(uid IN (%s))', implode(',', $idList));
+                                $orConstraintDoctrine[] = $expressionBuilder->notIn('uid', $idList);
                             } else {
                                 $orConstraint[] = '1=2';
+                                $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
                             }
                         }
                         if (empty($orConstraint)) {
                             $parameters['where'][] = '1=2';
+                            $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
                         } else {
-                            $parameters['where'][] = implode(' NOT OR ', $orConstraint);
+                            $orConstraint = array_unique($orConstraint);
+                            $parameters['where'][] = ' NOT (' . implode(' OR ', $orConstraint) . ')';
+                            $parameters['whereDoctrine'][] = $expressionBuilder->andX(...$orConstraintDoctrine);
                         }
                         break;
                     case 'notand':
@@ -151,6 +206,7 @@ class RecordListConstraint
                             $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
                             if (!empty($idList)) {
                                 $parameters['where'][] = sprintf('uid NOT IN(%s)', implode(',', $idList));
+                                $parameters['whereDoctrine'][] = $expressionBuilder->notIn('uid', $idList);
                             }
                         }
                         break;
@@ -170,37 +226,47 @@ class RecordListConstraint
      * @param string $pidConstraint
      * @return array
      */
-    protected function getNewsIdsOfCategory($categoryId, $pidConstraint = '')
+    protected function getNewsIdsOfCategory($categoryId, $pidConstraint = ''): array
     {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_news_domain_model_news');
+        $queryBuilder->getRestrictions()
+            ->removeByType(StartTimeRestriction::class)
+            ->removeByType(HiddenRestriction::class)
+            ->removeByType(EndTimeRestriction::class);
+        $res = $queryBuilder
+            ->select('tx_news_domain_model_news.uid', 'sys_category.title')
+            ->from('tx_news_domain_model_news')
+            ->rightJoin(
+                'tx_news_domain_model_news',
+                'sys_category_record_mm',
+                'sys_category_record_mm',
+                $queryBuilder->expr()->eq('tx_news_domain_model_news.uid', $queryBuilder->quoteIdentifier('sys_category_record_mm.uid_foreign'))
+            )
+            ->rightJoin(
+                'sys_category_record_mm',
+                'sys_category',
+                'sys_category',
+                $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->quoteIdentifier('sys_category_record_mm.uid_local'))
+            )
+            ->where(
+                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
+                $queryBuilder->expr()->isNotNull('tx_news_domain_model_news.uid'),
+                $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->createNamedParameter($categoryId, \PDO::PARAM_INT))
+            )
+            ->andWhere(($pidConstraint ?: ''))
+            ->execute();
+
         $idList = [];
-
-        if (!empty($pidConstraint)) {
-            $pidConstraint = ' AND ' . $pidConstraint;
-        }
-
-        $res = $this->getDatabaseConnection()->sql_query(
-            'SELECT tx_news_domain_model_news.uid, sys_category.title
-            FROM tx_news_domain_model_news
-                RIGHT JOIN `sys_category_record_mm` ON tx_news_domain_model_news.uid = sys_category_record_mm.uid_foreign
-                RIGHT JOIN sys_category ON sys_category.uid = sys_category_record_mm.uid_local
-            WHERE
-              sys_category_record_mm.tablenames="tx_news_domain_model_news" AND
-              tx_news_domain_model_news.uid IS NOT NULL AND sys_category.uid=' . (int)$categoryId . $pidConstraint
-            . BackendUtility::deleteClause('sys_category')
-            . BackendUtility::deleteClause('tx_news_domain_model_news')
-        );
-        while ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res)) {
+        while ($row = $res->fetch()) {
             $idList[] = $row['uid'];
         }
 
         return $idList;
     }
 
-    /**
-     * @return DatabaseConnection
-     */
-    protected function getDatabaseConnection()
+    private static function is9Up()
     {
-        return $GLOBALS['TYPO3_DB'];
+        return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
     }
 }

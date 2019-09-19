@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="nl">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News system</source>
+			<target state="translated">Nieuws systeem</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
+				<source>Versatile news system</source>
+			<target state="translated">Veelzijdig nieuws systeem</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="translated">Instellingen</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
+				<source>Additional</source>
+			<target state="translated">Additionele</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
+				<source>Template</source>
+			<target state="translated">Sjabloon</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
+				<source>What to display</source>
+			<target state="translated">Wat weergeven</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve" approved="yes">
+				<source>List view</source>
+			<target state="translated">Lijst weergave</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve" approved="yes">
+				<source>List view (without overloading detail view)</source>
+			<target state="translated">Lijst weergave (zonder overloading detail weergave)</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve" approved="yes">
+				<source>Detail view</source>
+			<target state="translated">Details weergeven</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve" approved="yes">
+				<source>Search form</source>
+			<target state="translated">Zoek formulier</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve" approved="yes">
+				<source>Search result</source>
+			<target state="translated">Zoek resultaat</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve" approved="yes">
+				<source>Date menu</source>
+			<target state="translated">Datum menu</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve" approved="yes">
+				<source>List of selected items</source>
+			<target state="translated">Lijst van geselecteerde items</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve" approved="yes">
+				<source>Category Menu</source>
+			<target state="translated">Categorie menu</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve" approved="yes">
+				<source>No view yet configured</source>
+			<target state="translated">Geen weergave nog geconfigureerd</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="translated">Zoek</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve" approved="yes">
+				<source>Others</source>
+			<target state="translated">Overige</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve" approved="yes">
+				<source>Tag list</source>
+			<target state="translated">Lijst labels</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="translated">Archief</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
+				<source>Only active (non archived)</source>
+			<target state="translated">Alleen actief (niet gearchiveerd)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
+				<source>Archived</source>
+			<target state="translated">Gearchiveerd</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
+				<source>Sort by</source>
+			<target state="translated">Sorteren op</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve" approved="yes">
+				<source>Uid</source>
+			<target state="translated">Uid</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
+				<source>Manual sorting</source>
+			<target state="translated">Handmatige sortering</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve" approved="yes">
+				<source>Last edited</source>
+			<target state="translated">Laatst bewerkt</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve" approved="yes">
+				<source>Created</source>
+			<target state="translated">Aangemaakte datum</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="translated">Opgegeven datum en tijd</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="translated">Titel</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve" approved="yes">
+				<source>Sort direction</source>
+			<target state="translated">Sorteervolgorde</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve" approved="yes">
+				<source>Ascending</source>
+			<target state="translated">Oplopend</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve" approved="yes">
+				<source>Descending</source>
+			<target state="translated">Aflopend</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField" xml:space="preserve" approved="yes">
+				<source>Date field to use</source>
+			<target state="translated">Datum veld gebruiken</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="translated">Opgegeven datum / tijd</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve" approved="yes">
+				<source>Archive date</source>
+			<target state="translated">Archiveer datum</target></trans-unit>
+      <trans-unit id="flexforms_general.categories" xml:space="preserve" approved="yes">
+				<source>Category selection</source>
+			<target state="translated">Categorie selectie</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve" approved="yes">
+				<source>Category mode</source>
+			<target state="translated">Categorie modus</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve" approved="yes">
+				<source>Don't care, show all</source>
+			<target state="translated">Maakt niet uit, alles laten zien</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (OR)</source>
+			<target state="translated">Items laten zien met geselecteerde categorieën (OR)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (AND)</source>
+			<target state="translated">Items laten zien met geselecteerde categorieën (AND)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (AND)</source>
+			<target state="translated">Items NIET laten zien met geselecteerde categorieën (AND)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (OR)</source>
+			<target state="translated">Items NIET laten zien met geselecteerde categorieën (OR)</target></trans-unit>
+      <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve" approved="yes">
+				<source>Include subcategories</source>
+			<target state="translated">Inclusief subcategorieën</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time limit (LOW): higher than given time</source>
+			<target state="translated">Tijd limiet</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Time limit (HIGH): News less than given time</source>
+			<target state="translated">Tijdlimiet (HOOG): Nieuws minder dan aangegeven tijd</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve" approved="yes">
+				<source>Top News</source>
+			<target state="translated">Top nieuws</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.1" xml:space="preserve" approved="yes">
+				<source>only Top News records</source>
+			<target state="translated">alleen Top nieuws records</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.2" xml:space="preserve" approved="yes">
+				<source>except Top News records</source>
+			<target state="translated">behalve Top Nieuws records</target></trans-unit>
+      <trans-unit id="flexforms_general.singleNews" xml:space="preserve" approved="yes">
+				<source>Show a single news record</source>
+			<target state="translated">Toon een single nieuws record</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve" approved="yes">
+				<source>Allow preview of hidden records</source>
+			<target state="translated">Sta preview toe van verborgen records</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="translated">Nee</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="translated">Ja</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="translated">Gedefinieerd in TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="translated">Gedefinieerd in TypoScript</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
+				<source>[no constraint]</source>
+			<target state="translated">[geen beperking]</target></trans-unit>
+      <trans-unit id="flexforms_general.selectedList" xml:space="preserve" approved="yes">
+				<source>List of articles</source>
+			<target state="translated">Lijst van artikelen</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
+				<source>Max width for media elements</source>
+			<target state="translated">Max breedte voor media elementen</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve" approved="yes">
+				<source>Max height for media elements</source>
+			<target state="translated">Max hoogte voor media elementen</target></trans-unit>
+      <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve" approved="yes">
+				<source>Length of teaser (in chars)</source>
+			<target state="translated">Lengte van teaser (in karakters)</target></trans-unit>
+      <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
+				<source>Template Layout</source>
+			<target state="translated">Sjabloon opmaak</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve" approved="yes">
+				<source>1</source>
+			<target state="translated">1</target></trans-unit>
+      <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve" approved="yes">
+				<source>2</source>
+			<target state="translated">2</target></trans-unit>
+      <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
+				<source>PageId for single news display</source>
+			<target state="translated">PageId voor tonen van single nieuws</target></trans-unit>
+      <trans-unit id="flexforms_additional.backPid" xml:space="preserve" approved="yes">
+				<source>PageId to return to</source>
+			<target state="translated">PaginaId om naar terug te keren</target></trans-unit>
+      <trans-unit id="flexforms_additional.listPid" xml:space="preserve" approved="yes">
+				<source>PageId for list display</source>
+			<target state="translated">PaginaId voor lijst weergave</target></trans-unit>
+      <trans-unit id="flexforms_additional.limit" xml:space="preserve" approved="yes">
+				<source>Max records displayed</source>
+			<target state="translated">Maximaal aantal items weergeven</target></trans-unit>
+      <trans-unit id="flexforms_additional.offset" xml:space="preserve" approved="yes">
+				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
+			<target state="translated">Start met nieuws item #</target></trans-unit>
+      <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve" approved="yes">
+				<source>Hide the pagination</source>
+			<target state="translated">Paginanummering verbergen</target></trans-unit>
+      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve" approved="yes">
+				<source>Items per Page</source>
+			<target state="translated">items per pagina</target></trans-unit>
+      <trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve" approved="yes">
+				<source>Sort "Top news" before</source>
+			<target state="translated">Sorteer "Top nieuws" voor</target></trans-unit>
+      <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve" approved="yes">
+				<source>Disable override demand</source>
+			<target state="translated">Schakel override demand uit</target></trans-unit>
+      <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve" approved="yes">
+				<source>Exclude already displayed news</source>
+			<target state="translated">Reeds afgebeeld nieuws uitsluiten</target></trans-unit>
+      <trans-unit id="flexforms_additional.tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="translated">Labels</target></trans-unit>
+      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
+				<source>Page with uid "%s" is not available anymore!</source>
+			<target state="translated">Pagina met uid "%s" is niet meer beschikbaar!</target></trans-unit>
+      <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve" approved="yes">
+				<source>Record with uid "%s" is not available anymore!</source>
+			<target state="translated">Nieuwsrecord met uid "%s" is niet meer beschikbaar!</target></trans-unit>
+      <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve" approved="yes">
+				<source>News record with uid "%s" is not available anymore!</source>
+			<target state="translated">Nieuwsrecord met uid "%s" is niet meer beschikbaar!</target></trans-unit>
+      <trans-unit id="pagemodule.switchToPage" xml:space="preserve" approved="yes">
+				<source>Switch to this page</source>
+			<target state="translated">Wissel naar deze pagina</target></trans-unit>
+      <trans-unit id="pagemodule_simple" xml:space="preserve" approved="yes">
+				<source>Simple list</source>
+			<target state="translated">Simpele lijst</target></trans-unit>
+      <trans-unit id="pagemodule_advanced" xml:space="preserve" approved="yes">
+				<source>Advanced list</source>
+			<target state="translated">Geavanceerde lijst</target></trans-unit>
+      <trans-unit id="pagemodule_complex" xml:space="preserve" approved="yes">
+				<source>Full list</source>
+			<target state="translated">Volledige lijst</target></trans-unit>
+      <trans-unit id="extmng.prependAtCopy" xml:space="preserve" approved="yes">
+				<source>Prepend at copy: Prepend string "copy X".</source>
+			<target state="translated">Prepend bij kopiëren: Prepend string "copy X".</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve" approved="yes">
+				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			</source>
+			<target state="translated">Categorie restrictie: Beperk de beschikbare categorieën in nieuws records. PageTSconfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST = 120. Deze feature is momenteel in ontwikkeling en zal waarschijnlijk niet werken!
+			</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
+				<source>Categories from current page</source>
+			<target state="translated">Categorieën van de huidige pagina</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve" approved="yes">
+				<source>Categories from site root</source>
+			<target state="translated">Categorieën van de site root</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve" approved="yes">
+				<source>Page TsConfig</source>
+			<target state="translated">Pagina TsConfig</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.none" xml:space="preserve" approved="yes">
+				<source>No restriction</source>
+			<target state="translated">Geen restrictie</target></trans-unit>
+      <trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve" approved="yes">
+				<source>Editor needs to have permissions to all selected categories to save a news item</source>
+			<target state="translated">Redacteur moet toegang hebben tot alle gekozen categorieën om een niewsbericht op te kunnen slaan</target></trans-unit>
+      <trans-unit id="extmng.manualSorting" xml:space="preserve" approved="yes">
+				<source>Enable manual sorting of news records</source>
+			<target state="translated">Handmatig sorteren inschakelen van nieuws-records</target></trans-unit>
+      <trans-unit id="extmng.contentElementRelation" xml:space="preserve" approved="yes">
+				<source>Use content element relation:If set, content elements can be added to news records.</source>
+			<target state="translated">Gebruik de content element relatie:Indien ingesteld, kunnen content-elementen worden toegevoegd aan nieuws records.</target></trans-unit>
+      <trans-unit id="extmng.contentElementPreview" xml:space="preserve" approved="yes">
+				<source>Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</source>
+			<target state="translated">Verbeterde voorvertoning van inhoudselementrelaties: Indien gezet, wordt de voorvertoning in de backend getoond zoals in de paginamodule.</target></trans-unit>
+      <trans-unit id="extmng.tagPid" xml:space="preserve" approved="yes">
+				<source>Define pid of tag records:Tags are collected on one central page.</source>
+			<target state="translated">Definieer pid van tag records:Tags worden verzameld op een centrale pagina.</target></trans-unit>
+      <trans-unit id="extmng.archiveDate" xml:space="preserve" approved="yes">
+				<source>Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</source>
+			<target state="translated">Archief Datum: Bepaal of de archief datum ​​"Datum" of "Datum &amp; tijd" is</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.date" xml:space="preserve" approved="yes">
+				<source>Date</source>
+			<target state="translated">Datum</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="translated">Datum &amp; tijd</target></trans-unit>
+      <trans-unit id="extmng.showImporter" xml:space="preserve" approved="yes">
+				<source>Show importer:Backend module to import into news</source>
+			<target state="translated">Toon import module: Indien aangezet dan wordt de backend module om records te importeren getoond.</target></trans-unit>
+      <trans-unit id="extmng.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
+			<target state="translated">UID van opslagmap voor het importeren van bestanden en afbeeldingen: standaard (fileadmin) opslag is 1</target></trans-unit>
+      <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve" approved="yes">
+				<source>In which folder should the importer save files/images (has to exist)</source>
+			<target state="translated">In welke map moet de importeerfunctie bestanden/afbeeldingen opslaan (moet bestaan)</target></trans-unit>
+      <trans-unit id="extmng.showAdministrationModule" xml:space="preserve" approved="yes">
+				<source>Show administration module:Backend module to administrate news records</source>
+			<target state="translated">Beheermodule tonen: Backend module om nieuwsrecords te beheren</target></trans-unit>
+      <trans-unit id="extmng.rteForTeaser" xml:space="preserve" approved="yes">
+				<source>Enable a RTE for the teaser field.</source>
+			<target state="translated">RTE inschakelen voor intro-veld.</target></trans-unit>
+      <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve" approved="yes">
+				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
+			<target state="translated">Verplicht datumveld uitschakelen:Indien gezet, is het datumveld niet verplicht en wordt het niet automatisch gevuld bij het aanmaken van een nieuw record.</target></trans-unit>
+      <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve" approved="yes">
+				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
+			<target state="translated">Paginaboom verbergen in Beheermodule: Paginaboom verbergen in de beheermodule, omwille van vereenvoudigd gebruiksgemak.</target></trans-unit>
+      <trans-unit id="extmng.mediaPreview" xml:space="preserve" approved="yes">
+				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
+			<target state="translated">Miniatuurweergaven tonen in backend-lijstmodule: Indien ingeschakeld, toont de lijstmodule miniatuurweergaven van de media-items.</target></trans-unit>
+      <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
+				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
+			<target state="translated">Uitgebreide configuratie van voorvertoning van mediabestanden: indien ingeschakeld zijn er meer opties beschikbaar voor redacteuren om te definiëren waar een mediaelement moet worden afgebeeld.</target></trans-unit>
+      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
+				<source>Use this overlay for news categories in the Backend</source>
+			<target state="translated">Gebruik deze overlay voor nieuws categorieën in de Backend</target></trans-unit>
+      <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
+				<source>There are no languages available, so nothing to choose.</source>
+			<target state="translated">Er zijn geen talen beschikbaar, dus niets te kiezen.</target></trans-unit>
+      <trans-unit id="start_import" xml:space="preserve" approved="yes">
+				<source>Start import with %s record(s).</source>
+			<target state="translated">Start importeren met %s record(s).</target></trans-unit>
+      <trans-unit id="tag_suggest" xml:space="preserve" approved="yes">
+				<source>Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
+			<target state="translated">Tag "%s" kon niet gevonden worden, deze aanmaken? &lt;strong&gt;Klik hier&lt;/strong&gt;</target></trans-unit>
+      <trans-unit id="tag_suggest2" xml:space="preserve" approved="yes">
+				<source>Tag could not be found, wanna create it? Click here!</source>
+			<target state="translated">Tag niet gevonden. Klik hier om deze aan te maken.</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve" approved="yes">
+				<source>No tag submitted!</source>
+			<target state="translated">Geen tag ingediend!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-newsid" xml:space="preserve" approved="yes">
+				<source>No news id given!</source>
+			<target state="translated">Geen nieuws id opgegeven!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve" approved="yes">
+				<source>No pid for the tag record could be found by reading settings of Extension Manager!</source>
+			<target state="translated">De pid voor de tag record kon niet gevonden worden in de instellingen van de Extensie Manager!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve" approved="yes">
+				<source>No new tag created!</source>
+			<target state="translated">Geen nieuwe tag aangemaakt!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve" approved="yes">
+				<source>No page defined to save tag. Please add the id in the settings of the extension manager.</source>
+			<target state="translated">Geen pagina gedefinieerd om het label op te slaan. Stel het id in bij de instellingen in Extensiebeheer.</target></trans-unit>
+      <trans-unit id="module.headline" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="translated">Instellingen</target></trans-unit>
+      <trans-unit id="module.recursive" xml:space="preserve" approved="yes">
+				<source>Recursive</source>
+			<target state="translated">Recursief</target></trans-unit>
+      <trans-unit id="module.timeRange" xml:space="preserve" approved="yes">
+				<source>Time range</source>
+			<target state="translated">Tijdinterval</target></trans-unit>
+      <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time Restriction</source>
+			<target state="translated">Tijdsbeperking</target></trans-unit>
+      <trans-unit id="module.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Time Restriction High</source>
+			<target state="translated">Tijdsbeperking hoog</target></trans-unit>
+      <trans-unit id="module.createNewCategory" xml:space="preserve" approved="yes">
+				<source>Create a new category</source>
+			<target state="translated">Nieuwe categorie aanmaken</target></trans-unit>
+      <trans-unit id="module.createNewNewsRecord" xml:space="preserve" approved="yes">
+				<source>Create new news record</source>
+			<target state="translated">Nieuw nieuwsrecord aanmaken</target></trans-unit>
+      <trans-unit id="module.createNewTag" xml:space="preserve" approved="yes">
+				<source>Create new tag record</source>
+			<target state="translated">Nieuw nieuwslabel aanmaken</target></trans-unit>
+      <trans-unit id="module.topNewsYes" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="translated">Ja</target></trans-unit>
+      <trans-unit id="module.topNewsNo" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="translated">Nee</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="translated">Zoek</target></trans-unit>
+      <trans-unit id="module.newsListing" xml:space="preserve" approved="yes">
+				<source>News Listing</source>
+			<target state="translated">Nieuwslijst</target></trans-unit>
+      <trans-unit id="module.newsCount" xml:space="preserve" approved="yes">
+				<source>%s news records</source>
+			<target state="translated">%s nieuwsitems</target></trans-unit>
+      <trans-unit id="module.newsPidListing" xml:space="preserve" approved="yes">
+				<source>News Pid listing</source>
+			<target state="translated">Lijst nieuws-pids</target></trans-unit>
+      <trans-unit id="module.donate" xml:space="preserve" approved="yes">
+				<source>Support &amp; Donate</source>
+			<target state="translated">Ondersteunen &amp; Doneren</target></trans-unit>
+      <trans-unit id="administration.title" xml:space="preserve" approved="yes">
+				<source>News administration</source>
+			<target state="translated">Nieuwsbeheer</target></trans-unit>
+      <trans-unit id="administration.nopageselected" xml:space="preserve" approved="yes">
+				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
+			<target state="translated">Klik op de paginatitel in de paginaboom links om de records op die pagina weer te geven.</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.header" xml:space="preserve" approved="yes">
+				<source>List pages with count of news &amp; category records</source>
+			<target state="translated">Pagina's opsommen met de aantallen nieuws- en categorierecords</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve" approved="yes">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target state="translated">Kies een recursieniveau om de paginaboom met gerelateerde items te tonen. Klik op de paginatitel om de
+			nieuwsitems van de pagina te tonen.
+			</target></trans-unit>
+      <trans-unit id="administration.nolimit" xml:space="preserve" approved="yes">
+				<source>No limit defined in setting "%s"! Include the default TypoScript in the root page.</source>
+			<target state="translated">Geen limiet ingesteld in de optie "%s"! Neem het standaard TypoScript op in de root-pagina.</target></trans-unit>
+      <trans-unit id="administration.toggleForm" xml:space="preserve" approved="yes">
+				<source>Show/Hide filter</source>
+			<target state="translated">Toon / verberg filter</target></trans-unit>
+      <trans-unit id="administration.nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news found</source>
+			<target state="translated">Geen nieuws gevonden</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundText" xml:space="preserve" approved="yes">
+				<source>The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</source>
+			<target state="translated">De huidige pagina bevat geen nieuwsrecords. Selecteer een andere pagina in de paginaboom, of maak het eerste nieuws-record op deze pagina aan.</target></trans-unit>
+      <trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve" approved="yes">
+				<source>See all pages containing news records</source>
+			<target state="translated">Zie alle pagina's met nieuws items.</target></trans-unit>
+      <trans-unit id="administration.filter.hidden" xml:space="preserve" approved="yes">
+				<source>Hidden</source>
+			<target state="translated">Verborgen</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve" approved="yes">
+				<source>only hidden</source>
+			<target state="translated">alleen verborgen</target></trans-unit>
+      <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve" approved="yes">
+				<source>only non-hidden</source>
+			<target state="translated">alleen niet-verborgen</target></trans-unit>
+      <trans-unit id="administration.donation.title" xml:space="preserve" approved="yes">
+				<source>Support &amp; Donate</source>
+			<target state="translated">Ondersteunen &amp; Doneren</target></trans-unit>
+      <trans-unit id="administration.donation.link" xml:space="preserve" approved="yes">
+				<source>Click so see all options</source>
+			<target state="translated">Klik om alle opties te zien</target></trans-unit>
+      <trans-unit id="administration.donation.lead_intro" xml:space="preserve" approved="yes">
+				<source>Great that you are using this extension!</source>
+			<target state="translated">Geweldig dat u deze extensie gebruikt!</target></trans-unit>
+      <trans-unit id="administration.donation.lead_full" xml:space="preserve" approved="yes">
+				<source>The editors have created %d articles with %d relations to categories.</source>
+			<target state="translated">De redacteuren hebben %d artikelen met %d relaties met categorieën gemaakt.</target></trans-unit>
+      <trans-unit id="administration.donation.lead_news_only" xml:space="preserve" approved="yes">
+				<source>The editors have created %d articles.</source>
+			<target state="translated">De redacteuren hebben %d artikelen gemaakt.</target></trans-unit>
+      <trans-unit id="administration.donation.lead_none" xml:space="preserve" approved="yes">
+				<source>Did you just setup the system? No articles yet created.</source>
+			<target state="translated">Zojuist het systeem opgezet? Er zijn nog geen artikels aangemaakt.</target></trans-unit>
+      <trans-unit id="administration.donation.support" xml:space="preserve" approved="yes">
+				<source>Help supporting further development</source>
+			<target state="translated">Ondersteun doorontwikkeling</target></trans-unit>
+      <trans-unit id="administration.donation.why" xml:space="preserve" approved="yes">
+				<source>Why?</source>
+			<target state="translated">Waarom?</target></trans-unit>
+      <trans-unit id="administration.donation.why.text" xml:space="preserve" approved="yes">
+				<source>The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
+            possibilities of the TYPO3 core.
+            This implies a lot of work bringing this to the TYPO3 community.</source>
+			<target state="translated">De nieuwsextensie is een krachtig gereedschap met veel functies dat altijd probeert om de nieuwste
+            mogelijkheden van TYPO3 te gebruiken.
+            Dit betekent veel werk om dit naar de TYPO3 community te brengen.</target></trans-unit>
+      <trans-unit id="administration.donation.how" xml:space="preserve" approved="yes">
+				<source>How?</source>
+			<target state="translated">Hoe?</target></trans-unit>
+      <trans-unit id="administration.donation.how.text" xml:space="preserve" approved="yes">
+				<source>There are multiple ways to support the further development:</source>
+			<target state="translated">Er zijn diverse manieren om doorontwikkeling te ondersteunen:</target></trans-unit>
+      <trans-unit id="administration.donation.invoice" xml:space="preserve" approved="yes">
+				<source>Invoice</source>
+			<target state="translated">Factuur</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.sub" xml:space="preserve" approved="yes">
+				<source>An invoice is possible!</source>
+			<target state="translated">Een factuur is mogelijk!</target></trans-unit>
+      <trans-unit id="administration.donation.invoice.text" xml:space="preserve" approved="yes">
+				<source>I can create a proper invoice to keep your accounting happy - contact me for details.</source>
+			<target state="translated">Er kan een volwaardige factuur gemaakt worden voor de boekhouding - neem contact op voor details.</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.sub" xml:space="preserve" approved="yes">
+				<source>Support me on patreon.com</source>
+			<target state="translated">Ondersteun met op patreon.com</target></trans-unit>
+      <trans-unit id="administration.donation.patreon.text" xml:space="preserve" approved="yes">
+				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
+			<target state="translated">Ondersteun met op patreon en krijg toegang tot extra extensies en codefragementen als beloning.</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.sub" xml:space="preserve" approved="yes">
+				<source>Donate via PayPal</source>
+			<target state="translated">Doneer via PayPal</target></trans-unit>
+      <trans-unit id="administration.donation.paypal.text" xml:space="preserve" approved="yes">
+				<source>Support me by a donation on paypal.com. It is just one click away.</source>
+			<target state="translated">Ondersteun me via een donatie op paypal.com. Het is slechts een klik verwijderd.</target></trans-unit>
+      <trans-unit id="administration.donation.amazon" xml:space="preserve" approved="yes">
+				<source>Amazon wishlist</source>
+			<target state="translated">Amazon verlanglijst</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.sub" xml:space="preserve" approved="yes">
+				<source>Satisfy a wish of my Amazon wishlist</source>
+			<target state="translated">Kies een item van de Amazon verlanglijst</target></trans-unit>
+      <trans-unit id="administration.donation.amazon.text" xml:space="preserve" approved="yes">
+				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
+			<target state="translated">De meeste producten van de lijst zijn voor mijn familie en onze kookhobby. Maak ons blij!</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors" xml:space="preserve" approved="yes">
+				<source>Current sponsors</source>
+			<target state="translated">Huidige sponsoren</target></trans-unit>
+      <trans-unit id="administration.donation.sponsors.text" xml:space="preserve" approved="yes">
+				<source>The following companies and people have already supported me.</source>
+			<target state="translated">De volgende bedrijven en mensen hebben me al ondersteund.</target></trans-unit>
+      <trans-unit id="news-folder" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="translated">Nieuws</target></trans-unit>
+      <trans-unit id="news-page" xml:space="preserve" approved="yes">
+				<source>Page with news plugins</source>
+			<target state="translated">Pagina met nieuws-plug-ins</target></trans-unit>
+      <trans-unit id="import.header" xml:space="preserve" approved="yes">
+				<source>News Importer</source>
+			<target state="translated">Nieuws Importeren</target></trans-unit>
+      <trans-unit id="import.choose_a_job" xml:space="preserve" approved="yes">
+				<source>Choose a job</source>
+			<target state="translated">Taak kiezen</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve" approved="yes">
+				<source>This is the "News importer module". </source>
+			<target state="translated">Dit is de "Nieuws importmodule". </target></trans-unit>
+      <trans-unit id="import.done" xml:space="preserve" approved="yes">
+				<source>The import has been completed. Reload the module to start a new one.</source>
+			<target state="translated">Importeren voltooid. Herlaad de module om een nieuwe import te starten.</target></trans-unit>
+      <trans-unit id="import.backupwarning" xml:space="preserve" approved="yes">
+				<source>It's strongly recommended to backup all news tables before running an import job.</source>
+			<target state="translated">Het wordt aangeraden om alle nieuwstabellen veilig te stellen alvoren een importtaak uit te voeren.</target></trans-unit>
+      <trans-unit id="import.backupwarning.header" xml:space="preserve" approved="yes">
+				<source>Important!</source>
+			<target state="translated">Belangrijk!</target></trans-unit>
+      <trans-unit id="import.nojobs" xml:space="preserve" approved="yes">
+				<source>No jobs available for the importer.</source>
+			<target state="translated">Geen taken beschikbaar voor de import.</target></trans-unit>
+      <trans-unit id="import.error.configuration.title" xml:space="preserve" approved="yes">
+				<source>The configuration for the import is incomplete!</source>
+			<target state="translated">De configuratie voor de import is incompleet!</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve" approved="yes">
+				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
+			<target state="translated">Definieer de optie "resourceFolderImporter" in de configuratie van Extensiebeheer! De aangegeven map zal alle geïmporteerde bestanden bevatten.</target></trans-unit>
+      <trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve" approved="yes">
+				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
+			<target state="translated">De opgegeven map in de optie "resourceFolderImporter" bestaat niet!</target></trans-unit>
+      <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
+			<target state="translated">Definieer de optie "storageUidImport" in de configuratie van Extensiebeheer! De opgegeven id is de gebruikt Opslag van bestanden.</target></trans-unit>
+      <trans-unit id="record.savingdisabled.header" approved="yes">
+        <source>Saving is disabled</source>
+        <target state="translated">Opslaan is uitgeschakeld</target>
+      </trans-unit>
+      <trans-unit id="record.savingdisabled.content" approved="yes">
+        <source>This record has the following categories assigned that are not defined in your permissions:</source>
+        <target state="translated">Dit record heeft de volgende categorieën toegewezen die niet gedefinieerd zijn in uw permissies:</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.title" approved="yes">
+        <source>Content elements are hidden</source>
+        <target state="translated">Inhoudselementen zijn verborgen</target>
+      </trans-unit>
+      <trans-unit id="hiddenContentElements.description" approved="yes">
+        <source>Content elements are hidden in sys folders of type "news"!</source>
+        <target state="translated">Inhoudselementen in sysfolders van het type "news" zijn verborgen!</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

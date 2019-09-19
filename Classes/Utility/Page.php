@@ -60,17 +60,28 @@ class Page
      */
     public static function setRegisterProperties($properties, $object, $prefix = 'news')
     {
-        if (!empty($properties) && !is_null(($object))) {
+        if (!empty($properties) && $object !== null) {
             $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
             $items = GeneralUtility::trimExplode(',', $properties, true);
 
             $register = [];
             foreach ($items as $item) {
                 $key = $prefix . ucfirst($item);
-                try {
-                    $register[$key] = \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getProperty($object, $item);
-                } catch (\Exception $e) {
-                    GeneralUtility::devLog($e->getMessage(), 'news', GeneralUtility::SYSLOG_SEVERITY_WARNING);
+                if (is_object($object)) {
+                    $getter = 'get' . ucfirst($item);
+                    try {
+                        $value = $object->$getter();
+                        if ($value instanceof \DateTime) {
+                            $value = $value->getTimestamp();
+                        }
+                        $register[$key] = $value;
+                    } catch (\Exception $e) {
+                        GeneralUtility::devLog($e->getMessage(), 'news', GeneralUtility::SYSLOG_SEVERITY_WARNING);
+                    }
+                }
+                if (is_array($object)) {
+                    $value = $object[$item];
+                    $register[$key] = $value;
                 }
             }
             $cObj->cObjGetSingle('LOAD_REGISTER', $register);

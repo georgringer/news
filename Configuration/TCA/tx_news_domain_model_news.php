@@ -3,17 +3,14 @@ defined('TYPO3_MODE') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
-// Extension manager configuration
 $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
-
-$teaserRteConfiguration = $configuration->getRteForTeaser() ? 'richtext:rte_transform[mode=ts_css]' : '';
 
 $tx_news_domain_model_news = [
     'ctrl' => [
         'title' => $ll . 'tx_news_domain_model_news',
         'descriptionColumn' => 'notes',
         'label' => 'title',
-        'prependAtCopy' => $configuration->getPrependAtCopy() ? 'LLL:EXT:lang/locallang_general.xlf:LGL.prependAtCopy' : '',
+        'prependAtCopy' => $configuration->getPrependAtCopy() ? 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.prependAtCopy' : '',
         'hideAtCopy' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -32,6 +29,7 @@ $tx_news_domain_model_news = [
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
+        'translationSource' => 'l10n_source',
         'default_sortby' => 'ORDER BY datetime DESC',
         'sortby' => ($configuration->getManualSorting() ? 'sorting' : ''),
         'delete' => 'deleted',
@@ -51,14 +49,14 @@ $tx_news_domain_model_news = [
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'special' => 'languages',
                 'items' => [
                     [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+                        'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
                         -1,
                         'flags-multiple'
                     ],
@@ -69,7 +67,7 @@ $tx_news_domain_model_news = [
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -78,8 +76,17 @@ $tx_news_domain_model_news = [
                 ],
                 'foreign_table' => 'tx_news_domain_model_news',
                 'foreign_table_where' => 'AND tx_news_domain_model_news.pid=###CURRENT_PID### AND tx_news_domain_model_news.sys_language_uid IN (-1,0)',
-                'showIconTable' => false,
+                'fieldWizard' => [
+                    'selectIcons' => [
+                        'disabled' => true,
+                    ],
+                ],
                 'default' => 0,
+            ]
+        ],
+        'l10n_source' => [
+            'config' => [
+                'type' => 'passthrough'
             ]
         ],
         'l10n_diffsource' => [
@@ -90,7 +97,7 @@ $tx_news_domain_model_news = [
         ],
         'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
                 'default' => 0
@@ -111,13 +118,17 @@ $tx_news_domain_model_news = [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'sorting' => [
@@ -128,29 +139,35 @@ $tx_news_domain_model_news = [
         ],
         'starttime' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'size' => 16,
-                'eval' => 'datetime',
+                'eval' => 'datetime,int',
                 'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'endtime' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'size' => 16,
-                'eval' => 'datetime',
+                'eval' => 'datetime,int',
                 'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'fe_group' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.fe_group',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',
@@ -158,15 +175,15 @@ $tx_news_domain_model_news = [
                 'maxitems' => 20,
                 'items' => [
                     [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.hide_at_login',
+                        'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
                         -1,
                     ],
                     [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.any_login',
+                        'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
                         -2,
                     ],
                     [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.usergroups',
+                        'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
                         '--div--',
                     ],
                 ],
@@ -195,35 +212,25 @@ $tx_news_domain_model_news = [
         ],
         'teaser' => [
             'exclude' => true,
-            'l10n_mode' => 'noCopy',
             'label' => $ll . 'tx_news_domain_model_news.teaser',
             'config' => [
                 'type' => 'text',
                 'cols' => 60,
                 'rows' => 5,
+                'enableRichtext' => $configuration->getRteForTeaser(),
+                'richtextConfiguration' => 'default',
             ]
         ],
         'bodytext' => [
             'exclude' => false,
-            'l10n_mode' => 'noCopy',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext_formlabel',
             'config' => [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
                 'softref' => 'rtehtmlarea_images,typolink_tag,images,email[subst],url',
-                'wizards' => [
-                    'RTE' => [
-                        'notNewRecords' => 1,
-                        'RTEonly' => 1,
-                        'type' => 'script',
-                        'title' => 'Full screen Rich Text Editing',
-                        'icon' => 'actions-wizard-rte',
-                        'module' => [
-                            'name' => 'wizard_rte',
-                        ],
-                    ],
-                ],
+                'enableRichtext' => true,
+                'richtextConfiguration' => 'default',
             ]
         ],
         'datetime' => [
@@ -231,8 +238,9 @@ $tx_news_domain_model_news = [
             'label' => $ll . 'tx_news_domain_model_news.datetime',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'size' => 16,
-                'eval' => 'datetime' . ($configuration->getDateTimeRequired() ? ',required' : ''),
+                'eval' => 'datetime,int' . ($configuration->getDateTimeRequired() ? ',required' : ''),
             ]
         ],
         'archive' => [
@@ -241,32 +249,36 @@ $tx_news_domain_model_news = [
             'label' => $ll . 'tx_news_domain_model_news.archive',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
                 'size' => 30,
-                'eval' => $configuration->getArchiveDate(),
+                'eval' => $configuration->getArchiveDate() . ',int',
                 'default' => 0
             ]
         ],
         'author' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.author_formlabel',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'author_email' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.author_email_formlabel',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'categories' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.categories',
             'config' => [
                 'type' => 'select',
@@ -291,11 +303,13 @@ $tx_news_domain_model_news = [
                 'size' => 10,
                 'minitems' => 0,
                 'maxitems' => 99,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'related' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.related',
             'config' => [
                 'type' => 'group',
@@ -307,14 +321,14 @@ $tx_news_domain_model_news = [
                 'minitems' => 0,
                 'maxitems' => 100,
                 'MM' => 'tx_news_domain_model_news_related_mm',
-                'wizards' => [
-                    'suggest' => [
-                        'type' => 'suggest',
-                        'default' => [
-                            'searchWholePhrase' => true,
-                            'addWhere' => ' AND tx_news_domain_model_news.uid != ###THIS_UID###'
-                        ]
-                    ],
+                'suggestOptions' => [
+                    'default' => [
+                        'suggestOptions' => true,
+                        'addWhere' => ' AND tx_news_domain_model_news.uid != ###THIS_UID###'
+                    ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
                 ],
             ]
         ],
@@ -334,7 +348,6 @@ $tx_news_domain_model_news = [
         ],
         'related_links' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.related_links',
             'config' => [
                 'type' => 'inline',
@@ -357,7 +370,10 @@ $tx_news_domain_model_news = [
                     'enabledControls' => [
                         'info' => false,
                     ]
-                ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'type' => [
@@ -371,30 +387,38 @@ $tx_news_domain_model_news = [
                     [$ll . 'tx_news_domain_model_news.type.I.1', 1, 'ext-news-type-internal'],
                     [$ll . 'tx_news_domain_model_news.type.I.2', 2, 'ext-news-type-external'],
                 ],
-                'showIconTable' => true,
+                'fieldWizard' => [
+                    'selectIcons' => [
+                        'disabled' => false,
+                    ],
+                ],
                 'size' => 1,
                 'maxitems' => 1,
             ]
         ],
         'keywords' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $GLOBALS['TCA']['pages']['columns']['keywords']['label'],
             'config' => [
                 'type' => 'text',
                 'placeholder' => $ll . 'tx_news_domain_model_news.keywords.placeholder',
                 'cols' => 30,
                 'rows' => 5,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'description' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.description_formlabel',
             'config' => [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'internalurl' => [
@@ -402,20 +426,10 @@ $tx_news_domain_model_news = [
             'label' => $ll . 'tx_news_domain_model_news.type.I.1',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'size' => 30,
                 'max' => 255,
                 'eval' => 'trim,required',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'actions-wizard-link',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1'
-                    ]
-                ],
                 'softref' => 'typolink'
             ]
         ],
@@ -439,15 +453,17 @@ $tx_news_domain_model_news = [
         ],
         'editlock' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:lang/locallang_tca.xlf:editlock',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:editlock',
             'config' => [
-                'type' => 'check'
+                'type' => 'check',
+                'default' => 0,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'content_elements' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.content_elements',
             'config' => [
                 'type' => 'inline',
@@ -470,12 +486,14 @@ $tx_news_domain_model_news = [
                     'enabledControls' => [
                         'info' => false,
                     ]
-                ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'tags' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.tags',
             'config' => [
                 'type' => 'group',
@@ -483,40 +501,65 @@ $tx_news_domain_model_news = [
                 'allowed' => 'tx_news_domain_model_tag',
                 'MM' => 'tx_news_domain_model_news_tag_mm',
                 'foreign_table' => 'tx_news_domain_model_tag',
-                'foreign_table_where' => 'ORDER BY tx_news_domain_model_tag.title',
+                'foreign_table_where' => ' AND (tx_news_domain_model_tag.sys_language_uid IN (-1,0) OR tx_news_domain_model_tag.l10n_parent = 0) ORDER BY tx_news_domain_model_tag.title',
+
                 'size' => 10,
                 'minitems' => 0,
                 'maxitems' => 99,
-                'wizards' => [
-                    'suggest' => [
-                        'type' => 'suggest',
-                        'default' => [
-                            'searchWholePhrase' => true,
-                            'receiverClass' => \GeorgRinger\News\Hooks\SuggestReceiver::class
+
+                'fieldInformation' => [
+                    'tagInformation' => [
+                        'renderType' => 'NewsStaticText',
+                        'options' => [
+                            'labels' => [
+                                [
+                                    'label' => '',
+                                    'bold' => true,
+                                    'italic' => true,
+                                ],
+                            ],
                         ],
                     ],
-                    'list' => [
-                        'type' => 'script',
-                        'title' => $ll . 'tx_news_domain_model_news.tags.list',
-                        'icon' => 'actions-system-list-open',
-                        'params' => [
-                            'table' => 'tx_news_domain_model_tag',
-                            'pid' => $configuration->getTagPid(),
-                        ],
-                        'module' => [
-                            'name' => 'wizard_list',
+                ],
+                'suggestOptions' => [
+                    'default' => [
+                        'minimumCharacters' => 2,
+                        'searchWholePhrase' => true,
+                        'receiverClass' => \GeorgRinger\News\Backend\Wizard\SuggestWizardReceiver::class
+                    ],
+                ],
+                'fieldControl' => [
+                    'editPopup' => [
+                        'disabled' => false,
+                        'options' => [
+                            'type' => 'popup',
+                            'title' => $ll . 'tx_news_domain_model_news.tags.edit',
+                            'module' => [
+                                'name' => 'wizard_edit',
+                            ],
+                            'popup_onlyOpenIfSelected' => true,
+                            'icon' => 'actions-open',
+                            'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
                         ],
                     ],
-                    'edit' => [
-                        'type' => 'popup',
-                        'title' => $ll . 'tx_news_domain_model_news.tags.edit',
-                        'module' => [
-                            'name' => 'wizard_edit',
+                    'listModule' => [
+                        'disabled' => false,
+                        'options' => [
+                            'type' => 'script',
+                            'title' => $ll . 'tx_news_domain_model_news.tags.list',
+                            'icon' => 'actions-system-list-open',
+                            'params' => [
+                                'table' => 'tx_news_domain_model_tag',
+                                'pid' => $configuration->getTagPid(),
+                            ],
+                            'module' => [
+                                'name' => 'wizard_list',
+                            ],
                         ],
-                        'popup_onlyOpenIfSelected' => true,
-                        'icon' => 'actions-open',
-                        'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
                     ],
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
@@ -543,11 +586,13 @@ $tx_news_domain_model_news = [
         ],
         'fal_media' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.fal_media',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'fal_media',
                 [
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ],
                     'appearance' => [
                         'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_media.add',
                         'showPossibleLocalizationRecords' => true,
@@ -562,51 +607,44 @@ $tx_news_domain_model_news = [
                     ],
                     // custom configuration for displaying fields in the overlay/reference table
                     // to use the newsPalette and imageoverlayPalette instead of the basicoverlayPalette
-                    'foreign_types' => [
-                        '0' => [
-                            'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                            'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                            'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                            'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                            'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
-                        ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                            'showitem' => '
-						--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
-						--palette--;;imageoverlayPalette,
-						--palette--;;filePalette'
-                        ]
-                    ],
                     'overrideChildTca' => [
                         'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => [
+                                'showitem' => '
+                                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                                'showitem' => '
+                                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
                             \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
                                 'showitem' => '
-                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                            --palette--;;filePalette'
+                                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette'
                             ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                                'showitem' => '
+                                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                                'showitem' => '
+                                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                                'showitem' => '
+                                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;newsPalette,
+                                    --palette--;;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                            ]
                         ],
                     ],
                 ],
@@ -615,11 +653,13 @@ $tx_news_domain_model_news = [
         ],
         'fal_related_files' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_news.fal_related_files',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'fal_related_files',
                 [
+                    'behaviour' => [
+                        'allowLanguageSynchronization' => true,
+                    ],
                     'appearance' => [
                         'createNewRelationLinkTitle' => $ll . 'tx_news_domain_model_news.fal_related_files.add',
                         'showPossibleLocalizationRecords' => true,
@@ -650,84 +690,83 @@ $tx_news_domain_model_news = [
     'types' => [
         // default news
         '0' => [
-            'columnsOverrides' => [
-                'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-                ],
-                'teaser' => [
-                    'defaultExtras' => $teaserRteConfiguration
-                ],
-            ],
-            'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore,teaser,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
-					--palette--;;paletteDate,
-					bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
-                --div--;' . $ll . 'tx_news_domain_model_news.content_elements,content_elements,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
-				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,fal_media,fal_related_files,related_links,related,related_from,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
-					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
-				--div--;' . $ll . 'notes,
+            'showitem' => '
+                    --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
+                    --palette--;;paletteDate,
+                    bodytext,
+                --div--;' . $ll . 'tx_news_domain_model_news.content_elements,
+                    content_elements,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
+                    fal_media,fal_related_files,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+                    categories,
+                --div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,
+                    related,related_from,
+                    related_links,tags,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+                    --palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                    --palette--;;paletteLanguage,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                    --palette--;;paletteHidden,
+                    --palette--;;paletteAccess,
+                --div--;' . $ll . 'notes,
                     notes,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
         // internal url
         '1' => [
-            'columnsOverrides' => [
-                'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-                ],
-                'teaser' => [
-                    'defaultExtras' => $teaserRteConfiguration
-                ],
-            ],
-            'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
-					--palette--;;paletteDate,
-					internalurl,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
-				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,fal_media,fal_related_files,related_links,related,related_from,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
-					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+            'showitem' => '
+                    --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
+                    internalurl,
+                    --palette--;;paletteDate,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
+                    fal_media,fal_related_files,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+                    categories,
+                --div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,
+                    related,related_from,
+                    related_links,tags,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+                    --palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                    --palette--;;paletteLanguage,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                    --palette--;;paletteHidden,
+                    --palette--;;paletteAccess,
+                --div--;' . $ll . 'notes,
+                    notes,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
         // external url
         '2' => [
-            'columnsOverrides' => [
-                'bodytext' => [
-                    'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
-                ],
-                'teaser' => [
-                    'defaultExtras' => $teaserRteConfiguration
-                ],
-            ],
-            'showitem' => 'l10n_parent, l10n_diffsource,
-					title,--palette--;;paletteCore, teaser,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
-					--palette--;;paletteDate,
-					externalurl,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access;paletteAccess,
-
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.options,categories,tags,
-				--div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,fal_media,fal_related_files,related_links,related,related_from,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
-					--palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
-					--palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
-				--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+            'showitem' => '
+                    --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
+                    externalurl,
+                    --palette--;;paletteDate,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
+                    fal_media,fal_related_files,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+                    categories,
+                --div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,
+                    related,related_from,
+                    related_links,tags,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.metadata,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.editorial;paletteAuthor,
+                    --palette--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.palettes.metatags;metatags,
+                    --palette--;' . $ll . 'tx_news_domain_model_news.palettes.alternativeTitles;alternativeTitles,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                    --palette--;;paletteLanguage,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                    --palette--;;paletteHidden,
+                    --palette--;;paletteAccess,
+                --div--;' . $ll . 'notes,
+                    notes,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
         ],
     ],
     'palettes' => [
@@ -735,22 +774,43 @@ $tx_news_domain_model_news = [
             'showitem' => 'author,author_email,',
         ],
         'paletteDate' => [
+            'label' => $ll . 'tx_news_domain_model_news.palettes.dates',
             'showitem' => 'datetime,archive,',
         ],
         'paletteCore' => [
-            'showitem' => 'istopnews, type, sys_language_uid, hidden,',
-        ],
-        'paletteAccess' => [
-            'showitem' => 'starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
-					endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,
-					--linebreak--, fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:fe_group_formlabel,
-					--linebreak--,editlock,',
+            'showitem' => 'type,istopnews,',
         ],
         'metatags' => [
-            'showitem' => 'keywords,--linebreak--,description,',
+            'showitem' => 'keywords,description,',
         ],
         'alternativeTitles' => [
-            'showitem' => 'alternative_title,--linebreak--,path_segment',
+            'showitem' => 'alternative_title',
+        ],
+
+        'paletteHidden' => [
+            'showitem' => '
+                hidden
+            ',
+        ],
+        'paletteAccess' => [
+            'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:palette.access',
+            'showitem' => '
+                starttime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:starttime_formlabel,
+                endtime;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:endtime_formlabel,
+                --linebreak--,
+                fe_group;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:fe_group_formlabel,
+                --linebreak--,editlock
+            ',
+        ],
+        'paletteLanguage' => [
+            'showitem' => '
+                sys_language_uid;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:sys_language_uid_formlabel,l10n_parent, l10n_diffsource,
+            ',
+        ],
+        'paletteSlug' => [
+            'showitem' => '
+                path_segment
+            ',
         ],
     ]
 ];

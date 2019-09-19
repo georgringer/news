@@ -25,26 +25,26 @@ In this example the new type will be called 'myCustomNewsType' and is configured
 
 .. code-block:: typoscript
 
-config.tx_extbase.persistence.classes {
-    GeorgRinger\News\Domain\Model\News {
-        subclasses {
-            3 = Vendor\ExtName\Domain\Model\MyCustomNewsType
+    config.tx_extbase.persistence.classes {
+        GeorgRinger\News\Domain\Model\News {
+            subclasses {
+                3 = Vendor\ExtName\Domain\Model\MyCustomNewsType
+            }
         }
-    }
 
-    Vendor\ExtName\Domain\Model\MyCustomNewsType {
-        mapping {
-            recordType = 3
-            tableName = tx_news_domain_model_news
+        Vendor\ExtName\Domain\Model\MyCustomNewsType {
+            mapping {
+                recordType = 3
+                tableName = tx_news_domain_model_news
+            }
         }
     }
-}
 
 2) TCA
 ------
 
 In this example, the new type is configured to show the fields `bodytext` and `title`.
-Therefore, create the file ``Configuration/TCA/Overrides/tx_news_domain_model_news.php``.
+Therefore, create the file `Configuration/TCA/Overrides/tx_news_domain_model_news.php`.
 
 .. code-block:: php
 

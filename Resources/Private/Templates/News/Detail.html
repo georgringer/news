@@ -27,7 +27,9 @@
 						</n:titleTag>
 					</f:else>
 				</f:if>
-				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+				<f:if condition="{settings.detail.showMetaTags}">
+					<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+				</f:if>
 			</n:format.nothing>
 			<f:if condition="{settings.detail.showPrevNext}">
 				<n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime">
@@ -97,7 +99,7 @@
 					<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
 				</f:if>
 
-				<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.media, settings:settings}" />
+				<f:render partial="Detail/MediaContainer" arguments="{media: newsItem.mediaNonPreviews, settings:settings}" />
 
 				<!-- main text -->
 				<div class="news-text-wrap" itemprop="articleBody">
@@ -195,7 +197,7 @@
 						<ul>
 							<f:for each="{newsItem.relatedLinks}" as="relatedLink">
 								<li>
-									<f:link.page pageUid="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.page>
+									<f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>
 									<f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span></f:if>
 								</li>
 							</f:for>

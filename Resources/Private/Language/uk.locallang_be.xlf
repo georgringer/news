@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="uk">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News system</source>
+			<target state="translated">Новини</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
+				<source>Versatile news system</source>
+			<target state="translated">Універсальна система новин</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="translated">Налаштування</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
+				<source>Additional</source>
+			<target state="translated">Додатково</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
+				<source>What to display</source>
+			<target state="translated">Що відображати</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve" approved="yes">
+				<source>List view</source>
+			<target state="translated">У вигляді списку</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve">
+				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			</source>
+			<target state="needs-translation">
+			</target></trans-unit>
+      <trans-unit id="module.headline" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="translated">Налаштування</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target state="needs-translation">
+			</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve">
+				<source>This is the "News importer module". </source>
+			<target state="needs-translation"> </target></trans-unit>
+    </body>
+  </file>
+</xliff>

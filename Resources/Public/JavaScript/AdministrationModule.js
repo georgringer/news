@@ -7,6 +7,10 @@ define(['jquery', 'TYPO3/CMS/Backend/Tooltip'], function ($) {
     }
 
     $(document).ready(function () {
+        var form = $('#administrationForm');
+        if (form.data('autosubmitform') == 1) {
+            form.submit();
+        }
         $('a[data-togglelink="1"]').click(function (e) {
             e.preventDefault();
             $('#setting-container').toggle();

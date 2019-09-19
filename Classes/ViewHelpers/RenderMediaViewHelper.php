@@ -12,8 +12,10 @@ use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Service\ImageService;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 class RenderMediaViewHelper extends AbstractViewHelper
 {
@@ -64,6 +66,9 @@ class RenderMediaViewHelper extends AbstractViewHelper
      */
     private function renderImage($image)
     {
+        if ($this->objectManager === null) {
+            $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        }
         $imageService = $this->objectManager->get(ImageService::class);
 
         $crop = $image->getProperty('crop');
@@ -175,7 +180,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $this->videoClass = htmlspecialchars($this->arguments['videoClass']);
         $this->audioClass = htmlspecialchars($this->arguments['audioClass']);
 
-        $mediaFiles = (array)$news->getFalMediaNonPreviews();
+        $mediaFiles = (array)$news->getMediaNonPreviews();
 
         $content = $this->renderChildren();
         $content = $this->renderMedia($content, $mediaFiles);

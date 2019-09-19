@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-01-04T11:47:18Z" product-name="news" target-language="uk">
+    <header/>
+    <body>
+      <trans-unit id="adminModule.title" xml:space="preserve">
+				<source>EXT:news - Administration module</source>
+			<target state="needs-translation">EXT:news - Administration module</target></trans-unit>
+      <trans-unit id="adminModule.description" xml:space="preserve">
+				<source>The administration module of EXT:news is a powerful tool for editors to create, edit and find news records.</source>
+			<target state="needs-translation">The administration module of EXT:news is a powerful tool for editors to create, edit and find news records.</target></trans-unit>
+      <trans-unit id="adminModule.general.title" xml:space="preserve">
+				<source>Administration module</source>
+			<target state="needs-translation">Administration module</target></trans-unit>
+      <trans-unit id="adminModule.general.content" xml:space="preserve">
+				<source>This is the best place for creating new records and editing existing ones</source>
+			<target state="needs-translation">This is the best place for creating new records and editing existing ones</target></trans-unit>
+      <trans-unit id="adminModule.filter.title" xml:space="preserve">
+				<source>Toggle filter</source>
+			<target state="needs-translation">Toggle filter</target></trans-unit>
+      <trans-unit id="adminModule.filter.content" xml:space="preserve">
+				<source>Show and hide a filter which helps you finding news records</source>
+			<target state="needs-translation">Show and hide a filter which helps you finding news records</target></trans-unit>
+      <trans-unit id="adminModule.filter2.title" xml:space="preserve">
+				<source>Please click the filter icon!</source>
+			<target state="needs-translation">Please click the filter icon!</target></trans-unit>
+      <trans-unit id="adminModule.filter2.content" xml:space="preserve">
+				<source>Open the filter settings!</source>
+			<target state="needs-translation">Open the filter settings!</target></trans-unit>
+      <trans-unit id="adminModule.searchWord.title" xml:space="preserve">
+				<source>Search by text</source>
+			<target state="needs-translation">Search by text</target></trans-unit>
+      <trans-unit id="adminModule.searchWord.content" xml:space="preserve">
+				<source>Search in title, teaser and text</source>
+			<target state="needs-translation">Search in title, teaser and text</target></trans-unit>
+      <trans-unit id="adminModule.timeRestriction.title" xml:space="preserve">
+				<source>Filter by time range</source>
+			<target state="needs-translation">Filter by time range</target></trans-unit>
+      <trans-unit id="adminModule.timeRestriction.content" xml:space="preserve">
+				<source>Use one of the 2 date fields to filter for news records between the defined dates.</source>
+			<target state="needs-translation">Use one of the 2 date fields to filter for news records between the defined dates.</target></trans-unit>
+      <trans-unit id="adminModule.topNewsRestriction.title" xml:space="preserve">
+				<source>Filter top news records</source>
+			<target state="needs-translation">Filter top news records</target></trans-unit>
+      <trans-unit id="adminModule.topNewsRestriction.content" xml:space="preserve">
+				<source>News records can be flagged as "top news". Use this filter to search for top news records or non top news records.</source>
+			<target state="needs-translation">News records can be flagged as "top news". Use this filter to search for top news records or non top news records.</target></trans-unit>
+      <trans-unit id="adminModule.sortingField.title" xml:space="preserve">
+				<source>Sort the result</source>
+			<target state="needs-translation">Sort the result</target></trans-unit>
+      <trans-unit id="adminModule.sortingField.content" xml:space="preserve">
+				<source>Sort the result by the defined field and sorting direction</source>
+			<target state="needs-translation">Sort the result by the defined field and sorting direction</target></trans-unit>
+      <trans-unit id="adminModule.recursive.title" xml:space="preserve">
+				<source>Extend search to child pages</source>
+			<target state="needs-translation">Extend search to child pages</target></trans-unit>
+      <trans-unit id="adminModule.recursive.content" xml:space="preserve">
+				<source>Set the level of pages which are searched for news records</source>
+			<target state="needs-translation">Set the level of pages which are searched for news records</target></trans-unit>
+      <trans-unit id="adminModule.categoryTree.title" xml:space="preserve">
+				<source>Category filter</source>
+			<target state="needs-translation">Category filter</target></trans-unit>
+      <trans-unit id="adminModule.categoryTree.content" xml:space="preserve">
+				<source>Select categories you want to use for additional filtering</source>
+			<target state="needs-translation">Select categories you want to use for additional filtering</target></trans-unit>
+      <trans-unit id="adminModule.categoryConjunction.title" xml:space="preserve">
+				<source>Category conjunction</source>
+			<target state="needs-translation">Category conjunction</target></trans-unit>
+      <trans-unit id="adminModule.categoryConjunction.content" xml:space="preserve">
+				<source>Select how the category selection should be used</source>
+			<target state="needs-translation">Select how the category selection should be used</target></trans-unit>
+      <trans-unit id="adminModule.actionSwitch.title" xml:space="preserve">
+				<source>Switch to the pid listing</source>
+			<target state="needs-translation">Switch to the pid listing</target></trans-unit>
+      <trans-unit id="adminModule.actionSwitch.content" xml:space="preserve">
+				<source>A powerful view is hidden here! It enables you to find those pages which contain news records.</source>
+			<target state="needs-translation">A powerful view is hidden here! It enables you to find those pages which contain news records.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

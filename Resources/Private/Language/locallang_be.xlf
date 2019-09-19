@@ -308,6 +308,9 @@
 			<trans-unit id="extmng.mediaPreview" xml:space="preserve">
 				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
 			</trans-unit>
+			<trans-unit id="extmng.advancedMediaPreview" xml:space="preserve">
+				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
+			</trans-unit>
 			<trans-unit id="usersettings.overlay" xml:space="preserve">
 				<source>Use this overlay for news categories in the Backend</source>
 			</trans-unit>
@@ -380,6 +383,9 @@
 			<trans-unit id="module.newsPidListing" xml:space="preserve">
 				<source>News Pid listing</source>
 			</trans-unit>
+			<trans-unit id="module.donate" xml:space="preserve">
+				<source>Support &amp; Donate</source>
+			</trans-unit>
 			<trans-unit id="administration.title" xml:space="preserve">
 				<source>News administration</source>
 			</trans-unit>
@@ -417,8 +423,82 @@
 			<trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve">
 				<source>only non-hidden</source>
 			</trans-unit>
+			<trans-unit id="administration.donation.title" xml:space="preserve">
+				<source>Support &amp; Donate</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.link" xml:space="preserve">
+				<source>Click so see all options</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.lead_intro" xml:space="preserve">
+				<source>Great that you are using this extension!</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.lead_full" xml:space="preserve">
+				<source>The editors have created %d articles with %d relations to categories.</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.lead_news_only" xml:space="preserve">
+				<source>The editors have created %d articles.</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.lead_none" xml:space="preserve">
+				<source>Did you just setup the system? No articles yet created.</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.support" xml:space="preserve">
+				<source>Help supporting further development</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.why" xml:space="preserve">
+				<source>Why?</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.why.text" xml:space="preserve">
+				<source>The news extension is a powerful tool with a lot of features, always trying to thrive on the latest
+            possibilities of the TYPO3 core.
+            This implies a lot of work bringing this to the TYPO3 community.</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.how" xml:space="preserve">
+				<source>How?</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.how.text" xml:space="preserve">
+				<source>There are multiple ways to support the further development:</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.invoice" xml:space="preserve">
+				<source>Invoice</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.invoice.sub" xml:space="preserve">
+				<source>An invoice is possible!</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.invoice.text" xml:space="preserve">
+				<source>I can create a proper invoice to keep your accounting happy - contact me for details.</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.patreon.sub" xml:space="preserve">
+				<source>Support me on patreon.com</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.patreon.text" xml:space="preserve">
+				<source>Support me on patreon and get access to additional extensions and snippets as reward.</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.paypal.sub" xml:space="preserve">
+				<source>Donate via PayPal</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.paypal.text" xml:space="preserve">
+				<source>Support me by a donation on paypal.com. It is just one click away.</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.amazon" xml:space="preserve">
+				<source>Amazon wishlist</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.amazon.sub" xml:space="preserve">
+				<source>Satisfy a wish of my Amazon wishlist</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.amazon.text" xml:space="preserve">
+				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
+			</trans-unit>
+            <trans-unit id="administration.donation.sponsors" xml:space="preserve">
+				<source>Current sponsors</source>
+			</trans-unit>
+			<trans-unit id="administration.donation.sponsors.text" xml:space="preserve">
+				<source>The following companies and people have already supported me.</source>
+			</trans-unit>
 			<trans-unit id="news-folder" xml:space="preserve">
 				<source>News</source>
+			</trans-unit>
+			<trans-unit id="news-page" xml:space="preserve">
+				<source>Page with news plugins</source>
 			</trans-unit>
 
 			<trans-unit id="import.header" xml:space="preserve">

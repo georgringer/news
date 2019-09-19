@@ -24,6 +24,18 @@
 	<h1>
 		<f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.title" />
 	</h1>
+
+	<f:if condition="{showSupportArea}">
+		<f:be.infobox title=" {f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.support')}" state="-1">
+			{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.why.text')}
+			<br>
+			<f:link.action action="donate" class="btn btn-default">
+				<core:icon identifier="ext-news-donation" />
+				{f:translate(key:'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.link')}
+				</f:link.action>
+		</f:be.infobox>
+	</f:if>
+
 	<f:if condition="{page} == 0">
 		<div class="alert alert-info">
 			<div class="message-body">
@@ -32,9 +44,19 @@
 		</div>
 	</f:if>
 	<f:if condition="{showSearchForm}">
-		<f:form name="demand" object="{demand}" method="get">
-			<input type="hidden" name="M" value="web_NewsTxNewsM2">
-			<input type="hidden" name="moduleToken" value="{moduleToken}">
+		<f:form id="administrationForm" name="demand" object="{demand}" method="get" data="{autoSubmitForm:autoSubmitForm}">
+			<input type="hidden" name="formSubmitted" value="1">
+			<f:if condition="{is9up}">
+				<f:then>
+					<input type="hidden" name="route" value="/web/NewsTxNewsM2/">
+					<input type="hidden" name="token" value="{moduleToken}">
+				</f:then>
+				<f:else>
+					<input type="hidden" name="M" value="web_NewsTxNewsM2">
+					<input type="hidden" name="moduleToken" value="{moduleToken}">
+				</f:else>
+			</f:if>
+
 			<input type="hidden" name="id" value="{page}">
 			<f:form.checkbox style="display:none" property="selectedCategories" value="0" />
 
@@ -173,7 +195,14 @@
 							</f:if>
 							<div class="form-group">
 								<div class="col-xs-offset-4 col-xs-8">
-									<f:form.submit value="{f:translate(key:'LLL:EXT:lang/locallang_common.xlf:search')}" class="btn btn-primary" />
+									<f:if condition="{is9up}">
+										<f:then>
+											<f:form.submit value="{f:translate(key:'LLL:EXT:core/Resources/Private/Language/locallang_common.xlf:search')}" class="btn btn-primary" />
+										</f:then>
+										<f:else>
+											<f:form.submit value="{f:translate(key:'LLL:EXT:lang/Resources/Private/Language/locallang_common.xlf:search')}" class="btn btn-primary" />
+										</f:else>
+									</f:if>
 								</div>
 							</div>
 						</div>
@@ -250,6 +279,20 @@
 	</f:if>
 	<script type="text/javascript">
 		T3_THIS_LOCATION = {requestUri -> f:format.raw()};
+
+        function jumpToUrl(URL) {
+            window.location.href = URL;
+            return false;
+        }
+        function jumpExt(URL,anchor) {	//
+            var anc = anchor?anchor:"";
+            window.location.href = URL+(T3_THIS_LOCATION?"&returnUrl="+T3_THIS_LOCATION:"")+anc;
+            return false;
+        }
+        function jumpSelf(URL) {	//
+            window.location.href = URL+(T3_RETURN_URL?"&returnUrl="+T3_RETURN_URL:"");
+            return false;
+        }
 	</script>
 </f:section>
 </html>

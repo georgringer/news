@@ -13,8 +13,6 @@ Extension Manager
 Some general settings can be configured in the Extension Manager.
 If you need to configure those, switch to the module "Extension Manager", select the extension "**news**" and press on the configure-icon!
 
-.. todo: screenshot
-
 The settings are divided into several tabs and described here in detail:
 
 Properties
@@ -191,3 +189,26 @@ Define the uid of the storage which is used for importing media elements into FA
 resourceFolderImporter
 """"""""""""""""""""""
 Define the folder which is used for the media elements which are imported.
+
+Alternative configuration instead of Extension Manager
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Instead of defining the property in the Extension Manager (or Install Tool since 9) it is also possible to define
+the properties in the `AdditionalConfiguration.php` by setting
+
+.. code-block:: php
+
+        $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news'] = serialize([
+                'archiveDate' => 'date',
+                'rteForTeaser' => 0,
+                'tagPid' => 1,
+                'prependAtCopy' => 0,
+                'categoryRestriction' => 'none',
+                'categoryBeGroupTceFormsRestriction' => 0,
+                'contentElementRelation' => 1,
+                'manualSorting' => 0,
+                'dateTimeNotRequired' => 0,
+                'showAdministrationModule' => 1,
+                'showImporter' => 0,
+                'storageUidImporter' => '1',
+                'resourceFolderImporter' => '/news_import',
+        ]),

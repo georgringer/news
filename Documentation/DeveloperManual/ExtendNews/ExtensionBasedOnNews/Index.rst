@@ -262,7 +262,7 @@ The syntax of ``FlexForms`` is identical to the one of ``TCA`` with the only dif
 					<el>
 						<settings.startingpoint>
 							<TCEforms>
-								<label>LLL:EXT:lang/locallang_general.xlf:LGL.startingpoint</label>
+								<label>LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
 								<config>
 									<type>group</type>
 									<internal_type>db</internal_type>
@@ -270,7 +270,6 @@ The syntax of ``FlexForms`` is identical to the one of ``TCA`` with the only dif
 									<size>3</size>
 									<maxitems>50</maxitems>
 									<minitems>0</minitems>
-									<show_thumbs>1</show_thumbs>
 									<wizards>
 										<suggest>
 											<type>suggest</type>

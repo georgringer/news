@@ -203,7 +203,6 @@
 										<maxLevels>99</maxLevels>
 										<expandAll>TRUE</expandAll>
 										<showHeader>TRUE</showHeader>
-										<width>600</width>
 									</appearance>
 								</treeConfig>
 								<foreign_table>sys_category</foreign_table>
@@ -313,15 +312,6 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<default>
-											<searchWholePhrase>1</searchWholePhrase>
-										</default>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.singleNews>
@@ -356,7 +346,7 @@
 					<!-- startingpoint -->
 					<settings.startingpoint>
 						<TCEforms>
-							<label>LLL:EXT:lang/locallang_general.xlf:LGL.startingpoint</label>
+							<label>LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -364,15 +354,6 @@
 								<size>3</size>
 								<maxitems>50</maxitems>
 								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<default>
-											<searchWholePhrase>1</searchWholePhrase>
-										</default>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.startingpoint>
@@ -380,7 +361,7 @@
 					<!-- recursive -->
 					<settings.recursive>
 						<TCEforms>
-							<label>LLL:EXT:lang/locallang_general.xlf:LGL.recursive</label>
+							<label>LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
@@ -429,15 +410,7 @@
 								<size>3</size>
 								<maxitems>50</maxitems>
 								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<default>
-											<searchWholePhrase>1</searchWholePhrase>
-										</default>
-									</suggest>
-								</wizards>
+
 							</config>
 						</TCEforms>
 					</settings.selectedList>
@@ -459,7 +432,7 @@
 				<el>
 
 
-					<!-- PID Single Page -->
+					<!-- PID Detail Page -->
 					<settings.detailPid>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.detailPid</label>
@@ -470,20 +443,11 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<default>
-											<searchWholePhrase>1</searchWholePhrase>
-										</default>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.detailPid>
 
-					<!-- PID Single Page -->
+					<!-- PID List Page -->
 					<settings.listPid>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid</label>
@@ -494,15 +458,6 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<default>
-											<searchWholePhrase>1</searchWholePhrase>
-										</default>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.listPid>
@@ -518,15 +473,6 @@
 								<size>1</size>
 								<maxitems>1</maxitems>
 								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<default>
-											<searchWholePhrase>1</searchWholePhrase>
-										</default>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.backPid>
@@ -566,14 +512,6 @@
 								<size>3</size>
 								<minitems>0</minitems>
 								<maxitems>99</maxitems>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-										<default>
-											<searchWholePhrase>1</searchWholePhrase>
-										</default>
-									</suggest>
-								</wizards>
 							</config>
 						</TCEforms>
 					</settings.tags>

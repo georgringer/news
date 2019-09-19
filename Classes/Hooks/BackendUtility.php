@@ -50,7 +50,7 @@ class BackendUtility
      * @var array
      */
     public $removedFieldsInSelectedListView = [
-        'sDEF' => 'orderBy,orderDirection,categories,categoryConjunction,includeSubCategories,
+        'sDEF' => 'categories,categoryConjunction,includeSubCategories,
 						archiveRestriction,timeRestriction,timeRestrictionHigh,topNewsRestriction,
 						startingpoint,recursive,dateField,singleNews,previewHiddenRecords,
                         previewHiddenRecords,startingpoint,recursive',

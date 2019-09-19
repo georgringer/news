@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:26Z" product-name="news" target-language="fa">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Category record</source>
+			<target state="translated">ردیف برچسب</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Category for news records.</source>
+			<target state="translated">ردیف‌های خبری با آن ردیف‌ها قابل برچسب‌زنی هستند</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="translated">همچنین به سایت  http://www.news.com/ مراجعه کنید</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
+				<source>Language of the category</source>
+			<target state="translated">زبان مربوط به دسته</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden categories are never shown in the frontend.</source>
+			<target state="translated">عناصر مخفی هرگز در خروجی نمایش داده نخواهند شد.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Title of the category</source>
+			<target state="translated">عنوان برچسب.</target></trans-unit>
+      <trans-unit id="parentcategory.description" xml:space="preserve" approved="yes">
+				<source>Select a parent category of this record to build a category tree.</source>
+			<target state="translated">دستۀ والد را انتخاب کنید تا یک ساختاردرختی از دسته‌ها ایجاد کنید.</target></trans-unit>
+      <trans-unit id="image.description" xml:space="preserve" approved="yes">
+				<source>Optional image of a category.</source>
+			<target state="translated">تصویر انتخاب یک دسته.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Optional description of a category.</source>
+			<target state="translated">توضیح اختیاری فایل انتخاب شده.</target></trans-unit>
+      <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
+				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
+			<target state="translated">یک صفحه برای نمایش جزئیات ردیف خبری که به این گروه مربوط است انتخاب کنید. این تنظیمات بواسطۀ تنظیمات انتخاب شده در تنظیمات افزونۀ وارده در صفحه نادیده انگاشته می‌شود.</target></trans-unit>
+      <trans-unit id="shortcut.description" xml:space="preserve" approved="yes">
+				<source>Optional link of a category.</source>
+			<target state="translated">پیوند انتخابی به یک دسته.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

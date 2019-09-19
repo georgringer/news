@@ -10,11 +10,14 @@ namespace GeorgRinger\News\Controller;
  */
 use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
+use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
+use TYPO3\CMS\Backend\Template\Components\Menu\Menu;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -55,6 +58,9 @@ class AdministrationController extends NewsController
      */
     protected $categoryRepository;
 
+    /** @var AdministrationRepository */
+    protected $administrationRepository;
+
     /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      */
@@ -83,6 +89,7 @@ class AdministrationController extends NewsController
         $this->pageUid = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id');
         $this->pageInformation = BackendUtilityCore::readPageAccess($this->pageUid, '');
         $this->setTsConfig();
+        $this->administrationRepository = GeneralUtility::makeInstance(AdministrationRepository::class);
         parent::initializeAction();
     }
 
@@ -119,12 +126,10 @@ class AdministrationController extends NewsController
 
         $pageRenderer = $this->view->getModuleTemplate()->getPageRenderer();
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/DateTimePicker');
-        if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8006000) {
-            $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ContextMenu');
-        } else {
-            $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ClickMenu');
-        }
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ContextMenu');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/AjaxDataHandler');
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/AdministrationModule');
+        $pageRenderer->addInlineLanguageLabelFile('EXT:lang/Resources/Private/Language/locallang_core.xlf');
         $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
 
@@ -142,6 +147,9 @@ class AdministrationController extends NewsController
 
         $this->createMenu();
         $this->createButtons();
+
+        $view->assign('is9up', self::is9up());
+        $view->assign('showSupportArea', $this->showSupportArea());
     }
 
     /**
@@ -158,7 +166,8 @@ class AdministrationController extends NewsController
 
         $actions = [
             ['action' => 'index', 'label' => 'newsListing'],
-            ['action' => 'newsPidListing', 'label' => 'newsPidListing']
+            ['action' => 'newsPidListing', 'label' => 'newsPidListing'],
+            ['action' => 'donate', 'label' => 'donate']
         ];
 
         foreach ($actions as $action) {
@@ -169,10 +178,35 @@ class AdministrationController extends NewsController
             $menu->addMenuItem($item);
         }
 
-        $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
+        $menu = $this->extendMenu($menu);
+
+        if ($menu instanceof Menu) {
+            $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->addMenu($menu);
+        }
         if (is_array($this->pageInformation)) {
             $this->view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation($this->pageInformation);
         }
+    }
+
+    /**
+     * Extends menu selextor with items from 3rd party extensions.
+     *
+     * @param Menu $menu
+     * @return Menu
+     */
+    protected function extendMenu(Menu $menu)
+    {
+        $signalParameters = [
+            'menu' => $menu,
+        ];
+        try {
+            $signalParameters = $this->signalSlotDispatcher->dispatch(__CLASS__, 'createMenu', $signalParameters);
+        } catch (\Exception $exception) {
+            // Nothing to do
+        }
+        $menu = $signalParameters['menu'];
+
+        return $menu;
     }
 
     /**
@@ -241,21 +275,37 @@ class AdministrationController extends NewsController
         if (!empty($elFromTable)) {
             $viewButton = $buttonBar->makeLinkButton()
                 ->setHref($clipBoard->pasteUrl('', $this->pageUid))
-                ->setOnClick('return ' . $clipBoard->confirmMsg('pages',
+                ->setOnClick('return ' . $clipBoard->confirmMsgText('pages',
                         BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
                         $elFromTable))
-                ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/locallang_mod_web_list.xlf:clip_pasteInto'))
+                ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_mod_web_list.xlf:clip_pasteInto'))
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));
             $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);
         }
 
+        // Donation
+        $donationButton = $buttonBar->makeLinkButton()
+            ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor('donate',
+                [], 'Administration'))
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.title'))
+            ->setIcon($this->iconFactory->getIcon('ext-news-donation', Icon::SIZE_SMALL));
+        $buttonBar->addButton($donationButton, ButtonBar::BUTTON_POSITION_RIGHT);
+
         // Refresh
-        $path = VersionNumberUtility::convertVersionNumberToInteger(TYPO3_branch) >= VersionNumberUtility::convertVersionNumberToInteger('8.6') ? 'Resources/Private/Language/' : '';
         $refreshButton = $buttonBar->makeLinkButton()
             ->setHref(GeneralUtility::getIndpEnv('REQUEST_URI'))
-            ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/' . $path . 'locallang_core.xlf:labels.reload'))
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.reload'))
             ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
         $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
+
+        // Shortcut
+        if ($this->getBackendUser()->mayMakeShortcut()) {
+            $shortcutButton = $buttonBar->makeShortcutButton()
+                ->setModuleName('web_NewsTxNewsM2')
+                ->setGetVariables(['route', 'module', 'id'])
+                ->setDisplayName('Shortcut');
+            $buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
+        }
     }
 
     /**
@@ -298,6 +348,7 @@ class AdministrationController extends NewsController
 
         $demandVars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
         $demand = $this->objectManager->get(AdministrationDemand::class);
+        $autoSubmitForm = 0;
         if (is_array($demandVars['demand'])) {
             foreach ($demandVars['demand'] as $key => $value) {
                 if (property_exists(AdministrationDemand::class, $key)) {
@@ -310,16 +361,26 @@ class AdministrationController extends NewsController
             if (isset($this->tsConfiguration['preselect.'])
                 && is_array($this->tsConfiguration['preselect.'])
             ) {
+                $anyPropertySet = false;
                 unset($this->tsConfiguration['preselect.']['orderByAllowed']);
 
                 foreach ($this->tsConfiguration['preselect.'] as $propertyName => $propertyValue) {
-                    ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+                    $propertySet = ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+                    if ($propertySet) {
+                        $anyPropertySet = true;
+                    }
+                }
+
+                if ($anyPropertySet && !GeneralUtility::_GET('formSubmitted')) {
+                    $autoSubmitForm = 1;
                 }
             }
             if (!(bool)$this->tsConfiguration['alwaysShowFilter'] || !$this->isFilteringEnabled()) {
                 $this->view->assign('hideForm', true);
             }
         }
+        $this->view->assign('autoSubmitForm', $autoSubmitForm);
+
         $categories = $this->categoryRepository->findParentCategoriesByPid($this->pageUid);
         $idList = [];
         foreach ($categories as $c) {
@@ -327,6 +388,13 @@ class AdministrationController extends NewsController
         }
         if (empty($idList) && !$this->getBackendUser()->isAdmin()) {
             $idList = $this->getBackendUser()->getCategoryMountPoints();
+        }
+
+        if (!empty($this->tsConfiguration['allowedCategoryRootIds'])) {
+            $allowedList = GeneralUtility::intExplode(',', $this->tsConfiguration['allowedCategoryRootIds'], true);
+            if (!empty($allowedList)) {
+                $idList = array_intersect($idList, $allowedList);
+            }
         }
 
         // Initialize the dblist object:
@@ -349,7 +417,7 @@ class AdministrationController extends NewsController
         $dblist->start($this->pageUid, 'tx_news_domain_model_news', $pointer, '',
             $demand->getRecursive(), $limit);
         $dblist->setDispFields();
-        $dblist->noControlPanels = true;
+        $dblist->noControlPanels = !(bool)$this->tsConfiguration['controlPanels'];
         $dblist->setFields = [
             'tx_news_domain_model_news' => GeneralUtility::trimExplode(',', $this->tsConfiguration['columns'] ?: 'teaser,istopnews,datetime,categories', true)
         ];
@@ -401,9 +469,15 @@ class AdministrationController extends NewsController
         $this->view->assignMultiple($assignedValues);
     }
 
+    public function donateAction()
+    {
+        $this->view->assignMultiple([
+            'counts' => $this->administrationRepository->getTotalCounts()
+        ]);
+    }
+
     /**
      * Redirect to form to create a news record
-     *
      */
     public function newNewsAction()
     {
@@ -412,7 +486,6 @@ class AdministrationController extends NewsController
 
     /**
      * Redirect to form to create a category record
-     *
      */
     public function newCategoryAction()
     {
@@ -421,7 +494,6 @@ class AdministrationController extends NewsController
 
     /**
      * Redirect to form to create a tag record
-     *
      */
     public function newTagAction()
     {
@@ -437,35 +509,21 @@ class AdministrationController extends NewsController
     {
         $pageUid = (int)$row['row']['uid'];
 
-        if (class_exists(ConnectionPool::class)) {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('tx_news_domain_model_news');
-            $row['countNews'] = $queryBuilder->count('*')
-                ->from('tx_news_domain_model_news')
-                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
-                ->execute()
-                ->fetchColumn(0);
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_news_domain_model_news');
+        $row['countNews'] = $queryBuilder->count('*')
+            ->from('tx_news_domain_model_news')
+            ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+            ->execute()
+            ->fetchColumn(0);
 
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('sys_category');
-            $row['countCategories'] = $queryBuilder->count('*')
-                ->from('sys_category')
-                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
-                ->execute()
-                ->fetchColumn(0);
-        } else {
-            /* @var $db \TYPO3\CMS\Core\Database\DatabaseConnection */
-            $db = $GLOBALS['TYPO3_DB'];
-
-            $row['countNews'] = $db->exec_SELECTcountRows(
-                '*',
-                'tx_news_domain_model_news',
-                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('tx_news_domain_model_news'));
-            $row['countCategories'] = $db->exec_SELECTcountRows(
-                '*',
-                'sys_category',
-                'pid=' . $pageUid . BackendUtilityCore::BEenableFields('sys_category'));
-        }
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_category');
+        $row['countCategories'] = $queryBuilder->count('*')
+            ->from('sys_category')
+            ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+            ->execute()
+            ->fetchColumn(0);
 
         $row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
     }
@@ -485,7 +543,13 @@ class AdministrationController extends NewsController
             $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
         }
 
-        $returnUrl = 'index.php?M=web_NewsTxNewsM2&id=' . $this->pageUid . $this->getToken();
+        if (self::is9up()) {
+            $returnUrl = 'index.php?route=/web/NewsTxNewsM2/';
+        } else {
+            $returnUrl = 'index.php?M=web_NewsTxNewsM2';
+        }
+
+        $returnUrl .= '&id=' . $this->pageUid . $this->getToken();
         $url = BackendUtilityCore::getModuleUrl('record_edit', [
             'edit[' . $table . '][' . $pid . ']' => 'new',
             'returnUrl' => $returnUrl
@@ -534,11 +598,17 @@ class AdministrationController extends NewsController
      */
     protected function redirectToPageOnStart()
     {
+        if (self::is9up()) {
+            $url = 'index.php?route=/web/NewsTxNewsM2/';
+        } else {
+            $url = 'index.php?M=web_NewsTxNewsM2';
+        }
+
         if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
-            $url = 'index.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
+            $url .= '&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
             HttpUtility::redirect($url);
         } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
-            $url = 'index.php?M=web_NewsTxNewsM2&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
+            $url .= '&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
             HttpUtility::redirect($url);
         }
     }
@@ -549,14 +619,48 @@ class AdministrationController extends NewsController
      * @param bool $tokenOnly Set it to TRUE to get only the token, otherwise including the &moduleToken= as prefix
      * @return string
      */
-    protected function getToken($tokenOnly = false)
+    protected function getToken(bool $tokenOnly = false): string
     {
-        $token = FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
+        if (self::is9up()) {
+            $tokenParameterName = 'token';
+            $token = FormProtectionFactory::get('backend')->generateToken('route', 'web_NewsTxNewsM2');
+        } else {
+            $tokenParameterName = 'moduleToken';
+            $token = FormProtectionFactory::get()->generateToken('moduleCall', 'web_NewsTxNewsM2');
+        }
+
         if ($tokenOnly) {
             return $token;
-        } else {
-            return '&moduleToken=' . $token;
         }
+
+        return '&' . $tokenParameterName . '=' . $token;
+    }
+
+    /**
+     * @return bool
+     */
+    private static function is9up(): bool
+    {
+        return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
+    }
+
+    /**
+     * Show support area only for admins in given percent of time
+     *
+     * @param int $probabilityInPercent
+     * @return bool
+     */
+    private function showSupportArea(int $probabilityInPercent = 10): bool
+    {
+        if (!$this->getBackendUser()->isAdmin()) {
+            return false;
+        }
+
+        if (mt_rand() % 100 <= $probabilityInPercent) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -564,7 +668,7 @@ class AdministrationController extends NewsController
      *
      * @return LanguageService
      */
-    protected function getLanguageService()
+    protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }
@@ -572,9 +676,9 @@ class AdministrationController extends NewsController
     /**
      * Get backend user
      *
-     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     * @return BackendUserAuthentication
      */
-    protected function getBackendUser()
+    protected function getBackendUser(): BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

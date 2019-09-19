@@ -5,19 +5,17 @@ $EM_CONF[$_EXTKEY] = [
     'description' => 'Versatile news extension, based on extbase & fluid. Editor friendly, default integration of social sharing and many other features',
     'category' => 'fe',
     'author' => 'Georg Ringer',
-    'author_email' => 'typo3@ringerge.org',
+    'author_email' => 'mail@ringer.it',
     'state' => 'stable',
-    'uploadfolder' => 1,
-    'clearCacheOnLoad' => 1,
-    'version' => '6.3.0',
+    'clearCacheOnLoad' => true,
+    'version' => '7.3.1',
     'constraints' => [
         'depends' => [
-            'typo3' => '7.6.13-8.7.99',
+            'typo3' => '8.7.13-9.5.99',
         ],
         'conflicts' => [],
         'suggests' => [
-            'dd_googlesitemap' => '2.0.5-2.99.99',
-            'rx_shariff' => '7.0.0-10.99.99'
+            'rx_shariff' => '11.0.0-11.99.99'
         ],
     ],
 ];

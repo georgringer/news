@@ -18,6 +18,8 @@
 
 .. role::   php(code)
 
+.. role::   yaml(code)
+
 .. highlight:: php
 
 .. |img-record-tag|      image:: /Images/Administration/record-tag.png
@@ -48,3 +50,18 @@
 .. :border: 0
 .. :align: left
 .. :name: Support of EXT:guide for the administration module
+
+.. |img-release700-slug-field|      image:: /Images/Misc/Changelog/7-0-0/slug-field.png
+.. :border: 0
+.. :align: left
+.. :name: Slug field
+
+.. |img-release700-filereference-select|      image:: /Images/Misc/Changelog/7-0-0/filereference-select.png
+.. :border: 0
+.. :align: left
+.. :name: Improved sysfile reference select
+
+.. |img-donation-module|      image:: /Images/Misc/Changelog/7-0-0/donation-module.png
+.. :border: 0
+.. :align: left
+.. :name: Donation module

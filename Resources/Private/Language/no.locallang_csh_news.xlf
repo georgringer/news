@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="news" target-language="no">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>News record</source>
+			<target state="translated">Nyhet</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Versatile news system.</source>
+			<target state="translated">Nyhetssystem.</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
+				<source>Language of the news record.</source>
+			<target state="translated">Språk på nyheten.</target></trans-unit>
+      <trans-unit id="starttime.description" xml:space="preserve" approved="yes">
+				<source>Define a date on which the news record should be shown.</source>
+			<target state="translated">Definer en dato når nyheten skal vises.</target></trans-unit>
+      <trans-unit id="endtime.description" xml:space="preserve" approved="yes">
+				<source>Define a date on which the news record should be hidden.</source>
+			<target state="translated">Definer en dato når nyheten skal skjules.</target></trans-unit>
+      <trans-unit id="fe_group.description" xml:space="preserve" approved="yes">
+				<source>Select the user groups which are allowed to see the news record.</source>
+			<target state="translated">Velg brukergrupper som er tillatt å se nyheten.</target></trans-unit>
+      <trans-unit id="editlock.description" xml:space="preserve" approved="yes">
+				<source>If checked, this news record can only be edited by administrators.</source>
+			<target state="translated">Om avkrysset, kan nyhetene bare redigeres av administratorer.</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden records are not shown in the frontend.</source>
+			<target state="translated">Skjulte nyheter blir ikke vist på nettsidene.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>News title</source>
+			<target state="translated">Tittel på nyhet</target></trans-unit>
+    </body>
+  </file>
+</xliff>

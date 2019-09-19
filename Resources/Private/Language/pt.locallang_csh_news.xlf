@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="news" target-language="pt-BR">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>News record</source>
+			<target state="translated">Novos registros</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Versatile news system.</source>
+			<target state="translated">Sistema de notícias versátil.</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
+				<source>Language of the news record.</source>
+			<target state="translated">Idioma do registro de notícia.</target></trans-unit>
+      <trans-unit id="starttime.description" xml:space="preserve" approved="yes">
+				<source>Define a date on which the news record should be shown.</source>
+			<target state="translated">Define uma data em que o registro de notícias deve ser mostrado.</target></trans-unit>
+      <trans-unit id="endtime.description" xml:space="preserve" approved="yes">
+				<source>Define a date on which the news record should be hidden.</source>
+			<target state="translated">Define uma data em que o registro de notícias deve ser oculto.</target></trans-unit>
+      <trans-unit id="fe_group.description" xml:space="preserve" approved="yes">
+				<source>Select the user groups which are allowed to see the news record.</source>
+			<target state="translated">Selecione os grupos de usuários que têm permissão para ver o registro notícia.</target></trans-unit>
+      <trans-unit id="editlock.description" xml:space="preserve" approved="yes">
+				<source>If checked, this news record can only be edited by administrators.</source>
+			<target state="translated">Se marcado, este registro de notícia só pode ser editado por admins.</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden records are not shown in the frontend.</source>
+			<target state="translated">Registros ocultos não são exibidos no frontend.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>News title</source>
+			<target state="translated">Título de notícia</target></trans-unit>
+      <trans-unit id="alternative_title.description" xml:space="preserve" approved="yes">
+				<source>Alternative Title will be used as the title for the browser window / tab</source>
+			<target state="translated">Título alternativo será usado como o título para a janela do navegador / aba</target></trans-unit>
+      <trans-unit id="teaser.description" xml:space="preserve" approved="yes">
+				<source>Be aware that it can be cropped.</source>
+			<target state="translated">Esteja ciente de que isto pode ser cortado.</target></trans-unit>
+      <trans-unit id="type.description" xml:space="preserve" approved="yes">
+				<source>Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</source>
+			<target state="translated">Selecione o tipo que pode ser tanto um registro de notícia normal, um link para uma página interna ou um link para uma página externa.</target></trans-unit>
+      <trans-unit id="istopnews.description" xml:space="preserve" approved="yes">
+				<source>Top news records can get a special treated concerning layout, sorting, ...</source>
+			<target state="translated">Registros de notícia Principal podem receber um tratamento especial no layout, na classificação, ...</target></trans-unit>
+      <trans-unit id="author.description" xml:space="preserve" approved="yes">
+				<source>Author of the news record</source>
+			<target state="translated">Autor do registro de notícia</target></trans-unit>
+      <trans-unit id="author_email.description" xml:space="preserve" approved="yes">
+				<source>Email address of the author</source>
+			<target state="translated">Endereço de email do autor</target></trans-unit>
+      <trans-unit id="datetime.description" xml:space="preserve" approved="yes">
+				<source>Date of the news record</source>
+			<target state="translated">Data do registro de notícia</target></trans-unit>
+      <trans-unit id="archive.description" xml:space="preserve" approved="yes">
+				<source>Archive date. A date is required if the news record should once be treated as archived news.</source>
+			<target state="translated">Data de arquivamento. Uma data é requerida se o registro de notícias deve ser considerado arquivado.</target></trans-unit>
+      <trans-unit id="bodytext.description" xml:space="preserve" approved="yes">
+				<source>Main content of the news record</source>
+			<target state="translated">Conteúdo principal do registro de notícia</target></trans-unit>
+      <trans-unit id="categories.description" xml:space="preserve" approved="yes">
+				<source>Select the categories which are related to this record.</source>
+			<target state="translated">Selecione as categorias que são relacionadas a este registro.</target></trans-unit>
+      <trans-unit id="tags.description" xml:space="preserve" approved="yes">
+				<source>Define and select tags which fit to the article.</source>
+			<target state="translated">Define e seleciona tags que se encaixam com o artigo.</target></trans-unit>
+      <trans-unit id="content_elements.description" xml:space="preserve" approved="yes">
+				<source>Content elements can be used to generate feature rich news articles.</source>
+			<target state="translated">Elementos de conteúdo podem ser usados para gerar artigos de notícias com recursos ricos.</target></trans-unit>
+      <trans-unit id="keywords.description" xml:space="preserve" approved="yes">
+				<source>Define keywords which can be used for SEO optimizations.</source>
+			<target state="translated">Define palavras-chave que podem ser utilizadas para otimizações SEO.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Define a description which can be used for SEO optimizations.</source>
+			<target state="translated">Define uma descrição que pode ser utilizada para otimizações SEO.</target></trans-unit>
+      <trans-unit id="related.description" xml:space="preserve" approved="yes">
+				<source>Select related news records.</source>
+			<target state="translated">Seleciona registros de notícias relacionadas.</target></trans-unit>
+      <trans-unit id="related_from.description" xml:space="preserve" approved="yes">
+				<source>Show news which select current news record as related.</source>
+			<target state="translated">Mostra notícias que seleciona o registro de notícia atual como relacionado.</target></trans-unit>
+      <trans-unit id="related_links.description" xml:space="preserve" approved="yes">
+				<source>Define related links to internal and external pages.</source>
+			<target state="translated">Define links relacionados a páginas internas e externas.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

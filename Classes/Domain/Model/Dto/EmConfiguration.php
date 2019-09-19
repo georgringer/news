@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
 
 /**
@@ -100,10 +101,13 @@ class EmConfiguration
     /** @var bool */
     protected $mediaPreview = false;
 
+    /** @var bool */
+    protected $advancedMediaPreview = true;
+
     /**
      * @return int
      */
-    public function getTagPid()
+    public function getTagPid(): int
     {
         return (int)$this->tagPid;
     }
@@ -114,7 +118,7 @@ class EmConfiguration
      */
     public function getPrependAtCopy()
     {
-        return (boolean)$this->prependAtCopy;
+        return (bool)$this->prependAtCopy;
     }
 
     /**
@@ -138,15 +142,15 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getContentElementRelation()
+    public function getContentElementRelation(): bool
     {
-        return (boolean)$this->contentElementRelation;
+        return (bool)$this->contentElementRelation;
     }
 
     /**
      * @return bool
      */
-    public function getContentElementPreview()
+    public function getContentElementPreview(): bool
     {
         return (bool)$this->contentElementPreview;
     }
@@ -154,9 +158,9 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getManualSorting()
+    public function getManualSorting(): bool
     {
-        return (boolean)$this->manualSorting;
+        return (bool)$this->manualSorting;
     }
 
     /**
@@ -170,7 +174,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getShowImporter()
+    public function getShowImporter(): bool
     {
         return (boolean)$this->showImporter;
     }
@@ -186,17 +190,17 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getShowAdministrationModule()
+    public function getShowAdministrationModule(): bool
     {
-        return $this->showAdministrationModule;
+        return (bool)$this->showAdministrationModule;
     }
 
     /**
      * @return bool
      */
-    public function getRteForTeaser()
+    public function getRteForTeaser(): bool
     {
-        return $this->rteForTeaser;
+        return (bool)$this->rteForTeaser;
     }
 
     /**
@@ -210,15 +214,15 @@ class EmConfiguration
     /**
      * @return int
      */
-    public function getStorageUidImporter()
+    public function getStorageUidImporter(): int
     {
-        return $this->storageUidImporter;
+        return (int)$this->storageUidImporter;
     }
 
     /**
      * @return bool
      */
-    public function getDateTimeNotRequired()
+    public function getDateTimeNotRequired(): bool
     {
         return (bool)$this->dateTimeNotRequired;
     }
@@ -226,7 +230,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getDateTimeRequired()
+    public function getDateTimeRequired(): bool
     {
         return !(bool)$this->dateTimeNotRequired;
     }
@@ -234,7 +238,7 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function getHidePageTreeForAdministrationModule()
+    public function getHidePageTreeForAdministrationModule(): bool
     {
         return (bool)$this->hidePageTreeForAdministrationModule;
     }
@@ -242,8 +246,16 @@ class EmConfiguration
     /**
      * @return bool
      */
-    public function isMediaPreview()
+    public function isMediaPreview(): bool
     {
         return (bool)$this->mediaPreview;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdvancedMediaPreview(): bool
+    {
+        return (bool)$this->advancedMediaPreview;
     }
 }

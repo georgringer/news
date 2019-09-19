@@ -11,6 +11,10 @@ return [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'translationSource' => 'l10n_source',
         'default_sortby' => 'ORDER BY title',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -22,9 +26,57 @@ return [
         'searchFields' => 'uid,title',
     ],
     'interface' => [
-        'showRecordFieldList' => 'hidden,title'
+        'showRecordFieldList' => 'hidden,sys_language_uid,l10n_parent,l10n_diffsource,title'
     ],
     'columns' => [
+        'sys_language_uid' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.language',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'special' => 'languages',
+                'items' => [
+                    [
+                        'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
+                        -1,
+                        'flags-multiple'
+                    ],
+                ],
+                'default' => 0,
+            ]
+        ],
+        'l10n_parent' => [
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude' => true,
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['', 0],
+                ],
+                'foreign_table' => 'tx_news_domain_model_tag',
+                'foreign_table_where' => 'AND tx_news_domain_model_tag.pid=###CURRENT_PID### AND tx_news_domain_model_tag.sys_language_uid IN (-1,0)',
+                'fieldWizard' => [
+                    'selectIcons' => [
+                        'disabled' => true,
+                    ],
+                ],
+                'default' => 0,
+            ]
+        ],
+        'l10n_source' => [
+            'config' => [
+                'type' => 'passthrough'
+            ]
+        ],
+        'l10n_diffsource' => [
+            'config' => [
+                'type' => 'passthrough',
+                'default' => ''
+            ]
+        ],
         'pid' => [
             'label' => 'pid',
             'config' => [
@@ -34,18 +86,22 @@ return [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
                 'default' => 0
@@ -86,8 +142,9 @@ return [
             'label' => $ll . 'tx_news_domain_model_tag.seo.seo_text',
             'config' => [
                 'type' => 'text',
+                'enableRichtext' => true,
+                'richtextConfiguration' => 'default',
             ],
-            'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
         ],
         'notes' => [
             'label' => $ll . 'notes',
@@ -104,12 +161,19 @@ return [
             --div--;' . $ll . 'tx_news_domain_model_tag.tabs.seo, seo_title, seo_description, seo_headline, seo_text,
             --div--;' . $ll . 'notes,
                     notes,
-			--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,'
+			--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                --palette--;;paletteLanguage,'
         ]
     ],
     'palettes' => [
         'paletteCore' => [
             'showitem' => 'hidden,',
+        ],
+        'paletteLanguage' => [
+            'showitem' => '
+                sys_language_uid;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:sys_language_uid_formlabel,l10n_parent, l10n_diffsource,
+            ',
         ],
     ]
 ];

@@ -18,16 +18,17 @@
   ],
   "license": ["GPL-2.0-or-later"],
   "require": {
-    "typo3/cms-core": "^7.6.13 || >=8.5.0 <9"
+    "typo3/cms-core": "^8.7.13|| ^9.5.0"
+  },
+  "conflict": {
+    "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
   },
   "suggest": {
-    "dmitryd/typo3-dd-googlesitemap": "~2.0",
-    "reelworx/rx-shariff": "~10.0"
+    "reelworx/rx-shariff": "~11.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "~4.8.0",
     "friendsofphp/php-cs-fixer": "^2.0",
-    "nimut/testing-framework": "^1.0"
+    "nimut/testing-framework": "^1.0 || ^2.0 || ^3.0 || ^4.0"
   },
   "autoload": {
     "psr-4": {

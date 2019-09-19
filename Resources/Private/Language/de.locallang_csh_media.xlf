@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:02Z" product-name="news" target-language="de">
+		<header/>
+		<body>
+			<trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Media record</source>
+			<target state="translated">Mediendatensatz</target></trans-unit>
+			<trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Relation to media records</source>
+			<target state="translated">Relation zu Mediendatensätzen</target></trans-unit>
+			<trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="translated">Mehr Information auf http://www.montagmorgen.at/</target></trans-unit>
+			<trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target state="translated">Versteckte Elemente werden auf der Website nicht angezeigt.</target></trans-unit>
+			<trans-unit id="caption.description" xml:space="preserve" approved="yes">
+				<source>Caption of the media element</source>
+			<target state="translated">Bildunterschrift des Medienelementes</target></trans-unit>
+			<trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Additional information for the title tag.</source>
+			<target state="translated">Titel des Medienelementes</target></trans-unit>
+			<trans-unit id="alt.description" xml:space="preserve" approved="yes">
+				<source>Additional information for the alt tag.</source>
+			<target state="translated">Alternative Beschreibung</target></trans-unit>
+			<trans-unit id="type.description" xml:space="preserve" approved="yes">
+				<source>Type of media element. This can be (by default): Images, Video &amp; Audio, Plain Html.</source>
+			<target state="translated">Typ des Medienelementes. Zur Auswahl stehen: Bild, Video &amp; Audio und DAM</target></trans-unit>
+			<trans-unit id="showinpreview.description" xml:space="preserve" approved="yes">
+				<source>If checked, this media element is also available in the list view.</source>
+			<target state="translated">Falls aktiviert, wird dieses Medienelement auch in der Listenansicht angezeigt.</target></trans-unit>
+			<trans-unit id="video.description" xml:space="preserve" approved="yes">
+				<source>Define the URL to the video or audio resource. This can be either a relative path (e.g. fileadmin/video.flv) or an absolute path (e.g. to a youtube video).</source>
+			<target state="translated">Geben Sie den Pfad zu einer Video oder Audio-Datei an. Dies kann entweder ein relativer Pfad sein (zum Beispiel fileadmin/video.flv) oder eine externe Url (zum Beispiel zu einem Video auf Youtube).</target></trans-unit>
+			<trans-unit id="media.description" xml:space="preserve" approved="yes">
+				<source>Select the image itself.</source>
+			<target state="translated">Wählen Sie das Bild aus.</target></trans-unit>
+		</body>
+	</file>
+</xliff>

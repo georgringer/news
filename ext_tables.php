@@ -20,12 +20,6 @@ $boot = function () {
 
     if (TYPO3_MODE === 'BE') {
         $isVersion9Up = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
-        if ($isVersion9Up) {
-            $mappings = ['common', 'general', 'mod_web_list', 'tca'];
-            foreach ($mappings as $mapping) {
-                $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:lang/locallang_' . $mapping . '.xlf'][] = 'EXT:lang/Resources/Private/Language/locallang_' . $mapping . '.xlf';
-            }
-        }
 
         // Extend user settings
         $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = [
@@ -33,8 +27,7 @@ $boot = function () {
             'type' => 'select',
             'itemsProcFunc' => \GeorgRinger\News\Hooks\ItemsProcFunc::class . '->user_categoryOverlay',
         ];
-        $GLOBALS['TYPO3_USER_SETTINGS']['showitem'] .= ',
-            --div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay';
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToUserSettings('--div--;LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_title,newsoverlay');
 
         // Add tables to livesearch (e.g. "#news:fo" or "#newscat:fo")
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['news'] = 'tx_news_domain_model_news';
@@ -67,12 +60,13 @@ $boot = function () {
                 'web',
                 'tx_news_m2',
                 '',
-                ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing'],
+                ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
                 [
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
                     'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
-                    'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree')
+                    'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree'),
+                    'inheritNavigationComponentFromMainModule' => false
                 ]
             );
         }

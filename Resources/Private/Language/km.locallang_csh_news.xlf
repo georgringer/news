@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="news" target-language="km">
+    <header/>
+    <body>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>News title</source>
+			<target state="translated">ចំណងជើង​ព័ត៌មាន</target></trans-unit>
+      <trans-unit id="related.description" xml:space="preserve" approved="yes">
+				<source>Select related news records.</source>
+			<target state="translated">ជ្រើសរើស​ព័ត៌មាន​ដែលទាក់ទង។</target></trans-unit>
+    </body>
+  </file>
+</xliff>

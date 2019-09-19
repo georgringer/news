@@ -1,12 +1,12 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <!-- categories -->
 <span class="news-list-category">
 	<f:for each="{categories}" as="category">
 		<f:if condition="{category.shortcut}">
 			<f:then>
-				<f:link.page pageUid="{category.shortcut}">
+				<f:link.typolink parameter="{category.shortcut}">
 					{category.title}
-				</f:link.page>
+				</f:link.typolink>
 			</f:then>
 			<f:else>
 				{category.title}

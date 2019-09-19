@@ -10,9 +10,10 @@ namespace GeorgRinger\News\Hooks;
  */
 use DmitryDulepov\DdGooglesitemap\Generator\AbstractSitemapGenerator;
 use DmitryDulepov\DdGooglesitemap\Renderers\NewsSitemapRenderer;
-use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * This class implements news sitemap
@@ -86,56 +87,24 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     protected function generateSitemapContent()
     {
         if (count($this->pidList) > 0) {
-//            if (class_exists(ConnectionPool::class)) {
-//                $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-//                    ->getQueryBuilderForTable('tx_news_domain_model_news');
-//
-//                $where = [
-//                    $queryBuilder->expr()->in(
-//                        'pid',
-//                        $queryBuilder->createNamedParameter($this->pidList, Connection::PARAM_INT_ARRAY)
-//                    ),
-//                    $where[] = $queryBuilder->expr()->eq(
-//                        'sys_language_uid',
-//                        $queryBuilder->createNamedParameter((int)GeneralUtility::_GP('L'), \PDO::PARAM_INT)
-//                    )
-//                ];
-//                if ($this->isNewsSitemap) {
-//                    $where[] = $queryBuilder->expr()->gte(
-//                        'datetime',
-//                        $queryBuilder->createNamedParameter($GLOBALS['EXEC_TIME'] - 48 * 60 * 60, \PDO::PARAM_INT)
-//                    );
-//                }
-//
-//                $statement = $queryBuilder->select('*')
-//                    ->from('tx_news_domain_model_news')
-//                    ->where(
-//                        ...$where
-//                    )
-//                    ->orderBy('datetime', 'desc')
-//                    ->setFirstResult($this->offset)
-//                    ->setMaxResults($this->limit)
-//                    ->execute();
-//
-//                while ($row = $statement->fetch()) {
-//                    $this->generateSingleLine($row);
-//                }
-//            } else {
-            $res = $this->getDatabaseConnection()->exec_SELECTquery('*',
-                    'tx_news_domain_model_news', 'pid IN (' . implode(',', $this->pidList) . ')' .
-                    ($this->isNewsSitemap ? ' AND datetime>=' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '') .
-                    ' AND sys_language_uid=' . (int)GeneralUtility::_GP('L') .
-                    $this->cObj->enableFields('tx_news_domain_model_news'), '', 'datetime DESC',
-                    $this->offset . ',' . $this->limit
-                );
-            $rowCount = $this->getDatabaseConnection()->sql_num_rows($res);
-            while (false !== ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res))) {
+            /** @var TypoScriptFrontendController $tsfe */
+            $tsfe = $GLOBALS['TSFE'];
+            $tsfe->sys_language_content = (int)$GLOBALS['TSFE']->config['config']['sys_language_uid'];
+
+            $rows = $this->cObj->getRecords('tx_news_domain_model_news', [
+                'selectFields' => '*',
+                'pidInList' => implode(',', $this->pidList),
+                'where' => $this->isNewsSitemap ? 'datetime >= ' . ($GLOBALS['EXEC_TIME'] - 48 * 60 * 60) : '',
+                'orderBy' => 'datetime DESC',
+                'begin' => $this->offset,
+                'max' => $this->limit
+            ]);
+
+            foreach ($rows as $row) {
                 $this->generateSingleLine($row);
             }
-            $this->getDatabaseConnection()->sql_free_result($res);
-//            }
 
-            if ($rowCount === 0) {
+            if (empty($rows)) {
                 echo '<!-- It appears that there are no tx_news entries. If your ' .
                     'news storage sysfolder is outside of the rootline, you may ' .
                     'want to use the dd_googlesitemap.skipRootlineCheck=1 TS ' .
@@ -155,9 +124,12 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
         if ($row['categories'] && $this->useCategorySinglePid) {
             $forceSinglePid = $this->getSinglePidFromCategory($row['uid']);
         }
-        if (($url = $this->getNewsItemUrl($row, $forceSinglePid))) {
-            echo $this->renderer->renderEntry($url, $row['title'], $row['tstamp'],
+        $url = $this->getNewsItemUrl($row, $forceSinglePid);
+        if ($url) {
+            echo $this->renderer->renderEntry($url, $row['title'], $row['datetime'],
                 '', $row['keywords']);
+        } else {
+            echo 'xx';
         }
     }
 
@@ -169,18 +141,25 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
      */
     protected function getSinglePidFromCategory($newsId)
     {
-        $query = 'SELECT sys_category.title,sys_category.single_pid
-                    FROM tx_news_domain_model_news
-                        LEFT JOIN  sys_category_record_mm on sys_category_record_mm.uid_foreign=tx_news_domain_model_news.uid
-                        LEFT JOIN sys_category ON sys_category_record_mm.uid_local = sys_category.uid
-                    WHERE sys_category.deleted=0 AND sys_category.hidden=0
-                        AND sys_category_record_mm.tablenames="tx_news_domain_model_news"
-                        AND sys_category.single_pid > 0 AND sys_category_record_mm.uid_foreign = ' . (int)$newsId . '
-                    LIMIT 1
-                   ';
-        $res = $this->getDatabaseConnection()->sql_query($query);
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_category');
+        $categoryRecord = $queryBuilder
+            ->select('title', 'single_pid')
+            ->from('sys_category')
+            ->leftJoin(
+                'sys_category',
+                'sys_category_record_mm',
+                'sys_category_record_mm',
+                $queryBuilder->expr()->eq('sys_category_record_mm.uid_local', $queryBuilder->quoteIdentifier('sys_category.uid'))
+            )
+            ->where(
+                $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
+                $queryBuilder->expr()->gt('sys_category.single_pid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
 
-        $categoryRecord = $this->getDatabaseConnection()->sql_fetch_assoc($res);
+            )
+            ->setMaxResults(1)
+            ->execute()->fetch();
 
         return $categoryRecord['single_pid'] ?: null;
     }
@@ -197,7 +176,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
         $configuration = $GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.'];
         $link = '';
         if (is_string($configuration['tx_newsLink']) && is_array($configuration['tx_newsLink.'])) {
-            $cObj = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+            $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
             $cObj->start($newsRow, 'tx_news_domain_model_news');
             $cObj->setCurrentVal($forceSinglePid ?: $this->singlePid);
             $link = $cObj->cObjGetSingle($configuration['tx_newsLink'], $configuration['tx_newsLink.']);
@@ -222,7 +201,7 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
             }
         }
 
-        if ($link == '') {
+        if ($link === '') {
             $newsType = (int)$newsRow['type'];
             $conf = [
                 'additionalParams' => '&tx_news_pi1[news]=' . $newsRow['uid'] . $additionalParams,
@@ -264,25 +243,31 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
     /**
      * Check if supplied page id and current page are in the same root line
      *
-     * @param    int $pid Page id to check
-     * @return    bool    true if page is in the root line
+     * @param int $pid Page id to check
+     * @return bool true if page is in the root line
      */
     protected function isInRootline($pid)
     {
-        if (isset($GLOBALS['TSFE']->config['config']['tx_ddgooglesitemap_skipRootlineCheck'])) {
-            $skipRootlineCheck = $GLOBALS['TSFE']->config['config']['tx_ddgooglesitemap_skipRootlineCheck'];
+        /** @var TypoScriptFrontendController $tsfe */
+        $tsfe = $GLOBALS['TSFE'];
+        if (isset($tsfe->config['config']['tx_ddgooglesitemap_skipRootlineCheck'])) {
+            $skipRootlineCheck = $tsfe->config['config']['tx_ddgooglesitemap_skipRootlineCheck'];
         } else {
-            $skipRootlineCheck = $GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['skipRootlineCheck'];
+            $skipRootlineCheck = $tsfe->tmpl->setup['tx_ddgooglesitemap.']['skipRootlineCheck'];
         }
         if ($skipRootlineCheck) {
             $result = true;
         } else {
             $result = false;
-            $rootPid = intval($GLOBALS['TSFE']->tmpl->setup['tx_ddgooglesitemap.']['forceStartPid']);
+            $rootPid = intval($tsfe->tmpl->setup['tx_ddgooglesitemap.']['forceStartPid']);
             if ($rootPid == 0) {
-                $rootPid = $GLOBALS['TSFE']->id;
+                $rootPid = $tsfe->id;
             }
-            $rootline = $GLOBALS['TSFE']->sys_page->getRootLine($pid);
+            try {
+                $rootline = $tsfe->sys_page->getRootLine($pid);
+            } catch (\Exception $e) {
+                $rootline = [];
+            }
             foreach ($rootline as $row) {
                 if ($row['uid'] == $rootPid) {
                     $result = true;
@@ -291,13 +276,5 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
             }
         }
         return $result;
-    }
-
-    /**
-     * @return \TYPO3\CMS\Core\Database\DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
     }
 }

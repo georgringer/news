@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="km">
+    <header/>
+    <body>
+      <trans-unit id="search-text" xml:space="preserve" approved="yes">
+				<source>There are %1$s results for "%2$s".</source>
+			<target state="translated">មាន %1$s លទ្ទផលសម្រាប់ "%2$s"។</target></trans-unit>
+      <trans-unit id="search-start" xml:space="preserve" approved="yes">
+				<source>Start search</source>
+			<target state="translated">ចាប់ផ្តើមការស្វែងរក</target></trans-unit>
+      <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
+				<source>No news found.</source>
+			<target state="translated">មិនមានព័ត៌មាន</target></trans-unit>
+      <trans-unit id="search-subject" xml:space="preserve" approved="yes">
+				<source>Text</source>
+			<target state="translated">អត្ថបទ</target></trans-unit>
+      <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
+				<source>Minimum Date</source>
+			<target state="translated">កាលបរិច្ឆេទ​កាត់</target></trans-unit>
+      <trans-unit id="search-maximumDate" xml:space="preserve" approved="yes">
+				<source>Maximum Date</source>
+			<target state="translated">កាលបរិច្ឆទពេញ</target></trans-unit>
+      <trans-unit id="more-link" xml:space="preserve" approved="yes">
+				<source>Read more</source>
+			<target state="translated">សូមអានបន្ត</target></trans-unit>
+      <trans-unit id="back-link" xml:space="preserve" approved="yes">
+				<source>Back</source>
+			<target state="translated">ត្រលប់</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
+				<source>Page %s of %s.</source>
+			<target state="translated">ទំព័រ​%s​នៃ%s.</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
+				<source>Next</source>
+			<target state="translated">ទំព័របន្ទាប់</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
+				<source>Previous</source>
+			<target state="translated">ទំព័រមុន</target></trans-unit>
+      <trans-unit id="categories" xml:space="preserve" approved="yes">
+				<source>Categories</source>
+			<target state="translated">ប្រភេទ</target></trans-unit>
+      <trans-unit id="tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="translated">ស្លាក</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve" approved="yes">
+				<source>entry</source>
+			<target state="translated">សមាសធាតុ</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve" approved="yes">
+				<source>entries</source>
+			<target state="translated">សមាសធាតុច្រើន</target></trans-unit>
+      <trans-unit id="month.01" xml:space="preserve" approved="yes">
+				<source>January</source>
+			<target state="translated">មករា</target></trans-unit>
+      <trans-unit id="month.02" xml:space="preserve" approved="yes">
+				<source>February</source>
+			<target state="translated">កុម្ភះ</target></trans-unit>
+      <trans-unit id="month.03" xml:space="preserve" approved="yes">
+				<source>March</source>
+			<target state="translated">មីនា</target></trans-unit>
+      <trans-unit id="month.04" xml:space="preserve" approved="yes">
+				<source>April</source>
+			<target state="translated">មេសា</target></trans-unit>
+      <trans-unit id="month.05" xml:space="preserve" approved="yes">
+				<source>May</source>
+			<target state="translated">ឧសភា</target></trans-unit>
+      <trans-unit id="month.06" xml:space="preserve" approved="yes">
+				<source>June</source>
+			<target state="translated">មិថុនា</target></trans-unit>
+      <trans-unit id="month.07" xml:space="preserve" approved="yes">
+				<source>July</source>
+			<target state="translated">កក្កដា</target></trans-unit>
+      <trans-unit id="month.08" xml:space="preserve" approved="yes">
+				<source>August</source>
+			<target state="translated">សីហា</target></trans-unit>
+      <trans-unit id="month.09" xml:space="preserve" approved="yes">
+				<source>September</source>
+			<target state="translated">កញ្ញា</target></trans-unit>
+      <trans-unit id="month.10" xml:space="preserve" approved="yes">
+				<source>October</source>
+			<target state="translated">តុលា</target></trans-unit>
+      <trans-unit id="month.11" xml:space="preserve" approved="yes">
+				<source>November</source>
+			<target state="translated">វិច្ឆិកា</target></trans-unit>
+      <trans-unit id="month.12" xml:space="preserve" approved="yes">
+				<source>December</source>
+			<target state="translated">ធ្នូ</target></trans-unit>
+      <trans-unit id="day.1" xml:space="preserve" approved="yes">
+				<source>Monday</source>
+			<target state="translated">ចន្ទ</target></trans-unit>
+      <trans-unit id="day.2" xml:space="preserve" approved="yes">
+				<source>Tuesday</source>
+			<target state="translated">អង្គារ</target></trans-unit>
+      <trans-unit id="day.3" xml:space="preserve" approved="yes">
+				<source>Wednesday</source>
+			<target state="translated">ពុធ</target></trans-unit>
+      <trans-unit id="day.4" xml:space="preserve" approved="yes">
+				<source>Thursday</source>
+			<target state="translated">ព្រហស្បហិ៍</target></trans-unit>
+      <trans-unit id="day.5" xml:space="preserve" approved="yes">
+				<source>Friday</source>
+			<target state="translated">សុក្រ</target></trans-unit>
+      <trans-unit id="day.6" xml:space="preserve" approved="yes">
+				<source>Saturday</source>
+			<target state="translated">សៅរ៍</target></trans-unit>
+      <trans-unit id="day.7" xml:space="preserve" approved="yes">
+				<source>Sunday</source>
+			<target state="translated">អាទិត្យ</target></trans-unit>
+      <trans-unit id="dateFormat" xml:space="preserve" approved="yes">
+				<source>%m/%d/%Y</source>
+			<target state="translated">%d​%m​%Y</target></trans-unit>
+      <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news available.</source>
+			<target state="translated">ពុំមាន​​ពត៌មាន​សម្រាប់បង្ហាញទេ។</target></trans-unit>
+      <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
+				<source>No categories available.</source>
+			<target state="translated">ពំុមាន​ប្រភេទ​សម្រាប់បង្ហាញទេ។</target></trans-unit>
+    </body>
+  </file>
+</xliff>

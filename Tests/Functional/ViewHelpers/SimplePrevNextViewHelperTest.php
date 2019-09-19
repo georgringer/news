@@ -12,7 +12,8 @@ use DateTime;
 use GeorgRinger\News\Domain\Model\News;
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
 use Nimut\TestingFramework\TestCase\FunctionalTestCase;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class SimplePrevNextViewHelperTest
@@ -24,7 +25,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     /** @var \PHPUnit_Framework_MockObject_MockObject|AccessibleMockObjectInterface|\GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper */
     protected $mockedViewHelper;
 
-    /** @var \GeorgRinger\News\Domain\Model\News */
+    /** @var News */
     protected $news;
 
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
@@ -47,7 +48,6 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     public function allNeighboursCanBeFound()
     {
         $this->setDate(1396035186);
-
         $actual = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
 
         $exp = [
@@ -97,14 +97,15 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
 
     protected function getRow($id)
     {
-        return $this->getDb()->exec_SELECTgetSingleRow('*', 'tx_news_domain_model_news', 'uid=' . (int)$id);
-    }
-
-    /**
-     * @return DatabaseConnection
-     */
-    protected function getDb()
-    {
-        return $GLOBALS['TYPO3_DB'];
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_news_domain_model_news');
+        return $queryBuilder
+            ->select('*')
+            ->from('tx_news_domain_model_news')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
+            )
+            ->setMaxResults(1)
+            ->execute()->fetch();
     }
 }

@@ -21,7 +21,7 @@
 		<f:then>
 			<div class="news-img-wrap">
 				<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
-					<f:alias map="{mediaElement: '{newsItem.mediaPreviews.0}'}">
+					<f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
 						<f:if condition="{mediaElement.originalResource.type} == 2">
 							<f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
 						</f:if>

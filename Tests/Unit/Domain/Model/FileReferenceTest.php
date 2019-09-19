@@ -90,7 +90,7 @@ class FileReferenceTest extends UnitTestCase
     public function showInPreviewBeSet()
     {
         $domainModelInstance = new FileReference();
-        $value = true;
+        $value = 2;
         $domainModelInstance->setShowinpreview($value);
         $this->assertEquals($value, $domainModelInstance->getShowinpreview());
     }

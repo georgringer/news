@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="fi">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News system</source>
+			<target state="translated">News system - uutisohjelma</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve" approved="yes">
+				<source>No view yet configured</source>
+			<target state="translated">Ei määritelty vielä</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="translated">Haku</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="translated">Arkisto</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
+				<source>Archived</source>
+			<target state="translated">Arkistoitu</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve" approved="yes">
+				<source>Archive date</source>
+			<target state="translated">Arkistointipäivä</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="translated">Ei</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="translated">Kyllä</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve">
+				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			</source>
+			<target state="needs-translation">
+			</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="translated">Päivä ja aika</target></trans-unit>
+      <trans-unit id="module.recursive" xml:space="preserve" approved="yes">
+				<source>Recursive</source>
+			<target state="translated">Rekursiivinen (syvyystaso)</target></trans-unit>
+      <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time Restriction</source>
+			<target state="translated">Aikarajoitus</target></trans-unit>
+      <trans-unit id="module.createNewCategory" xml:space="preserve" approved="yes">
+				<source>Create a new category</source>
+			<target state="translated">Luo uusi kategoria</target></trans-unit>
+      <trans-unit id="module.createNewNewsRecord" xml:space="preserve" approved="yes">
+				<source>Create new news record</source>
+			<target state="translated">Luo uusi uutinen</target></trans-unit>
+      <trans-unit id="module.topNewsYes" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="translated">Kyllä</target></trans-unit>
+      <trans-unit id="module.topNewsNo" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="translated">Ei</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="translated">Haku</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target state="needs-translation">
+			</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve">
+				<source>This is the "News importer module". </source>
+			<target state="needs-translation"> </target></trans-unit>
+    </body>
+  </file>
+</xliff>

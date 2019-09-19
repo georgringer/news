@@ -16,6 +16,7 @@ return [
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
+        'translationSource' => 'l10n_source',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
         'default_sortby' => 'ORDER BY sorting',
@@ -42,25 +43,29 @@ return [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'special' => 'languages',
                 'items' => [
                     [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+                        'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
                         -1,
                         'flags-multiple'
                     ],
@@ -71,7 +76,7 @@ return [
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -83,6 +88,11 @@ return [
                 'default' => 0,
             ]
         ],
+        'l10n_source' => [
+            'config' => [
+                'type' => 'passthrough'
+            ]
+        ],
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
@@ -91,7 +101,7 @@ return [
         ],
         'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
                 'default' => 0
@@ -99,44 +109,40 @@ return [
         ],
         'title' => [
             'exclude' => false,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.title',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'description' => [
             'exclude' => true,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.description',
             'config' => [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
         'uri' => [
             'exclude' => false,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => $ll . 'tx_news_domain_model_link.uri',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputLink',
                 'placeholder' => $ll . 'tx_news_domain_model_link.uri.placeholder',
                 'size' => 30,
                 'eval' => 'trim,required',
                 'softref' => 'typolink',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'Link',
-                        'icon' => 'actions-wizard-link',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
-                    ]
-                ]
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
             ]
         ],
     ],

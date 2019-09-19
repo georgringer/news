@@ -8,9 +8,11 @@ namespace GeorgRinger\News\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use Doctrine\DBAL\Connection;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Service\CategoryService;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -31,23 +33,38 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     }
 
     /**
+     * @see https://github.com/georgringer/news/issues/900
+     * @var bool
+     * @deprecated should be set default once 9+10 is only
+     */
+    protected $respectSysLanguageInFindInList = false;
+
+    /**
      * Find category by import source and import id
      *
      * @param string $importSource import source
      * @param int $importId import id
-     * @return Category
+     * @param bool $asArray return result as array
+     * @return Category|array
      */
-    public function findOneByImportSourceAndImportId($importSource, $importId)
+    public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setIgnoreEnableFields(true);
 
-        return $query->matching(
+        $result = $query->matching(
             $query->logicalAnd(
                 $query->equals('importSource', $importSource),
                 $query->equals('importId', $importId)
-            ))->execute()->getFirst();
+            ))->execute($asArray);
+        if ($asArray) {
+            if (isset($result[0])) {
+                return $result[0];
+            }
+            return [];
+        }
+        return $result->getFirst();
     }
 
     /**
@@ -127,7 +144,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         }
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $query->getQuerySettings()->setRespectSysLanguage(false);
+        $query->getQuerySettings()->setRespectSysLanguage($this->respectSysLanguageInFindInList);
 
         if (count($ordering) > 0) {
             $query->setOrderings($ordering);
@@ -174,10 +191,16 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         $language = $this->getSysLanguageUid();
         if ($language > 0 && !empty($idList)) {
             if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-                $whereClause = 'sys_language_uid=' . $language . ' AND l10n_parent IN(' . implode(',',
-                        $idList) . ')' . $GLOBALS['TSFE']->sys_page->enableFields('sys_category');
-                $rows = (array)$GLOBALS['TYPO3_DB']->exec_SELECTgetRows('l10n_parent, uid,sys_language_uid', 'sys_category',
-                    $whereClause);
+                $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                    ->getQueryBuilderForTable('sys_category');
+                $rows = $queryBuilder
+                    ->select('l10n_parent', 'uid', 'sys_language_uid')
+                    ->from('sys_category')
+                    ->where(
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT)),
+                        $queryBuilder->expr()->in('l10n_parent', $queryBuilder->createNamedParameter($idList, Connection::PARAM_INT_ARRAY))
+                    )
+                    ->execute()->fetchAll();
 
                 $idList = $this->replaceCategoryIds($idList, $rows);
             }
@@ -195,8 +218,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         $sysLanguage = 0;
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $sysLanguage = $GLOBALS['TSFE']->sys_language_content;
-        } elseif (intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('L'))) {
-            $sysLanguage = intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('L'));
+        } elseif ((int)GeneralUtility::_GP('L')) {
+            $sysLanguage = (int)GeneralUtility::_GP('L');
         }
 
         return $sysLanguage;
@@ -219,5 +242,10 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         }
 
         return $idList;
+    }
+
+    public function setRespectSysLanguageInFindInList(bool $value)
+    {
+        $this->respectSysLanguageInFindInList = $value;
     }
 }

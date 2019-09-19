@@ -16,3 +16,4 @@ Templates
 	RenderInColumns/Index
 	RenderContentElements/Index
 	GroupNewsRecords/Index
+	MultiCategorySelection/Index

@@ -98,6 +98,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     protected $hideIdList;
 
     /** @var string */
+    protected $idList = '';
+
+    /** @var string */
     protected $action = '';
 
     /** @var string */
@@ -109,6 +112,13 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @var array
      */
     protected $types = [];
+
+    /**
+     * Holding custom data, use e.g. your ext key as array key
+     *
+     * @var array
+     */
+    protected $_customSettings = [];
 
     /**
      * Set archive settings
@@ -537,17 +547,18 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     }
 
     /**
-     * Get datefield which is used for datemenu
+     * Get date field which is used for datemenu
      *
      * @return string
      */
     public function getDateField()
     {
-        if (empty($this->dateField) || in_array($this->dateField, ['datetime', 'archive'])) {
+        if (in_array($this->dateField, ['datetime', 'archive'])
+            || isset($GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$this->dateField])) {
             return $this->dateField;
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     /**
@@ -609,6 +620,24 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     public function setHideIdList($hideIdList)
     {
         $this->hideIdList = $hideIdList;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdList()
+    {
+        return $this->idList;
+    }
+
+    /**
+     * @param string $idList
+     * @return NewsDemand
+     */
+    public function setIdList($idList)
+    {
+        $this->idList = $idList;
         return $this;
     }
 
@@ -678,5 +707,21 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     public function setTypes($types)
     {
         $this->types = $types;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCustomSettings(): array
+    {
+        return $this->_customSettings;
+    }
+
+    /**
+     * @param array $customSettings
+     */
+    public function setCustomSettings(array $customSettings)
+    {
+        $this->_customSettings = $customSettings;
     }
 }

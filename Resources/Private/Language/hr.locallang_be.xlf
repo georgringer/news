@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="hr">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News system</source>
+			<target state="translated">Sustav vijesti</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
+				<source>Versatile news system</source>
+			<target state="translated">Sustav za objavu vijesti</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="translated">Postavke</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
+				<source>Additional</source>
+			<target state="translated">Dodatno</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
+				<source>Template</source>
+			<target state="translated">Predložak</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
+				<source>What to display</source>
+			<target state="translated">Što prikazati</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve" approved="yes">
+				<source>List view</source>
+			<target state="translated">Popis</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve" approved="yes">
+				<source>List view (without overloading detail view)</source>
+			<target state="translated">Popis (bez dodatnih detalja)</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve" approved="yes">
+				<source>Detail view</source>
+			<target state="translated">Detalji</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve" approved="yes">
+				<source>Search form</source>
+			<target state="translated">Obrazac za pretraživanje</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve" approved="yes">
+				<source>Search result</source>
+			<target state="translated">Rezultati pretrage</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve" approved="yes">
+				<source>Date menu</source>
+			<target state="translated">Izbornik datuma</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve" approved="yes">
+				<source>List of selected items</source>
+			<target state="translated">Popis izabranih vijesti</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve" approved="yes">
+				<source>Category Menu</source>
+			<target state="translated">Izbornik kategorije</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve" approved="yes">
+				<source>No view yet configured</source>
+			<target state="translated">Nije podešen niti jedan pregled</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="translated">Pretraga</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve" approved="yes">
+				<source>Others</source>
+			<target state="translated">Ostali</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve" approved="yes">
+				<source>Tag list</source>
+			<target state="translated">Popis tagova</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="translated">Arhiva</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
+				<source>Only active (non archived)</source>
+			<target state="translated">Samo aktivni (ne arhivirani)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
+				<source>Archived</source>
+			<target state="translated">Arhivirani</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
+				<source>Sort by</source>
+			<target state="translated">Poredaj prema</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
+				<source>Manual sorting</source>
+			<target state="translated">Ručni poredak</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve" approved="yes">
+				<source>Last edited</source>
+			<target state="translated">Zadnje uređivanje</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve" approved="yes">
+				<source>Created</source>
+			<target state="translated">Stvoreno</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="translated">Dani datum/vrijeme</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="translated">Naslov</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve" approved="yes">
+				<source>Sort direction</source>
+			<target state="translated">Smjer poretka</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve" approved="yes">
+				<source>Ascending</source>
+			<target state="translated">Uzlazno</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve" approved="yes">
+				<source>Descending</source>
+			<target state="translated">Silazno</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField" xml:space="preserve" approved="yes">
+				<source>Date field to use</source>
+			<target state="translated">Koristi polje datuma</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="translated">Dani datum/vrijeme</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve" approved="yes">
+				<source>Archive date</source>
+			<target state="translated">Datum arhive</target></trans-unit>
+      <trans-unit id="flexforms_general.categories" xml:space="preserve" approved="yes">
+				<source>Category selection</source>
+			<target state="translated">Odabir kategorije</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve" approved="yes">
+				<source>Category mode</source>
+			<target state="translated">Način kategorije</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve" approved="yes">
+				<source>Don't care, show all</source>
+			<target state="translated">Nije bitno, prikaži sve</target></trans-unit>
+      <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve" approved="yes">
+				<source>Include subcategories</source>
+			<target state="translated">Uključi podkategorije</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time limit (LOW): higher than given time</source>
+			<target state="translated">Datum od:</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Time limit (HIGH): News less than given time</source>
+			<target state="translated">Datum do:</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve" approved="yes">
+				<source>Top News</source>
+			<target state="translated">Posebne vijesti</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.1" xml:space="preserve" approved="yes">
+				<source>only Top News records</source>
+			<target state="translated">Samo posebne vijesti</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.2" xml:space="preserve" approved="yes">
+				<source>except Top News records</source>
+			<target state="translated">Osim posebnih vijesti</target></trans-unit>
+      <trans-unit id="flexforms_general.singleNews" xml:space="preserve" approved="yes">
+				<source>Show a single news record</source>
+			<target state="translated">Prikaži pojedinačnu vijest</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve" approved="yes">
+				<source>Allow preview of hidden records</source>
+			<target state="translated">Dopusti pregled skrivenih vijesti</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="translated">Ne</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="translated">Da</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="translated">Određeno u Typoscriptu</target></trans-unit>
+      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="translated">Određeno u Typoscriptu</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
+				<source>[no constraint]</source>
+			<target state="translated">(bez ograničenja)</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
+				<source>Max width for media elements</source>
+			<target state="translated">Maksimalna širina za medijski element</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve" approved="yes">
+				<source>Max height for media elements</source>
+			<target state="translated">Maksimalna visina za medijski element</target></trans-unit>
+      <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve" approved="yes">
+				<source>Length of teaser (in chars)</source>
+			<target state="translated">Duljina uvoda (broj znakova)</target></trans-unit>
+      <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
+				<source>Template Layout</source>
+			<target state="translated">Predložak</target></trans-unit>
+      <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
+				<source>PageId for single news display</source>
+			<target state="translated">ID stranice za pojedinačnu vijest</target></trans-unit>
+      <trans-unit id="flexforms_additional.backPid" xml:space="preserve" approved="yes">
+				<source>PageId to return to</source>
+			<target state="translated">ID stranice za povratak</target></trans-unit>
+      <trans-unit id="flexforms_additional.listPid" xml:space="preserve" approved="yes">
+				<source>PageId for list display</source>
+			<target state="translated">ID stranice za prikaz liste vijesti</target></trans-unit>
+      <trans-unit id="flexforms_additional.limit" xml:space="preserve" approved="yes">
+				<source>Max records displayed</source>
+			<target state="translated">Najveći broj vijesti za prikazati</target></trans-unit>
+      <trans-unit id="flexforms_additional.offset" xml:space="preserve" approved="yes">
+				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
+			<target state="translated">Počni zadanom viješću (0 znači prva vijest, 1 druga...)</target></trans-unit>
+      <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve" approved="yes">
+				<source>Hide the pagination</source>
+			<target state="translated">Sakrij numeriranje stranica</target></trans-unit>
+      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve" approved="yes">
+				<source>Items per Page</source>
+			<target state="translated">Broj vijesti po stranici</target></trans-unit>
+      <trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve" approved="yes">
+				<source>Sort "Top news" before</source>
+			<target state="translated">Složi posebne vijesti prve</target></trans-unit>
+      <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve" approved="yes">
+				<source>Exclude already displayed news</source>
+			<target state="translated">Isključi već prikazane vijesti</target></trans-unit>
+      <trans-unit id="flexforms_additional.tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="translated">Oznake</target></trans-unit>
+      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
+				<source>Page with uid "%s" is not available anymore!</source>
+			<target state="translated">Stranica ID "%s" više nije dostupna!</target></trans-unit>
+      <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve" approved="yes">
+				<source>News record with uid "%s" is not available anymore!</source>
+			<target state="translated">Vijest ID "%s" više nije dostupna!</target></trans-unit>
+      <trans-unit id="pagemodule_simple" xml:space="preserve" approved="yes">
+				<source>Simple list</source>
+			<target state="translated">Jednostavna lista</target></trans-unit>
+      <trans-unit id="pagemodule_advanced" xml:space="preserve" approved="yes">
+				<source>Advanced list</source>
+			<target state="translated">Napredna lista</target></trans-unit>
+      <trans-unit id="pagemodule_complex" xml:space="preserve" approved="yes">
+				<source>Full list</source>
+			<target state="translated">Potpuna lista</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve">
+				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			</source>
+			<target state="needs-translation">
+			</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
+				<source>Categories from current page</source>
+			<target state="translated">Kategorije trenutne stranice</target></trans-unit>
+      <trans-unit id="module.headline" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="translated">Postavke</target></trans-unit>
+      <trans-unit id="module.recursive" xml:space="preserve" approved="yes">
+				<source>Recursive</source>
+			<target state="translated">Rekurzivan</target></trans-unit>
+      <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time Restriction</source>
+			<target state="translated">Vrijeme od:</target></trans-unit>
+      <trans-unit id="module.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Time Restriction High</source>
+			<target state="translated">Vrijeme do:</target></trans-unit>
+      <trans-unit id="module.createNewCategory" xml:space="preserve" approved="yes">
+				<source>Create a new category</source>
+			<target state="translated">Napravi novu kategoriju</target></trans-unit>
+      <trans-unit id="module.createNewNewsRecord" xml:space="preserve" approved="yes">
+				<source>Create new news record</source>
+			<target state="translated">Napravi novu vijest</target></trans-unit>
+      <trans-unit id="module.createNewTag" xml:space="preserve" approved="yes">
+				<source>Create new tag record</source>
+			<target state="translated">Napravi novu oznaku</target></trans-unit>
+      <trans-unit id="module.topNewsYes" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="translated">Da</target></trans-unit>
+      <trans-unit id="module.topNewsNo" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="translated">Ne</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="translated">Pretraga</target></trans-unit>
+      <trans-unit id="module.newsListing" xml:space="preserve" approved="yes">
+				<source>News Listing</source>
+			<target state="translated">Lista vijesti</target></trans-unit>
+      <trans-unit id="module.newsCount" xml:space="preserve" approved="yes">
+				<source>%s news records</source>
+			<target state="translated">%s vijesti</target></trans-unit>
+      <trans-unit id="module.newsPidListing" xml:space="preserve" approved="yes">
+				<source>News Pid listing</source>
+			<target state="translated">Stranica liste vijesti</target></trans-unit>
+      <trans-unit id="administration.title" xml:space="preserve" approved="yes">
+				<source>News administration</source>
+			<target state="translated">Vijesti</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target state="needs-translation">
+			</target></trans-unit>
+      <trans-unit id="news-folder" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="translated">Vijesti</target></trans-unit>
+      <trans-unit id="import.header" xml:space="preserve" approved="yes">
+				<source>News Importer</source>
+			<target state="translated">Uvoz vijesti</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve">
+				<source>This is the "News importer module". </source>
+			<target state="needs-translation"> </target></trans-unit>
+    </body>
+  </file>
+</xliff>

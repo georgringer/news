@@ -1,21 +1,31 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-/**
- * Add extra field showinpreview and some special news controls to sys_file_reference record
- */
+if (\GeorgRinger\News\Utility\EmConfiguration::getSettings()->isAdvancedMediaPreview()) {
+    $fieldConfig = [
+        'type' => 'select',
+        'renderType' => 'selectSingle',
+        'items' => [
+            ['LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinviews.0', 0, ''],
+            ['LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinviews.1', 1, ''],
+            ['LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinviews.2', 2, ''],
+        ],
+        'default' => 0,
+    ];
+} else {
+    $fieldConfig = [
+        'type' => 'check',
+        'default' => 0
+    ];
+}
+
 $newSysFileReferenceColumns = [
     'showinpreview' => [
         'exclude' => true,
-        'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinpreview',
-        'config' => [
-            'type' => 'check',
-            'default' => 0
-        ]
+        'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinviews',
+        'config' => $fieldConfig
     ],
 ];
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('sys_file_reference', $newSysFileReferenceColumns);
-
-// add special news palette
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('sys_file_reference', 'newsPalette', 'showinpreview');

@@ -9,6 +9,9 @@
 			<trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve">
 				<source>Alternative Titles</source>
 			</trans-unit>
+			<trans-unit id="tx_news_domain_model_news.palettes.dates" xml:space="preserve">
+				<source>Dates</source>
+			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news" xml:space="preserve">
 				<source>News</source>
 			</trans-unit>
@@ -143,6 +146,18 @@
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_media.showinpreview" xml:space="preserve">
 				<source>Show in list views</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_media.showinviews" xml:space="preserve">
+				<source>Show in views</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_media.showinviews.0" xml:space="preserve">
+				<source>Show only in detail views</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_media.showinviews.1" xml:space="preserve">
+				<source>Show in all views</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_media.showinviews.2" xml:space="preserve">
+				<source>Show only in list views</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve">
 				<source>Speaking URL path segment</source>

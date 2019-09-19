@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
 /**
@@ -229,6 +230,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $sorting;
 
+    /** @var string */
+    protected $notes;
+
     /**
      * Initialize categories and media relation
      *
@@ -401,7 +405,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getYearOfArchive()
     {
-        return $this->getArchive()->format('Y');
+        if ($this->getArchive()) {
+            return $this->getArchive()->format('Y');
+        }
     }
 
     /**
@@ -411,7 +417,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMonthOfArchive()
     {
-        return $this->getArchive()->format('m');
+        if ($this->getArchive()) {
+            return $this->getArchive()->format('m');
+        }
     }
 
     /**
@@ -421,7 +429,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getDayOfArchive()
     {
-        return (int)$this->archive->format('d');
+        if ($this->archive) {
+            return (int)$this->archive->format('d');
+        }
     }
 
     /**
@@ -550,7 +560,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $items = $this->getRelatedFrom();
         if ($items) {
             $items = $items->toArray();
-            usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+            usort($items, function ($a, $b) {
+                return $a->getDatetime() < $b->getDatetime();
+            });
         }
         return $items;
     }
@@ -575,7 +587,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $all = array_unique($all);
 
         if (count($all) > 0) {
-            usort($all, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+            usort($all, function ($a, $b) {
+                return $a->getDatetime() < $b->getDatetime();
+            });
         }
         return $all;
     }
@@ -590,7 +604,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $items = $this->getRelated();
         if ($items) {
             $items = $items->toArray();
-            usort($items, create_function('$a, $b', 'return $a->getDatetime() < $b->getDatetime();'));
+            usort($items, function ($a, $b) {
+                return $a->getDatetime() < $b->getDatetime();
+            });
         }
         return $items;
     }
@@ -789,83 +805,88 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return array
      */
-    public function getFalMediaPreviews()
-    {
-        if ($this->falMediaPreviews === null && $this->getFalMedia()) {
-            $this->falMediaPreviews = [];
-            /** @var $mediaItem FileReference */
-            foreach ($this->getFalMedia() as $mediaItem) {
-                if ($mediaItem->getOriginalResource()->getProperty('showinpreview')) {
-                    $this->falMediaPreviews[] = $mediaItem;
-                }
-            }
-        }
-        return $this->falMediaPreviews;
-    }
-
-    /**
-     * Short method for getFalMediaPreviews
-     *
-     * @return array
-     */
     public function getMediaPreviews()
     {
-        return $this->getFalMediaPreviews();
+        $configuration = [FileReference::VIEW_LIST_AND_DETAIL, FileReference::VIEW_LIST_ONLY];
+        return $this->getMediaItemsByConfiguration($configuration);
     }
 
     /**
-     * Get all media elements which are not tagged as preview
-     *
-     * @return array
-     */
-    public function getFalMediaNonPreviews()
-    {
-        if ($this->falMediaNonPreviews === null && $this->getFalMedia()) {
-            $this->falMediaNonPreviews = [];
-            /** @var $mediaItem FileReference */
-            foreach ($this->getFalMedia() as $mediaItem) {
-                if (!$mediaItem->getOriginalResource()->getProperty('showinpreview')) {
-                    $this->falMediaNonPreviews[] = $mediaItem;
-                }
-            }
-        }
-        return $this->falMediaNonPreviews;
-    }
-
-    /**
-     * Short method for getFalMediaNonPreviews
+     * Get all media elements which are allowed for detail views
      *
      * @return array
      */
     public function getMediaNonPreviews()
     {
-        return $this->getFalMediaNonPreviews();
+        $configuration = [FileReference::VIEW_LIST_AND_DETAIL, FileReference::VIEW_DETAIL_ONLY];
+        return $this->getMediaItemsByConfiguration($configuration);
     }
 
     /**
-     * Get first media element which is tagged as preview and is of type image
+     * Get all media elements which are only for list views
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @return array
      */
-    public function getFirstFalImagePreview()
+    public function getMediaListOnly()
     {
-        $mediaElements = $this->getFalMediaPreviews();
-        if (is_array($mediaElements)) {
-            foreach ($mediaElements as $mediaElement) {
-                return $mediaElement;
-            }
+        $configuration = [FileReference::VIEW_LIST_ONLY];
+        return $this->getMediaItemsByConfiguration($configuration);
+    }
+
+    /**
+     * Get all media elements which are only for detail views
+     *
+     * @return array
+     */
+    public function getMediaDetailOnly()
+    {
+        $configuration = [FileReference::VIEW_DETAIL_ONLY];
+        return $this->getMediaItemsByConfiguration($configuration);
+    }
+
+    /**
+     * Get first preview
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
+     */
+    public function getFirstPreview()
+    {
+        foreach ($this->getMediaPreviews() as $mediaElement) {
+            return $mediaElement;
         }
         return null;
     }
 
     /**
-     * Short method for getFirstFalImagePreview
+     * Get first non preview
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
-    public function getFirstPreview()
+    public function getFirstNonePreview()
     {
-        return $this->getFirstFalImagePreview();
+        foreach ($this->getMediaNonPreviews() as $mediaElement) {
+            return $mediaElement;
+        }
+        return null;
+    }
+
+    /**
+     * @param array $list
+     * @return array
+     */
+    protected function getMediaItemsByConfiguration(array $list): array
+    {
+        $items = [];
+        if ($this->getFalMedia()) {
+            foreach ($this->getFalMedia() as $mediaItem) {
+                /** @var $mediaItem FileReference */
+                $configuration = (int)$mediaItem->getOriginalResource()->getProperty('showinpreview');
+                if (in_array($configuration, $list, true)) {
+                    $items[] = $mediaItem;
+                }
+            }
+        }
+        return $items;
     }
 
     /**
@@ -1306,7 +1327,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getYearOfStarttime()
     {
-        return $this->getStarttime()->format('Y');
+        if ($this->getStarttime()) {
+            return $this->getStarttime()->format('Y');
+        }
     }
 
     /**
@@ -1316,7 +1339,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMonthOfStarttime()
     {
-        return $this->getStarttime()->format('m');
+        if ($this->getStarttime()) {
+            return $this->getStarttime()->format('m');
+        }
     }
 
     /**
@@ -1326,7 +1351,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getDayOfStarttime()
     {
-        return (int)$this->starttime->format('d');
+        if ($this->starttime) {
+            return (int)$this->starttime->format('d');
+        }
     }
 
     /**
@@ -1356,7 +1383,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getYearOfEndtime()
     {
-        return $this->getEndtime()->format('Y');
+        if ($this->getEndtime()) {
+            return $this->getEndtime()->format('Y');
+        }
     }
 
     /**
@@ -1366,7 +1395,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMonthOfEndtime()
     {
-        return $this->getEndtime()->format('m');
+        if ($this->getEndtime()) {
+            return $this->getEndtime()->format('m');
+        }
     }
 
     /**
@@ -1376,7 +1407,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getDayOfEndtime()
     {
-        return (int)$this->endtime->format('d');
+        if ($this->endtime) {
+            return (int)$this->endtime->format('d');
+        }
     }
 
     /**
@@ -1457,5 +1490,39 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getImportSource()
     {
         return $this->importSource;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * @param string $notes
+     */
+    public function setNotes(string $notes)
+    {
+        $this->notes = $notes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFalMediaPreviews()
+    {
+        return $this->getMediaPreviews();
+    }
+
+    public function getFirstFalImagePreview()
+    {
+        return $this->getFirstPreview();
+    }
+
+    public function getFalMediaNonPreviews()
+    {
+        return $this->getMediaNonPreviews();
     }
 }

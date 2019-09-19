@@ -40,6 +40,18 @@ Besides the ViewHelper ``<n:link />`` you can also use the ViewHelpers of fluid 
 	<f:link.page pageUid="13" additionalParams="{tx_news_pi1: {controller: 'News',action: 'detail', news:newsItem.uid}}">{newsItem.title}</f:link.page>
 	<a href="{f:uri.page(pageUid:13,additionalParams:'{tx_news_pi1:{controller:\'News\',action:\'detail\',news:newsItem.uid}}')}">{newsItem.title}</a>
 
+Set n:link target page in fluid
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If the detail page should not be set in the plugin or by a category, it can also be set within the template:
+
+.. code-block:: html
+
+   <n:link
+      newsItem="{newsItem}"
+      configuration=“{parameter:settings.somePid}"
+      settings="{settings}" title="{newsItem.title}"><f:translate key="more-link"/></n:link>
+
+The setting `settings.somePid` can e.g. set with `plugin.tx_news.settings.somePid=123`.
 
 Render category rootline
 ^^^^^^^^^^^^^^^^^^^^^^^^

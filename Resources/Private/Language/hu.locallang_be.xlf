@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news" target-language="hu">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News system</source>
+			<target state="translated">Hírek modul</target></trans-unit>
+      <trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
+				<source>Versatile news system</source>
+			<target state="translated">A sokoldalú hírek modul</target></trans-unit>
+      <trans-unit id="flexforms_tab.settings" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="translated">Beállítások</target></trans-unit>
+      <trans-unit id="flexforms_tab.additional" xml:space="preserve" approved="yes">
+				<source>Additional</source>
+			<target state="translated">További</target></trans-unit>
+      <trans-unit id="flexforms_tab.template" xml:space="preserve" approved="yes">
+				<source>Template</source>
+			<target state="translated">Sablon</target></trans-unit>
+      <trans-unit id="flexforms_general.mode" xml:space="preserve" approved="yes">
+				<source>What to display</source>
+			<target state="translated">Mi jelenjen meg</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve" approved="yes">
+				<source>List view</source>
+			<target state="translated">Lista nézet</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve" approved="yes">
+				<source>List view (without overloading detail view)</source>
+			<target state="translated">Lista nézet (rátöltődő részletes nézet nélkül)</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve" approved="yes">
+				<source>Detail view</source>
+			<target state="translated">Részletes nézet</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve" approved="yes">
+				<source>Search form</source>
+			<target state="translated">Keresés űrlap</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve" approved="yes">
+				<source>Search result</source>
+			<target state="translated">Keresési eredmények</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve" approved="yes">
+				<source>Date menu</source>
+			<target state="translated">Dátum menü</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve" approved="yes">
+				<source>Category Menu</source>
+			<target state="translated">Kategória Menü</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve" approved="yes">
+				<source>No view yet configured</source>
+			<target state="translated">Nincs nézet beállítva</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="translated">Keresés</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve" approved="yes">
+				<source>Others</source>
+			<target state="translated">másik</target></trans-unit>
+      <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve" approved="yes">
+				<source>Tag list</source>
+			<target state="translated">Tag lista</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="translated">Archívum</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve" approved="yes">
+				<source>Only active (non archived)</source>
+			<target state="translated">Csak aktívak (nem archiváltak)</target></trans-unit>
+      <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve" approved="yes">
+				<source>Archived</source>
+			<target state="translated">Archivált</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy" xml:space="preserve" approved="yes">
+				<source>Sort by</source>
+			<target state="translated">Rendezés</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve" approved="yes">
+				<source>Manual sorting</source>
+			<target state="translated">Manuális rendezés</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve" approved="yes">
+				<source>Last edited</source>
+			<target state="translated">Utoljára szerkesztett</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve" approved="yes">
+				<source>Created</source>
+			<target state="translated">Létrehozás ideje</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="translated">Megadott dátum/idő</target></trans-unit>
+      <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="translated">Cím</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection" xml:space="preserve" approved="yes">
+				<source>Sort direction</source>
+			<target state="translated">Rendezési irány</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve" approved="yes">
+				<source>Ascending</source>
+			<target state="translated">Növekvő</target></trans-unit>
+      <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve" approved="yes">
+				<source>Descending</source>
+			<target state="translated">Csökkenő</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField" xml:space="preserve" approved="yes">
+				<source>Date field to use</source>
+			<target state="translated">Használandó dátum mező</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve" approved="yes">
+				<source>Given date/time</source>
+			<target state="translated">Megadott dátum/idő</target></trans-unit>
+      <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve" approved="yes">
+				<source>Archive date</source>
+			<target state="translated">Archiválási dátum</target></trans-unit>
+      <trans-unit id="flexforms_general.categories" xml:space="preserve" approved="yes">
+				<source>Category selection</source>
+			<target state="translated">Kategória kiválasztás</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve" approved="yes">
+				<source>Category mode</source>
+			<target state="translated">Kategória mód</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve" approved="yes">
+				<source>Don't care, show all</source>
+			<target state="translated">Mindegy, mindent mutasson</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (OR)</source>
+			<target state="translated">Jelenítse meg a kiválasztott kategóriákban lévő elemeket (VAGY)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve" approved="yes">
+				<source>Show items with selected categories (AND)</source>
+			<target state="translated">Jelenítse meg a kiválasztott kategóriákban lévő elemeket (ÉS)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (AND)</source>
+			<target state="translated">NE jelenítse meg a kiválasztott kategóriákban lévő elemeket (ÉS)</target></trans-unit>
+      <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve" approved="yes">
+				<source>Do NOT show items with selected categories (OR)</source>
+			<target state="translated">NE jelenítse meg a kiválasztott kategóriákban lévő elemeket (VAGY)</target></trans-unit>
+      <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve" approved="yes">
+				<source>Include subcategories</source>
+			<target state="translated">Alkategóriákkal együtt</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time limit (LOW): higher than given time</source>
+			<target state="translated">Időkorlát</target></trans-unit>
+      <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Time limit (HIGH): News less than given time</source>
+			<target state="translated">Időkorlát (FELSŐ):</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve" approved="yes">
+				<source>Top News</source>
+			<target state="translated">Legnépszerűbb hírek</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.1" xml:space="preserve" approved="yes">
+				<source>only Top News records</source>
+			<target state="translated">Csak a legnépszerűbb híreket</target></trans-unit>
+      <trans-unit id="flexforms_general.topNewsRestriction.2" xml:space="preserve" approved="yes">
+				<source>except Top News records</source>
+			<target state="translated">A legnépszerűbb hírek nélkül</target></trans-unit>
+      <trans-unit id="flexforms_general.singleNews" xml:space="preserve" approved="yes">
+				<source>Show a single news record</source>
+			<target state="translated">Szimpla hír rekord megjelenítése</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve" approved="yes">
+				<source>Allow preview of hidden records</source>
+			<target state="translated">Rejtett rekordok előnézetének engedélyezése</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="translated">Nem</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="translated">Igen</target></trans-unit>
+      <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="translated">TypoScript szerint</target></trans-unit>
+      <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve" approved="yes">
+				<source>Defined in TypoScript</source>
+			<target state="translated">TypoScript szerint</target></trans-unit>
+      <trans-unit id="flexforms_general.no-constraint" xml:space="preserve" approved="yes">
+				<source>[no constraint]</source>
+			<target state="translated">[nincs korlát]</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve" approved="yes">
+				<source>Max width for media elements</source>
+			<target state="translated">Max. szélesség a média elemeknek</target></trans-unit>
+      <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve" approved="yes">
+				<source>Max height for media elements</source>
+			<target state="translated">Max. magasság a média elemeknek</target></trans-unit>
+      <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve" approved="yes">
+				<source>Length of teaser (in chars)</source>
+			<target state="translated">A rövid bemutató szöveg hossza (karakter)</target></trans-unit>
+      <trans-unit id="flexforms_template.templateLayout" xml:space="preserve" approved="yes">
+				<source>Template Layout</source>
+			<target state="translated">Sablon elrendezés (Layout)</target></trans-unit>
+      <trans-unit id="flexforms_additional.detailPid" xml:space="preserve" approved="yes">
+				<source>PageId for single news display</source>
+			<target state="translated">Az egyéni hír nézet oldala (UID)</target></trans-unit>
+      <trans-unit id="flexforms_additional.backPid" xml:space="preserve" approved="yes">
+				<source>PageId to return to</source>
+			<target state="translated">A vissza link céloldala (UID)</target></trans-unit>
+      <trans-unit id="flexforms_additional.listPid" xml:space="preserve" approved="yes">
+				<source>PageId for list display</source>
+			<target state="translated">A lista nézet oldalának azonosítója (UID)</target></trans-unit>
+      <trans-unit id="flexforms_additional.limit" xml:space="preserve" approved="yes">
+				<source>Max records displayed</source>
+			<target state="translated">Maximálisan megjelenített rekordok száma</target></trans-unit>
+      <trans-unit id="flexforms_additional.offset" xml:space="preserve" approved="yes">
+				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
+			<target state="translated">A #azonosítójú hírrel kezdődjön a lista</target></trans-unit>
+      <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve" approved="yes">
+				<source>Hide the pagination</source>
+			<target state="translated">Lapozó elrejtése</target></trans-unit>
+      <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve" approved="yes">
+				<source>Items per Page</source>
+			<target state="translated">Oldalankénti bejegyzésszám</target></trans-unit>
+      <trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve" approved="yes">
+				<source>Sort "Top news" before</source>
+			<target state="translated">Sorolja a "Népszerű (Top) híreket" előre</target></trans-unit>
+      <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve" approved="yes">
+				<source>Disable override demand</source>
+			<target state="translated">A háttérbeli felülírási/utógenerálási módozat tiltása</target></trans-unit>
+      <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve" approved="yes">
+				<source>Exclude already displayed news</source>
+			<target state="translated">A már megjelenített hírek kihagyása</target></trans-unit>
+      <trans-unit id="flexforms_additional.tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="translated">Címkék</target></trans-unit>
+      <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve" approved="yes">
+				<source>Page with uid "%s" is not available anymore!</source>
+			<target state="translated">A következő oldal nem elérhető: uid "%s"!</target></trans-unit>
+      <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve" approved="yes">
+				<source>News record with uid "%s" is not available anymore!</source>
+			<target state="translated">A következő hír nem elérhető: uid "%s"!</target></trans-unit>
+      <trans-unit id="pagemodule_simple" xml:space="preserve" approved="yes">
+				<source>Simple list</source>
+			<target state="translated">Egyszerű lista</target></trans-unit>
+      <trans-unit id="pagemodule_advanced" xml:space="preserve" approved="yes">
+				<source>Advanced list</source>
+			<target state="translated">Bővített lista</target></trans-unit>
+      <trans-unit id="pagemodule_complex" xml:space="preserve" approved="yes">
+				<source>Full list</source>
+			<target state="translated">Teljes lista</target></trans-unit>
+      <trans-unit id="extmng.prependAtCopy" xml:space="preserve" approved="yes">
+				<source>Prepend at copy: Prepend string "copy X".</source>
+			<target state="translated">Előtag másolásnál: Előtag hozzáfűzése másolásnál "másolat X".</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction" xml:space="preserve">
+				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
+				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
+			</source>
+			<target state="needs-translation">
+			</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve" approved="yes">
+				<source>Categories from current page</source>
+			<target state="translated">Kategóriák az aktuális oldalról</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve" approved="yes">
+				<source>Categories from site root</source>
+			<target state="translated">Kategóriák a kezdő (Root) oldalról</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve" approved="yes">
+				<source>Page TsConfig</source>
+			<target state="translated">Oldal TSconfig</target></trans-unit>
+      <trans-unit id="extmng.categoryRestriction.none" xml:space="preserve" approved="yes">
+				<source>No restriction</source>
+			<target state="translated">Korlátozás nélkül</target></trans-unit>
+      <trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve" approved="yes">
+				<source>Editor needs to have permissions to all selected categories to save a news item</source>
+			<target state="translated">A szerkesztőnek hozzáféréssel kell rendelkeznie a kiválasztott kategóriákhoz, különben a hírt nem tudja elmenteni</target></trans-unit>
+      <trans-unit id="extmng.manualSorting" xml:space="preserve" approved="yes">
+				<source>Enable manual sorting of news records</source>
+			<target state="translated">A hír rekordok manuális sorbarendezésének engedélyezése</target></trans-unit>
+      <trans-unit id="extmng.contentElementRelation" xml:space="preserve" approved="yes">
+				<source>Use content element relation:If set, content elements can be added to news records.</source>
+			<target state="translated">Content element relációk használata: Ha aktív, a "content elemek" hozzáadhatók a hír rekordokhoz.</target></trans-unit>
+      <trans-unit id="extmng.tagPid" xml:space="preserve" approved="yes">
+				<source>Define pid of tag records:Tags are collected on one central page.</source>
+			<target state="translated">PID (oldalazonosító) definiálása a "Tag" rekordokhoz: A Tag-ek egy központi oldalon kerülnek gyűjtésre.</target></trans-unit>
+      <trans-unit id="extmng.archiveDate" xml:space="preserve" approved="yes">
+				<source>Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</source>
+			<target state="translated">Archiválási dátum: Definiálható, hogy az archiválásnál "Dátum" vagy "Dátum &amp; Idő" legyen használatos</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.date" xml:space="preserve" approved="yes">
+				<source>Date</source>
+			<target state="translated">Dátum</target></trans-unit>
+      <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="translated">Dátum és idő</target></trans-unit>
+      <trans-unit id="extmng.showImporter" xml:space="preserve" approved="yes">
+				<source>Show importer:Backend module to import into news</source>
+			<target state="translated">Import modul megjelenítése: Ha engedélyezve, akkor a rekord importáló modul megjelenítésre kerül a Backend felületen.</target></trans-unit>
+      <trans-unit id="extmng.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
+			<target state="translated">Használandó Oldal azonosító UID képek/fájlok importálásánál: Alapértelmezett (fileadmin) tároló 1-es</target></trans-unit>
+      <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve" approved="yes">
+				<source>In which folder should the importer save files/images (has to exist)</source>
+			<target state="translated">Melyik könyvtárba mentse a fájlokat/képeket az import szkript (léteznie kell a könyvtárnak)</target></trans-unit>
+      <trans-unit id="extmng.showAdministrationModule" xml:space="preserve" approved="yes">
+				<source>Show administration module:Backend module to administrate news records</source>
+			<target state="translated">Admin modul megjelenítése: Backend modul a Hírrekordok adminisztrálására</target></trans-unit>
+      <trans-unit id="extmng.rteForTeaser" xml:space="preserve" approved="yes">
+				<source>Enable a RTE for the teaser field.</source>
+			<target state="translated">RTE engedélyezése a bevezető mezőre.</target></trans-unit>
+      <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
+				<source>Use this overlay for news categories in the Backend</source>
+			<target state="translated">Használja ezt az elrendezést a hírkategóriákhoz a Backend felületen</target></trans-unit>
+      <trans-unit id="usersettings.no-languages-available" xml:space="preserve" approved="yes">
+				<source>There are no languages available, so nothing to choose.</source>
+			<target state="translated">Nincsenek elérhető nyelvek, így nincs mit választani.</target></trans-unit>
+      <trans-unit id="start_import" xml:space="preserve" approved="yes">
+				<source>Start import with %s record(s).</source>
+			<target state="translated">Importálás kezdése a %s rekorddal.</target></trans-unit>
+      <trans-unit id="tag_suggest" xml:space="preserve" approved="yes">
+				<source>Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
+			<target state="translated">%s Tag nem található, létrehozzuk? &lt;strong&gt;Kattintson ide&lt;/strong&gt;</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve" approved="yes">
+				<source>No tag submitted!</source>
+			<target state="translated">Nincsenek beküldött "Tag"-ek</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-newsid" xml:space="preserve" approved="yes">
+				<source>No news id given!</source>
+			<target state="translated">Nincs megadott hír azonosító (ID)!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve" approved="yes">
+				<source>No pid for the tag record could be found by reading settings of Extension Manager!</source>
+			<target state="translated">Nem található Tag rekord a Kiegészítő kezelőben beállított helyen!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve" approved="yes">
+				<source>No new tag created!</source>
+			<target state="translated">Nem sikerült új Tag-et létrehozni!</target></trans-unit>
+      <trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve" approved="yes">
+				<source>No page defined to save tag. Please add the id in the settings of the extension manager.</source>
+			<target state="translated">Nincs definiált oldal a címke mentéséhez. Kérjük adjon meg egy oldalazonosítót (id) a kiterjesztés kezelő beállításainál!</target></trans-unit>
+      <trans-unit id="module.headline" xml:space="preserve" approved="yes">
+				<source>Settings</source>
+			<target state="translated">Beállítások</target></trans-unit>
+      <trans-unit id="module.recursive" xml:space="preserve" approved="yes">
+				<source>Recursive</source>
+			<target state="translated">Rekurzív</target></trans-unit>
+      <trans-unit id="module.timeRestriction" xml:space="preserve" approved="yes">
+				<source>Time Restriction</source>
+			<target state="translated">Időkorlát</target></trans-unit>
+      <trans-unit id="module.timeRestrictionHigh" xml:space="preserve" approved="yes">
+				<source>Time Restriction High</source>
+			<target state="translated">Időkorlát (maximum)</target></trans-unit>
+      <trans-unit id="module.createNewCategory" xml:space="preserve" approved="yes">
+				<source>Create a new category</source>
+			<target state="translated">Új kategória létrehozása</target></trans-unit>
+      <trans-unit id="module.createNewNewsRecord" xml:space="preserve" approved="yes">
+				<source>Create new news record</source>
+			<target state="translated">Új hír rekord létrehozása</target></trans-unit>
+      <trans-unit id="module.createNewTag" xml:space="preserve" approved="yes">
+				<source>Create new tag record</source>
+			<target state="translated">Új címke létrehozása</target></trans-unit>
+      <trans-unit id="module.topNewsYes" xml:space="preserve" approved="yes">
+				<source>Yes</source>
+			<target state="translated">Igen</target></trans-unit>
+      <trans-unit id="module.topNewsNo" xml:space="preserve" approved="yes">
+				<source>No</source>
+			<target state="translated">Nem</target></trans-unit>
+      <trans-unit id="module.searchWord" xml:space="preserve" approved="yes">
+				<source>Search</source>
+			<target state="translated">Keresés</target></trans-unit>
+      <trans-unit id="module.newsListing" xml:space="preserve" approved="yes">
+				<source>News Listing</source>
+			<target state="translated">Hírek listája</target></trans-unit>
+      <trans-unit id="module.newsCount" xml:space="preserve" approved="yes">
+				<source>%s news records</source>
+			<target state="translated">%s hír rekord</target></trans-unit>
+      <trans-unit id="module.newsPidListing" xml:space="preserve" approved="yes">
+				<source>News Pid listing</source>
+			<target state="translated">Híroldalak listája (oldal azonosító PID)</target></trans-unit>
+      <trans-unit id="administration.title" xml:space="preserve" approved="yes">
+				<source>News administration</source>
+			<target state="translated">Hírek adminisztrálása</target></trans-unit>
+      <trans-unit id="administration.nopageselected" xml:space="preserve" approved="yes">
+				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
+			<target state="translated">Kérem válasszon ki egy oldalt az oldalfából, hogy megjeleníthessük az oldalon mentett hír rekordokat.</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.header" xml:space="preserve" approved="yes">
+				<source>List pages with count of news &amp; category records</source>
+			<target state="translated">Oldalak listája a hír- és kategória rekordok számával</target></trans-unit>
+      <trans-unit id="administration.newsPidListing.description" xml:space="preserve">
+				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
+			</source>
+			<target state="needs-translation">
+			</target></trans-unit>
+      <trans-unit id="administration.nolimit" xml:space="preserve" approved="yes">
+				<source>No limit defined in setting "%s"! Include the default TypoScript in the root page.</source>
+			<target state="translated">Nincs limit beállítva a "%s" beállításnál! Az alapértelmezett kezdőlapi TypoScript kerül meghívásra.</target></trans-unit>
+      <trans-unit id="import.description" xml:space="preserve">
+				<source>This is the "News importer module". </source>
+			<target state="needs-translation"> </target></trans-unit>
+      <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve" approved="yes">
+				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
+			<target state="translated">Kérjük állítsa be a "storageUidImporter" tulajdonságot a kiterjesztés kezelőben! A megadott ID kerül használatra a fájlok mentéséhez.</target></trans-unit>
+      <trans-unit id="record.savingdisabled.header" approved="yes">
+        <source>Saving is disabled</source>
+        <target state="translated">A mentés letilva</target>
+      </trans-unit>
+      <trans-unit id="record.savingdisabled.content" approved="yes">
+        <source>This record has the following categories assigned that are not defined in your permissions:</source>
+        <target state="translated">Ehhez a rekordhoz a következő kategóriák vannak hozzárendelve, amelyeknél nem definiált a hozzáférés:</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

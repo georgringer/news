@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="cs">
+    <header/>
+    <body>
+      <trans-unit id="search-text" xml:space="preserve" approved="yes">
+				<source>There are %1$s results for "%2$s".</source>
+			<target state="translated">Nalezeno %1$s výsledků pro "%2$s".</target></trans-unit>
+      <trans-unit id="search-start" xml:space="preserve" approved="yes">
+				<source>Start search</source>
+			<target state="translated">Začít hledání</target></trans-unit>
+      <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
+				<source>No news found.</source>
+			<target state="translated">Nenalezeny žádné zprávy.</target></trans-unit>
+      <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
+				<source>Minimum Date</source>
+			<target state="translated">Minimální datum</target></trans-unit>
+      <trans-unit id="search-maximumDate" xml:space="preserve" approved="yes">
+				<source>Maximum Date</source>
+			<target state="translated">Maximální datum</target></trans-unit>
+      <trans-unit id="more-link" xml:space="preserve" approved="yes">
+				<source>Read more</source>
+			<target state="translated">Čtěte více</target></trans-unit>
+      <trans-unit id="back-link" xml:space="preserve" approved="yes">
+				<source>Back</source>
+			<target state="translated">Zpět</target></trans-unit>
+      <trans-unit id="related-news" xml:space="preserve" approved="yes">
+				<source>Related News</source>
+			<target state="translated">Související zprávy</target></trans-unit>
+      <trans-unit id="related-files" xml:space="preserve" approved="yes">
+				<source>Related Files</source>
+			<target state="translated">Související soubory</target></trans-unit>
+      <trans-unit id="related-links" xml:space="preserve" approved="yes">
+				<source>Related Links</source>
+			<target state="translated">Související odkazy</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
+				<source>Page %s of %s.</source>
+			<target state="translated">Stránka %s z %s.</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
+				<source>Next</source>
+			<target state="translated">Další</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
+				<source>Previous</source>
+			<target state="translated">Předchozí</target></trans-unit>
+      <trans-unit id="categories" xml:space="preserve" approved="yes">
+				<source>Categories</source>
+			<target state="translated">Kategorie</target></trans-unit>
+      <trans-unit id="tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="translated">Značky</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve" approved="yes">
+				<source>entry</source>
+			<target state="translated">záznam</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve" approved="yes">
+				<source>entries</source>
+			<target state="translated">záznamy</target></trans-unit>
+      <trans-unit id="month.01" xml:space="preserve" approved="yes">
+				<source>January</source>
+			<target state="translated">leden</target></trans-unit>
+      <trans-unit id="month.02" xml:space="preserve" approved="yes">
+				<source>February</source>
+			<target state="translated">únor</target></trans-unit>
+      <trans-unit id="month.03" xml:space="preserve" approved="yes">
+				<source>March</source>
+			<target state="translated">březen</target></trans-unit>
+      <trans-unit id="month.04" xml:space="preserve" approved="yes">
+				<source>April</source>
+			<target state="translated">duben</target></trans-unit>
+      <trans-unit id="month.05" xml:space="preserve" approved="yes">
+				<source>May</source>
+			<target state="translated">květen</target></trans-unit>
+      <trans-unit id="month.06" xml:space="preserve" approved="yes">
+				<source>June</source>
+			<target state="translated">červen</target></trans-unit>
+      <trans-unit id="month.07" xml:space="preserve" approved="yes">
+				<source>July</source>
+			<target state="translated">červenec</target></trans-unit>
+      <trans-unit id="month.08" xml:space="preserve" approved="yes">
+				<source>August</source>
+			<target state="translated">srpen</target></trans-unit>
+      <trans-unit id="month.09" xml:space="preserve" approved="yes">
+				<source>September</source>
+			<target state="translated">září</target></trans-unit>
+      <trans-unit id="month.10" xml:space="preserve" approved="yes">
+				<source>October</source>
+			<target state="translated">říjen</target></trans-unit>
+      <trans-unit id="month.11" xml:space="preserve" approved="yes">
+				<source>November</source>
+			<target state="translated">listopad</target></trans-unit>
+      <trans-unit id="month.12" xml:space="preserve" approved="yes">
+				<source>December</source>
+			<target state="translated">prosinec</target></trans-unit>
+      <trans-unit id="day.1" xml:space="preserve" approved="yes">
+				<source>Monday</source>
+			<target state="translated">Pondělí</target></trans-unit>
+      <trans-unit id="day.2" xml:space="preserve" approved="yes">
+				<source>Tuesday</source>
+			<target state="translated">Úterý</target></trans-unit>
+      <trans-unit id="day.3" xml:space="preserve" approved="yes">
+				<source>Wednesday</source>
+			<target state="translated">Středa</target></trans-unit>
+      <trans-unit id="day.4" xml:space="preserve" approved="yes">
+				<source>Thursday</source>
+			<target state="translated">Čtvrtek</target></trans-unit>
+      <trans-unit id="day.5" xml:space="preserve" approved="yes">
+				<source>Friday</source>
+			<target state="translated">Pátek</target></trans-unit>
+      <trans-unit id="day.6" xml:space="preserve" approved="yes">
+				<source>Saturday</source>
+			<target state="translated">Sobota</target></trans-unit>
+      <trans-unit id="day.7" xml:space="preserve" approved="yes">
+				<source>Sunday</source>
+			<target state="translated">Neděle</target></trans-unit>
+      <trans-unit id="dateFormat" xml:space="preserve" approved="yes">
+				<source>%m/%d/%Y</source>
+			<target state="translated">%d.%m.%Y</target></trans-unit>
+      <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news available.</source>
+			<target state="translated">Nejsou k dispozici žádné zprávy.</target></trans-unit>
+      <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
+				<source>No categories available.</source>
+			<target state="translated">Žádné kategorie k dispozici.</target></trans-unit>
+      <trans-unit id="newsNotFound" xml:space="preserve" approved="yes">
+				<source>The news record is not available anymore.</source>
+			<target state="translated">Tato práva již není k dispozici.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

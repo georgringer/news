@@ -21,33 +21,30 @@ the *postVarSets/_DEFAULT* section:
 .. code-block:: php
 
 	// EXT:news start
-	'news' => array(
-		array(
-			'GETvar' => 'tx_news_pi1[action]',
-		),
-		array(
-			'GETvar' => 'tx_news_pi1[controller]',
-		),
-		array(
-			'GETvar' => 'tx_news_pi1[news]',
-			'lookUpTable' => array(
-				'table' => 'tx_news_domain_model_news',
-				'id_field' => 'uid',
-				'alias_field' => 'title',
-				'addWhereClause' => ' AND NOT deleted',
-				'useUniqueCache' => 1,
-				'useUniqueCache_conf' => array(
-					'strtolower' => 1,
-					'spaceCharacter' => '-',
-				),
-				'languageGetVar' => 'L',
-				'languageExceptionUids' => '',
-				'languageField' => 'sys_language_uid',
-				'transOrigPointerField' => 'l10n_parent',
-				'expireDays' => 180,
-			),
-		),
-	),
+    'a' => [
+        [
+            'GETvar' => 'tx_news_pi1[action]',
+        ],
+        [
+            'GETvar' => 'tx_news_pi1[controller]',
+        ],
+        [
+            'GETvar' => 'tx_news_pi1[news]',
+            'lookUpTable' => [
+                'table' => 'tx_news_domain_model_news',
+                'id_field' => 'uid',
+                'alias_field' => 'IF(path_segment!="",path_segment,title)',
+                'addWhereClause' => ' AND NOT deleted',
+                'useUniqueCache' => 1,
+                'languageGetVar' => 'L',
+                'languageExceptionUids' => '',
+                'languageField' => 'sys_language_uid',
+                'transOrigPointerField' => 'l10n_parent',
+                'expireDays' => 180,
+                'enable404forInvalidAlias' => true
+            ]
+        ]
+    ],
 	// EXT:news end
 
 
@@ -59,171 +56,156 @@ It hides the controller and action name by using fixedPostVars.
 Here is a full RealURL configuration with the explanation below.
 
 .. code-block:: php
+   :linenos:
 
-	<?php
+    <?php
 
-	$GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'] .= ',tx_realurl_pathsegment';
+    $GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'] .= ',tx_realurl_pathsegment';
 
-	// Adjust to your needs
-	$domain = 'www.example.com';
-	$rootPageUid = 123;
-	$rssFeedPageType = 9818; // pageType of your RSS feed page
+    // Adjust to your needs
+    $domain = 'www.example.com';
+    $rootPageUid = 123;
+    $rssFeedPageType = 9818; // pageType of your RSS feed page
 
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl'][$domain] = array(
-		'pagePath' => array(
-			'type' => 'user',
-			'userFunc' => 'EXT:realurl/class.tx_realurl_advanced.php:&tx_realurl_advanced->main',
-			'spaceCharacter' => '-',
-			'languageGetVar' => 'L',
-			'expireDays' => '3',
-			'rootpage_id' => $rootPageUid,
-			'firstHitPathCache' => 1
-		),
-		'init' => array(
-			'enableCHashCache' => TRUE,
-			'respectSimulateStaticURLs' => 0,
-			'appendMissingSlash' => 'ifNotFile,redirect',
-			'adminJumpToBackend' => TRUE,
-			'enableUrlDecodeCache' => TRUE,
-			'enableUrlEncodeCache' => TRUE,
-			'emptyUrlReturnValue' => '/',
-		),
-		'fileName' => array(
-			'defaultToHTMLsuffixOnPrev' => 0,
-			'acceptHTMLsuffix' => 1,
-			'index' => array(
-				'feed.rss' => array(
-					'keyValues' => array(
-						'type' => $rssFeedPageType,
-					)
-				)
-			)
-		),
-		'preVars' => array(
-			array(
-				'GETvar' => 'L',
-				'valueMap' => array(
-					'en' => '1',
-				),
-				'noMatch' => 'bypass',
-			),
-			array(
-				'GETvar' => 'no_cache',
-				'valueMap' => array(
-					'nc' => 1,
-				),
-				'noMatch' => 'bypass',
-			),
-		),
-		'fixedPostVars' => array(
-			'newsDetailConfiguration' => array(
-				array(
-					'GETvar' => 'tx_news_pi1[action]',
-					'valueMap' => array(
-						'detail' => '',
-					),
-					'noMatch' => 'bypass'
-				),
-				array(
-					'GETvar' => 'tx_news_pi1[controller]',
-					'valueMap' => array(
-						'News' => '',
-					),
-					'noMatch' => 'bypass'
-				),
-				array(
-					'GETvar' => 'tx_news_pi1[news]',
-					'lookUpTable' => array(
-						'table' => 'tx_news_domain_model_news',
-						'id_field' => 'uid',
-						'alias_field' => 'title',
-						'addWhereClause' => ' AND NOT deleted',
-						'useUniqueCache' => 1,
-						'useUniqueCache_conf' => array(
-							'strtolower' => 1,
-							'spaceCharacter' => '-'
-						),
-						'languageGetVar' => 'L',
-						'languageExceptionUids' => '',
-						'languageField' => 'sys_language_uid',
-						'transOrigPointerField' => 'l10n_parent',
-						'expireDays' => 180,
-					)
-				)
-			),
-			'newsCategoryConfiguration' => array(
-				array(
-					'GETvar' => 'tx_news_pi1[overwriteDemand][categories]',
-					'lookUpTable' => array(
-						'table' => 'sys_category',
-						'id_field' => 'uid',
-						'alias_field' => 'title',
-						'addWhereClause' => ' AND NOT deleted',
-						'useUniqueCache' => 1,
-						'useUniqueCache_conf' => array(
-							'strtolower' => 1,
-							'spaceCharacter' => '-'
-						)
-					)
-				)
-			),
-			'newsTagConfiguration' => array(
-				array(
-					'GETvar' => 'tx_news_pi1[overwriteDemand][tags]',
-					'lookUpTable' => array(
-						'table' => 'tx_news_domain_model_tag',
-						'id_field' => 'uid',
-						'alias_field' => 'title',
-						'addWhereClause' => ' AND NOT deleted',
-						'useUniqueCache' => 1,
-						'useUniqueCache_conf' => array(
-							'strtolower' => 1,
-							'spaceCharacter' => '-'
-						)
-					)
-				)
-			),
-			'70' => 'newsDetailConfiguration',
-			'701' => 'newsDetailConfiguration', // For additional detail pages, add their uid as well
-			'71' => 'newsTagConfiguration',
-			'72' => 'newsCategoryConfiguration',
-		),
-		'postVarSets' => array(
-			'_DEFAULT' => array(
-				'controller' => array(
-					array(
-						'GETvar' => 'tx_news_pi1[action]',
-						'noMatch' => 'bypass'
-					),
-					array(
-						'GETvar' => 'tx_news_pi1[controller]',
-						'noMatch' => 'bypass'
-					)
-				),
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl'][$domain] = [
+        'pagePath' => [
+            'type' => 'user',
+            'userFunc' => 'EXT:realurl/class.tx_realurl_advanced.php:&tx_realurl_advanced->main',
+            'spaceCharacter' => '-',
+            'languageGetVar' => 'L',
+            'expireDays' => '3',
+            'rootpage_id' => $rootPageUid,
+            'firstHitPathCache' => 1
+        ],
+        'init' => [
+            'enableCHashCache' => true,
+            'respectSimulateStaticURLs' => 0,
+            'appendMissingSlash' => 'ifNotFile,redirect',
+            'adminJumpToBackend' => true,
+            'enableUrlDecodeCache' => true,
+            'enableUrlEncodeCache' => true,
+            'emptyUrlReturnValue' => '/',
+        ],
+        'fileName' => [
+            'defaultToHTMLsuffixOnPrev' => 0,
+            'acceptHTMLsuffix' => 1,
+            'index' => [
+                'feed.rss' => [
+                    'keyValues' => [
+                        'type' => $rssFeedPageType,
+                    ]
+                ]
+            ]
+        ],
+        'preVars' => [
+            [
+                'GETvar' => 'L',
+                'valueMap' => [
+                    'en' => '1',
+                ],
+                'noMatch' => 'bypass',
+            ],
+        ],
+        'fixedPostVars' => [
+            'newsDetailConfiguration' => [
+                [
+                    'GETvar' => 'tx_news_pi1[action]',
+                    'valueMap' => [
+                        '' => 'detail',
+                    ],
+                    'noMatch' => 'bypass'
+                ],
+                [
+                    'GETvar' => 'tx_news_pi1[controller]',
+                    'valueMap' => [
+                        '' => 'News',
+                    ],
+                    'noMatch' => 'bypass'
+                ],
+                [
+                    'GETvar' => 'tx_news_pi1[news]',
+                    'lookUpTable' => [
+                        'table' => 'tx_news_domain_model_news',
+                        'id_field' => 'uid',
+                        'alias_field' => 'IF(path_segment!="",path_segment,title)',
+                        'addWhereClause' => ' AND NOT deleted',
+                        'useUniqueCache' => 1,
+                        'languageGetVar' => 'L',
+                        'languageExceptionUids' => '',
+                        'languageField' => 'sys_language_uid',
+                        'transOrigPointerField' => 'l10n_parent',
+                        'expireDays' => 180,
+                        'enable404forInvalidAlias' => true
+                    ]
+                ]
+            ],
+            'newsCategoryConfiguration' => [
+                [
+                    'GETvar' => 'tx_news_pi1[overwriteDemand][categories]',
+                    'lookUpTable' => [
+                        'table' => 'sys_category',
+                        'id_field' => 'uid',
+                        'alias_field' => 'title',
+                        'addWhereClause' => ' AND NOT deleted',
+                        'useUniqueCache' => 1,
+                        'enable404forInvalidAlias' => true
+                    ]
+                ]
+            ],
+            'newsTagConfiguration' => [
+                [
+                    'GETvar' => 'tx_news_pi1[overwriteDemand][tags]',
+                    'lookUpTable' => [
+                        'table' => 'tx_news_domain_model_tag',
+                        'id_field' => 'uid',
+                        'alias_field' => 'title',
+                        'addWhereClause' => ' AND NOT deleted',
+                        'useUniqueCache' => 1,
+                        'enable404forInvalidAlias' => true
+                    ]
+                ]
+            ],
+            '70' => 'newsDetailConfiguration',
+            '701' => 'newsDetailConfiguration', // For additional detail pages, add their uid as well
+            '71' => 'newsTagConfiguration',
+            '72' => 'newsCategoryConfiguration',
+        ],
+        'postVarSets' => [
+            '_DEFAULT' => [
+                'controller' => [
+                    [
+                        'GETvar' => 'tx_news_pi1[action]',
+                        'noMatch' => 'bypass'
+                    ],
+                    [
+                        'GETvar' => 'tx_news_pi1[controller]',
+                        'noMatch' => 'bypass'
+                    ]
+                ],
 
-				'dateFilter' => array(
-					array(
-						'GETvar' => 'tx_news_pi1[overwriteDemand][year]',
-					),
-					array(
-						'GETvar' => 'tx_news_pi1[overwriteDemand][month]',
-					),
-				),
-				'page' => array(
-					array(
-						'GETvar' => 'tx_news_pi1[@widget_0][currentPage]',
-					),
-				),
-			),
-		),
+                'dateFilter' => [
+                    [
+                        'GETvar' => 'tx_news_pi1[overwriteDemand][year]',
+                    ],
+                    [
+                        'GETvar' => 'tx_news_pi1[overwriteDemand][month]',
+                    ],
+                ],
+                'page' => [
+                    [
+                        'GETvar' => 'tx_news_pi1[@widget_0][currentPage]',
+                    ],
+                ],
+            ],
+        ],
 
-	);
+    ];
 
 
 **Explanation**
 
 The configuration of *newsDetailConfiguration* is used for the single view.
-Its name is not that important but the same name has to be used in line 86 where the uid of the single view page is set.
+Its name is not that important but the same name has to be used in line 108 where the uid of the single view page is set.
 In this example it is *70*. Of course you need to set the uid of your single view page.
 
 The same happens for a single view of categories and tags by using newsCategoryConfiguration and newsTagConfiguration.
@@ -288,20 +270,20 @@ If you want to have human readable dates inside the URL which means having URLs 
 You can configure each argument (day/month/year) separately by using the configuration of PHP function *date*,
 (see http://www.php.net/date).
 
-3rd: RealURL configuration ::
+3rd: Add following RealURL configuration to ``'fixedPostVars' => 'newsDetailConfiguration'`` section ::
 
-	array(
-		'GETvar' => 'tx_news_pi1[day]',
-		'noMatch' => 'bypass',
-	),
-	array(
-		'GETvar' => 'tx_news_pi1[month]',
-		'noMatch' => 'bypass',
-	),
-	array(
-		'GETvar' => 'tx_news_pi1[year]',
-		'noMatch' => 'bypass',
-	),
+    [
+        'GETvar' => 'tx_news_pi1[day]',
+        'noMatch' => 'bypass',
+    ],
+    [
+        'GETvar' => 'tx_news_pi1[month]',
+        'noMatch' => 'bypass',
+    ],
+    [
+        'GETvar' => 'tx_news_pi1[year]',
+        'noMatch' => 'bypass',
+    ],
 
 alias_field Variations
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -310,38 +292,35 @@ Every news record got a field called **Speaking URL path segment** which can be 
 
 The following snippet shows how to use this field: ::
 
-	array(
-		'GETvar' => 'tx_news_pi1[news]',
-		'lookUpTable' => array(
-			'table' => 'tx_news_domain_model_news',
-			'id_field' => 'uid',
+    [
+        'GETvar' => 'tx_news_pi1[news]',
+        'lookUpTable' => [
+            'table' => 'tx_news_domain_model_news',
+            'id_field' => 'uid',
 
-			'alias_field' => "CONCAT(uid, '-', IF(path_segment!='',path_segment,title))",
-			/** OR ***************/
-			'alias_field' => 'IF(path_segment!="",path_segment,title)',
-			/** OR ***************/
-			'alias_field' => "CONCAT(uid, '-', title)",
+            'alias_field' => "CONCAT(uid, '-', IF(path_segment!='',path_segment,title))",
+            /** OR ***************/
+            'alias_field' => 'IF(path_segment!="",path_segment,title)',
+            /** OR ***************/
+            'alias_field' => "CONCAT(uid, '-', title)",
 
-			'addWhereClause' => ' AND NOT deleted',
-			'useUniqueCache' => 1,
-			'useUniqueCache_conf' => array(
-				'strtolower' => 1,
-				'spaceCharacter' => '-'
-			),
-			'languageGetVar' => 'L',
-			'languageExceptionUids' => '',
-			'languageField' => 'sys_language_uid',
-			'transOrigPointerField' => 'l10n_parent',
-			'expireDays' => 180,
-		)
-	)
+            'addWhereClause' => ' AND NOT deleted',
+            'useUniqueCache' => 1,
+            'languageGetVar' => 'L',
+            'languageExceptionUids' => '',
+            'languageField' => 'sys_language_uid',
+            'transOrigPointerField' => 'l10n_parent',
+            'expireDays' => 180,
+            'enable404forInvalidAlias' => true
+        ]
+    ]
 
 As you can see, it is possible to combine any of the fields of the record.
 
 Add category (or any other additional property) to URL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you need to add an additional property (like the category title) to the URL, you can do so by adding the property with the typolink configuration ``additionalParams``.
+If you need to add an additional property (like the category title) to the URL, you can do so by adding the property with the typolink configuration `additionalParams`.
 
 .. code-block:: html
 
@@ -353,20 +332,17 @@ All you now need is to add an additional section in your realurl configuration.
 
 .. code-block:: php
 
-	array(
-		'GETvar' => 'tx_news_pi1[category]',
-		'lookUpTable' => array(
-			'table' => 'sys_category',
-			'id_field' => 'uid',
-			'alias_field' => 'title',
-			'addWhereClause' => ' AND NOT deleted',
-			'useUniqueCache' => 1,
-			'useUniqueCache_conf' => array(
-				'strtolower' => 1,
-				'spaceCharacter' => '-',
-			),
-		),
-	),
+    [
+        'GETvar' => 'tx_news_pi1[category]',
+        'lookUpTable' => [
+            'table' => 'sys_category',
+            'id_field' => 'uid',
+            'alias_field' => 'title',
+            'addWhereClause' => ' AND NOT deleted',
+            'useUniqueCache' => 1,
+            'enable404forInvalidAlias' => true
+        ],
+    ],
 
 Auto configuration
 ^^^^^^^^^^^^^^^^^^

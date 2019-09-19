@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="news" target-language="km">
+    <header/>
+    <body>
+      <trans-unit id="tx_news_domain_model_news.tabs.relations" xml:space="preserve" approved="yes">
+				<source>Relations</source>
+			<target state="translated">ទំនាក់ទំនង</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve" approved="yes">
+				<source>Alternative Titles</source>
+			<target state="translated">ចំណងជើង​​ជំនួស</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="translated">ប្រព័ន្ធពត៌មាន</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.alternative_title" xml:space="preserve" approved="yes">
+				<source>Alternative title</source>
+			<target state="translated">ចំណងជើង​ជំនួស</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve" approved="yes">
+				<source>Teaser</source>
+			<target state="translated">កថាមុខ</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="translated">កាលបរិច្ឆេត​និងពេលវេលា</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="translated">រក្សាទុក</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive.placeholder" xml:space="preserve" approved="yes">
+				<source>Define when the news should be listed in the archive</source>
+			<target state="translated">កំណត់​ពេលវេលា​ដែលព័ត៌មាន​ត្រូវបានរក្សាទុក​ក្នុងបណ្ណសារ</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.categories" xml:space="preserve" approved="yes">
+				<source>Categories</source>
+			<target state="translated">ប្រភេទនៃពត៌មាន</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related" xml:space="preserve" approved="yes">
+				<source>Related News</source>
+			<target state="translated">ពត៌មាន​ដែលទាក់ទង</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_from" xml:space="preserve" approved="yes">
+				<source>Related News (from)</source>
+			<target state="translated">ព័ត៌មាន​ទាក់ទង​(មកពី)</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files" xml:space="preserve" approved="yes">
+				<source>Related Files</source>
+			<target state="translated">ឯកសារ​ដែលទាក់ទង</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files.add" xml:space="preserve" approved="yes">
+				<source>Add related file</source>
+			<target state="translated">បញ្ចូល​ឯកសារ​ទាក់ទង</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_links" xml:space="preserve" approved="yes">
+				<source>Related Links</source>
+			<target state="translated">តំណភ្ជាប់​ដែលទាក់ទង</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.0" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="translated">ប្រព័ន្ធពត៌មាន</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.1" xml:space="preserve" approved="yes">
+				<source>Internal link</source>
+			<target state="translated">ទំព័រ​ខាងក្នុង</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.2" xml:space="preserve" approved="yes">
+				<source>External Page</source>
+			<target state="translated">ទំព័រ​​ខាងក្រៅ</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media" xml:space="preserve" approved="yes">
+				<source>Media file</source>
+			<target state="translated">ឯកសារ​មេឌា</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media.add" xml:space="preserve" approved="yes">
+				<source>Add media file</source>
+			<target state="translated">បញ្ចូល​ឯកសារ​មេឌា</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.istopnews" xml:space="preserve" approved="yes">
+				<source>Top news</source>
+			<target state="translated">ព័ត៌មាន​សំខាន់ៗ</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.content_elements" xml:space="preserve" approved="yes">
+				<source>Content elements</source>
+			<target state="translated">អត្ថបទ​ព័ត៌មាន</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="translated">ស្លាក</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.add" xml:space="preserve" approved="yes">
+				<source>Add a new tag</source>
+			<target state="translated">បញ្ចូល​ស្លាក​ថ្មី</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.list" xml:space="preserve" approved="yes">
+				<source>List all tags</source>
+			<target state="translated">រាយ​ស្លាក​ទាំអស់</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.edit" xml:space="preserve" approved="yes">
+				<source>Edit tag</source>
+			<target state="translated">កែ​ស្លាក</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.keywords.placeholder" xml:space="preserve" approved="yes">
+				<source>Keyword1, keyword2, keyword3</source>
+			<target state="translated">ពាក្យគន្លឹះទី១,​ពាក្យគន្លឹះទី២,​ពាក្យគន្លឹះទី៣​</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
+				<source>Image</source>
+			<target state="translated">រូបភាព</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.single_pid" xml:space="preserve" approved="yes">
+				<source>Single-view page for news from this category</source>
+			<target state="translated">ទំព័រពឹស្ដារ​របស់ព័ត៌មានស្រង់ចេញ​ពីប្រភេទនេះ</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link" xml:space="preserve" approved="yes">
+				<source>News Link Element</source>
+			<target state="translated">តំណភ្ជាប់​ធាតុ​ព័ត៌មាន</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="translated">ចំណងជើង</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.description" xml:space="preserve" approved="yes">
+				<source>Description</source>
+			<target state="translated">ពិពណ៌នាសង្ខេប</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve" approved="yes">
+				<source>URL</source>
+			<target state="translated">តំណភ្ជាប់</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag" xml:space="preserve" approved="yes">
+				<source>News Tag</source>
+			<target state="translated">ស្លាក​ព័ត៌មាន</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.title" xml:space="preserve" approved="yes">
+				<source>Title</source>
+			<target state="translated">ចំណងជើង</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve" approved="yes">
+				<source>Speaking URL path segment</source>
+			<target state="translated">កំណាត់​តំណភ្ជាប់ទម្រង់​ល្អ</target></trans-unit>
+    </body>
+  </file>
+</xliff>

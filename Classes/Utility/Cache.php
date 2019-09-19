@@ -52,14 +52,18 @@ class Cache
      * Following cache tags will be added to tsfe:
      * "tx_news_uid_[news:uid]"
      *
-     * @param array $newsRecords array with news records
+     * @param array|\TYPO3\CMS\Extbase\Persistence\QueryResult $newsRecords with news records
      */
-    public static function addCacheTagsByNewsRecords(array $newsRecords)
+    public static function addCacheTagsByNewsRecords($newsRecords)
     {
         $cacheTags = [];
         foreach ($newsRecords as $news) {
             // cache tag for each news record
             $cacheTags[] = 'tx_news_uid_' . $news->getUid();
+
+            if ($news->_getProperty('_localizedUid')) {
+                $cacheTags[] = 'tx_news_uid_' . $news->_getProperty('_localizedUid');
+            }
         }
         if (count($cacheTags) > 0) {
             $GLOBALS['TSFE']->addCacheTags($cacheTags);
@@ -80,6 +84,8 @@ class Cache
             foreach (GeneralUtility::trimExplode(',', $demand->getStoragePage()) as $pageId) {
                 $cacheTags[] = 'tx_news_pid_' . $pageId;
             }
+        } else {
+            $cacheTags[] = 'tx_news_domain_model_news';
         }
         if (count($cacheTags) > 0) {
             $GLOBALS['TSFE']->addCacheTags($cacheTags);

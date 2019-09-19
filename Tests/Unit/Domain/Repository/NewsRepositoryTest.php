@@ -10,8 +10,9 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  */
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
+use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
 /**
  * Tests for domain repository newsRepository
@@ -20,6 +21,16 @@ use TYPO3\CMS\Core\Database\DatabaseConnection;
  */
 class NewsRepositoryTest extends UnitTestCase
 {
+    /** @var AccessibleMockObjectInterface */
+    protected $mockedNewsRepository;
+
+    public function setUp()
+    {
+        $this->mockedNewsRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['getQueryBuilder'], [], '', false);
+
+        $mockedQueryBuilder = $this->getAccessibleMock(QueryBuilder::class, ['escapeStrForLike', 'createNamedParameter'], [], '', false);
+        $this->mockedNewsRepository->expects($this->any())->method('getQueryBuilder')->withAnyParameters()->will($this->returnValue($mockedQueryBuilder));
+    }
 
     /**
      * @test
@@ -28,7 +39,6 @@ class NewsRepositoryTest extends UnitTestCase
     public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven()
     {
         $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
         $search = new Search();
         $search->setSubject('fo');
@@ -36,7 +46,7 @@ class NewsRepositoryTest extends UnitTestCase
         $demand = new NewsDemand();
         $demand->setSearch($search);
 
-        $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
 //
     /**
@@ -46,7 +56,6 @@ class NewsRepositoryTest extends UnitTestCase
     public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven()
     {
         $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
         $search = new Search();
         $search->setMaximumDate('2014-04-01');
@@ -54,7 +63,7 @@ class NewsRepositoryTest extends UnitTestCase
         $demand = new NewsDemand();
         $demand->setSearch($search);
 
-        $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
 //
     /**
@@ -72,7 +81,7 @@ class NewsRepositoryTest extends UnitTestCase
         $demand = new NewsDemand();
         $demand->setSearch($search);
 
-        $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
     }
 //
     /**
@@ -85,7 +94,7 @@ class NewsRepositoryTest extends UnitTestCase
 
         $demand = new NewsDemand();
         $demand->setSearch(null);
-        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $result = $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
         $this->assertEmpty($result);
     }
 
@@ -95,11 +104,6 @@ class NewsRepositoryTest extends UnitTestCase
     public function constraintsAreReturnedForSearchSubject()
     {
         $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
-
-        $mockedTypo3DB = $this->getAccessibleMock(DatabaseConnection::class, ['escapeStrForLike']);
-        $mockedTypo3DB->expects($this->any())->method('escapeStrForLike')->withAnyParameters()->will($this->returnValue(''));
-        $GLOBALS['TYPO3_DB'] = $mockedTypo3DB;
 
         $search = new Search();
         $search->setSubject('Lorem');
@@ -108,7 +112,7 @@ class NewsRepositoryTest extends UnitTestCase
         $demand = new NewsDemand();
         $demand->setSearch($search);
 
-        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $result = $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
         $this->assertEquals(1, count($result));
     }
 
@@ -118,7 +122,6 @@ class NewsRepositoryTest extends UnitTestCase
     public function constraintsAreReturnedForDateFields()
     {
         $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
 
         $search = new Search();
         $search->setMinimumDate('2014-01-01');
@@ -127,19 +130,19 @@ class NewsRepositoryTest extends UnitTestCase
         $demand = new NewsDemand();
         $demand->setSearch($search);
 
-        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $result = $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
         $this->assertEquals(1, count($result));
 
         $search->setMaximumDate('2015-01-01');
         $demand->setSearch($search);
 
-        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $result = $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
         $this->assertEquals(2, count($result));
 
         $search->setMaximumDate('xyz');
         $demand->setSearch($search);
 
-        $result = $mockedRepository->_call('getSearchConstraints', $mockedQuery, $demand);
+        $result = $this->mockedNewsRepository->_call('getSearchConstraints', $mockedQuery, $demand);
         $this->assertEquals(1, count($result));
     }
 }

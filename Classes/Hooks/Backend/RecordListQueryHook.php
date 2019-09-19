@@ -10,14 +10,15 @@ namespace GeorgRinger\News\Hooks\Backend;
  */
 use GeorgRinger\News\Backend\RecordList\RecordListConstraint;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Lang\LanguageService;
-use TYPO3\CMS\Recordlist\RecordList\AbstractDatabaseRecordList;
 
 /**
- * Hook into AbstractDatabaseRecordList to hide tt_content elements in list view
+ * Hook into DatabaseRecordList to hide tt_content elements in list view
+ *
  */
 class RecordListQueryHook
 {
@@ -31,56 +32,95 @@ class RecordListQueryHook
         $this->recordListConstraint = GeneralUtility::makeInstance(RecordListConstraint::class);
     }
 
-    /**
-     * @param array $queryParts
-     * @param AbstractDatabaseRecordList $recordList
-     * @param string $table
-     */
-    public function makeQueryArray_post(array &$queryParts, AbstractDatabaseRecordList $recordList, $table)
+    public function modifyQuery(array &$parameters,
+                                string $table,
+                                int $pageId,
+                                array $additionalConstraints,
+                                array $fieldList,
+                                QueryBuilder $queryBuilder)
     {
-        if ($table === 'tt_content' && (int)$recordList->searchLevels === 0 && $recordList->id > 0) {
-            $pageRecord = BackendUtility::getRecord('pages', $recordList->id, 'uid', ' AND doktype="254" AND module="news"');
+        if ($table === 'tt_content' && $pageId > 0) {
+            $pageRecord = BackendUtility::getRecord('pages', $pageId, 'uid', " AND doktype='254' AND module='news'");
             if (is_array($pageRecord)) {
-                $tsConfig = BackendUtility::getPagesTSconfig($recordList->id);
+                $tsConfig = BackendUtility::getPagesTSconfig($pageId);
                 if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
                     return;
                 }
-                $queryParts['WHERE'] = '1=2';
+
+                $queryBuilder->where(...['1=2']);
 
                 if (self::$count === 0) {
-                    $message = GeneralUtility::makeInstance(
-                        FlashMessage::class,
-                        $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:hiddenContentElements.description'),
-                        '',
-                        FlashMessage::INFO
-                    );
-                    $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
-                    $defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
-                    $defaultFlashMessageQueue->enqueue($message);
+                    $this->addFlashMessage();
                 }
                 self::$count++;
             }
         } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
             $vars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
-
             if (is_array($vars) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];
-                $parts = [];
-                $this->recordListConstraint->extendQuery($parts, $vars);
-                if (is_array($parts['where']) && !empty($parts['where'])) {
-                    $queryParts['WHERE'] .= ' AND ' . implode(' AND ', $parts['where']);
+                $this->recordListConstraint->extendQuery($parameters, $vars, $pageId);
+                if (isset($parameters['orderBy'][0])) {
+                    $queryBuilder->orderBy($parameters['orderBy'][0][0], $parameters['orderBy'][0][1]);
+                    unset($parameters['orderBy']);
                 }
-                if (is_array($parts['orderBy']) && !empty($parts['orderBy'])) {
-                    $queryParts['ORDERBY'] = $parts['orderBy'][0][0] . ' ' . $parts['orderBy'][0][1];
+                if (!empty($parameters['whereDoctrine'])) {
+                    $queryBuilder->andWhere(...$parameters['whereDoctrine']);
+                    unset($parameters['where']);
                 }
             }
         }
     }
 
+    public function buildQueryParametersPostProcess(
+        array &$parameters,
+        string $table,
+        int $pageId,
+        array $additionalConstraints,
+        array $fieldList,
+        $parentObject,
+        $queryBuilder = null
+    ) {
+        if ($table === 'tt_content' && (int)$parentObject->searchLevels === 0 && $parentObject->id > 0) {
+            $pageRecord = BackendUtility::getRecord('pages', $parentObject->id, 'uid', " AND doktype='254' AND module='news'");
+            if (is_array($pageRecord)) {
+                $tsConfig = BackendUtility::getPagesTSconfig($parentObject->id);
+                if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
+                    return;
+                }
+
+                $parameters['where'][] = '1=2';
+
+                if (self::$count === 0) {
+                    $this->addFlashMessage();
+                }
+                self::$count++;
+            }
+        } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
+            $vars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+            if (is_array($vars) && is_array($vars['demand'])) {
+                $vars = $vars['demand'];
+                $this->recordListConstraint->extendQuery($parameters, $vars, $parentObject->id);
+            }
+        }
+    }
+
+    private function addFlashMessage()
+    {
+        $message = GeneralUtility::makeInstance(
+            FlashMessage::class,
+            $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:hiddenContentElements.description'),
+            '',
+            FlashMessage::INFO
+        );
+        $flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
+        $defaultFlashMessageQueue = $flashMessageService->getMessageQueueByIdentifier();
+        $defaultFlashMessageQueue->enqueue($message);
+    }
+
     /**
      * @return LanguageService
      */
-    protected function getLanguageService()
+    protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }
