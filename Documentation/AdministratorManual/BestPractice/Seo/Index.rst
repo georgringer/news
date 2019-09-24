@@ -95,7 +95,9 @@ To enable the category detail page handling, checkout the setting `useCategorySi
                        config {
                            excludedTypes = 1,2
                            additionalWhere =
-                           googleNews = 0
+                           ## enable these two lines to generate a Google News sitemap
+                           # template = EXT:news/Resources/Private/Templates/News/GoogleNews.xml
+                           # googleNews = 1
 
                            sortField = datetime
                            lastModifiedField = tstamp
