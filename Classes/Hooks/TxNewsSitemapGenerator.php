@@ -190,6 +190,8 @@ class TxNewsSitemapGenerator extends AbstractSitemapGenerator
             $additionalParams .= '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
         }
         if ((int)$configuration['tx_news.']['hrDate'] === 1 && $newsRow['datetime'] > 0) {
+            // adjust timezone (database field is UTC)
+            $newsRow['datetime'] += date('Z');
             if (!empty($configuration['tx_news.']['hrDate.']['day'])) {
                 $additionalParams .= '&tx_news_pi1[day]=' . date($configuration['tx_news.']['hrDate.']['day'], $newsRow['datetime']);
             }
