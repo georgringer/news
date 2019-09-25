@@ -134,8 +134,10 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         $additionalParams = $this->getUrlFieldParameterMap($additionalParams, $data['data']);
         $additionalParams = $this->getUrlAdditionalParams($additionalParams);
 
-        if (isset($this->config['url']['hrDate']) && (int)$this->config['url']['hrDate'] === 1
-            && $dateTime = \DateTime::createFromFormat('U', (string)$data['data']['datetime'])) {
+        if (!empty($this->config['url']['hrDate']) && !empty($data['data']['datetime'])) {
+            // adjust timezone (database field is UTC)
+            $timezoneCorrectedDatetime = (int)$data['data']['datetime'] + date('Z');
+            $dateTime = \DateTime::createFromFormat('U', (string)$timezoneCorrectedDatetime);
             if (!empty($this->config['url']['hrDate']['day'])) {
                 $additionalParams['tx_news_pi1[day]'] = $dateTime->format($this->config['url']['hrDate']['day']);
             }
