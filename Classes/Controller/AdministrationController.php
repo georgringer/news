@@ -544,10 +544,12 @@ class AdministrationController extends NewsController
         $returnUrl = 'index.php?route=/web/NewsAdministration/';
 
         $returnUrl .= '&id=' . $this->pageUid . $this->getToken();
-        $url = BackendUtilityCore::getModuleUrl('record_edit', [
+        $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
+        $params = [
             'edit[' . $table . '][' . $pid . ']' => 'new',
             'returnUrl' => $returnUrl
-        ]);
+        ];
+        $url = $uriBuilder->buildUriFromRoute('record_edit', $params);
         HttpUtility::redirect($url);
     }
 
