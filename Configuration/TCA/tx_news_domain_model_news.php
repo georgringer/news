@@ -103,9 +103,11 @@ $tx_news_domain_model_news = [
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
                 'items' => [
-                    0 => '',
-                    1 => '',
-                ]
+                    [
+                        0 => '',
+                        1 => '',
+                    ]
+                ],
             ]
         ],
         'cruser_id' => [
@@ -456,9 +458,11 @@ $tx_news_domain_model_news = [
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
                 'items' => [
-                    0 => '',
-                    1 => '',
-                ]
+                    [
+                        0 => '',
+                        1 => '',
+                    ]
+                ],
             ]
         ],
         'editlock' => [
@@ -469,8 +473,10 @@ $tx_news_domain_model_news = [
                 'renderType' => 'checkboxToggle',
                 'default' => 0,
                 'items' => [
-                    0 => '',
-                    1 => '',
+                    [
+                        0 => '',
+                        1 => '',
+                    ]
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
