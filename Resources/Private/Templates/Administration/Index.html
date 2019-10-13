@@ -9,7 +9,7 @@
 		<f:for each="{categories}" as="category">
 			<li>
 				<label title="{category.item.uid}: {category.item.title -> f:format.htmlspecialchars()}">
-					<input type="checkbox" {n:be.isCheckboxActive(id:category.item.uid,categories:demand.selectedCategories)} name="tx_news_web_newstxnewsm2[demand][selectedCategories][]" value="{category.item.uid}" /> {category.item.title}
+					<input type="checkbox" {n:be.isCheckboxActive(id:category.item.uid,categories:demand.selectedCategories)} name="tx_news_web_newsadministration[demand][selectedCategories][]" value="{category.item.uid}" /> {category.item.title}
 				</label>
 
 				<f:if condition="{category.children}">
@@ -46,9 +46,8 @@
 	<f:if condition="{showSearchForm}">
 		<f:form id="administrationForm" name="demand" object="{demand}" method="get" data="{autoSubmitForm:autoSubmitForm}">
 			<input type="hidden" name="formSubmitted" value="1">
-            <input type="hidden" name="route" value="/web/NewsTxNewsM2/">
+            <input type="hidden" name="route" value="/module/web/NewsAdministration">
             <input type="hidden" name="token" value="{moduleToken}">
-
 			<input type="hidden" name="id" value="{page}">
 			<f:form.checkbox style="display:none" property="selectedCategories" value="0" />
 

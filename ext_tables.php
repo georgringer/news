@@ -56,7 +56,7 @@ $boot = function () {
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
                 'GeorgRinger.news',
                 'web',
-                'tx_news_m2',
+                'administration',
                 '',
                 ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
                 [

@@ -55,7 +55,7 @@ class RecordListQueryHook
                 self::$count++;
             }
         } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
-            $vars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+            $vars = GeneralUtility::_GET('tx_news_web_newsadministration');
             if (is_array($vars) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];
                 $this->recordListConstraint->extendQuery($parameters, $vars, $pageId);
@@ -96,7 +96,7 @@ class RecordListQueryHook
                 self::$count++;
             }
         } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
-            $vars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+            $vars = GeneralUtility::_GET('tx_news_web_newsadministration');
             if (is_array($vars) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];
                 $this->recordListConstraint->extendQuery($parameters, $vars, $parentObject->id);

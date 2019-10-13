@@ -299,7 +299,7 @@ class AdministrationController extends NewsController
         // Shortcut
         if ($this->getBackendUser()->mayMakeShortcut()) {
             $shortcutButton = $buttonBar->makeShortcutButton()
-                ->setModuleName('web_NewsTxNewsM2')
+                ->setModuleName('web_NewsAdministration')
                 ->setGetVariables(['route', 'module', 'id'])
                 ->setDisplayName('Shortcut');
             $buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
@@ -344,7 +344,7 @@ class AdministrationController extends NewsController
     {
         $this->redirectToPageOnStart();
 
-        $demandVars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+        $demandVars = GeneralUtility::_GET('tx_news_web_newsadministration');
         $demand = $this->objectManager->get(AdministrationDemand::class);
         $autoSubmitForm = 0;
         if (is_array($demandVars['demand'])) {
@@ -541,7 +541,7 @@ class AdministrationController extends NewsController
             $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
         }
 
-        $returnUrl = 'index.php?route=/web/NewsTxNewsM2/';
+        $returnUrl = 'index.php?route=/web/NewsAdministration/';
 
         $returnUrl .= '&id=' . $this->pageUid . $this->getToken();
         $url = BackendUtilityCore::getModuleUrl('record_edit', [
@@ -592,15 +592,15 @@ class AdministrationController extends NewsController
      */
     protected function redirectToPageOnStart()
     {
-        $url = 'index.php?route=/web/NewsTxNewsM2/';
+        $url = 'index.php?route=/web/NewsAdministration/';
 
-        if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
-            $url .= '&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
-            HttpUtility::redirect($url);
-        } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
-            $url .= '&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
-            HttpUtility::redirect($url);
-        }
+//        if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
+//            $url .= '&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
+//            HttpUtility::redirect($url);
+//        } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
+//            $url .= '&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
+//            HttpUtility::redirect($url);
+//        }
     }
 
     /**
@@ -612,7 +612,7 @@ class AdministrationController extends NewsController
     protected function getToken(bool $tokenOnly = false): string
     {
         $tokenParameterName = 'token';
-        $token = FormProtectionFactory::get('backend')->generateToken('route', 'web_NewsTxNewsM2');
+        $token = FormProtectionFactory::get('backend')->generateToken('route', 'web_NewsAdministration');
 
         if ($tokenOnly) {
             return $token;

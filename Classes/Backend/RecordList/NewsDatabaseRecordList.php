@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Backend\RecordList;
 
 /**
@@ -7,6 +8,8 @@ namespace GeorgRinger\News\Backend\RecordList;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList;
@@ -68,11 +71,12 @@ class NewsDatabaseRecordList extends DatabaseRecordList
             $urlParameters['show'] = (int)GeneralUtility::_GP('show');
         }
 
-        $demand = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+        $demand = GeneralUtility::_GET('tx_news_web_newsadministration');
         if (is_array($demand['demand'])) {
-            $urlParameters['tx_news_web_newstxnewsm2']['demand'] = $demand['demand'];
+            $urlParameters['tx_news_web_newsadministration']['demand'] = $demand['demand'];
         }
 
-        return BackendUtility::getModuleUrl('web_NewsTxNewsM2', $urlParameters);
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        return $uriBuilder->buildUriFromRoute('web_NewsAdministration', $urlParameters);
     }
 }

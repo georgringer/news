@@ -31,7 +31,7 @@ class RecordListConstraint
     public function isInAdministrationModule(): bool
     {
         $vars = GeneralUtility::_GET('route');
-        return $vars === '/web/NewsTxNewsM2/';
+        return $vars === '/module/web/NewsAdministration';
     }
 
     public function extendQuery(array &$parameters, array $arguments)
