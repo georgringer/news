@@ -28,7 +28,7 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 
 /**
  * Administration controller
@@ -132,7 +132,7 @@ class AdministrationController extends NewsController
         $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
 
-        $web_list_modTSconfig = BackendUtilityCore::getModTSconfig($this->pageUid, 'mod.web_list');
+        $web_list_modTSconfig = BackendUtilityCore::getPagesTSconfig($this->pageUid)['mod.']['web_list.'] ?? [];
         $this->allowedNewTables = GeneralUtility::trimExplode(
             ',',
             $web_list_modTSconfig['properties']['allowedNewTables'],
