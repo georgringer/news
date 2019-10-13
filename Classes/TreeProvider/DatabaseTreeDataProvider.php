@@ -134,8 +134,9 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      */
     protected function isSingleCategoryAclActivated()
     {
-        if (is_array($GLOBALS['BE_USER']->userTS['tx_news.'])
-            && $GLOBALS['BE_USER']->userTS['tx_news.']['singleCategoryAcl'] === '1'
+        $userTsConfig = $GLOBALS['BE_USER']->getTSConfig();
+        if (is_array($userTsConfig['tx_news.'])
+            && $userTsConfig['tx_news.']['singleCategoryAcl'] === '1'
         ) {
             return true;
         }
