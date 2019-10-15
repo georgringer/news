@@ -11,6 +11,7 @@ namespace GeorgRinger\News\ViewHelpers;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to get the target out of the typolink
@@ -24,7 +25,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * A link to the page with uid 123 and target set to "_blank"
  * </output>
  */
-class TargetLinkViewHelper extends AbstractViewHelper implements CompilableInterface
+class TargetLinkViewHelper extends AbstractViewHelper implements ViewHelperInterface
 {
     use CompileWithRenderStatic;
 
