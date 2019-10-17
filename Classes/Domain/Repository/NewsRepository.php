@@ -99,7 +99,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
     {
@@ -256,7 +256,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
     protected function createOrderingsFromDemand(DemandInterface $demand)
     {

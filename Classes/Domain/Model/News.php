@@ -477,7 +477,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get categories
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Category>
+     * @return \GeorgRinger\News\Domain\Model\Category[]
      */
     public function getCategories()
     {
@@ -523,7 +523,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get related news
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
+     * @return \GeorgRinger\News\Domain\Model\News[]
      */
     public function getRelated()
     {
@@ -533,7 +533,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set related from
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News> $relatedFrom
+     * @param \GeorgRinger\News\Domain\Model\News[] $relatedFrom
      */
     public function setRelatedFrom($relatedFrom)
     {
@@ -543,7 +543,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get related from
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
+     * @return \GeorgRinger\News\Domain\Model\News[]
      */
     public function getRelatedFrom()
     {
@@ -624,7 +624,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get related links
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link>
+     * @return \GeorgRinger\News\Domain\Model\Link[]
      */
     public function getRelatedLinks()
     {
@@ -634,7 +634,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get FAL related files
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
+     * @return \GeorgRinger\News\Domain\Model\FileReference[]
      */
     public function getFalRelatedFiles()
     {
@@ -677,7 +677,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set related links
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link> $relatedLinks related links relation
+     * @param \GeorgRinger\News\Domain\Model\Link[] $relatedLinks related links relation
      */
     public function setRelatedLinks($relatedLinks)
     {

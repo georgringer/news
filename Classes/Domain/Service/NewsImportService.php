@@ -371,7 +371,7 @@ class NewsImportService extends AbstractImportService
     /**
      * Get an existing items from the references that matches the file
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference> $items
+     * @param \GeorgRinger\News\Domain\Model\FileReference[] $items
      * @param \TYPO3\CMS\Core\Resource\File $file
      * @return bool|FileReference
      */

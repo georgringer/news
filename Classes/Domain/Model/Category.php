@@ -326,7 +326,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
+     * @return \GeorgRinger\News\Domain\Model\FileReference[]
      */
     public function getImages()
     {

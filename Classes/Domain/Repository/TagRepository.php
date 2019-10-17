@@ -58,7 +58,7 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
      *
      * @param QueryInterface $query
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
     {
@@ -90,7 +90,7 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
     protected function createOrderingsFromDemand(DemandInterface $demand)
     {

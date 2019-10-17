@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  GeorgRinger\News\:
+    resource: '../Classes/*'
+
+  # Fix DataMapper for TYPO3 v10.0 and v10.1 where it is not
+  # properly configured for DI. The deprecated $query
+  # parameter needs to be explicitly set to null as
+  # QueryInterface can not be autowired by Symfony DI.
+  # TODO: Remove once we drop support for v10.0/v10.1
+  TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper:
+    arguments:
+      $query: null

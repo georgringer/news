@@ -29,73 +29,49 @@ class EmConfiguration
         }
     }
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $tagPid = 0;
 
-    /**
-     * @var boolean;
-     */
+    /** @var bool */
     protected $prependAtCopy = true;
 
-    /**
-     * @var string;
-     */
+    /** @var string */
     protected $categoryRestriction = '';
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $categoryBeGroupTceFormsRestriction = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $contentElementRelation = true;
 
     /** @var bool */
     protected $contentElementPreview = true;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $manualSorting = false;
 
-    /**
-     * @var string
-     */
+    /** @var bool */
     protected $archiveDate = 'date';
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $dateTimeNotRequired = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $showImporter = false;
 
     /** @var bool */
     protected $rteForTeaser = false;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $showAdministrationModule = true;
 
     /** @var bool */
     protected $hidePageTreeForAdministrationModule = false;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $storageUidImporter = 1;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $resourceFolderImporter = '/news_import';
 
     /** @var bool */
@@ -104,79 +80,53 @@ class EmConfiguration
     /** @var bool */
     protected $advancedMediaPreview = true;
 
-    /**
-     * @return int
-     */
+    /** @var int */
     public function getTagPid(): int
     {
         return (int)$this->tagPid;
     }
 
-    /**
-     *
-     * @return bool
-     */
-    public function getPrependAtCopy()
+    public function getPrependAtCopy(): bool
     {
         return (bool)$this->prependAtCopy;
     }
 
-    /**
-     * @return string
-     */
-    public function getCategoryRestriction()
+    public function getCategoryRestriction(): string
     {
         return $this->categoryRestriction;
     }
 
     /**
      * Get categoryBeGroupTceFormsRestriction
-     *
-     * @return bool
      */
-    public function getCategoryBeGroupTceFormsRestriction()
+    public function getCategoryBeGroupTceFormsRestriction(): bool
     {
         return (bool)$this->categoryBeGroupTceFormsRestriction;
     }
 
-    /**
-     * @return bool
-     */
     public function getContentElementRelation(): bool
     {
         return (bool)$this->contentElementRelation;
     }
 
-    /**
-     * @return bool
-     */
     public function getContentElementPreview(): bool
     {
         return (bool)$this->contentElementPreview;
     }
 
-    /**
-     * @return bool
-     */
     public function getManualSorting(): bool
     {
         return (bool)$this->manualSorting;
     }
 
-    /**
-     * @return string
-     */
-    public function getArchiveDate()
+    public function getArchiveDate(): string
     {
         return $this->archiveDate;
     }
 
-    /**
-     * @return bool
-     */
     public function getShowImporter(): bool
     {
-        return (boolean)$this->showImporter;
+        return (bool)$this->showImporter;
     }
 
     /**
@@ -187,73 +137,46 @@ class EmConfiguration
         $this->showAdministrationModule = $showAdministrationModule;
     }
 
-    /**
-     * @return bool
-     */
     public function getShowAdministrationModule(): bool
     {
         return (bool)$this->showAdministrationModule;
     }
 
-    /**
-     * @return bool
-     */
     public function getRteForTeaser(): bool
     {
         return (bool)$this->rteForTeaser;
     }
 
-    /**
-     * @return string
-     */
-    public function getResourceFolderImporter()
+    public function getResourceFolderImporter(): string
     {
         return $this->resourceFolderImporter;
     }
 
-    /**
-     * @return int
-     */
     public function getStorageUidImporter(): int
     {
         return (int)$this->storageUidImporter;
     }
 
-    /**
-     * @return bool
-     */
     public function getDateTimeNotRequired(): bool
     {
         return (bool)$this->dateTimeNotRequired;
     }
 
-    /**
-     * @return bool
-     */
     public function getDateTimeRequired(): bool
     {
         return !(bool)$this->dateTimeNotRequired;
     }
 
-    /**
-     * @return bool
-     */
     public function getHidePageTreeForAdministrationModule(): bool
     {
         return (bool)$this->hidePageTreeForAdministrationModule;
     }
 
-    /**
-     * @return bool
-     */
     public function isMediaPreview(): bool
     {
         return (bool)$this->mediaPreview;
     }
 
-    /**
-     * @return bool
-     */
     public function isAdvancedMediaPreview(): bool
     {
         return (bool)$this->advancedMediaPreview;
