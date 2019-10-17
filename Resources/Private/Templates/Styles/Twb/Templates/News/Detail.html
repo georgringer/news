@@ -63,7 +63,7 @@
 					<div class="col-md-4">
 						<f:for each="{newsItem.mediaNonPreviews}" as="mediaElement">
 							<div class="thumbnail">
-								<f:media file="{mediaElement}" class="img-responsive" />
+								<f:media file="{mediaElement}" class="img-fluid" />
 								<f:if condition="{mediaElement.description}">
 									<div class="caption">
 										{mediaElement.description}
@@ -88,7 +88,7 @@
 </f:section>
 
 <f:section name="inner-content">
-	<n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+	<n:renderMedia news="{newsItem}" imgClass="img-fluid" videoClass="video-wrapper" audioClass="audio-wrapper">
 		<f:if condition="{newsItem.teaser}">
 			<!-- teaser -->
 			<div class="lead" itemprop="description">
