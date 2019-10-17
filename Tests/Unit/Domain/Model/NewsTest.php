@@ -239,7 +239,7 @@ class NewsTest extends UnitTestCase
 
         $tag = new Tag();
         $tag->setTitle('Tag');
-        $tags->attach($tags);
+        $tags->attach($tag);
         $this->newsDomainModelInstance->setTags($tags);
         $this->assertEquals($tags, $this->newsDomainModelInstance->getTags());
     }
