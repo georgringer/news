@@ -10,8 +10,11 @@ namespace GeorgRinger\News\Utility;
  */
 use TYPO3\CMS\Backend\Tree\View\PageTreeView;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Log\Logger;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -36,7 +39,7 @@ class Page
             return $pidList;
         }
 
-        $queryGenerator = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\QueryGenerator::class);
+        $queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
         $recursiveStoragePids = $pidList;
         $storagePids = GeneralUtility::intExplode(',', $pidList);
         foreach ($storagePids as $startPid) {
@@ -76,7 +79,8 @@ class Page
                         }
                         $register[$key] = $value;
                     } catch (\Exception $e) {
-                        GeneralUtility::devLog($e->getMessage(), 'news', GeneralUtility::SYSLOG_SEVERITY_WARNING);
+                        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+                        $logger->warning($e->getMessage());
                     }
                 }
                 if (is_array($object)) {
