@@ -8,7 +8,6 @@ namespace GeorgRinger\News\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Resource\FilePathSanitizer;
@@ -49,8 +48,7 @@ class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVi
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         $path = $arguments['path'];
         $compress = (bool)$arguments['compress'];
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
@@ -61,7 +59,7 @@ class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVi
                 // JS
                 if (strtolower(substr($path, -3)) === '.js') {
                     $pageRenderer->addJsFile($path, null, $compress, false, '', true);
-                    // CSS
+                // CSS
                 } elseif (strtolower(substr($path, -4)) === '.css') {
                     $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
                 }
@@ -73,7 +71,7 @@ class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVi
             if (strtolower(substr($path, -3)) === '.js') {
                 $pageRenderer->addJsFile($path, null, $compress, false, '', true);
 
-                // CSS
+            // CSS
             } elseif (strtolower(substr($path, -4)) === '.css') {
                 $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
             }
