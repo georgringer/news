@@ -68,7 +68,6 @@ All ViewHelpers
 
    Format/NothingViewHelper
 
-   Social/DisqusViewHelper
    Social/GooglePlusViewHelper
    Social/GravatarViewHelper
    Social/TwitterViewHelper

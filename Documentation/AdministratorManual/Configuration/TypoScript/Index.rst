@@ -582,7 +582,6 @@ Properties
 	`link\.typesOpeningInNewWindow`_      string
 	`link\.skipControllerAndAction`_      integer
 	facebookLocale_                       string
-	disqusLocale_                         string
 	googlePlusLocale_                     string
 	opengraph_                            array
 	`detail\.media`_                      array
@@ -592,7 +591,6 @@ Properties
 	`detail\.showMetaTags`_               boolean
 	`detail\.showPrevNext`_               boolean
 	`detail\.showSocialShareButtons`_     boolean
-	`detail\.disqusShortname`_            string
 	`list\.media`_                        array
 	`list\.paginate`_                     array
 	`list\.rss`_                          array
@@ -913,24 +911,6 @@ facebookLocale
    Default
          en\_US
 
-.. _tsDisqusLocale:
-
-disqusLocale
-""""""""""""
-
-.. container:: table-row
-
-   Property
-         disqusLocale
-   Data type
-         string
-   Description
-          Locale used for disqus
-   Default
-         en
-
-.. _tsGooglePlusLocale:
-
 googlePlusLocale
 """"""""""""""""
 
@@ -1148,21 +1128,6 @@ detail.showSocialShareButtons
          If set, the social share functionality is shown. This includes facebook, twitter, google+
    Default
          1
-
-.. _tsDetailDisqusdisqusShortname:
-
-detail.disqusShortname
-""""""""""""""""""""""
-.. container:: table-row
-
-   Property
-         detail.disqusShortname
-   Data type
-         string
-   Description
-         If set, the commenting system of disqus (www.disqus.com) is used with the given name.
-
-.. _tsListMedia:
 
 list.media
 """"""""""
