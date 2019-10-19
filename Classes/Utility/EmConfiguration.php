@@ -25,24 +25,7 @@ class EmConfiguration
      */
     public static function getSettings()
     {
-        $configuration = self::parseSettings();
-        require_once(ExtensionManagementUtility::extPath('news') . 'Classes/Domain/Model/Dto/EmConfiguration.php');
-        $settings = new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration($configuration);
-        return $settings;
+        return new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration();
     }
 
-    /**
-     * Parse settings and return it as array
-     *
-     * @return array unserialized extconf settings
-     */
-    public static function parseSettings()
-    {
-        $settings = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news']);
-
-        if (!is_array($settings)) {
-            $settings = [];
-        }
-        return $settings;
-    }
 }

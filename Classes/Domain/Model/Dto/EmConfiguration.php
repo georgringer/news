@@ -2,6 +2,9 @@
 
 namespace GeorgRinger\News\Domain\Model\Dto;
 
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -20,8 +23,16 @@ class EmConfiguration
      *
      * @param array $configuration em configuration
      */
-    public function __construct(array $configuration)
+    public function __construct(array $configuration = [])
     {
+        if (empty($configuration)) {
+            try {
+                $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
+                $configuration = $extensionConfiguration->get('news');
+            } catch (\Exception $exception) {
+                // do nothing
+            }
+        }
         foreach ($configuration as $key => $value) {
             if (property_exists(__CLASS__, $key)) {
                 $this->$key = $value;
