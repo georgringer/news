@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Widget\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\CMS\Core\Core\Environment;
 
 /**
  * Tests for PaginateController
@@ -55,7 +56,7 @@ class PaginateControllerTest extends UnitTestCase
         $this->assertEquals($controller->_get('objects'), $objects);
         $this->assertEquals($controller->_get('configuration'), $configuration);
         $this->assertEquals($controller->_get('numberOfPages'), 5);
-        $this->assertEquals($controller->_get('templatePath'), PATH_site . 'fo/bar');
+        $this->assertEquals($controller->_get('templatePath'), Environment::getPublicPath() . 'fo/bar');
     }
 
     /**
