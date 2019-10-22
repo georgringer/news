@@ -334,7 +334,6 @@ class NewsController extends NewsBaseController
 
             if ($previewNewsId > 0) {
                 if ($this->isPreviewOfHiddenRecordsEnabled()) {
-                    $GLOBALS['TSFE']->showHiddenRecords = true;
                     $news = $this->newsRepository->findByUid($previewNewsId, false);
                 } else {
                     $news = $this->newsRepository->findByUid($previewNewsId);
