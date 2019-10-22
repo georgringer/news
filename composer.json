@@ -8,12 +8,11 @@
     "article",
     "news"
   ],
-  "homepage": "http://montagmorgen.at",
+  "homepage": "https://ringer.it",
   "authors": [
     {
       "name": "Georg Ringer",
-      "role": "Developer",
-      "homepage": "http://montagmorgen.at"
+      "role": "Developer"
     }
   ],
   "license": ["GPL-2.0-or-later"],
@@ -41,7 +40,6 @@
     }
   },
   "replace": {
-    "news": "self.version",
     "typo3-ter/news": "self.version"
   },
   "config": {
@@ -56,6 +54,7 @@
   },
   "extra": {
     "typo3/cms": {
+      "extension-key": "news",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": ".Build/Web"
     }
