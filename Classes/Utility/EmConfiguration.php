@@ -8,7 +8,6 @@ namespace GeorgRinger\News\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /**
  * Utility class to get the settings from Extension Manager
@@ -27,5 +26,4 @@ class EmConfiguration
     {
         return new \GeorgRinger\News\Domain\Model\Dto\EmConfiguration();
     }
-
 }
