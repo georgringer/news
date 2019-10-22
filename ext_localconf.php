@@ -142,8 +142,6 @@ $boot = function () {
         }
     }
 
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \GeorgRinger\News\Command\NewsImportCommandController::class;
-
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1552726986] = [
         'nodeName' => 'NewsStaticText',
         'priority' => 70,
