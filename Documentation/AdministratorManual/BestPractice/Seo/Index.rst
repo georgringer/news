@@ -131,3 +131,52 @@ To enable the category detail page handling, checkout the setting `useCategorySi
            }
        }
    }
+
+Multiple Sitemaps
+~~~~~~~~~~~~~~~~~
+
+With TYPO3 10 it is possible to define multiple sitemaps. This can be used to define a normal sitemap and one for google news. This example adds another sitemap for the google news and defines a new type.
+
+.. code-block:: typoscript
+
+   plugin.tx_seo {
+      config {
+         xmlSitemap {
+            sitemaps {
+               news {
+                  provider = GeorgRinger\News\Seo\NewsXmlSitemapDataProvider
+                  config {
+                     # ...
+                  }
+               }
+
+         }
+         googleNewsSitemap {
+            sitemaps {
+               news < plugin.tx_seo.config.xmlSitemap.sitemaps.news
+               news {
+                  config {
+                     template = EXT:news/Resources/Private/Templates/News/GoogleNews.xml
+                     googleNews = 1
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   seo_sitemap_news < seo_sitemap
+   seo_sitemap_news {
+      typeNum = 1533906436
+      10.sitemapType = googleNewsSitemap
+   }
+
+This sitemap can be added in the site config so it has a nice url:
+
+.. code-block:: yaml
+   :linenos:
+
+   routeEnhancers:
+     PageTypeSuffix:
+       map:
+         news_sitemap.xml: 1533906436
