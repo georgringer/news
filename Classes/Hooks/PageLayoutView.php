@@ -712,7 +712,7 @@ class PageLayoutView
     /**
      * Return language service instance
      *
-     * @return \TYPO3\CMS\Lang\LanguageService
+     * @return \TYPO3\CMS\Core\Localization\LanguageService
      */
     public function getLanguageService()
     {

@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace GeorgRinger\News\Backend\FieldInformation;
 
 use TYPO3\CMS\Backend\Form\AbstractNode;
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 
 class StaticText extends AbstractNode
 {

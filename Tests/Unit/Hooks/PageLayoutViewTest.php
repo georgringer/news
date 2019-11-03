@@ -10,7 +10,7 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  */
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 
 /**
  * Tests for PageLayoutView
