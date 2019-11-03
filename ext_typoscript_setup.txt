@@ -1,6 +1,9 @@
 
 # ==============================================
 # Persistence object mapping configuration
+#
+# !! Not used by Typo3 10 anymore. It uses Configuration/Extbase/Persistence/Classes.php instead!
+# See https://docs.typo3.org/c/typo3/cms-core/master/en-us/Changelog/10.0/Breaking-87623-ReplaceConfigpersistenceclassesTyposcriptConfiguration.html
 # ==============================================
 config.tx_extbase.persistence.classes {
 	GeorgRinger\News\Domain\Model\FileReference {
@@ -30,3 +33,4 @@ config.tx_extbase.persistence.classes {
 		}
 	}
 }
+
