@@ -10,8 +10,8 @@ namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Facets\CompilableInterface;
 
 /**
  * ViewHelper to check if th

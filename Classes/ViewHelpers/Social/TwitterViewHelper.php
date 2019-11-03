@@ -24,7 +24,7 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * Result: Twitter widget to share www.mydomain.tld with a german twitter text
  *
  */
-class TwitterViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class TwitterViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
     /**

@@ -25,7 +25,7 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  *    without showing the counter
  *
  */
-class GooglePlusViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class GooglePlusViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
     /**

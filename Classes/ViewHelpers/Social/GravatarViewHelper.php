@@ -20,7 +20,7 @@ namespace GeorgRinger\News\ViewHelpers\Social;
  * Result: a img-tag with the gravatar-url with 20px square-image
  *
  */
-class GravatarViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class GravatarViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
     /**
      * @var string

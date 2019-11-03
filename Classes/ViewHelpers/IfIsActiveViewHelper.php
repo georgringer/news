@@ -9,8 +9,7 @@ namespace GeorgRinger\News\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 /**
  * ViewHelper to check if the current news item is rendered as single view on the same page
@@ -24,7 +23,7 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
  * </output>
  *
  */
-class IfIsActiveViewHelper extends AbstractConditionViewHelper implements CompilableInterface
+class IfIsActiveViewHelper extends AbstractConditionViewHelper
 {
     /**
      */

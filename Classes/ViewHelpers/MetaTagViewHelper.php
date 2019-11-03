@@ -30,7 +30,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <meta name="keywords" content="news 1, news 2" />
  * </output>
  */
-class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
     /**

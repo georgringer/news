@@ -20,7 +20,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Result: Facebook widget to comment an article
  *
  */
-class CommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class CommentViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
     /**
