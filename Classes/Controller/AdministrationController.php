@@ -13,6 +13,7 @@ use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\Components\Menu\Menu;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -550,7 +551,8 @@ class AdministrationController extends NewsController
         }
 
         $returnUrl .= '&id=' . $this->pageUid . $this->getToken();
-        $url = BackendUtilityCore::getModuleUrl('record_edit', [
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $url = $uriBuilder->buildUriFromRoute('record_edit', [
             'edit[' . $table . '][' . $pid . ']' => 'new',
             'returnUrl' => $returnUrl
         ]);

@@ -11,6 +11,7 @@ use Exception;
 use GeorgRinger\News\Jobs\ImportJobInterface;
 use GeorgRinger\News\Utility\EmConfiguration;
 use GeorgRinger\News\Utility\ImportJob;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Page\PageRenderer;
@@ -64,10 +65,11 @@ class ImportController extends ActionController
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/Import');
 
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $this->view->assignMultiple([
                 'error' => $this->checkCorrectConfiguration(),
                 'availableJobs' => array_merge([0 => ''], $this->getAvailableJobs()),
-                'moduleUrl' => BackendUtility::getModuleUrl($this->request->getPluginName())
+                'moduleUrl' => $uriBuilder->buildUriFromRoute($this->request->getPluginName())
             ]
         );
     }

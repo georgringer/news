@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Hooks;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\TemplateLayout;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -700,8 +701,9 @@ class PageLayoutView
         $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtilityCore::getRecord('pages', $row['uid']));
         $permsEdit = $localCalcPerms & Permission::PAGE_EDIT;
         if ($permsEdit) {
-            $returnUrl = BackendUtilityCore::getModuleUrl('web_layout', ['id' => $currentPageUid]);
-            $editLink = BackendUtilityCore::getModuleUrl('web_layout', [
+            $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+            $returnUrl = $uriBuilder->buildUriFromRoute('web_layout', ['id' => $currentPageUid]);
+            $editLink = $uriBuilder->buildUriFromRoute('web_layout', [
                 'id' => $row['uid'],
                 'returnUrl' => $returnUrl
             ]);
