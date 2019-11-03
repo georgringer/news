@@ -2,6 +2,9 @@
 
 namespace GeorgRinger\News\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Annotation\ORM\Transient;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -108,34 +111,34 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $authorEmail;
 
     /**
+     * @Lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Category>
-     * @lazy
      */
     protected $categories;
 
     /**
+     * @Lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
-     * @lazy
      */
     protected $related;
 
     /**
+     * @Lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
-     * @lazy
      */
     protected $relatedFrom;
 
     /**
      * Fal related files
      *
+     * @Lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-     * @lazy
      */
     protected $falRelatedFiles;
 
     /**
+     * @Lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link>
-     * @lazy
      */
     protected $relatedLinks;
 
@@ -157,24 +160,24 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Fal media items
      *
+     * @Lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-     * @lazy
      */
     protected $falMedia;
 
     /**
      * Fal media items with showinpreview set
      *
+     * @Transient
      * @var array
-     * @transient
      */
     protected $falMediaPreviews;
 
     /**
      * Fal media items with showinpreview not set
      *
+     * @Transient
      * @var array
-     * @transient
      */
     protected $falMediaNonPreviews;
 
@@ -194,14 +197,14 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $istopnews;
 
     /**
+     * @Lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\TtContent>
-     * @lazy
      */
     protected $contentElements;
 
     /**
+     * @Lazy
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Tag>
-     * @lazy
      */
     protected $tags;
 
@@ -535,7 +538,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News> $relatedFrom
      */
-    public function setRelatedFrom($relatedFrom)
+    public function setRelatedFrom(News $relatedFrom)
     {
         $this->relatedFrom = $relatedFrom;
     }
@@ -679,7 +682,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link> $relatedLinks related links relation
      */
-    public function setRelatedLinks($relatedLinks)
+    public function setRelatedLinks(Link $relatedLinks)
     {
         $this->relatedLinks = $relatedLinks;
     }

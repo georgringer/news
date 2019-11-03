@@ -1,6 +1,7 @@
 <?php
 namespace GeorgRinger\News\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 
 /**
@@ -68,13 +69,13 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @var \GeorgRinger\News\Domain\Model\Category
-     * @lazy
+     * @Lazy
      */
     protected $parentcategory;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-     * @lazy
+     * @Lazy
      */
     protected $images;
 
