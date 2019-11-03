@@ -89,7 +89,9 @@ class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBas
 
         if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
             $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-            $pageRenderer->addMetaTag($this->tag->render());
+            $meta = $this->tag->getAttributes();
+            $type = $this->tag->hasAttribute('name') ? 'name' : 'property';
+            $pageRenderer->setMetaTag($type, $meta[$type], $meta['content']);
         }
     }
 }
