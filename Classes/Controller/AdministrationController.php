@@ -13,7 +13,6 @@ use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
-use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\Components\Menu\Menu;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -294,8 +293,8 @@ class AdministrationController extends NewsController
 
         // Refresh
         $refreshButton = $buttonBar->makeLinkButton()
-            ->setHref(GeneralUtility::getIndpEnv('REQUEST_URI'))
-            ->setTitle($this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.reload'))
+            ->setHref($this->request->getRequestUri())
+            ->setTitle($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload'))
             ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
         $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
 
