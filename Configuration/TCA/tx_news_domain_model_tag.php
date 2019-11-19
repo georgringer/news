@@ -143,7 +143,6 @@ return [
             'config' => [
                 'type' => 'text',
                 'enableRichtext' => true,
-                'richtextConfiguration' => 'default',
             ],
         ],
         'notes' => [

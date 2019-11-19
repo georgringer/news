@@ -135,7 +135,6 @@ $newSysCategoryColumns = [
         'config' => [
             'type' => 'text',
             'enableRichtext' => true,
-            'richtextConfiguration' => 'default',
         ],
     ],
 ];
