@@ -1240,6 +1240,11 @@ list.paginate
          .. important::
          	`list.paginate.templatePath` needs to be added to the setting `overrideFlexformSettingsIfEmpty`!
 
+         **throw404whenPageExceedsLimit**
+
+         When set to TRUE an 404 error will be thrown when the current page exceeds the number of existing pages.
+         Otherwise a page without any records will be shown.
+
 
    Default
          ::
@@ -1251,6 +1256,7 @@ list.paginate
            templatePath =
            prevNextHeaderTags = 1
            maximumNumberOfLinks = 3
+           throw404whenPageExceedsLimit = 0
 		}
 
 .. _tsListRss:
