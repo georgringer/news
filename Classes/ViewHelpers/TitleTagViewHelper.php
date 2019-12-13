@@ -8,6 +8,7 @@ namespace GeorgRinger\News\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
@@ -52,8 +53,13 @@ class TitleTagViewHelper extends AbstractViewHelper implements CompilableInterfa
 
         $content = trim($renderChildrenClosure());
         if (!empty($content)) {
-            $GLOBALS['TSFE']->altPageTitle = $content;
-            $GLOBALS['TSFE']->indexedDocTitle = $content;
+            if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+                $titleProvider = GeneralUtility::makeInstance(\GeorgRinger\News\Seo\NewsPageTitleProvider::class);
+                $titleProvider->setTitle($content);
+            }else{
+                $GLOBALS['TSFE']->altPageTitle = $content;
+                $GLOBALS['TSFE']->indexedDocTitle = $content;
+            }
         }
     }
 }

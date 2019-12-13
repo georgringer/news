@@ -10,11 +10,13 @@ namespace GeorgRinger\News\ViewHelpers;
  */
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
 
 /**
  * ViewHelper to render meta tags
  *
  * # Example: Basic Example: News title as og:title meta tag
+ * # MetaTagManager from the core decide if "property" or "name" is used
  * <code>
  * <n:metaTag property="og:title" content="{newsItem.title}" />
  * </code>
@@ -22,9 +24,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <meta property="og:title" content="TYPO3 is awesome" />
  * </output>
  *
- * # Example: Force the attribute "name"
  * <code>
- * <n:metaTag name="keywords" content="{newsItem.keywords}" />
+ * <n:metaTag property="keywords" content="{newsItem.keywords}" />
  * </code>
  * <output>
  * <meta name="keywords" content="news 1, news 2" />
@@ -32,7 +33,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
-
     /**
      * @var string
      */
@@ -44,11 +44,16 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
      */
     public function initializeArguments()
     {
-        $this->registerTagAttribute('property', 'string', 'Property of meta tag');
-        $this->registerTagAttribute('name', 'string', 'Content of meta tag using the name attribute');
-        $this->registerTagAttribute('content', 'string', 'Content of meta tag');
+        if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+            $this->registerArgument('property', 'string', 'Property of meta tag');
+            $this->registerArgument('name', 'string', 'Content of meta tag using the name attribute');
+            $this->registerArgument('content', 'string', 'Content of meta tag');
+        }else{
+            $this->registerTagAttribute('property', 'string', 'Property of meta tag');
+            $this->registerTagAttribute('name', 'string', 'Content of meta tag using the name attribute');
+            $this->registerTagAttribute('content', 'string', 'Content of meta tag');
+        }
         $this->registerArgument('useCurrentDomain', 'boolean', 'Use current domain', false, false);
-        $this->registerArgument('forceAbsoluteUrl', 'boolean', 'Force absolut domain', false, false);
     }
 
     /**
@@ -67,29 +72,31 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
             return;
         }
 
-        $useCurrentDomain = $this->arguments['useCurrentDomain'];
-        $forceAbsoluteUrl = $this->arguments['forceAbsoluteUrl'];
-
-        // set current domain
-        if ($useCurrentDomain) {
-            $this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
-        }
-
-        // prepend current domain
-        if ($forceAbsoluteUrl) {
-            $parsedPath = parse_url($this->arguments['content']);
-            if (is_array($parsedPath) && !isset($parsedPath['host'])) {
-                $this->tag->addAttribute('content',
-                    rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
-                    . '/'
-                    . ltrim($this->arguments['content'], '/')
-                );
+        if (version_compare(TYPO3_version, '9.0.0') >= 0) {
+            if(isset($this->arguments['property']) && !empty($this->arguments['property'])){
+                $property = $this->arguments['property'];
+            }else if(isset($this->arguments['name']) && !empty($this->arguments['name'])){
+                $property = $this->arguments['name'];
             }
-        }
 
-        if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
-            $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-            $pageRenderer->addMetaTag($this->tag->render());
+            if($property) {
+                $metaTagManagerRegistry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
+                $manager = $metaTagManagerRegistry->getManagerForProperty($property);
+
+                if ($this->arguments['useCurrentDomain']) {
+                    $manager->addProperty($property, GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+                } else if (isset($this->arguments['content']) && !empty($this->arguments['content'])) {
+                    $manager->addProperty($property, $this->arguments['content']);
+                }
+            }
+        }else{
+            if ($this->arguments['useCurrentDomain']) {
+                $this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+            }
+            if ($this->arguments['useCurrentDomain'] || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
+                $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+                $pageRenderer->addMetaTag($this->tag->render());
+            }
         }
     }
 }
