@@ -193,6 +193,8 @@ If you use the *category menu* or *tag list* plugins to filter news records, the
        extension: News
        plugin: Pi1
        routes:
+         - routePath: '/'
+           _controller: 'News::list'
          - routePath: '/page-{page}'
            _controller: 'News::list'
            _arguments:
@@ -307,6 +309,8 @@ For *list view* with a *date menu* plugin, to filter by date. Also includes conf
        plugin: Pi1
        routes:
          # Pagination:
+         - routePath: '/'
+           _controller: 'News::list'
          - routePath: '/page-{page}'
            _controller: 'News::list'
            _arguments:
