@@ -1014,7 +1014,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $contentElements = $this->getContentElements();
         if ($contentElements) {
             foreach ($this->getContentElements() as $contentElement) {
-                $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
+                if ($contentElement->getColPos() >= 0) {
+                    $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
+                }
             }
         }
         return implode(',', $idList);
