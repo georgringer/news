@@ -77,7 +77,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
                 1400741142);
         }
 
-        $this->numberOfPages = (int)ceil((count($this->objects) - (int)$this->initialOffset) / $itemsPerPage);
+        $this->numberOfPages = (int)ceil(count($this->objects) / $itemsPerPage);
         $this->maximumNumberOfLinks = (integer)$this->configuration['maximumNumberOfLinks'];
         if (isset($this->configuration['templatePath']) && !empty($this->configuration['templatePath'])) {
             $this->templatePath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->configuration['templatePath']);
@@ -137,8 +137,28 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
         }
 
         if ($this->currentPage > 1) {
-            $pageLabel = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('paginate_overall', 'news', [$this->currentPage, $this->numberOfPages]);
-            $GLOBALS['TSFE']->page['title'] = $GLOBALS['TSFE']->page['title'] . ' - ' . trim($pageLabel, '.');
+            $pageLabel = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                'paginate_overall',
+                'news',
+                [
+                    $this->currentPage,
+                    $this->numberOfPages
+                ]
+            );
+            $titleAddition = ' - ' . trim($pageLabel, '.');
+
+            $GLOBALS['TSFE']->page['title'] .= $titleAddition;
+
+            $registerProperties = [
+                'currentPage' => $this->currentPage,
+                'numberOfPages' => $this->numberOfPages,
+                'titleAddition' => $titleAddition,
+            ];
+            \GeorgRinger\News\Utility\Page::setRegisterProperties(
+                implode(',', array_keys($registerProperties)),
+                $registerProperties,
+                'newsPagination'
+            );
         }
 
         $this->view->assign('contentArguments', [

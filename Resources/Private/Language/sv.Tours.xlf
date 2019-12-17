@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-01-04T11:47:18Z" product-name="news" target-language="sv-SE">
+    <header/>
+    <body>
+      <trans-unit id="adminModule.title" xml:space="preserve" approved="yes">
+				<source>EXT:news - Administration module</source>
+			<target state="translated">EXT:news - Administrationsmodul</target></trans-unit>
+      <trans-unit id="adminModule.description" xml:space="preserve" approved="yes">
+				<source>The administration module of EXT:news is a powerful tool for editors to create, edit and find news records.</source>
+			<target state="translated">Administrationsmodulen för EXT:news är ett kraftfullt verktyg för redaktörer att skapa, redigera och hitta nyhetsposter.</target></trans-unit>
+      <trans-unit id="adminModule.general.title" xml:space="preserve" approved="yes">
+				<source>Administration module</source>
+			<target state="translated">Administrationsmodul</target></trans-unit>
+      <trans-unit id="adminModule.general.content" xml:space="preserve" approved="yes">
+				<source>This is the best place for creating new records and editing existing ones</source>
+			<target state="translated">Det här är det bästa stället för att skapa nya poster och redigera befintliga</target></trans-unit>
+      <trans-unit id="adminModule.filter.title" xml:space="preserve" approved="yes">
+				<source>Toggle filter</source>
+			<target state="translated">Byt filter</target></trans-unit>
+      <trans-unit id="adminModule.filter.content" xml:space="preserve" approved="yes">
+				<source>Show and hide a filter which helps you finding news records</source>
+			<target state="translated">Visa och dölj ett filter som hjälper dig att hitta nyhetsposter</target></trans-unit>
+      <trans-unit id="adminModule.filter2.title" xml:space="preserve" approved="yes">
+				<source>Please click the filter icon!</source>
+			<target state="translated">Vänligen klicka på filterikonen!</target></trans-unit>
+      <trans-unit id="adminModule.filter2.content" xml:space="preserve" approved="yes">
+				<source>Open the filter settings!</source>
+			<target state="translated">Öppna filterinställningarna!</target></trans-unit>
+      <trans-unit id="adminModule.searchWord.title" xml:space="preserve" approved="yes">
+				<source>Search by text</source>
+			<target state="translated">Sök via text</target></trans-unit>
+      <trans-unit id="adminModule.searchWord.content" xml:space="preserve" approved="yes">
+				<source>Search in title, teaser and text</source>
+			<target state="translated">Sök i titel, teaser och text</target></trans-unit>
+      <trans-unit id="adminModule.timeRestriction.title" xml:space="preserve" approved="yes">
+				<source>Filter by time range</source>
+			<target state="translated">Filtrera efter tidsintervall</target></trans-unit>
+      <trans-unit id="adminModule.timeRestriction.content" xml:space="preserve" approved="yes">
+				<source>Use one of the 2 date fields to filter for news records between the defined dates.</source>
+			<target state="translated">Använd ett av de 2 datumfälten för att filtrera efter nyhetsposter mellan de angivna datumen.</target></trans-unit>
+      <trans-unit id="adminModule.topNewsRestriction.title" xml:space="preserve" approved="yes">
+				<source>Filter top news records</source>
+			<target state="translated">Filtrera toppnyhetsposter</target></trans-unit>
+      <trans-unit id="adminModule.topNewsRestriction.content" xml:space="preserve" approved="yes">
+				<source>News records can be flagged as "top news". Use this filter to search for top news records or non top news records.</source>
+			<target state="translated">Nyhetsposter kan flaggas som "toppnyheter". Använd det här filtret för att söka efter toppnyheter eller icke-toppnyheter.</target></trans-unit>
+      <trans-unit id="adminModule.sortingField.title" xml:space="preserve" approved="yes">
+				<source>Sort the result</source>
+			<target state="translated">Sortera resultat</target></trans-unit>
+      <trans-unit id="adminModule.sortingField.content" xml:space="preserve" approved="yes">
+				<source>Sort the result by the defined field and sorting direction</source>
+			<target state="translated">Sortera resultatet med det definierade fältet och sorteringsriktningen</target></trans-unit>
+      <trans-unit id="adminModule.recursive.title" xml:space="preserve" approved="yes">
+				<source>Extend search to child pages</source>
+			<target state="translated">Utöka sökningen till undersidor</target></trans-unit>
+      <trans-unit id="adminModule.recursive.content" xml:space="preserve" approved="yes">
+				<source>Set the level of pages which are searched for news records</source>
+			<target state="translated">Ange antal nivåer på sidor som söks efter nyhetsposter</target></trans-unit>
+      <trans-unit id="adminModule.categoryTree.title" xml:space="preserve" approved="yes">
+				<source>Category filter</source>
+			<target state="translated">Kategorifilter</target></trans-unit>
+      <trans-unit id="adminModule.categoryTree.content" xml:space="preserve" approved="yes">
+				<source>Select categories you want to use for additional filtering</source>
+			<target state="translated">Välj kategorier som du vill använda för ytterligare filtrering</target></trans-unit>
+      <trans-unit id="adminModule.categoryConjunction.title" xml:space="preserve" approved="yes">
+				<source>Category conjunction</source>
+			<target state="translated">Kategori konjunktion</target></trans-unit>
+      <trans-unit id="adminModule.categoryConjunction.content" xml:space="preserve" approved="yes">
+				<source>Select how the category selection should be used</source>
+			<target state="translated">Välj hur kategorivalet ska användas</target></trans-unit>
+      <trans-unit id="adminModule.actionSwitch.title" xml:space="preserve" approved="yes">
+				<source>Switch to the pid listing</source>
+			<target state="translated">Byt till pid-listning</target></trans-unit>
+      <trans-unit id="adminModule.actionSwitch.content" xml:space="preserve" approved="yes">
+				<source>A powerful view is hidden here! It enables you to find those pages which contain news records.</source>
+			<target state="translated">En kraftfull vy är dold här! Det gör att du kan hitta de sidor som innehåller nyhetsposter.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

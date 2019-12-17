@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:11Z" product-name="news" target-language="fi">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>News record</source>
+			<target state="translated">Uutistietue</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
+				<source>Language of the news record.</source>
+			<target state="translated">Uutisen kieli</target></trans-unit>
+      <trans-unit id="starttime.description" xml:space="preserve" approved="yes">
+				<source>Define a date on which the news record should be shown.</source>
+			<target state="translated">Päivä, jolloin uutinen alkaa näkyä</target></trans-unit>
+      <trans-unit id="endtime.description" xml:space="preserve" approved="yes">
+				<source>Define a date on which the news record should be hidden.</source>
+			<target state="translated">Päivä, jolloin uutinen piilotetaan.</target></trans-unit>
+      <trans-unit id="fe_group.description" xml:space="preserve" approved="yes">
+				<source>Select the user groups which are allowed to see the news record.</source>
+			<target state="translated">Käyttäjäryhmät, jotka saavat nähdä tämän uutisen.</target></trans-unit>
+      <trans-unit id="editlock.description" xml:space="preserve" approved="yes">
+				<source>If checked, this news record can only be edited by administrators.</source>
+			<target state="translated">Uutista voi editoida vain hallinnoijat.</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden records are not shown in the frontend.</source>
+			<target state="translated">Piilotettuja uutisia ei näytetä www-sivuilla eli frontendissä.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>News title</source>
+			<target state="translated">Uutisen otsikko</target></trans-unit>
+      <trans-unit id="alternative_title.description" xml:space="preserve" approved="yes">
+				<source>Alternative Title will be used as the title for the browser window / tab</source>
+			<target state="translated">Uutisen sivunimi, tätä käytetään selaimen otsikossa tai välilehdessä. Tärkeä hakukoneoptimoinnissa.</target></trans-unit>
+      <trans-unit id="teaser.description" xml:space="preserve" approved="yes">
+				<source>Be aware that it can be cropped.</source>
+			<target state="translated">Ota huomioon, että tämä voidaan lyhentää listassa.</target></trans-unit>
+      <trans-unit id="type.description" xml:space="preserve" approved="yes">
+				<source>Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</source>
+			<target state="translated">Valitse uutisen tyyppi; normaali uutinen tai linkki sisäiseen/ulkoiseen www-sivuun.</target></trans-unit>
+      <trans-unit id="author.description" xml:space="preserve" approved="yes">
+				<source>Author of the news record</source>
+			<target state="translated">Kirjoittaja</target></trans-unit>
+      <trans-unit id="author_email.description" xml:space="preserve" approved="yes">
+				<source>Email address of the author</source>
+			<target state="translated">Kirjoittajan sähköposti</target></trans-unit>
+      <trans-unit id="datetime.description" xml:space="preserve" approved="yes">
+				<source>Date of the news record</source>
+			<target state="translated">Uutisen päivämäärä</target></trans-unit>
+      <trans-unit id="archive.description" xml:space="preserve" approved="yes">
+				<source>Archive date. A date is required if the news record should once be treated as archived news.</source>
+			<target state="translated">Arkistointipäivä. Tämän perusteella uutinen mahdollisesti (asetuksista riippuen) poistuu päälistalta arkistolistaukseen.</target></trans-unit>
+      <trans-unit id="bodytext.description" xml:space="preserve" approved="yes">
+				<source>Main content of the news record</source>
+			<target state="translated">Uutisen pääsisältö</target></trans-unit>
+      <trans-unit id="categories.description" xml:space="preserve" approved="yes">
+				<source>Select the categories which are related to this record.</source>
+			<target state="translated">Valitse kategoriat</target></trans-unit>
+      <trans-unit id="keywords.description" xml:space="preserve" approved="yes">
+				<source>Define keywords which can be used for SEO optimizations.</source>
+			<target state="translated">Määrittele hakukoneoptimointiin liittyvät avainsanat (keywords).</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Define a description which can be used for SEO optimizations.</source>
+			<target state="translated">Määrittele hakukoneoptimointiin liittyvä kuvaus (description).</target></trans-unit>
+      <trans-unit id="related.description" xml:space="preserve" approved="yes">
+				<source>Select related news records.</source>
+			<target state="translated">Tähän uutiseen liittyvät muut uutiset</target></trans-unit>
+      <trans-unit id="related_from.description" xml:space="preserve" approved="yes">
+				<source>Show news which select current news record as related.</source>
+			<target state="translated">Muut uutiset, jotka ovat valinneet tämän uutisen niihin liittyväksi uutiseksi</target></trans-unit>
+      <trans-unit id="related_links.description" xml:space="preserve" approved="yes">
+				<source>Define related links to internal and external pages.</source>
+			<target state="translated">Tähän uutiseen liittyvät linkit sisäisille tai ulkoisille www-sivuille.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

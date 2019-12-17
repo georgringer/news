@@ -198,11 +198,11 @@ class NewsImportService extends AbstractImportService
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
                 } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
-                    $file = false;
+                    $file = null;
                 }
 
                 // no file found skip processing of this item
-                if ($file === false) {
+                if ($file === null) {
                     continue;
                 }
 
@@ -245,11 +245,11 @@ class NewsImportService extends AbstractImportService
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
                 } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
-                    $file = false;
+                    $file = null;
                 }
 
                 // no file found skip processing of this item
-                if ($file === false) {
+                if ($file === null) {
                     continue;
                 }
 
@@ -354,16 +354,17 @@ class NewsImportService extends AbstractImportService
         $importItem = $queueItem['importItem'];
         $parentNews = $this->newsRepository->findOneByImportSourceAndImportId(
             $importItem['import_source'],
-            $importItem['l10n_parent']
+            $importItem['l10n_parent'],
+            true
         );
 
-        if ($parentNews !== null) {
+        if (!empty($parentNews)) {
             $news = $this->initializeNewsRecord($importItem);
 
             $this->hydrateNewsRecord($news, $importItem, $importItemOverwrite);
 
             $news->setSysLanguageUid($importItem['sys_language_uid']);
-            $news->setL10nParent($parentNews->getUid());
+            $news->setL10nParent($parentNews['uid']);
         }
     }
 

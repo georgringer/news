@@ -8,29 +8,26 @@
     "article",
     "news"
   ],
-  "homepage": "http://montagmorgen.at",
+  "homepage": "https://ringer.it",
   "authors": [
     {
       "name": "Georg Ringer",
-      "role": "Developer",
-      "homepage": "http://montagmorgen.at"
+      "role": "Developer"
     }
   ],
   "license": ["GPL-2.0-or-later"],
   "require": {
-    "typo3/cms-core": "^8.7.13|| >=9.1.0 <9.5.0"
+    "typo3/cms-core": "^8.7.13|| ^9.5.0"
   },
   "conflict": {
     "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
   },
   "suggest": {
-    "dmitryd/typo3-dd-googlesitemap": "~2.1",
-    "dmitryd/typo3-realurl": "^2.3",
     "reelworx/rx-shariff": "~11.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.0",
-    "nimut/testing-framework": "^1.0 || ^2.0 || ^3.0"
+    "nimut/testing-framework": "^1.0 || ^2.0 || ^3.0 || ^4.0"
   },
   "autoload": {
     "psr-4": {
@@ -43,7 +40,6 @@
     }
   },
   "replace": {
-    "news": "self.version",
     "typo3-ter/news": "self.version"
   },
   "config": {
@@ -61,6 +57,7 @@
       "dev-master": "6.x-dev"
     },
     "typo3/cms": {
+      "extension-key": "news",
       "cms-package-dir": "{$vendor-dir}/typo3/cms",
       "web-dir": ".Build/Web"
     }

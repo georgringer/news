@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:26Z" product-name="news" target-language="da">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Category record</source>
+			<target state="translated">Tag element</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Category for news records.</source>
+			<target state="translated">Nyhedselementer kan tagges gennem disse elementer</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="translated">Se også websitet http://www.news.com/</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
+				<source>Language of the category</source>
+			<target state="translated">Kategoriens sprog</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden categories are never shown in the frontend.</source>
+			<target state="translated">Skjulte elementer vises aldrig i frontend.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Title of the category</source>
+			<target state="translated">Titel på tag.</target></trans-unit>
+      <trans-unit id="parentcategory.description" xml:space="preserve" approved="yes">
+				<source>Select a parent category of this record to build a category tree.</source>
+			<target state="translated">Vælg en overkategori for at opbygge en hierarkisk struktur.</target></trans-unit>
+      <trans-unit id="image.description" xml:space="preserve" approved="yes">
+				<source>Optional image of a category.</source>
+			<target state="translated">Valgfrit kategoribillede.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Optional description of a category.</source>
+			<target state="translated">Valgfri beskrivelse af valgt fil.</target></trans-unit>
+      <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
+				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
+			<target state="translated">Vælg hvilken side, der skal benyttes til detaljevisning af nyheder relateret til denne kategori. Indstillingen kan overskrives i nyhedsmodulets indstillinger.</target></trans-unit>
+      <trans-unit id="shortcut.description" xml:space="preserve" approved="yes">
+				<source>Optional link of a category.</source>
+			<target state="translated">Valgfrit kategorilink.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

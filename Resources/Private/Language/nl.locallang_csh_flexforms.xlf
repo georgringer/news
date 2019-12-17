@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:43Z" product-name="news" target-language="nl">
+    <header/>
+    <body>
+      <trans-unit id="switchableControllerActions.description" xml:space="preserve" approved="yes">
+				<source>Set the view you want to display</source>
+			<target state="translated">Kies de weergave die getoond moet worden</target></trans-unit>
+      <trans-unit id="switchableControllerActions.details" xml:space="preserve" approved="yes">
+				<source>List view shows all news records. Latest uses a time restriction, the rest should be understandable</source>
+			<target state="translated">Lijst weergave toont alle nieuws records. Laatste maakt gebruik van een tijdsrestrictie, de rest zou begrijpelijk moeten zijn</target></trans-unit>
+      <trans-unit id="settings.orderBy.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting field</source>
+			<target state="translated">Definieer het sorteerveld</target></trans-unit>
+      <trans-unit id="settings.orderDirection.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting direction</source>
+			<target state="translated">Definieer de sorteer richting</target></trans-unit>
+      <trans-unit id="settings.dateField.description" xml:space="preserve" approved="yes">
+				<source>Select the field which is used to build the date menu.</source>
+			<target state="translated">Kies het veld dat wordt gebruikt om het datum menu te maken.</target></trans-unit>
+      <trans-unit id="settings.categories.description" xml:space="preserve" approved="yes">
+				<source>Choose the categories to define which news items are displayed</source>
+			<target state="translated">Kies de categorieën om te bepalen welke nieuwsitems worden getoond</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.description" xml:space="preserve" approved="yes">
+				<source>Define how the selected categories are used</source>
+			<target state="translated">Bepaal hoe de geselecteerde categorieën worden gebruikt</target></trans-unit>
+      <trans-unit id="settings.includeSubCategories.description" xml:space="preserve" approved="yes">
+				<source>Include all subcategories of the selected categories too.</source>
+			<target state="translated">Alle subcategorieën van de geselecteerde categorieën ook opnemen.</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.details" xml:space="preserve" approved="yes">
+				<source>"Don't care": No category restriction is set. "Show items with selected categories OR": A news records need to be related with at least one of the selected categories. "Show selected categories AND". A news record need to be related to all selected categories. "Do not show" is the opposite of above.</source>
+			<target state="translated">"Maakt niet uit": Geen Categorie beperking is ingesteld. "Toon items met geselecteerde categorieën OR": Een nieuwsrecord moeten worden gerelateerd met ten minste een van de geselecteerde categorieën. "Toon geselecteerde categorieën AND". Een nieuwsrecord moeten worden gerelateerd aan alle geselecteerde categorieën. "Niet tonen" is het tegenovergestelde van hierboven.</target></trans-unit>
+      <trans-unit id="settings.archiveRestriction.description" xml:space="preserve" approved="yes">
+				<source>Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</source>
+			<target state="translated">Kies uit: 1) Toon alle nieuwsrecords, 2) Toon alleen actieve nieuwsrecords, 3) Toon alleen gearchiveerde nieuwsrecords. De archiefdatum wordt vastgesteld voor elk nieuws record. Als er geen archiefdatum is ingesteld, kan het nieuwsrecord niet worden gearchiveerd.</target></trans-unit>
+      <trans-unit id="settings.timeRestriction.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items after the given time are shown.</source>
+			<target state="translated">Stel een tijdslimiet in. Dit kan zijn een integer in seconden, bijv. 86400 betekent 1 dag (60 * 60 * 24) of een string als "-4 dagen" of "-3 uur". De prepended - is belangrijk!</target></trans-unit>
+      <trans-unit id="settings.timeRestrictionHigh.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items before the given time are shown.</source>
+			<target state="translated">Stel een tijdlimiet in. Dit kan een geheel getal zijn, hetgeen een aantal seconden voorstelt (bijv. 86400 betekent een dag (60 * 60 * 24), of een tekst zoals "-4 days" of "-3 hours". Het minteken aan het begin is belangrijk! Alleen nieuwsitems voor de ingestelde tijd worden getoond.</target></trans-unit>
+      <trans-unit id="settings.topNewsRestriction.description" xml:space="preserve" approved="yes">
+				<source>A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</source>
+			<target state="translated">Een nieuwsrecord kan worden ingesteld als top nieuws. Daarom kan worden bepaald om ofwel alle nieuwsrecords te tonen, alleen top nieuws of alleen nontop nieuws.</target></trans-unit>
+      <trans-unit id="settings.singleNews.description" xml:space="preserve" approved="yes">
+				<source>Display the selected single news record.</source>
+			<target state="translated">Toon het geselecteerde single nieuwsrecord.</target></trans-unit>
+      <trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve" approved="yes">
+				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
+			<target state="translated">Indien ingesteld, worden verborgen records ook weergegeven. Dit is nodig om nog steeds verborgen records voor te vertonen. Let op dat verborgen records op de huidige pagina ook getoond worden.</target></trans-unit>
+      <trans-unit id="settings.startingpoint.description" xml:space="preserve" approved="yes">
+				<source>Define the pages/sysfolders which hold the news records</source>
+			<target state="translated">Kies de pagina's/sysfolders waar de nieuwsrecords staan</target></trans-unit>
+      <trans-unit id="settings.recursive.description" xml:space="preserve" approved="yes">
+				<source>Select the recursion level of the startingpoint.</source>
+			<target state="translated">Kies het recursieve niveau van het startpunt.</target></trans-unit>
+      <trans-unit id="settings.detailPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the detail view should be shown.</source>
+			<target state="translated">Kies de pagina waarop de detailweergave getoond moet worden.</target></trans-unit>
+      <trans-unit id="settings.backPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page which is used to return to on detail view.</source>
+			<target state="translated">Kies de pagina die wordt gebruikt om terug te keren naar de detailweergave.</target></trans-unit>
+      <trans-unit id="settings.listPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the list view is shown.</source>
+			<target state="translated">Kies de pagina waarop de lijstweergave wordt getoond.</target></trans-unit>
+      <trans-unit id="settings.limit.description" xml:space="preserve" approved="yes">
+				<source>Set the maximum amount of news records to be displayed</source>
+			<target state="translated">Stel de maximale hoeveelheid in van het aantal nieuwsrecords dat moet worden weergegeven</target></trans-unit>
+      <trans-unit id="settings.offset.description" xml:space="preserve" approved="yes">
+				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
+			<target state="translated">Stel de offset in om mee te beginnen. Bijv. 3 betekent dat de eerste 2 records niet worden weergegeven.</target></trans-unit>
+      <trans-unit id="settings.topNewsFirst.description" xml:space="preserve" approved="yes">
+				<source>If checked: No matter which sorting is defined, top news are shown as first news records.</source>
+			<target state="translated">Indien aangevinkt: maakt niet uit welke sorteerwijze is bepaald, top nieuwsrecords worden getoond als eerste nieuwsrecords.</target></trans-unit>
+      <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve" approved="yes">
+				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
+			<target state="translated">Indien aangevinkt, zal deze plugin niet worden beïnvloed door de override demand instellingen die bijvoorbeeld een categorie via een URL-parameter kunnen zijn.</target></trans-unit>
+      <trans-unit id="settings.tags.description" xml:space="preserve" approved="yes">
+				<source>Filter by given tags.</source>
+			<target state="translated">Filteren op opgegeven labels.</target></trans-unit>
+      <trans-unit id="settings.media.maxWidth.description" xml:space="preserve" approved="yes">
+				<source>Maximal width of media elements (images, videos, ...)</source>
+			<target state="translated">Maximale breedte van media-elementen (afbeeldingen, video's, ...)</target></trans-unit>
+      <trans-unit id="settings.media.maxHeight.description" xml:space="preserve" approved="yes">
+				<source>Maximal height of media elements (images, videos, ...)</source>
+			<target state="translated">Maximale hoogte van media-elementen (afbeeldingen, video's, ...)</target></trans-unit>
+      <trans-unit id="settings.cropMaxCharacters.description" xml:space="preserve" approved="yes">
+				<source>Define the length of the teaser in chars. The teaser is typically cropped in the list view.</source>
+			<target state="translated">Bepaal de lengte van de teaser in tekens. De teaser wordt meestal gecropped in de lijstweergave.</target></trans-unit>
+      <trans-unit id="settings.templateLayout.description" xml:space="preserve" approved="yes">
+				<source>Select a special layout for displaying news records.</source>
+			<target state="translated">Selecteer een speciale lay-out voor het weergeven van nieuwsrecords.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -195,7 +195,14 @@
 							</f:if>
 							<div class="form-group">
 								<div class="col-xs-offset-4 col-xs-8">
-									<f:form.submit value="{f:translate(key:'LLL:EXT:lang/Resources/Private/Language/locallang_common.xlf:search')}" class="btn btn-primary" />
+									<f:if condition="{is9up}">
+										<f:then>
+											<f:form.submit value="{f:translate(key:'LLL:EXT:core/Resources/Private/Language/locallang_common.xlf:search')}" class="btn btn-primary" />
+										</f:then>
+										<f:else>
+											<f:form.submit value="{f:translate(key:'LLL:EXT:lang/Resources/Private/Language/locallang_common.xlf:search')}" class="btn btn-primary" />
+										</f:else>
+									</f:if>
 								</div>
 							</div>
 						</div>

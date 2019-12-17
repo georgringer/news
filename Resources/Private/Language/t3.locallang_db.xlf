@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="news" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="tx_news_domain_model_news.tabs.relations" xml:space="preserve">
+				<source>Relations</source>
+			<target>crwdns18504:0crwdne18504:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve">
+				<source>Alternative Titles</source>
+			<target>crwdns18506:0crwdne18506:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.palettes.dates" xml:space="preserve">
+				<source>Dates</source>
+			<target>crwdns18508:0crwdne18508:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news" xml:space="preserve">
+				<source>News</source>
+			<target>crwdns18510:0crwdne18510:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.alternative_title" xml:space="preserve">
+				<source>Alternative title</source>
+			<target>crwdns18512:0crwdne18512:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve">
+				<source>Teaser</source>
+			<target>crwdns18514:0crwdne18514:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve">
+				<source>Date &amp; Time</source>
+			<target>crwdns18516:0crwdne18516:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive" xml:space="preserve">
+				<source>Archive</source>
+			<target>crwdns18518:0crwdne18518:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive.placeholder" xml:space="preserve">
+				<source>Define when the news should be listed in the archive</source>
+			<target>crwdns18520:0crwdne18520:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.categories" xml:space="preserve">
+				<source>Categories</source>
+			<target>crwdns18522:0crwdne18522:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related" xml:space="preserve">
+				<source>Related News</source>
+			<target>crwdns18524:0crwdne18524:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_from" xml:space="preserve">
+				<source>Related News (from)</source>
+			<target>crwdns18526:0crwdne18526:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files" xml:space="preserve">
+				<source>Related Files</source>
+			<target>crwdns18528:0crwdne18528:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files.add" xml:space="preserve">
+				<source>Add related file</source>
+			<target>crwdns18530:0crwdne18530:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_links" xml:space="preserve">
+				<source>Related Links</source>
+			<target>crwdns18532:0crwdne18532:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.0" xml:space="preserve">
+				<source>News</source>
+			<target>crwdns18534:0crwdne18534:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.1" xml:space="preserve">
+				<source>Internal link</source>
+			<target>crwdns18536:0crwdne18536:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.2" xml:space="preserve">
+				<source>External Page</source>
+			<target>crwdns18538:0crwdne18538:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media" xml:space="preserve">
+				<source>Media file</source>
+			<target>crwdns18540:0crwdne18540:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media.add" xml:space="preserve">
+				<source>Add media file</source>
+			<target>crwdns18542:0crwdne18542:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.istopnews" xml:space="preserve">
+				<source>Top news</source>
+			<target>crwdns18544:0crwdne18544:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.content_elements" xml:space="preserve">
+				<source>Content elements</source>
+			<target>crwdns18546:0crwdne18546:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags" xml:space="preserve">
+				<source>Tags</source>
+			<target>crwdns18548:0crwdne18548:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.add" xml:space="preserve">
+				<source>Add a new tag</source>
+			<target>crwdns18550:0crwdne18550:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.list" xml:space="preserve">
+				<source>List all tags</source>
+			<target>crwdns18552:0crwdne18552:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.tags.edit" xml:space="preserve">
+				<source>Edit tag</source>
+			<target>crwdns18554:0crwdne18554:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.keywords.placeholder" xml:space="preserve">
+				<source>Keyword1, keyword2, keyword3</source>
+			<target>crwdns18556:0crwdne18556:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target><![CDATA[crwdns18558:0crwdne18558:0]]></target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			<target>crwdns18560:0crwdne18560:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			<target>crwdns18562:0crwdne18562:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
+			<target>crwdns18564:0crwdne18564:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			<target>crwdns18566:0crwdne18566:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve">
+				<source>Image</source>
+			<target>crwdns18568:0crwdne18568:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.single_pid" xml:space="preserve">
+				<source>Single-view page for news from this category</source>
+			<target>crwdns18570:0crwdne18570:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.shortcut" xml:space="preserve">
+				<source>News category shortcut</source>
+			<target>crwdns18572:0crwdne18572:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.seo.seo_title" xml:space="preserve">
+				<source><![CDATA[<title>-Tag]]></source>
+			<target><![CDATA[crwdns18574:0crwdne18574:0]]></target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.seo.seo_description" xml:space="preserve">
+				<source>Meta-Description</source>
+			<target>crwdns18576:0crwdne18576:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.seo.seo_headline" xml:space="preserve">
+				<source>Headline (H1)</source>
+			<target>crwdns18578:0crwdne18578:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.seo.seo_text" xml:space="preserve">
+				<source>SEO Text-Container</source>
+			<target>crwdns18580:0crwdne18580:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link" xml:space="preserve">
+				<source>News Link Element</source>
+			<target>crwdns18582:0crwdne18582:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.title" xml:space="preserve">
+				<source>Title</source>
+			<target>crwdns18584:0crwdne18584:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.description" xml:space="preserve">
+				<source>Description</source>
+			<target>crwdns18586:0crwdne18586:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.uri" xml:space="preserve">
+				<source>URL</source>
+			<target>crwdns18588:0crwdne18588:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve">
+				<source>www.domain.org</source>
+			<target>crwdns18590:0crwdne18590:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			<target>crwdns18592:0crwdne18592:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag" xml:space="preserve">
+				<source>News Tag</source>
+			<target>crwdns18594:0crwdne18594:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_tag.title" xml:space="preserve">
+				<source>Title</source>
+			<target>crwdns18596:0crwdne18596:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinpreview" xml:space="preserve">
+				<source>Show in list views</source>
+			<target>crwdns18598:0crwdne18598:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinviews" xml:space="preserve">
+				<source>Show in views</source>
+			<target>crwdns18600:0crwdne18600:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinviews.0" xml:space="preserve">
+				<source>Show only in detail views</source>
+			<target>crwdns18602:0crwdne18602:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinviews.1" xml:space="preserve">
+				<source>Show in all views</source>
+			<target>crwdns18604:0crwdne18604:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_media.showinviews.2" xml:space="preserve">
+				<source>Show only in list views</source>
+			<target>crwdns18606:0crwdne18606:0</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve">
+				<source>Speaking URL path segment</source>
+			<target>crwdns18608:0crwdne18608:0</target></trans-unit>
+      <trans-unit id="be_user.tx_news_categorymounts" xml:space="preserve">
+				<source>News: Category restriction</source>
+			<target>crwdns18610:0crwdne18610:0</target></trans-unit>
+      <trans-unit id="notes" xml:space="preserve">
+				<source>Notes</source>
+			<target>crwdns18612:0crwdne18612:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>

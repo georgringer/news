@@ -29,6 +29,7 @@ $tx_news_domain_model_news = [
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
+        'translationSource' => 'l10n_source',
         'default_sortby' => 'ORDER BY datetime DESC',
         'sortby' => ($configuration->getManualSorting() ? 'sorting' : ''),
         'delete' => 'deleted',
@@ -83,6 +84,11 @@ $tx_news_domain_model_news = [
                 'default' => 0,
             ]
         ],
+        'l10n_source' => [
+            'config' => [
+                'type' => 'passthrough'
+            ]
+        ],
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
@@ -112,13 +118,17 @@ $tx_news_domain_model_news = [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'sorting' => [
@@ -208,7 +218,6 @@ $tx_news_domain_model_news = [
                 'cols' => 60,
                 'rows' => 5,
                 'enableRichtext' => $configuration->getRteForTeaser(),
-                'richtextConfiguration' => 'default',
             ]
         ],
         'bodytext' => [
@@ -220,7 +229,6 @@ $tx_news_domain_model_news = [
                 'rows' => 5,
                 'softref' => 'rtehtmlarea_images,typolink_tag,images,email[subst],url',
                 'enableRichtext' => true,
-                'richtextConfiguration' => 'default',
             ]
         ],
         'datetime' => [
@@ -241,7 +249,7 @@ $tx_news_domain_model_news = [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'size' => 30,
-                'eval' => $configuration->getArchiveDate(),
+                'eval' => $configuration->getArchiveDate() . ',int',
                 'default' => 0
             ]
         ],
@@ -420,17 +428,6 @@ $tx_news_domain_model_news = [
                 'size' => 30,
                 'max' => 255,
                 'eval' => 'trim,required',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
-                        'icon' => 'actions-wizard-link',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=600,width=800,status=0,menubar=0,scrollbars=1'
-                    ]
-                ],
                 'softref' => 'typolink'
             ]
         ],
@@ -502,15 +499,32 @@ $tx_news_domain_model_news = [
                 'allowed' => 'tx_news_domain_model_tag',
                 'MM' => 'tx_news_domain_model_news_tag_mm',
                 'foreign_table' => 'tx_news_domain_model_tag',
-                'foreign_table_where' => 'ORDER BY tx_news_domain_model_tag.title',
+                'foreign_table_where' => ' AND (tx_news_domain_model_tag.sys_language_uid IN (-1,0) OR tx_news_domain_model_tag.l10n_parent = 0) ORDER BY tx_news_domain_model_tag.title',
+
                 'size' => 10,
                 'minitems' => 0,
                 'maxitems' => 99,
+
+                'fieldInformation' => [
+                    'tagInformation' => [
+                        'renderType' => 'NewsStaticText',
+                        'options' => [
+                            'labels' => [
+                                [
+                                    'label' => '',
+                                    'bold' => true,
+                                    'italic' => true,
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
                 'suggestOptions' => [
                     'default' => [
+                        'minimumCharacters' => 2,
                         'searchWholePhrase' => true,
-                        'receiverClass' => \GeorgRinger\News\Hooks\SuggestReceiver::class
-                    ]
+                        'receiverClass' => \GeorgRinger\News\Backend\Wizard\SuggestWizardReceiver::class
+                    ],
                 ],
                 'fieldControl' => [
                     'editPopup' => [
@@ -677,7 +691,7 @@ $tx_news_domain_model_news = [
             'showitem' => '
                     --palette--;;paletteCore,title,--palette--;;paletteSlug,teaser,
                     --palette--;;paletteDate,
-                    bodytext;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:rte_enabled_formlabel,
+                    bodytext,
                 --div--;' . $ll . 'tx_news_domain_model_news.content_elements,
                     content_elements,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,

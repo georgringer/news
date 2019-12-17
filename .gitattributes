@@ -1,7 +1,8 @@
-/.github/ export-ignore
 /Build/ export-ignore
 /Tests/ export-ignore
 /.gitattributes export-ignore
+/.github/ export-ignore
+/.gitignore export-ignore
 /.gitlab-ci.yml export-ignore
 /.scrutinizer export-ignore
 /.styleci.yml export-ignore

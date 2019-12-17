@@ -60,8 +60,7 @@ class ArgumentsViewHelper extends AbstractViewHelper implements CompilableInterf
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         if ($arguments['mode'] !== 'add' && $arguments['mode'] !== 'remove') {
             throw new Exception('Mode must be either "add" or "remove', 1522293549);
         }

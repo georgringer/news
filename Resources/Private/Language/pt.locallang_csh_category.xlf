@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:26Z" product-name="news" target-language="pt-BR">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Category record</source>
+			<target state="translated">Registro etiqueta</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Category for news records.</source>
+			<target state="translated">Registros de Notícias podem ser etiquetados (marcados) por estes registros</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="translated">Ver também o site http://www.news.com/</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
+				<source>Language of the category</source>
+			<target state="translated">Idioma da categoria</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden categories are never shown in the frontend.</source>
+			<target state="translated">Elementos escondidos nunca são mostrados no frontend.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Title of the category</source>
+			<target state="translated">título da etiqueta.</target></trans-unit>
+      <trans-unit id="parentcategory.description" xml:space="preserve" approved="yes">
+				<source>Select a parent category of this record to build a category tree.</source>
+			<target state="translated">Selecione uma categoria pai deste registro para construir uma árvore de categoria.</target></trans-unit>
+      <trans-unit id="image.description" xml:space="preserve" approved="yes">
+				<source>Optional image of a category.</source>
+			<target state="translated">Imagem opcional da categoria.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Optional description of a category.</source>
+			<target state="translated">Descrição opcional do arquivo selecionado.</target></trans-unit>
+      <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
+				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
+			<target state="translated">Escolha uma página que será usada para exibir a visão detalhada do registro de notícias relacionadas com esta categoria. Esta configuração é substituída por uma página de configuração dentro de configurações do plugin.</target></trans-unit>
+      <trans-unit id="shortcut.description" xml:space="preserve" approved="yes">
+				<source>Optional link of a category.</source>
+			<target state="translated">Link opcional da categoria.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

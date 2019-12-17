@@ -497,6 +497,9 @@
 			<trans-unit id="news-folder" xml:space="preserve">
 				<source>News</source>
 			</trans-unit>
+			<trans-unit id="news-page" xml:space="preserve">
+				<source>Page with news plugins</source>
+			</trans-unit>
 
 			<trans-unit id="import.header" xml:space="preserve">
 				<source>News Importer</source>

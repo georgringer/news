@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:26Z" product-name="news" target-language="hu">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Category record</source>
+			<target state="translated">Fájl rekord</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Category for news records.</source>
+			<target state="translated">Kapcsolódó fájlok</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="translated">Nézze meg a http://www.news.com/ oldalt is</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
+				<source>Language of the category</source>
+			<target state="translated">Kategória nyelve</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden categories are never shown in the frontend.</source>
+			<target state="translated">Rejtett elemek sosem jelennek meg a frontend-en.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Title of the category</source>
+			<target state="translated">Opcionális név a kiválasztott fájlhoz.</target></trans-unit>
+      <trans-unit id="parentcategory.description" xml:space="preserve" approved="yes">
+				<source>Select a parent category of this record to build a category tree.</source>
+			<target state="translated">Kategóriafa kialakításhoz válasszon szülő kategóriát.</target></trans-unit>
+      <trans-unit id="image.description" xml:space="preserve" approved="yes">
+				<source>Optional image of a category.</source>
+			<target state="translated">Opcionális kategóriakép.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Optional description of a category.</source>
+			<target state="translated">Opcionális leírás a kiválasztott fájlról.</target></trans-unit>
+      <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
+				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
+			<target state="translated">Válassza ki azt az oldalt, ahol megjeleníteni kívánja a részletes nézetét az ebbe a kategóriába tartozó híreknek. Ez a beállítás felülbírálja a bővítmény beállításoknál megadottakat.</target></trans-unit>
+      <trans-unit id="shortcut.description" xml:space="preserve" approved="yes">
+				<source>Optional link of a category.</source>
+			<target state="translated">Opcionális kategória link.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

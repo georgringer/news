@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="news" target-language="fi">
+    <header/>
+    <body>
+      <trans-unit id="tx_news_domain_model_news.tabs.relations" xml:space="preserve" approved="yes">
+				<source>Relations</source>
+			<target state="translated">Lisätiedot (kategoriat, linkitetyt uutiset jne.)</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="translated">Uutiset</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.teaser" xml:space="preserve" approved="yes">
+				<source>Teaser</source>
+			<target state="translated">Houkutin eli teaser</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="translated">Pvm ja aika</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="translated">Arkistointi</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive.placeholder" xml:space="preserve" approved="yes">
+				<source>Define when the news should be listed in the archive</source>
+			<target state="translated">Uutisen näyttäminen arkistossa</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.categories" xml:space="preserve" approved="yes">
+				<source>Categories</source>
+			<target state="translated">Kategoriat</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related" xml:space="preserve" approved="yes">
+				<source>Related News</source>
+			<target state="translated">Tähän liittyvät uutiset</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_from" xml:space="preserve" approved="yes">
+				<source>Related News (from)</source>
+			<target state="translated">Tähän liittyvät uutiset (from)</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files" xml:space="preserve" approved="yes">
+				<source>Related Files</source>
+			<target state="translated">Tiedostot</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_related_files.add" xml:space="preserve" approved="yes">
+				<source>Add related file</source>
+			<target state="translated">Lisää tiedosto</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.related_links" xml:space="preserve" approved="yes">
+				<source>Related Links</source>
+			<target state="translated">Linkit</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.0" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="translated">Uutiset</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.1" xml:space="preserve" approved="yes">
+				<source>Internal link</source>
+			<target state="translated">Sisäinen sivu</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.2" xml:space="preserve" approved="yes">
+				<source>External Page</source>
+			<target state="translated">Ulkoinen sivu</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media" xml:space="preserve" approved="yes">
+				<source>Media file</source>
+			<target state="translated">Mediatiedosto</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.fal_media.add" xml:space="preserve" approved="yes">
+				<source>Add media file</source>
+			<target state="translated">Lisää mediatiedosto</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.istopnews" xml:space="preserve" approved="yes">
+				<source>Top news</source>
+			<target state="translated">Top-uutinen</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.content_elements" xml:space="preserve" approved="yes">
+				<source>Content elements</source>
+			<target state="translated">Sisältöelementit</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.keywords.placeholder" xml:space="preserve" approved="yes">
+				<source>Keyword1, keyword2, keyword3</source>
+			<target state="translated">Avainsana1, avainsana2, avainsana3</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.image" xml:space="preserve" approved="yes">
+				<source>Image</source>
+			<target state="translated">Kuva</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.single_pid" xml:space="preserve" approved="yes">
+				<source>Single-view page for news from this category</source>
+			<target state="translated">Tämän kategorian uutisten yksittäisnäkymäsivu</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_category.shortcut" xml:space="preserve" approved="yes">
+				<source>News category shortcut</source>
+			<target state="translated">Uutiskategorian oikopolku</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.path_segment" xml:space="preserve" approved="yes">
+				<source>Speaking URL path segment</source>
+			<target state="translated">uutisen osoite (osoitepolun loppuosa)</target></trans-unit>
+    </body>
+  </file>
+</xliff>

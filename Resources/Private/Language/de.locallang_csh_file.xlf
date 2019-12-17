@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:33Z" product-name="news" target-language="de">
+		<header/>
+		<body>
+			<trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>File record</source>
+			<target state="translated">Datei-Datensatz</target></trans-unit>
+			<trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Relation to files</source>
+			<target state="translated">Relation zu Dateien</target></trans-unit>
+			<trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="translated">Mehr Informationen unter http://www.montagmorgen.at/</target></trans-unit>
+			<trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target state="translated">Versteckte Elemente werden auf der Website nicht angezeigt.</target></trans-unit>
+			<trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Optional title of selected file.</source>
+			<target state="translated">Optionaler Titel</target></trans-unit>
+			<trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Optional description of selected file.</source>
+			<target state="translated">Optionale Beschreibung</target></trans-unit>
+			<trans-unit id="file.description" xml:space="preserve" approved="yes">
+				<source>Any (allowed) file.</source>
+			<target state="translated">Jede (erlaubte) Datei.</target></trans-unit>
+		</body>
+	</file>
+</xliff>

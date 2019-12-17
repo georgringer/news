@@ -31,7 +31,7 @@ class PageLayoutViewTest extends UnitTestCase
 
         $GLOBALS['LANG'] = $languageService;
 
-        $this->pageLayoutView = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\PageLayoutView', ['dummy']);
+        $this->pageLayoutView = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\PageLayoutView', ['dummy'], [], '', false);
         $this->pageLayoutView->_set('databaseConnection', $this->getMockBuilder('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection')->setMethods(['exec_SELECTquery', 'exec_SELECTgetRows'])->getMock());
     }
 

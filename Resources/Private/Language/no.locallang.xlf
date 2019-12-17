@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="no">
+    <header/>
+    <body>
+      <trans-unit id="search-text" xml:space="preserve" approved="yes">
+				<source>There are %1$s results for "%2$s".</source>
+			<target state="translated">Det er %1$s resultater for "%2$s".</target></trans-unit>
+      <trans-unit id="search-start" xml:space="preserve" approved="yes">
+				<source>Start search</source>
+			<target state="translated">Starte søk</target></trans-unit>
+      <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
+				<source>No news found.</source>
+			<target state="translated">Ingen nyheter funnet.</target></trans-unit>
+      <trans-unit id="search-subject" xml:space="preserve" approved="yes">
+				<source>Text</source>
+			<target state="translated">Tekst</target></trans-unit>
+      <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
+				<source>Minimum Date</source>
+			<target state="translated">Startdato</target></trans-unit>
+      <trans-unit id="search-maximumDate" xml:space="preserve" approved="yes">
+				<source>Maximum Date</source>
+			<target state="translated">Sluttdato</target></trans-unit>
+      <trans-unit id="more-link" xml:space="preserve" approved="yes">
+				<source>Read more</source>
+			<target state="translated">Les mer</target></trans-unit>
+      <trans-unit id="back-link" xml:space="preserve" approved="yes">
+				<source>Back</source>
+			<target state="translated">Tilbake</target></trans-unit>
+      <trans-unit id="related-news" xml:space="preserve" approved="yes">
+				<source>Related News</source>
+			<target state="translated">Relaterte nyheter</target></trans-unit>
+      <trans-unit id="related-files" xml:space="preserve" approved="yes">
+				<source>Related Files</source>
+			<target state="translated">Relaterte filer</target></trans-unit>
+      <trans-unit id="related-links" xml:space="preserve" approved="yes">
+				<source>Related Links</source>
+			<target state="translated">Relaterte lenker</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
+				<source>Page %s of %s.</source>
+			<target state="translated">Side %s av %s.</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
+				<source>Next</source>
+			<target state="translated">Neste</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
+				<source>Previous</source>
+			<target state="translated">Forrige</target></trans-unit>
+      <trans-unit id="categories" xml:space="preserve" approved="yes">
+				<source>Categories</source>
+			<target state="translated">Kategorier</target></trans-unit>
+      <trans-unit id="tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="translated">Tagger</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve" approved="yes">
+				<source>entry</source>
+			<target state="translated">Element</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve" approved="yes">
+				<source>entries</source>
+			<target state="translated">Elementer</target></trans-unit>
+      <trans-unit id="month.01" xml:space="preserve" approved="yes">
+				<source>January</source>
+			<target state="translated">Januar</target></trans-unit>
+      <trans-unit id="month.02" xml:space="preserve" approved="yes">
+				<source>February</source>
+			<target state="translated">Februar</target></trans-unit>
+      <trans-unit id="month.03" xml:space="preserve" approved="yes">
+				<source>March</source>
+			<target state="translated">Mars</target></trans-unit>
+      <trans-unit id="month.05" xml:space="preserve" approved="yes">
+				<source>May</source>
+			<target state="translated">Mai</target></trans-unit>
+      <trans-unit id="month.06" xml:space="preserve" approved="yes">
+				<source>June</source>
+			<target state="translated">Juni</target></trans-unit>
+      <trans-unit id="month.07" xml:space="preserve" approved="yes">
+				<source>July</source>
+			<target state="translated">Juli</target></trans-unit>
+      <trans-unit id="month.10" xml:space="preserve" approved="yes">
+				<source>October</source>
+			<target state="translated">Oktober</target></trans-unit>
+      <trans-unit id="month.12" xml:space="preserve" approved="yes">
+				<source>December</source>
+			<target state="translated">Desember</target></trans-unit>
+      <trans-unit id="day.1" xml:space="preserve" approved="yes">
+				<source>Monday</source>
+			<target state="translated">Mandag</target></trans-unit>
+      <trans-unit id="day.2" xml:space="preserve" approved="yes">
+				<source>Tuesday</source>
+			<target state="translated">Tirsdag</target></trans-unit>
+      <trans-unit id="day.3" xml:space="preserve" approved="yes">
+				<source>Wednesday</source>
+			<target state="translated">Onsdag</target></trans-unit>
+      <trans-unit id="day.4" xml:space="preserve" approved="yes">
+				<source>Thursday</source>
+			<target state="translated">Torsdag</target></trans-unit>
+      <trans-unit id="day.5" xml:space="preserve" approved="yes">
+				<source>Friday</source>
+			<target state="translated">Fredag</target></trans-unit>
+      <trans-unit id="day.6" xml:space="preserve" approved="yes">
+				<source>Saturday</source>
+			<target state="translated">Lørdag</target></trans-unit>
+      <trans-unit id="day.7" xml:space="preserve" approved="yes">
+				<source>Sunday</source>
+			<target state="translated">Søndag</target></trans-unit>
+      <trans-unit id="dateFormat" xml:space="preserve" approved="yes">
+				<source>%m/%d/%Y</source>
+			<target state="translated">%d.%m.%Y</target></trans-unit>
+      <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news available.</source>
+			<target state="translated">Ingen nyheter er tilgjengelige.</target></trans-unit>
+      <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
+				<source>No categories available.</source>
+			<target state="translated">Ingen kategorier er tilgjengelige.</target></trans-unit>
+      <trans-unit id="newsNotFound" xml:space="preserve" approved="yes">
+				<source>The news record is not available anymore.</source>
+			<target state="translated">Nyhetsartikkelen er ikke lenger tilgjengelig.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

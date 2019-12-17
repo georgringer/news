@@ -103,7 +103,8 @@ class AccessControlService
                     ->from('sys_category_record_mm')
                     ->where(
                         $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($newsRecord['uid'], \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR))
+                        $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
+                        $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR))
                     )
                     ->execute()
                     ->fetchColumn(0);
@@ -142,8 +143,8 @@ class AccessControlService
             )
             ->where(
                 $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR)),
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsRecordUid, \PDO::PARAM_INT))
-
             )
             ->execute();
 

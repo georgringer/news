@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="ro">
+    <header/>
+    <body>
+      <trans-unit id="search-text" xml:space="preserve" approved="yes">
+				<source>There are %1$s results for "%2$s".</source>
+			<target state="translated">Sunt %1$s rezultate pentru "%2$s".</target></trans-unit>
+      <trans-unit id="search-start" xml:space="preserve" approved="yes">
+				<source>Start search</source>
+			<target state="translated">Pornește căutarea</target></trans-unit>
+      <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
+				<source>No news found.</source>
+			<target state="translated">Nu s-au găsit articole.</target></trans-unit>
+      <trans-unit id="more-link" xml:space="preserve" approved="yes">
+				<source>Read more</source>
+			<target state="translated">Detalii</target></trans-unit>
+      <trans-unit id="back-link" xml:space="preserve" approved="yes">
+				<source>Back</source>
+			<target state="translated">Înapoi</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
+				<source>Page %s of %s.</source>
+			<target state="translated">Pagina %s din %s.</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
+				<source>Next</source>
+			<target state="translated">Înainte</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
+				<source>Previous</source>
+			<target state="translated">Înapoi</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve" approved="yes">
+				<source>entry</source>
+			<target state="translated">articol</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve" approved="yes">
+				<source>entries</source>
+			<target state="translated">articole</target></trans-unit>
+      <trans-unit id="month.01" xml:space="preserve" approved="yes">
+				<source>January</source>
+			<target state="translated">Ianuarie</target></trans-unit>
+      <trans-unit id="month.02" xml:space="preserve" approved="yes">
+				<source>February</source>
+			<target state="translated">Februarie</target></trans-unit>
+      <trans-unit id="month.03" xml:space="preserve" approved="yes">
+				<source>March</source>
+			<target state="translated">Martie</target></trans-unit>
+      <trans-unit id="month.04" xml:space="preserve" approved="yes">
+				<source>April</source>
+			<target state="translated">Aprilie</target></trans-unit>
+      <trans-unit id="month.05" xml:space="preserve" approved="yes">
+				<source>May</source>
+			<target state="translated">Mai</target></trans-unit>
+      <trans-unit id="month.06" xml:space="preserve" approved="yes">
+				<source>June</source>
+			<target state="translated">Iunie</target></trans-unit>
+      <trans-unit id="month.07" xml:space="preserve" approved="yes">
+				<source>July</source>
+			<target state="translated">Iulie</target></trans-unit>
+      <trans-unit id="month.09" xml:space="preserve" approved="yes">
+				<source>September</source>
+			<target state="translated">Septembrie</target></trans-unit>
+      <trans-unit id="month.10" xml:space="preserve" approved="yes">
+				<source>October</source>
+			<target state="translated">Octombrie</target></trans-unit>
+      <trans-unit id="month.11" xml:space="preserve" approved="yes">
+				<source>November</source>
+			<target state="translated">Noiembrie</target></trans-unit>
+      <trans-unit id="month.12" xml:space="preserve" approved="yes">
+				<source>December</source>
+			<target state="translated">Decembrie</target></trans-unit>
+      <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news available.</source>
+			<target state="translated">Nu sunt articole.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

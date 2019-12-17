@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:52Z" product-name="news" target-language="km">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Link record</source>
+			<target state="translated">ភ្ជាប់​ទិន្នន័យ</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Relation to other pages and records.</source>
+			<target state="translated">មានទំនាក់ទំនង​ទៅទំព័រ​និងពត៌មានផ្សេងទៀត</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="translated">អ្នកអាចមើល​វែបសាយ http://www.news.com/</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target state="translated">ធាតុ​ដែលបានលាក់​មិនត្រូវ​បានបង្ហាញ​នៅក្នុង​ផ្នែក​ខាងមុខបាន។</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Optional title of a link.</source>
+			<target state="translated">ចំណងជើង​របស់លីង​(មិនដាក់ក៏បាន)</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Description of a link.</source>
+			<target state="translated">ការពិពណ៌នាសង្ខេប​អំពី​តំណភ្ជាប់</target></trans-unit>
+      <trans-unit id="uri.description" xml:space="preserve" approved="yes">
+				<source>Link to a file, ... .</source>
+			<target state="translated">ភ្ជាប់​ទៅកាន់​ឯកសារ, ... .</target></trans-unit>
+    </body>
+  </file>
+</xliff>

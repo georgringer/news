@@ -40,8 +40,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $categories,
         $conjunction,
         $includeSubCategories = false
-    )
-    {
+    ) {
         $constraint = null;
         $categoryConstraints = [];
 
@@ -293,20 +292,28 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      *
      * @param string $importSource import source
      * @param int $importId import id
-     * @return \GeorgRinger\News\Domain\Model\News
+     * @param bool $asArray return result as array
+     * @return \GeorgRinger\News\Domain\Model\News|array
      */
-    public function findOneByImportSourceAndImportId($importSource, $importId)
+    public function findOneByImportSourceAndImportId($importSource, $importId, $asArray = false)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setRespectSysLanguage(false);
         $query->getQuerySettings()->setIgnoreEnableFields(true);
 
-        return $query->matching(
+        $result = $query->matching(
             $query->logicalAnd(
                 $query->equals('importSource', $importSource),
                 $query->equals('importId', $importId)
-            ))->execute()->getFirst();
+            ))->execute($asArray);
+        if ($asArray) {
+            if (isset($result[0])) {
+                return $result[0];
+            }
+            return [];
+        }
+        return $result->getFirst();
     }
 
     /**
@@ -343,14 +350,17 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $data = [];
         $sql = $this->findDemandedRaw($demand);
 
+        // strip unwanted order by
+        $sql = $this->stripOrderBy($sql);
+
         // Get the month/year into the result
         $field = $demand->getDateField();
         $field = empty($field) ? 'datetime' : $field;
 
-        $sql = 'SELECT FROM_UNIXTIME(' . $field . ', "%m") AS "_Month",' .
-            ' FROM_UNIXTIME(' . $field . ', "%Y") AS "_Year" ,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%m")) as count_month,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
+        $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_Month",' .
+            ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_Year" ,' .
+            ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
+            ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
             ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -366,9 +376,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 ' AND ' . $expressionBuilder->eq('deleted', 0);
         }
 
-        // strip unwanted order by
-        $sql = $this->stripOrderBy($sql);
-
         // group by custom month/year fields
         $orderDirection = strtolower($demand->getOrder());
         if ($orderDirection !== 'desc' && $orderDirection !== 'asc') {
@@ -378,7 +385,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         $res = $connection->query($sql);
         while ($row = $res->fetch()) {
-            $data['single'][$row['_Year']][$row['_Month']] = $row['count_month'];
+            $month = strlen($row['_Month']) === 1 ? ('0' . $row['_Month']) : $row['_Month'];
+            $data['single'][$row['_Year']][$month] = $row['count_month'];
         }
 
         // Add totals
@@ -423,7 +431,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if (count($searchFields) === 0) {
                 throw new \UnexpectedValueException('No search fields defined', 1318497755);
             }
-            $searchObject->setSplitSubjectWords(true);
             $searchSubjectSplitted = str_getcsv($searchSubject, ' ');
             if ($searchObject->isSplitSubjectWords()) {
                 foreach ($searchFields as $field) {
@@ -434,7 +441,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                             $subConstraints[] = $query->like($field, '%' . $searchSubjectSplittedPart . '%');
                         }
                     }
-                    $searchConstraints[] = $query->logicalOr($subConstraints);
+                    $searchConstraints[] = $query->logicalAnd($subConstraints);
                 }
                 if (count($searchConstraints)) {
                     $constraints[] = $query->logicalOr($searchConstraints);
@@ -465,6 +472,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if (empty($field)) {
                 throw new \UnexpectedValueException('No date field is defined', 1396348733);
             }
+            $maximumDate += 86400;
             $constraints[] = $query->lessThanOrEqual($field, $maximumDate);
         }
 
@@ -489,6 +497,6 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
     private function stripOrderBy(string $str)
     {
         /** @noinspection NotOptimalRegularExpressionsInspection */
-        return preg_replace('/^(?:ORDER[[:space:]]*BY[[:space:]]*)+/i', '', trim($str));
+        return preg_replace('/(?:ORDER[[:space:]]*BY[[:space:]]*.*)+/i', '', trim($str));
     }
 }

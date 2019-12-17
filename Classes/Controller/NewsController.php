@@ -107,6 +107,8 @@ class NewsController extends NewsBaseController
                 $cacheTagsSet = true;
             }
         }
+
+        $this->categoryRepository->setRespectSysLanguageInFindInList((bool)$this->settings['respectSysLanguageInFindInList']);
     }
 
     /**
@@ -160,6 +162,17 @@ class NewsController extends NewsBaseController
 
         $demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
             $settings['recursive']));
+
+        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'])) {
+            $params = [
+                'demand' => $demand,
+                'settings' => $settings,
+                'class' => $class,
+            ];
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] as $reference) {
+                GeneralUtility::callUserFunction($reference, $params, $this);
+            }
+        }
         return $demand;
     }
 
@@ -299,6 +312,10 @@ class NewsController extends NewsBaseController
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_SELECTED_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
+
+        if (!empty($newsRecords) && is_a($newsRecords[0], 'GeorgRinger\\News\\Domain\\Model\\News')) {
+            Cache::addCacheTagsByNewsRecords($newsRecords);
+        }
     }
 
     /**
@@ -331,13 +348,6 @@ class NewsController extends NewsBaseController
             $news = $this->checkPidOfNewsRecord($news);
         }
 
-        if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
-            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
-            if ($errorContent) {
-                return $errorContent;
-            }
-        }
-
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -349,7 +359,20 @@ class NewsController extends NewsBaseController
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
+        $news = $assignedValues['newsItem'];
         $this->view->assignMultiple($assignedValues);
+
+        // reset news if type is internal or external
+        if ($news && !$this->settings['isShortcut'] && ($news->getType() === '1' || $news->getType() === '2')) {
+            $news = null;
+        }
+
+        if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
+            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
+            if ($errorContent) {
+                return $errorContent;
+            }
+        }
 
         Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
         if (!is_null($news) && is_a($news, 'GeorgRinger\\News\\Domain\\Model\\News')) {

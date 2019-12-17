@@ -11,7 +11,7 @@ namespace GeorgRinger\News\Domain\Service;
 use GeorgRinger\News\Utility\EmConfiguration;
 use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
 
-class AbstractImportService implements \TYPO3\CMS\Core\SingletonInterface
+class AbstractImportService
 {
     const UPLOAD_PATH = 'uploads/tx_news/';
 

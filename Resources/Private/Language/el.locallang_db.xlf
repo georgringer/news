@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:25Z" product-name="news" target-language="el">
+    <header/>
+    <body>
+      <trans-unit id="tx_news_domain_model_news.tabs.relations" xml:space="preserve" approved="yes">
+				<source>Relations</source>
+			<target state="translated">Σχέσεις</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.palettes.alternativeTitles" xml:space="preserve" approved="yes">
+				<source>Alternative Titles</source>
+			<target state="translated">Εναλλακτικοί τίτλοι</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="translated">Νέα</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.alternative_title" xml:space="preserve" approved="yes">
+				<source>Alternative title</source>
+			<target state="translated">Εναλλακτικός τίτλος</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.datetime" xml:space="preserve" approved="yes">
+				<source>Date &amp; Time</source>
+			<target state="translated">Ημερομηνία &amp; Ώρα</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.archive" xml:space="preserve" approved="yes">
+				<source>Archive</source>
+			<target state="translated">Αρχείο</target></trans-unit>
+      <trans-unit id="tx_news_domain_model_news.type.I.0" xml:space="preserve" approved="yes">
+				<source>News</source>
+			<target state="translated">Νέα</target></trans-unit>
+    </body>
+  </file>
+</xliff>

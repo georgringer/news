@@ -16,6 +16,7 @@ return [
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
+        'translationSource' => 'l10n_source',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
         'default_sortby' => 'ORDER BY sorting',
@@ -42,13 +43,17 @@ return [
         'crdate' => [
             'label' => 'crdate',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
-                'type' => 'passthrough',
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         'sys_language_uid' => [
@@ -81,6 +86,11 @@ return [
                 'foreign_table' => 'tx_news_domain_model_link',
                 'foreign_table_where' => 'AND tx_news_domain_model_link.pid=###CURRENT_PID### AND tx_news_domain_model_link.sys_language_uid IN (-1,0)',
                 'default' => 0,
+            ]
+        ],
+        'l10n_source' => [
+            'config' => [
+                'type' => 'passthrough'
             ]
         ],
         'l10n_diffsource' => [
@@ -130,17 +140,6 @@ return [
                 'size' => 30,
                 'eval' => 'trim,required',
                 'softref' => 'typolink',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'Link',
-                        'icon' => 'actions-wizard-link',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1'
-                    ]
-                ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],

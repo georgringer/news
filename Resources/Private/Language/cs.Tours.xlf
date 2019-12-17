@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-01-04T11:47:18Z" product-name="news" target-language="cs">
+    <header/>
+    <body>
+      <trans-unit id="adminModule.title" xml:space="preserve" approved="yes">
+				<source>EXT:news - Administration module</source>
+			<target state="translated">EXT:news - Modul administrace</target></trans-unit>
+      <trans-unit id="adminModule.description" xml:space="preserve" approved="yes">
+				<source>The administration module of EXT:news is a powerful tool for editors to create, edit and find news records.</source>
+			<target state="translated">Modul administrace EXT:news je výkonným nástrojem pro editory, kteří vytvářejí, upravují a vyhledávají záznamy zpráv.</target></trans-unit>
+      <trans-unit id="adminModule.general.title" xml:space="preserve" approved="yes">
+				<source>Administration module</source>
+			<target state="translated">Modul administrace</target></trans-unit>
+      <trans-unit id="adminModule.general.content" xml:space="preserve" approved="yes">
+				<source>This is the best place for creating new records and editing existing ones</source>
+			<target state="translated">Toto je nejlepší místo pro vytváření nových záznamů a úpravu stávajících</target></trans-unit>
+      <trans-unit id="adminModule.filter.title" xml:space="preserve" approved="yes">
+				<source>Toggle filter</source>
+			<target state="translated">Přepnout filtr</target></trans-unit>
+      <trans-unit id="adminModule.filter.content" xml:space="preserve" approved="yes">
+				<source>Show and hide a filter which helps you finding news records</source>
+			<target state="translated">Zobrazit a skrýt filtr, který vám pomůže najít záznamy zpráv</target></trans-unit>
+      <trans-unit id="adminModule.filter2.title" xml:space="preserve" approved="yes">
+				<source>Please click the filter icon!</source>
+			<target state="translated">Prosím klikněte na ikonu filtru!</target></trans-unit>
+      <trans-unit id="adminModule.filter2.content" xml:space="preserve" approved="yes">
+				<source>Open the filter settings!</source>
+			<target state="translated">Otevřete nastavení filtru!</target></trans-unit>
+      <trans-unit id="adminModule.searchWord.title" xml:space="preserve" approved="yes">
+				<source>Search by text</source>
+			<target state="translated">Hledat podle textu</target></trans-unit>
+      <trans-unit id="adminModule.searchWord.content" xml:space="preserve" approved="yes">
+				<source>Search in title, teaser and text</source>
+			<target state="translated">Hledat v názvu, ukázce a textu</target></trans-unit>
+      <trans-unit id="adminModule.timeRestriction.title" xml:space="preserve" approved="yes">
+				<source>Filter by time range</source>
+			<target state="translated">Filtrovat podle časového rozsahu</target></trans-unit>
+      <trans-unit id="adminModule.timeRestriction.content" xml:space="preserve" approved="yes">
+				<source>Use one of the 2 date fields to filter for news records between the defined dates.</source>
+			<target state="translated">Použijte jedno ze dvou polí data pro filtrování záznamů zpráv mezi definovanými daty.</target></trans-unit>
+      <trans-unit id="adminModule.topNewsRestriction.title" xml:space="preserve" approved="yes">
+				<source>Filter top news records</source>
+			<target state="translated">Filtrovat nejnovější zprávy</target></trans-unit>
+      <trans-unit id="adminModule.topNewsRestriction.content" xml:space="preserve" approved="yes">
+				<source>News records can be flagged as "top news". Use this filter to search for top news records or non top news records.</source>
+			<target state="translated">Zprávy o novinkách mohou být označeny jako "hlavní zprávy". Použijte tento filtr k vyhledání záznamů hlavních zpráv nebo záznamů ostatních zpráv.</target></trans-unit>
+      <trans-unit id="adminModule.sortingField.title" xml:space="preserve" approved="yes">
+				<source>Sort the result</source>
+			<target state="translated">Řazení výsledků</target></trans-unit>
+      <trans-unit id="adminModule.sortingField.content" xml:space="preserve" approved="yes">
+				<source>Sort the result by the defined field and sorting direction</source>
+			<target state="translated">Seřadit výsledek podle definovaného pole a směru třídění</target></trans-unit>
+      <trans-unit id="adminModule.recursive.title" xml:space="preserve" approved="yes">
+				<source>Extend search to child pages</source>
+			<target state="translated">Rozšířit vyhledávání na podřízené stránky</target></trans-unit>
+      <trans-unit id="adminModule.recursive.content" xml:space="preserve" approved="yes">
+				<source>Set the level of pages which are searched for news records</source>
+			<target state="translated">Nastavte úroveň stránek, ve kterých jsou vyhledávány záznamy zpráv</target></trans-unit>
+      <trans-unit id="adminModule.categoryTree.title" xml:space="preserve" approved="yes">
+				<source>Category filter</source>
+			<target state="translated">Filtr kategorie</target></trans-unit>
+      <trans-unit id="adminModule.categoryTree.content" xml:space="preserve" approved="yes">
+				<source>Select categories you want to use for additional filtering</source>
+			<target state="translated">Vyberte kategorie, které chcete použít pro další filtrování</target></trans-unit>
+      <trans-unit id="adminModule.categoryConjunction.title" xml:space="preserve" approved="yes">
+				<source>Category conjunction</source>
+			<target state="translated">Kategorie spojení</target></trans-unit>
+      <trans-unit id="adminModule.categoryConjunction.content" xml:space="preserve" approved="yes">
+				<source>Select how the category selection should be used</source>
+			<target state="translated">Vyberte, jak má být použita kategorie</target></trans-unit>
+      <trans-unit id="adminModule.actionSwitch.title" xml:space="preserve" approved="yes">
+				<source>Switch to the pid listing</source>
+			<target state="translated">Přepněte na seznam pid</target></trans-unit>
+      <trans-unit id="adminModule.actionSwitch.content" xml:space="preserve" approved="yes">
+				<source>A powerful view is hidden here! It enables you to find those pages which contain news records.</source>
+			<target state="translated">Je tu ukrytý výkonný pohled! Umožňuje najít ty stránky, které obsahují zprávy.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

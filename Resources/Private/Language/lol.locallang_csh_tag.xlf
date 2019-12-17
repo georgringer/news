@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:17Z" product-name="news" target-language="lol">
+    <header/>
+    <body>
+      <trans-unit id=".description" xml:space="preserve">
+				<source>Tag record</source>
+			<target>crwdns18494:0crwdne18494:0</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve">
+				<source>News records can be tagged by those records</source>
+			<target>crwdns18496:0crwdne18496:0</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve">
+				<source>See also the website http://www.news.com/</source>
+			<target>crwdns18498:0crwdne18498:0</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target>crwdns18500:0crwdne18500:0</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve">
+				<source>Title of the tag.</source>
+			<target>crwdns18502:0crwdne18502:0</target></trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:43Z" product-name="news" target-language="it">
+    <header/>
+    <body>
+      <trans-unit id="switchableControllerActions.description" xml:space="preserve" approved="yes">
+				<source>Set the view you want to display</source>
+			<target state="translated">Seleziona la vista da visualizzare</target></trans-unit>
+      <trans-unit id="switchableControllerActions.details" xml:space="preserve" approved="yes">
+				<source>List view shows all news records. Latest uses a time restriction, the rest should be understandable</source>
+			<target state="translated">La vista ad elenco mostra tutte le news. "Ultime" utilizza una restrizione temporale, il resto dovrebbe essere comprensibile</target></trans-unit>
+      <trans-unit id="settings.orderBy.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting field</source>
+			<target state="translated">Definisci il campo di ordinamento</target></trans-unit>
+      <trans-unit id="settings.orderDirection.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting direction</source>
+			<target state="translated">Definisci la direzione dell'ordinamento</target></trans-unit>
+      <trans-unit id="settings.dateField.description" xml:space="preserve" approved="yes">
+				<source>Select the field which is used to build the date menu.</source>
+			<target state="translated">Seleziona il campo per costruire il menu delle date.</target></trans-unit>
+      <trans-unit id="settings.categories.description" xml:space="preserve" approved="yes">
+				<source>Choose the categories to define which news items are displayed</source>
+			<target state="translated">Seleziona le categorie che definiscono quali news vengono visualizzate</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.description" xml:space="preserve" approved="yes">
+				<source>Define how the selected categories are used</source>
+			<target state="translated">Definisci come vengono utilizzate le categorie selezionate</target></trans-unit>
+      <trans-unit id="settings.includeSubCategories.description" xml:space="preserve" approved="yes">
+				<source>Include all subcategories of the selected categories too.</source>
+			<target state="translated">Includi anche tutte le sottocategorie della categoria selezionata.</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.details" xml:space="preserve" approved="yes">
+				<source>"Don't care": No category restriction is set. "Show items with selected categories OR": A news records need to be related with at least one of the selected categories. "Show selected categories AND". A news record need to be related to all selected categories. "Do not show" is the opposite of above.</source>
+			<target state="translated">"Non importa": nessuna restrizione sulle categorie. "Mostra elementi con le categorie selezionate OR": una news deve appartenere ad almeno una delle categorie selezionate. "Mostra categorie selezionate AND": una news deve appartenere a tutte le categorie selezionate. "Non mostrare" è il contrario di quanto sopra.</target></trans-unit>
+      <trans-unit id="settings.archiveRestriction.description" xml:space="preserve" approved="yes">
+				<source>Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</source>
+			<target state="translated">Scegli tra: 1) Mostra tutte le news, 2) Mostra solo le news attvie, 3) Mostra solo le news archiviate. La data di archivio è definitain ogni news. Se la data di archivio non è definita, la news non può essere archiviata</target></trans-unit>
+      <trans-unit id="settings.timeRestriction.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items after the given time are shown.</source>
+			<target state="translated">Imposta un limite temporale. Può essere un intero e rappresenta i secondi, es. 86400 significa 1 giorno (60*60*24) o una stringa come "-4 giorni" o "-3 ore". Premettere il "-" è importante!</target></trans-unit>
+      <trans-unit id="settings.timeRestrictionHigh.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items before the given time are shown.</source>
+			<target state="translated">Imposta un limite. Può essere un intero a significare il numero di secondo, esempio 86400 significa 1 giorno (60 * 60 * 24) oppure una stringa come "-4 days" o "-3 hours". Il segno - è importante! Solo le news prima del tempo impostato sono visualizzate.</target></trans-unit>
+      <trans-unit id="settings.topNewsRestriction.description" xml:space="preserve" approved="yes">
+				<source>A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</source>
+			<target state="translated">Una news può essere impostata come in evidenza. Successivamente si può dare indicazione di mostrare tutte le news, solo quelle in evidenza o solo quelle non in evidenza.</target></trans-unit>
+      <trans-unit id="settings.singleNews.description" xml:space="preserve" approved="yes">
+				<source>Display the selected single news record.</source>
+			<target state="translated">Mostra la singola news selezionata.</target></trans-unit>
+      <trans-unit id="settings.startingpoint.description" xml:space="preserve" approved="yes">
+				<source>Define the pages/sysfolders which hold the news records</source>
+			<target state="translated">Definisci la pagina/cartella che contiene i record delle news</target></trans-unit>
+      <trans-unit id="settings.recursive.description" xml:space="preserve" approved="yes">
+				<source>Select the recursion level of the startingpoint.</source>
+			<target state="translated">Seleziona il livello di ricorsione dal punto di partenza.</target></trans-unit>
+      <trans-unit id="settings.detailPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the detail view should be shown.</source>
+			<target state="translated">Seleziona la pagina in cui viene mostrata la visualizzazione singola.</target></trans-unit>
+      <trans-unit id="settings.backPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page which is used to return to on detail view.</source>
+			<target state="translated">Seleziona la pagina utilizzata per ritornare alla vista singola.</target></trans-unit>
+      <trans-unit id="settings.listPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the list view is shown.</source>
+			<target state="translated">Seleziona la pagina in cui è mostrata la vista ad elenco.</target></trans-unit>
+      <trans-unit id="settings.limit.description" xml:space="preserve" approved="yes">
+				<source>Set the maximum amount of news records to be displayed</source>
+			<target state="translated">Imposta il numero massimo di news da visualizzare</target></trans-unit>
+      <trans-unit id="settings.offset.description" xml:space="preserve" approved="yes">
+				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
+			<target state="translated">Imposta l'offset di visualizzazione. Es. 3 significa che le prime due news non vengono visualizzate.</target></trans-unit>
+      <trans-unit id="settings.topNewsFirst.description" xml:space="preserve" approved="yes">
+				<source>If checked: No matter which sorting is defined, top news are shown as first news records.</source>
+			<target state="translated">Se selezionato: indipendentemente dall'ordinamento definito, le news in evidenza sono visualizzate per prime.</target></trans-unit>
+      <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve" approved="yes">
+				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
+			<target state="translated">Se selezionato, il plugin non verrà influenzato dalla sovrascrittura delle impostazioni, ad esempio della categoria tramite un parametro nell'URL.</target></trans-unit>
+      <trans-unit id="settings.media.maxWidth.description" xml:space="preserve" approved="yes">
+				<source>Maximal width of media elements (images, videos, ...)</source>
+			<target state="translated">Larghezza massima degli elementi multimediali (immagini, video, ...)</target></trans-unit>
+      <trans-unit id="settings.media.maxHeight.description" xml:space="preserve" approved="yes">
+				<source>Maximal height of media elements (images, videos, ...)</source>
+			<target state="translated">Altezza massima degli elementi multimediali (immagini, video, ...)</target></trans-unit>
+      <trans-unit id="settings.cropMaxCharacters.description" xml:space="preserve" approved="yes">
+				<source>Define the length of the teaser in chars. The teaser is typically cropped in the list view.</source>
+			<target state="translated">Definisci la lunghezza in caratteri per il testo di apertua. Il testo di apertura viene tipicamente troncato nella vista ed elenco.</target></trans-unit>
+      <trans-unit id="settings.templateLayout.description" xml:space="preserve" approved="yes">
+				<source>Select a special layout for displaying news records.</source>
+			<target state="translated">Seleziona un layout speciale per mostrare le news.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="{xslFile}"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+		xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-news/0.9
+        http://www.google.com/schemas/sitemap-news/0.9/sitemap-news.xsd">
+	<f:for each="{items}" as="item">
+		<f:if condition="{item.loc}">
+			<url>
+				<loc>{item.loc}</loc>
+				<news:news>
+					<news:publication>
+						<news:name>{settings.list.rss.channel.title}</news:name>
+						<news:language>{settings.list.rss.channel.language}</news:language>
+					</news:publication>
+					<news:publication_date><f:format.date format="Y-m-d">{item.data.datetime}</f:format.date></news:publication_date>
+					<news:title>{item.data.title}</news:title>
+				</news:news>
+			</url>
+		</f:if>
+	</f:for>
+</urlset>

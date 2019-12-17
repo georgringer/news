@@ -19,7 +19,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * # Example: Basic Example
  * # Description: {relatedLink.uri} is defined as "123 _blank"
  * <code>
- * <f:link.page pageUid="{relatedLink.uri}" target="{n:targetLink(link:relatedLink.uri)}">Link</Link>
+ * <f:link.typolink parameter="{relatedLink.uri}" target="{n:targetLink(link:relatedLink.uri)}">Link</f:link.typolink>
  * </code>
  * <output>
  * A link to the page with uid 123 and target set to "_blank"

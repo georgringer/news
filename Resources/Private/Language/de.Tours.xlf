@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-01-04T11:47:18Z" product-name="news" target-language="de">
+    <header/>
+    <body>
+      <trans-unit id="adminModule.title" xml:space="preserve" approved="yes">
+				<source>EXT:news - Administration module</source>
+			<target state="translated">EXT:news - Administrationsmodul</target></trans-unit>
+      <trans-unit id="adminModule.description" xml:space="preserve" approved="yes">
+				<source>The administration module of EXT:news is a powerful tool for editors to create, edit and find news records.</source>
+			<target state="translated">Das Verwaltungsmodul von EXT:news ist ein leistungsstarkes Werkzeug für Redakteure, um Artikel zu finden, erstellen und bearbeiten.</target></trans-unit>
+      <trans-unit id="adminModule.general.title" xml:space="preserve" approved="yes">
+				<source>Administration module</source>
+			<target state="translated">Administrationsmodul</target></trans-unit>
+      <trans-unit id="adminModule.general.content" xml:space="preserve" approved="yes">
+				<source>This is the best place for creating new records and editing existing ones</source>
+			<target state="translated">Dies ist der beste Ort, um neue Datensätze zu erstellen und bestehende zu bearbeiten</target></trans-unit>
+      <trans-unit id="adminModule.filter.title" xml:space="preserve" approved="yes">
+				<source>Toggle filter</source>
+			<target state="translated">Filter ein-/ausblenden</target></trans-unit>
+      <trans-unit id="adminModule.filter.content" xml:space="preserve" approved="yes">
+				<source>Show and hide a filter which helps you finding news records</source>
+			<target state="translated">Filter anzeigen und ausblenden, die Ihnen helfen, Artikel zu finden</target></trans-unit>
+      <trans-unit id="adminModule.filter2.title" xml:space="preserve" approved="yes">
+				<source>Please click the filter icon!</source>
+			<target state="translated">Bitte klicken Sie auf das Filtersymbol!</target></trans-unit>
+      <trans-unit id="adminModule.filter2.content" xml:space="preserve" approved="yes">
+				<source>Open the filter settings!</source>
+			<target state="translated">Filtereinstellungen öffnen!</target></trans-unit>
+      <trans-unit id="adminModule.searchWord.title" xml:space="preserve" approved="yes">
+				<source>Search by text</source>
+			<target state="translated">Suche nach Text</target></trans-unit>
+      <trans-unit id="adminModule.searchWord.content" xml:space="preserve" approved="yes">
+				<source>Search in title, teaser and text</source>
+			<target state="translated">Suche in Titel, Teaser und Text</target></trans-unit>
+      <trans-unit id="adminModule.timeRestriction.title" xml:space="preserve" approved="yes">
+				<source>Filter by time range</source>
+			<target state="translated">Nach Zeitbereich filtern</target></trans-unit>
+      <trans-unit id="adminModule.timeRestriction.content" xml:space="preserve" approved="yes">
+				<source>Use one of the 2 date fields to filter for news records between the defined dates.</source>
+			<target state="translated">Verwenden Sie eines der 2 Datumsfelder, um Nachrichten zwischen den definierten Daten zu filtern.</target></trans-unit>
+      <trans-unit id="adminModule.topNewsRestriction.title" xml:space="preserve" approved="yes">
+				<source>Filter top news records</source>
+			<target state="translated">Top News-Einträge filtern</target></trans-unit>
+      <trans-unit id="adminModule.topNewsRestriction.content" xml:space="preserve" approved="yes">
+				<source>News records can be flagged as "top news". Use this filter to search for top news records or non top news records.</source>
+			<target state="translated">News-Einträge können als "Top Artikel" markiert werden. Verwenden Sie diesen Filter, um nach Top-Artikel oder nicht Top-Artikel-Datensätzen zu suchen.</target></trans-unit>
+      <trans-unit id="adminModule.sortingField.title" xml:space="preserve" approved="yes">
+				<source>Sort the result</source>
+			<target state="translated">Ergebnis sortieren</target></trans-unit>
+      <trans-unit id="adminModule.sortingField.content" xml:space="preserve" approved="yes">
+				<source>Sort the result by the defined field and sorting direction</source>
+			<target state="translated">Sortieren Sie das Ergebnis nach dem definierten Feld und Sortierreihenfolge</target><alt-trans><target>Sortieren Sie das Ergebnis nach dem definierten Feld und Sortierrichtung</target></alt-trans></trans-unit>
+      <trans-unit id="adminModule.recursive.title" xml:space="preserve" approved="yes">
+				<source>Extend search to child pages</source>
+			<target state="translated">Suche auf Unterseiten erweitern</target></trans-unit>
+      <trans-unit id="adminModule.recursive.content" xml:space="preserve" approved="yes">
+				<source>Set the level of pages which are searched for news records</source>
+			<target state="translated">Setze die Ebene der Seiten auf denen nach Artikeln gesucht werden</target></trans-unit>
+      <trans-unit id="adminModule.categoryTree.title" xml:space="preserve" approved="yes">
+				<source>Category filter</source>
+			<target state="translated">Kategoriefilter</target></trans-unit>
+      <trans-unit id="adminModule.categoryTree.content" xml:space="preserve" approved="yes">
+				<source>Select categories you want to use for additional filtering</source>
+			<target state="translated">Kategorien auswählen, welche für zusätzliche Filterung verwendet werden soll</target><alt-trans><target>Kategorien auswählen, die Sie für zusätzliche Filterung verwenden möchten</target></alt-trans></trans-unit>
+      <trans-unit id="adminModule.categoryConjunction.title" xml:space="preserve" approved="yes">
+				<source>Category conjunction</source>
+			<target state="translated">Kategorie-Verbindung</target></trans-unit>
+      <trans-unit id="adminModule.categoryConjunction.content" xml:space="preserve" approved="yes">
+				<source>Select how the category selection should be used</source>
+			<target state="translated">Wählen Sie, wie die Kategorie-Auswahl verwendet werden soll</target></trans-unit>
+      <trans-unit id="adminModule.actionSwitch.title" xml:space="preserve" approved="yes">
+				<source>Switch to the pid listing</source>
+			<target state="translated">Zur Seiten-Übersicht wechseln</target><alt-trans><target>Zur PID Übersicht wechseln</target></alt-trans><alt-trans><target>Zu PID Übersicht wechseln</target></alt-trans></trans-unit>
+      <trans-unit id="adminModule.actionSwitch.content" xml:space="preserve" approved="yes">
+				<source>A powerful view is hidden here! It enables you to find those pages which contain news records.</source>
+			<target state="translated">Eine mächtige Ansicht ist hier versteckt! Es ermöglicht Ihnen, die Seiten zu finden, die Artikel enthalten.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

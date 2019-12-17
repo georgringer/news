@@ -18,6 +18,8 @@
 
 .. role::   php(code)
 
+.. role::   yaml(code)
+
 .. highlight:: php
 
 .. |img-record-tag|      image:: /Images/Administration/record-tag.png

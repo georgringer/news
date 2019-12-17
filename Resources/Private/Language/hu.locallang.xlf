@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="hu">
+    <header/>
+    <body>
+      <trans-unit id="search-text" xml:space="preserve" approved="yes">
+				<source>There are %1$s results for "%2$s".</source>
+			<target state="translated">%1$s találat van a "%2$s" kulcsszóra.</target></trans-unit>
+      <trans-unit id="search-start" xml:space="preserve" approved="yes">
+				<source>Start search</source>
+			<target state="translated">Keresés indítása</target></trans-unit>
+      <trans-unit id="search-noresult" xml:space="preserve" approved="yes">
+				<source>No news found.</source>
+			<target state="translated">Nem találhatók hírek.</target></trans-unit>
+      <trans-unit id="search-subject" xml:space="preserve" approved="yes">
+				<source>Text</source>
+			<target state="translated">Szöveg</target></trans-unit>
+      <trans-unit id="search-minimumDate" xml:space="preserve" approved="yes">
+				<source>Minimum Date</source>
+			<target state="translated">Kezdő dátum</target></trans-unit>
+      <trans-unit id="search-maximumDate" xml:space="preserve" approved="yes">
+				<source>Maximum Date</source>
+			<target state="translated">Végdátum</target></trans-unit>
+      <trans-unit id="more-link" xml:space="preserve" approved="yes">
+				<source>Read more</source>
+			<target state="translated">Bővebben</target></trans-unit>
+      <trans-unit id="back-link" xml:space="preserve" approved="yes">
+				<source>Back</source>
+			<target state="translated">Vissza</target></trans-unit>
+      <trans-unit id="paginate_overall" xml:space="preserve" approved="yes">
+				<source>Page %s of %s.</source>
+			<target state="translated">%s / %s. oldal.</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
+				<source>Next</source>
+			<target state="translated">Következő</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
+				<source>Previous</source>
+			<target state="translated">Előző</target></trans-unit>
+      <trans-unit id="categories" xml:space="preserve" approved="yes">
+				<source>Categories</source>
+			<target state="translated">Kategóriák</target></trans-unit>
+      <trans-unit id="tags" xml:space="preserve" approved="yes">
+				<source>Tags</source>
+			<target state="translated">Tag-ek</target></trans-unit>
+      <trans-unit id="entry" xml:space="preserve" approved="yes">
+				<source>entry</source>
+			<target state="translated">bejegyzés</target></trans-unit>
+      <trans-unit id="entries" xml:space="preserve" approved="yes">
+				<source>entries</source>
+			<target state="translated">bejegyzések</target></trans-unit>
+      <trans-unit id="month.01" xml:space="preserve" approved="yes">
+				<source>January</source>
+			<target state="translated">Január</target></trans-unit>
+      <trans-unit id="month.02" xml:space="preserve" approved="yes">
+				<source>February</source>
+			<target state="translated">Február</target></trans-unit>
+      <trans-unit id="month.03" xml:space="preserve" approved="yes">
+				<source>March</source>
+			<target state="translated">Március</target></trans-unit>
+      <trans-unit id="month.04" xml:space="preserve" approved="yes">
+				<source>April</source>
+			<target state="translated">Április</target></trans-unit>
+      <trans-unit id="month.05" xml:space="preserve" approved="yes">
+				<source>May</source>
+			<target state="translated">Május</target></trans-unit>
+      <trans-unit id="month.06" xml:space="preserve" approved="yes">
+				<source>June</source>
+			<target state="translated">Június</target></trans-unit>
+      <trans-unit id="month.07" xml:space="preserve" approved="yes">
+				<source>July</source>
+			<target state="translated">Július</target></trans-unit>
+      <trans-unit id="month.08" xml:space="preserve" approved="yes">
+				<source>August</source>
+			<target state="translated">Augusztus</target></trans-unit>
+      <trans-unit id="month.09" xml:space="preserve" approved="yes">
+				<source>September</source>
+			<target state="translated">Szeptember</target></trans-unit>
+      <trans-unit id="month.10" xml:space="preserve" approved="yes">
+				<source>October</source>
+			<target state="translated">Október</target></trans-unit>
+      <trans-unit id="day.1" xml:space="preserve" approved="yes">
+				<source>Monday</source>
+			<target state="translated">Hétfő</target></trans-unit>
+      <trans-unit id="day.2" xml:space="preserve" approved="yes">
+				<source>Tuesday</source>
+			<target state="translated">Kedd</target></trans-unit>
+      <trans-unit id="day.3" xml:space="preserve" approved="yes">
+				<source>Wednesday</source>
+			<target state="translated">Szerda</target></trans-unit>
+      <trans-unit id="day.4" xml:space="preserve" approved="yes">
+				<source>Thursday</source>
+			<target state="translated">Csütörtök</target></trans-unit>
+      <trans-unit id="day.5" xml:space="preserve" approved="yes">
+				<source>Friday</source>
+			<target state="translated">Péntek</target></trans-unit>
+      <trans-unit id="day.6" xml:space="preserve" approved="yes">
+				<source>Saturday</source>
+			<target state="translated">Szombat</target></trans-unit>
+      <trans-unit id="day.7" xml:space="preserve" approved="yes">
+				<source>Sunday</source>
+			<target state="translated">Vasárnap</target></trans-unit>
+      <trans-unit id="dateFormat" xml:space="preserve" approved="yes">
+				<source>%m/%d/%Y</source>
+			<target state="translated">%Y.%m.%d</target></trans-unit>
+      <trans-unit id="list_nonewsfound" xml:space="preserve" approved="yes">
+				<source>No news available.</source>
+			<target state="translated">Nincsenek hírek.</target></trans-unit>
+      <trans-unit id="list_nocategoriesfound" xml:space="preserve" approved="yes">
+				<source>No categories available.</source>
+			<target state="translated">Nincsenek kategóriák.</target></trans-unit>
+    </body>
+  </file>
+</xliff>

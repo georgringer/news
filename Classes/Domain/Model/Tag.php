@@ -49,6 +49,9 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
      */
     protected $seoText;
 
+    /** @var string */
+    protected $slug;
+
     /**
      * Get crdate
      *
@@ -171,5 +174,21 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     public function setSeoText($seoText)
     {
         $this->seoText = $seoText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }

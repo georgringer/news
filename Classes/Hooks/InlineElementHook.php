@@ -8,7 +8,6 @@ namespace GeorgRinger\News\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use TYPO3\CMS\Backend\Form\Element\InlineElement;
 
 /**
@@ -43,8 +42,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         array $childConfig,
         $isVirtual,
         array &$enabledControls
-    )
-    {
+    ) {
     }
 
     /**
@@ -64,8 +62,7 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         array $childConfig,
         $isVirtual,
         array &$controlItems
-    )
-    {
+    ) {
         $previewSetting = (int)$childRecord['showinpreview'];
         if ($foreignTable === 'sys_file_reference' && $previewSetting > 0) {
             $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
@@ -74,11 +71,12 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
                 if ($previewSetting === 1) {
                     $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinviews.1');
                     $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];
+                    $controlItems = $extraItem + $controlItems;
                 } elseif ($previewSetting === 2) {
                     $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinviews.2');
-                    $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i><i class="fa fa-check"></i></span>'];
+                    $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check-square"></i></span>'];
+                    $controlItems = $extraItem + $controlItems;
                 }
-                $controlItems = $extraItem + $controlItems;
             } elseif ($previewSetting === 1) {
                 $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinpreview');
                 $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];

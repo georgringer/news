@@ -17,6 +17,9 @@ addons:
     packages:
       - parallel
 
+services:
+  - mysql
+
 cache:
   directories:
     - $HOME/.composer/cache
@@ -34,6 +37,7 @@ before_install:
 before_script:
   - phpenv config-rm xdebug.ini
   - composer require typo3/minimal=$TYPO3_VERSION
+  - composer require typo3/cms-recordlist=$TYPO3_VERSION
   # Restore composer.json
   - git checkout composer.json
   - export TYPO3_PATH_WEB=$PWD/.Build/Web
