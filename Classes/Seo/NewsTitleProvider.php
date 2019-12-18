@@ -9,7 +9,6 @@ namespace GeorgRinger\News\Seo;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\PageTitle\AbstractPageTitleProvider;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
