@@ -25,6 +25,22 @@ regarding the news extension.
         :local:
         :depth: 2
 
+Page title for single news
+--------------------------
+EXT:news implements a custom *pageTitleProvider* `\GeorgRinger\News\Seo\NewsTitleProvider` which is called through the controller.
+
+It can be configured using TypoScript:
+
+.. code-block:: typoscript
+
+   plugin.tx_news.settings.detail {
+      pageTitle {
+         # Register alternative provider
+         provider = GeorgRinger\News\Seo\NewsTitleProvider
+         # Comma separated list of properties which should be checked, 1st value is used
+         properties = teaser,title
+      }
+   }
 
 XML Sitemap
 -----------

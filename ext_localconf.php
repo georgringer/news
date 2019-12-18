@@ -147,6 +147,16 @@ $boot = function () {
         'priority' => 70,
         'class' => \GeorgRinger\News\Backend\FieldInformation\StaticText::class
     ];
+
+
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
+    config.pageTitleProviders {
+        news {
+            provider = GeorgRinger\News\Seo\NewsTitleProvider
+            before = altPageTitle,record,seo
+        }
+    }
+'));
 };
 
 $boot();

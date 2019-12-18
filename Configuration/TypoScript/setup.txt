@@ -126,6 +126,11 @@ plugin.tx_news {
 					height = 159
 				}
 			}
+
+			pageTitle {
+				provider = GeorgRinger\News\Seo\NewsTitleProvider
+				properties = teaser,title
+			}
 		}
 
 		# --------------

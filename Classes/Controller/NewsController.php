@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -7,6 +8,8 @@ namespace GeorgRinger\News\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
@@ -121,7 +124,8 @@ class NewsController extends NewsBaseController
     protected function createDemandObjectFromSettings(
         $settings,
         $class = 'GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand'
-    ) {
+    )
+    {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
@@ -366,16 +370,21 @@ class NewsController extends NewsBaseController
             $news = null;
         }
 
-        if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
+        if ($news !== null) {
+            Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
+            Cache::addCacheTagsByNewsRecords([$news]);
+
+            $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
+            $providerClass = $providerConfiguration['provider'] ?? NewsTitleProvider::class;
+
+            /** @var NewsTitleProvider $provider */
+            $provider = GeneralUtility::makeInstance($providerClass);
+            $provider->setTitle($news, $providerConfiguration);
+        } elseif (isset($this->settings['detail']['errorHandling'])) {
             $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
             if ($errorContent) {
                 return $errorContent;
             }
-        }
-
-        Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
-        if (!is_null($news) && is_a($news, 'GeorgRinger\\News\\Domain\\Model\\News')) {
-            Cache::addCacheTagsByNewsRecords([$news]);
         }
     }
 
@@ -480,7 +489,8 @@ class NewsController extends NewsBaseController
     public function searchFormAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
         array $overwriteDemand = []
-    ) {
+    )
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -514,7 +524,8 @@ class NewsController extends NewsBaseController
     public function searchResultAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
         array $overwriteDemand = []
-    ) {
+    )
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -582,7 +593,8 @@ class NewsController extends NewsBaseController
      */
     public function injectConfigurationManager(
         \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-    ) {
+    )
+    {
         $this->configurationManager = $configurationManager;
 
         $tsSettings = $this->configurationManager->getConfiguration(

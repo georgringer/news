@@ -13,18 +13,6 @@
 	<f:if condition="{newsItem}">
 		<n:format.nothing>
 			<n:excludeDisplayedNews newsItem="{newsItem}" />
-			<f:if condition="{newsItem.alternativeTitle}">
-				<f:then>
-					<n:titleTag>
-						<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
-					</n:titleTag>
-				</f:then>
-				<f:else>
-					<n:titleTag>
-						<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
-					</n:titleTag>
-				</f:else>
-			</f:if>
 			<f:if condition="{settings.detail.showMetaTags}">
 				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
 			</f:if>
