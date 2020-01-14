@@ -59,13 +59,13 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
 
             // JS
             if (strtolower(substr($path, -3)) === '.js') {
-                if ( $footer === true ) {
+                if ($footer === true) {
                     $pageRenderer->addJsFooterFile($path, null, $compress, false, '', true);
                 } else {
                     $pageRenderer->addJsFile($path, null, $compress, false, '', true);
                 }
 
-            // CSS
+                // CSS
             } elseif (strtolower(substr($path, -4)) === '.css') {
                 $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
             }
