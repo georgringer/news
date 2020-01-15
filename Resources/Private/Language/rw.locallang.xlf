@@ -3,49 +3,15 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:10Z" product-name="news" target-language="rw">
     <header/>
     <body>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		</body>
+      <trans-unit id="more-link" xml:space="preserve" approved="yes">
+				<source>Read more</source>
+			<target state="final">Soma ibikurikira</target></trans-unit>
+      <trans-unit id="paginate_next" xml:space="preserve" approved="yes">
+				<source>Next</source>
+			<target state="final">Ibikurikira</target></trans-unit>
+      <trans-unit id="paginate_previous" xml:space="preserve" approved="yes">
+				<source>Previous</source>
+			<target state="final">Ibibanza</target></trans-unit>
+    </body>
   </file>
 </xliff>
