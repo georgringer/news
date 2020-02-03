@@ -10,6 +10,7 @@ namespace GeorgRinger\News\TreeProvider;
  */
 use GeorgRinger\News\Service\CategoryService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -20,20 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeDataProvider
 {
 
-    /**
-     * @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
-     */
-    protected $backendUserAuthentication;
-
-    /**
-     * Required constructor
-     *
-     * @param array $configuration TCA configuration
-     */
-    public function __construct(array $configuration)
-    {
-        $this->backendUserAuthentication = $GLOBALS['BE_USER'];
-    }
 
     /**
      * Builds a complete node including children
@@ -118,7 +105,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      */
     protected function isCategoryAllowed($child)
     {
-        $mounts = $this->backendUserAuthentication->getCategoryMountPoints();
+        $mounts = $GLOBALS['BE_USER']->getCategoryMountPoints();
         if (empty($mounts)) {
             return true;
         }
