@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Service;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Service\CategoryService;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Test class for CategoryService
  *
  */
-class CategoryServiceTest extends UnitTestCase
+class CategoryServiceTest extends BaseTestCase
 {
 
     /**

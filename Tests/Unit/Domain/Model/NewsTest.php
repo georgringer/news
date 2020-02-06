@@ -13,13 +13,13 @@ use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Model\Tag;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for domains model News
  *
  */
-class NewsTest extends UnitTestCase
+class NewsTest extends BaseTestCase
 {
 
     /**

@@ -8,12 +8,12 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * TemplateLayout utility class unit tests
  */
-class TemplateLayoutTest extends UnitTestCase
+class TemplateLayoutTest extends BaseTestCase
 {
 
     /**

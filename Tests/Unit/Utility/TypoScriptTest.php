@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\TypoScript;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Test class for TypoScript
  *
  */
-class TypoScriptTest extends UnitTestCase
+class TypoScriptTest extends BaseTestCase
 {
 
     /**

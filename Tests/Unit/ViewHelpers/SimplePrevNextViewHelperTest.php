@@ -2,32 +2,28 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
+use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use TYPO3\TestingFramework\Core\BaseTestCase;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
-use Nimut\TestingFramework\TestCase\ViewHelperBaseTestcase;
 
 /**
  * Test for SimplePrevNextViewHelper
  */
-class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
+class SimplePrevNextViewHelperTest extends BaseTestCase
 {
 
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|AccessibleMockObjectInterface|\GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper
-     */
+    /** @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $viewHelper;
 
-    /**
-     * Set up
-     */
     public function setUp()
     {
-        $this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getRawRecord']);
+        $this->viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getRawRecord']);
     }
 
     /**
@@ -46,7 +42,7 @@ class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
      */
     public function queryResultWillReturnCorrectOutputForAllLinks()
     {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
+        $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
         $in = [
             'prev' => ['uid' => 123],
@@ -64,7 +60,7 @@ class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
      */
     public function queryResultWillReturnCorrectOutputFor2Links()
     {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
+        $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
         $in = [
             'prev' => ['uid' => 147],
@@ -80,7 +76,7 @@ class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
      */
     public function queryResultWillReturnCorrectOutputFor1Link()
     {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
+        $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
         $in = [
             'next' => ['uid' => 369],

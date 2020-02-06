@@ -11,14 +11,14 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
 use GeorgRinger\News\Controller\TagController;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\TagRepository;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Testcase for the TagController class.
  *
  *
  */
-class TagControllerTest extends UnitTestCase
+class TagControllerTest extends BaseTestCase
 {
 
     /**

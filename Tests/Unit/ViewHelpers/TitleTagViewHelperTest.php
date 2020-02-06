@@ -10,13 +10,13 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 use GeorgRinger\News\ViewHelpers\TitleTagViewHelper;
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 
 /**
  * Test for TitleTagViewHelper
  */
-class TitleTagViewHelperTest extends UnitTestCase
+class TitleTagViewHelperTest extends BaseTestCase
 {
 
     /**

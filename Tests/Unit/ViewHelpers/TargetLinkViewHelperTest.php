@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Test for TargetLinkViewHelper
  */
-class TargetLinkViewHelperTest extends UnitTestCase
+class TargetLinkViewHelperTest extends BaseTestCase
 {
 
     /**

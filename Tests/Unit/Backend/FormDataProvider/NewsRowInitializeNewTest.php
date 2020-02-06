@@ -10,9 +10,9 @@ namespace GeorgRinger\News\Unit\Backend\FormDataProvider;
  */
 use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
-class NewsRowInitializeNewTest extends UnitTestCase
+class NewsRowInitializeNewTest extends BaseTestCase
 {
 
     /**

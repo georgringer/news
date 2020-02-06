@@ -8,13 +8,13 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for domain repository categoryRepository
  *
  */
-class CategoryRepositoryTest extends UnitTestCase
+class CategoryRepositoryTest extends BaseTestCase
 {
 
     /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
@@ -40,32 +40,6 @@ class CategoryRepositoryTest extends UnitTestCase
             $GLOBALS[$key] = $data;
         }
         unset($this->backupGlobalVariables);
-    }
-
-    /**
-     * @test
-     */
-    public function correctSysLanguageIsReturnedUsingTsfe()
-    {
-        if (version_compare(TYPO3_version, '9.0.0') >= 0) {
-            $this->markTestSkipped('Skipped for 9+');
-        }
-        $objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
-        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
-        $result = $mockTemplateParser->_call('getSysLanguageUid');
-
-        // Default value
-        $this->assertEquals(0, $result);
-
-        if (!is_object($GLOBALS['TSFE'])) {
-            $vars = [];
-            $type = 1;
-            $GLOBALS['TSFE'] = new \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController($vars, 123, $type);
-        }
-        $GLOBALS['TSFE']->sys_language_content = 9;
-
-        $result = $mockTemplateParser->_call('getSysLanguageUid');
-        $this->assertEquals(9, $result);
     }
 
     /**

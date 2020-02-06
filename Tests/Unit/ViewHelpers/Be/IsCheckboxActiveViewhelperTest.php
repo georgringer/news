@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Be;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\ViewHelpers\Be\IsCheckboxActiveViewHelper;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for IsCheckboxActiveViewhelper
  *
  */
-class IsCheckboxActiveViewhelperTest extends UnitTestCase
+class IsCheckboxActiveViewhelperTest extends BaseTestCase
 {
     const OK_RESULT = 'checked="checked"';
 

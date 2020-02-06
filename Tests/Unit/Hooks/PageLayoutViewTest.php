@@ -9,14 +9,14 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  * LICENSE.txt file that was distributed with this source code.
  */
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Tests for PageLayoutView
  *
  */
-class PageLayoutViewTest extends UnitTestCase
+class PageLayoutViewTest extends BaseTestCase
 {
 
     /** @var AccessibleMockObjectInterface */

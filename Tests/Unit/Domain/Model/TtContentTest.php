@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\TtContent;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for tt_content model
  *
  */
-class TtContentTest extends UnitTestCase
+class TtContentTest extends BaseTestCase
 {
 
     /**
