@@ -8,6 +8,7 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
@@ -31,7 +32,7 @@ class NewsTest extends BaseTestCase
      * Set up framework
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->newsDomainModelInstance = new News();
     }

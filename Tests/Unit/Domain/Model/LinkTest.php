@@ -26,7 +26,7 @@ class LinkTest extends BaseTestCase
      * Setup
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->linkDomainModelInstance = new Link();
     }

@@ -27,7 +27,7 @@ class TtContentTest extends BaseTestCase
      * Setup
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->ttContentDomainModelInstance = new TtContent();
     }

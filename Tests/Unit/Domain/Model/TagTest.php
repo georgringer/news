@@ -27,7 +27,7 @@ class TagTest extends BaseTestCase
      * Setup
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->tagDomainModelInstance = new Tag();
     }
