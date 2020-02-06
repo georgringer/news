@@ -9,8 +9,8 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
-use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Testcase for the GeorgRinger\\News\\Controller\\NewsBaseController class.
