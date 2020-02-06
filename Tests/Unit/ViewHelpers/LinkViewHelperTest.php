@@ -28,7 +28,7 @@ class LinkViewHelperTest extends BaseTestCase
     /**
      * Set up
      */
-    public function setUp()
+    public function setup(): void
     {
         $this->newsItem = new News();
 

@@ -34,21 +34,13 @@ class TagControllerTest extends BaseTestCase
      * Set up framework
      *
      */
-    public function setUp()
+    public function setup(): void
     {
         $this->fixture = new TagController();
 
         $this->tagRepository = $this->prophesize(TagRepository::class);
     }
 
-    /**
-     * Tear down framework
-     *
-     */
-    public function tearDown()
-    {
-        unset($this->fixture, $this->tagRepository);
-    }
 
     /**
      * Test for creating correct demand call

@@ -8,6 +8,7 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -25,7 +26,7 @@ class CategoryRepositoryTest extends BaseTestCase
      */
     private $backupGlobalVariables;
 
-    public function setUp()
+    public function setup(): void
     {
         $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
         $this->backupGlobalVariables = [
@@ -34,7 +35,7 @@ class CategoryRepositoryTest extends BaseTestCase
         ];
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         foreach ($this->backupGlobalVariables as $key => $data) {
             $GLOBALS[$key] = $data;

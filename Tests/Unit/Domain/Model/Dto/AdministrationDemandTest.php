@@ -21,7 +21,7 @@ class AdministrationDemandTest extends BaseTestCase
     /** @var  AdministrationDemand */
     protected $instance;
 
-    public function setup()
+    public function setup(): void
     {
         $this->instance = new AdministrationDemand();
     }

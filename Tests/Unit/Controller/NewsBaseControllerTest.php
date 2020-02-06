@@ -28,7 +28,7 @@ class NewsBaseControllerTest extends BaseTestCase
     /**
      * Set up
      */
-    public function setUp()
+    public function setup(): void
     {
         $this->tsfe = $this->getAccessibleMock(TypoScriptFrontendController::class, ['pageNotFoundAndExit'], [], '', false);
         $GLOBALS['TSFE'] = $this->tsfe;

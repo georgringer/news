@@ -22,7 +22,7 @@ class PageLayoutViewTest extends BaseTestCase
     /** @var AccessibleMockObjectInterface */
     protected $pageLayoutView;
 
-    public function setUp()
+    public function setup(): void
     {
         parent::setUp();
 

@@ -27,7 +27,7 @@ class TitleTagViewHelperTest extends BaseTestCase
     /**
      * Set up
      */
-    public function setUp()
+    public function setup(): void
     {
         $this->tsfe = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController', ['dummy'], [], '', false);
         $GLOBALS['TSFE'] = $this->tsfe;

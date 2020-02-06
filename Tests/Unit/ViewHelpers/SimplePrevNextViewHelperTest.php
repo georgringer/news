@@ -21,7 +21,7 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
     /** @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $viewHelper;
 
-    public function setUp()
+    public function setup(): void
     {
         $this->viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getRawRecord']);
     }

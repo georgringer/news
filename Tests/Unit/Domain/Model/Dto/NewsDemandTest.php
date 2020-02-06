@@ -21,7 +21,7 @@ class NewsDemandTest extends BaseTestCase
     /** @var  NewsDemand */
     protected $instance;
 
-    public function setup()
+    public function setup(): void
     {
         $this->instance = new NewsDemand();
     }

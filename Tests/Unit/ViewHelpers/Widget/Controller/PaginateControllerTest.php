@@ -26,7 +26,7 @@ class PaginateControllerTest extends BaseTestCase
      * Sets up this test case
      *
      */
-    public function setUp()
+    public function setup(): void
     {
         $this->controller = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Widget\\Controller\\PaginateController', ['dummy'], [], '', false);
     }
