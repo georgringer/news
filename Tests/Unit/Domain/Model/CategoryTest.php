@@ -8,6 +8,7 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\Category;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -27,7 +28,7 @@ class CategoryTest extends BaseTestCase
      * Setup
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->instance = new Category();
     }
@@ -231,6 +232,7 @@ class CategoryTest extends BaseTestCase
         $this->instance->setImportId($value);
         $this->assertEquals($value, $this->instance->getImportId());
     }
+
     /**
      * Test if importSource can be set
      *
