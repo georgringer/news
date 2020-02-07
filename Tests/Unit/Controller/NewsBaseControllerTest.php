@@ -8,7 +8,10 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Controller\NewsBaseController;
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
@@ -39,7 +42,7 @@ class NewsBaseControllerTest extends BaseTestCase
      */
     public function emptyNoNewsFoundConfigurationReturnsNull()
     {
-        $mockedController = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController', ['dummy']);
+        $mockedController = $this->getAccessibleMock(NewsBaseController::class, ['dummy']);
         $result = $mockedController->_call('handleNoNewsFoundError', '');
         $this->assertNull($result);
     }
@@ -49,7 +52,7 @@ class NewsBaseControllerTest extends BaseTestCase
      */
     public function invalidNoNewsFoundConfigurationReturnsNull()
     {
-        $mockedController = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController', ['dummy']);
+        $mockedController = $this->getAccessibleMock(NewsBaseController::class, ['dummy']);
         $result = $mockedController->_call('handleNoNewsFoundError', 'fo');
         $this->assertNull($result);
     }
@@ -59,8 +62,7 @@ class NewsBaseControllerTest extends BaseTestCase
      */
     public function NoNewsFoundConfigurationRedirectsToListView()
     {
-        $mock = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController',
-            ['redirect']);
+        $mock = $this->getAccessibleMock(NewsBaseController::class, ['redirect']);
         $mock->expects($this->once())
             ->method('redirect')->with('list');
         $mock->_call('handleNoNewsFoundError', 'redirectToListView');
@@ -71,7 +73,7 @@ class NewsBaseControllerTest extends BaseTestCase
      */
     public function NoNewsFoundConfigurationCallsPageNotFoundHandler()
     {
-        $mock = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController',
+        $mock = $this->getAccessibleMock(NewsBaseController::class,
             ['dummy']);
 
         $this->tsfe->expects($this->once())
@@ -81,22 +83,22 @@ class NewsBaseControllerTest extends BaseTestCase
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      */
     public function NoNewsFoundConfigurationThrowsExceptionWithTooLessRedirectToPageOptions()
     {
-        $mock = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController',
+        $this->expectException(\InvalidArgumentException::class);
+        $mock = $this->getAccessibleMock(NewsBaseController::class,
             ['dummy']);
         $mock->_call('handleNoNewsFoundError', 'redirectToPage');
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      */
     public function NoNewsFoundConfigurationThrowsExceptionWithTooManyRedirectToPageOptions()
     {
-        $mock = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController',
+        $this->expectException(\InvalidArgumentException::class);
+        $mock = $this->getAccessibleMock(NewsBaseController::class,
             ['dummy']);
         $mock->_call('handleNoNewsFoundError', 'redirectToPage,argumentOne,argumentTwo,argumentThree');
     }
@@ -106,9 +108,9 @@ class NewsBaseControllerTest extends BaseTestCase
      */
     public function NoNewsFoundConfigurationRedirectsToCorrectPage()
     {
-        $mockController = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController', ['redirectToUri']);
+        $mockController = $this->getAccessibleMock(NewsBaseController::class, ['redirectToUri']);
 
-        $mockUriBuilder = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder');
+        $mockUriBuilder = $this->getAccessibleMock(UriBuilder::class);
         $mockController->_set('uriBuilder', $mockUriBuilder);
 
         $mockUriBuilder->expects($this->once())
@@ -124,9 +126,9 @@ class NewsBaseControllerTest extends BaseTestCase
      */
     public function NoNewsFoundConfigurationRedirectsToCorrectPageAndStatus()
     {
-        $mockController = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController', ['redirectToUri']);
+        $mockController = $this->getAccessibleMock(NewsBaseController::class, ['redirectToUri']);
 
-        $mockUriBuilder = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\Mvc\\Web\\Routing\\UriBuilder');
+        $mockUriBuilder = $this->getAccessibleMock(UriBuilder::class);
         $mockController->_set('uriBuilder', $mockUriBuilder);
 
         $mockUriBuilder->expects($this->once())
@@ -143,8 +145,8 @@ class NewsBaseControllerTest extends BaseTestCase
      */
     public function signalSlotGetsEmitted()
     {
-        $mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch']);
-        $mockedController = $this->getAccessibleMock('GeorgRinger\\News\\Controller\\NewsBaseController', ['dummy']);
+        $mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch'], [], '', false);
+        $mockedController = $this->getAccessibleMock(NewsBaseController::class, ['dummy']);
         $mockedController->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
         $classPart = 'FoController';

@@ -8,6 +8,7 @@ namespace GeorgRinger\News\Unit\Backend\FormDataProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -20,7 +21,11 @@ class NewsRowInitializeNewTest extends BaseTestCase
      */
     public function dateTimeIsFilled()
     {
-        $provider = new NewsRowInitializeNew();
+        $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
+        $mockedEmConfiguration = $this->getAccessibleMock(\GeorgRinger\News\Utility\EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
+        $mockedEmConfiguration->expects($this->once())->method('getDateTimeRequired')->will($this->returnValue(true));
+
+        $provider->_set('emConfiguration', $mockedEmConfiguration);
 
         $GLOBALS['EXEC_TIME'] = time();
 
@@ -67,7 +72,12 @@ class NewsRowInitializeNewTest extends BaseTestCase
      */
     public function archiveTimeIsFilled()
     {
-        $provider = new NewsRowInitializeNew();
+        $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
+        $mockedEmConfiguration = $this->getAccessibleMock(\GeorgRinger\News\Utility\EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
+        $mockedEmConfiguration->expects($this->once())->method('getDateTimeRequired')->will($this->returnValue(true));
+
+        $provider->_set('emConfiguration', $mockedEmConfiguration);
+
         $GLOBALS['EXEC_TIME'] = time();
 
         $result = [

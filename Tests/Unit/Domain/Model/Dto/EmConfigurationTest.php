@@ -8,6 +8,7 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -41,8 +42,10 @@ class EmConfigurationTest extends BaseTestCase
             'hidePageTreeForAdministrationModule' => true,
         ];
 
-        $configurationInstance = new EmConfiguration($configuration);
-
+        $configurationInstance = $this->getAccessibleMock(EmConfiguration::class, ['dummy'], [], '', false);
+        foreach ($configuration as $key => $value) {
+            $configurationInstance->_set($key, $value);
+        }
         foreach ($configuration as $key => $value) {
             $functionName = 'get' . ucwords($key);
             $this->assertEquals($value, $configurationInstance->$functionName());
@@ -72,7 +75,10 @@ class EmConfigurationTest extends BaseTestCase
             'hidePageTreeForAdministrationModule' => false,
         ];
 
-        $configurationInstance = new EmConfiguration([]);
+        $configurationInstance = $this->getAccessibleMock(EmConfiguration::class, ['dummy'], [], '', false);
+        foreach ($configuration as $key => $value) {
+            $configurationInstance->_set($key, $value);
+        }
 
         foreach ($configuration as $key => $value) {
             $functionName = 'get' . ucwords($key);

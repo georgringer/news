@@ -99,7 +99,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
     {
         $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
         $result = $mockTemplateParser->_call('extractTag', $tag);
-        $this->assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)), 1);
+        $this->assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)));
     }
 
     public function extractTagReturnsCorrectOneDataProvider()

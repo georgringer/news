@@ -8,9 +8,10 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
+
+use GeorgRinger\News\Hooks\PageLayoutView;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\TestingFramework\Core\BaseTestCase;
-use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Tests for PageLayoutView
@@ -19,7 +20,7 @@ use TYPO3\CMS\Lang\LanguageService;
 class PageLayoutViewTest extends BaseTestCase
 {
 
-    /** @var AccessibleMockObjectInterface */
+    /** @var PageLayoutView|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $pageLayoutView;
 
     public function setup(): void
@@ -31,7 +32,7 @@ class PageLayoutViewTest extends BaseTestCase
 
         $GLOBALS['LANG'] = $languageService;
 
-        $this->pageLayoutView = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\PageLayoutView', ['dummy'], [], '', false);
+        $this->pageLayoutView = $this->getAccessibleMock(PageLayoutView::class, ['dummy'], [], '', false);
         $this->pageLayoutView->_set('databaseConnection', $this->getMockBuilder('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection')->setMethods(['exec_SELECTquery', 'exec_SELECTgetRows'])->getMock());
     }
 

@@ -52,12 +52,9 @@ class TagControllerTest extends BaseTestCase
         $demand = new NewsDemand();
         $settings = ['list' => 'foo', 'orderBy' => 'datetime'];
 
-        $mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch']);
+        $mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch'], [], '', false);
 
-        $fixture = $this->getAccessibleMock(
-            'GeorgRinger\\News\\Controller\\TagController',
-            ['createDemandObjectFromSettings', 'emitActionSignal']
-        );
+        $fixture = $this->getAccessibleMock(TagController::class, ['createDemandObjectFromSettings', 'emitActionSignal']);
         $fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
         $fixture->_set('tagRepository', $this->tagRepository->reveal());

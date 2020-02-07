@@ -8,6 +8,8 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use UnexpectedValueException;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
@@ -36,10 +38,10 @@ class NewsRepositoryTest extends BaseTestCase
 
     /**
      * @test
-     * @expectedException \UnexpectedValueException
      */
     public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven()
     {
+        $this->expectException(UnexpectedValueException::class);
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 
         $search = new Search();
@@ -53,10 +55,10 @@ class NewsRepositoryTest extends BaseTestCase
 //
     /**
      * @test
-     * @expectedException \UnexpectedValueException
      */
     public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven()
     {
+        $this->expectException(UnexpectedValueException::class);
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 
         $search = new Search();
@@ -70,10 +72,10 @@ class NewsRepositoryTest extends BaseTestCase
 //
     /**
      * @test
-     * @expectedException \UnexpectedValueException
      */
     public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven()
     {
+        $this->expectException(UnexpectedValueException::class);
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
         $mockedRepository = $this->getAccessibleMock(NewsRepository::class, ['dummy'], [], '', false);
 

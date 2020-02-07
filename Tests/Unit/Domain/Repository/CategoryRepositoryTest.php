@@ -9,6 +9,7 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -18,9 +19,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 class CategoryRepositoryTest extends BaseTestCase
 {
 
-    /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-    protected $objectManager;
-
     /**
      * @var array
      */
@@ -28,7 +26,6 @@ class CategoryRepositoryTest extends BaseTestCase
 
     public function setup(): void
     {
-        $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
         $this->backupGlobalVariables = [
             'BE_USER' => $GLOBALS['BE_USER'],
             'TSFE' => $GLOBALS['TSFE'],
@@ -43,38 +40,6 @@ class CategoryRepositoryTest extends BaseTestCase
         unset($this->backupGlobalVariables);
     }
 
-    /**
-     * @test
-     */
-    public function correctSysLanguageIsReturnedUsingGetAndPostRequest()
-    {
-        /** @var \GeorgRinger\News\Domain\Repository\CategoryRepository $mockedCategoryRepository */
-        if (version_compare(TYPO3_branch, '6.2', '>=')) {
-            $objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
-            $mockedCategoryRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
-        } else {
-            $mockedCategoryRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy']);
-        }
-        unset($GLOBALS['TSFE']);
-
-        // Default value
-        $result = $mockedCategoryRepository->_call('getSysLanguageUid');
-        $this->assertEquals(0, $result);
-
-        // GET
-        $_GET['L'] = 11;
-        $result = $mockedCategoryRepository->_call('getSysLanguageUid');
-        $this->assertEquals(11, $result);
-
-        // POST
-        $_POST['L'] = 13;
-        $result = $mockedCategoryRepository->_call('getSysLanguageUid');
-        $this->assertEquals(13, $result);
-
-        // POST overrules GET
-        $_GET['L'] = 15;
-        $this->assertEquals(13, $result);
-    }
 
     /**
      * Test if category ids are replaced
@@ -86,12 +51,7 @@ class CategoryRepositoryTest extends BaseTestCase
      */
     public function categoryIdsAreCorrectlyReplaced($expectedResult, $given)
     {
-        if (version_compare(TYPO3_branch, '6.2', '>=')) {
-            $objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
-            $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
-        } else {
-            $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy']);
-        }
+        $mockTemplateParser = $this->getAccessibleMock(CategoryRepository::class, ['dummy'], [], '', false);
 
         $result = $mockTemplateParser->_call('replaceCategoryIds', $given['idList'], $given['toBeChanged']);
 
@@ -103,7 +63,7 @@ class CategoryRepositoryTest extends BaseTestCase
      *
      * @return array
      */
-    public function categoryIdsAreCorrectlyReplacedDataProvider()
+    public function categoryIdsAreCorrectlyReplacedDataProvider(): array
     {
         return [
             'emptyRows' => [
