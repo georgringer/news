@@ -148,7 +148,6 @@ $boot = function () {
         'class' => \GeorgRinger\News\Backend\FieldInformation\StaticText::class
     ];
 
-
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
     config.pageTitleProviders {
         news {

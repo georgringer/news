@@ -41,7 +41,6 @@ class TagControllerTest extends BaseTestCase
         $this->tagRepository = $this->prophesize(TagRepository::class);
     }
 
-
     /**
      * Test for creating correct demand call
      *
