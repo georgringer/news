@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use UnexpectedValueException;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use UnexpectedValueException;
 
 /**
  * Tests for domain repository newsRepository
