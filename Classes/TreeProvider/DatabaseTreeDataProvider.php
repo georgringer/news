@@ -10,7 +10,6 @@ namespace GeorgRinger\News\TreeProvider;
  */
 use GeorgRinger\News\Service\CategoryService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -20,7 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeDataProvider
 {
-
 
     /**
      * Builds a complete node including children
