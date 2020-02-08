@@ -69,10 +69,6 @@ Add this to the ``ext_localconf.php`` of your extension:
 
 .. code-block:: php
 
-   // For 7x
-   $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass'][]
-      = \Vendor\ExtKey\Hooks\FlexFormHook::class;
-   // For 8x
    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing'][]
       = \Vendor\ExtKey\Hooks\FlexFormHook::class;
 
@@ -86,10 +82,10 @@ flexform file.
    <?php
 
    namespace Vendor\ExtKey\Hooks;
-   
+
    use TYPO3\CMS\Core\Core\Environment;
    use TYPO3\CMS\Core\Utility\GeneralUtility;
-   
+
    class FlexFormHook
    {
       /**

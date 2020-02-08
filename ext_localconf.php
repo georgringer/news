@@ -29,8 +29,6 @@ $boot = function () {
         \GeorgRinger\News\Hooks\DataHandler::class;
 
     // Modify flexform values
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass']['news'] =
-        \GeorgRinger\News\Hooks\BackendUtility::class;
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing']['news']
         = \GeorgRinger\News\Hooks\BackendUtility::class;
 
