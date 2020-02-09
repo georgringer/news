@@ -40,7 +40,6 @@ class CategoryRepositoryTest extends BaseTestCase
         unset($this->backupGlobalVariables);
     }
 
-
     /**
      * Test if category ids are replaced
      *
