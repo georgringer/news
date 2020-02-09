@@ -8,8 +8,8 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Widget\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for PaginateController

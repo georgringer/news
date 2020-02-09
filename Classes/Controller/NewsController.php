@@ -124,8 +124,7 @@ class NewsController extends NewsBaseController
     protected function createDemandObjectFromSettings(
         $settings,
         $class = 'GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand'
-    )
-    {
+    ) {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
@@ -489,8 +488,7 @@ class NewsController extends NewsBaseController
     public function searchFormAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
         array $overwriteDemand = []
-    )
-    {
+    ) {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -524,8 +522,7 @@ class NewsController extends NewsBaseController
     public function searchResultAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
         array $overwriteDemand = []
-    )
-    {
+    ) {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -593,8 +590,7 @@ class NewsController extends NewsBaseController
      */
     public function injectConfigurationManager(
         \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-    )
-    {
+    ) {
         $this->configurationManager = $configurationManager;
 
         $tsSettings = $this->configurationManager->getConfiguration(
