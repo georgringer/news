@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Backend\Wizard;
 
-use GeorgRinger\News\Utility\EmConfiguration;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\Wizard\SuggestWizardDefaultReceiver;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 class SuggestWizardReceiver extends SuggestWizardDefaultReceiver
@@ -32,7 +33,7 @@ class SuggestWizardReceiver extends SuggestWizardDefaultReceiver
                 'text' => sprintf($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:tag_suggest'), $params['value']),
                 'uid' => $newUid,
             ];
-            $configuration = EmConfiguration::getSettings();
+            $configuration = GeneralUtility::makeInstance(EmConfiguration::class);
             $pid = $configuration->getTagPid();
             if ($pid === 0) {
                 $pid = $this->getTagPidFromTsConfig($params['uid']);

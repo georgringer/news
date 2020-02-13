@@ -8,8 +8,8 @@ namespace GeorgRinger\News\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 use Exception;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Jobs\ImportJobInterface;
-use GeorgRinger\News\Utility\EmConfiguration;
 use GeorgRinger\News\Utility\ImportJob;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
@@ -82,7 +82,8 @@ class ImportController extends ActionController
     protected function checkCorrectConfiguration()
     {
         $error = '';
-        $settings = EmConfiguration::getSettings();
+
+        $settings = GeneralUtility::makeInstance(EmConfiguration::class)
 
         try {
             $storageId = (int)$settings->getStorageUidImporter();

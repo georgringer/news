@@ -22,7 +22,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
     public function dateTimeIsFilled()
     {
         $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
-        $mockedEmConfiguration = $this->getAccessibleMock(\GeorgRinger\News\Utility\EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
+        $mockedEmConfiguration = $this->getAccessibleMock(EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
         $mockedEmConfiguration->expects($this->once())->method('getDateTimeRequired')->will($this->returnValue(true));
 
         $provider->_set('emConfiguration', $mockedEmConfiguration);
@@ -73,7 +73,7 @@ class NewsRowInitializeNewTest extends BaseTestCase
     public function archiveTimeIsFilled()
     {
         $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
-        $mockedEmConfiguration = $this->getAccessibleMock(\GeorgRinger\News\Utility\EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
+        $mockedEmConfiguration = $this->getAccessibleMock(EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
         $mockedEmConfiguration->expects($this->once())->method('getDateTimeRequired')->will($this->returnValue(true));
 
         $provider->_set('emConfiguration', $mockedEmConfiguration);

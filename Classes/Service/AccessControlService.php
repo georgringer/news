@@ -8,7 +8,8 @@ namespace GeorgRinger\News\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Utility\EmConfiguration;
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
@@ -30,7 +31,8 @@ class AccessControlService
      */
     public static function userHasCategoryPermissionsForRecord(array $newsRecord)
     {
-        if (!EmConfiguration::getSettings()->getCategoryBeGroupTceFormsRestriction()) {
+        $settings = GeneralUtility::makeInstance(EmConfiguration::class);
+        if (!$settings->getCategoryBeGroupTceFormsRestriction()) {
             return true;
         }
 

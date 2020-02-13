@@ -8,6 +8,7 @@ namespace GeorgRinger\News\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -118,7 +119,7 @@ class BackendUtility
 
     public function __construct()
     {
-        $this->configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
+        $this->configuration = GeneralUtility::makeInstance(EmConfiguration::class);
     }
 
     /**
