@@ -83,7 +83,7 @@ class ImportController extends ActionController
     {
         $error = '';
 
-        $settings = GeneralUtility::makeInstance(EmConfiguration::class)
+        $settings = GeneralUtility::makeInstance(EmConfiguration::class);
 
         try {
             $storageId = (int)$settings->getStorageUidImporter();
