@@ -16,7 +16,7 @@ $boot = function () {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
         'sys_file_reference', 'EXT:news/Resources/Private/Language/locallang_csh_sys_file_reference.xlf');
 
-    $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
+    $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
 
     if (TYPO3_MODE === 'BE') {
         // Extend user settings

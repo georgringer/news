@@ -3,7 +3,7 @@ defined('TYPO3_MODE') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
-$configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
+$configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
 
 $tx_news_domain_model_news = [
     'ctrl' => [
