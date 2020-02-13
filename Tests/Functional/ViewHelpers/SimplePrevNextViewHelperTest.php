@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Tests\Unit\Functional\ViewHelpers;
 
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -34,7 +35,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->mockedViewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['dummy'], [], '', true, true, false);
+        $this->mockedViewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['dummy'], [], '', true, true, false);
 
         $this->news = new News();
         $this->news->setPid(9);

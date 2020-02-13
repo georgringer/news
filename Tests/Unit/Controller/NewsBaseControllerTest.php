@@ -12,6 +12,7 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
 use GeorgRinger\News\Controller\NewsBaseController;
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -145,7 +146,7 @@ class NewsBaseControllerTest extends BaseTestCase
      */
     public function signalSlotGetsEmitted()
     {
-        $mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch'], [], '', false);
+        $mockedSignalSlotDispatcher = $this->getAccessibleMock(Dispatcher::class, ['dispatch'], [], '', false);
         $mockedController = $this->getAccessibleMock(NewsBaseController::class, ['dummy']);
         $mockedController->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 

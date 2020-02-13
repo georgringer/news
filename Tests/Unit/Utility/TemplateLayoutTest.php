@@ -8,6 +8,8 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -32,7 +34,7 @@ class TemplateLayoutTest extends BaseTestCase
             ],
         ];
 
-        $templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getTemplateLayoutsFromTsConfig']);
+        $templateLayoutUtility = $this->getAccessibleMock(TemplateLayout::class, ['getTemplateLayoutsFromTsConfig']);
         $templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue([]));
         $templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
         $this->assertSame($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'], $templateLayouts);
@@ -61,7 +63,7 @@ class TemplateLayoutTest extends BaseTestCase
         // clear TYPO3_CONF_VARS
         unset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts']);
 
-        $templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getTemplateLayoutsFromTsConfig']);
+        $templateLayoutUtility = $this->getAccessibleMock(TemplateLayout::class, ['getTemplateLayoutsFromTsConfig']);
         $templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue($tsConfigArray));
         $templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
         $this->assertSame($result, $templateLayouts);
@@ -97,7 +99,7 @@ class TemplateLayoutTest extends BaseTestCase
             ],
         ];
 
-        $templateLayoutUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getTemplateLayoutsFromTsConfig']);
+        $templateLayoutUtility = $this->getAccessibleMock(TemplateLayout::class, ['getTemplateLayoutsFromTsConfig']);
         $templateLayoutUtility->expects($this->once())->method('getTemplateLayoutsFromTsConfig')->will($this->returnValue($tsConfigArray));
         $templateLayouts = $templateLayoutUtility->_call('getAvailableTemplateLayouts', 1);
         $this->assertSame($result, $templateLayouts);

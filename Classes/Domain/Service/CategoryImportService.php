@@ -273,7 +273,7 @@ class CategoryImportService extends AbstractImportService
      */
     protected function emitSignal($signalName, array $signalArguments)
     {
-        $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\CategoryImportService', $signalName,
+        $this->signalSlotDispatcher->dispatch(CategoryImportService::class, $signalName,
             $signalArguments);
     }
 }

@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 use GeorgRinger\News\ViewHelpers\TitleTagViewHelper;
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
@@ -29,7 +30,7 @@ class TitleTagViewHelperTest extends BaseTestCase
      */
     public function setup(): void
     {
-        $this->tsfe = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController', ['dummy'], [], '', false);
+        $this->tsfe = $this->getAccessibleMock(TypoScriptFrontendController::class, ['dummy'], [], '', false);
         $GLOBALS['TSFE'] = $this->tsfe;
     }
 
@@ -42,7 +43,7 @@ class TitleTagViewHelperTest extends BaseTestCase
     {
         $title = 'Some title';
         /** @var TitleTagViewHelper|\PHPUnit_Framework_MockObject_MockObject $viewHelper */
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\TitleTagViewHelper', ['dummy']);
+        $viewHelper = $this->getAccessibleMock(TitleTagViewHelper::class, ['dummy']);
         $viewHelper::renderStatic([], function () {
             return 'Some title';
         }, $this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());

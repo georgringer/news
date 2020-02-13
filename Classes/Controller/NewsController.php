@@ -9,6 +9,8 @@ namespace GeorgRinger\News\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
@@ -123,16 +125,17 @@ class NewsController extends NewsBaseController
      */
     protected function createDemandObjectFromSettings(
         $settings,
-        $class = 'GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand'
-    ) {
+        $class = NewsDemand::class
+    )
+    {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
         $demand = $this->objectManager->get($class, $settings);
         if (!$demand instanceof \GeorgRinger\News\Domain\Model\Dto\NewsDemand) {
             throw new \UnexpectedValueException(
-                sprintf('The demand object must be an instance of \GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand, but %s given!',
-                    $class),
+                sprintf('The demand object must be an instance of %s, but %s given!',
+                    NewsDemand::class, $class),
                 1423157953);
         }
 
@@ -316,7 +319,7 @@ class NewsController extends NewsBaseController
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_SELECTED_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
 
-        if (!empty($newsRecords) && is_a($newsRecords[0], 'GeorgRinger\\News\\Domain\\Model\\News')) {
+        if (!empty($newsRecords) && is_a($newsRecords[0], News::class)) {
             Cache::addCacheTagsByNewsRecords($newsRecords);
         }
     }
@@ -344,8 +347,7 @@ class NewsController extends NewsBaseController
             }
         }
 
-        if (is_a($news,
-                'GeorgRinger\\News\\Domain\\Model\\News') && $this->settings['detail']['checkPidOfNewsRecord']
+        if (is_a($news, News::class) && $this->settings['detail']['checkPidOfNewsRecord']
         ) {
             $news = $this->checkPidOfNewsRecord($news);
         }
@@ -488,7 +490,8 @@ class NewsController extends NewsBaseController
     public function searchFormAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
         array $overwriteDemand = []
-    ) {
+    )
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -522,7 +525,8 @@ class NewsController extends NewsBaseController
     public function searchResultAction(
         \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
         array $overwriteDemand = []
-    ) {
+    )
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -590,7 +594,8 @@ class NewsController extends NewsBaseController
      */
     public function injectConfigurationManager(
         \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-    ) {
+    )
+    {
         $this->configurationManager = $configurationManager;
 
         $tsSettings = $this->configurationManager->getConfiguration(

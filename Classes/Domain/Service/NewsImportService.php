@@ -429,7 +429,7 @@ class NewsImportService extends AbstractImportService
      */
     protected function emitSignal($signalName, array $signalArguments)
     {
-        return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\NewsImportService', $signalName,
+        return $this->signalSlotDispatcher->dispatch(NewsImportService::class, $signalName,
             $signalArguments);
     }
 }

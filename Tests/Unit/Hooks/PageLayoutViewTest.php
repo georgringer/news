@@ -10,6 +10,7 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  */
 
 use GeorgRinger\News\Hooks\PageLayoutView;
+use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -193,7 +194,7 @@ class PageLayoutViewTest extends BaseTestCase
     public function getTemplateLayoutSettingsAddsValueIfFilled()
     {
         $flexform = [];
-        $mockedTemplateLayout = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getAvailableTemplateLayouts']);
+        $mockedTemplateLayout = $this->getAccessibleMock(TemplateLayout::class, ['getAvailableTemplateLayouts']);
 
         $mockedTemplateLayout->expects($this->once())->method('getAvailableTemplateLayouts')->will($this->returnValue([['bar', 'fo']]));
 

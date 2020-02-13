@@ -129,7 +129,7 @@ class TypoScriptTest extends BaseTestCase
      */
     public function correctValueIsReturned($path, $expected)
     {
-        $mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', ['dummy']);
+        $mockedUtility = $this->getAccessibleMock(TypoScript::class, ['dummy']);
 
         $in = [
             'level_1' => [
@@ -176,7 +176,7 @@ class TypoScriptTest extends BaseTestCase
      */
     public function correctValueIsSet($path, $newValue, $expected)
     {
-        $mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', ['dummy'], [], '', true, false);
+        $mockedUtility = $this->getAccessibleMock(TypoScript::class, ['dummy'], [], '', true, false);
 
         $in = [
             'level_1' => [

@@ -9,7 +9,9 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -29,8 +31,8 @@ class CategoryRepositoryTest extends FunctionalTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-        $this->categoryRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository');
+        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $this->categoryRepository = $this->objectManager->get(CategoryRepository::class);
 
         $this->importDataSet(__DIR__ . '/../Fixtures/sys_category.xml');
     }

@@ -8,6 +8,8 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Widget\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -28,7 +30,7 @@ class PaginateControllerTest extends BaseTestCase
      */
     public function setup(): void
     {
-        $this->controller = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Widget\\Controller\\PaginateController', ['dummy'], [], '', false);
+        $this->controller = $this->getAccessibleMock(PaginateController::class, ['dummy'], [], '', false);
     }
 
     /**
@@ -36,7 +38,7 @@ class PaginateControllerTest extends BaseTestCase
      */
     public function initializationIsCorrect()
     {
-        $controller = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Widget\\Controller\\PaginateController', ['dummy']);
+        $controller = $this->getAccessibleMock(PaginateController::class, ['dummy']);
         $objects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
         $configuration = [
             'templatePath' => 'fo/bar',

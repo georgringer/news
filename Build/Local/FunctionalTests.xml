@@ -9,7 +9,7 @@
 -->
 <phpunit
 	backupGlobals="true"
-	bootstrap="../../../../../../vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTestsBootstrap.php"
+	bootstrap="../../../../../vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTestsBootstrap.php"
 	colors="true"
 	convertErrorsToExceptions="true"
 	convertWarningsToExceptions="true"
