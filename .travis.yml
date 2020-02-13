@@ -60,15 +60,15 @@ script:
     echo;
     echo "Running php lint";
     find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
-#  - >
-#    if [[ "$COVERAGE" == "1" ]]; then
-#      echo;
-#      export typo3DatabaseName="typo3";
-#      export typo3DatabaseHost="127.0.0.1";
-#      export typo3DatabaseUsername="root";
-#      export typo3DatabasePassword="";
-#      .Build/bin/phpunit --coverage-php cov/coverage-functional.cov --colors -c Build/FunctionalTests.xml Tests/Functional/
-#    fi
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      export typo3DatabaseName="typo3";
+      export typo3DatabaseHost="127.0.0.1";
+      export typo3DatabaseUsername="root";
+      export typo3DatabasePassword="";
+      .Build/bin/phpunit --coverage-php cov/coverage-functional.cov --colors -c Build/FunctionalTests.xml Tests/Functional/
+    fi
 
 after_script:
   - >

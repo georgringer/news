@@ -8,9 +8,10 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * Functional test for the \GeorgRinger\News\Domain\Repository\NewsRepository
@@ -26,7 +27,9 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
 
-    public function setUp()
+    protected $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
+
+    public function setUp(): void
     {
         parent::setUp();
         $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
@@ -260,7 +263,7 @@ class NewsRepositoryTest extends FunctionalTestCase
         return implode(',', $idList);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->newsRepository);
         unset($this->objectManager);

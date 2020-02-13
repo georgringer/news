@@ -1,3 +1,4 @@
 /.Build
+/Build/Local/.phpunit.result.cache
 /composer.lock
 /.php_cs.cache
