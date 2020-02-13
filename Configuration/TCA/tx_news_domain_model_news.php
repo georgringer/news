@@ -219,7 +219,6 @@ $tx_news_domain_model_news = [
                 'cols' => 60,
                 'rows' => 5,
                 'enableRichtext' => $configuration->getRteForTeaser(),
-                'richtextConfiguration' => 'default',
             ]
         ],
         'bodytext' => [
@@ -231,7 +230,6 @@ $tx_news_domain_model_news = [
                 'rows' => 5,
                 'softref' => 'rtehtmlarea_images,typolink_tag,images,email[subst],url',
                 'enableRichtext' => true,
-                'richtextConfiguration' => 'default',
             ]
         ],
         'datetime' => [
@@ -581,6 +579,7 @@ $tx_news_domain_model_news = [
         'path_segment' => [
             'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_news.path_segment',
+            'displayCond' => 'VERSION:IS:false',
             'config' => [
                 'type' => 'slug',
                 'size' => 50,

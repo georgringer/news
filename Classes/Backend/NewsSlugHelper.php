@@ -30,9 +30,9 @@ class NewsSlugHelper
         $slug = mb_strtolower($slug, 'utf-8');
         $slug = strip_tags($slug);
 
-        // Convert some special tokens (space, "_" and "-") to the space character
+        // Convert some special tokens (space, slash, "_" and "-") to the space character
         $fallbackCharacter = '-';
-        $slug = preg_replace('/[ \t\x{00A0}\-+_]+/u', $fallbackCharacter, $slug);
+        $slug = preg_replace('/[ \t\x{00A0}\-+_\/]+/u', $fallbackCharacter, $slug);
 
         // Convert extended letters to ascii equivalents
         // The specCharsToASCII() converts "€" to "EUR"

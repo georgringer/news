@@ -42,9 +42,9 @@ To fulfill that signal, you can create a slot in your custom extension. All what
 	$signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 	$signalSlotDispatcher->connect(
 		'GeorgRinger\\News\\Controller\\NewsController',
-		'listAction',
+		'detailAction',
 		'YourVendor\\yourextkey\\Slots\\NewsControllerSlot', // fully your choice
-		'listActionSlot', // fully your choice
+		'dateMenuActionSlot', // fully your choice
 		TRUE
 	);
 

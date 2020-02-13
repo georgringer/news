@@ -37,6 +37,7 @@ class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVi
     {
         $this->registerArgument('path', 'string', 'Path to the CSS/JS file which should be included', true);
         $this->registerArgument('compress', 'bool', 'Define if file should be compressed', false, false);
+        $this->registerArgument('footer', 'bool', 'Define if JS file should be loaded in the footer', false, false);
     }
 
     /**
@@ -51,6 +52,8 @@ class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVi
     ) {
         $path = $arguments['path'];
         $compress = (bool)$arguments['compress'];
+        $footer = (bool)$arguments['footer'];
+
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         if (TYPO3_MODE === 'FE') {
             $sanitizer = GeneralUtility::makeInstance(FilePathSanitizer::class);
@@ -58,8 +61,13 @@ class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVi
                 $path = $sanitizer->sanitize($path);
                 // JS
                 if (strtolower(substr($path, -3)) === '.js') {
-                    $pageRenderer->addJsFile($path, null, $compress, false, '', true);
-                // CSS
+                    if ( $footer) {
+                        $pageRenderer->addJsFooterFile($path, null, $compress, false, '', true);
+                    } else {
+                        $pageRenderer->addJsFile($path, null, $compress, false, '', true);
+                    }
+
+                    // CSS
                 } elseif (strtolower(substr($path, -4)) === '.css') {
                     $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
                 }
@@ -71,7 +79,7 @@ class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVi
             if (strtolower(substr($path, -3)) === '.js') {
                 $pageRenderer->addJsFile($path, null, $compress, false, '', true);
 
-            // CSS
+                // CSS
             } elseif (strtolower(substr($path, -4)) === '.css') {
                 $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
             }
