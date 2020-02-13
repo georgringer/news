@@ -61,7 +61,7 @@ class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVi
                 $path = $sanitizer->sanitize($path);
                 // JS
                 if (strtolower(substr($path, -3)) === '.js') {
-                    if ( $footer) {
+                    if ($footer) {
                         $pageRenderer->addJsFooterFile($path, null, $compress, false, '', true);
                     } else {
                         $pageRenderer->addJsFile($path, null, $compress, false, '', true);
@@ -79,7 +79,7 @@ class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVi
             if (strtolower(substr($path, -3)) === '.js') {
                 $pageRenderer->addJsFile($path, null, $compress, false, '', true);
 
-                // CSS
+            // CSS
             } elseif (strtolower(substr($path, -4)) === '.css') {
                 $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
             }
