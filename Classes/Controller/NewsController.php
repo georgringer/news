@@ -375,12 +375,14 @@ class NewsController extends NewsBaseController
             Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
             Cache::addCacheTagsByNewsRecords([$news]);
 
-            $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
-            $providerClass = $providerConfiguration['provider'] ?? NewsTitleProvider::class;
+            if ($this->settings['detail']['pageTile']['_typoScriptNodeValue']) {
+                $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
+                $providerClass = $providerConfiguration['provider'] ?? NewsTitleProvider::class;
 
-            /** @var NewsTitleProvider $provider */
-            $provider = GeneralUtility::makeInstance($providerClass);
-            $provider->setTitle($news, $providerConfiguration);
+                /** @var NewsTitleProvider $provider */
+                $provider = GeneralUtility::makeInstance($providerClass);
+                $provider->setTitleByNews($news, $providerConfiguration);
+            }
         } elseif (isset($this->settings['detail']['errorHandling'])) {
             $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
             if ($errorContent) {

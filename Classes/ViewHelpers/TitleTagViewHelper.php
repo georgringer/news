@@ -8,6 +8,9 @@ namespace GeorgRinger\News\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Seo\NewsTitleProvider;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
@@ -39,7 +42,8 @@ class TitleTagViewHelper extends AbstractViewHelper implements ViewHelperInterfa
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    )
+    {
         // Skip if current record is part of tt_content CType shortcut
         if (!empty($GLOBALS['TSFE']->recordRegister)
             && is_array($GLOBALS['TSFE']->recordRegister)
@@ -52,8 +56,7 @@ class TitleTagViewHelper extends AbstractViewHelper implements ViewHelperInterfa
 
         $content = trim($renderChildrenClosure());
         if (!empty($content)) {
-            $GLOBALS['TSFE']->altPageTitle = $content;
-            $GLOBALS['TSFE']->indexedDocTitle = $content;
+            GeneralUtility::makeInstance(NewsTitleProvider::class)->setTitle($content);
         }
     }
 }

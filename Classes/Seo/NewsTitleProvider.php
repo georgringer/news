@@ -26,7 +26,7 @@ class NewsTitleProvider extends AbstractPageTitleProvider
      * @param News $news
      * @param array $configuration
      */
-    public function setTitle(News $news, array $configuration = []): void
+    public function setTitleByNews(News $news, array $configuration = []): void
     {
         $title = '';
         $fields = GeneralUtility::trimExplode(',', $configuration['properties'] ?? self::DEFAULT_PROPERTIES, true);
@@ -42,5 +42,10 @@ class NewsTitleProvider extends AbstractPageTitleProvider
         if ($title) {
             $this->title = $title;
         }
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
     }
 }

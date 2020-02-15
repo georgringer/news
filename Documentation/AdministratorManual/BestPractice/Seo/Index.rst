@@ -34,6 +34,7 @@ It can be configured using TypoScript:
 .. code-block:: typoscript
 
    plugin.tx_news.settings.detail {
+      pageTitle = 1
       pageTitle {
          # Register alternative provider
          provider = GeorgRinger\News\Seo\NewsTitleProvider
@@ -41,6 +42,20 @@ It can be configured using TypoScript:
          properties = teaser,title
       }
    }
+
+It is also possible to set the page title through the template by using:
+
+.. code-block:: html
+
+   <n:titleTag>
+      <f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+   </n:titleTag>
+
+Please disable the usage of the page title provider by using
+
+.. code-block:: typoscript
+
+   plugin.tx_news.settings.detail.pageTitle = 0
 
 XML Sitemap
 -----------

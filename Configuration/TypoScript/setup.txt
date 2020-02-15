@@ -127,6 +127,7 @@ plugin.tx_news {
 				}
 			}
 
+			pageTitle = 1
 			pageTitle {
 				provider = GeorgRinger\News\Seo\NewsTitleProvider
 				properties = teaser,title
