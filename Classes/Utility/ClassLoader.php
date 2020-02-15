@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Utility;
 
 /**
@@ -7,6 +8,7 @@ namespace GeorgRinger\News\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -40,6 +42,9 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
     {
         if (is_null($this->cacheInstance)) {
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
+            if (!$cacheManager->hasCache('news')) {
+                $cacheManager->setCacheConfigurations($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']);
+            }
             $this->cacheInstance = $cacheManager->getCache('news');
         }
         return $this->cacheInstance;
