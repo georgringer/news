@@ -56,7 +56,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
             $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
         }
 
-        if (is_array($result['pageTsConfig']['tx_news.'])
+        if (isset($result['pageTsConfig']['tx_news.']['predefine.'])
             && is_array($result['pageTsConfig']['tx_news.']['predefine.'])
         ) {
             if (isset($result['pageTsConfig']['tx_news.']['predefine.']['author']) && (int)$result['pageTsConfig']['tx_news.']['predefine.']['author'] === 1) {
@@ -82,7 +82,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
      */
     protected function setTagListingId(array $result)
     {
-        if (!is_array($result['pageTsConfig']['tx_news.']) || !isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
+        if (!isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
             return $result;
         }
         $tagPid = (int)$result['pageTsConfig']['tx_news.']['tagPid'];

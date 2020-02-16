@@ -60,7 +60,7 @@ class TagControllerTest extends BaseTestCase
         $fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
         $fixture->_set('tagRepository', $this->tagRepository->reveal());
-        $fixture->injectConfigurationManager($this->getMockBuilder(ConfigurationManagerInterface::class)->getMock());
+//        $fixture->injectConfigurationManager($this->getMockBuilder(ConfigurationManagerInterface::class)->getMock());
         $fixture->setView($this->getMockBuilder(TemplateView::class)->disableOriginalConstructor()->getMock());
         $fixture->_set('settings', $settings);
 

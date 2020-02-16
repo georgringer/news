@@ -27,7 +27,6 @@ class ExcludeDisplayedNewsViewHelperTest extends BaseTestCase
     {
         $viewHelper = new ExcludeDisplayedNewsViewHelper();
         $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());
-        $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], null);
 
         $newsItem1 = new News();
         $newsItem1->_setProperty('uid', '123');

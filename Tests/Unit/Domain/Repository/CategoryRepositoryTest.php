@@ -20,27 +20,6 @@ class CategoryRepositoryTest extends BaseTestCase
 {
 
     /**
-     * @var array
-     */
-    private $backupGlobalVariables;
-
-    public function setup(): void
-    {
-        $this->backupGlobalVariables = [
-            'BE_USER' => $GLOBALS['BE_USER'],
-            'TSFE' => $GLOBALS['TSFE'],
-        ];
-    }
-
-    public function tearDown(): void
-    {
-        foreach ($this->backupGlobalVariables as $key => $data) {
-            $GLOBALS[$key] = $data;
-        }
-        unset($this->backupGlobalVariables);
-    }
-
-    /**
      * Test if category ids are replaced
      *
      * @param array $expectedResult

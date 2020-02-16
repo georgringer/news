@@ -137,7 +137,7 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
         /** @var LanguageAspect $languageAspect */
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
 
-        if (is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
+        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
             $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
                 'tx_news_domain_model_news',
                 $rawRecord,

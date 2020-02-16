@@ -43,6 +43,9 @@ class PaginateControllerTest extends BaseTestCase
         $configuration = [
             'templatePath' => 'fo/bar',
             'itemsPerPage' => '3',
+            'insertAbove' => false,
+            'insertBelow' => true,
+            'maximumNumberOfLinks' => 99,
         ];
         $widgetConfiguration = ['fo' => 'bar'];
         $controller->_set('configuration', $configuration);

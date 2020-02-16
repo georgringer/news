@@ -35,6 +35,6 @@ class IsCheckboxActiveViewHelper extends AbstractViewHelper
      */
     public function render()
     {
-        return (is_array($this->arguments['categories']) && in_array($this->arguments['id'], $this->arguments['categories'])) ? 'checked="checked"' : '';
+        return (isset($this->arguments['categories']) && is_array($this->arguments['categories']) && in_array($this->arguments['id'], $this->arguments['categories'])) ? 'checked="checked"' : '';
     }
 }

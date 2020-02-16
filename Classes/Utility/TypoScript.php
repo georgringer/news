@@ -23,7 +23,8 @@ class TypoScript
      */
     public function override(array $base, array $overload)
     {
-        $validFields = GeneralUtility::trimExplode(',', $overload['settings']['overrideFlexformSettingsIfEmpty'], true);
+        $configuration = $overload['settings']['overrideFlexformSettingsIfEmpty'] ?? '';
+        $validFields = GeneralUtility::trimExplode(',', $configuration, true);
         foreach ($validFields as $fieldName) {
 
             // Multilevel field

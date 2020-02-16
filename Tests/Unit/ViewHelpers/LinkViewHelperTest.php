@@ -205,6 +205,15 @@ class LinkViewHelperTest extends BaseTestCase
         $settingService = $this->getAccessibleMock(SettingsService::class, ['getConfiguration', 'getSettings']);
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['renderChildren', 'getSettings']);
         $viewHelper->_set('pluginSettingsService', $settingService);
+        $viewHelper->setArguments([
+            'newsItem' => null,
+            'settings' => [
+                'useStdWrap' => false
+            ],
+            'configuration' => [],
+            'uriOnly' => false,
+            'content' => ''
+        ]);
         $result = $viewHelper->_call('render');
         $this->assertEquals('', $result);
     }

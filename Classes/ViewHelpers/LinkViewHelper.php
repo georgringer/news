@@ -8,6 +8,7 @@ namespace GeorgRinger\News\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -99,15 +100,15 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
     {
         /** @var News $newsItem */
         $newsItem = $this->arguments['newsItem'];
-        $settings = $this->arguments['settings'];
-        $uriOnly = $this->arguments['uriOnly'];
-        $configuration = $this->arguments['configuration'];
-        $content = $this->arguments['content'];
+        $settings = $this->arguments['settings'] ?? [];
+        $uriOnly = $this->arguments['uriOnly'] ?? false;
+        $configuration = $this->arguments['configuration'] ?? [];
+        $content = $this->arguments['content'] ?? '';
 
         $tsSettings = (array)$this->pluginSettingsService->getSettings();
         ArrayUtility::mergeRecursiveWithOverrule($tsSettings, (array)$settings);
         // Options with stdWrap enabled won't override $tsSettings as intended here: override them explicit.
-        if ($settings['useStdWrap']) {
+        if (isset($settings['useStdWrap']) && $settings['useStdWrap']) {
             foreach (GeneralUtility::trimExplode(',', $settings['useStdWrap'], true) as $stdWrapProperty) {
                 if (is_array($tsSettings[$stdWrapProperty]) && array_key_exists($stdWrapProperty, $settings)) {
                     $tsSettings[$stdWrapProperty] = $settings[$stdWrapProperty];
@@ -186,15 +187,16 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
         News $newsItem,
         $tsSettings,
         array $configuration = []
-    ) {
+    )
+    {
         if (!isset($configuration['parameter'])) {
             $detailPid = 0;
-            $detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'],
-                true);
-
             // if TS is not set, prefer flexform setting
             if (!isset($tsSettings['detailPidDetermination'])) {
-                $detailPidDeterminationMethods[] = 'flexform';
+                $detailPidDeterminationMethods = ['flexform'];
+            } else {
+                $detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'],
+                    true);
             }
 
             foreach ($detailPidDeterminationMethods as $determinationMethod) {
@@ -205,22 +207,22 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
                 }
             }
 
-            if (!$detailPid) {
+            if (!$detailPid && isset($GLOBALS['TSFE'])) {
                 $detailPid = $GLOBALS['TSFE']->id;
             }
             $configuration['parameter'] = $detailPid;
         }
 
         $configuration['useCacheHash'] = 1;
-        $configuration['additionalParams'] .= '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
+        $configuration['additionalParams'] = (isset($configuration['additionalParams']) ? $configuration['additionalParams'] : '') . '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
 
-        if ((int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
+        if (!isset($tsSettings['link']['skipControllerAndAction']) || (int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
             $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
                 '&tx_news_pi1[action]=detail';
         }
 
         // Add date as human readable
-        if ($tsSettings['link']['hrDate'] == 1 || $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
+        if (isset($tsSettings['link']['hrDate']) && $tsSettings['link']['hrDate'] == 1 || isset($tsSettings['link']['hrDate']['_typoScriptNodeValue']) && $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
             $dateTime = $newsItem->getDatetime();
 
             if (!is_null($dateTime)) {
@@ -246,7 +248,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
     {
         $uid = $newsItem->getUid();
         // If a user is logged in and not in live workspace
-        if ($GLOBALS['BE_USER'] && $GLOBALS['BE_USER']->workspace > 0) {
+        if (isset($GLOBALS['BE_USER']) && $GLOBALS['BE_USER']->workspace > 0) {
             $record = \TYPO3\CMS\Backend\Utility\BackendUtility::getLiveVersionOfRecord('tx_news_domain_model_news',
                 $newsItem->getUid());
             if ($record['uid']) {
@@ -271,8 +273,8 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
     /**
      * Gets detailPid from categories of the given news item. First will be return.
      *
-     * @param  array $settings
-     * @param  News $newsItem
+     * @param array $settings
+     * @param News $newsItem
      * @return int
      */
     protected function getDetailPidFromCategories($settings, $newsItem)
@@ -291,25 +293,25 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
     /**
      * Gets detailPid from defaultDetailPid setting
      *
-     * @param  array $settings
-     * @param  News $newsItem
+     * @param array $settings
+     * @param News $newsItem
      * @return int
      */
     protected function getDetailPidFromDefaultDetailPid($settings, $newsItem)
     {
-        return (int)$settings['defaultDetailPid'];
+        return isset($settings['defaultDetailPid']) ? (int)$settings['defaultDetailPid'] : 0;
     }
 
     /**
      * Gets detailPid from flexform of current plugin.
      *
-     * @param  array $settings
-     * @param  News $newsItem
+     * @param array $settings
+     * @param News $newsItem
      * @return int
      */
     protected function getDetailPidFromFlexform($settings, $newsItem)
     {
-        return (int)$settings['detailPid'];
+        return isset($settings['detailPid']) ? (int)$settings['detailPid'] : 0;
     }
 
     /**
