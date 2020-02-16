@@ -56,6 +56,6 @@ class IsCheckboxActiveViewhelperTest extends BaseTestCase
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
 
-        $this->assertEquals('', $actualResult);
+        $this->assertEquals('', $viewHelper->render());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\Functional\ViewHelpers;
+namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
