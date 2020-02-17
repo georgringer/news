@@ -136,6 +136,16 @@ $boot = function () {
         }
     }
 
+    // Slug helpers
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['realurlAliasNewsSlug']
+        = \GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater::class; // Recommended before 'newsSlug'
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['newsSlug']
+        = \GeorgRinger\News\Updates\NewsSlugUpdater::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sysCategorySlugs']
+        = \GeorgRinger\News\Updates\PopulateCategorySlugs::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsTagSlugs']
+        = \GeorgRinger\News\Updates\PopulateTagSlugs::class;
+
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1552726986] = [
         'nodeName' => 'NewsStaticText',
         'priority' => 70,
