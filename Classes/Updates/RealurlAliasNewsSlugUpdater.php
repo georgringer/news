@@ -18,7 +18,8 @@ namespace GeorgRinger\News\Updates;
 
 use GeorgRinger\News\Service\SlugService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Install\Updates\AbstractUpdate;
+use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Migrate EXT:realurl unique alias into empty news slugs
@@ -30,7 +31,7 @@ use TYPO3\CMS\Install\Updates\AbstractUpdate;
  * Will only appear if missing slugs found between realurl and news, respecting language and expire date from realurl
  * Copies values from 'tx_realurl_uniqalias.value_alias' to 'tx_news_domain_model_news.path_segment'
  */
-class RealurlAliasNewsSlugUpdater extends AbstractUpdate
+class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
 {
     const TABLE = 'tx_news_domain_model_news';
 
@@ -41,6 +42,38 @@ class RealurlAliasNewsSlugUpdater extends AbstractUpdate
     {
         $this->slugService = GeneralUtility::makeInstance(SlugService::class);
     }
+
+
+
+    public function executeUpdate(): bool
+    {
+        // user decided to migrate, migrate and mark wizard as done
+        $queries = $this->slugService->performRealurlAliasMigration();
+
+        return true;
+    }
+
+    public function updateNecessary(): bool
+    {
+        $updateNeeded = false;
+        $elementCount = $this->slugService->countOfRealurlAliasMigrations();
+        if ($elementCount > 0) {
+            $updateNeeded = true;
+        }
+        return $updateNeeded;
+    }
+
+    /**
+     * @return string[] All new fields and tables must exist
+     */
+    public function getPrerequisites(): array
+    {
+        return [
+            DatabaseUpdatedPrerequisite::class
+        ];
+    }
+
+
 
     /**
      * Get title
@@ -68,24 +101,6 @@ class RealurlAliasNewsSlugUpdater extends AbstractUpdate
     public function getIdentifier(): string
     {
         return 'realurlAliasNewsSlug';
-    }
-
-    /**
-     * Checks if an update is needed
-     *
-     * @param string &$description The description for the update
-     * @return bool Whether an update is needed (TRUE) or not (FALSE)
-     */
-    public function checkForUpdate(&$description)
-    {
-        if ($this->isWizardDone()) {
-            return false;
-        }
-        $elementCount = $this->slugService->countOfRealurlAliasMigrations();
-        if ($elementCount) {
-            $description = sprintf('%s news records possible to be updated', $elementCount);
-        }
-        return (bool) $elementCount;
     }
 
     /**
@@ -129,44 +144,4 @@ class RealurlAliasNewsSlugUpdater extends AbstractUpdate
         ';
     }
 
-    /**
-     * Performs the database update
-     *
-     * @param array &$databaseQueries Queries done in this update
-     * @param string &$customMessage Custom message
-     * @return bool
-     */
-    public function performUpdate(array &$databaseQueries, &$customMessage)
-    {
-        $requestParams = GeneralUtility::_GP('install');
-        // Respect class name or identifier for validation (https://forge.typo3.org/issues/86165)
-        if (!isset($requestParams['values']['GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater']['install'])
-            && !isset($requestParams['values']['realurlAliasNewsSlug']['install'])
-        ) {
-            return false;
-        }
-        if (isset($requestParams['values']['GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater']['install'])) {
-            $install = (int)$requestParams['values']['GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater']['install'];
-        }
-        if (isset($requestParams['values']['realurlAliasNewsSlug']['install'])) {
-            $install = (int)$requestParams['values']['realurlAliasNewsSlug']['install'];
-        }
-        if ($install === 1) {
-            // user decided to migrate, migrate and mark wizard as done
-            $queries = $this->slugService->performRealurlAliasMigration();
-            if (!empty($queries)) {
-                foreach ($queries as $query) {
-                    $databaseQueries[] = $query;
-                }
-            }
-            // Queries may be empty, if news.path_segment update not necessary
-            $this->markWizardAsDone();
-            return true;
-        } else {
-            // user decided to not migrate, mark wizard as done
-            $this->markWizardAsDone();
-            return true;
-        }
-        return false;
-    }
 }
