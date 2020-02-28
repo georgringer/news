@@ -1,11 +1,29 @@
 services:
   _defaults:
-    autowire: true
-    autoconfigure: true
+    autowire: false
+    autoconfigure: false
     public: false
+
+  news.cache:
+    class: TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
+    # We can not use CacheManager, as it can not be
+    # injected/instantiated during ext_localconf.php loading
+    # factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    # therefore we use the static Bootstrap::createCache factory instead.
+    factory: ['TYPO3\CMS\Core\Core\Bootstrap', 'createCache']
+    arguments: ['news']
 
   GeorgRinger\News\:
     resource: '../Classes/*'
+
+
+  GeorgRinger\News\Utility\ClassCacheManager:
+    arguments: ['@news.cache']
+    public: true
+
+  GeorgRinger\News\Utility\ClassLoader:
+    arguments: ['@news.cache', '@GeorgRinger\News\Utility\ClassCacheManager']
+    public: true
 
   # Fix DataMapper for TYPO3 v10.0 and v10.1 where it is not
   # properly configured for DI. The deprecated $query

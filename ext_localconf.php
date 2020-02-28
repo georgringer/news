@@ -42,6 +42,10 @@ $boot = function () {
         ],
     ];
 
+    if (class_exists(\GeorgRinger\News\Utility\ClassLoader::class)) {
+        \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
+    }
+
     // Hide content elements in list module & filter in administration module
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
         = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
@@ -67,7 +71,7 @@ $boot = function () {
     // Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
     // and overrides the default variable frontend of 4.6
     if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'])) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class;
+//        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class;
     }
 
     /* ===========================================================================
