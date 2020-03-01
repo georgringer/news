@@ -218,7 +218,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             $configuration['parameter'] = $detailPid;
         }
 
-        $configuration['useCacheHash'] = 1;
         $configuration['additionalParams'] = (isset($configuration['additionalParams']) ? $configuration['additionalParams'] : '') . '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
         $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
 

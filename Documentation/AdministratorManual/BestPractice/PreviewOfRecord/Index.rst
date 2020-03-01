@@ -17,7 +17,6 @@ It is possible to activate the action "Save & Preview" for news records by using
 		tx_news_domain_model_news {
 			# Available with latest 8.7+ only
 			# see https://forge.typo3.org/issues/78336
-			useCacheHash = 1
 			previewPageId = 123
 			useDefaultLanguageRecord = 0
 			fieldToParameterMap {

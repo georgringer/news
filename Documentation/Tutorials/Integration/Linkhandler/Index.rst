@@ -54,6 +54,5 @@ By using TypoScript, the link is transformed into an actual link.
          additionalParams.data = field:uid
          # If there is a plugin with mode "Detail", the controller and action parameter might be skipped
          additionalParams.wrap = &tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=|
-         useCacheHash = 1
       }
    }
