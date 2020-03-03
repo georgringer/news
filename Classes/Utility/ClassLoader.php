@@ -112,7 +112,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      */
     protected function isValidClassName($className)
     {
-        if (GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\')) {
+        if (GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Domain\\') || GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Controller\\')) {
             $modifiedClassName = $this->changeClassName($className);
             if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'][$modifiedClassName])) {
                 return true;
