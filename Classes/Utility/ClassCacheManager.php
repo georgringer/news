@@ -9,6 +9,8 @@ namespace GeorgRinger\News\Utility;
  */
 
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
+use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -72,7 +74,7 @@ class ClassCacheManager
             if ($extendingClassFound) {
                 $cacheEntryIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $key));
                 try {
-                    $this->cacheInstance->set($cacheEntryIdentifier, $code);
+                    $this->classCache->set($cacheEntryIdentifier, $code);
                 } catch (\Exception $e) {
                     throw new \Exception($e->getMessage());
                 }
