@@ -42,6 +42,7 @@ $boot = function () {
         ],
     ];
 
+
     // Hide content elements in list module & filter in administration module
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
         = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
@@ -101,6 +102,10 @@ $boot = function () {
             'defaultLifetime' => 0,
         ]
     ];
+
+    if (class_exists(\GeorgRinger\News\Utility\ClassLoader::class)) {
+        \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
+    }
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = [
         'depends' => [

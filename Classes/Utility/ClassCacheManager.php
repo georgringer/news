@@ -8,6 +8,7 @@ namespace GeorgRinger\News\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -18,9 +19,11 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class ClassCacheManager
 {
     /**
-     * @var \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
+     * Cache instance
+     *
+     * @var PhpFrontend
      */
-    protected $cacheInstance;
+    protected $classCache;
 
     /**
      * @var array
@@ -28,14 +31,11 @@ class ClassCacheManager
     protected $constructorLines = [];
 
     /**
-     * Constructor
-     *
-     * @return self
+     * @param PhpFrontend $classCache
      */
-    public function __construct()
+    public function __construct(PhpFrontend $classCache)
     {
-        $classLoader = GeneralUtility::makeInstance(ClassLoader::class);
-        $this->cacheInstance = $classLoader->initializeCache();
+        $this->classCache = $classCache;
     }
 
     public function reBuild()
@@ -74,7 +74,7 @@ class ClassCacheManager
             if ($extendingClassFound) {
                 $cacheEntryIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $key));
                 try {
-                    $this->cacheInstance->set($cacheEntryIdentifier, $code);
+                    $this->classCache->set($cacheEntryIdentifier, $code);
                 } catch (\Exception $e) {
                     throw new \Exception($e->getMessage());
                 }
