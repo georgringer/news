@@ -233,7 +233,7 @@ Exchange the existing file with the following content.
 	 * Plugin
 	 */
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-		'news_categoryfilter',
+		'news_filter',
 		'Filter',
 		'Some demo'
 	);
@@ -241,7 +241,7 @@ Exchange the existing file with the following content.
 	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['newsfilter_filter'] = 'recursive,select_key,pages';
 	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['newsfilter_filter'] = 'pi_flexform';
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('newsfilter_filter',
-		'FILE:EXT:news_categoryfilter/Configuration/FlexForms/flexform_news_filter.xml');
+		'FILE:EXT:news_filter/Configuration/FlexForms/flexform_news_filter.xml');
 
 Configuration/FlexForms/flexform_news_filter.xml
 """"""""""""""""""""""""""""""""""""""""""""""""
