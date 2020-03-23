@@ -174,6 +174,8 @@ class NewsImportService extends AbstractImportService
         $news->setImportId($importItem['import_id']);
         $news->setImportSource($importItem['import_source']);
 
+        $news->setPathSegment($importItem['path_segment']);
+
         if (is_array($importItem['categories'])) {
             foreach ($importItem['categories'] as $categoryUid) {
                 if ($this->settings['findCategoriesByImportSource']) {
