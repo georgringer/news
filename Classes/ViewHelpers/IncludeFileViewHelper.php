@@ -10,9 +10,10 @@ namespace GeorgRinger\News\ViewHelpers;
  */
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3\CMS\Frontend\Resource\FilePathSanitizer;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to include a css/js file
@@ -26,7 +27,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * </output>
  *
  */
-class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper implements CompilableInterface
+class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper implements ViewHelperInterface
 {
     use CompileWithRenderStatic;
 
@@ -55,19 +56,23 @@ class IncludeFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
 
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         if (TYPO3_MODE === 'FE') {
-            $path = $GLOBALS['TSFE']->tmpl->getFileName($path);
+            $sanitizer = GeneralUtility::makeInstance(FilePathSanitizer::class);
+            try {
+                $path = $sanitizer->sanitize($path);
+                // JS
+                if (strtolower(substr($path, -3)) === '.js') {
+                    if ($footer) {
+                        $pageRenderer->addJsFooterFile($path, null, $compress, false, '', true);
+                    } else {
+                        $pageRenderer->addJsFile($path, null, $compress, false, '', true);
+                    }
 
-            // JS
-            if (strtolower(substr($path, -3)) === '.js') {
-                if ( $footer === true ) {
-                    $pageRenderer->addJsFooterFile($path, null, $compress, false, '', true);
-                } else {
-                    $pageRenderer->addJsFile($path, null, $compress, false, '', true);
+                    // CSS
+                } elseif (strtolower(substr($path, -4)) === '.css') {
+                    $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
                 }
-
-            // CSS
-            } elseif (strtolower(substr($path, -4)) === '.css') {
-                $pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress, false, '', true);
+            } catch (\Exception $e) {
+                // do nothing (todo handle properly?)
             }
         } else {
             // JS

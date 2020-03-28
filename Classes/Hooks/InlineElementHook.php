@@ -8,7 +8,10 @@ namespace GeorgRinger\News\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\Element\InlineElement;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Inline Element Hook
@@ -67,7 +70,9 @@ class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElement
         if ($foreignTable === 'sys_file_reference' && $previewSetting > 0) {
             $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
-            if (\GeorgRinger\News\Utility\EmConfiguration::getSettings()->isAdvancedMediaPreview()) {
+            $extensionConfiguration = GeneralUtility::makeInstance(EmConfiguration::class);
+
+            if ($extensionConfiguration->isAdvancedMediaPreview()) {
                 if ($previewSetting === 1) {
                     $label = $GLOBALS['LANG']->sL($ll . 'tx_news_domain_model_media.showinviews.1');
                     $extraItem = ['showinpreview' => ' <span class="btn btn-default" title="' . htmlspecialchars($label) . '"><i class="fa fa-check"></i></span>'];

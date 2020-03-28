@@ -9,14 +9,14 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\Url;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Test class for Url
  *
  */
-class UrlTest extends UnitTestCase
+class UrlTest extends BaseTestCase
 {
 
     /**

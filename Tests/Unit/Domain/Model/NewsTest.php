@@ -8,18 +8,19 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Model\Tag;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for domains model News
  *
  */
-class NewsTest extends UnitTestCase
+class NewsTest extends BaseTestCase
 {
 
     /**
@@ -31,7 +32,7 @@ class NewsTest extends UnitTestCase
      * Set up framework
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->newsDomainModelInstance = new News();
     }
@@ -313,7 +314,7 @@ class NewsTest extends UnitTestCase
     {
         $news = new News();
 
-        $mockedElement1 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
+        $mockedElement1 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
         $mockedElement1->_set('uid', 1);
         $mockedElement1->_set('showinpreview', 1);
         $mockedElement1->expects($this->any())->method('getProperty')->will($this->returnValue(1));
@@ -323,7 +324,7 @@ class NewsTest extends UnitTestCase
         $mediaItem1->_setProperty('uid', 1);
         $news->addFalMedia($mediaItem1);
 
-        $mockedElement2 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
+        $mockedElement2 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
         $mockedElement2->_set('uid', 2);
         $mockedElement2->_set('showinpreview', 0);
         $mockedElement2->expects($this->any())->method('getProperty')->will($this->returnValue(0));
@@ -333,7 +334,7 @@ class NewsTest extends UnitTestCase
         $mediaItem2->_setProperty('uid', 2);
         $news->addFalMedia($mediaItem2);
 
-        $mockedElement3 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
+        $mockedElement3 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
         $mockedElement3->_set('uid', 3);
         $mockedElement3->_set('showinpreview', 1);
         $mockedElement3->expects($this->any())->method('getProperty')->will($this->returnValue(1));
@@ -343,7 +344,7 @@ class NewsTest extends UnitTestCase
         $mediaItem3->_setProperty('originalResource', $mockedElement3);
         $news->addFalMedia($mediaItem3);
 
-        $mockedElement4 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
+        $mockedElement4 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
         $mockedElement4->_set('uid', 4);
         $mockedElement4->_set('showinpreview', 2);
         $mockedElement4->expects($this->any())->method('getProperty')->will($this->returnValue(2));

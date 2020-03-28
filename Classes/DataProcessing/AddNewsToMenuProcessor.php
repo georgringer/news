@@ -6,7 +6,6 @@ namespace GeorgRinger\News\DataProcessing;
 
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
-use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -118,15 +117,11 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
     protected function getCurrentLanguage(): int
     {
         $languageId = 0;
-        if (class_exists(LanguageAspect::class)) {
-            $context = GeneralUtility::makeInstance(Context::class);
-            try {
-                $languageId = $context->getPropertyFromAspect('language', 'contentId');
-            } catch (AspectNotFoundException $e) {
-                // do nothing
-            }
-        } else {
-            $languageId = $this->getTsfe()->sys_language_content;
+        $context = GeneralUtility::makeInstance(Context::class);
+        try {
+            $languageId = $context->getPropertyFromAspect('language', 'contentId');
+        } catch (AspectNotFoundException $e) {
+            // do nothing
         }
 
         return (int)$languageId;

@@ -2,6 +2,8 @@
 
 namespace GeorgRinger\News\ViewHelpers\Widget\Controller;
 
+use TYPO3\CMS\Core\Utility\ArrayUtility;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -67,7 +69,7 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
     public function initializeAction()
     {
         $this->objects = $this->widgetConfiguration['objects'];
-        \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule(
+        ArrayUtility::mergeRecursiveWithOverrule(
             $this->configuration,
             (array)$this->widgetConfiguration['configuration'], true);
 

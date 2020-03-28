@@ -8,12 +8,15 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Widget\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+
+use GeorgRinger\News\ViewHelpers\Widget\Controller\PaginateController;
+use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for PaginateController
  */
-class PaginateControllerTest extends UnitTestCase
+class PaginateControllerTest extends BaseTestCase
 {
 
     /**
@@ -25,9 +28,9 @@ class PaginateControllerTest extends UnitTestCase
      * Sets up this test case
      *
      */
-    public function setUp()
+    public function setup(): void
     {
-        $this->controller = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Widget\\Controller\\PaginateController', ['dummy'], [], '', false);
+        $this->controller = $this->getAccessibleMock(PaginateController::class, ['dummy'], [], '', false);
     }
 
     /**
@@ -35,11 +38,14 @@ class PaginateControllerTest extends UnitTestCase
      */
     public function initializationIsCorrect()
     {
-        $controller = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\Widget\\Controller\\PaginateController', ['dummy']);
+        $controller = $this->getAccessibleMock(PaginateController::class, ['dummy']);
         $objects = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
         $configuration = [
             'templatePath' => 'fo/bar',
             'itemsPerPage' => '3',
+            'insertAbove' => false,
+            'insertBelow' => true,
+            'maximumNumberOfLinks' => 99,
         ];
         $widgetConfiguration = ['fo' => 'bar'];
         $controller->_set('configuration', $configuration);
@@ -55,7 +61,7 @@ class PaginateControllerTest extends UnitTestCase
         $this->assertEquals($controller->_get('objects'), $objects);
         $this->assertEquals($controller->_get('configuration'), $configuration);
         $this->assertEquals($controller->_get('numberOfPages'), 5);
-        $this->assertEquals($controller->_get('templatePath'), PATH_site . 'fo/bar');
+        $this->assertEquals($controller->_get('templatePath'), Environment::getPublicPath() . '/fo/bar');
     }
 
     /**

@@ -16,11 +16,9 @@ $boot = function () {
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
         'sys_file_reference', 'EXT:news/Resources/Private/Language/locallang_csh_sys_file_reference.xlf');
 
-    $configuration = \GeorgRinger\News\Utility\EmConfiguration::getSettings();
+    $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
 
     if (TYPO3_MODE === 'BE') {
-        $isVersion9Up = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
-
         // Extend user settings
         $GLOBALS['TYPO3_USER_SETTINGS']['columns']['newsoverlay'] = [
             'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.overlay',
@@ -58,14 +56,14 @@ $boot = function () {
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
                 'GeorgRinger.news',
                 'web',
-                'tx_news_m2',
+                'administration',
                 '',
                 ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
                 [
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
                     'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
-                    'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree'),
+                    'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
                     'inheritNavigationComponentFromMainModule' => false
                 ]
             );

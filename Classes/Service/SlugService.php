@@ -2,7 +2,6 @@
 
 namespace GeorgRinger\News\Service;
 
-use GeorgRinger\News\Backend\NewsSlugHelper;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -19,17 +18,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class SlugService
 {
 
-    /** @var NewsSlugHelper|SlugHelper */
+    /** @var NewsSlugHelper */
     protected $slugService;
 
     public function __construct()
     {
-        if (version_compare(TYPO3_branch, '9.5', '<')) {
-            $this->slugService = GeneralUtility::makeInstance(NewsSlugHelper::class);
-        } else {
-            $fieldConfig = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['path_segment']['config'];
-            $this->slugService = GeneralUtility::makeInstance(SlugHelper::class, 'tx_news_domain_model_news', 'path_segment', $fieldConfig);
-        }
+        $fieldConfig = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['path_segment']['config'];
+        $this->slugService = GeneralUtility::makeInstance(SlugHelper::class, 'tx_news_domain_model_news', 'path_segment', $fieldConfig);
     }
 
     /**

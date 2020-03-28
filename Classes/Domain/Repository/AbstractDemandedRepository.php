@@ -36,7 +36,7 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
      *
      * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      * @abstract
      */
     abstract protected function createConstraintsFromDemand(
@@ -48,7 +48,7 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      * @abstract
      */
     abstract protected function createOrderingsFromDemand(DemandInterface $demand);

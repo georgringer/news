@@ -82,7 +82,6 @@ plugin.tx_news {
 
 		facebookLocale = en_US
 		googlePlusLocale = en
-		disqusLocale = en
 
 		demandClass =
 
@@ -105,7 +104,6 @@ plugin.tx_news {
 			showPrevNext = 0
 			showSocialShareButtons = 1
 			showMetaTags = 1
-			disqusShortname =
 
 			# media configuration
 			media {
@@ -127,6 +125,12 @@ plugin.tx_news {
 					width = 282
 					height = 159
 				}
+			}
+
+			pageTitle = 1
+			pageTitle {
+				provider = GeorgRinger\News\Seo\NewsTitleProvider
+				properties = teaser,title
 			}
 		}
 

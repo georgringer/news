@@ -11,10 +11,10 @@ namespace GeorgRinger\News\Hooks\Backend;
 use GeorgRinger\News\Backend\RecordList\RecordListConstraint;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Hook into DatabaseRecordList to hide tt_content elements in list view
@@ -55,7 +55,7 @@ class RecordListQueryHook
                 self::$count++;
             }
         } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
-            $vars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+            $vars = GeneralUtility::_GET('tx_news_web_newsadministration');
             if (is_array($vars) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];
                 $this->recordListConstraint->extendQuery($parameters, $vars, $pageId);
@@ -96,7 +96,7 @@ class RecordListQueryHook
                 self::$count++;
             }
         } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
-            $vars = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
+            $vars = GeneralUtility::_GET('tx_news_web_newsadministration');
             if (is_array($vars) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];
                 $this->recordListConstraint->extendQuery($parameters, $vars, $parentObject->id);

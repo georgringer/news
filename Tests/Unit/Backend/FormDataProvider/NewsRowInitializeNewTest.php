@@ -1,6 +1,6 @@
 <?php
 
-namespace GeorgRinger\News\Unit\Backend\FormDataProvider;
+namespace GeorgRinger\News\Tests\Unit\Backend\FormDataProvider;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -8,11 +8,12 @@ namespace GeorgRinger\News\Unit\Backend\FormDataProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
-class NewsRowInitializeNewTest extends UnitTestCase
+class NewsRowInitializeNewTest extends BaseTestCase
 {
 
     /**
@@ -20,7 +21,11 @@ class NewsRowInitializeNewTest extends UnitTestCase
      */
     public function dateTimeIsFilled()
     {
-        $provider = new NewsRowInitializeNew();
+        $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
+        $mockedEmConfiguration = $this->getAccessibleMock(EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
+        $mockedEmConfiguration->expects($this->once())->method('getDateTimeRequired')->will($this->returnValue(true));
+
+        $provider->_set('emConfiguration', $mockedEmConfiguration);
 
         $GLOBALS['EXEC_TIME'] = time();
 
@@ -67,7 +72,12 @@ class NewsRowInitializeNewTest extends UnitTestCase
      */
     public function archiveTimeIsFilled()
     {
-        $provider = new NewsRowInitializeNew();
+        $provider = $this->getAccessibleMock(NewsRowInitializeNew::class, ['dummy'], [], '', false);
+        $mockedEmConfiguration = $this->getAccessibleMock(EmConfiguration::class, ['getDateTimeRequired'], [], '', false);
+        $mockedEmConfiguration->expects($this->once())->method('getDateTimeRequired')->will($this->returnValue(true));
+
+        $provider->_set('emConfiguration', $mockedEmConfiguration);
+
         $GLOBALS['EXEC_TIME'] = time();
 
         $result = [

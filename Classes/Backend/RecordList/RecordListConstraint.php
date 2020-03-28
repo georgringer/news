@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\StartTimeRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Class for the list rendering of administration module
@@ -31,13 +30,8 @@ class RecordListConstraint
      */
     public function isInAdministrationModule(): bool
     {
-        if (self::is9Up()) {
-            $vars = GeneralUtility::_GET('route');
-            return $vars === '/web/NewsTxNewsM2/';
-        }
-
-        $vars = GeneralUtility::_GET('M');
-        return $vars === 'web_NewsTxNewsM2';
+        $vars = GeneralUtility::_GET('route');
+        return $vars === '/module/web/NewsAdministration';
     }
 
     public function extendQuery(array &$parameters, array $arguments)
@@ -263,10 +257,5 @@ class RecordListConstraint
         }
 
         return $idList;
-    }
-
-    private static function is9Up()
-    {
-        return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
     }
 }

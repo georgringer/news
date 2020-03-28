@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\Tag;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for domains model Tag
  *
  */
-class TagTest extends UnitTestCase
+class TagTest extends BaseTestCase
 {
 
     /**
@@ -27,7 +27,7 @@ class TagTest extends UnitTestCase
      * Setup
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->tagDomainModelInstance = new Tag();
     }
