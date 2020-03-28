@@ -120,7 +120,7 @@ class DataHandler
     public function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray, \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject)
     {
         if ($table === 'tx_news_domain_model_news' && $status === 'new' && version_compare(TYPO3_branch, '9.5', '<')) {
-            if ((!isset($fieldArray['path_segment']) || empty($fieldArray['path_segment'])) && isset($fieldArray['title']) ) {
+            if ((!isset($fieldArray['path_segment']) || empty($fieldArray['path_segment'])) && isset($fieldArray['title'])) {
                 $slugHelperFor8 = GeneralUtility::makeInstance(NewsSlugHelper::class);
                 $fieldArray['path_segment'] = $slugHelperFor8->sanitize($fieldArray['title']);
             }
