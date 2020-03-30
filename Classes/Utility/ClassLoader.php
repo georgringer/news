@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Utility;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -28,6 +29,9 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
     /** @var ClassCacheManager */
     protected $classCacheManager;
 
+    /** @var bool */
+    protected $isValidInstance = false;
+
     /**
      * ClassLoader constructor.
      *
@@ -35,12 +39,26 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      */
     public function __construct(PhpFrontend $classCache = null, ClassCacheManager $classCacheManager = null)
     {
-        if ($classCache === null) {
-            $this->classCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news');
+        // version 10
+        if (class_exists(Typo3Version::class)) {
+            // Use DI
+            // something might fail, e.g loading checks in Install Tool
+            if ($classCacheManager !== null) {
+                $this->classCacheManager = $classCacheManager;
+                $this->isValidInstance = true;
+            }
         } else {
-            $this->classCache = $classCache;
+            $this->classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
+            $this->isValidInstance = true;
         }
-        $this->classCacheManager = $classCacheManager ?? GeneralUtility::makeInstance(ClassCacheManager::class);
+
+        if ($this->isValidInstance) {
+            if ($classCache === null) {
+                $this->classCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news');
+            } else {
+                $this->classCache = $classCache;
+            }
+        }
     }
 
     /**
@@ -61,6 +79,10 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      */
     public function loadClass($className)
     {
+        if (!$this->isValidInstance) {
+            return false;
+        }
+
         $className = ltrim($className, '\\');
 
         if (!$this->isValidClassName($className)) {
