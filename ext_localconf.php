@@ -112,7 +112,6 @@ $boot = function () {
             \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew::class,
         ]
     ];
-    \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
 
     if (TYPO3_MODE === 'BE') {
         $icons = [

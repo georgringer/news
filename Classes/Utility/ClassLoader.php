@@ -88,21 +88,13 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
         if (!$this->isValidClassName($className)) {
             return false;
         }
-
         $cacheEntryIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $this->changeClassName($className)));
 
-        $classCache = $this->classCache;
-        if (!empty($cacheEntryIdentifier) && !$classCache->has($cacheEntryIdentifier)) {
-            require_once(ExtensionManagementUtility::extPath('news') . 'Classes/Utility/ClassCacheManager.php');
-
-            $classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
-            $classCacheManager->reBuild();
+        if (!$this->classCache->has($cacheEntryIdentifier)) {
+            $this->classCacheManager->reBuild();
         }
 
-        if (!empty($cacheEntryIdentifier) && $classCache->has($cacheEntryIdentifier)) {
-            $classCache->requireOnce($cacheEntryIdentifier);
-        }
-
+        $this->classCache->requireOnce($cacheEntryIdentifier);
         return true;
     }
 
