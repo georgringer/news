@@ -106,6 +106,8 @@ $boot = function () {
     if (class_exists(\GeorgRinger\News\Utility\ClassLoader::class)) {
         \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
     }
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][] =
+        \GeorgRinger\News\Utility\ClassCacheManager::class . '->reBuild';
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = [
         'depends' => [
