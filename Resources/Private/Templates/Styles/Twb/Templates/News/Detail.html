@@ -16,6 +16,18 @@
 			<f:if condition="{settings.detail.showMetaTags}">
 				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
 			</f:if>
+            <f:if condition="{newsItem.alternativeTitle}">
+                <f:then>
+                    <n:titleTag>
+                        <f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+                    </n:titleTag>
+                </f:then>
+                <f:else>
+                    <n:titleTag>
+                        <f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+                    </n:titleTag>
+                </f:else>
+            </f:if>
 		</n:format.nothing>
 
 		<f:if condition="{settings.detail.showPrevNext}">
