@@ -43,8 +43,6 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
         $this->slugService = GeneralUtility::makeInstance(SlugService::class);
     }
 
-
-
     public function executeUpdate(): bool
     {
         // user decided to migrate, migrate and mark wizard as done
@@ -72,8 +70,6 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
             DatabaseUpdatedPrerequisite::class
         ];
     }
-
-
 
     /**
      * Get title
@@ -143,5 +139,4 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
             </div>
         ';
     }
-
 }
