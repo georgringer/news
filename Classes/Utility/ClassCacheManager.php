@@ -33,9 +33,14 @@ class ClassCacheManager
     /**
      * @param PhpFrontend $classCache
      */
-    public function __construct(PhpFrontend $classCache)
+    public function __construct(PhpFrontend $classCache = null)
     {
-        $this->classCache = $classCache;
+        if ($classCache === null) {
+            $classLoader = GeneralUtility::makeInstance(ClassLoader::class);
+            $this->classCache = $classLoader->initializeCache();
+        } else {
+            $this->classCache = $classCache;
+        }
     }
 
     public function reBuild()
