@@ -211,3 +211,31 @@ This sitemap can be added in the site config so it has a nice url:
      PageTypeSuffix:
        map:
          news_sitemap.xml: 1533906436
+
+Hreflang on news detail pages
+-----------------------------
+If using languages with the language mode `strict`, the hreflang tag must only be generated if the according news record is translated as well!
+
+.. Info::
+        This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
+
+EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
+
+Check availability in fluid templates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you are building a language menu and want to check if the news record is available, you can use the ViewHelper
+:html:`<n:check.pageAvailableInLanguage language="{languageId}">`. A full example can look like this:
+
+.. code-block:: html
+
+   <ul>
+       <f:for each="{LanguageMenu}" as="item">
+           <f:if condition="{item.available}">
+               <n:check.pageAvailableInLanguage language="{item.languageId}">
+                   <li class="language-switch {f:if(condition:item.active, then:'active')}">
+                       <a href="{item.link}">{item.navigationTitle}</a>
+                   </li>
+               </n:check.pageAvailableInLanguage>
+           </f:if>
+       </f:for>
+   </ul>

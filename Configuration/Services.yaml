@@ -33,3 +33,11 @@ services:
   TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper:
     arguments:
       $query: null
+
+
+  GeorgRinger\News\Seo\HrefLangEvent:
+    tags:
+      - name: event.listener
+        identifier: 'my-ext/ownHrefLang'
+        after: 'typo3-seo/hreflangGenerator'
+        event: TYPO3\CMS\Frontend\Event\ModifyHrefLangTagsEvent
