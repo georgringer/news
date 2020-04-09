@@ -8,6 +8,7 @@ namespace GeorgRinger\News\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -36,8 +37,8 @@ class ClassCacheManager
     public function __construct(PhpFrontend $classCache = null)
     {
         if ($classCache === null) {
-            $classLoader = GeneralUtility::makeInstance(ClassLoader::class);
-            $this->classCache = $classLoader->initializeCache();
+            $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
+            $this->classCache = $cacheManager->getCache('news');
         } else {
             $this->classCache = $classCache;
         }
