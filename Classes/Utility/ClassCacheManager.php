@@ -38,11 +38,10 @@ class ClassCacheManager
     {
         if ($classCache === null) {
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
-            if(!$cacheManager->hasCache('news')) {
+            if (!$cacheManager->hasCache('news')) {
                 $cacheManager->setCacheConfigurations($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']);
             }
             $this->classCache = $cacheManager->getCache('news');
-
         } else {
             $this->classCache = $classCache;
         }
