@@ -10,23 +10,24 @@
         :depth: 3
 
 
-Important changes
------------------
-
-The following changes might be important for your installation.
-
 Support for TYPO3 9 & 10
-^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 This version supports TYPO3 9 and 10 LTS only. To ease the upgrade from older installations, the upgrade wizards for news are still kept.
 
 A **big thanks** to:
 
-- TYPO3 Academic Committee and especially Doris Leonhardt for organizing sponsorings by various universities:
--- University Oldenburg
+- TYPO3 Academic Committee and especially Doris Leonhardt for organizing sponsorings by various universities: Universität Oldenburg, Hochschule Offenburg, Technische Universität Kaiserslautern, Universität Ulm, Universität Rostock, Bauhaus-Universität Weimar, Universität Wien, Otto-Friedrich-Universität Bamberg, Technische Universität München
 - Sponsors: webconsulting, Torben Hansen, macopedia, Agenda Open Systems, sitegeist, mediatis, dörler engineering services e.U., Cyberhouse
 - Individual sponsors: Karavas Aristeidis, Susanne Moog, naderio.de, Damian Ickler, atnexxt, Stephan Salzmann, Rainer Karnowski, Sebastian Klein, Markus Timtner, Fritz Knauf, Marco Bresch, Marc Fell, Andreas Heller, Metin Yilmaz
 
 This release wouldn't have been possible without your support!
+
+Also thanks to Benjamin Franzke and Sebastian Fischer who helped codewise a lot.
+
+
+Breaking changes
+----------------
+The following changes should be carefully checked.
 
 Remove local xlf files
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -39,15 +40,61 @@ The Crowdin project can be found at https://crowdin.com/project/typo3-extension-
 Use extension configuration api
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Watch out that only the configuration `$GLOBALS[’TYPO3_CONF_VARS']['EXTENSION']['news']` is used.
+The serialized counterpart `$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']` has been deprecated with TYPO3 9 already!
 
 Remove import command
 ^^^^^^^^^^^^^^^^^^^^^
 The import command controller has never really been used and has been removed.
 
+Features
+--------
+
+Improved SEO features
+^^^^^^^^^^^^^^^^^^^^^
+The :php:`TitleTagViewHelper` has been migrated to use the :php:`PageTitleProvider`.
+
+
+Hreflang on news detail pages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If using languages with the language mode `strict`, the hreflang tag must only be generated if the according news record is translated as well!
+
+.. Info::
+        This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
+
+EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
+
+Check availability in fluid templates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you are building a language menu and want to check if the news record is available, you can use the ViewHelper
+:html:`<n:check.pageAvailableInLanguage language="{languageId}">`. A full example can look like this:
+
+.. code-block:: html
+
+   <ul>
+       <f:for each="{LanguageMenu}" as="item">
+           <f:if condition="{item.available}">
+               <n:check.pageAvailableInLanguage language="{item.languageId}">
+                   <li class="language-switch {f:if(condition:item.active, then:'active')}">
+                       <a href="{item.link}">{item.navigationTitle}</a>
+                   </li>
+               </n:check.pageAvailableInLanguage>
+           </f:if>
+       </f:for>
+   </ul>
+
+
 All Changes
 -----------
 This is a list of all changes in this release: ::
 
+   2020-04-09 [TASK] Folluwp (Commit 69cf06d8 by Georg Ringer)
+   2020-04-09 [TASK] Follwup (Commit da13a9ef by Georg Ringer)
+   2020-04-09 [TASK] Properly set up ClassCacheManager in 9 (Commit 70b5e280 by Georg Ringer)
+   2020-04-09 [TASK] Follwup php error (Commit 02ccc9cd by Georg Ringer)
+   2020-04-09 [FEATURE] Support strict mode for hreflang + language menu (Commit f4dc5de1 by Georg Ringer)
+   2020-04-08 [DOC] Update example about TCAdefaults (Commit ce109636 by Georg Ringer)
+   2020-04-07 [DOC] Start 8.0.0 changelog (Commit 94352cef by Georg Ringer)
+   2020-04-07 [TASK] Readd title tag vh (Commit fc950092 by Georg Ringer)
    2020-04-07 [BUGFIX] leave early when no proxy class is set (#1202) (Commit 20a7c13b by Christian Eßl)
    2020-04-01 [BUGFIX] Force cache rebuild after clear (Commit d1bab5e1 by Georg Ringer)
    2020-04-01 [TASK] Simplify class loader logic (Commit d3c1b85c by Georg Ringer)
@@ -146,6 +193,7 @@ This is a list of all changes in this release: ::
    2019-09-04 [TASK] Add new translations (Commit 1da3b709 by Georg Ringer)
    2019-09-03 [TASK] Add crowdin badge (Commit 4d2b91bd by Georg Ringer)
    2019-08-30 [TASK] Add a .gitignore (#1029) (Commit b5cf6acb by Oliver Klee)
+
 
 
 This list has been created by using `git log 7.3.1..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
