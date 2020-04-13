@@ -89,7 +89,7 @@ Insert configured objects to wherever you want to use them, depending on the GET
 
 .. code-block:: typoscript
 
-	[globalVar = GP:tx_news_pi1|news > 0]
+	[traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
 		page.10.marks.content < lib.news_detail
 	[else]
 		page.10.marks.content < lib.news_list
