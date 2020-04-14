@@ -23,7 +23,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class NewsAvailability
 {
 
-
     /**
      * @param int $languageId
      * @param int $newsId
@@ -53,7 +52,6 @@ class NewsAvailability
         }
         return $this->mustBeIncluded($newsId, $targetLanguage);
     }
-
 
     protected function mustBeIncluded(int $newsId, SiteLanguage $language): bool
     {
@@ -117,7 +115,6 @@ class NewsAvailability
         return $row ?: null;
     }
 
-
     /**
      * @return ServerRequestInterface
      */
@@ -125,5 +122,4 @@ class NewsAvailability
     {
         return $GLOBALS['TYPO3_REQUEST'];
     }
-
 }
