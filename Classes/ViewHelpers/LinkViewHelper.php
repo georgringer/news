@@ -187,8 +187,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
         News $newsItem,
         $tsSettings,
         array $configuration = []
-    )
-    {
+    ) {
         if (!isset($configuration['parameter'])) {
             $detailPid = 0;
             // if TS is not set, prefer flexform setting
