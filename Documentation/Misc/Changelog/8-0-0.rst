@@ -1,4 +1,4 @@
-8.0.0 - 2020/XX/04
+8.0.0 - 2020/20/04
 ==================
 
 .. include:: ../../Includes.txt
@@ -16,8 +16,8 @@ This version supports TYPO3 9 and 10 LTS only. To ease the upgrade from older in
 
 A **big thanks** to:
 
-- TYPO3 Academic Committee and especially Doris Leonhardt for organizing sponsorings by various universities: Universität Oldenburg, Hochschule Offenburg, Technische Universität Kaiserslautern, Universität Ulm, Universität Rostock, Bauhaus-Universität Weimar, Universität Wien, Otto-Friedrich-Universität Bamberg, Technische Universität München
-- Sponsors: webconsulting, Torben Hansen, macopedia, Agenda Open Systems, sitegeist, mediatis, dörler engineering services e.U., Cyberhouse
+- TYPO3 Academic Committee and especially Doris Leonhardt for organizing sponsorings by various universities: Hochschule Osnabrück, Hochschule Offenburg, Technische Universität Kaiserslautern, Universität Ulm, Universität Rostock, Bauhaus-Universität Weimar, Universität Wien, Otto-Friedrich-Universität Bamberg, Technische Universität München, Akademie der Wissenschaften und der Literatur Mainz, Hochschule Darmstadt
+- Sponsors: webconsulting, Torben Hansen, macopedia, Agenda Open Systems, sitegeist, mediatis, dörler engineering services e.U., Cyberhouse, Elementare Teilchen
 - Individual sponsors: Karavas Aristeidis, Susanne Moog, naderio.de, Damian Ickler, atnexxt, Stephan Salzmann, Rainer Karnowski, Sebastian Klein, Markus Timtner, Fritz Knauf, Marco Bresch, Marc Fell, Andreas Heller, Metin Yilmaz
 
 This release wouldn't have been possible without your support!
@@ -87,6 +87,11 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+   2020-04-15 [BUGFIX] Adopt max key length for path_segment (Commit 9554b36e by Georg Ringer)
+   2020-04-15 [BUGFIX] Fix path_segment not set in NewsImportService (#1186) (Commit 50d1f3b7 by Markus Mächler)
+   2020-04-15 [DOC] Update TS condition for detail page (#1216) (Commit 4d8a0463 by Markus Klein)
+   2020-04-14 [TASK] Check TYPO3_branch for version info (Commit ed365443 by Georg Ringer)
+   2020-04-10 [DOC] Improve 8.0.0 rst (Commit 2252ce82 by Georg Ringer)
    2020-04-09 [TASK] Folluwp (Commit 69cf06d8 by Georg Ringer)
    2020-04-09 [TASK] Follwup (Commit da13a9ef by Georg Ringer)
    2020-04-09 [TASK] Properly set up ClassCacheManager in 9 (Commit 70b5e280 by Georg Ringer)
@@ -193,7 +198,5 @@ This is a list of all changes in this release: ::
    2019-09-04 [TASK] Add new translations (Commit 1da3b709 by Georg Ringer)
    2019-09-03 [TASK] Add crowdin badge (Commit 4d2b91bd by Georg Ringer)
    2019-08-30 [TASK] Add a .gitignore (#1029) (Commit b5cf6acb by Oliver Klee)
-
-
 
 This list has been created by using `git log 7.3.1..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
