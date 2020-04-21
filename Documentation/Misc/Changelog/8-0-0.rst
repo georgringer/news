@@ -1,4 +1,4 @@
-8.0.0 - 2020/20/04
+8.0.0 - 2020/21/04
 ==================
 
 .. include:: ../../Includes.txt
@@ -87,6 +87,9 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+   2020-04-21 [BUGFIX] Proper mocking of LanguageService in Tests (Commit 8168cbf1 by Georg Ringer)
+   2020-04-21 [TASK] Force composer to use 10.4 (Commit b9bb646c by Georg Ringer)
+   2020-04-21 [DOC] Further documentation for 8.0.0 (Commit f807d5d4 by Georg Ringer)
    2020-04-15 [BUGFIX] Adopt max key length for path_segment (Commit 9554b36e by Georg Ringer)
    2020-04-15 [BUGFIX] Fix path_segment not set in NewsImportService (#1186) (Commit 50d1f3b7 by Markus Mächler)
    2020-04-15 [DOC] Update TS condition for detail page (#1216) (Commit 4d8a0463 by Markus Klein)
@@ -198,5 +201,6 @@ This is a list of all changes in this release: ::
    2019-09-04 [TASK] Add new translations (Commit 1da3b709 by Georg Ringer)
    2019-09-03 [TASK] Add crowdin badge (Commit 4d2b91bd by Georg Ringer)
    2019-08-30 [TASK] Add a .gitignore (#1029) (Commit b5cf6acb by Oliver Klee)
+
 
 This list has been created by using `git log 7.3.1..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
