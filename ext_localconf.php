@@ -42,7 +42,6 @@ $boot = function () {
         ],
     ];
 
-
     // Hide content elements in list module & filter in administration module
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
         = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
