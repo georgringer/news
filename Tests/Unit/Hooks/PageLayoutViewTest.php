@@ -28,7 +28,7 @@ class PageLayoutViewTest extends BaseTestCase
     {
         parent::setUp();
 
-        $languageService = $this->getAccessibleMock(LanguageService::class, ['sL']);
+        $languageService = $this->getAccessibleMock(LanguageService::class, ['sl'], [], '', false, false);
         $languageService->expects($this->any())->method('sL')->will($this->returnValue('any language'));
 
         $GLOBALS['LANG'] = $languageService;
