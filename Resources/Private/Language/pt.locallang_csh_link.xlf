@@ -5,25 +5,25 @@
     <body>
       <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Link record</source>
-			<target state="translated">Registro de link</target></trans-unit>
+			<target state="final">Registro de link</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Relation to other pages and records.</source>
-			<target state="translated">Relação para outras páginas e registros.</target></trans-unit>
+			<target state="final">Relação para outras páginas e registros.</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
-			<target state="translated">Veja também em http://www.news.com/</target></trans-unit>
+			<target state="final">Veja também em http://www.news.com/</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden elements are never shown in the frontend.</source>
-			<target state="translated">Elementos ocultos nunca são exibidos no frontend.</target></trans-unit>
+			<target state="final">Elementos ocultos nunca são exibidos no frontend.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Optional title of a link.</source>
-			<target state="translated">Título opcional de um link.</target></trans-unit>
+			<target state="final">Título opcional de um link.</target></trans-unit>
       <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Description of a link.</source>
-			<target state="translated">Descrição de um link.</target></trans-unit>
+			<target state="final">Descrição de um link.</target></trans-unit>
       <trans-unit id="uri.description" xml:space="preserve" approved="yes">
 				<source>Link to a file, ... .</source>
-			<target state="translated">Link para um arquivo, ... .</target></trans-unit>
+			<target state="final">Link para um arquivo, ... .</target></trans-unit>
     </body>
   </file>
 </xliff>
