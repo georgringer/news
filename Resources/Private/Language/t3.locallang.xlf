@@ -4,7 +4,7 @@
     <header/>
     <body>
       <trans-unit id="search-text" xml:space="preserve">
-				<source>There are %1$s results for "%2$s".</source>
+				<source>There are %1$s results for &quot;%2$s&quot;.</source>
 			<target>crwdns17902:0%1$scrwdnd17902:0%2$scrwdne17902:0</target></trans-unit>
       <trans-unit id="search-start" xml:space="preserve">
 				<source>Start search</source>
