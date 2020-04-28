@@ -28,16 +28,16 @@
 				<source>Include all subcategories of the selected categories too.</source>
 			<target>crwdns18382:0crwdne18382:0</target></trans-unit>
       <trans-unit id="settings.categoryConjunction.details" xml:space="preserve">
-				<source>"Don't care": No category restriction is set. "Show items with selected categories OR": A news records need to be related with at least one of the selected categories. "Show selected categories AND". A news record need to be related to all selected categories. "Do not show" is the opposite of above.</source>
+				<source>&quot;Don't care&quot;: No category restriction is set. &quot;Show items with selected categories OR&quot;: A news records need to be related with at least one of the selected categories. &quot;Show selected categories AND&quot;. A news record need to be related to all selected categories. &quot;Do not show&quot; is the opposite of above.</source>
 			<target>crwdns18384:0crwdne18384:0</target></trans-unit>
       <trans-unit id="settings.archiveRestriction.description" xml:space="preserve">
 				<source>Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</source>
 			<target>crwdns18386:0crwdne18386:0</target></trans-unit>
       <trans-unit id="settings.timeRestriction.description" xml:space="preserve">
-				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items after the given time are shown.</source>
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like &quot;-4 days&quot; or &quot;-3 hours&quot;. The prepended - is important! Only news items after the given time are shown.</source>
 			<target>crwdns18388:0crwdne18388:0</target></trans-unit>
       <trans-unit id="settings.timeRestrictionHigh.description" xml:space="preserve">
-				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like "-4 days" or "-3 hours". The prepended - is important! Only news items before the given time are shown.</source>
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like &quot;-4 days&quot; or &quot;-3 hours&quot;. The prepended - is important! Only news items before the given time are shown.</source>
 			<target>crwdns18390:0crwdne18390:0</target></trans-unit>
       <trans-unit id="settings.topNewsRestriction.description" xml:space="preserve">
 				<source>A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</source>
