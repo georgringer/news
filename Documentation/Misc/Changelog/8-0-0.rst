@@ -29,6 +29,22 @@ Breaking changes
 ----------------
 The following changes should be carefully checked.
 
+Removed ViewHelpers
+^^^^^^^^^^^^^^^^^^^
+The following Social ViewHelpers have been removed:
+
+* Disqus
+* GooglePlus
+* Gravatar
+* Twitter
+* Facebook/Comment
+* Facebook/Like
+* Facebook/Share
+
+.. attention::
+
+   Check out if one of those ViewHelpers are in use and either remove the usage in the templates or copy the ViewHelper to your site package.
+
 Remove local xlf files
 ^^^^^^^^^^^^^^^^^^^^^^
 The translated xlf files have been removed in favor of *Crowdin* as Language Service. In TYPO3 10 Crowdin is used by default, for 9 Crowdin must be enabled with a feature flag.
