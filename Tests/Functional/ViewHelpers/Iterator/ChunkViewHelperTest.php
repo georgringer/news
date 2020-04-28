@@ -26,7 +26,6 @@ class ChunkViewHelperTest extends FunctionalTestCase
      */
     public function chunkIsProperlyCreated()
     {
-
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
         $standaloneView->setTemplateSource(
             '{namespace n=GeorgRinger\News\ViewHelpers}' . LF .

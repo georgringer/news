@@ -26,12 +26,12 @@ class ChunkViewHelper extends AbstractViewHelper
 {
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $escapeChildren = false;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $escapeOutput = false;
 
@@ -69,8 +69,7 @@ class ChunkViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ) {
         $count = (int)$arguments['count'];
         $fixed = (bool)($arguments['fixed'] ?? false);
         $preserveKeys = (bool)($arguments['preserveKeys'] ?? false);
@@ -107,7 +106,7 @@ class ChunkViewHelper extends AbstractViewHelper
 
     /**
      * @param mixed $candidate
-     * @param boolean $useKeys
+     * @param bool $useKeys
      *
      * @return array
      * @throws Exception
@@ -140,8 +139,7 @@ class ChunkViewHelper extends AbstractViewHelper
         $as,
         RenderingContextInterface $renderingContext,
         \Closure $renderChildrenClosure
-    )
-    {
+    ) {
         if (true === empty($as)) {
             return $variable;
         } else {
@@ -170,8 +168,7 @@ class ChunkViewHelper extends AbstractViewHelper
         array $variables,
         $templateVariableContainer,
         $renderChildrenClosure
-    )
-    {
+    ) {
         $backups = static::backupVariables($variables, $templateVariableContainer);
         $content = $renderChildrenClosure();
         static::restoreVariables($variables, $backups, $templateVariableContainer);
