@@ -208,7 +208,7 @@
 				<source>Items per Page</source>
 			<target>crwdns18122:0crwdne18122:0</target></trans-unit>
       <trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve">
-				<source>Sort "Top news" before</source>
+				<source>Sort &quot;Top news&quot; before</source>
 			<target>crwdns18124:0crwdne18124:0</target></trans-unit>
       <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve">
 				<source>Disable override demand</source>
@@ -220,13 +220,13 @@
 				<source>Tags</source>
 			<target>crwdns18130:0crwdne18130:0</target></trans-unit>
       <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
-				<source>Page with uid "%s" is not available anymore!</source>
+				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
 			<target>crwdns18132:0%scrwdne18132:0</target></trans-unit>
       <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
 				<source>Record with uid "%s" is not available anymore!</source>
 			<target>crwdns18134:0%scrwdne18134:0</target></trans-unit>
       <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve">
-				<source>News record with uid "%s" is not available anymore!</source>
+				<source>News record with uid &quot;%s&quot; is not available anymore!</source>
 			<target>crwdns18136:0%scrwdne18136:0</target></trans-unit>
       <trans-unit id="pagemodule.switchToPage" xml:space="preserve">
 				<source>Switch to this page</source>
@@ -241,7 +241,7 @@
 				<source>Full list</source>
 			<target>crwdns18144:0crwdne18144:0</target></trans-unit>
       <trans-unit id="extmng.prependAtCopy" xml:space="preserve">
-				<source>Prepend at copy: Prepend string "copy X".</source>
+				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
 			<target>crwdns18146:0crwdne18146:0</target></trans-unit>
       <trans-unit id="extmng.categoryRestriction" xml:space="preserve">
 				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
@@ -277,7 +277,7 @@
 				<source>Define pid of tag records:Tags are collected on one central page.</source>
 			<target>crwdns18166:0crwdne18166:0</target></trans-unit>
       <trans-unit id="extmng.archiveDate" xml:space="preserve">
-				<source>Archive Date: Define if the archive date is a "Date" or "Date &amp; Time"</source>
+				<source>Archive Date: Define if the archive date is a &quot;Date&quot; or &quot;Date &amp; Time&quot;</source>
 			<target>crwdns18168:0crwdne18168:0</target></trans-unit>
       <trans-unit id="extmng.archiveDate.date" xml:space="preserve">
 				<source>Date</source>
@@ -322,7 +322,7 @@
 				<source>Start import with %s record(s).</source>
 			<target>crwdns18196:0%scrwdne18196:0</target></trans-unit>
       <trans-unit id="tag_suggest" xml:space="preserve">
-				<source>Tag "%s" could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
+				<source>Tag &quot;%s&quot; could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
 			<target>crwdns18198:0%scrwdne18198:0</target></trans-unit>
       <trans-unit id="tag_suggest2" xml:space="preserve">
 				<source>Tag could not be found, wanna create it? Click here!</source>
@@ -402,7 +402,7 @@
 			<target>crwdns18248:0crwdne18248:0
 			</target></trans-unit>
       <trans-unit id="administration.nolimit" xml:space="preserve">
-				<source>No limit defined in setting "%s"! Include the default TypoScript in the root page.</source>
+				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
 			<target>crwdns18250:0%scrwdne18250:0</target></trans-unit>
       <trans-unit id="administration.toggleForm" xml:space="preserve">
 				<source>Show/Hide filter</source>
