@@ -5,25 +5,25 @@
     <body>
       <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Link record</source>
-			<target state="translated">Enlace registro</target></trans-unit>
+			<target state="final">Enlace registro</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Relation to other pages and records.</source>
-			<target state="translated">Relación con otras páginas y registros.</target></trans-unit>
+			<target state="final">Relación con otras páginas y registros.</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
-			<target state="translated">Véase también el sitio web http://www.news.com/</target></trans-unit>
+			<target state="final">Véase también el sitio web http://www.news.com/</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden elements are never shown in the frontend.</source>
-			<target state="translated">Los elementos ocultos no se muestran nunca en el frontend.</target></trans-unit>
+			<target state="final">Los elementos ocultos no se muestran nunca en el frontend.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Optional title of a link.</source>
-			<target state="translated">Título opcional de un enlace.</target></trans-unit>
+			<target state="final">Título opcional de un enlace.</target></trans-unit>
       <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Description of a link.</source>
-			<target state="translated">Descripción de un enlace</target></trans-unit>
+			<target state="final">Descripción de un enlace</target></trans-unit>
       <trans-unit id="uri.description" xml:space="preserve" approved="yes">
 				<source>Link to a file, ... .</source>
-			<target state="translated">Enlace a un archivo,</target></trans-unit>
+			<target state="final">Enlace a un archivo,</target></trans-unit>
     </body>
   </file>
 </xliff>
