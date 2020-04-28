@@ -5,7 +5,7 @@
     <body>
       <trans-unit id="settings.tags.description" xml:space="preserve" approved="yes">
 				<source>Filter by given tags.</source>
-			<target state="translated">Filtrert ved følgende tagger.</target></trans-unit>
+			<target state="final">Filtrert ved følgende tagger.</target></trans-unit>
     </body>
   </file>
 </xliff>
