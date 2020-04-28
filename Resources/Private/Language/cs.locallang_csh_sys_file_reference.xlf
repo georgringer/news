@@ -5,7 +5,7 @@
     <body>
       <trans-unit id="showinpreview.description" xml:space="preserve" approved="yes">
 				<source>If set, this media element will be rendered in the list view (or where it is desired by changing the templates).</source>
-			<target state="translated">Je-li nastaveno, bude tento mediální prvek vykreslen v zobrazení seznamu (nebo tam, kde je to požadováno pomocí změny šablon).</target></trans-unit>
+			<target state="final">Je-li nastaveno, bude tento mediální prvek vykreslen v zobrazení seznamu (nebo tam, kde je to požadováno pomocí změny šablon).</target></trans-unit>
     </body>
   </file>
 </xliff>
