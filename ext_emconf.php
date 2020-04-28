@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = [
         ],
         'conflicts' => [],
         'suggests' => [
-            'rx_shariff' => '12.0.0-12.99.99'
+            'rx_shariff' => '12.0.0-13.99.99'
         ],
     ],
 ];
