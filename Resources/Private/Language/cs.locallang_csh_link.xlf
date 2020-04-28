@@ -5,25 +5,25 @@
     <body>
       <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Link record</source>
-			<target state="translated">Odkaz na záznam</target></trans-unit>
+			<target state="final">Odkaz na záznam</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Relation to other pages and records.</source>
-			<target state="translated">Vztah k jiným stránkám a záznamům.</target></trans-unit>
+			<target state="final">Vztah k jiným stránkám a záznamům.</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
-			<target state="translated">Viz též webové stránky http://www.news.com/</target></trans-unit>
+			<target state="final">Viz též webové stránky http://www.news.com/</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden elements are never shown in the frontend.</source>
-			<target state="translated">Skryté prvky se nikdy nezobrazují na frontendu.</target></trans-unit>
+			<target state="final">Skryté prvky se nikdy nezobrazují na frontendu.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Optional title of a link.</source>
-			<target state="translated">Volitelný nadpis odkazu.</target></trans-unit>
+			<target state="final">Volitelný nadpis odkazu.</target></trans-unit>
       <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Description of a link.</source>
-			<target state="translated">Popis odkazu.</target></trans-unit>
+			<target state="final">Popis odkazu.</target></trans-unit>
       <trans-unit id="uri.description" xml:space="preserve" approved="yes">
 				<source>Link to a file, ... .</source>
-			<target state="translated">Odkaz na soubor, ... .</target></trans-unit>
+			<target state="final">Odkaz na soubor, ... .</target></trans-unit>
     </body>
   </file>
 </xliff>
