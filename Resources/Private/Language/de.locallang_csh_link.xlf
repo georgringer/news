@@ -5,25 +5,25 @@
     <body>
       <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Link record</source>
-			<target state="translated">Link Datensatz</target></trans-unit>
+			<target state="final">Link Datensatz</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Relation to other pages and records.</source>
-			<target state="translated">Relation zu anderen Seiten und Datensätzen.</target></trans-unit>
+			<target state="final">Relation zu anderen Seiten und Datensätzen.</target></trans-unit>
       <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
 				<source>See also the website http://www.news.com/</source>
-			<target state="translated">Mehr Informationen unter http://www.montagmorgen.at/</target></trans-unit>
+			<target state="final">Mehr Informationen unter http://www.montagmorgen.at/</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden elements are never shown in the frontend.</source>
-			<target state="translated">Versteckte Datensätze werden im Frontend nicht dargestellt.</target></trans-unit>
+			<target state="final">Versteckte Datensätze werden im Frontend nicht dargestellt.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>Optional title of a link.</source>
-			<target state="translated">Optionaler Titel eines Links.</target></trans-unit>
+			<target state="final">Optionaler Titel eines Links.</target></trans-unit>
       <trans-unit id="description.description" xml:space="preserve" approved="yes">
 				<source>Description of a link.</source>
-			<target state="translated">Beschreibung eines Links.</target></trans-unit>
+			<target state="final">Beschreibung eines Links.</target></trans-unit>
       <trans-unit id="uri.description" xml:space="preserve" approved="yes">
 				<source>Link to a file, ... .</source>
-			<target state="translated">Link zu einer Website, Datei, ...</target></trans-unit>
+			<target state="final">Link zu einer Website, Datei, ...</target></trans-unit>
     </body>
   </file>
 </xliff>
