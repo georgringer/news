@@ -596,15 +596,21 @@ class AdministrationController extends NewsController
      */
     protected function redirectToPageOnStart()
     {
-        $url = 'index.php?route=/web/NewsAdministration/';
+        if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
+            $id = (int)$this->tsConfiguration['allowedPage'];
+        } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
+            $id = (int)$this->tsConfiguration['redirectToPageOnStart'];
+        }
 
-//        if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
-//            $url .= '&id=' . (int)$this->tsConfiguration['allowedPage'] . $this->getToken();
-//            HttpUtility::redirect($url);
-//        } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
-//            $url .= '&id=' . (int)$this->tsConfiguration['redirectToPageOnStart'] . $this->getToken();
-//            HttpUtility::redirect($url);
-//        }
+        if (!empty($id)) {
+            /** @var \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilder */
+            $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
+            $url = $uriBuilder->buildUriFromRoutePath('/web/NewsAdministration/', [
+                'id' => $id,
+                'web_NewsAdministration' => $this->getToken(true)
+            ]);
+            HttpUtility::redirect((string)$url);
+        }
     }
 
     /**
