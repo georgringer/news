@@ -3,35 +3,93 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:43Z" product-name="news" target-language="fi">
     <header/>
     <body>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		</body>
+      <trans-unit id="switchableControllerActions.description" xml:space="preserve" approved="yes">
+				<source>Set the view you want to display</source>
+			<target state="final">Aseta näkymä, jonka haluat näyttää</target></trans-unit>
+      <trans-unit id="switchableControllerActions.details" xml:space="preserve" approved="yes">
+				<source>List view shows all news records. Latest uses a time restriction, the rest should be understandable</source>
+			<target state="final">Luettelonäkymässä näkyvät kaikki uutiset. Viimeisin käyttää aikarajoitusta, loput tulisi olla ymmärrettäviä</target></trans-unit>
+      <trans-unit id="settings.orderBy.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting field</source>
+			<target state="final">Määritä lajittelukenttä</target></trans-unit>
+      <trans-unit id="settings.orderDirection.description" xml:space="preserve" approved="yes">
+				<source>Define the sorting direction</source>
+			<target state="final">Määritä lajittelusuunta</target></trans-unit>
+      <trans-unit id="settings.dateField.description" xml:space="preserve" approved="yes">
+				<source>Select the field which is used to build the date menu.</source>
+			<target state="final">Valitse kenttä, jota käytetään päivämäärävalikon luomiseen.</target></trans-unit>
+      <trans-unit id="settings.categories.description" xml:space="preserve" approved="yes">
+				<source>Choose the categories to define which news items are displayed</source>
+			<target state="final">Valitse luokat määritelläksesi mitä uutisia näytetään</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.description" xml:space="preserve" approved="yes">
+				<source>Define how the selected categories are used</source>
+			<target state="final">Määritä, kuinka valittuja luokkia käytetään</target></trans-unit>
+      <trans-unit id="settings.includeSubCategories.description" xml:space="preserve" approved="yes">
+				<source>Include all subcategories of the selected categories too.</source>
+			<target state="final">Sisällytä myös kaikki valittujen luokkien alaluokat.</target></trans-unit>
+      <trans-unit id="settings.categoryConjunction.details" xml:space="preserve" approved="yes">
+				<source>&quot;Don't care&quot;: No category restriction is set. &quot;Show items with selected categories OR&quot;: A news records need to be related with at least one of the selected categories. &quot;Show selected categories AND&quot;. A news record need to be related to all selected categories. &quot;Do not show&quot; is the opposite of above.</source>
+			<target state="final">"Älä välitä": Luokkarajoituksia ei ole asetettu. "Näytä kohteet valituilla kategorioilla OR": Uutistietueiden on oltava yhteydessä ainakin yhteen valituista luokista."Näytä valitut luokat AND". Uutiset on liitettävä kaikkiin valittuihin luokkiin. "Älä näytä" on päinvastainen kuin yllä.</target></trans-unit>
+      <trans-unit id="settings.archiveRestriction.description" xml:space="preserve" approved="yes">
+				<source>Choose between: 1) Show all news records, 2) Show only active news records, 3) Show only archived news records. The archive date is defined in each news record. If no archive date is set, the news record can't be archived.</source>
+			<target state="final">Valitse seuraavista: 1) Näytä kaikki uutiset, 2) Näytä vain aktiiviset uutiset, 3) Näytä vain arkistoidut uutiset. Arkistopäivämäärä määritetään jokaisessa uutiskirjeessä. Jos arkistointiajankohtaa ei ole asetettu, uutisia ei voida arkistoida.</target></trans-unit>
+      <trans-unit id="settings.timeRestriction.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like &quot;-4 days&quot; or &quot;-3 hours&quot;. The prepended - is important! Only news items after the given time are shown.</source>
+			<target state="final">Aseta aikaraja. Tämä voi olla joko kokonaisluku ja tarkoittaa sekuntia, esim. 86400 tarkoittaa yhtä päivää (60 * 60 * 24) tai merkkijonoa, kuten "-4 päivää" tai "-3 tuntia". Prepended - on tärkeätä! Vain uutiset tietyn ajan kuluttua näytetään.</target></trans-unit>
+      <trans-unit id="settings.timeRestrictionHigh.description" xml:space="preserve" approved="yes">
+				<source>Set a time limit. This can either be an integer and means seconds, e.g. 86400 means 1 day(60 * 60 * 24) or a string like &quot;-4 days&quot; or &quot;-3 hours&quot;. The prepended - is important! Only news items before the given time are shown.</source>
+			<target state="final">Aseta aikaraja. Tämä voi olla joko kokonaisluku ja tarkoittaa sekuntia, esim. 86400 tarkoittaa yhtä päivää (60 * 60 * 24) tai merkkijonoa, kuten "-4 päivää" tai "-3 tuntia". Prepended - on tärkeätä! Vain uutiset tietyn ajan kuluttua näytetään.</target></trans-unit>
+      <trans-unit id="settings.topNewsRestriction.description" xml:space="preserve" approved="yes">
+				<source>A news record can be set as top news. Therefore it can be defined to show either all news records, only top news or only nontop news.</source>
+			<target state="final">Uutisrekisteri voidaan asettaa ylimmäksi uutiseksi. Siksi voidaan määritellä näyttämään joko kaikki uutiset, vain tärkeimmät uutiset tai vain ei-tärkeätuutiset.</target></trans-unit>
+      <trans-unit id="settings.singleNews.description" xml:space="preserve" approved="yes">
+				<source>Display the selected single news record.</source>
+			<target state="final">Näytä valittu yksittäinen uutistietue.</target></trans-unit>
+      <trans-unit id="settings.previewHiddenRecords.description" xml:space="preserve" approved="yes">
+				<source>If set, hidden records are also displayed. This is needed if you want to preview still hidden records. Be aware that any hidden records on the current page are shown as well.</source>
+			<target state="final">Jos asetettu, piilotetut tietueet näkyvät myös. Tätä tarvitaan, jos haluat esikatsella edelleen piilotettuja tietueita. Huomaa, että myös nykyisen sivun piilotetut tietueet näkyvät.</target></trans-unit>
+      <trans-unit id="settings.startingpoint.description" xml:space="preserve" approved="yes">
+				<source>Define the pages/sysfolders which hold the news records</source>
+			<target state="final">Määritä uutistietueita sisältävät sivut / kansiot</target></trans-unit>
+      <trans-unit id="settings.recursive.description" xml:space="preserve" approved="yes">
+				<source>Select the recursion level of the startingpoint.</source>
+			<target state="final">Valitse lähtöpisteen rekursiotaso.</target></trans-unit>
+      <trans-unit id="settings.detailPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the detail view should be shown.</source>
+			<target state="final">Valitse sivu, jolla yksityiskohtanäkymä tulee näyttää.</target></trans-unit>
+      <trans-unit id="settings.backPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page which is used to return to on detail view.</source>
+			<target state="final">Valitse sivu, jota käytetään palaamaan yksityiskohtinäkymään.</target></trans-unit>
+      <trans-unit id="settings.listPid.description" xml:space="preserve" approved="yes">
+				<source>Select the page on which the list view is shown.</source>
+			<target state="final">Valitse sivu, jolla luettelonäkymä näkyy.</target></trans-unit>
+      <trans-unit id="settings.limit.description" xml:space="preserve" approved="yes">
+				<source>Set the maximum amount of news records to be displayed</source>
+			<target state="final">Aseta näytettävien uutistietueiden enimmäismäärä</target></trans-unit>
+      <trans-unit id="settings.offset.description" xml:space="preserve" approved="yes">
+				<source>Set the offset to start with. E.g. 3 means that the first 2 records are not rendered.</source>
+			<target state="final">Aseta siirtymä alkamaan. Esimerkiksi. 3 tarkoittaa, että kahta ensimmäistä tietuetta ei suoriteta.</target></trans-unit>
+      <trans-unit id="settings.topNewsFirst.description" xml:space="preserve" approved="yes">
+				<source>If checked: No matter which sorting is defined, top news are shown as first news records.</source>
+			<target state="final">Jos valittu: riippumatta siitä, mikä lajittelu on määritelty, tärkeät uutiset näytetään ensimmäisinä uutistietueina.</target></trans-unit>
+      <trans-unit id="settings.disableOverrideDemand.description" xml:space="preserve" approved="yes">
+				<source>If checked, this plugin won't be influenced through the override demand settings which can be e.g. a category via URL parameter.</source>
+			<target state="final">Jos tämä valitaan, tähän laajennukseen ei vaikuteta ohitusvaatimusasetusten kautta, jotka voivat olla esimerkiksi luokka URL-parametrin kautta.</target></trans-unit>
+      <trans-unit id="settings.tags.description" xml:space="preserve" approved="yes">
+				<source>Filter by given tags.</source>
+			<target state="final">Suodata annettujen tagien mukaan.</target></trans-unit>
+      <trans-unit id="settings.media.maxWidth.description" xml:space="preserve" approved="yes">
+				<source>Maximal width of media elements (images, videos, ...)</source>
+			<target state="final">Mediaelementtien (kuvat, videot, ...) enimmäisleveys</target></trans-unit>
+      <trans-unit id="settings.media.maxHeight.description" xml:space="preserve" approved="yes">
+				<source>Maximal height of media elements (images, videos, ...)</source>
+			<target state="final">Mediaelementtien (kuvat, videot, ...) enimmäiskorkeus</target></trans-unit>
+      <trans-unit id="settings.cropMaxCharacters.description" xml:space="preserve" approved="yes">
+				<source>Define the length of the teaser in chars. The teaser is typically cropped in the list view.</source>
+			<target state="final">Määritä tiisetin pituus merkeissä. Tiiseri on yleensä rajattu luettelonäkymässä.</target></trans-unit>
+      <trans-unit id="settings.templateLayout.description" xml:space="preserve" approved="yes">
+				<source>Select a special layout for displaying news records.</source>
+			<target state="final">Valitse erityinen asettelu uutistallenteiden näyttämistä varten.</target></trans-unit>
+    </body>
   </file>
 </xliff>
