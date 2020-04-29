@@ -6,15 +6,18 @@
       <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>News record</source>
 			<target state="final">Uutistietue</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>Versatile news system.</source>
+			<target state="final">Monipuolinen uutisjärjestelmä.</target></trans-unit>
       <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
 				<source>Language of the news record.</source>
 			<target state="final">Uutisen kieli</target></trans-unit>
       <trans-unit id="starttime.description" xml:space="preserve" approved="yes">
 				<source>Define a date on which the news record should be shown.</source>
-			<target state="final">Päivä, jolloin uutinen alkaa näkyä</target></trans-unit>
+			<target state="final">Määritä päivämäärä, jolloin uutistiedot tulee näyttää.</target></trans-unit>
       <trans-unit id="endtime.description" xml:space="preserve" approved="yes">
 				<source>Define a date on which the news record should be hidden.</source>
-			<target state="final">Päivä, jolloin uutinen piilotetaan.</target></trans-unit>
+			<target state="final">Määritä päivämäärä, jolloin uutistiedot pitäisi piilottaa.</target></trans-unit>
       <trans-unit id="fe_group.description" xml:space="preserve" approved="yes">
 				<source>Select the user groups which are allowed to see the news record.</source>
 			<target state="final">Käyttäjäryhmät, jotka saavat nähdä tämän uutisen.</target></trans-unit>
@@ -23,7 +26,7 @@
 			<target state="final">Uutista voi editoida vain hallinnoijat.</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden records are not shown in the frontend.</source>
-			<target state="final">Piilotettuja uutisia ei näytetä www-sivuilla eli frontendissä.</target></trans-unit>
+			<target state="final">Piilotettuja uutisia ei näytetä www-sivuilla.</target></trans-unit>
       <trans-unit id="title.description" xml:space="preserve" approved="yes">
 				<source>News title</source>
 			<target state="final">Uutisen otsikko</target></trans-unit>
@@ -36,6 +39,9 @@
       <trans-unit id="type.description" xml:space="preserve" approved="yes">
 				<source>Select the type which can be either a normal news record, a link to an internal page or a link to an external page.</source>
 			<target state="final">Valitse uutisen tyyppi; normaali uutinen tai linkki sisäiseen/ulkoiseen www-sivuun.</target></trans-unit>
+      <trans-unit id="istopnews.description" xml:space="preserve" approved="yes">
+				<source>Top news records can get a special treated concerning layout, sorting, ...</source>
+			<target state="final">Tärkeät uutiset-tietueet voivat saada erikoiskohteen, joka koskee asettelua, lajittelua, ...</target></trans-unit>
       <trans-unit id="author.description" xml:space="preserve" approved="yes">
 				<source>Author of the news record</source>
 			<target state="final">Kirjoittaja</target></trans-unit>
@@ -54,6 +60,12 @@
       <trans-unit id="categories.description" xml:space="preserve" approved="yes">
 				<source>Select the categories which are related to this record.</source>
 			<target state="final">Valitse kategoriat</target></trans-unit>
+      <trans-unit id="tags.description" xml:space="preserve" approved="yes">
+				<source>Define and select tags which fit to the article.</source>
+			<target state="final">Määritä ja valitse tunnisteet, jotka sopivat artikkeliin.</target></trans-unit>
+      <trans-unit id="content_elements.description" xml:space="preserve" approved="yes">
+				<source>Content elements can be used to generate feature rich news articles.</source>
+			<target state="final">Sisältöelementtejä voidaan käyttää monipuolisten uutisartikkeleiden luomiseen.</target></trans-unit>
       <trans-unit id="keywords.description" xml:space="preserve" approved="yes">
 				<source>Define keywords which can be used for SEO optimizations.</source>
 			<target state="final">Määrittele hakukoneoptimointiin liittyvät avainsanat (keywords).</target></trans-unit>
