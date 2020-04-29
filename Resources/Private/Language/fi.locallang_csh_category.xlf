@@ -5,13 +5,37 @@
     <body>
       <trans-unit id=".description" xml:space="preserve" approved="yes">
 				<source>Category record</source>
-			<target state="final">Media (kuva, video..)</target></trans-unit>
+			<target state="final">Kategoriatallenne</target></trans-unit>
       <trans-unit id=".details" xml:space="preserve" approved="yes">
 				<source>Category for news records.</source>
 			<target state="final">Mediamääritykset uutiselle</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="final">Katso myös verkkosivusto http://www.news.com/</target></trans-unit>
+      <trans-unit id="sys_language_uid.description" xml:space="preserve" approved="yes">
+				<source>Language of the category</source>
+			<target state="final">Kategorian kieli</target></trans-unit>
       <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
 				<source>Hidden categories are never shown in the frontend.</source>
-			<target state="final">Piilotetut elementit eivät näy frontendissä eli itse www-sivuilla.</target></trans-unit>
+			<target state="final">Piilotetut elementit eivät näy www-sivuilla.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Title of the category</source>
+			<target state="final">Kategorian titteli</target></trans-unit>
+      <trans-unit id="parentcategory.description" xml:space="preserve" approved="yes">
+				<source>Select a parent category of this record to build a category tree.</source>
+			<target state="final">Valitse tämän tallenteen pääluokka rakentaaksesi kategoriapuun.</target></trans-unit>
+      <trans-unit id="image.description" xml:space="preserve" approved="yes">
+				<source>Optional image of a category.</source>
+			<target state="final">Kategorian vaihtoehtoinen kuva.</target></trans-unit>
+      <trans-unit id="description.description" xml:space="preserve" approved="yes">
+				<source>Optional description of a category.</source>
+			<target state="final">Valinnainen kuvaus kategoriasta.</target></trans-unit>
+      <trans-unit id="single_pid.description" xml:space="preserve" approved="yes">
+				<source>Choose a page which is used to show the detail view of news records related with this category. This setting is overridden with a configured page inside the plugin's settings.</source>
+			<target state="final">Valitse sivu, jota käytetään näyttämään yksityiskohtainen näkymä tähän luokkaan liittyvistä uutisista. Tämä asetus ohitetaan konfiguroidulla sivulla laajennuksen asetusten sisällä.</target></trans-unit>
+      <trans-unit id="shortcut.description" xml:space="preserve" approved="yes">
+				<source>Optional link of a category.</source>
+			<target state="final">Valinnainen linkki kategoriaan.</target></trans-unit>
     </body>
   </file>
 </xliff>
