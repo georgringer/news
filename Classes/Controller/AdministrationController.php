@@ -543,16 +543,20 @@ class AdministrationController extends NewsController
             $pid = (int)$this->tsConfiguration['defaultPid.'][$table];
         }
 
-        $returnUrl = 'index.php?route=/web/NewsAdministration/';
-
-        $returnUrl .= '&id=' . $this->pageUid . $this->getToken();
+        /** @var \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilder */
         $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
+
+        $returnUrl = $uriBuilder->buildUriFromRoutePath('/web/NewsAdministration/', [
+            'id' => $this->pageUid,
+            'token' => $this->getToken(true)
+        ]);
+
         $params = [
             'edit[' . $table . '][' . $pid . ']' => 'new',
-            'returnUrl' => $returnUrl
+            'returnUrl' => (string)$returnUrl
         ];
         $url = $uriBuilder->buildUriFromRoute('record_edit', $params);
-        HttpUtility::redirect($url);
+        HttpUtility::redirect((string)$url);
     }
 
     /**
@@ -607,7 +611,7 @@ class AdministrationController extends NewsController
             $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
             $url = $uriBuilder->buildUriFromRoutePath('/web/NewsAdministration/', [
                 'id' => $id,
-                'web_NewsAdministration' => $this->getToken(true)
+                'token' => $this->getToken(true)
             ]);
             HttpUtility::redirect((string)$url);
         }
