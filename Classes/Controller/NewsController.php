@@ -374,7 +374,7 @@ class NewsController extends NewsBaseController
             Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
             Cache::addCacheTagsByNewsRecords([$news]);
 
-            if ($this->settings['detail']['pageTile']['_typoScriptNodeValue']) {
+            if ($this->settings['detail']['pageTitle']['_typoScriptNodeValue']) {
                 $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
                 $providerClass = $providerConfiguration['provider'] ?? NewsTitleProvider::class;
 
