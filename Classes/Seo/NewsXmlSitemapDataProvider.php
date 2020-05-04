@@ -114,7 +114,8 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         foreach ($rows as $row) {
             $this->items[] = [
                 'data' => $row,
-                'lastMod' => (int)$row[$lastModifiedField]
+                'lastMod' => (int)$row[$lastModifiedField],
+                'priority' => 0.5
             ];
         }
     }
