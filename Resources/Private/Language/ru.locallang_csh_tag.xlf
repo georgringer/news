@@ -3,11 +3,21 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:48:17Z" product-name="news" target-language="ru">
     <header/>
     <body>
-			
-			
-			
-			
-			
-		</body>
+      <trans-unit id=".description" xml:space="preserve" approved="yes">
+				<source>Tag record</source>
+			<target state="final">Запись тег</target></trans-unit>
+      <trans-unit id=".details" xml:space="preserve" approved="yes">
+				<source>News records can be tagged by those records</source>
+			<target state="final">Записи новостей могут быть отмечены этими записями</target></trans-unit>
+      <trans-unit id="_.seeAlso" xml:space="preserve" approved="yes">
+				<source>See also the website http://www.news.com/</source>
+			<target state="final">Смотрите также сайт http://www.news.com/</target></trans-unit>
+      <trans-unit id="hidden.description" xml:space="preserve" approved="yes">
+				<source>Hidden elements are never shown in the frontend.</source>
+			<target state="final">Скрытые записи ни при каких условиях не выводятся на сайте.</target></trans-unit>
+      <trans-unit id="title.description" xml:space="preserve" approved="yes">
+				<source>Title of the tag.</source>
+			<target state="final">Название тега.</target></trans-unit>
+    </body>
   </file>
 </xliff>
