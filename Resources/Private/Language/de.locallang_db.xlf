@@ -110,7 +110,7 @@
 			<target state="final">Nachrichtenkategorie Verweis</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.seo.seo_title" xml:space="preserve" approved="yes">
 				<source><![CDATA[<title>-Tag]]></source>
-			<target state="final"><![CDATA[&lt;title&gt;-Tag]]></target></trans-unit>
+			<target state="final"><![CDATA[<title>-Tag]]></target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.seo.seo_description" xml:space="preserve" approved="yes">
 				<source>Meta-Description</source>
 			<target state="final">Meta-Beschreibung</target></trans-unit>
