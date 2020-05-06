@@ -200,6 +200,4 @@ class EmConfiguration
     {
         return $this->slugBehaviour;
     }
-
-
 }
