@@ -40,6 +40,7 @@ class EmConfigurationTest extends BaseTestCase
             'storageUidImporter' => 1,
             'resourceFolderImporter' => 'fo',
             'hidePageTreeForAdministrationModule' => true,
+            'slugBehaviour' => 'uniqueInSite',
         ];
 
         $configurationInstance = $this->getAccessibleMock(EmConfiguration::class, ['dummy'], [], '', false);
@@ -73,12 +74,10 @@ class EmConfigurationTest extends BaseTestCase
             'storageUidImporter' => 1,
             'resourceFolderImporter' => '/news_import',
             'hidePageTreeForAdministrationModule' => false,
+            'slugBehaviour' => 'unique',
         ];
 
         $configurationInstance = $this->getAccessibleMock(EmConfiguration::class, ['dummy'], [], '', false);
-        foreach ($configuration as $key => $value) {
-            $configurationInstance->_set($key, $value);
-        }
 
         foreach ($configuration as $key => $value) {
             $functionName = 'get' . ucwords($key);

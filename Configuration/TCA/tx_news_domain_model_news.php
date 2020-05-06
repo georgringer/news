@@ -589,7 +589,7 @@ $tx_news_domain_model_news = [
                     ],
                 ],
                 'fallbackCharacter' => '-',
-                'eval' => 'uniqueInSite',
+                'eval' => $configuration->getSlugBehaviour(),
                 'default' => ''
             ]
         ],

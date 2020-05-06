@@ -91,6 +91,9 @@ class EmConfiguration
     /** @var bool */
     protected $advancedMediaPreview = true;
 
+    /** @var string */
+    protected $slugBehaviour = 'unique';
+
     /** @var int */
     public function getTagPid(): int
     {
@@ -192,4 +195,11 @@ class EmConfiguration
     {
         return (bool)$this->advancedMediaPreview;
     }
+
+    public function getSlugBehaviour(): string
+    {
+        return $this->slugBehaviour;
+    }
+
+
 }
