@@ -6,8 +6,8 @@
 conf.py:
   copyright: 2020
   project: News system
-  version: 8.1
-  release: 8.1.1
+  version: 8.2
+  release: 8.2.0
   latex_documents:
   - - Index
     - news.tex
