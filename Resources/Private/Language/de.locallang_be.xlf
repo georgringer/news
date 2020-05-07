@@ -314,6 +314,9 @@ TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. Dieses Fe
       <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
 				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
 			<target state="final">Erweiterte Vorschau-Konfiguration für Mediendateien: Wenn aktiviert, stehen weitere Optionen für Editoren zur Verfügung, die festlegen, wo ein Medienelement angezeigt werden soll.</target></trans-unit>
+      <trans-unit id="extmng.slugBehaviour" xml:space="preserve" approved="yes">
+				<source>Slug behaviour: uniqueInSite: The same slug can be used for news in different sites. Use this setting *only* if no news records are shared between sites. "unique" means that same news title will lead to different slug names.</source>
+			<target state="final">URL-Segment Verhalten: uniqueInSite: Das selbe URL-Segment kann für News in verschiedenen Sites verwendet werden. Diese Einstellung ist *nur* zu verwenden, wenn keine News-Datensätzen von mehreren Sites gemeinsam genutzt werden. "unique" bedeutet, dass das URL-Segment eines News-Datensatzes für die gesamte TYPO3 Instanz einzigartig ist.</target></trans-unit>
       <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
 				<source>Use this overlay for news categories in the Backend</source>
 			<target state="final">Benutze folgenden Overlay für Kategorien im Backend</target></trans-unit>
