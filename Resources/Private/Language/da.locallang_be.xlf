@@ -313,6 +313,9 @@
       <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve" approved="yes">
 				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
 			<target state="final">Avanceret konfiguration af forhåndsvisning for mediefiler: Hvis aktiveret, vil flere muligheder være tilgængelige for redaktører, som definerer hvor et medieelement skal vises.</target></trans-unit>
+      <trans-unit id="extmng.slugBehaviour" xml:space="preserve" approved="yes">
+				<source>Slug behaviour: uniqueInSite: The same slug can be used for news in different sites. Use this setting *only* if no news records are shared between sites. "unique" means that same news title will lead to different slug names.</source>
+			<target state="final">URL-segment egenskab: uniqueInSite: det samme URL-segmentkan bruges til nyheder på forskellige websider. Brug *kun* denne indstilling hvis ingen nyheder er delt mellem websider. "Unique" betyder at samme nyhedstitel vil føre til forskellige URL-segment navne.</target></trans-unit>
       <trans-unit id="usersettings.overlay" xml:space="preserve" approved="yes">
 				<source>Use this overlay for news categories in the Backend</source>
 			<target state="final">Brug dette overlay for nyhedskategorier i backend.</target></trans-unit>
