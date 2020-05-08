@@ -17,28 +17,6 @@
 	<n:extensionLoaded extensionKey="typoscript_rendering">
 		<f:then>
 			<f:if condition="{pagination.numberOfPages} > 1">
-				<f:if condition="{settings.list.paginate.prevNextHeaderTags}">
-					<f:if condition="{pagination.previousPage}">
-						<f:if condition="{pagination.previousPage} > 1">
-							<f:then>
-								<n:headerData>
-									<link rel="prev" href="{f:widget.uri(useCacheHash:1,arguments: {currentPage: pagination.previousPage})}" />
-								</n:headerData>
-							</f:then>
-							<f:else>
-								<n:headerData>
-									<link rel="prev" href="{f:widget.uri()}" />
-								</n:headerData>
-							</f:else>
-						</f:if>
-					</f:if>
-					<f:if condition="{pagination.nextPage}">
-						<n:headerData>
-							<link rel="next" href="{f:widget.uri(useCacheHash:1, arguments: {currentPage: pagination.nextPage})}" />
-						</n:headerData>
-					</f:if>
-				</f:if>
-
 				<div class="page-navigation">
 					<p>
 						<f:translate key="paginate_overall" arguments="{0:pagination.current,1:pagination.numberOfPages}" />

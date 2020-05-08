@@ -154,7 +154,6 @@ plugin.tx_news {
 				insertAbove = 1
 				insertBelow = 1
 				templatePath =
-				prevNextHeaderTags = 1
 				maximumNumberOfLinks = 3
 			}
 

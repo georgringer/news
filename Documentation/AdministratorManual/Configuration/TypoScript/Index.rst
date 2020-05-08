@@ -1191,12 +1191,6 @@ list.paginate
          1000 news records and 10 items per page. This would result in 100
          links in the frontend.
 
-         **prevNextHeaderTags**
-
-         Add additional header tags <link rel="prev" href"" /> and
-         <link rel="next" href"" /> to tell google about the pagination.
-         Read more at http://googlewebmastercentral.blogspot.co.at/2011/09/pagination-with-relnext-and-relprev.html
-
          **templatePath**
 
          Set a custom template file for the paginate widget.
@@ -1214,7 +1208,6 @@ list.paginate
            insertAbove = 1
            insertBelow = 1
            templatePath =
-           prevNextHeaderTags = 1
            maximumNumberOfLinks = 3
 		}
 
