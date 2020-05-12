@@ -104,7 +104,9 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
                 $row = $this->getTsfe()->sys_page->getRecordOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguage());
             }
 
-            return empty($row) ? [] : $row;
+            if (is_array($row) && !empty($row)) {
+                return $row;
+            }
         }
         return [];
     }
