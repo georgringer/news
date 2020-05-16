@@ -228,7 +228,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         // Hide id list
         $hideIdList = $demand->getHideIdList();
         if ($hideIdList) {
-            $constraints['excludeAlreadyDisplayedNews'] = $query->logicalNot(
+            $constraints['hideIdInList'] = $query->logicalNot(
                 $query->in(
                     'uid',
                     GeneralUtility::intExplode(',', $hideIdList, true)
