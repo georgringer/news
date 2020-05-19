@@ -546,7 +546,7 @@ class AdministrationController extends NewsController
         /** @var \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilder */
         $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
 
-        $returnUrl = $uriBuilder->buildUriFromRoutePath('/web/NewsAdministration/', [
+        $returnUrl = $uriBuilder->buildUriFromRoutePath('/module/web/NewsAdministration/', [
             'id' => $this->pageUid,
             'token' => $this->getToken(true)
         ]);
@@ -609,7 +609,7 @@ class AdministrationController extends NewsController
         if (!empty($id)) {
             /** @var \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilder */
             $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
-            $url = $uriBuilder->buildUriFromRoutePath('/web/NewsAdministration/', [
+            $url = $uriBuilder->buildUriFromRoutePath('/module/web/NewsAdministration/', [
                 'id' => $id,
                 'token' => $this->getToken(true)
             ]);
