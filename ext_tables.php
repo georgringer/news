@@ -64,7 +64,8 @@ $boot = function () {
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
                     'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
                     'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
-                    'inheritNavigationComponentFromMainModule' => false
+                    'inheritNavigationComponentFromMainModule' => false,
+                    'path' => '/module/web/NewsAdministration/'
                 ]
             );
         }
