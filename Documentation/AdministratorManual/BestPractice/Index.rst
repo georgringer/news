@@ -17,6 +17,7 @@ Best practice
 	:maxdepth: 5
 	:titlesonly:
 
+	Seo/Index
 	PreviewOfRecord/Index
 	IntegrationWithTypoScript/Index
 	ClearCache/Index
@@ -25,4 +26,3 @@ Best practice
 	PredefineFields/Index
 	Rss/Index
 	ICalendar/Index
-	SitemapWithDdGoogleSitemap/Index

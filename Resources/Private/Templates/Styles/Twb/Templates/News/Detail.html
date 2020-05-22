@@ -13,21 +13,21 @@
 	<f:if condition="{newsItem}">
 		<n:format.nothing>
 			<n:excludeDisplayedNews newsItem="{newsItem}" />
-			<f:if condition="{newsItem.alternativeTitle}">
-				<f:then>
-					<n:titleTag>
-						<f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
-					</n:titleTag>
-				</f:then>
-				<f:else>
-					<n:titleTag>
-						<f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
-					</n:titleTag>
-				</f:else>
-			</f:if>
 			<f:if condition="{settings.detail.showMetaTags}">
 				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
 			</f:if>
+            <f:if condition="{newsItem.alternativeTitle}">
+                <f:then>
+                    <n:titleTag>
+                        <f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+                    </n:titleTag>
+                </f:then>
+                <f:else>
+                    <n:titleTag>
+                        <f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+                    </n:titleTag>
+                </f:else>
+            </f:if>
 		</n:format.nothing>
 
 		<f:if condition="{settings.detail.showPrevNext}">
@@ -123,13 +123,6 @@
 		<n:extensionLoaded extensionKey="rx_shariff">
 			<f:render partial="Detail/Shariff" />
 		</n:extensionLoaded>
-	</f:if>
-
-	<f:if condition="{settings.detail.disqusShortname}">
-		<div id="disqus_thread"></div>
-		<n:social.disqus newsItem="{newsItem}"
-						 shortName="{settings.detail.disqusShortname}"
-						 link="{n:link(newsItem:newsItem, settings:settings, uriOnly:1, configuration:'{forceAbsoluteUrl:1}')}" />
 	</f:if>
 
 

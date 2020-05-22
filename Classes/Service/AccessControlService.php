@@ -8,7 +8,8 @@ namespace GeorgRinger\News\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Utility\EmConfiguration;
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
@@ -30,7 +31,8 @@ class AccessControlService
      */
     public static function userHasCategoryPermissionsForRecord(array $newsRecord)
     {
-        if (!EmConfiguration::getSettings()->getCategoryBeGroupTceFormsRestriction()) {
+        $settings = GeneralUtility::makeInstance(EmConfiguration::class);
+        if (!$settings->getCategoryBeGroupTceFormsRestriction()) {
             return true;
         }
 
@@ -103,7 +105,8 @@ class AccessControlService
                     ->from('sys_category_record_mm')
                     ->where(
                         $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($newsRecord['uid'], \PDO::PARAM_INT)),
-                        $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR))
+                        $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
+                        $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR))
                     )
                     ->execute()
                     ->fetchColumn(0);
@@ -142,8 +145,8 @@ class AccessControlService
             )
             ->where(
                 $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
+                $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR)),
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsRecordUid, \PDO::PARAM_INT))
-
             )
             ->execute();
 

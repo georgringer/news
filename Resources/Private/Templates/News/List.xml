@@ -38,7 +38,7 @@
                             </f:for>
                         </f:if>
                         <f:if condition="{newsItem.firstPreview}">
-                            <enclosure url="{f:uri.image(image:newsItem.firstPreview, absolute:1, maxWidth: '1920', maxHeight: '1920')}" length="{newsItem.firstPreview.originalResource.size}" type="{newsItem.firstPreview.originalResource.mimeType}"/>
+                            <enclosure url="{f:uri.image(image:newsItem.firstPreview, absolute:1, maxWidth: '1920', maxHeight: '1920')}" length="{n:imageSize(property:'size')}" type="{newsItem.firstPreview.originalResource.mimeType}"/>
                         </f:if>
                     </item>
                 </f:for>

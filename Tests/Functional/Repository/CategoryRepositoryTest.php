@@ -1,6 +1,6 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
+namespace GeorgRinger\News\Tests\Functional\Repository;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -8,8 +8,11 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
+
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * Functional test for the DataHandler
@@ -25,11 +28,11 @@ class CategoryRepositoryTest extends FunctionalTestCase
 
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-        $this->categoryRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository');
+        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $this->categoryRepository = $this->objectManager->get(CategoryRepository::class);
 
         $this->importDataSet(__DIR__ . '/../Fixtures/sys_category.xml');
     }

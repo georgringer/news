@@ -8,13 +8,12 @@ namespace GeorgRinger\News\Hooks\Backend;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Hook into PageLayoutView to hide tt_content elements in page view
@@ -45,9 +44,8 @@ class PageViewQueryHook
         $fieldList,
         QueryBuilder $queryBuilder
     ): void {
-
         if ($table === 'tt_content' && $pageId > 0) {
-            
+
             // Get page record base on page uid
             $pageRecord = BackendUtility::getRecord('pages', $pageId, 'uid', " AND doktype='254' AND module='news'");
 

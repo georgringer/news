@@ -2,11 +2,11 @@
 
 namespace GeorgRinger\News\Service;
 
-use GeorgRinger\News\Service\Transliterator\Transliterator;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -18,13 +18,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class SlugService
 {
 
-    /**
-     * @param string $string
-     * @return string
-     */
-    public function generateSlug(string $string): string
+    /** @var NewsSlugHelper */
+    protected $slugService;
+
+    public function __construct()
     {
-        return Transliterator::urlize($string);
+        $fieldConfig = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['path_segment']['config'];
+        $this->slugService = GeneralUtility::makeInstance(SlugHelper::class, 'tx_news_domain_model_news', 'path_segment', $fieldConfig);
     }
 
     /**
@@ -60,7 +60,7 @@ class SlugService
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = $connection->createQueryBuilder();
         $queryBuilder->getRestrictions()->removeAll();
-        $statement = $queryBuilder->select('uid', 'title')
+        $statement = $queryBuilder->select('*')
             ->from('tx_news_domain_model_news')
             ->where(
                 $queryBuilder->expr()->orX(
@@ -71,7 +71,7 @@ class SlugService
             ->execute();
         while ($record = $statement->fetch()) {
             if ((string)$record['title'] !== '') {
-                $slug = $this->generateSlug((string)$record['title']);
+                $slug = $this->slugService->generate($record, $record['pid']);
                 /** @var QueryBuilder $queryBuilder */
                 $queryBuilder = $connection->createQueryBuilder();
                 $queryBuilder->update('tx_news_domain_model_news')
@@ -266,7 +266,7 @@ class SlugService
 
             // Update entries
             while ($record = $statement->fetch()) {
-                $slug = $this->generateSlug((string)$record['value_alias']);
+                $slug = $this->slugService->sanitize((string)$record['value_alias']);
                 $queryBuilder = $connection->createQueryBuilder();
                 $queryBuilder->update('tx_news_domain_model_news')
                     ->where(

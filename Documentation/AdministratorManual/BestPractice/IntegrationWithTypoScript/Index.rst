@@ -89,7 +89,7 @@ Insert configured objects to wherever you want to use them, depending on the GET
 
 .. code-block:: typoscript
 
-	[globalVar = GP:tx_news_pi1|news > 0]
+	[traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
 		page.10.marks.content < lib.news_detail
 	[else]
 		page.10.marks.content < lib.news_list
@@ -301,6 +301,53 @@ Important is the line ``categories.current = 1`` which will set the category con
 Of course you need to adopt the snippet to your own needs, like setting the ``detailPid``, ``startingPoint``, ...
 
 By defining a custom property like ``relatedView = 1`` you can differ in the ``List.html`` if it is called by this snippet or by a regular plugin.
+
+Show news items with same tags in Detail.html
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Similar to the example above it is also possible to render news records with the same tags as the current one.
+
+.. code-block:: typoscript
+
+lib.tx_news.relatedByTags = USER
+lib.tx_news.relatedByTags {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = News
+    pluginName = Pi1
+    vendorName = GeorgRinger
+    switchableControllerActions {
+        News {
+            1 = list
+        }
+    }
+
+    settings < plugin.tx_news.settings
+    settings {
+        # custom tag to use in List.html
+        relatedView = 1
+        # limit number of news
+        limit = 6
+#        startingpoint = 1
+
+        useStdWrap := addToList(tags)
+        tags.current = 1
+        categoryConjunction = or
+        overrideFlexformSettingsIfEmpty := addToList(detailPid)
+        excludeAlreadyDisplayedNews = 1
+    }
+}
+
+In your overridden Detail.html template place the following code after displaying detailed news.
+
+.. code-block:: html
+
+   <f:if condition="{newsItem.tags}">
+        <f:cObject typoscriptObjectPath="lib.tx_news.relatedByTags">{newsItem.tags->v:iterator.extract(key:'uid')->v:iterator.implode(glue: ',')}</f:cObject>
+   </f:if>
+
+The Fluid tags supply comma-separated list of tags' UIDs to the Typoscript code.
+
+Either write custom viewhelper or install vhs extension and add its namespace `xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"` to the `Detail.html` template.
 
 Show Category Menu with Typoscript
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -724,5 +724,4 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     {
         $this->_customSettings = $customSettings;
     }
-
 }

@@ -17,15 +17,13 @@ namespace GeorgRinger\News\Updates;
  */
 
 use GeorgRinger\News\Service\SlugService;
-use GeorgRinger\News\Service\Transliterator\Transliterator;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Install\Updates\AbstractUpdate;
-use TYPO3\CMS\Install\Updates\Confirmation;
+use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Migrate EXT:realurl unique alias into empty news slugs
- * 
+ *
  * If a lot of similar titles are used it might be a good a idea
  * to migrate the unique aliases from realurl to be sure that the same alias is used
  *
@@ -33,9 +31,8 @@ use TYPO3\CMS\Install\Updates\Confirmation;
  * Will only appear if missing slugs found between realurl and news, respecting language and expire date from realurl
  * Copies values from 'tx_realurl_uniqalias.value_alias' to 'tx_news_domain_model_news.path_segment'
  */
-class RealurlAliasNewsSlugUpdater extends AbstractUpdate
+class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
 {
-
     const TABLE = 'tx_news_domain_model_news';
 
     /** @var SlugService */
@@ -44,6 +41,34 @@ class RealurlAliasNewsSlugUpdater extends AbstractUpdate
     public function __construct()
     {
         $this->slugService = GeneralUtility::makeInstance(SlugService::class);
+    }
+
+    public function executeUpdate(): bool
+    {
+        // user decided to migrate, migrate and mark wizard as done
+        $queries = $this->slugService->performRealurlAliasMigration();
+
+        return true;
+    }
+
+    public function updateNecessary(): bool
+    {
+        $updateNeeded = false;
+        $elementCount = $this->slugService->countOfRealurlAliasMigrations();
+        if ($elementCount > 0) {
+            $updateNeeded = true;
+        }
+        return $updateNeeded;
+    }
+
+    /**
+     * @return string[] All new fields and tables must exist
+     */
+    public function getPrerequisites(): array
+    {
+        return [
+            DatabaseUpdatedPrerequisite::class
+        ];
     }
 
     /**
@@ -67,21 +92,11 @@ class RealurlAliasNewsSlugUpdater extends AbstractUpdate
     }
 
     /**
-     * Checks if an update is needed
-     *
-     * @param string &$description The description for the update
-     * @return bool Whether an update is needed (TRUE) or not (FALSE)
+     * @return string Unique identifier of this updater
      */
-    public function checkForUpdate(&$description)
+    public function getIdentifier(): string
     {
-        if ($this->isWizardDone()) {
-            return false;
-        }
-        $elementCount = $this->slugService->countOfRealurlAliasMigrations();
-        if ($elementCount) {
-            $description = sprintf('%s news records possible to be updated', $elementCount);
-        }
-        return (bool) $elementCount;
+        return 'realurlAliasNewsSlug';
     }
 
     /**
@@ -123,45 +138,5 @@ class RealurlAliasNewsSlugUpdater extends AbstractUpdate
                 </div>
             </div>
         ';
-    }
-
-    /**
-     * Performs the database update
-     *
-     * @param array &$databaseQueries Queries done in this update
-     * @param string &$customMessage Custom message
-     * @return bool
-     */
-    public function performUpdate(array &$databaseQueries, &$customMessage)
-    {
-        $requestParams = GeneralUtility::_GP('install');
-        // Respect class name or identifier for validation (https://forge.typo3.org/issues/86165)
-        if (!isset($requestParams['values']['GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater']['install'])
-            && !isset($requestParams['values']['realurlAliasNewsSlug']['install'])
-        ) {
-            return false;
-        }
-        if (isset($requestParams['values']['GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater']['install'])) {
-            $install = (int)$requestParams['values']['GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater']['install'];
-        }
-        if (isset($requestParams['values']['realurlAliasNewsSlug']['install'])) {
-            $install = (int)$requestParams['values']['realurlAliasNewsSlug']['install'];
-        }
-        if ($install === 1) {
-            // user decided to migrate, migrate and mark wizard as done
-            $queries = $this->slugService->performRealurlAliasMigration();
-            if (!empty($queries)) {
-                foreach ($queries as $query) {
-                    $databaseQueries[] = $query;
-                }
-                $this->markWizardAsDone();
-                return true;
-            }
-        } else {
-            // user decided to not migrate, mark wizard as done
-            $this->markWizardAsDone();
-            return true;
-        }
-        return false;
     }
 }

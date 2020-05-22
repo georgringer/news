@@ -1,28 +1,14 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-if (version_compare(TYPO3_branch, '9.2', '>=')) {
-    foreach (['hidden', 'editlock', 'istopnews'] as $field) {
-        $GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$field]['config']['renderType'] = 'checkboxToggle';
-        $GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$field]['config']['items'] = [
-            [
-                0 => '',
-                1 => '',
-            ]
-        ];
+$boot = static function () {
+    // Remove TCA settings for version 10 to avoid entries in TCA migration check
+    if (\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class)->getMajorVersion() === 10) {
+        foreach (['link', 'news', 'tag'] as $tableSuffix) {
+            unset($GLOBALS['TCA']['tx_news_domain_model_' . $tableSuffix]['interface']['showRecordFieldList']);
+        }
     }
+};
 
-    $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['path_segment']['config'] = [
-        'type' => 'slug',
-        'size' => 50,
-        'generatorOptions' => [
-            'fields' => ['title'],
-            'replacements' => [
-                '/' => '-'
-            ],
-        ],
-        'fallbackCharacter' => '-',
-        'eval' => 'uniqueInSite',
-        'default' => ''
-    ];
-}
+$boot();
+unset($boot);

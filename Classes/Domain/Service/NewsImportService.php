@@ -11,7 +11,6 @@ namespace GeorgRinger\News\Domain\Service;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * News Import Service
@@ -174,6 +173,8 @@ class NewsImportService extends AbstractImportService
 
         $news->setImportId($importItem['import_id']);
         $news->setImportSource($importItem['import_source']);
+
+        $news->setPathSegment($importItem['path_segment']);
 
         if (is_array($importItem['categories'])) {
             foreach ($importItem['categories'] as $categoryUid) {
@@ -372,7 +373,7 @@ class NewsImportService extends AbstractImportService
     /**
      * Get an existing items from the references that matches the file
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference> $items
+     * @param \GeorgRinger\News\Domain\Model\FileReference[] $items
      * @param \TYPO3\CMS\Core\Resource\File $file
      * @return bool|FileReference
      */
@@ -430,7 +431,7 @@ class NewsImportService extends AbstractImportService
      */
     protected function emitSignal($signalName, array $signalArguments)
     {
-        return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\NewsImportService', $signalName,
+        return $this->signalSlotDispatcher->dispatch(self::class, $signalName,
             $signalArguments);
     }
 }

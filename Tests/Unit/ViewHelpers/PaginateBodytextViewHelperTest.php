@@ -8,12 +8,14 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+
+use GeorgRinger\News\ViewHelpers\PaginateBodytextViewHelper;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for PaginateBodytextViewHelper
  */
-class PaginateBodytextViewHelperTest extends UnitTestCase
+class PaginateBodytextViewHelperTest extends BaseTestCase
 {
 
     /**
@@ -24,7 +26,7 @@ class PaginateBodytextViewHelperTest extends UnitTestCase
      */
     public function givenTagIsAClosingTag($tag, $expectedResult)
     {
-        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
+        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('isClosingTag', $tag);
         $this->assertEquals($expectedResult, $result);
     }
@@ -49,7 +51,7 @@ class PaginateBodytextViewHelperTest extends UnitTestCase
      */
     public function givenTagIsSelfClosingTag($tag, $expectedResult)
     {
-        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
+        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('isSelfClosingTag', $tag);
         $this->assertEquals($expectedResult, $result);
     }
@@ -74,7 +76,7 @@ class PaginateBodytextViewHelperTest extends UnitTestCase
      */
     public function givenTagIsAnOpeningTag($tag, $expectedResult)
     {
-        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
+        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('isOpeningTag', $tag);
         $this->assertEquals($expectedResult, $result);
     }
@@ -97,9 +99,9 @@ class PaginateBodytextViewHelperTest extends UnitTestCase
      */
     public function extractTagReturnsCorrectOne($tag, $expectedResult)
     {
-        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\PaginateBodytextViewHelper', ['dummy']);
+        $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('extractTag', $tag);
-        $this->assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)), 1);
+        $this->assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)));
     }
 
     public function extractTagReturnsCorrectOneDataProvider()

@@ -8,7 +8,6 @@ namespace GeorgRinger\News\Updates;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
@@ -124,7 +123,6 @@ class PopulateCategorySlugs implements UpgradeWizardInterface
             $languageId = (int)$record['sys_language_uid'];
             $recordInDefaultLanguage = $languageId > 0 ? (int)$record['l10n_parent'] : $recordId;
             $slug = $suggestedSlugs[$recordInDefaultLanguage][$languageId] ?? '';
-
 
             if (empty($slug)) {
                 if ($pid === -1) {

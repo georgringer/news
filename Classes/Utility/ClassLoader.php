@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Utility;
 
 /**
@@ -7,8 +8,10 @@ namespace GeorgRinger\News\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Cache\CacheManager;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -18,9 +21,44 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
 {
 
     /**
-     * @var \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
+     * @var PhpFrontend
      */
-    protected $cacheInstance;
+    protected $classCache;
+
+    /** @var ClassCacheManager */
+    protected $classCacheManager;
+
+    /** @var bool */
+    protected $isValidInstance = false;
+
+    /**
+     * ClassLoader constructor.
+     *
+     * @param PhpFrontend $classCache
+     */
+    public function __construct(PhpFrontend $classCache = null, ClassCacheManager $classCacheManager = null)
+    {
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() === 10) {
+            // Use DI
+            // something might fail, e.g loading checks in Install Tool
+            if ($classCacheManager !== null) {
+                $this->classCacheManager = $classCacheManager;
+                $this->isValidInstance = true;
+            }
+        } else {
+            $this->classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
+            $this->isValidInstance = true;
+        }
+
+        if ($this->isValidInstance) {
+            if ($classCache === null) {
+                $this->classCache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news');
+            } else {
+                $this->classCache = $classCache;
+            }
+        }
+    }
 
     /**
      * Register instance of this class as spl autoloader
@@ -28,21 +66,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      */
     public static function registerAutoloader()
     {
-        spl_autoload_register([new self(), 'loadClass'], true, true);
-    }
-
-    /**
-     * Initialize cache
-     *
-     * @return \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
-     */
-    public function initializeCache()
-    {
-        if (is_null($this->cacheInstance)) {
-            $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
-            $this->cacheInstance = $cacheManager->getCache('news');
-        }
-        return $this->cacheInstance;
+        spl_autoload_register([GeneralUtility::makeInstance(self::class), 'loadClass'], true, true);
     }
 
     /**
@@ -54,26 +78,22 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      */
     public function loadClass($className)
     {
+        if (!$this->isValidInstance) {
+            return false;
+        }
+
         $className = ltrim($className, '\\');
 
         if (!$this->isValidClassName($className)) {
             return false;
         }
-
         $cacheEntryIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $this->changeClassName($className)));
 
-        $classCache = $this->initializeCache();
-        if (!empty($cacheEntryIdentifier) && !$classCache->has($cacheEntryIdentifier)) {
-            require_once(ExtensionManagementUtility::extPath('news') . 'Classes/Utility/ClassCacheManager.php');
-
-            $classCacheManager = GeneralUtility::makeInstance(ClassCacheManager::class);
-            $classCacheManager->reBuild();
+        if (!$this->classCache->has($cacheEntryIdentifier)) {
+            $this->classCacheManager->reBuild();
         }
 
-        if (!empty($cacheEntryIdentifier) && $classCache->has($cacheEntryIdentifier)) {
-            $classCache->requireOnce($cacheEntryIdentifier);
-        }
-
+        $this->classCache->requireOnce($cacheEntryIdentifier);
         return true;
     }
 
@@ -105,7 +125,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      */
     protected function isValidClassName($className)
     {
-        if (GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\')) {
+        if (GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Domain\\') || GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Controller\\')) {
             $modifiedClassName = $this->changeClassName($className);
             if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'][$modifiedClassName])) {
                 return true;

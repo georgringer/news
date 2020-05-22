@@ -30,7 +30,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <meta name="keywords" content="news 1, news 2" />
  * </output>
  */
-class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
     /**
@@ -58,7 +58,7 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
     public function render()
     {
         // Skip if current record is part of tt_content CType shortcut
-        if(!empty($GLOBALS['TSFE']->recordRegister)
+        if (!empty($GLOBALS['TSFE']->recordRegister)
             && is_array($GLOBALS['TSFE']->recordRegister)
             && strpos(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:') !== false
             && !empty($GLOBALS['TSFE']->currentRecord)
@@ -89,7 +89,11 @@ class MetaTagViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBase
 
         if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
             $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-            $pageRenderer->addMetaTag($this->tag->render());
+            if ($this->tag->hasAttribute('property')) {
+                $pageRenderer->setMetaTag('property', $this->tag->getAttribute('property'), $this->tag->getAttribute('content'));
+            } elseif ($this->tag->hasAttribute('name')) {
+                $pageRenderer->setMetaTag('property', $this->tag->getAttribute('name'), $this->tag->getAttribute('content'));
+            }
         }
     }
 }

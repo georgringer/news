@@ -12,7 +12,7 @@ namespace GeorgRinger\News\ViewHelpers\Widget\Ajax;
 /**
  * Generate additional params required for the pagination
  */
-class PaginateAdditionalParamsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class PaginateAdditionalParamsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
     /**
@@ -23,7 +23,6 @@ class PaginateAdditionalParamsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelpe
         parent::initializeArguments();
         $this->registerArgument('page', 'int', 'current page', false, 0);
     }
-
 
     /**
      * @return array

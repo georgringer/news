@@ -1,0 +1,43 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  news.cache:
+    class: TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
+    # We can not use CacheManager, as it can not be
+    # injected/instantiated during ext_localconf.php loading
+    # factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    # therefore we use the static Bootstrap::createCache factory instead.
+    factory: ['TYPO3\CMS\Core\Core\Bootstrap', 'createCache']
+    arguments: ['news']
+
+  GeorgRinger\News\:
+    resource: '../Classes/*'
+
+
+  GeorgRinger\News\Utility\ClassCacheManager:
+    arguments: ['@news.cache']
+    public: true
+
+  GeorgRinger\News\Utility\ClassLoader:
+    arguments: ['@news.cache', '@GeorgRinger\News\Utility\ClassCacheManager']
+    public: true
+
+  # Fix DataMapper for TYPO3 v10.0 and v10.1 where it is not
+  # properly configured for DI. The deprecated $query
+  # parameter needs to be explicitly set to null as
+  # QueryInterface can not be autowired by Symfony DI.
+  # TODO: Remove once we drop support for v10.0/v10.1
+  TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper:
+    arguments:
+      $query: null
+
+
+  GeorgRinger\News\Seo\HrefLangEvent:
+    tags:
+      - name: event.listener
+        identifier: 'my-ext/ownHrefLang'
+        after: 'typo3-seo/hreflangGenerator'
+        event: TYPO3\CMS\Frontend\Event\ModifyHrefLangTagsEvent
