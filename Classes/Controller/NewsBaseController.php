@@ -9,11 +9,14 @@ namespace GeorgRinger\News\Controller;
  */
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
@@ -114,7 +117,16 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                 break;
             case 'pageNotFoundHandler':
-                $GLOBALS['TSFE']->pageNotFoundAndExit('No news entry found.');
+                $typo3Information = GeneralUtility::makeInstance(Typo3Version::class);
+                if ($typo3Information->getMajorVersion() === 9) {
+                    $GLOBALS['TSFE']->pageNotFoundAndExit('No news entry found.');
+                } else {
+                    $message = 'No news entry found!';
+                    $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
+                        $GLOBALS['TYPO3_REQUEST'],
+                        $message);
+                    throw new ImmediateResponseException($response, 1590468229);
+                }
                 break;
             case 'showStandaloneTemplate':
                 if (isset($configuration[2])) {
