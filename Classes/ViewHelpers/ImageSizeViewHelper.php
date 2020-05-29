@@ -59,7 +59,7 @@ class ImageSizeViewHelper extends AbstractViewHelper implements ViewHelperInterf
                     $processedImage = $tsfe->lastImageInfo['processedFile'];
                     if ($processedImage && $processedImage->usesOriginalFile() === false) {
                         $value = $processedImage->getSize();
-                    }elseif ($originalFile = $tsfe->lastImageInfo['originalFile']) {
+                    } elseif ($originalFile = $tsfe->lastImageInfo['originalFile']) {
                         /** @var File $originalFile */
                         $value = $originalFile->getSize();
                     }
