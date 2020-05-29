@@ -142,7 +142,7 @@ class SlugService
             );
         }
 
-        $queryBuilder->execute();
+        return $queryBuilder->execute();
     }
 
     /**
