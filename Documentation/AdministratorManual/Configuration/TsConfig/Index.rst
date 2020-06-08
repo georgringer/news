@@ -106,7 +106,7 @@ After defining the category restriction in the :ref:`Extension Manager <extensio
 
 showContentElementsInNewsSysFolder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If a sys folder is configured with **Contains PLugin:** `News`, content elements are hidden on those pages in the page and list module. If the content elements should be shown, use the PageTsConfig
+If a sys folder is configured with **Contains Plugin:** `News`, content elements are hidden on those pages in the page and list module. If the content elements should be shown, use the PageTsConfig
 
 .. code-block:: typoscript
 
