@@ -11,7 +11,7 @@ use Exception;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Jobs\ImportJobInterface;
 use GeorgRinger\News\Utility\ImportJob;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
@@ -62,12 +62,13 @@ class ImportController extends ActionController
     public function indexAction()
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/Import');
 
         $this->view->assignMultiple([
                 'error' => $this->checkCorrectConfiguration(),
                 'availableJobs' => array_merge([0 => ''], $this->getAvailableJobs()),
-                'moduleUrl' => BackendUtility::getModuleUrl($this->request->getPluginName())
+                'moduleUrl' => $uriBuilder->buildUriFromRoute($this->request->getPluginName())
             ]
         );
     }
