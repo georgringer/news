@@ -14,6 +14,8 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['news_pi1
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['news_pi1'] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('news_pi1',
     'FILE:EXT:news/Configuration/FlexForms/flexform_news.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('news_pi2',
+    'FILE:EXT:news/Configuration/FlexForms/flexform_news_cached.xml');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_news_domain_model_news');
 

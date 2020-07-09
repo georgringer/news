@@ -14,6 +14,16 @@ $boot = function () {
             'News' => 'searchForm,searchResult',
         ]
     );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'GeorgRinger.news',
+        'Pi2',
+        [
+            'News' => 'list,detail,selectedList,dateMenu',
+            'Category' => 'list',
+            'Tag' => 'list',
+        ],
+        []
+    );
 
     // Page module hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['news' . '_pi1']['news'] =
