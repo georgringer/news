@@ -79,6 +79,8 @@ The core ships a basic sitemap configuration which can also be used for news rec
                        additionalWhere =
                        sortField = sorting
                        lastModifiedField = tstamp
+                       changeFreqField = sitemap_changefreq
+                       priorityField = sitemap_priority
                        pid = 26
                        recursive = 2
                        url {
