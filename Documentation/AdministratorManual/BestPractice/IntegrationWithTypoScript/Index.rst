@@ -5,6 +5,7 @@
 
 .. include:: ../../../Includes.txt
 
+.. highlight:: typoscript
 
 Integrations with TypoScript
 ----------------------------
@@ -214,13 +215,13 @@ Usage of a ViewHelper
 
 Use a viewHelper of EXT:news to write any code into the header part. The code could look like this
 
-.. code-block:: html
+.. code-block:: xml
 
     <n:headerData><script>var newsId = {newsItem.uid};</n:headerData>
 
 If you want to set the title tag, you can use a specific viewHelper:
 
-.. code-block:: html
+.. code-block:: xml
 
     <n:titleTag>{newsItem.title}</n:titleTag>
 
@@ -309,33 +310,33 @@ Similar to the example above it is also possible to render news records with the
 
 .. code-block:: typoscript
 
-lib.tx_news.relatedByTags = USER
-lib.tx_news.relatedByTags {
-    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-    extensionName = News
-    pluginName = Pi1
-    vendorName = GeorgRinger
-    switchableControllerActions {
-        News {
-            1 = list
-        }
-    }
+   lib.tx_news.relatedByTags = USER
+   lib.tx_news.relatedByTags {
+       userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+       extensionName = News
+       pluginName = Pi1
+       vendorName = GeorgRinger
+       switchableControllerActions {
+           News {
+               1 = list
+           }
+       }
 
-    settings < plugin.tx_news.settings
-    settings {
-        # custom tag to use in List.html
-        relatedView = 1
-        # limit number of news
-        limit = 6
-#        startingpoint = 1
+       settings < plugin.tx_news.settings
+       settings {
+           # custom tag to use in List.html
+           relatedView = 1
+           # limit number of news
+           limit = 6
+   #        startingpoint = 1
 
-        useStdWrap := addToList(tags)
-        tags.current = 1
-        categoryConjunction = or
-        overrideFlexformSettingsIfEmpty := addToList(detailPid)
-        excludeAlreadyDisplayedNews = 1
-    }
-}
+           useStdWrap := addToList(tags)
+           tags.current = 1
+           categoryConjunction = or
+           overrideFlexformSettingsIfEmpty := addToList(detailPid)
+           excludeAlreadyDisplayedNews = 1
+       }
+   }
 
 In your overridden Detail.html template place the following code after displaying detailed news.
 

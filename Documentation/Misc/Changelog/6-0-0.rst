@@ -5,7 +5,7 @@
 
 .. only:: html
 
-.. contents::
+   .. contents::
         :local:
         :depth: 3
 
@@ -120,9 +120,9 @@ Benefits:
 - The relation is safed in a safe manner
 - The media elements can later be still modified
 
-.. Info::
+.. note::
 
-        As the ViewHelper and its usage is new, feedback is highly welcomed!
+   As the ViewHelper and its usage is new, feedback is highly welcomed!
 
 Improved content element relations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
