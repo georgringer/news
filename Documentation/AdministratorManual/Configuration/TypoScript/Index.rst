@@ -1035,7 +1035,7 @@ detail.errorHandling
    Description
          If no news entry is found, it is possible to use various types of error handling.
 
-         - **showStandaloneTemplate**: A template is rendered. The syntax is `showStandaloneTemplate,<path>,<errorCode>`, e.g. `showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
+         - **showStandaloneTemplate**: A template is rendered. The syntax is `showStandaloneTemplate,<path>,<errorCode>`, e.g. `showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404`
          - **redirectToListView**: This will redirect to the list view on the same page.
          - **redirectToPage**: Redirect to any page by using the syntax redirectToPage,<pageid>,<status>. This means e.g. redirectToPage,123,404 to redirect to the page with UID 123 and error code 404.
          - **pageNotFoundHandler**: The default page not found handler will be called.
@@ -1269,7 +1269,7 @@ search.fields
         teaser,title,bodytext
 
 search.splitSearchWord
-"""""""""""""
+""""""""""""""""""""""
 
 .. container:: table-row
 
@@ -1283,7 +1283,7 @@ search.splitSearchWord
         As an example: Searching for *hello world* will give you as result also the news item with the title `hello the world`. The search terms must be found in the same field, which means that a news item with the world *hello* in the `title` and the word *world* in the bodytext won\'t be found.
 
         .. hint::
-        If you need a better search experience, think about using something like EXT:solr!
+           If you need a better search experience, think about using something like EXT:solr!
 
    Default
         0

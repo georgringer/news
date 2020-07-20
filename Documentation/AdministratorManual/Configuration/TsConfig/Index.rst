@@ -207,7 +207,7 @@ Ability to control panel to sort, hide and delete in the administration module. 
 allowedCategoryRootIds
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Reduce the shown categories by defining a list of **root* category IDs.
+Reduce the shown categories by defining a list of **root** category IDs.
 
 Example:
 

@@ -5,7 +5,7 @@
 
 .. include:: ../../../Includes.txt
 
-.. _hooks:
+.. _ext-based-on-news:
 
 Extension based on EXT:news
 ===========================

@@ -6,9 +6,9 @@
 
 .. only:: html
 
-.. contents::
-   :local:
-        :depth: 3
+   .. contents::
+      :local:
+      :depth: 3
 
 This release makes the extension compatible with PHP 5.6 again
 
