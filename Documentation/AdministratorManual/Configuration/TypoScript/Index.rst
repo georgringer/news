@@ -378,6 +378,7 @@ recursive
          int
    Description
          ::
+
             plugin.tx_news.settings.recursive = 2
 
          The search for pages as startingpoint can be extended by setting a recursive level.
@@ -627,6 +628,7 @@ cropMaxCharacters
          int
    Description
          ::
+
             plugin.tx_news.settings.cropMaxCharacters =100
 
          Define the maximum length of the teaser text before it is cropped.
@@ -751,7 +753,7 @@ useStdWrap
 
                singleNews.stdWrap.cObject = CONTENT
                singleNews.stdWrap.cObject {
-                  ...
+                  # ...
                }
             }
    Default
@@ -792,9 +794,12 @@ displayDummyIfNoMedia
          boolean
    Description
          If set and no preview image is defined, a placeholder image is shown.
+
          The placeholder itself is defined with TypoScript::
 
-           plugin.tx_news.settings.list.media.dummyImage = typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png
+           plugin.tx_news.settings {
+              list.media.dummyImage = typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png
+           }
 
    Default
          1
@@ -869,7 +874,7 @@ hideIdList
                   data = GP:tx_news_pi1|news
                }
             }
-    Default
+   Default
          (none)
 
 .. _tsOrderByAllowed:
@@ -1303,7 +1308,7 @@ list.paginate
          The path has to point to the template file, for example :code:`EXT:foobar/Resources/Private/Templates/ViewHelpers/Widget/Paginate/Index.html`
 
          .. important::
-            `list.paginate.templatePath` needs to be added to the setting `overrideFlexformSettingsIfEmpty`!
+            :typoscript:`list.paginate.templatePath` needs to be added to the setting :typoscript:`overrideFlexformSettingsIfEmpty`!
 
 
    Default
