@@ -8,7 +8,7 @@
 .. _thanks:
 
 Help supporting further development
-===========
+===================================
 This extension and manual has been created in endless hours, mostly by a single person.
 It is actively maintained to fit all supported TYPO3 versions, user interface concepts and best practice approaches.
 

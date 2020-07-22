@@ -5,7 +5,7 @@
 
 .. include:: ../../../Includes.txt
 
-.. _rss:
+.. _seo:
 
 =================
 SEO with EXT:news
@@ -14,7 +14,7 @@ SEO with EXT:news
 This chapters covers all configurations which are relevant for search engine optimization
 regarding the news extension.
 
-.. Info::
+.. note::
 
         All settings described require TYPO3 9 and the the system extension "seo" installed.
 
@@ -79,6 +79,8 @@ The core ships a basic sitemap configuration which can also be used for news rec
                        additionalWhere =
                        sortField = sorting
                        lastModifiedField = tstamp
+                       changeFreqField = sitemap_changefreq
+                       priorityField = sitemap_priority
                        pid = 26
                        recursive = 2
                        url {
@@ -108,7 +110,7 @@ The :php:`GeorgRinger\News\Seo\NewsXmlSitemapDataProvider` provides the same fea
  :php:`RecordsXmlSitemapDataProvider` but with some additional ones on top:
 
 - If you are using the feature to define the detail page through the field
-*Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
+  *Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
 - If you are need urls containing day, month or year information
 - Setting `excludedTypes` to exclude certain news types from the sitemap
 - Setting `googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
@@ -216,8 +218,8 @@ Hreflang on news detail pages
 -----------------------------
 If using languages with the language mode `strict`, the hreflang tag must only be generated if the according news record is translated as well!
 
-.. Info::
-        This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
+.. note::
+   This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
 
 EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
 

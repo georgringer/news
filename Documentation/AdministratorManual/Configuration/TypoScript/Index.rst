@@ -76,6 +76,8 @@ orderBy
    Description
          Define the sorting of displayed news records.
          The chapter ":ref:`Extend news > Extend flexforms <extendFlexforms>`" shows how the select box can be extended.
+   Default
+         'datetime'
 
 .. _tsOrderDirection:
 
@@ -93,6 +95,8 @@ orderDirection
          ::
 
             plugin.tx_news.settings.orderDirection = asc
+   Default
+         'desc'
 
 .. _tsDateField:
 
@@ -106,6 +110,8 @@ dateField
          string
    Description
          The date menu builds a menu by year and month and the given news records. The menu can either be built by using the date field or the archive field.
+   Default
+         'datetime'
 
 .. _tsCategories:
 
@@ -125,7 +131,11 @@ categories
             plugin.tx_news.settings.categories = 1,2,3
 
          .. caution::
+
             Don't forget to set the category mode too! See property below.
+   Default
+         (none)
+
 
 .. _tsCategoryConjunction:
 
@@ -164,6 +174,8 @@ categoryConjunction
          ::
 
             plugin.tx_news.settings.categoryConjunction = or
+   Default
+         0 (Don't care, show all)
 
 .. _tsIncludeSubCategories:
 
@@ -181,6 +193,9 @@ includeSubCategories
          ::
 
             plugin.tx_news.settings.includeSubCategories = 1
+
+   Default
+         0
 
 .. _tsArchiveRestriction:
 
@@ -208,6 +223,8 @@ archiveRestriction
          All news records with an archive date in the past are shown.
 
          .. hint:: Records with no archive date aren't shown in any of the selected modes.
+   Default
+         (none)
 
 .. _tsTimeRestriction:
 
@@ -242,6 +259,8 @@ timeRestriction
          - -10 months 3 days 2 hours
 
          Words need to be in English and are translated by using `strtotime <http://de.php.net/strtotime>`_ .
+   Default
+         (none)
 
 .. _tsTimeRestrictionHigh:
 
@@ -255,6 +274,8 @@ timeRestrictionHigh
          string
    Description
          See timeRestriction_ above. The configuration is the same but for the higher time end.
+   Default
+         (none)
 
 .. _tsTopNewsRestriction:
 
@@ -280,6 +301,8 @@ topNewsRestriction
          **2: Except Top News records**
 
          Only news records which don't have the checkbox set are shown.
+   Default
+      (none)
 
 .. _tsSingleNews:
 
@@ -297,6 +320,8 @@ singleNews
             plugin.tx_news.settings.singleNews =789
 
          It is possible to show a specific news record in the Detail view if the uid is set with this property.
+   Default
+      (none)
 
 .. _tsPreviewHiddenRecords:
 
@@ -318,6 +343,9 @@ previewHiddenRecords
          .. note:: Be aware to secure the page (e.g. using a TS condition to make it available only if an BE user is logged in) as this page could be called by anyone using any news record uid to see its content.
 
          .. note:: If set, any hidden records on the current page are shown as well!
+   Default
+      (no preview)
+
 
 .. _tsStartingpoint:
 
@@ -335,6 +363,8 @@ startingpoint
             plugin.tx_news.settings.startingpoint =12,345
 
          If a startingpoint is set, all news records which are saved on one of the selected pages are shown, otherwise news of all pages are shown.
+   Default
+         (none)
 
 .. _tsRecursive:
 
@@ -351,6 +381,8 @@ recursive
             plugin.tx_news.settings.recursive = 2
 
          The search for pages as startingpoint can be extended by setting a recursive level.
+   Default
+         (No recursion)
 
 .. _tsDetailPid:
 
@@ -370,6 +402,8 @@ detailPid
          This page is uses as target for the detail view. If nothing set, the current page is used.
 
          .. hint:: Be aware that this setting might not be used, depending on the setting detailPidDetermination_.
+   Default
+         (none)
 
 .. _tsListPid:
 
@@ -387,6 +421,8 @@ listPid
             plugin.tx_news.settings.listPid =12
 
          This page is uses as target for the listings, e.g. the date menu and the Search form.
+   Default
+         (none)
 
 .. _tsBackPid:
 
@@ -404,6 +440,8 @@ backPid
             plugin.tx_news.settings.backPid =12
 
          Define a page for the detail view to return to. This is typically the page on which the list view can be found.
+   Default
+         (none)
 
 .. _tsLimit:
 
@@ -421,6 +459,8 @@ limit
             plugin.tx_news.settings.limit =10
 
          Define the maximum records shown.
+   Default
+         (none)
 
 .. _tsOffset:
 
@@ -438,6 +478,8 @@ offset
             plugin.tx_news.settings.offset = 3
 
          Define the offset. If set to e.g. 2, the first 2 records are not shown. This is especially useful in combination with multiple plugins on the same page and the setting “Max records displayed”.
+   Default
+         (none)
 
 .. _tsTags:
 
@@ -451,6 +493,8 @@ tags
          string
    Description
          Add a constraint to the given tags
+   Default
+         (none)
 
 .. _tsHidePagination:
 
@@ -464,6 +508,8 @@ hidePagination
          boolean
    Description
          If defined, the pagination is not shown.
+   Default
+         0 (do not hide)
 
 .. _tsListPaginateItemsPerPage:
 
@@ -477,6 +523,8 @@ list.paginate.itemsPerPage
          int
    Description
          Define the amount of news items shown per page in the pagination.
+   Default
+         10
 
 .. _tsTopNewsFirst:
 
@@ -494,6 +542,8 @@ topNewsFirst
             plugin.tx_news.settings.topNewsFirst =1
 
          If set, news records with the checkbox **"Top News"** are shown before the others, no matter which sorting configuration is used.
+   Default
+         0 (Do not show top news first)
 
 .. _tsExcludeAlreadyDisplayedNews:
 
@@ -513,6 +563,8 @@ excludeAlreadyDisplayedNews
          If checked, news items which are already rendered are excluded in the current plugin.
          **To exclude news items, the viewHelper <n:excludeDisplayedNews newsItem="{newsItem}" /> needs to be added to the template.**
          .. note:: The order of rendering in the frontend is essential as the information which news record is shown and should not be included anymore is fetched during runtime.
+   Default
+         0 (Do not exclude)
 
 .. _tsDisableOverrideDemand:
 
@@ -530,6 +582,8 @@ disableOverrideDemand
             plugin.tx_news.settings.disableOverrideDemand =1
 
          If set, the settings of the plugin can't be overridden by arguments in the URL. The override is used, e.g. to show only news of a given category (category given in the URL).
+   Default
+         1 (Disable override)
 
 .. _tsMediaMaxWidth:
 
@@ -543,6 +597,8 @@ media.maxWidth
          int
    Description
          Maximum width of assets
+   Default
+         (none)
 
 .. _tsMediaMaxHeight:
 
@@ -556,6 +612,8 @@ media.maxHeight
          int
    Description
          Maximum height of assets
+   Default
+         (none)
 
 .. _tsCropMaxCharacters:
 
@@ -572,6 +630,8 @@ cropMaxCharacters
             plugin.tx_news.settings.cropMaxCharacters =100
 
          Define the maximum length of the teaser text before it is cropped.
+   Default
+         (do not crop)
 
 .. _tsTemplateLayout:
 
@@ -591,6 +651,8 @@ templateLayout
          Select different layouts. See :ref:`this section <tsconfigTemplateLayouts>` how to add layouts.
 
          .. note:: Template variants need to be supported by the templates, otherwise this setting doesn't change anything!
+   Default
+         (none, use default)
 
 General settings
 ----------------
@@ -714,7 +776,8 @@ overrideFlexformSettingsIfEmpty
          Therefore you can define those settings which's value should be taken from TypoScript if nothing
          is set in the plugin.
    Default
-         cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
+         cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint
+         ,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
 
 .. _tsDisplayDummyIfNoMedia:
 
@@ -806,7 +869,8 @@ hideIdList
                   data = GP:tx_news_pi1|news
                }
             }
-
+    Default
+         (none)
 
 .. _tsOrderByAllowed:
 
@@ -1071,7 +1135,7 @@ detail.errorHandling
    Description
          If no news entry is found, it is possible to use various types of error handling.
 
-         - **showStandaloneTemplate**: A template is rendered. The syntax is `showStandaloneTemplate,<path>,<errorCode>`, e.g. `showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
+         - **showStandaloneTemplate**: A template is rendered. The syntax is `showStandaloneTemplate,<path>,<errorCode>`, e.g. `showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404`
          - **redirectToListView**: This will redirect to the list view on the same page.
          - **redirectToPage**: Redirect to any page by using the syntax redirectToPage,<pageid>,<status>. This means e.g. redirectToPage,123,404 to redirect to the page with UID 123 and error code 404.
          - **pageNotFoundHandler**: The default page not found handler will be called.
@@ -1303,7 +1367,7 @@ search.fields
         teaser,title,bodytext
 
 search.splitSearchWord
-"""""""""""""
+""""""""""""""""""""""
 
 .. container:: table-row
 
@@ -1317,7 +1381,7 @@ search.splitSearchWord
         As an example: Searching for *hello world* will give you as result also the news item with the title `hello the world`. The search terms must be found in the same field, which means that a news item with the world *hello* in the `title` and the word *world* in the bodytext won\'t be found.
 
         .. hint::
-        If you need a better search experience, think about using something like EXT:solr!
+           If you need a better search experience, think about using something like EXT:solr!
    Default
         0
 
