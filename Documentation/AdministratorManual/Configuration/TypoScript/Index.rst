@@ -712,11 +712,9 @@ cssFile
    Data type
          string
    Description
-         Description of the property
+         Path to the css file. This is included with the Layouts.
    Default
          Default value (if any). Leave out entirely if not defined.
-
-Path to the css file. This is included with the Layouts.
 
 .. _tsFormat:
 
