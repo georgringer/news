@@ -151,8 +151,8 @@ class ImportController extends ActionController
     /**
      * @return ResourceFactory
      */
-    protected function getResourceFactory()
+    protected function getResourceFactory(): ResourceFactory
     {
-        return ResourceFactory::getInstance();
+        return GeneralUtility::makeInstance(ResourceFactory);
     }
 }
