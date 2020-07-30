@@ -153,6 +153,6 @@ class ImportController extends ActionController
      */
     protected function getResourceFactory(): ResourceFactory
     {
-        return GeneralUtility::makeInstance(ResourceFactory);
+        return GeneralUtility::makeInstance(ResourceFactory::class);
     }
 }
