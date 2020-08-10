@@ -8,95 +8,16 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for domain repository categoryRepository
  *
  */
-class CategoryRepositoryTest extends UnitTestCase
+class CategoryRepositoryTest extends BaseTestCase
 {
-
-    /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-    protected $objectManager;
-
-    /**
-     * @var array
-     */
-    private $backupGlobalVariables;
-
-    public function setUp()
-    {
-        $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-        $this->backupGlobalVariables = [
-            'BE_USER' => $GLOBALS['BE_USER'],
-            'TSFE' => $GLOBALS['TSFE'],
-        ];
-    }
-
-    public function tearDown()
-    {
-        foreach ($this->backupGlobalVariables as $key => $data) {
-            $GLOBALS[$key] = $data;
-        }
-        unset($this->backupGlobalVariables);
-    }
-
-    /**
-     * @test
-     */
-    public function correctSysLanguageIsReturnedUsingTsfe()
-    {
-        $objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
-        $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
-        $result = $mockTemplateParser->_call('getSysLanguageUid');
-
-        // Default value
-        $this->assertEquals(0, $result);
-
-        if (!is_object($GLOBALS['TSFE'])) {
-            $vars = [];
-            $type = 1;
-            $GLOBALS['TSFE'] = new \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController($vars, 123, $type);
-        }
-        $GLOBALS['TSFE']->sys_language_content = 9;
-
-        $result = $mockTemplateParser->_call('getSysLanguageUid');
-        $this->assertEquals(9, $result);
-    }
-
-    /**
-     * @test
-     */
-    public function correctSysLanguageIsReturnedUsingGetAndPostRequest()
-    {
-        /** @var \GeorgRinger\News\Domain\Repository\CategoryRepository $mockedCategoryRepository */
-        if (version_compare(TYPO3_branch, '6.2', '>=')) {
-            $objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
-            $mockedCategoryRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
-        } else {
-            $mockedCategoryRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy']);
-        }
-        unset($GLOBALS['TSFE']);
-
-        // Default value
-        $result = $mockedCategoryRepository->_call('getSysLanguageUid');
-        $this->assertEquals(0, $result);
-
-        // GET
-        $_GET['L'] = 11;
-        $result = $mockedCategoryRepository->_call('getSysLanguageUid');
-        $this->assertEquals(11, $result);
-
-        // POST
-        $_POST['L'] = 13;
-        $result = $mockedCategoryRepository->_call('getSysLanguageUid');
-        $this->assertEquals(13, $result);
-
-        // POST overrules GET
-        $_GET['L'] = 15;
-        $this->assertEquals(13, $result);
-    }
 
     /**
      * Test if category ids are replaced
@@ -108,12 +29,7 @@ class CategoryRepositoryTest extends UnitTestCase
      */
     public function categoryIdsAreCorrectlyReplaced($expectedResult, $given)
     {
-        if (version_compare(TYPO3_branch, '6.2', '>=')) {
-            $objectManager = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Object\\ObjectManagerInterface')->getMock();
-            $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy'], [$objectManager]);
-        } else {
-            $mockTemplateParser = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository', ['dummy']);
-        }
+        $mockTemplateParser = $this->getAccessibleMock(CategoryRepository::class, ['dummy'], [], '', false);
 
         $result = $mockTemplateParser->_call('replaceCategoryIds', $given['idList'], $given['toBeChanged']);
 
@@ -125,7 +41,7 @@ class CategoryRepositoryTest extends UnitTestCase
      *
      * @return array
      */
-    public function categoryIdsAreCorrectlyReplacedDataProvider()
+    public function categoryIdsAreCorrectlyReplacedDataProvider(): array
     {
         return [
             'emptyRows' => [

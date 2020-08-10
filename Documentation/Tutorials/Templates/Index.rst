@@ -13,6 +13,7 @@ Templates
 	:maxdepth: 5
 	:titlesonly:
 
+	OverwriteDemandInFrontend/Index
 	RenderInColumns/Index
 	RenderContentElements/Index
 	GroupNewsRecords/Index

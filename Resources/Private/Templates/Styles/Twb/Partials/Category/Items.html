@@ -4,9 +4,9 @@
 	<f:for each="{categories}" as="category">
 		<f:if condition="{category.shortcut}">
 			<f:then>
-				<f:link.page pageUid="{category.shortcut}">
+				<f:link.typolink parameter="{category.shortcut}">
 					{category.title}
-				</f:link.page>
+				</f:link.typolink>
 			</f:then>
 			<f:else>
 				{category.title}

@@ -1,25 +1,74 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-if (version_compare(TYPO3_branch, '9.2', '>=')) {
-    foreach (['hidden', 'editlock', 'istopnews'] as $field) {
-        $GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$field]['config']['renderType'] = 'checkboxToggle';
-        $GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$field]['config']['items'] = [
-            [
-                0 => '',
-                1 => '',
-            ]
-        ];
+$boot = static function () {
+    // Remove TCA settings for version 10 to avoid entries in TCA migration check
+    if (\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class)->getMajorVersion() === 10) {
+        foreach (['link', 'news', 'tag'] as $tableSuffix) {
+            unset($GLOBALS['TCA']['tx_news_domain_model_' . $tableSuffix]['interface']['showRecordFieldList']);
+        }
     }
 
-    $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['path_segment']['config'] = [
-        'type' => 'slug',
-        'size' => 50,
-        'generatorOptions' => [
-            'fields' => ['title']
-        ],
-        'fallbackCharacter' => '-',
-        'eval' => 'uniqueInSite',
-        'default' => ''
-    ];
-}
+    // Add seo sitemap fields
+    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('seo')) {
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
+            'tx_news_domain_model_news',
+            [
+                'sitemap_changefreq' => [
+                    'config' => [
+                        'items' => [
+                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.none', ''],
+                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.always', 'always'],
+                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.hourly', 'hourly'],
+                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.daily', 'daily'],
+                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.weekly', 'weekly'],
+                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.monthly', 'monthly'],
+                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.yearly', 'yearly'],
+                            ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.never', 'never']
+                        ],
+                        'renderType' => 'selectSingle',
+                        'type' => 'select'
+                    ],
+                    'exclude' => true,
+                    'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq'
+                ],
+                'sitemap_priority' => [
+                    'config' => [
+                        'items' => [
+                            ['0.0', '0.0'],
+                            ['0.1', '0.1'],
+                            ['0.2', '0.2'],
+                            ['0.3', '0.3'],
+                            ['0.4', '0.4'],
+                            ['0.5', '0.5'],
+                            ['0.6', '0.6'],
+                            ['0.7', '0.7'],
+                            ['0.8', '0.8'],
+                            ['0.9', '0.9'],
+                            ['1.0', '1.0']
+                        ],
+                        'renderType' => 'selectSingle',
+                        'type' => 'select',
+                    ],
+                    'exclude' => true,
+                    'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_priority'
+                ]
+            ]
+        );
+
+        $GLOBALS['TCA']['tx_news_domain_model_news']['palettes']['sitemap'] = [
+            'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.palettes.sitemap',
+            'showitem' => 'sitemap_changefreq,sitemap_priority'
+        ];
+
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+            'tx_news_domain_model_news',
+            '--palette--;;sitemap',
+            0,
+            'after:alternative_title'
+        );
+    }
+};
+
+$boot();
+unset($boot);

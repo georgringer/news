@@ -8,30 +8,32 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Lang\LanguageService;
+
+use GeorgRinger\News\Hooks\PageLayoutView;
+use GeorgRinger\News\Utility\TemplateLayout;
+use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for PageLayoutView
  *
  */
-class PageLayoutViewTest extends UnitTestCase
+class PageLayoutViewTest extends BaseTestCase
 {
 
-    /** @var AccessibleMockObjectInterface */
+    /** @var PageLayoutView|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $pageLayoutView;
 
-    public function setUp()
+    public function setup(): void
     {
         parent::setUp();
 
-        $languageService = $this->getAccessibleMock(LanguageService::class, ['sL']);
+        $languageService = $this->getAccessibleMock(LanguageService::class, ['sl'], [], '', false, false);
         $languageService->expects($this->any())->method('sL')->will($this->returnValue('any language'));
 
         $GLOBALS['LANG'] = $languageService;
 
-        $this->pageLayoutView = $this->getAccessibleMock('GeorgRinger\\News\\Hooks\\PageLayoutView', ['dummy']);
+        $this->pageLayoutView = $this->getAccessibleMock(PageLayoutView::class, ['dummy'], [], '', false);
         $this->pageLayoutView->_set('databaseConnection', $this->getMockBuilder('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection')->setMethods(['exec_SELECTquery', 'exec_SELECTgetRows'])->getMock());
     }
 
@@ -192,7 +194,7 @@ class PageLayoutViewTest extends UnitTestCase
     public function getTemplateLayoutSettingsAddsValueIfFilled()
     {
         $flexform = [];
-        $mockedTemplateLayout = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TemplateLayout', ['getAvailableTemplateLayouts']);
+        $mockedTemplateLayout = $this->getAccessibleMock(TemplateLayout::class, ['getAvailableTemplateLayouts']);
 
         $mockedTemplateLayout->expects($this->once())->method('getAvailableTemplateLayouts')->will($this->returnValue([['bar', 'fo']]));
 

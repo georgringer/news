@@ -109,19 +109,19 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Category>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $categories;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $related;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedFrom;
 
@@ -129,13 +129,13 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Fal related files
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $falRelatedFiles;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedLinks;
 
@@ -158,7 +158,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Fal media items
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $falMedia;
 
@@ -166,7 +166,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Fal media items with showinpreview set
      *
      * @var array
-     * @transient
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
      */
     protected $falMediaPreviews;
 
@@ -174,7 +174,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Fal media items with showinpreview not set
      *
      * @var array
-     * @transient
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Transient
      */
     protected $falMediaNonPreviews;
 
@@ -195,13 +195,13 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\TtContent>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $contentElements;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Tag>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $tags;
 
@@ -405,7 +405,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getYearOfArchive()
     {
-        return $this->getArchive()->format('Y');
+        if ($this->getArchive()) {
+            return $this->getArchive()->format('Y');
+        }
     }
 
     /**
@@ -415,7 +417,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMonthOfArchive()
     {
-        return $this->getArchive()->format('m');
+        if ($this->getArchive()) {
+            return $this->getArchive()->format('m');
+        }
     }
 
     /**
@@ -425,7 +429,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getDayOfArchive()
     {
-        return (int)$this->archive->format('d');
+        if ($this->archive) {
+            return (int)$this->archive->format('d');
+        }
     }
 
     /**
@@ -471,7 +477,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get categories
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Category>
+     * @return \GeorgRinger\News\Domain\Model\Category[]
      */
     public function getCategories()
     {
@@ -517,7 +523,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get related news
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
+     * @return \GeorgRinger\News\Domain\Model\News[]
      */
     public function getRelated()
     {
@@ -527,7 +533,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set related from
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News> $relatedFrom
+     * @param \GeorgRinger\News\Domain\Model\News[] $relatedFrom
      */
     public function setRelatedFrom($relatedFrom)
     {
@@ -537,7 +543,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get related from
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
+     * @return \GeorgRinger\News\Domain\Model\News[]
      */
     public function getRelatedFrom()
     {
@@ -618,7 +624,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get related links
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link>
+     * @return \GeorgRinger\News\Domain\Model\Link[]
      */
     public function getRelatedLinks()
     {
@@ -628,7 +634,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get FAL related files
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
+     * @return \GeorgRinger\News\Domain\Model\FileReference[]
      */
     public function getFalRelatedFiles()
     {
@@ -671,7 +677,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set related links
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link> $relatedLinks related links relation
+     * @param \GeorgRinger\News\Domain\Model\Link[] $relatedLinks related links relation
      */
     public function setRelatedLinks($relatedLinks)
     {
@@ -824,6 +830,17 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getMediaListOnly()
     {
         $configuration = [FileReference::VIEW_LIST_ONLY];
+        return $this->getMediaItemsByConfiguration($configuration);
+    }
+
+    /**
+     * Get all media elements which are only for detail views
+     *
+     * @return array
+     */
+    public function getMediaDetailOnly()
+    {
+        $configuration = [FileReference::VIEW_DETAIL_ONLY];
         return $this->getMediaItemsByConfiguration($configuration);
     }
 
@@ -997,7 +1014,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $contentElements = $this->getContentElements();
         if ($contentElements) {
             foreach ($this->getContentElements() as $contentElement) {
-                $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
+                if ($contentElement->getColPos() >= 0) {
+                    $idList[] = $original ? $contentElement->getUid() : $contentElement->_getProperty('_localizedUid');
+                }
             }
         }
         return implode(',', $idList);
@@ -1310,7 +1329,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getYearOfStarttime()
     {
-        return $this->getStarttime()->format('Y');
+        if ($this->getStarttime()) {
+            return $this->getStarttime()->format('Y');
+        }
     }
 
     /**
@@ -1320,7 +1341,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMonthOfStarttime()
     {
-        return $this->getStarttime()->format('m');
+        if ($this->getStarttime()) {
+            return $this->getStarttime()->format('m');
+        }
     }
 
     /**
@@ -1330,7 +1353,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getDayOfStarttime()
     {
-        return (int)$this->starttime->format('d');
+        if ($this->starttime) {
+            return (int)$this->starttime->format('d');
+        }
     }
 
     /**
@@ -1360,7 +1385,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getYearOfEndtime()
     {
-        return $this->getEndtime()->format('Y');
+        if ($this->getEndtime()) {
+            return $this->getEndtime()->format('Y');
+        }
     }
 
     /**
@@ -1370,7 +1397,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getMonthOfEndtime()
     {
-        return $this->getEndtime()->format('m');
+        if ($this->getEndtime()) {
+            return $this->getEndtime()->format('m');
+        }
     }
 
     /**
@@ -1380,7 +1409,9 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getDayOfEndtime()
     {
-        return (int)$this->endtime->format('d');
+        if ($this->endtime) {
+            return (int)$this->endtime->format('d');
+        }
     }
 
     /**
@@ -1492,9 +1523,8 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $this->getFirstPreview();
     }
 
-    public function getFalMediaNonPreviews() {
+    public function getFalMediaNonPreviews()
+    {
         return $this->getMediaNonPreviews();
     }
-
-
 }

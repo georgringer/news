@@ -8,10 +8,10 @@ namespace GeorgRinger\News\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to get the target out of the typolink
@@ -19,13 +19,13 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * # Example: Basic Example
  * # Description: {relatedLink.uri} is defined as "123 _blank"
  * <code>
- * <f:link.page pageUid="{relatedLink.uri}" target="{n:targetLink(link:relatedLink.uri)}">Link</Link>
+ * <f:link.typolink parameter="{relatedLink.uri}" target="{n:targetLink(link:relatedLink.uri)}">Link</f:link.typolink>
  * </code>
  * <output>
  * A link to the page with uid 123 and target set to "_blank"
  * </output>
  */
-class TargetLinkViewHelper extends AbstractViewHelper implements CompilableInterface
+class TargetLinkViewHelper extends AbstractViewHelper implements ViewHelperInterface
 {
     use CompileWithRenderStatic;
 

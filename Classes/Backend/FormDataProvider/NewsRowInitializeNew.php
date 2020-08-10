@@ -8,8 +8,10 @@ namespace GeorgRinger\News\Backend\FormDataProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Utility\EmConfiguration;
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Fill the news records with default values
@@ -22,7 +24,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
 
     public function __construct()
     {
-        $this->emConfiguration = EmConfiguration::getSettings();
+        $this->emConfiguration = GeneralUtility::makeInstance(EmConfiguration::class);
     }
 
     /**
@@ -54,7 +56,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
             $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
         }
 
-        if (is_array($result['pageTsConfig']['tx_news.'])
+        if (isset($result['pageTsConfig']['tx_news.']['predefine.'])
             && is_array($result['pageTsConfig']['tx_news.']['predefine.'])
         ) {
             if (isset($result['pageTsConfig']['tx_news.']['predefine.']['author']) && (int)$result['pageTsConfig']['tx_news.']['predefine.']['author'] === 1) {
@@ -80,7 +82,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
      */
     protected function setTagListingId(array $result)
     {
-        if (!is_array($result['pageTsConfig']['tx_news.']) || !isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
+        if (!isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
             return $result;
         }
         $tagPid = (int)$result['pageTsConfig']['tx_news.']['tagPid'];

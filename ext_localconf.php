@@ -28,17 +28,7 @@ $boot = function () {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
         \GeorgRinger\News\Hooks\DataHandler::class;
 
-    // FormEngine: Rendering of fields
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getSingleFieldClass']['news'] =
-        \GeorgRinger\News\Hooks\FormEngine::class;
-
-    // FormEngine: Rendering of the whole FormEngine
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms.php']['getMainFieldsClass']['news'] =
-        \GeorgRinger\News\Hooks\FormEngine::class;
-
     // Modify flexform values
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_befunc.php']['getFlexFormDSClass']['news'] =
-        \GeorgRinger\News\Hooks\BackendUtility::class;
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing']['news']
         = \GeorgRinger\News\Hooks\BackendUtility::class;
 
@@ -52,14 +42,12 @@ $boot = function () {
         ],
     ];
 
-    // Hide content elements in page module & filter in administration module
-    if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9002000) {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
-            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
-    } else {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['buildQueryParameters'][]
-            = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
-    }
+    // Hide content elements in list module & filter in administration module
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
+        = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
+
+    // Hide content elements in page module
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Backend\View\PageLayoutView::class]['modifyQuery'][] = \GeorgRinger\News\Hooks\Backend\PageViewQueryHook::class;
 
     // Inline records hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] =
@@ -101,11 +89,6 @@ $boot = function () {
     /* ===========================================================================
         Hooks
     =========================================================================== */
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['news'] =
-            \GeorgRinger\News\Hooks\RealUrlAutoConfiguration::class . '->addNewsConfig';
-    }
-
     // Register cache frontend for proxy class generation
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news'] = [
         'frontend' => \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend::class,
@@ -119,16 +102,22 @@ $boot = function () {
         ]
     ];
 
+    if (class_exists(\GeorgRinger\News\Utility\ClassLoader::class)) {
+        \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
+    }
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][] =
+        \GeorgRinger\News\Utility\ClassCacheManager::class . '->reBuild';
+
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = [
         'depends' => [
             \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew::class,
         ]
     ];
-    \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
 
     if (TYPO3_MODE === 'BE') {
         $icons = [
             'apps-pagetree-folder-contains-news' => 'ext-news-folder-tree.svg',
+            'apps-pagetree-page-contains-news' => 'ext-news-page-tree.svg',
             'ext-news-wizard-icon' => 'plugin_wizard.svg',
             'ext-news-type-default' => 'news_domain_model_news.svg',
             'ext-news-type-internal' => 'news_domain_model_news_internal.svg',
@@ -142,24 +131,40 @@ $boot = function () {
         ];
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         foreach ($icons as $identifier => $path) {
-            $iconRegistry->registerIcon(
-                $identifier,
-                \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-                ['source' => 'EXT:news/Resources/Public/Icons/' . $path]
-            );
+            if (!$iconRegistry->isRegistered($identifier)) {
+                $iconRegistry->registerIcon(
+                    $identifier,
+                    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+                    ['source' => 'EXT:news/Resources/Public/Icons/' . $path]
+                );
+            }
         }
     }
 
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('dd_googlesitemap')) {
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['dd_googlesitemap']['sitemap']['txnews']
-            = \GeorgRinger\News\Hooks\TxNewsSitemapGenerator::class . '->main';
-    }
-
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \GeorgRinger\News\Command\NewsImportCommandController::class;
-
+    // Slug helpers
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['realurlAliasNewsSlug']
+        = \GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater::class; // Recommended before 'newsSlug'
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['newsSlug']
         = \GeorgRinger\News\Updates\NewsSlugUpdater::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sysCategorySlugs']
+        = \GeorgRinger\News\Updates\PopulateCategorySlugs::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsTagSlugs']
+        = \GeorgRinger\News\Updates\PopulateTagSlugs::class;
 
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1552726986] = [
+        'nodeName' => 'NewsStaticText',
+        'priority' => 70,
+        'class' => \GeorgRinger\News\Backend\FieldInformation\StaticText::class
+    ];
+
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
+    config.pageTitleProviders {
+        news {
+            provider = GeorgRinger\News\Seo\NewsTitleProvider
+            before = altPageTitle,record,seo
+        }
+    }
+'));
 };
 
 $boot();

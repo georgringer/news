@@ -21,17 +21,18 @@ CREATE TABLE tx_news_domain_model_news (
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
 	l10n_diffsource mediumtext,
+	l10n_source int(11) DEFAULT '0' NOT NULL,
 	deleted tinyint(4) DEFAULT '0' NOT NULL,
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,
 	fe_group varchar(100) DEFAULT '0' NOT NULL,
-	title tinytext,
+	title varchar(255) DEFAULT '' NOT NULL,
 	teaser text,
 	bodytext mediumtext,
-	datetime int(11) DEFAULT '0' NOT NULL,
-	archive int(11) DEFAULT '0' NOT NULL,
+	datetime bigint(20) DEFAULT '0' NOT NULL,
+	archive bigint(20) DEFAULT '0' NOT NULL,
 	author tinytext,
 	author_email tinytext,
 	categories int(11) DEFAULT '0' NOT NULL,
@@ -53,6 +54,8 @@ CREATE TABLE tx_news_domain_model_news (
 	path_segment varchar(2048),
 	alternative_title tinytext,
 	notes text,
+	sitemap_changefreq varchar(10) DEFAULT '' NOT NULL,
+	sitemap_priority decimal(2,1) DEFAULT '0.5' NOT NULL,
 
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
@@ -60,6 +63,7 @@ CREATE TABLE tx_news_domain_model_news (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY sys_language_uid_l10n_parent (sys_language_uid,l10n_parent),
+	KEY path_segment (path_segment(185), uid),
 	KEY import (import_id,import_source)
 );
 
@@ -81,6 +85,7 @@ CREATE TABLE sys_category (
 	seo_description text,
 	seo_headline varchar(255) NOT NULL DEFAULT '',
 	seo_text text,
+	slug varchar(2048),
 
 	KEY import (import_id,import_source)
 );
@@ -123,6 +128,7 @@ CREATE TABLE tx_news_domain_model_link (
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
 	l10n_diffsource mediumtext,
+	l10n_source int(11) DEFAULT '0' NOT NULL,
 	t3ver_oid int(11) DEFAULT '0' NOT NULL,
 	t3ver_id int(11) DEFAULT '0' NOT NULL,
 	t3_origuid int(11) DEFAULT '0' NOT NULL,
@@ -160,6 +166,7 @@ CREATE TABLE tx_news_domain_model_tag (
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
 	l10n_diffsource mediumtext,
+	l10n_source int(11) DEFAULT '0' NOT NULL,
 	t3ver_oid int(11) DEFAULT '0' NOT NULL,
 	t3ver_id int(11) DEFAULT '0' NOT NULL,
 	t3_origuid int(11) DEFAULT '0' NOT NULL,
@@ -171,6 +178,7 @@ CREATE TABLE tx_news_domain_model_tag (
 	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
 	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
 	title tinytext,
+	slug varchar(2048),
 	seo_title varchar(255) NOT NULL DEFAULT '',
 	seo_description text,
 	seo_headline varchar(255) NOT NULL DEFAULT '',

@@ -3,31 +3,22 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Updates;
 
-/*
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+/**
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
  */
-
 use GeorgRinger\News\Service\SlugService;
-use GeorgRinger\News\Service\Transliterator\Transliterator;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Install\Updates\AbstractUpdate;
+use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 /**
  * Migrate empty slugs
  */
-class NewsSlugUpdater extends AbstractUpdate
+class NewsSlugUpdater implements UpgradeWizardInterface
 {
-
     const TABLE = 'tx_news_domain_model_news';
 
     /** @var SlugService */
@@ -36,6 +27,26 @@ class NewsSlugUpdater extends AbstractUpdate
     public function __construct()
     {
         $this->slugService = GeneralUtility::makeInstance(SlugService::class);
+    }
+
+    public function executeUpdate(): bool
+    {
+        $this->slugService->performUpdates();
+        return true;
+    }
+
+    public function updateNecessary(): bool
+    {
+        $elementCount = $this->slugService->countOfSlugUpdates();
+
+        return $elementCount > 0;
+    }
+
+    public function getPrerequisites(): array
+    {
+        return [
+            DatabaseUpdatedPrerequisite::class
+        ];
     }
 
     /**
@@ -48,40 +59,21 @@ class NewsSlugUpdater extends AbstractUpdate
         return 'Updates slug field "path_segment" of EXT:news records';
     }
 
-
     /**
-     * Checks if an update is needed
+     * Get description
      *
-     * @param string &$description The description for the update
-     * @return bool Whether an update is needed (TRUE) or not (FALSE)
+     * @return string Longer description of this updater
      */
-    public function checkForUpdate(&$description)
+    public function getDescription(): string
     {
-        if ($this->isWizardDone()) {
-            return false;
-        }
-        $elementCount = $this->slugService->countOfSlugUpdates();
-        if ($elementCount) {
-            $description = sprintf('%s news records need to be updated', $elementCount);
-        }
-        return (bool)$elementCount;
+        return 'Fills empty slug field "path_segment" of EXT:news records with urlized title.';
     }
 
     /**
-     * Performs the database update
-     *
-     * @param array &$databaseQueries Queries done in this update
-     * @param string &$customMessage Custom message
-     * @return bool
+     * @return string Unique identifier of this updater
      */
-    public function performUpdate(array &$databaseQueries, &$customMessage)
+    public function getIdentifier(): string
     {
-        $queries = $this->slugService->performUpdates();
-        foreach ($queries as $query) {
-            $databaseQueries[] = $query;
-        }
-        $this->markWizardAsDone();
-        return true;
+        return 'newsSlug';
     }
-
 }

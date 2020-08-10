@@ -1,6 +1,8 @@
 <?php
 namespace GeorgRinger\News\Domain\Model;
 
+use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -66,13 +68,13 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @var \GeorgRinger\News\Domain\Model\Category
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $parentcategory;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $images;
 
@@ -121,6 +123,9 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $seoText;
+
+    /** @var string */
+    protected $slug;
 
     /**
      * Initialize images
@@ -321,7 +326,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
+     * @return \GeorgRinger\News\Domain\Model\FileReference[]
      */
     public function getImages()
     {
@@ -370,7 +375,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getParentcategory()
     {
-        return $this->parentcategory;
+        return $this->parentcategory instanceof LazyLoadingProxy ? $this->parentcategory->_loadRealInstance() : $this->parentcategory;
     }
 
     /**
@@ -565,5 +570,21 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setSeoText($seoText)
     {
         $this->seoText = $seoText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }

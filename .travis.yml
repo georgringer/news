@@ -3,12 +3,21 @@ language: php
 matrix:
   fast_finish: true
   include:
-    - php: 7.1
-      env: TYPO3_VERSION=^8
-    - php: 7.0
-      env: TYPO3_VERSION=^8
     - php: 7.2
-      env: TYPO3_VERSION=^9
+      env: TYPO3_VERSION=^9 TESTING_FRAMEWORK=^4 FUNCTIONALS=1 COVERAGE=1
+    - php: 7.3
+      env: TYPO3_VERSION=^9 TESTING_FRAMEWORK=^4 FUNCTIONALS=1 COVERAGE=0
+    - php: 7.2
+      env: TYPO3_VERSION=^10 TESTING_FRAMEWORK=^5 FUNCTIONALS=1 COVERAGE=0
+    - php: 7.3
+      env: TYPO3_VERSION=^10 TESTING_FRAMEWORK=^5 FUNCTIONALS=1 COVERAGE=0
+    - php: 7.4
+      env: TYPO3_VERSION=^9 TESTING_FRAMEWORK=^4 FUNCTIONALS=1 COVERAGE=0
+    - php: 7.4
+      env: TYPO3_VERSION=^10 TESTING_FRAMEWORK=^5 FUNCTIONALS=1 COVERAGE=0
+services:
+  - mysql
+
 
 sudo: false
 
@@ -21,38 +30,50 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-notifications:
-  slack:
-    secure: Cg6TncMmzvnRADbTNds/zHA1UEs1CaPXJKoZpEtGmnbPSaA+Jgtj9CDqhzjdaGK7t3nSomR4oCmHkrYK4c4sLvC1GjmvtydJ6j2doE72VQrRI2B47vcfhVOJwnGvkALFsVjSONp3ENCuP8pORw8A5b1+i9bFIcr7IsmuRPUyHak=
-    on_success: change
-    on_failure: always
-
 before_install:
   - composer self-update
   - composer --version
 
 before_script:
-  - phpenv config-rm xdebug.ini
-  - composer require typo3/minimal=$TYPO3_VERSION
+  - composer require "typo3/minimal:${TYPO3_VERSION}"
+  - composer require "typo3/testing-framework:${TESTING_FRAMEWORK}"
+  - if [[ "$COVERAGE" == "1" ]]; then composer require "phpunit/phpcov ^5"; fi
+  - mkdir cov
   # Restore composer.json
   - git checkout composer.json
-  - export TYPO3_PATH_WEB=$PWD/.Build/Web
+  # - export TYPO3_PATH_WEB=$PWD/.Build/Web
 
 script:
   - >
-    echo;
-    echo "Running unit tests";
-    .Build/bin/phpunit --colors -c .Build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
-
+    if [[ "$COVERAGE" == "0" ]]; then
+      echo;
+      echo "Running unit tests";
+      .Build/bin/phpunit --colors -c Build/UnitTests.xml Tests/Unit/
+    fi
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      echo "Running unit tests";
+      .Build/bin/phpunit --coverage-php cov/coverage-unit.cov --colors -c Build/UnitTests.xml Tests/Unit/
+    fi
   - >
     echo;
     echo "Running php lint";
     find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
-
   - >
-    echo;
-    export typo3DatabaseName="typo3";
-    export typo3DatabaseHost="localhost";
-    export typo3DatabaseUsername="root";
-    export typo3DatabasePassword="";
-    find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --colors  -c .Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml {}'
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      export typo3DatabaseName="typo3";
+      export typo3DatabaseHost="127.0.0.1";
+      export typo3DatabaseUsername="root";
+      export typo3DatabasePassword="";
+      .Build/bin/phpunit --coverage-php cov/coverage-functional.cov --colors -c Build/FunctionalTests.xml Tests/Functional/
+    fi
+
+after_script:
+  - >
+    if [[ "$COVERAGE" == "1" ]]; then
+      echo;
+      .Build/bin/phpcov merge cov --clover build/logs/clover.xml
+      travis_retry php .Build/bin/php-coveralls -v
+    fi

@@ -24,7 +24,7 @@ namespace GeorgRinger\News\ViewHelpers\Format;
  * </output>
  *
  */
-class NothingViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class NothingViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * @var bool

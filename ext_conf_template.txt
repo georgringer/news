@@ -34,7 +34,10 @@ archiveDate = date
 mediaPreview = false
 
 # cat=records/enable/153; type=boolean; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.advancedMediaPreview
-advancedMediaPreview = true
+advancedMediaPreview = 1
+
+# cat=records/enable/155; type=options[unique=unique,uniqueInSite=uniqueInSite]; label=LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:extmng.slugBehaviour
+slugBehaviour = unique
 
 # Backend module
 

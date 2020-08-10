@@ -18,7 +18,7 @@ Out of the box news comes with three types built in:
 To add your custom type, you have to follow the steps below.
 
 .. note::
-In this example the new type will be called 'myCustomNewsType' and is configured to only show the fields 'title' and 'bodytext'.
+   In this example the new type will be called 'myCustomNewsType' and is configured to only show the fields 'title' and 'bodytext'.
 
 1) Typoscript
 -------------
@@ -74,5 +74,5 @@ Therefore, create the file `Configuration/TCA/Overrides/tx_news_domain_model_new
 	}
 
 .. hint:: This is a very basic example.
-It would also be possible to use your custom news type to show custom fields.
-How to add custom fields to news is documented :ref:`here <proxyClassGenerator>`.
+   It would also be possible to use your custom news type to show custom fields.
+   How to add custom fields to news is documented :ref:`here <proxyClassGenerator>`.

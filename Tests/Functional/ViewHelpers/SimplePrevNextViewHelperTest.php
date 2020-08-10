@@ -1,6 +1,6 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\Functional\ViewHelpers;
+namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -8,12 +8,13 @@ namespace GeorgRinger\News\Tests\Unit\Functional\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
-use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
+use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * Class SimplePrevNextViewHelperTest
@@ -22,7 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class SimplePrevNextViewHelperTest extends FunctionalTestCase
 {
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|AccessibleMockObjectInterface|\GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper */
+    /** @var \GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $mockedViewHelper;
 
     /** @var News */
@@ -31,10 +32,10 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
     protected $coreExtensionsToLoad = ['extbase', 'fluid'];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->mockedViewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['dummy'], [], '', true, true, false);
+        $this->mockedViewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['dummy'], [], '', true, true, false);
 
         $this->news = new News();
         $this->news->setPid(9);

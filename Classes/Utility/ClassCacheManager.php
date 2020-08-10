@@ -7,6 +7,10 @@ namespace GeorgRinger\News\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -16,9 +20,11 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class ClassCacheManager
 {
     /**
-     * @var \TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
+     * Cache instance
+     *
+     * @var PhpFrontend
      */
-    protected $cacheInstance;
+    protected $classCache;
 
     /**
      * @var array
@@ -26,14 +32,19 @@ class ClassCacheManager
     protected $constructorLines = [];
 
     /**
-     * Constructor
-     *
-     * @return self
+     * @param PhpFrontend $classCache
      */
-    public function __construct()
+    public function __construct(PhpFrontend $classCache = null)
     {
-        $classLoader = GeneralUtility::makeInstance(ClassLoader::class);
-        $this->cacheInstance = $classLoader->initializeCache();
+        if ($classCache === null) {
+            $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
+            if (!$cacheManager->hasCache('news')) {
+                $cacheManager->setCacheConfigurations($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']);
+            }
+            $this->classCache = $cacheManager->getCache('news');
+        } else {
+            $this->classCache = $classCache;
+        }
     }
 
     public function reBuild()
@@ -44,7 +55,12 @@ class ClassCacheManager
             throw new \Exception(('The function token_get_all must exist. Please install the module PHP Module Tokenizer'));
         }
 
+        if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
+            return;
+        }
+
         foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'] as $key => $extensionsWithThisClass) {
+            $this->constructorLines = [];
             $extendingClassFound = false;
 
             $path = ExtensionManagementUtility::extPath('news') . $classPath . $key . '.php';
@@ -71,7 +87,7 @@ class ClassCacheManager
             if ($extendingClassFound) {
                 $cacheEntryIdentifier = 'tx_news_' . strtolower(str_replace('/', '_', $key));
                 try {
-                    $this->cacheInstance->set($cacheEntryIdentifier, $code);
+                    $this->classCache->set($cacheEntryIdentifier, $code);
                 } catch (\Exception $e) {
                     throw new \Exception($e->getMessage());
                 }
@@ -150,8 +166,8 @@ class ClassCacheManager
      */
     protected function getPartialInfo($filePath)
     {
-        return LF . '/*' . str_repeat('*', 70) . LF . TAB .
-        'this is partial from: ' . LF . TAB . str_replace(PATH_site, '', $filePath) . LF . str_repeat('*',
+        return LF . '/*' . str_repeat('*', 70) . LF . "\t" .
+        'this is partial from: ' . LF . "\t" . str_replace(Environment::getPublicPath(), '', $filePath) . LF . str_repeat('*',
             70) . '*/' . LF;
     }
 

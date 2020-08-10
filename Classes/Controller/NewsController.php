@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -7,6 +8,10 @@ namespace GeorgRinger\News\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
@@ -107,6 +112,8 @@ class NewsController extends NewsBaseController
                 $cacheTagsSet = true;
             }
         }
+
+        $this->categoryRepository->setRespectSysLanguageInFindInList((bool)$this->settings['respectSysLanguageInFindInList']);
     }
 
     /**
@@ -118,7 +125,7 @@ class NewsController extends NewsBaseController
      */
     protected function createDemandObjectFromSettings(
         $settings,
-        $class = 'GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand'
+        $class = NewsDemand::class
     ) {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
@@ -126,8 +133,8 @@ class NewsController extends NewsBaseController
         $demand = $this->objectManager->get($class, $settings);
         if (!$demand instanceof \GeorgRinger\News\Domain\Model\Dto\NewsDemand) {
             throw new \UnexpectedValueException(
-                sprintf('The demand object must be an instance of \GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand, but %s given!',
-                    $class),
+                sprintf('The demand object must be an instance of %s, but %s given!',
+                    NewsDemand::class, $class),
                 1423157953);
         }
 
@@ -160,6 +167,17 @@ class NewsController extends NewsBaseController
 
         $demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
             $settings['recursive']));
+
+        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'])) {
+            $params = [
+                'demand' => $demand,
+                'settings' => $settings,
+                'class' => $class,
+            ];
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] as $reference) {
+                GeneralUtility::callUserFunction($reference, $params, $this);
+            }
+        }
         return $demand;
     }
 
@@ -299,6 +317,10 @@ class NewsController extends NewsBaseController
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_SELECTED_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
+
+        if (!empty($newsRecords) && is_a($newsRecords[0], News::class)) {
+            Cache::addCacheTagsByNewsRecords($newsRecords);
+        }
     }
 
     /**
@@ -317,7 +339,6 @@ class NewsController extends NewsBaseController
 
             if ($previewNewsId > 0) {
                 if ($this->isPreviewOfHiddenRecordsEnabled()) {
-                    $GLOBALS['TSFE']->showHiddenRecords = true;
                     $news = $this->newsRepository->findByUid($previewNewsId, false);
                 } else {
                     $news = $this->newsRepository->findByUid($previewNewsId);
@@ -325,17 +346,9 @@ class NewsController extends NewsBaseController
             }
         }
 
-        if (is_a($news,
-                'GeorgRinger\\News\\Domain\\Model\\News') && $this->settings['detail']['checkPidOfNewsRecord']
+        if (is_a($news, News::class) && $this->settings['detail']['checkPidOfNewsRecord']
         ) {
             $news = $this->checkPidOfNewsRecord($news);
-        }
-
-        if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
-            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
-            if ($errorContent) {
-                return $errorContent;
-            }
         }
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
@@ -349,11 +362,31 @@ class NewsController extends NewsBaseController
         ];
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
+        $news = $assignedValues['newsItem'];
         $this->view->assignMultiple($assignedValues);
 
-        Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
-        if (!is_null($news) && is_a($news, 'GeorgRinger\\News\\Domain\\Model\\News')) {
+        // reset news if type is internal or external
+        if ($news && !$this->settings['isShortcut'] && ($news->getType() === '1' || $news->getType() === '2')) {
+            $news = null;
+        }
+
+        if ($news !== null) {
+            Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
             Cache::addCacheTagsByNewsRecords([$news]);
+
+            if ($this->settings['detail']['pageTitle']['_typoScriptNodeValue']) {
+                $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
+                $providerClass = $providerConfiguration['provider'] ?? NewsTitleProvider::class;
+
+                /** @var NewsTitleProvider $provider */
+                $provider = GeneralUtility::makeInstance($providerClass);
+                $provider->setTitleByNews($news, $providerConfiguration);
+            }
+        } elseif (isset($this->settings['detail']['errorHandling'])) {
+            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
+            if ($errorContent) {
+                return $errorContent;
+            }
         }
     }
 

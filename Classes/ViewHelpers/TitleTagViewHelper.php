@@ -8,10 +8,13 @@ namespace GeorgRinger\News\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+
+use GeorgRinger\News\Seo\NewsTitleProvider;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to render the page title
@@ -26,7 +29,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * </output>
  *
  */
-class TitleTagViewHelper extends AbstractViewHelper implements CompilableInterface
+class TitleTagViewHelper extends AbstractViewHelper implements ViewHelperInterface
 {
     use CompileWithRenderStatic;
 
@@ -40,10 +43,19 @@ class TitleTagViewHelper extends AbstractViewHelper implements CompilableInterfa
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ) {
+        // Skip if current record is part of tt_content CType shortcut
+        if (!empty($GLOBALS['TSFE']->recordRegister)
+            && is_array($GLOBALS['TSFE']->recordRegister)
+            && strpos(array_keys($GLOBALS['TSFE']->recordRegister)[0], 'tt_content:') !== false
+            && !empty($GLOBALS['TSFE']->currentRecord)
+            && strpos($GLOBALS['TSFE']->currentRecord, 'tx_news_domain_model_news:') !== false
+        ) {
+            return;
+        }
+
         $content = trim($renderChildrenClosure());
         if (!empty($content)) {
-            $GLOBALS['TSFE']->altPageTitle = $content;
-            $GLOBALS['TSFE']->indexedDocTitle = $content;
+            GeneralUtility::makeInstance(NewsTitleProvider::class)->setTitle($content);
         }
     }
 }

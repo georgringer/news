@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\StartTimeRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Class for the list rendering of administration module
@@ -31,13 +30,8 @@ class RecordListConstraint
      */
     public function isInAdministrationModule(): bool
     {
-        if (self::is9Up()) {
-            $vars = GeneralUtility::_GET('route');
-            return $vars === '/web/NewsTxNewsM2/';
-        }
-
-        $vars = GeneralUtility::_GET('M');
-        return $vars === 'web_NewsTxNewsM2';
+        $vars = GeneralUtility::_GET('route');
+        return strpos($vars, '/module/web/NewsAdministration') !== false;
     }
 
     public function extendQuery(array &$parameters, array $arguments)
@@ -185,7 +179,7 @@ class RecordListConstraint
                         foreach ($arguments['selectedCategories'] as $category) {
                             $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
                             if (!empty($idList)) {
-                                $orConstraint[] = sprintf('uid IN(%s)', implode(',', $idList));
+                                $orConstraint[] = sprintf('(uid IN (%s))', implode(',', $idList));
                                 $orConstraintDoctrine[] = $expressionBuilder->notIn('uid', $idList);
                             } else {
                                 $orConstraint[] = '1=2';
@@ -196,7 +190,8 @@ class RecordListConstraint
                             $parameters['where'][] = '1=2';
                             $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
                         } else {
-                            $parameters['where'][] = implode(' NOT OR ', $orConstraint);
+                            $orConstraint = array_unique($orConstraint);
+                            $parameters['where'][] = ' NOT (' . implode(' OR ', $orConstraint) . ')';
                             $parameters['whereDoctrine'][] = $expressionBuilder->andX(...$orConstraintDoctrine);
                         }
                         break;
@@ -263,10 +258,4 @@ class RecordListConstraint
 
         return $idList;
     }
-
-    private static function is9Up()
-    {
-        return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
-    }
-
 }
