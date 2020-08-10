@@ -8,6 +8,7 @@ namespace GeorgRinger\News\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
@@ -24,7 +25,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * # Example: Basic example
  * <code>
  *
- * <n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime">
+ * <n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime" withLoop="true">
  *    <f:if condition="{paginated}">
  *        <ul class="prev-next">
  *            <f:if condition="{paginated.prev}">
@@ -47,6 +48,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * The attributes includeExternalType & includeInternalType allow to include internal and
  * external news types.
+ *
+ * The attribute withLoop allows the creation of a navigation loop: when reaching the last element,
+ * users can go directly to the first element, and vice versa.
  *
  * </code>
  * <output>
@@ -87,6 +91,7 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
         $this->registerArgument('as', 'string', 'as', true);
         $this->registerArgument('includeInternalType', 'boolean', 'Include internal news types');
         $this->registerArgument('includeExternalType', 'bool', 'Include external news types');
+        $this->registerArgument('withLoop', 'bool', 'Enable direct navigation between first and last element');
     }
 
     /**
@@ -168,20 +173,36 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
         $data = [];
         $pidList = empty($pidList) ? $news->getPid() : $pidList;
 
-        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getConnectionForTable('tx_news_domain_model_news');
-
         foreach (['prev', 'next'] as $label) {
-            $queryBuilder = $connection->createQueryBuilder();
-
-            $extraWhere = [];
-            if ((bool)$this->arguments['includeInternalType'] === false) {
-                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
+            $row = $this->getNeighbour($label, $pidList, $sortField, $news);
+            if (is_array($row)) {
+                $data[$label] = $row;
+            } else {
+                if ($this->arguments['withLoop'] === true) {
+                    $row = $this->getNeighbour($label, $pidList, $sortField);
+                    if (is_array($row) && $row['uid'] !== $news->getUid()) {
+                        $data[$label] = $row;
+                    }
+                }
             }
-            if ((bool)$this->arguments['includeExternalType'] === false) {
-                $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, \PDO::PARAM_INT));
-            }
+        }
+        return $data;
+    }
 
+    /**
+     * @param $label
+     * @param $pidList
+     * @param $sortField
+     * @param News $news
+     * @return array|null
+     */
+    protected function getNeighbour($label, $pidList, $sortField, News $news = null)
+    {
+        $queryBuilder = $this->getQueryBuilder();
+        $extraWhere = [];
+
+        // If a news object is passed, get previous/next record, else first/last item is retrieved
+        if ($news) {
             $getter = 'get' . ucfirst($sortField) . '';
             if ($news->$getter() instanceof \DateTime) {
                 if ($label === 'prev') {
@@ -196,24 +217,29 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
                     $extraWhere[] = $queryBuilder->expr()->gt($sortField, $queryBuilder->createNamedParameter($news->$getter(), \PDO::PARAM_STR));
                 }
             }
-
-            $row = $queryBuilder
-                ->select('*')
-                ->from('tx_news_domain_model_news')
-                ->where(
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
-                    $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter(explode(',', $pidList), Connection::PARAM_INT_ARRAY))
-                )
-                ->andWhere(...$extraWhere)
-                ->setMaxResults(1)
-                ->orderBy($sortField, ($label === 'prev' ? 'desc' : 'asc'))
-                ->execute()->fetch();
-            if (is_array($row)) {
-                $data[$label] = $row;
-            }
         }
-        return $data;
+
+        if ((bool)$this->arguments['includeInternalType'] === false) {
+            $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
+        }
+        if ((bool)$this->arguments['includeExternalType'] === false) {
+            $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, \PDO::PARAM_INT));
+        }
+
+        return $queryBuilder
+            ->select('*')
+            ->from('tx_news_domain_model_news')
+            ->where(
+                $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter(explode(',', $pidList), Connection::PARAM_INT_ARRAY))
+            )
+            ->andWhere(...$extraWhere)
+            ->setMaxResults(1)
+            ->orderBy($sortField, ($label === 'prev' ? 'desc' : 'asc'))
+            ->execute()->fetch();
     }
+
+
 
     /**
      * @return QueryBuilder
