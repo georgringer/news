@@ -177,12 +177,10 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
             $row = $this->getNeighbour($label, $pidList, $sortField, $news);
             if (is_array($row)) {
                 $data[$label] = $row;
-            } else {
-                if ($this->arguments['withLoop'] === true) {
-                    $row = $this->getNeighbour($label, $pidList, $sortField);
-                    if (is_array($row) && $row['uid'] !== $news->getUid()) {
-                        $data[$label] = $row;
-                    }
+            } elseif ($this->arguments['withLoop'] === true) {
+                $row = $this->getNeighbour($label, $pidList, $sortField);
+                if (is_array($row) && $row['uid'] !== $news->getUid()) {
+                    $data[$label] = $row;
                 }
             }
         }
@@ -190,9 +188,13 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
     }
 
     /**
-     * @param $label
-     * @param $pidList
-     * @param $sortField
+     * Get a news record according to label ("prev" or "next"), pids and sort field. 
+     * If a news object is passed, its next/previous record is fetched. 
+     * Otherwise, the first/last record is fetched (enables loop navigation).  
+     *
+     * @param string $label
+     * @param string $pidList
+     * @param string $sortField
      * @param News $news
      * @return array|null
      */
@@ -201,7 +203,6 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
         $queryBuilder = $this->getQueryBuilder();
         $extraWhere = [];
 
-        // If a news object is passed, get previous/next record, else first/last item is retrieved
         if ($news) {
             $getter = 'get' . ucfirst($sortField) . '';
             if ($news->$getter() instanceof \DateTime) {
