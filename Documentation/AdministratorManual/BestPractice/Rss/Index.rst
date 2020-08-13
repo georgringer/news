@@ -37,7 +37,7 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:type = 9818]
+    [getTSFE().type == 9818]
     config {
         disableAllHeaderCode = 1
         xhtml_cleaning = none
