@@ -16,6 +16,7 @@ $boot = static function () {
             [
                 'sitemap_changefreq' => [
                     'config' => [
+                        'default' => '',
                         'items' => [
                             ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.none', ''],
                             ['LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.sitemap_changefreq.always', 'always'],
@@ -34,6 +35,7 @@ $boot = static function () {
                 ],
                 'sitemap_priority' => [
                     'config' => [
+                        'default' => '0.5',
                         'items' => [
                             ['0.0', '0.0'],
                             ['0.1', '0.1'],
