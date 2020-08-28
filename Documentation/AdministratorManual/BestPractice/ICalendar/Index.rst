@@ -98,7 +98,7 @@ To create an ICalendar feed based on a plugin follow this steps:
 		page = PAGE
 		page.10 < styles.content.get
 
-		config {
+		page.config {
 			  # deactivate Standard-Header
 			 disableAllHeaderCode = 1
 			 # no xhtml tags
