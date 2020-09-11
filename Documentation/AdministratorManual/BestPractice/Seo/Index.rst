@@ -241,3 +241,21 @@ If you are building a language menu and want to check if the news record is avai
            </f:if>
        </f:for>
    </ul>
+
+Robots: allow indexing of news records, but set 'noindex' to the detail page
+----------------------------------------------------------------------------
+By default, the detail page will be listed in the SEO sitemap.
+But in most cases, you don't want the page itself to be indexed by search engines (means: without a news record to be shown by the plugin).
+
+If you just disable *Index this page* (`no_index`) in the page properties, the robots meta tag with *noindex* value will also be applied to the news records.
+
+Solution: You can use the following TypoScript condition to allow search engines to index the page again, if a news record is rendered:
+
+.. code-block:: typoscript
+
+   [request.getQueryParams() ['tx_news_pi1'] > 0]
+       page.meta.robots = index,follow
+       page.meta.robots.replace = 1
+   [global]
+
+An important part is the `replace` option. The MetaTag API of TYPO3 will then replace tags which were set before.
