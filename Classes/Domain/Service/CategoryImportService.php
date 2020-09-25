@@ -115,11 +115,16 @@ class CategoryImportService extends AbstractImportService
      */
     protected function hydrateCategory(array $importItem)
     {
-        $category = $this->categoryRepository->findOneByImportSourceAndImportId($importItem['import_source'],
-            $importItem['import_id']);
+        $category = $this->categoryRepository->findOneByImportSourceAndImportId(
+            $importItem['import_source'],
+            $importItem['import_id']
+        );
 
-        $this->logger->info(sprintf('Import of category from source "%s" with id "%s"', $importItem['import_source'],
-            $importItem['import_id']));
+        $this->logger->info(sprintf(
+            'Import of category from source "%s" with id "%s"',
+            $importItem['import_source'],
+            $importItem['import_id']
+        ));
 
         if (is_null($category)) {
             $this->logger->info('Category is new');
@@ -273,7 +278,10 @@ class CategoryImportService extends AbstractImportService
      */
     protected function emitSignal($signalName, array $signalArguments)
     {
-        $this->signalSlotDispatcher->dispatch(self::class, $signalName,
-            $signalArguments);
+        $this->signalSlotDispatcher->dispatch(
+            self::class,
+            $signalName,
+            $signalArguments
+        );
     }
 }

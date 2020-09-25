@@ -194,8 +194,11 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
             if (!isset($tsSettings['detailPidDetermination'])) {
                 $detailPidDeterminationMethods = ['flexform'];
             } else {
-                $detailPidDeterminationMethods = GeneralUtility::trimExplode(',', $tsSettings['detailPidDetermination'],
-                    true);
+                $detailPidDeterminationMethods = GeneralUtility::trimExplode(
+                    ',',
+                    $tsSettings['detailPidDetermination'],
+                    true
+                );
             }
 
             foreach ($detailPidDeterminationMethods as $determinationMethod) {
@@ -248,8 +251,10 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
         $uid = $newsItem->getUid();
         // If a user is logged in and not in live workspace
         if (isset($GLOBALS['BE_USER']) && $GLOBALS['BE_USER']->workspace > 0) {
-            $record = \TYPO3\CMS\Backend\Utility\BackendUtility::getLiveVersionOfRecord('tx_news_domain_model_news',
-                $newsItem->getUid());
+            $record = \TYPO3\CMS\Backend\Utility\BackendUtility::getLiveVersionOfRecord(
+                'tx_news_domain_model_news',
+                $newsItem->getUid()
+            );
             if ($record['uid']) {
                 $uid = $record['uid'];
             }

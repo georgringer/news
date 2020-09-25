@@ -102,8 +102,10 @@ class AbstractImportService
         if (count($files)) {
             foreach ($files as $fileInfo) {
                 if ($fileInfo['storage'] > 0) {
-                    $file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier($fileInfo['storage'],
-                        $fileInfo['identifier']);
+                    $file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier(
+                        $fileInfo['storage'],
+                        $fileInfo['identifier']
+                    );
                     break;
                 }
             }

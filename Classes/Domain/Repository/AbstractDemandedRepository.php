@@ -26,7 +26,8 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
      */
-    public function injectStorageBackend(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
+    public function injectStorageBackend(
+        \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
     ) {
         $this->storageBackend = $storageBackend;
     }

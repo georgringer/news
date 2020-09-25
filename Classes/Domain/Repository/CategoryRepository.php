@@ -57,7 +57,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
             $query->logicalAnd(
                 $query->equals('importSource', $importSource),
                 $query->equals('importId', $importId)
-            ))->execute($asArray);
+            )
+        )->execute($asArray);
         if ($asArray) {
             if (isset($result[0])) {
                 return $result[0];
@@ -81,7 +82,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
             $query->logicalAnd(
                 $query->equals('pid', (int)$pid),
                 $query->equals('parentcategory', 0)
-            ))->execute();
+            )
+        )->execute();
     }
 
     /**
@@ -161,7 +163,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         return $query->matching(
             $query->logicalAnd(
                 $conditions
-            ))->execute();
+            )
+        )->execute();
     }
 
     /**
@@ -177,7 +180,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         return $query->matching(
             $query->logicalAnd(
                 $query->equals('parentcategory', (int)$parent)
-            ))->execute();
+            )
+        )->execute();
     }
 
     /**

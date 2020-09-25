@@ -97,8 +97,10 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 break;
             case 'redirectToPage':
                 if (count($configuration) === 1 || count($configuration) > 3) {
-                    $msg = sprintf('If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used',
-                        $configuration[0]);
+                    $msg = sprintf(
+                        'If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used',
+                        $configuration[0]
+                    );
                     throw new \InvalidArgumentException($msg);
                 }
                 $this->uriBuilder->reset();
@@ -124,7 +126,8 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                     $message = 'No news entry found!';
                     $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
                         $GLOBALS['TYPO3_REQUEST'],
-                        $message);
+                        $message
+                    );
                     throw new ImmediateResponseException($response, 1590468229);
                 }
                 break;
@@ -159,8 +162,11 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     protected function emitActionSignal($classPart, $signalName, array $signalArguments)
     {
         $signalArguments['extendedVariables'] = [];
-        return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Controller\\' . $classPart, $signalName,
-            $signalArguments);
+        return $this->signalSlotDispatcher->dispatch(
+            'GeorgRinger\\News\\Controller\\' . $classPart,
+            $signalName,
+            $signalArguments
+        );
     }
 
     /**

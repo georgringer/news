@@ -50,7 +50,8 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
         return $query->matching(
             $query->logicalAnd(
                 $conditions
-            ))->execute();
+            )
+        )->execute();
     }
 
     /**

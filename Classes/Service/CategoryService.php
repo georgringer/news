@@ -140,7 +140,6 @@ class CategoryService
                 ->where(
                     $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($overlayLanguage, \PDO::PARAM_INT)),
                     $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($row['uid'], \PDO::PARAM_INT))
-
                 )
                 ->setMaxResults(1)
                 ->execute()->fetch();

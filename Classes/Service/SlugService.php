@@ -129,8 +129,10 @@ class SlugService
             ->count('uid')
             ->from('tx_news_domain_model_news')
             ->where(
-                $queryBuilder->expr()->eq('path_segment',
-                    $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)),
+                $queryBuilder->expr()->eq(
+                    'path_segment',
+                    $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)
+                ),
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
             )->execute();
     }

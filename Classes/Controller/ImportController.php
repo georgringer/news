@@ -65,7 +65,8 @@ class ImportController extends ActionController
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/Import');
 
-        $this->view->assignMultiple([
+        $this->view->assignMultiple(
+            [
                 'error' => $this->checkCorrectConfiguration(),
                 'availableJobs' => array_merge([0 => ''], $this->getAvailableJobs()),
                 'moduleUrl' => $uriBuilder->buildUriFromRoute($this->request->getPluginName())
