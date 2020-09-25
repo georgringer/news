@@ -93,7 +93,10 @@ class NewsBaseControllerTest extends BaseTestCase
 
             $mockedErrorController = $this->getAccessibleMock(
                 ErrorController::class,
-                ['pageNotFoundAction'], [], '', false
+                ['pageNotFoundAction'],
+                [],
+                '',
+                false
             );
             $mockedErrorController->expects($this->once())->method('pageNotFoundAction');
             GeneralUtility::addInstance(ErrorController::class, $mockedErrorController);
