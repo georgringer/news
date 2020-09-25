@@ -11,8 +11,13 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
 
 use GeorgRinger\News\Controller\NewsBaseController;
 use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -79,8 +84,22 @@ class NewsBaseControllerTest extends BaseTestCase
             ['dummy']
         );
 
-        $this->tsfe->expects($this->once())
-            ->method('pageNotFoundAndExit');
+        $typo3Information = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($typo3Information->getMajorVersion() === 9) {
+            $this->tsfe->expects($this->once())
+                ->method('pageNotFoundAndExit');
+        } else {
+            $GLOBALS['TYPO3_REQUEST'] = new ServerRequest('/');
+
+            $mockedErrorController = $this->getAccessibleMock(
+                ErrorController::class,
+                ['pageNotFoundAction'], [], '', false
+            );
+            $mockedErrorController->expects($this->once())->method('pageNotFoundAction');
+            GeneralUtility::addInstance(ErrorController::class, $mockedErrorController);
+
+            $this->expectException(ImmediateResponseException::class);
+        }
         $mock->_call('handleNoNewsFoundError', 'pageNotFoundHandler');
     }
 
