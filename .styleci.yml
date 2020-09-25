@@ -17,7 +17,6 @@ enabled:
     - whitespace_after_comma_in_array
     - function_typehint_space
     - hash_to_slash_comment
-    - no_alias_functions
     - lowercase_cast
     - no_leading_namespace_whitespace
     - native_function_casing
