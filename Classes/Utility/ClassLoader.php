@@ -108,8 +108,12 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
         $extensionKey = null;
 
         if (strpos($className, '\\') !== false) {
-            $namespaceParts = GeneralUtility::trimExplode('\\', $className, 0,
-                (substr($className, 0, 9) === 'TYPO3\\CMS' ? 4 : 3));
+            $namespaceParts = GeneralUtility::trimExplode(
+                '\\',
+                $className,
+                0,
+                (substr($className, 0, 9) === 'TYPO3\\CMS' ? 4 : 3)
+            );
             array_pop($namespaceParts);
             $extensionKey = GeneralUtility::camelCaseToLowerCaseUnderscored(array_pop($namespaceParts));
         }

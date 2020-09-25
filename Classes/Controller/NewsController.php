@@ -133,9 +133,13 @@ class NewsController extends NewsBaseController
         $demand = $this->objectManager->get($class, $settings);
         if (!$demand instanceof \GeorgRinger\News\Domain\Model\Dto\NewsDemand) {
             throw new \UnexpectedValueException(
-                sprintf('The demand object must be an instance of %s, but %s given!',
-                    NewsDemand::class, $class),
-                1423157953);
+                sprintf(
+                    'The demand object must be an instance of %s, but %s given!',
+                    NewsDemand::class,
+                    $class
+                ),
+                1423157953
+            );
         }
 
         $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'], true));
@@ -165,8 +169,10 @@ class NewsController extends NewsBaseController
         $demand->setMonth($settings['month']);
         $demand->setYear($settings['year']);
 
-        $demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
-            $settings['recursive']));
+        $demand->setStoragePage(Page::extendPidListByChildren(
+            $settings['startingpoint'],
+            $settings['recursive']
+        ));
 
         if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'])) {
             $params = [
@@ -450,8 +456,10 @@ class NewsController extends NewsBaseController
             $overwriteDemandTemp = $overwriteDemand;
             unset($overwriteDemandTemp['year']);
             unset($overwriteDemandTemp['month']);
-            $demand = $this->overwriteDemandObject($demand,
-                $overwriteDemandTemp);
+            $demand = $this->overwriteDemandObject(
+                $demand,
+                $overwriteDemandTemp
+            );
             unset($overwriteDemandTemp);
         }
 
@@ -511,8 +519,11 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHFORM_ACTION,
-            $assignedValues);
+        $assignedValues = $this->emitActionSignal(
+            'NewsController',
+            self::SIGNAL_NEWS_SEARCHFORM_ACTION,
+            $assignedValues
+        );
         $this->view->assignMultiple($assignedValues);
     }
 
@@ -549,8 +560,11 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHRESULT_ACTION,
-            $assignedValues);
+        $assignedValues = $this->emitActionSignal(
+            'NewsController',
+            self::SIGNAL_NEWS_SEARCHRESULT_ACTION,
+            $assignedValues
+        );
         $this->view->assignMultiple($assignedValues);
     }
 

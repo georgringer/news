@@ -71,12 +71,16 @@ class PaginateController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCont
         $this->objects = $this->widgetConfiguration['objects'];
         ArrayUtility::mergeRecursiveWithOverrule(
             $this->configuration,
-            (array)$this->widgetConfiguration['configuration'], true);
+            (array)$this->widgetConfiguration['configuration'],
+            true
+        );
 
         $itemsPerPage = (integer)$this->configuration['itemsPerPage'];
         if ($itemsPerPage === 0) {
-            throw new \RuntimeException('The itemsPerPage is 0 which is not allowed. Please also add "list.paginate.itemsPerPage" to the TS setting settings.overrideFlexformSettingsIfEmpty!',
-                1400741142);
+            throw new \RuntimeException(
+                'The itemsPerPage is 0 which is not allowed. Please also add "list.paginate.itemsPerPage" to the TS setting settings.overrideFlexformSettingsIfEmpty!',
+                1400741142
+            );
         }
 
         $this->numberOfPages = (int)ceil(count($this->objects) / $itemsPerPage);

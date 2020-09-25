@@ -126,8 +126,11 @@ class ClassCacheManager
         } else {
             $offsetForInnerPart = $classParserInformation['start'];
             if (isset($classParserInformation['eol'])) {
-                $innerPart = array_slice($codeInLines, $classParserInformation['start'],
-                    ($classParserInformation['eol'] - $classParserInformation['start'] - 1));
+                $innerPart = array_slice(
+                    $codeInLines,
+                    $classParserInformation['start'],
+                    ($classParserInformation['eol'] - $classParserInformation['start'] - 1)
+                );
             } else {
                 $innerPart = array_slice($codeInLines, $classParserInformation['start']);
             }
@@ -167,8 +170,10 @@ class ClassCacheManager
     protected function getPartialInfo($filePath)
     {
         return LF . '/*' . str_repeat('*', 70) . LF . "\t" .
-        'this is partial from: ' . LF . "\t" . str_replace(Environment::getPublicPath(), '', $filePath) . LF . str_repeat('*',
-            70) . '*/' . LF;
+        'this is partial from: ' . LF . "\t" . str_replace(Environment::getPublicPath(), '', $filePath) . LF . str_repeat(
+            '*',
+            70
+        ) . '*/' . LF;
     }
 
     /**

@@ -79,7 +79,8 @@ class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBas
         if ($forceAbsoluteUrl) {
             $parsedPath = parse_url($this->arguments['content']);
             if (is_array($parsedPath) && !isset($parsedPath['host'])) {
-                $this->tag->addAttribute('content',
+                $this->tag->addAttribute(
+                    'content',
                     rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
                     . '/'
                     . ltrim($this->arguments['content'], '/')

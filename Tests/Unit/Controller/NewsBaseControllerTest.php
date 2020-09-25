@@ -74,8 +74,10 @@ class NewsBaseControllerTest extends BaseTestCase
      */
     public function NoNewsFoundConfigurationCallsPageNotFoundHandler()
     {
-        $mock = $this->getAccessibleMock(NewsBaseController::class,
-            ['dummy']);
+        $mock = $this->getAccessibleMock(
+            NewsBaseController::class,
+            ['dummy']
+        );
 
         $this->tsfe->expects($this->once())
             ->method('pageNotFoundAndExit');
@@ -88,8 +90,10 @@ class NewsBaseControllerTest extends BaseTestCase
     public function NoNewsFoundConfigurationThrowsExceptionWithTooLessRedirectToPageOptions()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $mock = $this->getAccessibleMock(NewsBaseController::class,
-            ['dummy']);
+        $mock = $this->getAccessibleMock(
+            NewsBaseController::class,
+            ['dummy']
+        );
         $mock->_call('handleNoNewsFoundError', 'redirectToPage');
     }
 
@@ -99,8 +103,10 @@ class NewsBaseControllerTest extends BaseTestCase
     public function NoNewsFoundConfigurationThrowsExceptionWithTooManyRedirectToPageOptions()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $mock = $this->getAccessibleMock(NewsBaseController::class,
-            ['dummy']);
+        $mock = $this->getAccessibleMock(
+            NewsBaseController::class,
+            ['dummy']
+        );
         $mock->_call('handleNoNewsFoundError', 'redirectToPage,argumentOne,argumentTwo,argumentThree');
     }
 
