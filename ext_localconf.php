@@ -157,6 +157,9 @@ $boot = function () {
         'class' => \GeorgRinger\News\Backend\FieldInformation\StaticText::class
     ];
 
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/tslib/class.tslib_menu.php']['filterMenuPages'][]
+        = \GeorgRinger\News\Hooks\FilterMenuPagesHook::class;
+
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
     config.pageTitleProviders {
         news {
