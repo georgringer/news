@@ -49,5 +49,4 @@ class FilterMenuPagesHook implements AbstractMenuFilterPagesHookInterface
     {
         return $GLOBALS['TSFE'];
     }
-
 }

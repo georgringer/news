@@ -223,8 +223,8 @@ class ItemsProcFunc
         } else {
             $html .= htmlspecialchars(
                 $this->getLanguageService()->sL(
-                'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available'
-            )
+                    'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available'
+                )
             );
         }
 
