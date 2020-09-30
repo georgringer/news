@@ -7,6 +7,7 @@ use GeorgRinger\News\Seo\NewsAvailability;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\Menu\AbstractMenuContentObject;
 use TYPO3\CMS\Frontend\ContentObject\Menu\AbstractMenuFilterPagesHookInterface;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -21,7 +22,7 @@ use TYPO3\CMS\Frontend\ContentObject\Menu\AbstractMenuFilterPagesHookInterface;
 class FilterMenuPagesHook implements AbstractMenuFilterPagesHookInterface
 {
     /**
-     * Returns true if the page should be hidden
+     * Returns true if the page should be shown
      * @param array $data
      * @param array $banUidArray
      * @param bool $spacer
@@ -30,15 +31,23 @@ class FilterMenuPagesHook implements AbstractMenuFilterPagesHookInterface
      */
     public function processFilter(array &$data, array $banUidArray, $spacer, AbstractMenuContentObject $obj)
     {
-        if (!isset($data['_PAGES_OVERLAY_REQUESTEDLANGUAGE'])) {
-            return false;
+        if ($data['uid'] !== $this->getTypoScriptFrontendController()->id) {
+            return true;
         }
+
+        $language = (int)($data['_PAGES_OVERLAY_REQUESTEDLANGUAGE'] ?? 0);
         try {
             $availability = GeneralUtility::makeInstance(NewsAvailability::class);
-            return $availability->check($data['_PAGES_OVERLAY_REQUESTEDLANGUAGE']);
+            return $availability->check($language);
         } catch (\Exception $e) {
-            return false;
+            // do nothing
         }
+        return true;
+    }
+
+    protected function getTypoScriptFrontendController(): TypoScriptFrontendController
+    {
+        return $GLOBALS['TSFE'];
     }
 
 }
