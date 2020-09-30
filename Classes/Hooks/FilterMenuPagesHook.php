@@ -40,5 +40,4 @@ class FilterMenuPagesHook implements AbstractMenuFilterPagesHookInterface
             return false;
         }
     }
-
 }
