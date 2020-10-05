@@ -33,13 +33,6 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     }
 
     /**
-     * @see https://github.com/georgringer/news/issues/900
-     * @var bool
-     * @deprecated should be set default once 9+10 is only
-     */
-    protected $respectSysLanguageInFindInList = false;
-
-    /**
      * Find category by import source and import id
      *
      * @param string $importSource import source
@@ -146,7 +139,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         }
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $query->getQuerySettings()->setRespectSysLanguage($this->respectSysLanguageInFindInList);
+        $query->getQuerySettings()->setRespectSysLanguage(true);
 
         if (count($ordering) > 0) {
             $query->setOrderings($ordering);
@@ -246,10 +239,5 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         }
 
         return $idList;
-    }
-
-    public function setRespectSysLanguageInFindInList(bool $value)
-    {
-        $this->respectSysLanguageInFindInList = $value;
     }
 }
