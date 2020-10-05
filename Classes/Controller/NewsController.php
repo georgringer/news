@@ -112,8 +112,6 @@ class NewsController extends NewsBaseController
                 $cacheTagsSet = true;
             }
         }
-
-        $this->categoryRepository->setRespectSysLanguageInFindInList((bool)$this->settings['respectSysLanguageInFindInList']);
     }
 
     /**
