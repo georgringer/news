@@ -39,8 +39,7 @@ class RecordListQueryHook
         array $additionalConstraints,
         array $fieldList,
         QueryBuilder $queryBuilder
-    )
-    {
+    ) {
         if ($table === 'tt_content' && $pageId > 0) {
             $pageRecord = BackendUtility::getRecord('pages', $pageId, 'uid', " AND doktype='254' AND module='news'");
             if (is_array($pageRecord)) {
@@ -60,7 +59,7 @@ class RecordListQueryHook
             $vars = GeneralUtility::_GET('tx_news_web_newsadministration');
             if (is_array($vars) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];
-                $this->recordListConstraint->extendQuery($parameters, $vars, $pageId);
+                $this->recordListConstraint->extendQuery($parameters, $vars);
                 if (isset($parameters['orderBy'][0])) {
                     $queryBuilder->orderBy($parameters['orderBy'][0][0], $parameters['orderBy'][0][1]);
                     unset($parameters['orderBy']);
@@ -69,39 +68,6 @@ class RecordListQueryHook
                     $queryBuilder->andWhere(...$parameters['whereDoctrine']);
                     unset($parameters['where']);
                 }
-            }
-        }
-    }
-
-    public function buildQueryParametersPostProcess(
-        array &$parameters,
-        string $table,
-        int $pageId,
-        array $additionalConstraints,
-        array $fieldList,
-        $parentObject,
-        $queryBuilder = null
-    ) {
-        if ($table === 'tt_content' && (int)$parentObject->searchLevels === 0 && $parentObject->id > 0) {
-            $pageRecord = BackendUtility::getRecord('pages', $parentObject->id, 'uid', " AND doktype='254' AND module='news'");
-            if (is_array($pageRecord)) {
-                $tsConfig = BackendUtility::getPagesTSconfig($parentObject->id);
-                if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
-                    return;
-                }
-
-                $parameters['where'][] = '1=2';
-
-                if (self::$count === 0) {
-                    $this->addFlashMessage();
-                }
-                self::$count++;
-            }
-        } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
-            $vars = GeneralUtility::_GET('tx_news_web_newsadministration');
-            if (is_array($vars) && is_array($vars['demand'])) {
-                $vars = $vars['demand'];
-                $this->recordListConstraint->extendQuery($parameters, $vars, $parentObject->id);
             }
         }
     }
