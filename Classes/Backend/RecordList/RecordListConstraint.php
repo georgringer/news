@@ -146,7 +146,7 @@ class RecordListConstraint
                 switch ($categoryMode) {
                     case 'and':
                         foreach ($arguments['selectedCategories'] as $category) {
-                            $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
+                            $idList = $this->getNewsIdsOfCategory($category);
                             if (empty($idList)) {
                                 $parameters['where'][] = '1=2';
                                 $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
@@ -159,7 +159,7 @@ class RecordListConstraint
                     case 'or':
                         $orConstraint = $orConstraintDoctrine = [];
                         foreach ($arguments['selectedCategories'] as $category) {
-                            $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
+                            $idList = $this->getNewsIdsOfCategory($category);
                             if (!empty($idList)) {
                                 $orConstraint[] = sprintf('uid IN(%s)', implode(',', $idList));
                                 $orConstraintDoctrine[] = $expressionBuilder->in('uid', $idList);
@@ -177,7 +177,7 @@ class RecordListConstraint
                     case 'notor':
                         $orConstraint = $orConstraintDoctrine = [];
                         foreach ($arguments['selectedCategories'] as $category) {
-                            $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
+                            $idList = $this->getNewsIdsOfCategory($category);
                             if (!empty($idList)) {
                                 $orConstraint[] = sprintf('(uid IN (%s))', implode(',', $idList));
                                 $orConstraintDoctrine[] = $expressionBuilder->notIn('uid', $idList);
@@ -197,7 +197,7 @@ class RecordListConstraint
                         break;
                     case 'notand':
                         foreach ($arguments['selectedCategories'] as $category) {
-                            $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
+                            $idList = $this->getNewsIdsOfCategory($category);
                             if (!empty($idList)) {
                                 $parameters['where'][] = sprintf('uid NOT IN(%s)', implode(',', $idList));
                                 $parameters['whereDoctrine'][] = $expressionBuilder->notIn('uid', $idList);
@@ -217,10 +217,9 @@ class RecordListConstraint
 
     /**
      * @param int $categoryId
-     * @param string $pidConstraint
      * @return array
      */
-    protected function getNewsIdsOfCategory($categoryId, $pidConstraint = ''): array
+    protected function getNewsIdsOfCategory($categoryId): array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
@@ -248,7 +247,6 @@ class RecordListConstraint
                 $queryBuilder->expr()->isNotNull('tx_news_domain_model_news.uid'),
                 $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->createNamedParameter($categoryId, \PDO::PARAM_INT))
             )
-            ->andWhere(($pidConstraint ?: ''))
             ->execute();
 
         $idList = [];
