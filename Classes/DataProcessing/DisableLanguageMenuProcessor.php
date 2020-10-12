@@ -73,7 +73,6 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
             } catch (\Exception $e) {
             }
         }
-
     }
 
     /**
@@ -93,7 +92,6 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
         return $newsId;
     }
 
-
     /**
      * @return ServerRequestInterface
      */
@@ -101,6 +99,4 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
     {
         return $GLOBALS['TYPO3_REQUEST'];
     }
-
-
 }
