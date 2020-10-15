@@ -72,7 +72,7 @@ class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBas
 
         // set current domain
         if ($useCurrentDomain) {
-            $this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+            $this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'), false);
         }
 
         // prepend current domain
