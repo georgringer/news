@@ -243,7 +243,7 @@ class SlugService
                             $queryBuilder->expr()->eq(
                                 'tx_news_domain_model_news.sys_language_uid',
                                 $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.lang')
-                            ),
+                            )
                         )
                     )
                 )
