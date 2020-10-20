@@ -214,6 +214,23 @@ This sitemap can be added in the site config so it has a nice url:
        map:
          news_sitemap.xml: 1533906436
 
+Language menu on news detail pages
+----------------------------------
+If a language menu is rendered on a detail page and the languages are configured to use a strict mode, the following snippet helps you to setup a proper menu.
+If no translation exists, the property `available` is set to `false` - just as if the current page is not translated.
+
+.. code-block:: typoscript
+
+   10 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
+   10 {
+      as = languageMenu
+      addQueryString = 1
+   }
+
+   11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+   # comma separated list of language menu names
+   11.menus = languageMenu
+
 Hreflang on news detail pages
 -----------------------------
 If using languages with the language mode `strict`, the hreflang tag must only be generated if the according news record is translated as well!
