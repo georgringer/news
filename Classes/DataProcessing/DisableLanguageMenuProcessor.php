@@ -65,7 +65,7 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
                 continue;
             }
             try {
-                $availability = $newsAvailability->check((int)$item['languageUid'], $newsId);
+                $availability = $newsAvailability->check((int)$item['languageId'], $newsId);
                 if (!$availability) {
                     $item['available'] = false;
                     $item['availableReason'] = 'news';
