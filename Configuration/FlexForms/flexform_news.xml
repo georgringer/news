@@ -408,7 +408,6 @@
 								<internal_type>db</internal_type>
 								<allowed>tx_news_domain_model_news</allowed>
 								<size>3</size>
-								<maxitems>50</maxitems>
 								<minitems>0</minitems>
 
 							</config>
