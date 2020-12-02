@@ -5,7 +5,7 @@
 
 .. include:: ../../../Includes.txt
 
-.. _rss:
+.. _seo:
 
 =================
 SEO with EXT:news
@@ -14,7 +14,7 @@ SEO with EXT:news
 This chapters covers all configurations which are relevant for search engine optimization
 regarding the news extension.
 
-.. Info::
+.. note::
 
         All settings described require TYPO3 9 and the the system extension "seo" installed.
 
@@ -25,6 +25,37 @@ regarding the news extension.
         :local:
         :depth: 2
 
+Page title for single news
+--------------------------
+EXT:news implements a custom *pageTitleProvider* `\GeorgRinger\News\Seo\NewsTitleProvider` which is called through the controller.
+
+It can be configured using TypoScript:
+
+.. code-block:: typoscript
+
+   plugin.tx_news.settings.detail {
+      pageTitle = 1
+      pageTitle {
+         # Register alternative provider
+         provider = GeorgRinger\News\Seo\NewsTitleProvider
+         # Comma separated list of properties which should be checked, 1st value is used
+         properties = teaser,title
+      }
+   }
+
+It is also possible to set the page title through the template by using:
+
+.. code-block:: html
+
+   <n:titleTag>
+      <f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+   </n:titleTag>
+
+Please disable the usage of the page title provider by using
+
+.. code-block:: typoscript
+
+   plugin.tx_news.settings.detail.pageTitle = 0
 
 XML Sitemap
 -----------
@@ -48,6 +79,8 @@ The core ships a basic sitemap configuration which can also be used for news rec
                        additionalWhere =
                        sortField = sorting
                        lastModifiedField = tstamp
+                       changeFreqField = sitemap_changefreq
+                       priorityField = sitemap_priority
                        pid = 26
                        recursive = 2
                        url {
@@ -77,7 +110,7 @@ The :php:`GeorgRinger\News\Seo\NewsXmlSitemapDataProvider` provides the same fea
  :php:`RecordsXmlSitemapDataProvider` but with some additional ones on top:
 
 - If you are using the feature to define the detail page through the field
-*Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
+  *Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
 - If you are need urls containing day, month or year information
 - Setting `excludedTypes` to exclude certain news types from the sitemap
 - Setting `googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
@@ -131,3 +164,97 @@ To enable the category detail page handling, checkout the setting `useCategorySi
            }
        }
    }
+
+Multiple Sitemaps
+~~~~~~~~~~~~~~~~~
+
+With TYPO3 10 it is possible to define multiple sitemaps. This can be used to define a normal sitemap and one for google news. This example adds another sitemap for the google news and defines a new type.
+
+.. code-block:: typoscript
+
+   plugin.tx_seo {
+      config {
+         xmlSitemap {
+            sitemaps {
+               news {
+                  provider = GeorgRinger\News\Seo\NewsXmlSitemapDataProvider
+                  config {
+                     # ...
+                  }
+               }
+
+         }
+         googleNewsSitemap {
+            sitemaps {
+               news < plugin.tx_seo.config.xmlSitemap.sitemaps.news
+               news {
+                  config {
+                     template = EXT:news/Resources/Private/Templates/News/GoogleNews.xml
+                     googleNews = 1
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   seo_sitemap_news < seo_sitemap
+   seo_sitemap_news {
+      typeNum = 1533906436
+      10.sitemapType = googleNewsSitemap
+   }
+
+This sitemap can be added in the site config so it has a nice url:
+
+.. code-block:: yaml
+   :linenos:
+
+   routeEnhancers:
+     PageTypeSuffix:
+       map:
+         news_sitemap.xml: 1533906436
+
+Language menu on news detail pages
+----------------------------------
+If a language menu is rendered on a detail page and the languages are configured to use a strict mode, the following snippet helps you to setup a proper menu.
+If no translation exists, the property `available` is set to `false` - just as if the current page is not translated.
+
+.. code-block:: typoscript
+
+   10 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
+   10 {
+      as = languageMenu
+      addQueryString = 1
+   }
+
+   11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+   # comma separated list of language menu names
+   11.menus = languageMenu
+
+Hreflang on news detail pages
+-----------------------------
+If using languages with the language mode `strict`, the hreflang tag must only be generated if the according news record is translated as well!
+
+.. note::
+   This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
+
+EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
+
+Check availability in fluid templates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you are building a language menu and want to check if the news record is available, you can use the ViewHelper
+:html:`<n:check.pageAvailableInLanguage language="{languageId}">`. A full example can look like this:
+
+.. code-block:: html
+
+   <ul>
+       <f:for each="{LanguageMenu}" as="item">
+           <f:if condition="{item.available}">
+               <n:check.pageAvailableInLanguage language="{item.languageId}">
+                   <li class="language-switch {f:if(condition:item.active, then:'active')}">
+                       <a href="{item.link}">{item.navigationTitle}</a>
+                   </li>
+               </n:check.pageAvailableInLanguage>
+           </f:if>
+       </f:for>
+   </ul>

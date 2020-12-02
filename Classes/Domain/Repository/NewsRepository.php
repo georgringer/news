@@ -54,8 +54,11 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
         foreach ($categories as $category) {
             if ($includeSubCategories) {
-                $subCategories = GeneralUtility::trimExplode(',',
-                    CategoryService::getChildrenCategories($category, 0, '', true), true);
+                $subCategories = GeneralUtility::trimExplode(
+                    ',',
+                    CategoryService::getChildrenCategories($category, 0, '', true),
+                    true
+                );
                 $subCategoryConstraint = [];
                 $subCategoryConstraint[] = $query->contains('categories', $category);
                 if (count($subCategories) > 0) {
@@ -99,7 +102,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
     {
@@ -228,7 +231,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         // Hide id list
         $hideIdList = $demand->getHideIdList();
         if ($hideIdList) {
-            $constraints['excludeAlreadyDisplayedNews'] = $query->logicalNot(
+            $constraints['hideIdInList'] = $query->logicalNot(
                 $query->in(
                     'uid',
                     GeneralUtility::intExplode(',', $hideIdList, true)
@@ -256,7 +259,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
     protected function createOrderingsFromDemand(DemandInterface $demand)
     {
@@ -306,7 +309,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             $query->logicalAnd(
                 $query->equals('importSource', $importSource),
                 $query->equals('importId', $importId)
-            ))->execute($asArray);
+            )
+        )->execute($asArray);
         if ($asArray) {
             if (isset($result[0])) {
                 return $result[0];
@@ -335,7 +339,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             $query->logicalAnd(
                 $query->equals('uid', $uid),
                 $query->equals('deleted', 0)
-            ))->execute()->getFirst();
+            )
+        )->execute()->getFirst();
     }
 
     /**

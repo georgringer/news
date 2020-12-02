@@ -114,7 +114,8 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         foreach ($rows as $row) {
             $this->items[] = [
                 'data' => $row,
-                'lastMod' => (int)$row[$lastModifiedField]
+                'lastMod' => (int)$row[$lastModifiedField],
+                'priority' => 0.5
             ];
         }
     }
@@ -136,7 +137,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
         if (!empty($this->config['url']['hrDate']) && !empty($data['data']['datetime'])) {
             // adjust timezone (database field is UTC)
-            $timezoneCorrectedDatetime = (int)$data['data']['datetime'] + date('Z');
+            $timezoneCorrectedDatetime = (int)$data['data']['datetime'] + date('Z', (int)$data['data']['datetime']);
             $dateTime = \DateTime::createFromFormat('U', (string)$timezoneCorrectedDatetime);
             if (!empty($this->config['url']['hrDate']['day'])) {
                 $additionalParams['tx_news_pi1[day]'] = $dateTime->format($this->config['url']['hrDate']['day']);
@@ -191,7 +192,6 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
                 $queryBuilder->expr()->gt('sys_category.single_pid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
-
             )
             ->setMaxResults(1)
             ->execute()->fetch();

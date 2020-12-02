@@ -37,7 +37,7 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:type = 9818]
+    [getTSFE().type == 9818]
     config {
         disableAllHeaderCode = 1
         xhtml_cleaning = none
@@ -119,8 +119,11 @@ To create a RSS feed based on a plugin follow this steps:
       tt_content.stdWrap >
       tt_content.stdWrap.editPanel = 0
 
+      # Use custom template for List.html of EXT:fluid_styled_content
+      lib.contentElement.templateRootPaths.5 = EXT:news/Resources/Private/Examples/Rss/fluid_styled_content/Templates
+
 .. warning::
- If your output still contains HTML code, please check your TypoScript (especially from css\_styled\_content or fluid\_styled\_content) as this HTML is produced there!
+ If your output still contains HTML code, please check your TypoScript (especially fluid\_styled\_content) as this HTML is produced there!
 
 Automatic RSS feeds - based on plugins
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -131,44 +134,47 @@ The TypoScript code looks like this.
 
 .. code-block:: typoscript
 
-    [globalVar = TSFE:type = 9818]
-    	lib.stdheader >
-    	tt_content.stdWrap.innerWrap >
-    	tt_content.stdWrap.wrap >
-    	tt_content.stdWrap.editPanel = 0
-    	# get away <div class="feEditAdvanced-firstWrapper" ...> if your logged into the backend
-    	styles.content.get.stdWrap >
+   [globalVar = TSFE:type = 9818]
+      lib.stdheader >
+      tt_content.stdWrap.innerWrap >
+      tt_content.stdWrap.wrap >
+      tt_content.stdWrap.editPanel = 0
+      # get away <div class="feEditAdvanced-firstWrapper" ...> if your logged into the backend
+      styles.content.get.stdWrap >
 
-    	pageNewsRSS = PAGE
-    	pageNewsRSS.typeNum = 9818
-    	pageNewsRSS.10 < styles.content.get
-    	pageNewsRSS.10.select.where = colPos=0 AND list_type = "news_pi1"
-    	pageNewsRSS.10.select {
-    		orderBy = sorting ASC
-    		max = 1
-    	}
+      # Use custom template for List.html of EXT:fluid_styled_content
+      lib.contentElement.templateRootPaths.5 = EXT:news/Resources/Private/Examples/Rss/fluid_styled_content/Templates
 
-    	config {
-    		# deactivate Standard-Header
-    		disableAllHeaderCode = 1
-    		# no xhtml tags
-    		xhtml_cleaning = none
-    		admPanel = 0
-    		# define charset
-    		metaCharset = utf-8
-    		# you need an english locale to get correct rfc values for <lastBuildDate>, ...
-    		locale_all = en_EN
-            # CMS 8 (adjust if using ATOM)
-            additionalHeaders.10.header = Content-Type:application/xml;charset=utf-8
-    		disablePrefixComment = 1
-    		baseURL = {$plugin.tx_news.rss.channel.link}
-    		absRefPrefix = {$plugin.tx_news.rss.channel.link}
-    		linkVars >
-    	}
+      pageNewsRSS = PAGE
+      pageNewsRSS.typeNum = 9818
+      pageNewsRSS.10 < styles.content.get
+      pageNewsRSS.10.select.where = colPos=0 AND list_type = "news_pi1"
+      pageNewsRSS.10.select {
+         orderBy = sorting ASC
+         max = 1
+      }
 
-    	# set the format
-    	plugin.tx_news.settings.format = xml
-    [global]
+      config {
+         # deactivate Standard-Header
+         disableAllHeaderCode = 1
+         # no xhtml tags
+         xhtml_cleaning = none
+         admPanel = 0
+         # define charset
+         metaCharset = utf-8
+         # you need an english locale to get correct rfc values for <lastBuildDate>, ...
+         locale_all = en_EN
+         # CMS 8 (adjust if using ATOM)
+         additionalHeaders.10.header = Content-Type:application/xml;charset=utf-8
+         disablePrefixComment = 1
+         baseURL = {$plugin.tx_news.rss.channel.link}
+         absRefPrefix = {$plugin.tx_news.rss.channel.link}
+         linkVars >
+      }
+
+      # set the format
+      plugin.tx_news.settings.format = xml
+   [global]
 
 **Some explanations**
 The page object pageNewsRSS will render only those content elements which are in colPos 0 and are a news plugin. Therefore all other content elements won't be rendered in the RSS feed.
@@ -196,28 +202,6 @@ Don't forget to configure the RSS feed properly as the sample template won't ful
       generator = TYPO3 EXT:news
    }
 
-Change the RSS feed link with RealURL
-"""""""""""""""""""""""""""""""""""""
-
-If you want to rewrite the URL, use a configuration like this one.
-
-.. code-block:: php
-
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['_DEFAULT'] = array(
-    	'fileName' => array (
-    		'defaultToHTMLsuffixOnPrev' => 0,
-    		'acceptHTMLsuffix' => 1,
-    		'index' => array(
-    			'feed.rss' => array(
-    				'keyValues' => array(
-    					'type' => 9818,
-    				)
-    			),
-    		)
-    	)
-    );
-
-This will change the URL to :code:`/feed.rss`.
 
 Add a link to the RSS feed in the list view
 """""""""""""""""""""""""""""""""""""""""""

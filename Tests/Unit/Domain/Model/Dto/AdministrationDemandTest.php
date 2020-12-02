@@ -9,19 +9,19 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for AdministrationDemand
  *
  */
-class AdministrationDemandTest extends UnitTestCase
+class AdministrationDemandTest extends BaseTestCase
 {
 
     /** @var  AdministrationDemand */
     protected $instance;
 
-    public function setup()
+    public function setup(): void
     {
         $this->instance = new AdministrationDemand();
     }

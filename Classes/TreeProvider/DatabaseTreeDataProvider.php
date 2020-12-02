@@ -21,21 +21,6 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
 {
 
     /**
-     * @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
-     */
-    protected $backendUserAuthentication;
-
-    /**
-     * Required constructor
-     *
-     * @param array $configuration TCA configuration
-     */
-    public function __construct(array $configuration)
-    {
-        $this->backendUserAuthentication = $GLOBALS['BE_USER'];
-    }
-
-    /**
      * Builds a complete node including children
      *
      * @param \TYPO3\CMS\Backend\Tree\TreeNode|\TYPO3\CMS\Backend\Tree\TreeNode $basicNode
@@ -78,14 +63,12 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
         if ($parent != null && $level != 0 && $this->isSingleCategoryAclActivated() && !$this->isCategoryAllowed($node)) {
             return null;
         }
-        $node->setSelectable(!GeneralUtility::inList($this->getNonSelectableLevelList(),
-                $level) && !in_array($basicNode->getId(), $this->getItemUnselectableList()));
+        $node->setSelectable(!GeneralUtility::inList(
+            $this->getNonSelectableLevelList(),
+            $level
+        ) && !in_array($basicNode->getId(), $this->getItemUnselectableList()));
         $node->setSortValue($this->nodeSortValues[$basicNode->getId()]);
-        if (version_compare(TYPO3_branch, '8.3', '>=')) {
-            $node->setIcon($iconFactory->getIconForRecord($this->tableName, $row, Icon::SIZE_SMALL));
-        } else {
-            $node->setIcon($iconFactory->getIconForRecord($this->tableName, $row, Icon::SIZE_SMALL)->render());
-        }
+        $node->setIcon($iconFactory->getIconForRecord($this->tableName, $row, Icon::SIZE_SMALL));
         $node->setParentNode($parent);
         if ($basicNode->hasChildNodes()) {
             $node->setHasChildren(true);
@@ -122,7 +105,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      */
     protected function isCategoryAllowed($child)
     {
-        $mounts = $this->backendUserAuthentication->getCategoryMountPoints();
+        $mounts = $GLOBALS['BE_USER']->getCategoryMountPoints();
         if (empty($mounts)) {
             return true;
         }
@@ -138,8 +121,9 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      */
     protected function isSingleCategoryAclActivated()
     {
-        if (is_array($GLOBALS['BE_USER']->userTS['tx_news.'])
-            && $GLOBALS['BE_USER']->userTS['tx_news.']['singleCategoryAcl'] === '1'
+        $userTsConfig = $GLOBALS['BE_USER']->getTSConfig();
+        if (is_array($userTsConfig['tx_news.'])
+            && $userTsConfig['tx_news.']['singleCategoryAcl'] === '1'
         ) {
             return true;
         }

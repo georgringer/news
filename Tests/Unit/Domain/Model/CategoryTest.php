@@ -8,14 +8,15 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\Category;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for \GeorgRinger\News\Domain\Model\Category
  *
  */
-class CategoryTest extends UnitTestCase
+class CategoryTest extends BaseTestCase
 {
 
     /**
@@ -27,7 +28,7 @@ class CategoryTest extends UnitTestCase
      * Setup
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->instance = new Category();
     }
@@ -231,6 +232,7 @@ class CategoryTest extends UnitTestCase
         $this->instance->setImportId($value);
         $this->assertEquals($value, $this->instance->getImportId());
     }
+
     /**
      * Test if importSource can be set
      *

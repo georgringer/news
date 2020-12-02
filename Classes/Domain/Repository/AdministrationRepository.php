@@ -36,7 +36,8 @@ class AdministrationRepository
             ->from('sys_category_record_mm')
             ->where($queryBuilder->expr()->like(
                 'tablenames',
-                $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)))
+                $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)
+            ))
             ->execute()->fetchColumn(0);
 
         if ($count['tx_news_domain_model_news'] > 0 && $count['category_relations']) {

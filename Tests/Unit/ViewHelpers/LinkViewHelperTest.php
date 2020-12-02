@@ -8,15 +8,20 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\SettingsService;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use GeorgRinger\News\ViewHelpers\LinkViewHelper;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3\TestingFramework\Core\BaseTestCase;
+use TYPO3Fluid\Fluid\Core\ViewHelper\TagBuilder;
 
 /**
  * Test for LinkViewHelper
  */
-class LinkViewHelperTest extends UnitTestCase
+class LinkViewHelperTest extends BaseTestCase
 {
     protected $mockedContentObjectRenderer;
 
@@ -28,14 +33,14 @@ class LinkViewHelperTest extends UnitTestCase
     /**
      * Set up
      */
-    public function setUp()
+    public function setup(): void
     {
         $this->newsItem = new News();
 
-        $this->mockedViewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['init', 'renderChildren']);
-        $this->mockedContentObjectRenderer = $this->getAccessibleMock('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer', ['typoLink_URL', 'typoLink']);
-        $pluginSettings = $this->getAccessibleMock('GeorgRinger\\News\\Service\\SettingsService', ['getSettings']);
-        $tag = $this->getAccessibleMock('TYPO3\\CMS\\Fluid\\Core\\ViewHelper\\TagBuilder', ['addAttribute', 'setContent', 'render']);
+        $this->mockedViewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['init', 'renderChildren']);
+        $this->mockedContentObjectRenderer = $this->getAccessibleMock(ContentObjectRenderer::class, ['typoLink_URL', 'typoLink']);
+        $pluginSettings = $this->getAccessibleMock(SettingsService::class, ['getSettings']);
+        $tag = $this->getAccessibleMock(TagBuilder::class, ['addAttribute', 'setContent', 'render']);
         $this->mockedViewHelper->_set('cObj', $this->mockedContentObjectRenderer);
         $this->mockedViewHelper->_set('tag', $tag);
         $this->mockedViewHelper->_set('pluginSettingsService', $pluginSettings);
@@ -126,11 +131,11 @@ class LinkViewHelperTest extends UnitTestCase
      */
     public function getDetailPidFromCategoriesReturnsCorrectValue()
     {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['dummy']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
 
         $newsItem = new \GeorgRinger\News\Domain\Model\News();
 
-        $categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $categories = new ObjectStorage();
         $category1 = new Category();
         $categories->attach($category1);
 
@@ -154,7 +159,7 @@ class LinkViewHelperTest extends UnitTestCase
      */
     public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected)
     {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['dummy']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
 
         $result = $viewHelper->_call('getDetailPidFromDefaultDetailPid', $settings, null);
         $this->assertEquals($expected, $result);
@@ -176,13 +181,13 @@ class LinkViewHelperTest extends UnitTestCase
      */
     public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected)
     {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['dummy']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
 
         $result = $viewHelper->_call('getDetailPidFromFlexform', $settings, null);
         $this->assertEquals($expected, $result);
     }
 
-    public function getDetailPidFromFlexformReturnsCorrectValueDataProvider()
+    public function getDetailPidFromFlexformReturnsCorrectValueDataProvider(): array
     {
         return [
             [null, 0],
@@ -198,8 +203,17 @@ class LinkViewHelperTest extends UnitTestCase
     public function noNewsReturnsChildren()
     {
         $settingService = $this->getAccessibleMock(SettingsService::class, ['getConfiguration', 'getSettings']);
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\LinkViewHelper', ['renderChildren', 'getSettings']);
+        $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['renderChildren', 'getSettings']);
         $viewHelper->_set('pluginSettingsService', $settingService);
+        $viewHelper->setArguments([
+            'newsItem' => null,
+            'settings' => [
+                'useStdWrap' => false
+            ],
+            'configuration' => [],
+            'uriOnly' => false,
+            'content' => ''
+        ]);
         $result = $viewHelper->_call('render');
         $this->assertEquals('', $result);
     }

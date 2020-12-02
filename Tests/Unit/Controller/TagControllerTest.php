@@ -11,43 +11,26 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
 use GeorgRinger\News\Controller\TagController;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\TagRepository;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+use TYPO3\CMS\Fluid\View\TemplateView;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Testcase for the TagController class.
  *
  *
  */
-class TagControllerTest extends UnitTestCase
+class TagControllerTest extends BaseTestCase
 {
-
-    /**
-     * @var TagController
-     */
-    private $fixture = null;
-
-    /**
-     */
     private $tagRepository = null;
 
     /**
      * Set up framework
      *
      */
-    public function setUp()
+    public function setup(): void
     {
-        $this->fixture = new TagController();
-
         $this->tagRepository = $this->prophesize(TagRepository::class);
-    }
-
-    /**
-     * Tear down framework
-     *
-     */
-    public function tearDown()
-    {
-        unset($this->fixture, $this->tagRepository);
     }
 
     /**
@@ -60,17 +43,13 @@ class TagControllerTest extends UnitTestCase
         $demand = new NewsDemand();
         $settings = ['list' => 'foo', 'orderBy' => 'datetime'];
 
-        $mockedSignalSlotDispatcher = $this->getAccessibleMock('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher', ['dispatch']);
+        $mockedSignalSlotDispatcher = $this->getAccessibleMock(Dispatcher::class, ['dispatch'], [], '', false);
 
-        $fixture = $this->getAccessibleMock(
-            'GeorgRinger\\News\\Controller\\TagController',
-            ['createDemandObjectFromSettings', 'emitActionSignal']
-        );
+        $fixture = $this->getAccessibleMock(TagController::class, ['createDemandObjectFromSettings', 'emitActionSignal']);
         $fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
         $fixture->_set('tagRepository', $this->tagRepository->reveal());
-        $fixture->injectConfigurationManager($this->getMockBuilder('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface')->getMock());
-        $fixture->setView($this->getMockBuilder('TYPO3\CMS\Fluid\View\TemplateView')->disableOriginalConstructor()->getMock());
+        $fixture->setView($this->getMockBuilder(TemplateView::class)->disableOriginalConstructor()->getMock());
         $fixture->_set('settings', $settings);
 
         $fixture->expects($this->once())->method('createDemandObjectFromSettings')

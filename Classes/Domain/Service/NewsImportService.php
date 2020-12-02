@@ -102,12 +102,17 @@ class NewsImportService extends AbstractImportService
     {
         $news = null;
 
-        $this->logger->info(sprintf('Import of news from source "%s" with id "%s"', $importItem['import_source'],
-            $importItem['import_id']));
+        $this->logger->info(sprintf(
+            'Import of news from source "%s" with id "%s"',
+            $importItem['import_source'],
+            $importItem['import_id']
+        ));
 
         if ($importItem['import_source'] && $importItem['import_id']) {
-            $news = $this->newsRepository->findOneByImportSourceAndImportId($importItem['import_source'],
-                $importItem['import_id']);
+            $news = $this->newsRepository->findOneByImportSourceAndImportId(
+                $importItem['import_source'],
+                $importItem['import_id']
+            );
         }
 
         if ($news === null) {
@@ -174,11 +179,15 @@ class NewsImportService extends AbstractImportService
         $news->setImportId($importItem['import_id']);
         $news->setImportSource($importItem['import_source']);
 
+        $news->setPathSegment($importItem['path_segment']);
+
         if (is_array($importItem['categories'])) {
             foreach ($importItem['categories'] as $categoryUid) {
                 if ($this->settings['findCategoriesByImportSource']) {
                     $category = $this->categoryRepository->findOneByImportSourceAndImportId(
-                        $this->settings['findCategoriesByImportSource'], $categoryUid);
+                        $this->settings['findCategoriesByImportSource'],
+                        $categoryUid
+                    );
                 } else {
                     $category = $this->categoryRepository->findByUid($categoryUid);
                 }
@@ -371,7 +380,7 @@ class NewsImportService extends AbstractImportService
     /**
      * Get an existing items from the references that matches the file
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference> $items
+     * @param \GeorgRinger\News\Domain\Model\FileReference[] $items
      * @param \TYPO3\CMS\Core\Resource\File $file
      * @return bool|FileReference
      */
@@ -429,7 +438,10 @@ class NewsImportService extends AbstractImportService
      */
     protected function emitSignal($signalName, array $signalArguments)
     {
-        return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\NewsImportService', $signalName,
-            $signalArguments);
+        return $this->signalSlotDispatcher->dispatch(
+            self::class,
+            $signalName,
+            $signalArguments
+        );
     }
 }

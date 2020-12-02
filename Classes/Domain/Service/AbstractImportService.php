@@ -8,8 +8,10 @@ namespace GeorgRinger\News\Domain\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Utility\EmConfiguration;
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AbstractImportService
 {
@@ -71,7 +73,7 @@ class AbstractImportService
      */
     public function __construct()
     {
-        $this->emSettings = EmConfiguration::getSettings();
+        $this->emSettings = GeneralUtility::makeInstance(EmConfiguration::class);
     }
 
     /**
@@ -100,8 +102,10 @@ class AbstractImportService
         if (count($files)) {
             foreach ($files as $fileInfo) {
                 if ($fileInfo['storage'] > 0) {
-                    $file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier($fileInfo['storage'],
-                        $fileInfo['identifier']);
+                    $file = $this->getResourceFactory()->getFileObjectByStorageAndIdentifier(
+                        $fileInfo['storage'],
+                        $fileInfo['identifier']
+                    );
                     break;
                 }
             }

@@ -7,7 +7,8 @@ namespace GeorgRinger\News\Backend\FormDataProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Utility\EmConfiguration;
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -134,7 +135,7 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      */
     public function __construct()
     {
-        $this->configuration = EmConfiguration::getSettings();
+        $this->configuration = GeneralUtility::makeInstance(EmConfiguration::class);
     }
 
     /**

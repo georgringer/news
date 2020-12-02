@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -7,6 +8,10 @@ namespace GeorgRinger\News\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
@@ -107,8 +112,6 @@ class NewsController extends NewsBaseController
                 $cacheTagsSet = true;
             }
         }
-
-        $this->categoryRepository->setRespectSysLanguageInFindInList((bool)$this->settings['respectSysLanguageInFindInList']);
     }
 
     /**
@@ -120,7 +123,7 @@ class NewsController extends NewsBaseController
      */
     protected function createDemandObjectFromSettings(
         $settings,
-        $class = 'GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand'
+        $class = NewsDemand::class
     ) {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
@@ -128,9 +131,13 @@ class NewsController extends NewsBaseController
         $demand = $this->objectManager->get($class, $settings);
         if (!$demand instanceof \GeorgRinger\News\Domain\Model\Dto\NewsDemand) {
             throw new \UnexpectedValueException(
-                sprintf('The demand object must be an instance of \GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand, but %s given!',
-                    $class),
-                1423157953);
+                sprintf(
+                    'The demand object must be an instance of %s, but %s given!',
+                    NewsDemand::class,
+                    $class
+                ),
+                1423157953
+            );
         }
 
         $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'], true));
@@ -160,8 +167,10 @@ class NewsController extends NewsBaseController
         $demand->setMonth($settings['month']);
         $demand->setYear($settings['year']);
 
-        $demand->setStoragePage(Page::extendPidListByChildren($settings['startingpoint'],
-            $settings['recursive']));
+        $demand->setStoragePage(Page::extendPidListByChildren(
+            $settings['startingpoint'],
+            $settings['recursive']
+        ));
 
         if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'])) {
             $params = [
@@ -313,7 +322,7 @@ class NewsController extends NewsBaseController
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_SELECTED_ACTION, $assignedValues);
         $this->view->assignMultiple($assignedValues);
 
-        if (!empty($newsRecords) && is_a($newsRecords[0], 'GeorgRinger\\News\\Domain\\Model\\News')) {
+        if (!empty($newsRecords) && is_a($newsRecords[0], News::class)) {
             Cache::addCacheTagsByNewsRecords($newsRecords);
         }
     }
@@ -334,7 +343,6 @@ class NewsController extends NewsBaseController
 
             if ($previewNewsId > 0) {
                 if ($this->isPreviewOfHiddenRecordsEnabled()) {
-                    $GLOBALS['TSFE']->showHiddenRecords = true;
                     $news = $this->newsRepository->findByUid($previewNewsId, false);
                 } else {
                     $news = $this->newsRepository->findByUid($previewNewsId);
@@ -342,8 +350,7 @@ class NewsController extends NewsBaseController
             }
         }
 
-        if (is_a($news,
-                'GeorgRinger\\News\\Domain\\Model\\News') && $this->settings['detail']['checkPidOfNewsRecord']
+        if (is_a($news, News::class) && $this->settings['detail']['checkPidOfNewsRecord']
         ) {
             $news = $this->checkPidOfNewsRecord($news);
         }
@@ -367,16 +374,23 @@ class NewsController extends NewsBaseController
             $news = null;
         }
 
-        if (is_null($news) && isset($this->settings['detail']['errorHandling'])) {
+        if ($news !== null) {
+            Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
+            Cache::addCacheTagsByNewsRecords([$news]);
+
+            if ($this->settings['detail']['pageTitle']['_typoScriptNodeValue']) {
+                $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
+                $providerClass = $providerConfiguration['provider'] ?? NewsTitleProvider::class;
+
+                /** @var NewsTitleProvider $provider */
+                $provider = GeneralUtility::makeInstance($providerClass);
+                $provider->setTitleByNews($news, $providerConfiguration);
+            }
+        } elseif (isset($this->settings['detail']['errorHandling'])) {
             $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
             if ($errorContent) {
                 return $errorContent;
             }
-        }
-
-        Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
-        if (!is_null($news) && is_a($news, 'GeorgRinger\\News\\Domain\\Model\\News')) {
-            Cache::addCacheTagsByNewsRecords([$news]);
         }
     }
 
@@ -440,8 +454,10 @@ class NewsController extends NewsBaseController
             $overwriteDemandTemp = $overwriteDemand;
             unset($overwriteDemandTemp['year']);
             unset($overwriteDemandTemp['month']);
-            $demand = $this->overwriteDemandObject($demand,
-                $overwriteDemandTemp);
+            $demand = $this->overwriteDemandObject(
+                $demand,
+                $overwriteDemandTemp
+            );
             unset($overwriteDemandTemp);
         }
 
@@ -501,8 +517,11 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHFORM_ACTION,
-            $assignedValues);
+        $assignedValues = $this->emitActionSignal(
+            'NewsController',
+            self::SIGNAL_NEWS_SEARCHFORM_ACTION,
+            $assignedValues
+        );
         $this->view->assignMultiple($assignedValues);
     }
 
@@ -539,8 +558,11 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_SEARCHRESULT_ACTION,
-            $assignedValues);
+        $assignedValues = $this->emitActionSignal(
+            'NewsController',
+            self::SIGNAL_NEWS_SEARCHRESULT_ACTION,
+            $assignedValues
+        );
         $this->view->assignMultiple($assignedValues);
     }
 

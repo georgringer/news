@@ -9,6 +9,9 @@ namespace GeorgRinger\News\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
+use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -51,7 +54,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * </output>
  *
  */
-class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
     /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
@@ -123,6 +126,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      *
      * @param int $id
      * @return mixed|null
+     * @throws AspectNotFoundException
      */
     protected function getObject($id)
     {
@@ -130,12 +134,15 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
 
         $rawRecord = $this->getRawRecord($id);
 
-        if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->sys_language_content > 0) {
+        /** @var LanguageAspect $languageAspect */
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+
+        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
             $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
                 'tx_news_domain_model_news',
                 $rawRecord,
-                $GLOBALS['TSFE']->sys_language_content,
-                $GLOBALS['TSFE']->sys_language_contentOL
+                $languageAspect->getContentId(),
+                $languageAspect->getLegacyOverlayType()
             );
             if (!is_null($overlay)) {
                 $rawRecord = $overlay;

@@ -1,9 +1,7 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
 .. include:: ../../../Includes.txt
+
+.. Set default language for code-blocks to TypoScript for this page!
+.. highlight:: typoscript
 
 .. _ts:
 
@@ -78,6 +76,8 @@ orderBy
    Description
          Define the sorting of displayed news records.
          The chapter ":ref:`Extend news > Extend flexforms <extendFlexforms>`" shows how the select box can be extended.
+   Default
+         'datetime'
 
 .. _tsOrderDirection:
 
@@ -92,7 +92,11 @@ orderDirection
    Description
          Define the sorting direction which can either be "asc" for ascending or "desc" descending. This can be either *asc* or *desc*.
 
-         :typoscript:`plugin.tx_news.settings.orderDirection = asc`
+         ::
+
+            plugin.tx_news.settings.orderDirection = asc
+   Default
+         'desc'
 
 .. _tsDateField:
 
@@ -106,6 +110,8 @@ dateField
          string
    Description
          The date menu builds a menu by year and month and the given news records. The menu can either be built by using the date field or the archive field.
+   Default
+         'datetime'
 
 .. _tsCategories:
 
@@ -118,12 +124,18 @@ categories
    Data type
          string
    Description
-         Define the news categories which are taken into account when getting the correct news records.
+         Define the news categories which are taken into account when getting the correct news records
 
-         :typoscript:`plugin.tx_news.settings.categories =` 1,2,3
+         ::
+
+            plugin.tx_news.settings.categories = 1,2,3
 
          .. caution::
-         	Don't forget to set the category mode too! See property below.
+
+            Don't forget to set the category mode too! See property below.
+   Default
+         (none)
+
 
 .. _tsCategoryConjunction:
 
@@ -159,7 +171,11 @@ categoryConjunction
 
          This is the negation of #3. All news records which don't belong to all selected categories are shown.
 
-         :typoscript:`plugin.tx_news.settings.categoryConjunction =` or
+         ::
+
+            plugin.tx_news.settings.categoryConjunction = or
+   Default
+         0 (Don't care, show all)
 
 .. _tsIncludeSubCategories:
 
@@ -174,7 +190,12 @@ includeSubCategories
    Description
          Include subcategories in the category selection
 
-         :typoscript:`plugin.tx_news.settings.includeSubCategories =1`
+         ::
+
+            plugin.tx_news.settings.includeSubCategories = 1
+
+   Default
+         0
 
 .. _tsArchiveRestriction:
 
@@ -187,19 +208,23 @@ archiveRestriction
    Data type
          string
    Description
-         :typoscript:`plugin.tx_news.settings.archiveRestriction = active`
+         ::
+
+            plugin.tx_news.settings.archiveRestriction = active
 
          News records can hold an optional archive date. 2 modes are available:
 
          **active: Only active (non archived)**
 
-         All news records with an archive date before the current date are shown.
+         All news records with an archive date in the future are shown.
 
          **archived: Archived**
 
          All news records with an archive date in the past are shown.
 
          .. hint:: Records with no archive date aren't shown in any of the selected modes.
+   Default
+         (none)
 
 .. _tsTimeRestriction:
 
@@ -213,7 +238,9 @@ timeRestriction
    Data type
          string
    Description
-         :typoscript:`plugin.tx_news.settings.timeRestriction =-1 week`
+         ::
+
+            plugin.tx_news.settings.timeRestriction =-1 week
 
          The time limit offers 2 different options.
 
@@ -232,6 +259,8 @@ timeRestriction
          - -10 months 3 days 2 hours
 
          Words need to be in English and are translated by using `strtotime <http://de.php.net/strtotime>`_ .
+   Default
+         (none)
 
 .. _tsTimeRestrictionHigh:
 
@@ -245,6 +274,8 @@ timeRestrictionHigh
          string
    Description
          See timeRestriction_ above. The configuration is the same but for the higher time end.
+   Default
+         (none)
 
 .. _tsTopNewsRestriction:
 
@@ -257,7 +288,9 @@ topNewsRestriction
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.topNewsRestriction =2`
+         ::
+
+            plugin.tx_news.settings.topNewsRestriction =2
 
          Any news record can be set as “Top News”. Therefore it is possible to show news records depending on this flag.
 
@@ -268,6 +301,8 @@ topNewsRestriction
          **2: Except Top News records**
 
          Only news records which don't have the checkbox set are shown.
+   Default
+      (none)
 
 .. _tsSingleNews:
 
@@ -280,9 +315,13 @@ singleNews
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.singleNews =789`
+         ::
+
+            plugin.tx_news.settings.singleNews =789
 
          It is possible to show a specific news record in the Detail view if the uid is set with this property.
+   Default
+      (none)
 
 .. _tsPreviewHiddenRecords:
 
@@ -295,13 +334,18 @@ previewHiddenRecords
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.previewHiddenRecords = 1`
+         ::
+
+            plugin.tx_news.settings.previewHiddenRecords = 1
 
          If set, also records which are normally hidden are displayed. This is especially helpful when using a detail view as preview mode for editors.
 
          .. note:: Be aware to secure the page (e.g. using a TS condition to make it available only if an BE user is logged in) as this page could be called by anyone using any news record uid to see its content.
 
          .. note:: If set, any hidden records on the current page are shown as well!
+   Default
+      (no preview)
+
 
 .. _tsStartingpoint:
 
@@ -314,9 +358,13 @@ startingpoint
    Data type
          string
    Description
-         :typoscript:`plugin.tx_news.settings.startingpoint =12,345`
+         ::
+
+            plugin.tx_news.settings.startingpoint =12,345
 
          If a startingpoint is set, all news records which are saved on one of the selected pages are shown, otherwise news of all pages are shown.
+   Default
+         (none)
 
 .. _tsRecursive:
 
@@ -329,9 +377,13 @@ recursive
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.recursive = 2`
+         ::
+
+            plugin.tx_news.settings.recursive = 2
 
          The search for pages as startingpoint can be extended by setting a recursive level.
+   Default
+         (No recursion)
 
 .. _tsDetailPid:
 
@@ -344,11 +396,15 @@ detailPid
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.detailPid =12`
+         ::
+
+            plugin.tx_news.settings.detailPid =12
 
          This page is uses as target for the detail view. If nothing set, the current page is used.
 
          .. hint:: Be aware that this setting might not be used, depending on the setting detailPidDetermination_.
+   Default
+         (none)
 
 .. _tsListPid:
 
@@ -361,9 +417,13 @@ listPid
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.listPid =12`
+         ::
+
+            plugin.tx_news.settings.listPid =12
 
          This page is uses as target for the listings, e.g. the date menu and the Search form.
+   Default
+         (none)
 
 .. _tsBackPid:
 
@@ -376,9 +436,13 @@ backPid
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.backPid =12`
+         ::
+
+            plugin.tx_news.settings.backPid =12
 
          Define a page for the detail view to return to. This is typically the page on which the list view can be found.
+   Default
+         (none)
 
 .. _tsLimit:
 
@@ -391,9 +455,13 @@ limit
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.limit =10`
+         ::
+
+            plugin.tx_news.settings.limit =10
 
          Define the maximum records shown.
+   Default
+         (none)
 
 .. _tsOffset:
 
@@ -406,9 +474,13 @@ offset
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.offset =3`
+         ::
+
+            plugin.tx_news.settings.offset = 3
 
          Define the offset. If set to e.g. 2, the first 2 records are not shown. This is especially useful in combination with multiple plugins on the same page and the setting “Max records displayed”.
+   Default
+         (none)
 
 .. _tsTags:
 
@@ -422,6 +494,8 @@ tags
          string
    Description
          Add a constraint to the given tags
+   Default
+         (none)
 
 .. _tsHidePagination:
 
@@ -435,6 +509,8 @@ hidePagination
          boolean
    Description
          If defined, the pagination is not shown.
+   Default
+         0 (do not hide)
 
 .. _tsListPaginateItemsPerPage:
 
@@ -448,6 +524,8 @@ list.paginate.itemsPerPage
          int
    Description
          Define the amount of news items shown per page in the pagination.
+   Default
+         10
 
 .. _tsTopNewsFirst:
 
@@ -460,9 +538,13 @@ topNewsFirst
    Data type
          boolean
    Description
-         :typoscript:`plugin.tx_news.settings.topNewsFirst =1`
+         ::
+
+            plugin.tx_news.settings.topNewsFirst =1
 
          If set, news records with the checkbox **"Top News"** are shown before the others, no matter which sorting configuration is used.
+   Default
+         0 (Do not show top news first)
 
 .. _tsExcludeAlreadyDisplayedNews:
 
@@ -475,11 +557,15 @@ excludeAlreadyDisplayedNews
    Data type
          boolean
    Description
-         :typoscript:`plugin.tx_news.settings.excludeAlreadyDisplayedNews =1`
+         ::
+
+            plugin.tx_news.settings.excludeAlreadyDisplayedNews =1
 
          If checked, news items which are already rendered are excluded in the current plugin.
          **To exclude news items, the viewHelper <n:excludeDisplayedNews newsItem="{newsItem}" /> needs to be added to the template.**
          .. note:: The order of rendering in the frontend is essential as the information which news record is shown and should not be included anymore is fetched during runtime.
+   Default
+         0 (Do not exclude)
 
 .. _tsDisableOverrideDemand:
 
@@ -492,9 +578,13 @@ disableOverrideDemand
    Data type
          boolean
    Description
-         :typoscript:`plugin.tx_news.settings.disableOverrideDemand =1`
+         ::
+
+            plugin.tx_news.settings.disableOverrideDemand =1
 
          If set, the settings of the plugin can't be overridden by arguments in the URL. The override is used, e.g. to show only news of a given category (category given in the URL).
+   Default
+         1 (Disable override)
 
 .. _tsMediaMaxWidth:
 
@@ -508,6 +598,8 @@ media.maxWidth
          int
    Description
          Maximum width of assets
+   Default
+         (none)
 
 .. _tsMediaMaxHeight:
 
@@ -521,6 +613,8 @@ media.maxHeight
          int
    Description
          Maximum height of assets
+   Default
+         (none)
 
 .. _tsCropMaxCharacters:
 
@@ -533,9 +627,13 @@ cropMaxCharacters
    Data type
          int
    Description
-         :typoscript:`plugin.tx_news.settings.cropMaxCharacters =100`
+         ::
+
+            plugin.tx_news.settings.cropMaxCharacters =100
 
          Define the maximum length of the teaser text before it is cropped.
+   Default
+         (do not crop)
 
 .. _tsTemplateLayout:
 
@@ -548,11 +646,15 @@ templateLayout
    Data type
          string
    Description
-         :typoscript:`plugin.tx_news.settings.templateLayout = 123`
+         ::
+
+            plugin.tx_news.settings.templateLayout = 123
 
          Select different layouts. See :ref:`this section <tsconfigTemplateLayouts>` how to add layouts.
 
          .. note:: Template variants need to be supported by the templates, otherwise this setting doesn't change anything!
+   Default
+         (none, use default)
 
 General settings
 ----------------
@@ -582,7 +684,6 @@ Properties
 	`link\.typesOpeningInNewWindow`_      string
 	`link\.skipControllerAndAction`_      integer
 	facebookLocale_                       string
-	disqusLocale_                         string
 	googlePlusLocale_                     string
 	opengraph_                            array
 	`detail\.media`_                      array
@@ -592,7 +693,6 @@ Properties
 	`detail\.showMetaTags`_               boolean
 	`detail\.showPrevNext`_               boolean
 	`detail\.showSocialShareButtons`_     boolean
-	`detail\.disqusShortname`_            string
 	`list\.media`_                        array
 	`list\.paginate`_                     array
 	`list\.rss`_                          array
@@ -612,11 +712,9 @@ cssFile
    Data type
          string
    Description
-         Description of the property
+         Path to the css file. This is included with the Layouts.
    Default
          Default value (if any). Leave out entirely if not defined.
-
-Path to the css file. This is included with the Layouts.
 
 .. _tsFormat:
 
@@ -648,15 +746,14 @@ useStdWrap
 
          As an example: ::
 
-			 settings {
-			   useStdWrap = singleNews
+            settings {
+               useStdWrap = singleNews
 
-			   singleNews.stdWrap.cObject = CONTENT
-			   singleNews.stdWrap.cObject {
-				...
-			   }
-			 }
-
+               singleNews.stdWrap.cObject = CONTENT
+               singleNews.stdWrap.cObject {
+                  # ...
+               }
+            }
    Default
          html
 
@@ -679,7 +776,8 @@ overrideFlexformSettingsIfEmpty
          Therefore you can define those settings which's value should be taken from TypoScript if nothing
          is set in the plugin.
    Default
-         cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
+         cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint
+         ,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
 
 .. _tsDisplayDummyIfNoMedia:
 
@@ -694,9 +792,12 @@ displayDummyIfNoMedia
          boolean
    Description
          If set and no preview image is defined, a placeholder image is shown.
-         The placeholder itself is defined with TypoScript ::
 
-           plugin.tx_news.settings.list.media.dummyImage = typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png
+         The placeholder itself is defined with TypoScript::
+
+           plugin.tx_news.settings {
+              list.media.dummyImage = typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png
+           }
 
    Default
          1
@@ -723,10 +824,10 @@ detailPidDetermination
          **flexform**
 
          This type tries to get the detail page from the plugin's setting *PageId for single news display* which
-         can also be set by using TypoScript. ::
+         can also be set by using TypoScript::
 
-           # If set via TypoScript, also add detailPid to the setting "overrideFlexformSettingsIfEmpty"
-           plugin.tx_news.settings.detailPid = 123
+            # If set via TypoScript, also add detailPid to the setting "overrideFlexformSettingsIfEmpty"
+            plugin.tx_news.settings.detailPid = 123
 
          **categories**
 
@@ -734,9 +835,9 @@ detailPidDetermination
 
          **default**
 
-         This type tries to get the value from the setting *defaultDetailPid*. ::
+         This type tries to get the value from the setting *defaultDetailPid*::
 
-           plugin.tx_news.settings.defaultDetailPid = 456
+            plugin.tx_news.settings.defaultDetailPid = 456
 
    Default
          flexform, categories, default
@@ -762,16 +863,17 @@ hideIdList
    Description
          Define a list of ids of news articles which are excluded in the view. This is similar to the setting ``excludeAlreadyDisplayedNews`` but the exclusion is defined in TypoScript instead of the template.
 
-         As an example this excludes the news record of a detail action of the same page ::
+         As an example this excludes the news record of a detail action of the same page::
 
             plugin.tx_news.settings {
-                useStdWrap := addToList(hideIdList)
-                hideIdList.cObject = TEXT
-                hideIdList.cObject {
-                    data = GP:tx_news_pi1|news
-                }
+               useStdWrap := addToList(hideIdList)
+               hideIdList.cObject = TEXT
+               hideIdList.cObject {
+                  data = GP:tx_news_pi1|news
+               }
             }
-
+   Default
+         (none)
 
 .. _tsOrderByAllowed:
 
@@ -786,7 +888,6 @@ orderByAllowed
    Description
          Due to restrictions of extbase itself it is required to define all fields which are allowed for
          sorting results.
-
    Default
          sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
 
@@ -806,11 +907,11 @@ analytics.social
    Default
          ::
 
-           analytics.social {
-           	facebookLike = 1
-           	facebookShare = 1
-           	twitter = 1
-           }
+            analytics.social {
+               facebookLike = 1
+               facebookShare = 1
+               twitter = 1
+            }
 
 .. _tsDemandClass:
 
@@ -852,12 +953,12 @@ link.hrDate
          zeros and the year by using 4 digits. ::
 
             link {
-                    hrDate = 1
-                    hrDate {
-                            day = j
-                            month = m
-                            year = Y
-                    }
+               hrDate = 1
+               hrDate {
+                  day = j
+                  month = m
+                  year = Y
+               }
             }
 
          See the :ref:`realurl configuration <realurl>`.
@@ -913,24 +1014,6 @@ facebookLocale
    Default
          en\_US
 
-.. _tsDisqusLocale:
-
-disqusLocale
-""""""""""""
-
-.. container:: table-row
-
-   Property
-         disqusLocale
-   Data type
-         string
-   Description
-          Locale used for disqus
-   Default
-         en
-
-.. _tsGooglePlusLocale:
-
 googlePlusLocale
 """"""""""""""""
 
@@ -972,26 +1055,26 @@ opengraph
    Default
          ::
 
-		opengraph {
-           site_name =  {$plugin.tx_news.opengraph.site_name}
-           type = article
-           admins =
-           email =
-           phone_number =
-           fax_number =
-           latitude =
-           longitude =
-           street-address =
-           locality =
-           region =
-           postal-code =
-           country-name =
-           twitter {
-             card = {$plugin.tx_news.opengraph.twitter.card}
-             site = {$plugin.tx_news.opengraph.twitter.site}
-             creator = {$plugin.tx_news.opengraph.twitter.creator}
-           }
-		}
+            opengraph {
+               site_name =  {$plugin.tx_news.opengraph.site_name}
+               type = article
+               admins =
+               email =
+               phone_number =
+               fax_number =
+               latitude =
+               longitude =
+               street-address =
+               locality =
+               region =
+               postal-code =
+               country-name =
+               twitter {
+                  card = {$plugin.tx_news.opengraph.twitter.card}
+                  site = {$plugin.tx_news.opengraph.twitter.site}
+                  creator = {$plugin.tx_news.opengraph.twitter.creator}
+               }
+            }
 
 .. _tsDetailMedia:
 
@@ -1014,33 +1097,33 @@ detail.media
    Default
          ::
 
-           detail.media {
-           	image {
-           		maxWidth = 282
-           		maxHeight =
+            detail.media {
+               image {
+                  maxWidth = 282
+                  maxHeight =
 
-                # If using fluid_styled_content
-                lightbox {
-                    enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
-                    class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
-                    width = {$styles.content.textmedia.linkWrap.width}
-                    height = {$styles.content.textmedia.linkWrap.height}
-                }
-                # If using css_styled_content, use those ssettings
-                # lightbox {
-                #      enabled = {$styles.content.imgtext.linkWrap.lightboxEnabled}
-                #      class = {$styles.content.imgtext.linkWrap.lightboxCssClass}
-                #      width = {$styles.content.imgtext.linkWrap.width}
-                #      height = {$styles.content.imgtext.linkWrap.height}
-                #      rel = lightbox[myImageSet]
-                # }
-           	}
+                  # If using fluid_styled_content
+                  lightbox {
+                     enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
+                     class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
+                     width = {$styles.content.textmedia.linkWrap.width}
+                     height = {$styles.content.textmedia.linkWrap.height}
+                  }
+                  # If using css_styled_content, use those ssettings
+                  # lightbox {
+                  #    enabled = {$styles.content.imgtext.linkWrap.lightboxEnabled}
+                  #    class = {$styles.content.imgtext.linkWrap.lightboxCssClass}
+                  #    width = {$styles.content.imgtext.linkWrap.width}
+                  #    height = {$styles.content.imgtext.linkWrap.height}
+                  #    rel = lightbox[myImageSet]
+                  # }
+               }
 
-           	video {
-           		width = 282
-           		height = 300
-           	}
-           }
+               video {
+                  width = 282
+                  height = 300
+               }
+            }
 
 .. _tsDetailErrorHandling:
 
@@ -1055,7 +1138,7 @@ detail.errorHandling
    Description
          If no news entry is found, it is possible to use various types of error handling.
 
-         - **showStandaloneTemplate**: A template is rendered. The syntax is `showStandaloneTemplate,<path>,<errorCode>`, e.g. `showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
+         - **showStandaloneTemplate**: A template is rendered. The syntax is `showStandaloneTemplate,<path>,<errorCode>`, e.g. `showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404`
          - **redirectToListView**: This will redirect to the list view on the same page.
          - **redirectToPage**: Redirect to any page by using the syntax redirectToPage,<pageid>,<status>. This means e.g. redirectToPage,123,404 to redirect to the page with UID 123 and error code 404.
          - **pageNotFoundHandler**: The default page not found handler will be called.
@@ -1123,11 +1206,11 @@ detail.registerProperties
 
          ::
 
-         	lib.fo = TEXT
-         	lib.fo {
-         		# title becomes newsTitle, keywords becomes newsKeywords, ...
-         		data = newsTitle
-         	}
+            lib.fo = TEXT
+            lib.fo {
+               # title becomes newsTitle, keywords becomes newsKeywords, ...
+               data = newsTitle
+            }
 
          .. TODO Check that!
 
@@ -1149,21 +1232,6 @@ detail.showSocialShareButtons
    Default
          1
 
-.. _tsDetailDisqusdisqusShortname:
-
-detail.disqusShortname
-""""""""""""""""""""""
-.. container:: table-row
-
-   Property
-         detail.disqusShortname
-   Data type
-         string
-   Description
-         If set, the commenting system of disqus (www.disqus.com) is used with the given name.
-
-.. _tsListMedia:
-
 list.media
 """"""""""
 
@@ -1183,12 +1251,12 @@ list.media
    Default
          ::
 
-		list.media {
-           image {
-           	maxWidth = 100
-           	maxHeight = 100
-           }
-		}
+            list.media {
+               image {
+                  maxWidth = 100
+                  maxHeight = 100
+               }
+            }
 
 .. _tsListPaginate:
 
@@ -1238,20 +1306,20 @@ list.paginate
          The path has to point to the template file, for example :code:`EXT:foobar/Resources/Private/Templates/ViewHelpers/Widget/Paginate/Index.html`
 
          .. important::
-         	`list.paginate.templatePath` needs to be added to the setting `overrideFlexformSettingsIfEmpty`!
+            :typoscript:`list.paginate.templatePath` needs to be added to the setting :typoscript:`overrideFlexformSettingsIfEmpty`!
 
 
    Default
          ::
 
-		list.paginate {
-           itemsPerPage = 10
-           insertAbove = 1
-           insertBelow = 1
-           templatePath =
-           prevNextHeaderTags = 1
-           maximumNumberOfLinks = 3
-		}
+            list.paginate {
+               itemsPerPage = 10
+               insertAbove = 1
+               insertBelow = 1
+               templatePath =
+               prevNextHeaderTags = 1
+               maximumNumberOfLinks = 3
+            }
 
 .. _tsListRss:
 
@@ -1268,20 +1336,19 @@ list.rss
         Additional settings for the RSS view
 
         :ref:`See the RSS configuration <rss>`
-
    Default
          ::
 
-		rss {
-           channel {
-           	title = {$plugin.tx_news.rss.channel.title}
-           	description = {$plugin.tx_news.rss.channel.description}
-           	language = {$plugin.tx_news.rss.channel.language}
-           	copyright = {$plugin.tx_news.rss.channel.copyright}
-           	generator = {$plugin.tx_news.rss.channel.generator}
-           	link = {$plugin.tx_news.rss.channel.link}
-           }
-		}
+            rss {
+               channel {
+                  title = {$plugin.tx_news.rss.channel.title}
+                  description = {$plugin.tx_news.rss.channel.description}
+                  language = {$plugin.tx_news.rss.channel.language}
+                  copyright = {$plugin.tx_news.rss.channel.copyright}
+                  generator = {$plugin.tx_news.rss.channel.generator}
+                  link = {$plugin.tx_news.rss.channel.link}
+               }
+            }
 
 .. _tsSearchFields:
 
@@ -1299,12 +1366,11 @@ search.fields
 
         .. hint::
            You can also search in relations, e.g. the category title by using :code:`categories.title`
-
    Default
         teaser,title,bodytext
 
 search.splitSearchWord
-"""""""""""""
+""""""""""""""""""""""
 
 .. container:: table-row
 
@@ -1318,8 +1384,7 @@ search.splitSearchWord
         As an example: Searching for *hello world* will give you as result also the news item with the title `hello the world`. The search terms must be found in the same field, which means that a news item with the world *hello* in the `title` and the word *world* in the bodytext won\'t be found.
 
         .. hint::
-        If you need a better search experience, think about using something like EXT:solr!
-
+           If you need a better search experience, think about using something like EXT:solr!
    Default
         0
 

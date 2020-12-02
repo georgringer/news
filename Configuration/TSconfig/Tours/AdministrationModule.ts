@@ -1,7 +1,7 @@
 mod.guide.tours.TxNewsAdministrationModule {
     title = LLL:EXT:news/Resources/Private/Language/Tours.xlf:adminModule.title
     description = LLL:EXT:news/Resources/Private/Language/Tours.xlf:adminModule.description
-    moduleName = web_NewsTxNewsM2
+    moduleName = web_NewsAdministration
     iconIdentifier = ext-news-type-default
     steps {
         # General

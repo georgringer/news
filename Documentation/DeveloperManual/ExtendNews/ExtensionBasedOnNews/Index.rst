@@ -5,7 +5,7 @@
 
 .. include:: ../../../Includes.txt
 
-.. _hooks:
+.. _ext-based-on-news:
 
 Extension based on EXT:news
 ===========================
@@ -188,7 +188,7 @@ After enabling the extension in the Extension Manager and creating a plugin "Fil
 Configuration
 -------------
 
-There are multiple ways how to configure which news records should be shown. The fasted way is to hardcode the configuration.
+There are multiple ways how to configure which news records should be shown. The fastest way is to hardcode the configuration.
 
 Hardcode it
 ^^^^^^^^^^^
@@ -233,7 +233,7 @@ Exchange the existing file with the following content.
 	 * Plugin
 	 */
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-		'news_categoryfilter',
+		'news_filter',
 		'Filter',
 		'Some demo'
 	);
@@ -241,7 +241,7 @@ Exchange the existing file with the following content.
 	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['newsfilter_filter'] = 'recursive,select_key,pages';
 	$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['newsfilter_filter'] = 'pi_flexform';
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue('newsfilter_filter',
-		'FILE:EXT:news_categoryfilter/Configuration/FlexForms/flexform_news_filter.xml');
+		'FILE:EXT:news_filter/Configuration/FlexForms/flexform_news_filter.xml');
 
 Configuration/FlexForms/flexform_news_filter.xml
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -262,7 +262,7 @@ The syntax of ``FlexForms`` is identical to the one of ``TCA`` with the only dif
 					<el>
 						<settings.startingpoint>
 							<TCEforms>
-								<label>LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
+								<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
 								<config>
 									<type>group</type>
 									<internal_type>db</internal_type>

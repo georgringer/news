@@ -68,13 +68,13 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @var \GeorgRinger\News\Domain\Model\Category
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $parentcategory;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $images;
 
@@ -326,7 +326,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
+     * @return \GeorgRinger\News\Domain\Model\FileReference[]
      */
     public function getImages()
     {
