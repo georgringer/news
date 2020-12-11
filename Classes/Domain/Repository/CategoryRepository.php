@@ -12,7 +12,9 @@ use Doctrine\DBAL\Connection;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Service\CategoryService;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -213,7 +215,10 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     protected function getSysLanguageUid()
     {
         $sysLanguage = 0;
-        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+
+        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() === 10) {
+            $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
+        } elseif (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $sysLanguage = $GLOBALS['TSFE']->sys_language_content;
         } elseif ((int)GeneralUtility::_GP('L')) {
             $sysLanguage = (int)GeneralUtility::_GP('L');
