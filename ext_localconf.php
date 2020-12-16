@@ -2,18 +2,34 @@
 defined('TYPO3_MODE') or die();
 
 $boot = function () {
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'GeorgRinger.news',
-        'Pi1',
-        [
-            'News' => 'list,detail,selectedList,dateMenu,searchForm,searchResult',
-            'Category' => 'list',
-            'Tag' => 'list',
-        ],
-        [
-            'News' => 'searchForm,searchResult',
-        ]
-    );
+    $typo3Information = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+    if ($typo3Information->getMajorVersion() >= 10) {
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'news',
+            'Pi1',
+            [
+                \GeorgRinger\News\Controller\NewsController::class => 'list,detail,selectedList,dateMenu,searchForm,searchResult',
+                \GeorgRinger\News\Controller\CategoryController::class => 'list',
+                \GeorgRinger\News\Controller\TagController::class => 'list',
+            ],
+            [
+                \GeorgRinger\News\Controller\NewsController::class => 'searchForm,searchResult',
+            ]
+        );
+    } else {
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'GeorgRinger.news',
+            'Pi1',
+            [
+                'News' => 'list,detail,selectedList,dateMenu,searchForm,searchResult',
+                'Category' => 'list',
+                'Tag' => 'list',
+            ],
+            [
+                'News' => 'searchForm,searchResult',
+            ]
+        );
+    }
 
     // Page module hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['news' . '_pi1']['news'] =

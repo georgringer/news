@@ -37,43 +37,85 @@ $boot = function () {
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['news'] = 'tx_news_domain_model_news';
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['newstag'] = 'tx_news_domain_model_tag';
 
-        /* ===========================================================================
-            Register BE-Modules
-        =========================================================================== */
-        if ($configuration->getShowImporter()) {
-            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-                'GeorgRinger.news',
-                'system',
-                'tx_news_m1',
-                '',
-                ['Import' => 'index, runJob, jobInfo'],
-                [
-                    'access' => 'user,group',
-                    'icon' => 'EXT:news/Resources/Public/Icons/module_import.svg',
-                    'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
-                ]
-            );
-        }
+        $typo3Information = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+        if ($typo3Information->getMajorVersion() >= 10) {
+            /* ===========================================================================
+                Register BE-Modules
+            =========================================================================== */
+            if ($configuration->getShowImporter()) {
+                \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+                    'news',
+                    'system',
+                    'tx_news_m1',
+                    '',
+                    [\GeorgRinger\News\Controller\ImportController::class => 'index, runJob, jobInfo'],
+                    [
+                        'access' => 'user,group',
+                        'icon' => 'EXT:news/Resources/Public/Icons/module_import.svg',
+                        'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
+                    ]
+                );
+            }
 
-        /* ===========================================================================
-            Register BE-Module for Administration
-        =========================================================================== */
-        if ($configuration->getShowAdministrationModule()) {
-            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-                'GeorgRinger.news',
-                'web',
-                'administration',
-                '',
-                ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
-                [
-                    'access' => 'user,group',
-                    'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
-                    'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
-                    'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
-                    'inheritNavigationComponentFromMainModule' => false,
-                    'path' => '/module/web/NewsAdministration/'
-                ]
-            );
+            /* ===========================================================================
+                Register BE-Module for Administration
+            =========================================================================== */
+            if ($configuration->getShowAdministrationModule()) {
+                \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+                    'news',
+                    'web',
+                    'administration',
+                    '',
+                    [\GeorgRinger\News\Controller\AdministrationController::class => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
+                    [
+                        'access' => 'user,group',
+                        'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
+                        'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
+                        'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
+                        'inheritNavigationComponentFromMainModule' => false,
+                        'path' => '/module/web/NewsAdministration/'
+                    ]
+                );
+            }
+        } else {
+            /* ===========================================================================
+                Register BE-Modules
+            =========================================================================== */
+            if ($configuration->getShowImporter()) {
+                \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+                    'GeorgRinger.news',
+                    'system',
+                    'tx_news_m1',
+                    '',
+                    ['Import' => 'index, runJob, jobInfo'],
+                    [
+                        'access' => 'user,group',
+                        'icon' => 'EXT:news/Resources/Public/Icons/module_import.svg',
+                        'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
+                    ]
+                );
+            }
+
+            /* ===========================================================================
+                Register BE-Module for Administration
+            =========================================================================== */
+            if ($configuration->getShowAdministrationModule()) {
+                \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+                    'GeorgRinger.news',
+                    'web',
+                    'administration',
+                    '',
+                    ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
+                    [
+                        'access' => 'user,group',
+                        'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
+                        'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
+                        'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
+                        'inheritNavigationComponentFromMainModule' => false,
+                        'path' => '/module/web/NewsAdministration/'
+                    ]
+                );
+            }
         }
     }
 
