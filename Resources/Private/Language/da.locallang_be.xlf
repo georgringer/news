@@ -56,7 +56,7 @@
 			<target state="final">Andre</target></trans-unit>
       <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve" approved="yes">
 				<source>Tag list</source>
-			<target state="final">Mærkeliste</target></trans-unit>
+			<target state="final">Tag-liste</target></trans-unit>
       <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve" approved="yes">
 				<source>Archive</source>
 			<target state="final">Arkiv</target></trans-unit>
