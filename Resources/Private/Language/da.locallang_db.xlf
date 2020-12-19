@@ -86,7 +86,7 @@
 			<target state="final">Nøgleord1, nøgleord2, nøgleord3</target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve" approved="yes">
 				<source><![CDATA[<title>-Tag]]></source>
-			<target state="final"><![CDATA[&lt;title&gt;-nyheds tag]]></target></trans-unit>
+			<target state="final"><![CDATA[<title>-nyheds tag]]></target></trans-unit>
       <trans-unit id="tx_news_domain_model_tag.seo.seo_description" xml:space="preserve" approved="yes">
 				<source>Meta-Description</source>
 			<target state="final">Meta-beskrivelse</target></trans-unit>
@@ -110,7 +110,7 @@
 			<target state="final">Genvej til kategori</target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.seo.seo_title" xml:space="preserve" approved="yes">
 				<source><![CDATA[<title>-Tag]]></source>
-			<target state="final"><![CDATA[&lt;title&gt;-nyheds tag]]></target></trans-unit>
+			<target state="final"><![CDATA[<titel>-nyheds tag]]></target></trans-unit>
       <trans-unit id="tx_news_domain_model_category.seo.seo_description" xml:space="preserve" approved="yes">
 				<source>Meta-Description</source>
 			<target state="final">Meta-beskrivelse</target></trans-unit>
