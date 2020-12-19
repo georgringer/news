@@ -56,7 +56,7 @@
 			<target state="final">Kategorier</target></trans-unit>
       <trans-unit id="tags" xml:space="preserve" approved="yes">
 				<source>Tags</source>
-			<target state="final">Mærker</target></trans-unit>
+			<target state="final">Tags</target></trans-unit>
       <trans-unit id="entry" xml:space="preserve" approved="yes">
 				<source>entry</source>
 			<target state="final">post</target></trans-unit>
