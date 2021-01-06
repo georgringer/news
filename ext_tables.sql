@@ -27,7 +27,7 @@ CREATE TABLE tx_news_domain_model_news (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,
-	fe_group varchar(100) DEFAULT '0' NOT NULL,
+	fe_group varchar(100) DEFAULT '' NOT NULL,
 	title varchar(255) DEFAULT '' NOT NULL,
 	teaser text,
 	bodytext mediumtext,

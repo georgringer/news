@@ -277,9 +277,9 @@ The website provides several frontend languages.
            type: LocaleModifier
            default: 'page'
            localeMap:
-             - locale: 'da_.*'
+             - locale: 'da_DK.*'
                value: 'side'
-             - locale: 'de_.*'
+             - locale: 'de_DE.*'
                value: 'seite'
 
 **Explanation:**

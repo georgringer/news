@@ -6,6 +6,7 @@ use TYPO3\CMS\Backend\Form\Container\InlineRecordContainer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -71,10 +72,22 @@ class InlineRecordContainerForNews extends InlineRecordContainer
         }
 
         $label = '<span id="' . $objectId . '_label">' . $label . '</span>';
-        $header = '
+
+        $typo3Information = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($typo3Information->getMajorVersion() === 9) {
+            $header = '
                 <div class="form-irre-header-cell form-irre-header-icon" id="' . $objectId . '_iconcontainer" style="vertical-align:top;padding-top:8px;">' . $iconImg . '</div>
 				<div class="form-irre-header-cell form-irre-header-body">' . $label . '</div>
 				<div class="form-irre-header-cell form-irre-header-control t3js-formengine-irre-control">' . $this->renderForeignRecordHeaderControl($data) . '</div>';
+
+        } else {
+            $header = '
+                <button class="form-irre-header-cell form-irre-header-button" ' . $data['ariaAttributesString'] . '>' . '
+                    <div class="form-irre-header-cell form-irre-header-icon" id="' . $objectId . '_iconcontainer" style="vertical-align:top;padding-top:8px;">' . $iconImg . '</div>
+                    <div class="form-irre-header-cell form-irre-header-body">' . $label . '</div>
+                </button>
+                <div class="form-irre-header-cell form-irre-header-control t3js-formengine-irre-control">' . $this->renderForeignRecordHeaderControl($data) . '</div>';
+        }
 
         return $header;
     }
