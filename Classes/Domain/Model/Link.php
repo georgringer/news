@@ -47,7 +47,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     /**
      * Get creation date
      *
-     * @return int
+     * @return \DateTime
      */
     public function getCrdate()
     {
@@ -57,7 +57,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     /**
      * Set creation date
      *
-     * @param int $crdate creation date
+     * @param \DateTime $crdate creation date
      */
     public function setCrdate($crdate)
     {
@@ -67,7 +67,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     /**
      * Get timestamp
      *
-     * @return int
+     * @return \DateTime
      */
     public function getTstamp()
     {
@@ -77,7 +77,7 @@ class Link extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     /**
      * Set timestamp
      *
-     * @param int $tstamp timestamp
+     * @param \DateTime $tstamp timestamp
      */
     public function setTstamp($tstamp)
     {
