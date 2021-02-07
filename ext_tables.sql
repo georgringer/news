@@ -40,7 +40,7 @@ CREATE TABLE tx_news_domain_model_news (
 	related_from int(11) DEFAULT '0' NOT NULL,
 	related_files tinytext,
 	fal_related_files int(11) unsigned DEFAULT '0',
-	related_links tinytext,
+	related_links int(11) DEFAULT '0' NOT NULL,
 	type varchar(100) NOT NULL DEFAULT '0',
 	keywords text,
 	description text,
