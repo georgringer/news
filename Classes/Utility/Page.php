@@ -14,6 +14,7 @@ use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -39,11 +40,12 @@ class Page
         }
 
         $queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
+        $permsClause = static::getBackendUser()->getPagePermsClause(Permission::PAGE_SHOW);
         $recursiveStoragePids = $pidList;
         $storagePids = GeneralUtility::intExplode(',', $pidList);
         foreach ($storagePids as $startPid) {
             if ($startPid >= 0) {
-                $pids = $queryGenerator->getTreeList($startPid, $recursive, 0, 1);
+                $pids = $queryGenerator->getTreeList($startPid, $recursive, 0, $permsClause);
                 if (strlen($pids) > 0) {
                     $recursiveStoragePids .= ',' . $pids;
                 }
