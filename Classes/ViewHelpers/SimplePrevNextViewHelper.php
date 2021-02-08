@@ -174,7 +174,9 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
         foreach (['prev', 'next'] as $label) {
             $queryBuilder = $connection->createQueryBuilder();
 
-            $extraWhere = [];
+            $extraWhere = [
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), \PDO::PARAM_INT))
+            ];
             if ((bool)$this->arguments['includeInternalType'] === false) {
                 $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
             }

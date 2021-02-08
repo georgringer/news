@@ -5,7 +5,7 @@
 
 .. include:: ../../../Includes.txt
 
-.. _hooks:
+.. _ext-based-on-news:
 
 Extension based on EXT:news
 ===========================
@@ -188,7 +188,7 @@ After enabling the extension in the Extension Manager and creating a plugin "Fil
 Configuration
 -------------
 
-There are multiple ways how to configure which news records should be shown. The fasted way is to hardcode the configuration.
+There are multiple ways how to configure which news records should be shown. The fastest way is to hardcode the configuration.
 
 Hardcode it
 ^^^^^^^^^^^

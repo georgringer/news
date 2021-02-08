@@ -9,6 +9,7 @@ namespace GeorgRinger\News\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
@@ -71,11 +72,17 @@ class RenderMediaViewHelper extends AbstractViewHelper
         }
         $imageService = $this->objectManager->get(ImageService::class);
 
-        $crop = $image->getProperty('crop');
+        $cropString = '';
+        if ($image->hasProperty('crop')) {
+            $cropString = $image->getProperty('crop');
+        }
+        $cropVariantCollection = CropVariantCollection::create((string)$cropString);
+        $cropVariant = $this->arguments['cropVariant'] ?: 'default';
+        $cropArea = $cropVariantCollection->getCropArea($cropVariant);
         $processingInstructions = [
             'width' => null,
             'height' => null,
-            'crop' => $crop,
+            'crop' => $cropArea->isEmpty() ? null : $cropArea->makeAbsoluteBasedOnFile($image)
         ];
 
         $processedImage = $imageService->applyProcessingInstructions($image, $processingInstructions);

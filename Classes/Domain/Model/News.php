@@ -1085,7 +1085,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Get creation date
      *
-     * @return int
+     * @return \DateTime
      */
     public function getCrdate()
     {
@@ -1095,7 +1095,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set creation date
      *
-     * @param int $crdate
+     * @param \DateTime $crdate
      */
     public function setCrdate($crdate)
     {
@@ -1315,7 +1315,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set start time
      *
-     * @param int $starttime start time
+     * @param \DateTime $starttime start time
      */
     public function setStarttime($starttime)
     {
@@ -1371,7 +1371,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set end time
      *
-     * @param int $endtime end time
+     * @param \DateTime $endtime end time
      */
     public function setEndtime($endtime)
     {

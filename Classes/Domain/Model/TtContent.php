@@ -143,7 +143,7 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @param $crdate
+     * @param \DateTime $crdate
      */
     public function setCrdate($crdate)
     {
@@ -159,7 +159,7 @@ class TtContent extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @param $tstamp
+     * @param \DateTime $tstamp
      */
     public function setTstamp($tstamp)
     {

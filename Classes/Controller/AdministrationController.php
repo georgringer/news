@@ -255,8 +255,11 @@ class AdministrationController extends NewsController
             if ($this->showButton($tableConfiguration['table'])) {
                 $title = $this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:' . $tableConfiguration['label']);
                 $viewButton = $buttonBar->makeLinkButton()
-                    ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor($tableConfiguration['action'],
-                        [], 'Administration'))
+                    ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor(
+                        $tableConfiguration['action'],
+                        [],
+                        'Administration'
+                    ))
                     ->setDataAttributes([
                         'toggle' => 'tooltip',
                         'placement' => 'bottom',
@@ -273,9 +276,12 @@ class AdministrationController extends NewsController
         if (!empty($elFromTable)) {
             $viewButton = $buttonBar->makeLinkButton()
                 ->setHref($clipBoard->pasteUrl('', $this->pageUid))
-                ->setOnClick('return ' . $clipBoard->confirmMsgText('pages',
-                        BackendUtilityCore::getRecord('pages', $this->pageUid), 'into',
-                        $elFromTable))
+                ->setOnClick('return ' . $clipBoard->confirmMsgText(
+                    'pages',
+                    BackendUtilityCore::getRecord('pages', $this->pageUid),
+                    'into',
+                    $elFromTable
+                ))
                 ->setTitle($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf:clip_pasteInto'))
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));
             $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);
@@ -283,8 +289,11 @@ class AdministrationController extends NewsController
 
         // Donation
         $donationButton = $buttonBar->makeLinkButton()
-            ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor('donate',
-                [], 'Administration'))
+            ->setHref($uriBuilder->reset()->setRequest($this->request)->uriFor(
+                'donate',
+                [],
+                'Administration'
+            ))
             ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:administration.donation.title'))
             ->setIcon($this->iconFactory->getIcon('ext-news-donation', Icon::SIZE_SMALL));
         $buttonBar->addButton($donationButton, ButtonBar::BUTTON_POSITION_RIGHT);
@@ -412,8 +421,14 @@ class AdministrationController extends NewsController
         $dblist->MOD_MENU = ['bigControlPanel' => '', 'clipBoard' => '', 'localization' => ''];
         $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0);
         $limit = isset($this->settings['list']['paginate']['itemsPerPage']) ? (int)$this->settings['list']['paginate']['itemsPerPage'] : 20;
-        $dblist->start($this->pageUid, 'tx_news_domain_model_news', $pointer, '',
-            $demand->getRecursive(), $limit);
+        $dblist->start(
+            $this->pageUid,
+            'tx_news_domain_model_news',
+            $pointer,
+            '',
+            $demand->getRecursive(),
+            $limit
+        );
         $dblist->setDispFields();
         $dblist->noControlPanels = !(bool)$this->tsConfiguration['controlPanels'];
         $dblist->setFields = [
@@ -439,8 +454,11 @@ class AdministrationController extends NewsController
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];
 
-        $assignedValues = $this->emitActionSignal('AdministrationController', self::SIGNAL_ADMINISTRATION_INDEX_ACTION,
-            $assignedValues);
+        $assignedValues = $this->emitActionSignal(
+            'AdministrationController',
+            self::SIGNAL_ADMINISTRATION_INDEX_ACTION,
+            $assignedValues
+        );
         $this->view->assignMultiple($assignedValues);
     }
 
@@ -464,8 +482,11 @@ class AdministrationController extends NewsController
             'treeLevel' => $treeLevel,
         ];
 
-        $assignedValues = $this->emitActionSignal('AdministrationController',
-            self::SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION, $assignedValues);
+        $assignedValues = $this->emitActionSignal(
+            'AdministrationController',
+            self::SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION,
+            $assignedValues
+        );
         $this->view->assignMultiple($assignedValues);
     }
 
@@ -546,7 +567,7 @@ class AdministrationController extends NewsController
         /** @var \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilder */
         $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
 
-        $returnUrl = $uriBuilder->buildUriFromRoutePath('/web/NewsAdministration/', [
+        $returnUrl = $uriBuilder->buildUriFromRoutePath('/module/web/NewsAdministration/', [
             'id' => $this->pageUid,
             'token' => $this->getToken(true)
         ]);
@@ -609,7 +630,7 @@ class AdministrationController extends NewsController
         if (!empty($id)) {
             /** @var \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilder */
             $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
-            $url = $uriBuilder->buildUriFromRoutePath('/web/NewsAdministration/', [
+            $url = $uriBuilder->buildUriFromRoutePath('/module/web/NewsAdministration/', [
                 'id' => $id,
                 'token' => $this->getToken(true)
             ]);

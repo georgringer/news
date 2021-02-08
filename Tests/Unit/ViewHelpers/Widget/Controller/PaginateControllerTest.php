@@ -54,7 +54,8 @@ class PaginateControllerTest extends BaseTestCase
             [
                 'configuration' => $widgetConfiguration,
                 'objects' => $objects
-            ]);
+            ]
+        );
 
         $controller->initializeAction();
         \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($configuration, $widgetConfiguration, true);

@@ -221,8 +221,10 @@ class ItemsProcFunc
 
             $html .= '</select>';
         } else {
-            $html .= htmlspecialchars($this->getLanguageService()->sL(
-                'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available')
+            $html .= htmlspecialchars(
+                $this->getLanguageService()->sL(
+                    'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:usersettings.no-languages-available'
+                )
             );
         }
 

@@ -201,13 +201,17 @@ class PageLayoutView
                 if (is_array($pageRecord)) {
                     $content = $this->getRecordData($newsRecord['uid'], 'tx_news_domain_model_news');
                 } else {
-                    $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
-                        $newsRecord['pid']);
+                    $text = sprintf(
+                        $this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
+                        $newsRecord['pid']
+                    );
                     $content = $this->generateCallout($text);
                 }
             } else {
-                $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.newsNotAvailable'),
-                    $singleNewsRecord);
+                $text = sprintf(
+                    $this->getLanguageService()->sL(self::LLPATH . 'pagemodule.newsNotAvailable'),
+                    $singleNewsRecord
+                );
                 $content = $this->generateCallout($text);
             }
 
@@ -279,8 +283,14 @@ class PageLayoutView
             $data = '<span data-toggle="tooltip" data-placement="top" data-title="id=' . $record['uid'] . '">'
                 . $this->iconFactory->getIconForRecord($table, $record, Icon::SIZE_SMALL)->render()
                 . '</span> ';
-            $content = BackendUtilityCore::wrapClickMenuOnIcon($data, $table, $record['uid'], true, '',
-                '+info,edit,history');
+            $content = BackendUtilityCore::wrapClickMenuOnIcon(
+                $data,
+                $table,
+                $record['uid'],
+                true,
+                '',
+                '+info,edit,history'
+            );
 
             $linkTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record));
 
@@ -294,8 +304,10 @@ class PageLayoutView
                 $content .= $linkTitle;
             }
         } else {
-            $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.recordNotAvailable'),
-                $id);
+            $text = sprintf(
+                $this->getLanguageService()->sL(self::LLPATH . 'pagemodule.recordNotAvailable'),
+                $id
+            );
             $content = $this->generateCallout($text);
         }
 
@@ -558,7 +570,8 @@ class PageLayoutView
         if ($field == 1) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(
-                    self::LLPATH . 'flexforms_additional.disableOverrideDemand'),
+                    self::LLPATH . 'flexforms_additional.disableOverrideDemand'
+                ),
                 '<i class="fa fa-check"></i>'
             ];
         }

@@ -52,13 +52,17 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         if ($this->firstElementNumber) {
             $urlParameters['pointer'] = $this->firstElementNumber;
         }
-        if ((!$excludeList || !GeneralUtility::inList($excludeList,
-                    'sortField')) && $this->sortField
+        if ((!$excludeList || !GeneralUtility::inList(
+            $excludeList,
+            'sortField'
+        )) && $this->sortField
         ) {
             $urlParameters['sortField'] = $this->sortField;
         }
-        if ((!$excludeList || !GeneralUtility::inList($excludeList,
-                    'sortRev')) && $this->sortRev
+        if ((!$excludeList || !GeneralUtility::inList(
+            $excludeList,
+            'sortRev'
+        )) && $this->sortRev
         ) {
             $urlParameters['sortRev'] = $this->sortRev;
         }

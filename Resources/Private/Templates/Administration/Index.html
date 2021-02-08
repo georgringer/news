@@ -46,7 +46,7 @@
 	<f:if condition="{showSearchForm}">
 		<f:form id="administrationForm" name="demand" object="{demand}" method="get" data="{autoSubmitForm:autoSubmitForm}">
 			<input type="hidden" name="formSubmitted" value="1">
-            <input type="hidden" name="route" value="/module/web/NewsAdministration">
+            <input type="hidden" name="route" value="/module/web/NewsAdministration/">
             <input type="hidden" name="token" value="{moduleToken}">
 			<input type="hidden" name="id" value="{page}">
 			<f:form.checkbox style="display:none" property="selectedCategories" value="0" />

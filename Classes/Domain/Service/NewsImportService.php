@@ -102,12 +102,17 @@ class NewsImportService extends AbstractImportService
     {
         $news = null;
 
-        $this->logger->info(sprintf('Import of news from source "%s" with id "%s"', $importItem['import_source'],
-            $importItem['import_id']));
+        $this->logger->info(sprintf(
+            'Import of news from source "%s" with id "%s"',
+            $importItem['import_source'],
+            $importItem['import_id']
+        ));
 
         if ($importItem['import_source'] && $importItem['import_id']) {
-            $news = $this->newsRepository->findOneByImportSourceAndImportId($importItem['import_source'],
-                $importItem['import_id']);
+            $news = $this->newsRepository->findOneByImportSourceAndImportId(
+                $importItem['import_source'],
+                $importItem['import_id']
+            );
         }
 
         if ($news === null) {
@@ -180,7 +185,9 @@ class NewsImportService extends AbstractImportService
             foreach ($importItem['categories'] as $categoryUid) {
                 if ($this->settings['findCategoriesByImportSource']) {
                     $category = $this->categoryRepository->findOneByImportSourceAndImportId(
-                        $this->settings['findCategoriesByImportSource'], $categoryUid);
+                        $this->settings['findCategoriesByImportSource'],
+                        $categoryUid
+                    );
                 } else {
                     $category = $this->categoryRepository->findByUid($categoryUid);
                 }
@@ -431,7 +438,10 @@ class NewsImportService extends AbstractImportService
      */
     protected function emitSignal($signalName, array $signalArguments)
     {
-        return $this->signalSlotDispatcher->dispatch(self::class, $signalName,
-            $signalArguments);
+        return $this->signalSlotDispatcher->dispatch(
+            self::class,
+            $signalName,
+            $signalArguments
+        );
     }
 }

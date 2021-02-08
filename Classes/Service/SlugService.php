@@ -129,8 +129,10 @@ class SlugService
             ->count('uid')
             ->from('tx_news_domain_model_news')
             ->where(
-                $queryBuilder->expr()->eq('path_segment',
-                    $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)),
+                $queryBuilder->expr()->eq(
+                    'path_segment',
+                    $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)
+                ),
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
             )->execute();
     }
@@ -221,16 +223,28 @@ class SlugService
             // Get entries to update
             $statement = $queryBuilder
                 ->selectLiteral(
-                    'DISTINCT tx_news_domain_model_news.uid, tx_realurl_uniqalias.value_alias, tx_news_domain_model_news.uid'
+                    'DISTINCT tx_news_domain_model_news.uid, tx_realurl_uniqalias.value_alias, tx_news_domain_model_news.uid, tx_news_domain_model_news.l10n_parent,tx_news_domain_model_news.sys_language_uid'
                 )
                 ->from('tx_news_domain_model_news')
                 ->join(
                     'tx_news_domain_model_news',
                     'tx_realurl_uniqalias',
                     'tx_realurl_uniqalias',
-                    $queryBuilder->expr()->eq(
-                        'tx_news_domain_model_news.uid',
-                        $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.value_id')
+                    $queryBuilder->expr()->orX(
+                        $queryBuilder->expr()->eq(
+                            'tx_news_domain_model_news.uid',
+                            $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.value_id')
+                        ),
+                        $queryBuilder->expr()->andX(
+                            $queryBuilder->expr()->eq(
+                                'tx_news_domain_model_news.l10n_parent',
+                                $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.value_id')
+                            ),
+                            $queryBuilder->expr()->eq(
+                                'tx_news_domain_model_news.sys_language_uid',
+                                $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.lang')
+                            )
+                        )
                     )
                 )
                 ->where(

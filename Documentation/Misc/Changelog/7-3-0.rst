@@ -5,15 +5,15 @@
 
 .. only:: html
 
-.. contents::
-        :local:
-        :depth: 3
+   .. contents::
+      :local:
+      :depth: 3
 
 Important changes
 -----------------
 
 Starting of major refactoring
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This release is the starting point of next major refactoring project. The main target is to **support TYPO3 9 & 10 LTS**.
 Providing support for 2 LTS versions has got the following advantages:

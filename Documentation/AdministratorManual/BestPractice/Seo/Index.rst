@@ -5,7 +5,7 @@
 
 .. include:: ../../../Includes.txt
 
-.. _rss:
+.. _seo:
 
 =================
 SEO with EXT:news
@@ -14,7 +14,7 @@ SEO with EXT:news
 This chapters covers all configurations which are relevant for search engine optimization
 regarding the news extension.
 
-.. Info::
+.. note::
 
         All settings described require TYPO3 9 and the the system extension "seo" installed.
 
@@ -79,6 +79,8 @@ The core ships a basic sitemap configuration which can also be used for news rec
                        additionalWhere =
                        sortField = sorting
                        lastModifiedField = tstamp
+                       changeFreqField = sitemap_changefreq
+                       priorityField = sitemap_priority
                        pid = 26
                        recursive = 2
                        url {
@@ -108,7 +110,7 @@ The :php:`GeorgRinger\News\Seo\NewsXmlSitemapDataProvider` provides the same fea
  :php:`RecordsXmlSitemapDataProvider` but with some additional ones on top:
 
 - If you are using the feature to define the detail page through the field
-*Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
+  *Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
 - If you are need urls containing day, month or year information
 - Setting `excludedTypes` to exclude certain news types from the sitemap
 - Setting `googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
@@ -212,12 +214,29 @@ This sitemap can be added in the site config so it has a nice url:
        map:
          news_sitemap.xml: 1533906436
 
+Language menu on news detail pages
+----------------------------------
+If a language menu is rendered on a detail page and the languages are configured to use a strict mode, the following snippet helps you to setup a proper menu.
+If no translation exists, the property `available` is set to `false` - just as if the current page is not translated.
+
+.. code-block:: typoscript
+
+   10 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
+   10 {
+      as = languageMenu
+      addQueryString = 1
+   }
+
+   11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+   # comma separated list of language menu names
+   11.menus = languageMenu
+
 Hreflang on news detail pages
 -----------------------------
 If using languages with the language mode `strict`, the hreflang tag must only be generated if the according news record is translated as well!
 
-.. Info::
-        This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
+.. note::
+   This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
 
 EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
 
@@ -239,3 +258,21 @@ If you are building a language menu and want to check if the news record is avai
            </f:if>
        </f:for>
    </ul>
+
+Robots: allow indexing of news records, but set 'noindex' to the detail page
+----------------------------------------------------------------------------
+By default, the detail page will be listed in the SEO sitemap.
+But in most cases, you don't want the page itself to be indexed by search engines (means: without a news record to be shown by the plugin).
+
+If you just disable *Index this page* (`no_index`) in the page properties, the robots meta tag with *noindex* value will also be applied to the news records.
+
+Solution: You can use the following TypoScript condition to allow search engines to index the page again, if a news record is rendered:
+
+.. code-block:: typoscript
+
+   [traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
+       page.meta.robots = index,follow
+       page.meta.robots.replace = 1
+   [global]
+
+An important part is the `replace` option. The MetaTag API of TYPO3 will then replace tags which were set before.

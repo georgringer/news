@@ -11,7 +11,6 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
 use GeorgRinger\News\Controller\TagController;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\TagRepository;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -23,14 +22,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class TagControllerTest extends BaseTestCase
 {
-
-    /**
-     * @var TagController
-     */
-    private $fixture = null;
-
-    /**
-     */
     private $tagRepository = null;
 
     /**
@@ -39,8 +30,6 @@ class TagControllerTest extends BaseTestCase
      */
     public function setup(): void
     {
-        $this->fixture = new TagController();
-
         $this->tagRepository = $this->prophesize(TagRepository::class);
     }
 
@@ -60,7 +49,6 @@ class TagControllerTest extends BaseTestCase
         $fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
 
         $fixture->_set('tagRepository', $this->tagRepository->reveal());
-//        $fixture->injectConfigurationManager($this->getMockBuilder(ConfigurationManagerInterface::class)->getMock());
         $fixture->setView($this->getMockBuilder(TemplateView::class)->disableOriginalConstructor()->getMock());
         $fixture->_set('settings', $settings);
 

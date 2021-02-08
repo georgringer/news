@@ -12,7 +12,9 @@ use Doctrine\DBAL\Connection;
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Service\CategoryService;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -33,13 +35,6 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     }
 
     /**
-     * @see https://github.com/georgringer/news/issues/900
-     * @var bool
-     * @deprecated should be set default once 9+10 is only
-     */
-    protected $respectSysLanguageInFindInList = false;
-
-    /**
      * Find category by import source and import id
      *
      * @param string $importSource import source
@@ -57,7 +52,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
             $query->logicalAnd(
                 $query->equals('importSource', $importSource),
                 $query->equals('importId', $importId)
-            ))->execute($asArray);
+            )
+        )->execute($asArray);
         if ($asArray) {
             if (isset($result[0])) {
                 return $result[0];
@@ -81,7 +77,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
             $query->logicalAnd(
                 $query->equals('pid', (int)$pid),
                 $query->equals('parentcategory', 0)
-            ))->execute();
+            )
+        )->execute();
     }
 
     /**
@@ -144,7 +141,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         }
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $query->getQuerySettings()->setRespectSysLanguage($this->respectSysLanguageInFindInList);
+        $query->getQuerySettings()->setRespectSysLanguage(true);
 
         if (count($ordering) > 0) {
             $query->setOrderings($ordering);
@@ -161,7 +158,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         return $query->matching(
             $query->logicalAnd(
                 $conditions
-            ))->execute();
+            )
+        )->execute();
     }
 
     /**
@@ -177,7 +175,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         return $query->matching(
             $query->logicalAnd(
                 $query->equals('parentcategory', (int)$parent)
-            ))->execute();
+            )
+        )->execute();
     }
 
     /**
@@ -216,7 +215,10 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
     protected function getSysLanguageUid()
     {
         $sysLanguage = 0;
-        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+
+        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() === 10) {
+            $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
+        } elseif (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $sysLanguage = $GLOBALS['TSFE']->sys_language_content;
         } elseif ((int)GeneralUtility::_GP('L')) {
             $sysLanguage = (int)GeneralUtility::_GP('L');
@@ -242,10 +244,5 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         }
 
         return $idList;
-    }
-
-    public function setRespectSysLanguageInFindInList(bool $value)
-    {
-        $this->respectSysLanguageInFindInList = $value;
     }
 }

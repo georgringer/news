@@ -6,6 +6,7 @@
 .. include:: ../../../Includes.txt
 
 .. _routing:
+
 ==================
 Routing in TYPO3 9
 ==================
@@ -123,7 +124,7 @@ About routes and aspects
 In a nutshell:
 
 * :yaml:`routes` will extend an existing route (means: your domain and page path) with arguments from GET parameters, like the following controller/action pair of the news detail view.
-+ :yaml:`aspects` can be used to modify these arguments. You could e.g. map the title (or better: the optimized path segment) of the current news.
+* :yaml:`aspects` can be used to modify these arguments. You could e.g. map the title (or better: the optimized path segment) of the current news.
   Different types of *Mappers* and *Modifiers* are available, depending on the case.
 
 1. URL of detail page without routing:
@@ -276,9 +277,9 @@ The website provides several frontend languages.
            type: LocaleModifier
            default: 'page'
            localeMap:
-             - locale: 'da_.*'
+             - locale: 'da_DK.*'
                value: 'side'
-             - locale: 'de_.*'
+             - locale: 'de_DE.*'
                value: 'seite'
 
 **Explanation:**

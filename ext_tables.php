@@ -7,14 +7,20 @@ $boot = function () {
     foreach (['news', 'media', 'tag', 'link'] as $table) {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_' . $table);
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-            'tx_news_domain_model_' . $table, 'EXT:news/Resources/Private/Language/locallang_csh_' . $table . '.xlf');
+            'tx_news_domain_model_' . $table,
+            'EXT:news/Resources/Private/Language/locallang_csh_' . $table . '.xlf'
+        );
     }
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-        'tt_content.pi_flexform.news_pi1.list', 'EXT:news/Resources/Private/Language/locallang_csh_flexforms.xlf');
+        'tt_content.pi_flexform.news_pi1.list',
+        'EXT:news/Resources/Private/Language/locallang_csh_flexforms.xlf'
+    );
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
-        'sys_file_reference', 'EXT:news/Resources/Private/Language/locallang_csh_sys_file_reference.xlf');
+        'sys_file_reference',
+        'EXT:news/Resources/Private/Language/locallang_csh_sys_file_reference.xlf'
+    );
 
     $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
 
@@ -64,7 +70,8 @@ $boot = function () {
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',
                     'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_modadministration.xlf',
                     'navigationComponentId' => $configuration->getHidePageTreeForAdministrationModule() ? '' : 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
-                    'inheritNavigationComponentFromMainModule' => false
+                    'inheritNavigationComponentFromMainModule' => false,
+                    'path' => '/module/web/NewsAdministration/'
                 ]
             );
         }

@@ -11,7 +11,7 @@ use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * This file is part of the "tt_address" Extension for TYPO3 CMS.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -36,6 +36,8 @@ class NewsAvailability
             $pageArguments = $this->getRequest()->getAttribute('routing');
             if (isset($pageArguments->getRouteArguments()['tx_news_pi1']['news'])) {
                 $newsId = (int)$pageArguments->getRouteArguments()['tx_news_pi1']['news'];
+            } elseif (isset($this->getRequest()->getQueryParams()['tx_news_pi1']['news'])) {
+                $newsId = (int)$this->getRequest()->getQueryParams()['tx_news_pi1']['news'];
             }
         }
         if ($newsId === 0) {
@@ -99,6 +101,11 @@ class NewsAvailability
                     ),
                     $queryBuilder->expr()->andX(
                         $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT)),
+                        $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT))
+                    ),
+                    $queryBuilder->expr()->andX(
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT)),
+                        $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
                         $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT))
                     )
                 )

@@ -9,11 +9,14 @@ namespace GeorgRinger\News\Controller;
  */
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
@@ -94,8 +97,10 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 break;
             case 'redirectToPage':
                 if (count($configuration) === 1 || count($configuration) > 3) {
-                    $msg = sprintf('If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used',
-                        $configuration[0]);
+                    $msg = sprintf(
+                        'If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used',
+                        $configuration[0]
+                    );
                     throw new \InvalidArgumentException($msg);
                 }
                 $this->uriBuilder->reset();
@@ -114,7 +119,17 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
                 break;
             case 'pageNotFoundHandler':
-                $GLOBALS['TSFE']->pageNotFoundAndExit('No news entry found.');
+                $typo3Information = GeneralUtility::makeInstance(Typo3Version::class);
+                if ($typo3Information->getMajorVersion() === 9) {
+                    $GLOBALS['TSFE']->pageNotFoundAndExit('No news entry found.');
+                } else {
+                    $message = 'No news entry found!';
+                    $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
+                        $GLOBALS['TYPO3_REQUEST'],
+                        $message
+                    );
+                    throw new ImmediateResponseException($response, 1590468229);
+                }
                 break;
             case 'showStandaloneTemplate':
                 if (isset($configuration[2])) {
@@ -147,8 +162,11 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     protected function emitActionSignal($classPart, $signalName, array $signalArguments)
     {
         $signalArguments['extendedVariables'] = [];
-        return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Controller\\' . $classPart, $signalName,
-            $signalArguments);
+        return $this->signalSlotDispatcher->dispatch(
+            'GeorgRinger\\News\\Controller\\' . $classPart,
+            $signalName,
+            $signalArguments
+        );
     }
 
     /**

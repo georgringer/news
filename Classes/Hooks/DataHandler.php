@@ -82,9 +82,16 @@ class DataHandler
             if (is_int($id) && !$this->getBackendUser()->isAdmin()) {
                 $newsRecord = BackendUtilityCore::getRecord($table, $id);
                 if (!AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
-                    $parentObject->log($table, $id, 2, 0, 1,
+                    $parentObject->log(
+                        $table,
+                        $id,
+                        2,
+                        0,
+                        1,
                         "processDatamap: Attempt to modify a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in your BE usergroup.",
-                        1, [$table]);
+                        1,
+                        [$table]
+                    );
                     // unset fieldArray to prevent saving of the record
                     $fieldArray = [];
                 } else {
@@ -121,9 +128,16 @@ class DataHandler
         if ($table === 'tx_news_domain_model_news' && !$this->getBackendUser()->isAdmin() && is_int($id) && $command !== 'undelete') {
             $newsRecord = BackendUtilityCore::getRecord($table, $id);
             if (is_array($newsRecord) && !AccessControlService::userHasCategoryPermissionsForRecord($newsRecord)) {
-                $parentObject->log($table, $id, 2, 0, 1,
+                $parentObject->log(
+                    $table,
+                    $id,
+                    2,
+                    0,
+                    1,
                     'processCmdmap: Attempt to ' . $command . " a record from table '%s' without permission. Reason: the record has one or more categories assigned that are not defined in the BE usergroup.",
-                    1, [$table]);
+                    1,
+                    [$table]
+                );
                 // unset table to prevent saving
                 $table = '';
             }
