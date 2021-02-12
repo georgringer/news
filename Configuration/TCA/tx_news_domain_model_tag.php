@@ -26,9 +26,6 @@ return [
         ],
         'searchFields' => 'uid,title',
     ],
-    'interface' => [
-        'showRecordFieldList' => 'hidden,sys_language_uid,l10n_parent,l10n_diffsource,title'
-    ],
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,

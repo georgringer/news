@@ -30,9 +30,6 @@ return [
         ],
         'hideTable' => true,
     ],
-    'interface' => [
-        'showRecordFieldList' => 'hidden,title,description,uri'
-    ],
     'columns' => [
         'pid' => [
             'label' => 'pid',
