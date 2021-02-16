@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
+use TYPO3\CMS\Core\SingletonInterface;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -17,7 +18,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Class ClassLoader
  */
-class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
+class ClassLoader implements SingletonInterface
 {
 
     /**

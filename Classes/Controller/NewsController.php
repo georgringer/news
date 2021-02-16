@@ -2,6 +2,14 @@
 
 namespace GeorgRinger\News\Controller;
 
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Domain\Repository\TagRepository;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use GeorgRinger\News\Domain\Model\Dto\Search;
+use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Fluid\View\TemplateView;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -66,7 +74,7 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
      */
-    public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
+    public function injectNewsRepository(NewsRepository $newsRepository)
     {
         $this->newsRepository = $newsRepository;
     }
@@ -76,7 +84,7 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -86,7 +94,7 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
      */
-    public function injectTagRepository(\GeorgRinger\News\Domain\Repository\TagRepository $tagRepository)
+    public function injectTagRepository(TagRepository $tagRepository)
     {
         $this->tagRepository = $tagRepository;
     }
@@ -129,7 +137,7 @@ class NewsController extends NewsBaseController
 
         /* @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
         $demand = $this->objectManager->get($class, $settings);
-        if (!$demand instanceof \GeorgRinger\News\Domain\Model\Dto\NewsDemand) {
+        if (!$demand instanceof NewsDemand) {
             throw new \UnexpectedValueException(
                 sprintf(
                     'The demand object must be an instance of %s, but %s given!',
@@ -203,7 +211,7 @@ class NewsController extends NewsBaseController
                 continue;
             }
             if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
-                \TYPO3\CMS\Extbase\Reflection\ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
+                ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
         }
         return $demand;
@@ -333,7 +341,7 @@ class NewsController extends NewsBaseController
      * @param \GeorgRinger\News\Domain\Model\News $news news item
      * @param int $currentPage current page for optional pagination
      */
-    public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
+    public function detailAction(News $news = null, $currentPage = 1)
     {
         if ($news === null || $this->settings['isShortcut']) {
             $previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
@@ -401,7 +409,7 @@ class NewsController extends NewsBaseController
      * @param \GeorgRinger\News\Domain\Model\News $news
      * @return NULL|\GeorgRinger\News\Domain\Model\News
      */
-    protected function checkPidOfNewsRecord(\GeorgRinger\News\Domain\Model\News $news)
+    protected function checkPidOfNewsRecord(News $news)
     {
         $allowedStoragePages = GeneralUtility::trimExplode(
             ',',
@@ -495,7 +503,7 @@ class NewsController extends NewsBaseController
      * @param array $overwriteDemand
      */
     public function searchFormAction(
-        \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
+        Search $search = null,
         array $overwriteDemand = []
     ) {
         $demand = $this->createDemandObjectFromSettings($this->settings);
@@ -506,7 +514,7 @@ class NewsController extends NewsBaseController
         }
 
         if (is_null($search)) {
-            $search = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Dto\Search::class);
+            $search = $this->objectManager->get(Search::class);
         }
         $demand->setSearch($search);
 
@@ -532,7 +540,7 @@ class NewsController extends NewsBaseController
      * @param array $overwriteDemand
      */
     public function searchResultAction(
-        \GeorgRinger\News\Domain\Model\Dto\Search $search = null,
+        Search $search = null,
         array $overwriteDemand = []
     ) {
         $demand = $this->createDemandObjectFromSettings($this->settings);
@@ -590,7 +598,7 @@ class NewsController extends NewsBaseController
         if ($this->arguments->hasArgument('search')) {
             $propertyMappingConfiguration = $this->arguments['search']->getPropertyMappingConfiguration();
             $propertyMappingConfiguration->allowAllProperties();
-            $propertyMappingConfiguration->setTypeConverterOption('TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter', \TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
+            $propertyMappingConfiguration->setTypeConverterOption('TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter', PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED, true);
         }
     }
 
@@ -604,17 +612,17 @@ class NewsController extends NewsBaseController
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
      */
     public function injectConfigurationManager(
-        \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
+        ConfigurationManagerInterface $configurationManager
     ) {
         $this->configurationManager = $configurationManager;
 
         $tsSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
             'news',
             'news_pi1'
         );
         $originalSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
         );
 
         $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];
@@ -663,7 +671,7 @@ class NewsController extends NewsBaseController
      *
      * @param \TYPO3\CMS\Fluid\View\TemplateView $view the view to inject
      */
-    public function setView(\TYPO3\CMS\Fluid\View\TemplateView $view)
+    public function setView(TemplateView $view)
     {
         $this->view = $view;
     }

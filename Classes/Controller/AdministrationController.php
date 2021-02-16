@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\Controller;
 
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -85,7 +86,7 @@ class AdministrationController extends NewsController
      */
     public function initializeAction()
     {
-        $this->pageUid = (int)\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('id');
+        $this->pageUid = (int)GeneralUtility::_GET('id');
         $this->pageInformation = BackendUtilityCore::readPageAccess($this->pageUid, '');
         $this->setTsConfig();
         $this->administrationRepository = GeneralUtility::makeInstance(AdministrationRepository::class);
@@ -128,7 +129,7 @@ class AdministrationController extends NewsController
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/ContextMenu');
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Backend/AjaxDataHandler');
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/AdministrationModule');
-        $pageRenderer->addInlineLanguageLabelFile('EXT:lang/Resources/Private/Language/locallang_core.xlf');
+        $pageRenderer->addInlineLanguageLabelFile('EXT:core/Resources/Private/Language/locallang_core.xlf');
         $dateFormat = ($GLOBALS['TYPO3_CONF_VARS']['SYS']['USdateFormat'] ? ['MM-DD-YYYY', 'HH:mm MM-DD-YYYY'] : ['DD-MM-YYYY', 'HH:mm DD-MM-YYYY']);
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
 
@@ -341,7 +342,7 @@ class AdministrationController extends NewsController
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

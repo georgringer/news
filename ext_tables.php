@@ -1,7 +1,7 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-$boot = function () {
+$boot = static function () {
 
     // CSH - context sensitive help
     foreach (['news', 'media', 'tag', 'link'] as $table) {
@@ -42,11 +42,11 @@ $boot = function () {
         =========================================================================== */
         if ($configuration->getShowImporter()) {
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-                'GeorgRinger.news',
+                'News',
                 'system',
                 'tx_news_m1',
                 '',
-                ['Import' => 'index, runJob, jobInfo'],
+                [\GeorgRinger\News\Controller\ImportController::class => 'index, runJob, jobInfo'],
                 [
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_import.svg',
@@ -60,11 +60,11 @@ $boot = function () {
         =========================================================================== */
         if ($configuration->getShowAdministrationModule()) {
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-                'GeorgRinger.news',
+                'News',
                 'web',
                 'administration',
                 '',
-                ['Administration' => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
+                [\GeorgRinger\News\Controller\AdministrationController::class => 'index,newNews,newCategory,newTag,newsPidListing,donate'],
                 [
                     'access' => 'user,group',
                     'icon' => 'EXT:news/Resources/Public/Icons/module_administration.svg',

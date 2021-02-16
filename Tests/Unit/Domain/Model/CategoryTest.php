@@ -2,6 +2,8 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -173,7 +175,7 @@ class CategoryTest extends BaseTestCase
      */
     public function imagesCanBeSet()
     {
-        $value = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $value = new ObjectStorage();
         $this->instance->setImages($value);
         $this->assertEquals($value, $this->instance->getImages());
     }
@@ -185,11 +187,11 @@ class CategoryTest extends BaseTestCase
      */
     public function firstImageCanBeGet()
     {
-        $storage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $item1 = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $storage = new ObjectStorage();
+        $item1 = new FileReference();
         $item1->_setProperty('fo', 'bar');
         $storage->attach($item1);
-        $item2 = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $item2 = new FileReference();
         $item2->_setProperty('lorem', 'ipsum');
         $storage->attach($item2);
 

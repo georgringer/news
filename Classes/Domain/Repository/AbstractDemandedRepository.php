@@ -2,6 +2,10 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -15,7 +19,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
  * Abstract demanded repository
  *
  */
-abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence\Repository implements \GeorgRinger\News\Domain\Repository\DemandedRepositoryInterface
+abstract class AbstractDemandedRepository extends Repository implements DemandedRepositoryInterface
 {
 
     /**
@@ -27,7 +31,7 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
      */
     public function injectStorageBackend(
-        \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
+        BackendInterface $storageBackend
     ) {
         $this->storageBackend = $storageBackend;
     }
@@ -41,7 +45,7 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
      * @abstract
      */
     abstract protected function createConstraintsFromDemand(
-        \TYPO3\CMS\Extbase\Persistence\QueryInterface $query,
+        QueryInterface $query,
         DemandInterface $demand
     );
 
@@ -122,7 +126,7 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
                 'constraints' => &$constraints,
             ];
             foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] as $reference) {
-                \TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
+                GeneralUtility::callUserFunction($reference, $params, $this);
             }
         }
 

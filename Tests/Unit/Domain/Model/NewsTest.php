@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -236,7 +237,7 @@ class NewsTest extends BaseTestCase
      */
     public function tagsCanBeSet()
     {
-        $tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $tags = new ObjectStorage();
 
         $tag = new Tag();
         $tag->setTitle('Tag');
@@ -252,7 +253,7 @@ class NewsTest extends BaseTestCase
      */
     public function contentElementsCanBeSet()
     {
-        $ce = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $ce = new ObjectStorage();
 
         $item = new \SplObjectStorage();
         $ce->attach($item);
@@ -270,7 +271,7 @@ class NewsTest extends BaseTestCase
     {
         $category = new Category();
         $category->setTitle('fo');
-        $categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $categories = new ObjectStorage();
         $categories->attach($category);
         $this->newsDomainModelInstance->setCategories($categories);
         $this->assertEquals($categories, $this->newsDomainModelInstance->getCategories());
@@ -286,7 +287,7 @@ class NewsTest extends BaseTestCase
         $link = new Link();
         $link->setTitle('fo');
 
-        $related = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $related = new ObjectStorage();
         $related->attach($link);
         $this->newsDomainModelInstance->setRelatedLinks($related);
         $this->assertEquals($related, $this->newsDomainModelInstance->getRelatedLinks());

@@ -2,6 +2,9 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+use GeorgRinger\News\Service\SettingsService;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -45,7 +48,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * </output>
  *
  */
-class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class LinkViewHelper extends AbstractTagBasedViewHelper
 {
 
     /**
@@ -73,7 +76,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
     /**
      * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
      */
-    public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
+    public function injectSettingsService(SettingsService $pluginSettingsService)
     {
         $this->pluginSettingsService = $pluginSettingsService;
     }
@@ -251,7 +254,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
         $uid = $newsItem->getUid();
         // If a user is logged in and not in live workspace
         if (isset($GLOBALS['BE_USER']) && $GLOBALS['BE_USER']->workspace > 0) {
-            $record = \TYPO3\CMS\Backend\Utility\BackendUtility::getLiveVersionOfRecord(
+            $record = BackendUtility::getLiveVersionOfRecord(
                 'tx_news_domain_model_news',
                 $newsItem->getUid()
             );

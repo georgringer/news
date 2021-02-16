@@ -11,6 +11,6 @@ namespace GeorgRinger\News\Domain\Model;
 /**
  * News model for internal news
  */
-class NewsInternal extends \GeorgRinger\News\Domain\Model\News
+class NewsInternal extends News
 {
 }

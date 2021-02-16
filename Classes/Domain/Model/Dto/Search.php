@@ -1,19 +1,19 @@
 <?php
 namespace GeorgRinger\News\Domain\Model\Dto;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 /**
  * News Demand object which holds all information to get the correct
  * news records.
  *
  */
-class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Search extends AbstractEntity
 {
 
     /**

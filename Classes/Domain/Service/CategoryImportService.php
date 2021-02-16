@@ -2,6 +2,10 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
+use TYPO3\CMS\Core\Resource\File;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -44,7 +48,7 @@ class CategoryImportService extends AbstractImportService
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -54,7 +58,7 @@ class CategoryImportService extends AbstractImportService
      *
      * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
      */
-    public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
+    public function injectSignalSlotDispatcher(Dispatcher $signalSlotDispatcher)
     {
         $this->signalSlotDispatcher = $signalSlotDispatcher;
     }
@@ -170,12 +174,12 @@ class CategoryImportService extends AbstractImportService
         // get fileObject by given identifier (file UID, combined identifier or path/filename)
         try {
             $newImage = $this->getResourceFactory()->retrieveFileOrFolderObject($image);
-        } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+        } catch (ResourceDoesNotExistException $exception) {
             $newImage = false;
         }
 
         // only proceed if image is found
-        if (!$newImage instanceof \TYPO3\CMS\Core\Resource\File) {
+        if (!$newImage instanceof File) {
             return;
         }
 
@@ -212,7 +216,7 @@ class CategoryImportService extends AbstractImportService
                 }
             }
 
-            $fileReference = $this->objectManager->get(\GeorgRinger\News\Domain\Model\FileReference::class);
+            $fileReference = $this->objectManager->get(FileReference::class);
             $fileReference->setFileUid($newImage->getUid());
             $fileReference->setPid($category->getPid());
             $category->addImage($fileReference);

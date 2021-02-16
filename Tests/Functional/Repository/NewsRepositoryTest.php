@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Functional\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -253,7 +254,7 @@ class NewsRepositoryTest extends FunctionalTestCase
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList
      * @return string
      */
-    protected function getIdListOfNews(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList)
+    protected function getIdListOfNews(QueryResultInterface $newsList)
     {
         $idList = [];
         foreach ($newsList as $news) {

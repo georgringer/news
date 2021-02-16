@@ -2,6 +2,9 @@
 
 namespace GeorgRinger\News\TreeProvider;
 
+use TYPO3\CMS\Backend\Tree\TreeNode;
+use TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode;
+use TYPO3\CMS\Backend\Tree\SortedTreeNodeCollection;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -30,14 +33,14 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      * @return \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode node
      */
     protected function buildRepresentationForNode(
-        \TYPO3\CMS\Backend\Tree\TreeNode $basicNode,
-        \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode $parent = null,
+        TreeNode $basicNode,
+        DatabaseTreeNode $parent = null,
         $level = 0,
         $restriction = false
     ) {
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         /**@param $node \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode */
-        $node = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode::class);
+        $node = GeneralUtility::makeInstance(DatabaseTreeNode::class);
         $row = [];
         if ($basicNode->getId() == 0) {
             $node->setSelected(false);
@@ -72,7 +75,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
         $node->setParentNode($parent);
         if ($basicNode->hasChildNodes()) {
             $node->setHasChildren(true);
-            $childNodes = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Tree\SortedTreeNodeCollection::class);
+            $childNodes = GeneralUtility::makeInstance(SortedTreeNodeCollection::class);
             $foundSomeChild = false;
             foreach ($basicNode->getChildNodes() as $child) {
                 // Change in custom TreeDataProvider by adding the if clause

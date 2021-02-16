@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  * Category repository with all callable functionality
  *
  */
-class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
+class CategoryRepository extends AbstractDemandedRepository
 {
     protected function createConstraintsFromDemand(
         QueryInterface $query,
@@ -219,7 +219,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
         if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() === 10) {
             $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
         } elseif (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-            $sysLanguage = $GLOBALS['TSFE']->sys_language_content;
+            $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'contentId');
         } elseif ((int)GeneralUtility::_GP('L')) {
             $sysLanguage = (int)GeneralUtility::_GP('L');
         }

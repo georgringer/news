@@ -1,14 +1,14 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-$boot = function () {
+$boot = static function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'GeorgRinger.news',
+        'News',
         'Pi1',
         [
-            'News' => 'list,detail,selectedList,dateMenu,searchForm,searchResult',
-            'Category' => 'list',
-            'Tag' => 'list',
+            \GeorgRinger\News\Controller\NewsController::class => 'list,detail,selectedList,dateMenu,searchForm,searchResult',
+            \GeorgRinger\News\Controller\CategoryController::class => 'list',
+            \GeorgRinger\News\Controller\TagController::class => 'list',
         ],
         [
             'News' => 'searchForm,searchResult',

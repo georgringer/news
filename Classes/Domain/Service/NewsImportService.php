@@ -2,6 +2,14 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Domain\Repository\TtContentRepository;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Core\Resource\File;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -58,7 +66,7 @@ class NewsImportService extends AbstractImportService
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
      */
-    public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
+    public function injectNewsRepository(NewsRepository $newsRepository)
     {
         $this->newsRepository = $newsRepository;
     }
@@ -68,7 +76,7 @@ class NewsImportService extends AbstractImportService
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -79,7 +87,7 @@ class NewsImportService extends AbstractImportService
      * @param \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
      */
     public function injectTtContentRepository(
-        \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
+        TtContentRepository $ttContentRepository
     ) {
         $this->ttContentRepository = $ttContentRepository;
     }
@@ -89,7 +97,7 @@ class NewsImportService extends AbstractImportService
      *
      * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
      */
-    public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
+    public function injectSignalSlotDispatcher(Dispatcher $signalSlotDispatcher)
     {
         $this->signalSlotDispatcher = $signalSlotDispatcher;
     }
@@ -116,7 +124,7 @@ class NewsImportService extends AbstractImportService
         }
 
         if ($news === null) {
-            $news = $this->objectManager->get(\GeorgRinger\News\Domain\Model\News::class);
+            $news = $this->objectManager->get(News::class);
             $this->newsRepository->add($news);
         } else {
             $this->logger->info(sprintf('News exists already with id "%s".', $news->getUid()));
@@ -133,7 +141,7 @@ class NewsImportService extends AbstractImportService
      * @return \GeorgRinger\News\Domain\Model\News
      */
     protected function hydrateNewsRecord(
-        \GeorgRinger\News\Domain\Model\News $news,
+        News $news,
         array $importItem,
         array $importItemOverwrite
     ) {
@@ -206,7 +214,7 @@ class NewsImportService extends AbstractImportService
                 // get fileobject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
-                } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException $exception) {
                     $file = null;
                 }
 
@@ -253,7 +261,7 @@ class NewsImportService extends AbstractImportService
                 // get fileObject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
-                } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException $exception) {
                     $file = null;
                 }
 
@@ -295,7 +303,7 @@ class NewsImportService extends AbstractImportService
             foreach ($importItem['related_links'] as $link) {
                 /** @var $relatedLink Link */
                 if (($relatedLink = $this->getRelatedLinkIfAlreadyExists($news, $link['uri'])) === false) {
-                    $relatedLink = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Link::class);
+                    $relatedLink = $this->objectManager->get(Link::class);
                     $relatedLink->setUri($link['uri']);
                     $news->addRelatedLink($relatedLink);
                 }
@@ -385,8 +393,8 @@ class NewsImportService extends AbstractImportService
      * @return bool|FileReference
      */
     protected function getIfFalRelationIfAlreadyExists(
-        \TYPO3\CMS\Extbase\Persistence\ObjectStorage $items,
-        \TYPO3\CMS\Core\Resource\File $file
+        ObjectStorage $items,
+        File $file
     ) {
         $result = false;
         if ($items->count() !== 0) {
@@ -414,7 +422,7 @@ class NewsImportService extends AbstractImportService
      * @param string $uri
      * @return bool|Link
      */
-    protected function getRelatedLinkIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $uri)
+    protected function getRelatedLinkIfAlreadyExists(News $news, $uri)
     {
         $result = false;
         $links = $news->getRelatedLinks();

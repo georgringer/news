@@ -2,6 +2,8 @@
 
 namespace GeorgRinger\News\Utility;
 
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -28,7 +30,7 @@ class Cache
      *
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
      */
-    public function markContentRecordAsProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj)
+    public function markContentRecordAsProcessed(ContentObjectRenderer $cObj)
     {
         $key = 'tt_content_' . $cObj->data['uid'];
         self::$processedContentRecords[$key] = true;
@@ -40,7 +42,7 @@ class Cache
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
      * @return bool
      */
-    public function isContentRecordAlreadyProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj)
+    public function isContentRecordAlreadyProcessed(ContentObjectRenderer $cObj)
     {
         $key = 'tt_content_' . $cObj->data['uid'];
         return array_key_exists($key, self::$processedContentRecords);
@@ -76,7 +78,7 @@ class Cache
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
      */
-    public static function addPageCacheTagsByDemandObject(\GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand)
+    public static function addPageCacheTagsByDemandObject(NewsDemand $demand)
     {
         $cacheTags = [];
         if ($demand->getStoragePage()) {

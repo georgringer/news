@@ -2,17 +2,18 @@
 
 namespace GeorgRinger\News\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 /**
  * News model
  */
-class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class News extends AbstractEntity
 {
 
     /**
@@ -240,12 +241,12 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function __construct()
     {
-        $this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->falRelatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->categories = new ObjectStorage();
+        $this->contentElements = new ObjectStorage();
+        $this->relatedLinks = new ObjectStorage();
+        $this->falMedia = new ObjectStorage();
+        $this->falRelatedFiles = new ObjectStorage();
+        $this->tags = new ObjectStorage();
     }
 
     /**
@@ -669,7 +670,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function addFalRelatedFile(FileReference $file)
     {
         if ($this->getFalRelatedFiles() === null) {
-            $this->falRelatedFiles = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+            $this->falRelatedFiles = new ObjectStorage();
         }
         $this->getFalRelatedFiles()->attach($file);
     }
@@ -752,7 +753,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function addRelatedLink(Link $relatedLink)
     {
         if ($this->relatedLinks === null) {
-            $this->relatedLinks = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+            $this->relatedLinks = new ObjectStorage();
         }
         $this->relatedLinks->attach($relatedLink);
     }
@@ -782,7 +783,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $falMedia
      */
-    public function setFalMedia(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $falMedia)
+    public function setFalMedia(ObjectStorage $falMedia)
     {
         $this->falMedia = $falMedia;
     }
@@ -795,7 +796,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function addFalMedia(FileReference $falMedia)
     {
         if ($this->getFalMedia() === null) {
-            $this->falMedia = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+            $this->falMedia = new ObjectStorage();
         }
         $this->falMedia->attach($falMedia);
     }
@@ -974,10 +975,10 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param \GeorgRinger\News\Domain\Model\TtContent $contentElement
      */
-    public function addContentElement(\GeorgRinger\News\Domain\Model\TtContent $contentElement)
+    public function addContentElement(TtContent $contentElement)
     {
         if ($this->getContentElements() === null) {
-            $this->contentElements = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+            $this->contentElements = new ObjectStorage();
         }
         $this->contentElements->attach($contentElement);
     }
@@ -1047,7 +1048,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param \GeorgRinger\News\Domain\Model\Tag $tag
      */
-    public function addTag(\GeorgRinger\News\Domain\Model\Tag $tag)
+    public function addTag(Tag $tag)
     {
         $this->tags->attach($tag);
     }
@@ -1057,7 +1058,7 @@ class News extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param \GeorgRinger\News\Domain\Model\Tag $tag
      */
-    public function removeTag(\GeorgRinger\News\Domain\Model\Tag $tag)
+    public function removeTag(Tag $tag)
     {
         $this->tags->detach($tag);
     }

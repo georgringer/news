@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -27,7 +28,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * </output>
  *
  */
-class IncludeFileViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper implements ViewHelperInterface
+class IncludeFileViewHelper extends AbstractViewHelper implements ViewHelperInterface
 {
     use CompileWithRenderStatic;
 

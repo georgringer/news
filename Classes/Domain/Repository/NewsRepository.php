@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * News repository with all the callable functionality
  */
-class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
+class NewsRepository extends AbstractDemandedRepository
 {
 
     /**

@@ -11,7 +11,7 @@ namespace GeorgRinger\News\Domain\Model\Dto;
 /**
  * Administration Demand model
  */
-class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+class AdministrationDemand extends NewsDemand
 {
 
     /**

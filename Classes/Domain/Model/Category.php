@@ -1,6 +1,8 @@
 <?php
 namespace GeorgRinger\News\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 
 /**
@@ -13,7 +15,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 /**
  * Category Model
  */
-class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Category extends AbstractEntity
 {
 
     /**
@@ -134,7 +136,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function __construct()
     {
-        $this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->images = new ObjectStorage();
     }
 
     /**

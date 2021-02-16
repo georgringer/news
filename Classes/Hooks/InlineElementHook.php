@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
+use TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -16,7 +17,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Inline Element Hook
  */
-class InlineElementHook implements \TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface
+class InlineElementHook implements InlineElementHookInterface
 {
 
     /**

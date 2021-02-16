@@ -26,7 +26,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
      * @param array $data
      * @return string
      */
-    protected function renderForeignRecordHeader(array $data)
+    protected function _renderForeignRecordHeader(array $data)
     {
         $languageService = $this->getLanguageService();
         $inlineConfig = $data['inlineParentConfig'];

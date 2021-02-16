@@ -16,7 +16,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * Repository for tag objects
  */
-class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
+class TagRepository extends AbstractDemandedRepository
 {
 
     /**

@@ -2,6 +2,9 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -52,7 +55,7 @@ class AbstractImportService
      *
      * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
      */
-    public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
+    public function injectObjectManager(ObjectManager $objectManager)
     {
         $this->objectManager = $objectManager;
     }
@@ -63,7 +66,7 @@ class AbstractImportService
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
      */
     public function injectPersistenceManager(
-        \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
+        PersistenceManager $persistenceManager
     ) {
         $this->persistenceManager = $persistenceManager;
     }
@@ -153,6 +156,6 @@ class AbstractImportService
      */
     protected function getResourceFactory()
     {
-        return \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
+        return ResourceFactory::getInstance();
     }
 }

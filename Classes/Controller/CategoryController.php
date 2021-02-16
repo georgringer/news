@@ -1,13 +1,13 @@
 <?php
 namespace GeorgRinger\News\Controller;
 
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 /**
  * Category controller
  */
@@ -25,7 +25,7 @@ class CategoryController extends NewsController
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
      */
-    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

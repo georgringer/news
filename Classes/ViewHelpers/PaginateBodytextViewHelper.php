@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -57,7 +58,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * </n:paginateBodytext>
  *
  */
-class PaginateBodytextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
+class PaginateBodytextViewHelper extends AbstractViewHelper
 {
     /**
      * @var bool

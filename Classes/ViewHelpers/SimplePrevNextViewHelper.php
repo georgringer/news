@@ -2,6 +2,8 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -54,7 +56,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * </output>
  *
  */
-class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
+class SimplePrevNextViewHelper extends AbstractViewHelper
 {
 
     /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
@@ -70,7 +72,7 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
      */
-    public function injectDataMapper(\TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper)
+    public function injectDataMapper(DataMapper $dataMapper)
     {
         $this->dataMapper = $dataMapper;
     }

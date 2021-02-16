@@ -2,13 +2,14 @@
 
 namespace GeorgRinger\News\Service;
 
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 /**
  * Provide a way to get the configuration just everywhere
  *
@@ -41,7 +42,7 @@ class SettingsService
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
      */
     public function injectConfigurationManager(
-        \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
+        ConfigurationManagerInterface $configurationManager
     ) {
         $this->configurationManager = $configurationManager;
     }
@@ -55,7 +56,7 @@ class SettingsService
     {
         if ($this->settings === null) {
             $this->settings = $this->configurationManager->getConfiguration(
-                \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
+                ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
                 'News',
                 'Pi1'
             );
@@ -75,6 +76,6 @@ class SettingsService
      */
     public function getByPath($path)
     {
-        return \TYPO3\CMS\Extbase\Reflection\ObjectAccess::getPropertyPath($this->getSettings(), $path);
+        return ObjectAccess::getPropertyPath($this->getSettings(), $path);
     }
 }
