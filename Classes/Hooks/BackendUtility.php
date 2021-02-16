@@ -122,26 +122,6 @@ class BackendUtility
     }
 
     /**
-     * Hook function of \TYPO3\CMS\Backend\Utility\BackendUtility
-     * It is used to change the flexform if it is about news
-     *
-     * @param array &$dataStructure Flexform structure
-     * @param array $conf some strange configuration
-     * @param array $row row of current record
-     * @param string $table table name
-     */
-    public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table)
-    {
-        if ($table === 'tt_content' && $row['CType'] === 'list' && $row['list_type'] === 'news_pi1' && is_array($dataStructure)) {
-            $this->updateFlexforms($dataStructure, $row);
-
-            if ($this->enabledInTsConfig($row['pid'])) {
-                $this->addCategoryConstraints($dataStructure);
-            }
-        }
-    }
-
-    /**
      * @param array $dataStructure
      * @param array $identifier
      * @return array
@@ -152,9 +132,18 @@ class BackendUtility
             $getVars = GeneralUtility::_GET('edit');
             if (is_array($getVars['tt_content'])) {
                 $item = array_keys($getVars['tt_content']);
-                $row = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tt_content', (int)$item[0]);
-                if (is_array($row)) {
-                    $this->updateFlexforms($dataStructure, $row);
+                $recordId = (int)$item[0];
+
+                if ($getVars['tt_content'][$recordId] ?? '' === 'new') {
+                    $fakeRow = [
+                        'uid' => 'NEW123'
+                    ];
+                    $this->updateFlexforms($dataStructure, $fakeRow);
+                } else {
+                    $row = BackendUtilityCore::getRecord('tt_content', $recordId);
+                    if (is_array($row)) {
+                        $this->updateFlexforms($dataStructure, $row);
+                    }
                 }
             }
         }
