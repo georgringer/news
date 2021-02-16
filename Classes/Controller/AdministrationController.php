@@ -2,16 +2,16 @@
 
 namespace GeorgRinger\News\Controller;
 
-use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;

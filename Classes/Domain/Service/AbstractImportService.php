@@ -2,8 +2,8 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
-use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -12,9 +12,9 @@ use TYPO3\CMS\Core\Resource\ResourceFactory;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 class AbstractImportService
 {

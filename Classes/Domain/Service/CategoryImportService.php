@@ -2,19 +2,19 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
-use TYPO3\CMS\Core\Resource\File;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Domain\Model\Category;
-use GeorgRinger\News\Domain\Model\FileReference;
+use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * Category Import Service

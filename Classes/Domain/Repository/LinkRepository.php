@@ -3,6 +3,7 @@
 namespace GeorgRinger\News\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\Repository;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Service\SettingsService;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 /**
@@ -12,10 +12,10 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 /**
  * ViewHelper to render links from news records to detail view or page

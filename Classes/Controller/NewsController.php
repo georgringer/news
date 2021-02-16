@@ -2,14 +2,14 @@
 
 namespace GeorgRinger\News\Controller;
 
-use GeorgRinger\News\Domain\Repository\NewsRepository;
-use GeorgRinger\News\Domain\Repository\CategoryRepository;
-use GeorgRinger\News\Domain\Repository\TagRepository;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
-use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Fluid\View\TemplateView;
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use GeorgRinger\News\Domain\Repository\TagRepository;
+use GeorgRinger\News\Seo\NewsTitleProvider;
+use GeorgRinger\News\Utility\Cache;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -17,14 +17,14 @@ use TYPO3\CMS\Fluid\View\TemplateView;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
-use GeorgRinger\News\Domain\Model\News;
-use GeorgRinger\News\Seo\NewsTitleProvider;
-use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Fluid\View\TemplateView;
 
 /**
  * Controller of news records

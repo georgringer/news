@@ -1,8 +1,8 @@
 <?php
 namespace GeorgRinger\News\Controller;
 
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -10,13 +10,13 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;

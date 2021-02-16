@@ -4,6 +4,7 @@ namespace GeorgRinger\News\Service;
 
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
