@@ -22,12 +22,9 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * <output>
  * Renders the string "active" if the current news item is active
  * </output>
- *
  */
 class IfIsActiveViewHelper extends AbstractConditionViewHelper implements ViewHelperInterface
 {
-    /**
-     */
     public function initializeArguments()
     {
         $this->registerArgument('newsItem', 'object', 'News item', false);

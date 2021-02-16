@@ -20,7 +20,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * Category repository with all callable functionality
- *
  */
 class CategoryRepository extends AbstractDemandedRepository
 {

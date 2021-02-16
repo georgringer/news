@@ -2,16 +2,16 @@
 
 namespace GeorgRinger\News\Controller;
 
-use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
@@ -82,7 +82,6 @@ class AdministrationController extends NewsController
 
     /**
      * Function will be called before every other action
-     *
      */
     public function initializeAction()
     {
@@ -153,7 +152,6 @@ class AdministrationController extends NewsController
 
     /**
      * Create menu
-     *
      */
     protected function createMenu()
     {
@@ -210,7 +208,6 @@ class AdministrationController extends NewsController
 
     /**
      * Create the panel of buttons
-     *
      */
     protected function createButtons()
     {
@@ -583,7 +580,6 @@ class AdministrationController extends NewsController
 
     /**
      * Set the TsConfig configuration for the extension
-     *
      */
     protected function setTsConfig()
     {
@@ -618,7 +614,6 @@ class AdministrationController extends NewsController
     /**
      * If defined in TsConfig with tx_news.module.redirectToPageOnStart = 123
      * and the current page id is 0, a redirect to the given page will be done
-     *
      */
     protected function redirectToPageOnStart()
     {

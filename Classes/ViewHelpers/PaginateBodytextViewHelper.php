@@ -2,15 +2,15 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use GeorgRinger\News\Domain\Model\News;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Paginate the bodytext which is very useful for longer texts or to increase
@@ -56,7 +56,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *        </div>
  *    </f:if>
  * </n:paginateBodytext>
- *
  */
 class PaginateBodytextViewHelper extends AbstractViewHelper
 {

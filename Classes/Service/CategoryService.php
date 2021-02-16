@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Service for category related stuff
- *
  */
 class CategoryService
 {

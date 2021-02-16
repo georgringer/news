@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Service for access control related stuff
- *
  */
 class AccessControlService
 {

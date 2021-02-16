@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -57,7 +58,6 @@ class ImportController extends ActionController
 
     /**
      * Shows the import jobs selection .
-     *
      */
     public function indexAction()
     {

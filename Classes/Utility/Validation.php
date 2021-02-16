@@ -12,7 +12,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Validation
- *
  */
 class Validation
 {
@@ -30,7 +29,8 @@ class Validation
 
         if (empty($fieldToCheck)) {
             return $isValid;
-        } elseif (empty($allowedSettings)) {
+        }
+        if (empty($allowedSettings)) {
             return false;
         }
 

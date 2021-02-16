@@ -39,7 +39,6 @@ class MetaTagViewHelper extends AbstractViewHelper
 
     /**
      * Arguments initialization
-     *
      */
     public function initializeArguments()
     {

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\ViewHelpers\Iterator;
@@ -35,9 +36,6 @@ class ChunkViewHelper extends AbstractViewHelper
      */
     protected $escapeOutput = false;
 
-    /**
-     * @return void
-     */
     public function initializeArguments()
     {
         $this->registerArgument('subject', 'mixed', 'The subject Traversable/Array instance to shift');
@@ -116,13 +114,15 @@ class ChunkViewHelper extends AbstractViewHelper
     {
         if ($candidate instanceof \Traversable) {
             return iterator_to_array($candidate, $useKeys);
-        } elseif ($candidate instanceof QueryResultInterface) {
+        }
+        if ($candidate instanceof QueryResultInterface) {
             /** @var QueryResultInterface $candidate */
             return $candidate->toArray();
         }
         if (is_string($candidate)) {
             return GeneralUtility::trimExplode(',', $candidate, true);
-        } elseif (is_array($candidate)) {
+        }
+        if (is_array($candidate)) {
             return $candidate;
         }
         throw new Exception('Unsupported input type; cannot convert to array!', 1588049231);
@@ -143,14 +143,14 @@ class ChunkViewHelper extends AbstractViewHelper
     ) {
         if (true === empty($as)) {
             return $variable;
-        } else {
-            $variables = [$as => $variable];
-            $content = static::renderChildrenWithVariablesStatic(
-                $variables,
-                $renderingContext->getVariableProvider(),
-                $renderChildrenClosure
-            );
         }
+        $variables = [$as => $variable];
+        $content = static::renderChildrenWithVariablesStatic(
+            $variables,
+            $renderingContext->getVariableProvider(),
+            $renderChildrenClosure
+        );
+
         return $content;
     }
 
@@ -198,7 +198,6 @@ class ChunkViewHelper extends AbstractViewHelper
      * @param array $variables
      * @param array $backups
      * @param VariableProviderInterface $templateVariableContainer
-     * @return void
      */
     private static function restoreVariables(array $variables, array $backups, $templateVariableContainer): void
     {

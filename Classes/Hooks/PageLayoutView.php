@@ -21,7 +21,6 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Hook to display verbose information about pi1 plugin in Web>Page module
- *
  */
 class PageLayoutView
 {
@@ -170,7 +169,6 @@ class PageLayoutView
 
     /**
      * Render archive settings
-     *
      */
     public function getArchiveSettings()
     {
@@ -186,7 +184,6 @@ class PageLayoutView
 
     /**
      * Render single news settings
-     *
      */
     public function getSingleNewsSettings()
     {
@@ -224,7 +221,6 @@ class PageLayoutView
 
     /**
      * Render single news settings
-     *
      */
     public function getDetailPidSetting()
     {
@@ -242,7 +238,6 @@ class PageLayoutView
 
     /**
      * Render listPid news settings
-     *
      */
     public function getListPidSetting()
     {
@@ -316,7 +311,6 @@ class PageLayoutView
 
     /**
      * Get order settings
-     *
      */
     public function getOrderSettings()
     {
@@ -428,7 +422,6 @@ class PageLayoutView
 
     /**
      * Get the restriction for tags
-     *
      */
     public function getTagRestrictionSetting()
     {
@@ -450,7 +443,6 @@ class PageLayoutView
 
     /**
      * Render offset & limit configuration
-     *
      */
     public function getOffsetLimitSettings()
     {
@@ -480,7 +472,6 @@ class PageLayoutView
 
     /**
      * Render date menu configuration
-     *
      */
     public function getDateMenuSettings()
     {
@@ -494,7 +485,6 @@ class PageLayoutView
 
     /**
      * Render time restriction configuration
-     *
      */
     public function getTimeRestrictionSetting()
     {
@@ -518,7 +508,6 @@ class PageLayoutView
 
     /**
      * Render top news restriction configuration
-     *
      */
     public function getTopNewsRestrictionSetting()
     {
@@ -561,7 +550,6 @@ class PageLayoutView
 
     /**
      * Get information if override demand setting is disabled or not
-     *
      */
     public function getOverrideDemandSettings()
     {
@@ -579,7 +567,6 @@ class PageLayoutView
 
     /**
      * Get the startingpoint
-     *
      */
     public function getStartingPoint()
     {
@@ -683,7 +670,7 @@ class PageLayoutView
      *
      * @param string $key name of the key
      * @param string $sheet name of the sheet
-     * @return string|NULL if nothing found, value if found
+     * @return string|null if nothing found, value if found
      */
     public function getFieldFromFlexform($key, $sheet = 'sDEF')
     {

@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into tcemain which is used to show preview of news item
- *
  */
 class DataHandler
 {

@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
 
 /**
@@ -47,10 +48,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * @var string
      */
-    protected $timeRestriction = null;
+    protected $timeRestriction;
 
     /** @var string */
-    protected $timeRestrictionHigh = null;
+    protected $timeRestrictionHigh;
 
     /** @var int */
     protected $topNewsRestriction;

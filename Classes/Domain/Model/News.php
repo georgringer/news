@@ -4,6 +4,7 @@ namespace GeorgRinger\News\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -496,9 +497,8 @@ class News extends AbstractEntity
         if (!is_null($categories)) {
             $categories->rewind();
             return $categories->current();
-        } else {
-            return null;
         }
+        return null;
     }
 
     /**

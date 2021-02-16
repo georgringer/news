@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 namespace GeorgRinger\News\Utility;
 
@@ -12,7 +13,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Url Utility class
- *
  */
 class Url
 {

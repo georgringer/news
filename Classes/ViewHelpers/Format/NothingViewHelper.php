@@ -3,6 +3,7 @@
 namespace GeorgRinger\News\ViewHelpers\Format;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -22,7 +23,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  * <output>
  * nothing
  * </output>
- *
  */
 class NothingViewHelper extends AbstractViewHelper
 {
@@ -33,7 +33,6 @@ class NothingViewHelper extends AbstractViewHelper
 
     /**
      * Render children but do nothing else
-     *
      */
     public function render()
     {

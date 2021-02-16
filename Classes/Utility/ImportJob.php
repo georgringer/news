@@ -11,7 +11,6 @@ namespace GeorgRinger\News\Utility;
 
 /**
  * Utility class for import jobs
- *
  */
 class ImportJob
 {

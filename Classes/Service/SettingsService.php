@@ -4,6 +4,7 @@ namespace GeorgRinger\News\Service;
 
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -21,7 +22,6 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  * If objectManager is not available:
  * http://forge.typo3.org/projects/typo3v4-mvc/wiki/
  * Dependency_Injection_%28DI%29#Creating-Prototype-Objects-through-the-Object-Manager
- *
  */
 class SettingsService
 {
@@ -29,7 +29,7 @@ class SettingsService
     /**
      * @var mixed
      */
-    protected $settings = null;
+    protected $settings;
 
     /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface

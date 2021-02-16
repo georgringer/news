@@ -17,7 +17,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into PageLayoutView to hide tt_content elements in page view
- *
  */
 class PageViewQueryHook
 {
@@ -33,8 +32,6 @@ class PageViewQueryHook
      * @param array $additionalConstraints
      * @param string[] $fieldList
      * @param QueryBuilder $queryBuilder
-     *
-     * @return void
      */
     public function modifyQuery(
         $parameters,
@@ -75,8 +72,6 @@ class PageViewQueryHook
      * Render flash message to inform user
      * that no elements belonging to news articles
      * are rendered in the page module
-     *
-     * @return void
      */
     private function addFlashMessage()
     {

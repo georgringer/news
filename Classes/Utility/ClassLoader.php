@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
-use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Cache\CacheManager;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -10,9 +10,9 @@ use TYPO3\CMS\Core\SingletonInterface;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -63,7 +63,6 @@ class ClassLoader implements SingletonInterface
 
     /**
      * Register instance of this class as spl autoloader
-     *
      */
     public static function registerAutoloader()
     {

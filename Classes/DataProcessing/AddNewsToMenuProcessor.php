@@ -24,7 +24,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  *
  * 20 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
  * 20.menus = breadcrumbMenu,specialMenu
- *
  */
 class AddNewsToMenuProcessor implements DataProcessorInterface
 {

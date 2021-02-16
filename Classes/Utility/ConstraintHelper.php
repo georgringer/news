@@ -59,16 +59,14 @@ class ConstraintHelper
         if (MathUtility::canBeInterpretedAsInteger($timeInput)) {
             $timeLimit = $GLOBALS['SIM_EXEC_TIME'] + $timeInput;
             return $timeLimit;
-        } else {
-            // try to check strtotime
-            $timeFromStringHigh = strtotime($timeInput);
-
-            if ($timeFromStringHigh) {
-                $timeLimit = $timeFromStringHigh;
-                return $timeLimit;
-            } else {
-                throw new Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
-            }
         }
+        // try to check strtotime
+        $timeFromStringHigh = strtotime($timeInput);
+
+        if ($timeFromStringHigh) {
+            $timeLimit = $timeFromStringHigh;
+            return $timeLimit;
+        }
+        throw new Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
     }
 }

@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Hooks;
 
-use TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -10,8 +10,8 @@ use TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\Element\InlineElement;
+use TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**

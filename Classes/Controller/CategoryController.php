@@ -1,7 +1,9 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *

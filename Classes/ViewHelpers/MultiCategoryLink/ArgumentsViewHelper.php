@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
@@ -33,7 +34,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * <output>
  *    <title>TYPO3 is awesome</title>
  * </output>
- *
  */
 class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterface
 {

@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into DatabaseRecordList to hide tt_content elements in list view
- *
  */
 class RecordListQueryHook
 {

@@ -2,22 +2,22 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
+use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Core\Context\Context;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Domain\Model\News;
-use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * ViewHelper for a **simple** prev/next link.
@@ -54,7 +54,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <output>
  *  Menu with 2 li items with the link to the previous and next news item.
  * </output>
- *
  */
 class SimplePrevNextViewHelper extends AbstractViewHelper
 {

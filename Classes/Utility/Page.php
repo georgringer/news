@@ -19,7 +19,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Page Utility class
- *
  */
 class Page
 {

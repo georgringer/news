@@ -2,19 +2,18 @@
 
 namespace GeorgRinger\News\Utility;
 
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Cache Utility class
- *
  */
 class Cache
 {
