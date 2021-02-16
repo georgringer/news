@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use GeorgRinger\News\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -11,7 +11,7 @@ use TYPO3\CMS\Extbase\Domain\Model\FileReference;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Domain\Model\Category;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
