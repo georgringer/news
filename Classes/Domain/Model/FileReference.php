@@ -54,8 +54,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set File uid
      *
      * @param int $fileUid
+     *
+     * @return void
      */
-    public function setFileUid($fileUid)
+    public function setFileUid($fileUid): void
     {
         $this->uidLocal = $fileUid;
     }
@@ -74,8 +76,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set alternative
      *
      * @param string $alternative
+     *
+     * @return void
      */
-    public function setAlternative($alternative)
+    public function setAlternative($alternative): void
     {
         $this->alternative = $alternative;
     }
@@ -94,8 +98,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set description
      *
      * @param string $description
+     *
+     * @return void
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = $description;
     }
@@ -114,8 +120,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set link
      *
      * @param string $link
+     *
+     * @return void
      */
-    public function setLink($link)
+    public function setLink($link): void
     {
         $this->link = $link;
     }
@@ -134,8 +142,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set title
      *
      * @param string $title
+     *
+     * @return void
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }
@@ -154,8 +164,10 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set showinpreview
      *
      * @param int $showinpreview
+     *
+     * @return void
      */
-    public function setShowinpreview($showinpreview)
+    public function setShowinpreview($showinpreview): void
     {
         $this->showinpreview = $showinpreview;
     }

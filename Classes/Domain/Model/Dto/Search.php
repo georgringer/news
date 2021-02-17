@@ -90,16 +90,20 @@ class Search extends AbstractEntity
      * Set fields
      *
      * @param string $fields
+     *
+     * @return void
      */
-    public function setFields(string $fields)
+    public function setFields(string $fields): void
     {
         $this->fields = $fields;
     }
 
     /**
      * @param string $maximumDate
+     *
+     * @return void
      */
-    public function setMaximumDate($maximumDate)
+    public function setMaximumDate($maximumDate): void
     {
         $this->maximumDate = $maximumDate;
     }
@@ -114,8 +118,10 @@ class Search extends AbstractEntity
 
     /**
      * @param string $minimumDate
+     *
+     * @return void
      */
-    public function setMinimumDate(string $minimumDate)
+    public function setMinimumDate(string $minimumDate): void
     {
         $this->minimumDate = $minimumDate;
     }
@@ -130,8 +136,10 @@ class Search extends AbstractEntity
 
     /**
      * @param string $dateField
+     *
+     * @return void
      */
-    public function setDateField($dateField)
+    public function setDateField($dateField): void
     {
         $this->dateField = $dateField;
     }
@@ -154,8 +162,10 @@ class Search extends AbstractEntity
 
     /**
      * @param bool $splitSubjectWords
+     *
+     * @return void
      */
-    public function setSplitSubjectWords($splitSubjectWords)
+    public function setSplitSubjectWords($splitSubjectWords): void
     {
         $this->splitSubjectWords = $splitSubjectWords;
     }

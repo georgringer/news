@@ -353,9 +353,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get order respect top news flag
      *
-     * @return int
+     * @return bool
      */
-    public function getTopNewsFirst(): int
+    public function getTopNewsFirst(): bool
     {
         return $this->topNewsFirst;
     }
@@ -364,8 +364,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * Set search fields
      *
      * @param string $searchFields search fields
+     *
+     * @return static
      */
-    public function setSearchFields($searchFields)
+    public function setSearchFields($searchFields): self
     {
         $this->searchFields = $searchFields;
         return $this;
@@ -396,9 +398,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get top news setting
      *
-     * @return string
+     * @return int
      */
-    public function getTopNewsRestriction(): string
+    public function getTopNewsRestriction(): int
     {
         return $this->topNewsRestriction;
     }
@@ -418,9 +420,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get list of storage pages
      *
-     * @return string
+     * @return int
      */
-    public function getStoragePage(): string
+    public function getStoragePage(): int
     {
         return $this->storagePage;
     }
@@ -704,8 +706,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * Set allowed types
      *
      * @param array $types
+     *
+     * @return void
      */
-    public function setTypes($types)
+    public function setTypes($types): void
     {
         $this->types = $types;
     }
@@ -720,8 +724,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
 
     /**
      * @param array $customSettings
+     *
+     * @return void
      */
-    public function setCustomSettings(array $customSettings)
+    public function setCustomSettings(array $customSettings): void
     {
         $this->_customSettings = $customSettings;
     }

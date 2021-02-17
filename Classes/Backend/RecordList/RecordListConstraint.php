@@ -34,7 +34,7 @@ class RecordListConstraint
         return strpos($vars, '/module/web/NewsAdministration') !== false;
     }
 
-    public function extendQuery(array &$parameters, array $arguments)
+    public function extendQuery(array &$parameters, array $arguments): void
     {
         $parameters['whereDoctrine'] = [];
 

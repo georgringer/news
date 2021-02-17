@@ -67,9 +67,10 @@ class CategoryRepository extends AbstractDemandedRepository
      * Find categories by a given pid
      *
      * @param int $pid pid
-     * @return QueryInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
-    public function findParentCategoriesByPid($pid): QueryInterface
+    public function findParentCategoriesByPid($pid)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -132,9 +133,10 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param array $idList list of id s
      * @param array $ordering ordering
-     * @return QueryInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
-    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null): QueryInterface
+    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {
         if (empty($idList)) {
             throw new \InvalidArgumentException('The given id list is empty.', 1484823597);
@@ -166,9 +168,10 @@ class CategoryRepository extends AbstractDemandedRepository
      * Find categories by a given parent
      *
      * @param int $parent parent
-     * @return QueryInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
-    public function findChildren($parent): QueryInterface
+    public function findChildren($parent)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -184,8 +187,10 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @param array $idList
      * return void
+     *
+     * @return void
      */
-    protected function overlayTranslatedCategoryIds(array &$idList)
+    protected function overlayTranslatedCategoryIds(array &$idList): void
     {
         $language = $this->getSysLanguageUid();
         if ($language > 0 && !empty($idList)) {

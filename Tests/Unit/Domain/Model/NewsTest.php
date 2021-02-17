@@ -42,8 +42,10 @@ class NewsTest extends BaseTestCase
      * Test if title can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function titleCanBeSet()
+    public function titleCanBeSet(): void
     {
         $title = 'News title';
         $this->newsDomainModelInstance->setTitle($title);
@@ -54,8 +56,10 @@ class NewsTest extends BaseTestCase
      * Test if teaser can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function teaserCanBeSet()
+    public function teaserCanBeSet(): void
     {
         $teaser = 'News teaser';
         $this->newsDomainModelInstance->setTeaser($teaser);
@@ -66,8 +70,10 @@ class NewsTest extends BaseTestCase
      * Test if bodytext can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function bodytextCanBeSet()
+    public function bodytextCanBeSet(): void
     {
         $bodytext = 'News bodytext';
         $this->newsDomainModelInstance->setBodytext($bodytext);
@@ -78,8 +84,10 @@ class NewsTest extends BaseTestCase
      * Test if datetime can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function datetimeCanBeSet()
+    public function datetimeCanBeSet(): void
     {
         $datetime = new \DateTime();
         $this->newsDomainModelInstance->setDatetime($datetime);
@@ -90,8 +98,10 @@ class NewsTest extends BaseTestCase
      * Test if archive can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function archiveCanBeSet()
+    public function archiveCanBeSet(): void
     {
         $archive = new \DateTime();
         $this->newsDomainModelInstance->setArchive($archive);
@@ -102,8 +112,10 @@ class NewsTest extends BaseTestCase
      * Test if author can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function authorCanBeSet()
+    public function authorCanBeSet(): void
     {
         $author = 'News author';
         $this->newsDomainModelInstance->setAuthor($author);
@@ -114,8 +126,10 @@ class NewsTest extends BaseTestCase
      * Test if emailadr can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function authorEmailCanBeSet()
+    public function authorEmailCanBeSet(): void
     {
         $authorEmail = 'author@news.org';
         $this->newsDomainModelInstance->setAuthorEmail($authorEmail);
@@ -126,8 +140,10 @@ class NewsTest extends BaseTestCase
      * Test if type can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function typeCanBeSet()
+    public function typeCanBeSet(): void
     {
         $type = 123;
         $this->newsDomainModelInstance->setType($type);
@@ -138,8 +154,10 @@ class NewsTest extends BaseTestCase
      * Test if keyword can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function keywordsCanBeSet()
+    public function keywordsCanBeSet(): void
     {
         $keywords = 'news1 keyword, news keyword';
         $this->newsDomainModelInstance->setKeywords($keywords);
@@ -150,8 +168,10 @@ class NewsTest extends BaseTestCase
      * Test if internalurl can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function internalurlCanBeSet()
+    public function internalurlCanBeSet(): void
     {
         $internalurl = 'http://foo.org/';
         $this->newsDomainModelInstance->setInternalurl($internalurl);
@@ -162,8 +182,10 @@ class NewsTest extends BaseTestCase
      * Test if externalurl can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function externalurlCanBeSet()
+    public function externalurlCanBeSet(): void
     {
         $externalurl = 'http://bar.org/';
         $this->newsDomainModelInstance->setExternalurl($externalurl);
@@ -174,8 +196,10 @@ class NewsTest extends BaseTestCase
      * Test if topnews can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function isttopnewsCanBeSet()
+    public function isttopnewsCanBeSet(): void
     {
         $istopnews = true;
         $this->newsDomainModelInstance->setIstopnews($istopnews);
@@ -186,8 +210,10 @@ class NewsTest extends BaseTestCase
      * Test if editlock can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function editlockCanBeSet()
+    public function editlockCanBeSet(): void
     {
         $editlock = 2;
         $this->newsDomainModelInstance->setEditlock($editlock);
@@ -198,8 +224,10 @@ class NewsTest extends BaseTestCase
      * Test if importid can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function importIdCanBeSet()
+    public function importIdCanBeSet(): void
     {
         $importId = 2;
         $this->newsDomainModelInstance->setImportId($importId);
@@ -210,8 +238,10 @@ class NewsTest extends BaseTestCase
      * Test if importSource can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function importSourceCanBeSet()
+    public function importSourceCanBeSet(): void
     {
         $importSource = 'test';
         $this->newsDomainModelInstance->setImportSource($importSource);
@@ -222,8 +252,10 @@ class NewsTest extends BaseTestCase
      * Test if sorting can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function sortingCanBeSet()
+    public function sortingCanBeSet(): void
     {
         $sorting = 2;
         $this->newsDomainModelInstance->setSorting($sorting);
@@ -234,8 +266,10 @@ class NewsTest extends BaseTestCase
      * Test if tag can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function tagsCanBeSet()
+    public function tagsCanBeSet(): void
     {
         $tags = new ObjectStorage();
 
@@ -250,8 +284,10 @@ class NewsTest extends BaseTestCase
      * Test if content elements can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function contentElementsCanBeSet()
+    public function contentElementsCanBeSet(): void
     {
         $ce = new ObjectStorage();
 
@@ -266,8 +302,10 @@ class NewsTest extends BaseTestCase
      * Test if category can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function categoryCanBeSet()
+    public function categoryCanBeSet(): void
     {
         $category = new Category();
         $category->setTitle('fo');
@@ -281,8 +319,10 @@ class NewsTest extends BaseTestCase
      * Test if related links can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function relatedLinksCanBeSet()
+    public function relatedLinksCanBeSet(): void
     {
         $link = new Link();
         $link->setTitle('fo');
@@ -295,8 +335,10 @@ class NewsTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function falMediaCanBeAdded()
+    public function falMediaCanBeAdded(): void
     {
         $mediaItem = new FileReference();
         $mediaItem->setTitle('Fo');
@@ -310,8 +352,10 @@ class NewsTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function falMediaPreviewsAreReturned()
+    public function falMediaPreviewsAreReturned(): void
     {
         $news = new News();
 

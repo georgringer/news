@@ -61,7 +61,7 @@ class EmConfiguration
     /** @var bool */
     protected $manualSorting = false;
 
-    /** @var bool */
+    /** @var string */
     protected $archiveDate = 'date';
 
     /** @var bool */
@@ -139,7 +139,7 @@ class EmConfiguration
         return (bool)$this->showImporter;
     }
 
-    public function setShowAdministrationModule($showAdministrationModule)
+    public function setShowAdministrationModule($showAdministrationModule): void
     {
         $this->showAdministrationModule = $showAdministrationModule;
     }

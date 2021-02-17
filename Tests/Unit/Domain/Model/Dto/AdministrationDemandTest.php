@@ -30,8 +30,10 @@ class AdministrationDemandTest extends BaseTestCase
      * Test if recursive can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function recursiveCanBeSet()
+    public function recursiveCanBeSet(): void
     {
         $value = 'Test 123';
         $this->instance->setRecursive($value);
@@ -42,8 +44,10 @@ class AdministrationDemandTest extends BaseTestCase
      * Test if selectedCategories can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function selectedCategoriesCanBeSet()
+    public function selectedCategoriesCanBeSet(): void
     {
         $value = ['Test 123'];
         $this->instance->setCategories($value);
@@ -54,8 +58,10 @@ class AdministrationDemandTest extends BaseTestCase
      * Test if sortingField can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function sortingFieldCanBeSet()
+    public function sortingFieldCanBeSet(): void
     {
         $value = 'title';
         $this->instance->setSortingField($value);
@@ -66,8 +72,10 @@ class AdministrationDemandTest extends BaseTestCase
      * Test if sortingDirection can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function sortingDirectionCanBeSet()
+    public function sortingDirectionCanBeSet(): void
     {
         $value = 'asc';
         $this->instance->setSortingDirection($value);
@@ -76,8 +84,10 @@ class AdministrationDemandTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function hiddenCanBeSet()
+    public function hiddenCanBeSet(): void
     {
         $value = 2;
         $this->instance->setHidden($value);

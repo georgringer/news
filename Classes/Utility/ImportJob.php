@@ -26,9 +26,12 @@ class ImportJob
      * @param string $className class name
      * @param string $title title
      * @param string $description description
+     *
      * @static
+     *
+     * @return void
      */
-    public static function register($className, $title, $description)
+    public static function register($className, $title, $description): void
     {
         self::$registeredJobs[] = [
             'className' => $className,

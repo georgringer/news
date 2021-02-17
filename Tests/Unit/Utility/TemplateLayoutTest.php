@@ -20,8 +20,10 @@ class TemplateLayoutTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function templatesFoundInTypo3ConfVars()
+    public function templatesFoundInTypo3ConfVars(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['templateLayouts'] = [
             0 => [
@@ -42,8 +44,10 @@ class TemplateLayoutTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function templatesFoundInPageTsConfig()
+    public function templatesFoundInPageTsConfig(): void
     {
         $tsConfigArray = [
             'layout1' => 'Layout 1',
@@ -71,8 +75,10 @@ class TemplateLayoutTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function templatesFoundInCombinedResources()
+    public function templatesFoundInCombinedResources(): void
     {
         $tsConfigArray = [
             'layout1' => 'Layout 1',

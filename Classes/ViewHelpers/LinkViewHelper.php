@@ -74,8 +74,10 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
     /**
      * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     *
+     * @return void
      */
-    public function injectSettingsService(SettingsService $pluginSettingsService)
+    public function injectSettingsService(SettingsService $pluginSettingsService): void
     {
         $this->pluginSettingsService = $pluginSettingsService;
     }
@@ -322,8 +324,10 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
     /**
      * Initialize properties
+     *
+     * @return void
      */
-    protected function init()
+    protected function init(): void
     {
         $this->cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }

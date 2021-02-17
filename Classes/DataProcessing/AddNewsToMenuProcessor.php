@@ -57,8 +57,10 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
      *
      * @param array $newsRecord
      * @param array $menu
+     *
+     * @return void
      */
-    protected function addNewsRecordToMenu(array $newsRecord, array &$menu)
+    protected function addNewsRecordToMenu(array $newsRecord, array &$menu): void
     {
         foreach ($menu as &$menuItem) {
             $menuItem['current'] = 0;

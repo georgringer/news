@@ -39,8 +39,10 @@ class CategoryTest extends BaseTestCase
      * Test if sorting can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function sortingCanBeSet()
+    public function sortingCanBeSet(): void
     {
         $value = '123';
         $this->instance->setSorting($value);
@@ -51,8 +53,10 @@ class CategoryTest extends BaseTestCase
      * Test if crdate can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function crdateCanBeSet()
+    public function crdateCanBeSet(): void
     {
         $value = new \DateTime('2014-03-30');
         $this->instance->setCrdate($value);
@@ -63,8 +67,10 @@ class CategoryTest extends BaseTestCase
      * Test if tstamp can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function tstampCanBeSet()
+    public function tstampCanBeSet(): void
     {
         $value = new \DateTime('2014-03-30');
         $this->instance->setTstamp($value);
@@ -75,8 +81,10 @@ class CategoryTest extends BaseTestCase
      * Test if starttime can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function starttimeCanBeSet()
+    public function starttimeCanBeSet(): void
     {
         $value = new \DateTime('2014-03-30');
         $this->instance->setStarttime($value);
@@ -87,8 +95,10 @@ class CategoryTest extends BaseTestCase
      * Test if starttime can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function endtimeCanBeSet()
+    public function endtimeCanBeSet(): void
     {
         $value = new \DateTime('2014-03-30');
         $this->instance->setEndtime($value);
@@ -99,8 +109,10 @@ class CategoryTest extends BaseTestCase
      * Test if hidden can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function hiddenCanBeSet()
+    public function hiddenCanBeSet(): void
     {
         $value = true;
         $this->instance->setHidden($value);
@@ -111,8 +123,10 @@ class CategoryTest extends BaseTestCase
      * Test if sysLanguageUid can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function sysLanguageUidCanBeSet()
+    public function sysLanguageUidCanBeSet(): void
     {
         $value = 3;
         $this->instance->setSysLanguageUid($value);
@@ -123,8 +137,10 @@ class CategoryTest extends BaseTestCase
      * Test if l10nParent can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function l10nParentCanBeSet()
+    public function l10nParentCanBeSet(): void
     {
         $value = 5;
         $this->instance->setL10nParent($value);
@@ -135,8 +151,10 @@ class CategoryTest extends BaseTestCase
      * Test if title can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function titleCanBeSet()
+    public function titleCanBeSet(): void
     {
         $value = 'title';
         $this->instance->setTitle($value);
@@ -147,8 +165,10 @@ class CategoryTest extends BaseTestCase
      * Test if description can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function descriptionCanBeSet()
+    public function descriptionCanBeSet(): void
     {
         $value = 'lorem';
         $this->instance->setDescription($value);
@@ -159,8 +179,10 @@ class CategoryTest extends BaseTestCase
      * Test if description can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function parentCategoryCanBeSet()
+    public function parentCategoryCanBeSet(): void
     {
         $value = new Category();
         $value->setTitle('fo');
@@ -172,8 +194,10 @@ class CategoryTest extends BaseTestCase
      * Test if images can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function imagesCanBeSet()
+    public function imagesCanBeSet(): void
     {
         $value = new ObjectStorage();
         $this->instance->setImages($value);
@@ -184,8 +208,10 @@ class CategoryTest extends BaseTestCase
      * Test if first image can be get
      *
      * @test
+     *
+     * @return void
      */
-    public function firstImageCanBeGet()
+    public function firstImageCanBeGet(): void
     {
         $storage = new ObjectStorage();
         $item1 = new FileReference();
@@ -203,8 +229,10 @@ class CategoryTest extends BaseTestCase
      * Test if shortcut can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function shortcutCanBeSet()
+    public function shortcutCanBeSet(): void
     {
         $value = 789;
         $this->instance->setShortcut($value);
@@ -215,8 +243,10 @@ class CategoryTest extends BaseTestCase
      * Test if singlePid can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function singlePidCanBeSet()
+    public function singlePidCanBeSet(): void
     {
         $value = 456;
         $this->instance->setSinglePid($value);
@@ -227,8 +257,10 @@ class CategoryTest extends BaseTestCase
      * Test if importId can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function importIdCanBeSet()
+    public function importIdCanBeSet(): void
     {
         $value = 189;
         $this->instance->setImportId($value);
@@ -239,8 +271,10 @@ class CategoryTest extends BaseTestCase
      * Test if importSource can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function importSourceCanBeSet()
+    public function importSourceCanBeSet(): void
     {
         $value = 'something';
         $this->instance->setImportSource($value);

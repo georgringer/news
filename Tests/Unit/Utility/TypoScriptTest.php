@@ -20,9 +20,12 @@ class TypoScriptTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider overrideWorksDataProvider
+     *
+     * @return void
      */
-    public function overrideWorks($base, $overload, $expected)
+    public function overrideWorks($base, $overload, $expected): void
     {
         $utility = new TypoScript();
 
@@ -125,9 +128,12 @@ class TypoScriptTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider correctValueIsReturnedDataProvider
+     *
+     * @return void
      */
-    public function correctValueIsReturned($path, $expected)
+    public function correctValueIsReturned($path, $expected): void
     {
         $mockedUtility = $this->getAccessibleMock(TypoScript::class, ['dummy']);
 
@@ -172,9 +178,12 @@ class TypoScriptTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider correctValueIsSetDataProvider
+     *
+     * @return void
      */
-    public function correctValueIsSet($path, $newValue, $expected)
+    public function correctValueIsSet($path, $newValue, $expected): void
     {
         $mockedUtility = $this->getAccessibleMock(TypoScript::class, ['dummy'], [], '', true, false);
 

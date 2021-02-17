@@ -28,10 +28,12 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
+     *
+     * @return void
      */
     public function injectStorageBackend(
         BackendInterface $storageBackend
-    ) {
+    ): void {
         $this->storageBackend = $storageBackend;
     }
 
@@ -63,9 +65,10 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param DemandInterface $demand
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
-    public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+    public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
 

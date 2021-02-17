@@ -90,7 +90,9 @@ abstract class AbstractImportJob implements ImportJobInterface
     /**
      * The actual run method.
      *
-     * @param  int $offset
+     * @param int $offset
+     *
+     * @return void
      */
     public function run($offset)
     {

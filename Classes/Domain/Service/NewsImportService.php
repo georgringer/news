@@ -64,8 +64,10 @@ class NewsImportService extends AbstractImportService
      * Inject the news repository
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
+     *
+     * @return void
      */
-    public function injectNewsRepository(NewsRepository $newsRepository)
+    public function injectNewsRepository(NewsRepository $newsRepository): void
     {
         $this->newsRepository = $newsRepository;
     }
@@ -74,8 +76,10 @@ class NewsImportService extends AbstractImportService
      * Inject the category repository
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     *
+     * @return void
      */
-    public function injectCategoryRepository(CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(CategoryRepository $categoryRepository): void
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -84,10 +88,12 @@ class NewsImportService extends AbstractImportService
      * Inject the ttcontent repository
      *
      * @param \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
+     *
+     * @return void
      */
     public function injectTtContentRepository(
         TtContentRepository $ttContentRepository
-    ) {
+    ): void {
         $this->ttContentRepository = $ttContentRepository;
     }
 
@@ -95,17 +101,20 @@ class NewsImportService extends AbstractImportService
      * Inject SignalSlotDispatcher
      *
      * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
+     *
+     * @return void
      */
-    public function injectSignalSlotDispatcher(Dispatcher $signalSlotDispatcher)
+    public function injectSignalSlotDispatcher(Dispatcher $signalSlotDispatcher): void
     {
         $this->signalSlotDispatcher = $signalSlotDispatcher;
     }
 
     /**
      * @param array $importItem
-     * @return \GeorgRinger\News\Domain\Model\News|null
+     *
+     * @return array|object
      */
-    protected function initializeNewsRecord(array $importItem): ?\GeorgRinger\News\Domain\Model\News
+    protected function initializeNewsRecord(array $importItem)
     {
         $news = null;
 
@@ -324,8 +333,10 @@ class NewsImportService extends AbstractImportService
      * @param array $importData
      * @param array $importItemOverwrite
      * @param array $settings
+     *
+     * @return void
      */
-    public function import(array $importData, array $importItemOverwrite = [], $settings = [])
+    public function import(array $importData, array $importItemOverwrite = [], $settings = []): void
     {
         $this->settings = $settings;
         $this->logger->info(sprintf('Starting import for %s news', count($importData)));
@@ -364,8 +375,10 @@ class NewsImportService extends AbstractImportService
     /**
      * @param array $queueItem
      * @param array $importItemOverwrite
+     *
+     * @return void
      */
-    protected function importL10nOverlay(array $queueItem, array $importItemOverwrite)
+    protected function importL10nOverlay(array $queueItem, array $importItemOverwrite): void
     {
         $importItem = $queueItem['importItem'];
         $parentNews = $this->newsRepository->findOneByImportSourceAndImportId(
@@ -387,8 +400,9 @@ class NewsImportService extends AbstractImportService
     /**
      * Get an existing items from the references that matches the file
      *
-     * @param \GeorgRinger\News\Domain\Model\FileReference[] $items
+     * @param ObjectStorage $items
      * @param \TYPO3\CMS\Core\Resource\File $file
+     *
      * @return bool|FileReference
      */
     protected function getIfFalRelationIfAlreadyExists(

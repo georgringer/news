@@ -154,8 +154,10 @@ class Category extends AbstractEntity
      * Set Creation Date
      *
      * @param \DateTime $crdate crdate
+     *
+     * @return void
      */
-    public function setCrdate($crdate)
+    public function setCrdate($crdate): void
     {
         $this->crdate = $crdate;
     }
@@ -174,8 +176,10 @@ class Category extends AbstractEntity
      * Set tstamp
      *
      * @param \DateTime $tstamp tstamp
+     *
+     * @return void
      */
-    public function setTstamp($tstamp)
+    public function setTstamp($tstamp): void
     {
         $this->tstamp = $tstamp;
     }
@@ -194,8 +198,10 @@ class Category extends AbstractEntity
      * Set starttime
      *
      * @param \DateTime $starttime starttime
+     *
+     * @return void
      */
-    public function setStarttime($starttime)
+    public function setStarttime($starttime): void
     {
         $this->starttime = $starttime;
     }
@@ -214,8 +220,10 @@ class Category extends AbstractEntity
      * Set Endtime
      *
      * @param \DateTime $endtime endttime
+     *
+     * @return void
      */
-    public function setEndtime($endtime)
+    public function setEndtime($endtime): void
     {
         $this->endtime = $endtime;
     }
@@ -234,8 +242,10 @@ class Category extends AbstractEntity
      * Set Hidden
      *
      * @param bool $hidden
+     *
+     * @return void
      */
-    public function setHidden($hidden)
+    public function setHidden($hidden): void
     {
         $this->hidden = $hidden;
     }
@@ -254,8 +264,10 @@ class Category extends AbstractEntity
      * Set sys language
      *
      * @param int $sysLanguageUid language uid
+     *
+     * @return void
      */
-    public function setSysLanguageUid($sysLanguageUid)
+    public function setSysLanguageUid($sysLanguageUid): void
     {
         $this->_languageUid = $sysLanguageUid;
     }
@@ -274,8 +286,10 @@ class Category extends AbstractEntity
      * Set language parent
      *
      * @param int $l10nParent l10nParent
+     *
+     * @return void
      */
-    public function setL10nParent($l10nParent)
+    public function setL10nParent($l10nParent): void
     {
         $this->l10nParent = $l10nParent;
     }
@@ -294,8 +308,10 @@ class Category extends AbstractEntity
      * Set category title
      *
      * @param string $title title
+     *
+     * @return void
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }
@@ -314,22 +330,28 @@ class Category extends AbstractEntity
      * Set description
      *
      * @param string $description description
+     *
+     * @return void
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = $description;
     }
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
+     *
+     * @return void
      */
-    public function setImages($images)
+    public function setImages($images): void
     {
         $this->images = $images;
     }
 
     /**
-     * @return \GeorgRinger\News\Domain\Model\FileReference[]
+     * @return ObjectStorage
+     *
+     * @psalm-return ObjectStorage<FileReference>
      */
     public function getImages(): ObjectStorage
     {
@@ -340,8 +362,10 @@ class Category extends AbstractEntity
      * Add image
      *
      * @param FileReference $image
+     *
+     * @return void
      */
-    public function addImage(FileReference $image)
+    public function addImage(FileReference $image): void
     {
         $this->images->attach($image);
     }
@@ -350,8 +374,10 @@ class Category extends AbstractEntity
      * Remove image
      *
      * @param FileReference $image
+     *
+     * @return void
      */
-    public function removeImage(FileReference $image)
+    public function removeImage(FileReference $image): void
     {
         $this->images->detach($image);
     }
@@ -385,8 +411,10 @@ class Category extends AbstractEntity
      * Set parent category
      *
      * @param \GeorgRinger\News\Domain\Model\Category $category parent category
+     *
+     * @return void
      */
-    public function setParentcategory(self $category)
+    public function setParentcategory(self $category): void
     {
         $this->parentcategory = $category;
     }
@@ -405,8 +433,10 @@ class Category extends AbstractEntity
      * Set shortcut
      *
      * @param int $shortcut shortcut
+     *
+     * @return void
      */
-    public function setShortcut($shortcut)
+    public function setShortcut($shortcut): void
     {
         $this->shortcut = $shortcut;
     }
@@ -425,8 +455,10 @@ class Category extends AbstractEntity
      * Set single pid
      *
      * @param int $singlePid single pid
+     *
+     * @return void
      */
-    public function setSinglePid($singlePid)
+    public function setSinglePid($singlePid): void
     {
         $this->singlePid = $singlePid;
     }
@@ -445,8 +477,10 @@ class Category extends AbstractEntity
      * Set import id
      *
      * @param string $importId import id
+     *
+     * @return void
      */
-    public function setImportId($importId)
+    public function setImportId($importId): void
     {
         $this->importId = $importId;
     }
@@ -465,8 +499,10 @@ class Category extends AbstractEntity
      * Set sorting id
      *
      * @param int $sorting sorting id
+     *
+     * @return void
      */
-    public function setSorting($sorting)
+    public function setSorting($sorting): void
     {
         $this->sorting = $sorting;
     }
@@ -485,8 +521,10 @@ class Category extends AbstractEntity
      * Get feGroup
      *
      * @param string $feGroup feGroup
+     *
+     * @return void
      */
-    public function setFeGroup($feGroup)
+    public function setFeGroup($feGroup): void
     {
         $this->feGroup = $feGroup;
     }
@@ -494,9 +532,11 @@ class Category extends AbstractEntity
     /**
      * Set importSource
      *
-     * @param  string $importSource
+     * @param string $importSource
+     *
+     * @return void
      */
-    public function setImportSource($importSource)
+    public function setImportSource($importSource): void
     {
         $this->importSource = $importSource;
     }
@@ -521,8 +561,10 @@ class Category extends AbstractEntity
 
     /**
      * @param string $seoTitle
+     *
+     * @return void
      */
-    public function setSeoTitle($seoTitle)
+    public function setSeoTitle($seoTitle): void
     {
         $this->seoTitle = $seoTitle;
     }
@@ -537,8 +579,10 @@ class Category extends AbstractEntity
 
     /**
      * @param string $seoDescription
+     *
+     * @return void
      */
-    public function setSeoDescription($seoDescription)
+    public function setSeoDescription($seoDescription): void
     {
         $this->seoDescription = $seoDescription;
     }
@@ -553,8 +597,10 @@ class Category extends AbstractEntity
 
     /**
      * @param string $seoHeadline
+     *
+     * @return void
      */
-    public function setSeoHeadline($seoHeadline)
+    public function setSeoHeadline($seoHeadline): void
     {
         $this->seoHeadline = $seoHeadline;
     }
@@ -569,8 +615,10 @@ class Category extends AbstractEntity
 
     /**
      * @param string $seoText
+     *
+     * @return void
      */
-    public function setSeoText($seoText)
+    public function setSeoText($seoText): void
     {
         $this->seoText = $seoText;
     }
@@ -585,8 +633,10 @@ class Category extends AbstractEntity
 
     /**
      * @param string $slug
+     *
+     * @return void
      */
-    public function setSlug($slug)
+    public function setSlug($slug): void
     {
         $this->slug = $slug;
     }

@@ -70,8 +70,10 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      * Inject the DataMapper
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
+     *
+     * @return void
      */
-    public function injectDataMapper(DataMapper $dataMapper)
+    public function injectDataMapper(DataMapper $dataMapper): void
     {
         $this->dataMapper = $dataMapper;
     }
@@ -231,7 +233,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      * @param $id
      * @return array
      */
-    protected function getRawRecord($id): ?array
+    protected function getRawRecord(int $id): ?array
     {
         $queryBuilder = $this->getQueryBuilder();
         $rawRecord = $queryBuilder

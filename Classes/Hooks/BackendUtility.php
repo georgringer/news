@@ -124,9 +124,10 @@ class BackendUtility
     /**
      * @param array $dataStructure
      * @param array $identifier
-     * @return array
+     *
+     * @return array|string
      */
-    public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
+    public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier)
     {
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
             $getVars = GeneralUtility::_GET('edit');
@@ -155,8 +156,11 @@ class BackendUtility
      *
      * @param array|string &$dataStructure flexform structure
      * @param array $row row of current record
+     * @param array $dataStructure
+     *
+     * @return void
      */
-    protected function updateFlexforms(array &$dataStructure, array $row)
+    protected function updateFlexforms(array &$dataStructure, array $row): void
     {
         $selectedView = '';
 
@@ -223,8 +227,10 @@ class BackendUtility
      * Add category restriction to flexforms
      *
      * @param array $structure
+     *
+     * @return void
      */
-    protected function addCategoryConstraints(&$structure)
+    protected function addCategoryConstraints(&$structure): void
     {
         $categoryRestrictionSetting = $this->configuration->getCategoryRestriction();
         $categoryRestriction = '';
@@ -250,8 +256,10 @@ class BackendUtility
      *
      * @param array &$dataStructure flexform structure
      * @param array $fieldsToBeRemoved fields which need to be removed
+     *
+     * @return void
      */
-    protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved)
+    protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved): void
     {
         foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
             $fieldsInSheet = GeneralUtility::trimExplode(',', $sheetFields, true);

@@ -37,8 +37,10 @@ class TagControllerTest extends BaseTestCase
      * Test for creating correct demand call
      *
      * @test
+     *
+     * @return void
      */
-    public function listActionFindsDemandedTagsByDemandFromSettings()
+    public function listActionFindsDemandedTagsByDemandFromSettings(): void
     {
         $demand = new NewsDemand();
         $settings = ['list' => 'foo', 'orderBy' => 'datetime'];

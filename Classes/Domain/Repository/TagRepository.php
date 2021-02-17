@@ -25,9 +25,10 @@ class TagRepository extends AbstractDemandedRepository
      * @param array $idList list of id s
      * @param array $ordering ordering
      * @param string $startingPoint starting point uid or comma separated list
-     * @return QueryInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
-    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null): QueryInterface
+    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {
         if (empty($idList)) {
             throw new \InvalidArgumentException('The given id list is empty.', 1484823596);
@@ -91,7 +92,10 @@ class TagRepository extends AbstractDemandedRepository
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     *
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
      */
     protected function createOrderingsFromDemand(DemandInterface $demand): array
     {

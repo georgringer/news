@@ -99,10 +99,14 @@ class NewsRepository extends AbstractDemandedRepository
      *
      * @param QueryInterface $query
      * @param DemandInterface $demand
+     *
      * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     *
+     * @return (\TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null)[]
+     *
+     * @psalm-return array<string, \TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null>
      */
     protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
@@ -259,7 +263,10 @@ class NewsRepository extends AbstractDemandedRepository
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     *
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
      */
     protected function createOrderingsFromDemand(DemandInterface $demand): array
     {

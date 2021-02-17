@@ -40,10 +40,12 @@ class SettingsService
      * Injects the Configuration Manager and loads the settings
      *
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager An instance of the Configuration Manager
+     *
+     * @return void
      */
     public function injectConfigurationManager(
         ConfigurationManagerInterface $configurationManager
-    ) {
+    ): void {
         $this->configurationManager = $configurationManager;
     }
 

@@ -28,8 +28,10 @@ class Cache
      * Marks as cObj as processed.
      *
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
+     *
+     * @return void
      */
-    public function markContentRecordAsProcessed(ContentObjectRenderer $cObj)
+    public function markContentRecordAsProcessed(ContentObjectRenderer $cObj): void
     {
         $key = 'tt_content_' . $cObj->data['uid'];
         self::$processedContentRecords[$key] = true;
@@ -54,8 +56,10 @@ class Cache
      * "tx_news_uid_[news:uid]"
      *
      * @param array|\TYPO3\CMS\Extbase\Persistence\QueryResult $newsRecords with news records
+     *
+     * @return void
      */
-    public static function addCacheTagsByNewsRecords($newsRecords)
+    public static function addCacheTagsByNewsRecords($newsRecords): void
     {
         $cacheTags = [];
         foreach ($newsRecords as $news) {
@@ -76,8 +80,10 @@ class Cache
      * This adds tags with the scheme tx_news_pid_[news:pid]
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
+     *
+     * @return void
      */
-    public static function addPageCacheTagsByDemandObject(NewsDemand $demand)
+    public static function addPageCacheTagsByDemandObject(NewsDemand $demand): void
     {
         $cacheTags = [];
         if ($demand->getStoragePage()) {

@@ -2,7 +2,7 @@
 
 defined('TYPO3_MODE') or die();
 
-$boot = static function () {
+$boot = static function (): void {
     // Add seo sitemap fields
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('seo')) {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(

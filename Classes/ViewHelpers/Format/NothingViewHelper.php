@@ -33,8 +33,10 @@ class NothingViewHelper extends AbstractViewHelper
 
     /**
      * Render children but do nothing else
+     *
+     * @return void
      */
-    public function render()
+    public function render(): void
     {
         $this->renderChildren();
     }

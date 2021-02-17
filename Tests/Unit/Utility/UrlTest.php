@@ -21,9 +21,12 @@ class UrlTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider correctUrlIsDeliveredDataProvider
+     *
+     * @return void
      */
-    public function correctUrlIsDelivered($actual, $expected)
+    public function correctUrlIsDelivered($actual, $expected): void
     {
         $this->assertEquals($expected, Url::prependDomain($actual));
     }

@@ -2,7 +2,7 @@
 
 defined('TYPO3_MODE') or die();
 
-$boot = static function () {
+$boot = static function (): void {
 
     // CSH - context sensitive help
     foreach (['news', 'media', 'tag', 'link'] as $table) {

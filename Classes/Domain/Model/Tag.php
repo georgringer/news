@@ -68,8 +68,10 @@ class Tag extends AbstractValueObject
      * Set crdate
      *
      * @param \DateTime $crdate crdate
+     *
+     * @return void
      */
-    public function setCrdate($crdate)
+    public function setCrdate($crdate): void
     {
         $this->crdate = $crdate;
     }
@@ -88,8 +90,10 @@ class Tag extends AbstractValueObject
      * Set tstamp
      *
      * @param \DateTime $tstamp tstamp
+     *
+     * @return void
      */
-    public function setTstamp($tstamp)
+    public function setTstamp($tstamp): void
     {
         $this->tstamp = $tstamp;
     }
@@ -108,8 +112,10 @@ class Tag extends AbstractValueObject
      * Set title
      *
      * @param string $title title
+     *
+     * @return void
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }
@@ -124,8 +130,10 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $seoTitle
+     *
+     * @return void
      */
-    public function setSeoTitle($seoTitle)
+    public function setSeoTitle($seoTitle): void
     {
         $this->seoTitle = $seoTitle;
     }
@@ -140,8 +148,10 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $seoDescription
+     *
+     * @return void
      */
-    public function setSeoDescription($seoDescription)
+    public function setSeoDescription($seoDescription): void
     {
         $this->seoDescription = $seoDescription;
     }
@@ -156,8 +166,10 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $seoHeadline
+     *
+     * @return void
      */
-    public function setSeoHeadline($seoHeadline)
+    public function setSeoHeadline($seoHeadline): void
     {
         $this->seoHeadline = $seoHeadline;
     }
@@ -172,8 +184,10 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $seoText
+     *
+     * @return void
      */
-    public function setSeoText($seoText)
+    public function setSeoText($seoText): void
     {
         $this->seoText = $seoText;
     }
@@ -188,8 +202,10 @@ class Tag extends AbstractValueObject
 
     /**
      * @param string $slug
+     *
+     * @return void
      */
-    public function setSlug($slug)
+    public function setSlug($slug): void
     {
         $this->slug = $slug;
     }

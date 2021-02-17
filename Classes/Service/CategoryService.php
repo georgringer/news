@@ -62,7 +62,7 @@ class CategoryService
      * @param $toBeRemoved string comma separated list
      * @return string
      */
-    public static function removeValuesFromString($result, $toBeRemoved): string
+    public static function removeValuesFromString($result, string $toBeRemoved): string
     {
         $resultAsArray = GeneralUtility::trimExplode(',', $result, true);
         $idListAsArray = GeneralUtility::trimExplode(',', $toBeRemoved, true);

@@ -32,8 +32,10 @@ class ItemsProcFunc
      * Itemsproc function to extend the selection of templateLayouts in the plugin
      *
      * @param array &$config configuration array
+     *
+     * @return void
      */
-    public function user_templateLayout(array &$config)
+    public function user_templateLayout(array &$config): void
     {
         $pageId = 0;
 
@@ -92,8 +94,10 @@ class ItemsProcFunc
      * needs different ones then a news action
      *
      * @param array &$config configuration array
+     *
+     * @return void
      */
-    public function user_orderBy(array &$config)
+    public function user_orderBy(array &$config): void
     {
         $row = $this->getContentElementRow($config['row']['uid']);
 
@@ -141,8 +145,10 @@ class ItemsProcFunc
      *
      * @param array $config tca items
      * @param string $tableName table name
+     *
+     * @return void
      */
-    protected function removeNonValidOrderFields(array &$config, $tableName)
+    protected function removeNonValidOrderFields(array &$config, $tableName): void
     {
         $allowedFields = array_keys($GLOBALS['TCA'][$tableName]['columns']);
 
@@ -157,8 +163,10 @@ class ItemsProcFunc
      * Modifies the selectbox of available actions
      *
      * @param array &$config
+     *
+     * @return void
      */
-    public function user_switchableControllerActions(array &$config)
+    public function user_switchableControllerActions(array &$config): void
     {
         if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'])) {
             $configuration = (int)$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'];
@@ -188,8 +196,10 @@ class ItemsProcFunc
      *
      * @param array $config available items
      * @param string $action action to be removed
+     *
+     * @return void
      */
-    private function removeActionFromList(array &$config, $action)
+    private function removeActionFromList(array &$config, $action): void
     {
         foreach ($config['items'] as $key => $item) {
             if ($item[1] === $action) {
@@ -251,9 +261,10 @@ class ItemsProcFunc
      * Get tt_content record
      *
      * @param int $uid
-     * @return array
+     *
+     * @return array|null
      */
-    protected function getContentElementRow($uid): array
+    protected function getContentElementRow($uid): ?array
     {
         return BackendUtilityCore::getRecord('tt_content', $uid);
     }

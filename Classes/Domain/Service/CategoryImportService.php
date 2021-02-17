@@ -46,8 +46,10 @@ class CategoryImportService extends AbstractImportService
      * Inject the category repository.
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     *
+     * @return void
      */
-    public function injectCategoryRepository(CategoryRepository $categoryRepository)
+    public function injectCategoryRepository(CategoryRepository $categoryRepository): void
     {
         $this->categoryRepository = $categoryRepository;
     }
@@ -56,16 +58,20 @@ class CategoryImportService extends AbstractImportService
      * Inject SignalSlotDispatcher
      *
      * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
+     *
+     * @return void
      */
-    public function injectSignalSlotDispatcher(Dispatcher $signalSlotDispatcher)
+    public function injectSignalSlotDispatcher(Dispatcher $signalSlotDispatcher): void
     {
         $this->signalSlotDispatcher = $signalSlotDispatcher;
     }
 
     /**
      * @param array $importArray
+     *
+     * @return void
      */
-    public function import(array $importArray)
+    public function import(array $importArray): void
     {
         $this->logger->info(sprintf('Starting import for %s categories', count($importArray)));
 
@@ -114,9 +120,10 @@ class CategoryImportService extends AbstractImportService
      * Hydrate a category record with the given array
      *
      * @param array $importItem
-     * @return Category
+     *
+     * @return array|object
      */
-    protected function hydrateCategory(array $importItem): Category
+    protected function hydrateCategory(array $importItem)
     {
         $category = $this->categoryRepository->findOneByImportSourceAndImportId(
             $importItem['import_source'],
@@ -166,6 +173,8 @@ class CategoryImportService extends AbstractImportService
      *
      * @param Category $category
      * @param $image
+     *
+     * @return void
      */
     protected function setFileRelationFromImage($category, $image)
     {
@@ -226,8 +235,10 @@ class CategoryImportService extends AbstractImportService
      * Set parent category
      *
      * @param array $queueItem
+     *
+     * @return void
      */
-    protected function setParentCategory(array $queueItem)
+    protected function setParentCategory(array $queueItem): void
     {
         /** @var $category Category */
         $category = $queueItem['category'];
@@ -250,8 +261,10 @@ class CategoryImportService extends AbstractImportService
      * Create l10n relation
      *
      * @param array $queueItem
+     *
+     * @return void
      */
-    protected function createL10nChildrenCategory(array $queueItem)
+    protected function createL10nChildrenCategory(array $queueItem): void
     {
         /** @var $category Category */
         $category = $queueItem['category'];
@@ -278,8 +291,10 @@ class CategoryImportService extends AbstractImportService
      *
      * @param string $signalName name of the signal slot
      * @param array $signalArguments arguments for the signal slot
+     *
+     * @return void
      */
-    protected function emitSignal($signalName, array $signalArguments)
+    protected function emitSignal($signalName, array $signalArguments): void
     {
         $this->signalSlotDispatcher->dispatch(
             self::class,

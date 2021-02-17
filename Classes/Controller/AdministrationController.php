@@ -82,6 +82,8 @@ class AdministrationController extends NewsController
 
     /**
      * Function will be called before every other action
+     *
+     * @return void
      */
     public function initializeAction()
     {
@@ -115,6 +117,8 @@ class AdministrationController extends NewsController
      * Set up the doc header properly here
      *
      * @param ViewInterface $view
+     *
+     * @return void
      */
     protected function initializeView(ViewInterface $view)
     {
@@ -152,8 +156,10 @@ class AdministrationController extends NewsController
 
     /**
      * Create menu
+     *
+     * @return void
      */
-    protected function createMenu()
+    protected function createMenu(): void
     {
         $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
@@ -208,8 +214,10 @@ class AdministrationController extends NewsController
 
     /**
      * Create the panel of buttons
+     *
+     * @return void
      */
-    protected function createButtons()
+    protected function createButtons(): void
     {
         $buttonBar = $this->view->getModuleTemplate()->getDocHeaderComponent()->getButtonBar();
 
@@ -338,6 +346,8 @@ class AdministrationController extends NewsController
      * Inject a news repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     *
+     * @return void
      */
     public function injectCategoryRepository(CategoryRepository $categoryRepository)
     {
@@ -346,8 +356,10 @@ class AdministrationController extends NewsController
 
     /**
      * Main action for administration
+     *
+     * @return void
      */
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->redirectToPageOnStart();
 
@@ -464,8 +476,10 @@ class AdministrationController extends NewsController
      * Shows a page tree including count of news + category records
      *
      * @param int $treeLevel
+     *
+     * @return void
      */
-    public function newsPidListingAction($treeLevel = 2)
+    public function newsPidListingAction($treeLevel = 2): void
     {
         $tree = Page::pageTree($this->pageUid, $treeLevel);
 
@@ -488,7 +502,7 @@ class AdministrationController extends NewsController
         $this->view->assignMultiple($assignedValues);
     }
 
-    public function donateAction()
+    public function donateAction(): void
     {
         $this->view->assignMultiple([
             'counts' => $this->administrationRepository->getTotalCounts()
@@ -497,24 +511,30 @@ class AdministrationController extends NewsController
 
     /**
      * Redirect to form to create a news record
+     *
+     * @return void
      */
-    public function newNewsAction()
+    public function newNewsAction(): void
     {
         $this->redirectToCreateNewRecord('tx_news_domain_model_news');
     }
 
     /**
      * Redirect to form to create a category record
+     *
+     * @return void
      */
-    public function newCategoryAction()
+    public function newCategoryAction(): void
     {
         $this->redirectToCreateNewRecord('sys_category');
     }
 
     /**
      * Redirect to form to create a tag record
+     *
+     * @return void
      */
-    public function newTagAction()
+    public function newTagAction(): void
     {
         $this->redirectToCreateNewRecord('tx_news_domain_model_tag');
     }
@@ -523,8 +543,10 @@ class AdministrationController extends NewsController
      * Update page record array with count of news & category records
      *
      * @param array $row page record
+     *
+     * @return void
      */
-    private function countRecordsOnPage(array &$row)
+    private function countRecordsOnPage(array &$row): void
     {
         $pageUid = (int)$row['row']['uid'];
 
@@ -551,8 +573,10 @@ class AdministrationController extends NewsController
      * Redirect to tceform creating a new record
      *
      * @param string $table table name
+     *
+     * @return void
      */
-    private function redirectToCreateNewRecord($table)
+    private function redirectToCreateNewRecord($table): void
     {
         $pid = $this->pageUid;
         if ($pid === 0 && isset($this->tsConfiguration['defaultPid.'])
@@ -580,8 +604,10 @@ class AdministrationController extends NewsController
 
     /**
      * Set the TsConfig configuration for the extension
+     *
+     * @return void
      */
-    protected function setTsConfig()
+    protected function setTsConfig(): void
     {
         $tsConfig = BackendUtilityCore::getPagesTSconfig($this->pageUid);
         if (isset($tsConfig['tx_news.']['module.']) && is_array($tsConfig['tx_news.']['module.'])) {
@@ -614,8 +640,10 @@ class AdministrationController extends NewsController
     /**
      * If defined in TsConfig with tx_news.module.redirectToPageOnStart = 123
      * and the current page id is 0, a redirect to the given page will be done
+     *
+     * @return void
      */
-    protected function redirectToPageOnStart()
+    protected function redirectToPageOnStart(): void
     {
         if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
             $id = (int)$this->tsConfiguration['allowedPage'];

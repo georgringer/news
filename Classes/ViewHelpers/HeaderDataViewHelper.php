@@ -38,6 +38,8 @@ class HeaderDataViewHelper extends AbstractViewHelper
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
+     *
+     * @return void
      */
     public static function renderStatic(
         array $arguments,

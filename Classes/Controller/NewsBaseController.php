@@ -34,6 +34,8 @@ class NewsBaseController extends ActionController
      * or prepare the view in another way before the action is called.
      *
      * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view The view to be initialized
+     *
+     * @return void
      */
     protected function initializeView(ViewInterface $view)
     {
@@ -61,9 +63,12 @@ class NewsBaseController extends ActionController
 
     /**
      * @param \Exception $exception
+     *
      * @throws \Exception
+     *
+     * @return void
      */
-    private function handleKnownExceptionsElseThrowAgain(\Exception $exception)
+    private function handleKnownExceptionsElseThrowAgain(\Exception $exception): void
     {
         $previousException = $exception->getPrevious();
 

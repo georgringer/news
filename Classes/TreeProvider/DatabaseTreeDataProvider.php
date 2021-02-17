@@ -30,14 +30,15 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      * @param \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode|null $parent
      * @param int $level
      * @param bool $restriction
-     * @return \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode node
+     *
+     * @return null|object node
      */
     protected function buildRepresentationForNode(
         TreeNode $basicNode,
         DatabaseTreeNode $parent = null,
         $level = 0,
         $restriction = false
-    ): \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode {
+    ): ?object {
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         /**@param $node \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode */
         $node = GeneralUtility::makeInstance(DatabaseTreeNode::class);

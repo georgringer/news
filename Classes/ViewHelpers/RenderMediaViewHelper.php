@@ -65,7 +65,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
      * @param $image FileReference
      * @return string
      */
-    private function renderImage($image): string
+    private function renderImage(\TYPO3\CMS\Core\Resource\FileInterface $image): string
     {
         if ($this->objectManager === null) {
             $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);

@@ -36,8 +36,10 @@ class TagTest extends BaseTestCase
      * Test if title can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function titleCanBeSet()
+    public function titleCanBeSet(): void
     {
         $title = 'Tag title';
         $this->tagDomainModelInstance->setTitle($title);
@@ -48,8 +50,10 @@ class TagTest extends BaseTestCase
      * Test if crdate can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function crdateCanBeSet()
+    public function crdateCanBeSet(): void
     {
         $time = new \DateTime('now');
         $this->tagDomainModelInstance->setCrdate($time);
@@ -60,8 +64,10 @@ class TagTest extends BaseTestCase
      * Test if tstamp can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function tstampCanBeSet()
+    public function tstampCanBeSet(): void
     {
         $time = new \DateTime('now');
         $this->tagDomainModelInstance->setTstamp($time);

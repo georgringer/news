@@ -63,8 +63,10 @@ class ClassLoader implements SingletonInterface
 
     /**
      * Register instance of this class as spl autoloader
+     *
+     * @return void
      */
-    public static function registerAutoloader()
+    public static function registerAutoloader(): void
     {
         spl_autoload_register([GeneralUtility::makeInstance(self::class), 'loadClass'], true, true);
     }
@@ -101,9 +103,10 @@ class ClassLoader implements SingletonInterface
      * Get extension key from namespaced classname
      *
      * @param string $className
-     * @return string
+     *
+     * @return null|string
      */
-    protected function getExtensionKey($className): string
+    protected function getExtensionKey($className): ?string
     {
         $extensionKey = null;
 
@@ -138,7 +141,7 @@ class ClassLoader implements SingletonInterface
         return false;
     }
 
-    protected function changeClassName($className)
+    protected function changeClassName(string $className): string
     {
         return str_replace('\\', '/', str_replace('GeorgRinger\\News\\', '', $className));
     }

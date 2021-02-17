@@ -75,8 +75,10 @@ class NewsController extends NewsBaseController
      * Inject a news repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
+     *
+     * @return void
      */
-    public function injectNewsRepository(NewsRepository $newsRepository)
+    public function injectNewsRepository(NewsRepository $newsRepository): void
     {
         $this->newsRepository = $newsRepository;
     }
@@ -85,6 +87,8 @@ class NewsController extends NewsBaseController
      * Inject a category repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
+     *
+     * @return void
      */
     public function injectCategoryRepository(CategoryRepository $categoryRepository)
     {
@@ -95,14 +99,18 @@ class NewsController extends NewsBaseController
      * Inject a tag repository to enable DI
      *
      * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
+     *
+     * @return void
      */
-    public function injectTagRepository(TagRepository $tagRepository)
+    public function injectTagRepository(TagRepository $tagRepository): void
     {
         $this->tagRepository = $tagRepository;
     }
 
     /**
      * Initializes the current action
+     *
+     * @return void
      */
     public function initializeAction()
     {
@@ -222,6 +230,8 @@ class NewsController extends NewsBaseController
      * Output a list view of news
      *
      * @param array $overwriteDemand
+     *
+     * @return void
      */
     public function listAction(array $overwriteDemand = null)
     {
@@ -292,6 +302,8 @@ class NewsController extends NewsBaseController
     /**
      * When list action is called and skipControllerAndAction is set
      * along with a news argument, we forward to detail action.
+     *
+     * @return void
      */
     protected function forwardToDetailActionWhenRequested()
     {
@@ -321,8 +333,10 @@ class NewsController extends NewsBaseController
 
     /**
      * Output a selected list view of news
+     *
+     * @return void
      */
-    public function selectedListAction()
+    public function selectedListAction(): void
     {
         $newsRecords = [];
 
@@ -361,6 +375,8 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Model\News $news news item
      * @param int $currentPage current page for optional pagination
+     *
+     * @return null|string
      */
     public function detailAction(News $news = null, $currentPage = 1)
     {
@@ -473,8 +489,10 @@ class NewsController extends NewsBaseController
      * Render a menu by dates, e.g. years, months or dates
      *
      * @param array $overwriteDemand
+     *
+     * @return void
      */
-    public function dateMenuAction(array $overwriteDemand = null)
+    public function dateMenuAction(array $overwriteDemand = null): void
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -522,11 +540,13 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
      * @param array $overwriteDemand
+     *
+     * @return void
      */
     public function searchFormAction(
         Search $search = null,
         array $overwriteDemand = []
-    ) {
+    ): void {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -559,11 +579,13 @@ class NewsController extends NewsBaseController
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
      * @param array $overwriteDemand
+     *
+     * @return void
      */
     public function searchResultAction(
         Search $search = null,
         array $overwriteDemand = []
-    ) {
+    ): void {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -597,24 +619,30 @@ class NewsController extends NewsBaseController
 
     /**
      * initialize search result action
+     *
+     * @return void
      */
-    public function initializeSearchResultAction()
+    public function initializeSearchResultAction(): void
     {
         $this->initializeSearchActions();
     }
 
     /**
      * Initialize search form action
+     *
+     * @return void
      */
-    public function initializeSearchFormAction()
+    public function initializeSearchFormAction(): void
     {
         $this->initializeSearchActions();
     }
 
     /**
      * Initialize searchForm and searchResult actions
+     *
+     * @return void
      */
-    protected function initializeSearchActions()
+    protected function initializeSearchActions(): void
     {
         if ($this->arguments->hasArgument('search')) {
             $propertyMappingConfiguration = $this->arguments['search']->getPropertyMappingConfiguration();
@@ -631,6 +659,8 @@ class NewsController extends NewsBaseController
      * Injects the Configuration Manager and is initializing the framework settings
      *
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
+     *
+     * @return void
      */
     public function injectConfigurationManager(
         ConfigurationManagerInterface $configurationManager
@@ -691,8 +721,10 @@ class NewsController extends NewsBaseController
      * This function is for testing purposes only.
      *
      * @param \TYPO3\CMS\Fluid\View\TemplateView $view the view to inject
+     *
+     * @return void
      */
-    public function setView(TemplateView $view)
+    public function setView(TemplateView $view): void
     {
         $this->view = $view;
     }

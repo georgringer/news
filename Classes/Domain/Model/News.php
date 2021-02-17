@@ -264,8 +264,10 @@ class News extends AbstractEntity
      * Set title
      *
      * @param string $title title
+     *
+     * @return void
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }
@@ -284,8 +286,10 @@ class News extends AbstractEntity
      * Set alternative title
      *
      * @param string $alternativeTitle
+     *
+     * @return void
      */
-    public function setAlternativeTitle($alternativeTitle)
+    public function setAlternativeTitle($alternativeTitle): void
     {
         $this->alternativeTitle = $alternativeTitle;
     }
@@ -304,8 +308,10 @@ class News extends AbstractEntity
      * Set Teaser text
      *
      * @param string $teaser teaser text
+     *
+     * @return void
      */
-    public function setTeaser($teaser)
+    public function setTeaser($teaser): void
     {
         $this->teaser = $teaser;
     }
@@ -324,8 +330,10 @@ class News extends AbstractEntity
      * Set bodytext
      *
      * @param string $bodytext main content
+     *
+     * @return void
      */
-    public function setBodytext($bodytext)
+    public function setBodytext($bodytext): void
     {
         $this->bodytext = $bodytext;
     }
@@ -344,8 +352,10 @@ class News extends AbstractEntity
      * Set date time
      *
      * @param \DateTime $datetime datetime
+     *
+     * @return void
      */
-    public function setDatetime($datetime)
+    public function setDatetime($datetime): void
     {
         $this->datetime = $datetime;
     }
@@ -353,9 +363,9 @@ class News extends AbstractEntity
     /**
      * Get year of datetime
      *
-     * @return int
+     * @return false|string
      */
-    public function getYearOfDatetime(): int
+    public function getYearOfDatetime()
     {
         return $this->getDatetime()->format('Y');
     }
@@ -363,9 +373,9 @@ class News extends AbstractEntity
     /**
      * Get month of datetime
      *
-     * @return int
+     * @return false|string
      */
-    public function getMonthOfDatetime(): int
+    public function getMonthOfDatetime()
     {
         return $this->getDatetime()->format('m');
     }
@@ -394,8 +404,10 @@ class News extends AbstractEntity
      * Set archive date
      *
      * @param \DateTime $archive archive date
+     *
+     * @return void
      */
-    public function setArchive($archive)
+    public function setArchive($archive): void
     {
         $this->archive = $archive;
     }
@@ -450,8 +462,10 @@ class News extends AbstractEntity
      * Set author
      *
      * @param string $author author
+     *
+     * @return void
      */
-    public function setAuthor($author)
+    public function setAuthor($author): void
     {
         $this->author = $author;
     }
@@ -470,8 +484,10 @@ class News extends AbstractEntity
      * Set author's email
      *
      * @param string $authorEmail author's email
+     *
+     * @return void
      */
-    public function setAuthorEmail($authorEmail)
+    public function setAuthorEmail($authorEmail): void
     {
         $this->authorEmail = $authorEmail;
     }
@@ -505,8 +521,10 @@ class News extends AbstractEntity
      * Set categories
      *
      * @param ObjectStorage $categories
+     *
+     * @return void
      */
-    public function setCategories($categories)
+    public function setCategories($categories): void
     {
         $this->categories = $categories;
     }
@@ -515,8 +533,10 @@ class News extends AbstractEntity
      * Adds a category to this categories.
      *
      * @param Category $category
+     *
+     * @return void
      */
-    public function addCategory(Category $category)
+    public function addCategory(Category $category): void
     {
         $this->getCategories()->attach($category);
     }
@@ -535,8 +555,10 @@ class News extends AbstractEntity
      * Set related from
      *
      * @param \GeorgRinger\News\Domain\Model\News[] $relatedFrom
+     *
+     * @return void
      */
-    public function setRelatedFrom($relatedFrom)
+    public function setRelatedFrom($relatedFrom): void
     {
         $this->relatedFrom = $relatedFrom;
     }
@@ -616,8 +638,10 @@ class News extends AbstractEntity
      * Set related news
      *
      * @param ObjectStorage $related related news
+     *
+     * @return void
      */
-    public function setRelated($related)
+    public function setRelated($related): void
     {
         $this->related = $related;
     }
@@ -656,8 +680,10 @@ class News extends AbstractEntity
      * Set FAL related files
      *
      * @param ObjectStorage $falRelatedFiles FAL related files
+     *
+     * @return void
      */
-    public function setFalRelatedFiles($falRelatedFiles)
+    public function setFalRelatedFiles($falRelatedFiles): void
     {
         $this->falRelatedFiles = $falRelatedFiles;
     }
@@ -666,8 +692,10 @@ class News extends AbstractEntity
      * Adds a file to this files.
      *
      * @param FileReference $file
+     *
+     * @return void
      */
-    public function addFalRelatedFile(FileReference $file)
+    public function addFalRelatedFile(FileReference $file): void
     {
         if ($this->getFalRelatedFiles() === null) {
             $this->falRelatedFiles = new ObjectStorage();
@@ -679,8 +707,10 @@ class News extends AbstractEntity
      * Set related links
      *
      * @param \GeorgRinger\News\Domain\Model\Link[] $relatedLinks related links relation
+     *
+     * @return void
      */
-    public function setRelatedLinks($relatedLinks)
+    public function setRelatedLinks($relatedLinks): void
     {
         $this->relatedLinks = $relatedLinks;
     }
@@ -699,8 +729,10 @@ class News extends AbstractEntity
      * Set type of news
      *
      * @param int $type type
+     *
+     * @return void
      */
-    public function setType($type)
+    public function setType($type): void
     {
         $this->type = $type;
     }
@@ -719,8 +751,10 @@ class News extends AbstractEntity
      * Set keywords
      *
      * @param string $keywords keywords
+     *
+     * @return void
      */
-    public function setKeywords($keywords)
+    public function setKeywords($keywords): void
     {
         $this->keywords = $keywords;
     }
@@ -739,8 +773,10 @@ class News extends AbstractEntity
      * Set description
      *
      * @param string $description description
+     *
+     * @return void
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = $description;
     }
@@ -749,8 +785,10 @@ class News extends AbstractEntity
      * Adds a related link.
      *
      * @param Link $relatedLink
+     *
+     * @return void
      */
-    public function addRelatedLink(Link $relatedLink)
+    public function addRelatedLink(Link $relatedLink): void
     {
         if ($this->relatedLinks === null) {
             $this->relatedLinks = new ObjectStorage();
@@ -782,8 +820,10 @@ class News extends AbstractEntity
      * Set Fal media relation
      *
      * @param ObjectStorage $falMedia
+     *
+     * @return void
      */
-    public function setFalMedia(ObjectStorage $falMedia)
+    public function setFalMedia(ObjectStorage $falMedia): void
     {
         $this->falMedia = $falMedia;
     }
@@ -792,8 +832,10 @@ class News extends AbstractEntity
      * Add a Fal media file reference
      *
      * @param FileReference $falMedia
+     *
+     * @return void
      */
-    public function addFalMedia(FileReference $falMedia)
+    public function addFalMedia(FileReference $falMedia): void
     {
         if ($this->getFalMedia() === null) {
             $this->falMedia = new ObjectStorage();
@@ -904,8 +946,10 @@ class News extends AbstractEntity
      * Set internal url
      *
      * @param string $internalUrl internal url
+     *
+     * @return void
      */
-    public function setInternalurl($internalUrl)
+    public function setInternalurl($internalUrl): void
     {
         $this->internalurl = $internalUrl;
     }
@@ -924,8 +968,10 @@ class News extends AbstractEntity
      * Set external url
      *
      * @param string $externalUrl external url
+     *
+     * @return void
      */
-    public function setExternalurl($externalUrl)
+    public function setExternalurl($externalUrl): void
     {
         $this->externalurl = $externalUrl;
     }
@@ -944,8 +990,10 @@ class News extends AbstractEntity
      * Set top news flag
      *
      * @param bool $istopnews top news flag
+     *
+     * @return void
      */
-    public function setIstopnews($istopnews)
+    public function setIstopnews($istopnews): void
     {
         $this->istopnews = $istopnews;
     }
@@ -964,8 +1012,10 @@ class News extends AbstractEntity
      * Set content element list
      *
      * @param ObjectStorage $contentElements content elements
+     *
+     * @return void
      */
-    public function setContentElements($contentElements)
+    public function setContentElements($contentElements): void
     {
         $this->contentElements = $contentElements;
     }
@@ -974,8 +1024,10 @@ class News extends AbstractEntity
      * Adds a content element to the record
      *
      * @param \GeorgRinger\News\Domain\Model\TtContent $contentElement
+     *
+     * @return void
      */
-    public function addContentElement(TtContent $contentElement)
+    public function addContentElement(TtContent $contentElement): void
     {
         if ($this->getContentElements() === null) {
             $this->contentElements = new ObjectStorage();
@@ -1037,8 +1089,10 @@ class News extends AbstractEntity
      * Set Tags
      *
      * @param ObjectStorage $tags tags
+     *
+     * @return void
      */
-    public function setTags($tags)
+    public function setTags($tags): void
     {
         $this->tags = $tags;
     }
@@ -1047,8 +1101,10 @@ class News extends AbstractEntity
      * Adds a tag
      *
      * @param \GeorgRinger\News\Domain\Model\Tag $tag
+     *
+     * @return void
      */
-    public function addTag(Tag $tag)
+    public function addTag(Tag $tag): void
     {
         $this->tags->attach($tag);
     }
@@ -1057,8 +1113,10 @@ class News extends AbstractEntity
      * Removes a tag
      *
      * @param \GeorgRinger\News\Domain\Model\Tag $tag
+     *
+     * @return void
      */
-    public function removeTag(Tag $tag)
+    public function removeTag(Tag $tag): void
     {
         $this->tags->detach($tag);
     }
@@ -1077,8 +1135,10 @@ class News extends AbstractEntity
      * Set path segment
      *
      * @param string $pathSegment
+     *
+     * @return void
      */
-    public function setPathSegment($pathSegment)
+    public function setPathSegment($pathSegment): void
     {
         $this->pathSegment = $pathSegment;
     }
@@ -1097,8 +1157,10 @@ class News extends AbstractEntity
      * Set creation date
      *
      * @param \DateTime $crdate
+     *
+     * @return void
      */
-    public function setCrdate($crdate)
+    public function setCrdate($crdate): void
     {
         $this->crdate = $crdate;
     }
@@ -1106,9 +1168,9 @@ class News extends AbstractEntity
     /**
      * Get year of crdate
      *
-     * @return int
+     * @return false|string
      */
-    public function getYearOfCrdate(): int
+    public function getYearOfCrdate()
     {
         return $this->getCrdate()->format('Y');
     }
@@ -1116,9 +1178,9 @@ class News extends AbstractEntity
     /**
      * Get month of crdate
      *
-     * @return int
+     * @return false|string
      */
-    public function getMonthOfCrdate(): int
+    public function getMonthOfCrdate()
     {
         return $this->getCrdate()->format('m');
     }
@@ -1147,8 +1209,10 @@ class News extends AbstractEntity
      * Set time stamp
      *
      * @param \DateTime $tstamp time stamp
+     *
+     * @return void
      */
-    public function setTstamp($tstamp)
+    public function setTstamp($tstamp): void
     {
         $this->tstamp = $tstamp;
     }
@@ -1157,8 +1221,10 @@ class News extends AbstractEntity
      * Set sys language
      *
      * @param int $sysLanguageUid
+     *
+     * @return void
      */
-    public function setSysLanguageUid($sysLanguageUid)
+    public function setSysLanguageUid($sysLanguageUid): void
     {
         $this->_languageUid = $sysLanguageUid;
     }
@@ -1177,8 +1243,10 @@ class News extends AbstractEntity
      * Set l10n parent
      *
      * @param int $l10nParent
+     *
+     * @return void
      */
-    public function setL10nParent($l10nParent)
+    public function setL10nParent($l10nParent): void
     {
         $this->l10nParent = $l10nParent;
     }
@@ -1196,9 +1264,9 @@ class News extends AbstractEntity
     /**
      * Get year of tstamp
      *
-     * @return int
+     * @return false|string
      */
-    public function getYearOfTstamp(): int
+    public function getYearOfTstamp()
     {
         return $this->getTstamp()->format('Y');
     }
@@ -1206,9 +1274,9 @@ class News extends AbstractEntity
     /**
      * Get month of tstamp
      *
-     * @return int
+     * @return false|string
      */
-    public function getMonthOfTstamp(): int
+    public function getMonthOfTstamp()
     {
         return $this->getTstamp()->format('m');
     }
@@ -1237,8 +1305,10 @@ class News extends AbstractEntity
      * Set cruser id
      *
      * @param int $cruserId id of creator user
+     *
+     * @return void
      */
-    public function setCruserId($cruserId)
+    public function setCruserId($cruserId): void
     {
         $this->cruserId = $cruserId;
     }
@@ -1257,8 +1327,10 @@ class News extends AbstractEntity
      * Set edit lock flag
      *
      * @param int $editlock editlock flag
+     *
+     * @return void
      */
-    public function setEditlock($editlock)
+    public function setEditlock($editlock): void
     {
         $this->editlock = $editlock;
     }
@@ -1266,9 +1338,9 @@ class News extends AbstractEntity
     /**
      * Get hidden flag
      *
-     * @return int
+     * @return bool
      */
-    public function getHidden(): int
+    public function getHidden(): bool
     {
         return $this->hidden;
     }
@@ -1277,8 +1349,10 @@ class News extends AbstractEntity
      * Set hidden flag
      *
      * @param int $hidden hidden flag
+     *
+     * @return void
      */
-    public function setHidden($hidden)
+    public function setHidden($hidden): void
     {
         $this->hidden = $hidden;
     }
@@ -1286,9 +1360,9 @@ class News extends AbstractEntity
     /**
      * Get deleted flag
      *
-     * @return int
+     * @return bool
      */
-    public function getDeleted(): int
+    public function getDeleted(): bool
     {
         return $this->deleted;
     }
@@ -1297,8 +1371,10 @@ class News extends AbstractEntity
      * Set deleted flag
      *
      * @param int $deleted deleted flag
+     *
+     * @return void
      */
-    public function setDeleted($deleted)
+    public function setDeleted($deleted): void
     {
         $this->deleted = $deleted;
     }
@@ -1317,8 +1393,10 @@ class News extends AbstractEntity
      * Set start time
      *
      * @param \DateTime $starttime start time
+     *
+     * @return void
      */
-    public function setStarttime($starttime)
+    public function setStarttime($starttime): void
     {
         $this->starttime = $starttime;
     }
@@ -1373,8 +1451,10 @@ class News extends AbstractEntity
      * Set end time
      *
      * @param \DateTime $endtime end time
+     *
+     * @return void
      */
-    public function setEndtime($endtime)
+    public function setEndtime($endtime): void
     {
         $this->endtime = $endtime;
     }
@@ -1429,8 +1509,10 @@ class News extends AbstractEntity
      * Set fe group
      *
      * @param string $feGroup comma separated list
+     *
+     * @return void
      */
-    public function setFeGroup($feGroup)
+    public function setFeGroup($feGroup): void
     {
         $this->feGroup = $feGroup;
     }
@@ -1438,9 +1520,9 @@ class News extends AbstractEntity
     /**
      * Get import id
      *
-     * @return int
+     * @return string
      */
-    public function getImportId(): int
+    public function getImportId(): string
     {
         return $this->importId;
     }
@@ -1449,8 +1531,10 @@ class News extends AbstractEntity
      * Set import id
      *
      * @param int $importId import id
+     *
+     * @return void
      */
-    public function setImportId($importId)
+    public function setImportId($importId): void
     {
         $this->importId = $importId;
     }
@@ -1469,8 +1553,10 @@ class News extends AbstractEntity
      * Set sorting
      *
      * @param int $sorting sorting
+     *
+     * @return void
      */
-    public function setSorting($sorting)
+    public function setSorting($sorting): void
     {
         $this->sorting = $sorting;
     }
@@ -1478,9 +1564,11 @@ class News extends AbstractEntity
     /**
      * Set importSource
      *
-     * @param  string $importSource
+     * @param string $importSource
+     *
+     * @return void
      */
-    public function setImportSource($importSource)
+    public function setImportSource($importSource): void
     {
         $this->importSource = $importSource;
     }
@@ -1505,8 +1593,10 @@ class News extends AbstractEntity
 
     /**
      * @param string $notes
+     *
+     * @return void
      */
-    public function setNotes(string $notes)
+    public function setNotes(string $notes): void
     {
         $this->notes = $notes;
     }
@@ -1519,12 +1609,12 @@ class News extends AbstractEntity
         return $this->getMediaPreviews();
     }
 
-    public function getFirstFalImagePreview()
+    public function getFirstFalImagePreview(): ?\TYPO3\CMS\Extbase\Domain\Model\FileReference
     {
         return $this->getFirstPreview();
     }
 
-    public function getFalMediaNonPreviews()
+    public function getFalMediaNonPreviews(): array
     {
         return $this->getMediaNonPreviews();
     }

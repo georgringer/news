@@ -35,8 +35,10 @@ class LinkTest extends BaseTestCase
      * Test if title can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function titleCanBeSet()
+    public function titleCanBeSet(): void
     {
         $title = 'File title';
         $this->linkDomainModelInstance->setTitle($title);
@@ -47,8 +49,10 @@ class LinkTest extends BaseTestCase
      * Test if crdate can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function crdateCanBeSet()
+    public function crdateCanBeSet(): void
     {
         $time = new \DateTime();
         $this->linkDomainModelInstance->setCrdate($time);
@@ -59,8 +63,10 @@ class LinkTest extends BaseTestCase
      * Test if tstamp can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function tstampCanBeSet()
+    public function tstampCanBeSet(): void
     {
         $time = new \DateTime();
         $this->linkDomainModelInstance->setTstamp($time);
@@ -71,8 +77,10 @@ class LinkTest extends BaseTestCase
      * Test if description can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function descriptionCanBeSet()
+    public function descriptionCanBeSet(): void
     {
         $description = 'This is a description';
         $this->linkDomainModelInstance->setDescription($description);
@@ -83,8 +91,10 @@ class LinkTest extends BaseTestCase
      * Test if uri can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function uriCanBeSet()
+    public function uriCanBeSet(): void
     {
         $uri = 'http://typo3.org';
         $this->linkDomainModelInstance->setUri($uri);

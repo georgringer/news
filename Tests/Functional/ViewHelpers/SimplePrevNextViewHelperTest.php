@@ -45,8 +45,10 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function allNeighboursCanBeFound()
+    public function allNeighboursCanBeFound(): void
     {
         $this->setDate(1396035186);
         $actual = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
@@ -60,8 +62,10 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function nextNeighbourCanBeFound()
+    public function nextNeighbourCanBeFound(): void
     {
         $this->setDate(1395516730);
 
@@ -75,8 +79,10 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function previousNeighbourCanBeFound()
+    public function previousNeighbourCanBeFound(): void
     {
         $this->setDate(1396640035);
         $actual = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
@@ -88,15 +94,20 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
 
     /**
      * @param int $timestamp
+     *
+     * @return void
      */
-    protected function setDate($timestamp)
+    protected function setDate($timestamp): void
     {
         $date = new DateTime();
         $date->setTimestamp($timestamp);
         $this->news->_setProperty('datetime', $date);
     }
 
-    protected function getRow($id)
+    /**
+     * @param int $id
+     */
+    protected function getRow(int $id)
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');

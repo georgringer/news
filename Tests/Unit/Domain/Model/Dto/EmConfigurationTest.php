@@ -23,8 +23,10 @@ class EmConfigurationTest extends BaseTestCase
      * Test if the settings can be read
      *
      * @test
+     *
+     * @return void
      */
-    public function settingsCanBeRead()
+    public function settingsCanBeRead(): void
     {
         $configuration = [
             'tagPid' => 123,
@@ -57,8 +59,10 @@ class EmConfigurationTest extends BaseTestCase
      * Test if default settings can be read
      *
      * @test
+     *
+     * @return void
      */
-    public function defaultSettingsCanBeRead()
+    public function defaultSettingsCanBeRead(): void
     {
         $configuration = [
             'tagPid' => 0,

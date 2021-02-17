@@ -31,6 +31,9 @@ class RecordListQueryHook
         $this->recordListConstraint = GeneralUtility::makeInstance(RecordListConstraint::class);
     }
 
+    /**
+     * @return void
+     */
     public function modifyQuery(
         array &$parameters,
         string $table,
@@ -71,7 +74,7 @@ class RecordListQueryHook
         }
     }
 
-    private function addFlashMessage()
+    private function addFlashMessage(): void
     {
         $message = GeneralUtility::makeInstance(
             FlashMessage::class,

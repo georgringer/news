@@ -169,8 +169,10 @@ class PageLayoutView
 
     /**
      * Render archive settings
+     *
+     * @return void
      */
-    public function getArchiveSettings()
+    public function getArchiveSettings(): void
     {
         $archive = $this->getFieldFromFlexform('settings.archiveRestriction');
 
@@ -184,8 +186,10 @@ class PageLayoutView
 
     /**
      * Render single news settings
+     *
+     * @return void
      */
-    public function getSingleNewsSettings()
+    public function getSingleNewsSettings(): void
     {
         $singleNewsRecord = (int)$this->getFieldFromFlexform('settings.singleNews');
 
@@ -221,8 +225,10 @@ class PageLayoutView
 
     /**
      * Render single news settings
+     *
+     * @return void
      */
-    public function getDetailPidSetting()
+    public function getDetailPidSetting(): void
     {
         $detailPid = (int)$this->getFieldFromFlexform('settings.detailPid', 'additional');
 
@@ -238,8 +244,10 @@ class PageLayoutView
 
     /**
      * Render listPid news settings
+     *
+     * @return void
      */
-    public function getListPidSetting()
+    public function getListPidSetting(): void
     {
         $listPid = (int)$this->getFieldFromFlexform('settings.listPid', 'additional');
 
@@ -311,8 +319,10 @@ class PageLayoutView
 
     /**
      * Get order settings
+     *
+     * @return void
      */
-    public function getOrderSettings()
+    public function getOrderSettings(): void
     {
         $orderField = $this->getFieldFromFlexform('settings.orderBy');
         if (!empty($orderField)) {
@@ -374,8 +384,10 @@ class PageLayoutView
      * Render category settings
      *
      * @param bool $showCategoryMode show the category conjunction
+     *
+     * @return void
      */
-    public function getCategorySettings($showCategoryMode = true)
+    public function getCategorySettings($showCategoryMode = true): void
     {
         $categories = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.categories'), true);
         if (count($categories) > 0) {
@@ -422,6 +434,8 @@ class PageLayoutView
 
     /**
      * Get the restriction for tags
+     *
+     * @return void
      */
     public function getTagRestrictionSetting()
     {
@@ -443,8 +457,10 @@ class PageLayoutView
 
     /**
      * Render offset & limit configuration
+     *
+     * @return void
      */
-    public function getOffsetLimitSettings()
+    public function getOffsetLimitSettings(): void
     {
         $offset = $this->getFieldFromFlexform('settings.offset', 'additional');
         $limit = $this->getFieldFromFlexform('settings.limit', 'additional');
@@ -472,8 +488,10 @@ class PageLayoutView
 
     /**
      * Render date menu configuration
+     *
+     * @return void
      */
-    public function getDateMenuSettings()
+    public function getDateMenuSettings(): void
     {
         $dateMenuField = $this->getFieldFromFlexform('settings.dateField');
 
@@ -485,8 +503,10 @@ class PageLayoutView
 
     /**
      * Render time restriction configuration
+     *
+     * @return void
      */
-    public function getTimeRestrictionSetting()
+    public function getTimeRestrictionSetting(): void
     {
         $timeRestriction = $this->getFieldFromFlexform('settings.timeRestriction');
 
@@ -508,8 +528,10 @@ class PageLayoutView
 
     /**
      * Render top news restriction configuration
+     *
+     * @return void
      */
-    public function getTopNewsRestrictionSetting()
+    public function getTopNewsRestrictionSetting(): void
     {
         $topNewsRestriction = (int)$this->getFieldFromFlexform('settings.topNewsRestriction');
         if ($topNewsRestriction > 0) {
@@ -524,8 +546,10 @@ class PageLayoutView
      * Render template layout configuration
      *
      * @param int $pageUid
+     *
+     * @return void
      */
-    public function getTemplateLayoutSettings($pageUid)
+    public function getTemplateLayoutSettings($pageUid): void
     {
         $title = '';
         $field = $this->getFieldFromFlexform('settings.templateLayout', 'template');
@@ -550,8 +574,10 @@ class PageLayoutView
 
     /**
      * Get information if override demand setting is disabled or not
+     *
+     * @return void
      */
-    public function getOverrideDemandSettings()
+    public function getOverrideDemandSettings(): void
     {
         $field = $this->getFieldFromFlexform('settings.disableOverrideDemand', 'additional');
 
@@ -567,8 +593,10 @@ class PageLayoutView
 
     /**
      * Get the startingpoint
+     *
+     * @return void
      */
-    public function getStartingPoint()
+    public function getStartingPoint(): void
     {
         $value = $this->getFieldFromFlexform('settings.startingpoint');
 
@@ -603,8 +631,10 @@ class PageLayoutView
 
     /**
      * Get list of selected news items
+     *
+     * @return void
      */
-    protected function getSelectedListSetting()
+    protected function getSelectedListSetting(): void
     {
         $value = $this->getFieldFromFlexform('settings.selectedList');
 

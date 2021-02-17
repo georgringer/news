@@ -60,8 +60,10 @@ class AdministrationDemand extends NewsDemand
 
     /**
      * @param $recursive
+     *
+     * @return void
      */
-    public function setRecursive($recursive)
+    public function setRecursive(string $recursive): void
     {
         $this->recursive = $recursive;
     }
@@ -76,6 +78,8 @@ class AdministrationDemand extends NewsDemand
 
     /**
      * @param $selectedCategories
+     *
+     * @return void
      */
     public function setSelectedCategories($selectedCategories)
     {
@@ -98,8 +102,10 @@ class AdministrationDemand extends NewsDemand
 
     /**
      * @param $sortingField
+     *
+     * @return void
      */
-    public function setSortingField($sortingField)
+    public function setSortingField(string $sortingField): void
     {
         $this->sortingField = $sortingField;
     }
@@ -114,8 +120,10 @@ class AdministrationDemand extends NewsDemand
 
     /**
      * @param $sortingDirection
+     *
+     * @return void
      */
-    public function setSortingDirection($sortingDirection)
+    public function setSortingDirection(string $sortingDirection): void
     {
         $this->sortingDirection = $sortingDirection;
     }
@@ -130,8 +138,10 @@ class AdministrationDemand extends NewsDemand
 
     /**
      * @param string $searchWord
+     *
+     * @return void
      */
-    public function setSearchWord($searchWord)
+    public function setSearchWord($searchWord): void
     {
         $this->searchWord = $searchWord;
     }
@@ -146,8 +156,10 @@ class AdministrationDemand extends NewsDemand
 
     /**
      * @param int $hidden
+     *
+     * @return void
      */
-    public function setHidden($hidden)
+    public function setHidden($hidden): void
     {
         $this->hidden = $hidden;
     }
@@ -162,8 +174,10 @@ class AdministrationDemand extends NewsDemand
 
     /**
      * @param int $archived
+     *
+     * @return void
      */
-    public function setArchived($archived)
+    public function setArchived($archived): void
     {
         $this->archived = $archived;
     }

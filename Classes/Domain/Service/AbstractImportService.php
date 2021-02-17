@@ -54,8 +54,10 @@ class AbstractImportService
      * Inject the object manager
      *
      * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     *
+     * @return void
      */
-    public function injectObjectManager(ObjectManager $objectManager)
+    public function injectObjectManager(ObjectManager $objectManager): void
     {
         $this->objectManager = $objectManager;
     }
@@ -64,10 +66,12 @@ class AbstractImportService
      * Inject Persistence Manager
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
+     *
+     * @return void
      */
     public function injectPersistenceManager(
         PersistenceManager $persistenceManager
-    ) {
+    ): void {
         $this->persistenceManager = $persistenceManager;
     }
 
@@ -95,9 +99,10 @@ class AbstractImportService
      * Find a existing file by its hash
      *
      * @param string $hash
-     * @return \TYPO3\CMS\Core\Resource\File|null
+     *
+     * @return \TYPO3\CMS\Core\Resource\File|\TYPO3\CMS\Core\Resource\ProcessedFile|null
      */
-    protected function findFileByHash($hash): ?\TYPO3\CMS\Core\Resource\File
+    protected function findFileByHash($hash)
     {
         $file = null;
 

@@ -19,8 +19,10 @@ class NewsControllerTest extends BaseTestCase
 {
     /**
      * @test
+     *
+     * @return void
      */
-    public function emptyNoNewsFoundConfigurationReturnsNull()
+    public function emptyNoNewsFoundConfigurationReturnsNull(): void
     {
         $demand = new NewsDemand();
         $input = ['OrderByAllowed' => 'something'];

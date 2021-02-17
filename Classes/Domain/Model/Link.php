@@ -60,8 +60,10 @@ class Link extends AbstractValueObject
      * Set creation date
      *
      * @param \DateTime $crdate creation date
+     *
+     * @return void
      */
-    public function setCrdate($crdate)
+    public function setCrdate($crdate): void
     {
         $this->crdate = $crdate;
     }
@@ -80,8 +82,10 @@ class Link extends AbstractValueObject
      * Set timestamp
      *
      * @param \DateTime $tstamp timestamp
+     *
+     * @return void
      */
-    public function setTstamp($tstamp)
+    public function setTstamp($tstamp): void
     {
         $this->tstamp = $tstamp;
     }
@@ -100,8 +104,10 @@ class Link extends AbstractValueObject
      * Set title
      *
      * @param string $title title
+     *
+     * @return void
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }
@@ -120,8 +126,10 @@ class Link extends AbstractValueObject
      * Set description
      *
      * @param string $description description
+     *
+     * @return void
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = $description;
     }
@@ -140,8 +148,10 @@ class Link extends AbstractValueObject
      * Set uri
      *
      * @param string $uri uri
+     *
+     * @return void
      */
-    public function setUri($uri)
+    public function setUri($uri): void
     {
         $this->uri = $uri;
     }
@@ -150,8 +160,10 @@ class Link extends AbstractValueObject
      * Set sys language
      *
      * @param int $sysLanguageUid
+     *
+     * @return void
      */
-    public function setSysLanguageUid($sysLanguageUid)
+    public function setSysLanguageUid($sysLanguageUid): void
     {
         $this->_languageUid = $sysLanguageUid;
     }
@@ -170,8 +182,10 @@ class Link extends AbstractValueObject
      * Set l10n parent
      *
      * @param int $l10nParent
+     *
+     * @return void
      */
-    public function setL10nParent($l10nParent)
+    public function setL10nParent($l10nParent): void
     {
         $this->l10nParent = $l10nParent;
     }

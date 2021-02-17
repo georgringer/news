@@ -48,6 +48,9 @@ class ClassCacheManager
         }
     }
 
+    /**
+     * @return void
+     */
     public function reBuild()
     {
         $classPath = 'Classes/';

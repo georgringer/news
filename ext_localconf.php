@@ -2,7 +2,7 @@
 
 defined('TYPO3_MODE') or die();
 
-$boot = static function () {
+$boot = static function (): void {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'News',
         'Pi1',

@@ -88,8 +88,10 @@ class PopulateCategorySlugs implements UpgradeWizardInterface
 
     /**
      * Fills the database table  with slugs based on the page title and its configuration.
+     *
+     * @return void
      */
-    protected function populateSlugs()
+    protected function populateSlugs(): void
     {
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($this->table);
         $queryBuilder = $connection->createQueryBuilder();

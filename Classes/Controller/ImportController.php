@@ -58,8 +58,10 @@ class ImportController extends ActionController
 
     /**
      * Shows the import jobs selection .
+     *
+     * @return void
      */
-    public function indexAction()
+    public function indexAction(): void
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
