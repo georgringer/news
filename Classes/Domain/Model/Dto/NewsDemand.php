@@ -71,7 +71,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /** @var string */
     protected $searchFields = '';
 
-    /** @var \GeorgRinger\News\Domain\Model\Dto\Search */
+    /** @var Search */
     protected $search;
 
     /** @var string */
@@ -565,9 +565,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get search object
      *
-     * @return \GeorgRinger\News\Domain\Model\Dto\Search
+     * @return null|Search
      */
-    public function getSearch(): \GeorgRinger\News\Domain\Model\Dto\Search
+    public function getSearch(): ?Search
     {
         return $this->search;
     }
@@ -575,7 +575,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Set search object
      *
-     * @param \GeorgRinger\News\Domain\Model\Dto\Search $search search object
+     * @param Search $search search object
      * @return NewsDemand
      */
     public function setSearch($search = null): NewsDemand

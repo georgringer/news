@@ -231,7 +231,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      * @param $id
      * @return array
      */
-    protected function getRawRecord($id): array
+    protected function getRawRecord($id): ?array
     {
         $queryBuilder = $this->getQueryBuilder();
         $rawRecord = $queryBuilder

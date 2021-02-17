@@ -57,17 +57,17 @@ class Category extends AbstractEntity
     /**
      * @var int
      */
-    protected $l10nParent;
+    protected $l10nParent = 0;
 
     /**
      * @var string
      */
-    protected $title;
+    protected $title = '';
 
     /**
      * @var string
      */
-    protected $description;
+    protected $description = '';
 
     /**
      * @var \GeorgRinger\News\Domain\Model\Category
@@ -84,22 +84,22 @@ class Category extends AbstractEntity
     /**
      * @var int
      */
-    protected $shortcut;
+    protected $shortcut = 0;
 
     /**
      * @var int
      */
-    protected $singlePid;
+    protected $singlePid = 0;
 
     /**
      * @var string
      */
-    protected $importId;
+    protected $importId = '';
 
     /**
      * @var string
      */
-    protected $importSource;
+    protected $importSource = '';
 
     /**
      * keep it as string as it should be only used during imports
@@ -331,7 +331,7 @@ class Category extends AbstractEntity
     /**
      * @return \GeorgRinger\News\Domain\Model\FileReference[]
      */
-    public function getImages(): array
+    public function getImages(): ObjectStorage
     {
         return $this->images;
     }

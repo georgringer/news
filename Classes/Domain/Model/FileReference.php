@@ -23,27 +23,27 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @var int
      */
-    protected $uidLocal;
+    protected $uidLocal = 0;
 
     /**
      * @var string
      */
-    protected $title;
+    protected $title = '';
 
     /**
      * @var string
      */
-    protected $description;
+    protected $description = '';
 
     /**
      * @var string
      */
-    protected $alternative;
+    protected $alternative = '';
 
     /**
      * @var string
      */
-    protected $link;
+    protected $link = '';
 
     /**
      * @var int

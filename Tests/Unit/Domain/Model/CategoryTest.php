@@ -2,8 +2,8 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
+use GeorgRinger\News\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *

@@ -58,7 +58,7 @@ class TypoScript
      * @param array $path
      * @return array|null
      */
-    protected function getValue(array $data, array $path): ?array
+    protected function getValue(array $data, array $path)
     {
         $found = true;
 

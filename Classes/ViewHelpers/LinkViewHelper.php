@@ -98,7 +98,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param string $content optional content which is linked
      * @return string link
      */
-    public function render(): string
+    public function render(): ?string
     {
         /** @var News $newsItem */
         $newsItem = $this->arguments['newsItem'];

@@ -25,7 +25,7 @@ class FileReferenceTest extends BaseTestCase
     public function fileUidCanBeSet()
     {
         $domainModelInstance = new FileReference();
-        $value = 'Test 123';
+        $value = 781;
         $domainModelInstance->setFileUid($value);
         $this->assertEquals($value, $domainModelInstance->getFileUid());
     }

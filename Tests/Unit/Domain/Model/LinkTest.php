@@ -50,7 +50,7 @@ class LinkTest extends BaseTestCase
      */
     public function crdateCanBeSet()
     {
-        $time = time();
+        $time = new \DateTime();
         $this->linkDomainModelInstance->setCrdate($time);
         $this->assertEquals($time, $this->linkDomainModelInstance->getCrdate());
     }
@@ -62,7 +62,7 @@ class LinkTest extends BaseTestCase
      */
     public function tstampCanBeSet()
     {
-        $time = time();
+        $time = new \DateTime();
         $this->linkDomainModelInstance->setTstamp($time);
         $this->assertEquals($time, $this->linkDomainModelInstance->getTstamp());
     }
