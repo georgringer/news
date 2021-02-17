@@ -46,7 +46,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     abstract protected function createConstraintsFromDemand(
         QueryInterface $query,
         DemandInterface $demand
-    );
+    ): array;
 
     /**
      * Returns an array of orderings created from a given demand object.
@@ -55,7 +55,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      * @abstract
      */
-    abstract protected function createOrderingsFromDemand(DemandInterface $demand);
+    abstract protected function createOrderingsFromDemand(DemandInterface $demand): array;
 
     /**
      * Returns the objects of this repository matching the demand.
@@ -65,7 +65,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param bool $disableLanguageOverlayMode
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
+    public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
 
@@ -80,7 +80,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param bool $disableLanguageOverlayMode
      * @return string
      */
-    public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
+    public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): string
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
         $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
@@ -104,7 +104,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param bool $disableLanguageOverlayMode
      * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
      */
-    protected function generateQuery(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
+    protected function generateQuery(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): \TYPO3\CMS\Extbase\Persistence\QueryInterface
     {
         $query = $this->createQuery();
 
@@ -167,7 +167,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param DemandInterface $demand
      * @return int
      */
-    public function countDemanded(DemandInterface $demand)
+    public function countDemanded(DemandInterface $demand): int
     {
         $query = $this->createQuery();
 

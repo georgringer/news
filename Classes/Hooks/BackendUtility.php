@@ -126,7 +126,7 @@ class BackendUtility
      * @param array $identifier
      * @return array
      */
-    public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier)
+    public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
     {
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
             $getVars = GeneralUtility::_GET('edit');
@@ -266,7 +266,7 @@ class BackendUtility
      * @param int $pageId
      * @return bool
      */
-    protected function enabledInTsConfig($pageId)
+    protected function enabledInTsConfig($pageId): bool
     {
         $tsConfig = BackendUtilityCore::getPagesTSconfig($pageId);
         if (isset($tsConfig['tx_news.']['categoryRestrictionForFlexForms'])) {

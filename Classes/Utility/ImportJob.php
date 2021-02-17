@@ -43,7 +43,7 @@ class ImportJob
      * @static
      * @return array
      */
-    public static function getRegisteredJobs()
+    public static function getRegisteredJobs(): array
     {
         return self::$registeredJobs;
     }

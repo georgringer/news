@@ -35,7 +35,7 @@ class IfIsActiveViewHelper extends AbstractConditionViewHelper implements ViewHe
      * @param array|null $arguments
      * @return bool
      */
-    protected static function evaluateCondition($arguments = null)
+    protected static function evaluateCondition($arguments = null): bool
     {
         $vars = GeneralUtility::_GET('tx_news_pi1');
         return isset($vars['news']) && isset($arguments['newsItem']) && (int)$arguments['newsItem']->getUid() === (int)$vars['news'];

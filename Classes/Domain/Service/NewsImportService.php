@@ -105,7 +105,7 @@ class NewsImportService extends AbstractImportService
      * @param array $importItem
      * @return \GeorgRinger\News\Domain\Model\News|null
      */
-    protected function initializeNewsRecord(array $importItem)
+    protected function initializeNewsRecord(array $importItem): ?\GeorgRinger\News\Domain\Model\News
     {
         $news = null;
 
@@ -143,7 +143,7 @@ class NewsImportService extends AbstractImportService
         News $news,
         array $importItem,
         array $importItemOverwrite
-    ) {
+    ): \GeorgRinger\News\Domain\Model\News {
         if (!empty($importItemOverwrite)) {
             $importItem = array_merge($importItem, $importItemOverwrite);
         }

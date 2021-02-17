@@ -23,7 +23,7 @@ class ConstraintHelper
      * @return int
      * @throws Exception
      */
-    public static function getTimeRestrictionLow($timeInput)
+    public static function getTimeRestrictionLow($timeInput): int
     {
         $timeLimit = 0;
         // integer = timestamp
@@ -52,7 +52,7 @@ class ConstraintHelper
      * @return int
      * @throws Exception
      */
-    public static function getTimeRestrictionHigh($timeInput)
+    public static function getTimeRestrictionHigh($timeInput): int
     {
         $timeLimit = 0;
         // integer = timestamp

@@ -52,7 +52,7 @@ class SettingsService
      *
      * @return array
      */
-    public function getSettings()
+    public function getSettings(): array
     {
         if ($this->settings === null) {
             $this->settings = $this->configurationManager->getConfiguration(

@@ -23,7 +23,7 @@ class Validation
      * @param string $allowedSettings
      * @return bool
      */
-    public static function isValidOrdering($fieldToCheck, $allowedSettings)
+    public static function isValidOrdering($fieldToCheck, $allowedSettings): bool
     {
         $isValid = true;
 

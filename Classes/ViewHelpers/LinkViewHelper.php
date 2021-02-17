@@ -98,7 +98,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param string $content optional content which is linked
      * @return string link
      */
-    public function render()
+    public function render(): string
     {
         /** @var News $newsItem */
         $newsItem = $this->arguments['newsItem'];
@@ -189,7 +189,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         News $newsItem,
         $tsSettings,
         array $configuration = []
-    ) {
+    ): array {
         if (!isset($configuration['parameter'])) {
             $detailPid = 0;
             // if TS is not set, prefer flexform setting
@@ -248,7 +248,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param News $newsItem
      * @return int
      */
-    protected function getNewsId(News $newsItem)
+    protected function getNewsId(News $newsItem): int
     {
         $uid = $newsItem->getUid();
         // If a user is logged in and not in live workspace
@@ -269,7 +269,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param array $configuration
      * @return string
      */
-    protected function getTargetConfiguration(array $configuration)
+    protected function getTargetConfiguration(array $configuration): string
     {
         $configuration['returnLast'] = 'target';
 
@@ -283,7 +283,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param News $newsItem
      * @return int
      */
-    protected function getDetailPidFromCategories($settings, $newsItem)
+    protected function getDetailPidFromCategories($settings, $newsItem): int
     {
         $detailPid = 0;
         if ($newsItem->getCategories()) {
@@ -303,7 +303,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param News $newsItem
      * @return int
      */
-    protected function getDetailPidFromDefaultDetailPid($settings, $newsItem)
+    protected function getDetailPidFromDefaultDetailPid($settings, $newsItem): int
     {
         return isset($settings['defaultDetailPid']) ? (int)$settings['defaultDetailPid'] : 0;
     }
@@ -315,7 +315,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
      * @param News $newsItem
      * @return int
      */
-    protected function getDetailPidFromFlexform($settings, $newsItem)
+    protected function getDetailPidFromFlexform($settings, $newsItem): int
     {
         return isset($settings['detailPid']) ? (int)$settings['detailPid'] : 0;
     }

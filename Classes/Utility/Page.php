@@ -30,7 +30,7 @@ class Page
      * @param int $recursive recursive levels
      * @return string comma separated list of ids
      */
-    public static function extendPidListByChildren($pidList = '', $recursive = 0)
+    public static function extendPidListByChildren($pidList = '', $recursive = 0): string
     {
         $recursive = (int)$recursive;
         if ($recursive <= 0) {
@@ -98,7 +98,7 @@ class Page
      * @return PageTreeView
      * @throws \Exception
      */
-    public static function pageTree($pageUid, $treeLevel)
+    public static function pageTree($pageUid, $treeLevel): PageTreeView
     {
         if (TYPO3_MODE !== 'BE') {
             throw new \Exception('Page::pageTree does only work in the backend!');
@@ -134,7 +134,7 @@ class Page
      *
      * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
-    protected static function getBackendUser()
+    protected static function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

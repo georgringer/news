@@ -65,7 +65,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @return int
      */
-    public function getFileUid()
+    public function getFileUid(): int
     {
         return $this->uidLocal;
     }
@@ -85,7 +85,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @return string
      */
-    public function getAlternative()
+    public function getAlternative(): string
     {
         return $this->alternative !== null ? $this->alternative : $this->getOriginalResource()->getAlternative();
     }
@@ -105,7 +105,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description !== null ? $this->description : $this->getOriginalResource()->getDescription();
     }
@@ -145,7 +145,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title !== null ? $this->title : $this->getOriginalResource()->getTitle();
     }
@@ -165,7 +165,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      *
      * @return int
      */
-    public function getShowinpreview()
+    public function getShowinpreview(): int
     {
         return $this->showinpreview;
     }

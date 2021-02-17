@@ -65,7 +65,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
      * @param $image FileReference
      * @return string
      */
-    private function renderImage($image)
+    private function renderImage($image): string
     {
         if ($this->objectManager === null) {
             $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
@@ -124,7 +124,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
      * @param array $files
      * @return string
      */
-    private function renderMedia($content, array $files)
+    private function renderMedia($content, array $files): string
     {
         $fileIndex = 0;
         preg_match_all($this->mediaTag, $content, $matches);
@@ -178,7 +178,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         /** @var News $news */
         $news = $this->arguments['news'];

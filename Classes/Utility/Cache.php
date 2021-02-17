@@ -41,7 +41,7 @@ class Cache
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
      * @return bool
      */
-    public function isContentRecordAlreadyProcessed(ContentObjectRenderer $cObj)
+    public function isContentRecordAlreadyProcessed(ContentObjectRenderer $cObj): bool
     {
         $key = 'tt_content_' . $cObj->data['uid'];
         return array_key_exists($key, self::$processedContentRecords);

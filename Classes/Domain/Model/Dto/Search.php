@@ -10,6 +10,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 /**
  * News Demand object which holds all information to get the correct
  * news records.
@@ -60,7 +61,7 @@ class Search extends AbstractEntity
      *
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
@@ -70,7 +71,7 @@ class Search extends AbstractEntity
      *
      * @param string $subject
      */
-    public function setSubject($subject)
+    public function setSubject(string $subject): void
     {
         $this->subject = $subject;
     }
@@ -80,7 +81,7 @@ class Search extends AbstractEntity
      *
      * @return string
      */
-    public function getFields()
+    public function getFields(): string
     {
         return $this->fields;
     }
@@ -88,9 +89,9 @@ class Search extends AbstractEntity
     /**
      * Set fields
      *
-     * @param $fields
+     * @param string $fields
      */
-    public function setFields($fields)
+    public function setFields(string $fields)
     {
         $this->fields = $fields;
     }
@@ -106,7 +107,7 @@ class Search extends AbstractEntity
     /**
      * @return string
      */
-    public function getMaximumDate()
+    public function getMaximumDate(): string
     {
         return $this->maximumDate;
     }
@@ -122,7 +123,7 @@ class Search extends AbstractEntity
     /**
      * @return string
      */
-    public function getMinimumDate()
+    public function getMinimumDate(): string
     {
         return $this->minimumDate;
     }
@@ -138,7 +139,7 @@ class Search extends AbstractEntity
     /**
      * @return string
      */
-    public function getDateField()
+    public function getDateField(): string
     {
         return $this->dateField;
     }
@@ -146,7 +147,7 @@ class Search extends AbstractEntity
     /**
      * @return bool
      */
-    public function isSplitSubjectWords()
+    public function isSplitSubjectWords(): bool
     {
         return $this->splitSubjectWords;
     }

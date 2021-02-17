@@ -27,7 +27,7 @@ class TagRepository extends AbstractDemandedRepository
      * @param string $startingPoint starting point uid or comma separated list
      * @return QueryInterface
      */
-    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
+    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null): QueryInterface
     {
         if (empty($idList)) {
             throw new \InvalidArgumentException('The given id list is empty.', 1484823596);
@@ -61,7 +61,7 @@ class TagRepository extends AbstractDemandedRepository
      * @param DemandInterface $demand
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
-    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
 
@@ -93,7 +93,7 @@ class TagRepository extends AbstractDemandedRepository
      * @param DemandInterface $demand
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
         $orderings = [];
 

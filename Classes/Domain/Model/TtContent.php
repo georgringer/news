@@ -139,7 +139,7 @@ class TtContent extends AbstractEntity
     /**
      * @return \DateTime
      */
-    public function getCrdate()
+    public function getCrdate(): \DateTime
     {
         return $this->crdate;
     }
@@ -155,7 +155,7 @@ class TtContent extends AbstractEntity
     /**
      * @return \DateTime
      */
-    public function getTstamp()
+    public function getTstamp(): \DateTime
     {
         return $this->tstamp;
     }
@@ -171,7 +171,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getCType()
+    public function getCType(): string
     {
         return $this->CType;
     }
@@ -187,7 +187,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getHeader()
+    public function getHeader(): string
     {
         return $this->header;
     }
@@ -203,7 +203,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getHeaderPosition()
+    public function getHeaderPosition(): string
     {
         return $this->headerPosition;
     }
@@ -219,7 +219,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getBodytext()
+    public function getBodytext(): string
     {
         return $this->bodytext;
     }
@@ -237,7 +237,7 @@ class TtContent extends AbstractEntity
      *
      * @return int
      */
-    public function getColPos()
+    public function getColPos(): int
     {
         return (int)$this->colPos;
     }
@@ -255,7 +255,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getImage()
+    public function getImage(): string
     {
         return $this->image;
     }
@@ -271,7 +271,7 @@ class TtContent extends AbstractEntity
     /**
      * @return int
      */
-    public function getImagewidth()
+    public function getImagewidth(): int
     {
         return $this->imagewidth;
     }
@@ -287,7 +287,7 @@ class TtContent extends AbstractEntity
     /**
      * @return int
      */
-    public function getImageorient()
+    public function getImageorient(): int
     {
         return $this->imageorient;
     }
@@ -303,7 +303,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getImagecaption()
+    public function getImagecaption(): string
     {
         return $this->imagecaption;
     }
@@ -319,7 +319,7 @@ class TtContent extends AbstractEntity
     /**
      * @return int
      */
-    public function getImagecols()
+    public function getImagecols(): int
     {
         return $this->imagecols;
     }
@@ -335,7 +335,7 @@ class TtContent extends AbstractEntity
     /**
      * @return int
      */
-    public function getImageborder()
+    public function getImageborder(): int
     {
         return $this->imageborder;
     }
@@ -351,7 +351,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getMedia()
+    public function getMedia(): string
     {
         return $this->media;
     }
@@ -367,7 +367,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getLayout()
+    public function getLayout(): string
     {
         return $this->layout;
     }
@@ -383,7 +383,7 @@ class TtContent extends AbstractEntity
     /**
      * @return int
      */
-    public function getCols()
+    public function getCols(): int
     {
         return $this->cols;
     }
@@ -399,7 +399,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getSubheader()
+    public function getSubheader(): string
     {
         return $this->subheader;
     }
@@ -415,7 +415,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getHeaderLink()
+    public function getHeaderLink(): string
     {
         return $this->headerLink;
     }
@@ -431,7 +431,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getImageLink()
+    public function getImageLink(): string
     {
         return $this->imageLink;
     }
@@ -447,7 +447,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getImageZoom()
+    public function getImageZoom(): string
     {
         return $this->imageZoom;
     }
@@ -463,7 +463,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getAltText()
+    public function getAltText(): string
     {
         return $this->altText;
     }
@@ -479,7 +479,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getTitleText()
+    public function getTitleText(): string
     {
         return $this->titleText;
     }
@@ -495,7 +495,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getHeaderLayout()
+    public function getHeaderLayout(): string
     {
         return $this->headerLayout;
     }
@@ -511,7 +511,7 @@ class TtContent extends AbstractEntity
     /**
      * @return string
      */
-    public function getListType()
+    public function getListType(): string
     {
         return $this->listType;
     }

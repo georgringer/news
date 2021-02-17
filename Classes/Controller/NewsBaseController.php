@@ -85,7 +85,7 @@ class NewsBaseController extends ActionController
      * @throws \InvalidArgumentException
      * @return string
      */
-    protected function handleNoNewsFoundError($configuration)
+    protected function handleNoNewsFoundError($configuration): string
     {
         if (empty($configuration)) {
             return null;
@@ -162,7 +162,7 @@ class NewsBaseController extends ActionController
      *
      * @return array
      */
-    protected function emitActionSignal($classPart, $signalName, array $signalArguments)
+    protected function emitActionSignal($classPart, $signalName, array $signalArguments): array
     {
         $signalArguments['extendedVariables'] = [];
         return $this->signalSlotDispatcher->dispatch(
@@ -175,7 +175,7 @@ class NewsBaseController extends ActionController
     /**
      * @return TypoScriptFrontendController
      */
-    protected function getTypoScriptFrontendController()
+    protected function getTypoScriptFrontendController(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
     }

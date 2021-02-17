@@ -148,7 +148,7 @@ class DataHandler
      *
      * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
-    protected function getBackendUser()
+    protected function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

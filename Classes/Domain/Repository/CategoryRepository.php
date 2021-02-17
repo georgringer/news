@@ -68,7 +68,7 @@ class CategoryRepository extends AbstractDemandedRepository
      * @param int $pid pid
      * @return QueryInterface
      */
-    public function findParentCategoriesByPid($pid)
+    public function findParentCategoriesByPid($pid): QueryInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -133,7 +133,7 @@ class CategoryRepository extends AbstractDemandedRepository
      * @param array $ordering ordering
      * @return QueryInterface
      */
-    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
+    public function findByIdList(array $idList, array $ordering = [], $startingPoint = null): QueryInterface
     {
         if (empty($idList)) {
             throw new \InvalidArgumentException('The given id list is empty.', 1484823597);
@@ -167,7 +167,7 @@ class CategoryRepository extends AbstractDemandedRepository
      * @param int $parent parent
      * @return QueryInterface
      */
-    public function findChildren($parent)
+    public function findChildren($parent): QueryInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -211,7 +211,7 @@ class CategoryRepository extends AbstractDemandedRepository
      *
      * @return int
      */
-    protected function getSysLanguageUid()
+    protected function getSysLanguageUid(): int
     {
         $sysLanguage = 0;
 
@@ -233,7 +233,7 @@ class CategoryRepository extends AbstractDemandedRepository
      * @param array $rows
      * @return array
      */
-    protected function replaceCategoryIds(array $idList, array $rows)
+    protected function replaceCategoryIds(array $idList, array $rows): array
     {
         foreach ($rows as $row) {
             $pos = array_search($row['l10n_parent'], $idList);

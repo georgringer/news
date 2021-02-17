@@ -41,7 +41,7 @@ class ImportController extends ActionController
      *
      * @return array
      */
-    protected function getAvailableJobs()
+    protected function getAvailableJobs(): array
     {
         $availableJobs = [];
         $registeredJobs = ImportJob::getRegisteredJobs();
@@ -81,7 +81,7 @@ class ImportController extends ActionController
      * @throws Exception
      * @throws \TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsException
      */
-    protected function checkCorrectConfiguration()
+    protected function checkCorrectConfiguration(): string
     {
         $error = '';
 
@@ -116,7 +116,7 @@ class ImportController extends ActionController
      * @param int $offset
      * @return string
      */
-    public function runJobAction($jobClassName, $offset = 0)
+    public function runJobAction($jobClassName, $offset = 0): string
     {
         /** @var ImportJobInterface $job */
         $job = $this->objectManager->get($jobClassName);
@@ -131,7 +131,7 @@ class ImportController extends ActionController
      * @param  string $jobClassName
      * @return string
      */
-    public function jobInfoAction($jobClassName)
+    public function jobInfoAction($jobClassName): string
     {
         $response = null;
         try {

@@ -116,7 +116,7 @@ class CategoryImportService extends AbstractImportService
      * @param array $importItem
      * @return Category
      */
-    protected function hydrateCategory(array $importItem)
+    protected function hydrateCategory(array $importItem): Category
     {
         $category = $this->categoryRepository->findOneByImportSourceAndImportId(
             $importItem['import_source'],

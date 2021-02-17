@@ -191,7 +191,7 @@ class AdministrationController extends NewsController
      * @param Menu $menu
      * @return Menu
      */
-    protected function extendMenu(Menu $menu)
+    protected function extendMenu(Menu $menu): Menu
     {
         $signalParameters = [
             'menu' => $menu,
@@ -317,7 +317,7 @@ class AdministrationController extends NewsController
      * @param string $table
      * @return bool
      */
-    protected function showButton($table)
+    protected function showButton($table): bool
     {
         if (!$this->getBackendUser()->check('tables_modify', $table)) {
             return false;
@@ -594,7 +594,7 @@ class AdministrationController extends NewsController
      *
      * @return bool
      */
-    protected function isFilteringEnabled()
+    protected function isFilteringEnabled(): bool
     {
         if (isset($this->tsConfiguration['filters.'])) {
             foreach ($this->tsConfiguration['filters.'] as $filter => $enabled) {

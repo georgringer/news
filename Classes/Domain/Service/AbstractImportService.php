@@ -86,7 +86,7 @@ class AbstractImportService
      * @param string $file2 Absolute path and filename to file2
      * @return bool
      */
-    protected function filesAreEqual($file1, $file2)
+    protected function filesAreEqual($file1, $file2): bool
     {
         return filesize($file1) === filesize($file2);
     }
@@ -97,7 +97,7 @@ class AbstractImportService
      * @param string $hash
      * @return \TYPO3\CMS\Core\Resource\File|null
      */
-    protected function findFileByHash($hash)
+    protected function findFileByHash($hash): ?\TYPO3\CMS\Core\Resource\File
     {
         $file = null;
 
@@ -123,7 +123,7 @@ class AbstractImportService
      *
      * @return \TYPO3\CMS\Core\Resource\Folder
      */
-    protected function getImportFolder()
+    protected function getImportFolder(): \TYPO3\CMS\Core\Resource\Folder
     {
         if ($this->importFolder === null) {
             $this->importFolder = $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter() . ':' . $this->emSettings->getResourceFolderImporter());
@@ -136,7 +136,7 @@ class AbstractImportService
      *
      * @return FileIndexRepository
      */
-    protected function getFileIndexRepository()
+    protected function getFileIndexRepository(): FileIndexRepository
     {
         return FileIndexRepository::getInstance();
     }
@@ -146,7 +146,7 @@ class AbstractImportService
      *
      * @return \TYPO3\CMS\Core\Resource\ResourceStorage
      */
-    protected function getResourceStorage()
+    protected function getResourceStorage(): \TYPO3\CMS\Core\Resource\ResourceStorage
     {
         return $this->getResourceFactory()->getStorageObject($this->emSettings->getStorageUidImporter());
     }
@@ -154,7 +154,7 @@ class AbstractImportService
     /**
      * @return \TYPO3\CMS\Core\Resource\ResourceFactory
      */
-    protected function getResourceFactory()
+    protected function getResourceFactory(): \TYPO3\CMS\Core\Resource\ResourceFactory
     {
         return ResourceFactory::getInstance();
     }

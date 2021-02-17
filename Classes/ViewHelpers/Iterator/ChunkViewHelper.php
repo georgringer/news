@@ -110,7 +110,7 @@ class ChunkViewHelper extends AbstractViewHelper
      * @return array
      * @throws Exception
      */
-    protected static function arrayFromArrayOrTraversableOrCSVStatic($candidate, $useKeys = true)
+    protected static function arrayFromArrayOrTraversableOrCSVStatic($candidate, $useKeys = true): array
     {
         if ($candidate instanceof \Traversable) {
             return iterator_to_array($candidate, $useKeys);

@@ -76,7 +76,7 @@ class ClassLoader implements SingletonInterface
      * @param string $className Name of the class/interface to load
      * @return bool
      */
-    public function loadClass($className)
+    public function loadClass($className): bool
     {
         if (!$this->isValidInstance) {
             return false;
@@ -103,7 +103,7 @@ class ClassLoader implements SingletonInterface
      * @param string $className
      * @return string
      */
-    protected function getExtensionKey($className)
+    protected function getExtensionKey($className): string
     {
         $extensionKey = null;
 
@@ -127,7 +127,7 @@ class ClassLoader implements SingletonInterface
      * @param string $className
      * @return bool
      */
-    protected function isValidClassName($className)
+    protected function isValidClassName($className): bool
     {
         if (GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Domain\\') || GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Controller\\')) {
             $modifiedClassName = $this->changeClassName($className);

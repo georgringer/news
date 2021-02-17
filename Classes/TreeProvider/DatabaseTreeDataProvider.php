@@ -37,7 +37,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
         DatabaseTreeNode $parent = null,
         $level = 0,
         $restriction = false
-    ) {
+    ): \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode {
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         /**@param $node \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeNode */
         $node = GeneralUtility::makeInstance(DatabaseTreeNode::class);
@@ -106,7 +106,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      * @param \TYPO3\CMS\Backend\Tree\TreeNode $child
      * @return bool
      */
-    protected function isCategoryAllowed($child)
+    protected function isCategoryAllowed($child): bool
     {
         $mounts = $GLOBALS['BE_USER']->getCategoryMountPoints();
         if (empty($mounts)) {
@@ -122,7 +122,7 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
      *
      * @return bool
      */
-    protected function isSingleCategoryAclActivated()
+    protected function isSingleCategoryAclActivated(): bool
     {
         $userTsConfig = $GLOBALS['BE_USER']->getTSConfig();
         if (is_array($userTsConfig['tx_news.'])

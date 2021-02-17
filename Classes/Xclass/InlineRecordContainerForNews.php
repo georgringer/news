@@ -26,7 +26,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
      * @param array $data
      * @return string
      */
-    protected function _renderForeignRecordHeader(array $data)
+    protected function _renderForeignRecordHeader(array $data): string
     {
         $languageService = $this->getLanguageService();
         $inlineConfig = $data['inlineParentConfig'];
@@ -95,7 +95,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
      * @param string $cType
      * @return string
      */
-    protected function getWarningLabel($cType)
+    protected function getWarningLabel($cType): string
     {
         $message = sprintf(
             $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.noMatchingValue'),

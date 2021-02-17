@@ -40,7 +40,7 @@ class NewsRepository extends AbstractDemandedRepository
         $categories,
         $conjunction,
         $includeSubCategories = false
-    ) {
+    ): ?\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface {
         $constraint = null;
         $categoryConstraints = [];
 
@@ -104,7 +104,7 @@ class NewsRepository extends AbstractDemandedRepository
      * @throws \Exception
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
-    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
         /** @var NewsDemand $demand */
         $constraints = [];
@@ -261,7 +261,7 @@ class NewsRepository extends AbstractDemandedRepository
      * @param DemandInterface $demand
      * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
         $orderings = [];
         if ($demand->getTopNewsFirst()) {
@@ -328,7 +328,7 @@ class NewsRepository extends AbstractDemandedRepository
      * @param bool $respectEnableFields if set to false, hidden records are shown
      * @return \GeorgRinger\News\Domain\Model\News
      */
-    public function findByUid($uid, $respectEnableFields = true)
+    public function findByUid($uid, $respectEnableFields = true): \GeorgRinger\News\Domain\Model\News
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -350,7 +350,7 @@ class NewsRepository extends AbstractDemandedRepository
      * @param DemandInterface $demand
      * @return array
      */
-    public function countByDate(DemandInterface $demand)
+    public function countByDate(DemandInterface $demand): array
     {
         $data = [];
         $sql = $this->findDemandedRaw($demand);
@@ -416,7 +416,7 @@ class NewsRepository extends AbstractDemandedRepository
      * @return array
      * @throws \UnexpectedValueException
      */
-    protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand)
+    protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
         if ($demand->getSearch() === null) {
@@ -488,7 +488,7 @@ class NewsRepository extends AbstractDemandedRepository
      * @param string $table table name
      * @return QueryBuilder
      */
-    protected function getQueryBuilder(string $table)
+    protected function getQueryBuilder(string $table): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
     }
@@ -499,7 +499,7 @@ class NewsRepository extends AbstractDemandedRepository
      * @param string $str
      * @return string
      */
-    private function stripOrderBy(string $str)
+    private function stripOrderBy(string $str): string
     {
         /** @noinspection NotOptimalRegularExpressionsInspection */
         return preg_replace('/(?:ORDER[[:space:]]*BY[[:space:]]*.*)+/i', '', trim($str));

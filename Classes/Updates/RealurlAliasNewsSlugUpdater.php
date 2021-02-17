@@ -106,7 +106,7 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
      * @param string $inputPrefix input prefix, all names of form fields have to start with this. Append custom name in [ ... ]
      * @return string HTML output
      */
-    public function getUserInput($inputPrefix)
+    public function getUserInput($inputPrefix): string
     {
         return '
             <div class="panel panel-danger">

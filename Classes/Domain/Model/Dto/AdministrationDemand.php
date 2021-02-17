@@ -53,7 +53,7 @@ class AdministrationDemand extends NewsDemand
     /**
      * @return string
      */
-    public function getRecursive()
+    public function getRecursive(): string
     {
         return $this->recursive;
     }
@@ -69,7 +69,7 @@ class AdministrationDemand extends NewsDemand
     /**
      * @return array
      */
-    public function getSelectedCategories()
+    public function getSelectedCategories(): array
     {
         return $this->selectedCategories;
     }
@@ -91,7 +91,7 @@ class AdministrationDemand extends NewsDemand
     /**
      * @return string
      */
-    public function getSortingField()
+    public function getSortingField(): string
     {
         return $this->sortingField;
     }
@@ -107,7 +107,7 @@ class AdministrationDemand extends NewsDemand
     /**
      * @return string
      */
-    public function getSortingDirection()
+    public function getSortingDirection(): string
     {
         return $this->sortingDirection;
     }
@@ -123,7 +123,7 @@ class AdministrationDemand extends NewsDemand
     /**
      * @return string
      */
-    public function getSearchWord()
+    public function getSearchWord(): string
     {
         return $this->searchWord;
     }
@@ -139,7 +139,7 @@ class AdministrationDemand extends NewsDemand
     /**
      * @return int
      */
-    public function getHidden()
+    public function getHidden(): int
     {
         return $this->hidden;
     }
@@ -155,7 +155,7 @@ class AdministrationDemand extends NewsDemand
     /**
      * @return int
      */
-    public function getArchived()
+    public function getArchived(): int
     {
         return $this->archived;
     }

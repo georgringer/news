@@ -51,7 +51,7 @@ class Link extends AbstractValueObject
      *
      * @return \DateTime
      */
-    public function getCrdate()
+    public function getCrdate(): \DateTime
     {
         return $this->crdate;
     }
@@ -71,7 +71,7 @@ class Link extends AbstractValueObject
      *
      * @return \DateTime
      */
-    public function getTstamp()
+    public function getTstamp(): \DateTime
     {
         return $this->tstamp;
     }
@@ -91,7 +91,7 @@ class Link extends AbstractValueObject
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -111,7 +111,7 @@ class Link extends AbstractValueObject
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -131,7 +131,7 @@ class Link extends AbstractValueObject
      *
      * @return string
      */
-    public function getUri()
+    public function getUri(): string
     {
         return $this->uri;
     }
@@ -161,7 +161,7 @@ class Link extends AbstractValueObject
      *
      * @return int
      */
-    public function getSysLanguageUid()
+    public function getSysLanguageUid(): int
     {
         return $this->_languageUid;
     }
@@ -181,7 +181,7 @@ class Link extends AbstractValueObject
      *
      * @return int
      */
-    public function getL10nParent()
+    public function getL10nParent(): int
     {
         return $this->l10nParent;
     }

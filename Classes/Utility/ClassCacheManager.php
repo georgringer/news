@@ -107,7 +107,7 @@ class ClassCacheManager
      * @throws \Exception
      * @throws \InvalidArgumentException
      */
-    protected function parseSingleFile($filePath, $baseClass = false)
+    protected function parseSingleFile($filePath, $baseClass = false): string
     {
         if (!is_file($filePath)) {
             throw new \InvalidArgumentException(sprintf('File "%s" could not be found', $filePath));
@@ -168,7 +168,7 @@ class ClassCacheManager
      * @param string $filePath
      * @return string
      */
-    protected function getPartialInfo($filePath)
+    protected function getPartialInfo($filePath): string
     {
         return LF . '/*' . str_repeat('*', 70) . LF . "\t" .
         'this is partial from: ' . LF . "\t" . str_replace(Environment::getPublicPath(), '', $filePath) . LF . str_repeat(
@@ -181,7 +181,7 @@ class ClassCacheManager
      * @param string $code
      * @return string
      */
-    protected function closeClassDefinition($code)
+    protected function closeClassDefinition($code): string
     {
         return $code . LF . '}';
     }

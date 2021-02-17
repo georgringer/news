@@ -78,7 +78,7 @@ class PageLayoutView
      * @param array $params Parameters to the hook
      * @return string Information about pi1 plugin
      */
-    public function getExtensionSummary(array $params)
+    public function getExtensionSummary(array $params): string
     {
         $actionTranslationKey = $result = '';
 
@@ -260,7 +260,7 @@ class PageLayoutView
      * @return string
      * @deprecated use getRecordData() instead
      */
-    public function getPageRecordData($detailPid)
+    public function getPageRecordData($detailPid): string
     {
         return $this->getRecordData($detailPid, 'pages');
     }
@@ -270,7 +270,7 @@ class PageLayoutView
      * @param string $table
      * @return string
      */
-    public function getRecordData($id, $table = 'pages')
+    public function getRecordData($id, $table = 'pages'): string
     {
         $record = BackendUtilityCore::getRecord($table, $id);
 
@@ -342,7 +342,7 @@ class PageLayoutView
      *
      * @return string
      */
-    public function getOrderDirectionSetting()
+    public function getOrderDirectionSetting(): string
     {
         $text = '';
 
@@ -359,7 +359,7 @@ class PageLayoutView
      *
      * @return string
      */
-    public function getTopNewsFirstSetting()
+    public function getTopNewsFirstSetting(): string
     {
         $text = '';
         $topNewsSetting = (int)$this->getFieldFromFlexform('settings.topNewsFirst', 'additional');
@@ -629,7 +629,7 @@ class PageLayoutView
      * @param string $text
      * @return string
      */
-    protected function generateCallout($text)
+    protected function generateCallout($text): string
     {
         return '<div class="alert alert-warning">
             ' . htmlspecialchars($text) . '
@@ -644,7 +644,7 @@ class PageLayoutView
      * @param int $recordUid
      * @return string
      */
-    protected function renderSettingsAsTable($header = '', $recordUid = 0)
+    protected function renderSettingsAsTable($header = '', $recordUid = 0): string
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/PageLayout');
@@ -672,7 +672,7 @@ class PageLayoutView
      * @param string $sheet name of the sheet
      * @return string|null if nothing found, value if found
      */
-    public function getFieldFromFlexform($key, $sheet = 'sDEF')
+    public function getFieldFromFlexform($key, $sheet = 'sDEF'): ?string
     {
         $flexform = $this->flexformData;
         if (isset($flexform['data'])) {
@@ -694,7 +694,7 @@ class PageLayoutView
      * @return string Link to open an edit window for record.
      * @see \TYPO3\CMS\Backend\Utility\BackendUtilityCore::readPageAccess()
      */
-    protected function getEditLink($row, $currentPageUid)
+    protected function getEditLink($row, $currentPageUid): string
     {
         $editLink = '';
         $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtilityCore::getRecord('pages', $row['uid']));
@@ -715,7 +715,7 @@ class PageLayoutView
      *
      * @return \TYPO3\CMS\Core\Localization\LanguageService
      */
-    public function getLanguageService()
+    public function getLanguageService(): \TYPO3\CMS\Core\Localization\LanguageService
     {
         return $GLOBALS['LANG'];
     }
@@ -725,7 +725,7 @@ class PageLayoutView
      *
      * @return DocumentTemplate
      */
-    protected function getDocumentTemplate()
+    protected function getDocumentTemplate(): DocumentTemplate
     {
         return $GLOBALS['TBE_TEMPLATE'];
     }

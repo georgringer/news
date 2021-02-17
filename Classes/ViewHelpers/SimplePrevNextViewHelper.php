@@ -93,7 +93,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         $neighbours = $this->getNeighbours($this->arguments['news'], $this->arguments['pidList'], $this->arguments['sortField']);
         $as = $this->arguments['as'];
@@ -164,7 +164,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      * @param $sortField
      * @return array
      */
-    protected function getNeighbours(News $news, $pidList, $sortField)
+    protected function getNeighbours(News $news, $pidList, $sortField): array
     {
         $data = [];
         $pidList = empty($pidList) ? $news->getPid() : $pidList;
@@ -221,7 +221,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     /**
      * @return QueryBuilder
      */
-    protected function getQueryBuilder()
+    protected function getQueryBuilder(): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
@@ -231,7 +231,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      * @param $id
      * @return array
      */
-    protected function getRawRecord($id)
+    protected function getRawRecord($id): array
     {
         $queryBuilder = $this->getQueryBuilder();
         $rawRecord = $queryBuilder

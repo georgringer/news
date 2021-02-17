@@ -61,7 +61,7 @@ class ItemsProcFunc
      * @param int $currentColPos
      * @return array
      */
-    protected function reduceTemplateLayouts($templateLayouts, $currentColPos)
+    protected function reduceTemplateLayouts($templateLayouts, $currentColPos): array
     {
         $currentColPos = (int)$currentColPos;
         $restrictions = [];
@@ -204,7 +204,7 @@ class ItemsProcFunc
      *
      * @return string select box
      */
-    public function user_categoryOverlay()
+    public function user_categoryOverlay(): string
     {
         $html = '';
 
@@ -236,7 +236,7 @@ class ItemsProcFunc
      *
      * @return array
      */
-    protected function getAllLanguages()
+    protected function getAllLanguages(): array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('sys_language');
@@ -253,7 +253,7 @@ class ItemsProcFunc
      * @param int $uid
      * @return array
      */
-    protected function getContentElementRow($uid)
+    protected function getContentElementRow($uid): array
     {
         return BackendUtilityCore::getRecord('tt_content', $uid);
     }
@@ -264,7 +264,7 @@ class ItemsProcFunc
      * @param int $pid
      * @return int
      */
-    protected function getPageId($pid)
+    protected function getPageId($pid): int
     {
         $pid = (int)$pid;
 
@@ -281,7 +281,7 @@ class ItemsProcFunc
      *
      * @return \TYPO3\CMS\Core\Localization\LanguageService
      */
-    protected function getLanguageService()
+    protected function getLanguageService(): \TYPO3\CMS\Core\Localization\LanguageService
     {
         return $GLOBALS['LANG'];
     }

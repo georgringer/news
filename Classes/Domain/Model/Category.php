@@ -145,7 +145,7 @@ class Category extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getCrdate()
+    public function getCrdate(): \DateTime
     {
         return $this->crdate;
     }
@@ -165,7 +165,7 @@ class Category extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getTstamp()
+    public function getTstamp(): \DateTime
     {
         return $this->tstamp;
     }
@@ -185,7 +185,7 @@ class Category extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getStarttime()
+    public function getStarttime(): \DateTime
     {
         return $this->starttime;
     }
@@ -205,7 +205,7 @@ class Category extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getEndtime()
+    public function getEndtime(): \DateTime
     {
         return $this->endtime;
     }
@@ -225,7 +225,7 @@ class Category extends AbstractEntity
      *
      * @return bool
      */
-    public function getHidden()
+    public function getHidden(): bool
     {
         return $this->hidden;
     }
@@ -245,7 +245,7 @@ class Category extends AbstractEntity
      *
      * @return int
      */
-    public function getSysLanguageUid()
+    public function getSysLanguageUid(): int
     {
         return $this->_languageUid;
     }
@@ -265,7 +265,7 @@ class Category extends AbstractEntity
      *
      * @return int
      */
-    public function getL10nParent()
+    public function getL10nParent(): int
     {
         return $this->l10nParent;
     }
@@ -285,7 +285,7 @@ class Category extends AbstractEntity
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -305,7 +305,7 @@ class Category extends AbstractEntity
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -331,7 +331,7 @@ class Category extends AbstractEntity
     /**
      * @return \GeorgRinger\News\Domain\Model\FileReference[]
      */
-    public function getImages()
+    public function getImages(): array
     {
         return $this->images;
     }
@@ -361,7 +361,7 @@ class Category extends AbstractEntity
      *
      * @return FileReference|null
      */
-    public function getFirstImage()
+    public function getFirstImage(): ?FileReference
     {
         $images = $this->getImages();
         foreach ($images as $image) {
@@ -376,7 +376,7 @@ class Category extends AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\Category
      */
-    public function getParentcategory()
+    public function getParentcategory(): \GeorgRinger\News\Domain\Model\Category
     {
         return $this->parentcategory instanceof LazyLoadingProxy ? $this->parentcategory->_loadRealInstance() : $this->parentcategory;
     }
@@ -396,7 +396,7 @@ class Category extends AbstractEntity
      *
      * @return int
      */
-    public function getShortcut()
+    public function getShortcut(): int
     {
         return $this->shortcut;
     }
@@ -416,7 +416,7 @@ class Category extends AbstractEntity
      *
      * @return int
      */
-    public function getSinglePid()
+    public function getSinglePid(): int
     {
         return $this->singlePid;
     }
@@ -436,7 +436,7 @@ class Category extends AbstractEntity
      *
      * @return string
      */
-    public function getImportId()
+    public function getImportId(): string
     {
         return $this->importId;
     }
@@ -456,7 +456,7 @@ class Category extends AbstractEntity
      *
      * @return int sorting id
      */
-    public function getSorting()
+    public function getSorting(): int
     {
         return $this->sorting;
     }
@@ -476,7 +476,7 @@ class Category extends AbstractEntity
      *
      * @return string
      */
-    public function getFeGroup()
+    public function getFeGroup(): string
     {
         return $this->feGroup;
     }
@@ -506,7 +506,7 @@ class Category extends AbstractEntity
      *
      * @return string
      */
-    public function getImportSource()
+    public function getImportSource(): string
     {
         return $this->importSource;
     }
@@ -514,7 +514,7 @@ class Category extends AbstractEntity
     /**
      * @return string
      */
-    public function getSeoTitle()
+    public function getSeoTitle(): string
     {
         return $this->seoTitle;
     }
@@ -530,7 +530,7 @@ class Category extends AbstractEntity
     /**
      * @return string
      */
-    public function getSeoDescription()
+    public function getSeoDescription(): string
     {
         return $this->seoDescription;
     }
@@ -546,7 +546,7 @@ class Category extends AbstractEntity
     /**
      * @return string
      */
-    public function getSeoHeadline()
+    public function getSeoHeadline(): string
     {
         return $this->seoHeadline;
     }
@@ -562,7 +562,7 @@ class Category extends AbstractEntity
     /**
      * @return string
      */
-    public function getSeoText()
+    public function getSeoText(): string
     {
         return $this->seoText;
     }
@@ -578,7 +578,7 @@ class Category extends AbstractEntity
     /**
      * @return string
      */
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }

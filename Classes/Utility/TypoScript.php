@@ -21,7 +21,7 @@ class TypoScript
      * @param array $overload
      * @return array
      */
-    public function override(array $base, array $overload)
+    public function override(array $base, array $overload): array
     {
         $configuration = $overload['settings']['overrideFlexformSettingsIfEmpty'] ?? '';
         $validFields = GeneralUtility::trimExplode(',', $configuration, true);
@@ -58,7 +58,7 @@ class TypoScript
      * @param array $path
      * @return array|null
      */
-    protected function getValue(array $data, array $path)
+    protected function getValue(array $data, array $path): ?array
     {
         $found = true;
 
@@ -86,7 +86,7 @@ class TypoScript
      * @param $value
      * @return array
      */
-    protected function setValue(array $array, $path, $value)
+    protected function setValue(array $array, $path, $value): array
     {
         $this->setValueByReference($array, $path, $value);
 

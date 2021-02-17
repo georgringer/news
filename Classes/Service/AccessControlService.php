@@ -28,7 +28,7 @@ class AccessControlService
      * @param array $newsRecord
      * @return bool
      */
-    public static function userHasCategoryPermissionsForRecord(array $newsRecord)
+    public static function userHasCategoryPermissionsForRecord(array $newsRecord): bool
     {
         $settings = GeneralUtility::makeInstance(EmConfiguration::class);
         if (!$settings->getCategoryBeGroupTceFormsRestriction()) {
@@ -54,7 +54,7 @@ class AccessControlService
      * @param array $newsRecord
      * @return array
      */
-    public static function getAccessDeniedCategories(array $newsRecord)
+    public static function getAccessDeniedCategories(array $newsRecord): array
     {
         if (self::getBackendUser()->isAdmin()) {
             // an admin may edit all news so no categories without access
@@ -91,7 +91,7 @@ class AccessControlService
      * @param array $newsRecord
      * @return array
      */
-    public static function getCategoriesForNewsRecord($newsRecord)
+    public static function getCategoriesForNewsRecord($newsRecord): array
     {
         // determine localization overlay mode to select categories either from parent or localized record
         if ($newsRecord['sys_language_uid'] > 0 && $newsRecord['l10n_parent'] > 0) {
@@ -164,7 +164,7 @@ class AccessControlService
      *
      * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
-    protected static function getBackendUser()
+    protected static function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

@@ -133,7 +133,7 @@ class NewsController extends NewsBaseController
     protected function createDemandObjectFromSettings(
         $settings,
         $class = NewsDemand::class
-    ) {
+    ): \GeorgRinger\News\Domain\Model\Dto\NewsDemand {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
@@ -201,7 +201,7 @@ class NewsController extends NewsBaseController
      * @param array $overwriteDemand
      * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
      */
-    protected function overwriteDemandObject($demand, $overwriteDemand)
+    protected function overwriteDemandObject($demand, $overwriteDemand): \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     {
         foreach ($this->ignoredSettingsForOverride as $property) {
             unset($overwriteDemand[$property]);
@@ -430,7 +430,7 @@ class NewsController extends NewsBaseController
      * @param \GeorgRinger\News\Domain\Model\News $news
      * @return \GeorgRinger\News\Domain\Model\News|null
      */
-    protected function checkPidOfNewsRecord(News $news)
+    protected function checkPidOfNewsRecord(News $news): ?\GeorgRinger\News\Domain\Model\News
     {
         $allowedStoragePages = GeneralUtility::trimExplode(
             ',',
@@ -459,7 +459,7 @@ class NewsController extends NewsBaseController
      *
      * @return bool
      */
-    protected function isPreviewOfHiddenRecordsEnabled()
+    protected function isPreviewOfHiddenRecordsEnabled(): bool
     {
         if (!empty($this->settings['previewHiddenRecords']) && $this->settings['previewHiddenRecords'] == 2) {
             $previewEnabled = !empty($this->settings['enablePreviewOfHiddenRecords']);

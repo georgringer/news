@@ -255,7 +255,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -275,7 +275,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getAlternativeTitle()
+    public function getAlternativeTitle(): string
     {
         return $this->alternativeTitle;
     }
@@ -295,7 +295,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getTeaser()
+    public function getTeaser(): string
     {
         return $this->teaser;
     }
@@ -315,7 +315,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getBodytext()
+    public function getBodytext(): string
     {
         return $this->bodytext;
     }
@@ -335,7 +335,7 @@ class News extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getDatetime()
+    public function getDatetime(): \DateTime
     {
         return $this->datetime;
     }
@@ -355,7 +355,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getYearOfDatetime()
+    public function getYearOfDatetime(): int
     {
         return $this->getDatetime()->format('Y');
     }
@@ -365,7 +365,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getMonthOfDatetime()
+    public function getMonthOfDatetime(): int
     {
         return $this->getDatetime()->format('m');
     }
@@ -375,7 +375,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getDayOfDatetime()
+    public function getDayOfDatetime(): int
     {
         return (int)$this->datetime->format('d');
     }
@@ -385,7 +385,7 @@ class News extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getArchive()
+    public function getArchive(): \DateTime
     {
         return $this->archive;
     }
@@ -405,7 +405,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getYearOfArchive()
+    public function getYearOfArchive(): int
     {
         if ($this->getArchive()) {
             return $this->getArchive()->format('Y');
@@ -417,7 +417,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getMonthOfArchive()
+    public function getMonthOfArchive(): int
     {
         if ($this->getArchive()) {
             return $this->getArchive()->format('m');
@@ -429,7 +429,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getDayOfArchive()
+    public function getDayOfArchive(): int
     {
         if ($this->archive) {
             return (int)$this->archive->format('d');
@@ -441,7 +441,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getAuthor()
+    public function getAuthor(): string
     {
         return $this->author;
     }
@@ -461,7 +461,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getAuthorEmail()
+    public function getAuthorEmail(): string
     {
         return $this->authorEmail;
     }
@@ -481,7 +481,7 @@ class News extends AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\Category[]
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         return $this->categories;
     }
@@ -491,7 +491,7 @@ class News extends AbstractEntity
      *
      * @return Category
      */
-    public function getFirstCategory()
+    public function getFirstCategory(): Category
     {
         $categories = $this->getCategories();
         if (!is_null($categories)) {
@@ -526,7 +526,7 @@ class News extends AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\News[]
      */
-    public function getRelated()
+    public function getRelated(): array
     {
         return $this->related;
     }
@@ -546,7 +546,7 @@ class News extends AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\News[]
      */
-    public function getRelatedFrom()
+    public function getRelatedFrom(): array
     {
         return $this->relatedFrom;
     }
@@ -556,7 +556,7 @@ class News extends AbstractEntity
      *
      * @return array
      */
-    public function getRelatedFromSorted()
+    public function getRelatedFromSorted(): array
     {
         $items = $this->getRelatedFrom();
         if ($items) {
@@ -573,7 +573,7 @@ class News extends AbstractEntity
      *
      * @return array
      */
-    public function getAllRelatedSorted()
+    public function getAllRelatedSorted(): array
     {
         $all = [];
         $itemsRelated = $this->getRelated();
@@ -600,7 +600,7 @@ class News extends AbstractEntity
      *
      * @return array
      */
-    public function getRelatedSorted()
+    public function getRelatedSorted(): array
     {
         $items = $this->getRelated();
         if ($items) {
@@ -627,7 +627,7 @@ class News extends AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\Link[]
      */
-    public function getRelatedLinks()
+    public function getRelatedLinks(): array
     {
         return $this->relatedLinks;
     }
@@ -637,7 +637,7 @@ class News extends AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\FileReference[]
      */
-    public function getFalRelatedFiles()
+    public function getFalRelatedFiles(): array
     {
         return $this->falRelatedFiles;
     }
@@ -647,7 +647,7 @@ class News extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getRelatedFiles()
+    public function getRelatedFiles(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
     {
         return $this->getFalRelatedFiles();
     }
@@ -690,7 +690,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -710,7 +710,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getKeywords()
+    public function getKeywords(): string
     {
         return $this->keywords;
     }
@@ -730,7 +730,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -763,7 +763,7 @@ class News extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getFalMedia()
+    public function getFalMedia(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
     {
         return $this->falMedia;
     }
@@ -773,7 +773,7 @@ class News extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getMedia()
+    public function getMedia(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
     {
         return $this->getFalMedia();
     }
@@ -806,7 +806,7 @@ class News extends AbstractEntity
      *
      * @return array
      */
-    public function getMediaPreviews()
+    public function getMediaPreviews(): array
     {
         $configuration = [FileReference::VIEW_LIST_AND_DETAIL, FileReference::VIEW_LIST_ONLY];
         return $this->getMediaItemsByConfiguration($configuration);
@@ -817,7 +817,7 @@ class News extends AbstractEntity
      *
      * @return array
      */
-    public function getMediaNonPreviews()
+    public function getMediaNonPreviews(): array
     {
         $configuration = [FileReference::VIEW_LIST_AND_DETAIL, FileReference::VIEW_DETAIL_ONLY];
         return $this->getMediaItemsByConfiguration($configuration);
@@ -828,7 +828,7 @@ class News extends AbstractEntity
      *
      * @return array
      */
-    public function getMediaListOnly()
+    public function getMediaListOnly(): array
     {
         $configuration = [FileReference::VIEW_LIST_ONLY];
         return $this->getMediaItemsByConfiguration($configuration);
@@ -839,7 +839,7 @@ class News extends AbstractEntity
      *
      * @return array
      */
-    public function getMediaDetailOnly()
+    public function getMediaDetailOnly(): array
     {
         $configuration = [FileReference::VIEW_DETAIL_ONLY];
         return $this->getMediaItemsByConfiguration($configuration);
@@ -850,7 +850,7 @@ class News extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
-    public function getFirstPreview()
+    public function getFirstPreview(): ?\TYPO3\CMS\Extbase\Domain\Model\FileReference
     {
         foreach ($this->getMediaPreviews() as $mediaElement) {
             return $mediaElement;
@@ -863,7 +863,7 @@ class News extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
-    public function getFirstNonePreview()
+    public function getFirstNonePreview(): ?\TYPO3\CMS\Extbase\Domain\Model\FileReference
     {
         foreach ($this->getMediaNonPreviews() as $mediaElement) {
             return $mediaElement;
@@ -895,7 +895,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getInternalurl()
+    public function getInternalurl(): string
     {
         return $this->internalurl;
     }
@@ -915,7 +915,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getExternalurl()
+    public function getExternalurl(): string
     {
         return $this->externalurl;
     }
@@ -935,7 +935,7 @@ class News extends AbstractEntity
      *
      * @return bool
      */
-    public function getIstopnews()
+    public function getIstopnews(): bool
     {
         return $this->istopnews;
     }
@@ -955,7 +955,7 @@ class News extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getContentElements()
+    public function getContentElements(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
     {
         return $this->contentElements;
     }
@@ -988,7 +988,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getContentElementIdList()
+    public function getContentElementIdList(): string
     {
         return $this->getIdOfContentElements();
     }
@@ -998,7 +998,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getTranslatedContentElementIdList()
+    public function getTranslatedContentElementIdList(): string
     {
         return $this->getIdOfContentElements(false);
     }
@@ -1009,7 +1009,7 @@ class News extends AbstractEntity
      * @param bool $original
      * @return string
      */
-    protected function getIdOfContentElements($original = true)
+    protected function getIdOfContentElements($original = true): string
     {
         $idList = [];
         $contentElements = $this->getContentElements();
@@ -1028,7 +1028,7 @@ class News extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getTags()
+    public function getTags(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
     {
         return $this->tags;
     }
@@ -1068,7 +1068,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getPathSegment()
+    public function getPathSegment(): string
     {
         return $this->pathSegment;
     }
@@ -1088,7 +1088,7 @@ class News extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getCrdate()
+    public function getCrdate(): \DateTime
     {
         return $this->crdate;
     }
@@ -1108,7 +1108,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getYearOfCrdate()
+    public function getYearOfCrdate(): int
     {
         return $this->getCrdate()->format('Y');
     }
@@ -1118,7 +1118,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getMonthOfCrdate()
+    public function getMonthOfCrdate(): int
     {
         return $this->getCrdate()->format('m');
     }
@@ -1128,7 +1128,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getDayOfCrdate()
+    public function getDayOfCrdate(): int
     {
         return (int)$this->crdate->format('d');
     }
@@ -1138,7 +1138,7 @@ class News extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getTstamp()
+    public function getTstamp(): \DateTime
     {
         return $this->tstamp;
     }
@@ -1168,7 +1168,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getSysLanguageUid()
+    public function getSysLanguageUid(): int
     {
         return $this->_languageUid;
     }
@@ -1188,7 +1188,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getL10nParent()
+    public function getL10nParent(): int
     {
         return $this->l10nParent;
     }
@@ -1198,7 +1198,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getYearOfTstamp()
+    public function getYearOfTstamp(): int
     {
         return $this->getTstamp()->format('Y');
     }
@@ -1208,7 +1208,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getMonthOfTstamp()
+    public function getMonthOfTstamp(): int
     {
         return $this->getTstamp()->format('m');
     }
@@ -1218,7 +1218,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getDayOfTimestamp()
+    public function getDayOfTimestamp(): int
     {
         return (int)$this->tstamp->format('d');
     }
@@ -1228,7 +1228,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getCruserId()
+    public function getCruserId(): int
     {
         return $this->cruserId;
     }
@@ -1248,7 +1248,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getEditlock()
+    public function getEditlock(): int
     {
         return $this->editlock;
     }
@@ -1268,7 +1268,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getHidden()
+    public function getHidden(): int
     {
         return $this->hidden;
     }
@@ -1288,7 +1288,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getDeleted()
+    public function getDeleted(): int
     {
         return $this->deleted;
     }
@@ -1308,7 +1308,7 @@ class News extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getStarttime()
+    public function getStarttime(): \DateTime
     {
         return $this->starttime;
     }
@@ -1328,7 +1328,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getYearOfStarttime()
+    public function getYearOfStarttime(): int
     {
         if ($this->getStarttime()) {
             return $this->getStarttime()->format('Y');
@@ -1340,7 +1340,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getMonthOfStarttime()
+    public function getMonthOfStarttime(): int
     {
         if ($this->getStarttime()) {
             return $this->getStarttime()->format('m');
@@ -1352,7 +1352,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getDayOfStarttime()
+    public function getDayOfStarttime(): int
     {
         if ($this->starttime) {
             return (int)$this->starttime->format('d');
@@ -1364,7 +1364,7 @@ class News extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getEndtime()
+    public function getEndtime(): \DateTime
     {
         return $this->endtime;
     }
@@ -1384,7 +1384,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getYearOfEndtime()
+    public function getYearOfEndtime(): int
     {
         if ($this->getEndtime()) {
             return $this->getEndtime()->format('Y');
@@ -1396,7 +1396,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getMonthOfEndtime()
+    public function getMonthOfEndtime(): int
     {
         if ($this->getEndtime()) {
             return $this->getEndtime()->format('m');
@@ -1408,7 +1408,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getDayOfEndtime()
+    public function getDayOfEndtime(): int
     {
         if ($this->endtime) {
             return (int)$this->endtime->format('d');
@@ -1420,7 +1420,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getFeGroup()
+    public function getFeGroup(): string
     {
         return $this->feGroup;
     }
@@ -1440,7 +1440,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getImportId()
+    public function getImportId(): int
     {
         return $this->importId;
     }
@@ -1460,7 +1460,7 @@ class News extends AbstractEntity
      *
      * @return int
      */
-    public function getSorting()
+    public function getSorting(): int
     {
         return $this->sorting;
     }
@@ -1490,7 +1490,7 @@ class News extends AbstractEntity
      *
      * @return string
      */
-    public function getImportSource()
+    public function getImportSource(): string
     {
         return $this->importSource;
     }
@@ -1498,7 +1498,7 @@ class News extends AbstractEntity
     /**
      * @return string
      */
-    public function getNotes()
+    public function getNotes(): string
     {
         return $this->notes;
     }
@@ -1514,7 +1514,7 @@ class News extends AbstractEntity
     /**
      * @return array
      */
-    public function getFalMediaPreviews()
+    public function getFalMediaPreviews(): array
     {
         return $this->getMediaPreviews();
     }
