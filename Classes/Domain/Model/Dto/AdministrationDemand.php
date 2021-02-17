@@ -18,7 +18,7 @@ class AdministrationDemand extends NewsDemand
     /**
      * @var string
      */
-    protected $recursive;
+    protected $recursive = '';
 
     /**
      * @var array
@@ -38,17 +38,17 @@ class AdministrationDemand extends NewsDemand
     /**
      * @var string
      */
-    protected $searchWord;
+    protected $searchWord = '';
 
     /**
      * @var int
      */
-    protected $hidden;
+    protected $hidden = '';
 
     /**
      * @var int
      */
-    protected $archived;
+    protected $archived = 0;
 
     /**
      * @return string

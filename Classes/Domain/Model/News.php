@@ -110,19 +110,19 @@ class News extends AbstractEntity
     protected $authorEmail;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Category>
+     * @var ObjectStorage
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $categories;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
+     * @var ObjectStorage
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $related;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
+     * @var ObjectStorage
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedFrom;
@@ -130,13 +130,13 @@ class News extends AbstractEntity
     /**
      * Fal related files
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
+     * @var ObjectStorage
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $falRelatedFiles;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Link>
+     * @var ObjectStorage
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedLinks;
@@ -159,7 +159,7 @@ class News extends AbstractEntity
     /**
      * Fal media items
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference>
+     * @var ObjectStorage
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $falMedia;
@@ -196,13 +196,13 @@ class News extends AbstractEntity
     protected $istopnews;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\TtContent>
+     * @var ObjectStorage
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $contentElements;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Tag>
+     * @var ObjectStorage
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $tags;
@@ -479,9 +479,9 @@ class News extends AbstractEntity
     /**
      * Get categories
      *
-     * @return \GeorgRinger\News\Domain\Model\Category[]
+     * @return ObjectStorage
      */
-    public function getCategories(): array
+    public function getCategories(): ObjectStorage
     {
         return $this->categories;
     }
@@ -489,9 +489,9 @@ class News extends AbstractEntity
     /**
      * Get first category
      *
-     * @return Category
+     * @return null|Category
      */
-    public function getFirstCategory(): Category
+    public function getFirstCategory(): ?Category
     {
         $categories = $this->getCategories();
         if (!is_null($categories)) {
@@ -504,7 +504,7 @@ class News extends AbstractEntity
     /**
      * Set categories
      *
-     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories
+     * @param ObjectStorage $categories
      */
     public function setCategories($categories)
     {
@@ -524,9 +524,9 @@ class News extends AbstractEntity
     /**
      * Get related news
      *
-     * @return \GeorgRinger\News\Domain\Model\News[]
+     * @return ObjectStorage
      */
-    public function getRelated(): array
+    public function getRelated(): ObjectStorage
     {
         return $this->related;
     }
@@ -544,9 +544,9 @@ class News extends AbstractEntity
     /**
      * Get related from
      *
-     * @return \GeorgRinger\News\Domain\Model\News[]
+     * @return ObjectStorage
      */
-    public function getRelatedFrom(): array
+    public function getRelatedFrom(): ObjectStorage
     {
         return $this->relatedFrom;
     }
@@ -615,7 +615,7 @@ class News extends AbstractEntity
     /**
      * Set related news
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $related related news
+     * @param ObjectStorage $related related news
      */
     public function setRelated($related)
     {
@@ -625,9 +625,9 @@ class News extends AbstractEntity
     /**
      * Get related links
      *
-     * @return \GeorgRinger\News\Domain\Model\Link[]
+     * @return ObjectStorage
      */
-    public function getRelatedLinks(): array
+    public function getRelatedLinks(): ObjectStorage
     {
         return $this->relatedLinks;
     }
@@ -635,9 +635,9 @@ class News extends AbstractEntity
     /**
      * Get FAL related files
      *
-     * @return \GeorgRinger\News\Domain\Model\FileReference[]
+     * @return ObjectStorage
      */
-    public function getFalRelatedFiles(): array
+    public function getFalRelatedFiles(): ObjectStorage
     {
         return $this->falRelatedFiles;
     }
@@ -645,9 +645,9 @@ class News extends AbstractEntity
     /**
      * Short method for getFalRelatedFiles
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage
      */
-    public function getRelatedFiles(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getRelatedFiles(): ObjectStorage
     {
         return $this->getFalRelatedFiles();
     }
@@ -655,7 +655,7 @@ class News extends AbstractEntity
     /**
      * Set FAL related files
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $falRelatedFiles FAL related files
+     * @param ObjectStorage $falRelatedFiles FAL related files
      */
     public function setFalRelatedFiles($falRelatedFiles)
     {
@@ -761,9 +761,9 @@ class News extends AbstractEntity
     /**
      * Get the Fal media items
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage
      */
-    public function getFalMedia(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getFalMedia(): ObjectStorage
     {
         return $this->falMedia;
     }
@@ -771,9 +771,9 @@ class News extends AbstractEntity
     /**
      * Short method for getFalMedia()
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage
      */
-    public function getMedia(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getMedia(): ObjectStorage
     {
         return $this->getFalMedia();
     }
@@ -781,7 +781,7 @@ class News extends AbstractEntity
     /**
      * Set Fal media relation
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $falMedia
+     * @param ObjectStorage $falMedia
      */
     public function setFalMedia(ObjectStorage $falMedia)
     {
@@ -953,9 +953,9 @@ class News extends AbstractEntity
     /**
      * Get content elements
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage
      */
-    public function getContentElements(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getContentElements(): ObjectStorage
     {
         return $this->contentElements;
     }
@@ -963,7 +963,7 @@ class News extends AbstractEntity
     /**
      * Set content element list
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $contentElements content elements
+     * @param ObjectStorage $contentElements content elements
      */
     public function setContentElements($contentElements)
     {
@@ -1026,9 +1026,9 @@ class News extends AbstractEntity
     /**
      * Get Tags
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage
      */
-    public function getTags(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getTags(): ObjectStorage
     {
         return $this->tags;
     }
@@ -1036,7 +1036,7 @@ class News extends AbstractEntity
     /**
      * Set Tags
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags tags
+     * @param ObjectStorage $tags tags
      */
     public function setTags($tags)
     {

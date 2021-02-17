@@ -23,35 +23,35 @@ class Search extends AbstractEntity
      *
      * @var string
      */
-    protected $subject;
+    protected $subject = '';
 
     /**
      * Search fields
      *
      * @var string
      */
-    protected $fields;
+    protected $fields = '';
 
     /**
      * Minimum date
      *
      * @var string
      */
-    protected $minimumDate;
+    protected $minimumDate = '';
 
     /**
      * Maximum date
      *
      * @var string
      */
-    protected $maximumDate;
+    protected $maximumDate = '';
 
     /**
      * Field using for date queries
      *
      * @var string
      */
-    protected $dateField;
+    protected $dateField = '';
 
     /** @var bool */
     protected $splitSubjectWords = false;
@@ -115,7 +115,7 @@ class Search extends AbstractEntity
     /**
      * @param string $minimumDate
      */
-    public function setMinimumDate($minimumDate)
+    public function setMinimumDate(string $minimumDate)
     {
         $this->minimumDate = $minimumDate;
     }

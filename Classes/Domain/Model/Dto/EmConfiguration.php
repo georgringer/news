@@ -94,7 +94,6 @@ class EmConfiguration
     /** @var string */
     protected $slugBehaviour = 'unique';
 
-    /** @var int */
     public function getTagPid(): int
     {
         return (int)$this->tagPid;
@@ -110,9 +109,6 @@ class EmConfiguration
         return $this->categoryRestriction;
     }
 
-    /**
-     * Get categoryBeGroupTceFormsRestriction
-     */
     public function getCategoryBeGroupTceFormsRestriction(): bool
     {
         return (bool)$this->categoryBeGroupTceFormsRestriction;
@@ -143,9 +139,6 @@ class EmConfiguration
         return (bool)$this->showImporter;
     }
 
-    /**
-     * @param bool $showAdministrationModule
-     */
     public function setShowAdministrationModule($showAdministrationModule)
     {
         $this->showAdministrationModule = $showAdministrationModule;

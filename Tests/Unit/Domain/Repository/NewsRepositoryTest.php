@@ -77,9 +77,9 @@ class NewsRepositoryTest extends BaseTestCase
     {
         $this->expectException(UnexpectedValueException::class);
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
-        $mockedRepository = $this->getAccessibleMock(NewsRepository::class, ['dummy'], [], '', false);
 
         $search = new Search();
+        $search->setDateField('');
         $search->setMinimumDate('2014-04-01');
 
         $demand = new NewsDemand();
@@ -94,7 +94,6 @@ class NewsRepositoryTest extends BaseTestCase
     public function emptyConstraintIsReturnedForEmptySearchDemand()
     {
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
-        $mockedRepository = $this->getAccessibleMock(NewsRepository::class, ['dummy'], [], '', false);
 
         $demand = new NewsDemand();
         $demand->setSearch(null);

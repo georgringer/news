@@ -20,12 +20,12 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * @var array
      */
-    protected $categories;
+    protected $categories = [];
 
     /**
      * @var string
      */
-    protected $categoryConjunction;
+    protected $categoryConjunction = '';
 
     /**
      * @var bool
@@ -35,68 +35,68 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * @var string
      */
-    protected $author;
+    protected $author = '';
 
     /** @var string */
-    protected $tags;
+    protected $tags = '';
 
     /**
      * @var string
      */
-    protected $archiveRestriction;
+    protected $archiveRestriction = '';
 
     /**
      * @var string
      */
-    protected $timeRestriction;
+    protected $timeRestriction = '';
 
     /** @var string */
-    protected $timeRestrictionHigh;
+    protected $timeRestrictionHigh = '';
 
     /** @var int */
-    protected $topNewsRestriction;
+    protected $topNewsRestriction = '';
 
     /** @var string */
-    protected $dateField;
+    protected $dateField = '';
 
     /** @var int */
-    protected $month;
+    protected $month = 0;
 
     /** @var int */
-    protected $year;
+    protected $year = 0;
 
     /** @var int */
-    protected $day;
+    protected $day = 0;
 
     /** @var string */
-    protected $searchFields;
+    protected $searchFields = '';
 
     /** @var \GeorgRinger\News\Domain\Model\Dto\Search */
     protected $search;
 
     /** @var string */
-    protected $order;
+    protected $order = '';
 
     /** @var string */
-    protected $orderByAllowed;
+    protected $orderByAllowed = '';
 
     /** @var bool */
-    protected $topNewsFirst;
+    protected $topNewsFirst = false;
 
     /** @var int */
-    protected $storagePage;
+    protected $storagePage = 0;
 
     /** @var int */
-    protected $limit;
+    protected $limit = 0;
 
     /** @var int */
-    protected $offset;
+    protected $offset = 0;
 
     /** @var bool */
-    protected $excludeAlreadyDisplayedNews;
+    protected $excludeAlreadyDisplayedNews = false;
 
     /** @var string */
-    protected $hideIdList;
+    protected $hideIdList = '';
 
     /** @var string */
     protected $idList = '';
