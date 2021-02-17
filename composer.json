@@ -56,9 +56,8 @@
     "extra": {
         "typo3/cms": {
             "extension-key": "news",
-            "cms-package-dir": "{$vendor-dir}/typo3/cms",
-            "web-dir": ".Build/Web"
+            "app-dir": ".Build",
+            "web-dir": ".Build/public"
         }
     }
-
 }
