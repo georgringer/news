@@ -127,12 +127,12 @@ class NewsRepository extends AbstractDemandedRepository
         }
 
         // archived
-        if ($demand->getArchiveRestriction() == 'archived') {
+        if ($demand->getArchiveRestriction() === 'archived') {
             $constraints['archived'] = $query->logicalAnd(
                 $query->lessThan('archive', $GLOBALS['SIM_EXEC_TIME']),
                 $query->greaterThan('archive', 0)
             );
-        } elseif ($demand->getArchiveRestriction() == 'active') {
+        } elseif ($demand->getArchiveRestriction() === 'active') {
             $constraints['active'] = $query->logicalOr(
                 $query->greaterThanOrEqual('archive', $GLOBALS['SIM_EXEC_TIME']),
                 $query->equals('archive', 0)

@@ -23,15 +23,16 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class CategoryRepository extends AbstractDemandedRepository
 {
-    protected function createConstraintsFromDemand(
-        QueryInterface $query,
-        DemandInterface $demand
-    ) {
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
+    {
+        return [];
     }
 
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
+        return [];
     }
+
 
     /**
      * Find category by import source and import id
