@@ -10,21 +10,24 @@ use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TagRepository;
 use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
+use GeorgRinger\News\Utility\Page;
+use GeorgRinger\News\Utility\TypoScript;
+use GeorgRinger\NumberedPagination\NumberedPagination;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
+use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
+use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
+use TYPO3\CMS\Fluid\View\TemplateView;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-use GeorgRinger\News\Utility\Page;
-use GeorgRinger\News\Utility\TypoScript;
-use TYPO3\CMS\Core\TypoScript\TypoScriptService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
-use TYPO3\CMS\Fluid\View\TemplateView;
 
 /**
  * Controller of news records
@@ -232,6 +235,21 @@ class NewsController extends NewsBaseController
         }
         $newsRecords = $this->newsRepository->findDemanded($demand);
 
+        // pagination
+        $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
+
+        $itemsPerPage = (int)($paginationConfiguration['itemsPerPage'] ?? 10);
+        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
+
+        $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
+        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage);
+        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
+        if ($paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
+            $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
+        } else {
+            $pagination = GeneralUtility::makeInstance(SimplePagination::class, $paginator);
+        }
+
         $assignedValues = [
             'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
@@ -239,11 +257,16 @@ class NewsController extends NewsBaseController
             'categories' => null,
             'tags' => null,
             'settings' => $this->settings,
+            'pagination' => [
+                'currentPage' => $currentPage,
+                'paginator' => $paginator,
+                'pagination' => $pagination,
+            ]
         ];
 
         if ($demand->getCategories() !== '') {
             $categoriesList = $demand->getCategories();
-            if (!is_array($categoriesList)) {
+            if (is_string($categoriesList)) {
                 $categoriesList = GeneralUtility::trimExplode(',', $categoriesList);
             }
             if (!empty($categoriesList)) {

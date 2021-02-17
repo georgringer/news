@@ -149,11 +149,10 @@ plugin.tx_news {
 
 			# Paginate configuration.
 			paginate {
+                class = GeorgRinger\NumberedPagination\NumberedPagination
 				itemsPerPage = 10
 				insertAbove = 1
 				insertBelow = 1
-				templatePath =
-				prevNextHeaderTags = 1
 				maximumNumberOfLinks = 3
 			}
 
