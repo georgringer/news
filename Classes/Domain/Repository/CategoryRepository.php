@@ -33,7 +33,6 @@ class CategoryRepository extends AbstractDemandedRepository
         return [];
     }
 
-
     /**
      * Find category by import source and import id
      *
