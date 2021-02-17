@@ -61,8 +61,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
     }
 
     /**
-     * Render an img tag for image
-     * @param $image FileReference
+     * @param \TYPO3\CMS\Core\Resource\FileInterface $image
      * @return string
      */
     private function renderImage(\TYPO3\CMS\Core\Resource\FileInterface $image): string

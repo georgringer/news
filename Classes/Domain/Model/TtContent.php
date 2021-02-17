@@ -563,11 +563,10 @@ class TtContent extends AbstractEntity
     }
 
     /**
-     * @param $listType
-     *
+     * @param string $listType
      * @return void
      */
-    public function setListType(string $listType): void
+    public function setListType(string $listType):   void
     {
         $this->listType = $listType;
     }

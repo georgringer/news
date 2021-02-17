@@ -4,12 +4,6 @@ namespace GeorgRinger\News\ViewHelpers;
 
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Context\Context;
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Database\Connection;
@@ -18,6 +12,13 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
+/**
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 /**
  * ViewHelper for a **simple** prev/next link.
@@ -162,14 +163,14 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
 
     /**
      * @param News $news
-     * @param $pidList
-     * @param $sortField
+     * @param string $pidList
+     * @param string $sortField
      * @return array
      */
-    protected function getNeighbours(News $news, $pidList, $sortField): array
+    protected function getNeighbours(News $news, string $pidList, string $sortField): array
     {
         $data = [];
-        $pidList = empty($pidList) ? $news->getPid() : $pidList;
+        $pidList = empty($pidList) ? (string)$news->getPid() : $pidList;
 
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getConnectionForTable('tx_news_domain_model_news');
@@ -230,7 +231,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return array
      */
     protected function getRawRecord(int $id): ?array

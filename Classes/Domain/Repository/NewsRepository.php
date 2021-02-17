@@ -174,7 +174,7 @@ class NewsRepository extends AbstractDemandedRepository
         }
 
         // storage page
-        if ($demand->getStoragePage() != 0) {
+        if ($demand->getStoragePage()) {
             $pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), true);
             $constraints['pid'] = $query->in('pid', $pidList);
         }

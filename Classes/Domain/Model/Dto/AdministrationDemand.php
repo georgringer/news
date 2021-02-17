@@ -43,7 +43,7 @@ class AdministrationDemand extends NewsDemand
     /**
      * @var int
      */
-    protected $hidden = '';
+    protected $hidden = 0;
 
     /**
      * @var int
@@ -59,7 +59,7 @@ class AdministrationDemand extends NewsDemand
     }
 
     /**
-     * @param $recursive
+     * @param string $recursive
      *
      * @return void
      */
@@ -77,7 +77,7 @@ class AdministrationDemand extends NewsDemand
     }
 
     /**
-     * @param $selectedCategories
+     * @param string|array $selectedCategories
      *
      * @return void
      */
@@ -101,8 +101,7 @@ class AdministrationDemand extends NewsDemand
     }
 
     /**
-     * @param $sortingField
-     *
+     * @param string $sortingField
      * @return void
      */
     public function setSortingField(string $sortingField): void
@@ -119,8 +118,7 @@ class AdministrationDemand extends NewsDemand
     }
 
     /**
-     * @param $sortingDirection
-     *
+     * @param string $sortingDirection
      * @return void
      */
     public function setSortingDirection(string $sortingDirection): void
@@ -138,10 +136,9 @@ class AdministrationDemand extends NewsDemand
 
     /**
      * @param string $searchWord
-     *
      * @return void
      */
-    public function setSearchWord($searchWord): void
+    public function setSearchWord(string $searchWord): void
     {
         $this->searchWord = $searchWord;
     }
@@ -156,10 +153,9 @@ class AdministrationDemand extends NewsDemand
 
     /**
      * @param int $hidden
-     *
      * @return void
      */
-    public function setHidden($hidden): void
+    public function setHidden(int $hidden): void
     {
         $this->hidden = $hidden;
     }
@@ -177,7 +173,7 @@ class AdministrationDemand extends NewsDemand
      *
      * @return void
      */
-    public function setArchived($archived): void
+    public function setArchived(int $archived): void
     {
         $this->archived = $archived;
     }

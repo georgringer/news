@@ -69,7 +69,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         'default' => 'getDetailPidFromDefaultDetailPid',
     ];
 
-    /** @var $cObj ContentObjectRenderer */
+    /** @var ContentObjectRenderer */
     protected $cObj;
 
     /**
@@ -97,8 +97,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     /**
      * Render link to news item or internal/external pages
      *
-     * @param string $content optional content which is linked
-     * @return string link
+     * @return null|string link
      */
     public function render(): ?string
     {

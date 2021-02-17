@@ -420,8 +420,9 @@ class News extends AbstractEntity
     public function getYearOfArchive(): int
     {
         if ($this->getArchive()) {
-            return $this->getArchive()->format('Y');
+            return (int)$this->getArchive()->format('Y');
         }
+        return 0;
     }
 
     /**
@@ -432,8 +433,9 @@ class News extends AbstractEntity
     public function getMonthOfArchive(): int
     {
         if ($this->getArchive()) {
-            return $this->getArchive()->format('m');
+            return (int)$this->getArchive()->format('m');
         }
+        return 0;
     }
 
     /**
@@ -446,6 +448,7 @@ class News extends AbstractEntity
         if ($this->archive) {
             return (int)$this->archive->format('d');
         }
+        return 0;
     }
 
     /**
@@ -554,8 +557,7 @@ class News extends AbstractEntity
     /**
      * Set related from
      *
-     * @param \GeorgRinger\News\Domain\Model\News[] $relatedFrom
-     *
+     * @param ObjectStorage $relatedFrom
      * @return void
      */
     public function setRelatedFrom($relatedFrom): void
@@ -706,8 +708,7 @@ class News extends AbstractEntity
     /**
      * Set related links
      *
-     * @param \GeorgRinger\News\Domain\Model\Link[] $relatedLinks related links relation
-     *
+     * @param ObjectStorage $relatedLinks related links relation
      * @return void
      */
     public function setRelatedLinks($relatedLinks): void
@@ -728,11 +729,10 @@ class News extends AbstractEntity
     /**
      * Set type of news
      *
-     * @param int $type type
-     *
+     * @param string $type type
      * @return void
      */
-    public function setType($type): void
+    public function setType(string $type): void
     {
         $this->type = $type;
     }
@@ -922,7 +922,7 @@ class News extends AbstractEntity
         $items = [];
         if ($this->getFalMedia()) {
             foreach ($this->getFalMedia() as $mediaItem) {
-                /** @var $mediaItem FileReference */
+                /** @var FileReference $mediaItem */
                 $configuration = (int)$mediaItem->getOriginalResource()->getProperty('showinpreview');
                 if (in_array($configuration, $list, true)) {
                     $items[] = $mediaItem;
@@ -1348,11 +1348,10 @@ class News extends AbstractEntity
     /**
      * Set hidden flag
      *
-     * @param int $hidden hidden flag
-     *
+     * @param bool $hidden hidden flag
      * @return void
      */
-    public function setHidden($hidden): void
+    public function setHidden(bool $hidden): void
     {
         $this->hidden = $hidden;
     }
@@ -1370,11 +1369,11 @@ class News extends AbstractEntity
     /**
      * Set deleted flag
      *
-     * @param int $deleted deleted flag
+     * @param bool $deleted deleted flag
      *
      * @return void
      */
-    public function setDeleted($deleted): void
+    public function setDeleted(bool $deleted): void
     {
         $this->deleted = $deleted;
     }
@@ -1409,8 +1408,9 @@ class News extends AbstractEntity
     public function getYearOfStarttime(): int
     {
         if ($this->getStarttime()) {
-            return $this->getStarttime()->format('Y');
+            return (int)$this->getStarttime()->format('Y');
         }
+        return 0;
     }
 
     /**
@@ -1421,8 +1421,9 @@ class News extends AbstractEntity
     public function getMonthOfStarttime(): int
     {
         if ($this->getStarttime()) {
-            return $this->getStarttime()->format('m');
+            return (int)$this->getStarttime()->format('m');
         }
+        return 0;
     }
 
     /**
@@ -1435,6 +1436,7 @@ class News extends AbstractEntity
         if ($this->starttime) {
             return (int)$this->starttime->format('d');
         }
+        return 0;
     }
 
     /**
@@ -1454,7 +1456,7 @@ class News extends AbstractEntity
      *
      * @return void
      */
-    public function setEndtime($endtime): void
+    public function setEndtime(\DateTime $endtime): void
     {
         $this->endtime = $endtime;
     }
@@ -1467,8 +1469,9 @@ class News extends AbstractEntity
     public function getYearOfEndtime(): int
     {
         if ($this->getEndtime()) {
-            return $this->getEndtime()->format('Y');
+            return (int)$this->getEndtime()->format('Y');
         }
+        return 0;
     }
 
     /**
@@ -1479,8 +1482,9 @@ class News extends AbstractEntity
     public function getMonthOfEndtime(): int
     {
         if ($this->getEndtime()) {
-            return $this->getEndtime()->format('m');
+            return (int)$this->getEndtime()->format('m');
         }
+        return 0;
     }
 
     /**
@@ -1493,6 +1497,7 @@ class News extends AbstractEntity
         if ($this->endtime) {
             return (int)$this->endtime->format('d');
         }
+        return 0;
     }
 
     /**
@@ -1530,7 +1535,7 @@ class News extends AbstractEntity
     /**
      * Set import id
      *
-     * @param int $importId import id
+     * @param string $importId import id
      *
      * @return void
      */
