@@ -158,31 +158,31 @@ class NewsController extends NewsBaseController
         }
 
         $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'], true));
-        $demand->setCategoryConjunction($settings['categoryConjunction']);
-        $demand->setIncludeSubCategories($settings['includeSubCategories']);
-        $demand->setTags($settings['tags']);
+        $demand->setCategoryConjunction((string)$settings['categoryConjunction']);
+        $demand->setIncludeSubCategories((bool)$settings['includeSubCategories']);
+        $demand->setTags((string)$settings['tags']);
 
-        $demand->setTopNewsRestriction($settings['topNewsRestriction']);
+        $demand->setTopNewsRestriction((int)$settings['topNewsRestriction']);
         $demand->setTimeRestriction($settings['timeRestriction']);
         $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh']);
-        $demand->setArchiveRestriction($settings['archiveRestriction']);
-        $demand->setExcludeAlreadyDisplayedNews($settings['excludeAlreadyDisplayedNews']);
-        $demand->setHideIdList($settings['hideIdList']);
+        $demand->setArchiveRestriction((string)$settings['archiveRestriction']);
+        $demand->setExcludeAlreadyDisplayedNews((bool)$settings['excludeAlreadyDisplayedNews']);
+        $demand->setHideIdList((string)$settings['hideIdList']);
 
         if ($settings['orderBy']) {
             $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
         }
-        $demand->setOrderByAllowed($settings['orderByAllowed']);
+        $demand->setOrderByAllowed((string)$settings['orderByAllowed']);
 
-        $demand->setTopNewsFirst($settings['topNewsFirst']);
+        $demand->setTopNewsFirst((bool)$settings['topNewsFirst']);
 
-        $demand->setLimit($settings['limit']);
-        $demand->setOffset($settings['offset']);
+        $demand->setLimit((int)$settings['limit']);
+        $demand->setOffset((int)$settings['offset']);
 
-        $demand->setSearchFields($settings['search']['fields']);
-        $demand->setDateField($settings['dateField']);
-        $demand->setMonth($settings['month']);
-        $demand->setYear($settings['year']);
+        $demand->setSearchFields((string)$settings['search']['fields']);
+        $demand->setDateField((string)$settings['dateField']);
+        $demand->setMonth((int)$settings['month']);
+        $demand->setYear((int)$settings['year']);
 
         $demand->setStoragePage(Page::extendPidListByChildren(
             $settings['startingpoint'],
