@@ -38,6 +38,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $this->mockedViewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['dummy'], [], '', true, true, false);
 
         $this->news = new News();
+        $this->news->_setProperty('uid', 123);
         $this->news->setPid(9);
 
         $this->importDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.xml');
