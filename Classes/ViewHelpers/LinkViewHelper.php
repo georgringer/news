@@ -220,11 +220,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
 
         $configuration['useCacheHash'] = 1;
         $configuration['additionalParams'] = (isset($configuration['additionalParams']) ? $configuration['additionalParams'] : '') . '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
-
-        if (!isset($tsSettings['link']['skipControllerAndAction']) || (int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
-            $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
-                '&tx_news_pi1[action]=detail';
-        }
+        $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
 
         // Add date as human readable
         if (isset($tsSettings['link']['hrDate']) && $tsSettings['link']['hrDate'] == 1 || isset($tsSettings['link']['hrDate']['_typoScriptNodeValue']) && $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {

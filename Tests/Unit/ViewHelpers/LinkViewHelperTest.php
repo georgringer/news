@@ -117,28 +117,6 @@ class LinkViewHelperTest extends BaseTestCase
      *
      * @return void
      */
-    public function controllerAndActionAreSkippedInUrl(): void
-    {
-        $newsItem = new \GeorgRinger\News\Domain\Model\News();
-        $newsItem->_setProperty('uid', 123);
-
-        $tsSettings = [
-            'link' => [
-                'skipControllerAndAction' => 1
-            ]
-        ];
-        $configuration = [];
-        $expected = '&tx_news_pi1[news]=123';
-
-        $result = $this->mockedViewHelper->_call('getLinkToNewsItem', $newsItem, $tsSettings, $configuration);
-        $this->assertEquals($expected, $result['additionalParams']);
-    }
-
-    /**
-     * @test
-     *
-     * @return void
-     */
     public function getDetailPidFromCategoriesReturnsCorrectValue(): void
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);

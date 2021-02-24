@@ -307,8 +307,7 @@ class NewsController extends NewsBaseController
      */
     protected function forwardToDetailActionWhenRequested()
     {
-        if (empty($this->settings['link']['skipControllerAndAction'])
-            || !$this->isActionAllowed('detail')
+        if (!$this->isActionAllowed('detail')
             || !$this->request->hasArgument('news')
         ) {
             return;

@@ -682,7 +682,6 @@ Properties
 	demandClass_                          string
 	`link\.hrDate`_                       integer
 	`link\.typesOpeningInNewWindow`_      string
-	`link\.skipControllerAndAction`_      integer
 	facebookLocale_                       string
 	googlePlusLocale_                     string
 	opengraph_                            array
@@ -980,21 +979,6 @@ link.typesOpeningInNewWindow
    Description
          Comma separated list of news types which open with target="_blank"
          Default is 2 which is the type "Link to external page"
-   Default
-         2
-
-.. _tsLinkSkipControllerAndAction:
-
-link.skipControllerAndAction
-""""""""""""""""""""""""""""
-.. container:: table-row
-
-   Property
-         link.skipControllerAndAction
-   Data type
-         boolean
-   Description
-         If set, the arguments *controller** and *action* are **not** added to the link.
    Default
          2
 

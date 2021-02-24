@@ -69,8 +69,6 @@ plugin.tx_news {
 				month = n
 				year = Y
 			}
-
-			skipControllerAndAction = 0
 		}
 
 		cropMaxCharacters = 150
