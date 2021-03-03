@@ -220,6 +220,9 @@ class NewsController extends NewsBaseController
                 continue;
             }
             if ($propertyValue !== '' || $this->settings['allowEmptyStringsForOverwriteDemand']) {
+                if (in_array($propertyName, ['categories'], true)) {
+                    $propertyValue = GeneralUtility::trimExplode(',', $propertyValue, true);
+                }
                 ObjectAccess::setProperty($demand, $propertyName, $propertyValue);
             }
         }

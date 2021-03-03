@@ -183,17 +183,17 @@ class News extends AbstractEntity
     /**
      * @var string
      */
-    protected $internalurl;
+    protected $internalurl = '';
 
     /**
      * @var string
      */
-    protected $externalurl;
+    protected $externalurl = '';
 
     /**
      * @var bool
      */
-    protected $istopnews;
+    protected $istopnews = false;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\TtContent>
@@ -210,7 +210,7 @@ class News extends AbstractEntity
     /**
      * @var string
      */
-    protected $pathSegment;
+    protected $pathSegment = '';
 
     /**
      * @var int
