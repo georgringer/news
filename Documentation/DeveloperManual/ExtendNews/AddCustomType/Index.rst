@@ -20,25 +20,25 @@ To add your custom type, you have to follow the steps below.
 .. note::
    In this example the new type will be called 'myCustomNewsType' and is configured to only show the fields 'title' and 'bodytext'.
 
-1) Typoscript
--------------
+1) Class Mapping
+----------------
 
-.. code-block:: typoscript
+Create a file `Configuration/Extbase/Persistence/Classes.php`
 
-    config.tx_extbase.persistence.classes {
-        GeorgRinger\News\Domain\Model\News {
-            subclasses {
-                3 = Vendor\ExtName\Domain\Model\MyCustomNewsType
-            }
-        }
+.. code-block:: php
 
-        Vendor\ExtName\Domain\Model\MyCustomNewsType {
-            mapping {
-                recordType = 3
-                tableName = tx_news_domain_model_news
-            }
-        }
-    }
+   <?php
+   return [
+    \GeorgRinger\News\Domain\Model\News::class => [
+        'subclasses' => [
+            \Vendor\ExtName\Domain\Model\MyCustomNewsType::class,
+        ]
+    ],
+    \Vendor\ExtName\Domain\Model\MyCustomNewsType::class => [
+        'tableName' => 'tx_news_domain_model_news',
+        'recordType' => 3,
+    ]
+   ];
 
 2) TCA
 ------
