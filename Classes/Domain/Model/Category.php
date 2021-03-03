@@ -402,7 +402,7 @@ class Category extends AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\Category
      */
-    public function getParentcategory(): \GeorgRinger\News\Domain\Model\Category
+    public function getParentcategory(): ?\GeorgRinger\News\Domain\Model\Category
     {
         return $this->parentcategory instanceof LazyLoadingProxy ? $this->parentcategory->_loadRealInstance() : $this->parentcategory;
     }
