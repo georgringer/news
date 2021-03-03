@@ -86,7 +86,7 @@ class MetaTagViewHelper extends AbstractViewHelper
             if ($arguments['property']) {
                 $pageRenderer->setMetaTag('property', $arguments['property'], $content);
             } elseif ($arguments['name']) {
-                $pageRenderer->setMetaTag('property', $arguments['name'], $content);
+                $pageRenderer->setMetaTag('name', $arguments['name'], $content);
             }
         }
     }
