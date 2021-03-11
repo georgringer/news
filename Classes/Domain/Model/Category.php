@@ -414,7 +414,7 @@ class Category extends AbstractEntity
      *
      * @return void
      */
-    public function setParentcategory(self $category): void
+    public function setParentcategory($category): void
     {
         $this->parentcategory = $category;
     }

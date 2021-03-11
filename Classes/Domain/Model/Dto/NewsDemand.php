@@ -365,9 +365,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @param string $searchFields search fields
      *
-     * @return static
+     * @return NewsDemand
      */
-    public function setSearchFields(string $searchFields): self
+    public function setSearchFields(string $searchFields): NewsDemand
     {
         $this->searchFields = $searchFields;
         return $this;
