@@ -242,7 +242,13 @@ timeRestriction
 
             plugin.tx_news.settings.timeRestriction =-1 week
 
-         The time limit offers 2 different options.
+         The time limit offers 3 different options.
+	 
+	 **Date**
+	 
+	 A date in the format `HH:mm DD-MM-YYYY` can be set and only news records that are newer than this date are shown.
+	 
+	 Example: 15:30 01-04-2020 (April 1st, 2020 at 3.30 pm)
 
          **Time in seconds**
 
