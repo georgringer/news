@@ -333,7 +333,11 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setRespectSysLanguage(false);
-        $query->getQuerySettings()->setIgnoreEnableFields(!$respectEnableFields);
+
+        if (!$respectEnableFields) {
+            $query->getQuerySettings()->setIgnoreEnableFields(true);
+            $query->getQuerySettings()->setLanguageOverlayMode(false);
+        }
 
         return $query->matching(
             $query->logicalAnd(
