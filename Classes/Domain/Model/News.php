@@ -549,7 +549,7 @@ class News extends AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\News[]
      */
-    public function getRelated(): array
+    public function getRelated()
     {
         return $this->related;
     }
@@ -570,7 +570,7 @@ class News extends AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\News[]
      */
-    public function getRelatedFrom(): array
+    public function getRelatedFrom()
     {
         return $this->relatedFrom;
     }
