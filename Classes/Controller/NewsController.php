@@ -257,7 +257,7 @@ class NewsController extends NewsBaseController
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
         $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage);
         $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
-        if ($paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
+        if ($paginationClass === NumberedPagination::class && $maximumNumberOfLinks && class_exists(NumberedPagination::class)) {
             $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
         } else {
             $pagination = GeneralUtility::makeInstance(SimplePagination::class, $paginator);
