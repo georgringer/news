@@ -7,6 +7,7 @@ plugin.tx_news {
 		copyright = TYPO3 News
 		category =
 		generator = TYPO3 EXT:news
+		typeNum = 9818
 	}
 
 	opengraph {
