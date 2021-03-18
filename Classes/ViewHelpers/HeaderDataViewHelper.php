@@ -23,7 +23,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  *        <link rel="alternate"
  *            type="application/rss+xml"
  *            title="RSS 2.0"
- *            href="<f:uri.page additionalParams="{type:9818}"/>" />
+ *            href="{f:uri.page(pageType: settings.list.rss.channel.typeNum)}" />
  * </n:headerData>
  * </code>
  * <output>
