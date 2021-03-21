@@ -170,7 +170,7 @@ The names of placeholders are freely selectable.
 Common routeEnhancer configurations
 -----------------------------------
 
-Basic setup (including categories and tags)
+Basic setup (including categories, tags and the RSS/Atom feed)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Prerequisites:**
@@ -232,6 +232,10 @@ If you use the *category menu* or *tag list* plugins to filter news records, the
            type: PersistedAliasMapper
            tableName: tx_news_domain_model_tag
            routeFieldName: slug
+     PageTypeSuffix:
+       type: PageType
+       map:
+         'feed.xml': 9818
 
 .. warning::
 

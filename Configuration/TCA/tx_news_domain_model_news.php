@@ -579,7 +579,6 @@ $tx_news_domain_model_news = [
             ],
         ],
         'path_segment' => [
-            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_news.path_segment',
             'displayCond' => 'VERSION:IS:false',
             'config' => [

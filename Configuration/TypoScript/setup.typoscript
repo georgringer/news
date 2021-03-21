@@ -162,6 +162,7 @@ plugin.tx_news {
 					copyright = {$plugin.tx_news.rss.channel.copyright}
 					generator = {$plugin.tx_news.rss.channel.generator}
 					link = {$plugin.tx_news.rss.channel.link}
+					typeNum = {$plugin.tx_news.rss.channel.typeNum}
 				}
 			}
 		}

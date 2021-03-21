@@ -37,22 +37,21 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
 
 .. code-block:: typoscript
 
-    [getTSFE().type == 9818]
-    config {
-        disableAllHeaderCode = 1
-        xhtml_cleaning = none
-        admPanel = 0
-        debug = 0
-        disablePrefixComment = 1
-        metaCharset = utf-8
-        additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
-        absRefPrefix = {$plugin.tx_news.rss.channel.link}
-        linkVars >
-    }
-
     pageNewsRSS = PAGE
     pageNewsRSS {
-    	typeNum = 9818
+    	# Override the typeNum if you have more than one feed
+    	typeNum = {$plugin.tx_news.rss.channel.typeNum}
+    	config {
+    		disableAllHeaderCode = 1
+    		xhtml_cleaning = none
+    		admPanel = 0
+    		debug = 0
+    		disablePrefixComment = 1
+    		metaCharset = utf-8
+    		additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
+    		absRefPrefix = {$plugin.tx_news.rss.channel.link}
+    		linkVars >
+    	}
     	10 < tt_content.list.20.news_pi1
     	10 {
     		switchableControllerActions {
@@ -68,10 +67,11 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
     			detailPid = 25
     			startingpoint = 24
     			format = xml
+    			# Override the typeNum if you have more than one feed, must be the same as above!
+    			#list.rss.channel.typeNum = {$plugin.tx_news.rss.channel.typeNum}
     		}
     	}
     }
-    [global]
 
 This example will show all news records which don't have the category with the uid 9 assigned and are saved on the page with uid 24. The single view page is the one with uid 25.
 
@@ -134,7 +134,7 @@ The TypoScript code looks like this.
 
 .. code-block:: typoscript
 
-   [globalVar = TSFE:type = 9818]
+   [globalVar = TSFE:type = {$plugin.tx_news.rss.channel.typeNum}]
       lib.stdheader >
       tt_content.stdWrap.innerWrap >
       tt_content.stdWrap.wrap >
@@ -146,7 +146,7 @@ The TypoScript code looks like this.
       lib.contentElement.templateRootPaths.5 = EXT:news/Resources/Private/Examples/Rss/fluid_styled_content/Templates
 
       pageNewsRSS = PAGE
-      pageNewsRSS.typeNum = 9818
+      pageNewsRSS.typeNum = {$plugin.tx_news.rss.channel.typeNum}
       pageNewsRSS.10 < styles.content.get
       pageNewsRSS.10.select.where = colPos=0 AND list_type = "news_pi1"
       pageNewsRSS.10.select {
@@ -211,7 +211,7 @@ To be able to render a link in the header section of the normal page which point
 .. code-block:: html
 
     <n:headerData>
-        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{f:uri.page(additionalParams:{type:9818})}" />
+        <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{f:uri.page(pageType: settings.list.rss.channel.typeNum)}" />
     </n:headerData>
 
 Troubleshooting

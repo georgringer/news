@@ -2,8 +2,8 @@
 {namespace n=GeorgRinger\News\ViewHelpers}<feed xmlns="http://www.w3.org/2005/Atom">
 	<title>{settings.list.rss.channel.title}</title>
 	<link href="{settings.list.rss.channel.link}"/>
-	<link rel="self" href="<f:format.htmlentities><f:uri.page pageType="9818"/></f:format.htmlentities>"/>
-	<id><f:uri.page/></id>
+	<link rel="self" href="{f:uri.page(pageType: settings.list.rss.channel.typeNum, absolute: 'true')}"/>
+	<id>{f:uri.page(absolute: 'true')}</id>
 	<updated><f:format.date format="c" date="now"/></updated>
 	<f:if condition="{news}">
 		<f:for each="{news}" as="newsItem">
@@ -16,7 +16,7 @@
 				</author>
 				<published><f:format.date format="c">{newsItem.datetime}</f:format.date></published>
 				<updated><f:format.date format="c">{newsItem.tstamp}</f:format.date></updated>
-				<link rel="alternate" type="text/html" href="<f:format.htmlspecialchars><n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" configuration="{forceAbsoluteUrl: 1}" /></f:format.htmlspecialchars>"/>
+				<link rel="alternate" type="text/html" href="{n:link(newsItem: newsItem, settings: settings, uriOnly: '1', configuration: '{forceAbsoluteUrl: 1}') -> f:format.htmlspecialchars()}"/>
 				<summary>{newsItem.teaser -> f:format.stripTags() -> f:format.htmlspecialchars()}</summary>
 				<content type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
 					<f:format.html>{newsItem.bodytext}</f:format.html>
