@@ -76,15 +76,15 @@ $boot = static function (): void {
     =========================================================================== */
     // For linkvalidator
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('linkvalidator')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.txt">');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig\'');
     }
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('guide')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('  <INCLUDE_TYPOSCRIPT: source="DIR:EXT:news/Configuration/TSconfig/Tours" extensions="ts">');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Tours/AdministrationModule.tsconfig\'');
     }
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
-    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TSconfig/ContentElementWizard.txt">
-    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TSconfig/Administration.txt">
+    @import \'EXT:news/Configuration/TSconfig/ContentElementWizard.tsconfig\'
+    @import \'EXT:news/Configuration/TSconfig/Administration.tsconfig\'
     ');
 
     /* ===========================================================================
