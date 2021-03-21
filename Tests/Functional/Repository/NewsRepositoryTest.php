@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Tests\Functional\Repository;
 
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -10,10 +10,10 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
