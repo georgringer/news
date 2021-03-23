@@ -13,6 +13,7 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
+use GeorgRinger\News\Utility\ClassCacheManager;
 use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
@@ -97,6 +98,7 @@ class NewsController extends NewsBaseController
      */
     public function initializeAction()
     {
+        GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple();
         if (isset($this->settings['format'])) {
             $this->request->setFormat($this->settings['format']);
         }

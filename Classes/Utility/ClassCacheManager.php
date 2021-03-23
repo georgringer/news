@@ -47,6 +47,23 @@ class ClassCacheManager
         }
     }
 
+    public function reBuildSimple() {
+        $classPath = 'Classes/';
+
+        if (!function_exists('token_get_all')) {
+            throw new \Exception(('The function token_get_all must exist. Please install the module PHP Module Tokenizer'));
+        }
+
+        if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
+            return;
+        }
+
+        $files = GeneralUtility::getFilesInDir(Environment::getVarPath() . '/cache/code/news/', 'php');
+        if (empty($files)) {
+            $this->reBuild();
+        }
+    }
+
     public function reBuild()
     {
         $classPath = 'Classes/';
