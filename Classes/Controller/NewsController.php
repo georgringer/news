@@ -17,10 +17,12 @@ use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -72,41 +74,26 @@ class NewsController extends NewsBaseController
     protected $originalSettings = [];
 
     /**
-     * Inject a news repository to enable DI
-     *
-     * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
-     *
-     * @return void
+     * NewsController constructor.
+     * @param NewsRepository $newsRepository
+     * @param CategoryRepository $categoryRepository
+     * @param TagRepository $tagRepository
+     * @param ConfigurationManagerInterface $configurationManager
      */
-    public function injectNewsRepository(NewsRepository $newsRepository): void
+    public function __construct(
+        NewsRepository $newsRepository,
+        CategoryRepository $categoryRepository,
+        TagRepository $tagRepository,
+        ConfigurationManagerInterface $configurationManager
+    )
     {
         $this->newsRepository = $newsRepository;
-    }
-
-    /**
-     * Inject a category repository to enable DI
-     *
-     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     *
-     * @return void
-     */
-    public function injectCategoryRepository(CategoryRepository $categoryRepository)
-    {
         $this->categoryRepository = $categoryRepository;
-    }
-
-    /**
-     * Inject a tag repository to enable DI
-     *
-     * @param \GeorgRinger\News\Domain\Repository\TagRepository $tagRepository
-     *
-     * @return void
-     */
-    public function injectTagRepository(TagRepository $tagRepository): void
-    {
         $this->tagRepository = $tagRepository;
-    }
+        $this->configurationManager = $configurationManager;
 
+        $this->buildSettings();
+    }
     /**
      * Initializes the current action
      *
@@ -139,13 +126,13 @@ class NewsController extends NewsBaseController
      * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
      */
     protected function createDemandObjectFromSettings(
-        $settings,
+        array $settings,
         $class = NewsDemand::class
     ): \GeorgRinger\News\Domain\Model\Dto\NewsDemand {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
-        /* @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
-        $demand = $this->objectManager->get($class, $settings);
+        /* @var $demand NewsDemand */
+        $demand = GeneralUtility::makeInstance($class, $settings);
         if (!$demand instanceof NewsDemand) {
             throw new \UnexpectedValueException(
                 sprintf(
@@ -209,7 +196,7 @@ class NewsController extends NewsBaseController
      * @param array $overwriteDemand
      * @return \GeorgRinger\News\Domain\Model\Dto\NewsDemand
      */
-    protected function overwriteDemandObject($demand, $overwriteDemand): \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+    protected function overwriteDemandObject(NewsDemand $demand, array $overwriteDemand): \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     {
         foreach ($this->ignoredSettingsForOverride as $property) {
             unset($overwriteDemand[$property]);
@@ -232,7 +219,7 @@ class NewsController extends NewsBaseController
     /**
      * Output a list view of news
      *
-     * @param array $overwriteDemand
+     * @param array|null $overwriteDemand
      *
      * @return void
      */
@@ -250,8 +237,7 @@ class NewsController extends NewsBaseController
 
         // pagination
         $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
-
-        $itemsPerPage = (int)($paginationConfiguration['itemsPerPage'] ?? 10);
+        $itemsPerPage = (int)($paginationConfiguration['itemsPerPage'] ?: 10);
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
@@ -490,7 +476,7 @@ class NewsController extends NewsBaseController
     /**
      * Render a menu by dates, e.g. years, months or dates
      *
-     * @param array $overwriteDemand
+     * @param array|null $overwriteDemand
      *
      * @return void
      */
@@ -557,7 +543,7 @@ class NewsController extends NewsBaseController
         }
 
         if (is_null($search)) {
-            $search = $this->objectManager->get(Search::class);
+            $search = GeneralUtility::makeInstance(Search::class);
         }
         $demand->setSearch($search);
 
@@ -660,15 +646,11 @@ class NewsController extends NewsBaseController
     /**
      * Injects the Configuration Manager and is initializing the framework settings
      *
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
+     * @param ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
      *
      * @return void
      */
-    public function injectConfigurationManager(
-        ConfigurationManagerInterface $configurationManager
-    ) {
-        $this->configurationManager = $configurationManager;
-
+    public function buildSettings() {
         $tsSettings = $this->configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
             'news',
