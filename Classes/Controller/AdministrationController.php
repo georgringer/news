@@ -5,6 +5,9 @@ namespace GeorgRinger\News\Controller;
 use GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList;
 use GeorgRinger\News\Domain\Model\Dto\AdministrationDemand;
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use GeorgRinger\News\Domain\Repository\TagRepository;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
@@ -48,10 +51,9 @@ class AdministrationController extends NewsController
     /** @var array */
     protected $tsConfiguration = [];
 
-    /** @var \GeorgRinger\News\Domain\Repository\CategoryRepository */
-    protected $categoryRepository;
-
-    /** @var AdministrationRepository */
+    /**
+     * @var \GeorgRinger\News\Domain\Repository\AdministrationRepository
+     */
     protected $administrationRepository;
 
     /** @var ConfigurationManagerInterface */
@@ -71,7 +73,6 @@ class AdministrationController extends NewsController
         $this->pageUid = (int)GeneralUtility::_GET('id');
         $this->pageInformation = BackendUtilityCore::readPageAccess($this->pageUid, '');
         $this->setTsConfig();
-        $this->administrationRepository = GeneralUtility::makeInstance(AdministrationRepository::class);
         parent::initializeAction();
     }
 
@@ -85,11 +86,33 @@ class AdministrationController extends NewsController
     protected $defaultViewObjectName = BackendTemplateView::class;
 
     /**
+     * AdministrationController constructor.
+     * @param NewsRepository $newsRepository
+     * @param CategoryRepository $categoryRepository
+     * @param TagRepository $tagRepository
+     * @param ConfigurationManagerInterface $configurationManager
+     * @param AdministrationRepository $administrationRepository
+     * @param AdministrationRepository $iconFactory
+     */
+    public function __construct(
+        NewsRepository $newsRepository,
+        CategoryRepository $categoryRepository,
+        TagRepository $tagRepository,
+        ConfigurationManagerInterface $configurationManager,
+        AdministrationRepository $administrationRepository,
+        IconFactory $iconFactory
+    )
+    {
+        parent::__construct($newsRepository, $categoryRepository, $tagRepository, $configurationManager);
+        $this->administrationRepository = $administrationRepository;
+        $this->iconFactory = $iconFactory;
+    }
+
+    /**
      * @param ViewInterface $view
      */
     protected function initializeView(ViewInterface $view)
     {
-        $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         parent::initializeView($view);
         $view->getModuleTemplate()->getDocHeaderComponent()->setMetaInformation([]);
 
@@ -122,7 +145,7 @@ class AdministrationController extends NewsController
 
     protected function createMenu(): void
     {
-        $uriBuilder = $this->objectManager->get(UriBuilder::class);
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
         $menu = $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->makeMenu();
@@ -177,7 +200,7 @@ class AdministrationController extends NewsController
     {
         $buttonBar = $this->view->getModuleTemplate()->getDocHeaderComponent()->getButtonBar();
 
-        $uriBuilder = $this->objectManager->get(UriBuilder::class);
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
         if ($this->request->getControllerActionName() === 'index' && $this->isFilteringEnabled()) {
@@ -270,7 +293,7 @@ class AdministrationController extends NewsController
         // Shortcut
         if ($this->getBackendUser()->mayMakeShortcut()) {
             $shortcutButton = $buttonBar->makeShortcutButton()
-                ->setModuleName('web_NewsAdministration')
+                ->setRouteIdentifier('web_NewsAdministration')
                 ->setGetVariables(['route', 'module', 'id'])
                 ->setDisplayName('Shortcut');
             $buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
@@ -299,7 +322,7 @@ class AdministrationController extends NewsController
         $this->redirectToPageOnStart();
 
         $demandVars = GeneralUtility::_GET('tx_news_web_newsadministration');
-        $demand = $this->objectManager->get(AdministrationDemand::class);
+        $demand = GeneralUtility::makeInstance(AdministrationDemand::class);
         $autoSubmitForm = 0;
         if (is_array($demandVars['demand'])) {
             foreach ($demandVars['demand'] as $key => $value) {

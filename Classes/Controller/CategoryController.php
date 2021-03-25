@@ -2,7 +2,7 @@
 
 namespace GeorgRinger\News\Controller;
 
-use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -16,24 +16,6 @@ use GeorgRinger\News\Domain\Repository\CategoryRepository;
 class CategoryController extends NewsController
 {
     const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
-
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
-     */
-    protected $categoryRepository;
-
-    /**
-     * Inject a category repository to enable DI
-     *
-     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     *
-     * @return void
-     */
-    public function injectCategoryRepository(CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
     /**
      * List categories
      *
