@@ -29,30 +29,30 @@ class Tag extends AbstractValueObject
     /**
      * @var string
      */
-    protected $title;
+    protected $title = '';
 
     /**
      * @var string
      */
-    protected $seoTitle;
+    protected $seoTitle = '';
 
     /**
      * @var string
      */
-    protected $seoDescription;
+    protected $seoDescription = '';
 
     /**
      * @var string
      */
-    protected $seoHeadline;
+    protected $seoHeadline = '';
 
     /**
      * @var string
      */
-    protected $seoText;
+    protected $seoText = '';
 
     /** @var string */
-    protected $slug;
+    protected $slug = '';
 
     /**
      * Get crdate
