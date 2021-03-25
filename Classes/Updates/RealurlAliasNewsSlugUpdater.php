@@ -39,9 +39,15 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
     /** @var SlugService */
     protected $slugService;
 
-    public function __construct()
+    /**
+     * RealurlAliasNewsSlugUpdater constructor.
+     * @param SlugService $slugService
+     */
+    public function __construct(
+        SlugService $slugService
+    )
     {
-        $this->slugService = GeneralUtility::makeInstance(SlugService::class);
+        $this->slugService = $slugService;
     }
 
     public function executeUpdate(): bool

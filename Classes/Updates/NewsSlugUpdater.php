@@ -25,9 +25,15 @@ class NewsSlugUpdater implements UpgradeWizardInterface
     /** @var SlugService */
     protected $slugService;
 
-    public function __construct()
+    /**
+     * NewsSlugUpdater constructor.
+     * @param SlugService $slugService
+     */
+    public function __construct(
+        SlugService $slugService
+    )
     {
-        $this->slugService = GeneralUtility::makeInstance(SlugService::class);
+        $this->slugService = $slugService;
     }
 
     public function executeUpdate(): bool
