@@ -3,6 +3,8 @@
 namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 /**
@@ -15,6 +17,7 @@ use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 class AbstractImportService
 {
@@ -46,41 +49,35 @@ class AbstractImportService
     protected $importFolder;
 
     /**
-     * @var \TYPO3\CMS\Core\Log\Logger
+     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
      */
-    protected $logger;
+    protected $signalSlotDispatcher;
 
     /**
-     * Inject the object manager
-     *
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
-     *
-     * @return void
+     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
      */
-    public function injectObjectManager(ObjectManager $objectManager): void
+    protected $categoryRepository;
+    /**
+     * AbstractImportService constructor.
+     * @param PersistenceManager $persistenceManager
+     * @param EmConfiguration $emSettings
+     * @param ObjectManager $objectManager
+     * @param CategoryRepository $categoryRepository
+     * @param Dispatcher $signalSlotDispatcher
+     */
+    public function __construct(
+        PersistenceManager $persistenceManager,
+        EmConfiguration $emSettings,
+        ObjectManager $objectManager,
+        CategoryRepository $categoryRepository,
+        Dispatcher $signalSlotDispatcher
+    )
     {
-        $this->objectManager = $objectManager;
-    }
-
-    /**
-     * Inject Persistence Manager
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
-     *
-     * @return void
-     */
-    public function injectPersistenceManager(
-        PersistenceManager $persistenceManager
-    ): void {
+        $this->emSettings = $emSettings;
         $this->persistenceManager = $persistenceManager;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->emSettings = GeneralUtility::makeInstance(EmConfiguration::class);
+        $this->objectManager = $objectManager;
+        $this->categoryRepository = $categoryRepository;
+        $this->signalSlotDispatcher = $signalSlotDispatcher;
     }
 
     /**

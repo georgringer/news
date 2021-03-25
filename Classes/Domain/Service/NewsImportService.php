@@ -2,12 +2,14 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TtContentRepository;
+use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
 /**
@@ -17,6 +19,8 @@ use TYPO3\CMS\Core\Resource\File;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
@@ -38,75 +42,40 @@ class NewsImportService extends AbstractImportService
     protected $ttContentRepository;
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
+     * @var Logger
      */
-    protected $categoryRepository;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
-     */
-    protected $signalSlotDispatcher;
+    protected $logger;
 
     /**
      * @var array
      */
     protected $settings = [];
 
-    public function __construct()
+    /**
+     * NewsImportService constructor.
+     * @param PersistenceManager $persistenceManager
+     * @param EmConfiguration $emSettings
+     * @param ObjectManager $objectManager
+     * @param CategoryRepository $categoryRepository
+     * @param Dispatcher $signalSlotDispatcher
+     * @param NewsRepository $newsRepository
+     * @param TtContentRepository $ttContentRepository
+     */
+    public function __construct(
+        PersistenceManager $persistenceManager,
+        EmConfiguration $emSettings,
+        ObjectManager $objectManager,
+        CategoryRepository $categoryRepository,
+        Dispatcher $signalSlotDispatcher,
+        NewsRepository $newsRepository,
+        TtContentRepository $ttContentRepository
+    )
     {
+        parent::__construct($persistenceManager, $emSettings, $objectManager, $categoryRepository, $signalSlotDispatcher);
         $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
         $this->logger = $logger;
-
-        parent::__construct();
-    }
-
-    /**
-     * Inject the news repository
-     *
-     * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
-     *
-     * @return void
-     */
-    public function injectNewsRepository(NewsRepository $newsRepository): void
-    {
         $this->newsRepository = $newsRepository;
-    }
-
-    /**
-     * Inject the category repository
-     *
-     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     *
-     * @return void
-     */
-    public function injectCategoryRepository(CategoryRepository $categoryRepository): void
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
-    /**
-     * Inject the ttcontent repository
-     *
-     * @param \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
-     *
-     * @return void
-     */
-    public function injectTtContentRepository(
-        TtContentRepository $ttContentRepository
-    ): void {
         $this->ttContentRepository = $ttContentRepository;
-    }
-
-    /**
-     * Inject SignalSlotDispatcher
-     *
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
-     *
-     * @return void
-     */
-    public function injectSignalSlotDispatcher(Dispatcher $signalSlotDispatcher): void
-    {
-        $this->signalSlotDispatcher = $signalSlotDispatcher;
     }
 
     /**
@@ -132,7 +101,7 @@ class NewsImportService extends AbstractImportService
         }
 
         if ($news === null) {
-            $news = $this->objectManager->get(News::class);
+            $news = GeneralUtility::makeInstance(News::class);
             $this->newsRepository->add($news);
         } else {
             $this->logger->info(sprintf('News exists already with id "%s".', $news->getUid()));
@@ -156,11 +125,14 @@ class NewsImportService extends AbstractImportService
         if (!empty($importItemOverwrite)) {
             $importItem = array_merge($importItem, $importItemOverwrite);
         }
-
         $news->setPid($importItem['pid']);
         $news->setHidden($importItem['hidden']);
-        $news->setStarttime($importItem['starttime']);
-        $news->setEndtime($importItem['endtime']);
+        if ($importItem['starttime']) {
+            $news->setStarttime($importItem['starttime']);
+        }
+        if ($importItem['endtime']) {
+            $news->setStarttime($importItem['endtime']);
+        }
         if (!empty($importItem['fe_group'])) {
             $news->setFeGroup((string)$importItem['fe_group']);
         }
@@ -247,7 +219,7 @@ class NewsImportService extends AbstractImportService
                         $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
                     }
 
-                    $media = $this->objectManager->get(FileReference::class);
+                    $media = GeneralUtility::makeInstance(FileReference::class);
                     $media->setFileUid($file->getUid());
                     $news->addFalMedia($media);
                 }
@@ -294,7 +266,7 @@ class NewsImportService extends AbstractImportService
                         $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
                     }
 
-                    $relatedFile = $this->objectManager->get(FileReference::class);
+                    $relatedFile = GeneralUtility::makeInstance(FileReference::class);
                     $relatedFile->setFileUid($file->getUid());
                     $news->addFalRelatedFile($relatedFile);
                 }
@@ -311,7 +283,7 @@ class NewsImportService extends AbstractImportService
             foreach ($importItem['related_links'] as $link) {
                 /** @var $relatedLink Link */
                 if (($relatedLink = $this->getRelatedLinkIfAlreadyExists($news, $link['uri'])) === false) {
-                    $relatedLink = $this->objectManager->get(Link::class);
+                    $relatedLink = GeneralUtility::makeInstance(Link::class);
                     $relatedLink->setUri($link['uri']);
                     $news->addRelatedLink($relatedLink);
                 }
