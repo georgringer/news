@@ -23,9 +23,15 @@ class ItemsProcFunc
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
-    public function __construct()
+    /**
+     * ItemsProcFunc constructor.
+     * @param TemplateLayout $templateLayout
+     */
+    public function __construct(
+        TemplateLayout $templateLayout
+    )
     {
-        $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
+        $this->templateLayoutsUtility = $templateLayout;
     }
 
     /**

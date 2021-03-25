@@ -26,9 +26,15 @@ class RecordListQueryHook
     /** @var RecordListConstraint */
     protected $recordListConstraint;
 
-    public function __construct()
+    /**
+     * RecordListQueryHook constructor.
+     * @param RecordListConstraint $recordListConstraint
+     */
+    public function __construct(
+        RecordListConstraint $recordListConstraint
+    )
     {
-        $this->recordListConstraint = GeneralUtility::makeInstance(RecordListConstraint::class);
+        $this->recordListConstraint = $recordListConstraint;
     }
 
     /**

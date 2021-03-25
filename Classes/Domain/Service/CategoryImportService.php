@@ -55,18 +55,6 @@ class CategoryImportService extends AbstractImportService
     }
 
     /**
-     * Inject SignalSlotDispatcher
-     *
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
-     *
-     * @return void
-     */
-    public function injectSignalSlotDispatcher(Dispatcher $signalSlotDispatcher): void
-    {
-        $this->signalSlotDispatcher = $signalSlotDispatcher;
-    }
-
-    /**
      * @param array $importArray
      *
      * @return void
