@@ -30,7 +30,7 @@
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.1",
-        "typo3/cms-install": "11.1.x-dev"
+        "typo3/cms-install": "^10.4 || ^11"
     },
     "autoload": {
         "psr-4": {
