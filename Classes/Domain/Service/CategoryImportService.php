@@ -3,8 +3,10 @@
 namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -14,6 +16,8 @@ use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
  */
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
@@ -25,45 +29,28 @@ class CategoryImportService extends AbstractImportService
     const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
+     * @var Logger
      */
-    protected $categoryRepository;
+    protected $logger;
 
     /**
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+     * CategoryImportService constructor.
+     * @param PersistenceManager $persistenceManager
+     * @param EmConfiguration $emSettings
+     * @param ObjectManager $objectManager
+     * @param CategoryRepository $categoryRepository
+     * @param Dispatcher $signalSlotDispatcher
      */
-    protected $signalSlotDispatcher;
-
-    public function __construct()
-    {
+    public function __construct(
+        PersistenceManager $persistenceManager,
+        EmConfiguration $emSettings,
+        ObjectManager $objectManager,
+        CategoryRepository $categoryRepository,
+        Dispatcher $signalSlotDispatcher
+    ) {
+        parent::__construct($persistenceManager, $emSettings, $objectManager, $categoryRepository, $signalSlotDispatcher);
         $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
         $this->logger = $logger;
-
-        parent::__construct();
-    }
-
-    /**
-     * Inject the category repository.
-     *
-     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     *
-     * @return void
-     */
-    public function injectCategoryRepository(CategoryRepository $categoryRepository): void
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
-    /**
-     * Inject SignalSlotDispatcher
-     *
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
-     *
-     * @return void
-     */
-    public function injectSignalSlotDispatcher(Dispatcher $signalSlotDispatcher): void
-    {
-        $this->signalSlotDispatcher = $signalSlotDispatcher;
     }
 
     /**
@@ -139,7 +126,7 @@ class CategoryImportService extends AbstractImportService
         if (is_null($category)) {
             $this->logger->info('Category is new');
 
-            $category = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Category::class);
+            $category = GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Category::class);
             $this->categoryRepository->add($category);
         } else {
             $this->logger->info(sprintf('Category exists already with id "%s".', $category->getUid()));
@@ -224,7 +211,7 @@ class CategoryImportService extends AbstractImportService
                 }
             }
 
-            $fileReference = $this->objectManager->get(FileReference::class);
+            $fileReference = GeneralUtility::makeInstance(FileReference::class);
             $fileReference->setFileUid($newImage->getUid());
             $fileReference->setPid($category->getPid());
             $category->addImage($fileReference);

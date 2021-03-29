@@ -22,7 +22,7 @@ class Category extends AbstractEntity
     /**
      * @var int
      */
-    protected $sorting;
+    protected $sorting = 0;
 
     /**
      * @var \DateTime
@@ -42,7 +42,7 @@ class Category extends AbstractEntity
     /**
      * @var bool
      */
-    protected $hidden;
+    protected $hidden = false;
 
     /**
      * @var \DateTime
@@ -52,7 +52,7 @@ class Category extends AbstractEntity
     /**
      * @var int
      */
-    protected $sysLanguageUid;
+    protected $sysLanguageUid = 0;
 
     /**
      * @var int
@@ -105,30 +105,30 @@ class Category extends AbstractEntity
      * keep it as string as it should be only used during imports
      * @var string
      */
-    protected $feGroup;
+    protected $feGroup = '';
 
     /**
      * @var string
      */
-    protected $seoTitle;
+    protected $seoTitle = '';
 
     /**
      * @var string
      */
-    protected $seoDescription;
+    protected $seoDescription = '';
 
     /**
      * @var string
      */
-    protected $seoHeadline;
+    protected $seoHeadline = '';
 
     /**
      * @var string
      */
-    protected $seoText;
+    protected $seoText = '';
 
     /** @var string */
-    protected $slug;
+    protected $slug = '';
 
     /**
      * Initialize images

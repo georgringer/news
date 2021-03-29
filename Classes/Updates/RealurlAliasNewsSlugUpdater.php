@@ -18,7 +18,6 @@ namespace GeorgRinger\News\Updates;
  */
 
 use GeorgRinger\News\Service\SlugService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
@@ -39,9 +38,14 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
     /** @var SlugService */
     protected $slugService;
 
-    public function __construct()
-    {
-        $this->slugService = GeneralUtility::makeInstance(SlugService::class);
+    /**
+     * RealurlAliasNewsSlugUpdater constructor.
+     * @param SlugService $slugService
+     */
+    public function __construct(
+        SlugService $slugService
+    ) {
+        $this->slugService = $slugService;
     }
 
     public function executeUpdate(): bool

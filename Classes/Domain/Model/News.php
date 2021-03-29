@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\Domain\Model;
 
+use DateTime;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -18,32 +19,32 @@ class News extends AbstractEntity
 {
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $crdate;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $tstamp;
 
     /**
      * @var int
      */
-    protected $sysLanguageUid;
+    protected $sysLanguageUid = 0;
 
     /**
      * @var int
      */
-    protected $l10nParent;
+    protected $l10nParent = 0;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $starttime;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $endtime;
 
@@ -52,62 +53,62 @@ class News extends AbstractEntity
      *
      * @var string
      */
-    protected $feGroup;
+    protected $feGroup = '';
 
     /**
      * @var bool
      */
-    protected $hidden;
+    protected $hidden = false;
 
     /**
      * @var bool
      */
-    protected $deleted;
+    protected $deleted = false;
 
     /**
      * @var int
      */
-    protected $cruserId;
+    protected $cruserId = 0;
 
     /**
      * @var string
      */
-    protected $title;
+    protected $title = '';
 
     /**
      * @var string
      */
-    protected $alternativeTitle;
+    protected $alternativeTitle = '';
 
     /**
      * @var string
      */
-    protected $teaser;
+    protected $teaser ='';
 
     /**
      * @var string
      */
-    protected $bodytext;
+    protected $bodytext = '';
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $datetime;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $archive;
 
     /**
      * @var string
      */
-    protected $author;
+    protected $author = '';
 
     /**
      * @var string
      */
-    protected $authorEmail;
+    protected $authorEmail = '';
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Category>
@@ -144,17 +145,17 @@ class News extends AbstractEntity
     /**
      * @var string
      */
-    protected $type;
+    protected $type = '';
 
     /**
      * @var string
      */
-    protected $keywords;
+    protected $keywords = '';
 
     /**
      * @var string
      */
-    protected $description;
+    protected $description = '';
 
     /**
      * Fal media items
@@ -215,25 +216,25 @@ class News extends AbstractEntity
     /**
      * @var int
      */
-    protected $editlock;
+    protected $editlock = 0;
 
     /**
      * @var string
      */
-    protected $importId;
+    protected $importId = '';
 
     /**
      * @var string
      */
-    protected $importSource;
+    protected $importSource = '';
 
     /**
      * @var int
      */
-    protected $sorting;
+    protected $sorting = 0;
 
     /** @var string */
-    protected $notes;
+    protected $notes ='';
 
     /**
      * Initialize categories and media relation
@@ -341,9 +342,9 @@ class News extends AbstractEntity
     /**
      * Get datetime
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDatetime(): \DateTime
+    public function getDatetime(): DateTime
     {
         return $this->datetime;
     }
@@ -351,7 +352,7 @@ class News extends AbstractEntity
     /**
      * Set date time
      *
-     * @param \DateTime $datetime datetime
+     * @param DateTime $datetime datetime
      *
      * @return void
      */
@@ -393,9 +394,9 @@ class News extends AbstractEntity
     /**
      * Get archive date
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getArchive(): \DateTime
+    public function getArchive(): DateTime
     {
         return $this->archive;
     }
@@ -403,7 +404,7 @@ class News extends AbstractEntity
     /**
      * Set archive date
      *
-     * @param \DateTime $archive archive date
+     * @param DateTime $archive archive date
      *
      * @return void
      */
@@ -1146,9 +1147,9 @@ class News extends AbstractEntity
     /**
      * Get creation date
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCrdate(): \DateTime
+    public function getCrdate(): DateTime
     {
         return $this->crdate;
     }
@@ -1156,7 +1157,7 @@ class News extends AbstractEntity
     /**
      * Set creation date
      *
-     * @param \DateTime $crdate
+     * @param DateTime $crdate
      *
      * @return void
      */
@@ -1198,9 +1199,9 @@ class News extends AbstractEntity
     /**
      * Get timestamp
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getTstamp(): \DateTime
+    public function getTstamp(): DateTime
     {
         return $this->tstamp;
     }
@@ -1208,7 +1209,7 @@ class News extends AbstractEntity
     /**
      * Set time stamp
      *
-     * @param \DateTime $tstamp time stamp
+     * @param DateTime $tstamp time stamp
      *
      * @return void
      */
@@ -1381,9 +1382,9 @@ class News extends AbstractEntity
     /**
      * Get start time
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getStarttime(): \DateTime
+    public function getStarttime(): DateTime
     {
         return $this->starttime;
     }
@@ -1391,7 +1392,7 @@ class News extends AbstractEntity
     /**
      * Set start time
      *
-     * @param \DateTime $starttime start time
+     * @param DateTime $starttime start time
      *
      * @return void
      */
@@ -1442,9 +1443,9 @@ class News extends AbstractEntity
     /**
      * Get endtime
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getEndtime(): \DateTime
+    public function getEndtime(): DateTime
     {
         return $this->endtime;
     }
@@ -1452,11 +1453,11 @@ class News extends AbstractEntity
     /**
      * Set end time
      *
-     * @param \DateTime $endtime end time
+     * @param DateTime $endtime end time
      *
      * @return void
      */
-    public function setEndtime(\DateTime $endtime): void
+    public function setEndtime(DateTime $endtime): void
     {
         $this->endtime = $endtime;
     }

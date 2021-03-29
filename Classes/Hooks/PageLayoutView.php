@@ -66,10 +66,17 @@ class PageLayoutView
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
-    public function __construct()
-    {
-        $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
-        $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+    /**
+     * PageLayoutView constructor.
+     * @param TemplateLayout $templateLayout
+     * @param IconFactory $iconFactory
+     */
+    public function __construct(
+        TemplateLayout $templateLayout,
+        IconFactory $iconFactory
+    ) {
+        $this->templateLayoutsUtility = $templateLayout;
+        $this->iconFactory = $iconFactory;
     }
 
     /**

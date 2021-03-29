@@ -116,9 +116,14 @@ class BackendUtility
     /** @var EmConfiguration */
     protected $configuration;
 
-    public function __construct()
-    {
-        $this->configuration = GeneralUtility::makeInstance(EmConfiguration::class);
+    /**
+     * BackendUtility constructor.
+     * @param EmConfiguration $configuration
+     */
+    public function __construct(
+        EmConfiguration $configuration
+    ) {
+        $this->configuration = $configuration;
     }
 
     /**

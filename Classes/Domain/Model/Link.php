@@ -29,22 +29,22 @@ class Link extends AbstractValueObject
     /**
      * @var string
      */
-    protected $title;
+    protected $title = '';
 
     /**
      * @var string
      */
-    protected $description;
+    protected $description = '';
 
     /**
      * @var string
      */
-    protected $uri;
+    protected $uri = '';
 
     /**
      * @var int
      */
-    protected $l10nParent;
+    protected $l10nParent = 0;
 
     /**
      * Get creation date

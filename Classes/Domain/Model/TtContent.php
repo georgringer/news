@@ -29,112 +29,112 @@ class TtContent extends AbstractEntity
     /**
      * @var string
      */
-    protected $CType;
+    protected $CType = '';
 
     /**
      * @var string
      */
-    protected $header;
+    protected $header = '';
 
     /**
      * @var string
      */
-    protected $headerPosition;
+    protected $headerPosition = '';
 
     /**
      * @var string
      */
-    protected $bodytext;
+    protected $bodytext = '';
 
     /**
      * @var int
      */
-    protected $colPos;
+    protected $colPos = 0;
 
     /**
      * @var string
      */
-    protected $image;
+    protected $image = '';
 
     /**
      * @var int
      */
-    protected $imagewidth;
+    protected $imagewidth = 0;
 
     /**
      * @var int
      */
-    protected $imageorient;
+    protected $imageorient = 0;
 
     /**
      * @var string
      */
-    protected $imagecaption;
+    protected $imagecaption = '';
 
     /**
      * @var int
      */
-    protected $imagecols;
+    protected $imagecols = 0;
 
     /**
      * @var int
      */
-    protected $imageborder;
+    protected $imageborder = 0;
 
     /**
      * @var string
      */
-    protected $media;
+    protected $media = '';
 
     /**
      * @var string
      */
-    protected $layout;
+    protected $layout = '';
 
     /**
      * @var int
      */
-    protected $cols;
+    protected $cols = 0;
 
     /**
      * @var string
      */
-    protected $subheader;
+    protected $subheader = '';
 
     /**
      * @var string
      */
-    protected $headerLink;
+    protected $headerLink = '';
 
     /**
      * @var string
      */
-    protected $imageLink;
+    protected $imageLink = '';
 
     /**
      * @var string
      */
-    protected $imageZoom;
+    protected $imageZoom = '';
 
     /**
      * @var string
      */
-    protected $altText;
+    protected $altText = '';
 
     /**
      * @var string
      */
-    protected $titleText;
+    protected $titleText = '';
 
     /**
      * @var string
      */
-    protected $headerLayout;
+    protected $headerLayout = '';
 
     /**
      * @var string
      */
-    protected $listType;
+    protected $listType = '';
 
     /**
      * @return \DateTime
