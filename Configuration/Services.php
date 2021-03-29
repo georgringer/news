@@ -7,7 +7,6 @@ use GeorgRinger\News\Hooks\BackendUtility;
 use GeorgRinger\News\Hooks\ItemsProcFunc;
 use GeorgRinger\News\Hooks\PageLayoutView;
 use GeorgRinger\News\Updates\NewsSlugUpdater;
-use GeorgRinger\News\Controller\NewsController;
 use GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -21,7 +20,6 @@ return function (ContainerConfigurator $container, ContainerBuilder $containerBu
     $containerBuilder->registerForAutoconfiguration(PageLayoutView::class)->addTag('news.PageLayoutView');
     $containerBuilder->registerForAutoconfiguration(NewsSlugUpdater::class)->addTag('news.NewsSlugUpdater');
     $containerBuilder->registerForAutoconfiguration(RealurlAliasNewsSlugUpdater::class)->addTag('news.RealurlAliasNewsSlugUpdater');
-    $containerBuilder->registerForAutoconfiguration(NewsController::class)->addTag('news.NewsController');
 
     $containerBuilder->addCompilerPass(new DependencyInjection\SingletonPass('news.NewsFlexFormManipulation'));
     $containerBuilder->addCompilerPass(new DependencyInjection\SingletonPass('news.RecordListQueryHook'));
@@ -30,5 +28,4 @@ return function (ContainerConfigurator $container, ContainerBuilder $containerBu
     $containerBuilder->addCompilerPass(new DependencyInjection\SingletonPass('news.PageLayoutView'));
     $containerBuilder->addCompilerPass(new DependencyInjection\SingletonPass('news.NewsSlugUpdater'));
     $containerBuilder->addCompilerPass(new DependencyInjection\SingletonPass('news.RealurlAliasNewsSlugUpdater'));
-    $containerBuilder->addCompilerPass(new DependencyInjection\SingletonPass('news.NewsController'));
 };
