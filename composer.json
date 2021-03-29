@@ -29,7 +29,8 @@
         "georgringer/numbered-pagination": "^1.0.1"
     },
     "require-dev": {
-        "php-coveralls/php-coveralls": "^2.1"
+        "php-coveralls/php-coveralls": "^2.1",
+        "typo3/cms-install": "11.1.x-dev"
     },
     "autoload": {
         "psr-4": {
