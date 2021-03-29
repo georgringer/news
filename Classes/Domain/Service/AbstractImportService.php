@@ -16,7 +16,6 @@ use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 class AbstractImportService
 {
     const UPLOAD_PATH = 'uploads/tx_news/';
