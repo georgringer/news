@@ -2,7 +2,6 @@
 
 namespace GeorgRinger\News\Controller;
 
-
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *

@@ -2,7 +2,6 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
-
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;

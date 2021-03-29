@@ -21,7 +21,7 @@ return function (ContainerConfigurator $container, ContainerBuilder $containerBu
     $containerBuilder->registerForAutoconfiguration(PageLayoutView::class)->addTag('news.PageLayoutView');
     $containerBuilder->registerForAutoconfiguration(NewsSlugUpdater::class)->addTag('news.NewsSlugUpdater');
     $containerBuilder->registerForAutoconfiguration(RealurlAliasNewsSlugUpdater::class)->addTag('news.RealurlAliasNewsSlugUpdater');
-    $containerBuilder->registerForAutoconfiguration(RealurlAliasNewsSlugUpdater::class)->addTag('news.NewsController');
+    $containerBuilder->registerForAutoconfiguration(NewsController::class)->addTag('news.NewsController');
 
     $containerBuilder->addCompilerPass(new DependencyInjection\SingletonPass('news.NewsFlexFormManipulation'));
     $containerBuilder->addCompilerPass(new DependencyInjection\SingletonPass('news.RecordListQueryHook'));
