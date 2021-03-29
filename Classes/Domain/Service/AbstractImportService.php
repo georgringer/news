@@ -2,22 +2,21 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
+
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
-use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 class AbstractImportService
 {
@@ -71,8 +70,7 @@ class AbstractImportService
         ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
         Dispatcher $signalSlotDispatcher
-    )
-    {
+    ) {
         $this->emSettings = $emSettings;
         $this->persistenceManager = $persistenceManager;
         $this->objectManager = $objectManager;

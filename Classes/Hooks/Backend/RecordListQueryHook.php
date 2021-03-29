@@ -32,8 +32,7 @@ class RecordListQueryHook
      */
     public function __construct(
         RecordListConstraint $recordListConstraint
-    )
-    {
+    ) {
         $this->recordListConstraint = $recordListConstraint;
     }
 

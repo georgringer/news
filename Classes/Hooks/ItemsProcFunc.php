@@ -29,8 +29,7 @@ class ItemsProcFunc
      */
     public function __construct(
         TemplateLayout $templateLayout
-    )
-    {
+    ) {
         $this->templateLayoutsUtility = $templateLayout;
     }
 

@@ -101,8 +101,7 @@ class AdministrationController extends NewsController
         ConfigurationManagerInterface $configurationManager,
         AdministrationRepository $administrationRepository,
         IconFactory $iconFactory
-    )
-    {
+    ) {
         parent::__construct($newsRepository, $categoryRepository, $tagRepository, $configurationManager);
         $this->administrationRepository = $administrationRepository;
         $this->iconFactory = $iconFactory;

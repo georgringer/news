@@ -122,8 +122,7 @@ class BackendUtility
      */
     public function __construct(
         EmConfiguration $configuration
-    )
-    {
+    ) {
         $this->configuration = $configuration;
     }
 

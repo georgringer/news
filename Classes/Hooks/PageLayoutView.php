@@ -74,8 +74,7 @@ class PageLayoutView
     public function __construct(
         TemplateLayout $templateLayout,
         IconFactory $iconFactory
-    )
-    {
+    ) {
         $this->templateLayoutsUtility = $templateLayout;
         $this->iconFactory = $iconFactory;
     }

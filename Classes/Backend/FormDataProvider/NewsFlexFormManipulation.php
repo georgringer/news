@@ -137,8 +137,7 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      */
     public function __construct(
         EmConfiguration $emConfiguration
-    )
-    {
+    ) {
         $this->configuration = $emConfiguration;
     }
 

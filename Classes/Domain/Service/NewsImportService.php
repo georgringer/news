@@ -69,8 +69,7 @@ class NewsImportService extends AbstractImportService
         Dispatcher $signalSlotDispatcher,
         NewsRepository $newsRepository,
         TtContentRepository $ttContentRepository
-    )
-    {
+    ) {
         parent::__construct($persistenceManager, $emSettings, $objectManager, $categoryRepository, $signalSlotDispatcher);
         $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
         $this->logger = $logger;

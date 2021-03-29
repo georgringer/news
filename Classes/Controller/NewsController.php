@@ -17,12 +17,10 @@ use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Mvc\Exception\NoSuchArgumentException;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -85,8 +83,7 @@ class NewsController extends NewsBaseController
         CategoryRepository $categoryRepository,
         TagRepository $tagRepository,
         ConfigurationManagerInterface $configurationManager
-    )
-    {
+    ) {
         $this->newsRepository = $newsRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
@@ -650,7 +647,8 @@ class NewsController extends NewsBaseController
      *
      * @return void
      */
-    public function buildSettings() {
+    public function buildSettings()
+    {
         $tsSettings = $this->configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
             'news',
