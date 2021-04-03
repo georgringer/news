@@ -196,10 +196,10 @@ class NewsRepository extends AbstractDemandedRepository
                 $begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
                 $end = mktime(23, 59, 59, 12, 31, $demand->getYear());
             }
-            $constraints['datetime'] = $query->logicalAnd(
+            $constraints['datetime'] = $query->logicalAnd([
                 $query->greaterThanOrEqual($demand->getDateField(), $begin),
                 $query->lessThanOrEqual($demand->getDateField(), $end)
-            );
+            ]);
         }
 
         // Tags
