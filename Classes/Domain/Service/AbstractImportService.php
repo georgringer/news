@@ -4,6 +4,8 @@ namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Folder;
 use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
@@ -21,8 +23,10 @@ use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-class AbstractImportService
+class AbstractImportService implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     const UPLOAD_PATH = 'uploads/tx_news/';
 
     /**

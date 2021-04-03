@@ -6,14 +6,7 @@ use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
-use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
@@ -21,17 +14,15 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
- * Category Import Service
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
  */
 class CategoryImportService extends AbstractImportService
 {
     const ACTION_SET_PARENT_CATEGORY = 1;
     const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
-
-    /**
-     * @var Logger
-     */
-    protected $logger;
 
     /**
      * CategoryImportService constructor.
@@ -49,8 +40,6 @@ class CategoryImportService extends AbstractImportService
         Dispatcher $signalSlotDispatcher
     ) {
         parent::__construct($persistenceManager, $emSettings, $objectManager, $categoryRepository, $signalSlotDispatcher);
-        $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
-        $this->logger = $logger;
     }
 
     /**
@@ -126,7 +115,7 @@ class CategoryImportService extends AbstractImportService
         if (is_null($category)) {
             $this->logger->info('Category is new');
 
-            $category = GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Category::class);
+            $category = GeneralUtility::makeInstance(Category::class);
             $this->categoryRepository->add($category);
         } else {
             $this->logger->info(sprintf('Category exists already with id "%s".', $category->getUid()));

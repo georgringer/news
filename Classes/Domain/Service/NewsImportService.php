@@ -9,15 +9,8 @@ use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TtContentRepository;
-use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
@@ -25,26 +18,24 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
- * News Import Service
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
  */
 class NewsImportService extends AbstractImportService
 {
     const ACTION_IMPORT_L10N_OVERLAY = 1;
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\NewsRepository
+     * @var NewsRepository
      */
     protected $newsRepository;
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\TtContentRepository
+     * @var TtContentRepository
      */
     protected $ttContentRepository;
-
-    /**
-     * @var Logger
-     */
-    protected $logger;
 
     /**
      * @var array
@@ -71,8 +62,6 @@ class NewsImportService extends AbstractImportService
         TtContentRepository $ttContentRepository
     ) {
         parent::__construct($persistenceManager, $emSettings, $objectManager, $categoryRepository, $signalSlotDispatcher);
-        $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
-        $this->logger = $logger;
         $this->newsRepository = $newsRepository;
         $this->ttContentRepository = $ttContentRepository;
     }
@@ -111,16 +100,16 @@ class NewsImportService extends AbstractImportService
     }
 
     /**
-     * @param \GeorgRinger\News\Domain\Model\News $news
+     * @param News $news
      * @param array $importItem
      * @param array $importItemOverwrite
-     * @return \GeorgRinger\News\Domain\Model\News
+     * @return News
      */
     protected function hydrateNewsRecord(
         News $news,
         array $importItem,
         array $importItemOverwrite
-    ): \GeorgRinger\News\Domain\Model\News {
+    ): News {
         if (!empty($importItemOverwrite)) {
             $importItem = array_merge($importItem, $importItemOverwrite);
         }
@@ -402,7 +391,7 @@ class NewsImportService extends AbstractImportService
     /**
      * Get an existing related link object
      *
-     * @param \GeorgRinger\News\Domain\Model\News $news
+     * @param News $news
      * @param string $uri
      * @return bool|Link
      */
