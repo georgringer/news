@@ -4,8 +4,13 @@ namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\Folder;
 use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
+use TYPO3\CMS\Core\Resource\ProcessedFile;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Resource\ResourceStorage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
@@ -21,12 +26,12 @@ class AbstractImportService
     const UPLOAD_PATH = 'uploads/tx_news/';
 
     /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     * @var ObjectManager
      */
     protected $objectManager;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     * @var PersistenceManager
      */
     protected $persistenceManager;
 
@@ -36,22 +41,22 @@ class AbstractImportService
     protected $postPersistQueue = [];
 
     /**
-     * @var \GeorgRinger\News\Domain\Model\Dto\EmConfiguration
+     * @var EmConfiguration
      */
     protected $emSettings;
 
     /**
-     * @var \TYPO3\CMS\Core\Resource\Folder
+     * @var Folder
      */
     protected $importFolder;
 
     /**
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+     * @var Dispatcher
      */
     protected $signalSlotDispatcher;
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
+     * @var CategoryRepository
      */
     protected $categoryRepository;
     /**
@@ -93,7 +98,7 @@ class AbstractImportService
      *
      * @param string $hash
      *
-     * @return \TYPO3\CMS\Core\Resource\File|\TYPO3\CMS\Core\Resource\ProcessedFile|null
+     * @return File|ProcessedFile|null
      */
     protected function findFileByHash($hash)
     {
@@ -119,9 +124,9 @@ class AbstractImportService
      *
      * TODO: catch exception when storage/folder does not exist and return readable message to the user
      *
-     * @return \TYPO3\CMS\Core\Resource\Folder
+     * @return Folder
      */
-    protected function getImportFolder(): \TYPO3\CMS\Core\Resource\Folder
+    protected function getImportFolder(): Folder
     {
         if ($this->importFolder === null) {
             $this->importFolder = $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter() . ':' . $this->emSettings->getResourceFolderImporter());
@@ -142,18 +147,20 @@ class AbstractImportService
     /**
      * Get resource storage
      *
-     * @return \TYPO3\CMS\Core\Resource\ResourceStorage
+     * @return ResourceStorage
      */
-    protected function getResourceStorage(): \TYPO3\CMS\Core\Resource\ResourceStorage
+    protected function getResourceStorage(): ResourceStorage
     {
         return $this->getResourceFactory()->getStorageObject($this->emSettings->getStorageUidImporter());
     }
 
     /**
-     * @return \TYPO3\CMS\Core\Resource\ResourceFactory
+     * @return ResourceFactory
      */
-    protected function getResourceFactory(): \TYPO3\CMS\Core\Resource\ResourceFactory
+    protected function getResourceFactory(): ResourceFactory
     {
-        return ResourceFactory::getInstance();
+        /** @var ResourceFactory $resourceFactory */
+        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+        return $resourceFactory;
     }
 }
