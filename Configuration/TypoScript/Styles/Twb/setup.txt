@@ -30,5 +30,6 @@ plugin.tx_news {
 				}
 			}
 		}
+		alert = {$plugin.tx_news.settings.twb.alert}
 	}
 }
