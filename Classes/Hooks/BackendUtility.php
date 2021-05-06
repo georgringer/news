@@ -140,7 +140,7 @@ class BackendUtility
                 $item = array_keys($getVars['tt_content']);
                 $recordId = (int)$item[0];
 
-                if ($getVars['tt_content'][$recordId] ?? '' === 'new') {
+                if (($getVars['tt_content'][$recordId] ?? '') === 'new') {
                     $fakeRow = [
                         'uid' => 'NEW123'
                     ];
