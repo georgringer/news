@@ -144,7 +144,7 @@ class AdministrationController extends NewsController
 
     protected function createMenu(): void
     {
-        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
         $menu = $this->view->getModuleTemplate()->getDocHeaderComponent()->getMenuRegistry()->makeMenu();
@@ -155,11 +155,10 @@ class AdministrationController extends NewsController
             ['action' => 'newsPidListing', 'label' => 'newsPidListing'],
             ['action' => 'donate', 'label' => 'donate']
         ];
-
         foreach ($actions as $action) {
             $item = $menu->makeMenuItem()
                 ->setTitle($this->getLanguageService()->sL('LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:module.' . $action['label']))
-                ->setHref($uriBuilder->reset()->uriFor($action['action'], [], 'Administration'))
+                ->setHref($uriBuilder->uriFor($action['action'], [], 'Administration', 'News', 'web_NewsAdministration'))
                 ->setActive($this->request->getControllerActionName() === $action['action']);
             $menu->addMenuItem($item);
         }
@@ -199,7 +198,7 @@ class AdministrationController extends NewsController
     {
         $buttonBar = $this->view->getModuleTemplate()->getDocHeaderComponent()->getButtonBar();
 
-        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $uriBuilder = $this->objectManager->get(UriBuilder::class);
         $uriBuilder->setRequest($this->request);
 
         if ($this->request->getControllerActionName() === 'index' && $this->isFilteringEnabled()) {
@@ -292,8 +291,8 @@ class AdministrationController extends NewsController
         // Shortcut
         if ($this->getBackendUser()->mayMakeShortcut()) {
             $shortcutButton = $buttonBar->makeShortcutButton()
-                ->setRouteIdentifier('web_NewsAdministration')
                 ->setGetVariables(['route', 'module', 'id'])
+                ->setModuleName($this->request->getPluginName())
                 ->setDisplayName('Shortcut');
             $buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
         }
