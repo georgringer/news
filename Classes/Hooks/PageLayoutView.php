@@ -92,6 +92,7 @@ class PageLayoutView
         $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
 
         if ($params['row']['list_type'] == self::KEY . '_pi1') {
+            $this->tableData = [];
             $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
 
             // if flexform data is found
