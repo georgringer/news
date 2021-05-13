@@ -84,6 +84,15 @@
 			<trans-unit id="tx_news_domain_model_news.keywords.placeholder" xml:space="preserve">
 				<source>Keyword1, keyword2, keyword3</source>
 			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag" xml:space="preserve">
+				<source>News Tag</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag.title" xml:space="preserve">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
+				<source>SEO</source>
+			</trans-unit>
 			<trans-unit id="tx_news_domain_model_tag.seo.seo_title" xml:space="preserve">
 				<source><![CDATA[<title>-Tag]]></source>
 			</trans-unit>
@@ -95,6 +104,12 @@
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_tag.seo.composeo_text" xml:space="preserve">
 				<source>SEO Text-Container</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag.tabs.news" xml:space="preserve">
+				<source>News</source>
+			</trans-unit>
+			<trans-unit id="tx_news_domain_model_tag.news" xml:space="preserve">
+				<source>Tagged news items</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_category.tabs.seo" xml:space="preserve">
 				<source>SEO</source>
@@ -134,15 +149,6 @@
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_link.uri.placeholder" xml:space="preserve">
 				<source>www.domain.org</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_tag.tabs.seo" xml:space="preserve">
-				<source>SEO</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_tag" xml:space="preserve">
-				<source>News Tag</source>
-			</trans-unit>
-			<trans-unit id="tx_news_domain_model_tag.title" xml:space="preserve">
-				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="tx_news_domain_model_media.showinpreview" xml:space="preserve">
 				<source>Show in list views</source>

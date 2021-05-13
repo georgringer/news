@@ -53,6 +53,22 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     protected $slug;
 
     /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\News>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $news;
+
+    /**
+     * Initialize news relation
+     *
+     * @return \GeorgRinger\News\Domain\Model\Tag
+     */
+    public function __construct()
+    {
+        $this->news = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+
+    /**
      * Get crdate
      *
      * @return \DateTime
@@ -190,5 +206,45 @@ class Tag extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     public function setSlug($slug)
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * Get News
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     */
+    public function getNews()
+    {
+        return $this->news;
+    }
+
+    /**
+     * Set News
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $news news
+     */
+    public function setTags($news)
+    {
+        $this->news = $news;
+    }
+
+    /**
+     * Adds a news
+     *
+     * @param \GeorgRinger\News\Domain\Model\News $news
+     */
+    public function addNews(\GeorgRinger\News\Domain\Model\News $news)
+    {
+        $this->news->attach($news);
+    }
+
+    /**
+     * Removes a news
+     *
+     * @param \GeorgRinger\News\Domain\Model\News $news
+     */
+    public function removeTag(\GeorgRinger\News\Domain\Model\News $news)
+    {
+        $this->news->detach($news);
     }
 }

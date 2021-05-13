@@ -171,14 +171,28 @@ return [
                 'cols' => 48
             ]
         ],
+        'news' => [
+            'exclude' => true,
+            'label' => $ll . 'tx_news_domain_model_tag.news',
+            'config' => [
+                'type' => 'group',
+                'internal_type' => 'db',
+                'allowed' => 'tx_news_domain_model_news',
+                'MM' => 'tx_news_domain_model_news_tag_mm',
+                'foreign_table' => 'tx_news_domain_model_news',
+                'MM_opposite_field' => 'tags',
+                'size' => 10,
+                'minitems' => 0,
+            ],
+        ],
     ],
     'types' => [
         0 => [
             'showitem' => 'title, slug, --palette--;;paletteCore,
             --div--;' . $ll . 'tx_news_domain_model_tag.tabs.seo, seo_title, seo_description, seo_headline, seo_text,
-            --div--;' . $ll . 'notes,
-                    notes,
-			--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
+            --div--;' . $ll . 'tx_news_domain_model_tag.tabs.news, news,
+            --div--;' . $ll . 'notes, notes,
+            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
                 --palette--;;paletteLanguage,'
         ]
