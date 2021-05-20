@@ -47,7 +47,8 @@ class ClassCacheManager
         }
     }
 
-    public function reBuildSimple() {
+    public function reBuildSimple()
+    {
         $classPath = 'Classes/';
 
         if (!function_exists('token_get_all')) {
