@@ -15,6 +15,7 @@ services:
 
   GeorgRinger\News\:
     resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
 
 
   GeorgRinger\News\Utility\ClassCacheManager:
