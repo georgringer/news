@@ -89,7 +89,6 @@ class NewsController extends NewsBaseController
         $this->tagRepository = $tagRepository;
         $this->configurationManager = $configurationManager;
 
-        $this->buildSettings();
     }
     /**
      * Initializes the current action
@@ -98,6 +97,7 @@ class NewsController extends NewsBaseController
      */
     public function initializeAction()
     {
+        $this->buildSettings();
         if (isset($this->settings['format'])) {
             $this->request->setFormat($this->settings['format']);
         }
@@ -223,7 +223,6 @@ class NewsController extends NewsBaseController
     public function listAction(array $overwriteDemand = null)
     {
         $this->forwardToDetailActionWhenRequested();
-
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -665,6 +664,7 @@ class NewsController extends NewsBaseController
         $this->originalSettings = $originalSettings;
 
         // Use stdWrap for given defined settings
+
         if (isset($originalSettings['useStdWrap']) && !empty($originalSettings['useStdWrap'])) {
             $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
             $typoScriptArray = $typoScriptService->convertPlainArrayToTypoScriptArray($originalSettings);
@@ -696,6 +696,7 @@ class NewsController extends NewsBaseController
         }
 
         $this->settings = $originalSettings;
+
     }
 
     /**
