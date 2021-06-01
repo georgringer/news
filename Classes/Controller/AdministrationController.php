@@ -409,7 +409,7 @@ class AdministrationController extends NewsController
         $dblist->script = GeneralUtility::getIndpEnv('REQUEST_URI');
         $dblist->thumbs = $this->getBackendUser()->uc['thumbnailsByDefault'];
         $dblist->allFields = 1;
-        $dblist->localizationView = $this->tsConfiguration['localizationView'] ? MathUtility::forceIntegerInRange($this->tsConfiguration['localizationView'], 0) : 1;
+        $dblist->localizationView = isset($this->tsConfiguration['localizationView']) ? MathUtility::forceIntegerInRange($this->tsConfiguration['localizationView'], 0) : 1;
         $dblist->clickTitleMode = 'edit';
         $dblist->calcPerms = $this->getBackendUser()->calcPerms($this->pageInformation);
         $dblist->showClipboard = 0;
