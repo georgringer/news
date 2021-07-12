@@ -11,14 +11,16 @@ namespace GeorgRinger\News\Hooks;
 use GeorgRinger\News\Service\AccessControlService;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into tcemain which is used to show preview of news item
  *
  */
-class DataHandler
+class DataHandler implements SingletonInterface
 {
+    protected $cacheTagsToFlush = [];
 
     /**
      * Flushes the cache if a news record was edited.
@@ -29,16 +31,15 @@ class DataHandler
     public function clearCachePostProc(array $params)
     {
         if (isset($params['table']) && $params['table'] === 'tx_news_domain_model_news') {
-            $cacheTagsToFlush = [];
             if (isset($params['uid'])) {
-                $cacheTagsToFlush[] = 'tx_news_uid_' . $params['uid'];
+                $this->cacheTagsToFlush[] = 'tx_news_uid_' . $params['uid'];
             }
             if (isset($params['uid_page'])) {
-                $cacheTagsToFlush[] = 'tx_news_pid_' . $params['uid_page'];
+                $this->cacheTagsToFlush[] = 'tx_news_pid_' . $params['uid_page'];
             }
 
             $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
-            foreach ($cacheTagsToFlush as $cacheTag) {
+            foreach (array_unique($this->cacheTagsToFlush) as $cacheTag) {
                 $cacheManager->flushCachesInGroupByTag('pages', $cacheTag);
             }
         }
@@ -141,6 +142,25 @@ class DataHandler
                 // unset table to prevent saving
                 $table = '';
             }
+        }
+    }
+
+    /**
+     * Flush cache for old news pid when moving record
+     *
+     * @param string $table
+     * @param int $uid
+     * @param int $destPid
+     * @param array $propArr
+     * @param array $moveRec
+     * @param int $resolvedPid
+     * @param bool $recordWasMoved
+     * @param \TYPO3\CMS\Core\DataHandling\DataHandler $dataHandler
+     */
+    public function moveRecord($table, $uid, $destPid, $propArr, $moveRec, $resolvedPid, $recordWasMoved, \TYPO3\CMS\Core\DataHandling\DataHandler $dataHandler)
+    {
+        if ($table === 'tx_news_domain_model_news') {
+            $this->cacheTagsToFlush[] = 'tx_news_pid_' . $moveRec['pid'];
         }
     }
 
