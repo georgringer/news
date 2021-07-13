@@ -116,8 +116,6 @@ If you want to show the news title in the breadcrumb menu if the single view is 
 
             1 = TMENU
             1 {
-                noBlur = 1
-
                 NO = 1
                 NO {
                     wrapItemAndSub = <li>|</li>
