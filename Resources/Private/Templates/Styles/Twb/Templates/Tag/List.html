@@ -12,8 +12,8 @@
 <f:section name="content">
 	<f:if condition="{tags}">
 		<ul class="nav nav-sidebar tag-menu-view">
-			{n:tag.count(tagUid:tag.uid) -> f:variable(name: 'tagUsageCount')}
 			<f:for each="{tags}" as="tag">
+                {n:tag.count(tagUid:tag.uid) -> f:variable(name: 'tagUsageCount')}
 				<li class="{f:if(condition:'{tag.uid} == {overwriteDemand.tags}',then:'active',else:'')}">
 					<f:link.page title="{tag.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
 						{tag.title}

@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -7,33 +8,18 @@ namespace GeorgRinger\News\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 /**
  * Category controller
  */
 class CategoryController extends NewsController
 {
     const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
-
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
-     */
-    protected $categoryRepository;
-
-    /**
-     * Inject a category repository to enable DI
-     *
-     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     */
-    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
     /**
      * List categories
      *
      * @param array $overwriteDemand
+     *
+     * @return void
      */
     public function listAction(array $overwriteDemand = null)
     {

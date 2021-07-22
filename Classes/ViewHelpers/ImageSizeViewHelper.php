@@ -43,7 +43,7 @@ class ImageSizeViewHelper extends AbstractViewHelper implements ViewHelperInterf
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): int {
         $value = 0;
         $tsfe = static::getTypoScriptFrontendController();
         if (!is_null($tsfe)) {
@@ -74,7 +74,7 @@ class ImageSizeViewHelper extends AbstractViewHelper implements ViewHelperInterf
     /**
      * @return TypoScriptFrontendController
      */
-    protected static function getTypoScriptFrontendController()
+    protected static function getTypoScriptFrontendController(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
     }

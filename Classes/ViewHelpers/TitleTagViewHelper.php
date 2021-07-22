@@ -27,7 +27,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * <output>
  *    <title>TYPO3 is awesome</title>
  * </output>
- *
  */
 class TitleTagViewHelper extends AbstractViewHelper implements ViewHelperInterface
 {
@@ -37,12 +36,14 @@ class TitleTagViewHelper extends AbstractViewHelper implements ViewHelperInterfa
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
+     *
+     * @return void
      */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): void {
         // Skip if current record is part of tt_content CType shortcut
         if (!empty($GLOBALS['TSFE']->recordRegister)
             && is_array($GLOBALS['TSFE']->recordRegister)

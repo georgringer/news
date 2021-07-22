@@ -23,8 +23,10 @@ class NothingViewHelperTest extends BaseTestCase
      * Test of nothing viewHelper
      *
      * @test
+     *
+     * @return void
      */
-    public function noResultExpected()
+    public function noResultExpected(): void
     {
         $viewHelper = $this->getAccessibleMock(NothingViewHelper::class, ['renderChildren']);
         $viewHelper->expects($this->once())->method('renderChildren')->will($this->returnValue('whatever content'));

@@ -1,0 +1,10 @@
+plugin.tx_news {
+	view.twb {
+		# cat=plugin.tx_news/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:news/Resources/Private/Templates/Styles/Twb/Templates
+		# cat=plugin.tx_news/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:news/Resources/Private/Templates/Styles/Twb/Partials/
+		# cat=plugin.tx_news/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:news/Resources/Private/Templates/Styles/Twb/Layouts/
+	}
+}

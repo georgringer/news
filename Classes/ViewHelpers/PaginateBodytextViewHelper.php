@@ -2,14 +2,15 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use GeorgRinger\News\Domain\Model\News;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Paginate the bodytext which is very useful for longer texts or to increase
@@ -55,9 +56,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *        </div>
  *    </f:if>
  * </n:paginateBodytext>
- *
  */
-class PaginateBodytextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
+class PaginateBodytextViewHelper extends AbstractViewHelper
 {
     /**
      * @var bool
@@ -81,7 +81,7 @@ class PaginateBodytextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
      *
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         $as = $this->arguments['as'];
         $currentPage = $this->arguments['currentPage'];
@@ -165,7 +165,7 @@ class PaginateBodytextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
      * @param string $html
      * @return string
      */
-    protected function extractTag($html)
+    protected function extractTag($html): string
     {
         $tag = '';
         $length = mb_strlen($html);
@@ -185,7 +185,7 @@ class PaginateBodytextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
      * @param string $tag
      * @return bool
      */
-    protected function isSelfClosingTag($tag)
+    protected function isSelfClosingTag($tag): bool
     {
         return mb_substr($tag, -2) === '/>';
     }
@@ -196,7 +196,7 @@ class PaginateBodytextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
      * @param string $tag
      * @return bool
      */
-    protected function isClosingTag($tag)
+    protected function isClosingTag($tag): bool
     {
         return mb_substr($tag, 0, 2) === '</';
     }
@@ -207,7 +207,7 @@ class PaginateBodytextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
      * @param string $tag
      * @return bool
      */
-    protected function isOpeningTag($tag)
+    protected function isOpeningTag($tag): bool
     {
         return !($this->isSelfClosingTag($tag) || $this->isClosingTag($tag));
     }
@@ -218,7 +218,7 @@ class PaginateBodytextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
      * @param string $openingTag
      * @return string
      */
-    protected function getClosingTagByOpeningTag($openingTag)
+    protected function getClosingTagByOpeningTag($openingTag): string
     {
         if (!$tag = mb_strstr(mb_substr($openingTag, 1), ' ', true)) {
             $tag = mb_strstr(mb_substr($openingTag, 1), '>', true);

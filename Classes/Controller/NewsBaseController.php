@@ -1,6 +1,9 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -8,22 +11,21 @@ namespace GeorgRinger\News\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Base controller
- *
  */
-class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class NewsBaseController extends ActionController
 {
 
     /**
@@ -32,8 +34,10 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * or prepare the view in another way before the action is called.
      *
      * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view The view to be initialized
+     *
+     * @return void
      */
-    protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view)
+    protected function initializeView(ViewInterface $view)
     {
         $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
@@ -43,25 +47,28 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         parent::initializeView($view);
     }
 
-    /**
-     * @param RequestInterface $request
-     * @param ResponseInterface $response
-     * @throws \Exception
-     */
-    public function processRequest(RequestInterface $request, ResponseInterface $response)
-    {
-        try {
-            parent::processRequest($request, $response);
-        } catch (\Exception $exception) {
-            $this->handleKnownExceptionsElseThrowAgain($exception);
-        }
-    }
+//    /**
+//     * @param RequestInterface $request
+//     * @param ResponseInterface $response
+//     * @throws \Exception
+//     */
+//    public function processRequest(RequestInterface $request, ResponseInterface $response)
+//    {
+//        try {
+//            parent::processRequest($request, $response);
+//        } catch (\Exception $exception) {
+//            $this->handleKnownExceptionsElseThrowAgain($exception);
+//        }
+//    }
 
     /**
      * @param \Exception $exception
+     *
      * @throws \Exception
+     *
+     * @return void
      */
-    private function handleKnownExceptionsElseThrowAgain(\Exception $exception)
+    private function handleKnownExceptionsElseThrowAgain(\Exception $exception): void
     {
         $previousException = $exception->getPrevious();
 
@@ -83,7 +90,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @throws \InvalidArgumentException
      * @return string
      */
-    protected function handleNoNewsFoundError($configuration)
+    protected function handleNoNewsFoundError($configuration): string
     {
         if (empty($configuration)) {
             return null;
@@ -121,15 +128,16 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             case 'pageNotFoundHandler':
                 $typo3Information = GeneralUtility::makeInstance(Typo3Version::class);
                 if ($typo3Information->getMajorVersion() === 9) {
-                    $GLOBALS['TSFE']->pageNotFoundAndExit('No news entry found.');
-                } else {
+                    $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction($GLOBALS['TYPO3_REQUEST'], 'No news entry found.');
+                    throw new ImmediateResponseException($response);
+                }
                     $message = 'No news entry found!';
                     $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
                         $GLOBALS['TYPO3_REQUEST'],
                         $message
                     );
                     throw new ImmediateResponseException($response, 1590468229);
-                }
+
                 break;
             case 'showStandaloneTemplate':
                 if (isset($configuration[2])) {
@@ -159,7 +167,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      * @return array
      */
-    protected function emitActionSignal($classPart, $signalName, array $signalArguments)
+    protected function emitActionSignal($classPart, $signalName, array $signalArguments): array
     {
         $signalArguments['extendedVariables'] = [];
         return $this->signalSlotDispatcher->dispatch(
@@ -172,7 +180,7 @@ class NewsBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * @return TypoScriptFrontendController
      */
-    protected function getTypoScriptFrontendController()
+    protected function getTypoScriptFrontendController(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
     }

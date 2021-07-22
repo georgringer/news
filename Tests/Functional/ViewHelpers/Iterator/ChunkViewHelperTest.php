@@ -23,8 +23,10 @@ class ChunkViewHelperTest extends FunctionalTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function chunkIsProperlyCreated()
+    public function chunkIsProperlyCreated(): void
     {
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
         $standaloneView->setTemplateSource(

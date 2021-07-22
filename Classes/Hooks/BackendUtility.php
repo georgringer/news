@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Hook into \TYPO3\CMS\Backend\Utility\BackendUtility to change flexform behaviour
  * depending on action selection
- *
  */
 class BackendUtility
 {
@@ -117,35 +116,21 @@ class BackendUtility
     /** @var EmConfiguration */
     protected $configuration;
 
-    public function __construct()
-    {
-        $this->configuration = GeneralUtility::makeInstance(EmConfiguration::class);
-    }
-
     /**
-     * Hook function of \TYPO3\CMS\Backend\Utility\BackendUtility
-     * It is used to change the flexform if it is about news
-     *
-     * @param array &$dataStructure Flexform structure
-     * @param array $conf some strange configuration
-     * @param array $row row of current record
-     * @param string $table table name
+     * BackendUtility constructor.
+     * @param EmConfiguration $configuration
      */
-    public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table)
-    {
-        if ($table === 'tt_content' && $row['CType'] === 'list' && $row['list_type'] === 'news_pi1' && is_array($dataStructure)) {
-            $this->updateFlexforms($dataStructure, $row);
-
-            if ($this->enabledInTsConfig($row['pid'])) {
-                $this->addCategoryConstraints($dataStructure);
-            }
-        }
+    public function __construct(
+        EmConfiguration $configuration
+    ) {
+        $this->configuration = $configuration;
     }
 
     /**
      * @param array $dataStructure
      * @param array $identifier
-     * @return array
+     *
+     * @return array|string
      */
     public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier)
     {
@@ -153,9 +138,18 @@ class BackendUtility
             $getVars = GeneralUtility::_GET('edit');
             if (is_array($getVars['tt_content'])) {
                 $item = array_keys($getVars['tt_content']);
-                $row = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tt_content', (int)$item[0]);
-                if (is_array($row)) {
-                    $this->updateFlexforms($dataStructure, $row);
+                $recordId = (int)$item[0];
+
+                if (($getVars['tt_content'][$recordId] ?? '') === 'new') {
+                    $fakeRow = [
+                        'uid' => 'NEW123'
+                    ];
+                    $this->updateFlexforms($dataStructure, $fakeRow);
+                } else {
+                    $row = BackendUtilityCore::getRecord('tt_content', $recordId);
+                    if (is_array($row)) {
+                        $this->updateFlexforms($dataStructure, $row);
+                    }
                 }
             }
         }
@@ -167,8 +161,11 @@ class BackendUtility
      *
      * @param array|string &$dataStructure flexform structure
      * @param array $row row of current record
+     * @param array $dataStructure
+     *
+     * @return void
      */
-    protected function updateFlexforms(array &$dataStructure, array $row)
+    protected function updateFlexforms(array &$dataStructure, array $row): void
     {
         $selectedView = '';
 
@@ -235,8 +232,10 @@ class BackendUtility
      * Add category restriction to flexforms
      *
      * @param array $structure
+     *
+     * @return void
      */
-    protected function addCategoryConstraints(&$structure)
+    protected function addCategoryConstraints(&$structure): void
     {
         $categoryRestrictionSetting = $this->configuration->getCategoryRestriction();
         $categoryRestriction = '';
@@ -262,8 +261,10 @@ class BackendUtility
      *
      * @param array &$dataStructure flexform structure
      * @param array $fieldsToBeRemoved fields which need to be removed
+     *
+     * @return void
      */
-    protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved)
+    protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved): void
     {
         foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
             $fieldsInSheet = GeneralUtility::trimExplode(',', $sheetFields, true);
@@ -278,7 +279,7 @@ class BackendUtility
      * @param int $pageId
      * @return bool
      */
-    protected function enabledInTsConfig($pageId)
+    protected function enabledInTsConfig($pageId): bool
     {
         $tsConfig = BackendUtilityCore::getPagesTSconfig($pageId);
         if (isset($tsConfig['tx_news.']['categoryRestrictionForFlexForms'])) {

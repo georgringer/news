@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -19,6 +20,8 @@ class TagController extends NewsController
      * List tags
      *
      * @param array $overwriteDemand
+     *
+     * @return void
      */
     public function listAction(array $overwriteDemand = null)
     {

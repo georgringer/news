@@ -41,8 +41,10 @@ class CategoryRepositoryTest extends FunctionalTestCase
      * Test if by import source is done
      *
      * @test
+     *
+     * @return void
      */
-    public function findRecordByImportSource()
+    public function findRecordByImportSource(): void
     {
         $category = $this->categoryRepository->findOneByImportSourceAndImportId('functional_test', '2');
 

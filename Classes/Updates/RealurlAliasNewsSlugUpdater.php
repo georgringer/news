@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\Updates;
@@ -17,7 +18,6 @@ namespace GeorgRinger\News\Updates;
  */
 
 use GeorgRinger\News\Service\SlugService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
@@ -38,9 +38,14 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
     /** @var SlugService */
     protected $slugService;
 
-    public function __construct()
-    {
-        $this->slugService = GeneralUtility::makeInstance(SlugService::class);
+    /**
+     * RealurlAliasNewsSlugUpdater constructor.
+     * @param SlugService $slugService
+     */
+    public function __construct(
+        SlugService $slugService
+    ) {
+        $this->slugService = $slugService;
     }
 
     public function executeUpdate(): bool
@@ -105,7 +110,7 @@ class RealurlAliasNewsSlugUpdater implements UpgradeWizardInterface
      * @param string $inputPrefix input prefix, all names of form fields have to start with this. Append custom name in [ ... ]
      * @return string HTML output
      */
-    public function getUserInput($inputPrefix)
+    public function getUserInput($inputPrefix): string
     {
         return '
             <div class="panel panel-danger">

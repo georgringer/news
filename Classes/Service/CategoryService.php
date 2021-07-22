@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Service for category related stuff
- *
  */
 class CategoryService
 {
@@ -36,7 +35,7 @@ class CategoryService
         $counter = 0,
         $additionalWhere = '',
         $removeGivenIdListFromResult = false
-    ) {
+    ): string {
         if ($additionalWhere !== '') {
             throw new \UnexpectedValueException('The argument $additionalWhere is not supported anymore');
         }
@@ -63,7 +62,7 @@ class CategoryService
      * @param $toBeRemoved string comma separated list
      * @return string
      */
-    public static function removeValuesFromString($result, $toBeRemoved): string
+    public static function removeValuesFromString($result, string $toBeRemoved): string
     {
         $resultAsArray = GeneralUtility::trimExplode(',', $result, true);
         $idListAsArray = GeneralUtility::trimExplode(',', $toBeRemoved, true);
@@ -121,7 +120,7 @@ class CategoryService
      * @return string
      * @throws \UnexpectedValueException
      */
-    public static function translateCategoryRecord($default, array $row = [])
+    public static function translateCategoryRecord($default, array $row = []): string
     {
         if (TYPO3_MODE !== 'BE') {
             throw new \UnexpectedValueException('TYPO3 Mode must be BE');

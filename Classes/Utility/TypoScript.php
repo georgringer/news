@@ -21,7 +21,7 @@ class TypoScript
      * @param array $overload
      * @return array
      */
-    public function override(array $base, array $overload)
+    public function override(array $base, array $overload): array
     {
         $configuration = $overload['settings']['overrideFlexformSettingsIfEmpty'] ?? '';
         $validFields = GeneralUtility::trimExplode(',', $configuration, true);
@@ -54,11 +54,11 @@ class TypoScript
     /**
      * Get value from array by path
      *
-     * @param array $data
-     * @param array $path
-     * @return array|null
+     * @param mixed $data
+     * @param mixed $path
+     * @return mixed
      */
-    protected function getValue(array $data, array $path)
+    protected function getValue($data, $path)
     {
         $found = true;
 
@@ -82,11 +82,13 @@ class TypoScript
      * Set value in array by path
      *
      * @param array $array
-     * @param $path
-     * @param $value
+     * @param array $path
+     * @param mixed $value
+     * @param string[] $path
+     *
      * @return array
      */
-    protected function setValue(array $array, $path, $value)
+    protected function setValue(array $array, array $path, $value): array
     {
         $this->setValueByReference($array, $path, $value);
 
@@ -100,8 +102,10 @@ class TypoScript
      * @param array $array
      * @param array $path
      * @param $value
+     *
+     * @return void
      */
-    private function setValueByReference(array &$array, array $path, $value)
+    private function setValueByReference(array &$array, array $path, $value): void
     {
         while (count($path) > 1) {
             $key = array_shift($path);

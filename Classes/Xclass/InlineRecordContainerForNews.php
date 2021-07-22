@@ -26,7 +26,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
      * @param array $data
      * @return string
      */
-    protected function renderForeignRecordHeader(array $data)
+    protected function _renderForeignRecordHeader(array $data): string
     {
         $languageService = $this->getLanguageService();
         $inlineConfig = $data['inlineParentConfig'];
@@ -79,7 +79,6 @@ class InlineRecordContainerForNews extends InlineRecordContainer
                 <div class="form-irre-header-cell form-irre-header-icon" id="' . $objectId . '_iconcontainer" style="vertical-align:top;padding-top:8px;">' . $iconImg . '</div>
 				<div class="form-irre-header-cell form-irre-header-body">' . $label . '</div>
 				<div class="form-irre-header-cell form-irre-header-control t3js-formengine-irre-control">' . $this->renderForeignRecordHeaderControl($data) . '</div>';
-
         } else {
             $header = '
                 <button class="form-irre-header-cell form-irre-header-button" ' . $data['ariaAttributesString'] . '>' . '
@@ -96,7 +95,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
      * @param string $cType
      * @return string
      */
-    protected function getWarningLabel($cType)
+    protected function getWarningLabel($cType): string
     {
         $message = sprintf(
             $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.noMatchingValue'),

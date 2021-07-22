@@ -19,16 +19,18 @@
         "GPL-2.0-or-later"
     ],
     "require": {
-        "typo3/cms-core": "^9.5.17 || ^10.4.12"
+        "typo3/cms-core": "^10.4 || ^11"
     },
     "conflict": {
         "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
     },
     "suggest": {
-        "reelworx/rx-shariff": "^12 || ^13"
+        "reelworx/rx-shariff": "^12 || ^13",
+        "georgringer/numbered-pagination": "^1.0.1"
     },
     "require-dev": {
-        "php-coveralls/php-coveralls": "^2.1"
+        "php-coveralls/php-coveralls": "^2.1",
+        "typo3/cms-install": "^10.4 || ^11"
     },
     "autoload": {
         "psr-4": {
@@ -55,9 +57,8 @@
     "extra": {
         "typo3/cms": {
             "extension-key": "news",
-            "cms-package-dir": "{$vendor-dir}/typo3/cms",
-            "web-dir": ".Build/Web"
+            "app-dir": ".Build",
+            "web-dir": ".Build/public"
         }
     }
-
 }

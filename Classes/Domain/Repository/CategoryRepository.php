@@ -20,18 +20,17 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * Category repository with all callable functionality
- *
  */
-class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
+class CategoryRepository extends AbstractDemandedRepository
 {
-    protected function createConstraintsFromDemand(
-        QueryInterface $query,
-        DemandInterface $demand
-    ) {
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
+    {
+        return [];
     }
 
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
+        return [];
     }
 
     /**
@@ -67,7 +66,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      * Find categories by a given pid
      *
      * @param int $pid pid
-     * @return QueryInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
     public function findParentCategoriesByPid($pid)
     {
@@ -132,7 +132,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      *
      * @param array $idList list of id s
      * @param array $ordering ordering
-     * @return QueryInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
     public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {
@@ -166,7 +167,8 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      * Find categories by a given parent
      *
      * @param int $parent parent
-     * @return QueryInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
     public function findChildren($parent)
     {
@@ -184,8 +186,10 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      *
      * @param array $idList
      * return void
+     *
+     * @return void
      */
-    protected function overlayTranslatedCategoryIds(array &$idList)
+    protected function overlayTranslatedCategoryIds(array &$idList): void
     {
         $language = $this->getSysLanguageUid();
         if ($language > 0 && !empty($idList)) {
@@ -212,14 +216,14 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      *
      * @return int
      */
-    protected function getSysLanguageUid()
+    protected function getSysLanguageUid(): int
     {
         $sysLanguage = 0;
 
         if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() === 10) {
             $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
         } elseif (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-            $sysLanguage = $GLOBALS['TSFE']->sys_language_content;
+            $sysLanguage = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'contentId');
         } elseif ((int)GeneralUtility::_GP('L')) {
             $sysLanguage = (int)GeneralUtility::_GP('L');
         }
@@ -234,7 +238,7 @@ class CategoryRepository extends \GeorgRinger\News\Domain\Repository\AbstractDem
      * @param array $rows
      * @return array
      */
-    protected function replaceCategoryIds(array $idList, array $rows)
+    protected function replaceCategoryIds(array $idList, array $rows): array
     {
         foreach ($rows as $row) {
             $pos = array_search($row['l10n_parent'], $idList);

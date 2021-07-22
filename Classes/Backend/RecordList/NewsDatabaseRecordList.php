@@ -26,7 +26,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
      * @param string $excludeList Comma separated list of fields NOT to include ("sortField" or "sortRev")
      * @return string
      */
-    public function listURL($alternativeId = '', $table = '-1', $excludeList = '')
+    public function listURL($alternativeId = '', $table = '-1', $excludeList = ''): string
     {
         $urlParameters = [];
         if ((string)$alternativeId !== '') {

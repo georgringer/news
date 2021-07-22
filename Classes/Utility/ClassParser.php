@@ -27,7 +27,7 @@ class ClassParser
         return array_shift($this->classes);
     }
 
-    public function getClassesImplementing($interface)
+    public function getClassesImplementing($interface): array
     {
         $implementers = [];
         if (isset($this->implements[$interface])) {
@@ -38,7 +38,7 @@ class ClassParser
         return $implementers;
     }
 
-    public function getClassesExtending($class)
+    public function getClassesExtending($class): array
     {
         $extenders = [];
         if (isset($this->extends[$class])) {
@@ -49,7 +49,7 @@ class ClassParser
         return $extenders;
     }
 
-    public function parse($file)
+    public function parse($file): void
     {
         $file = realpath($file);
         $tokens = token_get_all(file_get_contents($file));

@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\Utility;
 
+use TYPO3\CMS\Core\Cache\CacheManager;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -9,15 +10,15 @@ namespace GeorgRinger\News\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class ClassLoader
  */
-class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
+class ClassLoader implements SingletonInterface
 {
 
     /**
@@ -63,8 +64,9 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * Register instance of this class as spl autoloader
      *
+     * @return void
      */
-    public static function registerAutoloader()
+    public static function registerAutoloader(): void
     {
         spl_autoload_register([GeneralUtility::makeInstance(self::class), 'loadClass'], true, true);
     }
@@ -76,7 +78,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      * @param string $className Name of the class/interface to load
      * @return bool
      */
-    public function loadClass($className)
+    public function loadClass($className): bool
     {
         if (!$this->isValidInstance) {
             return false;
@@ -101,9 +103,10 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      * Get extension key from namespaced classname
      *
      * @param string $className
-     * @return string
+     *
+     * @return null|string
      */
-    protected function getExtensionKey($className)
+    protected function getExtensionKey($className): ?string
     {
         $extensionKey = null;
 
@@ -127,7 +130,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
      * @param string $className
      * @return bool
      */
-    protected function isValidClassName($className)
+    protected function isValidClassName($className): bool
     {
         if (GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Domain\\') || GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Controller\\')) {
             $modifiedClassName = $this->changeClassName($className);
@@ -138,7 +141,7 @@ class ClassLoader implements \TYPO3\CMS\Core\SingletonInterface
         return false;
     }
 
-    protected function changeClassName($className)
+    protected function changeClassName(string $className): string
     {
         return str_replace('\\', '/', str_replace('GeorgRinger\\News\\', '', $className));
     }

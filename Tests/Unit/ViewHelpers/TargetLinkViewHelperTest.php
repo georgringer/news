@@ -30,8 +30,10 @@ class TargetLinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function canCreateViewHelperClassInstance()
+    public function canCreateViewHelperClassInstance(): void
     {
         $instance = $this->getPreparedInstance();
         $this->assertInstanceOf(TargetLinkViewHelper::class, $instance);
@@ -41,9 +43,12 @@ class TargetLinkViewHelperTest extends BaseTestCase
      * Test if correct target is returned
      *
      * @test
+     *
      * @dataProvider correctTargetIsReturnedDataProvider
+     *
+     * @return void
      */
-    public function correctTargetIsReturned($link, $expectedResult)
+    public function correctTargetIsReturned($link, $expectedResult): void
     {
         $viewHelper = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(['dummy'])->getMock();
         $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContextInterface::class)->getMock());

@@ -212,25 +212,6 @@ The same happens for a single view of categories and tags by using newsCategoryC
 
 Because of using fixedPostVars, the arguments can be removed in the *postVarSets* section.
 
-Removing controller and action arguments from URL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you got a separate page to display the single view it is possible to skip the arguments. This is not necessary if you use
-the Advanced realUrl configuration from above. ::
-
-	&tx_news_pi1[controller]=News
-	&tx_news_pi1[action]=detail
-
-If you want that, you need to activate the following setting in your TypoScript: ::
-
-	plugin.tx_news {
-		settings {
-			link {
-				skipControllerAndAction = 1
-			}
-		}
-	}
-
 
 Removing controller and action arguments from URL (II)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

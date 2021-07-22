@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * News repository with all the callable functionality
  */
-class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
+class NewsRepository extends AbstractDemandedRepository
 {
 
     /**
@@ -40,7 +40,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $categories,
         $conjunction,
         $includeSubCategories = false
-    ) {
+    ): ?\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface {
         $constraint = null;
         $categoryConstraints = [];
 
@@ -99,12 +99,16 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      *
      * @param QueryInterface $query
      * @param DemandInterface $demand
+     *
      * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     *
+     * @return (\TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null)[]
+     *
+     * @psalm-return array<string, \TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null>
      */
-    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
         /** @var NewsDemand $demand */
         $constraints = [];
@@ -127,12 +131,12 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
 
         // archived
-        if ($demand->getArchiveRestriction() == 'archived') {
+        if ($demand->getArchiveRestriction() === 'archived') {
             $constraints['archived'] = $query->logicalAnd(
                 $query->lessThan('archive', $GLOBALS['SIM_EXEC_TIME']),
                 $query->greaterThan('archive', 0)
             );
-        } elseif ($demand->getArchiveRestriction() == 'active') {
+        } elseif ($demand->getArchiveRestriction() === 'active') {
             $constraints['active'] = $query->logicalOr(
                 $query->greaterThanOrEqual('archive', $GLOBALS['SIM_EXEC_TIME']),
                 $query->equals('archive', 0)
@@ -170,7 +174,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
 
         // storage page
-        if ($demand->getStoragePage() != 0) {
+        if ($demand->getStoragePage()) {
             $pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), true);
             $constraints['pid'] = $query->in('pid', $pidList);
         }
@@ -192,10 +196,10 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 $begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
                 $end = mktime(23, 59, 59, 12, 31, $demand->getYear());
             }
-            $constraints['datetime'] = $query->logicalAnd(
+            $constraints['datetime'] = $query->logicalAnd([
                 $query->greaterThanOrEqual($demand->getDateField(), $begin),
                 $query->lessThanOrEqual($demand->getDateField(), $end)
-            );
+            ]);
         }
 
         // Tags
@@ -259,9 +263,12 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
+     *
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
      */
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
         $orderings = [];
         if ($demand->getTopNewsFirst()) {
@@ -328,7 +335,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @param bool $respectEnableFields if set to false, hidden records are shown
      * @return \GeorgRinger\News\Domain\Model\News
      */
-    public function findByUid($uid, $respectEnableFields = true)
+    public function findByUid($uid, $respectEnableFields = true): \GeorgRinger\News\Domain\Model\News
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -354,7 +361,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @param DemandInterface $demand
      * @return array
      */
-    public function countByDate(DemandInterface $demand)
+    public function countByDate(DemandInterface $demand): array
     {
         $data = [];
         $sql = $this->findDemandedRaw($demand);
@@ -420,7 +427,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @return array
      * @throws \UnexpectedValueException
      */
-    protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand)
+    protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
         if ($demand->getSearch() === null) {
@@ -492,7 +499,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @param string $table table name
      * @return QueryBuilder
      */
-    protected function getQueryBuilder(string $table)
+    protected function getQueryBuilder(string $table): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
     }
@@ -503,7 +510,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @param string $str
      * @return string
      */
-    private function stripOrderBy(string $str)
+    private function stripOrderBy(string $str): string
     {
         /** @noinspection NotOptimalRegularExpressionsInspection */
         return preg_replace('/(?:ORDER[[:space:]]*BY[[:space:]]*.*)+/i', '', trim($str));

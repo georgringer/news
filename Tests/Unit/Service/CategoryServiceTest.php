@@ -20,9 +20,12 @@ class CategoryServiceTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider removeValuesFromStringDataProvider
+     *
+     * @return void
      */
-    public function removeValuesFromString($expected, $given)
+    public function removeValuesFromString($expected, $given): void
     {
         $result = CategoryService::removeValuesFromString($given[0], $given[1]);
         $this->assertEquals($expected, $result);

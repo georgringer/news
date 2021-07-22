@@ -2,17 +2,18 @@
 
 namespace GeorgRinger\News\Utility;
 
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Cache Utility class
- *
  */
 class Cache
 {
@@ -27,8 +28,10 @@ class Cache
      * Marks as cObj as processed.
      *
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
+     *
+     * @return void
      */
-    public function markContentRecordAsProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj)
+    public function markContentRecordAsProcessed(ContentObjectRenderer $cObj): void
     {
         $key = 'tt_content_' . $cObj->data['uid'];
         self::$processedContentRecords[$key] = true;
@@ -40,7 +43,7 @@ class Cache
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
      * @return bool
      */
-    public function isContentRecordAlreadyProcessed(\TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj)
+    public function isContentRecordAlreadyProcessed(ContentObjectRenderer $cObj): bool
     {
         $key = 'tt_content_' . $cObj->data['uid'];
         return array_key_exists($key, self::$processedContentRecords);
@@ -53,8 +56,10 @@ class Cache
      * "tx_news_uid_[news:uid]"
      *
      * @param array|\TYPO3\CMS\Extbase\Persistence\QueryResult $newsRecords with news records
+     *
+     * @return void
      */
-    public static function addCacheTagsByNewsRecords($newsRecords)
+    public static function addCacheTagsByNewsRecords($newsRecords): void
     {
         $cacheTags = [];
         foreach ($newsRecords as $news) {
@@ -75,8 +80,10 @@ class Cache
      * This adds tags with the scheme tx_news_pid_[news:pid]
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
+     *
+     * @return void
      */
-    public static function addPageCacheTagsByDemandObject(\GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand)
+    public static function addPageCacheTagsByDemandObject(NewsDemand $demand): void
     {
         $cacheTags = [];
         if ($demand->getStoragePage()) {

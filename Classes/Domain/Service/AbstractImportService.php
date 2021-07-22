@@ -2,28 +2,40 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\Folder;
+use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
+use TYPO3\CMS\Core\Resource\ProcessedFile;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Resource\ResourceStorage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use TYPO3\CMS\Core\Resource\Index\FileIndexRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
-class AbstractImportService
+class AbstractImportService implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     const UPLOAD_PATH = 'uploads/tx_news/';
 
     /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     * @var ObjectManager
      */
     protected $objectManager;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     * @var PersistenceManager
      */
     protected $persistenceManager;
 
@@ -33,47 +45,44 @@ class AbstractImportService
     protected $postPersistQueue = [];
 
     /**
-     * @var \GeorgRinger\News\Domain\Model\Dto\EmConfiguration
+     * @var EmConfiguration
      */
     protected $emSettings;
 
     /**
-     * @var \TYPO3\CMS\Core\Resource\Folder
+     * @var Folder
      */
     protected $importFolder;
 
     /**
-     * @var \TYPO3\CMS\Core\Log\Logger
+     * @var Dispatcher
      */
-    protected $logger;
+    protected $signalSlotDispatcher;
 
     /**
-     * Inject the object manager
-     *
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     * @var CategoryRepository
      */
-    public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
-    {
-        $this->objectManager = $objectManager;
-    }
-
+    protected $categoryRepository;
     /**
-     * Inject Persistence Manager
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
+     * AbstractImportService constructor.
+     * @param PersistenceManager $persistenceManager
+     * @param EmConfiguration $emSettings
+     * @param ObjectManager $objectManager
+     * @param CategoryRepository $categoryRepository
+     * @param Dispatcher $signalSlotDispatcher
      */
-    public function injectPersistenceManager(
-        \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
+    public function __construct(
+        PersistenceManager $persistenceManager,
+        EmConfiguration $emSettings,
+        ObjectManager $objectManager,
+        CategoryRepository $categoryRepository,
+        Dispatcher $signalSlotDispatcher
     ) {
+        $this->emSettings = $emSettings;
         $this->persistenceManager = $persistenceManager;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->emSettings = GeneralUtility::makeInstance(EmConfiguration::class);
+        $this->objectManager = $objectManager;
+        $this->categoryRepository = $categoryRepository;
+        $this->signalSlotDispatcher = $signalSlotDispatcher;
     }
 
     /**
@@ -83,7 +92,7 @@ class AbstractImportService
      * @param string $file2 Absolute path and filename to file2
      * @return bool
      */
-    protected function filesAreEqual($file1, $file2)
+    protected function filesAreEqual($file1, $file2): bool
     {
         return filesize($file1) === filesize($file2);
     }
@@ -92,7 +101,8 @@ class AbstractImportService
      * Find a existing file by its hash
      *
      * @param string $hash
-     * @return NULL|\TYPO3\CMS\Core\Resource\File
+     *
+     * @return File|ProcessedFile|null
      */
     protected function findFileByHash($hash)
     {
@@ -118,9 +128,9 @@ class AbstractImportService
      *
      * TODO: catch exception when storage/folder does not exist and return readable message to the user
      *
-     * @return \TYPO3\CMS\Core\Resource\Folder
+     * @return Folder
      */
-    protected function getImportFolder()
+    protected function getImportFolder(): Folder
     {
         if ($this->importFolder === null) {
             $this->importFolder = $this->getResourceFactory()->getFolderObjectFromCombinedIdentifier($this->emSettings->getStorageUidImporter() . ':' . $this->emSettings->getResourceFolderImporter());
@@ -133,7 +143,7 @@ class AbstractImportService
      *
      * @return FileIndexRepository
      */
-    protected function getFileIndexRepository()
+    protected function getFileIndexRepository(): FileIndexRepository
     {
         return FileIndexRepository::getInstance();
     }
@@ -141,18 +151,20 @@ class AbstractImportService
     /**
      * Get resource storage
      *
-     * @return \TYPO3\CMS\Core\Resource\ResourceStorage
+     * @return ResourceStorage
      */
-    protected function getResourceStorage()
+    protected function getResourceStorage(): ResourceStorage
     {
         return $this->getResourceFactory()->getStorageObject($this->emSettings->getStorageUidImporter());
     }
 
     /**
-     * @return \TYPO3\CMS\Core\Resource\ResourceFactory
+     * @return ResourceFactory
      */
-    protected function getResourceFactory()
+    protected function getResourceFactory(): ResourceFactory
     {
-        return \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
+        /** @var ResourceFactory $resourceFactory */
+        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+        return $resourceFactory;
     }
 }

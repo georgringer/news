@@ -29,7 +29,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * <output>
  * Added to the header: <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="uri to this page and type 9818" />
  * </output>
- *
  */
 class HeaderDataViewHelper extends AbstractViewHelper
 {
@@ -39,6 +38,8 @@ class HeaderDataViewHelper extends AbstractViewHelper
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
+     *
+     * @return void
      */
     public static function renderStatic(
         array $arguments,

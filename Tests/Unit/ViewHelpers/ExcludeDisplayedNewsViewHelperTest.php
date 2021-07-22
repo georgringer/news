@@ -22,8 +22,10 @@ class ExcludeDisplayedNewsViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function newsIsAddedToExcludedList()
+    public function newsIsAddedToExcludedList(): void
     {
         $viewHelper = new ExcludeDisplayedNewsViewHelper();
         $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());

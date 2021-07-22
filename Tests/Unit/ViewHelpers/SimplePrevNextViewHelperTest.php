@@ -28,8 +28,10 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function wrongIdWillReturnNullForObject()
+    public function wrongIdWillReturnNullForObject(): void
     {
         $this->viewHelper->expects($this->any())->method('getRawRecord')->withAnyParameters()->will($this->returnValue(null));
 
@@ -39,8 +41,10 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function queryResultWillReturnCorrectOutputForAllLinks()
+    public function queryResultWillReturnCorrectOutputForAllLinks(): void
     {
         $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
@@ -57,8 +61,10 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function queryResultWillReturnCorrectOutputFor2Links()
+    public function queryResultWillReturnCorrectOutputFor2Links(): void
     {
         $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
@@ -73,8 +79,10 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function queryResultWillReturnCorrectOutputFor1Link()
+    public function queryResultWillReturnCorrectOutputFor1Link(): void
     {
         $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 

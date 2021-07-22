@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
 
 /**
@@ -11,13 +12,13 @@ namespace GeorgRinger\News\Domain\Model\Dto;
 /**
  * Administration Demand model
  */
-class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+class AdministrationDemand extends NewsDemand
 {
 
     /**
      * @var string
      */
-    protected $recursive;
+    protected $recursive = '';
 
     /**
      * @var array
@@ -37,30 +38,32 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /**
      * @var string
      */
-    protected $searchWord;
+    protected $searchWord = '';
 
     /**
      * @var int
      */
-    protected $hidden;
+    protected $hidden = 0;
 
     /**
      * @var int
      */
-    protected $archived;
+    protected $archived = 0;
 
     /**
      * @return string
      */
-    public function getRecursive()
+    public function getRecursive(): string
     {
         return $this->recursive;
     }
 
     /**
-     * @param $recursive
+     * @param string $recursive
+     *
+     * @return void
      */
-    public function setRecursive($recursive)
+    public function setRecursive(string $recursive): void
     {
         $this->recursive = $recursive;
     }
@@ -68,13 +71,15 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /**
      * @return array
      */
-    public function getSelectedCategories()
+    public function getSelectedCategories(): array
     {
         return $this->selectedCategories;
     }
 
     /**
-     * @param $selectedCategories
+     * @param string|array $selectedCategories
+     *
+     * @return void
      */
     public function setSelectedCategories($selectedCategories)
     {
@@ -90,15 +95,16 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /**
      * @return string
      */
-    public function getSortingField()
+    public function getSortingField(): string
     {
         return $this->sortingField;
     }
 
     /**
-     * @param $sortingField
+     * @param string $sortingField
+     * @return void
      */
-    public function setSortingField($sortingField)
+    public function setSortingField(string $sortingField): void
     {
         $this->sortingField = $sortingField;
     }
@@ -106,15 +112,16 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /**
      * @return string
      */
-    public function getSortingDirection()
+    public function getSortingDirection(): string
     {
         return $this->sortingDirection;
     }
 
     /**
-     * @param $sortingDirection
+     * @param string $sortingDirection
+     * @return void
      */
-    public function setSortingDirection($sortingDirection)
+    public function setSortingDirection(string $sortingDirection): void
     {
         $this->sortingDirection = $sortingDirection;
     }
@@ -122,15 +129,16 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /**
      * @return string
      */
-    public function getSearchWord()
+    public function getSearchWord(): string
     {
         return $this->searchWord;
     }
 
     /**
      * @param string $searchWord
+     * @return void
      */
-    public function setSearchWord($searchWord)
+    public function setSearchWord(string $searchWord): void
     {
         $this->searchWord = $searchWord;
     }
@@ -138,15 +146,16 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /**
      * @return int
      */
-    public function getHidden()
+    public function getHidden(): int
     {
         return $this->hidden;
     }
 
     /**
      * @param int $hidden
+     * @return void
      */
-    public function setHidden($hidden)
+    public function setHidden(int $hidden): void
     {
         $this->hidden = $hidden;
     }
@@ -154,15 +163,17 @@ class AdministrationDemand extends \GeorgRinger\News\Domain\Model\Dto\NewsDemand
     /**
      * @return int
      */
-    public function getArchived()
+    public function getArchived(): int
     {
         return $this->archived;
     }
 
     /**
      * @param int $archived
+     *
+     * @return void
      */
-    public function setArchived($archived)
+    public function setArchived(int $archived): void
     {
         $this->archived = $archived;
     }

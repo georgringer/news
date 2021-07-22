@@ -1,4 +1,5 @@
 <?php
+
 defined('TYPO3_MODE') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
@@ -29,9 +30,6 @@ return [
             'default' => 'ext-news-link'
         ],
         'hideTable' => true,
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'hidden,title,description,uri'
     ],
     'columns' => [
         'pid' => [

@@ -2,6 +2,9 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Service\SettingsService;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -9,10 +12,10 @@ namespace GeorgRinger\News\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 /**
  * ViewHelper to render links from news records to detail view or page
@@ -43,9 +46,8 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  * <output>
  * The uri is returned
  * </output>
- *
  */
-class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class LinkViewHelper extends AbstractTagBasedViewHelper
 {
 
     /**
@@ -67,13 +69,15 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
         'default' => 'getDetailPidFromDefaultDetailPid',
     ];
 
-    /** @var $cObj ContentObjectRenderer */
+    /** @var ContentObjectRenderer */
     protected $cObj;
 
     /**
      * @param \GeorgRinger\News\Service\SettingsService $pluginSettingsService
+     *
+     * @return void
      */
-    public function injectSettingsService(\GeorgRinger\News\Service\SettingsService $pluginSettingsService)
+    public function injectSettingsService(SettingsService $pluginSettingsService): void
     {
         $this->pluginSettingsService = $pluginSettingsService;
     }
@@ -93,10 +97,9 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
     /**
      * Render link to news item or internal/external pages
      *
-     * @param string $content optional content which is linked
-     * @return string link
+     * @return null|string link
      */
-    public function render()
+    public function render(): ?string
     {
         /** @var News $newsItem */
         $newsItem = $this->arguments['newsItem'];
@@ -187,7 +190,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
         News $newsItem,
         $tsSettings,
         array $configuration = []
-    ) {
+    ): array {
         if (!isset($configuration['parameter'])) {
             $detailPid = 0;
             // if TS is not set, prefer flexform setting
@@ -217,11 +220,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
 
         $configuration['useCacheHash'] = 1;
         $configuration['additionalParams'] = (isset($configuration['additionalParams']) ? $configuration['additionalParams'] : '') . '&tx_news_pi1[news]=' . $this->getNewsId($newsItem);
-
-        if (!isset($tsSettings['link']['skipControllerAndAction']) || (int)$tsSettings['link']['skipControllerAndAction'] !== 1) {
-            $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News' .
-                '&tx_news_pi1[action]=detail';
-        }
+        $configuration['additionalParams'] .= '&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail';
 
         // Add date as human readable
         if (isset($tsSettings['link']['hrDate']) && $tsSettings['link']['hrDate'] == 1 || isset($tsSettings['link']['hrDate']['_typoScriptNodeValue']) && $tsSettings['link']['hrDate']['_typoScriptNodeValue'] == 1) {
@@ -246,12 +245,12 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
      * @param News $newsItem
      * @return int
      */
-    protected function getNewsId(News $newsItem)
+    protected function getNewsId(News $newsItem): int
     {
         $uid = $newsItem->getUid();
         // If a user is logged in and not in live workspace
         if (isset($GLOBALS['BE_USER']) && $GLOBALS['BE_USER']->workspace > 0) {
-            $record = \TYPO3\CMS\Backend\Utility\BackendUtility::getLiveVersionOfRecord(
+            $record = BackendUtility::getLiveVersionOfRecord(
                 'tx_news_domain_model_news',
                 $newsItem->getUid()
             );
@@ -267,7 +266,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
      * @param array $configuration
      * @return string
      */
-    protected function getTargetConfiguration(array $configuration)
+    protected function getTargetConfiguration(array $configuration): string
     {
         $configuration['returnLast'] = 'target';
 
@@ -281,7 +280,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
      * @param News $newsItem
      * @return int
      */
-    protected function getDetailPidFromCategories($settings, $newsItem)
+    protected function getDetailPidFromCategories($settings, $newsItem): int
     {
         $detailPid = 0;
         if ($newsItem->getCategories()) {
@@ -301,7 +300,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
      * @param News $newsItem
      * @return int
      */
-    protected function getDetailPidFromDefaultDetailPid($settings, $newsItem)
+    protected function getDetailPidFromDefaultDetailPid($settings, $newsItem): int
     {
         return isset($settings['defaultDetailPid']) ? (int)$settings['defaultDetailPid'] : 0;
     }
@@ -313,7 +312,7 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
      * @param News $newsItem
      * @return int
      */
-    protected function getDetailPidFromFlexform($settings, $newsItem)
+    protected function getDetailPidFromFlexform($settings, $newsItem): int
     {
         return isset($settings['detailPid']) ? (int)$settings['detailPid'] : 0;
     }
@@ -321,8 +320,9 @@ class LinkViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedV
     /**
      * Initialize properties
      *
+     * @return void
      */
-    protected function init()
+    protected function init(): void
     {
         $this->cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }

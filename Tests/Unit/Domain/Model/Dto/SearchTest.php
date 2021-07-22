@@ -22,8 +22,10 @@ class SearchTest extends BaseTestCase
      * Test if subject can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function subjectCanBeSet()
+    public function subjectCanBeSet(): void
     {
         $domainModelInstance = new Search();
         $subject = 'Test 123';
@@ -35,8 +37,10 @@ class SearchTest extends BaseTestCase
      * Test if fields can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function fieldsCanBeSet()
+    public function fieldsCanBeSet(): void
     {
         $domainModelInstance = new Search();
         $fields = 'field1,field2';
@@ -48,8 +52,10 @@ class SearchTest extends BaseTestCase
      * Test if minimumDate can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function minimumDateCanBeSet()
+    public function minimumDateCanBeSet(): void
     {
         $domainModelInstance = new Search();
         $value = '123';
@@ -61,8 +67,10 @@ class SearchTest extends BaseTestCase
      * Test if minimumDate can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function maximumDateCanBeSet()
+    public function maximumDateCanBeSet(): void
     {
         $domainModelInstance = new Search();
         $value = '456';

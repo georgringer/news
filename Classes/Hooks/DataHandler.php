@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into tcemain which is used to show preview of news item
- *
  */
 class DataHandler implements SingletonInterface
 {
@@ -27,8 +26,10 @@ class DataHandler implements SingletonInterface
      * This happens on two levels: by UID and by PID.
      *
      * @param array $params
+     *
+     * @return void
      */
-    public function clearCachePostProc(array $params)
+    public function clearCachePostProc(array $params): void
     {
         if (isset($params['table']) && $params['table'] === 'tx_news_domain_model_news') {
             if (isset($params['uid'])) {
@@ -53,6 +54,8 @@ class DataHandler implements SingletonInterface
      * @param int $recordUid id of the record
      * @param array $fields fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject parent Object
+     *
+     * @return void
      */
     public function processDatamap_afterDatabaseOperations(
         $status,
@@ -60,7 +63,7 @@ class DataHandler implements SingletonInterface
         $recordUid,
         array $fields,
         \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject
-    ) {
+    ): void {
         // Clear category cache
         if ($table === 'sys_category') {
             $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
@@ -75,8 +78,10 @@ class DataHandler implements SingletonInterface
      * @param string $table
      * @param int $id
      * @param $parentObject \TYPO3\CMS\Core\DataHandling\DataHandler
+     *
+     * @return void
      */
-    public function processDatamap_preProcessFieldArray(&$fieldArray, $table, $id, $parentObject)
+    public function processDatamap_preProcessFieldArray(&$fieldArray, $table, $id, $parentObject): void
     {
         if ($table === 'tx_news_domain_model_news') {
             // check permissions of assigned categories
@@ -123,8 +128,10 @@ class DataHandler implements SingletonInterface
      * @param int $id
      * @param string $value
      * @param $parentObject \TYPO3\CMS\Core\DataHandling\DataHandler
+     *
+     * @return void
      */
-    public function processCmdmap_preProcess($command, &$table, $id, $value, $parentObject)
+    public function processCmdmap_preProcess($command, &$table, $id, $value, $parentObject): void
     {
         if ($table === 'tx_news_domain_model_news' && !$this->getBackendUser()->isAdmin() && is_int($id) && $command !== 'undelete') {
             $newsRecord = BackendUtilityCore::getRecord($table, $id);
@@ -169,7 +176,7 @@ class DataHandler implements SingletonInterface
      *
      * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
-    protected function getBackendUser()
+    protected function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

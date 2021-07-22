@@ -1,4 +1,5 @@
 <?php
+
 defined('TYPO3_MODE') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
@@ -25,9 +26,6 @@ return [
             'default' => 'ext-news-tag'
         ],
         'searchFields' => 'uid,title',
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'hidden,sys_language_uid,l10n_parent,l10n_diffsource,title'
     ],
     'columns' => [
         'sys_language_uid' => [

@@ -1,7 +1,10 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -13,13 +16,13 @@ use TYPO3\CMS\Extbase\Persistence\Generic\LazyLoadingProxy;
 /**
  * Category Model
  */
-class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Category extends AbstractEntity
 {
 
     /**
      * @var int
      */
-    protected $sorting;
+    protected $sorting = 0;
 
     /**
      * @var \DateTime
@@ -39,7 +42,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var bool
      */
-    protected $hidden;
+    protected $hidden = false;
 
     /**
      * @var \DateTime
@@ -49,22 +52,22 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var int
      */
-    protected $sysLanguageUid;
+    protected $sysLanguageUid = 0;
 
     /**
      * @var int
      */
-    protected $l10nParent;
+    protected $l10nParent = 0;
 
     /**
      * @var string
      */
-    protected $title;
+    protected $title = '';
 
     /**
      * @var string
      */
-    protected $description;
+    protected $description = '';
 
     /**
      * @var \GeorgRinger\News\Domain\Model\Category
@@ -81,51 +84,51 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var int
      */
-    protected $shortcut;
+    protected $shortcut = 0;
 
     /**
      * @var int
      */
-    protected $singlePid;
+    protected $singlePid = 0;
 
     /**
      * @var string
      */
-    protected $importId;
+    protected $importId = '';
 
     /**
      * @var string
      */
-    protected $importSource;
+    protected $importSource = '';
 
     /**
      * keep it as string as it should be only used during imports
      * @var string
      */
-    protected $feGroup;
+    protected $feGroup = '';
 
     /**
      * @var string
      */
-    protected $seoTitle;
+    protected $seoTitle = '';
 
     /**
      * @var string
      */
-    protected $seoDescription;
+    protected $seoDescription = '';
 
     /**
      * @var string
      */
-    protected $seoHeadline;
+    protected $seoHeadline = '';
 
     /**
      * @var string
      */
-    protected $seoText;
+    protected $seoText = '';
 
     /** @var string */
-    protected $slug;
+    protected $slug = '';
 
     /**
      * Initialize images
@@ -134,7 +137,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function __construct()
     {
-        $this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->images = new ObjectStorage();
     }
 
     /**
@@ -142,7 +145,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \DateTime
      */
-    public function getCrdate()
+    public function getCrdate(): \DateTime
     {
         return $this->crdate;
     }
@@ -151,8 +154,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set Creation Date
      *
      * @param \DateTime $crdate crdate
+     *
+     * @return void
      */
-    public function setCrdate($crdate)
+    public function setCrdate($crdate): void
     {
         $this->crdate = $crdate;
     }
@@ -162,7 +167,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \DateTime
      */
-    public function getTstamp()
+    public function getTstamp(): \DateTime
     {
         return $this->tstamp;
     }
@@ -171,8 +176,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set tstamp
      *
      * @param \DateTime $tstamp tstamp
+     *
+     * @return void
      */
-    public function setTstamp($tstamp)
+    public function setTstamp($tstamp): void
     {
         $this->tstamp = $tstamp;
     }
@@ -182,7 +189,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \DateTime
      */
-    public function getStarttime()
+    public function getStarttime(): \DateTime
     {
         return $this->starttime;
     }
@@ -191,8 +198,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set starttime
      *
      * @param \DateTime $starttime starttime
+     *
+     * @return void
      */
-    public function setStarttime($starttime)
+    public function setStarttime($starttime): void
     {
         $this->starttime = $starttime;
     }
@@ -202,7 +211,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \DateTime
      */
-    public function getEndtime()
+    public function getEndtime(): \DateTime
     {
         return $this->endtime;
     }
@@ -211,8 +220,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set Endtime
      *
      * @param \DateTime $endtime endttime
+     *
+     * @return void
      */
-    public function setEndtime($endtime)
+    public function setEndtime($endtime): void
     {
         $this->endtime = $endtime;
     }
@@ -222,7 +233,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return bool
      */
-    public function getHidden()
+    public function getHidden(): bool
     {
         return $this->hidden;
     }
@@ -231,8 +242,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set Hidden
      *
      * @param bool $hidden
+     *
+     * @return void
      */
-    public function setHidden($hidden)
+    public function setHidden($hidden): void
     {
         $this->hidden = $hidden;
     }
@@ -242,7 +255,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int
      */
-    public function getSysLanguageUid()
+    public function getSysLanguageUid(): int
     {
         return $this->_languageUid;
     }
@@ -251,8 +264,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set sys language
      *
      * @param int $sysLanguageUid language uid
+     *
+     * @return void
      */
-    public function setSysLanguageUid($sysLanguageUid)
+    public function setSysLanguageUid($sysLanguageUid): void
     {
         $this->_languageUid = $sysLanguageUid;
     }
@@ -262,7 +277,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int
      */
-    public function getL10nParent()
+    public function getL10nParent(): int
     {
         return $this->l10nParent;
     }
@@ -271,8 +286,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set language parent
      *
      * @param int $l10nParent l10nParent
+     *
+     * @return void
      */
-    public function setL10nParent($l10nParent)
+    public function setL10nParent($l10nParent): void
     {
         $this->l10nParent = $l10nParent;
     }
@@ -282,7 +299,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -291,8 +308,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set category title
      *
      * @param string $title title
+     *
+     * @return void
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }
@@ -302,7 +321,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -311,24 +330,30 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set description
      *
      * @param string $description description
+     *
+     * @return void
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = $description;
     }
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
+     *
+     * @return void
      */
-    public function setImages($images)
+    public function setImages($images): void
     {
         $this->images = $images;
     }
 
     /**
-     * @return \GeorgRinger\News\Domain\Model\FileReference[]
+     * @return ObjectStorage
+     *
+     * @psalm-return ObjectStorage<FileReference>
      */
-    public function getImages()
+    public function getImages(): ObjectStorage
     {
         return $this->images;
     }
@@ -337,8 +362,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Add image
      *
      * @param FileReference $image
+     *
+     * @return void
      */
-    public function addImage(FileReference $image)
+    public function addImage(FileReference $image): void
     {
         $this->images->attach($image);
     }
@@ -347,8 +374,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Remove image
      *
      * @param FileReference $image
+     *
+     * @return void
      */
-    public function removeImage(FileReference $image)
+    public function removeImage(FileReference $image): void
     {
         $this->images->detach($image);
     }
@@ -358,7 +387,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return FileReference|null
      */
-    public function getFirstImage()
+    public function getFirstImage(): ?FileReference
     {
         $images = $this->getImages();
         foreach ($images as $image) {
@@ -373,7 +402,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \GeorgRinger\News\Domain\Model\Category
      */
-    public function getParentcategory()
+    public function getParentcategory(): ?\GeorgRinger\News\Domain\Model\Category
     {
         return $this->parentcategory instanceof LazyLoadingProxy ? $this->parentcategory->_loadRealInstance() : $this->parentcategory;
     }
@@ -382,8 +411,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set parent category
      *
      * @param \GeorgRinger\News\Domain\Model\Category $category parent category
+     *
+     * @return void
      */
-    public function setParentcategory(self $category)
+    public function setParentcategory($category): void
     {
         $this->parentcategory = $category;
     }
@@ -393,7 +424,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int
      */
-    public function getShortcut()
+    public function getShortcut(): int
     {
         return $this->shortcut;
     }
@@ -402,8 +433,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set shortcut
      *
      * @param int $shortcut shortcut
+     *
+     * @return void
      */
-    public function setShortcut($shortcut)
+    public function setShortcut($shortcut): void
     {
         $this->shortcut = $shortcut;
     }
@@ -413,7 +446,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int
      */
-    public function getSinglePid()
+    public function getSinglePid(): int
     {
         return $this->singlePid;
     }
@@ -422,8 +455,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set single pid
      *
      * @param int $singlePid single pid
+     *
+     * @return void
      */
-    public function setSinglePid($singlePid)
+    public function setSinglePid($singlePid): void
     {
         $this->singlePid = $singlePid;
     }
@@ -433,7 +468,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getImportId()
+    public function getImportId(): string
     {
         return $this->importId;
     }
@@ -442,8 +477,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set import id
      *
      * @param string $importId import id
+     *
+     * @return void
      */
-    public function setImportId($importId)
+    public function setImportId($importId): void
     {
         $this->importId = $importId;
     }
@@ -453,7 +490,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int sorting id
      */
-    public function getSorting()
+    public function getSorting(): int
     {
         return $this->sorting;
     }
@@ -462,8 +499,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Set sorting id
      *
      * @param int $sorting sorting id
+     *
+     * @return void
      */
-    public function setSorting($sorting)
+    public function setSorting($sorting): void
     {
         $this->sorting = $sorting;
     }
@@ -473,7 +512,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getFeGroup()
+    public function getFeGroup(): string
     {
         return $this->feGroup;
     }
@@ -482,8 +521,10 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Get feGroup
      *
      * @param string $feGroup feGroup
+     *
+     * @return void
      */
-    public function setFeGroup($feGroup)
+    public function setFeGroup($feGroup): void
     {
         $this->feGroup = $feGroup;
     }
@@ -491,9 +532,11 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set importSource
      *
-     * @param  string $importSource
+     * @param string $importSource
+     *
+     * @return void
      */
-    public function setImportSource($importSource)
+    public function setImportSource($importSource): void
     {
         $this->importSource = $importSource;
     }
@@ -503,7 +546,7 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getImportSource()
+    public function getImportSource(): string
     {
         return $this->importSource;
     }
@@ -511,15 +554,17 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getSeoTitle()
+    public function getSeoTitle(): string
     {
         return $this->seoTitle;
     }
 
     /**
      * @param string $seoTitle
+     *
+     * @return void
      */
-    public function setSeoTitle($seoTitle)
+    public function setSeoTitle($seoTitle): void
     {
         $this->seoTitle = $seoTitle;
     }
@@ -527,15 +572,17 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getSeoDescription()
+    public function getSeoDescription(): string
     {
         return $this->seoDescription;
     }
 
     /**
      * @param string $seoDescription
+     *
+     * @return void
      */
-    public function setSeoDescription($seoDescription)
+    public function setSeoDescription($seoDescription): void
     {
         $this->seoDescription = $seoDescription;
     }
@@ -543,15 +590,17 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getSeoHeadline()
+    public function getSeoHeadline(): string
     {
         return $this->seoHeadline;
     }
 
     /**
      * @param string $seoHeadline
+     *
+     * @return void
      */
-    public function setSeoHeadline($seoHeadline)
+    public function setSeoHeadline($seoHeadline): void
     {
         $this->seoHeadline = $seoHeadline;
     }
@@ -559,15 +608,17 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getSeoText()
+    public function getSeoText(): string
     {
         return $this->seoText;
     }
 
     /**
      * @param string $seoText
+     *
+     * @return void
      */
-    public function setSeoText($seoText)
+    public function setSeoText($seoText): void
     {
         $this->seoText = $seoText;
     }
@@ -575,15 +626,17 @@ class Category extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
     /**
      * @param string $slug
+     *
+     * @return void
      */
-    public function setSlug($slug)
+    public function setSlug($slug): void
     {
         $this->slug = $slug;
     }

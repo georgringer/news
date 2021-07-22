@@ -21,8 +21,10 @@ class IsCheckboxActiveViewhelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function activeCheckboxReturnsCorrectValue()
+    public function activeCheckboxReturnsCorrectValue(): void
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
         $viewHelper->setArguments([
@@ -36,8 +38,10 @@ class IsCheckboxActiveViewhelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function nonActiveCheckboxReturnsNothing()
+    public function nonActiveCheckboxReturnsNothing(): void
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
         $viewHelper->setArguments([
@@ -51,8 +55,10 @@ class IsCheckboxActiveViewhelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function noCategoriesReturnNothing()
+    public function noCategoriesReturnNothing(): void
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
 

@@ -2,19 +2,22 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use GeorgRinger\News\Domain\Model\FileReference;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
- */
-use GeorgRinger\News\Domain\Model\Category;
-use GeorgRinger\News\Domain\Model\FileReference;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
-/**
- * Category Import Service
- *
  */
 class CategoryImportService extends AbstractImportService
 {
@@ -22,47 +25,29 @@ class CategoryImportService extends AbstractImportService
     const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
+     * CategoryImportService constructor.
+     * @param PersistenceManager $persistenceManager
+     * @param EmConfiguration $emSettings
+     * @param ObjectManager $objectManager
+     * @param CategoryRepository $categoryRepository
+     * @param Dispatcher $signalSlotDispatcher
      */
-    protected $categoryRepository;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
-     */
-    protected $signalSlotDispatcher;
-
-    public function __construct()
-    {
-        $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
-        $this->logger = $logger;
-
-        parent::__construct();
-    }
-
-    /**
-     * Inject the category repository.
-     *
-     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     */
-    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
-    /**
-     * Inject SignalSlotDispatcher
-     *
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
-     */
-    public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
-    {
-        $this->signalSlotDispatcher = $signalSlotDispatcher;
+    public function __construct(
+        PersistenceManager $persistenceManager,
+        EmConfiguration $emSettings,
+        ObjectManager $objectManager,
+        CategoryRepository $categoryRepository,
+        Dispatcher $signalSlotDispatcher
+    ) {
+        parent::__construct($persistenceManager, $emSettings, $objectManager, $categoryRepository, $signalSlotDispatcher);
     }
 
     /**
      * @param array $importArray
+     *
+     * @return void
      */
-    public function import(array $importArray)
+    public function import(array $importArray): void
     {
         $this->logger->info(sprintf('Starting import for %s categories', count($importArray)));
 
@@ -111,7 +96,8 @@ class CategoryImportService extends AbstractImportService
      * Hydrate a category record with the given array
      *
      * @param array $importItem
-     * @return Category
+     *
+     * @return array|object
      */
     protected function hydrateCategory(array $importItem)
     {
@@ -129,7 +115,7 @@ class CategoryImportService extends AbstractImportService
         if (is_null($category)) {
             $this->logger->info('Category is new');
 
-            $category = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Category::class);
+            $category = GeneralUtility::makeInstance(Category::class);
             $this->categoryRepository->add($category);
         } else {
             $this->logger->info(sprintf('Category exists already with id "%s".', $category->getUid()));
@@ -163,6 +149,8 @@ class CategoryImportService extends AbstractImportService
      *
      * @param Category $category
      * @param $image
+     *
+     * @return void
      */
     protected function setFileRelationFromImage($category, $image)
     {
@@ -170,12 +158,12 @@ class CategoryImportService extends AbstractImportService
         // get fileObject by given identifier (file UID, combined identifier or path/filename)
         try {
             $newImage = $this->getResourceFactory()->retrieveFileOrFolderObject($image);
-        } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+        } catch (ResourceDoesNotExistException $exception) {
             $newImage = false;
         }
 
         // only proceed if image is found
-        if (!$newImage instanceof \TYPO3\CMS\Core\Resource\File) {
+        if (!$newImage instanceof File) {
             return;
         }
 
@@ -212,7 +200,7 @@ class CategoryImportService extends AbstractImportService
                 }
             }
 
-            $fileReference = $this->objectManager->get(\GeorgRinger\News\Domain\Model\FileReference::class);
+            $fileReference = GeneralUtility::makeInstance(FileReference::class);
             $fileReference->setFileUid($newImage->getUid());
             $fileReference->setPid($category->getPid());
             $category->addImage($fileReference);
@@ -223,8 +211,10 @@ class CategoryImportService extends AbstractImportService
      * Set parent category
      *
      * @param array $queueItem
+     *
+     * @return void
      */
-    protected function setParentCategory(array $queueItem)
+    protected function setParentCategory(array $queueItem): void
     {
         /** @var $category Category */
         $category = $queueItem['category'];
@@ -247,8 +237,10 @@ class CategoryImportService extends AbstractImportService
      * Create l10n relation
      *
      * @param array $queueItem
+     *
+     * @return void
      */
-    protected function createL10nChildrenCategory(array $queueItem)
+    protected function createL10nChildrenCategory(array $queueItem): void
     {
         /** @var $category Category */
         $category = $queueItem['category'];
@@ -275,8 +267,10 @@ class CategoryImportService extends AbstractImportService
      *
      * @param string $signalName name of the signal slot
      * @param array $signalArguments arguments for the signal slot
+     *
+     * @return void
      */
-    protected function emitSignal($signalName, array $signalArguments)
+    protected function emitSignal($signalName, array $signalArguments): void
     {
         $this->signalSlotDispatcher->dispatch(
             self::class,
