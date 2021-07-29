@@ -54,14 +54,13 @@ class NewsImportService extends AbstractImportService
      */
     public function __construct(
         PersistenceManager $persistenceManager,
-        EmConfiguration $emSettings,
         ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
         Dispatcher $signalSlotDispatcher,
         NewsRepository $newsRepository,
         TtContentRepository $ttContentRepository
     ) {
-        parent::__construct($persistenceManager, $emSettings, $objectManager, $categoryRepository, $signalSlotDispatcher);
+        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $signalSlotDispatcher);
         $this->newsRepository = $newsRepository;
         $this->ttContentRepository = $ttContentRepository;
     }

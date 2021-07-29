@@ -73,12 +73,11 @@ class AbstractImportService implements LoggerAwareInterface
      */
     public function __construct(
         PersistenceManager $persistenceManager,
-        EmConfiguration $emSettings,
         ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
         Dispatcher $signalSlotDispatcher
     ) {
-        $this->emSettings = $emSettings;
+        $this->emSettings = GeneralUtility::makeInstance(EmConfiguration::class);
         $this->persistenceManager = $persistenceManager;
         $this->objectManager = $objectManager;
         $this->categoryRepository = $categoryRepository;

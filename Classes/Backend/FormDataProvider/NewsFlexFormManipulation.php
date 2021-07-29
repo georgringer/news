@@ -131,14 +131,8 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      */
     protected $configuration;
 
-    /**
-     * NewsFlexFormManipulation constructor.
-     * @param EmConfiguration $emConfiguration
-     */
-    public function __construct(
-        EmConfiguration $emConfiguration
-    ) {
-        $this->configuration = $emConfiguration;
+    public function __construct() {
+        $this->configuration = GeneralUtility::makeInstance(EmConfiguration::class);
     }
 
     /**
