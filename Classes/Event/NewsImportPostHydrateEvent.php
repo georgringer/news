@@ -13,9 +13,20 @@ use GeorgRinger\News\Domain\Service\NewsImportService;
  */
 final class NewsImportPostHydrateEvent
 {
-    private NewsImportService $newsImportService;
-    private array $importItem;
-    private News $news;
+    /**
+     * @var NewsImportService
+     */
+    private $newsImportService;
+
+    /**
+     * @var array
+     */
+    private $importItem;
+
+    /**
+     * @var News
+     */
+    private $news;
 
     public function __construct(NewsImportService $newsImportService, array $importItem, News $news)
     {
