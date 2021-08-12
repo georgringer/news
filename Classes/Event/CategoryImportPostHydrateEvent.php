@@ -26,7 +26,7 @@ final class CategoryImportPostHydrateEvent
 
     /**
      * Get the importer service
-     */ 
+     */
     public function getCategoryImportService(): CategoryImportService
     {
         return $this->categoryImportService;
@@ -34,7 +34,7 @@ final class CategoryImportPostHydrateEvent
 
     /**
      * Set the importer Service
-     */ 
+     */
     public function setCategoryImportService(CategoryImportService $categoryImportService): self
     {
         $this->categoryImportService = $categoryImportService;
@@ -44,7 +44,7 @@ final class CategoryImportPostHydrateEvent
 
     /**
      * Get the importItem
-     */ 
+     */
     public function getImportItem(): array
     {
         return $this->importItem;
@@ -52,7 +52,7 @@ final class CategoryImportPostHydrateEvent
 
     /**
      * Set the importItem
-     */ 
+     */
     public function setImportItem(array $importItem): self
     {
         $this->importItem = $importItem;
@@ -62,7 +62,7 @@ final class CategoryImportPostHydrateEvent
 
     /**
      * Get the category
-     */ 
+     */
     public function getCategory(): Category
     {
         return $this->category;
@@ -70,7 +70,7 @@ final class CategoryImportPostHydrateEvent
 
     /**
      * Set the category
-     */ 
+     */
     public function setCategory(Category $category): self
     {
         $this->category = $category;

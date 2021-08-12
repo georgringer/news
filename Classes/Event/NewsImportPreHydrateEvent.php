@@ -23,7 +23,7 @@ final class NewsImportPreHydrateEvent
 
     /**
      * Get the importer service
-     */ 
+     */
     public function getNewsImportService(): NewsImportService
     {
         return $this->newsImportService;
@@ -31,7 +31,7 @@ final class NewsImportPreHydrateEvent
 
     /**
      * Set the importer service
-     */ 
+     */
     public function setNewsImportService(NewsImportService $newsImportService): self
     {
         $this->newsImportService = $newsImportService;
@@ -41,7 +41,7 @@ final class NewsImportPreHydrateEvent
 
     /**
      * Get the importItem
-     */ 
+     */
     public function getImportItem(): array
     {
         return $this->importItem;
@@ -49,7 +49,7 @@ final class NewsImportPreHydrateEvent
 
     /**
      * Set the importItem
-     */ 
+     */
     public function setImportItem(array $importItem): self
     {
         $this->importItem = $importItem;

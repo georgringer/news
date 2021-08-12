@@ -26,7 +26,7 @@ final class NewsImportPostHydrateEvent
 
     /**
      * Get the importer service
-     */ 
+     */
     public function getNewsImportService(): NewsImportService
     {
         return $this->newsImportService;
@@ -34,7 +34,7 @@ final class NewsImportPostHydrateEvent
 
     /**
      * Set the importer service
-     */ 
+     */
     public function setNewsImportService(NewsImportService $newsImportService): self
     {
         $this->newsImportService = $newsImportService;
@@ -44,7 +44,7 @@ final class NewsImportPostHydrateEvent
 
     /**
      * Get the importItem
-     */ 
+     */
     public function getImportItem(): array
     {
         return $this->importItem;
@@ -52,7 +52,7 @@ final class NewsImportPostHydrateEvent
 
     /**
      * Set the importItem
-     */ 
+     */
     public function setImportItem(array $importItem): self
     {
         $this->importItem = $importItem;
@@ -62,7 +62,7 @@ final class NewsImportPostHydrateEvent
 
     /**
      * Get the news
-     */ 
+     */
     public function getNews(): News
     {
         return $this->news;
@@ -70,7 +70,7 @@ final class NewsImportPostHydrateEvent
 
     /**
      * Set the news
-     */ 
+     */
     public function setNews(News $news): self
     {
         $this->news = $news;
