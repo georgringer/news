@@ -44,9 +44,6 @@ $tx_news_domain_model_news = [
         'searchFields' => 'uid,title',
         'thumbnail' => $configuration->isMediaPreview() ? 'fal_media' : '',
     ],
-    'interface' => [
-        'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements,tags,path_segment,alternative_title,fal_related_files'
-    ],
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,

@@ -66,7 +66,7 @@ class DataHandler implements SingletonInterface
     ): void {
         // Clear category cache
         if ($table === 'sys_category') {
-            $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
+            $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news_category');
             $cache->flush();
         }
     }

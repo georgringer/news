@@ -34,7 +34,7 @@ class Page
     {
         $recursive = (int)$recursive;
         if ($recursive <= 0) {
-            return $pidList;
+            return $pidList ?? '';
         }
 
         $queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);

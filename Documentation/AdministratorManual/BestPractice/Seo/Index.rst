@@ -93,8 +93,6 @@ The core ships a basic sitemap configuration which can also be used for news rec
                                tx_news_pi1.controller = News
                                tx_news_pi1.action = detail
                            }
-
-                           useCacheHash = 1
                        }
                    }
                }
@@ -155,8 +153,6 @@ To enable the category detail page handling, checkout the setting `useCategorySi
                                    tx_news_pi1.controller = News
                                    tx_news_pi1.action = detail
                                }
-
-                               useCacheHash = 1
                            }
                        }
                    }
