@@ -9,13 +9,15 @@ use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TtContentRepository;
+use GeorgRinger\News\Event\NewsImportPostHydrateEvent;
+use GeorgRinger\News\Event\NewsImportPreHydrateEvent;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -48,7 +50,7 @@ class NewsImportService extends AbstractImportService
      * @param EmConfiguration $emSettings
      * @param ObjectManager $objectManager
      * @param CategoryRepository $categoryRepository
-     * @param Dispatcher $signalSlotDispatcher
+     * @param EventDispatcherInterface $eventDispatcher
      * @param NewsRepository $newsRepository
      * @param TtContentRepository $ttContentRepository
      */
@@ -56,11 +58,11 @@ class NewsImportService extends AbstractImportService
         PersistenceManager $persistenceManager,
         ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
-        Dispatcher $signalSlotDispatcher,
+        EventDispatcherInterface $eventDispatcher,
         NewsRepository $newsRepository,
         TtContentRepository $ttContentRepository
     ) {
-        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $signalSlotDispatcher);
+        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $eventDispatcher);
         $this->newsRepository = $newsRepository;
         $this->ttContentRepository = $ttContentRepository;
     }
@@ -279,11 +281,9 @@ class NewsImportService extends AbstractImportService
                 $relatedLink->setPid($importItem['pid']);
             }
         }
+        $event = $this->eventDispatcher->dispatch(new NewsImportPostHydrateEvent($this, $importItem, $news));
 
-        $arguments = ['importItem' => $importItem, 'news' => $news];
-        $this->emitSignal('postHydrate', $arguments);
-
-        return $news;
+        return $event->getNews();
     }
 
     /**
@@ -301,9 +301,8 @@ class NewsImportService extends AbstractImportService
         $this->logger->info(sprintf('Starting import for %s news', count($importData)));
 
         foreach ($importData as $importItem) {
-            $arguments = ['importItem' => $importItem];
-            $return = $this->emitSignal('preHydrate', $arguments);
-            $importItem = $return['importItem'];
+            $event = $this->eventDispatcher->dispatch(new NewsImportPreHydrateEvent($this, $importItem));
+            $importItem = $event->getImportItem();
 
             // Store language overlay in post persist queue
             if ((int)$importItem['sys_language_uid'] > 0 && (string)$importItem['l10n_parent'] !== '0') {
@@ -408,20 +407,5 @@ class NewsImportService extends AbstractImportService
             }
         }
         return $result;
-    }
-
-    /**
-     * Emits signal
-     *
-     * @param string $signalName name of the signal slot
-     * @param array $signalArguments arguments for the signal slot
-     */
-    protected function emitSignal($signalName, array $signalArguments)
-    {
-        return $this->signalSlotDispatcher->dispatch(
-            self::class,
-            $signalName,
-            $signalArguments
-        );
     }
 }

@@ -6,12 +6,13 @@ use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Event\CategoryImportPostHydrateEvent;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -30,15 +31,15 @@ class CategoryImportService extends AbstractImportService
      * @param EmConfiguration $emSettings
      * @param ObjectManager $objectManager
      * @param CategoryRepository $categoryRepository
-     * @param Dispatcher $signalSlotDispatcher
+     * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         PersistenceManager $persistenceManager,
         ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
-        Dispatcher $signalSlotDispatcher
+        EventDispatcherInterface $eventDispatcher
     ) {
-        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $signalSlotDispatcher);
+        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $eventDispatcher);
     }
 
     /**
@@ -137,10 +138,9 @@ class CategoryImportService extends AbstractImportService
         $category->setImportId($importItem['import_id']);
         $category->setImportSource($importItem['import_source']);
 
-        $arguments = ['importItem' => $importItem, 'category' => $category];
-        $this->emitSignal('postHydrate', $arguments);
+        $event = $this->eventDispatcher->dispatch(new CategoryImportPostHydrateEvent($this, $importItem, $category));
 
-        return $category;
+        return $event->getCategory();
     }
 
     /**
@@ -259,22 +259,5 @@ class CategoryImportService extends AbstractImportService
             $l10nChildrenCategory->setL10nParent((int)$category->getUid());
             $l10nChildrenCategory->setSysLanguageUid((int)$sysLanguageUid);
         }
-    }
-
-    /**
-     * Emits signal
-     *
-     * @param string $signalName name of the signal slot
-     * @param array $signalArguments arguments for the signal slot
-     *
-     * @return void
-     */
-    protected function emitSignal($signalName, array $signalArguments): void
-    {
-        $this->signalSlotDispatcher->dispatch(
-            self::class,
-            $signalName,
-            $signalArguments
-        );
     }
 }

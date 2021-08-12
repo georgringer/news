@@ -4,6 +4,7 @@ namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Resource\File;
@@ -15,7 +16,6 @@ use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -55,9 +55,9 @@ class AbstractImportService implements LoggerAwareInterface
     protected $importFolder;
 
     /**
-     * @var Dispatcher
+     * @var EventDispatcherInterface
      */
-    protected $signalSlotDispatcher;
+    protected $eventDispatcher;
 
     /**
      * @var CategoryRepository
@@ -69,19 +69,19 @@ class AbstractImportService implements LoggerAwareInterface
      * @param EmConfiguration $emSettings
      * @param ObjectManager $objectManager
      * @param CategoryRepository $categoryRepository
-     * @param Dispatcher $signalSlotDispatcher
+     * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         PersistenceManager $persistenceManager,
         ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
-        Dispatcher $signalSlotDispatcher
+        EventDispatcherInterface $eventDispatcher
     ) {
         $this->emSettings = GeneralUtility::makeInstance(EmConfiguration::class);
         $this->persistenceManager = $persistenceManager;
         $this->objectManager = $objectManager;
         $this->categoryRepository = $categoryRepository;
-        $this->signalSlotDispatcher = $signalSlotDispatcher;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
