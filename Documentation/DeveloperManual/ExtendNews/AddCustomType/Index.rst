@@ -31,7 +31,7 @@ Create a file `Configuration/Extbase/Persistence/Classes.php`
    return [
     \GeorgRinger\News\Domain\Model\News::class => [
         'subclasses' => [
-            \Vendor\ExtName\Domain\Model\MyCustomNewsType::class,
+            3 => \Vendor\ExtName\Domain\Model\MyCustomNewsType::class,
         ]
     ],
     \Vendor\ExtName\Domain\Model\MyCustomNewsType::class => [
