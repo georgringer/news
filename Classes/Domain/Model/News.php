@@ -1629,6 +1629,7 @@ class News extends AbstractEntity
     {
         return $this->getMediaNonPreviews();
     }
+    
     /**
      * @return array
      */
