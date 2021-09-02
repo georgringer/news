@@ -1646,7 +1646,7 @@ class News extends AbstractEntity
     }
     
     /**
-     * Return related items sorted by sorting
+     * Return related items sorted by foreign sorting
      *
      * @return array
      */
