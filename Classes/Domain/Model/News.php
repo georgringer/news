@@ -237,6 +237,21 @@ class News extends AbstractEntity
     protected $notes ='';
 
     /**
+     * @var bool
+     */
+    protected $noIndex;
+
+    /**
+     * @var bool
+     */
+    protected $noFollow;
+
+    /**
+     * @var string
+     */
+    protected $canonicalLink;
+
+    /**
      * Initialize categories and media relation
      *
      * @return \GeorgRinger\News\Domain\Model\News
@@ -1605,6 +1620,62 @@ class News extends AbstractEntity
     public function setNotes(string $notes): void
     {
         $this->notes = $notes;
+    }
+
+    /**
+     * Get no_index flag
+     *
+     * @return bool
+     */
+    public function getNoIndex()
+    {
+        return $this->noIndex;
+    }
+
+    /**
+     * Set no_index flag
+     *
+     * @param bool $istopnews top news flag
+     */
+    public function setNoIndex($noIndex)
+    {
+        $this->noIndex = $noIndex;
+    }
+
+    /**
+     * Get no_follow flag
+     *
+     * @return bool
+     */
+    public function getNoFollow()
+    {
+        return $this->noFollow;
+    }
+
+    /**
+     * Set no_follow flag
+     *
+     * @param bool $istopnews top news flag
+     */
+    public function setNoFollow($noFollow)
+    {
+        $this->noFollow = $noFollow;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCanonicalLink()
+    {
+        return $this->canonicalLink;
+    }
+
+    /**
+     * @param string $canonical
+     */
+    public function setCanonicalLink(string $canonicalLink)
+    {
+        $this->canonicalLink = $canonicalLink;
     }
 
     /**
