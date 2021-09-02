@@ -22,6 +22,8 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
+use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -393,6 +395,24 @@ class NewsController extends NewsBaseController
             'demand' => $demand,
             'settings' => $this->settings
         ];
+
+        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('seo')) {
+            // meta robots
+            $metaTagManagerRegistry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
+            $noIndex = ((bool)$news->getNoIndex()) ? 'noindex' : 'index';
+            $noFollow = ((bool)$news->getNoFollow()) ? 'nofollow' : 'follow';
+
+            $manager = $metaTagManagerRegistry->getManagerForProperty('robots');
+            $manager->addProperty('robots', implode(',', [$noIndex, $noFollow]));
+
+            // canonical
+            if($news->getCanonicalLink()) {
+                $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
+                $conf = array('parameter' => $news->getCanonicalLink(), 'forceAbsoluteUrl' => 1);
+                $uri = $cObj->typoLink_URL($conf);
+                $GLOBALS['TSFE']->page['canonical_link'] = $uri;
+            }
+        }
 
         $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
         $news = $assignedValues['newsItem'];
