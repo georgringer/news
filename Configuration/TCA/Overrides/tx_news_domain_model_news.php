@@ -8,6 +8,61 @@ $boot = static function (): void {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
             'tx_news_domain_model_news',
             [
+                'no_index' => [
+                    'exclude' => true,
+                    'l10n_mode' => 'exclude',
+                    'onChange' => 'reload',
+                    'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.no_index_formlabel',
+                    'config' => [
+                        'type' => 'check',
+                        'renderType' => 'checkboxToggle',
+                        'items' => [
+                            [
+                                '0' => '',
+                                '1' => '',
+                                'invertStateDisplay' => true
+                            ]
+                        ]
+                    ]
+                ],
+                'no_follow' => [
+                    'exclude' => true,
+                    'l10n_mode' => 'exclude',
+                    'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.no_follow_formlabel',
+                    'config' => [
+                        'type' => 'check',
+                        'renderType' => 'checkboxToggle',
+                        'items' => [
+                            [
+                                '0' => '',
+                                '1' => '',
+                                'invertStateDisplay' => true
+                            ]
+                        ]
+                    ]
+                ],
+                'canonical_link' => [
+                    'exclude' => true,
+                    'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.canonical_link',
+                    'displayCond' => 'FIELD:no_index:=:0',
+                    'config' => [
+                        'type' => 'input',
+                        'renderType' => 'inputLink',
+                        'size' => 50,
+                        'max' => 1024,
+                        'eval' => 'trim',
+                        'fieldControl' => [
+                            'linkPopup' => [
+                                'options' => [
+                                    'title' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.canonical_link',
+                                    'blindLinkFields' => 'class,target,title',
+                                    'blindLinkOptions' => 'mail,folder,file,telephone'
+                                ],
+                            ],
+                        ],
+                        'softref' => 'typolink'
+                    ]
+                ],
                 'sitemap_changefreq' => [
                     'config' => [
                         'items' => [
@@ -51,6 +106,14 @@ $boot = static function (): void {
             ]
         );
 
+        $GLOBALS['TCA']['tx_news_domain_model_news']['palettes']['robots'] = [
+            'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.palettes.robots',
+            'showitem' => 'no_index;LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.no_index_formlabel, no_follow;LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.no_follow_formlabel',
+        ];
+        $GLOBALS['TCA']['tx_news_domain_model_news']['palettes']['canonical'] = [
+            'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.palettes.canonical',
+            'showitem' => 'canonical_link',
+        ];
         $GLOBALS['TCA']['tx_news_domain_model_news']['palettes']['sitemap'] = [
             'label' => 'LLL:EXT:seo/Resources/Private/Language/locallang_tca.xlf:pages.palettes.sitemap',
             'showitem' => 'sitemap_changefreq,sitemap_priority'
@@ -58,7 +121,7 @@ $boot = static function (): void {
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
             'tx_news_domain_model_news',
-            '--palette--;;sitemap',
+            '--palette--;;robots,--palette--;;canonical,--palette--;;sitemap',
             '',
             'after:alternative_title'
         );
