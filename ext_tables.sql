@@ -56,6 +56,9 @@ CREATE TABLE tx_news_domain_model_news (
 	notes text,
 	sitemap_changefreq varchar(10) DEFAULT '' NOT NULL,
 	sitemap_priority decimal(2,1) DEFAULT '0.5' NOT NULL,
+	no_index tinyint(4) DEFAULT '0' NOT NULL,
+	no_follow tinyint(4) DEFAULT '0' NOT NULL,
+	canonical_link varchar(2048) DEFAULT '' NOT NULL,
 
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
