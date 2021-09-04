@@ -90,8 +90,8 @@ class NewsController extends NewsBaseController
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
         $this->configurationManager = $configurationManager;
-
     }
+
     /**
      * Initializes the current action
      *
@@ -687,7 +687,6 @@ class NewsController extends NewsBaseController
         }
 
         $this->settings = $originalSettings;
-
     }
 
     /**

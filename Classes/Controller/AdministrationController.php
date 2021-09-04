@@ -251,11 +251,11 @@ class AdministrationController extends NewsController
             $viewButton = $buttonBar->makeLinkButton()
                 ->setHref($clipBoard->pasteUrl('', $this->pageUid))
                 ->setOnClick('return ' . $clipBoard->confirmMsgText(
-                        'pages',
-                        BackendUtilityCore::getRecord('pages', $this->pageUid),
-                        'into',
-                        $elFromTable
-                    ))
+                    'pages',
+                    BackendUtilityCore::getRecord('pages', $this->pageUid),
+                    'into',
+                    $elFromTable
+                ))
                 ->setTitle($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf:clip_pasteInto'))
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));
             $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);

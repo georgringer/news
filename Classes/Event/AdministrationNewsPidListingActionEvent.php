@@ -72,7 +72,7 @@ final class AdministrationNewsPidListingActionEvent
 
     /**
      * Get the treeLevel
-     */ 
+     */
     public function getTreeLevel(): int
     {
         return $this->treeLevel;
@@ -80,7 +80,7 @@ final class AdministrationNewsPidListingActionEvent
 
     /**
      * Set the treeLevel
-     */ 
+     */
     public function setTreeLevel(int $treeLevel): self
     {
         $this->treeLevel = $treeLevel;
