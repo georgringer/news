@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -167,24 +166,5 @@ class NewsBaseControllerTest extends BaseTestCase
 //        $mockController->expects($this->once())
 //            ->method('redirectToUri')->with(null, 0, 301);
 //        $mockController->_call('handleNoNewsFoundError', 'redirectToPage,456,301');
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function signalSlotGetsEmitted()
-//    {
-//        $mockedSignalSlotDispatcher = $this->getAccessibleMock(Dispatcher::class, ['dispatch'], [], '', false);
-//        $mockedController = $this->getAccessibleMock(NewsBaseController::class, ['dummy']);
-//        $mockedController->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
-//
-//        $classPart = 'FoController';
-//        $signalArguments = ['fo' => 'bar', 'extendedVariables' => []];
-//        $name = 'foAction';
-//
-//        $mockedSignalSlotDispatcher->expects($this->once())
-//            ->method('dispatch')->with('GeorgRinger\\News\\Controller\\' . $classPart, $name, $signalArguments);
-//
-//        $mockedController->_call('emitActionSignal', $classPart, $name, $signalArguments);
 //    }
 }

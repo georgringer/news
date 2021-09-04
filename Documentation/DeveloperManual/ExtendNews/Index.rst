@@ -14,7 +14,8 @@ Extend News
 	:titlesonly:
 
 	ExtendFlexforms/Index
-	HooksSignals/Index
+	Events/Index
+	Hooks/Index
 	ProxyClassGenerator/Index
 	AddCustomType/Index
 	ExtensionBasedOnNews/Index

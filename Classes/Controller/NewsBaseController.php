@@ -159,25 +159,6 @@ class NewsBaseController extends ActionController
     }
 
     /**
-     * Emits signal for various actions
-     *
-     * @param string $classPart last part of the class name
-     * @param string $signalName name of the signal slot
-     * @param array $signalArguments arguments for the signal slot
-     *
-     * @return array
-     */
-    protected function emitActionSignal($classPart, $signalName, array $signalArguments): array
-    {
-        $signalArguments['extendedVariables'] = [];
-        return $this->signalSlotDispatcher->dispatch(
-            'GeorgRinger\\News\\Controller\\' . $classPart,
-            $signalName,
-            $signalArguments
-        );
-    }
-
-    /**
      * @return TypoScriptFrontendController
      */
     protected function getTypoScriptFrontendController(): TypoScriptFrontendController
