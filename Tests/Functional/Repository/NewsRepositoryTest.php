@@ -30,7 +30,7 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
 
-    protected $coreExtensionsToLoad = ['fluid', 'extensionmanager'];
+    protected $coreExtensionsToLoad = ['fluid'];
 
     public function setUp(): void
     {
