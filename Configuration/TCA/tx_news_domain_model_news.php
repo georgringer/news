@@ -226,7 +226,7 @@ $tx_news_domain_model_news = [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
-                'softref' => 'rtehtmlarea_images,typolink_tag,images,email[subst],url',
+                'softref' => 'typolink_tag,images,email[subst],url',
                 'enableRichtext' => true,
             ]
         ],
