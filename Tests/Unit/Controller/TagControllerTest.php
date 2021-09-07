@@ -11,7 +11,6 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
 use GeorgRinger\News\Controller\TagController;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\TagRepository;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
@@ -46,18 +45,12 @@ class TagControllerTest extends BaseTestCase
         $demand = new NewsDemand();
         $settings = ['list' => 'foo', 'orderBy' => 'datetime'];
 
-        $mockedSignalSlotDispatcher = $this->getAccessibleMock(Dispatcher::class, ['dispatch'], [], '', false);
-
-        $fixture = $this->getAccessibleMock(TagController::class, ['createDemandObjectFromSettings', 'emitActionSignal']);
-        $fixture->_set('signalSlotDispatcher', $mockedSignalSlotDispatcher);
-
         $fixture->_set('tagRepository', $this->tagRepository->reveal());
         $fixture->setView($this->getMockBuilder(TemplateView::class)->disableOriginalConstructor()->getMock());
         $fixture->_set('settings', $settings);
 
         $fixture->expects($this->once())->method('createDemandObjectFromSettings')
             ->will($this->returnValue($demand));
-        $fixture->expects($this->once())->method('emitActionSignal')->will($this->returnValue([]));
 
         $this->tagRepository->findDemanded($demand)->shouldBeCalled();
 

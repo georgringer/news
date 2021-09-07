@@ -8,6 +8,9 @@ use GeorgRinger\News\Domain\Repository\AdministrationRepository;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TagRepository;
+use GeorgRinger\News\Event\AdministrationExtendMenuEvent;
+use GeorgRinger\News\Event\AdministrationIndexActionEvent;
+use GeorgRinger\News\Event\AdministrationNewsPidListingActionEvent;
 use GeorgRinger\News\Utility\Page;
 use TYPO3\CMS\Backend\Clipboard\Clipboard;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
@@ -41,9 +44,6 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  */
 class AdministrationController extends NewsController
 {
-    const SIGNAL_ADMINISTRATION_INDEX_ACTION = 'indexAction';
-    const SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION = 'newsPidListingAction';
-
     /** @var int */
     protected $pageUid = 0;
 
@@ -180,17 +180,9 @@ class AdministrationController extends NewsController
      */
     protected function extendMenu(Menu $menu): Menu
     {
-        $signalParameters = [
-            'menu' => $menu,
-        ];
-        try {
-            $signalParameters = $this->signalSlotDispatcher->dispatch(__CLASS__, 'createMenu', $signalParameters);
-        } catch (\Exception $exception) {
-            // Nothing to do
-        }
-        $menu = $signalParameters['menu'];
+        $event = $this->eventDispatcher->dispatch(new AdministrationExtendMenuEvent($this, $menu));
 
-        return $menu;
+        return $event->getMenu();
     }
 
     protected function createButtons(): void
@@ -423,20 +415,15 @@ class AdministrationController extends NewsController
             'dateformat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy']
         ];
 
-        $assignedValues = $this->emitActionSignal(
-            'AdministrationController',
-            self::SIGNAL_ADMINISTRATION_INDEX_ACTION,
-            $assignedValues
-        );
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new AdministrationIndexActionEvent($this, $assignedValues));
+
+        $this->view->assignMultiple($event->getAssignedValues());
     }
 
     /**
      * Shows a page tree including count of news + category records
-     *
-     * @param int $treeLevel
      */
-    public function newsPidListingAction($treeLevel = 2): void
+    public function newsPidListingAction(int $treeLevel = 2): void
     {
         $tree = Page::pageTree($this->pageUid, $treeLevel);
 
@@ -446,17 +433,12 @@ class AdministrationController extends NewsController
             $rawTree[] = $row;
         }
 
-        $assignedValues = [
-            'tree' => $rawTree,
-            'treeLevel' => $treeLevel,
-        ];
+        $event = $this->eventDispatcher->dispatch(new AdministrationNewsPidListingActionEvent($this, $rawTree, $treeLevel));
 
-        $assignedValues = $this->emitActionSignal(
-            'AdministrationController',
-            self::SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION,
-            $assignedValues
-        );
-        $this->view->assignMultiple($assignedValues);
+        $this->view->assignMultiple([
+            'tree' => $event->getRawTree(),
+            'treeLevel' => $event->getTreeLevel(),
+        ]);
     }
 
     public function donateAction(): void

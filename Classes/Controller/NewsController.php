@@ -8,6 +8,13 @@ use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TagRepository;
+use GeorgRinger\News\Event\NewsCheckPidOfNewsRecordFailedInDetailActionEvent;
+use GeorgRinger\News\Event\NewsDateMenuActionEvent;
+use GeorgRinger\News\Event\NewsDetailActionEvent;
+use GeorgRinger\News\Event\NewsListActionEvent;
+use GeorgRinger\News\Event\NewsListSelectedActionEvent;
+use GeorgRinger\News\Event\NewsSearchFormActionEvent;
+use GeorgRinger\News\Event\NewsSearchResultActionEvent;
 use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\ClassCacheManager;
@@ -36,13 +43,6 @@ use TYPO3\CMS\Fluid\View\TemplateView;
  */
 class NewsController extends NewsBaseController
 {
-    const SIGNAL_NEWS_LIST_ACTION = 'listAction';
-    const SIGNAL_NEWS_LIST_SELECTED_ACTION = 'selectedListAction';
-    const SIGNAL_NEWS_DETAIL_ACTION = 'detailAction';
-    const SIGNAL_NEWS_DATEMENU_ACTION = 'dateMenuAction';
-    const SIGNAL_NEWS_SEARCHFORM_ACTION = 'searchFormAction';
-    const SIGNAL_NEWS_SEARCHRESULT_ACTION = 'searchResultAction';
-
     /**
      * @var \GeorgRinger\News\Domain\Repository\NewsRepository
      */
@@ -91,6 +91,7 @@ class NewsController extends NewsBaseController
         $this->tagRepository = $tagRepository;
         $this->configurationManager = $configurationManager;
     }
+
     /**
      * Initializes the current action
      *
@@ -281,8 +282,9 @@ class NewsController extends NewsBaseController
                 $assignedValues['tags'] = $this->tagRepository->findByIdList($tagList);
             }
         }
-        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_ACTION, $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+
+        $event = $this->eventDispatcher->dispatch(new NewsListActionEvent($this, $assignedValues));
+        $this->view->assignMultiple($event->getAssignedValues());
 
         Cache::addPageCacheTagsByDemandObject($demand);
     }
@@ -345,8 +347,8 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_LIST_SELECTED_ACTION, $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new NewsListSelectedActionEvent($this, $assignedValues));
+        $this->view->assignMultiple($event->getAssignedValues());
 
         if (!empty($newsRecords) && is_a($newsRecords[0], News::class)) {
             Cache::addCacheTagsByNewsRecords($newsRecords);
@@ -393,7 +395,9 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DETAIL_ACTION, $assignedValues);
+        $event = $this->eventDispatcher->dispatch(new NewsDetailActionEvent($this, $assignedValues));
+        $assignedValues = $event->getAssignedValues();
+
         $news = $assignedValues['newsItem'];
         $this->view->assignMultiple($assignedValues);
 
@@ -440,14 +444,7 @@ class NewsController extends NewsBaseController
             true
         );
         if (count($allowedStoragePages) > 0 && !in_array($news->getPid(), $allowedStoragePages)) {
-            $this->signalSlotDispatcher->dispatch(
-                __CLASS__,
-                'checkPidOfNewsRecordFailedInDetailAction',
-                [
-                    'news' => $news,
-                    'newsController' => $this
-                ]
-            );
+            $this->eventDispatcher->dispatch(new NewsCheckPidOfNewsRecordFailedInDetailActionEvent($this, $news));
             $news = null;
         }
         return $news;
@@ -514,8 +511,9 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $assignedValues = $this->emitActionSignal('NewsController', self::SIGNAL_NEWS_DATEMENU_ACTION, $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new NewsDateMenuActionEvent($this, $assignedValues));
+
+        $this->view->assignMultiple($event->getAssignedValues());
     }
 
     /**
@@ -549,12 +547,9 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $assignedValues = $this->emitActionSignal(
-            'NewsController',
-            self::SIGNAL_NEWS_SEARCHFORM_ACTION,
-            $assignedValues
-        );
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new NewsSearchFormActionEvent($this, $assignedValues));
+
+        $this->view->assignMultiple($event->getAssignedValues());
     }
 
     /**
@@ -592,12 +587,9 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $assignedValues = $this->emitActionSignal(
-            'NewsController',
-            self::SIGNAL_NEWS_SEARCHRESULT_ACTION,
-            $assignedValues
-        );
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new NewsSearchResultActionEvent($this, $assignedValues));
+
+        $this->view->assignMultiple($event->getAssignedValues());
     }
 
     /**

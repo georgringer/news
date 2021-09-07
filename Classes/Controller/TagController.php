@@ -2,6 +2,8 @@
 
 namespace GeorgRinger\News\Controller;
 
+use GeorgRinger\News\Event\TagListActionEvent;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -14,8 +16,6 @@ namespace GeorgRinger\News\Controller;
  */
 class TagController extends NewsController
 {
-    const SIGNAL_TAG_LIST_ACTION = 'listAction';
-
     /**
      * List tags
      *
@@ -43,7 +43,8 @@ class TagController extends NewsController
             'demand' => $demand,
         ];
 
-        $assignedValues = $this->emitActionSignal('TagController', self::SIGNAL_TAG_LIST_ACTION, $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new TagListActionEvent($this, $assignedValues));
+
+        $this->view->assignMultiple($event->getAssignedValues());
     }
 }

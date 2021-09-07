@@ -2,6 +2,8 @@
 
 namespace GeorgRinger\News\Controller;
 
+use GeorgRinger\News\Event\CategoryListActionEvent;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -13,7 +15,6 @@ namespace GeorgRinger\News\Controller;
  */
 class CategoryController extends NewsController
 {
-    const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
     /**
      * List categories
      *
@@ -43,11 +44,8 @@ class CategoryController extends NewsController
             'demand' => $demand,
         ];
 
-        $assignedValues = $this->emitActionSignal(
-            'CategoryController',
-            self::SIGNAL_CATEGORY_LIST_ACTION,
-            $assignedValues
-        );
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new CategoryListActionEvent($this, $assignedValues));
+
+        $this->view->assignMultiple($event->getAssignedValues());
     }
 }
