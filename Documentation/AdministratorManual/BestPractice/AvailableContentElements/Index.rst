@@ -13,7 +13,7 @@ If you want to limit the available content element types for news records, you h
 
 1. ``TCEFORM`` ::
 
-	TCEFORM.tt_content.CType.removeItem = html,bullets,div,menu_subpages
+	TCEFORM.tt_content.CType.removeItems = html,bullets,div,menu_subpages
 
 2. Backend Layout settings: ::
 
