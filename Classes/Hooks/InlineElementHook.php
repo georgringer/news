@@ -73,7 +73,7 @@ class InlineElementHook implements InlineElementHookInterface
         $isVirtual,
         array &$controlItems
     ) {
-        $previewSetting = (int)$childRecord['showinpreview'];
+        $previewSetting = (int)($childRecord['showinpreview'] ?? 0);
         if ($foreignTable === 'sys_file_reference' && $previewSetting > 0) {
             $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
