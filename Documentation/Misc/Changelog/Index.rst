@@ -20,6 +20,7 @@ List of versions
    :titlesonly:
    :glob:
 
+   9-0-0
    8-6-0
    8-5-2
    8-5-1

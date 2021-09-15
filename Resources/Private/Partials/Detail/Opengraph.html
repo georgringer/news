@@ -10,12 +10,13 @@
 <n:metaTag property="og:url" content="" useCurrentDomain="1" />
 <n:metaTag property="og:site_name" content="{settings.opengraph.site_name}" />
 <f:if condition="{newsItem.firstPreview}">
+    <f:variable name="ogImagePath" value="{f:uri.image(src:'{newsItem.firstPreview.uid}', treatIdAsReference:1, maxWidth:'1200')}" />
 	<n:metaTag
 		property="og:image"
-		content="{f:uri.image(src:'{newsItem.firstPreview.uid}', treatIdAsReference:1, maxWidth:'1200')}"
+		content="{ogImagePath}"
 		forceAbsoluteUrl="1" />
-	<n:metaTag property="og:image:width" content="{n:imageSize(property:'width')}" />
-	<n:metaTag property="og:image:height" content="{n:imageSize(property:'height')}" />
+	<n:metaTag property="og:image:width" content="{n:imageSize(property:'width', image:'{ogImagePath}')}" />
+	<n:metaTag property="og:image:height" content="{n:imageSize(property:'height', image:'{ogImagePath}')}" />
 </f:if>
 
 <f:if condition="{newsItem.description}">
