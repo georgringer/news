@@ -156,11 +156,11 @@ class PageLayoutView
                         $this->getTemplateLayoutSettings($params['row']['pid']);
                 }
 
-                if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'])) {
+                if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'] ?? []) {
                     $params = [
                         'action' => $actionTranslationKey
                     ];
-                    foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'] as $reference) {
+                    foreach ($hooks as $reference) {
                         GeneralUtility::callUserFunction($reference, $params, $this);
                     }
                 }
