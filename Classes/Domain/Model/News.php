@@ -514,7 +514,7 @@ class News extends AbstractEntity
     public function getFirstCategory(): ?Category
     {
         $categories = $this->getCategories();
-        if (!is_null($categories)) {
+        if (!is_null($categories) && $categories->count() > 0) {
             $categories->rewind();
             return $categories->current();
         }

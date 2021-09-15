@@ -120,14 +120,14 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
         $constraints = $this->createConstraintsFromDemand($query, $demand);
 
         // Call hook functions for additional constraints
-        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'])) {
+        if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] ?? []) {
             $params = [
                 'demand' => $demand,
                 'respectEnableFields' => &$respectEnableFields,
                 'query' => $query,
                 'constraints' => &$constraints,
             ];
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] as $reference) {
+            foreach ($hooks as $reference) {
                 GeneralUtility::callUserFunction($reference, $params, $this);
             }
         }

@@ -154,7 +154,7 @@ class NewsController extends NewsBaseController
         $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh']);
         $demand->setArchiveRestriction((string)$settings['archiveRestriction']);
         $demand->setExcludeAlreadyDisplayedNews((bool)$settings['excludeAlreadyDisplayedNews']);
-        $demand->setHideIdList((string)$settings['hideIdList']);
+        $demand->setHideIdList((string)($settings['hideIdList'] ?? ''));
 
         if ($settings['orderBy']) {
             $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
@@ -166,23 +166,23 @@ class NewsController extends NewsBaseController
         $demand->setLimit((int)$settings['limit']);
         $demand->setOffset((int)$settings['offset']);
 
-        $demand->setSearchFields((string)$settings['search']['fields']);
-        $demand->setDateField((string)$settings['dateField']);
-        $demand->setMonth((int)$settings['month']);
-        $demand->setYear((int)$settings['year']);
+        $demand->setSearchFields((string)($settings['search']['fields'] ?? ''));
+        $demand->setDateField((string)($settings['dateField'] ?? ''));
+        $demand->setMonth((int)($settings['month'] ?? 0));
+        $demand->setYear((int)($settings['year'] ?? 0));
 
         $demand->setStoragePage(Page::extendPidListByChildren(
             $settings['startingpoint'],
             $settings['recursive']
         ));
 
-        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'])) {
+        if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] ?? []) {
             $params = [
                 'demand' => $demand,
                 'settings' => $settings,
                 'class' => $class,
             ];
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] as $reference) {
+            foreach ($hooks as $reference) {
                 GeneralUtility::callUserFunction($reference, $params, $this);
             }
         }
@@ -676,14 +676,12 @@ class NewsController extends NewsBaseController
             $originalSettings = $typoScriptUtility->override($originalSettings, $tsSettings);
         }
 
-        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'])) {
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'] as $_funcRef) {
-                $_params = [
-                    'originalSettings' => $originalSettings,
-                    'tsSettings' => $tsSettings,
-                ];
-                $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
-            }
+        foreach ($hooks = ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'] ?? []) as $_funcRef) {
+            $_params = [
+                'originalSettings' => $originalSettings,
+                'tsSettings' => $tsSettings,
+            ];
+            $originalSettings = GeneralUtility::callUserFunction($_funcRef, $_params, $this);
         }
 
         $this->settings = $originalSettings;
