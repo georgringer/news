@@ -365,7 +365,7 @@ class NewsController extends NewsBaseController
      */
     public function detailAction(News $news = null, $currentPage = 1)
     {
-        if ($news === null || $this->settings['isShortcut']) {
+        if ($news === null || ($this->settings['isShortcut'] ?? false)) {
             $previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
             if ($this->request->hasArgument('news_preview')) {
                 $previewNewsId = (int)$this->request->getArgument('news_preview');
@@ -402,7 +402,7 @@ class NewsController extends NewsBaseController
         $this->view->assignMultiple($assignedValues);
 
         // reset news if type is internal or external
-        if ($news && !$this->settings['isShortcut'] && ($news->getType() === '1' || $news->getType() === '2')) {
+        if ($news && !($this->settings['isShortcut'] ?? false) && ($news->getType() === '1' || $news->getType() === '2')) {
             $news = null;
         }
 
