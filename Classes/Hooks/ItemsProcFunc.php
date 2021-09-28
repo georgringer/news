@@ -12,7 +12,6 @@ use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
  * Userfunc to render alternative label for media elements
@@ -75,7 +74,7 @@ class ItemsProcFunc
         $allLayouts = [];
         foreach ($templateLayouts as $key => $layout) {
             if (is_array($layout[0])) {
-                if (isset($layout[0]['allowedColPos']) && StringUtility::endsWith($layout[1], '.')) {
+                if (isset($layout[0]['allowedColPos']) && str_ends_with((string)$layout[1], '.')) {
                     $layoutKey = substr($layout[1], 0, -1);
                     $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
                 }
@@ -112,11 +111,11 @@ class ItemsProcFunc
 
             // check if there is a flexform configuration
             if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
-                $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
+                $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'] ?? '';
                 // check for selected action
-                if (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Category')) {
+                if (str_starts_with($selectedActionList, 'Category')) {
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
-                } elseif (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Tag')) {
+                } elseif (str_starts_with($selectedActionList, 'Tag')) {
                     $this->removeNonValidOrderFields($config, 'tx_news_domain_model_tag');
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'];
                 } else {

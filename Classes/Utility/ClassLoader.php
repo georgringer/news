@@ -132,7 +132,7 @@ class ClassLoader implements SingletonInterface
      */
     protected function isValidClassName($className): bool
     {
-        if (GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Domain\\') || GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Controller\\')) {
+        if (str_starts_with($className, 'GeorgRinger\\News\\Domain\\') || str_starts_with($className, 'GeorgRinger\\News\\Controller\\')) {
             $modifiedClassName = $this->changeClassName($className);
             if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'][$modifiedClassName])) {
                 return true;
