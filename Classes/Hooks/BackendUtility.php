@@ -182,7 +182,7 @@ class BackendUtility
             }
 
             // new plugin element
-        } elseif (GeneralUtility::isFirstPartOfStr($row['uid'], 'NEW')) {
+        } elseif (str_starts_with((string)$row['uid'], 'NEW')) {
             // use List as starting view
             $selectedView = 'News->list';
         }

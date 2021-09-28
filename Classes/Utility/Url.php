@@ -25,7 +25,7 @@ class Url
      */
     public static function prependDomain(string $url): string
     {
-        if (!GeneralUtility::isFirstPartOfStr($url, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
+        if (!str_starts_with($url, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
             $url = GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $url;
         }
 
