@@ -141,7 +141,7 @@ class News extends AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $relatedLinks;
-    
+
     /**
      * @var array
      */
@@ -1629,7 +1629,7 @@ class News extends AbstractEntity
     {
         return $this->getMediaNonPreviews();
     }
-    
+
     /**
      * @return array
      */
@@ -1637,7 +1637,7 @@ class News extends AbstractEntity
     {
         return $this->sortingForeign;
     }
-    
+
     /**
      * @param array $sortingForeign
      */
@@ -1645,7 +1645,7 @@ class News extends AbstractEntity
     {
         $this->sortingForeign = $sortingForeign;
     }
-    
+
     /**
      * Return related items sorted by foreign sorting
      *
