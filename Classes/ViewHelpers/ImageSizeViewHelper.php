@@ -43,8 +43,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ): int
-    {
+    ): int {
         $value = 0;
         $usedImage = trim($arguments['image'], '/');
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
