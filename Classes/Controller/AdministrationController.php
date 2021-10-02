@@ -248,15 +248,20 @@ class AdministrationController extends NewsController
         $clipBoard->initializeClipboard();
         $elFromTable = $clipBoard->elFromTable('tx_news_domain_model_news');
         if (!empty($elFromTable)) {
+            $pasteTitle = $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf:clip_pasteInto');
             $viewButton = $buttonBar->makeLinkButton()
                 ->setHref($clipBoard->pasteUrl('', $this->pageUid))
-                ->setOnClick('return ' . $clipBoard->confirmMsgText(
-                    'pages',
-                    BackendUtilityCore::getRecord('pages', $this->pageUid),
-                    'into',
-                    $elFromTable
-                ))
-                ->setTitle($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_mod_web_list.xlf:clip_pasteInto'))
+                ->setClasses('t3js-modal-trigger')
+                ->setDataAttributes([
+                    'title' => $pasteTitle,
+                    'bs-content' => $clipBoard->confirmMsgText(
+                        'pages',
+                        BackendUtilityCore::getRecord('pages', $this->pageUid),
+                        'into',
+                        $elFromTable
+                    ),
+                ])
+                ->setTitle($pasteTitle)
                 ->setIcon($this->iconFactory->getIcon('actions-document-paste-into', Icon::SIZE_SMALL));
             $buttonBar->addButton($viewButton, ButtonBar::BUTTON_POSITION_LEFT, 4);
         }
