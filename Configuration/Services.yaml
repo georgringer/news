@@ -32,3 +32,6 @@ services:
         identifier: 'my-ext/ownHrefLang'
         after: 'typo3-seo/hreflangGenerator'
         event: TYPO3\CMS\Frontend\Event\ModifyHrefLangTagsEvent
+
+  GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList:
+    public: true
