@@ -3,17 +3,17 @@
 namespace GeorgRinger\News\Utility;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class ClassLoader
@@ -132,13 +132,18 @@ class ClassLoader implements SingletonInterface
      */
     protected function isValidClassName($className): bool
     {
-        if (GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Domain\\') || GeneralUtility::isFirstPartOfStr($className, 'GeorgRinger\\News\\Controller\\')) {
+        if ($this->isFirstPartOfStr($className, 'GeorgRinger\\News\\Domain\\') || $this->isFirstPartOfStr($className, 'GeorgRinger\\News\\Controller\\')) {
             $modifiedClassName = $this->changeClassName($className);
             if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'][$modifiedClassName])) {
                 return true;
             }
         }
         return false;
+    }
+
+    protected function isFirstPartOfStr(string $str, string $partStr): bool
+    {
+        return $partStr !== '' && strpos($str, $partStr) === 0;
     }
 
     protected function changeClassName(string $className): string
