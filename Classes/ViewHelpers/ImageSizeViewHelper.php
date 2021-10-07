@@ -5,6 +5,7 @@ namespace GeorgRinger\News\ViewHelpers;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Page\AssetCollector;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
@@ -45,7 +46,18 @@ class ImageSizeViewHelper extends AbstractViewHelper
         RenderingContextInterface $renderingContext
     ): int {
         $value = 0;
-        $usedImage = trim($arguments['image'], '/');
+
+        $typo3VersionNumber = VersionNumberUtility::convertVersionNumberToInteger(
+            VersionNumberUtility::getNumericTypo3Version()
+        );
+
+        // If TYPO3 version is previous version 11
+        if ($typo3VersionNumber < 11000000) {
+            $usedImage = trim($arguments['image'], '/');
+        } else {
+            $usedImage = trim($arguments['image']);
+        }
+
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
         $imagesOnPage = $assetCollector->getMedia();
 
