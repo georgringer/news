@@ -30,3 +30,15 @@ foreach (['crdate', 'tstamp'] as $fakeField) {
         ];
     }
 }
+
+
+$newFields = [
+    'tx_news_related_news' => [
+        'label' => 'tx_news_related_news',
+        'config' => [
+            'type' => 'passthrough'
+        ]
+    ]
+];
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $newFields);
+
