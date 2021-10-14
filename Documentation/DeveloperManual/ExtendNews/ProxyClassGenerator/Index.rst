@@ -98,7 +98,7 @@ Therefore, create the file ``Configuration/TCA/Overrides/tx_news_domain_model_ne
 .. code-block:: php
 
 	<?php
-	defined('TYPO3_MODE') or die();
+	defined('TYPO3') or die();
 
 	$fields = array(
 		'location_simple' => array(
