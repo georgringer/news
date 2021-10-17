@@ -149,7 +149,7 @@ categoryConjunction
    Data type
          string
    Description
-         The category mode defines who selected categories are checked. 5 options are available:
+         The category mode defines how selected categories are checked. 5 options are available:
 
          **1) Don't care, show all**
 
