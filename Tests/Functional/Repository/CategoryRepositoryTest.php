@@ -20,9 +20,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 class CategoryRepositoryTest extends FunctionalTestCase
 {
 
-    /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-    protected $objectManager;
-
     /** @var  \GeorgRinger\News\Domain\Repository\CategoryRepository */
     protected $categoryRepository;
 
@@ -31,8 +28,12 @@ class CategoryRepositoryTest extends FunctionalTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $this->categoryRepository = $this->objectManager->get(CategoryRepository::class);
+        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+        if ($versionInformation->getMajorVersion() === 11) {
+            $this->categoryRepository = $this->getContainer()->get(CategoryRepository::class);
+        } else {
+            $this->categoryRepository = GeneralUtility::makeInstance(ObjectManager::class)->get(CategoryRepository::class);
+        }
 
         $this->importDataSet(__DIR__ . '/../Fixtures/sys_category.xml');
     }
