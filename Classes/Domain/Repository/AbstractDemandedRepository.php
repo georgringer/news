@@ -86,7 +86,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): string
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
-        $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
+        $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();

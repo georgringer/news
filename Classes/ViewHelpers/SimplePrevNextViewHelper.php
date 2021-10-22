@@ -181,10 +181,10 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             $extraWhere = [
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), \PDO::PARAM_INT))
             ];
-            if ((bool)$this->arguments['includeInternalType'] === false) {
+            if ((bool)($this->arguments['includeInternalType'] ?? false) === false) {
                 $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
             }
-            if ((bool)$this->arguments['includeExternalType'] === false) {
+            if ((bool)($this->arguments['includeExternalType'] ?? false) === false) {
                 $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, \PDO::PARAM_INT));
             }
 

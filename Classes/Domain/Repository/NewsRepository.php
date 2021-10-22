@@ -281,8 +281,9 @@ class NewsRepository extends AbstractDemandedRepository
             if (!empty($orderList)) {
                 // go through every order statement
                 foreach ($orderList as $orderItem) {
-                    list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
-                    // count == 1 means that no direction is given
+                    $orderSplit = GeneralUtility::trimExplode(' ', $orderItem, true);
+                    $orderField = $orderSplit[0];
+                    $ascDesc = $orderSplit[1] ?? '';
                     if ($ascDesc) {
                         $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
                             QueryInterface::ORDER_DESCENDING :
