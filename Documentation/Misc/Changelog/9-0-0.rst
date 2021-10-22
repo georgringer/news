@@ -11,7 +11,9 @@
 
 
 Support for TYPO3 10 && 11
-------------------------
+--------------------------
+This version fully supports TYPO3 10 and 11 LTS.
+Due to a lot of changes it might be that small issues still might occur. Please report those at https://github.com/georgringer/news/issues!
 
 Breaking changes
 ----------------
@@ -19,7 +21,27 @@ The following changes should be carefully checked.
 
 Removed ViewHelpers
 ^^^^^^^^^^^^^^^^^^^
-todo: widget viewhelpers
+The ViewHelpers `<n:widget.paginate>` and `<n:widget.ajax.paginateAdditionalParams>` have been removed as widget viewhelpers have been removed with TYPO3 11 (see https://docs.typo3.org/c/typo3/cms-core/master/en-us/Changelog/11.0/Breaking-92529-AllFluidWidgetFunctionalityRemoved.html).
+
+Take a look at the default templates for a migration
+
+.. code-block:: html
+
+    <f:if condition="{settings.list.paginate.insertAbove}">
+        <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+    </f:if>
+    <f:for each="{pagination.paginator.paginatedItems}" as="newsItem" iteration="iterator">
+        <f:render partial="List/Item" arguments="{newsItem: newsItem,settings:settings,iterator:iterator}" />
+    </f:for>
+    <f:if condition="{settings.list.paginate.insertBelow}">
+        <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+    </f:if>
+
+.. important::
+
+   The parameter in the URL changed as well and is now `&tx_news_pi1[currentPage]` instead of `&tx_news_pi1[@widget_0][currentPage]`. Please adopt your routing configuration!
+
+Use the extension **numbered_pagination** (https://extensions.typo3.org/extension/numbered_pagination) to get a better pagination, like showing only 10 pages at a time.
 
 
 Changed ImageSizeViewHelper
@@ -47,6 +69,18 @@ The attribute `image` is now required. The following changes have been done in t
       <f:variable name="ogImage" value="{f:uri.image(image:newsItem.firstPreview, absolute:1, maxWidth: '1920', maxHeight: '1920')}" />
       <enclosure url="{ogImage}" length="{n:imageSize(property:'size',image:ogImage)}" type="{newsItem.firstPreview.originalResource.mimeType}"/>
    </f:if>
+
+Switch from signals to events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Events are now used instead of signals
+
+Drop setting skipControllerAndAction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The setting `settings.link.skipControllerAndAction` is not evalulated anymore as it should be removed by the routing configuration.
+
+Improved code quality
+^^^^^^^^^^^^^^^^^^^^^
+The code quality has been improved by adding more return types
 
 All Changes
 -----------

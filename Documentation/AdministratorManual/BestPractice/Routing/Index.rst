@@ -199,7 +199,7 @@ If you use the *category menu* or *tag list* plugins to filter news records, the
          - routePath: '/page-{page}'
            _controller: 'News::list'
            _arguments:
-             page: '@widget_0/currentPage'
+             page: 'currentPage'
          - routePath: '/{news-title}'
            _controller: 'News::detail'
            _arguments:
@@ -266,7 +266,7 @@ The website provides several frontend languages.
        routes:
          - routePath: '/{page-label}-{page}'
            _controller: 'News::list'
-           _arguments: {'page': '@widget_0/currentPage'}
+           _arguments: {'page': 'currentPage'}
        defaultController: 'News::list'
        defaults:
          page: ''
@@ -319,7 +319,7 @@ For *list view* with a *date menu* plugin, to filter by date. Also includes conf
          - routePath: '/page-{page}'
            _controller: 'News::list'
            _arguments:
-             page: '@widget_0/currentPage'
+             page: 'currentPage'
            requirements:
              page: '\d+'
          - routePath: '/{news-title}'
@@ -332,7 +332,7 @@ For *list view* with a *date menu* plugin, to filter by date. Also includes conf
            _arguments:
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
-             page: '@widget_0/currentPage'
+             page: 'currentPage'
            requirements:
              date-year: '\d+'
          # Date year + pagination:
@@ -340,7 +340,7 @@ For *list view* with a *date menu* plugin, to filter by date. Also includes conf
            _controller: 'News::list'
            _arguments:
              date-year: 'overwriteDemand/year'
-             page: '@widget_0/currentPage'
+             page: 'currentPage'
            requirements:
              date-year: '\d+'
              page: '\d+'
@@ -350,7 +350,7 @@ For *list view* with a *date menu* plugin, to filter by date. Also includes conf
            _arguments:
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
-             page: '@widget_0/currentPage'
+             page: 'currentPage'
            requirements:
              date-month: '\d+'
              date-year: '\d+'
@@ -360,7 +360,7 @@ For *list view* with a *date menu* plugin, to filter by date. Also includes conf
            _arguments:
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
-             page: '@widget_0/currentPage'
+             page: 'currentPage'
            requirements:
              date-month: '\d+'
              date-year: '\d+'

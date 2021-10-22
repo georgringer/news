@@ -290,8 +290,7 @@ class NewsController extends NewsBaseController
     }
 
     /**
-     * When list action is called and skipControllerAndAction is set
-     * along with a news argument, we forward to detail action.
+     * When list action is called along with a news argument, we forward to detail action.
      */
     protected function forwardToDetailActionWhenRequested()
     {

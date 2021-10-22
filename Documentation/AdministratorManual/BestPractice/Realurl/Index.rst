@@ -193,7 +193,7 @@ Here is a full RealURL configuration with the explanation below.
                 ],
                 'page' => [
                     [
-                        'GETvar' => 'tx_news_pi1[@widget_0][currentPage]',
+                        'GETvar' => 'tx_news_pi1[currentPage]',
                     ],
                 ],
             ],
