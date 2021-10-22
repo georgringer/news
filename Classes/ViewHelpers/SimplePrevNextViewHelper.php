@@ -89,8 +89,8 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         $this->registerArgument('pidList', 'string', 'pid list', false, '');
         $this->registerArgument('sortField', 'string', 'sort field', false, 'datetime');
         $this->registerArgument('as', 'string', 'as', true);
-        $this->registerArgument('includeInternalType', 'boolean', 'Include internal news types');
-        $this->registerArgument('includeExternalType', 'bool', 'Include external news types');
+        $this->registerArgument('includeInternalType', 'boolean', 'Include internal news types', false, false);
+        $this->registerArgument('includeExternalType', 'bool', 'Include external news types', false, false);
     }
 
     /**
