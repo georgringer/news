@@ -245,6 +245,8 @@ class NewsController extends NewsBaseController
         $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
         if ($paginationClass === NumberedPagination::class && $maximumNumberOfLinks && class_exists(NumberedPagination::class)) {
             $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
+        } elseif(class_exists($paginationClass)) {
+            $pagination = GeneralUtility::makeInstance($paginationClass, $paginator);
         } else {
             $pagination = GeneralUtility::makeInstance(SimplePagination::class, $paginator);
         }
