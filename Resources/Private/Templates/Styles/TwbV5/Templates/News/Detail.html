@@ -1,0 +1,202 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+<f:layout name="Detail" />
+
+<!--
+	=====================
+		News/Detail.html
+-->
+
+<f:section name="content">
+	<f:if condition="{newsItem}">
+		<n:format.nothing>
+			<n:excludeDisplayedNews newsItem="{newsItem}" />
+			<f:if condition="{settings.detail.showMetaTags}">
+				<f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings:settings}" />
+			</f:if>
+            <f:if condition="{newsItem.alternativeTitle}">
+                <f:then>
+                    <n:titleTag>
+                        <f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode>
+                    </n:titleTag>
+                </f:then>
+                <f:else>
+                    <n:titleTag>
+                        <f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode>
+                    </n:titleTag>
+                </f:else>
+            </f:if>
+		</n:format.nothing>
+
+		<f:if condition="{settings.detail.showPrevNext}">
+			<n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime">
+				<f:if condition="{paginated}">
+					<nav aria-label="Page navigation">
+						<ul class="pagination mt-3 justify-content-center">
+							<f:if condition="{paginated.prev}">
+								<li class="page-item">
+									<n:link newsItem="{paginated.prev}" class="page-link" settings="{settings}">
+										<span aria-hidden="true">&laquo;</span> {paginated.prev.title}
+									</n:link>
+								</li>
+							</f:if>
+							<f:if condition="{paginated.next}">
+								<li class="page-item">
+									<n:link newsItem="{paginated.next}" class="page-link" settings="{settings}">
+										{paginated.next.title} <span aria-hidden="true">&raquo;</span>
+									</n:link>
+								</li>
+							</f:if>
+						</ul>
+					</nav>
+				</f:if>
+			</n:simplePrevNext>
+		</f:if>
+
+		<f:if condition="{newsItem.mediaNonPreviews}">
+			<f:then>
+				<f:render section="headline" arguments="{_all}" />
+				<div class="row">
+					<div class="col-md-8">
+						<f:render section="inner-content" arguments="{_all}" />
+					</div>
+					<div class="col-md-4">
+						<f:for each="{newsItem.mediaNonPreviews}" as="mediaElement">
+							<div class="thumbnail">
+								<f:media file="{mediaElement}" class="img-fluid" />
+								<f:if condition="{mediaElement.description}">
+									<div class="caption">
+										{mediaElement.description}
+									</div>
+								</f:if>
+							</div>
+						</f:for>
+					</div>
+				</div>
+			</f:then>
+			<f:else>
+				<f:render section="headline" arguments="{_all}" />
+				<f:render section="inner-content" arguments="{_all}" />
+			</f:else>
+		</f:if>
+	</f:if>
+</f:section>
+
+<f:section name="headline">
+	<h1 class="pb-3 border-bottom" itemprop="headline">{newsItem.title}</h1>
+	<f:render partial="General/AdditionalInformation" arguments="{settings:settings,newsItem:newsItem}" />
+</f:section>
+
+<f:section name="inner-content">
+	<n:renderMedia news="{newsItem}" imgClass="img-fluid" videoClass="video-wrapper" audioClass="audio-wrapper">
+		<f:if condition="{newsItem.teaser}">
+			<!-- teaser -->
+			<div class="lead" itemprop="description">
+				<f:format.html>{newsItem.teaser}</f:format.html>
+			</div>
+		</f:if>
+
+		<f:if condition="{newsItem.contentElements}">
+			<!-- content elements -->
+			<f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+		</f:if>
+
+		<!-- main text -->
+		<div class="news-text-wrap" itemprop="articleBody">
+			<f:format.html>{newsItem.bodytext}</f:format.html>
+		</div>
+	</n:renderMedia>
+
+	<f:if condition="{settings.backPid}">
+		<!-- Link Back -->
+		<f:link.page class="btn btn-primary mb-3" pageUid="{settings.backPid}">
+			<f:translate key="back-link" />
+		</f:link.page>
+	</f:if>
+
+	<f:if condition="{settings.detail.showSocialShareButtons}">
+		<f:comment>
+			Care about the privacy of your readers?
+			Checkout https://typo3.org/extensions/repository/view/rx_shariff
+			and it will be used automatically!
+		</f:comment>
+		<n:extensionLoaded extensionKey="rx_shariff">
+			<f:render partial="Detail/Shariff" />
+		</n:extensionLoaded>
+	</f:if>
+
+
+	<f:comment>
+		Various options exist to fetch different related information:
+		- {newsItem.allRelatedSorted}: all related news, related und related from, sorted by date
+		- {newsItem.related}: all related
+		- {newsItem.relatedSorted}: all related, sorted by date
+		- {newsItem.relatedFrom}: all related from
+		- {newsItem.relatedFromSorted}: all related from, sorted by date
+	</f:comment>
+	<f:if condition="{newsItem.allRelatedSorted}">
+		<!-- Related news records -->
+		<div class="news-related news-related-news mb-3">
+			<h4>
+				<f:translate key="related-news" />
+			</h4>
+			<ul class="list-group">
+				<f:for each="{newsItem.allRelatedSorted}" as="related">
+					<li class="list-group-item">
+						<span class="news-related-news-date me-2">
+							<f:format.date format="{f:translate(key:'dateFormat')}">{related.datetime}</f:format.date>
+						</span>
+						<n:link newsItem="{related}" settings="{settings}" title="{related.title}">
+							{related.title}
+						</n:link>
+					</li>
+
+				</f:for>
+			</ul>
+		</div>
+	</f:if>
+
+
+	<f:if condition="{newsItem.relatedFiles}">
+		<!-- related files -->
+		<div class="news-related news-related-files mb-3">
+			<h4>
+				<f:translate key="related-files" />
+			</h4>
+			<ul class="list-group">
+				<f:for each="{newsItem.relatedFiles}" as="relatedFile">
+					<li class="list-group-item">
+						<span class="news-related-files-link me-2">
+							<a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+								<i class="fas fa-file me-1"></i>
+								{f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+							</a>
+						</span>
+						<span class="news-related-files-size"> {relatedFile.originalResource.size -> f:format.bytes()} </span>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:if>
+
+	<f:if condition="{newsItem.relatedLinks}">
+		<!-- Related links -->
+		<div class="news-related news-related-links mb-3">
+			<h4>
+				<f:translate key="related-links" />
+			</h4>
+			<ul class="list-group">
+				<f:for each="{newsItem.relatedLinks}" as="relatedLink">
+					<li class="list-group-item">
+						<f:link.typolink parameter="{relatedLink.uri}" class="me-2" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}"><i class="fas fa-external-link me-1"> </i>{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>
+						<f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span>
+						</f:if>
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:if>
+</f:section>
+</html>
