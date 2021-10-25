@@ -11,7 +11,7 @@ Important bugfixes / tasks
 
 ::
 
-	* The pagination has been reworked and synced with the one of the core. If you changed the templates, please adopt your template.
+	* The pagination has been reworked and synced with the one of the Core. If you changed the templates, please adopt your template.
 
 
 All Changes

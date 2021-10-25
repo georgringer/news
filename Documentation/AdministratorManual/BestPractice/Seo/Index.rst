@@ -61,11 +61,11 @@ XML Sitemap
 -----------
 The sitemap includes links to all news records. This makes it easier for search engines to find all news records and to index those.
 
-Depending on your requirements you can either use the simple sitemap provider from the core or a custom one shipped with EXT:news.
+Depending on your requirements you can either use the simple sitemap provider from the Core or a custom one shipped with EXT:news.
 
 Basic sitemap
 ~~~~~~~~~~~~~
-The core ships a basic sitemap configuration which can also be used for news records:
+The Core ships a basic sitemap configuration which can also be used for news records:
 
 .. code-block:: typoscript
 
@@ -236,7 +236,7 @@ If using languages with the language mode `strict`, the hreflang tag must only b
 
 EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
 
-Check availability in fluid templates
+Check availability in Fluid templates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you are building a language menu and want to check if the news record is available, you can use the ViewHelper
 :html:`<n:check.pageAvailableInLanguage language="{languageId}">`. A full example can look like this:

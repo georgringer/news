@@ -8,10 +8,10 @@
 
 Changing & editing templates
 ============================
-EXT:news is using fluid as template engine. If you are used to fluid
+EXT:news is using Fluid as template engine. If you are used to Fluid
 already, you might skip this section.
 
-This documentation won't bring you all information about fluid but only the
+This documentation won't bring you all information about Fluid but only the
 most important things you need for using it. You can get
 more information in books like the one of `Jochen Rau und Sebastian
 Kurfürst <http://www.amazon.de/Zukunftssichere-TYPO3-Extensions-mit-
@@ -23,7 +23,7 @@ other sites.
 Changing paths of the template
 ------------------------------
 You should never edit the original templates of an extension as those changes will vanish if you upgrade the extension.
-As any extbase based extension, you can find the templates in the directory ``Resources/Private/``.
+As any Extbase based extension, you can find the templates in the directory ``Resources/Private/``.
 
 If you want to change a template, copy the desired files to the directory where you store the templates.
 This can be a directory in ``fileadmin`` or a custom extension. Multiple fallbacks can be defined which makes it far easier to customize the templates.
@@ -83,7 +83,7 @@ The path of the pagination widget can be changed by using a configuration like b
 Layouts, Templates & Partials
 -----------------------------
 
-If using fluid, the templates are structured by using Layouts, Templates and Partials.
+If using Fluid, the templates are structured by using Layouts, Templates and Partials.
 
 Layouts
 ^^^^^^^
@@ -141,12 +141,12 @@ Sections are very similar to partials. The difference is that sections are defin
 ViewHelpers
 ^^^^^^^^^^^
 
-Ever fluid viewhelper starts with  **<f:** . and you can always check
+Every Fluid ViewHelper starts with  **<f:** . and you can always check
 out the code at typo3/sysext/fluid/Classes/ViewHelpers/. As an example
-the viewhelper <f:link.page can be found at
+the ViewHelper <f:link.page can be found at
 typo3/sysext/fluid/Classes/ViewHelpers/Link/PageViewHelper.php.
 
-Any other viewhelpers from other extensions can be used by using a
+Any other ViewHelpers from other extensions can be used by using a
 namespace declaration like
 
 .. code-block:: html

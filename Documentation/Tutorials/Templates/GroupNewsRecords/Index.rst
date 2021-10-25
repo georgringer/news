@@ -10,7 +10,7 @@ Group news records
 ------------------
 
 .. tip::
-	This is a feature delivered by fluid, so you can use it also in other extensions and projects.
+	This is a feature delivered by Fluid, so you can use it also in other extensions and projects.
 
 
 The following example will group all given news records by the property "firstCategory".
@@ -43,7 +43,7 @@ The following example will group all given news records by the property "firstCa
 Keep an eye on performance!
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To be able to group the records, fluid will load every record itself and groups those afterwards.
-If you plan to group many records just for getting something like a count, maybe it is better to fire the query directly and don't use fluid for that.
+To be able to group the records, Fluid will load every record itself and groups those afterwards.
+If you plan to group many records just for getting something like a count, maybe it is better to fire the query directly and don't use Fluid for that.
 
 However if the result is on a cacheable page, the issue is only relevant on the first hit.

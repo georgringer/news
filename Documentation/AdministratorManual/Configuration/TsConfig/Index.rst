@@ -50,7 +50,7 @@ The selectbox “Template Layout” inside a plugin can be easily be extended by
 	}
 
 will show 2 layout options with 123/456 as keys and Fobar/Blub as values.
-Inside the template it is then possible to define conditions with fluid by checking {settings.templateLayout}
+Inside the template it is then possible to define conditions with Fluid by checking {settings.templateLayout}
 
 By using the configuration `allowedColPos` it is possible to restrict a template layout to a specific list of colPos values.
 

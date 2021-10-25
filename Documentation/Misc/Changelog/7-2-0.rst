@@ -43,7 +43,7 @@ This is a list of all changes in this release: ::
    2019-04-09 [FEATURE] Allow other extensions to add actions to the news administration module (#688) (Commit c8208edd by Dmitry Dulepov)
    2019-04-09 [BUGFIX] Change parentcategory getter in Category model (Commit 8dc44dc5 by Georg Ringer)
    2019-04-09 [BUGFIX] Reset news in detailAction if internal or external (Commit e1cb2be1 by Georg Ringer)
-   2019-04-09 [DOC] Example how to set link page in fluid (Commit 23679999 by Georg Ringer)
+   2019-04-09 [DOC] Example how to set link page in Fluid (Commit 23679999 by Georg Ringer)
    2019-04-09 [TASK] Set correct tca information for crdate+tstamp (Commit 9773c9bc by Georg Ringer)
    2019-04-09 [FEATURE] Add menu processor to add news record to menus (Commit 32ca5b56 by Georg Ringer)
    2019-04-08 [BUGFIX] Use logicalAnd to combine search results (Commit 30cd65d9 by Georg Ringer)

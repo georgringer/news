@@ -13,9 +13,9 @@
 Important changes
 -----------------
 
-Required core version
+Required Core version
 ^^^^^^^^^^^^^^^^^^^^^
-Due to important bugfixes in TYPO3 core itself, the minimum version is now either TYPO3 **9.5.17** *or* **10.4.2**.
+Due to important bugfixes in TYPO3 Core itself, the minimum version is now either TYPO3 **9.5.17** *or* **10.4.2**.
 
 Improved RSS by plugin example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -31,7 +31,7 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
-   2020-05-12 [TASK] Raise requirements for TYPO3 core (Commit 2a3bf518 by Georg Ringer)
+   2020-05-12 [TASK] Raise requirements for TYPO3 Core (Commit 2a3bf518 by Georg Ringer)
    2020-05-12 [FEATURE] Ship custom List.html of EXT:fluid_styled_content (Commit 9c92a3e0 by Georg Ringer)
    2020-05-06 [DOC] Proper changelist for 8.2.0 (Commit 1401dc7c by Georg Ringer)
 

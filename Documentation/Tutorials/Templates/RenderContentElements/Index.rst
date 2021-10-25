@@ -40,7 +40,7 @@ This needs then to be referenced in the template.
 Using Fluid
 ^^^^^^^^^^^
 
-You can also use fluid render the content elements. As an example:
+You can also use Fluid render the content elements. As an example:
 
 .. code-block:: html
 

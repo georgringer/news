@@ -181,7 +181,7 @@ Misc
 Add a link to the iCalendar feed in the list view
 """""""""""""""""""""""""""""""""""""""""""""""""
 
-To be able to render a link in the header section of the normal page which points to the iCalendar feed you can use something like this in your List.html fluid template.
+To be able to render a link in the header section of the normal page which points to the iCalendar feed you can use something like this in your List.html Fluid template.
 
 .. code-block:: html
 

@@ -49,7 +49,7 @@ FAL is used for the following fields:
 Support of sys categories
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The categories of the core (sys_category) are now used instead of custom ones.
+The categories of the Core (sys_category) are now used instead of custom ones.
 The records are extended with those fields which are needed by "news".
 
 Misc
@@ -110,7 +110,7 @@ All Changes
 	2014-04-16 [BUGFIX] Remove deprecation messages regarding cache manager (Commit 550f082)
 	2014-04-16 [BUGFIX] Invalid RSS language definition (Commit 57284b2)
 	2014-04-11 [BUGFIX] Change l10n_mode for type,external/internal url (Commit ce5756a)
-	2014-04-11 [DOC] Document drawbacks of extbase & languages (Commit 856f5d0)
+	2014-04-11 [DOC] Document drawbacks of Extbase & languages (Commit 856f5d0)
 	2014-04-11 [BUGFIX] Check existance of media elemens in importer (Commit ce6c539)
 	2014-04-10 [TASK] Use templateRootPaths, partialRootPaths and layoutRootPaths (Commit f1aa87b)
 	2014-04-08 [BUGFIX] TreeDataProvider::isCategoryAllowed() wrong check (Commit 3a93fe7)
@@ -150,7 +150,7 @@ All Changes
 	2014-03-07 [TASK] Move TCA to new format (Commit df04ae1)
 	2014-03-25 [BUGFIX] Typecast returnStatus to integer (Commit 0493340)
 	2014-03-24 [BUGFIX] Fix sql query creation for 6.2 (Commit 5689b68)
-	2014-03-24 [BUGFIX] Apply class attribute of viewhelper correctly (Commit 5e22ec5)
+	2014-03-24 [BUGFIX] Apply class attribute of ViewHelper correctly (Commit 5e22ec5)
 	2014-03-24 [BUGFIX] Use correct date in rss (Commit 0056768)
 	2014-03-21 [BUGFIX] Wrong fieldname in sys_file_reference (Commit 2250687)
 	2014-03-20 [TASK] Add fe group to importService (Commit bb4bd66)

@@ -21,7 +21,7 @@ The following changes should be carefully checked.
 
 Removed ViewHelpers
 ^^^^^^^^^^^^^^^^^^^
-The ViewHelpers `<n:widget.paginate>` and `<n:widget.ajax.paginateAdditionalParams>` have been removed as widget viewhelpers have been removed with TYPO3 11 (see https://docs.typo3.org/c/typo3/cms-core/master/en-us/Changelog/11.0/Breaking-92529-AllFluidWidgetFunctionalityRemoved.html).
+The ViewHelpers `<n:widget.paginate>` and `<n:widget.ajax.paginateAdditionalParams>` have been removed as widget ViewHelpers have been removed with TYPO3 11 (see https://docs.typo3.org/c/typo3/cms-core/master/en-us/Changelog/11.0/Breaking-92529-AllFluidWidgetFunctionalityRemoved.html).
 
 Take a look at the default templates for a migration
 
@@ -164,7 +164,7 @@ This is a list of all changes in this release: ::
     2021-02-16 [BUGFIX] Limit flexform fields for new records as well (Commit 98b5fa1b by Georg Ringer)
     2021-02-16 [TASK] Improve code by php-cs-fixer (Commit 85429fa8 by Georg Ringer)
     2021-02-16 [TASK] Improve code quality with rector (Commit 59d20395 by Georg Ringer)
-    2021-02-16 [!!!][TASK] Remove all widget viewhelpers (Commit 82b69a9b by Georg Ringer)
+    2021-02-16 [!!!][TASK] Remove all widget ViewHelpers (Commit 82b69a9b by Georg Ringer)
     2021-02-16 [TASK] Allow version 10-11 (Commit 760505dc by Georg Ringer)
     2021-02-12 [TASK] Remove interfaces from TCA (Commit 3ee96b03 by Georg Ringer)
 

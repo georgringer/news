@@ -10,7 +10,7 @@ ViewHelpers of EXT:news
 =======================
 
 ViewHelpers are used to add logic inside the view.
-There basic things like if/else conditions, loops and so on. The system extension fluid has the most important ViewHelpers already included.
+There basic things like if/else conditions, loops and so on. The system extension Fluid has the most important ViewHelpers already included.
 
 To be able to use a ViewHelper in your template, you need to follow always the same structure which is:
 
@@ -18,7 +18,7 @@ To be able to use a ViewHelper in your template, you need to follow always the s
 
 	<f:fo>bar</f:fo>
 
-This would call the ViewHelper fo of the namespace **f** which stands for fluid.
+This would call the ViewHelper fo of the namespace **f** which stands for Fluid.
 If you want to use ViewHelpers from other extensions you need to add the namespace
 declaration at the beginning of the template. The namespace declaration for the news extension is:
 

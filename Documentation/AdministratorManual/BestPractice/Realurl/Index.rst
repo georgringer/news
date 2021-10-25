@@ -216,7 +216,7 @@ Because of using fixedPostVars, the arguments can be removed in the *postVarSets
 Removing controller and action arguments from URL (II)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-An alternative way to get rid of the arguments controller and action is to add those dynamically by the core if needed. All you need is this TypoScript: ::
+An alternative way to get rid of the arguments controller and action is to add those dynamically by the Core if needed. All you need is this TypoScript: ::
 
 	[globalVar = GP:tx_news_pi1|news > 0]
 	config.defaultGetVars {

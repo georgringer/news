@@ -30,17 +30,17 @@ A nice solution would be to use this JavaScript jQuery snippet:
 		}
 	}
 
-Creating links with fluid
+Creating links with Fluid
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Besides the ViewHelper ``<n:link />`` you can also use the ViewHelpers of fluid itself:
+Besides the ViewHelper ``<n:link />`` you can also use the ViewHelpers of Fluid itself:
 
 .. code-block:: html
 
 	<f:link.page pageUid="13" additionalParams="{tx_news_pi1: {controller: 'News',action: 'detail', news:newsItem.uid}}">{newsItem.title}</f:link.page>
 	<a href="{f:uri.page(pageUid:13,additionalParams:'{tx_news_pi1:{controller:\'News\',action:\'detail\',news:newsItem.uid}}')}">{newsItem.title}</a>
 
-Set n:link target page in fluid
+Set n:link target page in Fluid
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If the detail page should not be set in the plugin or by a category, it can also be set within the template:
 

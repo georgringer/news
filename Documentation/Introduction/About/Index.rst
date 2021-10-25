@@ -14,9 +14,9 @@ technologies which are provided by the TYPO3 CMS.
 
 **Best practise from the scratch**
 
-- Based on extbase & fluid
+- Based on Extbase & Fluid
 - Easy to use & understand for editors
-- Using as many elements from the core as possible, e.g. FAL and sys categories
+- Using as many elements from the Core as possible, e.g. FAL and sys categories
 - Checkbox "Top news" to flag important news
 - Built in support for content elements
 - Support for opengraph and social platforms in default template

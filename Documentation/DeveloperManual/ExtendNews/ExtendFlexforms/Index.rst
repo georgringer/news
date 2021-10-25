@@ -61,7 +61,7 @@ You can then access the variable in your template with
 
 Extend flexforms with custom fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you need additional fields in the flexform configuration, this can be done by using a hook in the core.
+If you need additional fields in the flexform configuration, this can be done by using a hook in the Core.
 
 **Register the hook**
 

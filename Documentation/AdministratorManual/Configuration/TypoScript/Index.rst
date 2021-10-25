@@ -779,7 +779,7 @@ overrideFlexformSettingsIfEmpty
    Data type
          string
    Description
-         The default behaviour of extbase is to override settings from
+         The default behaviour of Extbase is to override settings from
          TypoScript by the one of the flexforms. This is even valid if the setting is
          left empty in the flexforms.
 
@@ -896,7 +896,7 @@ orderByAllowed
    Data type
          string
    Description
-         Due to restrictions of extbase itself it is required to define all fields which are allowed for
+         Due to restrictions of Extbase itself it is required to define all fields which are allowed for
          sorting results.
    Default
          sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
