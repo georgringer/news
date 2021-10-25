@@ -90,7 +90,7 @@ To create an ICalendar feed based on a plugin follow this steps:
 #. Add the news plugin and define the configuration you need. E.g. startingpoint, page with the single view, ...
 
 #. Define a new TypoScript template and use a code like below.  **Very
-   important** : Use config.absRefPrefix = http://www.yourdomain.tld/ to
+   important** : Use :typoscript:`config.absRefPrefix = http://www.yourdomain.tld/` to
    produce absolute urls for links and images!
 
    .. code-block:: typoscript

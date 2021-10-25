@@ -108,12 +108,12 @@ The :php:`GeorgRinger\News\Seo\NewsXmlSitemapDataProvider` provides the same fea
  :php:`RecordsXmlSitemapDataProvider` but with some additional ones on top:
 
 - If you are using the feature to define the detail page through the field
-  *Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
+  :guilabel:`Single-view page for news from this category` of a :sql:`sys_category` you need to use a custom provider.
 - If you are need urls containing day, month or year information
-- Setting `excludedTypes` to exclude certain news types from the sitemap
-- Setting `googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
+- Setting :typoscript:`excludedTypes` to exclude certain news types from the sitemap
+- Setting :typoscript:`googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
 
-To enable the category detail page handling, checkout the setting `useCategorySinglePid = 1` in the following full example:
+To enable the category detail page handling, checkout the setting :typoscript:`useCategorySinglePid = 1` in the following full example:
 
 .. code-block:: typoscript
 

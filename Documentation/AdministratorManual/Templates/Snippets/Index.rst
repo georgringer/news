@@ -33,7 +33,7 @@ A nice solution would be to use this JavaScript jQuery snippet:
 Creating links with Fluid
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Besides the ViewHelper ``<n:link />`` you can also use the ViewHelpers of Fluid itself:
+Besides the ViewHelper :html:`<n:link />` you can also use the ViewHelpers of Fluid itself:
 
 .. code-block:: html
 
@@ -80,15 +80,15 @@ and
 
 Use current content element in the template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you ever need information from the content element itself, you can use ``{contentObjectData.header}``.
+If you ever need information from the content element itself, you can use :html:`{contentObjectData.header}`.
 
 Use current page in the template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you ever need information from the current page, you can use ``{pageData.uid}``.
+If you ever need information from the current page, you can use :html:`{pageData.uid}`.
 
 Sort tags
 ^^^^^^^^^
-If you want to sort the tags of a news item, you can use a custom ViewHelper or ``EXT:vhs``:
+If you want to sort the tags of a news item, you can use a custom ViewHelper or :file:`EXT:vhs`:
 
 .. code-block:: html
 

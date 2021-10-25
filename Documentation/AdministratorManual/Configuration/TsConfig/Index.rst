@@ -38,7 +38,7 @@ Properties
 
 templateLayouts
 ^^^^^^^^^^^^^^^
-The selectbox “Template Layout” inside a plugin can be easily be extended by using TsConfig
+The selectbox :guilabel:`Template Layout` inside a plugin can be easily be extended by using TsConfig
 
 .. code-block:: typoscript
 

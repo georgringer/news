@@ -27,7 +27,7 @@ Take a look at the following 2 working examples:
  	- Don't use any use statements as those are currently ignored!
  	- It is not possible to override an actual method or property!
 
-The files are saved by using the Caching Framework in the directory ``typo3temp/Cache/Code/news``.
+The files are saved by using the Caching Framework in the directory :file:`typo3temp/Cache/Code/news`.
 
 .. only:: html
 
@@ -37,9 +37,9 @@ The files are saved by using the Caching Framework in the directory ``typo3temp/
 
 1) Add a new field in the backend
 ---------------------------------
-To add new fields, use either the extension **extension_builder** (http://typo3.org/extensions/repository/view/extension_builder) or create the extension from scratch.
+To add new fields, use either the extension `extension_builder<http://typo3.org/extensions/repository/view/extension_builder>`__ or create the extension from scratch.
 
-The extension key used in this examples is ``eventnews``.
+The extension key used in this examples is :code:`eventnews`.
 
 Create the fields
 ^^^^^^^^^^^^^^^^^
@@ -47,7 +47,7 @@ Create the fields
 
 ext_emconf.php
 """"""""""""""
-The file  ``ext_emconf.php`` holds all basic information about the extension like the title, description and version number.
+The file  :file:`ext_emconf.php` holds all basic information about the extension like the title, description and version number.
 
 .. code-block:: php
 
@@ -76,7 +76,7 @@ The file  ``ext_emconf.php`` holds all basic information about the extension lik
 
 SQL definition
 """"""""""""""
-Create the file ``ext_tables.sql`` in the root of the extension directory with the following content:
+Create the file :file:`ext_tables.sql` in the root of the extension directory with the following content:
 
 .. code-block:: sql
 
@@ -92,8 +92,8 @@ TCA definition
 """"""""""""""
 The TCA defines which tables and fields are available in the backend and how those are rendered (e.g. as input field, textarea, select field, ...).
 
-In this example, the table ``tx_news_domain_model_news`` will be extended by a simple input field.
-Therefore, create the file ``Configuration/TCA/Overrides/tx_news_domain_model_news.php``.
+In this example, the table :sql:`tx_news_domain_model_news` will be extended by a simple input field.
+Therefore, create the file :file:`Configuration/TCA/Overrides/tx_news_domain_model_news.php`.
 
 .. code-block:: php
 
@@ -130,7 +130,7 @@ Until now, EXT:news won't use the new field because it doesn't know about it. To
 Registration
 ^^^^^^^^^^^^
 
-Create the file ``ext_localconf.php`` in the root of the extension:
+Create the file :file:`ext_localconf.php` in the root of the extension:
 
 .. code-block:: php
 
@@ -139,12 +139,12 @@ Create the file ``ext_localconf.php`` in the root of the extension:
 
 	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News'][] = 'eventnews';
 
-**Domain/Model/News** is the namespace to the class which should be extended and **eventnews** is the extension key.
+:php:`Domain/Model/News` is the namespace to the class which should be extended and :code:`eventnews` is the extension key.
 
 Custom class
 ^^^^^^^^^^^^
-As the class ``Domain/Model/News`` should be extended, create a file at the same path in the own extension which is
-``typo3conf/ext/eventnews/Classes/Domain/Model/News.php``:
+As the class :php:`Domain/Model/News` should be extended, create a file at the same path in the own extension which is
+:file:`typo3conf/ext/eventnews/Classes/Domain/Model/News.php`:
 
 .. code-block:: php
 
@@ -181,5 +181,5 @@ As the class ``Domain/Model/News`` should be extended, create a file at the same
 
 Clear system cache
 ^^^^^^^^^^^^^^^^^^
-Now it is time to clear the **system cache**, either via the dropdown in the backend or in the Install Tool.
+Now it is time to clear the :guilabel:`system cache`, either via the dropdown in the backend or in the module :guilabel:`Admin Tools`.
 

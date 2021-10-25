@@ -18,7 +18,7 @@ To be able to use a ViewHelper in your template, you need to follow always the s
 
 	<f:fo>bar</f:fo>
 
-This would call the ViewHelper fo of the namespace **f** which stands for Fluid.
+This would call the ViewHelper :code:`fo` of the namespace :code:`f` which stands for Fluid.
 If you want to use ViewHelpers from other extensions you need to add the namespace
 declaration at the beginning of the template. The namespace declaration for the news extension is:
 
@@ -34,7 +34,7 @@ Now you can use a ViewHelper of news with a code like:
 	<n:headerData><!-- some comment --></n:headerData>
 
 If you want to know what a ViewHelper does, it is very easy to find the related PHP class by looking at the namespace and the name of the ViewHelper.
-Having e.g. ``GeorgRinger\News\ViewHelpers`` and ``headerData`` you will find the class at ``news\\Classes\ViewHelpers\\HeaderDataViewHelper.php``.
+Having e.g. :php:`GeorgRinger\News\ViewHelpers` and :php:`headerData` you will find the class at ``news\\Classes\ViewHelpers\\HeaderDataViewHelper.php``.
 
 The most of awesome thing is that you can use ViewHelpers of any extension in any other template by just adding another namespace declaration like:
 

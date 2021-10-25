@@ -253,9 +253,9 @@ timeRestriction
 
          **Time in seconds**
 
-         Only news records with a maximum age (compared to the “Date & Time” field) are shown.
+         Only news records with a maximum age (compared to the :guilabel:`Date & Time` field) are shown.
 
-         Example: An input like “86400” shows only news records which are one day (60 seconds \* 60 minutes \* 24 hours) old.
+         Example: An input like :code:`86400` shows only news records which are one day (60 seconds \* 60 minutes \* 24 hours) old.
 
          **Time in words**
 
@@ -299,7 +299,7 @@ topNewsRestriction
 
             plugin.tx_news.settings.topNewsRestriction =2
 
-         Any news record can be set as “Top News”. Therefore it is possible to show news records depending on this flag.
+         Any news record can be set as :guilabel:`Top News`. Therefore it is possible to show news records depending on this flag.
 
          **1: Only Top News records**
 
@@ -488,7 +488,7 @@ offset
 
             plugin.tx_news.settings.offset = 3
 
-         Define the offset. If set to e.g. 2, the first 2 records are not shown. This is especially useful in combination with multiple plugins on the same page and the setting “Max records displayed”.
+         Define the offset. If set to e.g. 2, the first 2 records are not shown. This is especially useful in combination with multiple plugins on the same page and the setting :guilabel:`Max records displayed`.
    Default
          (none)
 
@@ -737,7 +737,7 @@ format
    Data type
          string
    Description
-         Set a different format for the output. Use e.g. “xml” for RSS feeds.
+         Set a different format for the output. Use e.g. :code:`xml` for RSS feeds.
    Default
          html
 
