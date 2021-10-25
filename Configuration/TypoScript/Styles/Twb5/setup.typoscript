@@ -2,23 +2,23 @@ plugin.tx_news {
 	view {
 		templateRootPaths {
 			0 = EXT:news/Resources/Private/Templates/
-			1 = EXT:news/Resources/Private/Templates/Styles/TwbV5/Templates
+			1 = EXT:news/Resources/Private/Templates/Styles/Twb5/Templates
 			2 = {$plugin.tx_news.view.twb.templateRootPath}
 		}
 
 		partialRootPaths {
 			0 = EXT:news/Resources/Private/Partials/
-			1 = EXT:news/Resources/Private/Templates/Styles/TwbV5/Partials/
+			1 = EXT:news/Resources/Private/Templates/Styles/Twb5/Partials/
 			2 = {$plugin.tx_news.view.twb.partialRootPath}
 		}
 
 		layoutRootPaths {
 			0 = EXT:news/Resources/Private/Layouts/
-			1 = EXT:news/Resources/Private/Templates/Styles/TwbV5/Layouts/
+			1 = EXT:news/Resources/Private/Templates/Styles/Twb5/Layouts/
 			2 = {$plugin.tx_news.view.twb.layoutRootPath}
 		}
 
-		widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/Styles/TwbV5/Templates/
+		widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/Styles/Twb5/Templates/
 	}
 
 	settings {
