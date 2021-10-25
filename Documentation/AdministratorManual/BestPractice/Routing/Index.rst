@@ -171,7 +171,7 @@ Common routeEnhancer configurations
 -----------------------------------
 
 Basic setup (including categories, tags and the RSS/Atom feed)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Prerequisites:**
 

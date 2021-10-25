@@ -68,12 +68,4 @@ All ViewHelpers
 
    Format/NothingViewHelper
 
-   Social/GooglePlusViewHelper
-   Social/GravatarViewHelper
-   Social/TwitterViewHelper
-
-   Social/Facebook/CommentViewHelper
-   Social/Facebook/LikeViewHelper
-   Social/Facebook/ShareViewHelper
-
    Widget/PaginateViewHelper

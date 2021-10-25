@@ -95,6 +95,7 @@ orderDirection
          ::
 
             plugin.tx_news.settings.orderDirection = asc
+
    Default
          'desc'
 
@@ -243,11 +244,11 @@ timeRestriction
             plugin.tx_news.settings.timeRestriction =-1 week
 
          The time limit offers 3 different options.
-	 
+
 	 **Date**
-	 
+
 	 A date in the format `HH:mm DD-MM-YYYY` can be set and only news records that are newer than this date are shown.
-	 
+
 	 Example: 15:30 01-04-2020 (April 1st, 2020 at 3.30 pm)
 
          **Time in seconds**
@@ -343,6 +344,7 @@ previewHiddenRecords
          ::
 
             plugin.tx_news.settings.previewHiddenRecords = 1
+
 	    plugin.tx_news.settings.enablePreviewOfHiddenRecords = 1
 
          If set, also records which are normally hidden are displayed. This is especially helpful when using a detail view as preview mode for editors.
@@ -761,6 +763,7 @@ useStdWrap
                   # ...
                }
             }
+
    Default
          html
 
@@ -1204,7 +1207,7 @@ detail.registerProperties
                data = newsTitle
             }
 
-         .. TODO Check that!
+         .. TODO: Check that!
 
    Default
           keywords,title

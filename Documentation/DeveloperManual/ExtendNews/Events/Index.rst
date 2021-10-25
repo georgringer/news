@@ -39,7 +39,7 @@ An example event listener can look like this:
 
 .. code-block:: php
 
-	<?php
+    <?php
 
 	declare(strict_types=1);
 
