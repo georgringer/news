@@ -1,0 +1,35 @@
+<html
+		xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+		xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+		data-namespace-typo3-fluid="true">
+<f:layout name="General" />
+
+<!--
+	=====================
+		Templates/Tag/List.html
+-->
+
+<f:section name="content">
+	<f:if condition="{tags}">
+		<div class="news-tags">
+			<f:for each="{tags}" as="tag">
+                <span class="news-tags-item">
+                    {n:tag.count(tagUid:tag.uid) -> f:variable(name: 'tagUsageCount')}
+                    <f:if condition="{tag.uid} == {overwriteDemand.tags}">
+                        <f:then>
+                            <f:link.page title="{tag.title}" class="active btn btn-primary mb-1 me-1 " addQueryStringMethod="GET" addQueryString="1" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
+                                <i class="fas fa-tags me-1"></i> {tag.title} <span class="badge badge-light"><f:if condition="{tagUsageCount}">({tagUsageCount})</f:if></span>
+                            </f:link.page>
+                        </f:then>
+                        <f:else>
+                            <f:link.page title="{tag.title}" class=" btn btn-primary mb-1 me-1 " addQueryStringMethod="GET" addQueryString="1" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1:{overwriteDemand:{tags: tag}}}">
+                                <i class="fas fa-tags me-1"></i> {tag.title} <span class="badge badge-light"><f:if condition="{tagUsageCount}">({tagUsageCount})</f:if></span>
+                            </f:link.page>
+                        </f:else>
+                    </f:if>
+                </span>
+			</f:for>
+		</div>
+	</f:if>
+</f:section>
+</html>
