@@ -37,7 +37,7 @@ The files are saved by using the Caching Framework in the directory :file:`typo3
 
 1) Add a new field in the backend
 ---------------------------------
-To add new fields, use either the extension `extension_builder<http://typo3.org/extensions/repository/view/extension_builder>`__ or create the extension from scratch.
+To add new fields, use either the extension `extension_builder <http://typo3.org/extensions/repository/view/extension_builder>`__ or create the extension from scratch.
 
 The extension key used in this examples is :code:`eventnews`.
 
@@ -177,7 +177,8 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
 		}
 	}
 
-.. hint:: If you are using the extension extension_builder, this class might have been created for you already.
+.. hint::
+    If you are using the extension :file:`extension_builder`, this class might have been created for you already.
 
 Clear system cache
 ^^^^^^^^^^^^^^^^^^

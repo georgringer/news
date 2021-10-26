@@ -12,7 +12,7 @@ To improve the usability it is possible to change the pagination to use AJAX ins
 
 **Requirements**
 
-- Installation of the extension `typoscript_rendering`. Thanks to Helmut Hummel (https://helhum.io/)!
+- Installation of the extension `typoscript_rendering`. Thanks to `Helmut Hummel <https://helhum.io/>`__!
 - The list plugin must be inserted as content element and not by TypoScript.
 - The changes written below
 

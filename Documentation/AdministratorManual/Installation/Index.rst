@@ -27,7 +27,7 @@ The extension needs to be installed as any other extension of TYPO3 CMS:
 
    #. **Get it from typo3.org:** You can always get current version from
       `https://extensions.typo3.org/extension/news/
-      <https://extensions.typo3.org/extension/news/>`_ by
+      <https://extensions.typo3.org/extension/news/>`__ by
       downloading either the t3x or zip version. Upload
       the file afterwards in the Extension Manager.
 

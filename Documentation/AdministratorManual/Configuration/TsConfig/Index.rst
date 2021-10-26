@@ -69,7 +69,7 @@ By using the configuration `allowedColPos` it is possible to restrict a template
 
 archive
 ^^^^^^^
-Use strtotime (see `http://www.php.net/strtotime <http://www.php.net/strtotime>`_ ) to predefine the archive date
+Use strtotime (see `http://www.php.net/strtotime <http://www.php.net/strtotime>`__ ) to predefine the archive date
 
 .. code-block:: typoscript
 

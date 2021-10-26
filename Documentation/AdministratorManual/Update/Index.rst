@@ -12,7 +12,7 @@ If you update EXT:news to a newer version, please read this section carefully!
 
 Versioning
 ^^^^^^^^^^
-EXT:news follows the approach of `Fear-Driven Versioning<https://github.com/jonathanong/ferver>`__.
+EXT:news follows the approach of `Fear-Driven Versioning <https://github.com/jonathanong/ferver>`__.
 
 It uses a 3-number versioning scheme: *<major>.<minor>.<patch>*
 

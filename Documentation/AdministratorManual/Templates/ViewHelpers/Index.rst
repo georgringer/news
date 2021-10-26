@@ -34,7 +34,7 @@ Now you can use a ViewHelper of news with a code like:
 	<n:headerData><!-- some comment --></n:headerData>
 
 If you want to know what a ViewHelper does, it is very easy to find the related PHP class by looking at the namespace and the name of the ViewHelper.
-Having e.g. :php:`GeorgRinger\News\ViewHelpers` and :php:`headerData` you will find the class at ``news\\Classes\ViewHelpers\\HeaderDataViewHelper.php``.
+Having e.g. :php:`GeorgRinger\News\ViewHelpers` and :php:`headerData` you will find the class at :file:`news\Classes\ViewHelpers\HeaderDataViewHelper.php`.
 
 The most of awesome thing is that you can use ViewHelpers of any extension in any other template by just adding another namespace declaration like:
 

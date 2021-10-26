@@ -19,9 +19,9 @@ Contributions are essential for the success of open-source projects but certainl
 Contribution workflow
 ^^^^^^^^^^^^^^^^^^^^^
 
-Please create always an issue at https://github.com/georgringer/news/issues before starting with a change. This is essential helpful if you are unsure if your change will be accepted.
+Please create always an issue at `Github <https://github.com/georgringer/news/issues>`__ before starting with a change. This is essential helpful if you are unsure if your change will be accepted.
 
 Get the latest version from git
 """""""""""""""""""""""""""""""
 
-Fork the repository https://github.com/georgringer/news and provide a pull request with your change
+Fork the `git repository <https://github.com/georgringer/news>`__ and provide a pull request with your change

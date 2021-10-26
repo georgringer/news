@@ -232,7 +232,8 @@ Hreflang on news detail pages
 If using languages with the language mode `strict`, the hreflang tag must only be generated if the according news record is translated as well!
 
 .. note::
-   This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
+   This feature is only supported by TYPO3 10 and up, described
+   in :ref:`TYPO3 Explained, ModifyHrefLangTagsEvent<t3coreapi:ModifyHrefLangTagsEvent>`.
 
 EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
 

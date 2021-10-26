@@ -265,7 +265,7 @@ timeRestriction
          - last Monday
          - -10 months 3 days 2 hours
 
-         Words need to be in English and are translated by using `strtotime <http://de.php.net/strtotime>`_ .
+         Words need to be in English and are translated by using `strtotime <http://de.php.net/strtotime>`__ .
    Default
          (none)
 

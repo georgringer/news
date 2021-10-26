@@ -248,8 +248,8 @@ If you want to have human readable dates inside the URL which means having URLs 
 		}
 	}
 
-You can configure each argument (day/month/year) separately by using the configuration of PHP function *date*,
-(see http://www.php.net/date).
+You can configure each argument (day/month/year) separately by using the configuration of `PHP function date
+<http://www.php.net/date>`__.
 
 3rd: Add following RealURL configuration to :php:`'fixedPostVars' => 'newsDetailConfiguration'` section ::
 
