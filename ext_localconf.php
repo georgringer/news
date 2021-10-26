@@ -12,7 +12,7 @@ $boot = static function (): void {
             \GeorgRinger\News\Controller\TagController::class => 'list',
         ],
         [
-            'News' => 'searchForm,searchResult',
+            \GeorgRinger\News\Controller\NewsController::class => 'searchForm,searchResult',
         ]
     );
 
