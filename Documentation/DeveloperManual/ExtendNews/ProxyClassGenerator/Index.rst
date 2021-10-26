@@ -137,7 +137,7 @@ Create the file :file:`ext_localconf.php` in the root of the extension:
 	<?php
 	defined('TYPO3_MODE') or die();
 
-	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News'][] = 'eventnews';
+	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News']['eventnews'] = 'eventnews';
 
 :php:`Domain/Model/News` is the namespace to the class which should be extended and :code:`eventnews` is the extension key.
 
