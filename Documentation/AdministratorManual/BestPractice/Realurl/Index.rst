@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _realurl:
 
@@ -216,7 +216,7 @@ Because of using fixedPostVars, the arguments can be removed in the *postVarSets
 Removing controller and action arguments from URL (II)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-An alternative way to get rid of the arguments controller and action is to add those dynamically by the core if needed. All you need is this TypoScript: ::
+An alternative way to get rid of the arguments controller and action is to add those dynamically by the Core if needed. All you need is this TypoScript: ::
 
 	[globalVar = GP:tx_news_pi1|news > 0]
 	config.defaultGetVars {
@@ -248,10 +248,10 @@ If you want to have human readable dates inside the URL which means having URLs 
 		}
 	}
 
-You can configure each argument (day/month/year) separately by using the configuration of PHP function *date*,
-(see http://www.php.net/date).
+You can configure each argument (day/month/year) separately by using the configuration of `PHP function date
+<http://www.php.net/date>`__.
 
-3rd: Add following RealURL configuration to ``'fixedPostVars' => 'newsDetailConfiguration'`` section ::
+3rd: Add following RealURL configuration to :php:`'fixedPostVars' => 'newsDetailConfiguration'` section ::
 
     [
         'GETvar' => 'tx_news_pi1[day]',

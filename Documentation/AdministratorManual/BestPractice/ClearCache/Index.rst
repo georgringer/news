@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 
 Clearing the cache after editing records
@@ -32,4 +32,4 @@ to clear all caches of pages on which the news plugins are used but beware of pe
 
 .. Hint::
 
-	The mentioned TCEMAIN settings are part of the TYPO3 core and can be used therefore not only for the news extension.
+	The mentioned TCEMAIN settings are part of the TYPO3 Core and can be used therefore not only for the news extension.

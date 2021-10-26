@@ -195,9 +195,9 @@ Code: ::
 Output: ::
 
 	 The uri is returned
-	 
-	 
-	 
+
+
+
 Add additional parameters to the url
 """"""""""""""""""""""""""""""""""""
 

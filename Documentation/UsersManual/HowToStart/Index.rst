@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _howToStart:
 
@@ -30,19 +30,20 @@ created.
 #. Create a new sysfolder and switch to the list module. (Of
    course you can also use an existing sysfolder or normal page).
 
-#. **List view:** Use the icon in the topbar “Create new record” and search for “News
-   system” and its records. You should see “News”, “News category” and
-   “News Tag”.
+#. :guilabel:`List` view: Use the icon in the topbar :guilabel:`Create new
+   record` and search for :guilabel:`News
+   system` and its records. You should see :guilabel:`News`,
+   :guilabel:`News category` and :guilabel:`News Tag`.
 
-   #. Click on “News category” to create a new category. Insert as many
-      categories as you want and use the field “Parent Category” to build up
+   #. Click on :guilabel:`News category` to create a new category. Insert as many
+      categories as you want and use the field :guilabel:`Parent Category` to build up
       a category tree.
 
-   #. Click on “News” to create a new news record. Fill as many fields you
+   #. Click on :guilabel:`News` to create a new news record. Fill as many fields you
       want to field, a required one is only the header.
 
 #. **Administration module:** Use the custom administration module which can be found
-   in the module menu inside the section "*Web*".
+   in the module menu at :guilabel:`Web > News Administration`
 
 .. hint::
 
@@ -59,32 +60,32 @@ Follow this steps to add a plugin respectively for detail- and list-view to a pa
 Detail page
 ^^^^^^^^^^^
 
-#. Create a new page “Detail” which will be used to show the full news
-   record. Insert the plugin “News system”. The 2 :sup:`nd` tab “Plugin”
+#. Create a new page named "Detail" which will be used to show the full news
+   record. Insert the plugin :guilabel:`News system`. The 2 :sup:`nd` tab :guilabel:`Plugin`
    is used to configure the extension.
 
-#. Add a new content element and select the entry “News system”
+#. Add a new content element and select the entry :guilabel:`News system`
 
-#. Switch to the tab “Plugin” where you can define the plugin's settings.
-   The most important settings are “What to display” and “Startingpoint”.
+#. Switch to the tab :guilabel:`Plugin` where you can define the plugin's settings.
+   The most important settings are :guilabel:`What to display` and :guilabel:`Startingpoint`.
 
-   #. Change the 1 :sup:`st` select box “What to display” to “Detail view”.
+   #. Change the 1 :sup:`st` select box :guilabel:`What to display` to :guilabel:`Detail view`.
 
    #. Save the plugin.
    
 List page
 ^^^^^^^^^
 
-#. Create a new page “List” (or however you want to name it) and insert
-   the plugin “News system” there again.
+#. Create a new page named "List" (or however you want to name it) and insert
+   the plugin :guilabel:`News system` there again.
 
-   #. The selected view is already “List view”. This is fine.
+   #. The selected view is already :guilabel:`List view`. This is fine.
 
-   #. Fill the field “Startingpoint” by selecting the sysfolder you created
+   #. Fill the field :guilabel:`Startingpoint` by selecting the :guilabel:`sysfolder` you created
       in the beginning of the tutorial.
 
-   #. Switch to the 2 :sup:`nd` tab “Additional” and fill the field “PageId
-      for single news display” with the page you just created before.
+   #. Switch to the 2 :sup:`nd` tab :guilabel:`Additional` and fill the field :guilabel:`PageId
+      for single news display` with the page you just created before.
 
    #. Save the plugin.
 

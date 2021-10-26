@@ -1,7 +1,7 @@
 7.0.8 - 2018/06/11
 ==================
 
-.. include:: ../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. only:: html
 
@@ -11,8 +11,8 @@
 
 Important changes
 -----------------
-To fix a regression of the core regarding routing, a change has been made which requires a *DB compare* to add the field `l10n_source`.
-You can also upgrade to master branch of the core until 9.5.2 is released.
+To fix a regression of the Core regarding routing, a change has been made which requires a *DB compare* to add the field `l10n_source`.
+You can also upgrade to master branch of the Core until 9.5.2 is released.
 All Changes
 -----------
 This is a list of all changes in this release: ::

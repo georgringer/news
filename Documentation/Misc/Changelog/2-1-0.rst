@@ -79,7 +79,7 @@
 	* 2013-02-04 [BUGFIX] Require Media model for static calls (Commit: d7e1859)
 	* 2013-02-04 [TASK] Add a NewsDefaultRepository (Commit: 3610676)
 	* 2013-02-03 [FEATURE] Display thumbnail in relation (Commit: 74c57e8)
-	* 2013-01-30 [DOC] Add some more text to viewhelpers (Commit: c57e948)
+	* 2013-01-30 [DOC] Add some more text to ViewHelpers (Commit: c57e948)
 	* 2013-01-30 [TASK] Crop teaser text too (Commit: ddfce78)
 	* 2013-01-30 [TASK] Update dependency (Commit: fc24a6f)
 	* 2013-01-29 [DOC] Table for properties (Commit: e21527a)

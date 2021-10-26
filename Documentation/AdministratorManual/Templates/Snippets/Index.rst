@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 Simple snippets
 ---------------
@@ -30,17 +30,17 @@ A nice solution would be to use this JavaScript jQuery snippet:
 		}
 	}
 
-Creating links with fluid
+Creating links with Fluid
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Besides the ViewHelper ``<n:link />`` you can also use the ViewHelpers of fluid itself:
+Besides the ViewHelper :html:`<n:link />` you can also use the ViewHelpers of Fluid itself:
 
 .. code-block:: html
 
 	<f:link.page pageUid="13" additionalParams="{tx_news_pi1: {controller: 'News',action: 'detail', news:newsItem.uid}}">{newsItem.title}</f:link.page>
 	<a href="{f:uri.page(pageUid:13,additionalParams:'{tx_news_pi1:{controller:\'News\',action:\'detail\',news:newsItem.uid}}')}">{newsItem.title}</a>
 
-Set n:link target page in fluid
+Set n:link target page in Fluid
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If the detail page should not be set in the plugin or by a category, it can also be set within the template:
 
@@ -80,15 +80,15 @@ and
 
 Use current content element in the template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you ever need information from the content element itself, you can use ``{contentObjectData.header}``.
+If you ever need information from the content element itself, you can use :html:`{contentObjectData.header}`.
 
 Use current page in the template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you ever need information from the current page, you can use ``{pageData.uid}``.
+If you ever need information from the current page, you can use :html:`{pageData.uid}`.
 
 Sort tags
 ^^^^^^^^^
-If you want to sort the tags of a news item, you can use a custom ViewHelper or ``EXT:vhs``:
+If you want to sort the tags of a news item, you can use a custom ViewHelper or :file:`EXT:vhs`:
 
 .. code-block:: html
 

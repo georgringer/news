@@ -1,7 +1,7 @@
 7.0.0 - 2018/26/04
 ==================
 
-.. include:: ../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. only:: html
 
@@ -20,7 +20,7 @@ Support for TYPO3 9 & 8
 This is the 1st version which supports the upcoming TYPO3 9 version. Version 8 LTS is supported as well but requires version **8.7.13**.
 
 - Every usage of `$GLOBALS['TYPO3_DB']` has been migrated to *Doctrine DBAL*.
-- Adopt TCA to the best practice of the core without any deprecations.
+- Adopt TCA to the best practice of the Core without any deprecations.
 
 .. Important::
 
@@ -166,7 +166,7 @@ This is a list of all changes in this release: ::
 
         2018-04-17 [DOC] Document linkVars for RSS (Commit 98af3b45 by Georg Ringer)
         2018-04-17 [TASK] Raise requirements to 8.7.13 (Commit 5eb5257d by Georg Ringer)
-        2018-04-17 [TASK] Allow core 9.2 in ext_emconf (Commit a985dfdb by Georg Ringer)
+        2018-04-17 [TASK] Allow Core 9.2 in ext_emconf (Commit a985dfdb by Georg Ringer)
         2018-04-17 [TASK] Adopt versions (Commit 52e0204c by Georg Ringer)
         2018-04-17 [TASK] Add DB fields for multilanguage tags (Commit d34a1f11 by Georg Ringer)
         2018-04-13 [TASK] Improve hook for showinpreview (Commit 6284ecba by Georg Ringer)

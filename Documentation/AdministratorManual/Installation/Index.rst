@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _installation:
 
@@ -16,18 +16,18 @@ Installation
 
 The extension needs to be installed as any other extension of TYPO3 CMS:
 
-#. Switch to the module “Extension Manager”.
+#. Switch to the module :guilabel:`Admin Tools > Extensions`.
 
 #. Get the extension
    #. **Use composer**: Use `composer require georgringer/news`.
 
-   #. **Get it from the Extension Manager:** Press the “Retrieve/Update”
+   #. **Get it from the Extension Manager:** Press the :guilabel:`Retrieve/Update`
       button and search for the extension key *news* and import the
       extension from the repository.
 
    #. **Get it from typo3.org:** You can always get current version from
       `https://extensions.typo3.org/extension/news/
-      <https://extensions.typo3.org/extension/news/>`_ by
+      <https://extensions.typo3.org/extension/news/>`__ by
       downloading either the t3x or zip version. Upload
       the file afterwards in the Extension Manager.
 
@@ -53,10 +53,10 @@ The extension ships some TypoScript code which needs to be included.
 
 #. Switch to the root page of your site.
 
-#. Switch to the **Template module** and select *Info/Modify*.
+#. Switch to :guilabel:`Template > Info/Modify`.
 
-#. Press the link **Edit the whole template record** and switch to the tab *Includes*.
+#. Press the link :guilabel:`Edit the whole template record` and switch to the tab :guilabel:`Includes`.
 
-#. Select **News (news)** at the field *Include static (from extensions):*
+#. Select :guilabel:`News (news)` at the field :guilabel:`Include static (from extensions):`
 
 |img-plugin-ts|

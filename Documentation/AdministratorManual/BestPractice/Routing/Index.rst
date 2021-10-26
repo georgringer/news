@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _routing:
 
@@ -35,8 +35,9 @@ Your Site Configuration will be stored in :file:`/typo3conf/sites/<your_identifi
 
 .. note::
 
-   For more information about the new **Site Handling** in TYPO3 v9 please refer to the official documentation:
-   https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/SiteHandling/Index.html
+   For more information about the **Site Handling** in TYPO3 please
+   refer to the official documentation, :ref:`TYPO3 Explained, Site Handling
+   <t3coreapi:sitehandling>`
 
 How to rewrite URLs with news parameters
 ----------------------------------------
@@ -171,7 +172,7 @@ Common routeEnhancer configurations
 -----------------------------------
 
 Basic setup (including categories, tags and the RSS/Atom feed)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Prerequisites:**
 

@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 
 Configure available content element types in news records

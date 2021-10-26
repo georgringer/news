@@ -31,7 +31,7 @@ Therefore this field is removed.
 
 Drop support of rte_enabled checkbox
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you are using TYPO3 CMS 7.3+, the checkbox "Disable RTE" is removed because the core in general doesn't support this concept anymore.
+If you are using TYPO3 CMS 7.3+, the checkbox "Disable RTE" is removed because the Core in general doesn't support this concept anymore.
 
 
 All Changes

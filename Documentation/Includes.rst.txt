@@ -12,15 +12,13 @@
 .. --------------------------------------------------
 
 .. role::   typoscript(code)
-
 .. role::   ts(typoscript)
    :class:  typoscript
 
 .. role::   php(code)
-
 .. role::   yaml(code)
-
 .. role:: html(code)
+.. role:: sql(code)
 
 
 .. highlight:: php

@@ -33,7 +33,7 @@ Features
 	* Description & keywords meta tag
 	* Support maxHeight for media elements in default templates
 	* Error handling in detail view if no news found. The setting settings.detail.errorHandling can either be
-		- pageNotFoundHandler: use pageNotFoundHandler of the core
+		- pageNotFoundHandler: use pageNotFoundHandler of the Core
 		- redirectToListView: redirect to list view
 		- redirectToPage: redirect to any page, including a custom header
 	* Atom feed support

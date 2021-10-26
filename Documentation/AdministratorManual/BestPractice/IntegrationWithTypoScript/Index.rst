@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. highlight:: typoscript
 
@@ -346,7 +346,7 @@ In your overridden Detail.html template place the following code after displayin
 
 The Fluid tags supply comma-separated list of tags' UIDs to the Typoscript code.
 
-Either write custom viewhelper or install vhs extension and add its namespace `xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"` to the `Detail.html` template.
+Either write custom ViewHelper or install vhs extension and add its namespace :html:`xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"` to the `Detail.html` template.
 
 Show Category Menu with Typoscript
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

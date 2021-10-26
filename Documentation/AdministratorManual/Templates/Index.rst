@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../Includes.txt
+.. include:: /Includes.rst.txt
 
 
 Templates
@@ -15,12 +15,12 @@ Templates
 
 
 .. toctree::
-	:maxdepth: 1
-	:titlesonly:
+    :maxdepth: 2
+    :titlesonly:
 
-	Start/Index
-	TwitterBootstrap/Index
-	TemplateSelector/Index
-	AjaxBasedPagination/Index
-	ViewHelpers/Index
-	Snippets/Index
+    Start/Index
+    TwitterBootstrap/Index
+    TemplateSelector/Index
+    AjaxBasedPagination/Index
+    ViewHelpers/Index
+    Snippets/Index

@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 
 Predefine fields of records
@@ -67,7 +67,7 @@ EXT:news allows you to use an improved syntax to predefine the archive date by u
 
 	tx_news.predefine.archive = <value>
 
-As value you can use anything which can be interpreted by the php function strtotime (http://de2.php.net/manual/en/function.strtotime.php).
+As value you can use anything which can be interpreted by the php function `strtotime <http://de2.php.net/manual/en/function.strtotime.php>`__.
 For example:
 
 - +1 day

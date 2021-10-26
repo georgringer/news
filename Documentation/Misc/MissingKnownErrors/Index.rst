@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../Includes.txt
+.. include:: /Includes.rst.txt
 
 
 Known problems
@@ -17,7 +17,7 @@ saved on the root page (uid 0). Documented at http://forge.typo3.org/issues/5751
 
 Multilanguage
 =============
-The strategy of extbase is currently quite simple. First records are fetched and afterwards an overlay is added to get the correct translated data. Problems can be:
+The strategy of Extbase is currently quite simple. First records are fetched and afterwards an overlay is added to get the correct translated data. Problems can be:
 
 - sorting by a translated field is not possible
 - Translation of FAL records, see https://forge.typo3.org/issues/57272
@@ -28,4 +28,4 @@ Extbase does not fully support DBAL, therefore it might be that things fail!
 
 Versioning & Workspaces
 =======================
-It is not possible to create a version in the frontend by extbase. As long as the versioning happens in the backend, everything should be fine.
+It is not possible to create a version in the frontend by Extbase. As long as the versioning happens in the backend, everything should be fine.

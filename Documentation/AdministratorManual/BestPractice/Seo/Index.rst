@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _seo:
 
@@ -61,11 +61,11 @@ XML Sitemap
 -----------
 The sitemap includes links to all news records. This makes it easier for search engines to find all news records and to index those.
 
-Depending on your requirements you can either use the simple sitemap provider from the core or a custom one shipped with EXT:news.
+Depending on your requirements you can either use the simple sitemap provider from the Core or a custom one shipped with EXT:news.
 
 Basic sitemap
 ~~~~~~~~~~~~~
-The core ships a basic sitemap configuration which can also be used for news records:
+The Core ships a basic sitemap configuration which can also be used for news records:
 
 .. code-block:: typoscript
 
@@ -108,12 +108,12 @@ The :php:`GeorgRinger\News\Seo\NewsXmlSitemapDataProvider` provides the same fea
  :php:`RecordsXmlSitemapDataProvider` but with some additional ones on top:
 
 - If you are using the feature to define the detail page through the field
-  *Single-view page for news from this category* of a **sys_category** you need to use a custom provider.
+  :guilabel:`Single-view page for news from this category` of a :sql:`sys_category` you need to use a custom provider.
 - If you are need urls containing day, month or year information
-- Setting `excludedTypes` to exclude certain news types from the sitemap
-- Setting `googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
+- Setting :typoscript:`excludedTypes` to exclude certain news types from the sitemap
+- Setting :typoscript:`googleNews` to load the news differently as required for Google News (newest news first and limit to last two days)
 
-To enable the category detail page handling, checkout the setting `useCategorySinglePid = 1` in the following full example:
+To enable the category detail page handling, checkout the setting :typoscript:`useCategorySinglePid = 1` in the following full example:
 
 .. code-block:: typoscript
 
@@ -232,11 +232,12 @@ Hreflang on news detail pages
 If using languages with the language mode `strict`, the hreflang tag must only be generated if the according news record is translated as well!
 
 .. note::
-   This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
+   This feature is only supported by TYPO3 10 and up, described
+   in :ref:`TYPO3 Explained, ModifyHrefLangTagsEvent<t3coreapi:ModifyHrefLangTagsEvent>`.
 
 EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
 
-Check availability in fluid templates
+Check availability in Fluid templates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you are building a language menu and want to check if the news record is available, you can use the ViewHelper
 :html:`<n:check.pageAvailableInLanguage language="{languageId}">`. A full example can look like this:

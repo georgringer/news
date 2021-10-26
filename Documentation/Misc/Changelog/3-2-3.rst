@@ -25,7 +25,7 @@ A separate release for 7.x will follow, in the meantime, just use the master bra
 Deprecation of n:format.striptags
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ViewHelper ``<n:format.striptags>`` is deprecated. Please use the one of the core ``<f:format.stripTags>``.
+The ViewHelper ``<n:format.striptags>`` is deprecated. Please use the one of the Core ``<f:format.stripTags>``.
 
 
 All Changes
@@ -57,7 +57,7 @@ This is a list of all changes in this release: ::
 	2015-08-12 [BUGFIX] Use different namespace for BackendUtility in PageLayoutView (Commit 8b300c7 by Marc Bastian Heinrichs)
 	2015-07-19 [TASK] Cleanup use namespaces (Commit e4e15e3 by Georg Ringer)
 	2015-07-19 [BUGFIX] Fix page icon in PageLayoutView (Commit df70c42 by Georg Ringer)
-	2015-07-19 [!!!][TASK] Deprecate striptags viewhelper (Commit e2e0c93 by Georg Ringer)
+	2015-07-19 [!!!][TASK] Deprecate striptags ViewHelper (Commit e2e0c93 by Georg Ringer)
 	2015-07-17 [FEATURE] Set suggest config searchWholePhrase = TRUE (Commit e7e981e by Frans Saris)
 	2015-07-16 [BUGFIX] Fix ClassAliasMap for the PageLayoutView (Commit f4f602c by Georg Ringer)
 	2015-07-15 [TASK] Skip scrutinizer (Commit 89e3a59 by Georg Ringer)

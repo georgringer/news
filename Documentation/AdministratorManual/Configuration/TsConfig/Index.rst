@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _tsconfig:
 
@@ -38,7 +38,7 @@ Properties
 
 templateLayouts
 ^^^^^^^^^^^^^^^
-The selectbox “Template Layout” inside a plugin can be easily be extended by using TsConfig
+The selectbox :guilabel:`Template Layout` inside a plugin can be easily be extended by using TsConfig
 
 .. code-block:: typoscript
 
@@ -50,7 +50,7 @@ The selectbox “Template Layout” inside a plugin can be easily be extended by
 	}
 
 will show 2 layout options with 123/456 as keys and Fobar/Blub as values.
-Inside the template it is then possible to define conditions with fluid by checking {settings.templateLayout}
+Inside the template it is then possible to define conditions with Fluid by checking {settings.templateLayout}
 
 By using the configuration `allowedColPos` it is possible to restrict a template layout to a specific list of colPos values.
 
@@ -69,7 +69,7 @@ By using the configuration `allowedColPos` it is possible to restrict a template
 
 archive
 ^^^^^^^
-Use strtotime (see `http://www.php.net/strtotime <http://www.php.net/strtotime>`_ ) to predefine the archive date
+Use strtotime (see `http://www.php.net/strtotime <http://www.php.net/strtotime>`__ ) to predefine the archive date
 
 .. code-block:: typoscript
 

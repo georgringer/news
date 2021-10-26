@@ -1,4 +1,4 @@
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. Set default language for code-blocks to TypoScript for this page!
 .. highlight:: typoscript
@@ -95,6 +95,7 @@ orderDirection
          ::
 
             plugin.tx_news.settings.orderDirection = asc
+
    Default
          'desc'
 
@@ -243,18 +244,18 @@ timeRestriction
             plugin.tx_news.settings.timeRestriction =-1 week
 
          The time limit offers 3 different options.
-	 
+
 	 **Date**
-	 
+
 	 A date in the format `HH:mm DD-MM-YYYY` can be set and only news records that are newer than this date are shown.
-	 
+
 	 Example: 15:30 01-04-2020 (April 1st, 2020 at 3.30 pm)
 
          **Time in seconds**
 
-         Only news records with a maximum age (compared to the “Date & Time” field) are shown.
+         Only news records with a maximum age (compared to the :guilabel:`Date & Time` field) are shown.
 
-         Example: An input like “86400” shows only news records which are one day (60 seconds \* 60 minutes \* 24 hours) old.
+         Example: An input like :code:`86400` shows only news records which are one day (60 seconds \* 60 minutes \* 24 hours) old.
 
          **Time in words**
 
@@ -264,7 +265,7 @@ timeRestriction
          - last Monday
          - -10 months 3 days 2 hours
 
-         Words need to be in English and are translated by using `strtotime <http://de.php.net/strtotime>`_ .
+         Words need to be in English and are translated by using `strtotime <http://de.php.net/strtotime>`__ .
    Default
          (none)
 
@@ -298,7 +299,7 @@ topNewsRestriction
 
             plugin.tx_news.settings.topNewsRestriction =2
 
-         Any news record can be set as “Top News”. Therefore it is possible to show news records depending on this flag.
+         Any news record can be set as :guilabel:`Top News`. Therefore it is possible to show news records depending on this flag.
 
          **1: Only Top News records**
 
@@ -343,6 +344,7 @@ previewHiddenRecords
          ::
 
             plugin.tx_news.settings.previewHiddenRecords = 1
+
 	    plugin.tx_news.settings.enablePreviewOfHiddenRecords = 1
 
          If set, also records which are normally hidden are displayed. This is especially helpful when using a detail view as preview mode for editors.
@@ -486,7 +488,7 @@ offset
 
             plugin.tx_news.settings.offset = 3
 
-         Define the offset. If set to e.g. 2, the first 2 records are not shown. This is especially useful in combination with multiple plugins on the same page and the setting “Max records displayed”.
+         Define the offset. If set to e.g. 2, the first 2 records are not shown. This is especially useful in combination with multiple plugins on the same page and the setting :guilabel:`Max records displayed`.
    Default
          (none)
 
@@ -735,7 +737,7 @@ format
    Data type
          string
    Description
-         Set a different format for the output. Use e.g. “xml” for RSS feeds.
+         Set a different format for the output. Use e.g. :code:`xml` for RSS feeds.
    Default
          html
 
@@ -761,6 +763,7 @@ useStdWrap
                   # ...
                }
             }
+
    Default
          html
 
@@ -776,7 +779,7 @@ overrideFlexformSettingsIfEmpty
    Data type
          string
    Description
-         The default behaviour of extbase is to override settings from
+         The default behaviour of Extbase is to override settings from
          TypoScript by the one of the flexforms. This is even valid if the setting is
          left empty in the flexforms.
 
@@ -893,7 +896,7 @@ orderByAllowed
    Data type
          string
    Description
-         Due to restrictions of extbase itself it is required to define all fields which are allowed for
+         Due to restrictions of Extbase itself it is required to define all fields which are allowed for
          sorting results.
    Default
          sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
@@ -1204,7 +1207,7 @@ detail.registerProperties
                data = newsTitle
             }
 
-         .. TODO Check that!
+         .. TODO: Check that!
 
    Default
           keywords,title

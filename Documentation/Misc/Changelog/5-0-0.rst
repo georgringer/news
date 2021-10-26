@@ -32,7 +32,7 @@ The record listing in the administration module is now based on the record listi
 
 Full support of FAL
 ^^^^^^^^^^^^^^^^^^^
-The full range of FAL assets can now be used, e.g. videos from youtube and vimeo and every file type which is supported by the various file renderers of the core and 3rd party extensions.
+The full range of FAL assets can now be used, e.g. videos from youtube and vimeo and every file type which is supported by the various file renderers of the Core and 3rd party extensions.
 
 Twitter card support
 ^^^^^^^^^^^^^^^^^^^^
@@ -142,7 +142,7 @@ This is a list of all changes in this release: ::
     2016-09-02 [DOC] Add documentation for 5.0.0 (Commit a8e770a by Georg Ringer)
     2016-09-02 [TASK] Fix dev branch in composer.json (Commit 0b0a811 by Georg Ringer)
     2016-09-02 [BUGFIX] Remove '.html' from layout calls (Commit 6b12b3a by Georg Ringer)
-    2016-09-01 [TASK] Use new icons of the core (Commit 1c89306 by Georg Ringer)
+    2016-09-01 [TASK] Use new icons of the Core (Commit 1c89306 by Georg Ringer)
     2016-08-31 [TASK] Followup for icons (Commit c4e098b by Georg Ringer)
     2016-08-31 [TASK] Change travis notifications (Commit dc79319 by Georg Ringer)
     2016-08-31 [TASK] Make it possible to preset search form (Commit 81542b1 by Georg Ringer)
@@ -176,13 +176,13 @@ This is a list of all changes in this release: ::
     2016-08-24 [TASK] Improve rendering of starting point in page module (Commit f84b231 by Georg Ringer)
     2016-08-24 [!!!][TASK] Remove unused code (Commit eb67b2c by Georg Ringer)
     2016-08-24 [TASK] Adopt requirements (Commit 2260302 by Georg Ringer)
-    2016-08-23 [TASK] Fix breaking change of core (Commit f9fdf5a by Georg Ringer)
+    2016-08-23 [TASK] Fix breaking change of Core (Commit f9fdf5a by Georg Ringer)
     2016-08-18 [FOLLOWUP][BUGFIX] Use correct syntax (Commit 715c368 by Georg Ringer)
     2016-08-18 [FEATURE] Render og:image:width & og:image:height (Commit 11047ab by Georg Ringer)
-    2016-08-16 [TASK] Prepare for extbase changes (Commit b25023a by Georg Ringer)
+    2016-08-16 [TASK] Prepare for Extbase changes (Commit b25023a by Georg Ringer)
     2016-08-14 [TASK] Remove outdated code from partial (Commit a84aaa4 by Georg Ringer)
     2016-08-11 [BUGFIX] Support hrDate in google sitemap (Commit 9d249e7 by Georg Ringer)
-    2016-08-10 [BUGFIX] Support fluid_styled_content for insert record (Commit 1954f62 by Georg Ringer)
+    2016-08-10 [BUGFIX] Support Fluid_styled_content for insert record (Commit 1954f62 by Georg Ringer)
     2016-08-10 [FEATURE] Support twitter card meta tags (Commit 78db35e by Georg Ringer)
     2016-08-08 [BUGFIX] Cast type and fe_group to string for imports (Commit e82e524 by Georg Ringer)
     2016-08-08 [BUGFIX] Fix error in Newsrepository (Commit 933b5e4 by Georg Ringer)
@@ -214,7 +214,7 @@ This is a list of all changes in this release: ::
     2016-07-26 [TASK] Migrate Fluid templates to use xml namespace declarations (Commit 2a7e63e by Markus Klein)
     2016-07-26 [DOC] Add the CONTRIBUTING.md file (Commit 2ef532e by Georg Ringer)
     2016-07-26 [TASK] Remove usage of FlashMessage::render (Commit d269e16 by Georg Ringer)
-    2016-07-25 [!!!][TASK] Remove deprecated viewhelpers (Commit b2a823c by Georg Ringer)
+    2016-07-25 [!!!][TASK] Remove deprecated ViewHelpers (Commit b2a823c by Georg Ringer)
     2016-07-25 [!!!][TASK] Use native FAL rendering for FE (Commit 2fca6de by Georg Ringer)
     2016-07-25 [!!!][TASK] Remove ClassALiasMap (Commit cf04d85 by Georg Ringer)
     2016-07-25 [BUGFIX] Use correct TCA (Commit 3f90194 by Georg Ringer)

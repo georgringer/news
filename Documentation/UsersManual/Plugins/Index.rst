@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _plugin:
 
@@ -11,7 +11,7 @@ Plugin
 ------
 The news plugin is used to output a defined list of records.
 
-It can be added to create a content element with the type "*Plugin*" and by selecting the plugin type "**News system**".
+It can be added to create a content element with the type :guilabel:`Plugin` and by selecting the plugin type :guilabel:`News system`.
 
 .. TODO: screenshot
 
@@ -73,8 +73,8 @@ Use this action to show a list of news items grouped by the date. A typical outp
 		May: 1 entry
 
 
-If you define a specific page id in field "**PageId for list display**" (inside the tab "*Additional*") and
-placing a news plugin with the type "**List**" there, it is possible to create a date filter.
+If you define a specific page id in field :guilabel:`PageId for list display` (inside the tab :guilabel:`Additional`) and
+placing a news plugin with the type :guilabel:`List` there, it is possible to create a date filter.
 
 .. _plugin-searchForm:
 
@@ -94,8 +94,8 @@ Category menu
 ^^^^^^^^^^^^^
 Use this action to show a list of categories. The categories are listed as tree.
 
-If you define a specific page id in field "**PageId for list display**" (inside the tab "*Additional*") and
-placing a news plugin with the type "**List**" there, it is possible to create a category filter.
+If you define a specific page id in field :guilabel:`PageId for list display` (inside the tab "*Additional*") and
+placing a news plugin with the type :guilabel:`List` there, it is possible to create a category filter.
 
 .. _plugin-tagList:
 
@@ -103,5 +103,5 @@ Tag list
 ^^^^^^^^
 Use this action to show a list of tags.
 
-If you define a specific page id in field "**PageId for list display**" (inside the tab "*Additional*") and
-placing a news plugin with the type "**List**" there, it is possible to create a tag filter.
+If you define a specific page id in field :guilabel:`PageId for list display` (inside the tab "*Additional*") and
+placing a news plugin with the type :guilabel:`List` there, it is possible to create a tag filter.

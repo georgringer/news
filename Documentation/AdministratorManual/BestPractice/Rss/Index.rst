@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _rss:
 
@@ -75,7 +75,7 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
 
 This example will show all news records which don't have the category with the uid 9 assigned and are saved on the page with uid 24. The single view page is the one with uid 25.
 
-The RSS feed itself can be found with the link **/?type=9818**.
+The RSS feed itself can be found with the link :code:`/?type=9818`.
 
 RSS feeds by using a normal plugin
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -90,7 +90,7 @@ To create a RSS feed based on a plugin follow this steps:
 #. Add the news plugin and define the configuration you need. E.g. startingpoint, page with the single view, ...
 
 #. Define a new TypoScript template and use a code like below.  **Very
-   important** : Use config.absRefPrefix = http://www.yourdomain.tld/ to
+   important**: Use :typoscript:`config.absRefPrefix = http://www.yourdomain.tld/` to
    produce absolute urls for links and images!
 
    .. code-block:: typoscript
@@ -206,7 +206,7 @@ Don't forget to configure the RSS feed properly as the sample template won't ful
 Add a link to the RSS feed in the list view
 """""""""""""""""""""""""""""""""""""""""""
 
-To be able to render a link in the header section of the normal page which points to the RSS feed you can use something like this in your List.html fluid template.
+To be able to render a link in the header section of the normal page which points to the RSS feed you can use something like this in your List.html Fluid template.
 
 .. code-block:: html
 

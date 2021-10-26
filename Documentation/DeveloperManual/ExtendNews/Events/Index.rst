@@ -3,7 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _events:
 
@@ -39,7 +39,7 @@ An example event listener can look like this:
 
 .. code-block:: php
 
-	<?php
+    <?php
 
 	declare(strict_types=1);
 
