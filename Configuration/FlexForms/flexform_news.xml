@@ -17,6 +17,7 @@
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode</label>
 							<onChange>reload</onChange>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_switchableControllerActions</itemsProcFunc>
@@ -75,6 +76,7 @@
 					<settings.orderBy>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy</label>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_orderBy</itemsProcFunc>
@@ -109,6 +111,7 @@
 					<settings.orderDirection>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection</label>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
@@ -134,6 +137,7 @@
 					<settings.dateField>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.dateField</label>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
@@ -159,6 +163,7 @@
 					<settings.categoryConjunction>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction</label>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
@@ -192,6 +197,7 @@
 					<settings.categories>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.categories</label>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<renderMode>tree</renderMode>
@@ -218,6 +224,7 @@
 					<settings.includeSubCategories>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.includeSubCategories</label>
+							<exclude>1</exclude>
 							<config>
 								<type>check</type>
 							</config>
@@ -229,6 +236,7 @@
 					<settings.archiveRestriction>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.archiveRestriction</label>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
@@ -254,6 +262,7 @@
 					<settings.timeRestriction>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.timeRestriction</label>
+							<exclude>1</exclude>
 							<config>
 								<checkbox>1</checkbox>
 								<default></default>
@@ -267,6 +276,7 @@
 					<settings.timeRestrictionHigh>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.timeRestrictionHigh</label>
+							<exclude>1</exclude>
 							<config>
 								<checkbox>1</checkbox>
 								<default></default>
@@ -280,6 +290,7 @@
 					<settings.topNewsRestriction>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.topNewsRestriction</label>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
@@ -305,6 +316,7 @@
 					<settings.singleNews>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.singleNews</label>
+							<exclude>1</exclude>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -320,6 +332,7 @@
 					<settings.previewHiddenRecords>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.previewHiddenRecords</label>
+							<exclude>1</exclude>
 							<config type="array">
 								<type>select</type>
 								<renderType>selectSingle</renderType>
@@ -347,6 +360,7 @@
 					<settings.startingpoint>
 						<TCEforms>
 							<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint</label>
+							<exclude>1</exclude>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -362,6 +376,7 @@
 					<settings.recursive>
 						<TCEforms>
 							<label>LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.recursive</label>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
@@ -402,6 +417,7 @@
 					<!-- selectedList -->
 					<settings.selectedList>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.selectedList</label>
 							<config>
 								<type>group</type>
@@ -432,6 +448,7 @@
 					<!-- PID Detail Page -->
 					<settings.detailPid>
 						<TCEforms>
+							<exclude>1</exclude>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.detailPid</label>
 							<config>
 								<type>group</type>
@@ -448,6 +465,7 @@
 					<settings.listPid>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.listPid</label>
+							<exclude>1</exclude>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -463,6 +481,7 @@
 					<settings.backPid>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.backPid</label>
+							<exclude>1</exclude>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -478,6 +497,7 @@
 					<settings.limit>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
+							<exclude>1</exclude>
 							<config>
 								<type>input</type>
 								<size>5</size>
@@ -490,6 +510,7 @@
 					<settings.offset>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.offset</label>
+							<exclude>1</exclude>
 							<config>
 								<type>input</type>
 								<size>5</size>
@@ -502,6 +523,7 @@
 					<settings.tags>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.tags</label>
+							<exclude>1</exclude>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -517,6 +539,7 @@
 					<settings.hidePagination>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.hidePagination</label>
+							<exclude>1</exclude>
 							<config>
 								<type>check</type>
 							</config>
@@ -526,6 +549,7 @@
 					<settings.list.paginate.itemsPerPage>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.itemsPerPage</label>
+							<exclude>1</exclude>
 							<config>
 								<type>input</type>
 								<size>2</size>
@@ -537,6 +561,7 @@
 					<settings.topNewsFirst>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.topNewsFirst</label>
+							<exclude>1</exclude>
 							<config>
 								<type>check</type>
 							</config>
@@ -547,6 +572,7 @@
 					<settings.excludeAlreadyDisplayedNews>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.excludeAlreadyDisplayedNews</label>
+							<exclude>1</exclude>
 							<config>
 								<type>check</type>
 							</config>
@@ -557,6 +583,7 @@
 					<settings.disableOverrideDemand>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_additional.disableOverrideDemand</label>
+							<exclude>1</exclude>
 							<config>
 								<type>check</type>
 								<default>1</default>
@@ -584,6 +611,7 @@
 					<settings.media.maxWidth>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxWidth</label>
+							<exclude>1</exclude>
 							<config>
 								<type>input</type>
 								<size>5</size>
@@ -596,6 +624,7 @@
 					<settings.media.maxHeight>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.mediaMaxHeight</label>
+							<exclude>1</exclude>
 							<config>
 								<type>input</type>
 								<size>5</size>
@@ -608,6 +637,7 @@
 					<settings.cropMaxCharacters>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.cropMaxCharacters</label>
+							<exclude>1</exclude>
 							<config>
 								<type>input</type>
 								<size>5</size>
@@ -620,6 +650,7 @@
 					<settings.templateLayout>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
+							<exclude>1</exclude>
 							<config>
 								<type>select</type>
 								<itemsProcFunc>GeorgRinger\News\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
