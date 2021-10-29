@@ -1,4 +1,5 @@
-.. orphan::
+:orphan:
+
 .. TODO: remove this section with the next major release of news
 
 .. include:: /Includes.rst.txt

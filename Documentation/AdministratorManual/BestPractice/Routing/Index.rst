@@ -7,55 +7,45 @@
 
 .. _routing:
 
-==================
-Routing in TYPO3 9
-==================
+===========================
+Use Routing to rewrite URLs
+===========================
 
-This section will show you how you can rewrite the URLs for news using **Routing Enhancers and Aspects**.
-
-Please keep in mind that these features are only available in TYPO3 9 LTS and above!
-
-.. only:: html
-
-.. contents::
-        :local:
-        :depth: 3
-
-About routing in TYPO3
-----------------------
-
-Since version 9.5, TYPO3 supports speaking URLs out of the box. You will no longer need third party extensions like RealURL or CoolUri to rewrite and beautify your URLs.
-And in fact, at least RealURL will not be updated for newer TYPO3 versions!
-
-First of all, you will need to create a Site Configuration.
-You can do this in the backend module "SITE MANAGEMENT > Sites".
-Once saved, TYPO3 will automatically rewrite your pages with the new routing features.
-
-Your Site Configuration will be stored in :file:`/typo3conf/sites/<your_identifier>/config.yaml`.
-
-.. note::
-
-   For more information about the **Site Handling** in TYPO3 please
-   refer to the official documentation, :ref:`TYPO3 Explained, Site Handling
-   <t3coreapi:sitehandling>`
+This section will show you how you can rewrite the URLs for news using
+**Routing Enhancers and Aspects**. TYPO3 Explained has an
+`Introduction to routing <t3coreapi:routing-introduction>` that you can read
+if you are not familiar with the concept yet. You will no
+longer need third party extensions like RealURL or CoolUri to rewrite and
+beautify your URLs.
 
 .. _how_to_rewrite_urls:
 
 How to rewrite URLs with news parameters
 ----------------------------------------
 
-Any URL parameters can be rewritten with the aforementioned Routing Enhancers and Aspects.
+On setting up your page you should already have created a **site configuration**.
+You can do this in the backend module :guilabel:`Site Managements > Sites`.
+
+Your site configuration will be stored in
+:file:`/typo3conf/sites/<your_identifier>/config.yaml`. The following
+configurations have to be applied to this file.
+
+Any URL parameters can be rewritten with the Routing Enhancers and Aspects.
 These are added manually in the :file:`config.yaml`:
 
 #. Add a section :yaml:`routeEnhancers`, if one does not already exist.
-#. Choose an unique identifier for your Routing Enhancer. It doesn't have to match any extension key.
-#. :yaml:`type`: For news, the Extbase Plugin Enhancer (:yaml:`Extbase`) is used.
+#. Choose an unique identifier for your Routing Enhancer. It doesn't have
+   to match any extension key.
+#. :yaml:`type`: For news, the Extbase Plugin Enhancer (:yaml:`Extbase`)
+   is used.
 #. :yaml:`extension`: the extension key, converted to :code:`UpperCamelCase`.
 #. :yaml:`plugin`: the plugin name of news is just *Pi1*.
-#. After that you will configure individual routes and aspects depending on your use case.
+#. After that you will configure individual routes and aspects depending on
+   your use case.
 
 .. code-block:: yaml
    :linenos:
+   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
 
    routeEnhancers:
      News:
@@ -66,7 +56,8 @@ These are added manually in the :file:`config.yaml`:
 
 .. tip::
 
-   If your routing doesn't work as expected, check the **indentation** of your configuration blocks.
+   If your routing doesn't work as expected, check the **indentation** of your
+   configuration blocks.
    Proper indentation is crucial in YAML.
 
 Using limitToPages
@@ -76,6 +67,7 @@ It is recommended to limit :yaml:`routeEnhancers` to the pages where they are ne
 This will speed up performance for building page routes of all other pages.
 
 .. code-block:: yaml
+   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
    :linenos:
    :emphasize-lines: 4-7
 
@@ -93,12 +85,17 @@ This will speed up performance for building page routes of all other pages.
 Multiple routeEnhancers for news
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you use the news extension for different purposes on the same website (e.g. news and events), you may want different URL paths for them (e.g. */article/* and */event/*).
-It's possible to configure more than one routing enhancer for the news plugin on the same website.
+If you use the news extension for different purposes on the same website
+(for example news and events), you may want different URL paths for
+them (for example */article/* and */event/*).
+It is possible to configure more than one routing enhancer for the news plugin
+on the same website.
 
-Use :yaml:`limitToPages` to assign the appropiate configuration to the desired pages.
+Use :yaml:`limitToPages` to assign the appropriate configuration to the
+desired pages.
 
 .. code-block:: yaml
+   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
    :linenos:
    :emphasize-lines: 2,11
 
@@ -126,22 +123,37 @@ About routes and aspects
 
 In a nutshell:
 
-* :yaml:`routes` will extend an existing route (means: your domain and page path) with arguments from GET parameters, like the following controller/action pair of the news detail view.
-* :yaml:`aspects` can be used to modify these arguments. You could e.g. map the title (or better: the optimized path segment) of the current news.
-  Different types of *Mappers* and *Modifiers* are available, depending on the case.
+* :yaml:`routes` will extend an existing route (means: your domain and page
+   path) with arguments from GET parameters, like the following
+   controller/action pair of the news detail view.
+* :yaml:`aspects` can be used to modify these arguments. You could for
+   example map the title (or better: the optimized path segment) of the
+   current news.
+   Different types of *Mappers* and *Modifiers* are available, depending on
+   the case.
 
 1. URL of detail page without routing:
-``https://www.example.com/news/detail?tx_news_pi1[action]=detail&tx_news_pi1[controller]=News&tx_news_pi1[news]=5&cHash=``
+
+.. code-block:: none
+
+   https://www.example.com/news/detail?tx_news_pi1[action]=detail&tx_news_pi1[controller]=News&tx_news_pi1[news]=5&cHash=
 
 2. URL of detail page with routes:
-``https://www.example.com/news/detail/5?cHash=``
+
+.. code-block:: none
+
+   https://www.example.com/news/detail/5?cHash=
 
 3. URL of detail page with routes and aspects:
-``https://www.example.com/news/detail/title-of-news-article``
+
+.. code-block:: none
+
+   https://www.example.com/news/detail/title-of-news-article
 
 The following example will only provide routing for the detail view:
 
 .. code-block:: yaml
+   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
    :linenos:
 
    routeEnhancers:
@@ -162,9 +174,11 @@ The following example will only provide routing for the detail view:
 
 Please note the placeholder :code:`{news-title}`:
 
-#. First, you assign the value of the news parameter (:code:`tx_news_pi1[news]`) in :yaml:`_arguments`.
+#. First, you assign the value of the news parameter (:code:`tx_news_pi1[news]`)
+   in :yaml:`_arguments`.
 #. Next, in :yaml:`routePath` you add it to the existing route.
-#. Last, you use :yaml:`aspects` to map the :code:`path_segment` of the given argument.
+#. Last, you use :yaml:`aspects` to map the :code:`path_segment` of the
+   given argument.
 
 Both routes and aspects are only available within the current Routing Enhancer.
 
@@ -178,8 +192,11 @@ Basic setup (including categories, tags and the RSS/Atom feed)
 
 **Prerequisites:**
 
-The plugins for *list view* and *detail view* are on separate pages.
-If you use the *category menu* or *tag list* plugins to filter news records, their titles (slugs) are used.
+The plugins for :guilabel:`List View` and :guilabel:`Detail View` are on
+separate pages.
+
+If you use the :guilabel:`Category Menu` or :guilabel:`Tag List` plugins to
+filter news records, their titles (slugs) are used.
 
 **Result:**
 
@@ -189,6 +206,7 @@ If you use the *category menu* or *tag list* plugins to filter news records, the
 * Tag filter: ``https://www.example.com/news/my-tag``
 
 .. code-block:: yaml
+   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
    :linenos:
 
    routeEnhancers:
@@ -241,10 +259,6 @@ If you use the *category menu* or *tag list* plugins to filter news records, the
          'feed.xml': 9818
          'calendar.ical': 9819
 
-.. warning::
-
-   The :code:`slug` fields for *categories* and *tags* are only available when using news 7.1.0 or higher.
-
 Localized pagination
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -259,6 +273,7 @@ The website provides several frontend languages.
 * German: ``https://www.example.com/de/news/seite-2``
 
 .. code-block:: yaml
+   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
    :linenos:
    :emphasize-lines: 21-27
 
@@ -292,8 +307,10 @@ The website provides several frontend languages.
 
 **Explanation:**
 
-The :yaml:`LocaleModifier` aspect type will set a default value for the english language.
-You're then able to add as many :yaml:`localeMap` configurations as you need for the page translations of your website.
+The :yaml:`LocaleModifier` aspect type will set a default value for the
+English language.
+You're then able to add as many :yaml:`localeMap` configurations as you
+need for the page translations of your website.
 The value of :yaml:`locale` refers to the value in your site configuration.
 
 Human readable dates
@@ -301,7 +318,8 @@ Human readable dates
 
 **Prerequisites:**
 
-For *list view* with a *date menu* plugin, to filter by date. Also includes configuration for the pagination.
+For :guilabel:`List View` with a :guilabel:`Date Menu` plugin, to filter
+by date. Also includes configuration for the pagination.
 
 **Result:**
 
@@ -309,6 +327,7 @@ For *list view* with a *date menu* plugin, to filter by date. Also includes conf
 * ``https://www.example.com/news/2018/march/page-2``
 
 .. code-block:: yaml
+   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
    :linenos:
 
    routeEnhancers:
@@ -405,16 +424,20 @@ For *list view* with a *date menu* plugin, to filter by date. Also includes conf
 
 **Explanation:**
 
-You will need a new :yaml:`routePath` for every possible combination of arguments (pagination, month with/without pagination, ...).
+You will need a new :yaml:`routePath` for every possible combination of
+arguments (pagination, month with/without pagination, ...).
 
 **Potential errors:**
 
-If you want ``2018/march`` but get ``2018/3`` instead, compare your :yaml:`StaticValueMapper` for months with your date arguments.
+If you want :code:`2018/march` but get :code:`2018/3` instead, compare your
+:yaml:`StaticValueMapper` for months with your date arguments.
 Are you using different date formats (with/without leading zeros)?
 
-You can either remove the leading zero in your :yaml:`aspects` or adapt the TypoScript setting:
+You can either remove the leading zero in your :yaml:`aspects` or adapt the
+TypoScript setting:
 
 .. code-block:: typoscript
+   :caption: TypoScript setup
    :linenos:
    :emphasize-lines: 6
 
@@ -428,26 +451,30 @@ You can either remove the leading zero in your :yaml:`aspects` or adapt the Typo
        }
    }
 
-You can configure each argument (day/month/year) separately by using the configuration of PHP function *date* (see http://www.php.net/date).
+You can configure each argument (day/month/year) separately by using the
+configuration of PHP function `date <http://www.php.net/date>`__.
 
 .. warning::
 
    | **Oops, an error occurred!**
    | Possible range of all mappers is larger than 10000 items
 
-   Using the :yaml:`StaticRangeMapper` is strictly limited to 1000 items per a single range
-   and 10000 items per routing enhancer.
+   Using the :yaml:`StaticRangeMapper` is strictly limited to 1000 items per
+   a single range and 10000 items per routing enhancer.
 
-   That means you'll have to multiply all possible combinations in a routing enhancer, for example:
+   That means you'll have to multiply all possible combinations in a routing
+   enhancer, for example:
 
-   12 months × 30 years *(2000-2030)* × 25 pages *(pagination)* = 9000 possible items
+   12 months × 30 years *(2000-2030)* × 25 pages *(pagination)* = 9000 possible
+   items
 
-   If you exceed this limit, you'll either have to build a custom and more specific mapper,
-   or reduce the range in one of your :yaml:`StaticRangeMapper`.
+   If you exceed this limit, you'll either have to build a custom and more
+   specific mapper, or reduce the range in one of your :yaml:`StaticRangeMapper`.
 
 References
 ----------
 
-* `TYPO3 Documentation: Site Handling <https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/SiteHandling/Index.html>`__
-* `TYPO3 CMS Core Changelog 9.5: Feature: #86365 - Routing Enhancers and Aspects <https://docs.typo3.org/typo3cms/extensions/core/Changelog/9.5/Feature-86365-RoutingEnhancersAndAspects.html>`__
-* `TYPO3 CMS Core Changelog 9.5: Feature: #86160 - PageTypeEnhancer for mapping &type parameter <https://docs.typo3.org/typo3cms/extensions/core/Changelog/9.5/Feature-86160-PageTypeEnhancerForMappingTypeParameter.html>`__
+*  :ref:`TYPO3 Documentation: Routing <t3coreapi:routing-introduction>`
+*  :ref:`TYPO3 Documentation: Site Handling <t3coreapi:sitehandling>`
+*  `TYPO3 CMS Core Changelog 9.5: Feature: #86365 - Routing Enhancers and Aspects <https://docs.typo3.org/typo3cms/extensions/core/Changelog/9.5/Feature-86365-RoutingEnhancersAndAspects.html>`__
+*  `TYPO3 CMS Core Changelog 9.5: Feature: #86160 - PageTypeEnhancer for mapping &type parameter <https://docs.typo3.org/typo3cms/extensions/core/Changelog/9.5/Feature-86160-PageTypeEnhancerForMappingTypeParameter.html>`__
