@@ -39,6 +39,8 @@ Your Site Configuration will be stored in :file:`/typo3conf/sites/<your_identifi
    refer to the official documentation, :ref:`TYPO3 Explained, Site Handling
    <t3coreapi:sitehandling>`
 
+.. _how_to_rewrite_urls:
+
 How to rewrite URLs with news parameters
 ----------------------------------------
 
@@ -237,6 +239,7 @@ If you use the *category menu* or *tag list* plugins to filter news records, the
        type: PageType
        map:
          'feed.xml': 9818
+         'calendar.ical': 9819
 
 .. warning::
 

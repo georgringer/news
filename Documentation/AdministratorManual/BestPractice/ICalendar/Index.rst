@@ -190,25 +190,20 @@ To be able to render a link in the header section of the normal page which point
     </n:headerData>
 
 
-Change the iCalendar feed link with RealURL
+Change the iCalendar feed link with routing
 """""""""""""""""""""""""""""""""""""""""""
 
-If you want to rewrite the URL, use a configuration like this one.
+If you want to rewrite the URL, use a configuration like this one. Read more
+about :ref:`rewriting URLs for news <routing>`.
 
-.. code-block:: php
+.. code-block:: yaml
 
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['_DEFAULT'] = array(
-    	'fileName' => array (
-    		'defaultToHTMLsuffixOnPrev' => 0,
-    		'acceptHTMLsuffix' => 1,
-    		'index' => array(
-    			'calendar.ical' => array(
-    				'keyValues' => array(
-    					'type' => 9819,
-    				)
-    			),
-    		)
-    	)
-    );
+   routeEnhancers:
+     News:
+       PageTypeSuffix:
+         type: PageType
+         map:
+           'feed.xml': 9818
+           'calendar.ical': 9819
 
 This will change the URL to :code:`/calendar.ical`.
