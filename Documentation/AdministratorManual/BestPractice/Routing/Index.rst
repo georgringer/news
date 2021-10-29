@@ -12,8 +12,8 @@ Use Routing to rewrite URLs
 ===========================
 
 This section will show you how you can rewrite the URLs for news using
-**Routing Enhancers and Aspects**. TYPO3 Explained has an
-`Introduction to routing <t3coreapi:routing-introduction>` that you can read
+**Routing Enhancers and Aspects**. TYPO3 Explained has an capter
+:ref:`Introduction to routing <t3coreapi:routing-introduction>` that you can read
 if you are not familiar with the concept yet. You will no
 longer need third party extensions like RealURL or CoolUri to rewrite and
 beautify your URLs.
@@ -27,7 +27,7 @@ On setting up your page you should already have created a **site configuration**
 You can do this in the backend module :guilabel:`Site Managements > Sites`.
 
 Your site configuration will be stored in
-:file:`/typo3conf/sites/<your_identifier>/config.yaml`. The following
+:file:`/config/sites/<your_identifier>/config.yaml`. The following
 configurations have to be applied to this file.
 
 Any URL parameters can be rewritten with the Routing Enhancers and Aspects.
@@ -45,7 +45,7 @@ These are added manually in the :file:`config.yaml`:
 
 .. code-block:: yaml
    :linenos:
-   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
+   :caption: :file:`/config/sites/<your_identifier>/config.yaml`
 
    routeEnhancers:
      News:
@@ -67,7 +67,7 @@ It is recommended to limit :yaml:`routeEnhancers` to the pages where they are ne
 This will speed up performance for building page routes of all other pages.
 
 .. code-block:: yaml
-   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
+   :caption: :file:`/config/sites/<your_identifier>/config.yaml`
    :linenos:
    :emphasize-lines: 4-7
 
@@ -95,7 +95,7 @@ Use :yaml:`limitToPages` to assign the appropriate configuration to the
 desired pages.
 
 .. code-block:: yaml
-   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
+   :caption: :file:`/config/sites/<your_identifier>/config.yaml`
    :linenos:
    :emphasize-lines: 2,11
 
@@ -153,7 +153,7 @@ In a nutshell:
 The following example will only provide routing for the detail view:
 
 .. code-block:: yaml
-   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
+   :caption: :file:`/config/sites/<your_identifier>/config.yaml`
    :linenos:
 
    routeEnhancers:
@@ -206,7 +206,7 @@ filter news records, their titles (slugs) are used.
 * Tag filter: ``https://www.example.com/news/my-tag``
 
 .. code-block:: yaml
-   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
+   :caption: :file:`/config/sites/<your_identifier>/config.yaml`
    :linenos:
 
    routeEnhancers:
@@ -273,7 +273,7 @@ The website provides several frontend languages.
 * German: ``https://www.example.com/de/news/seite-2``
 
 .. code-block:: yaml
-   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
+   :caption: :file:`/config/sites/<your_identifier>/config.yaml`
    :linenos:
    :emphasize-lines: 21-27
 
@@ -327,7 +327,7 @@ by date. Also includes configuration for the pagination.
 * ``https://www.example.com/news/2018/march/page-2``
 
 .. code-block:: yaml
-   :caption: :file:`/typo3conf/sites/<your_identifier>/config.yaml`
+   :caption: :file:`/config/sites/<your_identifier>/config.yaml`
    :linenos:
 
    routeEnhancers:
