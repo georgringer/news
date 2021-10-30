@@ -227,9 +227,10 @@ class ItemsProcFunc
         if (count($languages) > 0) {
             $html = '<select name="data[newsoverlay]" id="field_newsoverlay" class="form-control">
 						<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value')) . '</option>';
-
+            
+            $newsoverlay = $GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0;
             foreach ($languages as $language) {
-                $selected = ((int)$GLOBALS['BE_USER']->uc['newsoverlay'] === (int)$language['uid']) ? ' selected="selected" ' : '';
+                $selected = ((int)$newsoverlay === (int)$language['uid']) ? ' selected="selected" ' : '';
                 $html .= '<option ' . $selected . 'value="' . $language['uid'] . '">' . htmlspecialchars($language['title']) . '</option>';
             }
 

@@ -125,17 +125,23 @@ class AdministrationController extends NewsController
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
 
         $web_list_modTSconfig = BackendUtilityCore::getPagesTSconfig($this->pageUid)['mod.']['web_list.'] ?? [];
-        $this->allowedNewTables = GeneralUtility::trimExplode(
-            ',',
-            $web_list_modTSconfig['properties']['allowedNewTables'],
-            true
-        );
-        $this->deniedNewTables = GeneralUtility::trimExplode(
-            ',',
-            $web_list_modTSconfig['properties']['deniedNewTables'],
-            true
-        );
-
+        if(isset($web_list_modTSconfig['properties'])) {
+            if(isset($web_list_modTSconfig['properties']['allowedNewTables'])) {
+                $this->allowedNewTables = GeneralUtility::trimExplode(
+                    ',',
+                    $web_list_modTSconfig['properties']['allowedNewTables'],
+                    true
+                );
+            }
+            if(isset($web_list_modTSconfig['properties']['deniedNewTables'])) {
+                $this->deniedNewTables = GeneralUtility::trimExplode(
+                    ',',
+                    $web_list_modTSconfig['properties']['deniedNewTables'],
+                    true
+                );
+            }
+        }
+        
         $this->createMenu();
         $this->createButtons();
 
@@ -314,7 +320,7 @@ class AdministrationController extends NewsController
         $demandVars = GeneralUtility::_GET('tx_news_web_newsadministration');
         $demand = GeneralUtility::makeInstance(AdministrationDemand::class);
         $autoSubmitForm = 0;
-        if (is_array($demandVars['demand'])) {
+        if (isset($demandVars['demand'])  && is_array($demandVars['demand'])) {
             foreach ($demandVars['demand'] as $key => $value) {
                 if (property_exists(AdministrationDemand::class, $key)) {
                     $getter = 'set' . ucfirst($key);
@@ -340,7 +346,7 @@ class AdministrationController extends NewsController
                     $autoSubmitForm = 1;
                 }
             }
-            if (!(bool)$this->tsConfiguration['alwaysShowFilter'] || !$this->isFilteringEnabled()) {
+            if ((isset($this->tsConfiguration['alwaysShowFilter']) && !(bool)$this->tsConfiguration['alwaysShowFilter']) || !$this->isFilteringEnabled()) {
                 $this->view->assign('hideForm', true);
             }
         }
@@ -377,7 +383,7 @@ class AdministrationController extends NewsController
         $dblist->allFields = 1;
         $dblist->displayFields = false;
         $dblist->dontShowClipControlPanels = true;
-        $dblist->counter++;
+        //$dblist->counter++;
         $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0);
         $limit = isset($this->settings['list']['paginate']['itemsPerPage']) ? (int)$this->settings['list']['paginate']['itemsPerPage'] : 20;
         $dblist->start(
@@ -389,16 +395,17 @@ class AdministrationController extends NewsController
             $limit
         );
         $dblist->setDispFields();
-        $dblist->noControlPanels = !(bool)$this->tsConfiguration['controlPanels'];
+        $dblist->noControlPanels = isset($this->tsConfiguration['controlPanels']) ? !(bool)$this->tsConfiguration['controlPanels'] : true;
+        $colums = (isset($this->tsConfiguration['columns']) && !empty($this->tsConfiguration['columns'])) ? $this->tsConfiguration['columns'] : 'teaser,istopnews,datetime,categories';
         $dblist->setFields = [
-            'tx_news_domain_model_news' => GeneralUtility::trimExplode(',', $this->tsConfiguration['columns'] ?: 'teaser,istopnews,datetime,categories', true)
+            'tx_news_domain_model_news' => GeneralUtility::trimExplode(',', $colums, true)
         ];
 
         $tableRendering = $dblist->generateList();
-        if (!$tableRendering) {
+        //if (!$tableRendering) {
             // todo can be remove when 9.5 supported dropped
-            $tableRendering = $dblist->HTMLcode;
-        }
+            //$tableRendering = $dblist->HTMLcode;
+        //}
         $tableRendering = trim($tableRendering);
 
         $counter = !empty($tableRendering);
@@ -579,12 +586,14 @@ class AdministrationController extends NewsController
      */
     protected function redirectToPageOnStart(): void
     {
-        if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
-            $id = (int)$this->tsConfiguration['allowedPage'];
-        } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
-            $id = (int)$this->tsConfiguration['redirectToPageOnStart'];
+        if(isset($this->tsConfiguration['allowedPage']) && isset($this->tsConfiguration['allowedPage'])) {
+            if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
+                $id = (int)$this->tsConfiguration['allowedPage'];
+            } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
+                $id = (int)$this->tsConfiguration['redirectToPageOnStart'];
+            }
         }
-
+        
         if (!empty($id)) {
             /** @var \TYPO3\CMS\Backend\Routing\UriBuilder $uriBuilder */
             $uriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
