@@ -34,9 +34,9 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         } else {
             $urlParameters['id'] = $this->id;
         }
-        if ($this->thumbs) {
-            $urlParameters['imagemode'] = $this->thumbs;
-        }
+        //if ($this->thumbs) {
+        //    $urlParameters['imagemode'] = $this->thumbs;
+        //}
         if ($this->returnUrl) {
             $urlParameters['returnUrl'] = $this->returnUrl;
         }
@@ -49,9 +49,9 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         if ($this->showLimit) {
             $urlParameters['showLimit'] = $this->showLimit;
         }
-        if ($this->firstElementNumber) {
-            $urlParameters['pointer'] = $this->firstElementNumber;
-        }
+        //if ($this->firstElementNumber) {
+        //    $urlParameters['pointer'] = $this->firstElementNumber;
+        //}
         if ((!$excludeList || !GeneralUtility::inList(
             $excludeList,
             'sortField'
@@ -74,7 +74,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         }
 
         $demand = GeneralUtility::_GET('tx_news_web_newsadministration');
-        if (is_array($demand['demand'])) {
+        if (isset($demand['demand'])  && is_array($demand['demand'])) {
             $urlParameters['tx_news_web_newsadministration']['demand'] = $demand['demand'];
         }
 
