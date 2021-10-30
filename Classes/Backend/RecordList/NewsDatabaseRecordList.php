@@ -74,7 +74,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         }
 
         $demand = GeneralUtility::_GET('tx_news_web_newsadministration');
-        if (isset($demand['demand'])  && is_array($demand['demand'])) {
+        if (isset($demand['demand']) && is_array($demand['demand'])) {
             $urlParameters['tx_news_web_newsadministration']['demand'] = $demand['demand'];
         }
 

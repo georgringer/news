@@ -125,15 +125,15 @@ class AdministrationController extends NewsController
         $pageRenderer->addInlineSetting('DateTimePicker', 'DateFormat', $dateFormat);
 
         $web_list_modTSconfig = BackendUtilityCore::getPagesTSconfig($this->pageUid)['mod.']['web_list.'] ?? [];
-        if(isset($web_list_modTSconfig['properties'])) {
-            if(isset($web_list_modTSconfig['properties']['allowedNewTables'])) {
+        if (isset($web_list_modTSconfig['properties'])) {
+            if (isset($web_list_modTSconfig['properties']['allowedNewTables'])) {
                 $this->allowedNewTables = GeneralUtility::trimExplode(
                     ',',
                     $web_list_modTSconfig['properties']['allowedNewTables'],
                     true
                 );
             }
-            if(isset($web_list_modTSconfig['properties']['deniedNewTables'])) {
+            if (isset($web_list_modTSconfig['properties']['deniedNewTables'])) {
                 $this->deniedNewTables = GeneralUtility::trimExplode(
                     ',',
                     $web_list_modTSconfig['properties']['deniedNewTables'],
@@ -320,7 +320,7 @@ class AdministrationController extends NewsController
         $demandVars = GeneralUtility::_GET('tx_news_web_newsadministration');
         $demand = GeneralUtility::makeInstance(AdministrationDemand::class);
         $autoSubmitForm = 0;
-        if (isset($demandVars['demand'])  && is_array($demandVars['demand'])) {
+        if (isset($demandVars['demand']) && is_array($demandVars['demand'])) {
             foreach ($demandVars['demand'] as $key => $value) {
                 if (property_exists(AdministrationDemand::class, $key)) {
                     $getter = 'set' . ucfirst($key);
@@ -586,7 +586,7 @@ class AdministrationController extends NewsController
      */
     protected function redirectToPageOnStart(): void
     {
-        if(isset($this->tsConfiguration['allowedPage']) && isset($this->tsConfiguration['allowedPage'])) {
+        if (isset($this->tsConfiguration['allowedPage']) && isset($this->tsConfiguration['allowedPage'])) {
             if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
                 $id = (int)$this->tsConfiguration['allowedPage'];
             } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
