@@ -51,7 +51,8 @@ class RecordListQueryHook
             $pageRecord = BackendUtility::getRecord('pages', $pageId, 'uid', " AND doktype='254' AND module='news'");
             if (is_array($pageRecord)) {
                 $tsConfig = BackendUtility::getPagesTSconfig($pageId);
-                if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
+                if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && 
+                    isset($tsConfig['tx_news.']['showContentElementsInNewsSysFolder']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
                     return;
                 }
 
