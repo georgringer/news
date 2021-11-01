@@ -205,7 +205,7 @@ class News extends AbstractEntity
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\TtContent>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $contentElements;
+    protected $contentElements = null;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Tag>
@@ -1009,7 +1009,7 @@ class News extends AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getContentElements(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getContentElements(): ?\TYPO3\CMS\Extbase\Persistence\ObjectStorage
     {
         return $this->contentElements;
     }
