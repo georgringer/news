@@ -383,7 +383,11 @@ class AdministrationController extends NewsController
         $dblist->allFields = 1;
         $dblist->displayFields = false;
         $dblist->dontShowClipControlPanels = true;
-        //$dblist->counter++;
+        //todo can be remove when 10.4 supported dropped
+        $versionInformation = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+        if ($versionInformation->getMajorVersion() < 11) {
+            $dblist->counter++;
+        }
         $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0);
         $limit = isset($this->settings['list']['paginate']['itemsPerPage']) ? (int)$this->settings['list']['paginate']['itemsPerPage'] : 20;
         $dblist->start(
@@ -401,13 +405,7 @@ class AdministrationController extends NewsController
             'tx_news_domain_model_news' => GeneralUtility::trimExplode(',', $colums, true)
         ];
 
-        $tableRendering = $dblist->generateList();
-        //if (!$tableRendering) {
-            // todo can be remove when 9.5 supported dropped
-            //$tableRendering = $dblist->HTMLcode;
-        //}
-        $tableRendering = trim($tableRendering);
-
+        $tableRendering = trim($dblist->generateList());
         $counter = !empty($tableRendering);
         $this->view->getModuleTemplate()->getPageRenderer()->loadRequireJsModule('TYPO3/CMS/Recordlist/Recordlist');
 
