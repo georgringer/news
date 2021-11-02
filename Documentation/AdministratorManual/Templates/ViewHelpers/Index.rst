@@ -5,6 +5,7 @@
 
 .. include:: /Includes.rst.txt
 
+.. _view-helpers:
 
 ViewHelpers of EXT:news
 =======================
@@ -24,7 +25,12 @@ declaration at the beginning of the template. The namespace declaration for the 
 
 .. code-block:: html
 
-	{namespace n=GeorgRinger\News\ViewHelpers}
+   <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+        xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+        xmlns:x="http://typo3.org/ns/Vendor/Someextension/ViewHelper"
+        data-namespace-typo3-fluid="true">
+   ...
+   </html>
 
 
 Now you can use a ViewHelper of news with a code like:
