@@ -34,9 +34,16 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         } else {
             $urlParameters['id'] = $this->id;
         }
-        //if ($this->thumbs) {
-        //    $urlParameters['imagemode'] = $this->thumbs;
-        //}
+        // todo can be remove when 10.4 supported dropped
+        $versionInformation = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+        if ($versionInformation->getMajorVersion() < 11) {
+            if ($this->thumbs) {
+                $urlParameters['imagemode'] = $this->thumbs;
+            }
+            if ($this->firstElementNumber) {
+                $urlParameters['pointer'] = $this->firstElementNumber;
+            }
+        }
         if ($this->returnUrl) {
             $urlParameters['returnUrl'] = $this->returnUrl;
         }
@@ -49,9 +56,6 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         if ($this->showLimit) {
             $urlParameters['showLimit'] = $this->showLimit;
         }
-        //if ($this->firstElementNumber) {
-        //    $urlParameters['pointer'] = $this->firstElementNumber;
-        //}
         if ((!$excludeList || !GeneralUtility::inList(
             $excludeList,
             'sortField'
