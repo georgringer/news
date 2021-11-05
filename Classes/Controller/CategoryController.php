@@ -31,7 +31,7 @@ class CategoryController extends NewsController
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
 
-        $idList = explode(',', $this->settings['categories']);
+        $idList = is_array($demand->getCategories()) ? $demand->getCategories() : explode(',', $demand->getCategories());
 
         $startingPoint = null;
         if (!empty($this->settings['startingpoint'])) {
