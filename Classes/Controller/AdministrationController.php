@@ -127,12 +127,12 @@ class AdministrationController extends NewsController
         $web_list_modTSconfig = BackendUtilityCore::getPagesTSconfig($this->pageUid)['mod.']['web_list.'] ?? [];
         $this->allowedNewTables = GeneralUtility::trimExplode(
             ',',
-            $web_list_modTSconfig['properties']['allowedNewTables'],
+            $web_list_modTSconfig['allowedNewTables'],
             true
         );
         $this->deniedNewTables = GeneralUtility::trimExplode(
             ',',
-            $web_list_modTSconfig['properties']['deniedNewTables'],
+            $web_list_modTSconfig['deniedNewTables'],
             true
         );
 
