@@ -172,17 +172,7 @@ plugin.tx_news {
 			site_name = {$plugin.tx_news.opengraph.site_name}
 			type = article
 			admins =
-			email =
-			phone_number =
-			fax_number =
-			latitude =
-			longitude =
-			street-address =
-			locality =
 			locale =
-			region =
-			postal-code =
-			country-name =
 
 			twitter {
 				card = {$plugin.tx_news.opengraph.twitter.card}

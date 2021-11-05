@@ -337,7 +337,7 @@ previewHiddenRecords
 .. container:: table-row
 
    Property
-         previewHiddenRecords / enablePreviewOfHiddenRecords 
+         previewHiddenRecords / enablePreviewOfHiddenRecords
    Data type
          int
    Description
@@ -1053,17 +1053,8 @@ opengraph
             opengraph {
                site_name =  {$plugin.tx_news.opengraph.site_name}
                type = article
+               locale =
                admins =
-               email =
-               phone_number =
-               fax_number =
-               latitude =
-               longitude =
-               street-address =
-               locality =
-               region =
-               postal-code =
-               country-name =
                twitter {
                   card = {$plugin.tx_news.opengraph.twitter.card}
                   site = {$plugin.tx_news.opengraph.twitter.site}
