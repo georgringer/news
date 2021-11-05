@@ -7,14 +7,15 @@ use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * Abstract demanded repository
@@ -34,7 +35,8 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      */
     public function injectStorageBackend(
         BackendInterface $storageBackend
-    ): void {
+    ): void
+    {
         $this->storageBackend = $storageBackend;
     }
 
@@ -47,7 +49,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @abstract
      */
     abstract protected function createConstraintsFromDemand(
-        QueryInterface $query,
+        QueryInterface  $query,
         DemandInterface $demand
     ): array;
 
@@ -176,9 +178,9 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @param DemandInterface $demand
      * @return int
      */
-    public function countDemanded(DemandInterface $demand): int
+    public function countDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): int
     {
-        $query = $this->createQuery();
+        $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
 
         if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {
             $query->matching(
