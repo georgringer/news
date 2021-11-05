@@ -33,13 +33,7 @@ class NewsAvailability
     {
         // get it from current request
         if ($newsId === 0) {
-            /** @var PageArguments $pageArguments */
-            $pageArguments = $this->getRequest()->getAttribute('routing');
-            if (isset($pageArguments->getRouteArguments()['tx_news_pi1']['news'])) {
-                $newsId = (int)$pageArguments->getRouteArguments()['tx_news_pi1']['news'];
-            } elseif (isset($this->getRequest()->getQueryParams()['tx_news_pi1']['news'])) {
-                $newsId = (int)$this->getRequest()->getQueryParams()['tx_news_pi1']['news'];
-            }
+            $newsId = $this->getNewsIdFromRequest();
         }
         if ($newsId === 0) {
             throw new \UnexpectedValueException('No news id provided', 1586431984);
@@ -129,5 +123,18 @@ class NewsAvailability
     protected function getRequest(): ServerRequestInterface
     {
         return $GLOBALS['TYPO3_REQUEST'];
+    }
+
+    public function getNewsIdFromRequest(): int
+    {
+        $newsId = 0;
+        /** @var PageArguments $pageArguments */
+        $pageArguments = $this->getRequest()->getAttribute('routing');
+        if (isset($pageArguments->getRouteArguments()['tx_news_pi1']['news'])) {
+            $newsId = (int)$pageArguments->getRouteArguments()['tx_news_pi1']['news'];
+        } elseif (isset($this->getRequest()->getQueryParams()['tx_news_pi1']['news'])) {
+            $newsId = (int)$this->getRequest()->getQueryParams()['tx_news_pi1']['news'];
+        }
+        return $newsId;
     }
 }
