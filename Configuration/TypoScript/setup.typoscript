@@ -105,6 +105,7 @@ plugin.tx_news {
 			# media configuration
 			media {
 				image {
+					lazyLoading = {$styles.content.image.lazyLoading}
 					maxWidth = 282
 					maxHeight =
 
@@ -138,6 +139,7 @@ plugin.tx_news {
 			# media configuration
 			media {
 				image {
+					lazyLoading = {$styles.content.image.lazyLoading}
 					maxWidth = 100
 					maxHeight = 100
 				}
