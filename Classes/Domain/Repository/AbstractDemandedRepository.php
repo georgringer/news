@@ -35,8 +35,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      */
     public function injectStorageBackend(
         BackendInterface $storageBackend
-    ): void
-    {
+    ): void {
         $this->storageBackend = $storageBackend;
     }
 
@@ -49,7 +48,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
      * @abstract
      */
     abstract protected function createConstraintsFromDemand(
-        QueryInterface  $query,
+        QueryInterface $query,
         DemandInterface $demand
     ): array;
 
