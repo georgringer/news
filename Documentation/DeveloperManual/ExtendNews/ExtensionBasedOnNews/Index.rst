@@ -103,6 +103,8 @@ Register the plugin:
 		'Some demo'
 	);
 
+.. _extension_custom_controller:
+
 Classes/Controller/FilterController.php
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
