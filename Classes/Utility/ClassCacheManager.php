@@ -30,7 +30,13 @@ class ClassCacheManager
     /**
      * @var array
      */
+    protected $constructorParameters = [];
+
+    /**
+     * @var array
+     */
     protected $constructorLines = [];
+
 
     /**
      * @param PhpFrontend $classCache
@@ -96,8 +102,9 @@ class ClassCacheManager
                     $code .= $this->parseSingleFile($path, false);
                 }
             }
-            if (count($this->constructorLines)) {
-                $code .= LF . '    public function __construct()' . LF . '    {' . LF . implode(LF, $this->constructorLines) . LF . '    }' . LF;
+            if (count($this->constructorLines['code'])) {
+                $code .= LF . $this->constructorLines['doc'];
+                $code .= LF . '    public function __construct(' . implode('', $this->constructorLines['parameters']) . ')' . LF . '    {' . LF . implode(LF, $this->constructorLines['code']) . LF . '    }' . LF;
             }
             $code = $this->closeClassDefinition($code);
 
@@ -162,12 +169,20 @@ class ClassCacheManager
         // unset the constructor and save it's lines
         if (isset($classParserInformation['functions']['__construct'])) {
             $constructorInfo = $classParserInformation['functions']['__construct'];
-            for ($i = $constructorInfo['start'] - $offsetForInnerPart; $i < $constructorInfo['end'] - $offsetForInnerPart; $i++) {
-                if (trim($innerPart[$i]) === '{') {
+            $docLineCount = substr_count($constructorInfo['doc'], "\n") + 1;
+            if($baseClass) $this->constructorLines['doc'] = $constructorInfo['doc'];
+            $unsetLine = true;
+            for ($i = ($constructorInfo['start']  - $docLineCount - 1) - ($offsetForInnerPart); $i < $constructorInfo['end'] - $offsetForInnerPart; $i++) {
+                if ($unsetLine) {
+                    if(trim($innerPart[$i]) === ') {' || trim($innerPart[$i]) === '{') {
+                        $unsetLine = false;
+                    } elseif($baseClass && trim($innerPart[$i]) !== ')' && $i > ($constructorInfo['start'] - 1)) {
+                        $this->constructorLines['parameters'][] = LF . $innerPart[$i];
+                    }
                     unset($innerPart[$i]);
                     continue;
                 }
-                $this->constructorLines[] = $innerPart[$i];
+                $this->constructorLines['code'][] = $innerPart[$i];
                 unset($innerPart[$i]);
             }
             unset($innerPart[$constructorInfo['start'] - $offsetForInnerPart - 1]);
