@@ -20,6 +20,8 @@ Several hooks can be used to modify the behaviour of EXT:news.
 Hooks
 -----
 
+.. _hooks_example_findDemanded:
+
 Domain/Repository/AbstractDemandedRepository.php findDemanded
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

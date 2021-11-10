@@ -5,6 +5,7 @@
 
 .. include:: /Includes.rst.txt
 
+.. _linkhandler:
 
 Linkhandler
 -----------
