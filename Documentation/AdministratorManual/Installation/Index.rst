@@ -60,3 +60,17 @@ The extension ships some TypoScript code which needs to be included.
 #. Select :guilabel:`News (news)` at the field :guilabel:`Include static (from extensions):`
 
 |img-plugin-ts|
+
+.. important::
+
+   Include the static emplate of `EXT:fluid_styled_content` or provide the following TypoScript yourself:
+
+    .. code-block:: typoscript
+
+        plugin.tx_news.settings.detail.media.image.lightbox {
+            enabled = 0
+            class = lightbox
+            width = 800m
+            height = 600m
+        }
+
