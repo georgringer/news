@@ -91,7 +91,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     public function getAlternative(): string
     {
-        return $this->alternative !== null ? $this->alternative : $this->getOriginalResource()->getAlternative();
+        return (string)($this->alternative !== '' ? $this->alternative : $this->getOriginalResource()->getAlternative());
     }
 
     /**
@@ -113,7 +113,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     public function getDescription(): string
     {
-        return $this->description !== null ? $this->description : $this->getOriginalResource()->getDescription();
+        return (string)($this->description !== '' ? $this->description : $this->getOriginalResource()->getDescription());
     }
 
     /**
@@ -135,7 +135,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     public function getLink()
     {
-        return $this->link !== null ? $this->link : $this->getOriginalResource()->getLink();
+        return (string)($this->link !== '' ? $this->link : $this->getOriginalResource()->getLink());
     }
 
     /**
@@ -157,7 +157,7 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
     public function getTitle(): string
     {
-        return $this->title !== null ? $this->title : $this->getOriginalResource()->getTitle();
+        return (string)($this->title !== '' ? $this->title : $this->getOriginalResource()->getTitle());
     }
 
     /**
