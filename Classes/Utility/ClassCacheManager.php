@@ -104,7 +104,7 @@ class ClassCacheManager
             }
             if (count($this->constructorLines['code'])) {
                 $code .= LF . $this->constructorLines['doc'];
-                $code .= LF . '    public function __construct(' . implode('', $this->constructorLines['parameters']) . ')' . LF . '    {' . LF . implode(LF, $this->constructorLines['code']) . LF . '    }' . LF;
+                $code .= LF . '    public function __construct(' . implode('', $this->constructorLines['parameters'] ?? []) . ')' . LF . '    {' . LF . implode(LF, $this->constructorLines['code'] ?? []) . LF . '    }' . LF;
             }
             $code = $this->closeClassDefinition($code);
 
