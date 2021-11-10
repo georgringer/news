@@ -15,6 +15,25 @@ This section contains snippets making EXT:news more awesome which might be usefu
         :local:
         :depth: 1
 
+Show FAL properties in fluid
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Every property of a file, e.g. the copyright (available via EXT:filemetadata) can be rendered in templates by using e.g. `{file.originalResource.properties.copyright}`.
+
+A full example can look like this
+
+.. code-block:: html
+
+    <f:for each="{newsItem.mediaNonPreviews}" as="mediaElement">
+        <div class="thumbnail">
+            <f:media file="{mediaElement}" class="img-fluid" />
+            <f:if condition="{mediaElement.originalResource.properties.copyright}">
+                <small>{mediaElement.originalResource.properties.copyright}</small>
+            </f:if>
+        </div>
+    </f:for>
+
+Use `<f:debug>{mediaElement.originalResource.properties}</f:debug>` to get all available properties
+
 Improved back links
 ^^^^^^^^^^^^^^^^^^^
 The back link on a detail page is a fixed link to a given page. However it might be that you use multiple list views
