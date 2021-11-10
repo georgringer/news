@@ -25,8 +25,8 @@
         "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
     },
     "suggest": {
-        "reelworx/rx-shariff": "^12 || ^13 || ^14",
-        "georgringer/numbered-pagination": "^1.0.1"
+        "reelworx/rx-shariff": "GDPR compliant social sharing",
+        "georgringer/numbered-pagination": "Improved pagination API"
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.1",
