@@ -63,7 +63,7 @@ The extension ships some TypoScript code which needs to be included.
 
 .. important::
 
-   Include the static emplate of `EXT:fluid_styled_content` or provide the following TypoScript yourself:
+   Include the static template of `EXT:fluid_styled_content` or provide the following TypoScript yourself:
 
     .. code-block:: typoscript
 
