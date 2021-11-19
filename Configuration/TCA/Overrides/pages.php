@@ -17,6 +17,6 @@ $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-newsplugins'] = '
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPageTSConfigFile(
     'news',
-    'Configuration/TSconfig/Page/news_only.txt',
+    'Configuration/TSconfig/Page/news_only.tsconfig',
     'EXT:news :: Restrict pages to news records'
 );
