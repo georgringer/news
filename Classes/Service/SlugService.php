@@ -81,7 +81,7 @@ class SlugService
                             $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
                         )
                     )
-                    ->set('path_segment', $this->getUniqueValue($record['uid'], $slug));
+                    ->set('path_segment', $this->getUniqueValue($record['uid'], $slug, $record['sys_language_uid']));
                 $databaseQueries[] = $queryBuilder->getSQL();
                 $queryBuilder->execute();
             }
@@ -93,11 +93,12 @@ class SlugService
     /**
      * @param int $uid
      * @param string $slug
+     * @param null|int $sysLanguageUid
      * @return string
      */
-    protected function getUniqueValue(int $uid, string $slug): string
+    protected function getUniqueValue(int $uid, string $slug, $sysLanguageUid = null): string
     {
-        $statement = $this->getUniqueCountStatement($uid, $slug);
+        $statement = $this->getUniqueCountStatement($uid, $slug, $sysLanguageUid);
         if ($statement->fetchColumn()) {
             for ($counter = 1; $counter <= 100; $counter++) {
                 $newSlug = $slug . '-' . $counter;
@@ -115,9 +116,10 @@ class SlugService
     /**
      * @param int $uid
      * @param string $slug
+     * @param null|int $sysLanguageUid
      * @return \Doctrine\DBAL\Driver\Statement|int
      */
-    protected function getUniqueCountStatement(int $uid, string $slug)
+    protected function getUniqueCountStatement(int $uid, string $slug, $sysLanguageUid = null)
     {
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
@@ -125,7 +127,7 @@ class SlugService
         $deleteRestriction = GeneralUtility::makeInstance(DeletedRestriction::class);
         $queryBuilder->getRestrictions()->removeAll()->add($deleteRestriction);
 
-        return $queryBuilder
+        $queryBuilder
             ->count('uid')
             ->from('tx_news_domain_model_news')
             ->where(
@@ -134,7 +136,15 @@ class SlugService
                     $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)
                 ),
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
-            )->execute();
+            );
+
+        if ($sysLanguageUid) {
+            $queryBuilder->andWhere(
+                $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createPositionalParameter($sysLanguageUid, \PDO::PARAM_INT))
+            );
+        }
+
+        return $queryBuilder->execute();
     }
 
     /**
