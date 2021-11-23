@@ -210,8 +210,11 @@ This sitemap can be added in the site config so it has a nice url:
        map:
          news_sitemap.xml: 1533906436
 
+.. _seo_language_menus:
+
 Language menu on news detail pages
 ----------------------------------
+
 If a language menu is rendered on a detail page and the languages are configured to use a strict mode, the following snippet helps you to setup a proper menu.
 If no translation exists, the property `available` is set to `false` - just as if the current page is not translated.
 
@@ -226,6 +229,8 @@ If no translation exists, the property `available` is set to `false` - just as i
    11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
    # comma separated list of language menu names
    11.menus = languageMenu
+
+See also chapter :ref:`LanguageMenuProcessor <dataProcessing_LanguageMenuProcessor>`.
 
 Hreflang on news detail pages
 -----------------------------

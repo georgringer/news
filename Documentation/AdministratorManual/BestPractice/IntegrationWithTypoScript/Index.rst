@@ -101,55 +101,8 @@ Insert configured objects to wherever you want to use them, depending on the GET
 Add news to breadcrumb menu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you want to show the news title in the breadcrumb menu if the single view is currently selected, use a TypoScript like this:
-
-.. code-block:: typoscript
-
-    lib.navigation_breadcrumb = COA
-    lib.navigation_breadcrumb {
-        stdWrap.wrap = <ul class="breadcrumb">|</ul>
-
-        10 = HMENU
-        10 {
-            special = rootline
-            #special.range =  1
-
-            1 = TMENU
-            1 {
-                NO = 1
-                NO {
-                    wrapItemAndSub = <li>|</li>
-                    ATagTitle.field = subtitle // title
-                    stdWrap.htmlSpecialChars = 1
-                }
-
-                CUR <.NO
-                CUR {
-                    wrapItemAndSub = <li class="active">|</li>
-                    doNotLinkIt = 1
-                }
-            }
-        }
-
-        # Add news title if on single view
-        20 = RECORDS
-        20 {
-            stdWrap.if.isTrue.data = GP:tx_news_pi1|news
-            dontCheckPid = 1
-            tables = tx_news_domain_model_news
-            source.data = GP:tx_news_pi1|news
-            source.intval = 1
-            conf.tx_news_domain_model_news = TEXT
-            conf.tx_news_domain_model_news {
-                field = title
-                htmlSpecialChars = 1
-            }
-			stdWrap.wrap = <li>|</li>
-			stdWrap.required = 1
-        }
-    }
-
-The relevant part starts with *20 = RECORDS* as this cObject renders the title of the news article. **Important:** Never forget the *source.intval = 1* to avoid SQL injections and the *htmlSpecialChars = 1* to avoid Cross-Site Scripting!
+This example has been moved to the
+:ref:`Tutorial: Breadcrumb menus <breadcrumbTypoScript>`.
 
 Add HTML to the header part in the detail view.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
