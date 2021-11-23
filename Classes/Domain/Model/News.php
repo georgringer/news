@@ -381,7 +381,7 @@ class News extends AbstractEntity
      *
      * @return false|string
      */
-    public function getMonthOfDatetime()f
+    public function getMonthOfDatetime()
     {
         return $this->getDatetime()->format('m');
     }
