@@ -5,19 +5,16 @@
 
 .. include:: /Includes.rst.txt
 
+.. _dataProcessing:
 
-Extend News
------------
+===============
+Data Processing
+===============
+
+The extension news currently contains the following data processors:
 
 .. toctree::
-   :maxdepth: 5
    :titlesonly:
 
-   ExtendFlexforms/Index
-   Events/Index
-   Hooks/Index
-   Demands/Index
-   DataProcessing/Index
-   ProxyClassGenerator/Index
-   AddCustomType/Index
-   ExtensionBasedOnNews/Index
+   AddNewsToMenuProcessor
+   LanguageMenuProcessor

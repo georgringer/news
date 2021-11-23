@@ -12,12 +12,13 @@ Tutorials
 
 .. only:: html
 
-	This chapter lists some nice tutorials.
+   This chapter lists some nice tutorials.
 
 .. toctree::
-	:maxdepth: 5
-	:titlesonly:
+   :maxdepth: 5
+   :titlesonly:
 
-	Integration/Index
-	Templates/Index
-	ExternalTutorials/Index
+   Integration/Index
+   Templates/Index
+   BreadcrumbMenu
+   ExternalTutorials/Index
