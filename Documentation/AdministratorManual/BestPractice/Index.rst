@@ -19,6 +19,7 @@ Best practice
 
 	Seo/Index
 	PreviewOfRecord/Index
+	TsConfigExamples/Index
 	AvailableContentElements/Index
 	IntegrationWithTypoScript/Index
 	ClearCache/Index
