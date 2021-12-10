@@ -137,9 +137,9 @@ class TtContent extends AbstractEntity
     protected $listType = '';
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getCrdate(): \DateTime
+    public function getCrdate(): ?\DateTime
     {
         return $this->crdate;
     }
@@ -155,9 +155,9 @@ class TtContent extends AbstractEntity
     }
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getTstamp(): \DateTime
+    public function getTstamp(): ?\DateTime
     {
         return $this->tstamp;
     }

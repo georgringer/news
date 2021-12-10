@@ -49,9 +49,9 @@ class Link extends AbstractValueObject
     /**
      * Get creation date
      *
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getCrdate(): \DateTime
+    public function getCrdate(): ?\DateTime
     {
         return $this->crdate;
     }
@@ -71,9 +71,9 @@ class Link extends AbstractValueObject
     /**
      * Get timestamp
      *
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getTstamp(): \DateTime
+    public function getTstamp(): ?\DateTime
     {
         return $this->tstamp;
     }

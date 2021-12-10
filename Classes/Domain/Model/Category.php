@@ -143,9 +143,9 @@ class Category extends AbstractEntity
     /**
      * Get creation date
      *
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getCrdate(): \DateTime
+    public function getCrdate(): ?\DateTime
     {
         return $this->crdate;
     }
@@ -165,9 +165,9 @@ class Category extends AbstractEntity
     /**
      * Get Tstamp
      *
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getTstamp(): \DateTime
+    public function getTstamp(): ?\DateTime
     {
         return $this->tstamp;
     }
@@ -189,7 +189,7 @@ class Category extends AbstractEntity
      *
      * @return \DateTime
      */
-    public function getStarttime(): \DateTime
+    public function getStarttime(): ?\DateTime
     {
         return $this->starttime;
     }
@@ -209,9 +209,9 @@ class Category extends AbstractEntity
     /**
      * Get Endtime
      *
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getEndtime(): \DateTime
+    public function getEndtime(): ?\DateTime
     {
         return $this->endtime;
     }

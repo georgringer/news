@@ -57,9 +57,9 @@ class Tag extends AbstractValueObject
     /**
      * Get crdate
      *
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getCrdate(): \DateTime
+    public function getCrdate(): ?\DateTime
     {
         return $this->crdate;
     }
@@ -79,9 +79,9 @@ class Tag extends AbstractValueObject
     /**
      * Get Tstamp
      *
-     * @return \DateTime
+     * @return null|\DateTime
      */
-    public function getTstamp(): \DateTime
+    public function getTstamp(): ?\DateTime
     {
         return $this->tstamp;
     }
