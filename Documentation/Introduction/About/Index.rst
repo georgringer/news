@@ -9,6 +9,7 @@
 
 What does it do?
 ================
+
 This extension implements a versatile news system based on the latest
 technologies which are provided by the TYPO3 CMS.
 
