@@ -87,7 +87,7 @@ will set the archive date on the the next friday.
 
 tagPid
 ^^^^^^
-Besides the configuration in the :ref:`Extension Manager <extensionManagerTagPid>` it is also possible to define the pid of tags created directly in the news record by Using TsConfig:
+Besides the configuration in the :ref:`Extension Configuration <extensionConfigurationTagPid>` it is also possible to define the pid of tags created directly in the news record by Using TsConfig:
 
 .. code-block:: typoscript
 
@@ -99,7 +99,7 @@ Besides the configuration in the :ref:`Extension Manager <extensionManagerTagPid
 
 categoryRestrictionForFlexForms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-After defining the category restriction in the :ref:`Extension Manager <extensionManagerCategoryRestriction>` it is also possible to restrict the categories in the news plugin. This needs to enabled by TsConfig:
+After defining the category restriction in the :ref:`Extension Configuration <extensionConfigurationCategoryRestriction>` it is also possible to restrict the categories in the news plugin. This needs to enabled by TsConfig:
 
 .. code-block:: typoscript
 
