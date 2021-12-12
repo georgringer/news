@@ -19,4 +19,4 @@ Configuration
 
 	TypoScript/Index
 	TsConfig/Index
-	ExtensionManager/Index
+	ExtensionConfiguration/Index

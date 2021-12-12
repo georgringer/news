@@ -32,7 +32,7 @@ The extension needs to be installed as any other extension of TYPO3 CMS:
       the file afterwards in the Extension Manager.
 
 #. The Extension Manager offers some basic configuration which is
-   explained :ref:`here <extensionManager>`.
+   explained :ref:`here <extensionConfiguration>`.
 
 Latest version from git
 -----------------------
