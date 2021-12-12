@@ -40,7 +40,7 @@ created.
       a category tree.
 
    #. Click on :guilabel:`News` to create a new news record. Fill as many fields you
-      want to field, a required one is only the header.
+      want, a required one is only the header.
 
 #. **Administration module:** Use the custom administration module which can be found
    in the module menu at :guilabel:`Web > News Administration`
@@ -55,7 +55,7 @@ created.
 Add a plugin to a page
 ----------------------
 A plugin is used to render a defined selection of records in the frontend.
-Follow this steps to add a plugin respectively for detail- and list-view to a page:
+Follow these steps to add a plugin respectively for detail- and list-view to a page:
 
 Detail page
 ^^^^^^^^^^^
@@ -66,7 +66,7 @@ Detail page
 
 #. Add a new content element and select the entry :guilabel:`News system`
 
-#. Switch to the tab :guilabel:`Plugin` where you can define the plugin's settings.
+#. Switch to the tab :guilabel:`Plugin` where you can define the plugins settings.
    The most important settings are :guilabel:`What to display` and :guilabel:`Startingpoint`.
 
    #. Change the 1 :sup:`st` select box :guilabel:`What to display` to :guilabel:`Detail view`.
