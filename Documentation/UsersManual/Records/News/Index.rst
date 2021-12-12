@@ -83,7 +83,7 @@ News record
          Content elements
    :Description:
          Add content elements to a news records. This field can be
-         hidden by disabling the setting in :ref:`extension manager's settings <extensionManager>`.
+         hidden by disabling the setting in :ref:`extensionConfiguration`.
  - :Field:
          Link to this Page
    :Description:
@@ -102,7 +102,7 @@ News record
          Tags
    :Description:
          Add tags to the news record. Use the suggest wizard to search for existing tags and to insert new tags.
-         The pid can be set in the :ref:`Extension Manager <extensionManagerTagPid>` or in :ref:`TsConfig <tsconfigTagPid>`.
+         The pid can be set in the Extension Configuration :ref:`extensionConfigurationTagPid` or in :ref:`TsConfig <tsconfigTagPid>`.
  - :Field:
          Related News
    :Description:

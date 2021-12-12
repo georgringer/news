@@ -5,13 +5,15 @@
 
 .. include:: /Includes.rst.txt
 
-.. _extensionManager:
+.. _extensionConfiguration:
 
-Extension Manager
------------------
+Extension Configuration
+-----------------------
 
-Some general settings can be configured in the Extension Manager.
-If you need to configure those, switch to the module "Extension Manager", select the extension "**news**" and press on the configure-icon!
+Some general settings can be configured in the Extension Configuration.
+
+#. Go to :guilabel:`Admin Tools` > :guilabel:`Settings` > :guilabel:`Extension Configuration`
+#. Choose :guilabel:`news`
 
 The settings are divided into several tabs and described here in detail:
 
@@ -49,7 +51,7 @@ Property details
         :local:
         :depth: 1
 
-.. _extensionManagerArchiveDate:
+.. _extensionConfigurationArchiveDate:
 
 archiveDate
 """""""""""
@@ -62,7 +64,7 @@ If set, the teaser field will be rendered using a RTE.
 .. note::
 	This is just for non FAL relations!
 
-.. _extensionManagerTagPid:
+.. _extensionConfigurationTagPid:
 
 tagPid
 """"""
@@ -73,13 +75,13 @@ If you want to use TsConfig to define the page, set the tagPid to 0 and use the 
 	# Save tags on page with UID 123
 	tx_news.tagPid = 123
 
-.. _extensionManagerPrependAtCopy:
+.. _extensionConfigurationPrependAtCopy:
 
 prependAtCopy
 """""""""""""
 If set and a news record is copied, the news record will be prepended with the string **Copy X**.
 
-.. _extensionManagerCategoryRestriction:
+.. _extensionConfigurationCategoryRestriction:
 
 categoryRestriction
 """""""""""""""""""
@@ -117,13 +119,13 @@ Categories from site root
 Only those categories are shown which are saved at the root page.
 
 
-.. _extensionManagerCategoryBeGroupTceFormsRestriction:
+.. _extensionConfigurationCategoryBeGroupTceFormsRestriction:
 
 categoryBeGroupTceFormsRestriction
 """"""""""""""""""""""""""""""""""
 If activated, an editor needs to have permissions to all categories added to a news item to be able to edit this record.
 
-.. _extensionManagerContentElementRelation:
+.. _extensionConfigurationContentElementRelation:
 
 contentElementRelation
 """"""""""""""""""""""
@@ -139,13 +141,13 @@ If you want to reduce the available options of the content elements, you can use
 
 More information can be found at http://docs.typo3.org/typo3cms/TSconfigReference/PageTsconfig/TCEform/Index.html.
 
-.. _extensionManagerManualSorting:
+.. _extensionConfigurationManualSorting:
 
 manualSorting
 """""""""""""
 If set, news records can be manually sorted in the list view by the well known icons "up" and "down".
 
-.. _extensionManagerDateTimeNotRequired:
+.. _extensionConfigurationDateTimeNotRequired:
 
 dateTimeNotRequired
 """""""""""""""""""
@@ -153,21 +155,21 @@ If set, the date field of the news record is not a required field anymore. Furth
 
 Be aware that using this feature may lead to unexpected results if using e.g. the date menu if the field is not used anymore.
 
-.. _extensionManagerMediaPreview:
+.. _extensionConfigurationMediaPreview:
 
 mediaPreview
 """"""""""""
 If enabled, the list module will show thumbnails of the media items.
 
-.. _extensionManagerShowAdministrationModule:
+.. _extensionConfigurationShowAdministrationModule:
 
 showAdministrationModule
 """"""""""""""""""""""""
 If set, the backend module "News" is shown.This view might be easier for editors who use a very limited set of features in the backend.
 
-.. _extensionManagerShowImporter:
+.. _extensionConfigurationShowImporter:
 
-.. _extensionManagerHidePageTreeForAdministrationModule:
+.. _extensionConfigurationHidePageTreeForAdministrationModule:
 
 hidePageTreeForAdministrationModule
 """""""""""""""""""""""""""""""""""
@@ -178,13 +180,13 @@ showImporter
 """"""""""""
 If set, the backend module "News import" is shown. This is used to import news articles from sources like t3blog, tt_news or custom providers.
 
-.. _extensionManagerStorageUidImporter:
+.. _extensionConfigurationStorageUidImporter:
 
 storageUidImporter
 """"""""""""""""""
 Define the uid of the storage which is used for importing media elements into FAL relations.
 
-.. _extensionManagerResourceFolderImporter:
+.. _extensionConfigurationResourceFolderImporter:
 
 resourceFolderImporter
 """"""""""""""""""""""
