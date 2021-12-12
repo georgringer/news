@@ -15,7 +15,7 @@ shipped by the extension news. If you are interested in what you can do
 with the general TsConfig in news records have a look at
 :ref:`General TSconfig examples <general_tsconfig_examples>`.
 
-Every TSconfig configuration of extension news starts with :tsconfig:`tx_news.`.
+Every TSconfig configuration of extension news starts with :typoscript:`tx_news.`.
 
 .. note::
  Just for clarification: TsConfig is in TYPO3 only used for configurations inside the backend!
