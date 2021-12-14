@@ -13,10 +13,10 @@ Records
 EXT:news uses multiples records which are described here in detail.
 
 .. toctree::
-	:maxdepth: 5
-	:titlesonly:
+   :maxdepth: 5
+   :titlesonly:
 
-	News/Index
-	Category/Index
-	Tag/Index
+   News/Index
+   Category/Index
+   Tag/Index
 

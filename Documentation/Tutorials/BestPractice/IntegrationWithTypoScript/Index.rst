@@ -26,28 +26,28 @@ If EXT:news should be integrated by using TypoScript only, you can use this code
 
 .. code-block:: typoscript
 
-	lib.news = USER
-	lib.news {
-	  userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-	  extensionName = News
-	  pluginName = Pi1
-	  vendorName = GeorgRinger
+   lib.news = USER
+   lib.news {
+     userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+     extensionName = News
+     pluginName = Pi1
+     vendorName = GeorgRinger
 
-	  switchableControllerActions {
-		News {
-		  1 = list
-		}
-	  }
+     switchableControllerActions {
+      News {
+        1 = list
+      }
+     }
 
-	  settings < plugin.tx_news.settings
-	  settings {
-		//categories = 49
-		limit = 30
-		detailPid = 31
-		overrideFlexformSettingsIfEmpty := addToList(detailPid)
-		startingpoint = 13
-	  }
-	}
+     settings < plugin.tx_news.settings
+     settings {
+      //categories = 49
+      limit = 30
+      detailPid = 31
+      overrideFlexformSettingsIfEmpty := addToList(detailPid)
+      startingpoint = 13
+     }
+   }
 
 Now you can use the object lib.news.
 
@@ -58,43 +58,43 @@ This is the example of how to display list and detail view on the same page.
 
 .. code-block:: typoscript
 
-	# Basic plugin settings
-	lib.news = USER
-	lib.news {
-			userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-			pluginName = Pi1
-			vendorName = GeorgRinger
-			extensionName = News
-			controller = News
-			settings =< plugin.tx_news.settings
-			persistence =< plugin.tx_news.persistence
-			view =< plugin.tx_news.view
-	}
+   # Basic plugin settings
+   lib.news = USER
+   lib.news {
+         userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+         pluginName = Pi1
+         vendorName = GeorgRinger
+         extensionName = News
+         controller = News
+         settings =< plugin.tx_news.settings
+         persistence =< plugin.tx_news.persistence
+         view =< plugin.tx_news.view
+   }
 
 Configure list and detail actions:
 
 .. code-block:: typoscript
 
-	lib.news_list < lib.news
-	lib.news_list {
-			action = list
-			switchableControllerActions.News.1 = list
-	}
-	lib.news_detail < lib.news
-	lib.news_detail {
-			action = detail
-			switchableControllerActions.News.1 = detail
-	}
+   lib.news_list < lib.news
+   lib.news_list {
+         action = list
+         switchableControllerActions.News.1 = list
+   }
+   lib.news_detail < lib.news
+   lib.news_detail {
+         action = detail
+         switchableControllerActions.News.1 = detail
+   }
 
 Insert configured objects to wherever you want to use them, depending on the GET parameter of detail view:
 
 .. code-block:: typoscript
 
-	[traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
-		page.10.marks.content < lib.news_detail
-	[else]
-		page.10.marks.content < lib.news_list
-	[end]
+   [traverse(request.getQueryParams(), 'tx_news_pi1/news') > 0]
+      page.10.marks.content < lib.news_detail
+   [else]
+      page.10.marks.content < lib.news_list
+   [end]
 
 
 
@@ -188,22 +188,22 @@ look at the given TypoScript snippet:
 
 .. code-block:: typoscript
 
-	plugin.tx_news.settings {
-		overrideFlexformSettingsIfEmpty = singleNews,cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint
-		useStdWrap = singleNews
+   plugin.tx_news.settings {
+      overrideFlexformSettingsIfEmpty = singleNews,cropMaxCharacters,dateField,timeRestriction,orderBy,orderDirection,backPid,listPid,startingpoint
+      useStdWrap = singleNews
 
-		singleNews.stdWrap.cObject = CONTENT
-		singleNews.stdWrap.cObject {
-			table = tx_news_domain_model_news
-			select {
-				max = 1
-				orderBy = datetime desc
-				pidInList = 3
-			}
-			renderObj = TEXT
-			renderObj.field = uid
-		}
-	}
+      singleNews.stdWrap.cObject = CONTENT
+      singleNews.stdWrap.cObject {
+         table = tx_news_domain_model_news
+         select {
+            max = 1
+            orderBy = datetime desc
+            pidInList = 3
+         }
+         renderObj = TEXT
+         renderObj.field = uid
+      }
+   }
 
 By using the field *useStdWrap* it is possible to call the full range of stdWrap on any setting. In this case the first news record
 from the page with uid 3 is used as fallback.
@@ -218,9 +218,9 @@ Add this to the ``Detail.html`` which will pass the first category uid to the Ty
 
 .. code-block:: html
 
-	<f:if condition="{newsItem.firstCategory}">
-		<f:cObject typoscriptObjectPath="lib.tx_news.relatedByFirstCategory">{newsItem.firstCategory.uid}</f:cObject>
-	</f:if>
+   <f:if condition="{newsItem.firstCategory}">
+      <f:cObject typoscriptObjectPath="lib.tx_news.relatedByFirstCategory">{newsItem.firstCategory.uid}</f:cObject>
+   </f:if>
 
 .. code-block:: typoscript
 
@@ -306,22 +306,22 @@ Show Category Menu with Typoscript
 
 .. code-block:: typoscript
 
-	lib.categoryMenu = USER
-	lib.categoryMenu {
-		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-		extensionName = News
-		pluginName = Pi1
-		vendorName = GeorgRinger
+   lib.categoryMenu = USER
+   lib.categoryMenu {
+      userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+      extensionName = News
+      pluginName = Pi1
+      vendorName = GeorgRinger
 
-		action = category
-		switchableControllerActions {
-			Category {
-				1 = list
-			}
-		}
+      action = category
+      switchableControllerActions {
+         Category {
+            1 = list
+         }
+      }
 
-		settings < plugin.tx_news.settings
-		settings {
-			listPid = 11
-		}
-	}
+      settings < plugin.tx_news.settings
+      settings {
+         listPid = 11
+      }
+   }

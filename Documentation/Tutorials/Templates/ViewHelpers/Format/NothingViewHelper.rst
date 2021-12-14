@@ -16,13 +16,13 @@ Basic example
 
 Code: ::
 
-	 <n:format.nothing>
-	<n:titleTag>{newsItem.title}</n:titleTag>
-	Fobar
-	 </n:format.nothing>
+    <n:format.nothing>
+   <n:titleTag>{newsItem.title}</n:titleTag>
+   Fobar
+    </n:format.nothing>
 
 
 Output: ::
 
-	 nothing
+    nothing
 

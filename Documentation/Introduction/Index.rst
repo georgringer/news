@@ -10,12 +10,12 @@ Introduction
 
 .. only:: html
 
-	This chapter gives you a basic introduction about the TYPO3 CMS extension "*news*".
+   This chapter gives you a basic introduction about the TYPO3 CMS extension "*news*".
 
 .. toctree::
-	:maxdepth: 5
-	:titlesonly:
+   :maxdepth: 5
+   :titlesonly:
 
-	About/Index
-	Support/Index
-	Thanks/Index
+   About/Index
+   Support/Index
+   Thanks/Index

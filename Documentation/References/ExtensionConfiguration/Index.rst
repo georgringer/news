@@ -22,25 +22,25 @@ Properties
 
 .. container:: ts-properties
 
-	==================================== ===================================== ====================
-	Property                             Tab                                   Default
-	==================================== ===================================== ====================
-	archiveDate_                          basic                                 date
-	rteForTeaser_                         records                               1
-	tagPid_                               records                               1
-	prependAtCopy_                        records                               1
-	categoryRestriction_                  records
-	categoryBeGroupTceFormsRestriction_   records
-	contentElementRelation_               records                               0
-	manualSorting_                        records                               0
-	dateTimeNotRequired_                  records                               fal
-	mediaPreview_                         records                               0
-	showAdministrationModule_             backend modules                       0
-	hidePageTreeForAdministrationModule_  backend modules                       0
-	showImporter_                         import module                         0
-	storageUidImporter_                   import module
-	resourceFolderImporter_               import module                         /news_import
-	==================================== ===================================== ====================
+   ==================================== ===================================== ====================
+   Property                             Tab                                   Default
+   ==================================== ===================================== ====================
+   archiveDate_                          basic                                 date
+   rteForTeaser_                         records                               1
+   tagPid_                               records                               1
+   prependAtCopy_                        records                               1
+   categoryRestriction_                  records
+   categoryBeGroupTceFormsRestriction_   records
+   contentElementRelation_               records                               0
+   manualSorting_                        records                               0
+   dateTimeNotRequired_                  records                               fal
+   mediaPreview_                         records                               0
+   showAdministrationModule_             backend modules                       0
+   hidePageTreeForAdministrationModule_  backend modules                       0
+   showImporter_                         import module                         0
+   storageUidImporter_                   import module
+   resourceFolderImporter_               import module                         /news_import
+   ==================================== ===================================== ====================
 
 Property details
 ^^^^^^^^^^^^^^^^
@@ -62,7 +62,7 @@ rteForTeaser
 If set, the teaser field will be rendered using a RTE.
 
 .. note::
-	This is just for non FAL relations!
+   This is just for non FAL relations!
 
 .. _extensionConfigurationTagPid:
 
@@ -72,8 +72,8 @@ New tags can be saved directly inside the news record. The given ID is used as p
 
 If you want to use TsConfig to define the page, set the tagPid to 0 and use the following syntax in TsConfig: ::
 
-	# Save tags on page with UID 123
-	tx_news.tagPid = 123
+   # Save tags on page with UID 123
+   tx_news.tagPid = 123
 
 .. _extensionConfigurationPrependAtCopy:
 
@@ -103,8 +103,8 @@ Page TsConfig
 ~~~~~~~~~~~~~
 By using TsConfig it is possible to define those pages which contain the available categories: ::
 
-	# Example: Only use categories which are saved in the pages with ID 12 and 34
-	TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST = 12,34
+   # Example: Only use categories which are saved in the pages with ID 12 and 34
+   TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST = 12,34
 
 Categories from current page
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -133,11 +133,11 @@ If set, you can add content elements as relation to a news record. This makes it
 
 If you want to reduce the available options of the content elements, you can use TsConfig in the sysfolder of the news records: ::
 
-	# Hide content element types
-	TCEFORM.tt_content.CType.removeItems = header,bullets,table,uploads,menu,list,html,login,mailform,search,shortcut,div
-	# Hide fields
-	TCEFORM.tt_content.header.disabled = 1
-	TCEFORM.tt_content.header_layout.disabled = 1
+   # Hide content element types
+   TCEFORM.tt_content.CType.removeItems = header,bullets,table,uploads,menu,list,html,login,mailform,search,shortcut,div
+   # Hide fields
+   TCEFORM.tt_content.header.disabled = 1
+   TCEFORM.tt_content.header_layout.disabled = 1
 
 More information can be found at http://docs.typo3.org/typo3cms/TSconfigReference/PageTsconfig/TCEform/Index.html.
 

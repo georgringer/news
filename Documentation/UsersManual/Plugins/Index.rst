@@ -61,16 +61,16 @@ Date menu
 ^^^^^^^^^
 Use this action to show a list of news items grouped by the date. A typical output can look like: ::
 
-	2015
-		January: 13 entries
-		February: 9 entries
-		March: 6 entries
-		June: 4 entries
-		...
-	2014
-		March: 81 entries
-		April: 32 entries
-		May: 1 entry
+   2015
+      January: 13 entries
+      February: 9 entries
+      March: 6 entries
+      June: 4 entries
+      ...
+   2014
+      March: 81 entries
+      April: 32 entries
+      May: 1 entry
 
 
 If you define a specific page id in field :guilabel:`PageId for list display` (inside the tab :guilabel:`Additional`) and

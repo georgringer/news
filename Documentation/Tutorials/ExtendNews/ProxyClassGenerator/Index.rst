@@ -24,16 +24,16 @@ Take a look at the following 2 working examples:
 
 .. warning:: The drawbacks are easy to identify:
 
- 	- Don't use any use statements as those are currently ignored!
- 	- It is not possible to override an actual method or property!
+    - Don't use any use statements as those are currently ignored!
+    - It is not possible to override an actual method or property!
 
 The files are saved by using the Caching Framework in the directory :file:`typo3temp/Cache/Code/news`.
 
 .. only:: html
 
-	.. contents::
-		:local:
-		:depth: 1
+   .. contents::
+      :local:
+      :depth: 1
 
 1) Add a new field in the backend
 ---------------------------------
@@ -51,28 +51,28 @@ The file  :file:`ext_emconf.php` holds all basic information about the extension
 
 .. code-block:: php
 
-	<?php
+   <?php
 
-	$EM_CONF[$_EXTKEY] = array(
-		'title' => 'news events',
-		'description' => 'Events for news',
-		'category' => 'plugin',
-		'author' => 'Georg Ringer',
-		'author_email' => '',
-		'state' => 'alpha',
-		'uploadfolder' => FALSE,
-		'createDirs' => '',
-		'clearCacheOnLoad' => TRUE,
-		'version' => '1.0.0',
-		'constraints' => array(
-			'depends' => array(
-				'typo3' => '7.6.13-8.7.99',
-				'news' => '6.2.0-6.9.99',
-			),
-			'conflicts' => array(),
-			'suggests' => array(),
-		),
-	);
+   $EM_CONF[$_EXTKEY] = array(
+      'title' => 'news events',
+      'description' => 'Events for news',
+      'category' => 'plugin',
+      'author' => 'Georg Ringer',
+      'author_email' => '',
+      'state' => 'alpha',
+      'uploadfolder' => FALSE,
+      'createDirs' => '',
+      'clearCacheOnLoad' => TRUE,
+      'version' => '1.0.0',
+      'constraints' => array(
+         'depends' => array(
+            'typo3' => '7.6.13-8.7.99',
+            'news' => '6.2.0-6.9.99',
+         ),
+         'conflicts' => array(),
+         'suggests' => array(),
+      ),
+   );
 
 SQL definition
 """"""""""""""
@@ -81,11 +81,11 @@ Create the file :file:`ext_tables.sql` in the root of the extension directory wi
 .. code-block:: sql
 
 
-	# Table structure for table 'tx_news_domain_model_news '
-	#
-	CREATE TABLE tx_news_domain_model_news (
-		location_simple varchar(255) DEFAULT '' NOT NULL
-	);
+   # Table structure for table 'tx_news_domain_model_news '
+   #
+   CREATE TABLE tx_news_domain_model_news (
+      location_simple varchar(255) DEFAULT '' NOT NULL
+   );
 
 
 TCA definition
@@ -97,22 +97,22 @@ Therefore, create the file :file:`Configuration/TCA/Overrides/tx_news_domain_mod
 
 .. code-block:: php
 
-	<?php
-	defined('TYPO3_MODE') or die();
+   <?php
+   defined('TYPO3_MODE') or die();
 
-	$fields = array(
-		'location_simple' => array(
-			'exclude' => 1,
-			'label' => 'My location',
-			'config' => array(
-				'type' => 'input',
-				'size' => 15
-			),
-		)
-	);
+   $fields = array(
+      'location_simple' => array(
+         'exclude' => 1,
+         'label' => 'My location',
+         'config' => array(
+            'type' => 'input',
+            'size' => 15
+         ),
+      )
+   );
 
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_news_domain_model_news', $fields);
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'location_simple');
+   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_news_domain_model_news', $fields);
+   \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'location_simple');
 
 
 Install the extension
@@ -134,10 +134,10 @@ Create the file :file:`ext_localconf.php` in the root of the extension:
 
 .. code-block:: php
 
-	<?php
-	defined('TYPO3_MODE') or die();
+   <?php
+   defined('TYPO3_MODE') or die();
 
-	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News']['eventnews'] = 'eventnews';
+   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News']['eventnews'] = 'eventnews';
 
 :php:`Domain/Model/News` is the namespace to the class which should be extended and :code:`eventnews` is the extension key.
 
@@ -148,34 +148,34 @@ As the class :php:`Domain/Model/News` should be extended, create a file at the s
 
 .. code-block:: php
 
-	<?php
+   <?php
 
-	namespace GeorgRinger\Eventnews\Domain\Model;
+   namespace GeorgRinger\Eventnews\Domain\Model;
 
-	/**
-	 * News
-	 */
-	class News extends \GeorgRinger\News\Domain\Model\News {
+   /**
+    * News
+    */
+   class News extends \GeorgRinger\News\Domain\Model\News {
 
-		/**
-		 * @var string
-		 */
-		protected $locationSimple;
+      /**
+       * @var string
+       */
+      protected $locationSimple;
 
-		/**
-		 * @return string
-		 */
-		public function getLocationSimple() {
-			return $this->locationSimple;
-		}
+      /**
+       * @return string
+       */
+      public function getLocationSimple() {
+         return $this->locationSimple;
+      }
 
-		/**
-		 * @param string $locationSimple
-		 */
-		public function setLocationSimple($locationSimple) {
-			$this->locationSimple = $locationSimple;
-		}
-	}
+      /**
+       * @param string $locationSimple
+       */
+      public function setLocationSimple($locationSimple) {
+         $this->locationSimple = $locationSimple;
+      }
+   }
 
 .. hint::
     If you are using the extension :file:`extension_builder`, this class might have been created for you already.

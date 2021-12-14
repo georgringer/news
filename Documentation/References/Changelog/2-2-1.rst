@@ -10,9 +10,9 @@ Features
 
 ::
 
-	* SearchFormAction can handle $overwriteDemand which enables you to have improved search capabilities
-	* Support for linkvalidator
-	* iCalendar as view
+   * SearchFormAction can handle $overwriteDemand which enables you to have improved search capabilities
+   * Support for linkvalidator
+   * iCalendar as view
 
 
 Important bugfixes / tasks
@@ -20,6 +20,6 @@ Important bugfixes / tasks
 
 ::
 
-	* Fix useStdwrap in 4.5
-	* Fix for loading a class under 4.5
+   * Fix useStdwrap in 4.5
+   * Fix for loading a class under 4.5
 

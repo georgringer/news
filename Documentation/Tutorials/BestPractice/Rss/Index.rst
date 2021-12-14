@@ -25,9 +25,9 @@ The "magic" which uses the List.xml template instead of the List.html is the fol
 
 .. code-block:: typoscript
 
-	plugin.tx_news.settings.format = xml
-	# If you want atom, use
-	plugin.tx_news.settings.format = atom
+   plugin.tx_news.settings.format = xml
+   # If you want atom, use
+   plugin.tx_news.settings.format = atom
 
 
 RSS feed by TypoScript
@@ -39,38 +39,38 @@ A very simple way to generate the RSS feed is using plain TypoScript. All you ne
 
     pageNewsRSS = PAGE
     pageNewsRSS {
-    	# Override the typeNum if you have more than one feed
-    	typeNum = {$plugin.tx_news.rss.channel.typeNum}
-    	config {
-    		disableAllHeaderCode = 1
-    		xhtml_cleaning = none
-    		admPanel = 0
-    		debug = 0
-    		disablePrefixComment = 1
-    		metaCharset = utf-8
-    		additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
-    		absRefPrefix = {$plugin.tx_news.rss.channel.link}
-    		linkVars >
-    	}
-    	10 < tt_content.list.20.news_pi1
-    	10 {
-    		switchableControllerActions {
-    			News {
-    				1 = list
-    			}
-    		}
-    		settings < plugin.tx_news.settings
-    		settings {
-    			categories = 9
-    			categoryConjunction = notor
-    			limit = 30
-    			detailPid = 25
-    			startingpoint = 24
-    			format = xml
-    			# Override the typeNum if you have more than one feed, must be the same as above!
-    			#list.rss.channel.typeNum = {$plugin.tx_news.rss.channel.typeNum}
-    		}
-    	}
+       # Override the typeNum if you have more than one feed
+       typeNum = {$plugin.tx_news.rss.channel.typeNum}
+       config {
+          disableAllHeaderCode = 1
+          xhtml_cleaning = none
+          admPanel = 0
+          debug = 0
+          disablePrefixComment = 1
+          metaCharset = utf-8
+          additionalHeaders.10.header = Content-Type:application/rss+xml;charset=utf-8
+          absRefPrefix = {$plugin.tx_news.rss.channel.link}
+          linkVars >
+       }
+       10 < tt_content.list.20.news_pi1
+       10 {
+          switchableControllerActions {
+             News {
+                1 = list
+             }
+          }
+          settings < plugin.tx_news.settings
+          settings {
+             categories = 9
+             categoryConjunction = notor
+             limit = 30
+             detailPid = 25
+             startingpoint = 24
+             format = xml
+             # Override the typeNum if you have more than one feed, must be the same as above!
+             #list.rss.channel.typeNum = {$plugin.tx_news.rss.channel.typeNum}
+          }
+       }
     }
 
 This example will show all news records which don't have the category with the uid 9 assigned and are saved on the page with uid 24. The single view page is the one with uid 25.
@@ -224,9 +224,9 @@ If you are getting this error, the easiest thing is to replace the character by 
 
 .. code-block:: typoscript
 
-	pageNewsRSS.10.stdWrap.replacement {
-		10  {
-			search = &nbsp;
-			replace = &#160;
-		}
-	}
+   pageNewsRSS.10.stdWrap.replacement {
+      10  {
+         search = &nbsp;
+         replace = &#160;
+      }
+   }

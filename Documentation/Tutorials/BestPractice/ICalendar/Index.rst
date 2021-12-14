@@ -36,39 +36,39 @@ A very simple way to generate the iCalendar feed is using plain TypoScript. All 
 
     [globalVar = TSFE:type = 9819]
     config {
-    	disableAllHeaderCode = 1
-    	xhtml_cleaning = none
-    	admPanel = 0
-    	metaCharset = utf-8
-    	# For 7 LTS
-    	additionalHeaders = Content-Type:text/calendar;charset=utf-8
-    	# Since 8 LTS
-    	additionalHeaders.10.header = Content-Type:text/calendar;charset=utf-8
-    	disablePrefixComment = 1
-    	linkVars >
+       disableAllHeaderCode = 1
+       xhtml_cleaning = none
+       admPanel = 0
+       metaCharset = utf-8
+       # For 7 LTS
+       additionalHeaders = Content-Type:text/calendar;charset=utf-8
+       # Since 8 LTS
+       additionalHeaders.10.header = Content-Type:text/calendar;charset=utf-8
+       disablePrefixComment = 1
+       linkVars >
     }
     pageNewsICalendar = PAGE
     pageNewsICalendar {
-    	typeNum = 9819
-    	10 < tt_content.list.20.news_pi1
-    	10 {
-    		switchableControllerActions {
-    			News {
-    				1 = list
-    			}
-    		}
-    		settings < plugin.tx_news.settings
-    		settings {
-    			categories = 9
-    			categoryConjunction = notor
-    			limit = 30
-    			detailPid = 25
-    			startingpoint = 24
-    			format = ical
-    			domain.data = getEnv:HTTP_HOST
-    			useStdWrap = domain
-    		}
-    	}
+       typeNum = 9819
+       10 < tt_content.list.20.news_pi1
+       10 {
+          switchableControllerActions {
+             News {
+                1 = list
+             }
+          }
+          settings < plugin.tx_news.settings
+          settings {
+             categories = 9
+             categoryConjunction = notor
+             limit = 30
+             detailPid = 25
+             startingpoint = 24
+             format = ical
+             domain.data = getEnv:HTTP_HOST
+             useStdWrap = domain
+          }
+       }
     }
     [global]
 
@@ -95,30 +95,30 @@ To create an ICalendar feed based on a plugin follow this steps:
 
    .. code-block:: typoscript
 
-		page = PAGE
-		page.10 < styles.content.get
+      page = PAGE
+      page.10 < styles.content.get
 
-		page.config {
-			  # deactivate Standard-Header
-			 disableAllHeaderCode = 1
-			 # no xhtml tags
-			 xhtml_cleaning = none
-			 admPanel = 0
-			 metaCharset = utf-8
-			 # define charset
-			 additionalHeaders = Content-Type:text/calendar;charset=utf-8
-			 disablePrefixComment = 1
-			 linkVars >
-		}
+      page.config {
+           # deactivate Standard-Header
+          disableAllHeaderCode = 1
+          # no xhtml tags
+          xhtml_cleaning = none
+          admPanel = 0
+          metaCharset = utf-8
+          # define charset
+          additionalHeaders = Content-Type:text/calendar;charset=utf-8
+          disablePrefixComment = 1
+          linkVars >
+      }
 
-		# set the format
-		plugin.tx_news.settings.format = ical
-		# set the domain for real unique uids
-		plugin.tx_news.settings.domain.data = getEnv:HTTP_HOST
-		plugin.tx_news.settings.useStdWrap = domain
+      # set the format
+      plugin.tx_news.settings.format = ical
+      # set the domain for real unique uids
+      plugin.tx_news.settings.domain.data = getEnv:HTTP_HOST
+      plugin.tx_news.settings.useStdWrap = domain
 
-		# delete content wrap
-		tt_content.stdWrap >
+      # delete content wrap
+      tt_content.stdWrap >
 
 **Important:** If your output still contains HTML code, please check your TypoScript
 (especially from css\_styled\_content) as this HTML is produced there!
@@ -132,37 +132,37 @@ The TypoScript code looks like this.
 .. code-block:: typoscript
 
     [globalVar = TSFE:type = 9819]
-    	lib.stdheader >
-    	tt_content.stdWrap.innerWrap >
-    	tt_content.stdWrap.wrap >
-    	# get away <div class="feEditAdvanced-firstWrapper" ...> if your logged into the backend
-    	styles.content.get.stdWrap >
+       lib.stdheader >
+       tt_content.stdWrap.innerWrap >
+       tt_content.stdWrap.wrap >
+       # get away <div class="feEditAdvanced-firstWrapper" ...> if your logged into the backend
+       styles.content.get.stdWrap >
 
-    	pageNewsICalendar = PAGE
-    	pageNewsICalendar.typeNum = 9819
-    	pageNewsICalendar.10 < styles.content.get
-    	pageNewsICalendar.10.select.where = colPos=0 AND list_type = "news_pi1"
-    	pageNewsICalendar.10.select {
-    		orderBy = sorting ASC
-    		max = 1
-    	}
+       pageNewsICalendar = PAGE
+       pageNewsICalendar.typeNum = 9819
+       pageNewsICalendar.10 < styles.content.get
+       pageNewsICalendar.10.select.where = colPos=0 AND list_type = "news_pi1"
+       pageNewsICalendar.10.select {
+          orderBy = sorting ASC
+          max = 1
+       }
 
-    	config {
-    		# deactivate Standard-Header
-    		disableAllHeaderCode = 1
-    		# no xhtml tags
-    		xhtml_cleaning = none
-    		admPanel = 0
-    		metaCharset = utf-8
-    		# you need an english locale to get correct rfc values for <lastBuildDate>, ...
-    		locale_all = en_EN
-    		# define charset
-    		additionalHeaders = Content-Type:text/calendar;charset=utf-8
-    		disablePrefixComment = 1
-    		linkVars >
-    	}
+       config {
+          # deactivate Standard-Header
+          disableAllHeaderCode = 1
+          # no xhtml tags
+          xhtml_cleaning = none
+          admPanel = 0
+          metaCharset = utf-8
+          # you need an english locale to get correct rfc values for <lastBuildDate>, ...
+          locale_all = en_EN
+          # define charset
+          additionalHeaders = Content-Type:text/calendar;charset=utf-8
+          disablePrefixComment = 1
+          linkVars >
+       }
 
-    	# set the format
+       # set the format
         plugin.tx_news.settings.format = ical
         # set the domain for real unique uids
         plugin.tx_news.settings.domain.data = getEnv:HTTP_HOST

@@ -17,7 +17,7 @@ To be able to use a ViewHelper in your template, you need to follow always the s
 
 .. code-block:: html
 
-	<f:fo>bar</f:fo>
+   <f:fo>bar</f:fo>
 
 This would call the ViewHelper :code:`fo` of the namespace :code:`f` which stands for Fluid.
 If you want to use ViewHelpers from other extensions you need to add the namespace
@@ -37,7 +37,7 @@ Now you can use a ViewHelper of news with a code like:
 
 .. code-block:: html
 
-	<n:headerData><!-- some comment --></n:headerData>
+   <n:headerData><!-- some comment --></n:headerData>
 
 If you want to know what a ViewHelper does, it is very easy to find the related PHP class by looking at the namespace and the name of the ViewHelper.
 Having e.g. :php:`GeorgRinger\News\ViewHelpers` and :php:`headerData` you will find the class at :file:`news\Classes\ViewHelpers\HeaderDataViewHelper.php`.

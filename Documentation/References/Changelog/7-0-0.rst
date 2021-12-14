@@ -46,7 +46,7 @@ The documentation about realurl configuration as been adopted:
 
 .. code-block:: php
 
-	// EXT:news start
+   // EXT:news start
     'a' => [
         [
             'GETvar' => 'tx_news_pi1[action]',
@@ -71,7 +71,7 @@ The documentation about realurl configuration as been adopted:
             ]
         ]
     ],
-	// EXT:news end
+   // EXT:news end
 
 
 Improved field ordering

@@ -12,27 +12,40 @@
 News system
 =============================================================
 
+.. only:: html
 
-.. container:: row m-0 p-0
+   :Classification:
+      news
 
-   .. container:: col-md-6 pl-0 pr-3 py-3 m-0
+   :Version:
+      |release|
 
-      .. container:: card px-0 h-100
+   :Language:
+      en
 
-         .. rst-class:: card-header h3
+   :Keywords:
+      news
 
-            .. rubric:: :ref:`Introduction <introduction>`
+   :Copyright:
+      2015
 
-         .. container:: card-body
+   :Author:
+      Georg Ringer
 
-            Written for new users, this chapter introduces some of TYPO3s core concepts including the backend, TYPO3s administration interface.
+   :License:
+      This document is published under the Open Content License
+      available from http://www.opencontent.org/opl.shtml
+
+   :Rendered:
+      |today|
+
+   The content of this document is related to TYPO3,
+   a GNU/GPL CMS/Framework available from `www.typo3.org <https://www.typo3.org/>`_.
 
 
-This document is published under the Open Content License available from
-http://www.opencontent.org/opl.shtml
+   **Table of Contents**
 
 .. toctree::
-   :hidden:
    :maxdepth: 3
    :titlesonly:
    :glob:
@@ -43,5 +56,3 @@ http://www.opencontent.org/opl.shtml
    DeveloperManual/Index
    Tutorials/Index
    Misc/Index
-   About
-

@@ -24,7 +24,7 @@ General properties
    :Description:
          Keyboard shortcut to access this element
    :Default value:
-         
+
 
  - :Name:
          additionalAttributes
@@ -33,7 +33,7 @@ General properties
    :Description:
          Additional tag attributes. They will be added directly to the resulting HTML tag.
    :Default value:
-         
+
 
  - :Name:
          class
@@ -42,7 +42,7 @@ General properties
    :Description:
          CSS class(es) for this element
    :Default value:
-         
+
 
  - :Name:
          configuration
@@ -60,7 +60,7 @@ General properties
    :Description:
          Text direction for this HTML element. Allowed strings\: "ltr" (left to right), "rtl" (right to left)
    :Default value:
-         
+
 
  - :Name:
          id
@@ -69,7 +69,7 @@ General properties
    :Description:
          Unique (in this file) identifier for this HTML element.
    :Default value:
-         
+
 
  - :Name:
          lang
@@ -78,7 +78,7 @@ General properties
    :Description:
          Language for this element. Use short names specified in RFC 1766
    :Default value:
-         
+
 
  - :Name:
          \* newsItem
@@ -87,7 +87,7 @@ General properties
    :Description:
          current news object
    :Default value:
-         
+
 
  - :Name:
          onclick
@@ -96,14 +96,14 @@ General properties
    :Description:
          JavaScript evaluated for the onclick event
    :Default value:
-         
+
 
  - :Name:
          settings
    :Type:
          array
    :Description:
-         
+
    :Default value:
          Array
 
@@ -114,7 +114,7 @@ General properties
    :Description:
          Individual CSS styles for this element
    :Default value:
-         
+
 
  - :Name:
          tabindex
@@ -123,7 +123,7 @@ General properties
    :Description:
          Specifies the tab order of this element
    :Default value:
-         
+
 
  - :Name:
          title
@@ -132,7 +132,7 @@ General properties
    :Description:
          Tooltip text of element
    :Default value:
-         
+
 
  - :Name:
          uriOnly
@@ -141,7 +141,7 @@ General properties
    :Description:
          return only the url without the a-tag
    :Default value:
-         
+
 
 
 
@@ -155,14 +155,14 @@ Basic link
 
 Code: ::
 
-	 <n:link newsItem="{newsItem}" settings="{settings}">
-	 	{newsItem.title}
-	 </n:link>
+    <n:link newsItem="{newsItem}" settings="{settings}">
+       {newsItem.title}
+    </n:link>
 
 
 Output: ::
 
-	 A link to the given news record using the news title as link text
+    A link to the given news record using the news title as link text
 
 
 
@@ -173,12 +173,12 @@ Available: class, dir, id, lang, style, title, accesskey, tabindex, onclick
 
 Code: ::
 
-	 <n:link newsItem="{newsItem}" settings="{settings}" class="a-link-class">fo</n:link>
+    <n:link newsItem="{newsItem}" settings="{settings}" class="a-link-class">fo</n:link>
 
 
 Output: ::
 
-	 <a href="link" class="a-link-class">fo</n:link>
+    <a href="link" class="a-link-class">fo</n:link>
 
 
 
@@ -189,12 +189,12 @@ Return the link only
 
 Code: ::
 
-	 <n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" />
+    <n:link newsItem="{newsItem}" settings="{settings}" uriOnly="1" />
 
 
 Output: ::
 
-	 The uri is returned
+    The uri is returned
 
 
 
@@ -205,11 +205,11 @@ Add additional parameters to the url
 
 Code: ::
 
-	 <n:link newsItem="{newsItem}" settings="{settings}" configuration="{additionalParams:'&tx_news_pi1[category]=111'}">fo</n:link>
+    <n:link newsItem="{newsItem}" settings="{settings}" configuration="{additionalParams:'&tx_news_pi1[category]=111'}">fo</n:link>
 
 
 Output: ::
 
-	 <a href="link&tx_news_pi1[category]=111">fo</n:link>
+    <a href="link&tx_news_pi1[category]=111">fo</n:link>
 
 
