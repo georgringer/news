@@ -4,6 +4,7 @@
 .. highlight:: typoscript
 
 .. _ts:
+.. _typoscript:
 
 TypoScript
 ==========
