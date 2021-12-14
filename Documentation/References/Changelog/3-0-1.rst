@@ -16,5 +16,5 @@ All Changes
 
 ::
 
-	2014-06-03 [BUGFIX] Update 3rd party libs (Commit cde104f)
+   2014-06-03 [BUGFIX] Update 3rd party libs (Commit cde104f)
 

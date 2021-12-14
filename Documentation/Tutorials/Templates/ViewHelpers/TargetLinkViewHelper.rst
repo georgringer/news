@@ -22,9 +22,9 @@ General properties
    :Type:
          string
    :Description:
-         
+
    :Default value:
-         
+
 
 
 
@@ -38,10 +38,10 @@ Basic Example
 
 Code: ::
 
-	 <f:link.page pageUid="{relatedLink.uri}" target="{n:targetLink(link:relatedLink.uri)}">Link</Link>
+    <f:link.page pageUid="{relatedLink.uri}" target="{n:targetLink(link:relatedLink.uri)}">Link</Link>
 
 
 Output: ::
 
-	 A link to the page with uid 123 and target set to "_blank"
+    A link to the page with uid 123 and target set to "_blank"
 

@@ -19,13 +19,13 @@ If you want to use some default values, you can use this code inside the TSconfi
 
 .. code-block:: typoscript
 
-	# Syntax is always TCAdefaults.<tablename>.<fieldname> = value
-	TCAdefaults {
-		tx_news_domain_model_news {
-			author =  John Doe
-			categories = 9
-		}
-	}
+   # Syntax is always TCAdefaults.<tablename>.<fieldname> = value
+   TCAdefaults {
+      tx_news_domain_model_news {
+         author =  John Doe
+         categories = 9
+      }
+   }
 
 
 Select fields
@@ -35,18 +35,18 @@ In this example the language with the uid 3 will be preselected:
 
 .. code-block:: typoscript
 
-	TCAdefaults.tx_news_domain_model_news {
-        	sys_language_uid = 3
-	}
+   TCAdefaults.tx_news_domain_model_news {
+           sys_language_uid = 3
+   }
 
 If you want to remove an option from a select field you can take a look at this example which removes the
 option "Images" from the media selection dropdown:
 
 .. code-block:: typoscript
 
-	TCEFORM.tx_news_domain_model_media {
-		type.removeItems = 0
-	}
+   TCEFORM.tx_news_domain_model_media {
+      type.removeItems = 0
+   }
 
 
 Author name & email
@@ -56,7 +56,7 @@ By using the following code in the PageTsConig, the fields `Author` and `Author 
 
 .. code-block:: typoscript
 
-	tx_news.predefine.author  = 1
+   tx_news.predefine.author  = 1
 
 Archive date
 ^^^^^^^^^^^^
@@ -65,7 +65,7 @@ EXT:news allows you to use an improved syntax to predefine the archive date by u
 
 .. code-block:: typoscript
 
-	tx_news.predefine.archive = <value>
+   tx_news.predefine.archive = <value>
 
 As value you can use anything which can be interpreted by the php function `strtotime <http://de2.php.net/manual/en/function.strtotime.php>`__.
 For example:

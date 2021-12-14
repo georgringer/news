@@ -5,16 +5,17 @@
 
 .. include:: /Includes.rst.txt
 
+.. _templatingExamples:
 
 Templates
 ---------
 
 .. toctree::
-	:maxdepth: 5
-	:titlesonly:
+   :maxdepth: 5
+   :titlesonly:
 
-	OverwriteDemandInFrontend/Index
-	RenderInColumns/Index
-	RenderContentElements/Index
-	GroupNewsRecords/Index
-	MultiCategorySelection/Index
+   OverwriteDemandInFrontend/Index
+   RenderInColumns/Index
+   RenderContentElements/Index
+   GroupNewsRecords/Index
+   MultiCategorySelection/Index

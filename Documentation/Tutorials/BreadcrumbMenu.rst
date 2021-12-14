@@ -171,8 +171,8 @@ you can continue to use it and add the news record to it.
                   field = title
                 htmlSpecialChars = 1
             }
-			stdWrap.wrap = <li>|</li>
-			stdWrap.required = 1
+         stdWrap.wrap = <li>|</li>
+         stdWrap.required = 1
         }
     }
 

@@ -44,12 +44,12 @@ You can also use Fluid render the content elements. As an example:
 
 .. code-block:: html
 
-	<f:if condition="{newsItem.contentElements}">
-		<f:for each="{newsItem.contentElements}" as="element">
-			<h3>{element.title}</h3>
-			<f:if condition="{element.CType} == 'text'">
-			{element.bodytext -> f:format.html()}
-			</f:if>
-		</f:for>
-	</f:if>
+   <f:if condition="{newsItem.contentElements}">
+      <f:for each="{newsItem.contentElements}" as="element">
+         <h3>{element.title}</h3>
+         <f:if condition="{element.CType} == 'text'">
+         {element.bodytext -> f:format.html()}
+         </f:if>
+      </f:for>
+   </f:if>
 

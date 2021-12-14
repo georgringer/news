@@ -83,12 +83,12 @@ Basic Example: News title as og:title meta tag
 
 Code: ::
 
-	 <n:metaTag property="og:title" content="{newsItem.title}" />
+    <n:metaTag property="og:title" content="{newsItem.title}" />
 
 
 Output: ::
 
-	 <meta property="og:title" content="TYPO3 is awesome" />
+    <meta property="og:title" content="TYPO3 is awesome" />
 
 
 
@@ -99,10 +99,10 @@ Force the attribute "name"
 
 Code: ::
 
-	 <n:metaTag name="keywords" content="{newsItem.keywords}" />
+    <n:metaTag name="keywords" content="{newsItem.keywords}" />
 
 
 Output: ::
 
-	 <meta name="keywords" content="news 1, news 2" />
+    <meta name="keywords" content="news 1, news 2" />
 

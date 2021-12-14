@@ -6,6 +6,7 @@
 .. _ts:
 .. _typoscript:
 
+==========
 TypoScript
 ==========
 
@@ -30,39 +31,39 @@ Properties
 
 .. container:: ts-properties
 
-	==================================== ====================================== ============== ===============
-	Property                             Title                                  Sheet          Type
-	==================================== ====================================== ============== ===============
-	orderBy_                              Sort by                               General         string
-	orderDirection_                       Sort direction                        General         string
-	dateField_                            Date field to use                     General         string
-	categories_                           Category selection                    General         string
-	categoryConjunction_                  Category mode                         General         string
-	includeSubCategories_                 Include subcategories                 General         boolean
-	archiveRestriction_                   Archive                               General         string
-	timeRestriction_                      Time limit (LOW)                      General         string
-	timeRestrictionHigh_                  Time limit (HIGH):                    General         string
-	topNewsRestriction_                   Top News                              General         string
-	singleNews_                           Show a single news record             General         string
-	previewHiddenRecords_                 Allow preview of hidden records       General         string
-	startingpoint_                        Startingpoint                         General         string
-	recursive_                            Recursive                             General         int
-	detailPid_                            PageId for single news display        additional      int
-	listPid_                              PageId for list display               additional      int
-	backPid_                              PageId to return to                   additional      int
-	limit_                                Max records displayed                 additional      int
-	offset_                               Starting with given news record       additional      int
-	tags_                                 Tags                                  additional      string
-	hidePagination_                       Hide the pagination                   additional      boolean
-	`list.paginate.itemsPerPage`_         Items per Page                        additional      int
-	topNewsFirst_                         Sort "Top news" before                additional      boolean
-	excludeAlreadyDisplayedNews_          Exclude already displayed news        additional      boolean
-	disableOverrideDemand_                Disable override demand               additional      boolean
-	`media.maxWidth`_                     Max width for media elements          template        int
-	`media.maxHeight`_                    Max height for media elements         template        int
-	cropMaxCharacters_                    Length of teaser (in chars)           template        int
-	templateLayout_                       Template Layout                       template        string
-	==================================== ====================================== ============== ===============
+   ==================================== ====================================== ============== ===============
+   Property                             Title                                  Sheet          Type
+   ==================================== ====================================== ============== ===============
+   orderBy_                              Sort by                               General         string
+   orderDirection_                       Sort direction                        General         string
+   dateField_                            Date field to use                     General         string
+   categories_                           Category selection                    General         string
+   categoryConjunction_                  Category mode                         General         string
+   includeSubCategories_                 Include subcategories                 General         boolean
+   archiveRestriction_                   Archive                               General         string
+   timeRestriction_                      Time limit (LOW)                      General         string
+   timeRestrictionHigh_                  Time limit (HIGH):                    General         string
+   topNewsRestriction_                   Top News                              General         string
+   singleNews_                           Show a single news record             General         string
+   previewHiddenRecords_                 Allow preview of hidden records       General         string
+   startingpoint_                        Startingpoint                         General         string
+   recursive_                            Recursive                             General         int
+   detailPid_                            PageId for single news display        additional      int
+   listPid_                              PageId for list display               additional      int
+   backPid_                              PageId to return to                   additional      int
+   limit_                                Max records displayed                 additional      int
+   offset_                               Starting with given news record       additional      int
+   tags_                                 Tags                                  additional      string
+   hidePagination_                       Hide the pagination                   additional      boolean
+   `list.paginate.itemsPerPage`_         Items per Page                        additional      int
+   topNewsFirst_                         Sort "Top news" before                additional      boolean
+   excludeAlreadyDisplayedNews_          Exclude already displayed news        additional      boolean
+   disableOverrideDemand_                Disable override demand               additional      boolean
+   `media.maxWidth`_                     Max width for media elements          template        int
+   `media.maxHeight`_                    Max height for media elements         template        int
+   cropMaxCharacters_                    Length of teaser (in chars)           template        int
+   templateLayout_                       Template Layout                       template        string
+   ==================================== ====================================== ============== ===============
 
 .. _tsOrderBy:
 
@@ -246,11 +247,11 @@ timeRestriction
 
          The time limit offers 3 different options.
 
-	 **Date**
+    **Date**
 
-	 A date in the format `HH:mm DD-MM-YYYY` can be set and only news records that are newer than this date are shown.
+    A date in the format `HH:mm DD-MM-YYYY` can be set and only news records that are newer than this date are shown.
 
-	 Example: 15:30 01-04-2020 (April 1st, 2020 at 3.30 pm)
+    Example: 15:30 01-04-2020 (April 1st, 2020 at 3.30 pm)
 
          **Time in seconds**
 
@@ -346,10 +347,10 @@ previewHiddenRecords
 
             plugin.tx_news.settings.previewHiddenRecords = 1
 
-	    plugin.tx_news.settings.enablePreviewOfHiddenRecords = 1
+       plugin.tx_news.settings.enablePreviewOfHiddenRecords = 1
 
          If set, also records which are normally hidden are displayed. This is especially helpful when using a detail view as preview mode for editors.
-	 The setting ``enablePreviewOfHiddenRecords`` is needed (instead of ``previewHiddenRecords``) if the detail view plugin is used and the plugin configuration option ``previewHiddenRecords`` is set to "Defined in TypoScript" (value ``2``).
+    The setting ``enablePreviewOfHiddenRecords`` is needed (instead of ``previewHiddenRecords``) if the detail view plugin is used and the plugin configuration option ``previewHiddenRecords`` is set to "Defined in TypoScript" (value ``2``).
 
          .. note:: Be aware to secure the page (e.g. using a TS condition to make it available only if an BE user is logged in) as this page could be called by anyone using any news record uid to see its content.
 
@@ -677,38 +678,38 @@ Properties
 
 .. container:: ts-properties
 
-	==================================== ===============
-	Property                             Type
-	==================================== ===============
-	cssFile_                              string
-	format_                               string
-	useStdWrap_                           string
-	overrideFlexformSettingsIfEmpty_      string
-	displayDummyIfNoMedia_                boolean
-	detailPidDetermination_               string
-	defaultDetailPid_                     integer
-	hideIdList_                           string
-	orderByAllowed_                       string
-	`analytics\.social`_                  array
-	demandClass_                          string
-	`link\.hrDate`_                       integer
-	`link\.typesOpeningInNewWindow`_      string
-	facebookLocale_                       string
-	googlePlusLocale_                     string
-	opengraph_                            array
-	`detail\.media`_                      array
-	`detail\.errorHandling`_              string
-	`detail\.checkPidOfNewsRecord`_       boolean
-	`detail\.registerProperties`_         string
-	`detail\.showMetaTags`_               boolean
-	`detail\.showPrevNext`_               boolean
-	`detail\.showSocialShareButtons`_     boolean
-	`list\.media`_                        array
-	`list\.paginate`_                     array
-	`list\.rss`_                          array
-	`search\.fields`_                     string
-	`search\.splitSearchWord`_            boolean
-	==================================== ===============
+   ==================================== ===============
+   Property                             Type
+   ==================================== ===============
+   cssFile_                              string
+   format_                               string
+   useStdWrap_                           string
+   overrideFlexformSettingsIfEmpty_      string
+   displayDummyIfNoMedia_                boolean
+   detailPidDetermination_               string
+   defaultDetailPid_                     integer
+   hideIdList_                           string
+   orderByAllowed_                       string
+   `analytics\.social`_                  array
+   demandClass_                          string
+   `link\.hrDate`_                       integer
+   `link\.typesOpeningInNewWindow`_      string
+   facebookLocale_                       string
+   googlePlusLocale_                     string
+   opengraph_                            array
+   `detail\.media`_                      array
+   `detail\.errorHandling`_              string
+   `detail\.checkPidOfNewsRecord`_       boolean
+   `detail\.registerProperties`_         string
+   `detail\.showMetaTags`_               boolean
+   `detail\.showPrevNext`_               boolean
+   `detail\.showSocialShareButtons`_     boolean
+   `list\.media`_                        array
+   `list\.paginate`_                     array
+   `list\.rss`_                          array
+   `search\.fields`_                     string
+   `search\.splitSearchWord`_            boolean
+   ==================================== ===============
 
 .. _tsCssFile:
 

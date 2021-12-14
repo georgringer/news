@@ -14,45 +14,45 @@ News system
 
 .. only:: html
 
-	:Classification:
-		news
+   :Classification:
+      news
 
-	:Version:
-		|release|
+   :Version:
+      |release|
 
-	:Language:
-		en
+   :Language:
+      en
 
-	:Keywords:
-		news
+   :Keywords:
+      news
 
-	:Copyright:
-		2015
+   :Copyright:
+      2015
 
-	:Author:
-		Georg Ringer
+   :Author:
+      Georg Ringer
 
-	:License:
-		This document is published under the Open Content License
-		available from http://www.opencontent.org/opl.shtml
+   :License:
+      This document is published under the Open Content License
+      available from http://www.opencontent.org/opl.shtml
 
-	:Rendered:
-		|today|
+   :Rendered:
+      |today|
 
-	The content of this document is related to TYPO3,
-	a GNU/GPL CMS/Framework available from `www.typo3.org <https://www.typo3.org/>`_.
+   The content of this document is related to TYPO3,
+   a GNU/GPL CMS/Framework available from `www.typo3.org <https://www.typo3.org/>`_.
 
 
-	**Table of Contents**
+   **Table of Contents**
 
 .. toctree::
-	:maxdepth: 3
-	:titlesonly:
-	:glob:
+   :maxdepth: 3
+   :titlesonly:
+   :glob:
 
-	Introduction/Index
-	UsersManual/Index
-	AdministratorManual/Index
-	DeveloperManual/Index
-	Tutorials/Index
-	Misc/Index
+   Introduction/Index
+   UsersManual/Index
+   AdministratorManual/Index
+   DeveloperManual/Index
+   Tutorials/Index
+   Misc/Index

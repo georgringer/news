@@ -24,19 +24,19 @@ a site package extension, see
 
 .. code-block:: typoscript
 
-	TCEMAIN.preview {
-		tx_news_domain_model_news {
-			previewPageId = 123
-			useDefaultLanguageRecord = 0
-			fieldToParameterMap {
-				uid = tx_news_pi1[news_preview]
-			}
-			additionalGetParameters {
-				tx_news_pi1.controller = News
-				tx_news_pi1.action = detail
-			}
-		}
-	}
+   TCEMAIN.preview {
+      tx_news_domain_model_news {
+         previewPageId = 123
+         useDefaultLanguageRecord = 0
+         fieldToParameterMap {
+            uid = tx_news_pi1[news_preview]
+         }
+         additionalGetParameters {
+            tx_news_pi1.controller = News
+            tx_news_pi1.action = detail
+         }
+      }
+   }
 
 By using the given example, a link will be generated which leads to the
 page with the id `123`.

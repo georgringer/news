@@ -24,7 +24,7 @@ General properties
    :Description:
          current news item
    :Default value:
-         
+
 
 
 
@@ -38,10 +38,10 @@ Basic example
 
 Code: ::
 
-	 <n:excludeDisplayedNews newsItem="{newsItem}" />
+    <n:excludeDisplayedNews newsItem="{newsItem}" />
 
 
 Output: ::
 
-	 None
+    None
 

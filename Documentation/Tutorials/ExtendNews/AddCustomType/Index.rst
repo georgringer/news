@@ -65,13 +65,13 @@ Therefore, create the file `Configuration/TCA/Overrides/tx_news_domain_model_new
 
 .. code-block:: php
 
-	<?php
+   <?php
 
-	namespace Vendor\ExtName\Domain\Model;
+   namespace Vendor\ExtName\Domain\Model;
 
-	class MyCustomNewsType extends \GeorgRinger\News\Domain\Model\News {
+   class MyCustomNewsType extends \GeorgRinger\News\Domain\Model\News {
 
-	}
+   }
 
 .. hint:: This is a very basic example.
    It would also be possible to use your custom news type to show custom fields.

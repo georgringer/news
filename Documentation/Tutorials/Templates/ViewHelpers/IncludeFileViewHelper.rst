@@ -24,7 +24,7 @@ General properties
    :Description:
          Define if file should be compressed
    :Default value:
-         
+
 
  - :Name:
          \* path
@@ -33,7 +33,7 @@ General properties
    :Description:
          Path to the CSS/JS file which should be included
    :Default value:
-         
+
 
 
 
@@ -47,10 +47,10 @@ Basic example
 
 Code: ::
 
-	 <n:includeFile path="{settings.cssFile}" />
+    <n:includeFile path="{settings.cssFile}" />
 
 
 Output: ::
 
-	 This will include the file provided by {settings} in the header
+    This will include the file provided by {settings} in the header
 

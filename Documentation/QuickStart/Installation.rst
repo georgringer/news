@@ -1,6 +1,6 @@
 .. include:: /Includes.rst.txt
 
-.. _quick_installation:
+.. _quickInstallation:
 
 ==================
 Quick installation

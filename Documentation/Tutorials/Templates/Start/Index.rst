@@ -5,6 +5,8 @@
 
 .. include:: /Includes.rst.txt
 
+.. _templatingStart:
+
 ============================
 Changing & editing templates
 ============================
@@ -18,6 +20,8 @@ more information in the TYPO3 Documentation
 :ref:`TYPO3 Explained: Fluid <t3coreapi:fluid>`,
 :ref:`Developing TYPO3 Extensions with Extbase and Fluid
 <t3extbasebook:start>` or many third party sites, videos and books.
+
+.. _templatingSitepackage:
 
 Use a site package extension
 ============================
@@ -153,13 +157,13 @@ The path of the pagination widget can be changed by using a configuration like b
 .. code-block:: typoscript
    :caption: TypoScript setup
 
-	plugin.tx_news {
-		view {
-			widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper {
+   plugin.tx_news {
+      view {
+         widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper {
             templateRootPath = EXT:mysitepackage/Resources/Private/Extensions/News/Templates/
          }
-		}
-	}
+      }
+   }
 
 
 Layouts, templates & partials

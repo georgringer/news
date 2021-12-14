@@ -11,19 +11,19 @@ Best practice
 
 .. only:: html
 
-	This chapter describes some best practice concepts
+   This chapter describes some best practice concepts
 
 .. toctree::
-	:maxdepth: 5
-	:titlesonly:
+   :maxdepth: 5
+   :titlesonly:
 
-	Seo/Index
-	PreviewOfRecord/Index
-	TsConfigExamples/Index
-	AvailableContentElements/Index
-	IntegrationWithTypoScript/Index
-	ClearCache/Index
-	Routing/Index
-	PredefineFields/Index
-	Rss/Index
-	ICalendar/Index
+   Seo/Index
+   PreviewOfRecord/Index
+   TsConfigExamples/Index
+   AvailableContentElements/Index
+   IntegrationWithTypoScript/Index
+   ClearCache/Index
+   Routing/Index
+   PredefineFields/Index
+   Rss/Index
+   ICalendar/Index

@@ -29,15 +29,15 @@ Properties
 
 .. container:: ts-properties
 
-	====================================    =====================================
-	Property                                Data type
-	====================================    =====================================
-	templateLayouts_                        array
-	archive_                                string
-	tagPid_                                 integer
-	categoryRestrictionForFlexForms_        bool
-	showContentElementsInNewsSysFolder_     string
-	====================================    =====================================
+   ====================================    =====================================
+   Property                                Data type
+   ====================================    =====================================
+   templateLayouts_                        array
+   archive_                                string
+   tagPid_                                 integer
+   categoryRestrictionForFlexForms_        bool
+   showContentElementsInNewsSysFolder_     string
+   ====================================    =====================================
 
 .. _tsconfigTemplateLayouts:
 
@@ -47,12 +47,12 @@ The selectbox :guilabel:`Template Layout` inside a plugin can be extended by usi
 
 .. code-block:: typoscript
 
-	tx_news.templateLayouts {
-			1 = Fobar
-			2 = Another one
-			3 =  --div--,Group 2
-			4 = Blub
-	}
+   tx_news.templateLayouts {
+         1 = Fobar
+         2 = Another one
+         3 =  --div--,Group 2
+         4 = Blub
+   }
 
 will show 2 layout options with 123/456 as keys and Fobar/Blub as values.
 Inside the template it is then possible to define conditions with Fluid by checking {settings.templateLayout}
@@ -78,8 +78,8 @@ Use strtotime (see `http://www.php.net/strtotime <http://www.php.net/strtotime>`
 
 .. code-block:: typoscript
 
-	# Example:
-	tx_news.predefine.archive = next friday
+   # Example:
+   tx_news.predefine.archive = next friday
 
 will set the archive date on the the next friday.
 
@@ -91,8 +91,8 @@ Besides the configuration in the :ref:`Extension Configuration <extensionConfigu
 
 .. code-block:: typoscript
 
-	# Example:
-	tx_news.tagPid = 123
+   # Example:
+   tx_news.tagPid = 123
 
 
 .. _tsconfigCategoryRestrictionForFlexForms:
@@ -103,8 +103,8 @@ After defining the category restriction in the :ref:`Extension Configuration <ex
 
 .. code-block:: typoscript
 
-	# Example:
-	tx_news.categoryRestrictionForFlexForms = 1
+   # Example:
+   tx_news.categoryRestrictionForFlexForms = 1
 
 
 .. _tsconfigShowContentElementsInNewsSysFolder:
@@ -115,8 +115,8 @@ If a sys folder is configured with **Contains Plugin:** `News`, content elements
 
 .. code-block:: typoscript
 
-	# Example:
-	tx_news.showContentElementsInNewsSysFolder = 1
+   # Example:
+   tx_news.showContentElementsInNewsSysFolder = 1
 
 
 .. _tsconfigAdministration:
@@ -128,20 +128,20 @@ Properties
 ^^^^^^^^^^
 .. container:: ts-properties
 
-	=========================== =====================================
-	Property                    Data type
-	=========================== =====================================
-	preselect_                   array
-	columns_                     string
-	defaultPid_                  integer
-	redirectToPageOnStart_       integer
-	allowedPage_                 integer
-	alwaysShowFilter_            bool
-	filters_                     array
-	localizationView_            bool
-	controlPanels_               bool
-	allowedCategoryRootIds_      string
-	=========================== =====================================
+   =========================== =====================================
+   Property                    Data type
+   =========================== =====================================
+   preselect_                   array
+   columns_                     string
+   defaultPid_                  integer
+   redirectToPageOnStart_       integer
+   allowedPage_                 integer
+   alwaysShowFilter_            bool
+   filters_                     array
+   localizationView_            bool
+   controlPanels_               bool
+   allowedCategoryRootIds_      string
+   =========================== =====================================
 
 .. _tsconfigPreselect:
 
@@ -158,12 +158,12 @@ Predefine the form in the administration module. The possible fields for the pre
 
 .. code-block:: typoscript
 
-	# Example:
-	tx_news.module {
-		preselect {
-			topNewsRestriction = 1
-		}
-	}
+   # Example:
+   tx_news.module {
+      preselect {
+         topNewsRestriction = 1
+      }
+   }
 
 
 .. _tsconfigColumns:
@@ -186,8 +186,8 @@ If this is not desired, the pid can be defined by using defaultPid.<tablename>:
 
 .. code-block:: typoscript
 
-	# Example
-	tx_news.module.defaultPid.tx_news_domain_model_news = 123
+   # Example
+   tx_news.module.defaultPid.tx_news_domain_model_news = 123
 
 News records will be saved on page with ID 123.
 
@@ -240,8 +240,8 @@ If no page is selected, the user will be redirected to the given page.
 
 .. code-block:: typoscript
 
-	# Example:
-	tx_news.module.redirectToPageOnStart = 456
+   # Example:
+   tx_news.module.redirectToPageOnStart = 456
 
 The user will be redirected to the page with the uid 456.
 
@@ -253,8 +253,8 @@ If defined, the administration module will redirect the user always to the given
 
 .. code-block:: typoscript
 
-	# Example:
-	tx_news.module.allowedPage = 123
+   # Example:
+   tx_news.module.allowedPage = 123
 
 The user will be redirected to the page with the uid 123.
 
@@ -266,8 +266,8 @@ If defined, the administration module will always show the filter opened.
 
 .. code-block:: typoscript
 
-	# Example:
-	tx_news.module.alwaysShowFilter = 1
+   # Example:
+   tx_news.module.alwaysShowFilter = 1
 
 The user will be redirected to the page with the uid 123.
 
@@ -288,12 +288,12 @@ Define whether filters should be available or not. By default, all the filters a
 
 .. code-block:: typoscript
 
-	# Example:
-	tx_news.module {
-		filters {
-			topNewsRestriction = 0
-		}
-	}
+   # Example:
+   tx_news.module {
+      filters {
+         topNewsRestriction = 0
+      }
+   }
 
 
 .. note::
@@ -309,8 +309,8 @@ To remove a specific action from the News Plugin selectbox, use this snippet.
 
 .. code-block:: typoscript
 
-	# Example:
-	TCEFORM.tt_content.pi_flexform.news_pi1.sDEF.switchableControllerActions.removeItems = Tag->list
+   # Example:
+   TCEFORM.tt_content.pi_flexform.news_pi1.sDEF.switchableControllerActions.removeItems = Tag->list
 
 The possible values for the switchableControllerActions are:
 

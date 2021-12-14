@@ -13,9 +13,9 @@ Several hooks can be used to modify the behaviour of EXT:news.
 
 .. only:: html
 
-	.. contents::
-		:local:
-		:depth: 1
+   .. contents::
+      :local:
+      :depth: 1
 
 Hooks
 -----
@@ -36,40 +36,40 @@ First, register your implementation in the file ``ext_localconf.php``:
 
 .. code-block:: php
 
-	<?php
-	defined('TYPO3_MODE') or die();
+   <?php
+   defined('TYPO3_MODE') or die();
 
-	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'][$_EXTKEY]
-		= 'YourVendor\\Extkey\\Hooks\\Repository->modify';
+   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'][$_EXTKEY]
+      = 'YourVendor\\Extkey\\Hooks\\Repository->modify';
 
 Now create the file ``Classes/Hooks/Repository.php``:
 
 .. code-block:: php
 
-	<?php
+   <?php
 
-	namespace YourVendor\Extkey\Hooks;
+   namespace YourVendor\Extkey\Hooks;
 
-	use TYPO3\CMS\Core\Utility\GeneralUtility;
-	use \GeorgRinger\News\Domain\Repository\NewsRepository;
+   use TYPO3\CMS\Core\Utility\GeneralUtility;
+   use \GeorgRinger\News\Domain\Repository\NewsRepository;
 
-	class Repository {
+   class Repository {
 
-		public function modify(array $params, NewsRepository $newsRepository) {
-			$this->updateConstraints($params['demand'], $params['respectEnableFields'], $params['query'], $params['constraints']);
-		}
+      public function modify(array $params, NewsRepository $newsRepository) {
+         $this->updateConstraints($params['demand'], $params['respectEnableFields'], $params['query'], $params['constraints']);
+      }
 
-		/**
-		 * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
-		 * @param bool $respectEnableFields
-		 * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
-		 * @param array $constraints
-		 */
-		protected function updateConstraints($demand, $respectEnableFields, \TYPO3\CMS\Extbase\Persistence\QueryInterface $query, array &$constraints) {
-			$subject = 'yeah';
-			$constraints[] = $query->like('title', '%' . $subject . '%');
-		}
-	}
+      /**
+       * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
+       * @param bool $respectEnableFields
+       * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
+       * @param array $constraints
+       */
+      protected function updateConstraints($demand, $respectEnableFields, \TYPO3\CMS\Extbase\Persistence\QueryInterface $query, array &$constraints) {
+         $subject = 'yeah';
+         $constraints[] = $query->like('title', '%' . $subject . '%');
+      }
+   }
 
 .. hint:: Please change the vendor and extension key to your real life code.
 
@@ -85,29 +85,29 @@ First, register your implementation in the file ``ext_localconf.php``:
 
 .. code-block:: php
 
-	<?php
-	defined('TYPO3_MODE') or die();
+   <?php
+   defined('TYPO3_MODE') or die();
 
-	$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'][$_EXTKEY]
-		= 'YourVendor\\Extkey\\Hooks\\NewsControllerSettings->modify';
+   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings'][$_EXTKEY]
+      = 'YourVendor\\Extkey\\Hooks\\NewsControllerSettings->modify';
 
 Now create the file ``Classes/Hooks/NewsControllerSettings.php``:
 
 .. code-block:: php
 
-	<?php
+   <?php
 
-	namespace YourVendor\Extkey\Hooks;
+   namespace YourVendor\Extkey\Hooks;
 
-	class NewsControllerSettings {
+   class NewsControllerSettings {
 
-		public function modify(array $params) {
-			$settings = $params['originalSettings'];
-			$settings['categories'] = '2,3';
+      public function modify(array $params) {
+         $settings = $params['originalSettings'];
+         $settings['categories'] = '2,3';
 
-			return $settings;
-		}
-	}
+         return $settings;
+      }
+   }
 
 .. hint:: Please change the vendor and extension key to your real life code.
 
