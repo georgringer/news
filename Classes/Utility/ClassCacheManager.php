@@ -30,11 +30,6 @@ class ClassCacheManager
     /**
      * @var array
      */
-    protected $constructorParameters = [];
-
-    /**
-     * @var array
-     */
     protected $constructorLines = [];
 
 
@@ -103,8 +98,8 @@ class ClassCacheManager
                 }
             }
             if (count($this->constructorLines['code'])) {
-                $code .= LF . $this->constructorLines['doc'];
-                $code .= LF . '    public function __construct(' . implode('', $this->constructorLines['parameters'] ?? []) . ')' . LF . '    {' . LF . implode(LF, $this->constructorLines['code'] ?? []) . LF . '    }' . LF;
+                $code .= LF . implode("\n", $this->constructorLines['doc']);
+                $code .= LF . '    public function __construct(' . implode(',', $this->constructorLines['parameters'] ?? []) . ')' . LF . '    {' . LF . implode(LF, $this->constructorLines['code'] ?? []) . LF . '    }' . LF;
             }
             $code = $this->closeClassDefinition($code);
 
@@ -166,35 +161,44 @@ class ClassCacheManager
             unset($innerPart[0]);
         }
 
+        $innerPartLine = function($line) use ($offsetForInnerPart) {
+            return $line - $offsetForInnerPart;
+        };
+
         // unset the constructor and save it's lines
         if (isset($classParserInformation['functions']['__construct'])) {
             $constructorInfo = $classParserInformation['functions']['__construct'];
-            $docLineCount = substr_count($constructorInfo['doc'], "\n") + 1;
-            if($baseClass) $this->constructorLines['doc'] = $constructorInfo['doc'];
-            $unsetLine = true;
-            for ($i = ($constructorInfo['start']  - $docLineCount - 1) - ($offsetForInnerPart); $i < $constructorInfo['end'] - $offsetForInnerPart; $i++) {
-                if ($unsetLine) {
-                    if(trim($innerPart[$i]) === ') {' || trim($innerPart[$i]) === '{') {
-                        $unsetLine = false;
-                    } elseif($baseClass && trim($innerPart[$i]) !== ')' && $i > ($constructorInfo['start'] - 1)) {
-                        $this->constructorLines['parameters'][] = LF . $innerPart[$i];
-                    }
-                    unset($innerPart[$i]);
-                    continue;
+            $constructorInfo['inner_start'] = $constructorInfo['start'] - $offsetForInnerPart;
+            $constructorInfo['inner_end'] = $constructorInfo['end'] - $offsetForInnerPart;
+            if($baseClass) {
+                $this->constructorLines['doc'] = explode("\n", $constructorInfo['doc']);
+            } else {
+                array_splice($this->constructorLines['doc'],-1,0,
+                    array_filter(explode("\n", $constructorInfo['doc']), function($value) {
+                        return strpos($value, '@param') !== false;
+                    })
+                );
+            }
+            $codePart = false;
+            for ($i = $constructorInfo['inner_start']; $i < $constructorInfo['inner_end']; $i++) {
+                if($codePart) {
+                    $this->constructorLines['code'][] = $innerPart[$i];
+                }else if(trim($innerPart[$i]) === ') {' || trim($innerPart[$i]) === '{') {
+                    $codePart = true;
+                } elseif(trim($innerPart[$i]) !== ')' && $i >= ($constructorInfo['inner_start'])) {
+                    $this->constructorLines['parameters'][] = LF . rtrim($innerPart[$i], ',');
                 }
-                $this->constructorLines['code'][] = $innerPart[$i];
                 unset($innerPart[$i]);
             }
-            unset($innerPart[$constructorInfo['start'] - $offsetForInnerPart - 1]);
-            unset($innerPart[$constructorInfo['end'] - $offsetForInnerPart]);
+            unset($innerPart[$constructorInfo['inner_start'] - 1]);
+            unset($innerPart[$constructorInfo['inner_end']]);
         }
 
         $codePart = implode(LF, $innerPart);
         $closingBracket = strrpos($codePart, '}');
         $codePart = substr($codePart, 0, $closingBracket);
 
-        $content = $this->getPartialInfo($filePath) . $codePart;
-        return $content;
+        return $this->getPartialInfo($filePath) . $codePart;
     }
 
     /**
