@@ -7,13 +7,13 @@ If you update EXT:news to a newer version, please read this section carefully!
 
 Versioning
 ^^^^^^^^^^
-EXT:news follows the approach of `Fear-Driven Versioning <https://github.com/jonathanong/ferver>`__.
+EXT:news follows the `"semantic versioning <https://semver.org/>"`__ approach.
 
 It uses a 3-number versioning scheme: *<major>.<minor>.<patch>*
 
-- Major: Major breaking changes
-- Minor: Minor breaking changes
-- Patch: No breaking changes
+- Major: Breaking changes
+- Minor: New functionality, backwards compatible (without breaking changes)
+- Patch: Bug fixes (without breaking changes)
 
 Before an update
 ^^^^^^^^^^^^^^^^
