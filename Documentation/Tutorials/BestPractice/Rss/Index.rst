@@ -7,8 +7,9 @@
 
 .. _rss:
 
-RSS
----
+========
+RSS feed
+========
 
 Displaying a RSS feed is the same as a normal list view, just with a different template.
 Therefore you won't need any different configuration to e.g. excluded categories or configure the single view page.

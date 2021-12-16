@@ -1,7 +1,7 @@
+.. include:: /Includes.rst.txt
+
 7.0.0 - 2018/26/04
 ==================
-
-.. include:: /Includes.rst.txt
 
 .. only:: html
 

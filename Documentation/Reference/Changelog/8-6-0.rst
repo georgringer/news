@@ -1,7 +1,7 @@
+.. include:: /Includes.rst.txt
+
 8.6.0 - 22th July 2021
 ========================
-
-.. include:: /Includes.rst.txt
 
 .. only:: html
 

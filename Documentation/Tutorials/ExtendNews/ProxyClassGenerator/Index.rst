@@ -7,8 +7,9 @@
 
 .. _proxyClassGenerator:
 
-ProxyClass generator
-====================
+=================
+Add custom fields
+=================
 
 Follow this chapter to learn how to add new fields or actions.
 

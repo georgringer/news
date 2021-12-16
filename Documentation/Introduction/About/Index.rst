@@ -5,7 +5,7 @@
 
 .. include:: /Includes.rst.txt
 
-.. _about:
+.. _whatDoesItDo:
 
 What does it do?
 ================

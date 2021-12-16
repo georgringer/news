@@ -271,4 +271,4 @@ namespace declaration like
 
 Then ViewHelpers of EXT:news can be used with prefix :html:`n:`. You can find
 the available ViewHelpers in the chapter
-:ref:`ViewHelpers of EXT:news <view-helpers>`.
+:ref:`ViewHelper reference <viewHelpersReference>`.

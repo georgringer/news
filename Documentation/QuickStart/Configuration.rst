@@ -32,4 +32,4 @@ Further reading
 *  :ref:`TypoScript <typoscript>`, mainly configuration for the frontend
 *  :ref:`TsConfig <tsconfig>`, configuration for the backend
 *  :ref:`Routing <routing>` for human readable URLs
-*  :ref:`Templating <quick_templating>` customize the templates
+*  :ref:`Templating <quickTemplating>` customize the templates

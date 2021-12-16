@@ -5,9 +5,12 @@
 
 .. include:: /Includes.rst.txt
 
+.. _predefineValues:
 
-Predefine fields of records
----------------------------
+================
+Predefine values
+================
+
 This section will show you how you can predefine values of fields in records in the TYPO3 backend using TSconfig.
 
 Default values

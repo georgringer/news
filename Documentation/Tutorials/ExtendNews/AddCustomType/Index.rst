@@ -7,8 +7,10 @@
 
 .. _addCustomType:
 
-Add a custom type
 =================
+Custom news types
+=================
+
 Out of the box news comes with three types built in:
 
 - "News": Default news record

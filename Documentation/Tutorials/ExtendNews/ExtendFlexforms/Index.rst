@@ -7,9 +7,12 @@
 
 .. _extendFlexforms:
 
-Extend flexforms
-----------------
-Following fields of the plugin configuration can be extended without overriding the complete flexform configuration.
+================
+Extend FlexForms
+================
+
+Following fields of the plugin configuration can be extended without
+overriding the complete FlexForm configuration.
 
 
 .. only:: html
@@ -40,7 +43,7 @@ If you need an additional action to select, you can extend it by using:
 Remove fields in additional actions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you define an additional action, you won't need all available fields which are available inside the Flexforms. If you want to hide some fields,
+If you define an additional action, you won't need all available fields which are available inside the FlexForms. If you want to hide some fields,
 take a look at the hook inside the class Hooks/BackendUtility.php:
 
 .. code-block:: php
@@ -59,9 +62,9 @@ your own selections by adding those to
 You can then access the variable in your template with
 :code:`{settings.templateLayout}` and use it for a condition or whatever.
 
-Extend flexforms with custom fields
+Extend FlexForms with custom fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If you need additional fields in the flexform configuration, this can be done by using a hook in the Core.
+If you need additional fields in the FlexForm configuration, this can be done by using a hook in the Core.
 
 **Register the hook**
 
@@ -75,7 +78,7 @@ Add this to the ``ext_localconf.php`` of your extension:
 **Add the hook**
 
 Create the class ``FlexFormHook`` in your extension in ``Classes/Hooks/FlexFormHook.php`` and add the path to an additional
-flexform file.
+FlexForm file.
 
 .. code-block:: php
 
@@ -106,9 +109,9 @@ flexform file.
       }
    }
 
-**Create the flexform file**
+**Create the FlexForm file**
 
-Create the flexform file you just referenced in the hook. This can look like that.
+Create the FlexForm file you just referenced in the hook. This can look like that.
 
 .. code-block:: html
 

@@ -5,9 +5,11 @@
 
 .. include:: /Includes.rst.txt
 
+.. _cacheClearing:
 
-Clearing the cache after editing records
-----------------------------------------
+==============
+Cache clearing
+==============
 
 News has a built-in mechanism that takes care of clearing the cache after manipulation of News records.
 

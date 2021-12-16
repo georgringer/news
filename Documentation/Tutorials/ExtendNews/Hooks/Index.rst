@@ -7,8 +7,10 @@
 
 .. _hooks:
 
+=====
 Hooks
 =====
+
 Several hooks can be used to modify the behaviour of EXT:news.
 
 .. only:: html

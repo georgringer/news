@@ -36,7 +36,7 @@ Add these lines to the file
 :file:`EXT:mysitepackage/Configuration/TypoScript/constants.typoscript` in your
 sitepackage.
 
-EXT:news provides a couple of specific Fluid :ref:`ViewHelpers <viewHelpers>`.
+EXT:news provides a couple of specific Fluid :ref:`ViewHelpers <viewHelpersReference>`.
 Of course all :ref:`ViewHelpers provided by TYPO3 <t3viewhelper:start>` can
 be used as well.
 

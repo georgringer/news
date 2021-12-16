@@ -44,7 +44,7 @@ for this parameter.
    (Tab Additional) must **not** be set to allow overriding the properties.
 
    Additionally the TypoScript setting
-   :ref:`settings.disableOverrideDemand <disableOverrideDemand>` must be set to
+   :ref:`settings.disableOverrideDemand <tsDisableOverrideDemand>` must be set to
    :code:`0`.
 
 Via TypoScript

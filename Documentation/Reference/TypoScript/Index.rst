@@ -339,22 +339,23 @@ previewHiddenRecords
 .. container:: table-row
 
    Property
-         previewHiddenRecords / enablePreviewOfHiddenRecords
+      previewHiddenRecords / enablePreviewOfHiddenRecords
    Data type
-         int
+      int
    Description
-         ::
+      ::
 
-            plugin.tx_news.settings.previewHiddenRecords = 1
+         plugin.tx_news.settings.previewHiddenRecords = 1
 
-       plugin.tx_news.settings.enablePreviewOfHiddenRecords = 1
+         plugin.tx_news.settings.enablePreviewOfHiddenRecords = 1
 
-         If set, also records which are normally hidden are displayed. This is especially helpful when using a detail view as preview mode for editors.
-    The setting ``enablePreviewOfHiddenRecords`` is needed (instead of ``previewHiddenRecords``) if the detail view plugin is used and the plugin configuration option ``previewHiddenRecords`` is set to "Defined in TypoScript" (value ``2``).
+      If set, also records which are normally hidden are displayed. This is especially helpful when using a detail view as preview mode for editors.
+      The setting ``enablePreviewOfHiddenRecords`` is needed (instead of ``previewHiddenRecords``) if the detail view plugin is used and the plugin configuration option ``previewHiddenRecords`` is set to "Defined in TypoScript" (value ``2``).
 
-         .. note:: Be aware to secure the page (e.g. using a TS condition to make it available only if an BE user is logged in) as this page could be called by anyone using any news record uid to see its content.
+      .. note:: Be aware to secure the page (e.g. using a TS condition to make it available only if an BE user is logged in) as this page could be called by anyone using any news record uid to see its content.
 
-         .. note:: If set, any hidden records on the current page are shown as well!
+      .. note:: If set, any hidden records on the current page are shown as well!
+
    Default
       (no preview)
 

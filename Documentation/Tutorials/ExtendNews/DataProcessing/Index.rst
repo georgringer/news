@@ -8,7 +8,7 @@
 .. _dataProcessing:
 
 ===============
-Data Processing
+Data processing
 ===============
 
 The extension news currently contains the following data processors:

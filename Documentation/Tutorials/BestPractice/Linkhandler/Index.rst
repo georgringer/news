@@ -7,10 +7,11 @@
 
 .. _linkhandler:
 
-Linkhandler
------------
+===========
+LinkHandler
+===========
 
-**Linkhandler** is the synonym for making it possible for editors to create links to custom records.
+**LinkHandler** is the synonym for making it possible for editors to create links to custom records.
 Until 8 LTS a 3rd party extension has been required but since then it is integrated into the Core. Read at https://docs.typo3.org/typo3cms/extensions/core/8.7/Changelog/8.6/Feature-79626-IntegrateRecordLinkHandler.html about the feature.
 
 .. tip::
