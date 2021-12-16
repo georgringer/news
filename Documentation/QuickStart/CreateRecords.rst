@@ -49,6 +49,8 @@ Create news records
 Before any news record can be shown in the frontend those need to be
 created.
 
+.. include:: /Images/AutomaticScreenshots/AddNewsInAdminModule.rst.txt
+
 #. Go to the module :guilabel:`Web > News administration`
 
 #. Go to the "News Storage" Folder that you created in the first step.
@@ -90,6 +92,8 @@ Detail page
 List page
 ---------
 
+.. include:: /Images/AutomaticScreenshots/Plugin.rst.txt
+
 #. Go to module :guilabel:`Web > Page` and to the previously created page
    "News list".
 
@@ -106,6 +110,8 @@ List page
 
    #. Switch to tab :guilabel:`Additional` and fill the field :guilabel:`PageId
       for single news display` with the page you just created before.
+
+      .. include:: /Images/AutomaticScreenshots/PluginAdditional.rst.txt
 
    #. Save the plugin.
 

@@ -14,13 +14,15 @@ shared with other extensions.
 Add a category
 ==============
 
-|img-record-category|
+.. include:: /Images/AutomaticScreenshots/AddCategoryInAdminModule.rst.txt
 
 Categories can be added in the :ref:`News administration <newsModuleCreateCategory>`
 or :ref:`List <listAddFirstRecord>` module.
 
 Properties
 ==========
+
+.. include:: /Images/AutomaticScreenshots/CreateCategory.rst.txt
 
 .. t3-field-list-table::
  :header-rows: 1
