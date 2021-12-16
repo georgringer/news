@@ -7,16 +7,15 @@
 
 .. _seo:
 
-=================
-SEO with EXT:news
-=================
+===
+SEO
+===
 
 This chapters covers all configurations which are relevant for search engine optimization
 regarding the news extension.
 
 .. note::
-
-        All settings described require TYPO3 9 and the the system extension "seo" installed.
+   All settings described require TYPO3 9 and the the system extension "seo" installed.
 
 
 .. only:: html

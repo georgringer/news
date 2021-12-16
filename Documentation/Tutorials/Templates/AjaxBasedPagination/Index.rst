@@ -5,9 +5,12 @@
 
 .. include:: /Includes.rst.txt
 
+.. _templatesPaginationAjax:
 
-AJAX based pagination
 =====================
+AJAX-based pagination
+=====================
+
 To improve the usability it is possible to change the pagination to use AJAX instead of full page reloads.
 
 **Requirements**

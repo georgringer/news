@@ -8,8 +8,8 @@
 
 .. _admin-manual:
 
-For administrators
-==================
+Administration
+==============
 
 .. only:: html
 
@@ -21,7 +21,4 @@ For administrators
 
    Installation/Index
    Update/Index
-   Configuration/Index
-   Templates/Index
    Migration/Index
-   BestPractice/Index

@@ -5,9 +5,11 @@
 
 .. include:: /Includes.rst.txt
 
+.. _viewButton:
 
-:guilabel:`View` button for news records
-----------------------------------------
+===========
+View button
+===========
 
 It is possible to activate the :guilabel:`View` Button for news records.
 

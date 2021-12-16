@@ -5,16 +5,17 @@
 
 .. include:: /Includes.rst.txt
 
+.. _tutorialExtendNews:
 
+===========
 Extend News
------------
+===========
 
 .. toctree::
    :maxdepth: 5
    :titlesonly:
 
    ExtendFlexforms/Index
-   Events/Index
    Hooks/Index
    Demands/Index
    DataProcessing/Index

@@ -1,15 +1,9 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: /Includes.rst.txt
-
+﻿.. include:: /Includes.rst.txt
 
 .. _userManual:
 
-For editors
-===========
+Editors manual
+==============
 
 .. only:: html
 
@@ -21,6 +15,5 @@ For editors
    :maxdepth: 5
    :titlesonly:
 
-   HowToStart/Index
    Records/Index
    Plugins/Index

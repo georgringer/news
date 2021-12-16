@@ -5,16 +5,19 @@
 
 .. include:: /Includes.rst.txt
 
+.. _renderContentElements:
 
+=======================
 Render content elements
------------------------
+=======================
 
-If news is configured to use relations to content elements, those are shown by default in the detail view.
+If news is configured to use relations to content elements, those are shown
+by default in the detail view.
 
 There are two options how to render those elements
 
 Using TypoScript
-^^^^^^^^^^^^^^^^
+================
 
 This is the default way in EXT:news. A basic TypoScript configuration is used to render those. This look like this:
 
@@ -38,7 +41,7 @@ This needs then to be referenced in the template.
 
 
 Using Fluid
-^^^^^^^^^^^
+===========
 
 You can also use Fluid render the content elements. As an example:
 

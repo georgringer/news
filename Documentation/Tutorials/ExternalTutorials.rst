@@ -5,9 +5,11 @@
 
 .. include:: /Includes.rst.txt
 
+.. _tutorialsExternal:
 
+==================
 External tutorials
--------------------
+==================
 
 There are already some additional 3rd party tutorials about the extension "news".
 

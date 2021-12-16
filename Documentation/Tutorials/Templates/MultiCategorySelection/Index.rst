@@ -5,9 +5,11 @@
 
 .. include:: /Includes.rst.txt
 
+.. _templatesMultipleCats:
 
+==================================
 Filter news by multiple categories
-----------------------------------
+==================================
 
 The default category template `Category/List` allows only filtering by a single category. If you need to filter by multiple categories, you can use such template:
 

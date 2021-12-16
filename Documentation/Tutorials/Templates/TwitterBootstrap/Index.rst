@@ -5,9 +5,11 @@
 
 .. include:: /Includes.rst.txt
 
+.. _templatesBootstrap:
 
-Using Twitter Bootstrap templates
-=================================
+===================
+Bootstrap templates
+===================
 
 The following Twitter Bootstrap Template variants are available:
 

@@ -7,9 +7,9 @@
 
 .. _general_tsconfig_examples:
 
-=========================
-General TSconfig examples
-=========================
+======================
+TSconfig code snippets
+======================
 
 Page TSconfig from can be used to influence display and behaviour of fields and
 forms in the backend. The following examples are for your convenience only, they

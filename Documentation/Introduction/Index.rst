@@ -18,4 +18,5 @@ Introduction
 
    About/Index
    Support/Index
+   Contribute/Index
    Thanks/Index

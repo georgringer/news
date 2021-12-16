@@ -5,15 +5,18 @@
 
 .. include:: /Includes.rst.txt
 
-.. _view-helpers:
+.. _viewHelpersTutorial:
 
-ViewHelpers of EXT:news
-=======================
+===========
+ViewHelpers
+===========
 
 ViewHelpers are used to add logic inside the view.
-There basic things like if/else conditions, loops and so on. The system extension Fluid has the most important ViewHelpers already included.
+There basic things like if/else conditions, loops and so on. The system
+extension Fluid has the most important ViewHelpers already included.
 
-To be able to use a ViewHelper in your template, you need to follow always the same structure which is:
+To be able to use a ViewHelper in your template, you need to follow always the
+same structure which is:
 
 .. code-block:: html
 
@@ -39,10 +42,13 @@ Now you can use a ViewHelper of news with a code like:
 
    <n:headerData><!-- some comment --></n:headerData>
 
-If you want to know what a ViewHelper does, it is very easy to find the related PHP class by looking at the namespace and the name of the ViewHelper.
-Having e.g. :php:`GeorgRinger\News\ViewHelpers` and :php:`headerData` you will find the class at :file:`news\Classes\ViewHelpers\HeaderDataViewHelper.php`.
+If you want to know what a ViewHelper does, it is very easy to find the related
+PHP class by looking at the namespace and the name of the ViewHelper.
+Having for example :php:`GeorgRinger\News\ViewHelpers` and :php:`headerData`
+you will find the class at :file:`news\Classes\ViewHelpers\HeaderDataViewHelper.php`.
 
-The most of awesome thing is that you can use ViewHelpers of any extension in any other template by just adding another namespace declaration like:
+The most of awesome thing is that you can use ViewHelpers of any extension in
+any other template by just adding another namespace declaration like:
 
 .. code-block:: html
 
@@ -54,24 +60,8 @@ and call the ViewHelper like
 
     <something:NameOfTheViewHelper />
 
-All ViewHelpers
----------------
+See also
+========
 
-.. toctree::
-   :maxdepth: 5
-   :titlesonly:
-   :glob:
-
-   ExcludeDisplayedNewsViewHelper
-   HeaderDataViewHelper
-   IncludeFileViewHelper
-   LinkViewHelper
-   MediaFactoryViewHelper
-   MetaTagViewHelper
-   PaginateBodytextViewHelper
-   TargetLinkViewHelper
-   TitleTagViewHelper
-
-   Format/NothingViewHelper
-
-   Widget/PaginateViewHelper
+*  :ref:`EXT:news ViewHelper reference <viewHelpersReference>`
+*  :ref:`Core ViewHelper reference <viewHelpersReference>`
