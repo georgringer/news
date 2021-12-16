@@ -1,0 +1,29 @@
+.. include:: /Includes.rst.txt
+
+8.5.2 - 12th January 2021
+=========================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+Thanks to
+^^^^^^^^^
+Thanks to **Simple Web-Solutions GmbH** (https://www.simple-web-solutions.de/) who sponsored this release!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2021-01-12 [BUGFIX] Exclude current news in simpleprevnext (Commit 13e538cf by Georg Ringer)
+   2021-01-08 [DOC] Index news records, don't index page itself (SEO) (#1337) (Commit 20e3bdc6 by Sebastian Klein)
+   2021-01-08 [TASK] Fix annotations (Commit e1a0838e by Christian Bülter)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

@@ -1,0 +1,214 @@
+.. include:: /Includes.rst.txt
+
+
+
+3.1.0 - 2015/02/12
+------------------
+
+This is a major release supporting now also TYPO3 CMS 7, next to 6.2 LTS.
+
+Read and follow the section *Upgrade procedure* carefully!
+
+
+Upgrade procedure
+=================
+
+The following changes might break your installation but all are easy to solve.
+
+itemsPerPage configuration (Commit a0baa1a)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+   You need to take action if you see the exception "The itemsPerPage is 0 which is not allowed. Please also add "list.paginate.itemsPerPage"
+   to the TS setting settings.overrideFlexformSettingsIfEmpty".
+
+The **itemsPerPage** can now be set in the FlexForms. Therefore it is needed to add "*list.paginate.itemsPerPage*"
+to the configuration *settings.overrideFlexformSettingsIfEmpty*.
+
+Tx_News_Domain_Model_News::getNonFalMediaPreviews() (Commit ae22148)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you are using e.g. *{newsItem.nonFalMediaPreviews}*, you need to rename that to *{newsItem.falMediaNonPreviews}*.
+
+Changed import_id identifier (Commit e71834b)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The identifier for *import_id* changed for multilanguage records. The suffix **"|L<sys_language_uid>"** has been removed.
+
+Important changes
+=================
+
+A lot of code changed in this version. The most important changes are:
+
+* Improved FAL migration
+* Improved import service
+* SignalSlots in ImportService and the actions
+* Added a composer.json
+
+All Changes
+===========
+
+::
+
+   2015-02-11 [TASK] Add autoload definition in composer.json (Commit 991de43 by Helmut Hummel)
+   2015-02-10 [TASK] Changelog for 3.1.0 (Commit b88d81a by Georg Ringer)
+   2015-02-10 [FEATURE] Add composer.json (Commit 33241ca by Georg Ringer)
+   2015-02-10 [TASK] Add simple ext:linkhandler sample configuration (Commit fc553ad by Josef Florian Glatz)
+   2015-02-10 [TASK] Change allowed TYPO3 version (Commit 58bb06e by Georg Ringer)
+   2015-02-10 [BUGFIX] Improve escaping in VH (Commit e4ce1cb by Georg Ringer)
+   2015-02-10 [FEATURE] Add composer.json (Commit 33241ca by Georg Ringer)
+   2015-02-10 [TASK] Add simple ext:linkhandler sample configuration (Commit fc553ad by Josef Florian Glatz)
+   2015-02-10 [TASK] Change allowed TYPO3 version (Commit 58bb06e by Georg Ringer)
+   2015-02-10 [BUGFIX] Ignore unwanted settings of flexforms (Commit 63fcf77 by Georg Ringer)
+   2015-02-10 [BUGFIX] Followup for getDemandClass (Commit 413a44b by Georg Ringer)
+   2015-02-10 [BUGFIX] Prevent spreading columns in page module (Commit 6f68088 by Josef Florian Glatz)
+   2015-02-09 [DOC] Add known "fact" about redirectToPage (Commit c1eb2e0 by Josef Florian Glatz)
+   2015-02-09 [TASK] Remove not neded call (Commit 70351dc by Georg Ringer)
+   2015-01-15 [BUGFIX] Change VH Paginate for correct rel="prev" link on second page (Commit c699c84 by Josef Florian Glatz)
+   2015-02-09 [FEATURE] Hook for CmsLayout (Commit 7bec586 by Georg Ringer)
+   2015-02-09 [TASK] Follwoup (Commit 8bf4139 by Georg Ringer)
+   2015-02-09 [FEATURE] Extend demand class (Commit 29fa1cd by Georg Ringer)
+   2015-02-08 [TASK] Add keys to constraint array (Commit 9b2e715 by Georg Ringer)
+   2015-02-06 [DOC] Hint for &nbsp; in RSS feed (Commit 578a0f8 by Georg Ringer)
+   2015-02-06 [BUGFIX] Set no chash if using versioning preview (Commit e238f18 by Georg Ringer)
+   2015-02-06 [DOC] Add known problem DBAL (Commit db6d95a by Georg Ringer)
+   2015-02-06 [TASK] Use f:format.bytes instead of n:format.fileSize (Commit 6efb522 by Georg Ringer)
+   2015-02-06 [TASK] Improve image selection in category (Commit 3ceb56f by Georg Ringer)
+   2015-01-15 [FEATURE] Add default image argument to Gravatar ViewHelper (Commit a2cc813 by Josef Florian Glatz)
+   2015-02-06 [!!!][TASK] Change getNonFalMediaPreviews() to getFalMediaNonPreviews() (Commit ae22148 by Georg Ringer)
+   2015-02-05 [TASK] Improve createDemandObjectFromSettings (Commit c81373a by Georg Ringer)
+   2015-01-16 [TASK] Fix typo in update script (Commit feeb2fb by Josef Florian Glatz)
+   2015-02-04 [TASK] Add 'Translate to' msg to title (Commit f277eeb by Georg Ringer)
+   2015-02-04 [BUGFIX] Fix memory_leak in admin module (Commit 807c715 by Georg Ringer)
+   2015-02-03 [BUGFIX] Check type if importing multimedia (Commit 0f5ec29 by Georg Ringer)
+   2015-01-28 [!!!] Fix import for records without parent (Commit e71834b by Georg Ringer)
+   2015-01-26 [BUGFIX] clear template path before fallback is set (Commit 02a77fe by bschauer)
+   2015-01-23 [BUGFIX] Fix typo in readme (Commit 8c81988 by Georg Ringer)
+   2015-01-15 [DOC] Use correct bootstrap class (Commit e15f567 by Georg Ringer)
+   2015-01-13 [TASK] Skip test (Commit 05481ea by Georg Ringer)
+   2015-01-13 [TASK] Remove superflous test (Commit fd54cbd by Georg Ringer)
+   2015-01-13 [TASK] Remove superflous test (Commit c1bb850 by Georg Ringer)
+   2015-01-12 [TASK] Remove skipped tests (Commit 8e68009 by Georg Ringer)
+   2015-01-09 [BUGFIX] Fix error in getDetailPidFromCategories() (Commit 3847582 by Georg Ringer)
+   2014-12-30 [TASK] Use l10nmode copy for datetime (Commit dbe7d32 by Georg Ringer)
+   2014-12-30 [BUGFIX] Fix wrong doc example (Commit ffc59b4 by Georg Ringer)
+   2014-12-21 [BUGFIX] Check if category images exist before import (Commit e8ce78a by Georg Ringer)
+   2014-12-17 [BUGFIX] Check for sys_category in BE module (Commit 781e34f by Georg Ringer)
+   2014-12-15 [TASK] Improve module description (Commit 01fae08 by Georg Ringer)
+   2014-12-12 [BUGFIX] Replace tslib_cObj with namespaced version (Commit e668ead by Georg Ringer)
+   2014-12-12 [BUGFIX] Consider demands in AdministrationController's pagination (Commit fb476eb by Georg Ringer)
+   2014-12-12 [BUGFIX] Add paginate templatePath to overrideFlexformSettingsIfEmpty (Commit 9a62084 by Georg Ringer)
+   2014-12-11 [BUGFIX] Check hidden state in migration (Commit 01527cf by Georg Ringer)
+   2014-12-10 [BUGFIX] Missing initialization of images in category class (Commit ac5d5d7 by Lars Malach)
+   2014-12-07 [TASK] Improve NewsPidListing for CMS7 (Commit cba5110 by Georg Ringer)
+   2014-12-07 [BUGFIX] Fix BE tree (Commit 077d5bd by Georg Ringer)
+   2014-12-07 [TAKS] Adopt BE template for CMS 7 (Commit 48aed5a by Georg Ringer)
+   2014-12-01 [TASK] Version 7 compatible templates (Commit 00559ee by Georg Ringer)
+   2014-12-01 [TASK] Module Icon for CMS 7 (Commit 008cf9d by Georg Ringer)
+   2014-11-28 [BUGFIX] Bring back tt_content layout field (Commit 3e2efc4 by Georg Ringer)
+   2014-11-27 [BUGFIX] Exception when trying to display a deleted news (Commit 6b37ea8 by pbergsmann)
+   2014-11-28 [BUGFIX] Use namespaced class for ContentObjectRenderer (Commit bc61e93 by Georg Ringer)
+   2014-11-28 [BUGFIX] Fix wrong parameters in CmsLayout (Commit 5c85fce by Georg Ringer)
+   2014-11-22 [CLEANUP] Removes unused TypoScriptFrontendController (Commit accea28 by Josef Florian Glatz)
+   2014-11-22 [DOC] Improve TCEMAIN.clearCacheCmd example (Commit 3d5e2aa by Josef Florian Glatz)
+   2014-11-26 [TASK] Make checkPidOfNewsRecord configurable (Commit 336fef4 by Georg Ringer)
+   2014-11-04 [TASK] Add translation synchronization links for FAL relations (Commit 2e2cb38 by Lorenz Ulrich)
+   2014-11-06 [BUGFIX] Skip empty files in migration (Commit 617a27e by Georg Ringer)
+   2014-10-26 [DOC] Improve realUrl configuration example (Commit 5ff727c by Markus Klein)
+   2014-10-25 [BUGFIX] Use correct Class for DocumentTemplate (Commit e492465 by Georg Ringer)
+   2014-10-17 [BUGFIX] Category Update-Wizard fails if description is null (Commit 341dae3 by pbergsmann)
+   2014-10-15 [BUGFIX] Add missing getter and setter for sys_language_uid and l10n_parent for model link (Commit 47c2352 by Ralf Merz)
+   2014-10-16 [BUGFIX] Add db field t3ver_move_id (Commit 47a165b by Georg Ringer)
+   2014-10-12 [BUGFIX] Use correct TCA for l10n_parent of tx_news_domain_model_file (Commit a81bc69 by Georg Ringer)
+   2014-10-12 [BUGFIX] Improve FalUpdateWizard (Commit 819f0d6 by Georg Ringer)
+   2014-10-12 [TASK] Copy datetime if translating a news record (Commit 6426933 by Georg Ringer)
+   2014-10-08 [BUGFIX] Remove hardcoded http:// from Youtube MediaRenderer (Commit 63e4ee0 by Frans Saris)
+   2014-10-12 [TASK] Add default arguments to getChildrenCategoriesRecursive() (Commit 00ffa3f by Georg Ringer)
+   2014-06-25 [BUGFIX] Support lang -1 in news importer (Commit d1d1090 by Frans Saris)
+   2014-09-16 [BUGFIX] Detail.html misses file attribute for f:fileSize (Commit 6f863cc by Markus Klein)
+   2014-09-22 [FEATURE] Add SignalSlot for ImportService (Commit fc90edd by Georg Ringer)
+   2014-09-08 [BUGFIX] Wrong use of FAL mediaElement properties (Commit 8aa50ae by Frans Saris)
+   2014-09-08 [BUGFIX] Wrong viewHelper is used for rendering videos (Commit 2f32326 by Frans Saris)
+   2014-09-08 [TASK] Cleanup ll file (Commit 91a0569 by Georg Ringer)
+   2014-08-19 [BUGFIX] Add switch for category restriction check (Commit 5b9a0e9 by Frans Saris)
+   2014-08-19 [BUGFIX] No category mounts set means access to all (Commit 0dc0c92 by Frans Saris)
+   2014-07-31 [BUGFIX] Add opposite fields (Commit cb8bd0d by Georg Ringer)
+   2014-07-30 [BUGFIX] Fix some typos (Commit e05342d by Georg Ringer)
+   2014-07-30 [BUGFIX] Improve FAL Migration (Commit 624be39 by Georg Ringer)
+   2014-07-29 [BUGFIX] Rephrase offset label (Commit d9c21d2 by Georg Ringer)
+   2014-07-29 [TASK] Improve category listing in admin module (Commit 2308d88 by Georg Ringer)
+   2014-06-25 [TASK] Improve caching + clearing (Commit 64b4668 by Georg Ringer)
+   2014-06-25 [FEATURE] Deny editing if user doesn't have permission for all categories (Commit 702438e by Lorenz Ulrich)
+   2014-07-29 [BUGFIX] Fix possible sql injections in category migration (Commit 0ea362b by Georg Ringer)
+   2014-07-25 [TASK] Check for configuration errors in Import (Commit 8cd7099 by Georg Ringer)
+   2014-07-22 [BUGFIX] Correct typo (Commit add0dec by Georg Ringer)
+   2014-07-17 [FEATURE] Migrationwizard for files to FAL (Commit 44c087b by Georg Ringer)
+   2014-07-22 [TASK] Bring back clickmenu in Administration module (Commit ef059b0 by Georg Ringer)
+   2014-07-22 [FEATURE] Additional parameter content for LinkVH (Commit 378846c by Georg Ringer)
+   2014-07-17 [TASK] Remove unused file (Commit 078eaec by Georg Ringer)
+   2014-07-08 [BUGFIX] Fix failing cache test (Commit f1e20c6 by Georg Ringer)
+   2014-07-08 [TASK] Fix travis runs (Commit 96a20bf by Georg Ringer)
+   2014-06-23 [TASK] Add Disqus to Detail Template (Commit 0144922 by Jan Kiesewetter)
+   2014-07-03 [TASK] Adopt the doc headers (Commit d62e793 by Georg Ringer)
+   2014-07-03 [DOC] Known issue about images on root (Commit 814ae4d by Georg Ringer)
+   2014-07-03 [FEATURE] Use rich snippet for author (Commit 8c287c5 by Georg Ringer)
+   2014-07-03 [FEATURE] Use time element in templates (Commit 7230d8a by Georg Ringer)
+   2014-06-25 [TASK] Followup (Commit 42c261d by Georg Ringer)
+   2014-06-25 [TASK] Remove duplicated test (Commit 11132f7 by Georg Ringer)
+   2014-06-24 [TASK] Add functional tests to travis (Commit 4189b9d by Georg Ringer)
+   2014-06-24 [BUGFIX] Use correct type in DemandObject (Commit eef7672 by Georg Ringer)
+   2014-06-20 Revert "[TASK] Make field bodytext an exclude field" (Commit 9dc4176 by Georg Ringer)
+   2014-06-20 [TASK] Update travis (Commit dcff065 by Georg Ringer)
+   2014-06-20 [TASK] Fix unit tests (Commit 63730eb by Georg Ringer)
+   2014-06-20 [BUGFIX] Fix failing tests (Commit c2e7d23 by Georg Ringer)
+   2014-06-20 [BUGFIX] Fix call in filesize VH (Commit 28772bd by Georg Ringer)
+   2014-06-18 [TASK] Use inline notation for f:format.html and f:format.crop (Commit 9f37741 by Jan Kiesewetter)
+   2014-06-19 [TASK] Add typolink forceAbsoluteUrl to DisqusViewHelper example (Commit 6433912 by Jan Kiesewetter)
+   2014-06-18 [TASK] Logger for imports of news/category (Commit 62d780f by Georg Ringer)
+   2014-06-17 [BUGFIX] Localized categories must point to parents after import (Commit 85e2d7f by Lorenz Ulrich)
+   2014-06-17 [TASK] Make field bodytext an exclude field (Commit 574b535 by Lorenz Ulrich)
+   2014-06-17 [TASK] Add logger (Commit fda1753 by Georg Ringer)
+   2014-06-17 [BUGFIX] Avoid division through 0 in importer (Commit 5d67409 by Georg Ringer)
+   2014-06-16 [BUGFIX] Date Menu doesn't respect enableFields (Commit a819229 by Lorenz Ulrich)
+   2014-06-17 [TASK] Translate import module (Commit c9b9488 by Georg Ringer)
+   2014-06-17 [TASK] Improve wording of 'internal page' (Commit 3f84265 by Georg Ringer)
+   2014-06-16 [BUGFIX] Check earlier for existing while importing (Commit 8827ff8 by Frans Saris)
+   2014-06-16 [BUGFIX] Add missing where clause in simplePrevNextVH (Commit 5abfc91 by Georg Ringer)
+   2014-06-11 [TASK] Unify padding for page-navigation-links (Commit b3238ed by Stefan Neufeind)
+   2014-06-12 [BUGFIX] List-view should offer "manual sorting" if activated (Commit 6b91042 by Stefan Neufeind)
+   2014-06-11 [TASK] Allow link parameter from outside (Commit 16b2ab6 by Georg Ringer)
+   2014-06-10 [TASK] Update version to 3.1.0-dev for master (Commit cf8c458 by Frans Saris)
+   2014-06-05 [TASK] Correct property type in newsdemand (Commit 8b7a265 by Georg Ringer)
+   2014-06-05 [BUGFIX] Rename signals (Commit 4480477 by Georg Ringer)
+   2014-06-05 [DOC] Add Changelog section for 3.0.1 (Commit 17c8be3 by Georg Ringer)
+   2014-06-04 [TASK] Simplify domain model tests (Commit 596e1a0 by Georg Ringer)
+   2014-06-04 [FEATURE] Add signals to the actions (Commit ee0bb26 by Georg Ringer)
+   2014-06-03 [BUGFIX] Update 3rd party libs (Commit 37d0267 by Georg Ringer)
+   2014-06-02 [TASK] Move from xml to xlf (Commit aace626 by Georg Ringer)
+   2014-06-02 [TASK] Add tooltip in Admin module (Commit dc62cb9 by Georg Ringer)
+   2014-05-30 [DOC] Add example how to extend news (Commit 4df8d51 by Georg Ringer)
+   2014-05-26 [BUFIX] Check if image is found in CatgeogryImportService (Commit 7a878ec by Frans Saris)
+   2014-05-26 [BUGFIX] fixes little typo in TypoScript example (Commit 91ed6fd by Peter Kraume)
+   2014-05-26 [BUGFIX] fixes wrong git repository url in documentation (Commit 543f9fa by Peter Kraume)
+   2014-05-23 [FEATURE] Allow type internalUrl link to FAL records (Commit 2750295 by Georg Ringer)
+   2014-03-28 [!!!][FEATURE] Add itemsPerPage configuration to FlexForm (Commit a0baa1a by Tom Ruether)
+   2014-05-22 [BUGFIX] Check category images in ImportService (Commit 8a097b7 by Georg Ringer)
+   2014-05-22 [TASK] Raise requirement to a secure TYPO3 version (Commit 80d8db5 by Georg Ringer)
+   2014-05-21 [!!!][TASK] Change FB Share VH to HTML5 (Commit 27e75b3 by Georg Ringer)
+   2014-05-20 [TASK] Enable functional tests in travis (Commit 909c421 by Georg Ringer)
+   2014-05-20 [TASK] Functional test for the SimplePrevNextViewHelper (Commit bb843ca by Georg Ringer)
+   2014-05-20 [TASK] Move mapping to ext_typoscript_setup.txt (Commit c5f6b21 by Georg Ringer)
+   2014-05-20 [BUGFIX] Fix functional tests (Commit db4e6a7 by Georg Ringer)
+   2014-05-20 [TASK] Updated script for related files (Commit cf6ec34 by Georg Ringer)
+   2014-05-19 [TASK] Use low numeric key for *RootPaths (Commit 4000656 by Jan Kiesewetter)
+   2014-05-19 [TASK] Set Limit if only offset is used (Commit 30d47bf by Georg Ringer)
+   2014-05-19 [FEATURE] Implement simple prev/next ViewHelper (Commit 9c055b3 by Georg Ringer)
+   2014-05-19 [TASK][DOC] Some cleanup (Commit 567adbd by Xavier Perseguers)
+   2014-05-19 [FEATURE] Option to restrict backend module to a given page id (Commit 01a6366 by Georg Ringer)
+   2014-05-19 [BUGFIX] Improve rss of feed (Commit c6ac314 by Georg Ringer)
+   2014-05-19 [TASK] Improve atom feed (Commit 92b9fc2 by Georg Ringer)
+   2014-05-16 [BUGFIX] Set datetime to current time for new records (Commit 0f27cd8 by Georg Ringer)
+
+This list has been created by using: ::
+
+   git log --since="2014/05/16" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short

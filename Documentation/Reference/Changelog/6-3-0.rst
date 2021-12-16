@@ -1,0 +1,52 @@
+.. include:: /Includes.rst.txt
+
+6.3.0 - 2018/02/01
+==================
+
+
+.. only:: html
+
+   .. contents::
+      :local:
+      :depth: 3
+
+
+
+Important changes
+-----------------
+
+Fix regressions
+^^^^^^^^^^^^^^^
+Fix a small bug in the `MetaTagsViewHelper` which has been added in last release.
+
+Restrict template layouts to a colPos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+It is now possible to restrict template layouts to certain colPos values.
+
+.. code-block:: typoscript
+
+   tx_news.templateLayouts {
+      1 = Fobar
+      2 = Another one
+      2.allowedColPos = 1,2,3
+      3 =  --div--,Group 2
+      4 = Blub
+      4.allowedColPos = 0,1
+   }
+
+This feature has been sponsored by **h_da - Hochschule Darmstadt**, https://www.h-da.de/, thanks a lot!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2018-01-29 [FEATURE] Restrict template layouts to colpos values (Commit 0b14c23d by Georg Ringer)
+   2018-01-29 [BUGFIX] Fix regression in sorting of sys_language records (Commit 2228d42e by Georg Ringer)
+   2018-01-29 [DOC] Fix wrong constants in rss docs (Commit 79f1a293 by Georg Ringer)
+   2018-01-29 [BUGFIX] Remove unwanted attributes in metatags (Commit 8fe15ad2 by Georg Ringer)
+   2018-01-29 [BUGFIX] Use tstamp for last modification in sitemap (Commit e2cd8dfd by Georg Ringer)
+   2018-01-24 [DOC] Use correct version (Commit 24a5272c by Georg Ringer)
+
+
+
+This list has been created by using `git log 6.2.1..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

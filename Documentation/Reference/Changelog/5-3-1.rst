@@ -1,0 +1,26 @@
+.. include:: /Includes.rst.txt
+
+5.3.1 - 2016/11/24
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Bugfix Release
+--------------
+Just a bugfix release because of an error in the date menu.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2016-11-24 [TASK] Add test for the datemenu (#171) (Commit c33d801 by Georg Ringer)
+    2016-11-24 [BUGFIX] make datemenu work again on 7.6 (#170) (Commit cefde85 by Martin Hummer)
+
+
+This list has been created by using ``git log --since="2016/09/23" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

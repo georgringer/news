@@ -1,0 +1,105 @@
+.. include:: /Includes.rst.txt
+
+6.2.0 - 2018/01/23
+==================
+
+
+.. only:: html
+
+   .. contents::
+      :local:
+      :depth: 3
+
+
+
+Important changes
+-----------------
+
+Improved search
+^^^^^^^^^^^^^^^
+By setting `plugin.tx_news.settings.search.splitSearchWord = 1` the search is performed by searching by each search word, not only by the full search phrase.
+
+This feature has been sponsored by https://webconsulting.at/. Thanks a lot!
+
+Avoid duplicate page titles in pagination
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A pagination information ("Page 3 of 9") is added to the page title to avoid duplicate page titles.
+
+Removal of a ViewHelper
+^^^^^^^^^^^^^^^^^^^^^^^
+The `ObjectViewHelper` has been removed.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2018-01-23 [TASK] Check mod.web_list.allowedNewTables/deniedNewTables in admin module (#248) (Commit 9efa4d37 by Marc Bastian Heinrichs)
+   2018-01-23 [TASK] Respect overwriteDemand parameters on menu creation (#439) (Commit 9cb38263 by Oliver Baran)
+   2018-01-23 [TASK] Allow limit and offset for tags (#497) (Commit 0e2e2fa9 by Steffen Kamper)
+   2018-01-23 [FEATURE] Disable Localization in backend module via TSConfig (#420) (#421) (Commit 5e0541f2 by ayacoo)
+   2018-01-23 Apply fixes from StyleCI (#537) (Commit 8a3122a0 by Georg Ringer)
+   2018-01-23 [BUGFIX] Check tablenames in mm queries (Commit 1cb623ca by Georg Ringer)
+   2018-01-23 [BUGFIX] Set cHash also in workspace mode (Commit f5290765 by Georg Ringer)
+   2018-01-23 [BUGFIX] Fix failing test (Commit bb12a525 by Georg Ringer)
+   2018-01-22 [DOC] Add linkhandler info (Commit 02de4016 by Georg Ringer)
+   2018-01-22 [TASK] Add tstamp & crdate fields to TCA for Fluid (Commit f9c1222a by Georg Ringer)
+   2018-01-22 [TASK] Make 2 VH compatible with 9 (Commit 2edb20d3 by Georg Ringer)
+   2018-01-22 [TASK] Replace ... with … (Commit e349354a by Georg Ringer)
+   2018-01-22 [TASK] Make PaginateVh 9 compatible (Commit 8b53482f by Georg Ringer)
+   2018-01-22 [DOC] Improve module vhs example (Commit 345e54a8 by Georg Ringer)
+   2018-01-22 [DOC] Improve doc example for ical rendering (Commit edc31bf7 by Georg Ringer)
+   2018-01-22 Validated output for List.xml (#457) (Commit ab01a824 by Dandy Umlauft)
+   2018-01-22 [BUGFIX] Add missing counter increment #524 (Commit e75bab78 by Georg Ringer)
+   2018-01-19 [DOC] Add snippet for cHash in preview links (Commit de0eec81 by Georg Ringer)
+   2018-01-19 [BUGFIX] Change invalid HTML of time tag (Commit 9b795285 by Georg Ringer)
+   2018-01-19 [TASK] Change license in composer.json (Commit 19ab9ad1 by Georg Ringer)
+   2018-01-19 [BUGFIX] Fix spelling (#519) (Commit ce0bcf39 by Michael Stucki)
+   2018-01-17 Feature/php56 (#517) (Commit 436e2c5d by Georg Ringer)
+   2018-01-16 [FEATURE] Split search words (Commit 47629cc1 by Georg Ringer)
+   2018-01-16 [TASK] Revert travis changes (Commit 557b6924 by Georg Ringer)
+   2018-01-16 [FEATURE] Avoid duplicate title for pagination (Commit 7d9b3dc0 by Georg Ringer)
+   2018-01-16 [TASK] Respect type in sitemap (Commit 277966b8 by Georg Ringer)
+   2018-01-16 [TASK] Raise testing-framework version (Commit 0f9cc40b by Georg Ringer)
+   2018-01-16 [DOC] Improve documentation snippet (Commit a4d11b02 by Georg Ringer)
+   2018-01-16 Apply fixes from StyleCI (#511) (Commit b684e4c7 by Georg Ringer)
+   2018-01-16 [TASK] Migrate SitemapGenerator todoctrine (Commit 699ff734 by Georg Ringer)
+   2018-01-16 [TASK] Remove PHP 5.5 from travis tests (Commit 0e41c332 by Georg Ringer)
+   2018-01-16 [TASK] Remove phpcs fixes in favor of styleci (Commit 808ace42 by Georg Ringer)
+   2018-01-16 [BUGFIX] Fix failing test in NewsRepositoryTest (Commit 3beba818 by Georg Ringer)
+   2018-01-16 [BUGFIX] Remove deprecated usage of buildQueryParametersPostProcess (Commit a2a585a4 by Georg Ringer)
+   2018-01-16 [BUGFIX] Use proper navigationComponentId for 9+ (Commit 81d6b2f1 by Georg Ringer)
+   2017-12-17 [TASK] Use $GLOBALS['SIM_EXEC_TIME'] for building queries (Commit b5c87806 by Georg Ringer)
+   2017-12-17 [TASK] Remove unused palettes (Commit fa7f38ac by Georg Ringer)
+   2017-12-17 Apply fixes from StyleCI (#491) (Commit 858e3abd by Georg Ringer)
+   2017-12-17 [TASK] Document related variants in template (Commit 9c638a2f by Georg Ringer)
+   2017-12-17 [BUGFIX] Make option list.paginate.prevNextHeaderTags work (#481) (Commit 9dcbff50 by Christian Futterlieb)
+   2017-12-17 Change datatype for tag in newsDemand to string (#483) (Commit cc9f0793 by Torben Hansen)
+   2017-12-17 fix search by percent or undersCore (#486) (Commit a4cde7d4 by Esteban Marin)
+   2017-12-05 [TASK] Hide shariff namespace (Commit 93e1b60f by Georg Ringer)
+   2017-11-21 Fixed Typo (#456) (Commit cb98c935 by Fritz the Cat)
+   2017-11-21 [TASK] Let it work with 9 (Commit 9c920f19 by Georg Ringer)
+   2017-11-21 [BUGFIX] Fix category usage in Sitemap generator (Commit cac5cd8f by Georg Ringer)
+   2017-11-21 [TASK] Use sorting column in ItemsProcFunc (Commit d9a1aa96 by Georg Ringer)
+   2017-11-06 Fix PHP Notice in ext_localconf.php (#458) (Commit a8e68933 by Tymoteusz Motylewski)
+   2017-10-26 Apply fixes from StyleCI (#453) (Commit a9350093 by Georg Ringer)
+   2017-10-26 [FEATURE] Get translated content element id list (Commit 574d93e8 by Georg Ringer)
+   2017-10-26 Apply fixes from StyleCI (#452) (Commit 9f3e4c0d by Georg Ringer)
+   2017-10-26 [TASK] Migrate AdministrationController to Doctrine (Commit ecc3af5c by Georg Ringer)
+   2017-10-26 [TASK] Remove not needed test (Commit ef33512a by Georg Ringer)
+   2017-10-26 [TASK] Use FAL API in AbstractImportService (Commit 0e32944e by Georg Ringer)
+   2017-10-26 [TASK] Migrate ItemsProcFunc to Doctrine (Commit b71bf638 by Georg Ringer)
+   2017-10-26 [TASK] Remove unused methods (Commit 266154aa by Georg Ringer)
+   2017-10-26 [TASK] Remove unused getter of DatabaseConnection (Commit 13fa94da by Georg Ringer)
+   2017-10-26 [!!!][TASK] Remove ObjectViewHelper (Commit 2061386e by Georg Ringer)
+   2017-10-26 Remove incorrect closing bracket (#446) (Commit e5a13dba by Boris Schauer)
+   2017-10-01 Update Index.rst (#429) (Commit f908c159 by Stefan Isak)
+   2017-09-27 [BUGFIX] Re-enable settings.detailPid in selectedList's flexform (#436) (Commit ab55ea71 by Rémy DANIEL)
+   2017-09-22 [BUGFIX] #357 Add tt_content ctype labels to pagelayoutview to get rid of error message (#432) (Commit bb050b02 by Kevin Purrmann)
+   2017-09-18 Update Readme.md (Commit 2fd3f1eb by Georg Ringer)
+   2017-09-13 Moved XML-NameSpace-declaration from div- or span-tags into separate html-tags to achieve valid HTML5 output (#415) (Commit 226951a5 by Sebastian Wolfertz)
+   2017-09-13 [TASK] Changing PhpDoc type for tsstamp (#418) (Commit 3eca0e57 by Thomas Deuling)
+   2017-09-12 Some minor fixes (#423) (Commit 5f81c827 by Cedric Ziel)
+   2017-09-11 [TASK] Remove unnecessary else branch (#422) (Commit 906cd336 by Cedric Ziel)
+
+
+This list has been created by using `git log 6.1.1..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

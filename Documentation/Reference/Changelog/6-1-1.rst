@@ -1,0 +1,12 @@
+.. include:: /Includes.rst.txt
+
+6.1.1 - 2017/09/06
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+This version is the same as 6.0.0 but because of a TER security incident (https://typo3.org/teams/security/security-bulletins/psa/typo3-psa-2017-001/) a reupload has been required.

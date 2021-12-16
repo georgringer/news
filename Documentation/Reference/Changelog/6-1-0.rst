@@ -1,0 +1,120 @@
+.. include:: /Includes.rst.txt
+
+6.1.0 - 2017/08/31
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+After a far too long time I managed to get a release out again. 6.1. is compatible with 7.6 LTS and 8 LTS and also supports the development version of 9 as long as the extension **typo3db_legacy** is installed.
+
+Important changes
+-----------------
+
+Add a new action "selectedList"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A new action makes it possible to render a list of custom selected news items. An editor can choose any amount of news records which are shown in the provided order.
+
+The following changes are worth mentioning.
+
+Configurable filters for the administration module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+By using TsConfig it is now possible to hide filters in the administration module. The full configuration is: ::
+
+   tx_news.module {
+       filters {
+           searchWord = 1
+           timeRestriction = 1
+           topNewsRestriction = 1
+           hidden = 1
+           archived = 1
+           sortingField = 1
+           number = 1
+           categories = 1
+           categoryConjunction = 1
+           includeSubCategories = 1
+       }
+   }
+
+
+Page data to Fluid templates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Every frontend Fluid template can now access the full row of the current page by checking the variable `pageData`. As an example you will get the page title by using `pageData.title`.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2017-08-28 [TASK] Added add/remove function for tag in news model (#402) (Commit 15e396d by Torben Hansen)
+   2017-08-24 FIX: typo (#407) (Commit 66a11fd by Philipp Kitzberger)
+   2017-08-24 FIX: typo (#408) (Commit 0ef6f52 by Philipp Kitzberger)
+   2017-08-09 SimplePrevNextViewHelper with custom sortField doesn't work (#399) (Commit 35494ed by ayacoo)
+   2017-08-09 [BUGFIX] Preserve labels for CMS 9 (Commit 4db7d4d by Georg Ringer)
+   2017-08-08 [FEATURE] Make it possible to hide filters in backend module (#381) (Commit 9d88629 by Shakeshake)
+   2017-08-08 [TASK] Move TCA to correct file (Commit b46d7df by Georg Ringer)
+   2017-08-08 [DOC] Example how to migrate realurl alias (Commit 89e418f by Georg Ringer)
+   2017-08-08 [DOC] Followup (Commit 60d3449 by Georg Ringer)
+   2017-08-08 [DOC] Fix Category page (Commit b8a7a77 by Georg Ringer)
+   2017-08-08 [DOC] Fix wrong syntax (Commit 15deb4d by Georg Ringer)
+   2017-07-26 [BUGFIX] Fix wrong path for Rss feed configuration (#319) (Commit 6a997bc by Martin Hummer)
+   2017-07-25 [TASK] Fix small typo in news controller (#366) (Commit c83f7d8 by ayacoo)
+   2017-07-25 [TASK] Add a title attribute to the label (#359) (Commit a5d4d30 by Daniel)
+   2017-07-25 [BUGFIX] Re-Enable image cropping tool for fal_media in TYPO3 8.7 (#362) (Commit 3b6f6e5 by Torben Hansen)
+   2017-07-25 Fix indentation inconsistency (#370) (Commit 3a41f6b by Jan Nils Ferner)
+   2017-07-25 [DOC] Add missing inject annotation in example (Commit cf70cf9 by Georg Ringer)
+   2017-07-15 [TASK] Make the ObjectViewHelper work with CMS9 (Commit 4a6aa84 by Georg Ringer)
+   2017-07-14 [FEATURE] Add page data to Fluid templates (Commit 0e0204c by Georg Ringer)
+   2017-07-14 [TASK] Fix typo in NewsController (#380) (Commit 8d633c0 by Shakeshake)
+   2017-07-14 Fix mixed up type numbers (#378) (Commit 3263050 by diego)
+   2017-07-14 [TASK] Fix emconf issues (#379) (Commit f288f3f by Shakeshake)
+   2017-07-11 [BUGFIX] Fix wrong Fluid inline syntax in List.xml (#374) (Commit 3767f6e by Armin Vieweg)
+   2017-07-11 [BUGFIX] Fix typo in List.xml template (#373) (Commit d524a1a by Armin Vieweg)
+   2017-07-03 Apply fixes from StyleCI (#367) (Commit a1159b9 by Georg Ringer)
+   2017-06-29 [FEATURE] Make showing thumbnails configurable (Commit 6669043 by Georg Ringer)
+   2017-06-29 [TASK] Disable xdebug in travis (Commit a708dc5 by Georg Ringer)
+   2017-06-27 [BUGFIX] Don't show warning in CE preview (Commit 4988121 by Georg Ringer)
+   2017-06-27 [TASK] Register "insert records" in TCA overrides file (#354) (Commit 84b35fe by Markus Klein)
+   2017-06-26 [BUGFIX] Exclude html ctype from IRRE preview (Commit b42a0f3 by Georg Ringer)
+   2017-06-14 Apply fixes from StyleCI (#353) (Commit ea9881b by Georg Ringer)
+   2017-06-14 [TASK] Change version to 6.1.0-dev (Commit 1cbc9fa by Georg Ringer)
+   2017-06-13 [BUGFIX] Resolve EXT: in path to error template (Commit 04bf045 by Georg Ringer)
+   2017-06-13 [DOC] Example of category menu with TS (Commit 81fdce1 by Bernd Wilke)
+   2017-06-13 [BUGFIX] Fix wrong evaluation in IfIsActiveVh (Commit 2440fbc by Georg Ringer)
+   2017-06-09 [TASK] Show selected news in page layout view (Commit 587d753 by Georg Ringer)
+   2017-06-07 [BUGFIX] Fix path to icon label in admin module (Commit 4477011 by Georg Ringer)
+   2017-05-30 [FIX] Set correct outdated ViewHelpers (#340) (Commit 81db33f by misterboe)
+   2017-05-29 [BUGFIX] Fix a typo in the 6.0.0 changelog (#339) (Commit faa69cc by Stephan Brun)
+   2017-05-23 [TASK] Allow PHP 5.6 again (Commit 1bc43d0 by Georg Ringer)
+   2017-05-22 [FEATURE] Add a new view "selectedList" (Commit 961f5f8 by Georg Ringer)
+   2017-05-16 [DOC] Add missing namespace (#326) (Commit 25f2c77 by misterboe)
+   2017-05-16 [TASK] CHeck if tokenizer is available #325 (Commit 9e3f912 by Georg Ringer)
+   2017-05-08 [TASK] Update tests on GitLab ci (#322) (Commit 2ed604a by Jan Kiesewetter)
+   2017-05-02 [BUGFIX] Always provide category and tag values for list signal (#318) (Commit 0a218a3 by Benjamin Kott)
+   2017-05-02 Fix documentation about updateFlexforms hook (#294) (Commit a439613 by Markus Poerschke)
+   2017-05-02 [BUGFIX] Don't extend pid list for startingpoint=-1 (#272) (Commit 6cd1b79 by Georg Tiefenbrunn)
+   2017-05-02 [TASK] Mark import command as cli only (Commit 505b42f by Georg Ringer)
+   2017-05-02 [FEATURE] Filter internal & external news in pagination (Commit d552a61 by Georg Ringer)
+   2017-05-02 Import service fix (#303) (Commit b9f0e1d by John)
+   2017-05-02 Added missing namespace in Social VH (#284) (Commit 1aa3bc0 by cvisys)
+   2017-05-02 Corrections in changelog (#313) (Commit 46ebd1f by Gerhard Rupp)
+   2017-04-24 [BUGFIX] Fix flexform category restriction FormDataProvider (#312) (Commit c624294 by Josef Glatz)
+   2017-04-21 [DOC] Update changelog (Commit 4ff1bf8 by Georg Ringer)
+   2017-04-21 [TASK] Prepare 6.0.0 release (Commit 637ccf6 by Georg Ringer)
+   2017-04-12 Apply fixes from StyleCI (#300) (Commit aa34868 by Georg Ringer)
+   2017-04-12 Use nimut/testing-framework (#296) (Commit 1327f25 by Nicole Cordes)
+   2017-04-12 [BUGFIX] Use correct class in PageLayoutViewTest (Commit ae1c37a by Georg Ringer)
+   2017-04-10 [BUGFIX] Remove wrong char (Commit f8d05b0 by Georg Ringer)
+   2017-04-10 [BUGFIX] Add caseinsensitive security check for overwriteDemandObject (Commit ee7b252 by Georg Ringer)
+   2017-04-06 Apply fixes from StyleCI (#291) (Commit 6ce56b7 by Georg Ringer)
+   2017-04-06 [BUGFIX] Use correct TCA for fal_media overrideChildTca (Commit 3cebb32 by Georg Ringer)
+   2017-04-05 Added missing namespace (#286) (Commit ff576cd by cvisys)
+   2017-04-05 Added missing namepace (#285) (Commit 41351ec by cvisys)
+   2017-03-25 [DOC] Improve  docs for ical #278 (Commit 3ca73b7 by buxit)
+   2017-03-25 [BUGFIX] Outcomment _LOCAL_LANG example (Commit e6c4e85 by Georg Ringer)
+
+
+This list has been created by using `git log --since="2017/03/21" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

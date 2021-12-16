@@ -1,0 +1,72 @@
+.. include:: /Includes.rst.txt
+
+7.2.0 - 2019/04/15
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+On the fly creation of tags
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A special thanks to Nicole Cordes who provided a new implementation of creating tags on the fly.
+The code has been taken from https://github.com/IchHabRecht/t3tags.
+
+Features
+--------
+
+Custom menu processor
+^^^^^^^^^^^^^^^^^^^^^
+A processor has been added which is useful for detail pages to add the news record as fake menu entry.
+
+
+.. code-block:: typoscript
+
+   10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+   10 {
+      as = breadcrumbMenu
+      ... further configuration
+   }
+   20 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
+   20.menus = breadcrumbMenu,specialMenu
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2019-04-10 [DOC] Added tip for chars counter. (Commit 7b687c59 by gaumondp)
+   2019-04-09 [FEATURE] Allow other extensions to add actions to the news administration module (#688) (Commit c8208edd by Dmitry Dulepov)
+   2019-04-09 [BUGFIX] Change parentcategory getter in Category model (Commit 8dc44dc5 by Georg Ringer)
+   2019-04-09 [BUGFIX] Reset news in detailAction if internal or external (Commit e1cb2be1 by Georg Ringer)
+   2019-04-09 [DOC] Example how to set link page in Fluid (Commit 23679999 by Georg Ringer)
+   2019-04-09 [TASK] Set correct tca information for crdate+tstamp (Commit 9773c9bc by Georg Ringer)
+   2019-04-09 [FEATURE] Add menu processor to add news record to menus (Commit 32ca5b56 by Georg Ringer)
+   2019-04-08 [BUGFIX] Use logicalAnd to combine search results (Commit 30cd65d9 by Georg Ringer)
+   2019-04-08 [TASK] Change label of bodytext (Commit 5faeee2f by Georg Ringer)
+   2019-04-08 [FEATURE] Custom page icon for pages with news plugins (Commit 9637af05 by Georg Ringer)
+   2019-04-08 [BUGFIX] Fix #858 by adding PageLayoutView hook to hide all inline tt_content elements showing in page module (#861) (Commit 18f742af by JarvisH)
+   2019-04-08 [BUGFIX] Use f:link.typolink instead of f:link.page (Commit 5193e57b by Georg Ringer)
+   2019-04-08 [BUGFIX] Init object manager in RenderMediaVh (Commit ec4db236 by Georg Ringer)
+   2019-04-08 [BUGFIX] AddCacheTagsByNewsRecords for selectedListAction (#888) (Commit b1a20d0c by Ayke Halder)
+   2019-04-08 [DOC] Explain routing in TYPO3 v9 (#891) (Commit 49af74f3 by Sebastian Klein)
+   2019-04-08 [BUGFIX] Remove offset from calculcationg number of pages (Commit aa1d4a15 by Georg Ringer)
+   2019-04-05 [TASK] Release of 7.1.1 (Commit 9b0e54ab by Georg Ringer)
+   2019-04-05 [BUGFIX] Add missing l10n_source columns (#890) (Commit a9c907bd by Oliver Hader)
+   2019-04-04 - parameter disableLanguageOverlayMode has been added to the generateQuery method (#889) (Commit 40709195 by Alex)
+   2019-04-03 Fix strip of "ORDER BY" in statistics query (#883) (Commit 6a796eb4 by Markus Poerschke)
+   2019-03-25 [BUGFIX] Handle array's within method Page::setRegisterProperties (#881) (Commit 9752108d by Jörg Kummer)
+   2019-03-22 [BUGFIX] Restore dummy-preview-image (#875) (Commit 676c5319 by Jörg Kummer)
+   2019-03-20 FIX #870 Exception when importing tt_news with news_ttnewsimport (#872) (Commit 8adf2987 by Peter Linzenkirchner)
+   2019-03-16 [BUGFIX] Fix creating tags on the fly (Commit f8ed372f by Georg Ringer)
+   2019-03-14 [BUGFIX] Create a unique slug value in SlugService (#846) (#847) (Commit 20602e8e by Wolfgang Klinger)
+   2019-03-09 [FEATURE] Provide pagination information to TSFE register (#781) (Commit 2c61711e by p2 media GmbH & Co. KG)
+   2019-03-08 [TASK] Add archiveRestriction to overrideFlexformSettingsIfEmpty (Commit 1dc2ff92 by Georg Ringer)
+   2019-03-08 [BUGFIX] Fix slugservice with non ascii (Commit 466b44e8 by Georg Ringer)
+
+
+This list has been created by using `git log 7.1.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

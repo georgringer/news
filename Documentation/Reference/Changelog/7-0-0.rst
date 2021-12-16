@@ -1,0 +1,294 @@
+.. include:: /Includes.rst.txt
+
+7.0.0 - 2018/26/04
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+The following changes might be important for your installation.
+
+Support for TYPO3 9 & 8
+^^^^^^^^^^^^^^^^^^^^^^^
+This is the 1st version which supports the upcoming TYPO3 9 version. Version 8 LTS is supported as well but requires version **8.7.13**.
+
+- Every usage of `$GLOBALS['TYPO3_DB']` has been migrated to *Doctrine DBAL*.
+- Adopt TCA to the best practice of the Core without any deprecations.
+
+.. Important::
+
+        Support for version 7.6 has been dropped. With October 2018 7.6 wil have reached end of life. Check out https://typo3.com/services/extended-support/ if you need an extended support.
+
+Improved SEO support
+^^^^^^^^^^^^^^^^^^^^
+SEO is important to everyone and now news supports editors with an improved url handling.
+Since a long time, there has been a field called `path_segment` which has been well hidden and can be used as alternative path segment for realurl.
+
+**Now** this field has been moved right below the title and is automatically filled by the title. If the title changes, the slug field will stay the same to keep the URL in the frontend.
+
+|img-release700-slug-field|
+
+.. Important::
+
+    As long as you don't change your realurl configuration, you don't benefit from the the slug field.
+    But if you change, be aware that URLs might change. An upgrade wizard in the Install Tools cares about filling the slug field automatically.
+
+
+The documentation about realurl configuration as been adopted:
+
+
+.. code-block:: php
+
+   // EXT:news start
+    'a' => [
+        [
+            'GETvar' => 'tx_news_pi1[action]',
+        ],
+        [
+            'GETvar' => 'tx_news_pi1[controller]',
+        ],
+        [
+            'GETvar' => 'tx_news_pi1[news]',
+            'lookUpTable' => [
+                'table' => 'tx_news_domain_model_news',
+                'id_field' => 'uid',
+                'alias_field' => 'IF(path_segment!="",path_segment,title)',
+                'addWhereClause' => ' AND NOT deleted',
+                'useUniqueCache' => 1,
+                'languageGetVar' => 'L',
+                'languageExceptionUids' => '',
+                'languageField' => 'sys_language_uid',
+                'transOrigPointerField' => 'l10n_parent',
+                'expireDays' => 180,
+                'enable404forInvalidAlias' => true
+            ]
+        ]
+    ],
+   // EXT:news end
+
+
+Improved field ordering
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The fields of a news record in the backend have been reordered and improved:
+
+- Fields `type` & `istopnews` at the top
+- Date fields moved up
+- Author fields moved to the tab "Metadata"
+- Custom tab for media elements (as in the default content element "*Text with media*")
+- Custom tab for categories (as in any content element)
+- Custom tab for languages (as in any record)
+
+Allow more options for file preview
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The well known checkbox `Show in list views` inside every FAL relation is changed to a dropdown to allow the following settings:
+
+- Show only in detail views (Behaviour as the previous **unchecked** checkbox)
+- Show in all views (Behaviour as the previous **checked** checkbox)
+- Show only in list views (New)
+
+.. Important::
+
+    This feature must be activated inside the extension manager settings: `records.advancedMediaPreview`.
+
+|img-release700-filereference-select|
+
+Donation module
+^^^^^^^^^^^^^^^
+A new view has been added to the administration module to show how you can support the further development of this extension.
+
+|img-donation-module|
+
+.. tip::
+
+    Supported are:
+        - Patreon https://www.patreon.com/georgringer
+        - Paypal https://www.paypal.me/GeorgRinger/25
+        - Amazon Wishlist http://www.amazon.de/registry/wishlist/8F573K08TSDG
+
+Improved administration module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2 more TsConfig options have been added to customize the administration module
+
+- `tx_news.module.controlPanels = 1` to enable control panels
+- `tx_news.module.allowedCategoryRootIds = 12,34` to restrict shown categories to list of category root ids
+
+
+Features
+--------
+List of all other features.
+
+Show tag count
+^^^^^^^^^^^^^^
+
+By using a new ViewHelper it is now possible to get the count of (system-wide) usage of a given tag.
+
+.. code-block:: html
+
+    {n:tag.count(tagUid:tag.uid) -> f:variable(name: 'tagUsageCount')}
+
+Allow sorting of selectedList items
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The view "selected list" which can be used to render a manual selected list of articles is now capable of sorting those just as a regular list.
+
+Support creation filter by multiple categories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+By using new ViewHelpers it is now possible to create links to filter news by multiple categories instead of only one.
+
+.. code-block:: html
+
+    <!-- check if active -->
+    <n:multiCategoryLink.isCategoryActive list="{overwriteDemand.categories}" item="{category.item.uid}">
+        <f:then>
+            <!-- remove link -->
+            <f:link.page title="{category.item.title}" class="active" pageUid="{settings.listPid}"
+                         additionalParams="{n:multiCategoryLink.arguments(mode:'remove',item:category.item.uid,list:overwriteDemand.categories)}">dazu
+            </f:link.page>
+        </f:then>
+        <f:else>
+            <!-- add link -->
+            <f:link.page title="{category.item.title}" class="active" pageUid="{settings.listPid}"
+                         additionalParams="{n:multiCategoryLink.arguments(mode:'add',item:category.item.uid,list:overwriteDemand.categories)}">dazu
+            </f:link.page>
+        </f:else>
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2018-04-17 [DOC] Document linkVars for RSS (Commit 98af3b45 by Georg Ringer)
+        2018-04-17 [TASK] Raise requirements to 8.7.13 (Commit 5eb5257d by Georg Ringer)
+        2018-04-17 [TASK] Allow Core 9.2 in ext_emconf (Commit a985dfdb by Georg Ringer)
+        2018-04-17 [TASK] Adopt versions (Commit 52e0204c by Georg Ringer)
+        2018-04-17 [TASK] Add DB fields for multilanguage tags (Commit d34a1f11 by Georg Ringer)
+        2018-04-13 [TASK] Improve hook for showinpreview (Commit 6284ecba by Georg Ringer)
+        2018-04-13 [DOC] Finalize release notes (Commit 5b2f58cb by Georg Ringer)
+        2018-04-12 [DOC] Fix toc in manual (Commit 2059f921 by Georg Ringer)
+        2018-04-12 [TASK] Make new showinpreview configurable (Commit 1da6d732 by Georg Ringer)
+        2018-04-12 [TASK] Add seperate getter for list only (Commit 2738823f by Georg Ringer)
+        2018-04-12 [DOC] Start release notes for 7.0 (Commit 518667c5 by Georg Ringer)
+        2018-04-12 [TASK] Add method to generate slug (Commit c254c522 by Georg Ringer)
+        2018-04-12 [DOCS] Add docs about multi category filtering (Commit 579c51af by Georg Ringer)
+        2018-04-12 [TASK] Include sponsor imgs base64 decoded (Commit 4d74d214 by Georg Ringer)
+        2018-04-11 [FEATURE] Add notes to news model (Commit 1efe02bd by Georg Ringer)
+        2018-04-11 [FEATURE] Provide slugservice (Commit f82a9b3d by Georg Ringer)
+        2018-04-10 [TASK] Migrate RTE configuration (Commit eb478dd3 by Georg Ringer)
+        2018-04-10 [TASK] Move tca to allowLanguageSynchronization (Commit e7b2d0dc by Georg Ringer)
+        2018-04-10 [TASK] Remove usage of noCopy (Commit f7b57def by Georg Ringer)
+        2018-04-10 [TASK] Migrate input fields to inputLink rendertype (Commit 99c11643 by Georg Ringer)
+        2018-04-10 [TASK] Migrate TCA wizards (Commit dd2004cb by Georg Ringer)
+        2018-04-10 [TASK] Migrate rte wizard (Commit d6e2f27c by Georg Ringer)
+        2018-04-10 [TASK] Migrate tca suggest options (Commit c57fa2f2 by Georg Ringer)
+        2018-04-10 [TASK] Use rendertype inputDateTime (Commit 3938ff23 by Georg Ringer)
+        2018-04-10 [TASK] Migrate usage of showIconTable (Commit 83490854 by Georg Ringer)
+        2018-04-10 [TASK] Remove usage of TCA config show_thumbs (Commit 096af7c1 by Georg Ringer)
+        2018-04-10 [BUGFIX] Followup test fix (Commit 082d2ff7 by Georg Ringer)
+        2018-04-10 [BUGFIX] Fix failing test (Commit 2838c656 by Georg Ringer)
+        2018-04-07 [!!!][FEATURE] Allow more options for file preview (Commit 624642ff by Georg Ringer)
+        2018-04-07 [TASK] Correct TCA types (Commit 8252ed08 by Georg Ringer)
+        2018-04-07 [DOC] Change realurl identifier (Commit 20999d71 by Georg Ringer)
+        2018-04-07 [FEATURE] Prefill slug field with optimized title (Commit b6d12d18 by Georg Ringer)
+        2018-04-07 [!!!] Change type of showinpreview to int (Commit 03d817b2 by Georg Ringer)
+        2018-04-06 [FEATURE] Allow sorting of selectedList items (Commit 3931f7c8 by Georg Ringer)
+        2018-04-06 [!!!][FEATURE] Pass settings to the signal slots (Commit 35f4446d by Georg Ringer)
+        2018-04-06 [BUGFIX] Autosubmit form if preselects are there (Commit fa16beb2 by Georg Ringer)
+        2018-04-05 [BUGFIX] Resolve breaking change in symfony/finder (Commit 8523d344 by Georg Ringer)
+        2018-04-05 [BUGFIX] Add render method to condition VHs (Commit cdaf2124 by Georg Ringer)
+        2018-04-05 [TASK] Finalize TCA (Commit a3f21123 by Georg Ringer)
+        2018-04-04 [TASK] Improve TCA of news (Commit d46db49a by Georg Ringer)
+        2018-04-03 [DOC] Fix typo in Readme (Commit 6caedf4b by Georg Ringer)
+        2018-03-31 [FEATURE] Show tag counts (Commit f3f37c1b by Georg Ringer)
+        2018-03-31 [FEATURE] Add shortcut button to administration module (Commit f1e758ce by Georg Ringer)
+        2018-03-30 [BUGFIX] Fix and improve search in FE (Commit 31df8272 by Georg Ringer)
+        2018-03-30 [TASK] Drop usage of old DB conneciton (Commit 6ebe5fac by Georg Ringer)
+        2018-03-30 [TASK] Finalize gst (Commit d58803f3 by Georg Ringer)
+        2018-03-30 [TASK] Migrate last usage of old DB (Commit eb21887b by Georg Ringer)
+        2018-03-29 [TASK] Use XS for the sponsors (Commit 00f76f8d by Georg Ringer)
+        2018-03-29 [TASK] Add dkd as sponsor (Commit d714a5ec by Georg Ringer)
+        2018-03-29 [FEATURE] Make rendering of meta tags configurable (Commit f49f6d3f by Georg Ringer)
+        2018-03-29 [!!!][TASK] Add chash to widget uris (Commit 7c0290de by Georg Ringer)
+        2018-03-29 [TASK] Revert template changes (Commit 6714dba8 by Georg Ringer)
+        2018-03-29 [FEATURE] Support multi category links (Commit 331d7db1 by Georg Ringer)
+        2018-03-28 [DOC] Add support stuff to docs (Commit e1745344 by Georg Ringer)
+        2018-03-28 Apply fixes from StyleCI (#626) (Commit 6b4de0eb by Georg Ringer)
+        2018-03-28 [TASK] Change allowed versions (Commit 493d12b5 by Georg Ringer)
+        2018-03-28 [TASK] Finalize donation template (Commit 06831b81 by Georg Ringer)
+        2018-03-28 [FEATURE] Make it possible to reduce categories in admin module (Commit e202e23c by Georg Ringer)
+        2018-03-28 [TASK] Allow more fields as date field (Commit 7d105a52 by Georg Ringer)
+        2018-03-28 [DOC] Cleanup rss docs (Commit a457e04a by Georg Ringer)
+        2018-03-28 [FEATURE] Make it possible to show the controlPanels in admin module (Commit 07ba83b2 by Georg Ringer)
+        2018-03-28 [TASK] Use API to show overlay field in user settings (#624) (Commit e4bac9d8 by Mathias Brodala)
+        2018-03-27 [BUGFIX] Fix backend module for 9 (Commit 10bb0ff0 by Georg Ringer)
+        2018-03-27 [TASK] Show donation info in admin module (Commit b0182434 by Georg Ringer)
+        2018-03-27 [BUGFIX] Fix token generation in backend module (Commit 790f187c by Georg Ringer)
+        2018-03-26 [BUGFIX] Transform datetime value to integer for registered property (Commit 964e92d5 by Georg Ringer)
+        2018-03-26 [BUGFIX] Force validation to int for date fields (Commit 15f1126a by Georg Ringer)
+        2018-03-26 [TASK] Synchronize dependencies (Commit e98b23e3 by Georg Ringer)
+        2018-03-26 Update ext_localconf.php (#411) (Commit 4db822d9 by bobbel78)
+        2018-03-25 [BUGFIX] Replace usage of deprecated method create_function() (#617) (Commit 2b3a7426 by Xavier Perseguers)
+        2018-03-25 [BUGFIX] Correctly link to Composer in the readme (#618) (Commit 10858a6d by Daniel Ruf)
+        2018-03-22 [TASK] Fix usages of template layouts and optgroups (Commit db696abd by Georg Ringer)
+        2018-03-22 [FIX] Fixes a small grammar issue. (#615) (Commit 0669b74c by Robert Wildling)
+        2018-03-17 [DOC] Updated Contribution section in Readme.md (#610) (Commit 96c494d0 by Torben Hansen)
+        2018-03-16 Fix description in flexform comments. (#603) (Commit 190a7641 by Robert Wildling)
+        2018-03-16 Remove useless zzz chars (#607) (Commit 8fa60347 by Alexander Grein)
+        2018-03-14 [TASK] Switch extension icon (Commit f341e09a by Georg Ringer)
+        2018-03-14 [TASK] Module navigation (Commit f797e89c by Georg Ringer)
+        2018-03-08 [TASK] Remove not needed VH test (Commit 4f20af71 by Georg Ringer)
+        2018-03-08 [DOCS] Fix realurl example in docs (Commit 7c8c699d by Georg Ringer)
+        2018-03-08 Merge branch '8+' (Commit 67763e4e by Georg Ringer)
+        2018-03-08 [BUGFIX] not generating data-link argument for Ajax Pagination (#599) (#600) (Commit cefa4926 by lsascha)
+        2018-03-08 [FEATURE] Donation module (Commit f3fd982d by Georg Ringer)
+        2018-03-01 [BUGFIX] Render audio not as image (Commit 1cfc3e69 by Georg Ringer)
+        2018-02-28 Apply fixes from StyleCI (#598) (Commit ab924047 by Georg Ringer)
+        2018-02-28 Update .travis.yml (Commit 52015833 by Georg Ringer)
+        2018-02-27 [BUGFIX] Pass correct content to stdWrap function (#595) (Commit 5223bd43 by Markus Klein)
+        2018-02-13 [WIP][TASK] Start working on RecordList changes (Commit 8c4171c6 by Georg Ringer)
+        2018-02-13 [TASK] Migrate query in RecordListConstraint (Commit b593c466 by Georg Ringer)
+        2018-02-13 [TASK] Bring back version check variable (Commit d95f3e7c by Georg Ringer)
+        2018-02-13 [TASK] Replace StringFrontend (Commit 7bc1c609 by Georg Ringer)
+        2018-02-13 [TASK] Migrate AccessControlService (Commit 19bc9b11 by Georg Ringer)
+        2018-02-13 [TASK] Migrate query of AccessControlService (Commit 831adfd5 by Georg Ringer)
+        2018-02-13 [FEATURE] Support settings.opengraph.locale (Commit 3a89b72b by Georg Ringer)
+        2018-02-12 Apply fixes from StyleCI (#580) (Commit 50fe51bc by Georg Ringer)
+        2018-02-12 [BUGFIX] Set no_cache flag for news not found template (Commit 332e81ee by Georg Ringer)
+        2018-02-12 Merge branch 'master' of github.com:georgringer/news into 8+ (Commit e03cf095 by Georg Ringer)
+        2018-02-11 [TASK] Remove phpunit dev in compsoer (Commit a9978521 by Georg Ringer)
+        2018-02-11 [TASK] Limit travis jobs for 9 (Commit cf6ad537 by Georg Ringer)
+        2018-02-11 [BUGFIX] Fix prev next VH (Commit f73707d0 by Georg Ringer)
+        2018-02-11 [BUGFIX] Remove return type hint (Commit 8df1116d by Georg Ringer)
+        2018-02-11 [TASK] Allow more versions of testing framework (Commit 151a6db1 by Georg Ringer)
+        2018-02-11 [TASK] Fix unit tests (Commit 2af853b2 by Georg Ringer)
+        2018-02-10 [BUGFIX] Prevent output of ViewHelper xmlns-attributes in rendered code on website (#572) (Commit fe5f32cc by chris)
+        2018-02-07 [TASK] Make hook in recordlist ready for 9 (Commit 9cd7c2d9 by Georg Ringer)
+        2018-02-07 [TASK] Remove outcommented code (Commit c9ee0e46 by Georg Ringer)
+        2018-02-07 [TASK] Use proper xlf path (Commit 4d29855a by Georg Ringer)
+        2018-02-07 [TASK] Convert NewsRepository (Commit a11ab27e by Georg Ringer)
+        2018-02-07 [TASK] Migrate CategoryService (Commit 4b53a45a by Georg Ringer)
+        2018-02-07 [TASK] Convert 1st part of CategoryService (Commit fa6303ce by Georg Ringer)
+        2018-02-07 [TASK] Remove unused method (Commit 81ccdc4c by Georg Ringer)
+        2018-02-06 [TASK] Migrate NewsRepository (Commit de059447 by Georg Ringer)
+        2018-02-06 [TASK] Migrate SimplePrevNext (Commit 1f8ee59e by Georg Ringer)
+        2018-02-06 [TASK] Migrate TagEndPoint (Commit 37d98d99 by Georg Ringer)
+        2018-02-06 [TASK] Remove unsupported code (Commit 7443ac03 by Georg Ringer)
+        2018-02-06 [TASK] Migrate CategoryRepository to doctrine DBAL (Commit 6a5cc346 by Georg Ringer)
+        2018-02-06 [TASK] Remove deprecated flexform configs (Commit e8706144 by Georg Ringer)
+        2018-02-06 [TASK] Remove checks for older versions in AbstractDemandRepository (Commit 794a6bc2 by Georg Ringer)
+        2018-02-06 [TASK] Migrate to doctrine DBAL of first classes (Commit 18aa77fa by Georg Ringer)
+        2018-02-06 [TASK] Restrict to version 8+ (Commit 6adeeb57 by Georg Ringer)
+        2018-02-06 [DOC] Add administration section (Commit ad094a3d by Georg Ringer)
+        2018-02-06 [BUGFIX] Fix PHP error (Commit 54dff25e by Georg Ringer)
+        2018-02-06 [FEATURE] Merged constructor for proxy classes (#368) (Commit f877ddb8 by Marc Bastian Heinrichs)
+        2018-02-06 [BUGFIX] Fix calculation of numberOfPages (Commit 6fcfcdfb by Georg Ringer)
+        2018-02-06 [BUGFIX] Explicit override settings with stdWrap enabled (#361) (Commit 5d7a02a3 by Christian Futterlieb)
+
+
+This list has been created by using `git log 6.3.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

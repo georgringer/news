@@ -1,0 +1,25 @@
+.. include:: /Includes.rst.txt
+
+4.2.1 - 2016/03/11
+==================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+
+Regression release
+------------------
+
+This release contains a bugfix for the administration module
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2016-03-09 [TASK] Remove usage of n:format.hsc (Commit b326cb5 by Georg Ringer)
+        2016-03-04 [BUGFIX] Fix property mapping error in admin module (Commit 6c1de6d by Georg Ringer)
+

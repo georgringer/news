@@ -1,0 +1,34 @@
+.. include:: /Includes.rst.txt
+
+7.0.7 - 2018/24/10
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2018-10-22 [TASK] Skip another test for 9 (Commit 569120ad by Georg Ringer)
+    2018-10-22 [TASK] Fix errors in tests (Commit 8032b877 by Georg Ringer)
+    2018-10-22 [TASK] Skip tests for 9 and Extbase command controllers (Commit 95a4b687 by Georg Ringer)
+    2018-10-22 [TASK] Adapt ViewHelper example code (#765) (Commit 886aefe8 by jokumer)
+    2018-10-15 [BUGFIX] Allow hiding the page tree in 9 LTS (Commit f94a5e4a by Seb Red)
+    2018-10-15 [BUGFIX] Improve end date in search in FE (Commit 51aa4b14 by Georg Ringer)
+    2018-10-15 [FOLLOWUP] Render related links as link in TYPO3 9.5 (#764) (Commit f1f6934a by echavaillaz)
+    2018-10-12 Fix url in redirectToPageOnStart() (#757) (Commit ed5dbe61 by Seb Red)
+    2018-10-12  Render related links as link in TYPO3 9.5 (#761) (Commit be8702ce by jokumer)
+    2018-10-12  Render related links as link in TYPO3 9.5 (#762) (Commit 79ec29b8 by jokumer)
+    2018-10-12 Changed confirmMsg to confirmMsgText in AdministrationController. (#713) (Commit 90a2cd8e by René Schulze)
+    2018-10-10 [BUGFIX] Fix token generation for administration module (Commit 7db8c6e4 by Georg Ringer)
+    2018-10-10 [TASK] Cleanup TCA (Commit 7a174236 by Georg Ringer)
+    2018-10-10 [!!!][TASK] Use uniqueInSite for path_segment (Commit 74551101 by Georg Ringer)
+    2018-10-09 [BUGFIX] Fix eval of archive (Commit 6873c7da by Georg Ringer)
+    2018-10-09 [BUGFIX] Remove duplicated enclosure tag (#752) (Commit 7a9038e2 by Daniel Huf)
+
+This list has been created by using `git log 7.0.6..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

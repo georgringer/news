@@ -1,0 +1,60 @@
+.. include:: /Includes.rst.txt
+
+8.1.0 - 28th April 2020
+=======================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+
+The following changes might be important for your installation.
+
+Adopt minimum requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+If still using TYPO3 9.5, the minimum TYPO3 version is now **9.5.16**.
+
+The reason is the class `\TYPO3\CMS\Core\Information\Typo3Information` which is available since this version.
+
+
+Custom ChunkViewHelper
+^^^^^^^^^^^^^^^^^^^^^^
+
+The ViewHelper `Iterator\Chunk` has been copied from EXT:vhs to EXT:news to be independent from other extensions.
+
+It allows rendering news items in columns.
+
+.. code-block:: html
+
+   <f:for each="{news -> n:iterator.chunk(count: 3)}" as="col" iteration="cycle">
+      <div class="row">
+         <f:for each="{col}" as="newsItem">
+            <div class="col-md-4">
+               <f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}"/>
+            </div>
+         </f:for>
+      </div>
+   </f:for>
+
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2020-04-28 [TASK] Mention VH remove in docs (Commit 1b70f3de by Georg Ringer)
+   2020-04-28 [TASK] Allow more versions of rx_shariff in ext_emconf (Commit 62d0cbaa by Georg Ringer)
+   2020-04-28 [TASK] Allow more versions of rx-shariff (Commit b388b026 by Georg Ringer)
+   2020-04-28 [TASK] Use Typo3Version (#1239) (Commit b8b8c511 by Georg Ringer)
+   2020-04-28 [TASK] Add test for ChunkViewHelper (Commit 6ba0aec3 by Georg Ringer)
+   2020-04-28 [FEATURE] Add VH iterator:chunk (Commit c58b81e4 by Georg Ringer)
+   2020-04-28 [BUGFIX] Fix redirect to TSconfig configured storage page (#1233) (Commit e8b30d74 by Markus Klein)
+
+
+This list has been created by using `git log 8.0.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

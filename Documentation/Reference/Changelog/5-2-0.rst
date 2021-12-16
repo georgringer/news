@@ -1,0 +1,72 @@
+.. include:: /Includes.rst.txt
+
+5.2.0 - 2016/09/23
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Thanks to
+---------
+Open-Source is all about community and support! I want to thank everyone who contributed reports on forge, feedback on any channel and code!
+
+Especially I want to thank my employer **Sup7even Digital**. Check out our website http://www.sup7even.digital/!
+
+Switch to GitHub
+----------------
+GitHub is now used as platform for this extension. The repository has moved to `https://github.com/georgringer/news`. The following things are changing:
+
+**Clone**
+
+Please use now `git@github.com:georgringer/news.git` or `https://github.com/georgringer/news.git` to clone the repository.
+
+The repository `github.com/TYPO3-extensions/news` has been removed!
+
+**Issues**
+
+Please create issues at https://github.com/georgringer/news/issues, as the forge project will not be used anymore in the future.
+
+Features
+--------
+
+PreHydrate signal for the import
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A new signal slot has been added which can be used to manipulate the import data before it is actually used.
+
+Hide the page tree for the admin module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A new option in the Extension Manager can be used to hide the page tree for the administration module.
+In combination with the TsConfig setting `tx_news.redirectToPageOnStart = 123` this can be used to build a very simple editor interface.
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2016-09-23 [DOC] Fix more nitpicks (Commit 01f6183 by Georg Ringer)
+        2016-09-23 [DOC] Fix warnings in documentation (Commit 8d374de by Georg Ringer)
+        2016-09-22 [FEATURE] Make it possible to hide the page tree for the admin module (Commit 402b727 by Georg Ringer)
+        2016-09-22 [DOC] Improve documentation (Commit e045e9f by Georg Ringer)
+        2016-09-22 [DOC] Add example for signal slot (Commit 84d8cab by Georg Ringer)
+        2016-09-22 [TASK] Update php-cs-fixer (Commit a4ab31f by Georg Ringer)
+        2016-09-22 [TASK] Update readme.md (Commit 93a8d4d by Georg Ringer)
+        2016-09-22 [DOC] Improve CONTRIBUTING.md (Commit 03be588 by Georg Ringer)
+        2016-09-22 [DOC] Update documentation (Commit 965e050 by Georg Ringer)
+        2016-09-21 [FEATURE] Provide a preHydrate signal for the import (Commit 1205d21 by Georg Ringer)
+        2016-09-21 Merge branch 'master' of github.com:georgringer/news (Commit b7d70f2 by Georg Ringer)
+        2016-09-21 [BUGFIX] Fix duplicate hook key (Commit 915f63f by Georg Ringer)
+        2016-09-21 [BUGFIX] Allow page translations on news storages (#103) (Commit 5efe08b by Markus Klein)
+        2016-09-18 [TASK] Hide current news from search for related news (Commit ee64a60 by Georg Ringer)
+        2016-09-16 [TASK] Hide the online part from related files (Commit 26c9c68 by Georg Ringer)
+        2016-09-15 [BUGFIX] Importer broken (Commit d125f62 by Gerald Aistleitner)
+        2016-09-15 [TASK] Improve rendering of tx_news_domain_model_news (Commit 5650585 by Georg Ringer)
+        2016-09-14 [TASK] Cleanup TCA (Commit a11d91f by Georg Ringer)
+        2016-09-13 [BUGFIX] Add missing quotes (Commit 6b460e4 by Georg Ringer)
+        2016-09-13 [TASK] Add missing css in admin module (Commit dc690be by Georg Ringer)
+
+This list has been created by using ``git log --since="2016/09/03" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

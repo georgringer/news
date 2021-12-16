@@ -1,0 +1,19 @@
+.. include:: /Includes.rst.txt
+
+7.3.1 - 2019/29/08
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2019-08-29 [TASK] Add translations (Commit f2727976 by Georg Ringer)
+   2019-08-29 [BUGFIX] Fix XCLASS for XliffParser in 8 (Commit 8e995ac9 by Georg Ringer)
+
+This list has been created by using `git log 7.3.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

@@ -1,0 +1,278 @@
+.. include:: /Includes.rst.txt
+
+6.0.0 - 2017/21/03
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+Finally 6.0.0 has been released which supports both current LTS versions, 7.6 LTS and 8 LTS.
+
+
+Important changes
+-----------------
+
+The following changes might be important for your installation.
+
+Version dependency 7.6.13+ or 8.5+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To improve the performance and code quality, at least TYPO3 `7.6.13` or `8.5.` are required.
+
+Deprecate ViewHelpers for Facebook, Google+, Twitter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following ViewHelpers have been deprecated:
+
+- `<n:social.facebook.like />`
+- `<n:social.facebook.comment />`
+- `<n:social.googlePlus />`
+- `<n:social.twitter />`
+
+The ViewHelpers will be removed with the version 7.0.0.
+
+Install & configure the extension `rx_shariff` which takes care of the privacy of your users!
+
+Renaming of partials
+^^^^^^^^^^^^^^^^^^^^
+The following partials have been renamed
+
+- `Detail/FalMediaContainer` to `Detail/MediaContainer`
+- `Detail/FalMediaImage` to `Detail/MediaImage`
+- `Detail/FalMediaVideo` to `Detail/MediaVideo`
+
+
+Error message if news not found
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+While rendering a **detail view** and a news record is not found anymore (e.g. because it has been deleted or set to hidden) an error message is now shown instead of an exception.
+This has been achived by setting the following default TypoScript:
+
+.. code-block:: typoscript
+
+        plugin.tx_news.settings.detail {
+                errorHandling = showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
+        }
+
+To achieve the previous behaviour, use
+
+.. code-block:: typoscript
+
+        plugin.tx_news.settings.detail {
+                errorHandling = pageNotFoundHandler
+        }
+
+Check width & height set in Flexform
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. Hint::
+
+        This change is only relevant to you if you are using the default templates for the **List** view.
+
+Width and height of images can be set in the plugin. Previously those values have not been used in the templates but they are used now.
+
+.. code-block:: html
+
+        <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+
+Improved Administration module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The administration module recived again some more love!
+
+The link in the administration module to toggle the filter form has been moved to the toolbar.
+
+|img-admin-module-filter|
+
+Furthermore the template has been improved to work on smaller screens.
+
+Disable override demand default on
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The checkbox `Disable override demand` in the plugin is now by default enabled.
+
+Features
+--------
+List of all features.
+
+
+Provide filter by type
+^^^^^^^^^^^^^^^^^^^^^^
+The `NewsDemand` class got a new property `types` which can be used to filter the returned news records by its type.
+
+Ajax Pagination
+^^^^^^^^^^^^^^^
+The templates and documentation has been enhanced to make it easy to use AJAX for the pagination.
+Thanks to Helmut Hummel who provides the awesome extension `typoscript_rendering` which is used for it.
+
+Add enclosure tag to deliver images in the stream
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The `List.xml` template which is used for RSS feeds is enhanced with the enclosure tag which provides the url to the first preview image.
+
+Add ViewHelper to display media files inline
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using images in the RTE is often loved by editors and disliked by integrators and developers. With this version, a mixture is available which can satisfy all users.
+
+By using the `RenderMediaViewHelper` in the templates, an editor can now place the keyword `[media]` in the RTE which are replaced by media elements saved in the FAL relation.
+
+Benefits:
+
+- An editor can place images and media elements where he wants
+- The relation is safed in a safe manner
+- The media elements can later be still modified
+
+.. note::
+
+   As the ViewHelper and its usage is new, feedback is highly welcomed!
+
+Improved content element relations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To improve the usability of content elements added to a news item, the preview in the backend is enhanced by rendering the content elements as in the page module.
+
+|img-content-element-relation|
+
+Support for EXT:guide
+^^^^^^^^^^^^^^^^^^^^^
+The extension guide shows guides to editors and makes it easy to explain features. A guide for the administration module has been added
+
+|img-admin-module-guide|
+
+Improved Import module
+^^^^^^^^^^^^^^^^^^^^^^
+The import module has been rewritten:
+
+- Use requireJS
+- Use jQuery instead of ExtJS
+- Use bootstrap for the forms
+- Use a callout for the backup info
+
+Simplify getters for FAL fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Add easier names for the getters of fields to FAL. As the non-FAL fields have been removed, the simplified getters
+have been reactivated to fetch the FAL fields. This makes the templates far easier to read.
+
+- `newsItem.falMedia` => `newsItem.media`
+- `newsItem.falMediaPreviews` => `newsItem.mediaPreviews`
+- `newsItem.falMediaNonPreviews` => `newsIten.mediaNonPreviews`
+- `newsItem.firstFalImagePreview` => `newsItem.firstPreview`
+- `newsItem.falRelatedFiles` => `newsItem.relatedFiles`
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+      2017-04-21 [TASK] Prepare 6.0.0 release (Commit 637ccf6 by Georg Ringer)
+      2017-04-12 Apply fixes from StyleCI (#300) (Commit aa34868 by Georg Ringer)
+      2017-04-12 Use nimut/testing-framework (#296) (Commit 1327f25 by Nicole Cordes)
+      2017-04-12 [BUGFIX] Use correct class in PageLayoutViewTest (Commit ae1c37a by Georg Ringer)
+      2017-04-10 [BUGFIX] Remove wrong char (Commit f8d05b0 by Georg Ringer)
+      2017-04-10 [BUGFIX] Add caseinsensitive security check for overwriteDemandObject (Commit ee7b252 by Georg Ringer)
+      2017-04-06 Apply fixes from StyleCI (#291) (Commit 6ce56b7 by Georg Ringer)
+      2017-04-06 [BUGFIX] Use correct TCA for fal_media overrideChildTca (Commit 3cebb32 by Georg Ringer)
+      2017-04-05 Added missing namespace (#286) (Commit ff576cd by cvisys)
+      2017-04-05 Added missing namepace (#285) (Commit 41351ec by cvisys)
+      2017-03-25 [DOC] Improve  docs for ical #278 (Commit 3ca73b7 by buxit)
+      2017-03-25 [BUGFIX] Outcomment _LOCAL_LANG example (Commit e6c4e85 by Georg Ringer)
+      2017-03-13 constant settings are in plugin.tx_news (#279) (Commit 5dff3d1 by buxit)
+      2017-03-10 [TASK] adapt db field type for inline relation (#275) (Commit 4ff7a23 by jokumer)
+      2017-03-09 [FEATURE] Provide page id in paginationController (Commit 698de39 by Georg Ringer)
+      2017-03-08 [TASK] Cleanup controllers (Commit dab8e36 by Georg Ringer)
+      2017-03-07 [TASK] Check $tags for being a string (Commit 3a48f62 by Georg Ringer)
+      2017-03-06 [DOC] Fix example for rss.channel.language (#276) (Commit 0aba9e0 by Michael Stucki)
+      2017-03-01 [DOC] Improve example of ExtendFlexForms (Commit 78dc976 by Georg Ringer)
+      2017-02-25 [BUGFIX] Remove CompilableInterface (#266) (Commit 886ec1b by Frank Nägler)
+      2017-02-24 [BUGFIX] Fixed lost categories when enabling/disabling a news from list module using a non-admin BE user (#265) (Commit befa197 by Julien Henchoz)
+      2017-02-23 Use .svg instead of .gif in iconfile (#264) (Commit 2f36110 by Christian Kuhn)
+      2017-02-21 [BUGFIX] Show create new tag at first position in results (#263) (Commit e3eb106 by Markus Klein)
+      2017-02-17 [BUGFIX] Fix tests for 8.6 (#259) (Commit 42b21e6 by Georg Ringer)
+      2017-02-17 [BUGFIX] Use ContextMenu instead of ClickMenu in admin module (Commit f98593d by Georg Ringer)
+      2017-02-14 [FEATURE] Support tx_news.tagPid in list wizard (Commit 1c46072 by Georg Ringer)
+      2017-02-14 [DOC] Remove unused realurl configuration option from docs (#258) (Commit 5dced06 by Markus Klein)
+      2017-02-13 [BUGFIX] Use proper label for refresh button in Administration module (Commit d0697ad by Georg Ringer)
+      2017-02-12 [TASK] Remove old table definition in ext_tables.sql (Commit 621a5f7 by Georg Ringer)
+      2017-02-10 [BUGFIX] Copying news with MySQL strict mode fails (#253) (Commit f82ab6a by Oliver Hader)
+      2017-02-10 [TASK] Allow risky fixers for php-cs-fixer 2.0.1 (#255) (Commit e5e3d60 by Jan Kiesewetter)
+      2017-02-09 [TASK] Disable override demand default on (Commit 6cbc667 by Georg Ringer)
+      2017-02-07 [TASK] Running PHP Coding Standards Fixer checks on Travis (#245) (Commit 7260be2 by Jan Kiesewetter)
+      2017-02-06 [FEATURE] Add gitlab-ci configuration (#244) (Commit 2660dc8 by Jan Kiesewetter)
+      2017-01-31 [FEATURE] Make plugin overview nice on small columns (Commit 5f75a6a by Georg Ringer)
+      2017-01-26 Merge branch 'master' of github.com:georgringer/news (Commit 763f25e by Georg Ringer)
+      2017-01-26 [BUGFIX] Remove max config from start/endtime fields (Commit 294c825 by Georg Ringer)
+      2017-01-26 [TASK] Remove symlink to eventnews template (#235) (Commit cdf9b15 by Jan Kiesewetter)
+      2017-01-26 [TASK] Update php-cs-fixer to version 2.0 (#236) (Commit 877184a by Jan Kiesewetter)
+      2017-01-25 [BUGIFX] Remove upper limit in admin module (Commit c43e86e by Georg Ringer)
+      2017-01-24 [TASK] Show template layouts in pagelayout for any action (Commit ffd90f5 by Georg Ringer)
+      2017-01-24 [TASK] Reapply fixer (Commit 17ea463 by Georg Ringer)
+      2017-01-24 [FEATURE] Add filter for achive to admin module (Commit dae4b89 by Georg Ringer)
+      2017-01-24 [FEATURE] Add filter for hidden in admin module (Commit 65dbcfd by Georg Ringer)
+      2017-01-23 [TASK] Fix typo in docheader of CommentVH (Commit f827019 by Georg Ringer)
+      2017-01-22 [TASK] Avoid usage of deprecated Core method (Commit 299473e by Georg Ringer)
+      2017-01-22 Update Index.rst (#217) (Commit 2870aa3 by Tim Maurice Bayer)
+      2017-01-22 [TASK] Improve user_categoryOverlay (Commit 7dec113 by Georg Ringer)
+      2017-01-21 [FEATURE] Add description field (Commit 507a159 by Georg Ringer)
+      2017-01-21 [TASK] Rename FAL partials (Commit 6fbbaf5 by Georg Ringer)
+      2017-01-21 [DOC] Add release notes for 5.3.2 (Commit 976002e by Georg Ringer)
+      2017-01-21 Apply fixes from StyleCI (#224) (Commit c600292 by Georg Ringer)
+      2017-01-21 [BUGFIX] Use proper button group in admin module (Commit ba55574 by Georg Ringer)
+      2017-01-19 [BUGFIX] add check before category restriction is added to flexforms (#220) (Commit 3cd0144 by Johannes)
+      2017-01-19 [BUGFIX] Check for non-empty tag or category lists (#221) (Commit 0a033f4 by Markus Klein)
+      2017-01-19 [TASK] Simplify getters for FAL fields (Commit 623fce9 by Georg Ringer)
+      2017-01-14 [TASK] Make ViewHelpers compilable, part 2 (#213) (Commit ab41ad2 by Claus Due)
+      2017-01-12 [TASK] Add clear icon to fields in admin module (Commit c5e3b59 by Georg Ringer)
+      2017-01-11 [TASK] Replace deprecated method in NewsImportService (Commit 7bb87d6 by Georg Ringer)
+      2017-01-11 [BUGFIX] Fix PaginateBodytextViewHelper (#212) (Commit aeac0e8 by droomdre)
+      2017-01-10 [DOC] Add new features to changelog (Commit 0ba1a09 by Georg Ringer)
+      2017-01-10 [FEATURE] Rewrite import module (Commit 8378944 by Georg Ringer)
+      2017-01-10 Apply fixes from StyleCI (#210) (Commit 2ce49e2 by Georg Ringer)
+      2017-01-10 [TASK] Add refresh button to Administration module (Commit e151596 by Georg Ringer)
+      2017-01-10 [BUGFIX] Show filter button only if in proper action (Commit be546a0 by Georg Ringer)
+      2017-01-10 Merge branch 'master' of github.com:georgringer/news (Commit 7aa1705 by Georg Ringer)
+      2017-01-10 [TASK] Use requireJS module for Administration module (Commit 29ecddd by Georg Ringer)
+      2017-01-08 [TASK] Improve TCA code (Commit a18ecd6 by Georg Ringer)
+      2017-01-07 [TASK] Increase category tree in flexform (Commit ab45cc6 by Georg Ringer)
+      2017-01-07 Merge branch 'master' of github.com:georgringer/news (Commit 2958850 by Georg Ringer)
+      2017-01-07 [!!!][TASK] Restrict version dependencies (Commit fd9ae2d by Georg Ringer)
+      2017-01-04 [DOCU] Change Vendor in code example (#203) (Commit 2c1c99b by Stefan Frömken)
+      2017-01-04 [BUGFIX] Exclude gridelements from advanced inline preview (Commit 9ac8056 by Georg Ringer)
+      2017-01-04 [FEATURE] Provide tour for EXT:guide (Commit 97adb88 by Georg Ringer)
+      2017-01-03 [DOC] Improve Readme in root dir (Commit 295ee40 by Georg Ringer)
+      2017-01-03 [TASK] Add StyleCI to Readme.md (Commit 1774b52 by Georg Ringer)
+      2017-01-03 [TASK] Add style ci configuration (Commit b515bb6 by Georg Ringer)
+      2017-01-03 Apply fixes from StyleCI (#201) (Commit 726ad6b by Georg Ringer)
+      2017-01-03 Merge branch 'master' of github.com:georgringer/news (Commit fcfceb5 by Georg Ringer)
+      2017-01-03 [TASK] Optimize administration module (Commit 69a0d83 by Georg Ringer)
+      2017-01-02 [TASK] Make ViewHelpers static callable (#119) (Commit 8157447 by Claus Due)
+      2017-01-02 [TASK] Improve category tree in administration module (Commit e43bf42 by Georg Ringer)
+      2017-01-02 [TASK] Use a datepicker in the administration module (Commit f7a72f1 by Georg Ringer)
+      2017-01-02 [DOC] Mention OpenHub in manual (Commit b9c4772 by Georg Ringer)
+      2017-01-02 [!!!][TASK] Raise version constraints for the Core (Commit bc6aa06 by Georg Ringer)
+      2017-01-02 [DOC] Update documentation (Commit 870d075 by Georg Ringer)
+      2017-01-02 [TASK] Deprecate ViewHelpers for Facebook, Google+, Twitter (Commit c986b92 by Georg Ringer)
+      2017-01-02 [TASK] Use mediaTag VH also in TWB templates (Commit 89a880c by Georg Ringer)
+      2016-12-31 [DOC] Add documentation for upcoming release (Commit b569351 by Georg Ringer)
+      2016-12-30 [TASK] Move toggle link in admin module to toolbar (Commit d7ace3f by Georg Ringer)
+      2016-12-30 [FEATURE] Provide filter by type (Commit bed8a25 by Georg Ringer)
+      2016-12-29 [FEATURE] Document the AJAX pagination (Commit 572fee8 by Georg Ringer)
+      2016-12-29 [FEATURE] First steps for an ajax based pagination (Commit 87a63c1 by Georg Ringer)
+      2016-12-29 [BUGFIX] Support for compatibility6 usage (Commit 4a1defb by Georg Ringer)
+      2016-12-29 [TASK] Adopt license (Commit 2a012d8 by Georg Ringer)
+      2016-12-29 [TASK] Code cleanup (Commit 5a2590d by Georg Ringer)
+      2016-12-29 [FEATURE] Improved content element relations (Commit 8b09b73 by Georg Ringer)
+      2016-12-29 [TASK][FOLLOWUP] Return null for handleNoNewsFoundError (Commit 18fee2d by Georg Ringer)
+      2016-12-28 [!!!][TASK] Check width & height set in Flexform (Commit 1493d0b by Georg Ringer)
+      2016-12-22 [FEATURE] Error msg if news not found (Commit 80d678d by Georg Ringer)
+      2016-12-22 [DOC] Add sponsors to release (Commit b262ffb by Georg Ringer)
+      2016-12-21 [DOC] Add lightbox config of fcs as well (Commit 970ebb3 by Georg Ringer)
+      2016-12-21 [TASK] Remove undefined from tag search (Commit fe5f4aa by Georg Ringer)
+      2016-12-21 [FEATURE] add ViewHelper to display media files inline (#167) (Commit fa8340c by Johannes)
+      2016-12-21 [BUGFIX] Render dummy image if no FAL preview media and feature is enabled (#173) (Commit 0b297a3 by Jan Kiesewetter)
+      2016-12-21 [DOC] Document showContentElementsInNewsSysFolder (Commit fb3ac3d by Georg Ringer)
+      2016-12-21 Update .travis.yml (#191) (Commit 58a1963 by Georg Ringer)
+      2016-12-15 Merge branch 'master' of github.com:georgringer/news (Commit 6eb3220 by Georg Ringer)
+      2016-12-15 [BUGFIX] Use correct label in PageLayoutView (Commit 144fc46 by Georg Ringer)
+      2016-12-15 removes odd brace (#188) (Commit a0fde56 by Sascha Marcel Schmidt)
+      2016-12-14 [BUGFIX] Remove max config from date fields (Commit d1f893a by Georg Ringer)
+      2016-12-14 [FEATURE] Add enclosure tag to deliver images in the stream (#185) (Commit c631ffb by Kay Strobach)
+      2016-12-06 [TASK] Move call to registerPageTSConfigFile to TCA/Overrides (Commit a431f39 by Georg Ringer)
+
+
+This list has been created by using `git log --since="2016/11/27" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

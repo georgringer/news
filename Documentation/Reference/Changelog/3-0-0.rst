@@ -1,0 +1,231 @@
+.. include:: /Includes.rst.txt
+
+
+
+3.0.0 - 2014/05/16
+------------------
+
+This is a major release supporting TYPO3 CMS 6.2 LTS. This is also the required version!
+
+Read and follow the section *Upgrade procedure* carefully!
+
+
+Upgrade procedure
+=================
+
+*As a lot of code changed, please backup your site before starting!*
+
+**Support of FAL**
+
+The images are **not** migrated and can be still used. To do so, set the configuration "Use FAL relations instead of news media elements" in the Extension Manager > news to "Both" or "No" instead of "Yes".
+
+The old way is however deprecated and will be removed in one of the next major versions.
+
+**Support of sys categories**
+
+The categories can be migrated by using the update wizard in the extension manager.
+
+**Templates & TypoScript**
+
+* Templates, Partials & Layouts are now assigned by using templateRootPaths, partialRootPaths and layoutRootPaths which is a new feature of 6.2. Read more about it in the section "Templating".
+* If you enable FAL, you need to adopt your old templates as well!
+* If you experience any problems with your templates, please check out the default templates first to get an idea how it should look now.
+* Remove all DAM related stuff (e.g. calls to ViewHelpers) from the template.
+
+
+Important changes
+=================
+
+A lot of code changed in this version. Therefore it is very likely that the update is not done in 1 minute.
+The most important changes are:
+
+Support of FAL
+^^^^^^^^^^^^^^
+
+FAL is used for the following fields:
+
+* Media
+* Related files
+* Category images
+
+Support of sys categories
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The categories of the Core (sys_category) are now used instead of custom ones.
+The records are extended with those fields which are needed by "news".
+
+Misc
+^^^^
+
+Changes which should be mentioned are:
+
+* Default TypoScript uses syntax templateRootPaths, partialRootPaths, layoutRootPaths to allow chaining of the templates
+* Support of 'Insert Record' element
+* Add more snippets to the documentation
+* Improve Administration module
+* Use Scrutinizer to document the code quality, see http://scrutinizer-ci.com/g/TYPO3-extensions/news/
+* If you want to migrate from EXT:tt_news, install EXT:news_ttnewsimport
+* Search in administration module & frontend makes use of the time restriction
+* The importer for tt_news has been removed to a separate extension with the key "**news_ttnewsimport**" which can be found in the TER or on github (https://github.com/fsaris/news_ttnewsimport).
+* DAM support has been completely removed
+
+
+All Changes
+===========
+
+::
+
+   2014-05-16 [TASK] Make it again dependend on 6.2.2 (Commit e0c5cf1)
+   2014-05-16 [DOC] Add snippet how to skip controller & action (Commit 836b4e1)
+   2014-05-16 [TASK] Followup unit test (Commit 99ab45d)
+   2014-05-16 [TASK] UnitTest for LinkViewHelper (Commit a7df6a0)
+   2014-05-16 [TASK] Correct overloading of settings in link generation (Commit f4f272c)
+   2014-05-15 [BUGFIX] update categories in flexforms (Commit 344337f)
+   2014-05-15 [BUGFIX] Fixed broken tests (Commit 46a896b)
+   2014-05-14 [BUGFIX] TemplateLayout not shown in content element preview (Commit 6a2c448)
+   2014-05-15 [TASK] Make fields alternativTitle & pathSegment exluded=1 (Commit 1842967)
+   2014-05-07 [FEATURE] Add Vimeo support (Commit 1b5cbac)
+   2014-05-14 [BUGFIX] Sprite icon not shown (Commit b42df44)
+   2014-05-14 [TASK] Set clearCacheOnLoad = 1 to ext_emconf.php (Commit ca4b76a)
+   2014-05-13 [TASK] Depend on TYPO3 CMS 6.2.3 to avoid security issues (Commit bd9f702)
+   2014-05-12 [BUFGIX] Support FAL images in category importer (Commit 25ec7ae)
+   2014-05-08 [CLEANUP] Make proper use of TCA for FAL persistence (Commit e60eaf1)
+   2014-05-09 [BUGFIX] Wrong default pageModuleFieldsNews value for categories (Commit 4628fa2)
+   2014-05-08 [BUGFIX] Fixed wrong use of global vars in ext_tables.php (Commit 336502a)
+   2014-05-07 [BUGFIX] Remove itemsProcFunc user_MediaType reference (Commit 3a08c97)
+   2014-05-08 [BUGFIX] Settingsservice must not be a singleton (Commit 6e3f008)
+   2014-05-08 [FEATURE] Timerestriction high for administration module (Commit bb986c9)
+   2014-05-08 [BUGFIX] Generate moduleToken for administration module (Commit f141f33)
+   2014-05-02 [TASK] Clear CF by tx_news tag as well (Commit b874a6a)
+   2014-05-02 [BUGFIX] Improve SocialDisqusVH Test (Commit 9060a16)
+   2014-05-02 [BUGFIX] Adopt TS for Insert Record (Commit 05af827)
+   2014-04-30 [FEATURE] Add tstamp/crdate to importer (Commit 5a85c18)
+   2014-04-24 [TASK] Cleanup unneeded database columns (Commit 259ea08)
+   2014-04-23 [CLEANUP] Tags are not translatable so remove l10n_mode (Commit f572353)
+   2014-04-18 [BUGFIX] Properly name hook class (Commit 1cff762)
+   2014-04-17 [CLEANUP] Cleanup caching configuration and usage (Commit 22d519a)
+   2014-04-17 [CLEANUP] Remove Database table definitions for cache (Commit 6f51eab)
+   2014-04-17 [TASK] Optimize TCA additions and ext_tables.php (Commit 4c90de4)
+   2014-04-17 [FEATURE] Make timerestriction field configurable (Commit 841f2bb)
+   2014-04-17 [BUGFIX] Add ws fields to tag table (Commit 6151939)
+   2014-04-16 [BUGFIX] Get rid of deprecation messages for wizards (Commit 6eb1ba1)
+   2014-04-16 [BUGFIX] Remove deprecation messages regarding cache manager (Commit 550f082)
+   2014-04-16 [BUGFIX] Invalid RSS language definition (Commit 57284b2)
+   2014-04-11 [BUGFIX] Change l10n_mode for type,external/internal url (Commit ce5756a)
+   2014-04-11 [DOC] Document drawbacks of Extbase & languages (Commit 856f5d0)
+   2014-04-11 [BUGFIX] Check existance of media elemens in importer (Commit ce6c539)
+   2014-04-10 [TASK] Use templateRootPaths, partialRootPaths and layoutRootPaths (Commit f1aa87b)
+   2014-04-08 [BUGFIX] TreeDataProvider::isCategoryAllowed() wrong check (Commit 3a93fe7)
+   2014-04-05 [BUGFIX] Missing property mapping for CType (Commit cbc47a3)
+   2014-04-05 [BUGFIX] Unknown function: Tx_News_Utility_Page line 51, getTreeList (Commit dcbd2c0)
+   2014-04-02 [TASK] Test for TagController (Commit dcc65f1)
+   2014-04-01 [TASK] More tests (Commit 31f5847)
+   2014-04-01 [TASK] Improve page module layout (Commit 0aabf11)
+   2014-04-01 [TASK] Do funcational tests in a correct way (Commit cc7710b)
+   2014-04-01 [BUGFIX] First category image (Commit 9e2fc70)
+   2014-04-01 [TASK] More unit tests (Commit f52cd2b)
+   2014-04-01 [TASK] UnitTest (Commit 1095df3)
+   2014-04-01 [TASK] Followup (Commit 5279070)
+   2014-04-01 [FEATURE] Add min/max date for search (Commit 315519a)
+   2014-03-11 [FEATURE] Add check in detail action if news belongs to right page (Commit 8064c98)
+   2014-04-01 [TASK] Documentation improvements (Commit ab6ed85)
+   2014-03-31 [TASK] Improve code quality (Commit a766b8a)
+   2014-03-31 [TASK] Followup (Commit 877d132)
+   2014-03-31 [TASK] Improve code quality (Commit 7764714)
+   2014-03-31 [TASK] Followup (Commit 95ccea5)
+   2014-03-31 [TASK] Improve code (Commit ec301b9)
+   2014-03-31 [TASK] Use namespaced classes (Commit 0e25835)
+   2014-03-31 [TASK] Remove tt_news importer, handled in news_ttnewsimport (Commit ce24c66)
+   2014-03-31 [TASK] Remove DAM relations (Commit 6e8e5da)
+   2014-03-31 [TASK] Improve code quality (Commit 2367c0b)
+   2014-03-31 [TASK] Improve code quality (Commit 2120c6d)
+   2014-03-31 [DOC] Improve Documentation for 3.0 release (Commit 359072a)
+   2014-03-30 [TASK] Followup cleanup for sys_category usage (Commit efb6169)
+   2014-03-30 [TASK] Use travis only for master branch (Commit 3448383)
+   2014-03-07 [!!!][TASK] Use sys_category (Commit 7059c16)
+   2014-03-27 [TASK] Use namespaces classes (Commit be65a69)
+   2014-03-27 [TASK] Followup (Commit d02a11c)
+   2014-03-26 [TASK] Check empty limit in admin module (Commit c25164d)
+   2014-03-26 [DOC] Documentation about EM configs (Commit afcfb62)
+   2014-03-26 [TASK] Cleanup (Commit db48893)
+   2014-03-26 [TASK] Remove Tx_News_Utility_Compatibility (Commit 8cb73ba)
+   2014-03-07 [TASK] Move TCA to new format (Commit df04ae1)
+   2014-03-25 [BUGFIX] Typecast returnStatus to integer (Commit 0493340)
+   2014-03-24 [BUGFIX] Fix sql query creation for 6.2 (Commit 5689b68)
+   2014-03-24 [BUGFIX] Apply class attribute of ViewHelper correctly (Commit 5e22ec5)
+   2014-03-24 [BUGFIX] Use correct date in rss (Commit 0056768)
+   2014-03-21 [BUGFIX] Wrong fieldname in sys_file_reference (Commit 2250687)
+   2014-03-20 [TASK] Add fe group to importService (Commit bb4bd66)
+   2014-03-19 [Test] Followup (Commit 6395c98)
+   2014-03-19 [BUGFIX] Make excludeALreadyDisplayedNews work in multilanguage sites (Commit d1282c5)
+   2014-03-17 [TASK] Fix test base class v2 (Commit debd3be)
+   2014-01-29 [BUGFIX] Add initialOffset to calculation (Commit 0b5a6c1)
+   2014-03-17 [TASK] Fix test base class (Commit 3fcf88f)
+   2014-03-17 [FEATURE] Pagination for BE module (Commit c80aa21)
+   2014-03-11 [BUGFIX] Add cache tags only for news record in detail action (Commit 8d73bf7)
+   2014-03-11 [BUGFIX] Broken Import module because of CSRF protection (Commit 6e73f7c)
+   2014-03-11 [TASK] Adopt CF classes to namespaces (Commit 7ab1432)
+   2014-03-11 [TASK] Use namespaced classes in ext_local/tables.php (Commit c2aa6e8)
+   2014-03-07 [DOC] Remove old sxw doc (Commit 3332709)
+   2014-03-07 [FEATURE] Create tags in admin module (Commit 91b5a13)
+   2014-03-07 [TASK] Improve styling of BE module (Commit 4118e10)
+   2014-03-07 [BUGFIX] Change order of TS configuration (Commit 05ce750)
+   2014-03-07 [FEATURE] Add nonFalMediaPreviews (Commit 74dc090)
+   2014-03-07 [BUGFIX] Change tca for media table (Commit 88f5ffe)
+   2014-03-07 [TASK] Improve CmsLayout (Commit 41b758a)
+   2014-03-07 [FEATURE] Add tag filter option in flexforms (Commit 0ac59c8)
+   2014-03-07 [BUGFIX] Remove JS table_sort in BE (Commit be78d32)
+   2014-03-07 [DOC] Category rootline in FE (Commit d37ae27)
+   2014-03-04 [FEATURE] Add author to demand object (Commit 9082ef0)
+   2014-03-05 [BUGFIX] Fix wrong date in RSS feed (Commit 9a9267f)
+   2014-03-05 [TASK] Improve CGL nitpicks (Commit df16071)
+   2014-03-04 [TASK] Improve CGL (Commit cd71942)
+   2014-03-04 [TASK] Change scrutinizer img src (Commit 122c5b8)
+   2014-03-04 [TASK] Add scrutinizer config (Commit b29efa0)
+   2014-02-28 [TASK] Replace orderByRespectTopNews with topNewsFirst in TypoScript setup (Commit 3247eed)
+   2014-03-04 [TASK] Improve code quality (Commit 16d62e6)
+   2014-03-04 [TESTS] Add more tests (Commit a1b60dd)
+   2014-03-04 [TASK] Improve code quality (Commit d2d9944)
+   2014-02-28 [DOC] Update documentation because cObject RECORDS don't provides "if" directly (Commit 5c460b2)
+   2014-02-28 [DOC] Add additional configuration to RealURL advanced example to avoid action and controller in URL of detail view (Commit 01bfb39)
+   2014-02-28 [BUGFIX] Move persistence configuration form tx_news to tx_extbase (Commit 3406ea0)
+   2014-02-18 [TASK] Add scrutinizer image (Commit afa3900)
+   2014-02-12 [BUGFIX] Datemenu should use getDateField() (Commit f74f142)
+   2014-02-11 [TASK] CHange field for fal (Commit dbf88d2)
+   2014-02-11 [BUGFIX] Check for result in date menu to avoid PHP errors (Commit 9a5a37a)
+   2014-02-07 Revert "[TASK] Translation Hebrew" (Commit ca9900f)
+   2014-02-07 [TASK] Translation Hebrew (Commit f80b6ca)
+   2014-02-05 [TASK] Increase size of title + teaser field (Commit f36428d)
+   2014-02-03 [!!!][TASK] Improve metatag VH (Commit 1d14c5d)
+   2014-02-03 [BUGFIX] Catch Exception with files and umlauts in file (Commit 2bf1415)
+   2014-02-03 [TASK] Change CSS class typo3-dblist to t3-table (Commit 4e33cbf)
+   2014-02-03 [TASK] Raise requirement to 6.2 (Commit b399c8b)
+   2014-01-30 [TASK] Adopt og:description tag (Commit 8bfebcc)
+   2014-01-29 [TASK] Allow fullscreen in renderer videoSites (Commit 7bdf187)
+   2014-01-29 [FEATURE] Display order in Tag->list in Page module (Commit df0ce38)
+   2014-01-29 [BUGFIX] Fix wrong order field for Tag->list (Commit 0f0d9e2)
+   2014-01-29 [BUGFIX] Fix not found classes in 6.x during install (Commit ca6f681)
+   2014-01-28 [TASK] Change repo urls (Commit c4b3bf4)
+   2014-01-24 [TASK] Raise limit for relatedFiles, relatedLinks (Commit 376c691)
+   2014-01-24 [TASK] Add some basic tests for the FAL stuff (Commit bfc3486)
+   2014-01-20 [TASK] Adopt Administration template for 6.x (Commit 47f8b02)
+   2014-01-17 [BUGFIX] Change code to fix failing test (Commit b60b1ca)
+   2013-11-20 [FEATURE] Add FAL support (Commit a82f5ca)
+   2014-01-13 [FEATURE] VH to check if current item is active (Commit 32ba01e)
+   2014-01-13 [DOC] Document modulo feature (Commit e319e70)
+   2014-01-13 [FEATURE] Support of 'Insert Record' element (Commit 67443e7)
+   2014-01-10 [BUGFIX] PHP Warning: Invalid argument supplied for foreach() (Commit c71369d)
+   2014-01-10 [BUGFIX] Importer creates new translated records on every run (Commit f259a71)
+   2014-01-09 [TASK] Add iterator by default in List.html (Commit b023e31)
+   2014-01-07 [DOC] Improve width/height section (Commit ae96fb9)
+   2013-12-28 [DOC] Improved back link snippet (Commit d6f7a15)
+   2013-12-25 [TASK] Use correct property disqusLocale (Commit 81153b7)
+   2013-12-25 [TASK] Remove frameborder attribute if HTML5 (Commit 97ff647)
+   2013-12-25 [TASK] Improve CVL (Commit 84f3170)
+   2013-12-13 [TASK] Raise requirements (Commit 1ac0088)
+   2013-12-13 [BUGFIX] Workaround for travis git troubles (Commit bb9745e)
+
+
+This list has been created by using: ::
+
+   git log --since="2013/12/12" --abbrev-commit --pretty='%ad %s (Commit %h)' --date=short

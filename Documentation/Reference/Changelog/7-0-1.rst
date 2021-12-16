@@ -1,0 +1,21 @@
+.. include:: /Includes.rst.txt
+
+7.0.1 - 2018/27/04
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2018-04-27 [TASK] Bring back old fal getters (Commit 5f609c28 by Georg Ringer)
+        2018-04-27 [TASK] Use up to date realurl configuration (#655) (Commit 7f1a4c1e by Markus Klein)
+        2018-04-27 [TASK] Suggest newest version of rx_shariff (#656) (Commit 3287d3dd by Markus Klein)
+
+This list has been created by using `git log 7.0.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

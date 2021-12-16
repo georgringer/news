@@ -1,0 +1,30 @@
+.. include:: /Includes.rst.txt
+
+3.2.5 - 2016/03/01
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2016-03-01 [TASK] Release 3.2.5 (Commit c1450d1 by Georg Ringer)
+        2016-02-22 [BUGFIX] Unexpected count of 0 exception (Commit b15b67a by Georg Ringer)
+        2015-12-21 [BUGFIX] Preview of hidden news not working for translated news (Commit d424699 by Lorenz Ulrich)
+        2016-02-16 [BUGFIX] Readd icon for import (Commit f6ee325 by Georg Ringer)
+        2016-02-15 [BUGFIX] Fix double slash in meta tag VH (Commit 5214eac by Georg Ringer)
+        2016-01-30 [FEATURE] Add news sitemap generator using dd_googlesitemap (Commit cc5b0cb by Georg Ringer)
+        2016-01-27 [TASK] Exclude news lists from indexing (Commit 5e05f9d by Jan Kiesewetter)
+        2016-01-01 [BUGFIX] Fix category removal (Commit b699f86 by Georg Ringer)
+        2015-12-09 [BUGFIX] Respect more tags in newsrepository search (Commit 542d92a by Georg Ringer)
+        2015-11-27 [!!!][TASK] OverwriteDemand does not care about empty values anymore (Commit 1eca2e9 by Georg Ringer)
+
+
+This list has been created by using ``git log --since="2015/09/25" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

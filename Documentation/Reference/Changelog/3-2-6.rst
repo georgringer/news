@@ -1,0 +1,22 @@
+.. include:: /Includes.rst.txt
+
+3.2.6 - 2016/07/13
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+Bugfix release
+--------------
+
+This release is a bugfix release only.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2016-06-15 [BUGFIX] Use standard checkbox to avoid too long url

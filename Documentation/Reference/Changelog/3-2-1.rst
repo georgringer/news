@@ -1,0 +1,66 @@
+.. include:: /Includes.rst.txt
+
+3.2.1 - 2015/07/11
+==================
+
+This release is a bugfix release to support TYPO3 CMS 7.3.
+
+Please read this document carefully **before** upgrading.
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+Important changes
+-----------------
+The following changes might change the expected behaviour in your installation.
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+Drop fe_group field in sys_category
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Previously EXT:news added a field in the table of *sys_category* to add constraints to Frontenduser groups.
+However, this constraint was never evaluated in the frontend. Furthermore other extension authors might not respect this additional global constraint.
+
+Therefore this field is removed.
+
+Drop support of rte_enabled checkbox
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you are using TYPO3 CMS 7.3+, the checkbox "Disable RTE" is removed because the Core in general doesn't support this concept anymore.
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2015-07-11 [TASK] Raise limits for categories & tags (Commit 500068d by Georg Ringer)
+   2015-07-08 [TASK] Add sorting to import service (Commit b2575ac by Georg Ringer)
+   2015-07-06 [BUGFIX] Load ExtJS in Backend importer module (Commit e58841e by Ingo Pfennigstorf)
+   2015-07-06 [TASK] Add warning if category not found during import (Commit f29a086 by Georg Ringer)
+   2015-07-03 [TASK] Add more schema.org annotations (Commit a9ae199 by Markus Klein)
+   2015-07-03 [TASK] Improve PageLayoutView (Commit 241d18d by Georg Ringer)
+   2015-07-03 [BUGFIX] Use xhtml compatible itemscope (Commit 4763845 by Georg Ringer)
+   2015-07-03 [TASK] Support description column (Commit 3279d8a by Georg Ringer)
+   2015-07-03 [BUGFIX] Use correct call of modules (Commit 677bbc1 by Georg Ringer)
+   2015-07-03 [!!!][TASK] Drop support of rte_enabled checkbox (Commit 5c84227 by Georg Ringer)
+   2015-07-03 [!!!][TASK] Drop fe_group field in sys_category (Commit 819b3bf by Georg Ringer)
+   2015-07-03 [BUGFIX] Compatibility of SuggestReciever for 7.3 (Commit 7f9e446 by Georg Ringer)
+   2015-07-03 [BUGFIX] Make Hooks/FormEngine compatible with 7.3 (Commit 056ddbc by Georg Ringer)
+   2015-07-02 [BUGFIX] use correct class name for legacy class mapping (Commit 7d89fd7 by Daniel Goerz)
+   2015-07-01 [BUGFIX] Fix typo in locallang_db.xlf (Commit e334d8f by Georg Ringer)
+   2015-07-01 [TASK] Remove typo in partial (Commit d0b63f2 by Georg Ringer)
+   2015-06-15 [BUGFIX] Fix updateCategoryPermissionFields update (Commit 19bb46c by Frans Saris)
+   2015-06-11 [BUGFIX] Reset runcounter when starting import (Commit 5830b85 by Frans Saris)
+   2015-06-05 [BUGFIX] Use different namespace for BackendUtility (Commit 432a7b1 by Georg Ringer)
+   2015-06-05 [BUGFIX] migrate also sys_categories with language -1 (Commit 697ca6c by Georg Ringer)
+   2015-06-03 [BUGFIX] Add fieldname to access check where clause (Commit a27d0f3 by Georg Ringer)
+
+
+This list has been created by using ``git log --since="2015/05/19" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

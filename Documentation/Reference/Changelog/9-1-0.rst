@@ -1,0 +1,70 @@
+.. include:: /Includes.rst.txt
+
+9.1.0 - 11th November 2021
+==========================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Important features
+------------------
+
+Twitter Bootstrap v5 templates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Thanks to Carsten Hager who provided templates variants based on Twitter Boostrap v5 which have been added next to the TWBv3 templates.
+
+Improved manual
+^^^^^^^^^^^^^^^
+Thanks to Lina Wolf who updated the documentation and provided lots of additional information!
+
+Support of lazy loading images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following TypoScript configuration has been added which are used in the templates.
+
+.. code-block:: typoscript
+
+    plugin.tx_news.settings {
+        list.media.image.lazyLoading = {$styles.content.image.lazyLoading}
+        detail.media.image.lazyLoading = {$styles.content.image.lazyLoading}
+    }
+
+If EXT:fluid_styled_content is not set, provide the configuration yourself.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2021-11-10 [BUGFIX] Return description of media #1643 (Commit 977c0dfa by Georg Ringer)
+    2021-11-10 [DOC] Add suggestion for fluid_styled_content #1642 (Commit 40b1623d by Georg Ringer)
+    2021-11-10 [DOC] Mention the twb5 templates in the according docs (Commit 66428004 by Georg Ringer)
+    2021-11-10 [TASK] Add description for suggestion instead of version information (Commit 6b5d0fd6 by Georg Ringer)
+    2021-11-10 [DOC] Add example how FAL properties can be rendered (Commit d393772b by Georg Ringer)
+    2021-11-10 [TASK] Add addQueryString:1 to TWB5 pagination (Commit 8ba5623d by Georg Ringer)
+    2021-11-10 [DOCS] Explain concept of "Demands" (#1638) (Commit 90f6aad8 by Lina Wolf)
+    2021-11-05 [BUGFIX] Handle hreflang event only if news is found #1532 (Commit f63e4408 by Georg Ringer)
+    2021-11-05 [BUGFIX] Use correct alt/title for list items in TWB variants (Commit 40e97f12 by Georg Ringer)
+    2021-11-05 [FEATURE] Support lazy loading for images (Commit 061c3968 by Georg Ringer)
+    2021-11-05 Apply fixes from StyleCI (#1637) (Commit 4221725b by Georg Ringer)
+    2021-11-05 [BUGFIX] Fix #1400: make mod.web_list.deniedNewTables/mod.web_list.allowedNewTables work again (#1401) (Commit fe0cb3f5 by Dmitry Dulepov)
+    2021-11-05 [BUGFIX] AbstractDemandedRepository::countDemanded uses generateQuery (Commit 95f8eb09 by Georg Ringer)
+    2021-11-05 [TASK] Support workspaces for tags #1397 (Commit 0c4b8b45 by Georg Ringer)
+    2021-11-05 [TASK] Add option uniqueInPid to slug options #1298 (Commit a22f5f36 by Georg Ringer)
+    2021-11-05 [BUGFIX] Fix SQL definition for related_link (#1436) (Commit 16be8bf1 by Eric Chavaillaz)
+    2021-11-05 [TASK] Remove non existing opengraph tags #1264 (Commit 08b95e37 by Georg Ringer)
+    2021-11-05 [BUGFIX] Respect categories from demand (#1555) (Commit 770c2ee2 by Thomas Helmrich)
+    2021-11-03 [DOCS] Modernize Page "Save & Preview" (#1634) (Commit 71c4e3a1 by Lina Wolf)
+    2021-11-01 [BUGFIX] Allow null for News::contentElements (Commit a4ff4ac6 by Georg Ringer)
+    2021-11-01 [Docs] Improve documentation content (#1628) (Commit 29004c02 by Lina Wolf)
+    2021-10-26 [BUGFIX] Proper migration of ExtensionUtility::configurePlugin #1617 (Commit 49732f58 by Georg Ringer)
+    2021-10-26 [DOC] Improve example for proxy class generation #1576 (Commit 3c85c812 by Georg Ringer)
+    2021-10-26 [BUGFIX] Add querystring to pagination links #1618 (Commit 9297aa56 by Georg Ringer)
+    2021-10-26 [DOCS] Fix Syntax, bring rst up to date (#1620) (Commit b241a78c by Lina Wolf)
+    2021-10-26 [FEATURE] Bootstrap 5 Templates (Commit f65b09bf by Carsten Hager)
+    2021-10-25 Fix code examples (#1615) (Commit 0639533d by Lina Wolf)
+    2021-10-25 [DOC] Fix date in release notes (Commit a9f5752c by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

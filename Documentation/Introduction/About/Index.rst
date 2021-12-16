@@ -1,14 +1,10 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+﻿.. include:: /Includes.rst.txt
 
-.. include:: /Includes.rst.txt
-
-.. _about:
+.. _whatDoesItDo:
 
 What does it do?
 ================
+
 This extension implements a versatile news system based on the latest
 technologies which are provided by the TYPO3 CMS.
 

@@ -1,0 +1,113 @@
+.. include:: /Includes.rst.txt
+
+4.1.0 - 2016/01/27
+==================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+Outlook
+-------
+In the next versions, the support for non FAL fields will be removed from the extension. This includes:
+
+- The relation "tx_news_domain_model_media"
+- The media renderers for Youtube, Quicktime, Videosites, Vimeo, Mp3.
+
+All features which are still state of the art will be covered by using FAL and its features.
+
+
+Important changes
+-----------------
+This release contains mostly bugfixes but also some mentionable changes:
+
+Support of Twitter Bootstrap
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Additional templates have been added which are based on the popular framework **Twitter Bootstrap**.
+Those can be used by selecting the additional entry "*News Styles Twitter Bootstrap*" in the section "Include Static (from extensions)" in the template record.
+
+By changing the following constants you can use those templates as base and add your templates on top:
+
+.. code-block:: typoscript
+
+        plugin.tx_news {
+            view.twb {
+                templateRootPath = EXT:news/Resources/Private/Templates/Styles/Twb/Templates
+                partialRootPath = EXT:news/Resources/Private/Templates/Styles/Twb/Partials/
+                layoutRootPath = EXT:news/Resources/Private/Templates/Styles/Twb/Layouts/
+            }
+        }
+
+Starting Point for Categories List
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The category listing action ``Category->list`` checks now the setting of the starting point.
+
+Improved RSS feed
+^^^^^^^^^^^^^^^^^
+
+The RSS feed contains now the tag ``<enclosure>`` which includes the url to the preview image: ::
+
+        <f:if condition="{newsItem.firstFalImagePreview}">
+                <enclosure url="{f:uri.image(image:'{newsItem.firstFalImagePreview}',absolute:1) -> f:format.htmlentities()}"
+                        length="{newsItem.firstFalImagePreview.originalResource.size}"
+                        type="{newsItem.firstFalImagePreview.originalResource.mimeType}"
+                />
+        </f:if>
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2016-01-26 [BUGFIX] PHP Warning: invalid method signature inheritance (PHP 7) (Commit 8608510 by Xavier Perseguers)
+        2016-01-26 [BUGFIX] LinkViewHelper is not compatible with PHP7 (Commit fd70c21 by Xavier Perseguers)
+        2016-01-12 [BUGFIX] Generalize class name (Commit 04c2c86 by Charles Coleman)
+        2016-01-19 [BUGFIX] Use correct class name (Commit 4dc5927 by Charles Coleman)
+        2016-01-14 [BUGFIX] Remove orphaned <span> tags (Commit 7a08668 by Charles Coleman)
+        2016-01-20 [TASK] Allow detailPid for datemenu action (Commit b0ade26 by Georg Ringer)
+        2016-01-18 [BUGFIX] Check pageInfo if valid (Commit 0828fa4 by Georg Ringer)
+        2016-01-17 [TASK] Add allowfullscreen to YoutubeRenderer (Commit f362479 by Georg Ringer)
+        2016-01-15 [BUGFIX] Replace wrapClickMenuOnIcon (Commit a04508c by Georg Ringer)
+        2016-01-12 [BUGFIX] Add HTML to make Disqus work for Twb style (Commit d656468 by Charles Coleman)
+        2016-01-12 [BUGFIX] Add HTML to make Disqus work (Commit 343a6fe by Charles Coleman)
+        2016-01-11 [BUGFIX] Enforce new row for each list item in case image taller than news text (Commit 063d7b6 by Charles Coleman)
+        2016-01-12 [BUGFIX] Follow standard capitalization practice for headers (Commit ef7429f by Charles Coleman)
+        2016-01-11 [BUGFIX] Balance TS braces (Commit 6519801 by Charles Coleman)
+        2016-01-07 [FEATURE] Starting Point for Categories List (Commit dc40a1a by Juan Manuel Verges Solanas)
+        2016-01-01 [BUGFIX] Use IconRegistry for ce wizard (Commit b158790 by Georg Ringer)
+        2015-12-20 [FEATURE] Support of Twitter Bootstrap (Commit bada000 by Georg Ringer)
+        2016-01-01 [BUGFIX] Replace call to deprecated ContentObjectRenderer->LOAD_REGISTER (Commit 5651978 by Georg Ringer)
+        2016-01-01 [BUGFIX] Fix test for simpleprevnext (Commit 13a5fd2 by Georg Ringer)
+        2016-01-01 [TASK] Adopt travis (Commit 0236bff by Georg Ringer)
+        2015-12-29 [BUGFIX] Use flushCachesInGroupByTag to flush page cache (Commit 49187b3 by Benjamin Franzke)
+        2015-12-08 [BUGFIX] Fix category removal (Commit 215b4aa by Georg Ringer)
+        2015-12-17 [BUGFIX] Remove unused legacy class from class alias map (Commit 0c93314 by Thomas Schlumberger)
+        2015-12-09 [BUGFIX] Respect more tags in newsrepository search (Commit c16829a by Georg Ringer)
+        2015-11-29 [FEATURE] Add tag enclosure to RSS feed item (Commit a9843b3 by Georg Ringer)
+        2015-11-28 [BUGFIX] Remove double encoding in headerbar (Commit fee4843 by Georg Ringer)
+        2015-11-28 [TASK] Use proper label in sys_category (Commit 5958cfb by Georg Ringer)
+        2015-11-27 [!!!][TASK] OverwriteDemand does not care about empty values anymore (Commit 3b7fe3f by Georg Ringer)
+        2015-11-21 [TASK] Fix CGL (Commit 4c320f7 by Georg Ringer)
+        2015-11-20 [BUGFIX] Move iconregistry to ext_localconf (Commit 618bb47 by Georg Ringer)
+        2015-11-19 [TASK] Travis notifications (Commit 4fdf212 by Georg Ringer)
+        2015-11-19 [!!!][TASK] Remove custom preview handling of records (Commit ac1478f by Georg Ringer)
+        2015-11-19 Revert "[TASK] Add PHP 7 for travis" (Commit 96af09f by Georg Ringer)
+        2015-11-19 [TASK] Add PHP 7 for travis (Commit 8d2ca36 by Georg Ringer)
+        2015-11-19 [BUGFIX] Fix travis matrix (Commit bf2e133 by Georg Ringer)
+        2015-11-19 [BUGFIX] Fix tag generation (Commit cf0cc46 by Georg Ringer)
+        2015-11-17 [TASK] Make use of the correct f:image properties (Commit 9f7a21d by Frans Saris)
+        2015-11-19 [TASK] Adopt showinpreview icon to CMS7 (Commit 2a34d4e by Georg Ringer)
+        2015-11-16 [BUGFIX] missing Tab label in sys_category (Commit b9afeb4 by Andreas Allacher)
+        2015-11-13 [BUGFIX] Class Cache Manager must work with CRLF (Commit 3bbf6f1 by Sascha Egerer)
+        2015-11-12 [BUGFIX] TCA correct wizard link definition (Commit b6f729c by Andreas Allacher)
+        2015-11-10 [TASK] Remove usage of rte_disabled (Commit bff8a30 by Georg Ringer)
+        2015-11-10 [TASK] Fix deprecation issues in TCA (Commit 29636d6 by Georg Ringer)
+        2015-11-10 [TASK] Update TCA for showIconTable (Commit 84552a6 by Georg Ringer)
+        2015-11-10 [TASK] Release of 4.0.0 (Commit 294df6d by Georg Ringer)
+        2015-11-10 [DOC] 4.0.0 Release (Commit ce12f57 by Georg Ringer)
+
+
+This list has been created by using ``git log --since="2015/11/10" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

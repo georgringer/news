@@ -1,0 +1,40 @@
+.. include:: /Includes.rst.txt
+
+7.0.6 - 2018/08/10
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+This release supports 9.5 LTS
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2018-10-02 [BUGFIX] Support custom showinpreview types (Commit aa0a6547 by Georg Ringer)
+    2018-10-02 [TASK] Use different preview icon (Commit d472d0f4 by Georg Ringer)
+    2018-10-02 [DOC] Fix example for NewsControllerSettings hook (#738) (Commit 634f864c by Johannes Klinger)
+    2018-10-02 [Bugfix] correct date formatting in iCal list template (#726) (Commit 3a02ce4d by Hendrik Putzek)
+    2018-10-01 [FEATURE] Use slug handling of Core (Commit 717c1a32 by Georg Ringer)
+    2018-09-14 [BUGFIX] Remove wizard for link fields (Commit bafe6a5c by Georg Ringer)
+    2018-09-14 [BUGFIX] Fix warning detection for foreign record title #727 (#728) (Commit 247a3862 by Sebastian Michaelsen)
+    2018-07-25 [BUGFIX] AbstractImportService must not be a singleton (Commit cf107019 by Georg Ringer)
+    2018-07-25 [BUGFIX] Followup: use correct key (Commit c6722456 by Georg Ringer)
+    2018-07-25 [FEATURE] Change import method to array (Commit fc62d762 by Georg Ringer)
+    2018-07-23 [DOC] Clarify where to set config for hrDates (#692) (Commit 961b83a1 by Web-Macher)
+    2018-07-23 [BUGFIX] Fix news slug updater identifier (#707) (Commit 9ff2c908 by Mathias Brodala)
+    2018-07-06 [BUGFIX] Add a cache tag for listings without a configured startingpoint (#702) (Commit 106bd01d by bnf)
+    2018-07-06 [DOC] Add clarification to Changelog for 7.0.0 (#700) (Commit de705d99 by Sybille Peters)
+    2018-06-27 [BUGFIX] Allow strict_mode of Mysql for archive field (Commit b73b1db9 by Georg Ringer)
+    2018-06-20 [TASK] Allow 9.3 & 9.4 (Commit 83a61092 by Georg Ringer)
+    2018-06-19 [BUGFIX] Use instance of TimeTracker instead of $GLOBAL['TT'] (#684) (Commit f2a994ae by Tom Hatzer)
+    2018-06-15 Change ratio of video in detail view (#678) (Commit 3139db4d by Thomas Löffler)
+    2018-06-15 also add the localized uid as cache tag (#680) (Commit e9015293 by Marco Pfeiffer)
+    2018-06-15 Documentation change: fix line numbers in realurl example (#677) (Commit e526eafa by Sybille Peters)
+
+
+This list has been created by using `git log 7.0.5..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

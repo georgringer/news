@@ -1,0 +1,26 @@
+.. include:: /Includes.rst.txt
+
+7.0.8 - 2018/06/11
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+To fix a regression of the Core regarding routing, a change has been made which requires a *DB compare* to add the field `l10n_source`.
+You can also upgrade to master branch of the Core until 9.5.2 is released.
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2018-11-02 [TASK] Document how to manipulate flexform with tsconfig (Commit 013c1d1d by Georg Ringer)
+    2018-10-31 [TASK] Add recordlist as dependency (Commit a70d62a7 by Georg Ringer)
+    2018-10-31 [TASK] Provide l10n_source field in TCA (Commit 9c8777ce by Georg Ringer)
+    2018-10-25 [BUGFIX] Do not override page header data on CE shortcut to news record (#772) (Commit e624f956 by jokumer)
+
+
+This list has been created by using `git log 7.0.7..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

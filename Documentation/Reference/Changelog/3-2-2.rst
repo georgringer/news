@@ -1,0 +1,59 @@
+.. include:: /Includes.rst.txt
+
+3.2.1 - 2015/07/13
+==================
+
+This release is followup release of 3.2.1.
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+Important changes
+-----------------
+The following changes might change the expected behaviour in your installation.
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+Change template configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The TypoScript to define the templates, partials and layouts changed a bit. With **0** now the default fallback is defined and the constants can be used to change the template to a desired value.
+
+.. code-block:: typoscript
+
+   plugin.tx_news {
+      mvc.callDefaultActionIfActionCantBeResolved = 1
+
+      view {
+         templateRootPaths {
+            0 = EXT:news/Resources/Private/Templates/
+            1 = {$plugin.tx_news.view.templateRootPath}
+         }
+         partialRootPaths {
+            0 = EXT:news/Resources/Private/Partials/
+            1 = {$plugin.tx_news.view.partialRootPath}
+         }
+         layoutRootPaths {
+            0 = EXT:news/Resources/Private/Layouts/
+            1 = {$plugin.tx_news.view.layoutRootPath}
+         }
+         widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/
+      }
+   }
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2015-07-13 [BUGFIX] Fix widget templates (Commit 3a2724f by Georg Ringer)
+   2015-07-13 [TASK] Adopt constants! (Commit 1a2233d by Georg Ringer)
+
+This list has been created by using ``git log --since="2015/07/11" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

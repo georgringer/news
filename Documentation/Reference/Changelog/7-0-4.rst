@@ -1,0 +1,30 @@
+.. include:: /Includes.rst.txt
+
+7.0.4 - 2018/16/05
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2018-05-16 [DOC] Fix changelog (Commit 3a894566 by Georg Ringer)
+        2018-05-16 [TASK] Release 7.0.2 (Commit 6f219cb7 by Georg Ringer)
+        2018-05-16 [BUGFIX] Use correct key for type query (Commit 54ca8316 by Georg Ringer)
+        2018-05-14 [DOC] Fix wrong code block in custom type example (Commit 49baecb3 by Georg Ringer)
+        2018-05-11 Improved compatibility for postgres installations (#666) (Commit 52815427 by Damir Andrašević)
+        2018-05-08 [BUGFIX] Forward from list to single when needed (#664) (Commit 90b314eb by Helmut Hummel)
+        2018-05-08 dont concatenate js/css files (#652) (Commit c4ca0715 by Marco Pfeiffer)
+        2018-05-08 [BUGFIX] Remove debug code and make category filter in BE work (Commit 7ec44d35 by Georg Ringer)
+        2018-05-02 Fixes already fully qualified urls being prefixed for Open Graph Protocol tag (#659) (Commit 243c843d by Markus Mächler)
+        2018-04-28 [TASK] Force string before any slug conversion (Commit 6a99271f by Georg Ringer)
+        2018-04-28 [TASK] Use renderType checkboxToggle for 9+ (Commit b1780aec by Georg Ringer)
+
+
+This list has been created by using `git log 7.0.1..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

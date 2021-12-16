@@ -1,0 +1,28 @@
+.. include:: /Includes.rst.txt
+
+5.3.1 - 2017/01/21
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Bugfix Release
+--------------
+This is an important bugfix release to make the extension working with latest 8.x version.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2017-01-21 [TASK] Prepare release of 5.3.2 (Commit 71c04b7 by Georg Ringer)
+        2016-12-14 [BUGFIX] Remove max config from date fields (Commit f5a4cc8 by Georg Ringer)
+        2017-01-19 [BUGFIX] add check before category restriction is added to flexforms (#220) (Commit 9b3d9f2 by Johannes)
+        2017-01-19 [BUGFIX] Check for non-empty tag or category lists (#221) (Commit f0f91da by Markus Klein)
+
+
+This list has been created by using ``git log --since="2017/01/01" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

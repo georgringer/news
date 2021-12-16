@@ -1,0 +1,71 @@
+.. include:: /Includes.rst.txt
+
+7.1.0 - 2019/07/03
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+The following changes might be important for your installation.
+
+Improved slug handling
+^^^^^^^^^^^^^^^^^^^^^^
+The following changes might be important if you are using news and TYPO3 9:
+
+The slug configuration for `tx_news_domain_model_news` improved by using features of the Core which got merged in version 9.5.4.
+The configuration looks now like: ::
+
+   'generatorOptions' => [
+      'fields' => ['title'],
+      'replacements' => [
+          '/' => '-'
+      ],
+   ],
+   'fallbackCharacter' => '-',
+   'eval' => 'uniqueInSite',
+
+The fields `tx_news_domain_model_tag` && `sys_category` have been extended by a slug field as well. Upgrade wizards in the Install Tool can be used to fill the slug field.
+
+Additionally a wizard to migrate realurl alias to the slug field has been integrated.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2019-02-18 [TASK] Add getIdentifier to SlugUpdater (Commit 2c8522ad by Georg Ringer)
+   2019-02-18 [BUGFIX] Allow setSplitSubjectWords to be false (#850) (Commit 8e60a197 by Jonas Schwabe)
+   2019-02-18 [TASK] Use '-' for '/'-replacement in slug (#853) (Commit 84c9c3ac by nebrot)
+   2019-02-11 [TASK] Use '-' for '/'-replacement in slug (#851) (Commit 638c5bb6 by nebrot)
+   2019-02-09 [FEATURE] Add realurl alias migration for news slugs (#849) (Commit e2cdb891 by Jörg Kummer)
+   2019-02-01 Check for existence of properties before formating (#835) (Commit 25ad077e by Harald Atteneder)
+   2019-01-28 [TASK] Remove suggest entries (Commit 06d72d4b by Georg Ringer)
+   2019-01-11 [BUGFIX] Fix #825 by adding cache tags for selected list news (#829) (Commit d921e823 by JarvisH)
+   2019-01-10 [TASK] Remove superfluous TypoScript condition (#827) (Commit 92bfdfed by Josef Glatz)
+   2018-12-22 [TASK] Move slot for NewsController::detailAction (Commit 8e31439a by Georg Ringer)
+   2018-12-22 [FEATURE] Add hook for demand creation (Commit c6f89a32 by Georg Ringer)
+   2018-12-22 [TASK] Fix typo (#821) (Commit 1ce10a69 by Martin)
+   2018-12-19 Change action name to controller name in advanced RealUrl example (#820) (Commit 996b5648 by Stefan Frömken)
+   2018-12-18 [BUGFIX] Generate correct URLs in sitemap for dd_googlesitemaps (#818) (Commit 55376019 by Markus Klein)
+   2018-12-18 [FEATURE] Add possibility to translate tags (#800) (Commit bdfde0bf by Matthias Bernad)
+   2018-12-11 Fix broken link to Core documentation (#814) (Commit 677c96ad by jokumer)
+   2018-12-07 [TASK] Improve slug configuration (Commit ea1f35aa by Georg Ringer)
+   2018-12-06 [TASK] Add slug field to the models (Commit 13cfe929 by Georg Ringer)
+   2018-12-06 [FEATURE] Slugs for category and tags (Commit 4d14925a by Georg Ringer)
+   2018-12-05 [BUGFIX] Fix keys for $allLayouts to handle restrictions correctly (#811) (Commit 6b97b9f0 by Dominique Kreemers)
+   2018-12-02 [FEATURE] Add possibility to retrieve media for detail view only (#801) (Commit 136983a4 by Seb Red)
+   2018-12-03 Set advancedMediaPreview to 1 instead of true (#808) (Commit 84330731 by Ben Abbott)
+   2018-11-12 Correction prevNextHeaderTags Condition (#735) (Commit 574e8ceb by in-session)
+   2018-11-12 [TASK] Remove dead code FormEngine (Commit fab22193 by Georg Ringer)
+   2018-11-12 [BUGFIX] Readd label for submit button in administration module (Commit 1926f360 by Georg Ringer)
+   2018-11-07 [DOC] Add links to Settings.cfg (#792) (Commit 48712bbf by Sybille Peters)
+   2018-11-07 [BUGFIX] Fix PaginateAdditionalParamsViewHelper for 9 LTS (Commit 69e46a42 by Georg Ringer)
+
+
+This list has been created by using `git log 7.0.8..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

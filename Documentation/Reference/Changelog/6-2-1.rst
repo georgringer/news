@@ -1,0 +1,26 @@
+.. include:: /Includes.rst.txt
+
+6.2.1- 2018/01/24
+==================
+
+
+.. only:: html
+
+   .. contents::
+      :local:
+      :depth: 3
+
+This release makes the extension compatible with PHP 5.6 again
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2018-01-24 [BUGFIX] Make code PHP 5.6 compatible (Commit 214a4db5 by Georg Ringer)
+   2018-01-23 [DOC] Should be "features" instead of "feature" (#539) (Commit 8c7e1e2d by lechenbauer)
+   2018-01-23 [TASK] Use datetime instead of crdate for sitemap (Commit fbf2ec59 by Georg Ringer)
+
+
+
+This list has been created by using `git log 6.2.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

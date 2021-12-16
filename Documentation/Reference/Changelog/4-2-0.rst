@@ -1,0 +1,102 @@
+.. include:: /Includes.rst.txt
+
+
+
+4.2.0 - 2016/03/02
+==================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+Sponsors
+--------
+Thanks a lot to the sponsors of this release!
+
+- Friedrich-Ebert-Stiftung (http://www.fes.de) who sponsored the improved administration module
+- Hochschule Darmstadt (http://www.h-da.de) who sponsored the sitemap generator
+- Sup7even - my new employer - (http://www.sup7even.digital) who sponsored work time
+
+New features
+------------
+This release contains mostly bugfixes but also some mentionable changes:
+
+Support for dd_googlesitemap
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The extension dd_googlesitemap can be used to generate sitemaps. An additional renderer can now generate sitemaps out of news records.
+
+Predefine author
+^^^^^^^^^^^^^^^^
+By using the PageTsConfig ``tx_news.predefine.author = 1`` the author and the email address are prefilled in the news record by the data of the current backend user.
+
+Important changes
+-----------------
+The ViewHelper ``n:format.fileDownload`` has been marked as deprecated and will be removed with the next version. Instead of using this ViewHelper, just use the native implementation of FAL.
+
+.. code-block:: php
+
+        <f:for each="{newsItem.falRelatedFiles}" as="relatedFile">
+                <li>
+                    <span class="news-related-files-link">
+                        <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+                            {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+                        </a>
+                    </span>
+                    <span class="news-related-files-size">
+                        {relatedFile.originalResource.size -> f:format.bytes()}
+                    </span>
+                </li>
+        </f:for>
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2016-03-02 [TASk] Link title in admin module (Commit 3602282 by Georg Ringer)
+        2016-03-02 [BUGFIX] Improve admin module search form (Commit abe0784 by Georg Ringer)
+        2016-03-01 [BUGFIX] Set l10nmode for categories & tags to exclude (Commit d67020a by Georg Ringer)
+        2016-02-29 [FEATURE] Hook in NewsController::injectConfigurationManager (Commit 7ed1118 by Georg Ringer)
+        2016-02-26 [BUGFIX] Set checkbox to hidden in admin module (Commit 2ad8fb5 by Georg Ringer)
+        2016-02-26 [BUGFIX] Fix unit test for 8 (Commit 5ee1afb by Georg Ringer)
+        2016-02-25 [FOLLOWUP][TASK] Shariff comment in cdata (Commit 25e1ed9 by Georg Ringer)
+        2016-02-25 [BUGFIX] Add DatabaseTreeDataProvider provider to flexform (Commit 7a21825 by Georg Ringer)
+        2016-02-24 [BUGFIX] Make categories shown in strict language mode (Commit 10f9644 by Georg Ringer)
+        2016-02-24 [TASK] Add suggestions for other extensions to EMCONF and composer (Commit d07fd63 by Markus Klein)
+        2016-02-24 [TASK] Add hint for social privacy sharing option (Commit a5823d3 by Markus Klein)
+        2016-02-22 [BUGFIX] Check for root page in admin module > pidlist (Commit 0f52e84 by Georg Ringer)
+        2016-02-22 [BUGFIX] Fix overrideFlexformSettingsIfEmpty with 0 values (Commit df29968 by Georg Ringer)
+        2016-02-22 [FEATURE] New setting "hideIdList" (Commit 1657609 by Georg Ringer)
+        2016-02-22 [BUGFIX] Use Fluid_styled_content constants for lightbox (Commit 691670c by Georg Ringer)
+        2016-02-22 [BUGFIX] Add overlay in SimplePrevNextVh (Commit 5b58cfb by Georg Ringer)
+        2016-02-22 [TASK] Update google+ VH to latest code (Commit ee57a20 by Georg Ringer)
+        2016-02-22 [!!!][TASK] Deprecate VH n:format.fileDownload (Commit d97a7aa by Georg Ringer)
+        2016-02-21 [TASk] Remove custom softref parser (Commit b6c3305 by Georg Ringer)
+        2016-02-19 [FOLLOWUP][TASK] Type cast to array (Commit f0cd847 by Georg Ringer)
+        2016-02-19 [BUGFIX] Preview of hidden news not working for translated news (Commit 33f00fd by Georg Ringer)
+        2016-02-19 [TASK] Merge $tsSettings with $settings in LinkViewHelper (Commit aa29c27 by Georg Ringer)
+        2016-02-19 [BUGFIX] Use standard checkbox to avoid too long url (Commit a380448 by Georg Ringer)
+        2016-02-19 [BUGFIX] Fix redirect in administration module (Commit 86912b4 by Georg Ringer)
+        2016-02-19 [FEATURE] Make date field not required (Commit 8035d42 by Georg Ringer)
+        2016-02-19 [BUGFIX] Use English as default translation in locallang_be.xlf (Commit 5f1accb by Georg Ringer)
+        2016-02-18 [BUGFIX] Add headline to twb template detail (Commit 4dc3a88 by Georg Ringer)
+        2016-02-14 [FEATURE] Improve backend module (Commit e26c710 by Georg Ringer)
+        2016-02-18 [FEATURE] Respect category restrictions in administration module (Commit c2a58b4 by Georg Ringer)
+        2016-02-11 [TASK] Show separator only if author is set (Commit 9d2e231 by Boris Schauer)
+        2016-02-16 [FEATURE] Predefine author & author_email fields (Commit 556f93a by Georg Ringer)
+        2016-02-15 [BUGFIX] Fix double slash in meta tag VH (Commit 7eead3b by Georg Ringer)
+        2016-02-14 [TASK][FOLLOWUP] Fix travis (Commit 0cf75b2 by Georg Ringer)
+        2016-02-14 [BUGFIX] Wrap n:be.clickmenu in f:format.raw (Commit 7bb9616 by Georg Ringer)
+        2016-02-14 [BUGFIX] Fix travis.yml (Commit 237e6cd by Georg Ringer)
+        2016-02-14 [TASK] Extend size of of date fields (Commit ba6f11b by Georg Ringer)
+        2016-02-14 [BUGFIX] Reference locallang_tcc.xlf file correctly (Commit ef376d5 by Georg Ringer)
+        2016-01-30 [FEATURE] Add news sitemap generator using dd_googlesitemap (Commit 690f200 by Georg Ringer)
+        2016-02-03 followup (Commit b563c87 by Georg Ringer)
+        2016-02-03 [BUGFIX] Fix IfIsActiveVh (Commit ba6b4d2 by Georg Ringer)
+        2016-01-27 [TASK] Exclude news lists from indexing (Commit 77674b5 by Jan Kiesewetter)
+
+
+This list has been created by using ``git log --since="2016/01/27" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

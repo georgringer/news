@@ -1,0 +1,70 @@
+.. include:: /Includes.rst.txt
+
+4.0.0 - 2015/11/10
+==================
+
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+Important changes
+-----------------
+This release targets TYPO3 CMS 7 LTS only and follows the PSR-2 standard.
+
+The UI has been adopted to fit the new designs of the Core using svg icons.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2015-11-06 [CLEANUP] Remove unused use statements (Commit 783f097 by Georg Ringer)
+        2015-11-06 [CLEANUP] Use shorthand array syntax (Commit 5eacf26 by Georg Ringer)
+        2015-11-04 [CLEANUP] Clean ext_localconf/ext_tables (Commit b585659 by Georg Ringer)
+        2015-11-03 [TASK] Change folder icon (Commit c82e14a by Georg Ringer)
+        2015-11-03 [BUGFIX] Remove non existing type settings (Commit 403c9dc by Georg Ringer)
+        2015-10-30 [TASK] Improve TCA field sys_language_uid (Commit 7bdaa9b by Gernot Schulmeister)
+        2015-10-27 [TASK] Remove invalid UnitTest (Commit 0e21f2d by Georg Ringer)
+        2015-10-20 [BUGFIX] Unexpected count of 0 exception (Commit c8527f2 by Frank Nägler)
+        2015-10-14 [TASK] Use stripTags for og:description (Commit 63d7dd8 by Georg Ringer)
+        2015-10-14 [FEATURE] Support attribute section in LinkViewHelper (Commit f6fcfc7 by Georg Ringer)
+        2015-10-14 [BUGFIX] Fix fatal in PageLayout (Commit cd0eaf5 by Georg Ringer)
+        2015-10-14 [BUGFIX] Make extending classes work with PSR-2 (Commit 0599ca5 by Georg Ringer)
+        2015-10-14 [!!!][TASK] Remove CacheService (Commit 521074e by Georg Ringer)
+        2015-10-14 [TASK] More ::class usage (Commit 749e125 by Georg Ringer)
+        2015-10-14 [TASK] Remove unused code (Commit 4fa4c6e by Georg Ringer)
+        2015-10-14 [TASK] Move to PSR-2 (Commit e2a8b62 by Georg Ringer)
+        2015-10-14 [BUGFIX] Fix Category title translation in BE (Commit 031c88b by Georg Ringer)
+        2015-10-14 [TASK] Switch module icons to SVGs (Commit 7732446 by Georg Ringer)
+        2015-10-14 [TASK] Use IconRegistry for icons (Commit 3662db6 by Georg Ringer)
+        2015-10-14 [!!!][TASK] Improve TCA for CMS7 (Commit 7aeb07c by Georg Ringer)
+        2015-10-13 [TASK] Followup (Commit f296d49 by Georg Ringer)
+        2015-10-13 [TASK] Fix wizards in TCA (Commit 5053a77 by Georg Ringer)
+        2015-10-13 [TASK] Set renderType in TCA (Commit b9a0fb4 by Georg Ringer)
+        2015-10-13 [TASK] Fix iconFile usage (Commit 776ba7f by Georg Ringer)
+        2015-10-13 [TASK] Use new xlf in flexforms (Commit c4e13ad by Georg Ringer)
+        2015-10-13 [TASK] Use new xlf file to avoid deprecations (Commit 550c6ea by Georg Ringer)
+        2015-10-13 [BUGFIX] Fix clickmenu in administration module (Commit 13de967 by Georg Ringer)
+        2015-10-13 [BUGFIX] Fix edit links in administration module (Commit 2c78182 by Georg Ringer)
+        2015-10-06 [FEATURE] Use new template API (Commit 3bf96c0 by Georg Ringer)
+        2015-10-02 [BUGFIX] Fix namespace collision! (Commit 0765930 by Georg Ringer)
+        2015-10-02 [BUGFIX] Remove usage of tslib_fe name (Commit 1892021 by Georg Ringer)
+        2015-10-02 [BUGFIX] Fluid VH tests (Commit 4d6d156 by Georg Ringer)
+        2015-10-02 [TASK] Raise phpunit version (Commit 8b1ea2b by Georg Ringer)
+        2015-10-02 [BUGFIX] Fix functional test for sys_category (Commit 2e23dc1 by Georg Ringer)
+        2015-10-02 [TASK] Improve composer + travis (Commit d7a03bb by Georg Ringer)
+        2015-10-02 [BUGFIX] Fix test (Commit c137c6f by Georg Ringer)
+        2015-10-02 [BUGFIX] Fix ItemsProcFuncHook for 7.5 (Commit b656e55 by Georg Ringer)
+        2015-10-01 [TASK] Drop langDisable from flexform (Commit 0cdc5d1 by Georg Ringer)
+        2015-09-30 [BUGFIX] Prefill news records (Commit e5223c6 by Georg Ringer)
+        2015-09-30 [BUGFIX] Fix creation of records via admin module (Commit 1d83683 by Georg Ringer)
+        2015-09-30 [TASK] Use ::class (Commit aa0d41e by Georg Ringer)
+        2015-09-30 [TASK] Remove version checks (Commit 8d15830 by Georg Ringer)
+        2015-09-23 [TASK] Remove deprecated IconUtility and replace with IconFactory (Commit 19dcb37 by Frank Nägler)
+        2015-09-30 [TASK] Set minimum required version to 7.5 (Commit 8131b97 by Georg Ringer)
+
+
+This list has been created by using ``git log --since="2015/09/25" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

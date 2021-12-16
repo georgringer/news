@@ -1,0 +1,13 @@
+.. include:: /Includes.rst.txt
+
+7.2.2 - 2019/08/05
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+This is a followup bugfix release as the composer release was kind of strange.

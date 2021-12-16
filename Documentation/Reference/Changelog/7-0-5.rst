@@ -1,0 +1,25 @@
+.. include:: /Includes.rst.txt
+
+7.0.5 - 2018/16/05
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+        2018-06-09 [DOC] Document how to set properties of EM #660 (Commit 1eb5c791 by Georg Ringer)
+        2018-06-06 [BUGFIX] Make sure to have an array when asking for category permissions (#673) (Commit c4703699 by Markus Klein)
+        2018-05-22 [TASK] Adopt .gitattributes file (Commit 6980b79f by Georg Ringer)
+        2018-05-22 [BUGFIX] selected in all views should be available in details view (#662) (Commit 2f18ab13 by Sébastien Rüegg)
+        2018-05-22 [BUGFIX] Skip link generation if not possible (Commit b7d49dd9 by Georg Ringer)
+        2018-05-18 [TASK] Add github template issues (Commit 1342c933 by Georg Ringer)
+        2018-05-18 [DOC] Correct menu in changelog (Commit 9254ee3b by Georg Ringer)
+
+This list has been created by using `git log 7.0.4..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

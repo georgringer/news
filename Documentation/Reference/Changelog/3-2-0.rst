@@ -1,0 +1,152 @@
+.. include:: /Includes.rst.txt
+
+3.2.0 - 2015/05/19
+==================
+
+This release is dedicated to my **wedding in June**! I am so excited and want to share my happiness with the TYPO3 community!
+
+If you are using this extension, take some minutes and write me a postcard. You can find the :ref:`contact data here <thanks>`.
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+
+Upgrade procedure
+-----------------
+The following changes might break your installation but all are easy to solve.
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 1
+
+Change of proxy-class generation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you use the feature of EXT:news to extend any class by providing a file called ``Resources/Private/extend-news.txt``,
+be aware that the implementation and registration changed! Basically all you need is to add the following code to your ``ext_localconf.php`` file:
+
+.. code-block:: php
+
+   <?php
+   defined('TYPO3_MODE') or die();
+
+   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News'][] = 'eventnews';
+
+Please take a look at the  :ref:`documentation <proxyClassGenerator>` where it is explained in detail.
+
+
+Usage of namespaces
+^^^^^^^^^^^^^^^^^^^
+The extension uses now fully namespaces which meant touching every PHP class at least once!
+The used vendor name is ``GeorgRinger``!
+
+Rename some hooks
+^^^^^^^^^^^^^^^^^
+The following files and classes have been renamed:
+
+- ``Hooks/T3libBefunc`` into ``Hooks/BackendUtility``
+- ``Hooks/Tcemain`` into ``Hooks/DataHandler``
+- ``Hooks/CmsLayout`` into ``Hooks/PageLayoutView``
+- ``Hooks/Tceforms`` into ``Hooks/FormEngine``
+
+The registration of the hook ``$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/T3libBefunc.php']['updateFlexforms']`` changed into ``$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms']`` .
+
+If you use one of these files, change the name to the new version.
+
+Dropping the mm table for tt_content relations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+   This is only relevant if you use the flag **Use content element relation** which needs to be set
+   in the configuration inside the *Extension Manager*.
+
+Previously, tt_content elements have been added by using the mm relation table ``tx_news_domain_model_news_ttcontent_mm`` which had some drawbacks.
+The usage of this table is now dropped which means that after updating, you need to run the Update Wizard in the *Install Tool* to migrate the relations.
+
+The Upgrade Wizard is called **EXT:news Migrate from tt_content mm relation**.
+
+Dropping t3blog importer
+^^^^^^^^^^^^^^^^^^^^^^^^
+The code to import records and categories of the extension *t3blog* has been moved to a separate extension. You can find that here: https://github.com/georgringer/t3ext-news_import_t3blog
+
+Important changes
+-----------------
+
+A lot of code changed in this version. The most important changes are:
+
+* A new index has been added to the database table ``tx_news_domain_model_news`` to improve the performance of translated records.
+* The documentation uses now a separate git repositories which is located on GitHub. This makes it easier for everyone to contribute a better documentation. The repository is located here: https://github.com/georgringer/news-documentation
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2015-05-17 [FOLLOWUP][TASK] Use altPageTitle instead of title in TitletagViewHelper (Commit 8345aaa by Markus Klein)
+   2015-05-18 [TASK] Remove t3blog classes in aliasmap (Commit 64856d2 by Georg Ringer)
+   2015-05-18 [TASK] Remove old classcachebuilder (Commit fe375c9 by Georg Ringer)
+   2015-05-18 [!!!] Rename hook name from T3libBefunc to BackendUtility (Commit 1fca178 by Georg Ringer)
+   2015-05-12 [TASK] Use altPageTitle instead of title in TitletagViewHelper (Commit b548fa7 by Georg Ringer)
+   2015-05-12 [TASK] Followup for renaming (Commit 388af4a by Georg Ringer)
+   2015-05-11 [BUGFIX] Fix failing YoutubeTest (Commit 9915d69 by Georg Ringer)
+   2015-05-11 [TASK] Rename hooks to new format (Commit 3899b46 by Georg Ringer)
+   2015-05-11 [FEATURE] Support links in FAL elements (Commit b856739 by Georg Ringer)
+   2015-05-11 [!!!] Remove t3blog importer (Commit ffb9db1 by Georg Ringer)
+   2015-05-10 [FEATURE] Additional params for youtube media renderer (Commit a381f62 by Georg Ringer)
+   2015-05-10 [BUGFIX] Use ObjectManager in the MediaFactories (Commit 62cfccd by Georg Ringer)
+   2015-05-09 [BUGFIX] Use correct ID for links in workspace preview (Commit f5bb425 by Georg Ringer)
+   2015-05-09 [FEATURE] Support FAL type 5 for images (Commit a1c3ba7 by Georg Ringer)
+   2015-05-09 [TASK] Add hint for multiple storages during update (Commit a8b3be4 by Georg Ringer)
+   2015-03-25 [BUGFIX] Hand over the raw file title or name to the cObject (Commit a1cd38b by Jan Kiesewetter)
+   2015-05-07 [TASK] Replace packageKey by 'news' (Commit c09ba16 by Georg Ringer)
+   2015-05-07 [TASK] Switch ContentElementWizard to TS (Commit d4ad814 by Georg Ringer)
+   2015-05-07 [TASK] Simplify TCA (Commit dfd0e31 by Georg Ringer)
+   2015-05-07 [BUGFIX] Prefill archive date only for new records (Commit 05e8160 by Georg Ringer)
+   2015-05-07 [TASK] Add Archive to page module if using datemenu (Commit 0d4c232 by Georg Ringer)
+   2015-05-04 [BUGFIX] Fix author email in atom feed (Commit 57df1df by Josef Florian Glatz)
+   2015-05-05 [BUGFIX] Fix typo in doc header (Commit 2bcc52b by Georg Ringer)
+   2015-04-16 [TASK] Add PaginateViewHelper templateRootPath to typoscript setup (Commit fbe41e1 by Josef Florian Glatz)
+   2015-03-09 [!!!] Change class magic (Commit 25b0dee by Georg Ringer)
+   2015-04-24 [BUGFIX] Add vendor name to plugin configuration, TS and doc (Commit 38a0029 by Jan Kiesewetter)
+   2015-04-28 [BUGFIX] Remove deprecated pallettes code (Commit 9bc5aa4 by Georg Ringer)
+   2015-04-27 [BUGFIX] Prevent loosing saved categories if some are restricted (Commit 5c14bfc by Georg Ringer)
+   2015-04-27 [BUGFIX] Include subcategories while checking for denied categories (Commit 5dbc3a1 by Georg Ringer)
+   2015-04-27 [BUGFIX] Use proper code for message queue (Commit 51f79a1 by Georg Ringer)
+   2015-04-17 [TASK] Remove unused flash message view helper (Commit 9c6b9e6 by Jan Kiesewetter)
+   2015-04-16 [TASK] Remove superfluous comment (Commit 3056002 by Josef Florian Glatz)
+   2015-04-10 [DB] Index for translated records (Commit da0a254 by Georg Ringer)
+   2015-04-02 [BUGIX] Quicktime renderer must use FalCheck (Commit e8e7a9e by Georg Ringer)
+   2015-03-25 [FEATURE] Basic search in AdministrationModule (Commit fa2ddc5 by Georg Ringer)
+   2015-03-24 [FEATURE] Support optgroups for template layouts (Commit a51e06b by Georg Ringer)
+   2015-03-20 [BUGFIX] Change PHPDoc for \DateTime object (Commit 4ec8535 by Jan Kiesewetter)
+   2015-03-16 [BUGFIX] Use different approach to compare media files (Commit 6aa2b28 by Georg Ringer)
+   2015-03-16 [TASK] Use string compare for l10n_parent (Commit d866737 by Georg Ringer)
+   2015-03-16 [BUGFIX] Fix PHP error in import with links (Commit 2a14568 by Georg Ringer)
+   2015-03-09 [BUGFIX] Followup to TtcontentUpdate (Commit d3aaf74 by Georg Ringer)
+   2015-03-09 [BUGFIX] Avoid double slashes in MetaTagVH (Commit 9909907 by Georg Ringer)
+   2015-03-03 [!!!][DB][TASK] Change tt_content relation (Commit 22e5eb9 by Georg Ringer)
+   2015-03-08 [!!!] Deprecate ViewHelper n:format.date (Commit f0f7584 by Georg Ringer)
+   2015-03-04 [DOC][BUGFIX] Correct RSS language definition (Commit f4ddca9 by Markus Klein)
+   2015-03-03 [BUGFIX] fix failing functional tests (Commit 73f7299 by Andreas Allacher)
+   2015-03-03 [BUGFIX] fix wrong Exceptions due to namespaces (Commit cf0db92 by Andreas Allacher)
+   2015-02-12 [!!!][FEATURE] Make lightbox configurable with TypoScript (Commit ef54707 by Jan Kiesewetter)
+   2015-03-02 [TASK] Add missing commas/spaces between properties of inline VH (Commit eeb782a by Josef Florian Glatz)
+   2015-03-02 [DOC] ClassAliasLoader of helhum (Commit bd702cc by Georg Ringer)
+   2015-03-02 [BUGFIX] fix failing unit tests with namespaces (Commit a375d64 by Andreas Allacher)
+   2015-03-02 [DOC] Add username to the contribute code (Commit b6bf75d by Georg Ringer)
+   2015-03-02 [TASK] Followup, fix composer.json (Commit ff2f9da by Georg Ringer)
+   2015-01-30 [!!!][FEATURE] Move extension to namespaces (Commit aa5777a by Georg Ringer)
+   2015-02-26 [BUGFIX] Fix failing test (Commit 7c75566 by Georg Ringer)
+   2015-02-19 [BUGFIX] Remove calls to undefined methods (Commit a03ef59 by Georg Ringer)
+   2015-02-19 [TASK] Nicer category tree in Administration 7 (Commit e44546a by Georg Ringer)
+   2015-02-19 [FEATURE] Support audio.js (Commit d0fc4aa by Georg Ringer)
+   2015-02-14 [DOC] Add missing info about gravatar VH's "default" attribute (Commit 6ac1979 by Josef Florian Glatz)
+   2015-02-15 [BUGFIX][DOC] Fix codeblock in clearCacheCmd documentation (Commit f7fa34e by Josef Florian Glatz)
+   2015-02-14 [DOC] Category Menu: Add category title to title tag (Commit e06b02e by Georg Ringer)
+   2015-02-13 [FEATURE] Add title tags to n:link (Commit 124b7c2 by Georg Ringer)
+   2015-02-13 [TASK] Add title to Category link in Category/List (Commit e1fd5e4 by Georg Ringer)
+
+This list has been created by using ``git log --since="2015/02/12" --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short``.

@@ -1,0 +1,41 @@
+.. include:: /Includes.rst.txt
+
+8.6.0 - 22th July 2021
+========================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Bugfix release
+--------------
+
+Just a bugfix release
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2021-07-21 [BUGFIX] Fix page permissions SQL clause in Page-Utility (#1438) (Commit 0af5cb4a by Ingo Fabbri)
+   2021-07-15 [BUGFIX] Create valid DTSTAMP in List.ical (#1535) (Commit 0be75d03 by Markus Klein)
+   2021-07-13 Remove noBlur = 1 (#1517) (Commit ba5edd06 by Daniel Koether)
+   2021-07-13 [BUGFIX] Clear cache for old pid when move news record (#1531) (Commit a4c954a3 by Christoph Lehmann)
+   2021-07-08 [BUGFIX] Ensure Demand properties have correct data type (#1528) (Commit 936bb818 by Markus Klein)
+   2021-06-01 [BUGFIX] module.localizationView can be disabled (#1518) (Commit cd1d45c4 by Markus Klein)
+   2021-05-20 [BUGFIX] Exclude domain models from DI container scanning (#1512) (Commit e0399174 by Oliver Eglseder)
+   2021-04-03 [BUGFIX] Preview of translations in strict language mode (#1484) (Commit ee889f83 by Christoph Lehmann)
+   2021-03-23 [BUGFIX] Rebuild caches if not existing (#1470) (Commit dbfa9ec2 by Georg Ringer)
+   2021-03-18 [FEATURE] Define a setting for the typeNum of the rss feed (#1493) (Commit e8692d4c by Jan Kiesewetter)
+   2021-03-16 [DOC] Add configuration for Edit on GitHub button (#1486) (Commit daf47b36 by Sybille Peters)
+   2021-03-11 [DOCS] Description of settings.timeRestriction (#1476) (Commit 44043e1a by Felix Heller)
+   2021-02-17 [TASK] Always show path_segment field (Commit 99fbc185 by Georg Ringer)
+   2021-02-05 Fix doc in NewsAvailability class (#1434) (Commit 47c37f4e by Łukasz Uznański)
+   2021-01-19 [BUGFIX] Hide editlock for non admins (#1427) (Commit 7b72b79b by echavaillaz)
+   2021-01-13 [DOC] Use correct condition for news detail view detection (#1421) (Commit 02a8d117 by Markus Klein)
+
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
