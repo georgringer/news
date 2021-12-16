@@ -1,16 +1,65 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
 .. include:: /Includes.rst.txt
 
 .. _recordNews:
 
+====
 News
------
+====
 
 The news record is obviously the most important record in this extension.
+
+
+Add news record
+===============
+
+News can be added in the :ref:`News administration <newsModuleCreateNews>`
+or :ref:`List <listAddFirstRecord>` module.
+
+By default there are three types of news records:
+
+*  Standard news: These contain the content directly as text or content
+   elements
+*  Internal links: The content is stored on a standard typo3 page
+*  External page: The content is found outside of the news installation
+
+Standard news
+=============
+
+In most projects when you create a new news record it will be automatically
+a standard news record. To confirm this check that the field :guilabel:`Type`
+is set to :guilabel:`News`. Standard news should usually have a text
+in the field :guilabel:`Text` field, some content elements in the
+:guilabel:`Content elements` tab and or some media in the :guilabel:`Media`
+tab.
+
+News as internal link
+=====================
+
+In some projects the text of the news itself is stored on a standard page. The
+news can still be listed in the list view of the news plugin.
+
+Click the button :guilabel:`Create new news record` on the top of the
+:ref:`News Administration <newsModuleCreateNews>` module. Then switch the select filed
+:guilabel:`Type` to :guilabel:`Internal link`. Fill in the title field and
+other required or desired fields.
+
+Then click the button to edit the :guilabel:`Internal link`.
+
+When you are done, click the :guilabel:`Save` button. Depending on the settings
+of your project you might have to empty the cache
+before the news will be displayed in the list views.
+
+
+News as external page
+=====================
+
+In some projects the text of the news itself is stored on an external page. The
+news can still be listed in the list view of the news plugin.
+
+Creating an external page works just like an internal link. However you chose
+the type :guilabel:`External page` and enter the external link in the field
+:guilabel:`Link to External URL`.
+
 
 .. only:: html
 
@@ -19,7 +68,14 @@ The news record is obviously the most important record in this extension.
         :depth: 2
 
 News record
-^^^^^^^^^^^
+===========
+
+The visible fields depend on
+
+*  The news type (see above)
+*  Your user permissions
+*  The configuration of your project
+*  Third party extensions if applicable
 
 .. t3-field-list-table::
  :header-rows: 1

@@ -1,17 +1,15 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
 .. include:: /Includes.rst.txt
 
 .. _plugin:
 
+======
 Plugin
-------
+======
+
 The news plugin is used to output a defined list of records.
 
-It can be added to create a content element with the type :guilabel:`Plugin` and by selecting the plugin type :guilabel:`News system`.
+It can be added to create a content element with the type
+:guilabel:`Plugin` and by selecting the plugin type :guilabel:`News system`.
 
 .. TODO: screenshot
 

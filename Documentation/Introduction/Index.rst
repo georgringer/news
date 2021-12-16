@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. _introduction:
+﻿.. _introduction:
 
 Introduction
 ============

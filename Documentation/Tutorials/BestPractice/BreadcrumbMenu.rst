@@ -1,8 +1,4 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
+FlexForm
 .. include:: /Includes.rst.txt
 
 .. _breadcrumb:
