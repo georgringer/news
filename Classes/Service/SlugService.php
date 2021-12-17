@@ -81,7 +81,7 @@ class SlugService
                             $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
                         )
                     )
-                    ->set('path_segment', $this->getUniqueValue($record['uid'], $slug));
+                    ->set('path_segment', $this->getUniqueValue($record['uid'], $record['sys_language_uid'], $slug));
                 $databaseQueries[] = $queryBuilder->getSQL();
                 $queryBuilder->execute();
             }
@@ -95,9 +95,9 @@ class SlugService
      * @param string $slug
      * @return string
      */
-    protected function getUniqueValue(int $uid, string $slug): string
+    protected function getUniqueValue(int $uid, int $languageId, string $slug): string
     {
-        $statement = $this->getUniqueCountStatement($uid, $slug);
+        $statement = $this->getUniqueCountStatement($uid, $languageId, $slug);
         if ($statement->fetchColumn()) {
             for ($counter = 1; $counter <= 100; $counter++) {
                 $newSlug = $slug . '-' . $counter;
@@ -114,10 +114,11 @@ class SlugService
 
     /**
      * @param int $uid
+     * @param int $languageId
      * @param string $slug
      * @return \Doctrine\DBAL\Driver\Statement|int
      */
-    protected function getUniqueCountStatement(int $uid, string $slug)
+    protected function getUniqueCountStatement(int $uid, int $languageId, string $slug)
     {
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
@@ -132,6 +133,10 @@ class SlugService
                 $queryBuilder->expr()->eq(
                     'path_segment',
                     $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)
+                ),
+                $queryBuilder->expr()->eq(
+                    'sys_language_uid',
+                    $queryBuilder->createPositionalParameter($languageId, \PDO::PARAM_INT)
                 ),
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
             )->execute();
@@ -289,7 +294,7 @@ class SlugService
                             $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
                         )
                     )
-                    ->set('path_segment', $this->getUniqueValue($record['uid'], $slug));
+                    ->set('path_segment', $this->getUniqueValue($record['uid'], $record['sys_language_uid'], $slug));
                 $databaseQueries[] = $queryBuilder->getSQL();
                 $queryBuilder->execute();
             }
