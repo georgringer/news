@@ -17,8 +17,8 @@ email, or any other method with the owners of this repository before making a ch
   * Only target release branches if you are certain your fix must be on that
     branch.
   * To quickly create a topic branch based on master; `git checkout -b
-    fix/master/my_contribution master`. Please avoid working directly on the
-    `master` branch.
+    fix/main/my_contribution main`. Please avoid working directly on the
+    `main` branch.
 * Make commits of logical units.
 * Use `./php-cs-fixer fix --config-file Build/.php_cs` to make sure the code is formatted correctly.
 * Make sure your commit messages are in the proper format. Use either `[TASK]`, `[FEATURE]`, `[BUGFIX]` or `[DOC]`

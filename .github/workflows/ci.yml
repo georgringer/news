@@ -44,7 +44,7 @@ jobs:
           key: dependencies-composer-${{ hashFiles('composer.json') }}
 
       - name: Ensure stability dev
-        if: ${{ matrix.env.TYPO3_VERSION == 'dev-master' }}
+        if: ${{ matrix.env.TYPO3_VERSION == 'dev-main' }}
         run: |
           composer config minimum-stability dev
           composer config prefer-stable true

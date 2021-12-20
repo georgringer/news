@@ -61,14 +61,16 @@ Download and install the [extension][3] with the extension manager module.
 
 ### 4.1 Versions and support
 
-| News        | TYPO3      | PHP       | Support / Development                   |
-| ----------- | ---------- | ----------|---------------------------------------- |
-| dev-master  | 9.5 - 10   |           | unstable development branch             |
-| 7.x         | 8.7 - 9.x  | 7.0 - 7.2 | features, bugfixes, security updates    |
-| 6.x         | 7.6 - 8.7  | 5.6 - 7.2 | features, bugfixes, security updates    |
-| 5.x         | 7.6 - 8.7  | 5.6 - 7.2 | none                                    |
-| 4.x         | 7.6        | 5.5 - 5.6 | none                                    |
-| 3.x         | 6.2        | 5.5 - 5.6 | security updates                        |
+| News     | TYPO3     | PHP       | Support / Development                |
+|----------|-----------|-----------|--------------------------------------|
+| dev-main | 10 - 11   | 7.4 - 8.1 | unstable development branch          |
+| 9        | 10 - 11   | 7.4 - 8.1 | features, bugfixes, security updates |
+| 8        | 9.5 - 10  | 7.2 - 7.4 | none                                 |
+| 7.x      | 8.7 - 9.x | 7.0 - 7.2 | none                                 |
+| 6.x      | 7.6 - 8.7 | 5.6 - 7.2 | none                                 |
+| 5.x      | 7.6 - 8.7 | 5.6 - 7.2 | none                                 |
+| 4.x      | 7.6       | 5.5 - 5.6 | none                                 |
+| 3.x      | 6.2       | 5.5 - 5.6 | security updates                     |
 
 ### 4.2 Changelog
 
