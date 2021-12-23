@@ -8,7 +8,7 @@ Tag
 
 Tags are not mandatory but make it easier to structure news records.
 
-|img-record-tag|
+.. include:: /Images/AutomaticScreenshots/AddTagInAdminModule.rst.txt
 
 Add a tag
 =========

@@ -10,7 +10,7 @@ It is possible to activate the :guilabel:`View` Button for news records.
 
 This button is displayed on the top of the edit record page:
 
-.. figure:: /Images/Administration/ViewButton.png
+.. figure:: /Images/ManualScreenshots/ViewButton.png
    :class: with-shadow
 
    The :guilabel:`View` button

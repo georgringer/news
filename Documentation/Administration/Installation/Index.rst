@@ -54,7 +54,7 @@ The extension ships some TypoScript code which needs to be included.
 
 #. Select :guilabel:`News (news)` at the field :guilabel:`Include static (from extensions):`
 
-|img-plugin-ts|
+.. include:: /Images/AutomaticScreenshots/NewsIncludeTypoScript.rst.txt
 
 .. important::
 

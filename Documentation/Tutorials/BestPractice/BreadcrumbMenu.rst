@@ -103,7 +103,7 @@ You can use code like the following in your sites Fluid template.
 
 The result (using Bootstrap 5 and Fontawesome 5 Free) could use like this:
 
-.. figure:: /Images/Tutorials/Breadcrumb.png
+.. figure:: /Images/Frontend/Breadcrumb.png
    :class: with-shadow
 
    A breadcrumb containing the current news record.

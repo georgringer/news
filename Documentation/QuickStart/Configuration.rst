@@ -16,6 +16,8 @@ Go module :guilabel:`Web > Template` and chose your root page. It should
 already contain a TypoScript template record. Switch to view
 :guilabel:`Info/Modify` and click on :guilabel:`Edit the whole template record`.
 
+.. include:: /Images/AutomaticScreenshots/NewsIncludeTypoScript.rst.txt
+
 Switch to tab :guilabel:`Includes` and add the following templates from the list
 to the right: :guilabel:`News (news)`. It is possible to include additional
 templates provided by the news extension depending on your use case. For example

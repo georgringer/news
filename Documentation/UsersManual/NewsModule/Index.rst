@@ -13,7 +13,7 @@ to create categories or tags.
 Go module :guilabel:`Web > News Administration`. If it is not chosen yet,
 choose the folder that your news records are stored in.
 
-.. todo: insert screenshot here.
+.. include:: /Images/AutomaticScreenshots/AdminModule.rst.txt
 
 .. _newsModuleCreateNews:
 
@@ -23,7 +23,7 @@ Add a news record
 Click the button :guilabel:`Create new news record` on the top of the
 :guilabel:`News Administration` module.
 
-.. todo: insert screenshot here.
+.. include:: /Images/AutomaticScreenshots/AddNewsInAdminModule.rst.txt
 
 Fill in all necessary fields. In a standard setup only the title is a
 required field. Depending on your project there might be other required fields
@@ -60,6 +60,8 @@ integrated into EXT:news. You can create a category by clicking the button
 :guilabel:`Create a new category` on the top of the
 :guilabel:`News Administration` module.
 
+.. include:: /Images/AutomaticScreenshots/AddCategoryInAdminModule.rst.txt
+
 Fill in a title and possible a parent category and some other fields and
 click the :guilabel:`Save` button. Once you have created categories you can
 select them when editing news records.
@@ -72,7 +74,9 @@ display a category menu.
 Create a tag
 ============
 
-You can create a category by clicking the button
+.. include:: /Images/AutomaticScreenshots/AddTagInAdminModule.rst.txt
+
+You can create a tag by clicking the button
 :guilabel:`Create a new tag` on the top of the
 :guilabel:`News Administration` module. Fill in a title and
 click the :guilabel:`Save` button.
