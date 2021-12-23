@@ -11,13 +11,13 @@ Installation
 
 The extension needs to be installed as any other extension of TYPO3 CMS:
 
-#. Switch to the module :guilabel:`Admin Tools > Extensions`.
+#. Get the extension by one of the following methods:
 
-#. Get the extension
    #. **Use composer**: Use `composer require georgringer/news`.
 
-   #. **Get it from the Extension Manager:** Press the :guilabel:`Retrieve/Update`
-      button and search for the extension key *news* and import the
+   #. **Get it from the Extension Manager:** Switch to the module :guilabel:`Admin Tools > Extensions`.
+      Switch to :guilabel:`Get Extensions`
+      and search for the extension key *news* and import the
       extension from the repository.
 
    #. **Get it from typo3.org:** You can always get current version from
@@ -26,8 +26,7 @@ The extension needs to be installed as any other extension of TYPO3 CMS:
       downloading either the t3x or zip version. Upload
       the file afterwards in the Extension Manager.
 
-#. The Extension Manager offers some basic configuration which is
-   explained :ref:`here <extensionConfiguration>`.
+#. :ref:`Configure <extensionManager>` the extension.
 
 Latest version from git
 -----------------------
@@ -60,7 +59,7 @@ The extension ships some TypoScript code which needs to be included.
 
    Include the static template of `EXT:fluid_styled_content` or provide the following TypoScript yourself:
 
-    .. code-block:: typoscript
+   .. code-block:: typoscript
 
         plugin.tx_news.settings.detail.media.image.lightbox {
             enabled = 0
