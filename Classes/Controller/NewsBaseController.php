@@ -41,7 +41,7 @@ class NewsBaseController extends ActionController
     {
         $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
-        if (is_object($GLOBALS['TSFE'])) {
+        if (is_object($GLOBALS['TSFE'] ?? null)) {
             $view->assign('pageData', $GLOBALS['TSFE']->page);
         }
         parent::initializeView($view);
@@ -88,9 +88,9 @@ class NewsBaseController extends ActionController
      *
      * @param string $configuration configuration what will be done
      * @throws \InvalidArgumentException
-     * @return string
+     * @return string|null
      */
-    protected function handleNoNewsFoundError($configuration): string
+    protected function handleNoNewsFoundError($configuration): ?string
     {
         if (empty($configuration)) {
             return null;
@@ -131,14 +131,12 @@ class NewsBaseController extends ActionController
                     $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction($GLOBALS['TYPO3_REQUEST'], 'No news entry found.');
                     throw new ImmediateResponseException($response);
                 }
-                    $message = 'No news entry found!';
-                    $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
-                        $GLOBALS['TYPO3_REQUEST'],
-                        $message
-                    );
-                    throw new ImmediateResponseException($response, 1590468229);
-
-                break;
+                $message = 'No news entry found!';
+                $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
+                    $GLOBALS['TYPO3_REQUEST'],
+                    $message
+                );
+                throw new ImmediateResponseException($response, 1590468229);
             case 'showStandaloneTemplate':
                 if (isset($configuration[2])) {
                     $statusCode = constant(HttpUtility::class . '::HTTP_STATUS_' . $configuration[2]);
@@ -152,10 +150,11 @@ class NewsBaseController extends ActionController
                 $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
                 $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($configuration[1]));
                 return $standaloneTemplate->render();
-                break;
             default:
                 // Do nothing, it might be handled in the view.
         }
+
+        return null;
     }
 
     /**

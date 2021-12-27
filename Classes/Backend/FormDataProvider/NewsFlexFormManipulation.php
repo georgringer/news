@@ -279,6 +279,6 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      */
     protected function enabledInTsConfig(array $result): bool
     {
-        return (bool)$result['pageTsConfig']['tx_news.']['categoryRestrictionForFlexForms'];
+        return (bool)($result['pageTsConfig']['tx_news.']['categoryRestrictionForFlexForms'] ?? false);
     }
 }

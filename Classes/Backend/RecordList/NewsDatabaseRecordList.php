@@ -17,6 +17,12 @@ use TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList;
  */
 class NewsDatabaseRecordList extends DatabaseRecordList
 {
+    protected string $thumbs = '';
+
+    protected string $firstElementNumber = '';
+
+    public int $counter = 0;
+
     /**
      * Creates the URL to this script, including all relevant GPvars
      * Fixed GPvars are id, table, imagemode, returnUrl, search_field, search_levels and showLimit
@@ -74,7 +80,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         }
 
         $demand = GeneralUtility::_GET('tx_news_web_newsadministration');
-        if (is_array($demand['demand'])) {
+        if (is_array($demand['demand'] ?? null)) {
             $urlParameters['tx_news_web_newsadministration']['demand'] = $demand['demand'];
         }
 

@@ -16,6 +16,17 @@ $boot = static function (): void {
         ]
     );
 
+    if (version_compare(phpversion(), '8.0.0', '>=')) {
+        $GLOBALS['TYPO3_CONF_VARS']['EXT']['news'] = array_merge_recursive(
+            $GLOBALS['TYPO3_CONF_VARS']['EXT']['news'] ?? [],
+            [
+                'Hooks/BackendUtility.php' => [
+                    'updateFlexforms' => []
+                ]
+            ]
+        );
+    }
+
     // Page module hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['news' . '_pi1']['news'] =
         \GeorgRinger\News\Hooks\PageLayoutView::class . '->getExtensionSummary';
