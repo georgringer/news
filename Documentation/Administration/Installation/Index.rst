@@ -26,7 +26,7 @@ The extension needs to be installed as any other extension of TYPO3 CMS:
       downloading either the t3x or zip version. Upload
       the file afterwards in the Extension Manager.
 
-#. :ref:`Configure <extensionManager>` the extension.
+#. :ref:`Configure <extensionConfiguration>` the extension.
 
 Latest version from git
 -----------------------
@@ -67,4 +67,3 @@ The extension ships some TypoScript code which needs to be included.
             width = 800m
             height = 600m
         }
-

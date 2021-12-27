@@ -7,7 +7,7 @@ If you update EXT:news to a newer version, please read this section carefully!
 
 Versioning
 ^^^^^^^^^^
-EXT:news follows the `"semantic versioning <https://semver.org/>"`__ approach.
+EXT:news follows the `semantic versioning <https://semver.org/>`__ approach.
 
 It uses a 3-number versioning scheme: *<major>.<minor>.<patch>*
 
