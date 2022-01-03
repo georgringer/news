@@ -1,3 +1,7 @@
+.. include:: /Includes.rst.txt
+
+.. _viewHelperLink:
+
 LinkViewHelper
 -------------------
 
