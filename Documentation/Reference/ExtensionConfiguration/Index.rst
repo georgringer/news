@@ -2,33 +2,58 @@
 
 .. _extensionConfiguration:
 
-=======================
-Extension configuration
-=======================
+Extension Configuration
+-----------------------
 
 Some general settings can be configured in the Extension Configuration.
 
-#. Go to :guilabel:`Admin Tools > Settings > Extension Configuration`
+#. Go to :guilabel:`Admin Tools` > :guilabel:`Settings` > :guilabel:`Extension Configuration`
 #. Choose :guilabel:`news`
 
 The settings are divided into several tabs and described here in detail:
 
+Properties
+^^^^^^^^^^
+
+.. container:: ts-properties
+
+   ==================================== ===================================== ====================
+   Property                             Tab                                   Default
+   ==================================== ===================================== ====================
+   archiveDate_                          basic                                 date
+   rteForTeaser_                         records                               1
+   tagPid_                               records                               1
+   prependAtCopy_                        records                               1
+   categoryRestriction_                  records
+   categoryBeGroupTceFormsRestriction_   records
+   contentElementRelation_               records                               0
+   manualSorting_                        records                               0
+   dateTimeNotRequired_                  records                               fal
+   mediaPreview_                         records                               0
+   showAdministrationModule_             backend modules                       0
+   hidePageTreeForAdministrationModule_  backend modules                       0
+   showImporter_                         import module                         0
+   storageUidImporter_                   import module
+   resourceFolderImporter_               import module                         /news_import
+   ==================================== ===================================== ====================
+
+Property details
+^^^^^^^^^^^^^^^^
+
 .. only:: html
 
-   .. contents:: Properties
+   .. contents::
         :local:
-        :depth: 2
-
-Basic
+        :depth: 1
 
 .. _extensionConfigurationArchiveDate:
 
 archiveDate
------------
+"""""""""""
 Define if the archive date field should be rendered as a date field or including the time as well.
 
 rteForTeaser
-------------
+""""""""""""
 If set, the teaser field will be rendered using a RTE.
 
 .. note::
@@ -37,7 +62,7 @@ If set, the teaser field will be rendered using a RTE.
 .. _extensionConfigurationTagPid:
 
 tagPid
-------
+""""""
 New tags can be saved directly inside the news record. The given ID is used as page on which the tag records will be saved.
 
 If you want to use TsConfig to define the page, set the tagPid to 0 and use the following syntax in TsConfig: ::
@@ -48,13 +73,13 @@ If you want to use TsConfig to define the page, set the tagPid to 0 and use the 
 .. _extensionConfigurationPrependAtCopy:
 
 prependAtCopy
--------------
+"""""""""""""
 If set and a news record is copied, the news record will be prepended with the string **Copy X**.
 
 .. _extensionConfigurationCategoryRestriction:
 
 categoryRestriction
--------------------
+"""""""""""""""""""
 Define an additional constraint for the categories inside a news record. To use this constraint for the news plugins as well, take a look at the  :ref:`TsConfig configuration <tsconfigCategoryRestrictionForFlexForms>`.
 
 Possible options are:
@@ -92,13 +117,13 @@ Only those categories are shown which are saved at the root page.
 .. _extensionConfigurationCategoryBeGroupTceFormsRestriction:
 
 categoryBeGroupTceFormsRestriction
-----------------------------------
+""""""""""""""""""""""""""""""""""
 If activated, an editor needs to have permissions to all categories added to a news item to be able to edit this record.
 
 .. _extensionConfigurationContentElementRelation:
 
 contentElementRelation
-----------------------
+""""""""""""""""""""""
 If set, you can add content elements as relation to a news record. This makes it easy to enrich the news article with further images, plugins, ...
 
 If you want to reduce the available options of the content elements, you can use TsConfig in the sysfolder of the news records: ::
@@ -114,13 +139,13 @@ More information can be found at http://docs.typo3.org/typo3cms/TSconfigReferenc
 .. _extensionConfigurationManualSorting:
 
 manualSorting
--------------
+"""""""""""""
 If set, news records can be manually sorted in the list view by the well known icons "up" and "down".
 
 .. _extensionConfigurationDateTimeNotRequired:
 
 dateTimeNotRequired
--------------------
+"""""""""""""""""""
 If set, the date field of the news record is not a required field anymore. Furthermore if creating a new record, it is not filled anymore with the current date.
 
 Be aware that using this feature may lead to unexpected results if using e.g. the date menu if the field is not used anymore.
@@ -128,13 +153,13 @@ Be aware that using this feature may lead to unexpected results if using e.g. th
 .. _extensionConfigurationMediaPreview:
 
 mediaPreview
-------------
+""""""""""""
 If enabled, the list module will show thumbnails of the media items.
 
 .. _extensionConfigurationShowAdministrationModule:
 
 showAdministrationModule
-------------------------
+""""""""""""""""""""""""
 If set, the backend module "News" is shown.This view might be easier for editors who use a very limited set of features in the backend.
 
 .. _extensionConfigurationShowImporter:
@@ -142,24 +167,24 @@ If set, the backend module "News" is shown.This view might be easier for editors
 .. _extensionConfigurationHidePageTreeForAdministrationModule:
 
 hidePageTreeForAdministrationModule
------------------------------------
+"""""""""""""""""""""""""""""""""""
 
 If set, the backend module "News" is shown without the page tree. In combination with the TsConfig `redirectToPageOnStart` you can achieve a very simple workflow for editors if those need only to create news records.
 
 showImporter
-------------
+""""""""""""
 If set, the backend module "News import" is shown. This is used to import news articles from sources like t3blog, tt_news or custom providers.
 
 .. _extensionConfigurationStorageUidImporter:
 
 storageUidImporter
-------------------
+""""""""""""""""""
 Define the uid of the storage which is used for importing media elements into FAL relations.
 
 .. _extensionConfigurationResourceFolderImporter:
 
 resourceFolderImporter
-----------------------
+""""""""""""""""""""""
 Define the folder which is used for the media elements which are imported.
 
 Alternative configuration instead of Extension Manager
