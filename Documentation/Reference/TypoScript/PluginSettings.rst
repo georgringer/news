@@ -16,11 +16,11 @@ the chosen view (The setting :confval:`orderBy` is for example not needed in the
    yourself about the setting :confval:`overrideFlexformSettingsIfEmpty`.
 
 
-.. contents:: Properties
-   :backlinks: top
-   :class: compact-list
-   :depth: 1
-   :local:
+.. only:: html
+
+   .. contents:: Properties
+      :depth: 1
+      :local:
 
 
 Sheet general

@@ -9,11 +9,12 @@ General settings
 
 Any setting needs to be prefixed with  :typoscript:`plugin.tx_news.settings.`.
 
-.. contents:: Properties
-   :backlinks: top
-   :class: compact-list
-   :depth: 1
-   :local:
+
+.. only:: html
+
+   .. contents:: Properties
+      :depth: 1
+      :local:
 
 .. _tsCssFile:
 
