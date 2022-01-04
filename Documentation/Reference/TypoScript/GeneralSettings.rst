@@ -125,6 +125,9 @@ Example: Display a dummy image from your sitepackage
 Example: Remove dummy image from list view
 ------------------------------------------
 
+.. code-block:: typoscript
+   :caption: my_sitepackage/Configuration/TypoScript/setup.typoscript
+
    plugin.tx_news.settings {
      displayDummyIfNoMedia = 0
    }
@@ -166,7 +169,7 @@ detailPidDetermination
 defaultDetailPid
 ================
 
-.. confval:: detailPidDetermination
+.. confval:: defaultDetailPid
 
    :type: int
    :Default: 0
@@ -228,17 +231,17 @@ analytics.social
 .. confval:: analytics.social
 
    :type: array
-   :Default: ::
+
+   Use additional code for google analytics tracking of the social
+   functionalities.
+
+   Default::
 
       analytics.social {
          facebookLike = 1
          facebookShare = 1
          twitter = 1
       }
-
-
-   Use additional code for google analytics tracking of the social
-   functionalities.
 
 .. _tsDemandClass:
 
@@ -333,19 +336,6 @@ opengraph
 
    :type: array
    :Path: plugin.tx_news.settings
-   :Default:  ::
-
-      opengraph {
-         site_name =  {$plugin.tx_news.opengraph.site_name}
-         type = article
-         locale =
-         admins =
-         twitter {
-            card = {$plugin.tx_news.opengraph.twitter.card}
-            site = {$plugin.tx_news.opengraph.twitter.site}
-            creator = {$plugin.tx_news.opengraph.twitter.creator}
-         }
-      }
 
    Additional open graph properties can be defined using TypoScript.
    Those are included in the the template partial
@@ -370,6 +360,20 @@ opengraph
    Check out https://dev.twitter.com/cards/getting-started for more information
    regarding the twitter cards.
 
+   Default::
+
+      opengraph {
+         site_name =  {$plugin.tx_news.opengraph.site_name}
+         type = article
+         locale =
+         admins =
+         twitter {
+            card = {$plugin.tx_news.opengraph.twitter.card}
+            site = {$plugin.tx_news.opengraph.twitter.site}
+            creator = {$plugin.tx_news.opengraph.twitter.creator}
+         }
+      }
+
 .. _tsDetailMedia:
 
 detail.media
@@ -379,7 +383,14 @@ detail.media
 
    :type: array
    :Path: plugin.tx_news.settings
-   :Default: ::
+
+   Configuration for media elements in the detail view.
+
+   .. attention::
+      If you need different options like using **width** instead of
+      **maxWidth** you need also to adopt the template files.
+
+   Default::
 
       detail.media {
          image {
@@ -409,12 +420,6 @@ detail.media
          }
       }
 
-
-   Configuration for media elements in the detail view.
-
-   .. attention::
-      If you need different options like using **width** instead of
-      **maxWidth** you need also to adopt the template files.
 
 
 .. _tsDetailErrorHandling:
@@ -473,7 +478,7 @@ detail.checkPidOfNewsRecord
    :Default: 0
 
    If set, the detail view checks the incoming news record against the defined
-   :confval:`startingpoint`(s).
+   :confval:`startingpoint`.
 
    If those don't match, the news record won't be displayed and
    :confval:`detail.errorHandling` applied.
@@ -545,15 +550,6 @@ list.media
 
    :type: array
    :Path: plugin.tx_news.settings
-   :Default: ::
-
-      list.media {
-         image {
-            maxWidth = 100
-            maxHeight = 100
-         }
-      }
-
 
    Configuration for media elements in the list view.
 
@@ -561,6 +557,14 @@ list.media
       If you need different options like using **width** instead of **maxWidth** you need also
       to adopt the template files!
 
+   Default::
+
+      list.media {
+         image {
+            maxWidth = 100
+            maxHeight = 100
+         }
+      }
 
 .. _tsListPaginate:
 
@@ -571,15 +575,6 @@ list.paginate
 
    :type: array
    :Path: plugin.tx_news.settings
-   :Default: ::
-
-      list.paginate {
-         class = GeorgRinger\NumberedPagination\NumberedPagination
-         itemsPerPage = 10
-         insertAbove = 1
-         insertBelow = 1
-         maximumNumberOfLinks = 3
-      }
 
 
    EXT:news uses a custom ViewHelper to render the pagination.
@@ -603,6 +598,16 @@ list.paginate
       1000 news records and 10 items per page. This would result in 100
       links in the frontend.
 
+   Default::
+
+      list.paginate {
+         class = GeorgRinger\NumberedPagination\NumberedPagination
+         itemsPerPage = 10
+         insertAbove = 1
+         insertBelow = 1
+         maximumNumberOfLinks = 3
+      }
+
 .. _tsListRss:
 
 list.rss
@@ -613,7 +618,12 @@ list.rss
 
    :type: array
    :Path: plugin.tx_news.settings
-   :Default: ::
+
+   Additional settings for the RSS view.
+
+   See the :ref:`RSS configuration <rss>`.
+
+   Default::
 
       rss {
          channel {
@@ -625,10 +635,6 @@ list.rss
             link = {$plugin.tx_news.rss.channel.link}
          }
       }
-
-   Additional settings for the RSS view.
-
-   See the :ref:`RSS configuration <rss>`.
 
 .. _tsSearchFields:
 

@@ -2,8 +2,9 @@
 
 .. _extensionConfiguration:
 
+=======================
 Extension Configuration
------------------------
+=======================
 
 Some general settings can be configured in the Extension Configuration.
 
@@ -16,12 +17,15 @@ The settings are divided into several tabs and described here in detail:
 
    .. contents:: Properties
         :local:
-        :depth: 1
+        :depth: 2
+
+Records
+=======
 
 .. _extensionConfigurationArchiveDate:
 
-archiveDate
-===========
+Archive Date `archiveDate`
+--------------------------
 
 .. confval:: archiveDate
 
@@ -36,8 +40,8 @@ archiveDate
    `datetime`
       Render it as date and time field
 
-rteForTeaser
-============
+Enable a RTE for the teaser field `rteForTeaser`
+------------------------------------------------
 
 .. confval:: rteForTeaser
 
@@ -48,8 +52,8 @@ rteForTeaser
 
 .. _extensionConfigurationTagPid:
 
-tagPid
-======
+Define pid of tag records `tagPid`
+----------------------------------
 
 .. confval:: tagPid
 
@@ -70,8 +74,8 @@ tagPid
 
 .. _extensionConfigurationPrependAtCopy:
 
-prependAtCopy
-=============
+Prepend at copy `prependAtCopy`
+-------------------------------
 
 .. confval:: prependAtCopy
 
@@ -83,8 +87,8 @@ prependAtCopy
 
 .. _extensionConfigurationCategoryRestriction:
 
-categoryRestriction
-===================
+Category restriction `categoryRestriction`
+------------------------------------------
 
 Category restriction: Restrict the available categories in news records.
 
@@ -99,8 +103,8 @@ PageTsConfig::
 
 .. _extensionConfigurationCategoryBeGroupTceFormsRestriction:
 
-categoryBeGroupTceFormsRestriction
-==================================
+Editor needs to have permissions to all selected categories to save a news item `categoryBeGroupTceFormsRestriction`
+---------------------------------------------------------------------------------------------------------------------
 
 .. confval:: categoryBeGroupTceFormsRestriction
 
@@ -112,8 +116,8 @@ categoryBeGroupTceFormsRestriction
 
 .. _extensionConfigurationContentElementRelation:
 
-contentElementRelation
-======================
+Use content element relation `contentElementRelation`
+-----------------------------------------------------
 
 .. confval:: contentElementRelation
 
@@ -134,10 +138,23 @@ contentElementRelation
 
    More information can be found at http://docs.typo3.org/typo3cms/TSconfigReference/PageTsconfig/TCEform/Index.html.
 
+
+.. _extensionConfigurationContentElementPreview:
+
+Improved preview of content element relations `contentElementPreview`
+---------------------------------------------------------------------
+
+.. confval:: contentElementPreview
+
+   :type: bool
+   :Default: 1
+
+   If set, the preview in the backend is rendered as in the page module.
+
 .. _extensionConfigurationManualSorting:
 
-manualSorting
-=============
+Enable manual sorting of news records `manualSorting`
+-----------------------------------------------------
 
 .. confval:: manualSorting
 
@@ -149,8 +166,8 @@ manualSorting
 
 .. _extensionConfigurationDateTimeNotRequired:
 
-dateTimeNotRequired
-===================
+Disable required date field `dateTimeNotRequired`
+-------------------------------------------------
 
 .. confval:: dateTimeNotRequired
 
@@ -166,8 +183,8 @@ dateTimeNotRequired
 
 .. _extensionConfigurationMediaPreview:
 
-mediaPreview
-============
+Show thumbnails in backend list module `mediaPreview`
+------------------------------------------------------
 
 .. confval:: mediaPreview
 
@@ -176,10 +193,47 @@ mediaPreview
 
    If enabled, the list module will show thumbnails of the media items.
 
+
+.. _extensionConfigurationAdvancedMediaPreview:
+
+Advanced preview configuration for media files `advancedMediaPreview`
+----------------------------------------------------------------------
+
+.. confval:: advancedMediaPreview
+
+   :type: bool
+   :Default: 1
+
+   If enabled, more options are available for editors defining where an media
+   element should be displayed.
+
+
+.. _extensionConfigurationSlugBehaviour:
+
+Slug behaviour `slugBehaviour`
+------------------------------
+
+.. confval:: slugBehaviour
+
+   :type: string, keyword
+   :Default: unique
+
+   Choose one of the following slug behaviours:
+
+   uniqueInSite
+      The same slug can be used for news in different sites. Use this
+      setting *only* if no news records are shared between sites.
+
+   unique
+      The same news title in different sites will lead to different slug names.
+
+Backend Module
+==============
+
 .. _extensionConfigurationShowAdministrationModule:
 
-showAdministrationModule
-========================
+Show administration module `showAdministrationModule`
+-----------------------------------------------------
 
 .. confval:: showAdministrationModule
 
@@ -193,21 +247,24 @@ showAdministrationModule
 
 .. _extensionConfigurationHidePageTreeForAdministrationModule:
 
-hidePageTreeForAdministrationModule
-===================================
+Hide page tree for Administration module `hidePageTreeForAdministrationModule`
+-------------------------------------------------------------------------------
 
 .. confval:: hidePageTreeForAdministrationModule
 
    :type: bool
    :Default: 0
 
-   If set, the backend module "News" is shown without the page tree. In c
-   ombination with the TsConfig :confval:`redirectToPageOnStart` you can
+   If set, the backend module "News" is shown without the page tree. In
+   combination with the TsConfig :confval:`redirectToPageOnStart` you can
    achieve a very simple workflow for editors if those need only to create
    news records.
 
-showImporter
-============
+Import Module
+=============
+
+Show importer `showImporter`
+----------------------------
 
 .. confval:: showImporter
 
@@ -219,10 +276,10 @@ showImporter
 
 .. _extensionConfigurationStorageUidImporter:
 
-storageUidImporter
-==================
+UID of storage to use when importing files/images `storageUidImporter`
+----------------------------------------------------------------------
 
-.. confval:: showImporter
+.. confval:: storageUidImporter
 
    :type: int
    :Default: 1
@@ -232,8 +289,8 @@ storageUidImporter
 
 .. _extensionConfigurationResourceFolderImporter:
 
-resourceFolderImporter
-======================
+In which folder should the importer save files/images (has to exist) `resourceFolderImporter`
+---------------------------------------------------------------------------------------------
 
 .. confval:: resourceFolderImporter
 
@@ -242,11 +299,12 @@ resourceFolderImporter
 
    Define the folder which is used for the media elements which are imported.
 
-Alternative configuration instead of Extension Manager
-======================================================
+Alternative configuration instead of Admin Tools
+================================================
 
 Instead of defining the property in the Admin Tools it is also possible to define
-the properties in the :file:`AdditionalConfiguration.php` by setting
+the properties in the :file:`AdditionalConfiguration.php`. This is useful if
+you want to include the setting in version control.
 
 .. code-block:: php
    :caption: AdditionalConfiguration.php
