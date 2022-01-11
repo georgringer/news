@@ -135,7 +135,7 @@ class BackendUtility
     {
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
             $getVars = GeneralUtility::_GET('edit');
-            if (is_array($getVars['tt_content'])) {
+            if (isset($getVars['tt_content']) && is_array($getVars['tt_content'])) {
                 $item = array_keys($getVars['tt_content']);
                 $recordId = (int)$item[0];
 
