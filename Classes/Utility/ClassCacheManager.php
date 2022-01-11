@@ -97,7 +97,7 @@ class ClassCacheManager
                     $code .= $this->parseSingleFile($path, false);
                 }
             }
-            if (count($this->constructorLines['code'])) {
+            if (isset($this->constructorLines['code']) && count($this->constructorLines['code'])) {
                 $code .= LF . implode("\n", $this->constructorLines['doc']);
                 $code .= LF . '    public function __construct(' . implode(',', $this->constructorLines['parameters'] ?? []) . ')' . LF . '    {' . LF . implode(LF, $this->constructorLines['code'] ?? []) . LF . '    }' . LF;
             }
