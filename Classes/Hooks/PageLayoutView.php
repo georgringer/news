@@ -168,7 +168,7 @@ class PageLayoutView
                 // for all views
                 $this->getOverrideDemandSettings();
 
-                $result = $this->renderSettingsAsTable($header, $params['row']['uid']);
+                $result = $this->renderSettingsAsTable($header, $params['row']['uid'] ?? 0);
             }
         }
 
