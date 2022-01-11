@@ -32,7 +32,6 @@ class ClassCacheManager
      */
     protected $constructorLines = [];
 
-
     /**
      * @param PhpFrontend $classCache
      */
@@ -161,7 +160,7 @@ class ClassCacheManager
             unset($innerPart[0]);
         }
 
-        $innerPartLine = function($line) use ($offsetForInnerPart) {
+        $innerPartLine = function ($line) use ($offsetForInnerPart) {
             return $line - $offsetForInnerPart;
         };
 
@@ -170,22 +169,25 @@ class ClassCacheManager
             $constructorInfo = $classParserInformation['functions']['__construct'];
             $constructorInfo['inner_start'] = $constructorInfo['start'] - $offsetForInnerPart;
             $constructorInfo['inner_end'] = $constructorInfo['end'] - $offsetForInnerPart;
-            if($baseClass) {
+            if ($baseClass) {
                 $this->constructorLines['doc'] = explode("\n", $constructorInfo['doc']);
             } else {
-                array_splice($this->constructorLines['doc'],-1,0,
-                    array_filter(explode("\n", $constructorInfo['doc']), function($value) {
+                array_splice(
+                    $this->constructorLines['doc'],
+                    -1,
+                    0,
+                    array_filter(explode("\n", $constructorInfo['doc']), function ($value) {
                         return strpos($value, '@param') !== false;
                     })
                 );
             }
             $codePart = false;
             for ($i = $constructorInfo['inner_start']; $i < $constructorInfo['inner_end']; $i++) {
-                if($codePart) {
+                if ($codePart) {
                     $this->constructorLines['code'][] = $innerPart[$i];
-                }else if(trim($innerPart[$i]) === ') {' || trim($innerPart[$i]) === '{') {
+                } elseif (trim($innerPart[$i]) === ') {' || trim($innerPart[$i]) === '{') {
                     $codePart = true;
-                } elseif(trim($innerPart[$i]) !== ')' && $i >= ($constructorInfo['inner_start'])) {
+                } elseif (trim($innerPart[$i]) !== ')' && $i >= ($constructorInfo['inner_start'])) {
                     $this->constructorLines['parameters'][] = LF . rtrim($innerPart[$i], ',');
                 }
                 unset($innerPart[$i]);
