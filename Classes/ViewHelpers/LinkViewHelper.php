@@ -142,13 +142,18 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         }
 
         $url = $this->cObj->typoLink_URL($configuration);
-        if ($uriOnly) {
-            return $url;
-        }
 
         // link could not be generated
         if ($url === '' || $linkedContent === $url) {
             return $linkedContent;
+        }
+
+        if ($this->hasArgument('section')) {
+            $url .= '#' . $this->arguments['section'];
+        }
+
+        if ($uriOnly) {
+            return $url;
         }
 
         if (isset($tsSettings['link']['typesOpeningInNewWindow'])) {
@@ -162,10 +167,6 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             if (!empty($target)) {
                 $this->tag->addAttribute('target', $target);
             }
-        }
-
-        if ($this->hasArgument('section')) {
-            $url .= '#' . $this->arguments['section'];
         }
 
         $this->tag->addAttribute('href', $url);
