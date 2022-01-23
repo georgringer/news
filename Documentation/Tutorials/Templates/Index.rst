@@ -142,7 +142,6 @@ Templates
    ViewHelpers/Index
    TemplateSelector/Index
    RenderContentElements/Index
-   AjaxBasedPagination/Index
    GroupNewsRecords/Index
    MultiCategorySelection/Index
    OverwriteDemandInFrontend/Index

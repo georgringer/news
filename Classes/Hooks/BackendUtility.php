@@ -135,7 +135,7 @@ class BackendUtility
     {
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
             $getVars = GeneralUtility::_GET('edit');
-            if (is_array($getVars) && is_array($getVars['tt_content'])) {
+            if (isset($getVars['tt_content']) && is_array($getVars['tt_content'])) {
                 $item = array_keys($getVars['tt_content']);
                 $recordId = (int)$item[0];
 
@@ -167,15 +167,17 @@ class BackendUtility
     protected function updateFlexforms(array &$dataStructure, array $row): void
     {
         $selectedView = '';
-
-        // get the first selected action
-        if (is_string($row['pi_flexform'])) {
-            $flexformSelection = GeneralUtility::xml2array($row['pi_flexform']);
-        } else {
-            $flexformSelection = $row['pi_flexform'];
+        $flexformSelection = [];
+        if (isset($row['pi_flexform'])) {
+            // get the first selected action
+            if (is_string($row['pi_flexform'])) {
+                $flexformSelection = GeneralUtility::xml2array($row['pi_flexform']);
+            } else {
+                $flexformSelection = $row['pi_flexform'];
+            }
         }
-        if (is_array($flexformSelection) && is_array($flexformSelection['data'])) {
-            $selectedView = $flexformSelection['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
+        if (is_array($flexformSelection) && isset($flexformSelection['data'])) {
+            $selectedView = $flexformSelection['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'] ?? '';
             if (!empty($selectedView)) {
                 $actionParts = GeneralUtility::trimExplode(';', $selectedView, true);
                 $selectedView = $actionParts[0];
@@ -215,7 +217,7 @@ class BackendUtility
                 default:
             }
 
-            if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'])) {
+            if ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] ?? []) {
                 $params = [
                     'selectedView' => $selectedView,
                     'dataStructure' => &$dataStructure,

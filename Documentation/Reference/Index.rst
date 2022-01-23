@@ -17,5 +17,5 @@ In-depth reference for integrators and developers.
    TsConfig/Index
    Events/Index
    ViewHelpers/Index
-   Changelog/Index
+   /Misc/Changelog/Index
    MissingKnownErrors/Index
