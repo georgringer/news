@@ -35,11 +35,9 @@ Now it is possible to use a condition in the template to change the layouts, and
             </f:then>
             <f:else>
                <div class="news news-list-view">
-                  <n:widget.paginate objects="{news}" as="paginatedNews" configuration="{settings.list.paginate}">
-                        <f:for each="{paginatedNews}" as="newsItem">
-                           <f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings}"/>
-                        </f:for>
-                  </n:widget.paginate>
+                  <f:for each="{news}" as="newsItem">
+                     <f:render partial="List/Item-special" arguments="{newsItem: newsItem, settings:settings}"/>
+                  </f:for>
                </div>
             </f:else>
          </f:if>
