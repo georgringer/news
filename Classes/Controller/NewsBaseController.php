@@ -88,38 +88,38 @@ class NewsBaseController extends ActionController
      *
      * @param string $configuration configuration what will be done
      * @throws \InvalidArgumentException
-     * @return string|null
+     * @return string
      */
-    protected function handleNoNewsFoundError($configuration): ?string
+    protected function handleNoNewsFoundError($configuration): string
     {
         if (empty($configuration)) {
-            return null;
+            return '';
         }
+        $configuration = 'x';
+        $options = GeneralUtility::trimExplode(',', $configuration, true);
 
-        $configuration = GeneralUtility::trimExplode(',', $configuration, true);
-
-        switch ($configuration[0]) {
+        switch ($options[0]) {
             case 'redirectToListView':
                 $this->redirect('list');
                 break;
             case 'redirectToPage':
-                if (count($configuration) === 1 || count($configuration) > 3) {
+                if (count($options) === 1 || count($options) > 3) {
                     $msg = sprintf(
                         'If error handling "%s" is used, either 2 or 3 arguments, split by "," must be used',
-                        $configuration[0]
+                        $options[0]
                     );
                     throw new \InvalidArgumentException($msg);
                 }
                 $this->uriBuilder->reset();
-                $this->uriBuilder->setTargetPageUid($configuration[1]);
+                $this->uriBuilder->setTargetPageUid($options[1]);
                 $this->uriBuilder->setCreateAbsoluteUri(true);
                 if (GeneralUtility::getIndpEnv('TYPO3_SSL')) {
                     $this->uriBuilder->setAbsoluteUriScheme('https');
                 }
                 $url = $this->uriBuilder->build();
 
-                if (isset($configuration[2])) {
-                    $this->redirectToUri($url, 0, (int)$configuration[2]);
+                if (isset($options[2])) {
+                    $this->redirectToUri($url, 0, (int)$options[2]);
                 } else {
                     $this->redirectToUri($url);
                 }
@@ -138,8 +138,8 @@ class NewsBaseController extends ActionController
                 );
                 throw new ImmediateResponseException($response, 1590468229);
             case 'showStandaloneTemplate':
-                if (isset($configuration[2])) {
-                    $statusCode = constant(HttpUtility::class . '::HTTP_STATUS_' . $configuration[2]);
+                if (isset($options[2])) {
+                    $statusCode = constant(HttpUtility::class . '::HTTP_STATUS_' . $options[2]);
                 } else {
                     $statusCode = HttpUtility::HTTP_STATUS_404;
                 }
@@ -148,10 +148,10 @@ class NewsBaseController extends ActionController
                 $this->getTypoScriptFrontendController()->set_no_cache('News record not found');
 
                 $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
-                $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($configuration[1]));
+                $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($options[1]));
                 return $standaloneTemplate->render();
             default:
-                // Do nothing, it might be handled in the view.
+                return '';
         }
 
         return null;

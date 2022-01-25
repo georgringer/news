@@ -334,9 +334,9 @@ class NewsRepository extends AbstractDemandedRepository
      *
      * @param int $uid id of record
      * @param bool $respectEnableFields if set to false, hidden records are shown
-     * @return \GeorgRinger\News\Domain\Model\News
+     * @return \GeorgRinger\News\Domain\Model\News|null
      */
-    public function findByUid($uid, $respectEnableFields = true): \GeorgRinger\News\Domain\Model\News
+    public function findByUid($uid, $respectEnableFields = true): ?\GeorgRinger\News\Domain\Model\News
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
