@@ -1,0 +1,40 @@
+.. include:: /Includes.rst.txt
+
+9.2.2 - 25th January 2022
+=========================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Bugfix release
+--------------
+
+This release is just a bugfix release.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2022-01-25 [BUGFIX] Allow null as return value of NewsRepository::findByUid (Commit ca58c4f1 by Georg Ringer)
+    2022-01-24 [BUGFIX] Rename variable name in NewsBaseController (Commit 1f21a325 by Georg Ringer)
+    2022-01-23 [TASK] Remove ajax pagination left overs (Commit 76c09fca by Georg Ringer)
+    2022-01-11 Update BackendUtility.php (#1688) (Commit d5c2c795 by Naderio)
+    2022-01-11 [DOCS] Display TypoScript and Extension configuration as confvals (#1696) (Commit fa5ffbdb by Lina Wolf)
+    2022-01-11 [BUGFIX] Fix pagination style for Bootstrap 3 (#1693) (Commit 19367ea8 by Daniel Haupt)
+    2022-01-11 Apply fixes from StyleCI (#1702) (Commit b81878a0 by Georg Ringer)
+    2022-01-11 [TASK] Further array check (Commit e6a0534b by Georg Ringer)
+    2022-01-11 [BUGFIX] Improve constructor merging (Commit fc3daf55 by Stig Nørgaard Færch)
+    2022-01-11 [BUGFIX] Check for variable in PageLayoutView (Commit 985ced62 by Georg Ringer)
+    2022-01-11 [BUGFIX] Better type checks for PHP8 (Commit cfe9fd7b by Georg Ringer)
+    2022-01-05 [BUGFIX] Move Changelog back to previous position (#1690) (Commit 8ad6c136 by Lina Wolf)
+    2022-01-05 [FEATURE] Display TSconfig as confvals (#1695) (Commit cd580513 by Lina Wolf)
+    2021-12-23 Update Item.html (#1666) (Commit 877000e5 by Thorsten Griebenow)
+    2021-12-23 [DOCS] Fix installation page (#1671) (Commit 374fbf72 by Sybille Peters)
+    2021-12-23 [DOCS] Update information about versioning (#1680) (Commit e447b4a0 by Sybille Peters)
+    2021-12-23 [BUGFIX] Take language id into account when generating a unique value in SlugService (#1684) (Commit 82fa4b3c by Wolfgang Klinger)
+    2021-12-23 [DOCS] Automate Screenshots (#1682) (Commit a097d3a6 by Lina Wolf)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:'%ad %s (Commit %h by %an)' --date=short`.
