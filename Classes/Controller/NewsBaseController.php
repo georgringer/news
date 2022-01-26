@@ -94,7 +94,6 @@ class NewsBaseController extends ActionController
         if (empty($configuration)) {
             return '';
         }
-        $configuration = 'x';
         $options = GeneralUtility::trimExplode(',', $configuration, true);
 
         switch ($options[0]) {
