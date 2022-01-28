@@ -126,7 +126,7 @@ class CategoryService
             throw new \UnexpectedValueException('TYPO3 Mode must be BE');
         }
 
-        $overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];
+        $overlayLanguage = (int)($GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0);
 
         $title = '';
 
