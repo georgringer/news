@@ -91,7 +91,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         $this->registerArgument('uriOnly', 'bool', 'url only', false, false);
         $this->registerArgument('configuration', 'array', 'configuration', false, []);
         $this->registerArgument('content', 'string', 'content', false, '');
-        $this->registerTagAttribute('section', 'string', 'Anchor for links', false);
+        $this->registerArgument('section', 'string', 'Anchor for links', false);
     }
 
     /**
