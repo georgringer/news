@@ -127,12 +127,12 @@ class AdministrationController extends NewsController
         $web_list_modTSconfig = BackendUtilityCore::getPagesTSconfig($this->pageUid)['mod.']['web_list.'] ?? [];
         $this->allowedNewTables = GeneralUtility::trimExplode(
             ',',
-            $web_list_modTSconfig['allowedNewTables'],
+            $web_list_modTSconfig['allowedNewTables'] ?? '',
             true
         );
         $this->deniedNewTables = GeneralUtility::trimExplode(
             ',',
-            $web_list_modTSconfig['deniedNewTables'],
+            $web_list_modTSconfig['deniedNewTables'] ?? '',
             true
         );
 
@@ -314,7 +314,7 @@ class AdministrationController extends NewsController
         $demandVars = GeneralUtility::_GET('tx_news_web_newsadministration');
         $demand = GeneralUtility::makeInstance(AdministrationDemand::class);
         $autoSubmitForm = 0;
-        if (is_array($demandVars['demand'])) {
+        if (!empty($demandVars['demand'] ?? [])) {
             foreach ($demandVars['demand'] as $key => $value) {
                 if (property_exists(AdministrationDemand::class, $key)) {
                     $getter = 'set' . ucfirst($key);
@@ -340,7 +340,7 @@ class AdministrationController extends NewsController
                     $autoSubmitForm = 1;
                 }
             }
-            if (!(bool)$this->tsConfiguration['alwaysShowFilter'] || !$this->isFilteringEnabled()) {
+            if (!(bool)($this->tsConfiguration['alwaysShowFilter'] ?? false) || !$this->isFilteringEnabled()) {
                 $this->view->assign('hideForm', true);
             }
         }
@@ -377,7 +377,6 @@ class AdministrationController extends NewsController
         $dblist->allFields = 1;
         $dblist->displayFields = false;
         $dblist->dontShowClipControlPanels = true;
-        $dblist->counter++;
         $pointer = MathUtility::forceIntegerInRange(GeneralUtility::_GP('pointer'), 0);
         $limit = isset($this->settings['list']['paginate']['itemsPerPage']) ? (int)$this->settings['list']['paginate']['itemsPerPage'] : 20;
         $dblist->start(
@@ -389,17 +388,12 @@ class AdministrationController extends NewsController
             $limit
         );
         $dblist->setDispFields();
-        $dblist->noControlPanels = !(bool)$this->tsConfiguration['controlPanels'];
+        $dblist->noControlPanels = !(bool)($this->tsConfiguration['controlPanels'] ?? false);
         $dblist->setFields = [
-            'tx_news_domain_model_news' => GeneralUtility::trimExplode(',', $this->tsConfiguration['columns'] ?: 'teaser,istopnews,datetime,categories', true)
+            'tx_news_domain_model_news' => GeneralUtility::trimExplode(',', $this->tsConfiguration['columns'] ?? 'teaser,istopnews,datetime,categories', true)
         ];
 
-        $tableRendering = $dblist->generateList();
-        if (!$tableRendering) {
-            // todo can be remove when 9.5 supported dropped
-            $tableRendering = $dblist->HTMLcode;
-        }
-        $tableRendering = trim($tableRendering);
+        $tableRendering = trim($dblist->generateList());
 
         $counter = !empty($tableRendering);
         $this->view->getModuleTemplate()->getPageRenderer()->loadRequireJsModule('TYPO3/CMS/Recordlist/Recordlist');
@@ -579,10 +573,12 @@ class AdministrationController extends NewsController
      */
     protected function redirectToPageOnStart(): void
     {
-        if ((int)$this->tsConfiguration['allowedPage'] > 0 && $this->pageUid !== (int)$this->tsConfiguration['allowedPage']) {
-            $id = (int)$this->tsConfiguration['allowedPage'];
-        } elseif ($this->pageUid === 0 && (int)$this->tsConfiguration['redirectToPageOnStart'] > 0) {
-            $id = (int)$this->tsConfiguration['redirectToPageOnStart'];
+        $allowedPage = (int)($this->tsConfiguration['allowedPage'] ?? 0);
+        $redirectPageOnStart = (int)($this->tsConfiguration['redirectToPageOnStart'] ?? 0);
+        if ($allowedPage > 0 && $this->pageUid !== $allowedPage) {
+            $id = $allowedPage;
+        } elseif ($this->pageUid === 0 && $redirectPageOnStart > 0) {
+            $id = $redirectPageOnStart;
         }
 
         if (!empty($id)) {
