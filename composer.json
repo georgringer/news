@@ -12,7 +12,8 @@
     "authors": [
         {
             "name": "Georg Ringer",
-            "role": "Developer"
+            "role": "Developer",
+            "homepage": "https://ringer.it"
         }
     ],
     "license": [
