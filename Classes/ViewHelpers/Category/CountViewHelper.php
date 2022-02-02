@@ -21,7 +21,8 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  */
 
 /**
- * Get usage count
+ * Get usage count. This ViewHelper retrieves a simple count and does *not* take any additional constraints into account!
+ * If you need additional constraints like startingpoint, archive, ... duplicate the ViewHelper and implement it on your own!
  *
  * Example usage
  * {n:category.count(categoryUid:category.item.uid) -> f:variable(name: 'categoryUsageCount')}
