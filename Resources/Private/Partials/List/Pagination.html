@@ -26,9 +26,17 @@
             <li>…</li>
         </f:if>
         <f:for each="{pagination.allPageNumbers}" as="page">
-            <li class="{f:if(condition: '{page} == {paginator.currentPageNumber}', then:'current')}">
-                <a href="{f:uri.action(action:actionName, arguments:{currentPage: page},addQueryString:1)}">{page}</a>
-            </li>
+            <f:if condition="{page} == {paginator.currentPageNumber}">
+                <f:then>
+                    <li class="current">{page}</li>
+                </f:then>
+                <f:else>
+                    <li>
+                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: page},addQueryString:1)}">{page}</a>
+                    </li>
+                </f:else>
+            </f:if>
+
         </f:for>
         <f:if condition="{pagination.hasMorePages}">
             <li>…</li>
