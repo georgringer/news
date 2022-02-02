@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace GeorgRinger\News\Backend\FieldInformation;
 
 use TYPO3\CMS\Backend\Form\AbstractNode;
