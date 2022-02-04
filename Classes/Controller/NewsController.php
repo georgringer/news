@@ -651,7 +651,7 @@ class NewsController extends NewsBaseController
 
         $propertiesNotAllowedViaFlexForms = ['orderByAllowed'];
         foreach ($propertiesNotAllowedViaFlexForms as $property) {
-            $originalSettings[$property] = $tsSettings['settings'][$property];
+            $originalSettings[$property] = ($tsSettings['settings'] ?? [])[$property] ?? ($originalSettings[$property] ?? '');
         }
         $this->originalSettings = $originalSettings;
 
