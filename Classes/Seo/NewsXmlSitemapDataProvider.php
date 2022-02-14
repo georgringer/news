@@ -99,6 +99,10 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             $constraints[] = $this->config['additionalWhere'];
         }
 
+        $queryBuilder->getRestrictions()->add(
+            GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->getCurrentWorkspaceAspect()->getId())
+        );
+
         $queryBuilder->select('*')
             ->from($table);
 
@@ -241,5 +245,13 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     {
         $context = GeneralUtility::makeInstance(Context::class);
         return (int)$context->getPropertyFromAspect('language', 'id');
+    }
+
+    /**
+     * @return WorkspaceAspect
+     */
+    protected function getCurrentWorkspaceAspect(): WorkspaceAspect
+    {
+        return GeneralUtility::makeInstance(Context::class)->getAspect('workspace');
     }
 }
