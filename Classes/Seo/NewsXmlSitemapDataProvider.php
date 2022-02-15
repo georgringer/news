@@ -12,8 +12,10 @@ namespace GeorgRinger\News\Seo;
  */
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Seo\XmlSitemap\AbstractXmlSitemapDataProvider;
@@ -98,6 +100,10 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
         if (!empty($this->config['additionalWhere'])) {
             $constraints[] = $this->config['additionalWhere'];
         }
+
+        $queryBuilder->getRestrictions()->add(
+            GeneralUtility::makeInstance(WorkspaceRestriction::class, $this->getCurrentWorkspaceAspect()->getId())
+        );
 
         $queryBuilder->select('*')
             ->from($table);
@@ -241,5 +247,13 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     {
         $context = GeneralUtility::makeInstance(Context::class);
         return (int)$context->getPropertyFromAspect('language', 'id');
+    }
+
+    /**
+     * @return WorkspaceAspect
+     */
+    protected function getCurrentWorkspaceAspect(): WorkspaceAspect
+    {
+        return GeneralUtility::makeInstance(Context::class)->getAspect('workspace');
     }
 }
