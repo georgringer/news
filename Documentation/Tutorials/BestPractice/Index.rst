@@ -156,6 +156,18 @@ Best practice
             Learn how to set default values, influence the choices of select
             fields etc.
 
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Hide detail page <hideDetailPage>`
+
+         .. container:: card-body
+
+            Avoid the detail page in the url and reuse the list page.
+
 .. toctree::
    :maxdepth: 5
    :titlesonly:
@@ -170,6 +182,7 @@ Best practice
    Linkhandler/Index
    AvailableContentElements/Index
    IntegrationWithTypoScript/Index
+   HideDetailPage/Index
    ClearCache/Index
    PredefineFields/Index
    ICalendar/Index
