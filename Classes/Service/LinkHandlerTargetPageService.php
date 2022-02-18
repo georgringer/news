@@ -62,5 +62,4 @@ class LinkHandlerTargetPageService
             ->execute()->fetch();
         return (int)$categoryRecord['single_pid'];
     }
-
 }
