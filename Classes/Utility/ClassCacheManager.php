@@ -89,7 +89,7 @@ class ClassCacheManager
             $code = $this->parseSingleFile($path, true);
 
             // Get the files from all other extensions
-            foreach ($extensionsWithThisClass as $extensionKey) {
+            foreach (array_unique($extensionsWithThisClass) as $extensionKey) {
                 $path = ExtensionManagementUtility::extPath($extensionKey) . $classPath . $key . '.php';
                 if (is_file($path)) {
                     $extendingClassFound = true;
