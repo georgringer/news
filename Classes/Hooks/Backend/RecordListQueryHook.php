@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into DatabaseRecordList to hide tt_content elements in list view
- *
  */
 class RecordListQueryHook
 {
@@ -27,11 +26,19 @@ class RecordListQueryHook
     /** @var RecordListConstraint */
     protected $recordListConstraint;
 
-    public function __construct()
-    {
-        $this->recordListConstraint = GeneralUtility::makeInstance(RecordListConstraint::class);
+    /**
+     * RecordListQueryHook constructor.
+     * @param RecordListConstraint $recordListConstraint
+     */
+    public function __construct(
+        RecordListConstraint $recordListConstraint
+    ) {
+        $this->recordListConstraint = $recordListConstraint;
     }
 
+    /**
+     * @return void
+     */
     public function modifyQuery(
         array &$parameters,
         string $table,
@@ -72,7 +79,7 @@ class RecordListQueryHook
         }
     }
 
-    private function addFlashMessage()
+    private function addFlashMessage(): void
     {
         $message = GeneralUtility::makeInstance(
             FlashMessage::class,

@@ -1,0 +1,13 @@
+# customsubcategory=sitemap=News sitemap settings
+plugin.tx_news.settings.sitemap {
+	# cat=plugin.tx_news/sitemap/0010; type=int+; label=Sitemap startingpoint
+	startingpoint =
+	# cat=plugin.tx_news/sitemap/0020; type=int+; label=Detail view page UID for sitemap
+	detailPid =
+	# cat=plugin.tx_news/sitemap/0030; type=int+; label=Recursion level of startingpoint for sitemap
+	recursive = 0
+	# cat=plugin.tx_news/sitemap/0040; type=int+; label=Limit of news to list in the sitemap
+	limit = 1000
+	# cat=plugin.tx_news/sitemap/0050; type=int+; label=Page type for the sitemap
+	typeNumber = 1426844832
+}

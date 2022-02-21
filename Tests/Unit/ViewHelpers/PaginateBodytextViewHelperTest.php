@@ -22,16 +22,24 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      * Test if given tag is a closing tag
      *
      * @test
+     *
      * @dataProvider givenTagIsAClosingTagDataProvider
+     *
+     * @return void
      */
-    public function givenTagIsAClosingTag($tag, $expectedResult)
+    public function givenTagIsAClosingTag($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('isClosingTag', $tag);
         $this->assertEquals($expectedResult, $result);
     }
 
-    public function givenTagIsAClosingTagDataProvider()
+    /**
+     * @return (bool|string)[][]
+     *
+     * @psalm-return array{'working example 1': array{0: string, 1: true}, 'working example 2': array{0: string, 1: false}}
+     */
+    public function givenTagIsAClosingTagDataProvider(): array
     {
         return [
             'working example 1' => [
@@ -47,16 +55,24 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      * Test if given tag is a self closing tag
      *
      * @test
+     *
      * @dataProvider givenTagIsSelfClosingTagDataProvider
+     *
+     * @return void
      */
-    public function givenTagIsSelfClosingTag($tag, $expectedResult)
+    public function givenTagIsSelfClosingTag($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('isSelfClosingTag', $tag);
         $this->assertEquals($expectedResult, $result);
     }
 
-    public function givenTagIsSelfClosingTagDataProvider()
+    /**
+     * @return (bool|string)[][]
+     *
+     * @psalm-return array{'working example 1': array{0: string, 1: true}, 'working example 2': array{0: string, 1: false}}
+     */
+    public function givenTagIsSelfClosingTagDataProvider(): array
     {
         return [
             'working example 1' => [
@@ -72,16 +88,24 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      * Test if given tag is an opening tag
      *
      * @test
+     *
      * @dataProvider givenTagIsAnOpeningTagDataProvider
+     *
+     * @return void
      */
-    public function givenTagIsAnOpeningTag($tag, $expectedResult)
+    public function givenTagIsAnOpeningTag($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('isOpeningTag', $tag);
         $this->assertEquals($expectedResult, $result);
     }
 
-    public function givenTagIsAnOpeningTagDataProvider()
+    /**
+     * @return (bool|string)[][]
+     *
+     * @psalm-return array{0: array{0: string, 1: true}, 1: array{0: string, 1: false}, 2: array{0: string, 1: false}, 3: array{0: string, 1: false}}
+     */
+    public function givenTagIsAnOpeningTagDataProvider(): array
     {
         return [
             ['<div>', true],
@@ -95,16 +119,24 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      * Test if given tag is an opening tag
      *
      * @test
+     *
      * @dataProvider extractTagReturnsCorrectOneDataProvider
+     *
+     * @return void
      */
-    public function extractTagReturnsCorrectOne($tag, $expectedResult)
+    public function extractTagReturnsCorrectOne($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('extractTag', $tag);
         $this->assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)));
     }
 
-    public function extractTagReturnsCorrectOneDataProvider()
+    /**
+     * @return string[][]
+     *
+     * @psalm-return array{0: array{0: string, 1: string}, 1: array{0: string, 1: string}, 2: array{0: string, 1: string}, 3: array{0: string, 1: string}}
+     */
+    public function extractTagReturnsCorrectOneDataProvider(): array
     {
         return [
             ['this <strong>is</strong> a <div>real</div>test', 'this <strong>'],

@@ -39,8 +39,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getArchiveSettingAddsValueIfFilled()
+    public function getArchiveSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.archiveRestriction', 'something');
@@ -52,8 +54,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getDetailPidSettingAddsValueIfFilled()
+    public function getDetailPidSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.detailPid', '9999999999', 'additional');
@@ -65,8 +69,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getTagRestrictionSettingAddsValueIfFilled()
+    public function getTagRestrictionSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.tags', '9999999999', 'additional');
@@ -78,8 +84,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getListPidSettingAddsValueIfFilled()
+    public function getListPidSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.listPid', '9999999999', 'additional');
@@ -91,8 +99,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getOrderBySettingAddsValueIfFilled()
+    public function getOrderBySettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.orderBy', 'fo');
@@ -104,8 +114,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getOrderDirectionSettingAddsValueIfFilled()
+    public function getOrderDirectionSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.orderDirection', 'asc');
@@ -119,8 +131,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getTopNewsFirstSettingAddsValueIfFilled()
+    public function getTopNewsFirstSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.topNewsFirst', '1', 'additional');
@@ -134,8 +148,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getOffsetLimitSettingsAddsValueIfFilled()
+    public function getOffsetLimitSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.offset', '1', 'additional');
@@ -161,8 +177,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getDateMenuSettingsAddsValueIfFilled()
+    public function getDateMenuSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.dateField', 'field');
@@ -173,8 +191,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getTimeRestrictionSettingAddsValueIfFilled()
+    public function getTimeRestrictionSettingAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.timeRestriction', 'fo');
@@ -190,8 +210,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getTemplateLayoutSettingsAddsValueIfFilled()
+    public function getTemplateLayoutSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
         $mockedTemplateLayout = $this->getAccessibleMock(TemplateLayout::class, ['getAvailableTemplateLayouts']);
@@ -208,8 +230,10 @@ class PageLayoutViewTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getOverrideDemandSettingsAddsValueIfFilled()
+    public function getOverrideDemandSettingsAddsValueIfFilled(): void
     {
         $flexform = [];
         $this->addContentToFlexform($flexform, 'settings.disableOverrideDemand', '1', 'additional');
@@ -225,8 +249,10 @@ class PageLayoutViewTest extends BaseTestCase
      * @param string $key key of field
      * @param string $value value of field
      * @param string $sheet name of sheet
+     *
+     * @return void
      */
-    protected function addContentToFlexform(array &$flexform, $key, $value, $sheet = 'sDEF')
+    protected function addContentToFlexform(array &$flexform, $key, $value, $sheet = 'sDEF'): void
     {
         $flexform = [
             'data' => [

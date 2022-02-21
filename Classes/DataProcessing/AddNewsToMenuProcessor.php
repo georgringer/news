@@ -24,7 +24,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  *
  * 20 = GeorgRinger\News\DataProcessing\AddNewsToMenuProcessor
  * 20.menus = breadcrumbMenu,specialMenu
- *
  */
 class AddNewsToMenuProcessor implements DataProcessorInterface
 {
@@ -36,7 +35,7 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
      * @param array $processedData
      * @return array
      */
-    public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData)
+    public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData): array
     {
         if (!$processorConfiguration['menus']) {
             return $processedData;
@@ -58,8 +57,10 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
      *
      * @param array $newsRecord
      * @param array $menu
+     *
+     * @return void
      */
-    protected function addNewsRecordToMenu(array $newsRecord, array &$menu)
+    protected function addNewsRecordToMenu(array $newsRecord, array &$menu): void
     {
         foreach ($menu as &$menuItem) {
             $menuItem['current'] = 0;

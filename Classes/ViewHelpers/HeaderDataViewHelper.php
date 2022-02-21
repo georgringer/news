@@ -23,13 +23,12 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  *        <link rel="alternate"
  *            type="application/rss+xml"
  *            title="RSS 2.0"
- *            href="<f:uri.page additionalParams="{type:9818}"/>" />
+ *            href="{f:uri.page(pageType: settings.list.rss.channel.typeNum)}" />
  * </n:headerData>
  * </code>
  * <output>
  * Added to the header: <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="uri to this page and type 9818" />
  * </output>
- *
  */
 class HeaderDataViewHelper extends AbstractViewHelper
 {
@@ -39,6 +38,8 @@ class HeaderDataViewHelper extends AbstractViewHelper
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
+     *
+     * @return void
      */
     public static function renderStatic(
         array $arguments,

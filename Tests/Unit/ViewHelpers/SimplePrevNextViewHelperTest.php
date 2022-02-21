@@ -28,8 +28,10 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function wrongIdWillReturnNullForObject()
+    public function wrongIdWillReturnNullForObject(): void
     {
         $this->viewHelper->expects($this->any())->method('getRawRecord')->withAnyParameters()->will($this->returnValue(null));
 
@@ -39,8 +41,10 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function queryResultWillReturnCorrectOutputForAllLinks()
+    public function queryResultWillReturnCorrectOutputForAllLinks(): void
     {
         $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
@@ -49,16 +53,17 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
             'next' => ['uid' => 789],
         ];
         $exp = ['prev' => 123, 'next' => 789];
-        $viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(123));
-        $viewHelper->expects($this->at(1))->method('getObject')->will($this->returnValue(789));
+        $viewHelper->expects(self::exactly(2))->method('getObject')->willReturnOnConsecutiveCalls(123, 789);
         $out = $viewHelper->_call('mapResultToObjects', $in);
         $this->assertEquals($out, $exp);
     }
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function queryResultWillReturnCorrectOutputFor2Links()
+    public function queryResultWillReturnCorrectOutputFor2Links(): void
     {
         $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
@@ -66,15 +71,17 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
             'prev' => ['uid' => 147],
         ];
         $exp = ['prev' => 147];
-        $viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(147));
+        $viewHelper->expects(self::exactly(1))->method('getObject')->willReturnOnConsecutiveCalls(147);
         $out = $viewHelper->_call('mapResultToObjects', $in);
         $this->assertEquals($out, $exp);
     }
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function queryResultWillReturnCorrectOutputFor1Link()
+    public function queryResultWillReturnCorrectOutputFor1Link(): void
     {
         $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
@@ -82,7 +89,7 @@ class SimplePrevNextViewHelperTest extends BaseTestCase
             'next' => ['uid' => 369],
         ];
         $exp = ['next' => 369];
-        $viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(369));
+        $viewHelper->expects(self::exactly(1))->method('getObject')->willReturnOnConsecutiveCalls(369);
         $out = $viewHelper->_call('mapResultToObjects', $in);
         $this->assertEquals($out, $exp);
     }

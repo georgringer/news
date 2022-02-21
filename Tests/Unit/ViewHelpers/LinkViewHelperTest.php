@@ -49,8 +49,10 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function internalPageIsUsed()
+    public function internalPageIsUsed(): void
     {
         $url = '123';
         $result = ['parameter' => $url];
@@ -65,8 +67,10 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function externalUrlIsUsed()
+    public function externalUrlIsUsed(): void
     {
         $url = 'http://www.typo3.org';
         $result = ['parameter' => $url];
@@ -81,8 +85,10 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function humanReadAbleDateIsAddedToConfiguration()
+    public function humanReadAbleDateIsAddedToConfiguration(): void
     {
         $dateTime = new \DateTime('2014-05-16');
         $newsItem = new \GeorgRinger\News\Domain\Model\News();
@@ -108,28 +114,10 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function controllerAndActionAreSkippedInUrl()
-    {
-        $newsItem = new \GeorgRinger\News\Domain\Model\News();
-        $newsItem->_setProperty('uid', 123);
-
-        $tsSettings = [
-            'link' => [
-                'skipControllerAndAction' => 1
-            ]
-        ];
-        $configuration = [];
-        $expected = '&tx_news_pi1[news]=123';
-
-        $result = $this->mockedViewHelper->_call('getLinkToNewsItem', $newsItem, $tsSettings, $configuration);
-        $this->assertEquals($expected, $result['additionalParams']);
-    }
-
-    /**
-     * @test
-     */
-    public function getDetailPidFromCategoriesReturnsCorrectValue()
+    public function getDetailPidFromCategoriesReturnsCorrectValue(): void
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
 
@@ -155,9 +143,12 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider
+     *
+     * @return void
      */
-    public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected)
+    public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected): void
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
 
@@ -165,7 +156,12 @@ class LinkViewHelperTest extends BaseTestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider()
+    /**
+     * @return (int|null|string[])[][]
+     *
+     * @psalm-return array{0: array{0: null, 1: int}, 1: array{0: array<empty, empty>, 1: int}, 2: array{0: array{defaultDetailPid: string}, 1: int}, 3: array{0: array{defaultDetailPid: string}, 1: int}}
+     */
+    public function getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider(): array
     {
         return [
             [null, 0],
@@ -177,9 +173,12 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
      * @dataProvider getDetailPidFromFlexformReturnsCorrectValueDataProvider
+     *
+     * @return void
      */
-    public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected)
+    public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected): void
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
 
@@ -199,8 +198,10 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function noNewsReturnsChildren()
+    public function noNewsReturnsChildren(): void
     {
         $settingService = $this->getAccessibleMock(SettingsService::class, ['getConfiguration', 'getSettings']);
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['renderChildren', 'getSettings']);

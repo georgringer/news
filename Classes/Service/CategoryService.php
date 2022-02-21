@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Service for category related stuff
- *
  */
 class CategoryService
 {
@@ -36,11 +35,11 @@ class CategoryService
         $counter = 0,
         $additionalWhere = '',
         $removeGivenIdListFromResult = false
-    ) {
+    ): string {
         if ($additionalWhere !== '') {
             throw new \UnexpectedValueException('The argument $additionalWhere is not supported anymore');
         }
-        $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
+        $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news_category');
         $cacheIdentifier = sha1('children' . $idList);
 
         $entry = $cache->get($cacheIdentifier);
@@ -63,7 +62,7 @@ class CategoryService
      * @param $toBeRemoved string comma separated list
      * @return string
      */
-    public static function removeValuesFromString($result, $toBeRemoved): string
+    public static function removeValuesFromString($result, string $toBeRemoved): string
     {
         $resultAsArray = GeneralUtility::trimExplode(',', $result, true);
         $idListAsArray = GeneralUtility::trimExplode(',', $toBeRemoved, true);
@@ -121,13 +120,13 @@ class CategoryService
      * @return string
      * @throws \UnexpectedValueException
      */
-    public static function translateCategoryRecord($default, array $row = [])
+    public static function translateCategoryRecord($default, array $row = []): string
     {
         if (TYPO3_MODE !== 'BE') {
             throw new \UnexpectedValueException('TYPO3 Mode must be BE');
         }
 
-        $overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];
+        $overlayLanguage = (int)($GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0);
 
         $title = '';
 

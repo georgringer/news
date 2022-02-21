@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
 
 /**
@@ -19,12 +20,12 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * @var array
      */
-    protected $categories;
+    protected $categories = [];
 
     /**
      * @var string
      */
-    protected $categoryConjunction;
+    protected $categoryConjunction = '';
 
     /**
      * @var bool
@@ -34,68 +35,68 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * @var string
      */
-    protected $author;
+    protected $author = '';
 
     /** @var string */
-    protected $tags;
+    protected $tags = '';
 
     /**
      * @var string
      */
-    protected $archiveRestriction;
+    protected $archiveRestriction = '';
 
     /**
      * @var string
      */
-    protected $timeRestriction = null;
+    protected $timeRestriction = '';
 
     /** @var string */
-    protected $timeRestrictionHigh = null;
+    protected $timeRestrictionHigh = '';
 
     /** @var int */
-    protected $topNewsRestriction;
+    protected $topNewsRestriction = 0;
 
     /** @var string */
-    protected $dateField;
+    protected $dateField = '';
 
     /** @var int */
-    protected $month;
+    protected $month = 0;
 
     /** @var int */
-    protected $year;
+    protected $year = 0;
 
     /** @var int */
-    protected $day;
+    protected $day = 0;
 
     /** @var string */
-    protected $searchFields;
+    protected $searchFields = '';
 
-    /** @var \GeorgRinger\News\Domain\Model\Dto\Search */
+    /** @var Search */
     protected $search;
 
     /** @var string */
-    protected $order;
+    protected $order = '';
 
     /** @var string */
-    protected $orderByAllowed;
+    protected $orderByAllowed = '';
 
     /** @var bool */
-    protected $topNewsFirst;
-
-    /** @var int */
-    protected $storagePage;
-
-    /** @var int */
-    protected $limit;
-
-    /** @var int */
-    protected $offset;
-
-    /** @var bool */
-    protected $excludeAlreadyDisplayedNews;
+    protected $topNewsFirst = false;
 
     /** @var string */
-    protected $hideIdList;
+    protected $storagePage = '';
+
+    /** @var int */
+    protected $limit = 0;
+
+    /** @var int */
+    protected $offset = 0;
+
+    /** @var bool */
+    protected $excludeAlreadyDisplayedNews = false;
+
+    /** @var string */
+    protected $hideIdList = '';
 
     /** @var string */
     protected $idList = '';
@@ -126,7 +127,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $archiveRestriction archive setting
      * @return NewsDemand
      */
-    public function setArchiveRestriction($archiveRestriction)
+    public function setArchiveRestriction(string $archiveRestriction): NewsDemand
     {
         $this->archiveRestriction = $archiveRestriction;
         return $this;
@@ -137,7 +138,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getArchiveRestriction()
+    public function getArchiveRestriction(): string
     {
         return $this->archiveRestriction;
     }
@@ -148,7 +149,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param array $categories categories
      * @return NewsDemand
      */
-    public function setCategories($categories)
+    public function setCategories(array $categories): NewsDemand
     {
         $this->categories = $categories;
         return $this;
@@ -159,7 +160,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return array
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         return $this->categories;
     }
@@ -170,7 +171,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $categoryConjunction
      * @return NewsDemand
      */
-    public function setCategoryConjunction($categoryConjunction)
+    public function setCategoryConjunction(string $categoryConjunction): NewsDemand
     {
         $this->categoryConjunction = $categoryConjunction;
         return $this;
@@ -181,7 +182,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getCategoryConjunction()
+    public function getCategoryConjunction(): string
     {
         return $this->categoryConjunction;
     }
@@ -190,7 +191,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * Get include sub categories
      * @return bool
      */
-    public function getIncludeSubCategories()
+    public function getIncludeSubCategories(): bool
     {
         return (boolean)$this->includeSubCategories;
     }
@@ -199,7 +200,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param bool $includeSubCategories
      * @return NewsDemand
      */
-    public function setIncludeSubCategories($includeSubCategories)
+    public function setIncludeSubCategories(bool $includeSubCategories): NewsDemand
     {
         $this->includeSubCategories = $includeSubCategories;
         return $this;
@@ -211,7 +212,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $author
      * @return NewsDemand
      */
-    public function setAuthor($author)
+    public function setAuthor(string $author): NewsDemand
     {
         $this->author = $author;
         return $this;
@@ -222,7 +223,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getAuthor()
+    public function getAuthor(): string
     {
         return $this->author;
     }
@@ -232,7 +233,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getTags()
+    public function getTags(): string
     {
         return $this->tags;
     }
@@ -243,7 +244,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $tags tags
      * @return NewsDemand
      */
-    public function setTags($tags)
+    public function setTags(string $tags): NewsDemand
     {
         $this->tags = $tags;
         return $this;
@@ -252,10 +253,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Set time limit low, either integer or string
      *
-     * @param mixed $timeRestriction
+     * @param string|int $timeRestriction
      * @return NewsDemand
      */
-    public function setTimeRestriction($timeRestriction)
+    public function setTimeRestriction($timeRestriction): NewsDemand
     {
         $this->timeRestriction = $timeRestriction;
         return $this;
@@ -264,7 +265,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get time limit low
      *
-     * @return mixed
+     * @return string|int
      */
     public function getTimeRestriction()
     {
@@ -274,7 +275,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get time limit high
      *
-     * @return mixed
+     * @return string|int
      */
     public function getTimeRestrictionHigh()
     {
@@ -284,10 +285,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Set time limit high
      *
-     * @param mixed $timeRestrictionHigh
+     * @param string|int $timeRestrictionHigh
      * @return NewsDemand
      */
-    public function setTimeRestrictionHigh($timeRestrictionHigh)
+    public function setTimeRestrictionHigh($timeRestrictionHigh): NewsDemand
     {
         $this->timeRestrictionHigh = $timeRestrictionHigh;
         return $this;
@@ -299,7 +300,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $order order
      * @return NewsDemand
      */
-    public function setOrder($order)
+    public function setOrder(string $order): NewsDemand
     {
         $this->order = $order;
         return $this;
@@ -310,7 +311,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getOrder()
+    public function getOrder(): string
     {
         return $this->order;
     }
@@ -321,7 +322,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $orderByAllowed allowed fields for ordering
      * @return NewsDemand
      */
-    public function setOrderByAllowed($orderByAllowed)
+    public function setOrderByAllowed(string $orderByAllowed): NewsDemand
     {
         $this->orderByAllowed = $orderByAllowed;
         return $this;
@@ -332,7 +333,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getOrderByAllowed()
+    public function getOrderByAllowed(): string
     {
         return $this->orderByAllowed;
     }
@@ -343,7 +344,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param bool $topNewsFirst respect top news flag
      * @return NewsDemand
      */
-    public function setTopNewsFirst($topNewsFirst)
+    public function setTopNewsFirst(bool $topNewsFirst): NewsDemand
     {
         $this->topNewsFirst = $topNewsFirst;
         return $this;
@@ -352,9 +353,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get order respect top news flag
      *
-     * @return int
+     * @return bool
      */
-    public function getTopNewsFirst()
+    public function getTopNewsFirst(): bool
     {
         return $this->topNewsFirst;
     }
@@ -363,8 +364,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * Set search fields
      *
      * @param string $searchFields search fields
+     *
+     * @return NewsDemand
      */
-    public function setSearchFields($searchFields)
+    public function setSearchFields(string $searchFields): NewsDemand
     {
         $this->searchFields = $searchFields;
         return $this;
@@ -375,7 +378,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getSearchFields()
+    public function getSearchFields(): string
     {
         return $this->searchFields;
     }
@@ -383,10 +386,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Set top news setting
      *
-     * @param string $topNewsRestriction top news settings
+     * @param int $topNewsRestriction top news settings
      * @return NewsDemand
      */
-    public function setTopNewsRestriction($topNewsRestriction)
+    public function setTopNewsRestriction(int $topNewsRestriction): NewsDemand
     {
         $this->topNewsRestriction = $topNewsRestriction;
         return $this;
@@ -395,9 +398,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get top news setting
      *
-     * @return string
+     * @return int
      */
-    public function getTopNewsRestriction()
+    public function getTopNewsRestriction(): int
     {
         return $this->topNewsRestriction;
     }
@@ -408,7 +411,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $storagePage storage page list
      * @return NewsDemand
      */
-    public function setStoragePage($storagePage)
+    public function setStoragePage(string $storagePage): NewsDemand
     {
         $this->storagePage = $storagePage;
         return $this;
@@ -419,7 +422,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getStoragePage()
+    public function getStoragePage(): string
     {
         return $this->storagePage;
     }
@@ -429,7 +432,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return int
      */
-    public function getDay()
+    public function getDay(): int
     {
         return $this->day;
     }
@@ -440,9 +443,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param int $day
      * @return NewsDemand
      */
-    public function setDay($day)
+    public function setDay(int $day): NewsDemand
     {
-        $this->day = $day;
+        $this->day = (int)$day;
         return $this;
     }
 
@@ -451,7 +454,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return int
      */
-    public function getMonth()
+    public function getMonth(): int
     {
         return $this->month;
     }
@@ -462,9 +465,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param int $month month
      * @return NewsDemand
      */
-    public function setMonth($month)
+    public function setMonth(int $month): NewsDemand
     {
-        $this->month = $month;
+        $this->month = (int)$month;
         return $this;
     }
 
@@ -473,7 +476,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return int
      */
-    public function getYear()
+    public function getYear(): int
     {
         return $this->year;
     }
@@ -484,9 +487,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param int $year year
      * @return NewsDemand
      */
-    public function setYear($year)
+    public function setYear(int $year): NewsDemand
     {
-        $this->year = $year;
+        $this->year = (int)$year;
         return $this;
     }
 
@@ -496,9 +499,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param int $limit limit
      * @return NewsDemand
      */
-    public function setLimit($limit)
+    public function setLimit(int $limit): NewsDemand
     {
-        $this->limit = (int)$limit;
+        $this->limit = $limit;
         return $this;
     }
 
@@ -507,7 +510,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return int
      */
-    public function getLimit()
+    public function getLimit(): int
     {
         return $this->limit;
     }
@@ -518,9 +521,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param int $offset offset
      * @return NewsDemand
      */
-    public function setOffset($offset)
+    public function setOffset(int $offset): NewsDemand
     {
-        $this->offset = (int)$offset;
+        $this->offset = $offset;
         return $this;
     }
 
@@ -529,7 +532,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return int
      */
-    public function getOffset()
+    public function getOffset(): int
     {
         return $this->offset;
     }
@@ -540,7 +543,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $dateField datefield
      * @return NewsDemand
      */
-    public function setDateField($dateField)
+    public function setDateField(string $dateField): NewsDemand
     {
         $this->dateField = $dateField;
         return $this;
@@ -551,9 +554,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return string
      */
-    public function getDateField()
+    public function getDateField(): string
     {
-        if (in_array($this->dateField, ['datetime', 'archive'])
+        if (in_array($this->dateField, ['datetime', 'archive'], true)
             || isset($GLOBALS['TCA']['tx_news_domain_model_news']['columns'][$this->dateField])) {
             return $this->dateField;
         }
@@ -564,9 +567,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get search object
      *
-     * @return \GeorgRinger\News\Domain\Model\Dto\Search
+     * @return null|Search
      */
-    public function getSearch()
+    public function getSearch(): ?Search
     {
         return $this->search;
     }
@@ -574,10 +577,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Set search object
      *
-     * @param \GeorgRinger\News\Domain\Model\Dto\Search $search search object
+     * @param null|Search $search search object
      * @return NewsDemand
      */
-    public function setSearch($search = null)
+    public function setSearch(Search $search = null): NewsDemand
     {
         $this->search = $search;
         return $this;
@@ -589,9 +592,9 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param bool $excludeAlreadyDisplayedNews
      * @return NewsDemand
      */
-    public function setExcludeAlreadyDisplayedNews($excludeAlreadyDisplayedNews)
+    public function setExcludeAlreadyDisplayedNews(bool $excludeAlreadyDisplayedNews): NewsDemand
     {
-        $this->excludeAlreadyDisplayedNews = (bool)$excludeAlreadyDisplayedNews;
+        $this->excludeAlreadyDisplayedNews = $excludeAlreadyDisplayedNews;
         return $this;
     }
 
@@ -600,7 +603,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return bool
      */
-    public function getExcludeAlreadyDisplayedNews()
+    public function getExcludeAlreadyDisplayedNews(): bool
     {
         return $this->excludeAlreadyDisplayedNews;
     }
@@ -608,7 +611,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * @return string
      */
-    public function getHideIdList()
+    public function getHideIdList(): string
     {
         return $this->hideIdList;
     }
@@ -617,7 +620,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $hideIdList
      * @return NewsDemand
      */
-    public function setHideIdList($hideIdList)
+    public function setHideIdList(string $hideIdList): NewsDemand
     {
         $this->hideIdList = $hideIdList;
         return $this;
@@ -626,7 +629,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * @return string
      */
-    public function getIdList()
+    public function getIdList(): string
     {
         return $this->idList;
     }
@@ -635,7 +638,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $idList
      * @return NewsDemand
      */
-    public function setIdList($idList)
+    public function setIdList(string $idList): NewsDemand
     {
         $this->idList = $idList;
         return $this;
@@ -644,7 +647,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * @return string
      */
-    public function getAction()
+    public function getAction(): string
     {
         return $this->action;
     }
@@ -653,7 +656,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $action
      * @return NewsDemand
      */
-    public function setAction($action)
+    public function setAction(string $action): NewsDemand
     {
         $this->action = $action;
         return $this;
@@ -662,7 +665,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * @return string
      */
-    public function getClass()
+    public function getClass(): string
     {
         return $this->class;
     }
@@ -671,7 +674,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $class
      * @return NewsDemand
      */
-    public function setClass($class)
+    public function setClass(string $class): NewsDemand
     {
         $this->class = $class;
         return $this;
@@ -682,7 +685,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * @param string $controller
      * @return NewsDemand
      */
-    public function setActionAndClass($action, $controller)
+    public function setActionAndClass(string $action, string $controller): NewsDemand
     {
         $this->action = $action;
         $this->class = $controller;
@@ -694,7 +697,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      *
      * @return array
      */
-    public function getTypes()
+    public function getTypes(): array
     {
         return $this->types;
     }
@@ -703,8 +706,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * Set allowed types
      *
      * @param array $types
+     *
+     * @return void
      */
-    public function setTypes($types)
+    public function setTypes(array $types): void
     {
         $this->types = $types;
     }
@@ -719,8 +724,10 @@ class NewsDemand extends AbstractEntity implements DemandInterface
 
     /**
      * @param array $customSettings
+     *
+     * @return void
      */
-    public function setCustomSettings(array $customSettings)
+    public function setCustomSettings(array $customSettings): void
     {
         $this->_customSettings = $customSettings;
     }

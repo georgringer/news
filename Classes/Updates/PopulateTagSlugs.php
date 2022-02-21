@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 namespace GeorgRinger\News\Updates;
 
 /**
@@ -87,8 +88,10 @@ class PopulateTagSlugs implements UpgradeWizardInterface
 
     /**
      * Fills the database table  with slugs based on the page title and its configuration.
+     *
+     * @return void
      */
-    protected function populateSlugs()
+    protected function populateSlugs(): void
     {
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($this->table);
         $queryBuilder = $connection->createQueryBuilder();

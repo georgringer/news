@@ -23,7 +23,6 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  *
  * 20 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
  * 20.menus = languageMenu
- *
  */
 class DisableLanguageMenuProcessor implements DataProcessorInterface
 {
@@ -35,7 +34,7 @@ class DisableLanguageMenuProcessor implements DataProcessorInterface
      * @param array $processedData
      * @return array
      */
-    public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData)
+    public function process(ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData): array
     {
         if (!$processorConfiguration['menus']) {
             return $processedData;

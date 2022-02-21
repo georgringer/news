@@ -12,7 +12,6 @@ use GeorgRinger\News\Domain\Model\DemandInterface;
 
 /**
  * Demand domain model interface
- *
  */
 interface DemandedRepositoryInterface
 {

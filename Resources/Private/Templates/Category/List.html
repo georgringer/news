@@ -1,4 +1,6 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
 
 <f:layout name="General" />
 <!--
@@ -22,6 +24,7 @@
 <f:section name="categoryTree">
 	<ul>
 		<f:for each="{categories}" as="category">
+			{n:category.count(categoryUid:category.item.uid) -> f:variable(name: 'categoryUsageCount')}
 			<li>
 				<f:if condition="{category.item.uid} == {overwriteDemand.categories}">
 					<f:then>
@@ -35,6 +38,8 @@
 						</f:link.page>
 					</f:else>
 				</f:if>
+
+				<f:if condition="{categoryUsageCount}">({categoryUsageCount})</f:if>
 
 				<f:if condition="{category.children}">
 					<f:render section="categoryTree" arguments="{categories: category.children,overwriteDemand:overwriteDemand}" />

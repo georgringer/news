@@ -21,7 +21,7 @@
             <f:if condition="{settings.list.rss.channel.category}">
                 <category>{settings.list.rss.channel.category}</category>
             </f:if>
-            <atom:link href="{f:uri.page(pageType: 9818, absolute: 'true') -> f:format.htmlentities()}" rel="self" type="application/rss+xml" />
+            <atom:link href="{f:uri.page(pageType: settings.list.rss.channel.typeNum, absolute: 'true')}" rel="self" type="application/rss+xml" />
             <generator>{settings.list.rss.channel.generator}</generator>
             <f:if condition="{news}">
                 <f:for each="{news}" as="newsItem">
@@ -38,7 +38,8 @@
                             </f:for>
                         </f:if>
                         <f:if condition="{newsItem.firstPreview}">
-                            <enclosure url="{f:uri.image(image:newsItem.firstPreview, absolute:1, maxWidth: '1920', maxHeight: '1920')}" length="{n:imageSize(property:'size')}" type="{newsItem.firstPreview.originalResource.mimeType}"/>
+                            <f:variable name="ogImage" value="{f:uri.image(image:newsItem.firstPreview, absolute:1, maxWidth: '1920', maxHeight: '1920')}" />
+                            <enclosure url="{ogImage}" length="{n:imageSize(property:'size',image:ogImage)}" type="{newsItem.firstPreview.originalResource.mimeType}"/>
                         </f:if>
                     </item>
                 </f:for>

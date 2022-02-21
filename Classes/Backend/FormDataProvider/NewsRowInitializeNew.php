@@ -31,7 +31,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    public function addData(array $result)
+    public function addData(array $result): array
     {
         if ($result['tableName'] !== 'tx_news_domain_model_news') {
             return $result;
@@ -50,7 +50,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    protected function fillDateField(array $result)
+    protected function fillDateField(array $result): array
     {
         if ($this->emConfiguration->getDateTimeRequired()) {
             $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
@@ -80,7 +80,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    protected function setTagListingId(array $result)
+    protected function setTagListingId(array $result): array
     {
         if (!isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
             return $result;

@@ -1,3 +1,5 @@
+.. include:: /Includes.rst.txt
+
 4.0.0 - 2015/11/10
 ==================
 
@@ -13,7 +15,7 @@ Important changes
 -----------------
 This release targets TYPO3 CMS 7 LTS only and follows the PSR-2 standard.
 
-The UI has been adopted to fit the new designs of the core using svg icons.
+The UI has been adopted to fit the new designs of the Core using svg icons.
 
 All Changes
 -----------

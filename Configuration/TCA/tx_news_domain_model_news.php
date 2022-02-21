@@ -1,4 +1,5 @@
 <?php
+
 defined('TYPO3_MODE') or die();
 
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
@@ -42,9 +43,6 @@ $tx_news_domain_model_news = [
         'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.svg',
         'searchFields' => 'uid,title',
         'thumbnail' => $configuration->isMediaPreview() ? 'fal_media' : '',
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'cruser_id,pid,sys_language_uid,l10n_parent,l10n_diffsource,hidden,starttime,endtime,fe_group,title,teaser,bodytext,datetime,archive,author,author_email,categories,related,type,keywords,media,internalurl,externalurl,istopnews,related_files,related_links,content_elements,tags,path_segment,alternative_title,fal_related_files'
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -228,7 +226,7 @@ $tx_news_domain_model_news = [
                 'type' => 'text',
                 'cols' => 30,
                 'rows' => 5,
-                'softref' => 'rtehtmlarea_images,typolink_tag,images,email[subst],url',
+                'softref' => 'typolink_tag,email[subst],url',
                 'enableRichtext' => true,
             ]
         ],
@@ -459,6 +457,7 @@ $tx_news_domain_model_news = [
         ],
         'editlock' => [
             'exclude' => true,
+            'displayCond' => 'HIDE_FOR_NON_ADMINS',
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:editlock',
             'config' => [
                 'type' => 'check',
@@ -577,7 +576,6 @@ $tx_news_domain_model_news = [
             ],
         ],
         'path_segment' => [
-            'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_news.path_segment',
             'displayCond' => 'VERSION:IS:false',
             'config' => [

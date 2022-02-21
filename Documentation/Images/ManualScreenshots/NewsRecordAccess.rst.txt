@@ -1,0 +1,5 @@
+
+.. figure:: /Images/ManualScreenshots/NewsRecordAccess.png
+   :class: with-shadow
+
+   This news should be published at a certain date, 12:00

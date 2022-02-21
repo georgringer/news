@@ -1,32 +1,28 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: ../../../Includes.txt
+.. include:: /Includes.rst.txt
 
 .. _recordCategory:
 
+========
 Category
---------
+========
+
 Categories are not mandatory but make it easier to structure news records.
-
-.. hint::
-
-   EXT:news uses the **System Categories** since version *3.0.0*.
+The category records themselves are supplied by the TYPO3 Core and might be
+shared with other extensions.
 
 
 Add a category
-^^^^^^^^^^^^^^
+==============
 
-|img-record-category|
+.. include:: /Images/AutomaticScreenshots/AddCategoryInAdminModule.rst.txt
 
-#. Switch to any page or sysfolder in the backend of your TYPO3 installation
-#. Click on the + icon.
-#. Select "Category" which can be found in the section *System Records*.
+Categories can be added in the :ref:`News administration <newsModuleCreateCategory>`
+or :ref:`List <listAddFirstRecord>` module.
 
 Properties
-^^^^^^^^^^
+==========
+
+.. include:: /Images/AutomaticScreenshots/CreateCategory.rst.txt
 
 .. t3-field-list-table::
  :header-rows: 1

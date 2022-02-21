@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 return [
     \GeorgRinger\News\Domain\Model\News::class => [
         'subclasses' => [
-            \GeorgRinger\News\Domain\Model\NewsDefault::class,
-            \GeorgRinger\News\Domain\Model\NewsInternal::class,
-            \GeorgRinger\News\Domain\Model\NewsExternal::class,
+            0 => \GeorgRinger\News\Domain\Model\NewsDefault::class,
+            1 => \GeorgRinger\News\Domain\Model\NewsInternal::class,
+            2 => \GeorgRinger\News\Domain\Model\NewsExternal::class,
         ]
     ],
     \GeorgRinger\News\Domain\Model\NewsDefault::class => [

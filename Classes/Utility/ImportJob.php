@@ -11,7 +11,6 @@ namespace GeorgRinger\News\Utility;
 
 /**
  * Utility class for import jobs
- *
  */
 class ImportJob
 {
@@ -27,9 +26,12 @@ class ImportJob
      * @param string $className class name
      * @param string $title title
      * @param string $description description
+     *
      * @static
+     *
+     * @return void
      */
-    public static function register($className, $title, $description)
+    public static function register($className, $title, $description): void
     {
         self::$registeredJobs[] = [
             'className' => $className,
@@ -44,7 +46,7 @@ class ImportJob
      * @static
      * @return array
      */
-    public static function getRegisteredJobs()
+    public static function getRegisteredJobs(): array
     {
         return self::$registeredJobs;
     }

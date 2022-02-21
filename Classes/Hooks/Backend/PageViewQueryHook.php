@@ -17,7 +17,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Hook into PageLayoutView to hide tt_content elements in page view
- *
  */
 class PageViewQueryHook
 {
@@ -33,8 +32,6 @@ class PageViewQueryHook
      * @param array $additionalConstraints
      * @param string[] $fieldList
      * @param QueryBuilder $queryBuilder
-     *
-     * @return void
      */
     public function modifyQuery(
         $parameters,
@@ -78,7 +75,7 @@ class PageViewQueryHook
      *
      * @return void
      */
-    private function addFlashMessage()
+    private function addFlashMessage(): void
     {
         $message = GeneralUtility::makeInstance(
             FlashMessage::class,

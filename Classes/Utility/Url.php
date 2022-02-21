@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 namespace GeorgRinger\News\Utility;
 
@@ -12,7 +13,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Url Utility class
- *
  */
 class Url
 {
@@ -25,7 +25,7 @@ class Url
      */
     public static function prependDomain(string $url): string
     {
-        if (!GeneralUtility::isFirstPartOfStr($url, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
+        if (!str_starts_with($url, GeneralUtility::getIndpEnv('TYPO3_SITE_URL'))) {
             $url = GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . $url;
         }
 

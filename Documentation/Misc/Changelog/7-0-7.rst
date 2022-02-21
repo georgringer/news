@@ -1,7 +1,7 @@
+.. include:: /Includes.rst.txt
+
 7.0.7 - 2018/24/10
 ==================
-
-.. include:: ../../Includes.txt
 
 .. only:: html
 
@@ -16,8 +16,8 @@ This is a list of all changes in this release: ::
 
     2018-10-22 [TASK] Skip another test for 9 (Commit 569120ad by Georg Ringer)
     2018-10-22 [TASK] Fix errors in tests (Commit 8032b877 by Georg Ringer)
-    2018-10-22 [TASK] Skip tests for 9 and extbase command controllers (Commit 95a4b687 by Georg Ringer)
-    2018-10-22 [TASK] Adapt viewhelper example code (#765) (Commit 886aefe8 by jokumer)
+    2018-10-22 [TASK] Skip tests for 9 and Extbase command controllers (Commit 95a4b687 by Georg Ringer)
+    2018-10-22 [TASK] Adapt ViewHelper example code (#765) (Commit 886aefe8 by jokumer)
     2018-10-15 [BUGFIX] Allow hiding the page tree in 9 LTS (Commit f94a5e4a by Seb Red)
     2018-10-15 [BUGFIX] Improve end date in search in FE (Commit 51aa4b14 by Georg Ringer)
     2018-10-15 [FOLLOWUP] Render related links as link in TYPO3 9.5 (#764) (Commit f1f6934a by echavaillaz)

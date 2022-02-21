@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\Updates;
@@ -10,7 +11,6 @@ namespace GeorgRinger\News\Updates;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Service\SlugService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
@@ -24,9 +24,14 @@ class NewsSlugUpdater implements UpgradeWizardInterface
     /** @var SlugService */
     protected $slugService;
 
-    public function __construct()
-    {
-        $this->slugService = GeneralUtility::makeInstance(SlugService::class);
+    /**
+     * NewsSlugUpdater constructor.
+     * @param SlugService $slugService
+     */
+    public function __construct(
+        SlugService $slugService
+    ) {
+        $this->slugService = $slugService;
     }
 
     public function executeUpdate(): bool

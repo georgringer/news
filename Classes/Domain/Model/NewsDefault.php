@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model;
 
 /**
@@ -10,8 +11,7 @@ namespace GeorgRinger\News\Domain\Model;
 
 /**
  * News model for default news
- *
  */
-class NewsDefault extends \GeorgRinger\News\Domain\Model\News
+class NewsDefault extends News
 {
 }

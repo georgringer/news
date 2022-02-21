@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Hook into \TYPO3\CMS\Backend\Utility\BackendUtility to change flexform behaviour
  * depending on action selection
- *
  */
 class BackendUtility
 {
@@ -117,45 +116,39 @@ class BackendUtility
     /** @var EmConfiguration */
     protected $configuration;
 
-    public function __construct()
-    {
-        $this->configuration = GeneralUtility::makeInstance(EmConfiguration::class);
-    }
-
     /**
-     * Hook function of \TYPO3\CMS\Backend\Utility\BackendUtility
-     * It is used to change the flexform if it is about news
-     *
-     * @param array &$dataStructure Flexform structure
-     * @param array $conf some strange configuration
-     * @param array $row row of current record
-     * @param string $table table name
+     * BackendUtility constructor.
+     * @param EmConfiguration $configuration
      */
-    public function getFlexFormDS_postProcessDS(&$dataStructure, $conf, $row, $table)
-    {
-        if ($table === 'tt_content' && $row['CType'] === 'list' && $row['list_type'] === 'news_pi1' && is_array($dataStructure)) {
-            $this->updateFlexforms($dataStructure, $row);
-
-            if ($this->enabledInTsConfig($row['pid'])) {
-                $this->addCategoryConstraints($dataStructure);
-            }
-        }
+    public function __construct(
+    ) {
+        $this->configuration = GeneralUtility::makeInstance(EmConfiguration::class);
     }
 
     /**
      * @param array $dataStructure
      * @param array $identifier
-     * @return array
+     *
+     * @return array|string
      */
     public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier)
     {
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content' && $identifier['dataStructureKey'] === 'news_pi1,list') {
             $getVars = GeneralUtility::_GET('edit');
-            if (is_array($getVars['tt_content'])) {
+            if (isset($getVars['tt_content']) && is_array($getVars['tt_content'])) {
                 $item = array_keys($getVars['tt_content']);
-                $row = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecord('tt_content', (int)$item[0]);
-                if (is_array($row)) {
-                    $this->updateFlexforms($dataStructure, $row);
+                $recordId = (int)$item[0];
+
+                if (($getVars['tt_content'][$recordId] ?? '') === 'new') {
+                    $fakeRow = [
+                        'uid' => 'NEW123'
+                    ];
+                    $this->updateFlexforms($dataStructure, $fakeRow);
+                } else {
+                    $row = BackendUtilityCore::getRecord('tt_content', $recordId);
+                    if (is_array($row)) {
+                        $this->updateFlexforms($dataStructure, $row);
+                    }
                 }
             }
         }
@@ -167,26 +160,31 @@ class BackendUtility
      *
      * @param array|string &$dataStructure flexform structure
      * @param array $row row of current record
+     * @param array $dataStructure
+     *
+     * @return void
      */
-    protected function updateFlexforms(array &$dataStructure, array $row)
+    protected function updateFlexforms(array &$dataStructure, array $row): void
     {
         $selectedView = '';
-
-        // get the first selected action
-        if (is_string($row['pi_flexform'])) {
-            $flexformSelection = GeneralUtility::xml2array($row['pi_flexform']);
-        } else {
-            $flexformSelection = $row['pi_flexform'];
+        $flexformSelection = [];
+        if (isset($row['pi_flexform'])) {
+            // get the first selected action
+            if (is_string($row['pi_flexform'])) {
+                $flexformSelection = GeneralUtility::xml2array($row['pi_flexform']);
+            } else {
+                $flexformSelection = $row['pi_flexform'];
+            }
         }
-        if (is_array($flexformSelection) && is_array($flexformSelection['data'])) {
-            $selectedView = $flexformSelection['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
+        if (is_array($flexformSelection) && isset($flexformSelection['data'])) {
+            $selectedView = $flexformSelection['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'] ?? '';
             if (!empty($selectedView)) {
                 $actionParts = GeneralUtility::trimExplode(';', $selectedView, true);
                 $selectedView = $actionParts[0];
             }
 
             // new plugin element
-        } elseif (GeneralUtility::isFirstPartOfStr($row['uid'], 'NEW')) {
+        } elseif (str_starts_with((string)$row['uid'], 'NEW')) {
             // use List as starting view
             $selectedView = 'News->list';
         }
@@ -219,7 +217,7 @@ class BackendUtility
                 default:
             }
 
-            if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'])) {
+            if ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] ?? []) {
                 $params = [
                     'selectedView' => $selectedView,
                     'dataStructure' => &$dataStructure,
@@ -235,8 +233,10 @@ class BackendUtility
      * Add category restriction to flexforms
      *
      * @param array $structure
+     *
+     * @return void
      */
-    protected function addCategoryConstraints(&$structure)
+    protected function addCategoryConstraints(&$structure): void
     {
         $categoryRestrictionSetting = $this->configuration->getCategoryRestriction();
         $categoryRestriction = '';
@@ -262,8 +262,10 @@ class BackendUtility
      *
      * @param array &$dataStructure flexform structure
      * @param array $fieldsToBeRemoved fields which need to be removed
+     *
+     * @return void
      */
-    protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved)
+    protected function deleteFromStructure(array &$dataStructure, array $fieldsToBeRemoved): void
     {
         foreach ($fieldsToBeRemoved as $sheetName => $sheetFields) {
             $fieldsInSheet = GeneralUtility::trimExplode(',', $sheetFields, true);
@@ -278,7 +280,7 @@ class BackendUtility
      * @param int $pageId
      * @return bool
      */
-    protected function enabledInTsConfig($pageId)
+    protected function enabledInTsConfig($pageId): bool
     {
         $tsConfig = BackendUtilityCore::getPagesTSconfig($pageId);
         if (isset($tsConfig['tx_news.']['categoryRestrictionForFlexForms'])) {

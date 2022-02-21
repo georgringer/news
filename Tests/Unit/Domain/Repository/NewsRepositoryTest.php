@@ -38,8 +38,10 @@ class NewsRepositoryTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven()
+    public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven(): void
     {
         $this->expectException(UnexpectedValueException::class);
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
@@ -55,8 +57,10 @@ class NewsRepositoryTest extends BaseTestCase
 //
     /**
      * @test
+     *
+     * @return void
      */
-    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven()
+    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven(): void
     {
         $this->expectException(UnexpectedValueException::class);
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
@@ -72,14 +76,16 @@ class NewsRepositoryTest extends BaseTestCase
 //
     /**
      * @test
+     *
+     * @return void
      */
-    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven()
+    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven(): void
     {
         $this->expectException(UnexpectedValueException::class);
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
-        $mockedRepository = $this->getAccessibleMock(NewsRepository::class, ['dummy'], [], '', false);
 
         $search = new Search();
+        $search->setDateField('');
         $search->setMinimumDate('2014-04-01');
 
         $demand = new NewsDemand();
@@ -90,11 +96,12 @@ class NewsRepositoryTest extends BaseTestCase
 //
     /**
      * @test
+     *
+     * @return void
      */
-    public function emptyConstraintIsReturnedForEmptySearchDemand()
+    public function emptyConstraintIsReturnedForEmptySearchDemand(): void
     {
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
-        $mockedRepository = $this->getAccessibleMock(NewsRepository::class, ['dummy'], [], '', false);
 
         $demand = new NewsDemand();
         $demand->setSearch(null);
@@ -104,8 +111,10 @@ class NewsRepositoryTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function constraintsAreReturnedForSearchSubject()
+    public function constraintsAreReturnedForSearchSubject(): void
     {
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 
@@ -122,8 +131,10 @@ class NewsRepositoryTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function constraintsAreReturnedForDateFields()
+    public function constraintsAreReturnedForDateFields(): void
     {
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 

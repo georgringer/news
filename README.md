@@ -1,12 +1,14 @@
 # TYPO3 Extension `news`
 
+[![TYPO3 10](https://img.shields.io/badge/TYPO3-10-orange.svg)](https://get.typo3.org/version/10)
+[![TYPO3 11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/19.99)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-news/localized.svg)](https://crowdin.com/project/typo3-extension-news)
-[![Build Status](https://travis-ci.org/georgringer/news.png)](https://travis-ci.org/georgringer/news)
-[![StyleCI](https://styleci.io/repos/11733164/shield?branch=master)](https://styleci.io/repos/11733164/)
 [![Latest Stable Version](https://poser.pugx.org/georgringer/news/v/stable)](https://packagist.org/packages/georgringer/news)
 [![Monthly Downloads](https://poser.pugx.org/georgringer/news/d/monthly)](https://packagist.org/packages/georgringer/news)
 [![License](https://poser.pugx.org/georgringer/news/license)](https://packagist.org/packages/georgringer/news)
+![Build](https://github.com/georgringer/news/actions/workflows/ci.yml/badge.svg)
+[![StyleCI](https://styleci.io/repos/11733164/shield?branch=master)](https://styleci.io/repos/11733164/)
 
 > It is a highly customizable framework for chronological organized content - much more than just a news list!
 > – (Quote by an user)
@@ -59,14 +61,16 @@ Download and install the [extension][3] with the extension manager module.
 
 ### 4.1 Versions and support
 
-| News        | TYPO3      | PHP       | Support / Development                   |
-| ----------- | ---------- | ----------|---------------------------------------- |
-| dev-master  | 9.5 - 10   |           | unstable development branch             |
-| 7.x         | 8.7 - 9.x  | 7.0 - 7.2 | features, bugfixes, security updates    |
-| 6.x         | 7.6 - 8.7  | 5.6 - 7.2 | features, bugfixes, security updates    |
-| 5.x         | 7.6 - 8.7  | 5.6 - 7.2 | none                                    |
-| 4.x         | 7.6        | 5.5 - 5.6 | none                                    |
-| 3.x         | 6.2        | 5.5 - 5.6 | security updates                        |
+| News     | TYPO3     | PHP       | Support / Development                |
+|----------|-----------|-----------|--------------------------------------|
+| dev-main | 10 - 11   | 7.4 - 8.1 | unstable development branch          |
+| 9        | 10 - 11   | 7.4 - 8.1 | features, bugfixes, security updates |
+| 8        | 9.5 - 10  | 7.2 - 7.4 | none                                 |
+| 7.x      | 8.7 - 9.x | 7.0 - 7.2 | none                                 |
+| 6.x      | 7.6 - 8.7 | 5.6 - 7.2 | none                                 |
+| 5.x      | 7.6 - 8.7 | 5.6 - 7.2 | none                                 |
+| 4.x      | 7.6       | 5.5 - 5.6 | none                                 |
+| 3.x      | 6.2       | 5.5 - 5.6 | security updates                     |
 
 ### 4.2 Changelog
 

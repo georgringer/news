@@ -20,8 +20,10 @@ class ImportJobTest extends BaseTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function classCanBeRegistered()
+    public function classCanBeRegistered(): void
     {
         $importJobInstance = new ImportJob();
 

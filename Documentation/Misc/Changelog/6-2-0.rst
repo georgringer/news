@@ -1,8 +1,8 @@
+.. include:: /Includes.rst.txt
+
 6.2.0 - 2018/01/23
 ==================
 
-
-.. include:: ../../Includes.txt
 
 .. only:: html
 
@@ -42,7 +42,7 @@ This is a list of all changes in this release: ::
    2018-01-23 [BUGFIX] Set cHash also in workspace mode (Commit f5290765 by Georg Ringer)
    2018-01-23 [BUGFIX] Fix failing test (Commit bb12a525 by Georg Ringer)
    2018-01-22 [DOC] Add linkhandler info (Commit 02de4016 by Georg Ringer)
-   2018-01-22 [TASK] Add tstamp & crdate fields to TCA for fluid (Commit f9c1222a by Georg Ringer)
+   2018-01-22 [TASK] Add tstamp & crdate fields to TCA for Fluid (Commit f9c1222a by Georg Ringer)
    2018-01-22 [TASK] Make 2 VH compatible with 9 (Commit 2edb20d3 by Georg Ringer)
    2018-01-22 [TASK] Replace ... with … (Commit e349354a by Georg Ringer)
    2018-01-22 [TASK] Make PaginateVh 9 compatible (Commit 8b53482f by Georg Ringer)
@@ -74,7 +74,7 @@ This is a list of all changes in this release: ::
    2017-12-17 [TASK] Document related variants in template (Commit 9c638a2f by Georg Ringer)
    2017-12-17 [BUGFIX] Make option list.paginate.prevNextHeaderTags work (#481) (Commit 9dcbff50 by Christian Futterlieb)
    2017-12-17 Change datatype for tag in newsDemand to string (#483) (Commit cc9f0793 by Torben Hansen)
-   2017-12-17 fix search by percent or underscore (#486) (Commit a4cde7d4 by Esteban Marin)
+   2017-12-17 fix search by percent or undersCore (#486) (Commit a4cde7d4 by Esteban Marin)
    2017-12-05 [TASK] Hide shariff namespace (Commit 93e1b60f by Georg Ringer)
    2017-11-21 Fixed Typo (#456) (Commit cb98c935 by Fritz the Cat)
    2017-11-21 [TASK] Let it work with 9 (Commit 9c920f19 by Georg Ringer)

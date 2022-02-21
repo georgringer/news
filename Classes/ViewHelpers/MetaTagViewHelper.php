@@ -10,6 +10,9 @@ namespace GeorgRinger\News\ViewHelpers;
  */
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * ViewHelper to render meta tags
@@ -30,32 +33,23 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <meta name="keywords" content="news 1, news 2" />
  * </output>
  */
-class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class MetaTagViewHelper extends AbstractViewHelper
 {
-
-    /**
-     * @var string
-     */
-    protected $tagName = 'meta';
+    use CompileWithRenderStatic;
 
     /**
      * Arguments initialization
-     *
      */
     public function initializeArguments()
     {
-        $this->registerTagAttribute('property', 'string', 'Property of meta tag');
-        $this->registerTagAttribute('name', 'string', 'Content of meta tag using the name attribute');
-        $this->registerTagAttribute('content', 'string', 'Content of meta tag');
+        $this->registerArgument('property', 'string', 'Property of meta tag', false, '', false);
+        $this->registerArgument('name', 'string', 'Content of meta tag using the name attribute', false, '', false);
+        $this->registerArgument('content', 'string', 'Content of meta tag', true, null, false);
         $this->registerArgument('useCurrentDomain', 'boolean', 'Use current domain', false, false);
         $this->registerArgument('forceAbsoluteUrl', 'boolean', 'Force absolut domain', false, false);
     }
 
-    /**
-     * Renders a meta tag
-
-     */
-    public function render()
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
     {
         // Skip if current record is part of tt_content CType shortcut
         if (!empty($GLOBALS['TSFE']->recordRegister)
@@ -67,33 +61,32 @@ class MetaTagViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBas
             return;
         }
 
-        $useCurrentDomain = $this->arguments['useCurrentDomain'];
-        $forceAbsoluteUrl = $this->arguments['forceAbsoluteUrl'];
+        $useCurrentDomain = $arguments['useCurrentDomain'];
+        $forceAbsoluteUrl = $arguments['forceAbsoluteUrl'];
+        $content = (string)$arguments['content'];
 
         // set current domain
         if ($useCurrentDomain) {
-            $this->tag->addAttribute('content', GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'));
+            $content = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
         }
 
         // prepend current domain
         if ($forceAbsoluteUrl) {
-            $parsedPath = parse_url($this->arguments['content']);
+            $parsedPath = parse_url($content);
             if (is_array($parsedPath) && !isset($parsedPath['host'])) {
-                $this->tag->addAttribute(
-                    'content',
+                $content =
                     rtrim(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), '/')
                     . '/'
-                    . ltrim($this->arguments['content'], '/')
-                );
+                    . ltrim($content, '/');
             }
         }
 
-        if ($useCurrentDomain || (isset($this->arguments['content']) && !empty($this->arguments['content']))) {
+        if ($content !== '') {
             $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-            if ($this->tag->hasAttribute('property')) {
-                $pageRenderer->setMetaTag('property', $this->tag->getAttribute('property'), $this->tag->getAttribute('content'));
-            } elseif ($this->tag->hasAttribute('name')) {
-                $pageRenderer->setMetaTag('property', $this->tag->getAttribute('name'), $this->tag->getAttribute('content'));
+            if ($arguments['property']) {
+                $pageRenderer->setMetaTag('property', $arguments['property'], $content);
+            } elseif ($arguments['name']) {
+                $pageRenderer->setMetaTag('name', $arguments['name'], $content);
             }
         }
     }

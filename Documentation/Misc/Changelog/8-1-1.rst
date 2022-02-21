@@ -1,7 +1,7 @@
+.. include:: /Includes.rst.txt
+
 8.1.1 - 4th May 2020
 =======================
-
-.. include:: ../../Includes.txt
 
 .. only:: html
 

@@ -24,10 +24,14 @@ class CategoryRepositoryTest extends BaseTestCase
      *
      * @param array $expectedResult
      * @param array $given
+     *
      * @test
+     *
      * @dataProvider categoryIdsAreCorrectlyReplacedDataProvider
+     *
+     * @return void
      */
-    public function categoryIdsAreCorrectlyReplaced($expectedResult, $given)
+    public function categoryIdsAreCorrectlyReplaced($expectedResult, $given): void
     {
         $mockTemplateParser = $this->getAccessibleMock(CategoryRepository::class, ['dummy'], [], '', false);
 

@@ -1,0 +1,34 @@
+<html data-namespace-typo3-fluid="true" xmlns:core="TYPO3\CMS\Core\ViewHelpers"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+
+<div class="extra mb-3">
+
+    <f:comment>Author</f:comment>
+    <f:if condition="{newsItem.author}">
+        <i class="fas fa-user me-1"></i>
+        <f:translate arguments="{0:newsItem.author}" key="author"/>
+        |
+    </f:if>
+
+    <f:comment>Date</f:comment>
+    <i class="fas fa-calendar-alt me-1"> </i>
+    <time datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}" itemprop="datePublished">
+        <f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+    </time>
+
+    <f:comment>Category</f:comment>
+    <f:if condition="{newsItem.firstCategory}">
+        | <i class="fas fa-folder-open me-1"></i>
+        <span class="label label-info">{newsItem.firstCategory.title}</span>
+    </f:if>
+
+    <f:comment>Tags</f:comment>
+    <f:if condition="{newsItem.tags}">
+        | <i class="fas fa-tags me-1"></i> <span class="news-list-tags me-1" itemprop="keywords">
+            <f:for as="tag" each="{newsItem.tags}">
+                <span class="label label-info me-1">{tag.title}</span>
+            </f:for>
+	    </span>
+    </f:if>
+</div>
+</html>

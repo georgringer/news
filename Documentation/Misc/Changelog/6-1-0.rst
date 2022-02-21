@@ -1,7 +1,7 @@
+.. include:: /Includes.rst.txt
+
 6.1.0 - 2017/08/31
 ==================
-
-.. include:: ../../Includes.txt
 
 .. only:: html
 
@@ -41,9 +41,9 @@ By using TsConfig it is now possible to hide filters in the administration modul
    }
 
 
-Page data to fluid templates
+Page data to Fluid templates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Every frontend fluid template can now access the full row of the current page by checking the variable `pageData`. As an example you will get the page title by using `pageData.title`.
+Every frontend Fluid template can now access the full row of the current page by checking the variable `pageData`. As an example you will get the page title by using `pageData.title`.
 
 All Changes
 -----------
@@ -67,11 +67,11 @@ This is a list of all changes in this release: ::
    2017-07-25 Fix indentation inconsistency (#370) (Commit 3a41f6b by Jan Nils Ferner)
    2017-07-25 [DOC] Add missing inject annotation in example (Commit cf70cf9 by Georg Ringer)
    2017-07-15 [TASK] Make the ObjectViewHelper work with CMS9 (Commit 4a6aa84 by Georg Ringer)
-   2017-07-14 [FEATURE] Add page data to fluid templates (Commit 0e0204c by Georg Ringer)
+   2017-07-14 [FEATURE] Add page data to Fluid templates (Commit 0e0204c by Georg Ringer)
    2017-07-14 [TASK] Fix typo in NewsController (#380) (Commit 8d633c0 by Shakeshake)
    2017-07-14 Fix mixed up type numbers (#378) (Commit 3263050 by diego)
    2017-07-14 [TASK] Fix emconf issues (#379) (Commit f288f3f by Shakeshake)
-   2017-07-11 [BUGFIX] Fix wrong fluid inline syntax in List.xml (#374) (Commit 3767f6e by Armin Vieweg)
+   2017-07-11 [BUGFIX] Fix wrong Fluid inline syntax in List.xml (#374) (Commit 3767f6e by Armin Vieweg)
    2017-07-11 [BUGFIX] Fix typo in List.xml template (#373) (Commit d524a1a by Armin Vieweg)
    2017-07-03 Apply fixes from StyleCI (#367) (Commit a1159b9 by Georg Ringer)
    2017-06-29 [FEATURE] Make showing thumbnails configurable (Commit 6669043 by Georg Ringer)
@@ -86,7 +86,7 @@ This is a list of all changes in this release: ::
    2017-06-13 [BUGFIX] Fix wrong evaluation in IfIsActiveVh (Commit 2440fbc by Georg Ringer)
    2017-06-09 [TASK] Show selected news in page layout view (Commit 587d753 by Georg Ringer)
    2017-06-07 [BUGFIX] Fix path to icon label in admin module (Commit 4477011 by Georg Ringer)
-   2017-05-30 [FIX] Set correct outdated viewhelpers (#340) (Commit 81db33f by misterboe)
+   2017-05-30 [FIX] Set correct outdated ViewHelpers (#340) (Commit 81db33f by misterboe)
    2017-05-29 [BUGFIX] Fix a typo in the 6.0.0 changelog (#339) (Commit faa69cc by Stephan Brun)
    2017-05-23 [TASK] Allow PHP 5.6 again (Commit 1bc43d0 by Georg Ringer)
    2017-05-22 [FEATURE] Add a new view "selectedList" (Commit 961f5f8 by Georg Ringer)

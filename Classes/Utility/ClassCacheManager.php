@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Utility;
 
 /**
@@ -47,6 +48,24 @@ class ClassCacheManager
         }
     }
 
+    public function reBuildSimple()
+    {
+        $classPath = 'Classes/';
+
+        if (!function_exists('token_get_all')) {
+            throw new \Exception(('The function token_get_all must exist. Please install the module PHP Module Tokenizer'));
+        }
+
+        if (!isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes'])) {
+            return;
+        }
+
+        $files = GeneralUtility::getFilesInDir(Environment::getVarPath() . '/cache/code/news/', 'php');
+        if (empty($files)) {
+            $this->reBuild();
+        }
+    }
+
     public function reBuild()
     {
         $classPath = 'Classes/';
@@ -77,8 +96,9 @@ class ClassCacheManager
                     $code .= $this->parseSingleFile($path, false);
                 }
             }
-            if (count($this->constructorLines)) {
-                $code .= LF . '    public function __construct()' . LF . '    {' . LF . implode(LF, $this->constructorLines) . LF . '    }' . LF;
+            if (isset($this->constructorLines['code']) && count($this->constructorLines['code'])) {
+                $code .= LF . implode("\n", $this->constructorLines['doc']);
+                $code .= LF . '    public function __construct(' . implode(',', $this->constructorLines['parameters'] ?? []) . ')' . LF . '    {' . LF . implode(LF, $this->constructorLines['code'] ?? []) . LF . '    }' . LF;
             }
             $code = $this->closeClassDefinition($code);
 
@@ -106,7 +126,7 @@ class ClassCacheManager
      * @throws \Exception
      * @throws \InvalidArgumentException
      */
-    protected function parseSingleFile($filePath, $baseClass = false)
+    protected function parseSingleFile($filePath, $baseClass = false): string
     {
         if (!is_file($filePath)) {
             throw new \InvalidArgumentException(sprintf('File "%s" could not be found', $filePath));
@@ -140,34 +160,54 @@ class ClassCacheManager
             unset($innerPart[0]);
         }
 
+        $innerPartLine = function ($line) use ($offsetForInnerPart) {
+            return $line - $offsetForInnerPart;
+        };
+
         // unset the constructor and save it's lines
         if (isset($classParserInformation['functions']['__construct'])) {
             $constructorInfo = $classParserInformation['functions']['__construct'];
-            for ($i = $constructorInfo['start'] - $offsetForInnerPart; $i < $constructorInfo['end'] - $offsetForInnerPart; $i++) {
-                if (trim($innerPart[$i]) === '{') {
-                    unset($innerPart[$i]);
-                    continue;
+            $constructorInfo['inner_start'] = $constructorInfo['start'] - $offsetForInnerPart;
+            $constructorInfo['inner_end'] = $constructorInfo['end'] - $offsetForInnerPart;
+            if ($baseClass) {
+                $this->constructorLines['doc'] = explode("\n", $constructorInfo['doc']);
+            } else {
+                array_splice(
+                    $this->constructorLines['doc'],
+                    -1,
+                    0,
+                    array_filter(explode("\n", $constructorInfo['doc'] ?? ''), function ($value) {
+                        return strpos($value, '@param') !== false;
+                    })
+                );
+            }
+            $codePart = false;
+            for ($i = $constructorInfo['inner_start']; $i < $constructorInfo['inner_end']; $i++) {
+                if ($codePart) {
+                    $this->constructorLines['code'][] = $innerPart[$i];
+                } elseif (trim($innerPart[$i]) === ') {' || trim($innerPart[$i]) === '{') {
+                    $codePart = true;
+                } elseif (trim($innerPart[$i]) !== ')' && $i >= ($constructorInfo['inner_start'])) {
+                    $this->constructorLines['parameters'][] = LF . rtrim($innerPart[$i], ',');
                 }
-                $this->constructorLines[] = $innerPart[$i];
                 unset($innerPart[$i]);
             }
-            unset($innerPart[$constructorInfo['start'] - $offsetForInnerPart - 1]);
-            unset($innerPart[$constructorInfo['end'] - $offsetForInnerPart]);
+            unset($innerPart[$constructorInfo['inner_start'] - 1]);
+            unset($innerPart[$constructorInfo['inner_end']]);
         }
 
         $codePart = implode(LF, $innerPart);
         $closingBracket = strrpos($codePart, '}');
         $codePart = substr($codePart, 0, $closingBracket);
 
-        $content = $this->getPartialInfo($filePath) . $codePart;
-        return $content;
+        return $this->getPartialInfo($filePath) . $codePart;
     }
 
     /**
      * @param string $filePath
      * @return string
      */
-    protected function getPartialInfo($filePath)
+    protected function getPartialInfo($filePath): string
     {
         return LF . '/*' . str_repeat('*', 70) . LF . "\t" .
         'this is partial from: ' . LF . "\t" . str_replace(Environment::getPublicPath(), '', $filePath) . LF . str_repeat(
@@ -180,7 +220,7 @@ class ClassCacheManager
      * @param string $code
      * @return string
      */
-    protected function closeClassDefinition($code)
+    protected function closeClassDefinition($code): string
     {
         return $code . LF . '}';
     }

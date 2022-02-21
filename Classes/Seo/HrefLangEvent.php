@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\Seo;
@@ -35,31 +36,35 @@ class HrefLangEvent
     public function __invoke(ModifyHrefLangTagsEvent $event): void
     {
         $newsAvailabilityChecker = GeneralUtility::makeInstance(NewsAvailability::class);
-        $allHrefLangs = $event->getHrefLangs();
+        if ($newsAvailabilityChecker->getNewsIdFromRequest() > 0) {
+            $allHrefLangs = $event->getHrefLangs();
 
-        $languages = $this->languageMenuProcessor->process($this->cObj, [], [], []);
-
-        foreach ($languages['languagemenu'] as $language) {
-            $hreflangKey = $language['hreflang'];
-            // skip all languages which are not used in hreflang
-            if (!isset($allHrefLangs[$hreflangKey]) || $hreflangKey === 'x-default') {
-                continue;
-            }
-
-            try {
-                $check = $newsAvailabilityChecker->check($language['languageId']);
-
-                if (!$check) {
-                    unset($allHrefLangs[$hreflangKey]);
+            $languages = $this->languageMenuProcessor->process($this->cObj, [], [], []);
+            $errorTriggered = false;
+            foreach ($languages['languagemenu'] as $language) {
+                $hreflangKey = $language['hreflang'];
+                // skip all languages which are not used in hreflang
+                if (!isset($allHrefLangs[$hreflangKey]) || $hreflangKey === 'x-default') {
+                    continue;
                 }
-            } catch (\UnexpectedValueException $e) {
-                // do nothing
+
+                try {
+                    $check = $newsAvailabilityChecker->check($language['languageId']);
+
+                    if (!$check) {
+                        unset($allHrefLangs[$hreflangKey]);
+                    }
+                } catch (\UnexpectedValueException $e) {
+                    $errorTriggered = true;
+                }
+            }
+
+            if (!$errorTriggered) {
+                if (count($allHrefLangs) <= 2) {
+                    unset($allHrefLangs['x-default']);
+                }
+                $event->setHrefLangs($allHrefLangs);
             }
         }
-
-        if (count($allHrefLangs) <= 2) {
-            unset($allHrefLangs['x-default']);
-        }
-        $event->setHrefLangs($allHrefLangs);
     }
 }

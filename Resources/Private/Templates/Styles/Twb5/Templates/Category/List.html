@@ -1,0 +1,55 @@
+<html xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="General" />
+<!--
+    =====================
+        Templates/Category/List.html
+-->
+
+<f:section name="content">
+	<f:if condition="{categories}">
+		<f:then>
+			<f:render section="categoryTree" arguments="{categories:categories,overwriteDemand:overwriteDemand}" />
+		</f:then>
+		<f:else>
+			<f:translate key="list_nocategoriesfound" />
+		</f:else>
+	</f:if>
+</f:section>
+
+<f:section name="categoryTree">
+	<f:for each="{categories}" as="category">
+		<n:multiCategoryLink.isCategoryActive list="{overwriteDemand.categories}" item="{category.item.uid}">
+			<f:then>
+				<div class="btn-group me-2" role="group">
+					<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
+								 additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">
+						<button type="button" class="btn btn-primary"><i class="fas fa-folder-open me-1"></i> {category.item.title}</button>
+					</f:link.page>
+
+					<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
+								 additionalParams="{n:multiCategoryLink.arguments(mode:'remove',item:category.item.uid,list:overwriteDemand.categories)}">
+						<button type="button" class="btn btn-primary active"><i class="far fa-minus"></i></button>
+					</f:link.page>
+				</div>
+			</f:then>
+			<f:else>
+				<div class="btn-group me-2" role="group">
+					<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
+								 additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">
+						<button type="button" class="btn btn-primary"><i class="fas fa-folder-open me-1"></i> {category.item.title}</button>
+					</f:link.page>
+					<f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
+								 additionalParams="{n:multiCategoryLink.arguments(mode:'add',item:category.item.uid,list:overwriteDemand.categories)}">
+						<button type="button" class="btn btn-primary"><i class="far fa-plus"></i></button>
+					</f:link.page>
+				</div>
+			</f:else>
+		</n:multiCategoryLink.isCategoryActive>
+
+		<f:if condition="{category.children}">
+			<f:render section="categoryTree" arguments="{categories: category.children,overwriteDemand:overwriteDemand}" />
+		</f:if>
+	</f:for>
+</f:section>
+</html>

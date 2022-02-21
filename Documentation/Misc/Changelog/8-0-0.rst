@@ -1,7 +1,7 @@
+.. include:: /Includes.rst.txt
+
 8.0.0 - 2020/21/04
 ==================
-
-.. include:: ../../Includes.txt
 
 .. only:: html
 
@@ -79,7 +79,7 @@ If using languages with the language mode `strict`, the hreflang tag must only b
 
 EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
 
-Check availability in fluid templates
+Check availability in Fluid templates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you are building a language menu and want to check if the news record is available, you can use the ViewHelper
 :html:`<n:check.pageAvailableInLanguage language="{languageId}">`. A full example can look like this:

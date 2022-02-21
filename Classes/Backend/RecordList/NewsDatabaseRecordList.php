@@ -26,7 +26,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
      * @param string $excludeList Comma separated list of fields NOT to include ("sortField" or "sortRev")
      * @return string
      */
-    public function listURL($alternativeId = '', $table = '-1', $excludeList = '')
+    public function listURL($alternativeId = '', $table = '-1', $excludeList = ''): string
     {
         $urlParameters = [];
         if ((string)$alternativeId !== '') {
@@ -34,7 +34,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         } else {
             $urlParameters['id'] = $this->id;
         }
-        if ($this->thumbs) {
+        if (isset($this->thumbs)) {
             $urlParameters['imagemode'] = $this->thumbs;
         }
         if ($this->returnUrl) {
@@ -49,7 +49,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         if ($this->showLimit) {
             $urlParameters['showLimit'] = $this->showLimit;
         }
-        if ($this->firstElementNumber) {
+        if (isset($this->firstElementNumber)) {
             $urlParameters['pointer'] = $this->firstElementNumber;
         }
         if ((!$excludeList || !GeneralUtility::inList(
@@ -74,7 +74,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         }
 
         $demand = GeneralUtility::_GET('tx_news_web_newsadministration');
-        if (is_array($demand['demand'])) {
+        if (isset($demand['demand']) && is_array($demand['demand'])) {
             $urlParameters['tx_news_web_newsadministration']['demand'] = $demand['demand'];
         }
 

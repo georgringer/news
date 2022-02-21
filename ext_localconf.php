@@ -1,17 +1,18 @@
 <?php
+
 defined('TYPO3_MODE') or die();
 
-$boot = function () {
+$boot = static function (): void {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'GeorgRinger.news',
+        'News',
         'Pi1',
         [
-            'News' => 'list,detail,selectedList,dateMenu,searchForm,searchResult',
-            'Category' => 'list',
-            'Tag' => 'list',
+            \GeorgRinger\News\Controller\NewsController::class => 'list,detail,selectedList,dateMenu,searchForm,searchResult',
+            \GeorgRinger\News\Controller\CategoryController::class => 'list',
+            \GeorgRinger\News\Controller\TagController::class => 'list',
         ],
         [
-            'News' => 'searchForm,searchResult',
+            \GeorgRinger\News\Controller\NewsController::class => 'searchForm,searchResult',
         ]
     );
 
@@ -21,6 +22,8 @@ $boot = function () {
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news_clearcache'] =
         \GeorgRinger\News\Hooks\DataHandler::class . '->clearCachePostProc';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['moveRecordClass']['news_clearcache'] =
+        \GeorgRinger\News\Hooks\DataHandler::class;
 
     // Edit restriction for news records
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['news'] =
@@ -61,13 +64,13 @@ $boot = function () {
     /* ===========================================================================
         Custom cache, done with the caching framework
     =========================================================================== */
-    if (empty($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category'])) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category'] = [];
+    if (empty($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news_category'])) {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news_category'] = [];
     }
     // Define string frontend as default frontend, this must be set with TYPO3 4.5 and below
     // and overrides the default variable frontend of 4.6
-    if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'])) {
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['cache_news_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class;
+    if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news_category']['frontend'])) {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['news_category']['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class;
     }
 
     /* ===========================================================================
@@ -75,15 +78,15 @@ $boot = function () {
     =========================================================================== */
     // For linkvalidator
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('linkvalidator')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.txt">');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig\'');
     }
     if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('guide')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('  <INCLUDE_TYPOSCRIPT: source="DIR:EXT:news/Configuration/TSconfig/Tours" extensions="ts">');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:news/Configuration/TSconfig/Tours/AdministrationModule.tsconfig\'');
     }
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
-    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TSconfig/ContentElementWizard.txt">
-    <INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TSconfig/Administration.txt">
+    @import \'EXT:news/Configuration/TSconfig/ContentElementWizard.tsconfig\'
+    @import \'EXT:news/Configuration/TSconfig/Administration.tsconfig\'
     ');
 
     /* ===========================================================================

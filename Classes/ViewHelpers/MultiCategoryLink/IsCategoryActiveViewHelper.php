@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
@@ -25,7 +26,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * <output>
  * "du stuff" will be shown if the category is currently in demand
  * </output>
- *
  */
 class IsCategoryActiveViewHelper extends AbstractConditionViewHelper implements ViewHelperInterface
 {

@@ -1,0 +1,121 @@
+{
+	"suites": {
+		"News": {
+			"screenshots": {
+				"_default": [
+					{"action": "resizeWindow", "width": 1024, "height": 768},
+					{"action": "setScreenshotsImagePath", "path": "Images/AutomaticScreenshots"},
+					{"action": "setScreenshotsRstPath", "path": "Images/AutomaticScreenshots"}
+				],
+				"news": [
+					{"include": "_default"},
+
+					{"action": "amOnPage", "page": "/typo3/record/edit?edit[pages][0]=new&id=0&table=&pointer=1&defVals[pages][title]=example.org&defVals[pages][is_siteroot]=1&defVals[pages][hidden]=0&token=x"},
+					{"action": "click", "link": "Save"},
+					{"action": "waitForText", "text": "Edit Page"},
+					{"action": "amOnPage", "page": "/typo3/record/edit?edit[pages][1]=new&id=0&table=&pointer=1&defVals[pages][title]=News Storage&defVals[pages][doktype]=254&defVals[pages][module]=news&defVals[pages][hidden]=0&token=x"},
+					{"action": "click", "link": "Save"},
+					{"action": "waitForText", "text": "Edit Page"},
+					{"action": "amOnPage", "page": "/typo3/record/edit?edit[pages][1]=new&id=0&table=&pointer=1&defVals[pages][title]=News list&defVals[pages][module]=newsplugins&defVals[pages][hidden]=0&token=x"},
+					{"action": "click", "link": "Save"},
+					{"action": "waitForText", "text": "Edit Page"},
+					{"action": "amOnPage", "page": "/typo3/record/edit?edit[pages][1]=new&id=0&table=&pointer=1&defVals[pages][title]=Some page&defVals[pages][module]=newsplugins&defVals[pages][hidden]=0&token=x"},
+					{"action": "click", "link": "Save"},
+					{"action": "waitForText", "text": "Edit Page"},
+					{"action": "amOnPage", "page": "/typo3/record/edit?edit[pages][3]=new&id=0&table=&pointer=1&defVals[pages][title]=News display&defVals[pages][hidden]=0&token=x"},
+					{"action": "click", "link": "Save"},
+					{"action": "waitForText", "text": "Edit Page"},
+					{"action": "amOnPage", "page": "/typo3/record/edit?edit[sys_template][1]=new&id=0&table=&pointer=1&defVals[sys_template][title]=Main TypoScript Rendering&defVals[sys_template][root]=1s&defVals[sys_template][include_static_file]=EXT%3Afluid_styled_content%2FConfiguration%2FTypoScript%2F%2CEXT%3Anews%2FConfiguration%2FTypoScript&defVals[sys_template][hidden]=0&token=x"},
+					{"action": "click", "link": "Save"},
+					{"action": "waitForText", "text": "Edit Template"},
+					{"comment": "The following does not work, issue: https://github.com/georgringer/news/issues/1662 \n\t\t\t\t\t{\"action\": \"amOnPage\", \"page\": \"/typo3/record/edit?edit[tx_news_domain_model_news][2]=new&id=0&table=&pointer=1&defVals[tx_news_domain_model_news][title]=Example News&defVals[tx_news_domain_model_news][hidden]=0&token=x\"},\n\t\t\t\t\t{\"action\": \"click\", \"link\": \"Save\"},\n\t\t\t\t\t{\"action\": \"waitForText\", \"text\": \"Edit News\"},{\"action\": \"amOnPage\", \"page\": \"/typo3/record/edit?edit[tx_news_domain_model_news][2]=new&id=0&table=&pointer=1&defVals[tx_news_domain_model_news][title]=News as external Link&defVals[tx_news_domain_model_news][type]=1&defVals[tx_news_domain_model_news][hidden]=0&token=x\"},\n\t\t\t\t\t{\"action\": \"click\", \"link\": \"Save\"},\n\t\t\t\t\t{\"action\": \"waitForText\", \"text\": \"Edit News\"},\n\t\t\t\t\t{\"action\": \"amOnPage\", \"page\": \"/typo3/record/edit?edit[tx_news_domain_model_news][2]=new&id=0&table=&pointer=1&defVals[tx_news_domain_model_news][title]=News as internal Link&defVals[tx_news_domain_model_news][type]=2&defVals[tx_news_domain_model_news][hidden]=0&token=x\"},\n\t\t\t\t\t{\"action\": \"click\", \"link\": \"Save\"},"},
+					{"action": "resizeWindow", "width": 1024, "height": 550},
+					{"action": "goToModule", "module": "News Administration", "path": ["example.org", "News Storage"]},
+					{"action": "waitForText", "text": "News administration"},
+					{"action": "makeScreenshotOfWindow", "fileName": "AdminModule"},
+					{"action": "resizeWindow", "width": 1024, "height": 200},
+					{"action": "switchToMainFrame"},
+					{"action": "see", "text": "News administration"},
+					{"action": "switchToContentFrame"},
+					{"action": "drawBox", "selector": "a[data-title=\"Create a new category\"]"},
+					{"action": "drawBadge", "selector": "a[data-title=\"Create a new category\"]", "label":  "Create a new category", "position": "bottom"},
+					{"action": "makeScreenshotOfWindow", "fileName": "AddCategoryInAdminModule"},
+					{"action": "clearDrawings"},
+					{"action": "drawBox", "selector": "a[data-title=\"Create new tag record\"]"},
+					{"action": "drawBadge", "selector": "a[data-title=\"Create new tag record\"]", "label":  "Create new tag record", "position": "bottom"},
+					{"action": "makeScreenshotOfWindow", "fileName": "AddTagInAdminModule"},
+					{"action": "clearDrawings"},
+					{"action": "drawBox", "selector": "a[data-title=\"Create new news record\"]"},
+					{"action": "drawBadge", "selector": "a[data-title=\"Create new news record\"]", "label":  "Create new news record", "position": "bottom"},
+					{"action": "makeScreenshotOfWindow", "fileName": "AddNewsInAdminModule"},
+					{"action": "clearDrawings"},
+					{"action": "resizeWindow", "width": 768, "height": 640},
+					{"action": "amOnPage", "page": "/typo3/record/edit?edit[sys_category][2]=new&defVals[sys_category][title]=My Category&defVals[sys_category][hidden]=0&token=x"},
+					{"action": "makeScreenshotOfWindow", "fileName": "CreateCategory"},
+					{"action": "amOnPage", "page": "/typo3/record/edit?edit[tx_news_domain_model_tag][2]=new&defVals[tx_news_domain_model_tag][title]=My tag&defVals[tx_news_domain_model_tag][hidden]=0&token=x"},
+					{"action": "makeScreenshotOfElement", "selector": ".module-body", "fileName": "CreateTag"},
+					{"comment":"The following does not work due to JS errors: {\"action\": \"amOnPage\", \"page\": \"/typo3/record/edit?edit[tx_news_domain_model_news][2]=new&defVals[tx_news_domain_model_tag][title]=My news&defVals[tx_news_domain_model_tag][hidden]=0&token=x\"},\n\t\t\t\t\t{\"action\": \"makeScreenshotOfElement\", \"selector\": \".module-body\", \"fileName\": \"CreateNews\"},\n\t\t\t\t\t"},
+					{"action": "amOnPage", "page": "/typo3/record/edit?edit[tt_content][2]=new&defVals[tt_content][header]=My news plugin&defVals[tt_content][hidden]=0&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=news_pi1&token=x"},
+					{"action": "click", "link": "Plugin"},
+					{"action": "makeScreenshotOfElement", "selector": ".module-body", "fileName": "Plugin"},
+					{"action": "click", "link": "Additional"},
+					{"action": "wait", "timeout": 0.1},
+					{"action": "makeScreenshotOfElement", "selector": ".module-body", "fileName": "PluginAdditional"},
+					{
+						"action": "goToRecord",
+						"table": "sys_template",
+						"uid": 1
+					},
+					{"action": "click", "link": "Includes"},
+					{"action": "makeScreenshotOfWindow", "fileName": "NewsIncludeTypoScript"}
+				],
+				"Modules": [
+					{
+						"include": "_default"
+					}, {
+						"action": "setScreenshotsImagePath",
+						"path": "Images/AutomaticScreenshots"
+					}, {
+						"action": "setScreenshotsRstPath",
+						"path": "Images/AutomaticScreenshots"
+					}, {
+						"action": "resizeWindow",
+						"width": 1232,
+						"height": 1024
+					}, {
+						"action": "switchToMainFrame"
+					}, {
+						"comment": "********************************************************"
+					}, {
+						"comment": "Maintenance Section of Admin Tool"
+					}, {
+						"comment": "********************************************************"
+					},
+
+					{"action": "goToModule", "module": "Maintenance"},
+					{
+						"action": "fillField",
+						"field": "input#confirmationPassword",
+						"value": "password"
+					}, {
+						"action": "click",
+						"link": "Confirm"
+					}, {
+						"action": "waitForText",
+						"text": "Maintenance",
+						"timeout": 5
+					}, {
+						"action": "resizeWindow",
+						"width": 1024,
+						"height": 512
+					},
+					{"action": "drawBox", "selector": ".card:first-child"},
+					{"action": "makeScreenshotOfWindow", "fileName": "FlushCache"},
+					{"action": "clearDrawings"},
+					{"action": "drawBox", "selector": ".card:nth-child(2)"},
+					{"action": "makeScreenshotOfWindow", "fileName": "AnalyzeDatabase"}
+				]
+			}
+		}
+	}
+}

@@ -12,7 +12,6 @@ use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
  * Userfunc to render alternative label for media elements
@@ -23,17 +22,24 @@ class ItemsProcFunc
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
-    public function __construct()
-    {
-        $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
+    /**
+     * ItemsProcFunc constructor.
+     * @param TemplateLayout $templateLayout
+     */
+    public function __construct(
+        TemplateLayout $templateLayout
+    ) {
+        $this->templateLayoutsUtility = $templateLayout;
     }
 
     /**
      * Itemsproc function to extend the selection of templateLayouts in the plugin
      *
      * @param array &$config configuration array
+     *
+     * @return void
      */
-    public function user_templateLayout(array &$config)
+    public function user_templateLayout(array &$config): void
     {
         $pageId = 0;
 
@@ -61,14 +67,14 @@ class ItemsProcFunc
      * @param int $currentColPos
      * @return array
      */
-    protected function reduceTemplateLayouts($templateLayouts, $currentColPos)
+    protected function reduceTemplateLayouts($templateLayouts, $currentColPos): array
     {
         $currentColPos = (int)$currentColPos;
         $restrictions = [];
         $allLayouts = [];
         foreach ($templateLayouts as $key => $layout) {
             if (is_array($layout[0])) {
-                if (isset($layout[0]['allowedColPos']) && StringUtility::endsWith($layout[1], '.')) {
+                if (isset($layout[0]['allowedColPos']) && str_ends_with((string)$layout[1], '.')) {
                     $layoutKey = substr($layout[1], 0, -1);
                     $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
                 }
@@ -92,8 +98,10 @@ class ItemsProcFunc
      * needs different ones then a news action
      *
      * @param array &$config configuration array
+     *
+     * @return void
      */
-    public function user_orderBy(array &$config)
+    public function user_orderBy(array &$config): void
     {
         $row = $this->getContentElementRow($config['row']['uid']);
 
@@ -103,11 +111,11 @@ class ItemsProcFunc
 
             // check if there is a flexform configuration
             if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
-                $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'];
+                $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'] ?? '';
                 // check for selected action
-                if (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Category')) {
+                if (str_starts_with($selectedActionList, 'Category')) {
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
-                } elseif (GeneralUtility::isFirstPartOfStr($selectedActionList, 'Tag')) {
+                } elseif (str_starts_with($selectedActionList, 'Tag')) {
                     $this->removeNonValidOrderFields($config, 'tx_news_domain_model_tag');
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'];
                 } else {
@@ -141,8 +149,10 @@ class ItemsProcFunc
      *
      * @param array $config tca items
      * @param string $tableName table name
+     *
+     * @return void
      */
-    protected function removeNonValidOrderFields(array &$config, $tableName)
+    protected function removeNonValidOrderFields(array &$config, $tableName): void
     {
         $allowedFields = array_keys($GLOBALS['TCA'][$tableName]['columns']);
 
@@ -157,8 +167,10 @@ class ItemsProcFunc
      * Modifies the selectbox of available actions
      *
      * @param array &$config
+     *
+     * @return void
      */
-    public function user_switchableControllerActions(array &$config)
+    public function user_switchableControllerActions(array &$config): void
     {
         if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'])) {
             $configuration = (int)$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'];
@@ -188,8 +200,10 @@ class ItemsProcFunc
      *
      * @param array $config available items
      * @param string $action action to be removed
+     *
+     * @return void
      */
-    private function removeActionFromList(array &$config, $action)
+    private function removeActionFromList(array &$config, $action): void
     {
         foreach ($config['items'] as $key => $item) {
             if ($item[1] === $action) {
@@ -204,7 +218,7 @@ class ItemsProcFunc
      *
      * @return string select box
      */
-    public function user_categoryOverlay()
+    public function user_categoryOverlay(): string
     {
         $html = '';
 
@@ -236,7 +250,7 @@ class ItemsProcFunc
      *
      * @return array
      */
-    protected function getAllLanguages()
+    protected function getAllLanguages(): array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('sys_language');
@@ -251,9 +265,10 @@ class ItemsProcFunc
      * Get tt_content record
      *
      * @param int $uid
-     * @return array
+     *
+     * @return array|null
      */
-    protected function getContentElementRow($uid)
+    protected function getContentElementRow($uid): ?array
     {
         return BackendUtilityCore::getRecord('tt_content', $uid);
     }
@@ -264,7 +279,7 @@ class ItemsProcFunc
      * @param int $pid
      * @return int
      */
-    protected function getPageId($pid)
+    protected function getPageId($pid): int
     {
         $pid = (int)$pid;
 
@@ -281,7 +296,7 @@ class ItemsProcFunc
      *
      * @return \TYPO3\CMS\Core\Localization\LanguageService
      */
-    protected function getLanguageService()
+    protected function getLanguageService(): \TYPO3\CMS\Core\Localization\LanguageService
     {
         return $GLOBALS['LANG'];
     }

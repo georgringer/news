@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\Seo;
@@ -11,7 +12,7 @@ use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * This file is part of the "tt_address" Extension for TYPO3 CMS.
+ * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -32,13 +33,7 @@ class NewsAvailability
     {
         // get it from current request
         if ($newsId === 0) {
-            /** @var PageArguments $pageArguments */
-            $pageArguments = $this->getRequest()->getAttribute('routing');
-            if (isset($pageArguments->getRouteArguments()['tx_news_pi1']['news'])) {
-                $newsId = (int)$pageArguments->getRouteArguments()['tx_news_pi1']['news'];
-            } elseif (isset($this->getRequest()->getQueryParams()['tx_news_pi1']['news'])) {
-                $newsId = (int)$this->getRequest()->getQueryParams()['tx_news_pi1']['news'];
-            }
+            $newsId = $this->getNewsIdFromRequest();
         }
         if ($newsId === 0) {
             throw new \UnexpectedValueException('No news id provided', 1586431984);
@@ -128,5 +123,18 @@ class NewsAvailability
     protected function getRequest(): ServerRequestInterface
     {
         return $GLOBALS['TYPO3_REQUEST'];
+    }
+
+    public function getNewsIdFromRequest(): int
+    {
+        $newsId = 0;
+        /** @var PageArguments $pageArguments */
+        $pageArguments = $this->getRequest()->getAttribute('routing');
+        if (isset($pageArguments->getRouteArguments()['tx_news_pi1']['news'])) {
+            $newsId = (int)$pageArguments->getRouteArguments()['tx_news_pi1']['news'];
+        } elseif (isset($this->getRequest()->getQueryParams()['tx_news_pi1']['news'])) {
+            $newsId = (int)$this->getRequest()->getQueryParams()['tx_news_pi1']['news'];
+        }
+        return $newsId;
     }
 }

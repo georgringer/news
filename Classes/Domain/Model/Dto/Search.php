@@ -1,5 +1,8 @@
 <?php
+
 namespace GeorgRinger\News\Domain\Model\Dto;
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -11,9 +14,8 @@ namespace GeorgRinger\News\Domain\Model\Dto;
 /**
  * News Demand object which holds all information to get the correct
  * news records.
- *
  */
-class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Search extends AbstractEntity
 {
 
     /**
@@ -21,35 +23,35 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @var string
      */
-    protected $subject;
+    protected $subject = '';
 
     /**
      * Search fields
      *
      * @var string
      */
-    protected $fields;
+    protected $fields = '';
 
     /**
      * Minimum date
      *
      * @var string
      */
-    protected $minimumDate;
+    protected $minimumDate = '';
 
     /**
      * Maximum date
      *
      * @var string
      */
-    protected $maximumDate;
+    protected $maximumDate = '';
 
     /**
      * Field using for date queries
      *
      * @var string
      */
-    protected $dateField;
+    protected $dateField = '';
 
     /** @var bool */
     protected $splitSubjectWords = false;
@@ -59,7 +61,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
@@ -69,7 +71,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @param string $subject
      */
-    public function setSubject($subject)
+    public function setSubject(string $subject): void
     {
         $this->subject = $subject;
     }
@@ -79,7 +81,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getFields()
+    public function getFields(): string
     {
         return $this->fields;
     }
@@ -87,17 +89,21 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Set fields
      *
-     * @param $fields
+     * @param string $fields
+     *
+     * @return void
      */
-    public function setFields($fields)
+    public function setFields(string $fields): void
     {
         $this->fields = $fields;
     }
 
     /**
      * @param string $maximumDate
+     *
+     * @return void
      */
-    public function setMaximumDate($maximumDate)
+    public function setMaximumDate($maximumDate): void
     {
         $this->maximumDate = $maximumDate;
     }
@@ -105,15 +111,17 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getMaximumDate()
+    public function getMaximumDate(): string
     {
         return $this->maximumDate;
     }
 
     /**
      * @param string $minimumDate
+     *
+     * @return void
      */
-    public function setMinimumDate($minimumDate)
+    public function setMinimumDate(string $minimumDate): void
     {
         $this->minimumDate = $minimumDate;
     }
@@ -121,15 +129,17 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getMinimumDate()
+    public function getMinimumDate(): string
     {
         return $this->minimumDate;
     }
 
     /**
      * @param string $dateField
+     *
+     * @return void
      */
-    public function setDateField($dateField)
+    public function setDateField($dateField): void
     {
         $this->dateField = $dateField;
     }
@@ -137,7 +147,7 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getDateField()
+    public function getDateField(): string
     {
         return $this->dateField;
     }
@@ -145,15 +155,17 @@ class Search extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return bool
      */
-    public function isSplitSubjectWords()
+    public function isSplitSubjectWords(): bool
     {
         return $this->splitSubjectWords;
     }
 
     /**
      * @param bool $splitSubjectWords
+     *
+     * @return void
      */
-    public function setSplitSubjectWords($splitSubjectWords)
+    public function setSplitSubjectWords($splitSubjectWords): void
     {
         $this->splitSubjectWords = $splitSubjectWords;
     }
