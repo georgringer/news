@@ -55,7 +55,7 @@ class LinkHandlerTargetPageService
             ->where(
                 $queryBuilder->expr()->eq('sys_category_record_mm.tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
                 $queryBuilder->expr()->gt('sys_category.single_pid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
-                $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('sys_category_record_mm.sorting_foreign', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
             )
             ->orderBy('sys_category_record_mm.sorting')
             ->setMaxResults(1)
