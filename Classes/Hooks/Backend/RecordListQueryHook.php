@@ -76,6 +76,13 @@ class RecordListQueryHook
                     unset($parameters['where']);
                 }
             }
+            
+            if (!$this->getBackendUser()->isAdmin() && ($tsconfig = $$this->getBackendUser()->getTSConfig())) {
+                 if (!empty($tsconfig['options.']['delegatee'])) {
+                     $delegatee = trim($tsconfig['options.']['delegatee'],',;.');
+                     $queryBuilder->andWhere('cruser_id IN (' . $delegatee . ')');
+                 }
+            }
         }
     }
 
@@ -98,5 +105,15 @@ class RecordListQueryHook
     protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
+    }
+    
+    /**
+     * Returns the current BE user.
+     *
+     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     */
+    protected function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+    {
+        return $GLOBALS['BE_USER'];
     }
 }
