@@ -347,9 +347,9 @@ class News extends AbstractEntity
     /**
      * Get datetime
      *
-     * @return DateTime
+     * @return null|DateTime
      */
-    public function getDatetime(): DateTime
+    public function getDatetime(): ?DateTime
     {
         return $this->datetime;
     }
