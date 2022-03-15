@@ -42,7 +42,6 @@ $tx_news_domain_model_news = [
         ],
         'iconfile' => 'EXT:news/Resources/Public/Icons/news_domain_model_news.svg',
         'searchFields' => 'uid,title',
-        'thumbnail' => $configuration->isMediaPreview() ? 'fal_media' : '',
     ],
     'columns' => [
         'sys_language_uid' => [
