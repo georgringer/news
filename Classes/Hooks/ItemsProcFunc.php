@@ -11,6 +11,8 @@ namespace GeorgRinger\News\Hooks;
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -225,8 +227,11 @@ class ItemsProcFunc
         $languages = $this->getAllLanguages();
         // if any language is available
         if (count($languages) > 0) {
-            $html = '<select name="data[newsoverlay]" id="field_newsoverlay" class="form-control">
-						<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value')) . '</option>';
+            $html = '<select name="data[newsoverlay]" id="field_newsoverlay" class="form-control">';
+
+            if (!isset($languages[0])) {
+                $html .= '<option value="0">' . htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.default_value')) . '</option>';
+            }
 
             foreach ($languages as $language) {
                 $selected = ((int)$GLOBALS['BE_USER']->uc['newsoverlay'] === (int)$language['uid']) ? ' selected="selected" ' : '';
@@ -252,13 +257,28 @@ class ItemsProcFunc
      */
     protected function getAllLanguages(): array
     {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('sys_language');
-        return $queryBuilder->select('*')
-            ->from('sys_language')
-            ->orderBy('sorting')
-            ->execute()
-            ->fetchAll();
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() === 10) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable('sys_language');
+            return $queryBuilder->select('*')
+                ->from('sys_language')
+                ->orderBy('sorting')
+                ->execute()
+                ->fetchAll();
+        }
+        $siteLanguages = [];
+        foreach (GeneralUtility::makeInstance(SiteFinder::class)->getAllSites() as $site) {
+            foreach ($site->getAllLanguages() as $languageId => $language) {
+                if (!isset($siteLanguages[$languageId])) {
+                    $siteLanguages[$languageId] = [
+                        'uid' => $languageId,
+                        'title' => $language->getTitle(),
+                    ];
+                }
+            }
+        }
+        return $siteLanguages;
     }
 
     /**
