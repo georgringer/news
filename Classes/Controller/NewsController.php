@@ -15,6 +15,7 @@ use GeorgRinger\News\Event\NewsListActionEvent;
 use GeorgRinger\News\Event\NewsListSelectedActionEvent;
 use GeorgRinger\News\Event\NewsSearchFormActionEvent;
 use GeorgRinger\News\Event\NewsSearchResultActionEvent;
+use GeorgRinger\News\Pagination\QueryResultPaginator;
 use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\ClassCacheManager;
@@ -25,7 +26,6 @@ use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
@@ -242,6 +242,7 @@ class NewsController extends NewsBaseController
 
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
         $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage);
+        $paginator->setInitialLimitOffset((int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
         $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
         if ($paginationClass === NumberedPagination::class && $maximumNumberOfLinks && class_exists(NumberedPagination::class)) {
             $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
