@@ -491,7 +491,7 @@ class AdministrationController extends NewsController
           'countCategories' => 'sys_category',
           'countTags' => 'tx_news_domain_model_tag',
         ];
-        foreach($counts as $key => $table) {
+        foreach ($counts as $key => $table) {
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getQueryBuilderForTable($table);
             $row[$key] = $queryBuilder->count('*')
