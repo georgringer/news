@@ -49,7 +49,7 @@ class PageViewQueryHook
             if (is_array($pageRecord)) {
                 $tsConfig = BackendUtility::getPagesTSconfig($pageId);
 
-                if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
+                if ((int)($tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] ?? 0)  === 1) {
                     return;
                 }
 
