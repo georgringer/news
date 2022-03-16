@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace GeorgRinger\News\Pagination;
 
 use TYPO3\CMS\Core\Pagination\AbstractPaginator;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 abstract class CustomAbstractPaginator extends AbstractPaginator
 {
@@ -37,7 +38,7 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
     {
         // offset
         if ($this->currentPageNumber > 1) {
-            $offset = (int)($this->itemsPerPage * ($this->currentPageNumber - 1));
+            $offset = ($this->itemsPerPage * ($this->currentPageNumber - 1));
             $offset += $this->initialOffset;
         } elseif ($this->initialOffset > 0) {
             $offset = $this->initialOffset;
@@ -73,13 +74,11 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
         }
 
         $this->updatePaginatedItems($limit, $offset);
-
         if ($this->currentPageNumber === $this->numberOfPages && $this->initialLimit > 0) {
             $difference = $this->initialLimit - ((integer)($this->itemsPerPage * ($this->currentPageNumber - 1)));
             if ($difference > 0) {
                 $this->updatePaginatedItems($difference, $offset);
                 $totalAmountOfItems = $this->getTotalAmountOfItems();
-                $this->numberOfPages = max(1, (int)ceil($totalAmountOfItems / $this->itemsPerPage));
             }
         }
 
@@ -95,6 +94,11 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
         $this->keyOfLastPaginatedItem = $indexOfLastPaginatedItem - 1;
     }
 
+
+    public function getCurrentPageNumber(): int
+    {
+        return $this->currentPageNumber;
+    }
 
     protected function setItemsPerPage(int $itemsPerPage): void
     {
