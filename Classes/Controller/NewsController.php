@@ -144,27 +144,27 @@ class NewsController extends NewsBaseController
             );
         }
 
-        $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'], true));
-        $demand->setCategoryConjunction((string)$settings['categoryConjunction']);
-        $demand->setIncludeSubCategories((bool)$settings['includeSubCategories']);
-        $demand->setTags((string)$settings['tags']);
+        $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'] ?? '', true));
+        $demand->setCategoryConjunction((string)($settings['categoryConjunction'] ?? ''));
+        $demand->setIncludeSubCategories((bool)($settings['includeSubCategories'] ?? false));
+        $demand->setTags((string)($settings['tags'] ?? ''));
 
-        $demand->setTopNewsRestriction((int)$settings['topNewsRestriction']);
-        $demand->setTimeRestriction($settings['timeRestriction']);
-        $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh']);
-        $demand->setArchiveRestriction((string)$settings['archiveRestriction']);
-        $demand->setExcludeAlreadyDisplayedNews((bool)$settings['excludeAlreadyDisplayedNews']);
+        $demand->setTopNewsRestriction((int)($settings['topNewsRestriction'] ?? 0));
+        $demand->setTimeRestriction($settings['timeRestriction'] ?? '');
+        $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh'] ?? '');
+        $demand->setArchiveRestriction((string)($settings['archiveRestriction'] ?? ''));
+        $demand->setExcludeAlreadyDisplayedNews((bool)($settings['excludeAlreadyDisplayedNews'] ?? false));
         $demand->setHideIdList((string)($settings['hideIdList'] ?? ''));
 
         if ($settings['orderBy']) {
             $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
         }
-        $demand->setOrderByAllowed((string)$settings['orderByAllowed']);
+        $demand->setOrderByAllowed((string)($settings['orderByAllowed'] ?? ''));
 
-        $demand->setTopNewsFirst((bool)$settings['topNewsFirst']);
+        $demand->setTopNewsFirst((bool)($settings['topNewsFirst'] ?? false));
 
-        $demand->setLimit((int)$settings['limit']);
-        $demand->setOffset((int)$settings['offset']);
+        $demand->setLimit((int)($settings['limit'] ?? 0));
+        $demand->setOffset((int)($settings['offset'] ?? 0));
 
         $demand->setSearchFields((string)($settings['search']['fields'] ?? ''));
         $demand->setDateField((string)($settings['dateField'] ?? ''));
@@ -172,8 +172,8 @@ class NewsController extends NewsBaseController
         $demand->setYear((int)($settings['year'] ?? 0));
 
         $demand->setStoragePage(Page::extendPidListByChildren(
-            $settings['startingpoint'],
-            $settings['recursive']
+            (string)($settings['startingpoint'] ?? ''),
+            (int)($settings['recursive'] ?? 0)
         ));
 
         if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] ?? []) {
