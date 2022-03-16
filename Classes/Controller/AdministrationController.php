@@ -486,23 +486,22 @@ class AdministrationController extends NewsController
     {
         $pageUid = (int)$row['row']['uid'];
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_news_domain_model_news');
-        $row['countNews'] = $queryBuilder->count('*')
-            ->from('tx_news_domain_model_news')
-            ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
-            ->execute()
-            ->fetchColumn(0);
+        $counts = [
+          'countNews' => 'tx_news_domain_model_news',
+          'countCategories' => 'sys_category',
+          'countTags' => 'tx_news_domain_model_tag',
+        ];
+        foreach($counts as $key => $table) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable($table);
+            $row[$key] = $queryBuilder->count('*')
+                ->from($table)
+                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+                ->execute()
+                ->fetchColumn(0);
+        }
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('sys_category');
-        $row['countCategories'] = $queryBuilder->count('*')
-            ->from('sys_category')
-            ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
-            ->execute()
-            ->fetchColumn(0);
-
-        $row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
+        $row['countAll'] = ($row['countNews'] + $row['countCategories'] + $row['countTags']);
     }
 
     /**
