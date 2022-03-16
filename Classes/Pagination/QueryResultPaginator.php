@@ -28,12 +28,15 @@ final class QueryResultPaginator extends CustomAbstractPaginator
     public function __construct(
         QueryResultInterface $queryResult,
         int $currentPageNumber = 1,
-        int $itemsPerPage = 10
+        int $itemsPerPage = 10,
+        int $initialLimit = 0,
+        int $initialOffset = 0
     ) {
         $this->queryResult = $queryResult;
         $this->setCurrentPageNumber($currentPageNumber);
         $this->setItemsPerPage($itemsPerPage);
-
+        $this->initialLimit = $initialLimit;
+        $this->initialOffset = $initialOffset;
         $this->updateInternalState();
     }
 

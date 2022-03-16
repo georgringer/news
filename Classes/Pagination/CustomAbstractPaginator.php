@@ -19,27 +19,15 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
     /**
      * @var int
      */
-    private $currentPageNumber = 1;
+    protected $currentPageNumber = 1;
 
     /**
      * @var int
      */
-    private $itemsPerPage = 10;
+    protected $itemsPerPage = 10;
 
     protected int $initialOffset = 0;
     protected int $initialLimit = 0;
-
-    /**
-     * @param int $initialOffset
-     */
-    public function setInitialLimitOffset(int $initialLimit = 0, int $initialOffset = 0): void
-    {
-        $this->initialOffset = $initialOffset;
-        $this->initialLimit = $initialLimit;
-        if ($initialOffset > 0 || $this->initialLimit > 0) {
-            $this->updateInternalState();
-        }
-    }
 
     /**
      * This method is the heart of the pagination. It updates all internal params and then calls the
@@ -58,12 +46,7 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
         }
 
         // limit
-        if ($this->currentPageNumber === $this->numberOfPages && $this->initialLimit > 0) {
-            $difference = $this->initialLimit - ((integer)($this->itemsPerPage * ($this->currentPageNumber - 1)));
-            if ($difference > 0) {
-                $this->itemsPerPage = $difference;
-            }
-        }
+        $limit = $this->itemsPerPage;
 
         $totalAmountOfItems = $this->getTotalAmountOfItems();
 
@@ -89,7 +72,16 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
             return;
         }
 
-        $this->updatePaginatedItems($this->itemsPerPage, $offset);
+        $this->updatePaginatedItems($limit, $offset);
+
+        if ($this->currentPageNumber === $this->numberOfPages && $this->initialLimit > 0) {
+            $difference = $this->initialLimit - ((integer)($this->itemsPerPage * ($this->currentPageNumber - 1)));
+            if ($difference > 0) {
+                $this->updatePaginatedItems($difference, $offset);
+                $totalAmountOfItems = $this->getTotalAmountOfItems();
+                $this->numberOfPages = max(1, (int)ceil($totalAmountOfItems / $this->itemsPerPage));
+            }
+        }
 
         if (!$this->hasItemsOnCurrentPage()) {
             $this->keyOfFirstPaginatedItem = 0;
@@ -101,5 +93,30 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
 
         $this->keyOfFirstPaginatedItem = $offset;
         $this->keyOfLastPaginatedItem = $indexOfLastPaginatedItem - 1;
+    }
+
+
+    protected function setItemsPerPage(int $itemsPerPage): void
+    {
+        if ($itemsPerPage < 1) {
+            throw new \InvalidArgumentException(
+                'Argument $itemsPerPage must be greater than 0',
+                1573061766
+            );
+        }
+
+        $this->itemsPerPage = $itemsPerPage;
+    }
+
+    protected function setCurrentPageNumber(int $currentPageNumber): void
+    {
+        if ($currentPageNumber < 1) {
+            throw new \InvalidArgumentException(
+                'Argument $currentPageNumber must be greater than 0',
+                1573047338
+            );
+        }
+
+        $this->currentPageNumber = $currentPageNumber;
     }
 }
