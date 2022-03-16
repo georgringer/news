@@ -78,6 +78,7 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
             if ($difference > 0) {
                 $this->updatePaginatedItems($difference, $offset);
                 $totalAmountOfItems = $this->getTotalAmountOfItems();
+                $this->numberOfPages = max(1, (int)ceil($totalAmountOfItems / $this->itemsPerPage));
             }
         }
 
