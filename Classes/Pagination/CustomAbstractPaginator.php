@@ -95,7 +95,6 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
         $this->keyOfLastPaginatedItem = $indexOfLastPaginatedItem - 1;
     }
 
-
     protected function setItemsPerPage(int $itemsPerPage): void
     {
         if ($itemsPerPage < 1) {
