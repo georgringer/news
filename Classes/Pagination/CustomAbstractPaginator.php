@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace GeorgRinger\News\Pagination;
 
 use TYPO3\CMS\Core\Pagination\AbstractPaginator;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 abstract class CustomAbstractPaginator extends AbstractPaginator
 {
@@ -93,7 +92,6 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
         $this->keyOfFirstPaginatedItem = $offset;
         $this->keyOfLastPaginatedItem = $indexOfLastPaginatedItem - 1;
     }
-
 
     public function getCurrentPageNumber(): int
     {
