@@ -40,14 +40,14 @@ class Category extends AbstractEntity
     protected $starttime;
 
     /**
-     * @var bool
-     */
-    protected $hidden = false;
-
-    /**
      * @var \DateTime
      */
     protected $endtime;
+
+    /**
+     * @var bool
+     */
+    protected $hidden = false;
 
     /**
      * @var int
@@ -127,17 +127,39 @@ class Category extends AbstractEntity
      */
     protected $seoText = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $slug = '';
 
     /**
      * Initialize images
-     *
-     * @return \GeorgRinger\News\Domain\Model\Category
      */
     public function __construct()
     {
         $this->images = new ObjectStorage();
+    }
+
+    /**
+     * Get sorting id
+     *
+     * @return int sorting id
+     */
+    public function getSorting(): int
+    {
+        return $this->sorting;
+    }
+
+    /**
+     * Set sorting id
+     *
+     * @param int $sorting sorting id
+     *
+     * @return void
+     */
+    public function setSorting($sorting): void
+    {
+        $this->sorting = (int)$sorting;
     }
 
     /**
@@ -159,7 +181,9 @@ class Category extends AbstractEntity
      */
     public function setCrdate($crdate): void
     {
-        $this->crdate = $crdate;
+        if ($crdate instanceof \DateTime) {
+            $this->crdate = $crdate;
+        }
     }
 
     /**
@@ -181,7 +205,9 @@ class Category extends AbstractEntity
      */
     public function setTstamp($tstamp): void
     {
-        $this->tstamp = $tstamp;
+        if ($tstamp instanceof \DateTime) {
+            $this->tstamp = $tstamp;
+        }
     }
 
     /**
@@ -203,7 +229,9 @@ class Category extends AbstractEntity
      */
     public function setStarttime($starttime): void
     {
-        $this->starttime = $starttime;
+        if ($starttime instanceof \DateTime) {
+            $this->starttime = $starttime;
+        }
     }
 
     /**
@@ -225,7 +253,9 @@ class Category extends AbstractEntity
      */
     public function setEndtime($endtime): void
     {
-        $this->endtime = $endtime;
+        if ($endtime instanceof \DateTime) {
+            $this->endtime = $endtime;
+        }
     }
 
     /**
@@ -247,7 +277,7 @@ class Category extends AbstractEntity
      */
     public function setHidden($hidden): void
     {
-        $this->hidden = $hidden;
+        $this->hidden = (bool)$hidden;
     }
 
     /**
@@ -269,7 +299,7 @@ class Category extends AbstractEntity
      */
     public function setSysLanguageUid($sysLanguageUid): void
     {
-        $this->_languageUid = $sysLanguageUid;
+        $this->_languageUid = (int)$sysLanguageUid;
     }
 
     /**
@@ -339,13 +369,25 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
+     * Get parent category
+     *
+     * @return \GeorgRinger\News\Domain\Model\Category
+     */
+    public function getParentcategory(): ?\GeorgRinger\News\Domain\Model\Category
+    {
+        return $this->parentcategory instanceof LazyLoadingProxy ? $this->parentcategory->_loadRealInstance() : $this->parentcategory;
+    }
+
+    /**
+     * Set parent category
+     *
+     * @param \GeorgRinger\News\Domain\Model\Category $category parent category
      *
      * @return void
      */
-    public function setImages($images): void
+    public function setParentcategory($category): void
     {
-        $this->images = $images;
+        $this->parentcategory = $category;
     }
 
     /**
@@ -356,6 +398,16 @@ class Category extends AbstractEntity
     public function getImages(): ObjectStorage
     {
         return $this->images;
+    }
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
+     *
+     * @return void
+     */
+    public function setImages($images): void
+    {
+        $this->images = $images;
     }
 
     /**
@@ -398,28 +450,6 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Get parent category
-     *
-     * @return \GeorgRinger\News\Domain\Model\Category
-     */
-    public function getParentcategory(): ?\GeorgRinger\News\Domain\Model\Category
-    {
-        return $this->parentcategory instanceof LazyLoadingProxy ? $this->parentcategory->_loadRealInstance() : $this->parentcategory;
-    }
-
-    /**
-     * Set parent category
-     *
-     * @param \GeorgRinger\News\Domain\Model\Category $category parent category
-     *
-     * @return void
-     */
-    public function setParentcategory($category): void
-    {
-        $this->parentcategory = $category;
-    }
-
-    /**
      * Get shortcut
      *
      * @return int
@@ -438,7 +468,7 @@ class Category extends AbstractEntity
      */
     public function setShortcut($shortcut): void
     {
-        $this->shortcut = $shortcut;
+        $this->shortcut = (int)$shortcut;
     }
 
     /**
@@ -460,7 +490,7 @@ class Category extends AbstractEntity
      */
     public function setSinglePid($singlePid): void
     {
-        $this->singlePid = $singlePid;
+        $this->singlePid = (int)$singlePid;
     }
 
     /**
@@ -486,25 +516,25 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Get sorting id
+     * Get importSource
      *
-     * @return int sorting id
+     * @return string
      */
-    public function getSorting(): int
+    public function getImportSource(): string
     {
-        return $this->sorting;
+        return $this->importSource;
     }
 
     /**
-     * Set sorting id
+     * Set importSource
      *
-     * @param int $sorting sorting id
+     * @param string $importSource
      *
      * @return void
      */
-    public function setSorting($sorting): void
+    public function setImportSource($importSource): void
     {
-        $this->sorting = $sorting;
+        $this->importSource = $importSource;
     }
 
     /**
@@ -526,29 +556,7 @@ class Category extends AbstractEntity
      */
     public function setFeGroup($feGroup): void
     {
-        $this->feGroup = $feGroup;
-    }
-
-    /**
-     * Set importSource
-     *
-     * @param string $importSource
-     *
-     * @return void
-     */
-    public function setImportSource($importSource): void
-    {
-        $this->importSource = $importSource;
-    }
-
-    /**
-     * Get importSource
-     *
-     * @return string
-     */
-    public function getImportSource(): string
-    {
-        return $this->importSource;
+        $this->feGroup = (string)$feGroup;
     }
 
     /**
@@ -566,7 +574,7 @@ class Category extends AbstractEntity
      */
     public function setSeoTitle($seoTitle): void
     {
-        $this->seoTitle = $seoTitle;
+        $this->seoTitle = (string)$seoTitle;
     }
 
     /**
@@ -584,7 +592,7 @@ class Category extends AbstractEntity
      */
     public function setSeoDescription($seoDescription): void
     {
-        $this->seoDescription = $seoDescription;
+        $this->seoDescription = (string)$seoDescription;
     }
 
     /**
@@ -602,7 +610,7 @@ class Category extends AbstractEntity
      */
     public function setSeoHeadline($seoHeadline): void
     {
-        $this->seoHeadline = $seoHeadline;
+        $this->seoHeadline = (string)$seoHeadline;
     }
 
     /**
@@ -620,7 +628,7 @@ class Category extends AbstractEntity
      */
     public function setSeoText($seoText): void
     {
-        $this->seoText = $seoText;
+        $this->seoText = (string)$seoText;
     }
 
     /**
@@ -638,6 +646,6 @@ class Category extends AbstractEntity
      */
     public function setSlug($slug): void
     {
-        $this->slug = $slug;
+        $this->slug = (string)$slug;
     }
 }
