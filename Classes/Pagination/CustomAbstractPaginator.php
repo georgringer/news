@@ -72,14 +72,19 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
             return;
         }
 
-        $this->updatePaginatedItems($limit, $offset);
+        $isUpdated = false;
         if ($this->currentPageNumber === $this->numberOfPages && $this->initialLimit > 0) {
             $difference = $this->initialLimit - ((integer)($this->itemsPerPage * ($this->currentPageNumber - 1)));
             if ($difference > 0) {
                 $this->updatePaginatedItems($difference, $offset);
+                $isUpdated = true;
                 $totalAmountOfItems = $this->getTotalAmountOfItems();
                 $this->numberOfPages = max(1, (int)ceil($totalAmountOfItems / $this->itemsPerPage));
             }
+        };
+
+        if (!$isUpdated) {
+            $this->updatePaginatedItems($limit, $offset);
         }
 
         if (!$this->hasItemsOnCurrentPage()) {

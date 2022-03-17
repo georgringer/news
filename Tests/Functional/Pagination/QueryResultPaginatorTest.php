@@ -171,6 +171,8 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         $demand = new NewsDemand();
         $demand->setOrder('uid asc');
         $demand->setOrderByAllowed('uid');
+        $demand->setLimit($given['limit']);
+        $demand->setOffset($given['offset']);
         $paginator = new QueryResultPaginator(
             $this->newsRepository->findDemanded($demand),
             $given['currentPage'],
@@ -181,6 +183,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
 
         self::assertSame($expected['firstItemTitle'], $paginator->getPaginatedItems()[0]->getTitle());
         self::assertCount($expected['itemCount'], $paginator->getPaginatedItems());
+        self::assertSame($expected['numberOfPages'], $paginator->getNumberOfPages());
     }
 
     public function paginatorProperlyCalculatesWithLimitAndOffsetDataProvider(): array
@@ -188,8 +191,16 @@ class QueryResultPaginatorTest extends FunctionalTestCase
         return [
             'with offset' => [
                 ['currentPage' => 3, 'limit' => 0, 'offset' => 3],
-                ['itemCount' => 3, 'firstItemTitle' => 'News10'],
-            ]
+                ['itemCount' => 3, 'firstItemTitle' => 'News10', 'numberOfPages' => 6],
+            ],
+            'with limit' => [
+                ['currentPage' => 2, 'limit' => 4, 'offset' => 0],
+                ['itemCount' => 1, 'firstItemTitle' => 'News4', 'numberOfPages' => 2],
+            ],
+            'with limit and offset' => [
+                ['currentPage' => 2, 'limit' => 12, 'offset' => 5],
+                ['itemCount' => 3, 'firstItemTitle' => 'News9', 'numberOfPages' => 4],
+            ],
         ];
     }
 }
