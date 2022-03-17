@@ -26,8 +26,8 @@ abstract class CustomAbstractPaginator extends AbstractPaginator
      */
     protected $itemsPerPage = 10;
 
-    protected int $initialOffset = 0;
-    protected int $initialLimit = 0;
+    protected $initialOffset = 0;
+    protected $initialLimit = 0;
 
     /**
      * This method is the heart of the pagination. It updates all internal params and then calls the
