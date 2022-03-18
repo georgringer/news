@@ -12,17 +12,13 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  */
 
 use GeorgRinger\News\Controller\NewsController;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\RequestHandlersConfiguration;
-use TYPO3\CMS\Extbase\Configuration\RequestHandlersConfigurationFactory;
 use TYPO3\CMS\Extbase\Core\Bootstrap;
-use TYPO3\CMS\Extbase\Mvc\Web\FrontendRequestHandler;
 use TYPO3\CMS\Extbase\Service\EnvironmentService;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
@@ -73,6 +69,9 @@ class NewsControllerTest extends FunctionalTestCase
         $environmentServiceProphecy
             ->isEnvironmentInFrontendMode()
             ->willReturn(true);
+        $environmentServiceProphecy
+            ->isEnvironmentInBackendMode()
+            ->willReturn(false);
         GeneralUtility::setSingletonInstance(EnvironmentService::class, $environmentServiceProphecy->reveal());
 
         $serverRequest = new ServerRequest();
