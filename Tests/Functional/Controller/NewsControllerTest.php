@@ -12,12 +12,15 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  */
 
 use GeorgRinger\News\Controller\NewsController;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Core\Bootstrap;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -65,10 +68,17 @@ class NewsControllerTest extends FunctionalTestCase
         $applicationType = SystemEnvironmentBuilder::REQUESTTYPE_FE;
         $serverRequest = $serverRequest->withAttribute('applicationType', $applicationType);
 
+        /** @var TypoScriptFrontendController|ObjectProphecy $typoScriptFrontendControllerProphecy */
         $typoScriptFrontendControllerProphecy = $this->prophesize(TypoScriptFrontendController::class);
+        /** @var FrontendUserAuthentication|ObjectProphecy $frontendUserAuthenticationProphecy */
+        $frontendUserAuthenticationProphecy = $this->prophesize(FrontendUserAuthentication::class);
+        $frontendUserAuthenticationProphecy
+            ->getKey('ses', Argument::any())
+            ->willReturn('{}');
 
         $GLOBALS['TYPO3_REQUEST'] = $serverRequest;
         $GLOBALS['TSFE'] = $typoScriptFrontendControllerProphecy->reveal();
+        $GLOBALS['TSFE']->fe_user = $frontendUserAuthenticationProphecy->reveal();
     }
 
     protected function tearDown(): void
