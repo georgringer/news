@@ -1,6 +1,16 @@
 <?php
 
 declare(strict_types=1);
+
+namespace GeorgRinger\News\Backend\FormDataProvider;
+
+/**
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Backend\FieldInformation;
 
 use TYPO3\CMS\Backend\Form\AbstractNode;
@@ -18,7 +28,7 @@ class StaticText extends AbstractNode
         $languageService = $this->getLanguageService();
 
         $labels = [];
-        foreach ((array)$this->data['renderData']['fieldInformationOptions']['labels'] as $labelConfiguration) {
+        foreach ((array)($this->data['renderData']['fieldInformationOptions']['labels'] ?? []) as $labelConfiguration) {
             $label = htmlspecialchars($languageService->sL($labelConfiguration['label']));
             if (!empty($labelConfiguration['italic'])) {
                 $label = '<em>' . $label . '</em>';

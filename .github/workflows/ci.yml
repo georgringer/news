@@ -54,6 +54,11 @@ jobs:
       - name: Install testing framework ${{ matrix.env.TESTING_FRAMEWORK }}
         if: ${{ matrix.env.TESTING_FRAMEWORK }}
         run: composer require --dev typo3/testing-framework="${TESTING_FRAMEWORK}";
+
+      - name: Install prophecy trait
+        if: ${{ matrix.env.TESTING_FRAMEWORK }}
+        run: composer require --dev phpspec/prophecy-phpunit="^2.0";
+
         # unit tests
       - name: Unit Tests
         run: |
