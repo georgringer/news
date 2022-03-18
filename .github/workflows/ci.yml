@@ -71,7 +71,7 @@ jobs:
           export typo3DatabaseHost="127.0.0.1";
           export typo3DatabaseUsername="root";
           export typo3DatabasePassword="root";
-          .Build/bin/phpunit --colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTests.xml Tests/Functional
+          .Build/bin/phpunit --colors -c Build/FunctionalTests.xml Tests/Functional
 
       - name: Reset composer.json
         run: git checkout composer.json;
