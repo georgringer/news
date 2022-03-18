@@ -23,6 +23,7 @@ use TYPO3\CMS\Extbase\Configuration\RequestHandlersConfiguration;
 use TYPO3\CMS\Extbase\Configuration\RequestHandlersConfigurationFactory;
 use TYPO3\CMS\Extbase\Core\Bootstrap;
 use TYPO3\CMS\Extbase\Mvc\Web\FrontendRequestHandler;
+use TYPO3\CMS\Extbase\Service\EnvironmentService;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -67,14 +68,12 @@ class NewsControllerTest extends FunctionalTestCase
         );
 
         // This part is needed for TYPO3 10 compatibility
-        /** @var RequestHandlersConfigurationFactory|ObjectProphecy $requestHandlerConfigurationFactoryProphecy */
-        $requestHandlerConfigurationFactoryProphecy = $this->prophesize(RequestHandlersConfigurationFactory::class);
-        $requestHandlerConfigurationFactoryProphecy
-            ->createRequestHandlersConfiguration()
-            ->willReturn(new RequestHandlersConfiguration([
-                FrontendRequestHandler::class
-            ]));
-        GeneralUtility::addInstance(RequestHandlersConfigurationFactory::class, $requestHandlerConfigurationFactoryProphecy->reveal());
+        /** @var EnvironmentService|ObjectProphecy $environmentServiceProphecy */
+        $environmentServiceProphecy = $this->prophesize(EnvironmentService::class);
+        $environmentServiceProphecy
+            ->isEnvironmentInFrontendMode()
+            ->willReturn(true);
+        GeneralUtility::setSingletonInstance(EnvironmentService::class, $environmentServiceProphecy->reveal());
 
         $serverRequest = new ServerRequest();
 
