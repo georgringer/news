@@ -72,9 +72,6 @@ class NewsControllerTest extends FunctionalTestCase
         $typoScriptFrontendControllerProphecy = $this->prophesize(TypoScriptFrontendController::class);
         /** @var FrontendUserAuthentication|ObjectProphecy $frontendUserAuthenticationProphecy */
         $frontendUserAuthenticationProphecy = $this->prophesize(FrontendUserAuthentication::class);
-        $frontendUserAuthenticationProphecy
-            ->getKey('ses', Argument::any())
-            ->willReturn('{}');
 
         $GLOBALS['TYPO3_REQUEST'] = $serverRequest;
         $GLOBALS['TSFE'] = $typoScriptFrontendControllerProphecy->reveal();
