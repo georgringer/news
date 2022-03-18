@@ -26,258 +26,822 @@ class CategoryTest extends BaseTestCase
      */
     protected $instance;
 
-    /**
-     * Setup
-     *
-     */
     protected function setUp(): void
     {
         $this->instance = new Category();
     }
 
-    /**
-     * Test if sorting can be set
-     *
-     * @test
-     *
-     * @return void
-     */
-    public function sortingCanBeSet(): void
+    protected function tearDown(): void
     {
-        $value = '123';
+        unset($this->instance);
+
+        parent::tearDown();
+    }
+
+    /**
+     * @test
+     */
+    public function getSortingInitiallyReturnsZero(): void
+    {
+        $this->assertSame(
+            0,
+            $this->instance->getSorting()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSortingWithStringConvertsValueToInt(): void
+    {
+        $this->instance->setSorting('123');
+        $this->assertSame(
+            123,
+            $this->instance->getSorting()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSortingWithIntSetsSorting(): void
+    {
+        $value = 123;
         $this->instance->setSorting($value);
-        $this->assertEquals($value, $this->instance->getSorting());
+        $this->assertSame(
+            $value,
+            $this->instance->getSorting()
+        );
     }
 
     /**
-     * Test if crdate can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function crdateCanBeSet(): void
+    public function getCrdateInitiallyReturnsNull(): void
     {
-        $value = new \DateTime('2014-03-30');
-        $this->instance->setCrdate($value);
-        $this->assertEquals($value, $this->instance->getCrdate());
+        $this->assertNull(
+            $this->instance->getCrdate()
+        );
     }
 
     /**
-     * Test if tstamp can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function tstampCanBeSet(): void
+    public function setCrdateSetsCrdate(): void
     {
-        $value = new \DateTime('2014-03-30');
-        $this->instance->setTstamp($value);
-        $this->assertEquals($value, $this->instance->getTstamp());
+        $date = new \DateTime('now');
+        $this->instance->setCrdate($date);
+        $this->assertSame(
+            $date,
+            $this->instance->getCrdate()
+        );
     }
 
     /**
-     * Test if starttime can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function starttimeCanBeSet(): void
+    public function getTstampInitiallyReturnsNull(): void
     {
-        $value = new \DateTime('2014-03-30');
-        $this->instance->setStarttime($value);
-        $this->assertEquals($value, $this->instance->getStarttime());
+        $this->assertNull(
+            $this->instance->getTstamp()
+        );
     }
 
     /**
-     * Test if starttime can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function endtimeCanBeSet(): void
+    public function setTstampSetsTstamp(): void
     {
-        $value = new \DateTime('2014-03-30');
-        $this->instance->setEndtime($value);
-        $this->assertEquals($value, $this->instance->getEndtime());
+        $date = new \DateTime('now');
+        $this->instance->setTstamp($date);
+        $this->assertSame(
+            $date,
+            $this->instance->getTstamp()
+        );
     }
 
     /**
-     * Test if hidden can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function hiddenCanBeSet(): void
+    public function getStarttimeInitiallyReturnsNull(): void
     {
-        $value = true;
-        $this->instance->setHidden($value);
-        $this->assertEquals($value, $this->instance->getHidden());
+        $this->assertNull(
+            $this->instance->getStarttime()
+        );
     }
 
     /**
-     * Test if sysLanguageUid can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function sysLanguageUidCanBeSet(): void
+    public function setStarttimeSetsStarttime(): void
+    {
+        $date = new \DateTime('now');
+        $this->instance->setStarttime($date);
+        $this->assertSame(
+            $date,
+            $this->instance->getStarttime()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getEndtimeInitiallyReturnsNull(): void
+    {
+        $this->assertNull(
+            $this->instance->getEndtime()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setEndtimeSetsEndtime(): void
+    {
+        $date = new \DateTime('now');
+        $this->instance->setEndtime($date);
+        $this->assertSame(
+            $date,
+            $this->instance->getEndtime()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getHiddenInitiallyReturnsFalse(): void
+    {
+        $this->assertFalse(
+            $this->instance->getHidden()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setHiddenWithStringSetsHidden(): void
+    {
+        $this->instance->setHidden('1');
+        $this->assertTrue(
+            $this->instance->getHidden()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setHiddenWithIntSetsHidden(): void
+    {
+        $this->instance->setHidden(1);
+        $this->assertTrue(
+            $this->instance->getHidden()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setHiddenWithTrueSetsHidden(): void
+    {
+        $this->instance->setHidden(true);
+        $this->assertTrue(
+            $this->instance->getHidden()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setHiddenWithFalseSetsHidden(): void
+    {
+        $this->instance->setHidden(false);
+        $this->assertFalse(
+            $this->instance->getHidden()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getSysLanguageUidInitiallyReturnsZero(): void
+    {
+        $this->assertSame(
+            0,
+            $this->instance->getSysLanguageUid()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSysLanguageUidWithStringConvertsToInt(): void
+    {
+        $this->instance->setSysLanguageUid('2');
+        $this->assertSame(
+            2,
+            $this->instance->getSysLanguageUid()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSysLanguageUidSetsSysLanguageUid(): void
     {
         $value = 3;
         $this->instance->setSysLanguageUid($value);
-        $this->assertEquals($value, $this->instance->getSysLanguageUid());
+        $this->assertSame(
+            $value,
+            $this->instance->getSysLanguageUid()
+        );
     }
 
     /**
-     * Test if l10nParent can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function l10nParentCanBeSet(): void
+    public function getL10nParentInitiallyReturnsZero(): void
     {
-        $value = 5;
+        $this->assertSame(
+            0,
+            $this->instance->getL10nParent()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setL10nParentWithStringConvertsToInt(): void
+    {
+        $this->instance->setL10nParent('2');
+        $this->assertSame(
+            2,
+            $this->instance->getL10nParent()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setL10nParentSetsL10nParent(): void
+    {
+        $value = 3;
         $this->instance->setL10nParent($value);
-        $this->assertEquals($value, $this->instance->getL10nParent());
+        $this->assertSame(
+            $value,
+            $this->instance->getL10nParent()
+        );
     }
 
     /**
-     * Test if title can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function titleCanBeSet(): void
+    public function getTitleInitiallyReturnsEmptyString(): void
     {
-        $value = 'title';
+        $this->assertSame(
+            '',
+            $this->instance->getTitle()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setTitleWithIntConvertsToSting(): void
+    {
+        $this->instance->setTitle(123);
+        $this->assertSame(
+            '123',
+            $this->instance->getTitle()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setTitleSetsTitle(): void
+    {
+        $value = 'Hello';
         $this->instance->setTitle($value);
-        $this->assertEquals($value, $this->instance->getTitle());
+        $this->assertSame(
+            $value,
+            $this->instance->getTitle()
+        );
     }
 
     /**
-     * Test if description can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function descriptionCanBeSet(): void
+    public function getDescriptionInitiallyReturnsEmptyString(): void
     {
-        $value = 'lorem';
-        $this->instance->setDescription($value);
-        $this->assertEquals($value, $this->instance->getDescription());
+        $this->assertSame(
+            '',
+            $this->instance->getDescription()
+        );
     }
 
     /**
-     * Test if description can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function parentCategoryCanBeSet(): void
+    public function setDescriptionWithIntConvertsToSting(): void
+    {
+        $this->instance->setDescription(123);
+        $this->assertSame(
+            '123',
+            $this->instance->getDescription()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setDescriptionSetsDescription(): void
+    {
+        $value = 'Hello';
+        $this->instance->setDescription($value);
+        $this->assertSame(
+            $value,
+            $this->instance->getDescription()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getParentcategoryInitiallyReturnsNull(): void
+    {
+        $this->assertNull(
+            $this->instance->getParentcategory()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setParentcategorySetsParentcategory(): void
     {
         $value = new Category();
-        $value->setTitle('fo');
+        $value->setTitle('TYPO3');
         $this->instance->setParentcategory($value);
-        $this->assertEquals($value, $this->instance->getParentcategory());
+        $this->assertSame(
+            $value,
+            $this->instance->getParentcategory()
+        );
     }
 
     /**
-     * Test if images can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function imagesCanBeSet(): void
+    public function getImagesInitiallyReturnsObjectStorage(): void
+    {
+        $value = new ObjectStorage();
+        $this->assertEquals(
+            $value,
+            $this->instance->getImages()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setImagesSetsImages(): void
     {
         $value = new ObjectStorage();
         $this->instance->setImages($value);
-        $this->assertEquals($value, $this->instance->getImages());
+        $this->assertSame(
+            $value,
+            $this->instance->getImages()
+        );
     }
 
     /**
-     * Test if first image can be get
-     *
      * @test
-     *
-     * @return void
      */
-    public function firstImageCanBeGet(): void
+    public function addImageAddsImage(): void
     {
-        $storage = new ObjectStorage();
-        $item1 = new FileReference();
-        $item1->_setProperty('fo', 'bar');
-        $storage->attach($item1);
-        $item2 = new FileReference();
-        $item2->_setProperty('lorem', 'ipsum');
-        $storage->attach($item2);
+        $fileReference = new FileReference();
 
-        $this->instance->setImages($storage);
-        $this->assertEquals($item1, $this->instance->getFirstImage());
+        $images = new ObjectStorage();
+        $images->attach($fileReference);
+
+        $this->instance->addImage($fileReference);
+        $this->assertEquals(
+            $images,
+            $this->instance->getImages()
+        );
     }
 
     /**
-     * Test if shortcut can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function shortcutCanBeSet(): void
+    public function removeImageRemovesImage(): void
     {
-        $value = 789;
+        $fileReference = new FileReference();
+
+        $images = new ObjectStorage();
+        $images->attach($fileReference);
+
+        $expectedImages = clone $images;
+        $expectedImages->detach($fileReference);
+
+        $this->instance->setImages($images);
+
+        $this->instance->removeImage($fileReference);
+        $this->assertEquals(
+            $expectedImages,
+            $this->instance->getImages()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getFirstImageInitiallyReturnsNull(): void
+    {
+        $this->assertNull(
+            $this->instance->getFirstImage()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getFirstImageReturnsFileReference(): void
+    {
+        $fileReference1 = new FileReference();
+        $fileReference1->setTitle('Image 1');
+
+        $fileReference2 = new FileReference();
+        $fileReference2->setTitle('Image 2');
+
+        $images = new ObjectStorage();
+        $images->attach($fileReference1);
+        $images->attach($fileReference2);
+
+        $this->instance->setImages($images);
+
+        $this->assertSame(
+            $fileReference1,
+            $this->instance->getFirstImage()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getShortcutInitiallyReturnsZero(): void
+    {
+        $this->assertSame(
+            0,
+            $this->instance->getShortcut()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setShortcutWithStringConvertsToInt(): void
+    {
+        $this->instance->setShortcut('43');
+        $this->assertSame(
+            43,
+            $this->instance->getShortcut()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setShortcutSetsShortcut(): void
+    {
+        $value = 23;
         $this->instance->setShortcut($value);
-        $this->assertEquals($value, $this->instance->getShortcut());
+        $this->assertSame(
+            $value,
+            $this->instance->getShortcut()
+        );
     }
 
     /**
-     * Test if singlePid can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function singlePidCanBeSet(): void
+    public function getSinglePidInitiallyReturnsZero(): void
     {
-        $value = 456;
+        $this->assertSame(
+            0,
+            $this->instance->getSinglePid()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSinglePidWithStringConvertsToInt(): void
+    {
+        $this->instance->setSinglePid('43');
+        $this->assertSame(
+            43,
+            $this->instance->getSinglePid()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSinglePidSetsSinglePid(): void
+    {
+        $value = 23;
         $this->instance->setSinglePid($value);
-        $this->assertEquals($value, $this->instance->getSinglePid());
+        $this->assertSame(
+            $value,
+            $this->instance->getSinglePid()
+        );
     }
 
     /**
-     * Test if importId can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function importIdCanBeSet(): void
+    public function getImportIdInitiallyReturnsEmptyString(): void
     {
-        $value = 189;
+        $this->assertSame(
+            '',
+            $this->instance->getImportId()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setImportIdWithIntConvertsToString(): void
+    {
+        $this->instance->setImportId(24);
+        $this->assertSame(
+            '24',
+            $this->instance->getImportId()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setImportIdSetsImportId(): void
+    {
+        $value = '1324';
         $this->instance->setImportId($value);
-        $this->assertEquals($value, $this->instance->getImportId());
+        $this->assertSame(
+            $value,
+            $this->instance->getImportId()
+        );
     }
 
     /**
-     * Test if importSource can be set
-     *
      * @test
-     *
-     * @return void
      */
-    public function importSourceCanBeSet(): void
+    public function getImportSourceInitiallyReturnsEmptyString(): void
     {
-        $value = 'something';
+        $this->assertSame(
+            '',
+            $this->instance->getImportSource()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setImportSourceWithIntConvertsToString(): void
+    {
+        $this->instance->setImportSource(24);
+        $this->assertSame(
+            '24',
+            $this->instance->getImportSource()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setImportSourceSetsImportSource(): void
+    {
+        $value = '1324';
         $this->instance->setImportSource($value);
-        $this->assertEquals($value, $this->instance->getImportSource());
+        $this->assertSame(
+            $value,
+            $this->instance->getImportSource()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getFeGroupInitiallyReturnsEmptyString(): void
+    {
+        $this->assertSame(
+            '',
+            $this->instance->getImportSource()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setFeGroupWithIntConvertsToString(): void
+    {
+        $this->instance->setFeGroup(24);
+        $this->assertSame(
+            '24',
+            $this->instance->getFeGroup()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setFeGroupSetsFeGroup(): void
+    {
+        $value = '1324';
+        $this->instance->setFeGroup($value);
+        $this->assertSame(
+            $value,
+            $this->instance->getFeGroup()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getSeoTitleInitiallyReturnsEmptyString(): void
+    {
+        $this->assertSame(
+            '',
+            $this->instance->getSeoTitle()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSeoTitleWithIntConvertsToString(): void
+    {
+        $this->instance->setSeoTitle(24);
+        $this->assertSame(
+            '24',
+            $this->instance->getSeoTitle()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSeoTitleSetsSeoTitle(): void
+    {
+        $value = 'TYPO3';
+        $this->instance->setSeoTitle($value);
+        $this->assertSame(
+            $value,
+            $this->instance->getSeoTitle()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getSeoDescriptionInitiallyReturnsEmptyString(): void
+    {
+        $this->assertSame(
+            '',
+            $this->instance->getSeoDescription()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSeoDescriptionWithIntConvertsToString(): void
+    {
+        $this->instance->setSeoDescription(24);
+        $this->assertSame(
+            '24',
+            $this->instance->getSeoDescription()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSeoDescriptionSetsSeoDescription(): void
+    {
+        $value = 'TYPO3';
+        $this->instance->setSeoDescription($value);
+        $this->assertSame(
+            $value,
+            $this->instance->getSeoDescription()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getSeoHeadlineInitiallyReturnsEmptyString(): void
+    {
+        $this->assertSame(
+            '',
+            $this->instance->getSeoHeadline()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSeoHeadlineWithIntConvertsToString(): void
+    {
+        $this->instance->setSeoHeadline(24);
+        $this->assertSame(
+            '24',
+            $this->instance->getSeoHeadline()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSeoHeadlineSetsSeoHeadline(): void
+    {
+        $value = 'TYPO3';
+        $this->instance->setSeoHeadline($value);
+        $this->assertSame(
+            $value,
+            $this->instance->getSeoHeadline()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getSeoTextInitiallyReturnsEmptyString(): void
+    {
+        $this->assertSame(
+            '',
+            $this->instance->getSeoText()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSeoTextWithIntConvertsToString(): void
+    {
+        $this->instance->setSeoText(24);
+        $this->assertSame(
+            '24',
+            $this->instance->getSeoText()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSeoTextSetsSeoText(): void
+    {
+        $value = 'TYPO3';
+        $this->instance->setSeoText($value);
+        $this->assertSame(
+            $value,
+            $this->instance->getSeoText()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getSlugInitiallyReturnsEmptyString(): void
+    {
+        $this->assertSame(
+            '',
+            $this->instance->getSlug()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSlugWithIntConvertsToString(): void
+    {
+        $this->instance->setSlug(24);
+        $this->assertSame(
+            '24',
+            $this->instance->getSlug()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSlugSetsSlug(): void
+    {
+        $value = 'TYPO3';
+        $this->instance->setSlug($value);
+        $this->assertSame(
+            $value,
+            $this->instance->getSlug()
+        );
     }
 }
