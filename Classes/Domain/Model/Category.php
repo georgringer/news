@@ -141,9 +141,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Get sorting id
-     *
-     * @return int sorting id
+     * Get sorting
      */
     public function getSorting(): int
     {
@@ -151,11 +149,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Set sorting id
+     * Set sorting
      *
-     * @param int $sorting sorting id
-     *
-     * @return void
+     * @param int $sorting
      */
     public function setSorting($sorting): void
     {
@@ -164,8 +160,6 @@ class Category extends AbstractEntity
 
     /**
      * Get creation date
-     *
-     * @return null|\DateTime
      */
     public function getCrdate(): ?\DateTime
     {
@@ -173,11 +167,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Set Creation Date
+     * Set creation date
      *
-     * @param \DateTime $crdate crdate
-     *
-     * @return void
+     * @param \DateTime $crdate
      */
     public function setCrdate($crdate): void
     {
@@ -187,9 +179,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Get Tstamp
-     *
-     * @return null|\DateTime
+     * Get tstamp
      */
     public function getTstamp(): ?\DateTime
     {
@@ -199,9 +189,7 @@ class Category extends AbstractEntity
     /**
      * Set tstamp
      *
-     * @param \DateTime $tstamp tstamp
-     *
-     * @return void
+     * @param \DateTime $tstamp
      */
     public function setTstamp($tstamp): void
     {
@@ -212,8 +200,6 @@ class Category extends AbstractEntity
 
     /**
      * Get starttime
-     *
-     * @return \DateTime
      */
     public function getStarttime(): ?\DateTime
     {
@@ -223,9 +209,7 @@ class Category extends AbstractEntity
     /**
      * Set starttime
      *
-     * @param \DateTime $starttime starttime
-     *
-     * @return void
+     * @param \DateTime $starttime
      */
     public function setStarttime($starttime): void
     {
@@ -235,9 +219,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Get Endtime
-     *
-     * @return null|\DateTime
+     * Get endtime
      */
     public function getEndtime(): ?\DateTime
     {
@@ -245,11 +227,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Set Endtime
+     * Set endtime
      *
-     * @param \DateTime $endtime endttime
-     *
-     * @return void
+     * @param \DateTime $endtime
      */
     public function setEndtime($endtime): void
     {
@@ -260,8 +240,6 @@ class Category extends AbstractEntity
 
     /**
      * Get Hidden
-     *
-     * @return bool
      */
     public function getHidden(): bool
     {
@@ -272,8 +250,6 @@ class Category extends AbstractEntity
      * Set Hidden
      *
      * @param bool $hidden
-     *
-     * @return void
      */
     public function setHidden($hidden): void
     {
@@ -281,21 +257,18 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Get sys language
-     *
-     * @return int
+     * Get sys_language_uid
      */
     public function getSysLanguageUid(): int
     {
-        return $this->_languageUid;
+        // int cast is needed as $this->_languageUid is null by default
+        return (int)$this->_languageUid;
     }
 
     /**
-     * Set sys language
+     * Set sys_language_uid
      *
-     * @param int $sysLanguageUid language uid
-     *
-     * @return void
+     * @param int $sysLanguageUid
      */
     public function setSysLanguageUid($sysLanguageUid): void
     {
@@ -304,8 +277,6 @@ class Category extends AbstractEntity
 
     /**
      * Get language parent
-     *
-     * @return int
      */
     public function getL10nParent(): int
     {
@@ -315,9 +286,7 @@ class Category extends AbstractEntity
     /**
      * Set language parent
      *
-     * @param int $l10nParent l10nParent
-     *
-     * @return void
+     * @param int $l10nParent
      */
     public function setL10nParent($l10nParent): void
     {
@@ -326,8 +295,6 @@ class Category extends AbstractEntity
 
     /**
      * Get category title
-     *
-     * @return string
      */
     public function getTitle(): string
     {
@@ -337,9 +304,7 @@ class Category extends AbstractEntity
     /**
      * Set category title
      *
-     * @param string $title title
-     *
-     * @return void
+     * @param string $title
      */
     public function setTitle($title): void
     {
@@ -348,8 +313,6 @@ class Category extends AbstractEntity
 
     /**
      * Get description
-     *
-     * @return string
      */
     public function getDescription(): string
     {
@@ -359,9 +322,7 @@ class Category extends AbstractEntity
     /**
      * Set description
      *
-     * @param string $description description
-     *
-     * @return void
+     * @param string $description
      */
     public function setDescription($description): void
     {
@@ -370,20 +331,18 @@ class Category extends AbstractEntity
 
     /**
      * Get parent category
-     *
-     * @return \GeorgRinger\News\Domain\Model\Category
      */
     public function getParentcategory(): ?\GeorgRinger\News\Domain\Model\Category
     {
-        return $this->parentcategory instanceof LazyLoadingProxy ? $this->parentcategory->_loadRealInstance() : $this->parentcategory;
+        return $this->parentcategory instanceof LazyLoadingProxy
+            ? $this->parentcategory->_loadRealInstance()
+            : $this->parentcategory;
     }
 
     /**
      * Set parent category
      *
-     * @param \GeorgRinger\News\Domain\Model\Category $category parent category
-     *
-     * @return void
+     * @param \GeorgRinger\News\Domain\Model\Category $category
      */
     public function setParentcategory($category): void
     {
@@ -391,7 +350,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @return ObjectStorage
+     * Get images
      *
      * @psalm-return ObjectStorage<FileReference>
      */
@@ -401,9 +360,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
+     * Set images
      *
-     * @return void
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $images
      */
     public function setImages($images): void
     {
@@ -411,11 +370,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Add image
+     * Add FileReference to images
      *
      * @param FileReference $image
-     *
-     * @return void
      */
     public function addImage(FileReference $image): void
     {
@@ -423,11 +380,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Remove image
-     *
-     * @param FileReference $image
-     *
-     * @return void
+     * Remove FileReference from images
      */
     public function removeImage(FileReference $image): void
     {
@@ -436,23 +389,17 @@ class Category extends AbstractEntity
 
     /**
      * Get the first image
-     *
-     * @return FileReference|null
      */
     public function getFirstImage(): ?FileReference
     {
         $images = $this->getImages();
-        foreach ($images as $image) {
-            return $image;
-        }
+        $images->rewind();
 
-        return null;
+        return $images->valid() ? $images->current() : null;
     }
 
     /**
      * Get shortcut
-     *
-     * @return int
      */
     public function getShortcut(): int
     {
@@ -462,9 +409,7 @@ class Category extends AbstractEntity
     /**
      * Set shortcut
      *
-     * @param int $shortcut shortcut
-     *
-     * @return void
+     * @param int $shortcut
      */
     public function setShortcut($shortcut): void
     {
@@ -473,8 +418,6 @@ class Category extends AbstractEntity
 
     /**
      * Get single pid of category
-     *
-     * @return int
      */
     public function getSinglePid(): int
     {
@@ -484,9 +427,7 @@ class Category extends AbstractEntity
     /**
      * Set single pid
      *
-     * @param int $singlePid single pid
-     *
-     * @return void
+     * @param int $singlePid
      */
     public function setSinglePid($singlePid): void
     {
@@ -495,8 +436,6 @@ class Category extends AbstractEntity
 
     /**
      * Get import id
-     *
-     * @return string
      */
     public function getImportId(): string
     {
@@ -506,9 +445,7 @@ class Category extends AbstractEntity
     /**
      * Set import id
      *
-     * @param string $importId import id
-     *
-     * @return void
+     * @param string $importId
      */
     public function setImportId($importId): void
     {
@@ -516,9 +453,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Get importSource
-     *
-     * @return string
+     * Get import source
      */
     public function getImportSource(): string
     {
@@ -526,11 +461,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Set importSource
+     * Set import source
      *
      * @param string $importSource
-     *
-     * @return void
      */
     public function setImportSource($importSource): void
     {
@@ -538,9 +471,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Get feGroup
-     *
-     * @return string
+     * Get frontend group
      */
     public function getFeGroup(): string
     {
@@ -548,11 +479,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * Get feGroup
+     * Set frontend group
      *
-     * @param string $feGroup feGroup
-     *
-     * @return void
+     * @param string $feGroup
      */
     public function setFeGroup($feGroup): void
     {
@@ -560,7 +489,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @return string
+     * Get SEO title
      */
     public function getSeoTitle(): string
     {
@@ -568,9 +497,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @param string $seoTitle
+     * Set SEO title
      *
-     * @return void
+     * @param string $seoTitle
      */
     public function setSeoTitle($seoTitle): void
     {
@@ -578,7 +507,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @return string
+     * Get SEO description
      */
     public function getSeoDescription(): string
     {
@@ -586,9 +515,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @param string $seoDescription
+     * Set SEO description
      *
-     * @return void
+     * @param string $seoDescription
      */
     public function setSeoDescription($seoDescription): void
     {
@@ -596,7 +525,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @return string
+     * Get SEO headline
      */
     public function getSeoHeadline(): string
     {
@@ -604,9 +533,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @param string $seoHeadline
+     * Set SEO headline
      *
-     * @return void
+     * @param string $seoHeadline
      */
     public function setSeoHeadline($seoHeadline): void
     {
@@ -614,7 +543,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @return string
+     * Get SEO text
      */
     public function getSeoText(): string
     {
@@ -622,9 +551,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @param string $seoText
+     * Set SEO text
      *
-     * @return void
+     * @param string $seoText
      */
     public function setSeoText($seoText): void
     {
@@ -632,7 +561,7 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @return string
+     * Get slug
      */
     public function getSlug(): string
     {
@@ -640,9 +569,9 @@ class Category extends AbstractEntity
     }
 
     /**
-     * @param string $slug
+     * Set slug
      *
-     * @return void
+     * @param string $slug
      */
     public function setSlug($slug): void
     {

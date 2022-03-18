@@ -223,6 +223,17 @@ class CategoryTest extends BaseTestCase
     /**
      * @test
      */
+    public function getSysLanguageUidInitiallyReturnsZero(): void
+    {
+        $this->assertSame(
+            0,
+            $this->instance->getSysLanguageUid()
+        );
+    }
+
+    /**
+     * @test
+     */
     public function setSysLanguageUidWithStringConvertsToInt(): void
     {
         $this->instance->setSysLanguageUid('2');
