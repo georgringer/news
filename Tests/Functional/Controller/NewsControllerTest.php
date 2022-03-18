@@ -17,6 +17,7 @@ use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Core\Bootstrap;
 use TYPO3\CMS\Extbase\Service\EnvironmentService;
@@ -85,6 +86,7 @@ class NewsControllerTest extends FunctionalTestCase
         $frontendUserAuthenticationProphecy = $this->prophesize(FrontendUserAuthentication::class);
 
         $GLOBALS['TYPO3_REQUEST'] = $serverRequest;
+        $GLOBALS['LANG'] = GeneralUtility::makeInstance(LanguageService::class);
         $GLOBALS['TSFE'] = $typoScriptFrontendControllerProphecy->reveal();
         $GLOBALS['TSFE']->fe_user = $frontendUserAuthenticationProphecy->reveal();
     }
