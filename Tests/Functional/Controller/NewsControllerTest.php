@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GeorgRinger\News\Tests\Unit\Controller;
 
 /**
@@ -8,28 +10,134 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Controller\NewsController;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
-use TYPO3\TestingFramework\Core\BaseTestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Core\Bootstrap;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+use TYPO3\TestingFramework\Core\Testbase;
 
 /**
  * Class NewsControllerTest
  */
-class NewsControllerTest extends BaseTestCase
+class NewsControllerTest extends FunctionalTestCase
 {
+    use ProphecyTrait;
+
+    /**
+     * @var NewsController
+     */
+    protected $subject;
+
+    /**
+     * @var string[]
+     */
+    protected $testExtensionsToLoad = [
+        'typo3conf/ext/news'
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $coreExtensionsToLoad = [
+        'extbase',
+        'fluid'
+    ];
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->importDataSet('PACKAGE:typo3/testing-framework/Resources/Core/Functional/Fixtures/pages.xml');
+        $this->setUpFrontendRootPage(
+            1,
+            [
+                __DIR__ . '/../Fixtures/TypoScript/setup.typoscript'
+            ]
+        );
+
+        $serverRequest = new ServerRequest();
+
+        $applicationType = SystemEnvironmentBuilder::REQUESTTYPE_FE;
+        $serverRequest = $serverRequest->withAttribute('applicationType', $applicationType);
+
+        $typoScriptFrontendControllerProphecy = $this->prophesize(TypoScriptFrontendController::class);
+
+        $GLOBALS['TYPO3_REQUEST'] = $serverRequest;
+        $GLOBALS['TSFE'] = $typoScriptFrontendControllerProphecy->reveal();
+    }
+
+    protected function tearDown(): void
+    {
+        unset(
+            $this->subject
+        );
+
+        parent::tearDown();
+    }
+
     /**
      * @test
-     *
-     * @return void
      */
-    public function emptyNoNewsFoundConfigurationReturnsNull(): void
+    public function listActionWillReturnNoNews(): void
     {
-        $this->markTestSkipped('May not be relevant anymore. Reason: failing because of using DI');
-        $demand = new NewsDemand();
-        $input = ['OrderByAllowed' => 'something'];
-        $mockedController = $this->getAccessibleMock(NewsController::class, ['dummy']);
-        /** @var NewsDemand $result */
-        $result = $mockedController->_call('overwriteDemandObject', $demand, $input);
-        $this->assertEmpty($result->getOrderByAllowed());
+        $extbaseBootstrap = GeneralUtility::makeInstance(Bootstrap::class);
+        $content = $extbaseBootstrap->run(
+            '',
+            [
+                'extensionName' => 'News',
+                'pluginName' => 'Pi1'
+            ]
+        );
+
+        $this->assertStringContainsString(
+            'No news available.',
+            $content
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function listActionWillShowNewsOfStoragePage1(): void
+    {
+        $date = new \DateTime('now');
+
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_news_domain_model_news');
+        $connection->insert(
+            'tx_news_domain_model_news',
+            [
+                'uid' => 1,
+                'pid' => 1,
+                'title' => 'My first news',
+                'datetime' => (int)$date->format('U')
+            ]
+        );
+
+        $extbaseBootstrap = GeneralUtility::makeInstance(Bootstrap::class);
+        $content = $extbaseBootstrap->run(
+            '',
+            [
+                'extensionName' => 'News',
+                'pluginName' => 'Pi1'
+            ]
+        );
+
+        $this->assertStringContainsString(
+            '<span itemprop="headline">My first news</span>',
+            $content
+        );
+
+        $this->assertStringContainsString(
+            '<time itemprop="datePublished" datetime="' . $date->format('Y-m-d') . '">',
+            $content
+        );
     }
 }

@@ -156,7 +156,7 @@ class NewsController extends NewsBaseController
         $demand->setExcludeAlreadyDisplayedNews((bool)($settings['excludeAlreadyDisplayedNews'] ?? false));
         $demand->setHideIdList((string)($settings['hideIdList'] ?? ''));
 
-        if ($settings['orderBy']) {
+        if ($settings['orderBy'] ?? '') {
             $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
         }
         $demand->setOrderByAllowed((string)($settings['orderByAllowed'] ?? ''));
@@ -230,14 +230,14 @@ class NewsController extends NewsBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ((int)($this->settings['disableOverrideDemand'] ?? 1) !== 1 && $overwriteDemand !== null) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
         $newsRecords = $this->newsRepository->findDemanded($demand);
 
         // pagination
         $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
-        $itemsPerPage = (int)($paginationConfiguration['itemsPerPage'] ?: 10);
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
@@ -329,7 +329,7 @@ class NewsController extends NewsBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if (empty($this->originalSettings['orderBy'])) {
+        if (empty($this->originalSettings['orderBy'] ?? '')) {
             $idList = GeneralUtility::trimExplode(',', $this->settings['selectedList'], true);
             foreach ($idList as $id) {
                 $news = $this->newsRepository->findByIdentifier($id);
