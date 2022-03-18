@@ -12,7 +12,6 @@ namespace GeorgRinger\News\Tests\Unit\Controller;
  */
 
 use GeorgRinger\News\Controller\NewsController;
-use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use Prophecy\PhpUnit\ProphecyTrait;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -21,7 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Core\Bootstrap;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
-use TYPO3\TestingFramework\Core\Testbase;
 
 /**
  * Class NewsControllerTest
