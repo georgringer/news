@@ -393,7 +393,11 @@ class AdministrationController extends NewsController
             'tx_news_domain_model_news' => GeneralUtility::trimExplode(',', $this->tsConfiguration['columns'] ?? 'teaser,istopnews,datetime,categories', true)
         ];
 
-        $tableRendering = trim($dblist->generateList());
+        $tableRendering = $dblist->generateList();
+        if (!$tableRendering && GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() <= 10) {
+            $tableRendering = $dblist->HTMLcode;
+        }
+        $tableRendering = trim($tableRendering);
 
         $counter = !empty($tableRendering);
         $this->view->getModuleTemplate()->getPageRenderer()->loadRequireJsModule('TYPO3/CMS/Recordlist/Recordlist');
