@@ -397,7 +397,7 @@ class PageLayoutView
      */
     public function getCategorySettings($showCategoryMode = true): void
     {
-        $categories = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.categories'), true);
+        $categories = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.categories') ?? '', true);
         if (count($categories) > 0) {
             $categoriesOut = [];
             foreach ($categories as $id) {
@@ -447,7 +447,7 @@ class PageLayoutView
      */
     public function getTagRestrictionSetting()
     {
-        $tags = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'additional'), true);
+        $tags = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'additional') ?? '', true);
         if (count($tags) === 0) {
             return;
         }
