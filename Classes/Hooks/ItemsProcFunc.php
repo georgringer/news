@@ -234,7 +234,7 @@ class ItemsProcFunc
             }
 
             foreach ($languages as $language) {
-                $selected = ((int)$GLOBALS['BE_USER']->uc['newsoverlay'] === (int)$language['uid']) ? ' selected="selected" ' : '';
+                $selected = ((int)($GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0) === (int)$language['uid']) ? ' selected="selected" ' : '';
                 $html .= '<option ' . $selected . 'value="' . $language['uid'] . '">' . htmlspecialchars($language['title']) . '</option>';
             }
 
