@@ -154,7 +154,7 @@ class CategoryService
             }
         }
 
-        $title = $title ?: $default;
+        $title = $title ?: $default ?: '';
 
         return $title;
     }
