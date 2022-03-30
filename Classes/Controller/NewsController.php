@@ -367,7 +367,7 @@ class NewsController extends NewsBaseController
     public function detailAction(News $news = null, $currentPage = 1)
     {
         if ($news === null || ($this->settings['isShortcut'] ?? false)) {
-            $previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
+            $previewNewsId = (int)($this->settings['singleNews'] ?? 0);
             if ($this->request->hasArgument('news_preview')) {
                 $previewNewsId = (int)$this->request->getArgument('news_preview');
             }
