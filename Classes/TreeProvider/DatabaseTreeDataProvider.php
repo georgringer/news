@@ -71,7 +71,9 @@ class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\D
             $this->getNonSelectableLevelList(),
             $level
         ) && !in_array($basicNode->getId(), $this->getItemUnselectableList()));
-        $node->setSortValue($this->nodeSortValues[$basicNode->getId()]);
+        if (!empty($this->nodeSortValues)) {
+            $node->setSortValue($this->nodeSortValues[$basicNode->getId()]);
+        }
         $node->setIcon($iconFactory->getIconForRecord($this->tableName, $row, Icon::SIZE_SMALL));
         $node->setParentNode($parent);
         if ($basicNode->hasChildNodes()) {
