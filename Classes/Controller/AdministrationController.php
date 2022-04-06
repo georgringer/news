@@ -394,6 +394,10 @@ class AdministrationController extends NewsController
         ];
 
         $tableRendering = $dblist->generateList();
+        if (version_compare(TYPO3_version, '11.5.8', '<')) {
+            $tableRendering = $dblist->HTMLcode;
+            }
+
         if (!$tableRendering && GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() <= 10) {
             $tableRendering = $dblist->HTMLcode;
         }
