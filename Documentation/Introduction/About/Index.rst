@@ -15,7 +15,7 @@ technologies which are provided by the TYPO3 CMS.
 - Using as many elements from the Core as possible, e.g. FAL and sys categories
 - Checkbox "Top news" to flag important news
 - Built in support for content elements
-- Support for opengraph and social platforms in default template
+- Support for Open Graph and social platforms in default template
 
 .. hint::
    *A quote about EXT:news:* It is a highly customizable framework for chronological organized content - much more than just a news list!

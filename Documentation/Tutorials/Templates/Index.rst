@@ -89,18 +89,6 @@ Templates
 
          .. rst-class:: card-header h3
 
-            .. rubric:: :ref:`AJAX-based pagination <templatesPaginationAjax>`
-
-         .. container:: card-body
-
-            If you need a AJAX-based pagination this tutorial is for you.
-
-   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
-
-      .. container:: card px-0 h-100
-
-         .. rst-class:: card-header h3
-
             .. rubric:: :ref:`Group news records <templatesGroupNews>`
 
          .. container:: card-body

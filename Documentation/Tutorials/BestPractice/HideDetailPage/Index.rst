@@ -8,11 +8,12 @@ Hide detail page in URL
 
 This tutorials covers the use case of having the following page structure:
 
-```
-  Root
-  _Home
-  _Blog <= news
-```
+.. code-block:: none
+
+   .
+   └── Root
+       ├── Home
+       └── Blog <= news
 
 The URL of a news record should howeverb be `domain.tld/blog/news-record`.
 
