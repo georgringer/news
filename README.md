@@ -1,26 +1,41 @@
-# TYPO3 Extension `news`
-
-[![TYPO3 10](https://img.shields.io/badge/TYPO3-10-orange.svg)](https://get.typo3.org/version/10)
+[![Latest Stable Version](https://poser.pugx.org/georgringer/news/v/stable)](https://extensions.typo3.org/extension/news/)
 [![TYPO3 11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/19.99)
-[![Crowdin](https://badges.crowdin.net/typo3-extension-news/localized.svg)](https://crowdin.com/project/typo3-extension-news)
-[![Latest Stable Version](https://poser.pugx.org/georgringer/news/v/stable)](https://packagist.org/packages/georgringer/news)
+[![TYPO3 10](https://img.shields.io/badge/TYPO3-10-orange.svg)](https://get.typo3.org/version/10)
+[![Total Downloads](https://poser.pugx.org/georgringer/news/d/total)](https://packagist.org/packages/georgringer/news)
 [![Monthly Downloads](https://poser.pugx.org/georgringer/news/d/monthly)](https://packagist.org/packages/georgringer/news)
-[![License](https://poser.pugx.org/georgringer/news/license)](https://packagist.org/packages/georgringer/news)
 ![Build](https://github.com/georgringer/news/actions/workflows/ci.yml/badge.svg)
 [![StyleCI](https://styleci.io/repos/11733164/shield?branch=master)](https://styleci.io/repos/11733164/)
+[![Crowdin](https://badges.crowdin.net/typo3-extension-news/localized.svg)](https://crowdin.com/project/typo3-extension-news)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/19.99)
 
-> It is a highly customizable framework for chronological organized content - much more than just a news list!
-> – (Quote by an user)
+# TYPO3 Extension `news`
 
-## 1 Features
+This extension implements a versatile news system based on Extbase & Fluid and
+uses the latest technologies provided by TYPO3 CMS.
 
-* Based on extbase & fluid, implementing best practices from TYPO3 CMS
-* Supports editors & authors by providing
-    * well structured plugins with good preview functionality
-    * backend module with filter & search
-    * Frontend template variant based on Twitter Bootstrap (v3)
-* [Comprehensive documentation][1]
+It includes these features:
+
+* Support for editors and authors by
+
+   * well-structured plugins with good preview functionality
+   * a backend module with filter & search
+   * frontend template variant based on Twitter Bootstrap v5.
+
+* Use of as many elements from the system core as possible, e.g. FAL and system
+  categories.
+* Built-in support for content elements.
+* Support for Open Graph and social platforms in the default template.
+* Complete and comprehensive documentation.
+
+> It is a highly customizable framework for chronological organized content -
+> much more than just a news list!
+> – Quote from a user
+
+|                  | URL                                                   |
+|------------------|-------------------------------------------------------|
+| **Repository:**  | https://github.com/georgringer/news                   |
+| **Read online:** | https://docs.typo3.org/p/georgringer/news/main/en-us/ |
+| **TER:**         | https://extensions.typo3.org/extension/news/          |
 
 ## 2 Usage
 

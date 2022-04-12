@@ -1,7 +1,7 @@
 {
     "name": "georgringer/news",
     "type": "typo3-cms-extension",
-    "description": "Versatile news extension, based on extbase & fluid for TYPO3 CMS",
+    "description": "Versatile news system based on Extbase & Fluid and using the latest technologies provided by TYPO3 CMS.",
     "keywords": [
         "TYPO3",
         "extension",
