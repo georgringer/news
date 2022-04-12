@@ -13,8 +13,8 @@ This documentation won't bring you all information about Fluid but only the
 most important things you need for using it. You can get
 more information in the TYPO3 Documentation
 :ref:`TYPO3 Explained: Fluid <t3coreapi:fluid>`,
-:ref:`Developing TYPO3 Extensions with Extbase and Fluid
-<t3extbasebook:start>` or many third party sites, videos and books.
+:doc:`Developing TYPO3 Extensions with Extbase and Fluid
+<t3extbasebook:Index>` or many third party sites, videos and books.
 
 .. _templatingSitepackage:
 
@@ -26,7 +26,7 @@ extension. Usually this is done in a special extension called the
 **site package**.
 
 If you do not have a site package yet you can create one manually following
-this :ref:`Official Tutorial: Site Package <t3sitepackage:start>`.
+this :doc:`Official Tutorial: Site Package <t3sitepackage:Index>`.
 
 There is also a `site package generator <https://sitepackagebuilder.com/>`__
 available (Provided by Benjamin Kott).
@@ -248,7 +248,7 @@ ViewHelpers
 -----------
 
 Every Fluid ViewHelper starts with  :html:`<f:`. The view helpers supplied by
-TYPO3 are documented in the :ref:`ViewHelper Reference <t3viewhelper:start>`.
+TYPO3 are documented in the :doc:`ViewHelper Reference <t3viewhelper:Index>`.
 
 Any other ViewHelpers from other extensions can be used by using a
 namespace declaration like
