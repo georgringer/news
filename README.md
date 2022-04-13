@@ -6,7 +6,7 @@
 ![Build](https://github.com/georgringer/news/actions/workflows/ci.yml/badge.svg)
 [![StyleCI](https://styleci.io/repos/11733164/shield?branch=master)](https://styleci.io/repos/11733164/)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-news/localized.svg)](https://crowdin.com/project/typo3-extension-news)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/19.99)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/GeorgRinger/25)
 
 # TYPO3 Extension `news`
 
@@ -37,16 +37,8 @@ It includes these features:
 | **Read online:** | https://docs.typo3.org/p/georgringer/news/main/en-us/ |
 | **TER:**         | https://extensions.typo3.org/extension/news/          |
 
-## 3 Help supporting further development
-
-**Why?** The news extension is a powerful tool with a lot of features, always trying to thrive on the latest possibilities of the TYPO3 core. This implies a lot of work bringing this to the TYPO3 community.
-
-**How?** There are multiple ways to support the further development
-
-- **Patreon**: Support me on [patreon.com](https://www.patreon.com/georgringer) and get access to additional extensions and snippets as reward.
-- **PayPal**: Support me by a donation on [paypal.com](https://www.paypal.me/GeorgRinger/25). It is just one click away.
-- **Amazon Wishlist**: Satisfy a wish of my [Amazon wishlist](https://www.amazon.de/hz/wishlist/ls/8F573K08TSDG).
-
+[Sponsor](https://docs.typo3.org/p/georgringer/news/main/en-us/Introduction/Support/Index.html#sponsoring)
+us to get things done for your business - in time and quality.
 
 ## 4 Administration corner
 
