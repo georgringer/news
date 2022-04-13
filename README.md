@@ -29,6 +29,7 @@ It includes these features:
 
 > It is a highly customizable framework for chronological organized content -
 > much more than just a news list!
+>
 > – Quote from a user
 
 |                  | URL                                                   |
