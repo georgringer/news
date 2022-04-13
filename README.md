@@ -37,12 +37,7 @@ It includes these features:
 | **Read online:** | https://docs.typo3.org/p/georgringer/news/main/en-us/ |
 | **TER:**         | https://extensions.typo3.org/extension/news/          |
 
-[Sponsor](https://docs.typo3.org/p/georgringer/news/main/en-us/Introduction/Support/Index.html#sponsoring)
-us to get things done for your business - in time and quality.
-
-## 4 Administration corner
-
-### 4.1 Versions and support
+## Compatibility
 
 | News     | TYPO3     | PHP       | Support / Development                |
 |----------|-----------|-----------|--------------------------------------|
@@ -55,28 +50,5 @@ us to get things done for your business - in time and quality.
 | 4.x      | 7.6       | 5.5 - 5.6 | none                                 |
 | 3.x      | 6.2       | 5.5 - 5.6 | security updates                     |
 
-### 4.2 Changelog
-
-Please look into the [official extension documentation in changelog chapter][4].
-
-### 4.3 Release Management
-
-News uses [**semantic versioning**][5], which means, that
-* **bugfix updates** (e.g. 1.0.0 => 1.0.1) just includes small bugfixes or security relevant stuff without breaking changes,
-* **minor updates** (e.g. 1.0.0 => 1.1.0) includes new features and smaller tasks without breaking changes,
-* and **major updates** (e.g. 1.0.0 => 2.0.0) breaking changes wich can be refactorings, features or bugfixes.
-
-### 4.4 Contribution
-
-**Pull Requests** are gladly welcome! Nevertheless please don't forget to add an issue and connect it to your pull requests. This
-is very helpful to understand what kind of issue the **PR** is going to solve.
-
-Bugfixes: Please describe what kind of bug your fix solve and give us feedback how to reproduce the issue. We're going
-to accept only bugfixes if we can reproduce the issue.
-
-Features: Not every feature is relevant for the bulk of `news` users. In addition: We don't want to make ``news``
-even more complicated in usability for an edge case feature. It helps to have a discussion about a new feature before you open a pull request.
-
-
-[4]: https://docs.typo3.org/p/georgringer/news/master/en-us/Misc/Changelog/Index.html
-[5]: https://semver.org/
+[Sponsor](https://docs.typo3.org/p/georgringer/news/main/en-us/Introduction/Support/Index.html#sponsoring)
+us to get things done for your business - in time and quality.
