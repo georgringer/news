@@ -50,5 +50,8 @@ It includes these features:
 | 4.x      | 7.6       | 5.5 - 5.6 | none                                 |
 | 3.x      | 6.2       | 5.5 - 5.6 | security updates                     |
 
+[Contribute](https://docs.typo3.org/p/georgringer/news/main/en-us/Introduction/Contribute/Index.html)
+to this project to let your skills flow into its present and future architecture.
+
 [Sponsor](https://docs.typo3.org/p/georgringer/news/main/en-us/Introduction/Support/Index.html#sponsoring)
 us to get things done for your business - in time and quality.
