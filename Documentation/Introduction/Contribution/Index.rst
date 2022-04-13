@@ -1,9 +1,9 @@
 .. include:: /Includes.rst.txt
 
-.. _contribute:
+.. _contribution:
 
-Contribute
-==========
+Contribution
+============
 
 Contributions are essential to the success of open source projects, but are by
 no means limited to contributing code. Much more can be done, for example by
@@ -21,9 +21,10 @@ the pull request will solve and if your change will be accepted.
 feedback on how to reproduce the problem. We will only accept bug fixes if we
 can reproduce the problem.
 
-(3) Features: Not every feature is relevant to the majority of `news` users.
-In addition: We do not want to make `news` more complicated in usability for a
-marginal feature. It helps to have a discussion about a new feature before
+(3) Features: Not every feature is relevant to the majority of the users.
+In addition: We do not want to make this extension more complicated in usability
+for a marginal feature. It helps to have a discussion about a new feature before
 opening a pull request.
 
-(4) Please always create a pull request based on the updated release branch.
+(4) Please always create a pull request based on the updated release
+branch.

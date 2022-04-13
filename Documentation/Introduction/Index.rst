@@ -11,5 +11,5 @@ This chapter gives you a basic introduction about the TYPO3 CMS extension "*news
 
    About/Index
    Support/Index
-   Contribute/Index
-   Thanks/Index
+   Contribution/Index
+   Sponsoring/Index
