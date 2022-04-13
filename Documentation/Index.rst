@@ -149,7 +149,6 @@ It includes these features:
    Tutorials/Index
    Administration/Index
    Reference/Index
-   About
 
 .. Meta Menu
 
