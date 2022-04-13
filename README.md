@@ -37,12 +37,6 @@ It includes these features:
 | **Read online:** | https://docs.typo3.org/p/georgringer/news/main/en-us/ |
 | **TER:**         | https://extensions.typo3.org/extension/news/          |
 
-### 2.2 Minimal setup
-
-1) Include the static TypoScript of the extension. **Optional:** If your templates are based on Twitter Bootstrap, add the TWB styles as well to get optimized templates.
-2) Create some news records on a sysfolder.
-3) Create a plugin on a page and select at least the sysfolder as startingpoint.
-
 ## 3 Help supporting further development
 
 **Why?** The news extension is a powerful tool with a lot of features, always trying to thrive on the latest possibilities of the TYPO3 core. This implies a lot of work bringing this to the TYPO3 community.
@@ -92,6 +86,5 @@ Features: Not every feature is relevant for the bulk of `news` users. In additio
 even more complicated in usability for an edge case feature. It helps to have a discussion about a new feature before you open a pull request.
 
 
-[1]: https://docs.typo3.org/typo3cms/extensions/news/
 [4]: https://docs.typo3.org/p/georgringer/news/master/en-us/Misc/Changelog/Index.html
 [5]: https://semver.org/

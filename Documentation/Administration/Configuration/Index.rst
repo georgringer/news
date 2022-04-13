@@ -16,11 +16,10 @@ The extension ships some TypoScript code which needs to be included.
 
 #. Select :guilabel:`News (news)` at the field :guilabel:`Include static (from extensions):`
 
-.. include:: /Images/AutomaticScreenshots/NewsIncludeTypoScript.rst.txt
+   .. include:: /Images/AutomaticScreenshots/NewsIncludeTypoScript.rst.txt
 
-.. important::
-
-   Include the static template of `EXT:fluid_styled_content` or provide the following TypoScript yourself:
+#. Include the static template of `EXT:fluid_styled_content` or provide the
+   following TypoScript yourself:
 
    .. code-block:: typoscript
 
@@ -30,3 +29,6 @@ The extension ships some TypoScript code which needs to be included.
          width = 800m
          height = 600m
       }
+
+#. **Optional:** If your templates are based on Twitter Bootstrap, add the TWB
+   styles as well to get optimized templates.
