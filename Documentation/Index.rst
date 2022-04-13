@@ -31,20 +31,6 @@ News system
 This extension implements a versatile news system based on Extbase & Fluid and
 uses the latest technologies provided by TYPO3 CMS.
 
-It includes these features:
-
-*  Support for editors and authors by
-
-   *  well-structured plugins with good preview functionality
-   *  a backend module with filter & search
-   *  frontend template variant based on Twitter Bootstrap v5.
-
-*  Use of as many elements from the system core as possible, e.g. FAL and system
-   categories.
-*  Built-in support for content elements.
-*  Support for Open Graph and social platforms in the default template.
-*  Complete and comprehensive documentation.
-
 ----
 
 .. container:: row m-0 p-0
