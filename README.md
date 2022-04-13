@@ -37,24 +37,6 @@ It includes these features:
 | **Read online:** | https://docs.typo3.org/p/georgringer/news/main/en-us/ |
 | **TER:**         | https://extensions.typo3.org/extension/news/          |
 
-## 2 Usage
-
-### 2.1 Installation
-
-#### Installation using Composer
-
-The recommended way to install the extension is using [Composer][2].
-
-Run the following command within your Composer based TYPO3 project:
-
-```
-composer require georgringer/news
-```
-
-#### Installation as extension from TYPO3 Extension Repository (TER)
-
-Download and install the [extension][3] with the extension manager module.
-
 ### 2.2 Minimal setup
 
 1) Include the static TypoScript of the extension. **Optional:** If your templates are based on Twitter Bootstrap, add the TWB styles as well to get optimized templates.
@@ -111,7 +93,5 @@ even more complicated in usability for an edge case feature. It helps to have a 
 
 
 [1]: https://docs.typo3.org/typo3cms/extensions/news/
-[2]: https://getcomposer.org/
-[3]: https://extensions.typo3.org/extension/news
 [4]: https://docs.typo3.org/p/georgringer/news/master/en-us/Misc/Changelog/Index.html
 [5]: https://semver.org/
