@@ -42,7 +42,7 @@ Sponsoring
 ----------
 
 If you want to make sure that this extension will be ready in time for the
-upcoming TYPO3 release or are in need of a feature that is not yet implemented,
+upcoming TYPO3 release or you need a feature that is not yet implemented,
 there are several ways to support the further development:
 
 *  **Patreon:** Support me on `patreon.com`_ and get access to additional
