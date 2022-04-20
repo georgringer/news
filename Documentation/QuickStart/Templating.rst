@@ -37,7 +37,7 @@ Add these lines to the file
 sitepackage.
 
 EXT:news provides a couple of specific Fluid :ref:`ViewHelpers <viewHelpersReference>`.
-Of course all :ref:`ViewHelpers provided by TYPO3 <t3viewhelper:start>` can
+Of course all :doc:`ViewHelpers provided by TYPO3 <t3viewhelper:Index>` can
 be used as well.
 
 In the tutorial section there are many

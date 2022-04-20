@@ -17,7 +17,7 @@ This button is displayed on the top of the edit record page:
 
 Add the following page TSconfig to your root page. It is recommended to use
 a site package extension, see
-:ref:`Official Tutorial: Site Package <t3sitepackage:start>` for this purpose.
+:doc:`Official Tutorial: Site Package <t3sitepackage:Index>` for this purpose.
 
 .. code-block:: typoscript
 

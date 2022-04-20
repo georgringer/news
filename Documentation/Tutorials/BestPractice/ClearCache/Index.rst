@@ -72,7 +72,7 @@ a specific date and time for the news record to be published in the tab
 The news will be published next time the cache is deleted which is usual after
 midnight.
 
-When you are using the :gulabel:`Publish Date` field you can use the following
+When you are using the :guilabel:`Publish Date` field you can use the following
 TypoScript setup configuration: :ref:`config.cache <t3tsref:setup-config-cache>`
 
 Let us assume you have a news plugin on page 42 and store your news records in a

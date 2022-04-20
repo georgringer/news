@@ -1,12 +1,37 @@
 ﻿.. include:: /Includes.rst.txt
 
-
-.. _start:
-
-=============================================================
+===========
 News system
-=============================================================
+===========
 
+:Extension key:
+   news
+
+:Package name:
+   georgringer/news
+
+:Version:
+   |release|
+
+:Language:
+   en
+
+:Author:
+   Georg Ringer & Contributors
+
+:License:
+   This document is published under the
+   `Open Publication License <https://www.opencontent.org/openpub/>`__.
+
+:Rendered:
+   |today|
+
+----
+
+This extension implements a versatile news system based on Extbase & Fluid and
+uses the latest technologies provided by TYPO3 CMS.
+
+----
 
 .. container:: row m-0 p-0
 
@@ -97,15 +122,12 @@ News system
 
             There are various ways to get support for EXT:news!
 
-
-This document is published under the Open Content License available from
-http://www.opencontent.org/opl.shtml
+.. Table of Contents
 
 .. toctree::
-   :hidden:
-   :maxdepth: 3
+   :maxdepth: 2
    :titlesonly:
-   :glob:
+   :hidden:
 
    Introduction/Index
    QuickStart/Index
@@ -113,5 +135,11 @@ http://www.opencontent.org/opl.shtml
    Tutorials/Index
    Administration/Index
    Reference/Index
-   About
 
+.. Meta Menu
+
+.. toctree::
+   :hidden:
+
+   Sitemap
+   genindex
