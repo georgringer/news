@@ -381,7 +381,7 @@ class NewsController extends NewsBaseController
             }
         }
 
-        if (is_a($news, News::class) && $this->settings['detail']['checkPidOfNewsRecord']
+        if (is_a($news, News::class) && $this->settings['detail']['checkPidOfNewsRecord'] ?? false
         ) {
             $news = $this->checkPidOfNewsRecord($news);
         }
