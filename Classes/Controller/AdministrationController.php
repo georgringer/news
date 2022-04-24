@@ -371,6 +371,8 @@ class AdministrationController extends NewsController
         $dblist->pageRow = $pageinfo;
         if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() <= 10) {
             $dblist->calcPerms = Permission::CONTENT_EDIT;
+        } else {
+            $dblist->calcPerms->set(Permission::CONTENT_EDIT);
         }
         $dblist->disableSingleTableView = true;
         $dblist->clickTitleMode = 'edit';
