@@ -592,7 +592,7 @@ class News extends AbstractEntity
         if ($items) {
             $items = $items->toArray();
             usort($items, function ($a, $b) {
-                return $a->getDatetime() < $b->getDatetime();
+                return $b->getDatetime() <=> $a->getDatetime();
             });
         }
         return $items;
@@ -619,7 +619,7 @@ class News extends AbstractEntity
 
         if (count($all) > 0) {
             usort($all, function ($a, $b) {
-                return $a->getDatetime() < $b->getDatetime();
+                return $b->getDatetime() <=> $a->getDatetime();
             });
         }
         return $all;
@@ -636,7 +636,7 @@ class News extends AbstractEntity
         if ($items) {
             $items = $items->toArray();
             usort($items, function ($a, $b) {
-                return $a->getDatetime() < $b->getDatetime();
+                return $b->getDatetime() <=> $a->getDatetime();
             });
         }
         return $items;
@@ -1657,7 +1657,7 @@ class News extends AbstractEntity
         if ($items) {
             $items = $items->toArray();
             usort($items, function ($a, $b) {
-                return $a->getSortingForeign() < $b->getSortingForeign();
+                return $b->getSortingForeign() <=> $a->getSortingForeign();
             });
         }
         return $items;
