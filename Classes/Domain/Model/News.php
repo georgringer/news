@@ -1387,9 +1387,9 @@ class News extends AbstractEntity
     /**
      * Get start time
      *
-     * @return DateTime
+     * @return null|DateTime
      */
-    public function getStarttime(): DateTime
+    public function getStarttime(): ?DateTime
     {
         return $this->starttime;
     }
@@ -1448,9 +1448,9 @@ class News extends AbstractEntity
     /**
      * Get endtime
      *
-     * @return DateTime
+     * @return null|DateTime
      */
-    public function getEndtime(): DateTime
+    public function getEndtime(): ?DateTime
     {
         return $this->endtime;
     }
