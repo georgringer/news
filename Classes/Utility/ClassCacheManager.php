@@ -170,7 +170,7 @@ class ClassCacheManager
             $constructorInfo['inner_start'] = $constructorInfo['start'] - $offsetForInnerPart;
             $constructorInfo['inner_end'] = $constructorInfo['end'] - $offsetForInnerPart;
             if ($baseClass) {
-                $this->constructorLines['doc'] = explode("\n", $constructorInfo['doc']);
+                $this->constructorLines['doc'] = explode("\n", $constructorInfo['doc'] ?? '');
             } else {
                 array_splice(
                     $this->constructorLines['doc'],
