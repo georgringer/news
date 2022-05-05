@@ -598,6 +598,9 @@ list.paginate
       1000 news records and 10 items per page. This would result in 100
       links in the frontend.
 
+      .. hint::
+         EXT:numbered_pagination must be installed for this setting to work.
+
    Default::
 
       list.paginate {
