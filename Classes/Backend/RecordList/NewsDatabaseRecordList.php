@@ -73,12 +73,12 @@ class NewsDatabaseRecordList extends DatabaseRecordList
             $urlParameters['show'] = (int)GeneralUtility::_GP('show');
         }
 
-        $demand = GeneralUtility::_GET('tx_news_web_newsadministration');
+        $demand = GeneralUtility::_GET('tx_newsadministration_web_newsadministrationadministration');
         if (isset($demand['demand']) && is_array($demand['demand'])) {
-            $urlParameters['tx_news_web_newsadministration']['demand'] = $demand['demand'];
+            $urlParameters['tx_newsadministration_web_newsadministrationadministration']['demand'] = $demand['demand'];
         }
 
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-        return $uriBuilder->buildUriFromRoute('web_NewsAdministration', $urlParameters);
+        return $uriBuilder->buildUriFromRoute('web_NewsAdministrationAdministration', $urlParameters);
     }
 }
