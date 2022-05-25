@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace GeorgRinger\News\Event;
 
@@ -12,21 +13,17 @@ use GeorgRinger\News\Controller\NewsController;
  */
 final class NewsInitializeActionEvent
 {
-    /**
-     * @var NewsController
-     */
-    private $newsController;
+    private NewsController $newsController;
+
+    private string $defaultViewObjectName;
+
+    private string $action;
 
     /**
-     * @var string
+     * @param NewsController $newsController
+     * @param string $defaultViewObjectName
+     * @param string $action
      */
-    private $defaultViewObjectName;
-
-    /**
-     * @var string
-     */
-    private $action;
-
     public function __construct(NewsController $newsController, string $defaultViewObjectName, string $action = '')
     {
         $this->newsController = $newsController;
@@ -35,7 +32,7 @@ final class NewsInitializeActionEvent
     }
 
     /**
-     * Get the news controller
+     * @return NewsController
      */
     public function getNewsController(): NewsController
     {
@@ -43,29 +40,12 @@ final class NewsInitializeActionEvent
     }
 
     /**
-     * Set the news controller
+     * @param NewsController $newsController
+     * @return $this
      */
     public function setNewsController(NewsController $newsController): self
     {
         $this->newsController = $newsController;
-
-        return $this;
-    }
-
-    /**
-     * Get the assignedValues
-     */
-    public function getAssignedValues(): array
-    {
-        return $this->assignedValues;
-    }
-
-    /**
-     * Set the assignedValues
-     */
-    public function setAssignedValues(array $assignedValues): self
-    {
-        $this->assignedValues = $assignedValues;
 
         return $this;
     }
