@@ -119,10 +119,12 @@ class NewsController extends NewsBaseController
             }
         }
         /** @var  NewsInitializeActionEvent $event */
-        $event = $this->eventDispatcher->dispatch(new NewsInitializeActionEvent(
-            $this,
-            $this->defaultViewObjectName,
-            $this->request->getControllerActionName())
+        $event = $this->eventDispatcher->dispatch(
+            new NewsInitializeActionEvent(
+                $this,
+                $this->defaultViewObjectName,
+                $this->request->getControllerActionName()
+            )
         );
         $this->defaultViewObjectName = $event->getDefaultViewObjectName();
     }
