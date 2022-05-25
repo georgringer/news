@@ -29,6 +29,7 @@ fired. For additional items see column "Access to" in the table below.
    "NewsListSelectedActionEvent", "NewsController", "getAssignedValues()", "selectedListAction (NewsController::SIGNAL_NEWS_LIST_SELECTED_ACTION)"
    "NewsSearchFormActionEvent", "NewsController", "getAssignedValues()", "searchFormAction (NewsController::SIGNAL_NEWS_SEARCHFORM_ACTION)"
    "NewsSearchResultActionEvent", "NewsController", "getAssignedValues()", "searchResultAction (NewsController::SIGNAL_NEWS_SEARCHRESULT_ACTION)"
+   "NewsInitializeActionEvent", "NewsController", "getDefaultViewObjectName();getAction()", ""
    "AdministrationIndexActionEvent", "AdministrationController", "getAssignedValues()", "indexAction (AdministrationController::SIGNAL_ADMINISTRATION_INDEX_ACTION)"
    "AdministrationNewsPidListingActionEvent", "AdministrationController", "getRawTree();getTreeLevel()", "newsPidListingAction (AdministrationController::SIGNAL_ADMINISTRATION_NEWSPIDLISTING_ACTION)"
    "AdministrationExtendMenuEvent", "AdministrationController", "getMenu()", "createMenu"
