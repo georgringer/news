@@ -19,7 +19,7 @@ Connect to Event
 
 To connect to an event, you need to register an event listener in your custom
 extension. All what it needs is an entry in your
-:file:`Configuration\Services.yaml` file:
+:file:`Configuration/Services.yaml` file:
 
 .. code-block:: yaml
 
