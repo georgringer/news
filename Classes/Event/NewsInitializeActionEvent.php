@@ -13,19 +13,10 @@ use GeorgRinger\News\Controller\NewsController;
  */
 final class NewsInitializeActionEvent
 {
-    /**
-     * @var NewsController
-     */
     private $newsController;
 
-    /**
-     * @var string
-     */
     private $defaultViewObjectName;
 
-    /**
-     * @var string
-     */
     private $action;
 
     /**
