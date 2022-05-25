@@ -39,14 +39,14 @@ class News extends AbstractEntity
     protected $l10nParent = 0;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      */
-    protected $starttime;
+    protected $starttime = null;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      */
-    protected $endtime;
+    protected $endtime = null;
 
     /**
      * keep it as string as it should be only used during imports
