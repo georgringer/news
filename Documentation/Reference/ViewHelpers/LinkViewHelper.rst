@@ -182,7 +182,7 @@ Code: ::
 
 Output: ::
 
-    <a href="link" class="a-link-class">fo</n:link>
+    <a href="link" class="a-link-class">fo</a>
 
 
 
@@ -214,6 +214,6 @@ Code: ::
 
 Output: ::
 
-    <a href="link&tx_news_pi1[category]=111">fo</n:link>
+    <a href="link&tx_news_pi1[category]=111">fo</a>
 
 
