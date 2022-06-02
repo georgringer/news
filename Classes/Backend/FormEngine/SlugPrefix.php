@@ -17,7 +17,6 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 
 class SlugPrefix
 {
-
     public function getPrefix(array $parameters): string
     {
         $row = $parameters['row'];
@@ -87,5 +86,4 @@ class SlugPrefix
 
         return $prefix;
     }
-
 }
