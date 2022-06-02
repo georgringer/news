@@ -587,7 +587,10 @@ $tx_news_domain_model_news = [
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => $configuration->getSlugBehaviour(),
-                'default' => ''
+                'default' => '',
+                'appearance' => [
+                    'prefix' => \GeorgRinger\News\Backend\FormEngine\SlugPrefix::class . '->getPrefix'
+                ]
             ]
         ],
         'import_id' => [
