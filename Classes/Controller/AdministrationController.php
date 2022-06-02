@@ -26,7 +26,8 @@ class AdministrationController extends NewsController
      */
     protected $administrationRepository;
 
-    public function injectAdministrationRepository(AdministrationRepository $administrationRepository) {
+    public function injectAdministrationRepository(AdministrationRepository $administrationRepository)
+    {
         $this->administrationRepository = $administrationRepository;
     }
 
@@ -36,5 +37,4 @@ class AdministrationController extends NewsController
             'counts' => $this->administrationRepository->getTotalCounts()
         ]);
     }
-
 }
