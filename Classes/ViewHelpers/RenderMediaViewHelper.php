@@ -11,6 +11,7 @@ namespace GeorgRinger\News\ViewHelpers;
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
@@ -58,6 +59,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $this->registerArgument('videoClass', 'string', 'wrap videos in a div with this class');
         $this->registerArgument('audioClass', 'string', 'wrap audio files in a div with this class');
         $this->registerArgument('fileIndex', 'int', 'index of image to start with', false, 0);
+        $this->registerArgument('cropVariant', 'string', 'select a cropping variant, in case multiple croppings have been specified or stored in FileReference', false, 'default');
     }
 
     /**
