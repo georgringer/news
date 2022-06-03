@@ -77,6 +77,6 @@ class ImageSizeViewHelper extends AbstractViewHelper
             }
         }
 
-        return $value;
+        return (int)$value;
     }
 }
