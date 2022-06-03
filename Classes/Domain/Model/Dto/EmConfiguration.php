@@ -86,6 +86,9 @@ class EmConfiguration
     protected $resourceFolderImporter = '/news_import';
 
     /** @var bool */
+    protected $mediaPreview = false;
+
+    /** @var bool */
     protected $advancedMediaPreview = true;
 
     /** @var string */
@@ -174,6 +177,11 @@ class EmConfiguration
     public function getHidePageTreeForAdministrationModule(): bool
     {
         return (bool)$this->hidePageTreeForAdministrationModule;
+    }
+
+    public function isMediaPreview(): bool
+    {
+        return (bool)$this->mediaPreview;
     }
 
     public function isAdvancedMediaPreview(): bool
