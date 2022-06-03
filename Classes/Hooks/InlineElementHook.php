@@ -15,7 +15,6 @@ use TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Inline Element Hook
@@ -76,7 +75,6 @@ class InlineElementHook implements InlineElementHookInterface
         $isVirtual,
         array &$controlItems
     ) {
-
         $previewSetting = (int)(is_array($childRecord['showinpreview'] ?? false) ? $childRecord['showinpreview'][0] : ($childRecord['showinpreview'] ?? 0));
         if ($foreignTable === 'sys_file_reference' && $previewSetting > 0) {
             $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
