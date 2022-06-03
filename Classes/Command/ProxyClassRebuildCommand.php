@@ -25,7 +25,7 @@ class ProxyClassRebuildCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple();
+        GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple(true);
         $io = new SymfonyStyle($input, $output);
         $io->success('Rebuilt');
         return 0;
