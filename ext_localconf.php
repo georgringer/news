@@ -131,6 +131,7 @@ $boot = static function (): void {
             'ext-news-paypal' => 'donation_paypal.svg',
             'ext-news-patreon' => 'donation_patreon.svg',
             'ext-news-amazon' => 'donation_amazon.svg',
+            'ext-news-doublecheck' => 'double_check.svg',
         ];
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         foreach ($icons as $identifier => $path) {
