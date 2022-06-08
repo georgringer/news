@@ -3,6 +3,8 @@
 namespace GeorgRinger\News\Utility;
 
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Event\ModifyCacheTagsFromDemandEvent;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -94,6 +96,9 @@ class Cache
         } else {
             $cacheTags[] = 'tx_news_domain_model_news';
         }
+        $event = new ModifyCacheTagsFromDemandEvent($cacheTags, $demand);
+        GeneralUtility::makeInstance(EventDispatcher::class)->dispatch($event);
+        $cacheTags = $event->getCacheTags();
         if (count($cacheTags) > 0) {
             $GLOBALS['TSFE']->addCacheTags($cacheTags);
         }
