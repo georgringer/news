@@ -25,6 +25,13 @@ If you want to use some default values, you can use this code inside the TSconfi
       }
    }
 
+   # Change the showinpreview default behaviour
+   TCAdefaults {
+      sys_file_reference {
+         showinpreview = 1
+      }
+   }
+
 
 Select fields
 ^^^^^^^^^^^^^
