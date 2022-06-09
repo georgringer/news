@@ -409,7 +409,7 @@ class NewsController extends NewsBaseController
 
         if ($news !== null) {
             Page::setRegisterProperties($this->settings['detail']['registerProperties'] ?? false, $news);
-            Cache::addCacheTagsByNewsRecords([$news]);
+            Cache::addCacheTagsByNewsRecords([$news, ...$news->getRelated()->toArray()]);
 
             if ($this->settings['detail']['pageTitle']['_typoScriptNodeValue'] ?? false) {
                 $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
