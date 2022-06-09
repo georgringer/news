@@ -1,0 +1,46 @@
+.. include:: /Includes.rst.txt
+
+9.4.0 - 26th April 2022
+=======================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Thanks to
+---------
+
+This release is dedicated to Benni Mack and b13 (https://b13.com/).
+Thanks for leading by example, helping me out as dev and as friend ❤️!
+
+If you use EXT:news and it works out fine for you, please consider donating. Head over to https://github.com/sponsors/georgringer!
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2022-04-26 [BUGFIX] Remove download + columnselector in be module (Commit 84bc6a02 by Georg Ringer)
+   2022-04-24 [BUGFIX] Fix notice in NewsController (#1775) (Commit 104a5275 by Georg Ringer)
+   2022-04-24 [BUGFIX] Use correct notice check (Commit cc2c7dc9 by Georg Ringer)
+   2022-04-24 [TASK] Change condition order (Commit d04fe5c9 by Georg Ringer)
+   2022-04-24 [BUGFIX] Link title in backend module again (Commit 63132676 by Georg Ringer)
+   2022-04-23 [TASK] Fix PHP notice (#1774) (Commit 8dd77033 by Peter Kraume)
+   2022-04-23 [BUGFIX]n Fix notices (#1773) (Commit 03182cdf by Georg Ringer)
+   2022-04-20 [DOCS] Align with new TYPO3 documentation standards (#1771) (Commit 2b0c6c51 by Alexander Nitsche)
+   2022-04-01 [BUGFIX] Return empty instead NULL (#1740) (#1763) (Commit a34e236a by Philipp Idler)
+   2022-04-01 [BUGFIX] Avoid warning undefined array key (#1764) (Commit 6873a913 by nigelmann)
+   2022-03-30 [BUGFIX] Fix notice for singleNews argument (Commit a046697b by Georg Ringer)
+   2022-03-29 Remove unnecessary part .text('Back') in JavaScript Snippet (#1762) (Commit 7e6b31a8 by Eric Bode)
+   2022-03-28 [FEATURE] Add 'fileIndex' argument to MediaViewHelper (Commit ee811c85 by Philipp Parzer)
+   2022-03-24 [BUGFIX] Fix notice in ItemsProcFunc (Commit 7e7d8179 by Georg Ringer)
+   2022-03-23 [BUGFIX] Fix notice in PageLayoutView (Commit 70105f0c by Georg Ringer)
+   2022-03-21 [BUGFIX] Show news in backend module again (Commit 11e85013 by Georg Ringer)
+   2022-03-19 Add func tests for news controller (#1757) (Commit b745f4c7 by Stefan Frömken)
+   2022-03-18 Add unit tests for static text (#1756) (Commit 271ade85 by Stefan Frömken)
+   2022-03-18 [TASK] Improve code of category model (Commit 7cefc9e7 by Stefan Frömken)
+   2022-03-18 Add allow-plugins to composer.json (#1752) (Commit 77db38cf by Stefan Frömken)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

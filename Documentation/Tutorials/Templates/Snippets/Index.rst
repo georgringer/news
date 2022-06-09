@@ -44,7 +44,7 @@ A nice solution would be to use this JavaScript jQuery snippet:
 
    if ($(".news-backlink-wrap a").length > 0) {
       if(document.referrer.indexOf(window.location.hostname) != -1) {
-         $(".news-backlink-wrap a").attr("href","javascript:history.back();").text('Back');
+         $(".news-backlink-wrap a").attr("href","javascript:history.back();");
       }
    }
 

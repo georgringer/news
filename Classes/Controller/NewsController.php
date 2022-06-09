@@ -15,6 +15,7 @@ use GeorgRinger\News\Event\NewsListActionEvent;
 use GeorgRinger\News\Event\NewsListSelectedActionEvent;
 use GeorgRinger\News\Event\NewsSearchFormActionEvent;
 use GeorgRinger\News\Event\NewsSearchResultActionEvent;
+use GeorgRinger\News\Pagination\QueryResultPaginator;
 use GeorgRinger\News\Seo\NewsTitleProvider;
 use GeorgRinger\News\Utility\Cache;
 use GeorgRinger\News\Utility\ClassCacheManager;
@@ -25,7 +26,6 @@ use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
@@ -144,27 +144,27 @@ class NewsController extends NewsBaseController
             );
         }
 
-        $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'], true));
-        $demand->setCategoryConjunction((string)$settings['categoryConjunction']);
-        $demand->setIncludeSubCategories((bool)$settings['includeSubCategories']);
-        $demand->setTags((string)$settings['tags']);
+        $demand->setCategories(GeneralUtility::trimExplode(',', $settings['categories'] ?? '', true));
+        $demand->setCategoryConjunction((string)($settings['categoryConjunction'] ?? ''));
+        $demand->setIncludeSubCategories((bool)($settings['includeSubCategories'] ?? false));
+        $demand->setTags((string)($settings['tags'] ?? ''));
 
-        $demand->setTopNewsRestriction((int)$settings['topNewsRestriction']);
-        $demand->setTimeRestriction($settings['timeRestriction']);
-        $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh']);
-        $demand->setArchiveRestriction((string)$settings['archiveRestriction']);
-        $demand->setExcludeAlreadyDisplayedNews((bool)$settings['excludeAlreadyDisplayedNews']);
+        $demand->setTopNewsRestriction((int)($settings['topNewsRestriction'] ?? 0));
+        $demand->setTimeRestriction($settings['timeRestriction'] ?? '');
+        $demand->setTimeRestrictionHigh($settings['timeRestrictionHigh'] ?? '');
+        $demand->setArchiveRestriction((string)($settings['archiveRestriction'] ?? ''));
+        $demand->setExcludeAlreadyDisplayedNews((bool)($settings['excludeAlreadyDisplayedNews'] ?? false));
         $demand->setHideIdList((string)($settings['hideIdList'] ?? ''));
 
-        if ($settings['orderBy']) {
+        if ($settings['orderBy'] ?? '') {
             $demand->setOrder($settings['orderBy'] . ' ' . $settings['orderDirection']);
         }
-        $demand->setOrderByAllowed((string)$settings['orderByAllowed']);
+        $demand->setOrderByAllowed((string)($settings['orderByAllowed'] ?? ''));
 
-        $demand->setTopNewsFirst((bool)$settings['topNewsFirst']);
+        $demand->setTopNewsFirst((bool)($settings['topNewsFirst'] ?? false));
 
-        $demand->setLimit((int)$settings['limit']);
-        $demand->setOffset((int)$settings['offset']);
+        $demand->setLimit((int)($settings['limit'] ?? 0));
+        $demand->setOffset((int)($settings['offset'] ?? 0));
 
         $demand->setSearchFields((string)($settings['search']['fields'] ?? ''));
         $demand->setDateField((string)($settings['dateField'] ?? ''));
@@ -172,8 +172,8 @@ class NewsController extends NewsBaseController
         $demand->setYear((int)($settings['year'] ?? 0));
 
         $demand->setStoragePage(Page::extendPidListByChildren(
-            $settings['startingpoint'],
-            $settings['recursive']
+            (string)($settings['startingpoint'] ?? ''),
+            (int)($settings['recursive'] ?? 0)
         ));
 
         if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['createDemandObjectFromSettings'] ?? []) {
@@ -230,20 +230,20 @@ class NewsController extends NewsBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if ($this->settings['disableOverrideDemand'] != 1 && $overwriteDemand !== null) {
+        if ((int)($this->settings['disableOverrideDemand'] ?? 1) !== 1 && $overwriteDemand !== null) {
             $demand = $this->overwriteDemandObject($demand, $overwriteDemand);
         }
         $newsRecords = $this->newsRepository->findDemanded($demand);
 
         // pagination
         $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
-        $itemsPerPage = (int)($paginationConfiguration['itemsPerPage'] ?: 10);
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
-        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage);
+        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
         $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
-        if ($paginationClass === NumberedPagination::class && $maximumNumberOfLinks && class_exists(NumberedPagination::class)) {
+        if (class_exists(NumberedPagination::class) && $paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
             $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
         } elseif (class_exists($paginationClass)) {
             $pagination = GeneralUtility::makeInstance($paginationClass, $paginator);
@@ -329,7 +329,7 @@ class NewsController extends NewsBaseController
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
-        if (empty($this->originalSettings['orderBy'])) {
+        if (empty($this->originalSettings['orderBy'] ?? '')) {
             $idList = GeneralUtility::trimExplode(',', $this->settings['selectedList'], true);
             foreach ($idList as $id) {
                 $news = $this->newsRepository->findByIdentifier($id);
@@ -367,7 +367,7 @@ class NewsController extends NewsBaseController
     public function detailAction(News $news = null, $currentPage = 1)
     {
         if ($news === null || ($this->settings['isShortcut'] ?? false)) {
-            $previewNewsId = ((int)$this->settings['singleNews'] > 0) ? $this->settings['singleNews'] : 0;
+            $previewNewsId = (int)($this->settings['singleNews'] ?? 0);
             if ($this->request->hasArgument('news_preview')) {
                 $previewNewsId = (int)$this->request->getArgument('news_preview');
             }
@@ -381,7 +381,7 @@ class NewsController extends NewsBaseController
             }
         }
 
-        if (is_a($news, News::class) && $this->settings['detail']['checkPidOfNewsRecord']
+        if (is_a($news, News::class) && ($this->settings['detail']['checkPidOfNewsRecord'] ?? false)
         ) {
             $news = $this->checkPidOfNewsRecord($news);
         }
@@ -408,10 +408,11 @@ class NewsController extends NewsBaseController
         }
 
         if ($news !== null) {
-            Page::setRegisterProperties($this->settings['detail']['registerProperties'], $news);
+            Page::setRegisterProperties($this->settings['detail']['registerProperties'] ?? false, $news);
             Cache::addCacheTagsByNewsRecords([$news]);
+            Cache::addCacheTagsByNewsRecords($news->getRelated()->toArray());
 
-            if ($this->settings['detail']['pageTitle']['_typoScriptNodeValue']) {
+            if ($this->settings['detail']['pageTitle']['_typoScriptNodeValue'] ?? false) {
                 $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
                 $providerClass = $providerConfiguration['provider'] ?? NewsTitleProvider::class;
 

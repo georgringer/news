@@ -9,7 +9,7 @@ TSconfig code snippets
 Page TSconfig from can be used to influence display and behaviour of fields and
 forms in the backend. The following examples are for your convenience only, they
 are possible with any record type in TYPO3. Read more about what you can do with
-page TSconfig in the :ref:`TSconfig Reference <t3tsconfig:start>`.
+page TSconfig in the :doc:`TSconfig Reference <t3tsconfig:Index>`.
 
 You want to add your example here? Hit the "Edit on Github" button in the top
 right and make a pull request on Github.

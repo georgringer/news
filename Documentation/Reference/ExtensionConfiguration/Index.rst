@@ -193,6 +193,8 @@ Show thumbnails in backend list module `mediaPreview`
 
    If enabled, the list module will show thumbnails of the media items.
 
+   This setting is only evaluated for TYPO3 10 as it has been removed for version 11. Use the extension `studiomitte/recordlist-thumbnail` to get it back in v11.
+
 
 .. _extensionConfigurationAdvancedMediaPreview:
 

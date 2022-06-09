@@ -6,14 +6,13 @@
 Administration
 ==============
 
-.. only:: html
-
-   This chapter describes how to manage the extension from a superuser point of view.
+This chapter describes how to manage the extension from a superuser point of view.
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    :titlesonly:
 
    Installation/Index
+   Configuration/Index
    Update/Index
    Migration/Index

@@ -54,6 +54,11 @@ jobs:
       - name: Install testing framework ${{ matrix.env.TESTING_FRAMEWORK }}
         if: ${{ matrix.env.TESTING_FRAMEWORK }}
         run: composer require --dev typo3/testing-framework="${TESTING_FRAMEWORK}";
+
+      - name: Install prophecy trait
+        if: ${{ matrix.env.TESTING_FRAMEWORK }}
+        run: composer require --dev phpspec/prophecy-phpunit="^2.0";
+
         # unit tests
       - name: Unit Tests
         run: |
@@ -71,7 +76,7 @@ jobs:
           export typo3DatabaseHost="127.0.0.1";
           export typo3DatabaseUsername="root";
           export typo3DatabasePassword="root";
-          .Build/bin/phpunit --colors -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTests.xml Tests/Functional
+          .Build/bin/phpunit --colors -c Build/FunctionalTests.xml Tests/Functional
 
       - name: Reset composer.json
         run: git checkout composer.json;

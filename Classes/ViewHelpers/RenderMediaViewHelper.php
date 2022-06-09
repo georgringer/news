@@ -57,6 +57,8 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $this->registerArgument('imgClass', 'string', 'add css class to images');
         $this->registerArgument('videoClass', 'string', 'wrap videos in a div with this class');
         $this->registerArgument('audioClass', 'string', 'wrap audio files in a div with this class');
+        $this->registerArgument('fileIndex', 'int', 'index of image to start with', false, 0);
+        $this->registerArgument('cropVariant', 'string', 'select a cropping variant, in case multiple croppings have been specified or stored in FileReference', false, 'default');
     }
 
     /**
@@ -124,7 +126,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
      */
     private function renderMedia($content, array $files): string
     {
-        $fileIndex = 0;
+        $fileIndex = $this->arguments['fileIndex'];
         preg_match_all($this->mediaTag, $content, $matches);
         foreach ($matches[0] as $_) {
             /** @var \GeorgRinger\News\Domain\Model\FileReference $file */

@@ -1,14 +1,19 @@
 {
     "name": "georgringer/news",
     "type": "typo3-cms-extension",
-    "description": "Versatile news extension, based on extbase & fluid for TYPO3 CMS",
+    "description": "Versatile news system based on Extbase & Fluid and using the latest technologies provided by TYPO3 CMS.",
     "keywords": [
         "TYPO3",
         "extension",
         "article",
         "news"
     ],
-    "homepage": "https://ringer.it",
+    "homepage": "https://extensions.typo3.org/extension/news",
+    "support": {
+        "source": "https://github.com/georgringer/news",
+        "issues": "https://github.com/georgringer/news/issues",
+        "docs": "https://docs.typo3.org/p/georgringer/news/main/en-us/"
+    },
     "authors": [
         {
             "name": "Georg Ringer",
@@ -48,7 +53,11 @@
     },
     "config": {
         "vendor-dir": ".Build/vendor",
-        "bin-dir": ".Build/bin"
+        "bin-dir": ".Build/bin",
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        }
     },
     "scripts": {
         "post-autoload-dump": [

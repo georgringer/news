@@ -1,29 +1,44 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. More information about this file:
+   https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/GeneralConventions/FileStructure.html#includes-rst-txt
 
-.. This is 'Includes.txt'. It is included at the very top of each and
-   every ReST source file in this documentation project (= manual).
+.. ----------
+.. text roles
+.. ----------
 
-
-.. ==================================================
-.. DEFINE SOME TEXT ROLES
-.. --------------------------------------------------
-
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-
-.. role:: php(code)
-.. role:: yaml(code)
-.. role:: html(code)
+.. role:: aspect(emphasis)
+.. role:: bash(code)
 .. role:: fluid(code)
+   :class: html
+
+.. role:: html(code)
+.. role:: js(code)
+.. role:: php(code)
+.. role:: rst(code)
+.. role:: sep(strong)
 .. role:: sql(code)
 
+.. role:: tsconfig(code)
+   :class: typoscript
+
+.. role:: typoscript(code)
+.. role:: xml(code)
+   :class: html
+
+.. role:: yaml(code)
+
+.. default-role:: code
+
+.. ---------
+.. highlight
+.. ---------
+
+.. By default, code blocks use PHP syntax highlighting
 
 .. highlight:: php
 
+.. ------
+.. images
+.. ------
 
 .. |img-content-element-relation|      image:: /Images/HistoricScreenshots/Changelog/6-0-0/news_contentelements.png
 .. :border: 0

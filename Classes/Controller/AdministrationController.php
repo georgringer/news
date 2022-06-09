@@ -369,8 +369,15 @@ class AdministrationController extends NewsController
 
         $pageinfo = BackendUtilityCore::readPageAccess($this->pageUid, $this->getBackendUser()->getPagePermsClause(Permission::PAGE_SHOW));
         $dblist->pageRow = $pageinfo;
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() <= 10) {
+        $majorVersion = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
+        if ($majorVersion <= 10) {
             $dblist->calcPerms = Permission::CONTENT_EDIT;
+        } else {
+            $dblist->calcPerms->set(Permission::CONTENT_EDIT);
+            if ($majorVersion >= 11) {
+                $dblist->displayColumnSelector = false;
+                $dblist->displayRecordDownload = false;
+            }
         }
         $dblist->disableSingleTableView = true;
         $dblist->clickTitleMode = 'edit';
@@ -393,7 +400,11 @@ class AdministrationController extends NewsController
             'tx_news_domain_model_news' => GeneralUtility::trimExplode(',', $this->tsConfiguration['columns'] ?? 'teaser,istopnews,datetime,categories', true)
         ];
 
-        $tableRendering = trim($dblist->generateList());
+        $tableRendering = $dblist->generateList();
+        if (!$tableRendering && GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() <= 10) {
+            $tableRendering = $dblist->HTMLcode;
+        }
+        $tableRendering = trim($tableRendering);
 
         $counter = !empty($tableRendering);
         $this->view->getModuleTemplate()->getPageRenderer()->loadRequireJsModule('TYPO3/CMS/Recordlist/Recordlist');
@@ -486,23 +497,22 @@ class AdministrationController extends NewsController
     {
         $pageUid = (int)$row['row']['uid'];
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_news_domain_model_news');
-        $row['countNews'] = $queryBuilder->count('*')
-            ->from('tx_news_domain_model_news')
-            ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
-            ->execute()
-            ->fetchColumn(0);
+        $counts = [
+          'countNews' => 'tx_news_domain_model_news',
+          'countCategories' => 'sys_category',
+          'countTags' => 'tx_news_domain_model_tag',
+        ];
+        foreach ($counts as $key => $table) {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable($table);
+            $row[$key] = $queryBuilder->count('*')
+                ->from($table)
+                ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
+                ->execute()
+                ->fetchColumn(0);
+        }
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('sys_category');
-        $row['countCategories'] = $queryBuilder->count('*')
-            ->from('sys_category')
-            ->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid, \PDO::PARAM_INT)))
-            ->execute()
-            ->fetchColumn(0);
-
-        $row['countNewsAndCategories'] = ($row['countNews'] + $row['countCategories']);
+        $row['countAll'] = ($row['countNews'] + $row['countCategories'] + $row['countTags']);
     }
 
     /**

@@ -31,16 +31,20 @@
 				<th>
 					<f:translate key="LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category" />
 				</th>
+                <th>
+                    <f:translate key="LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_tag" />
+                </th>
 			</tr>
 		</thead>
 		<f:for each="{tree}" as="item">
-			<tr class="{f:if(condition: item.countNewsAndCategories, else: 'hide_line')}">
+			<tr class="{f:if(condition: item.countAll, else: 'hide_line')}">
 				<td nowrap="nowrap">
 					<f:format.html parseFuncTSPath="">{item.HTML}</f:format.html>
 					<f:link.action action="index" additionalParams="{id:item.row.uid}" title="UID: {item.row.uid}">{item.row.title}</f:link.action>
 				</td>
 				<td>{f:if(condition:item.countNews,then:item.countNews,else:'')}</td>
 				<td>{f:if(condition:item.countCategories,then:item.countCategories,else:'')}</td>
+				<td>{f:if(condition:item.countTags,then:item.countTags,else:'')}</td>
 			</tr>
 		</f:for>
 	</table>

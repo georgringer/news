@@ -8,6 +8,8 @@ namespace GeorgRinger\News\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -130,7 +132,11 @@ class CategoryService
 
         $title = '';
 
-        if ($row['uid'] > 0 && $overlayLanguage > 0 && $row['sys_language_uid'] == 0) {
+        if ($row['uid'] > 0 && $overlayLanguage > 0 && !isset($row['sys_language_uid'])) {
+            $row = BackendUtility::getRecord('sys_category', $row['uid']);
+        }
+
+        if ($row['uid'] > 0 && $overlayLanguage > 0 && $row['sys_language_uid'] === 0) {
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getQueryBuilderForTable('sys_category');
             $overlayRecord = $queryBuilder
@@ -148,7 +154,7 @@ class CategoryService
             }
         }
 
-        $title = $title ?: $default;
+        $title = $title ?: $default ?: '';
 
         return $title;
     }

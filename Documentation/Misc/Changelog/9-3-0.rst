@@ -1,0 +1,65 @@
+.. include:: /Includes.rst.txt
+
+9.3.0 - 14th March 2022
+=======================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Important features
+------------------
+
+Support of single_pid in linkhandler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The linkhandler can be used to generate links to news records by editors using the UI.
+If the field `single_pid` of a news categories is used to define a dynamic target page instead of one hardcoded page, the following userFunc can now be used to get the correct page:
+
+.. code-block:: typoscript
+
+    config.recordLinks.tx_news {
+        typolink {
+            # Detail page
+            parameter.cObject = USER
+            parameter.cObject {
+                userFunc = GeorgRinger\News\Service\LinkHandlerTargetPageService->process
+                news.data = field:uid
+                # Page used if no detail page is set in the category
+                fallback = 123
+            }
+            additionalParams.data = field:uid
+            additionalParams.wrap = &tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=|
+        }
+    }
+
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2022-03-09 [BUGFIX] News::getDatetime can be null (Commit a46afa56 by Georg Ringer)
+    2022-03-04 [BUGFIX] Change used constants in TWB5 templates (Commit 641a22bc by Georg Ringer)
+    2022-02-21 [TASK] Adopt sorting in LinkHandlerTargetPageService (Commit 811472cc by Georg Ringer)
+    2022-02-21 [BUGFIX] Fix georgringer/news#1576: extension classes can be included twice and cause fatail error (#1727) (Commit 4e984e7c by Dmitry Dulepov)
+    2022-02-18 Apply fixes from StyleCI (#1726) (Commit 36da8ace by Georg Ringer)
+    2022-02-18 [DOC][FEATURE] Example how to skip dedicated detail page (Commit c066cf5d by Georg Ringer)
+    2022-02-18 [FEATURE] Provide linkhandler with category single_pid (Commit b1cae28b by Georg Ringer)
+    2022-02-14 [BUGFIX] Add workspace-restriction to XML-sitemap (#1722) (Commit 0abc861d by maximilian-walter)
+    2022-02-14 [DOCS] Clear cache for auto-publishing (#1718) (Commit a71a0560 by Lina Wolf)
+    2022-02-07 [BUGFIX] Avoid notice exception on ClassCacheManager (Commit 48a4e4b7 by Georg Ringer)
+    2022-02-04 [BUGFIX] Fix notices in backend (#1717) (Commit ade53b52 by Thomas Lüder)
+    2022-02-02 [FEATURE] Display number of news per category in Category Menu (#1699) (Commit 70beb6a8 by Philipp Kitzberger)
+    2022-02-02 [TASK] Do not link current page in pagination #1663 (Commit b74a4db0 by Georg Ringer)
+    2022-02-02 [BUGFIX] Show pagination only if required (Commit 99510b74 by Georg Ringer)
+    2022-02-02 [BUGFIX] Show pagination only if required (Commit a6e5b43d by Georg Ringer)
+    2022-02-02 [BUGFIX] Fix notices in backend (Commit a201e24c by Georg Ringer)
+    2022-02-02 [BUGFIX] Add "section" to link URL if uriOnly = 1 (#1709) (Commit 7013fa79 by Felix Heller)
+    2022-02-02 [BUGFIX] Fix "section" attribute in link tags (#1708) (Commit f59f21db by Felix Heller)
+    2022-01-28 [BUGFIX] Fix notice in CategoryService (Commit ffd8c12a by Georg Ringer)
+    2022-01-26 [BUGFIX] Remove bogus line (Commit 31a241a5 by Georg Ringer)
+    2022-01-25 [TASK] Remove not needed template (Commit 6de45b36 by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

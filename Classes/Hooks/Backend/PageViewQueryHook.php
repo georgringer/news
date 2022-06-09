@@ -49,7 +49,7 @@ class PageViewQueryHook
             if (is_array($pageRecord)) {
                 $tsConfig = BackendUtility::getPagesTSconfig($pageId);
 
-                if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
+                if ((int)($tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] ?? 0)  === 1) {
                     return;
                 }
 
@@ -72,10 +72,8 @@ class PageViewQueryHook
      * Render flash message to inform user
      * that no elements belonging to news articles
      * are rendered in the page module
-     *
-     * @return void
      */
-    private function addFlashMessage(): void
+    protected function addFlashMessage(): void
     {
         $message = GeneralUtility::makeInstance(
             FlashMessage::class,
@@ -88,9 +86,6 @@ class PageViewQueryHook
         $defaultFlashMessageQueue->enqueue($message);
     }
 
-    /**
-     * @return LanguageService
-     */
     protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];

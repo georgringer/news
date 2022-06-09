@@ -46,11 +46,11 @@ $boot = static function (): void {
     ];
 
     // Hide content elements in list module & filter in administration module
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery'][]
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery']['ext:news']
         = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
 
     // Hide content elements in page module
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Backend\View\PageLayoutView::class]['modifyQuery'][] = \GeorgRinger\News\Hooks\Backend\PageViewQueryHook::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Backend\View\PageLayoutView::class]['modifyQuery']['ext:news'] = \GeorgRinger\News\Hooks\Backend\PageViewQueryHook::class;
 
     // Inline records hook
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] =
@@ -108,7 +108,7 @@ $boot = static function (): void {
     if (class_exists(\GeorgRinger\News\Utility\ClassLoader::class)) {
         \GeorgRinger\News\Utility\ClassLoader::registerAutoloader();
     }
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc'][] =
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['ext:news'] =
         \GeorgRinger\News\Utility\ClassCacheManager::class . '->reBuild';
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = [
@@ -131,6 +131,7 @@ $boot = static function (): void {
             'ext-news-paypal' => 'donation_paypal.svg',
             'ext-news-patreon' => 'donation_patreon.svg',
             'ext-news-amazon' => 'donation_amazon.svg',
+            'ext-news-doublecheck' => 'double_check.svg',
         ];
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         foreach ($icons as $identifier => $path) {
@@ -144,15 +145,12 @@ $boot = static function (): void {
         }
     }
 
-    // Slug helpers
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['realurlAliasNewsSlug']
-        = \GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater::class; // Recommended before 'newsSlug'
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['newsSlug']
-        = \GeorgRinger\News\Updates\NewsSlugUpdater::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sysCategorySlugs']
-        = \GeorgRinger\News\Updates\PopulateCategorySlugs::class;
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsTagSlugs']
-        = \GeorgRinger\News\Updates\PopulateTagSlugs::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['realurlAliasNewsSlug'] = \GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater::class; // Recommended before 'newsSlug'
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['newsSlug'] = \GeorgRinger\News\Updates\NewsSlugUpdater::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sysCategorySlugs'] = \GeorgRinger\News\Updates\PopulateCategorySlugs::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsTagSlugs'] = \GeorgRinger\News\Updates\PopulateTagSlugs::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsRelatedLinkIntegerDefault'] = \GeorgRinger\News\Updates\RelatedLinkIntegerDefault::class;
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsTitleFieldDefault'] = \GeorgRinger\News\Updates\TitleFieldDefault::class;
 
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1552726986] = [
         'nodeName' => 'NewsStaticText',

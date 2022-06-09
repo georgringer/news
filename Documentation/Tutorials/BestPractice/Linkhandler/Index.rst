@@ -20,7 +20,7 @@ PageTsConfig is used to configure the link browser in the backend.
 
 .. code-block:: typoscript
 
-   # tx_news is an identifier, don't chage it after links have been created
+   # tx_news is an identifier, don't change it after links have been created
    TCEMAIN.linkHandler.tx_news {
       handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
       # A translatable label can be used with LLL:EXT:theme/locallang.xml:label
@@ -49,7 +49,29 @@ By using TypoScript, the link is transformed into an actual link.
          # Detail page
          parameter = 123
          additionalParams.data = field:uid
-         # If there is a plugin with mode "Detail", the controller and action parameter might be skipped
          additionalParams.wrap = &tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=|
       }
    }
+
+
+Dynamic target page from category field single_pid
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if the detail page is provided by the category, the following code can be used to retrieve the target page:
+
+.. code-block:: typoscript
+
+    config.recordLinks.tx_news {
+        typolink {
+            # Detail page
+            parameter.cObject = USER
+            parameter.cObject {
+                userFunc = GeorgRinger\News\Service\LinkHandlerTargetPageService->process
+                news.data = field:uid
+                # Page used if no detail page is set in the category
+                fallback = 123
+            }
+            additionalParams.data = field:uid
+            additionalParams.wrap = &tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[news]=|
+        }
+    }

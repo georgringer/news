@@ -347,9 +347,9 @@ class News extends AbstractEntity
     /**
      * Get datetime
      *
-     * @return DateTime
+     * @return null|DateTime
      */
-    public function getDatetime(): DateTime
+    public function getDatetime(): ?DateTime
     {
         return $this->datetime;
     }
@@ -592,7 +592,7 @@ class News extends AbstractEntity
         if ($items) {
             $items = $items->toArray();
             usort($items, function ($a, $b) {
-                return $a->getDatetime() < $b->getDatetime();
+                return $b->getDatetime() <=> $a->getDatetime();
             });
         }
         return $items;
@@ -619,7 +619,7 @@ class News extends AbstractEntity
 
         if (count($all) > 0) {
             usort($all, function ($a, $b) {
-                return $a->getDatetime() < $b->getDatetime();
+                return $b->getDatetime() <=> $a->getDatetime();
             });
         }
         return $all;
@@ -636,7 +636,7 @@ class News extends AbstractEntity
         if ($items) {
             $items = $items->toArray();
             usort($items, function ($a, $b) {
-                return $a->getDatetime() < $b->getDatetime();
+                return $b->getDatetime() <=> $a->getDatetime();
             });
         }
         return $items;
@@ -1387,9 +1387,9 @@ class News extends AbstractEntity
     /**
      * Get start time
      *
-     * @return DateTime
+     * @return null|DateTime
      */
-    public function getStarttime(): DateTime
+    public function getStarttime(): ?DateTime
     {
         return $this->starttime;
     }
@@ -1448,9 +1448,9 @@ class News extends AbstractEntity
     /**
      * Get endtime
      *
-     * @return DateTime
+     * @return null|DateTime
      */
-    public function getEndtime(): DateTime
+    public function getEndtime(): ?DateTime
     {
         return $this->endtime;
     }
@@ -1657,7 +1657,7 @@ class News extends AbstractEntity
         if ($items) {
             $items = $items->toArray();
             usort($items, function ($a, $b) {
-                return $a->getSortingForeign() < $b->getSortingForeign();
+                return $b->getSortingForeign() <=> $a->getSortingForeign();
             });
         }
         return $items;
