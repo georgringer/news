@@ -507,66 +507,17 @@ $tx_news_domain_model_news = [
             'exclude' => true,
             'label' => $ll . 'tx_news_domain_model_news.tags',
             'config' => [
-                'type' => 'group',
-                'internal_type' => 'db',
-                'allowed' => 'tx_news_domain_model_tag',
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
                 'MM' => 'tx_news_domain_model_news_tag_mm',
                 'foreign_table' => 'tx_news_domain_model_tag',
                 'foreign_table_where' => ' AND (tx_news_domain_model_tag.sys_language_uid IN (-1,0) OR tx_news_domain_model_tag.l10n_parent = 0) ORDER BY tx_news_domain_model_tag.title',
-
                 'size' => 10,
-                'minitems' => 0,
                 'maxitems' => 99,
-
-                'fieldInformation' => [
-                    'tagInformation' => [
-                        'renderType' => 'NewsStaticText',
-                        'options' => [
-                            'labels' => [
-                                [
-                                    'label' => '',
-                                    'bold' => true,
-                                    'italic' => true,
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
                 'suggestOptions' => [
                     'default' => [
                         'minimumCharacters' => 2,
                         'searchWholePhrase' => true,
-                        'receiverClass' => \GeorgRinger\News\Backend\Wizard\SuggestWizardReceiver::class
-                    ],
-                ],
-                'fieldControl' => [
-                    'editPopup' => [
-                        'disabled' => false,
-                        'options' => [
-                            'type' => 'popup',
-                            'title' => $ll . 'tx_news_domain_model_news.tags.edit',
-                            'module' => [
-                                'name' => 'wizard_edit',
-                            ],
-                            'popup_onlyOpenIfSelected' => true,
-                            'icon' => 'actions-open',
-                            'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-                        ],
-                    ],
-                    'listModule' => [
-                        'disabled' => false,
-                        'options' => [
-                            'type' => 'script',
-                            'title' => $ll . 'tx_news_domain_model_news.tags.list',
-                            'icon' => 'actions-system-list-open',
-                            'params' => [
-                                'table' => 'tx_news_domain_model_tag',
-                                'pid' => $configuration->getTagPid(),
-                            ],
-                            'module' => [
-                                'name' => 'wizard_list',
-                            ],
-                        ],
                     ],
                 ],
                 'behaviour' => [
