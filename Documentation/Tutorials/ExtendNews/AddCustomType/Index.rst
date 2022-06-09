@@ -46,9 +46,7 @@ Therefore, create the file `Configuration/TCA/Overrides/tx_news_domain_model_new
 .. code-block:: php
 
   <?php
-    if (!defined('TYPO3_MODE')) {
-      die ('Access denied.');
-    }
+    defined('TYPO3_MODE') or die();
 
     $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['config']['items']['3'] =
       ['myCustomNewsType', 3] ;

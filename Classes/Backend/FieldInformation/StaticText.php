@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GeorgRinger\News\Backend\FormDataProvider;
+namespace GeorgRinger\News\Backend\FieldInformation;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -10,8 +10,6 @@ namespace GeorgRinger\News\Backend\FormDataProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
-namespace GeorgRinger\News\Backend\FieldInformation;
 
 use TYPO3\CMS\Backend\Form\AbstractNode;
 use TYPO3\CMS\Core\Localization\LanguageService;
