@@ -3,7 +3,9 @@
 namespace GeorgRinger\News\Utility;
 
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Event\ModifyCacheTagsFromDemandEvent;
+use GeorgRinger\News\Event\ModifyCacheTagsFromNewsEvent;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
@@ -57,7 +59,7 @@ class Cache
      * Following cache tags will be added to tsfe:
      * "tx_news_uid_[news:uid]"
      *
-     * @param array|\TYPO3\CMS\Extbase\Persistence\QueryResult $newsRecords with news records
+     * @param News[]|\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $newsRecords with news records
      *
      * @return void
      */
@@ -66,10 +68,14 @@ class Cache
         $cacheTags = [];
         foreach ($newsRecords as $news) {
             // cache tag for each news record
-            $cacheTags[] = 'tx_news_uid_' . $news->getUid();
-
+            $cacheTagsOfNews = ['tx_news_uid_' . $news->getUid()];
             if ($news->_getProperty('_localizedUid')) {
-                $cacheTags[] = 'tx_news_uid_' . $news->_getProperty('_localizedUid');
+                $cacheTagsOfNews[] = 'tx_news_uid_' . $news->_getProperty('_localizedUid');
+            }
+            $event = new ModifyCacheTagsFromNewsEvent($cacheTagsOfNews, $news);
+            GeneralUtility::makeInstance(EventDispatcher::class)->dispatch($event);
+            foreach ($event->getCacheTags() as $cacheTag) {
+                $cacheTags[] = $cacheTag;
             }
         }
         if (count($cacheTags) > 0) {
