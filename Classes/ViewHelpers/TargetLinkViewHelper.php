@@ -56,7 +56,7 @@ class TargetLinkViewHelper extends AbstractViewHelper
             return $params[1];
         }
 
-        if ($arguments['forceBlankForExternal'] && (str_starts_with($params[0], 'https://') || str_starts_with($params[0], 'http://'))) {
+        if (($arguments['forceBlankForExternal'] ?? true) && (str_starts_with($params[0], 'https://') || str_starts_with($params[0], 'http://'))) {
             return '_blank';
         }
 
