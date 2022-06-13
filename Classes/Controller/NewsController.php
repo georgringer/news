@@ -279,7 +279,7 @@ class NewsController extends NewsBaseController
             }
         }
 
-        $event = $this->eventDispatcher->dispatch(new NewsListActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsListActionEvent($this, $assignedValues, $this->request));
         $this->view->assignMultiple($event->getAssignedValues());
 
         Cache::addPageCacheTagsByDemandObject($demand);
@@ -342,7 +342,7 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsListSelectedActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsListSelectedActionEvent($this, $assignedValues, $this->request));
         $this->view->assignMultiple($event->getAssignedValues());
 
         if (!empty($newsRecords) && is_a($newsRecords[0], News::class)) {
@@ -390,7 +390,7 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsDetailActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsDetailActionEvent($this, $assignedValues, $this->request));
         $assignedValues = $event->getAssignedValues();
 
         $news = $assignedValues['newsItem'];
@@ -440,7 +440,7 @@ class NewsController extends NewsBaseController
             true
         );
         if (count($allowedStoragePages) > 0 && !in_array($news->getPid(), $allowedStoragePages)) {
-            $this->eventDispatcher->dispatch(new NewsCheckPidOfNewsRecordFailedInDetailActionEvent($this, $news));
+            $this->eventDispatcher->dispatch(new NewsCheckPidOfNewsRecordFailedInDetailActionEvent($this, $news, $this->request));
             $news = null;
         }
         return $news;
@@ -507,7 +507,7 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsDateMenuActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsDateMenuActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
     }
@@ -543,7 +543,7 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsSearchFormActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsSearchFormActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
     }
@@ -598,7 +598,7 @@ class NewsController extends NewsBaseController
             ]
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsSearchResultActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsSearchResultActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
     }

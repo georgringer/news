@@ -44,7 +44,7 @@ class CategoryController extends NewsController
             'demand' => $demand,
         ];
 
-        $event = $this->eventDispatcher->dispatch(new CategoryListActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new CategoryListActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
     }
