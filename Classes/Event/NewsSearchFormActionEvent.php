@@ -26,7 +26,7 @@ final class NewsSearchFormActionEvent
     /** @var Request */
     private $request;
 
-    public function __construct(NewsController $newsController, array $assignedValues, Request  $request)
+    public function __construct(NewsController $newsController, array $assignedValues, Request $request)
     {
         $this->newsController = $newsController;
         $this->assignedValues = $assignedValues;
