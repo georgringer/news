@@ -243,13 +243,7 @@ class NewsController extends NewsBaseController
         $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
         $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
         $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
-        if (class_exists(NumberedPagination::class) && $paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
-            $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
-        } elseif (class_exists($paginationClass)) {
-            $pagination = GeneralUtility::makeInstance($paginationClass, $paginator);
-        } else {
-            $pagination = GeneralUtility::makeInstance(SimplePagination::class, $paginator);
-        }
+        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
 
         $assignedValues = [
             'news' => $newsRecords,
@@ -580,13 +574,28 @@ class NewsController extends NewsBaseController
         }
 
         $demand->setSearch($search);
+        $newsRecords = $this->newsRepository->findDemanded($demand);
+
+        $paginationConfiguration = $this->settings['search']['paginate'] ?? [];
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
+        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
+
+        $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
+        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
+        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
+        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
 
         $assignedValues = [
-            'news' => $this->newsRepository->findDemanded($demand),
+            'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
             'search' => $search,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
+            'pagination' => [
+                'currentPage' => $currentPage,
+                'paginator' => $paginator,
+                'pagination' => $pagination,
+            ]
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsSearchResultActionEvent($this, $assignedValues));
@@ -700,5 +709,23 @@ class NewsController extends NewsBaseController
     public function setView(TemplateView $view): void
     {
         $this->view = $view;
+    }
+
+    /**
+     * @param $paginationClass
+     * @param int $maximumNumberOfLinks
+     * @param $paginator
+     * @return \#o#Э#A#M#C\GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
+     */
+    protected function getPagination($paginationClass, int $maximumNumberOfLinks, $paginator)
+    {
+        if (class_exists(NumberedPagination::class) && $paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
+            $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
+        } elseif (class_exists($paginationClass)) {
+            $pagination = GeneralUtility::makeInstance($paginationClass, $paginator);
+        } else {
+            $pagination = GeneralUtility::makeInstance(SimplePagination::class, $paginator);
+        }
+        return $pagination;
     }
 }
