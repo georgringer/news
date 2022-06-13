@@ -3,6 +3,7 @@
 namespace GeorgRinger\News\Event;
 
 use GeorgRinger\News\Controller\CategoryController;
+use TYPO3\CMS\Extbase\Mvc\Request;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -22,10 +23,14 @@ final class CategoryListActionEvent
      */
     private $assignedValues;
 
-    public function __construct(CategoryController $categoryController, array $assignedValues)
+    /** @var Request */
+    private $request;
+
+    public function __construct(CategoryController $categoryController, array $assignedValues, Request $request)
     {
         $this->categoryController = $categoryController;
         $this->assignedValues = $assignedValues;
+        $this->request = $request;
     }
 
     /**
@@ -62,5 +67,10 @@ final class CategoryListActionEvent
         $this->assignedValues = $assignedValues;
 
         return $this;
+    }
+
+    public function getRequest(): Request
+    {
+        return $this->request;
     }
 }
