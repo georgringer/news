@@ -21,19 +21,19 @@ $boot = static function (): void {
         \GeorgRinger\News\Hooks\PageLayoutView::class . '->getExtensionSummary';
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['news_clearcache'] =
-        \GeorgRinger\News\Hooks\DataHandler::class . '->clearCachePostProc';
+        \GeorgRinger\News\Hooks\DataHandlerHook::class . '->clearCachePostProc';
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['moveRecordClass']['news_clearcache'] =
-        \GeorgRinger\News\Hooks\DataHandler::class;
+        \GeorgRinger\News\Hooks\DataHandlerHook::class;
 
     // Edit restriction for news records
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass']['news'] =
-        \GeorgRinger\News\Hooks\DataHandler::class;
+        \GeorgRinger\News\Hooks\DataHandlerHook::class;
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['news'] =
-        \GeorgRinger\News\Hooks\DataHandler::class;
+        \GeorgRinger\News\Hooks\DataHandlerHook::class;
 
     // Modify flexform values
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing']['news']
-        = \GeorgRinger\News\Hooks\BackendUtility::class;
+        = \GeorgRinger\News\Hooks\FlexformHook::class;
 
     // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
