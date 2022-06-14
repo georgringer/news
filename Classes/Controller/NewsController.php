@@ -58,11 +58,6 @@ class NewsController extends NewsBaseController
      */
     protected $tagRepository;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-     */
-    protected $configurationManager;
-
     /** @var array */
     protected $ignoredSettingsForOverride = ['demandclass', 'orderbyallowed', 'selectedList'];
 
@@ -78,18 +73,15 @@ class NewsController extends NewsBaseController
      * @param NewsRepository $newsRepository
      * @param CategoryRepository $categoryRepository
      * @param TagRepository $tagRepository
-     * @param ConfigurationManagerInterface $configurationManager
      */
     public function __construct(
         NewsRepository $newsRepository,
         CategoryRepository $categoryRepository,
-        TagRepository $tagRepository,
-        ConfigurationManagerInterface $configurationManager
+        TagRepository $tagRepository
     ) {
         $this->newsRepository = $newsRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
-        $this->configurationManager = $configurationManager;
     }
 
     /**

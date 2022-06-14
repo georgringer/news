@@ -28,7 +28,6 @@ use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
@@ -55,9 +54,6 @@ class AdministrationController extends NewsController
      * @var \GeorgRinger\News\Domain\Repository\AdministrationRepository
      */
     protected $administrationRepository;
-
-    /** @var ConfigurationManagerInterface */
-    protected $configurationManager;
 
     /** @var array */
     protected $pageInformation = [];
@@ -90,7 +86,6 @@ class AdministrationController extends NewsController
      * @param NewsRepository $newsRepository
      * @param CategoryRepository $categoryRepository
      * @param TagRepository $tagRepository
-     * @param ConfigurationManagerInterface $configurationManager
      * @param AdministrationRepository $administrationRepository
      * @param AdministrationRepository $iconFactory
      */
@@ -98,11 +93,10 @@ class AdministrationController extends NewsController
         NewsRepository $newsRepository,
         CategoryRepository $categoryRepository,
         TagRepository $tagRepository,
-        ConfigurationManagerInterface $configurationManager,
         AdministrationRepository $administrationRepository,
         IconFactory $iconFactory
     ) {
-        parent::__construct($newsRepository, $categoryRepository, $tagRepository, $configurationManager);
+        parent::__construct($newsRepository, $categoryRepository, $tagRepository);
         $this->administrationRepository = $administrationRepository;
         $this->iconFactory = $iconFactory;
     }
