@@ -722,11 +722,14 @@ class NewsController extends NewsBaseController
         $this->view = $view;
     }
 
+    /**
+     * Set for the NewsInitializeActionEvent
+     */
     public function getView(): ViewInterface
     {
         return $this->view;
     }
-  
+
     /**
      * @param $paginationClass
      * @param int $maximumNumberOfLinks
