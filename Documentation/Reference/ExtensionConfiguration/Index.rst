@@ -181,6 +181,21 @@ Disable required date field `dateTimeNotRequired`
    Be aware that using this feature may lead to unexpected results if using
    e.g. the date menu if the field is not used anymore.
 
+.. _extensionConfigurationMediaPreview:
+
+Show thumbnails in backend list module `mediaPreview`
+------------------------------------------------------
+
+.. confval:: mediaPreview
+
+   :type: bool
+   :Default: false
+
+   If enabled, the list module will show thumbnails of the media items.
+
+   This setting is only evaluated for TYPO3 10 as it has been removed for version 11. Use the extension `studiomitte/recordlist-thumbnail` to get it back in v11.
+
+
 .. _extensionConfigurationAdvancedMediaPreview:
 
 Advanced preview configuration for media files `advancedMediaPreview`

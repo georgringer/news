@@ -111,7 +111,10 @@ To enable the category detail page handling, checkout the setting :typoscript:`u
 
 .. code-block:: typoscript
 
-   plugin.tx_seo {
+ plugin.tx_seo {
+       ## enable next line to generate a Google News sitemap
+       # view.templateRootPaths.191 = EXT:news/Resources/Private/Templates/News/
+
        config {
            xmlSitemap {
                sitemaps {
@@ -121,15 +124,15 @@ To enable the category detail page handling, checkout the setting :typoscript:`u
                            excludedTypes = 1,2
                            additionalWhere =
                            ## enable these two lines to generate a Google News sitemap
-                           # template = EXT:news/Resources/Private/Templates/News/GoogleNews.xml
+                           # template = GoogleNews
                            # googleNews = 1
 
                            sortField = datetime
                            lastModifiedField = tstamp
-                           pid = 84
+                           pid = 218
                            recursive = 2
                            url {
-                               pageId = 116
+                               pageId = 10
                                useCategorySinglePid = 1
 
                                hrDate = 0

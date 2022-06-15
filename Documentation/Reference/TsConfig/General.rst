@@ -64,6 +64,34 @@ template layout to a specific list of colPos values.
       4.allowedColPos = 0,1
    }
 
+.. _tsconfigSlugPrefix:
+
+slugPrefix
+==========
+
+.. confval:: slugPrefix
+
+   :type: string
+   :Path: tx_news
+
+   Configure the prefix shown before the slug field of the news record.
+   The following options are available:
+
+      - `none`: No prefix is shown
+      - `default`: Default behaviour of the slug prefix which is the domain
+      - An integer: URL to the detail page
+
+Example: Show url to a detail page
+----------------------------------
+
+The shown prefix will be a link to the provided detail page (uid 123).
+
+.. code-block:: typoscript
+
+   # Example:
+   tx_news.slugPrefix = 123
+
+
 .. _tsconfigArchive:
 
 archive

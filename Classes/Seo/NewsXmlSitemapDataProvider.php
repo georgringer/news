@@ -26,6 +26,12 @@ use TYPO3\CMS\Seo\XmlSitemap\Exception\MissingConfigurationException;
  */
 class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 {
+    /**
+     * The number of all elements
+     *
+     * @var int
+     */
+    protected $itemCount = 0;
 
     /**
      * @param ServerRequestInterface $request
@@ -114,6 +120,18 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             );
         }
 
+        // Count all items
+        $queryBuilder->count('*');
+        $this->itemCount = $queryBuilder->execute()->fetchColumn(0);
+
+        // Select only the right range
+        $queryBuilder->select('*');
+        $pageNumber = (int) ($this->request->getQueryParams()['page'] ?? 0);
+        $page = $pageNumber > 0 ? $pageNumber : 0;
+        $queryBuilder
+            ->setFirstResult($page * $this->numberOfItemsPerPage)
+            ->setMaxResults($this->numberOfItemsPerPage);
+
         $rows = $queryBuilder->orderBy($sortField, $forGoogleNews ? 'DESC' : 'ASC')
             ->execute()
             ->fetchAll();
@@ -125,6 +143,26 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 'priority' => 0.5
             ];
         }
+    }
+
+    /**
+     * Get the current items
+     *
+     * @return array
+     */
+    public function getItems(): array
+    {
+        return array_map([$this, 'defineUrl'], $this->items);
+    }
+
+    /**
+     * Get the number of pages
+     *
+     * @return int
+     */
+    public function getNumberOfPages(): int
+    {
+        return (int) ceil($this->itemCount / $this->numberOfItemsPerPage);
     }
 
     /**

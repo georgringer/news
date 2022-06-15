@@ -8,10 +8,10 @@ namespace GeorgRinger\News\ViewHelpers;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to get the target out of the typolink
@@ -25,7 +25,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
  * A link to the page with uid 123 and target set to "_blank"
  * </output>
  */
-class TargetLinkViewHelper extends AbstractViewHelper implements ViewHelperInterface
+class TargetLinkViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 
@@ -36,6 +36,7 @@ class TargetLinkViewHelper extends AbstractViewHelper implements ViewHelperInter
     {
         parent::initializeArguments();
         $this->registerArgument('link', 'string', 'Link', true);
+        $this->registerArgument('forceBlankForExternal', 'bool', 'Force blank for external links', false, true);
     }
 
     /**
@@ -46,16 +47,17 @@ class TargetLinkViewHelper extends AbstractViewHelper implements ViewHelperInter
      * @param RenderingContextInterface $renderingContext
      * @return mixed
      */
-    public static function renderStatic(
-        array $arguments,
-        \Closure $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    ) {
+    public static function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
+    {
         $params = explode(' ', $arguments['link']);
 
         // The target is on the 2nd place and must start with a '_'
         if (count($params) >= 2 && substr($params[1], 0, 1) === '_') {
             return $params[1];
+        }
+
+        if (($arguments['forceBlankForExternal'] ?? true) && (str_starts_with($params[0], 'https://') || str_starts_with($params[0], 'http://'))) {
+            return '_blank';
         }
 
         return '';

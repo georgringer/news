@@ -48,10 +48,8 @@ class ClassCacheManager
         }
     }
 
-    public function reBuildSimple()
+    public function reBuildSimple(bool $forceRebuild = false)
     {
-        $classPath = 'Classes/';
-
         if (!function_exists('token_get_all')) {
             throw new \Exception(('The function token_get_all must exist. Please install the module PHP Module Tokenizer'));
         }
@@ -61,7 +59,7 @@ class ClassCacheManager
         }
 
         $files = GeneralUtility::getFilesInDir(Environment::getVarPath() . '/cache/code/news/', 'php');
-        if (empty($files)) {
+        if (empty($files) && $forceRebuild) {
             $this->reBuild();
         }
     }
@@ -131,7 +129,7 @@ class ClassCacheManager
         if (!is_file($filePath)) {
             throw new \InvalidArgumentException(sprintf('File "%s" could not be found', $filePath));
         }
-        $code = GeneralUtility::getUrl($filePath);
+        $code = @file_get_contents($filePath);
 
         $classParser = GeneralUtility::makeInstance(ClassParser::class);
         $classParser->parse($filePath);

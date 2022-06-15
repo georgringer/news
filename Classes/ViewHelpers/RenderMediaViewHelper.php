@@ -58,6 +58,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $this->registerArgument('videoClass', 'string', 'wrap videos in a div with this class');
         $this->registerArgument('audioClass', 'string', 'wrap audio files in a div with this class');
         $this->registerArgument('fileIndex', 'int', 'index of image to start with', false, 0);
+        $this->registerArgument('cropVariant', 'string', 'select a cropping variant, in case multiple croppings have been specified or stored in FileReference', false, 'default');
     }
 
     /**

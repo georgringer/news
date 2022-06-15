@@ -4,6 +4,7 @@ namespace GeorgRinger\News\Event;
 
 use GeorgRinger\News\Controller\NewsController;
 use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Extbase\Mvc\Request;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -23,10 +24,14 @@ final class NewsCheckPidOfNewsRecordFailedInDetailActionEvent
      */
     private $news;
 
-    public function __construct(NewsController $newsController, News $news)
+    /** @var Request */
+    private $request;
+
+    public function __construct(NewsController $newsController, News $news, Request $request)
     {
         $this->newsController = $newsController;
         $this->news = $news;
+        $this->request = $request;
     }
 
     /**
@@ -63,5 +68,13 @@ final class NewsCheckPidOfNewsRecordFailedInDetailActionEvent
         $this->news = $news;
 
         return $this;
+    }
+
+    /**
+     * @return Request
+     */
+    public function getRequest(): Request
+    {
+        return $this->request;
     }
 }

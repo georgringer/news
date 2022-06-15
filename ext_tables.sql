@@ -201,13 +201,6 @@ CREATE TABLE tx_news_domain_model_news_tag_mm (
 );
 
 #
-# Table structure for table 'be_users'
-#
-CREATE TABLE be_users (
-	tx_news_categorymounts varchar(255) DEFAULT '' NOT NULL,
-);
-
-#
 # Table structure for table 'tt_content'
 #
 CREATE TABLE tt_content (
