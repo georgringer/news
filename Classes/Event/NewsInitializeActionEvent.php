@@ -31,18 +31,11 @@ final class NewsInitializeActionEvent
         $this->action = $action;
     }
 
-    /**
-     * @return NewsController
-     */
     public function getNewsController(): NewsController
     {
         return $this->newsController;
     }
 
-    /**
-     * @param NewsController $newsController
-     * @return $this
-     */
     public function setNewsController(NewsController $newsController): self
     {
         $this->newsController = $newsController;
@@ -50,18 +43,11 @@ final class NewsInitializeActionEvent
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDefaultViewObjectName(): string
     {
         return $this->defaultViewObjectName;
     }
 
-    /**
-     * @param string $defaultViewObjectName
-     * @return NewsInitializeActionEvent
-     */
     public function setDefaultViewObjectName(string $defaultViewObjectName): self
     {
         $this->defaultViewObjectName = $defaultViewObjectName;
@@ -69,18 +55,11 @@ final class NewsInitializeActionEvent
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getAction(): string
     {
         return $this->action;
     }
 
-    /**
-     * @param string $action
-     * @return NewsInitializeActionEvent
-     */
     public function setAction(string $action): self
     {
         $this->action = $action;
