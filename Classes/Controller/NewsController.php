@@ -240,7 +240,7 @@ class NewsController extends NewsBaseController
         $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
-        $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
+        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
         $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
         $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
         $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
@@ -580,7 +580,7 @@ class NewsController extends NewsBaseController
         $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
-        $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
+        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
         $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
         $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
         $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
