@@ -13,9 +13,15 @@
 					<div class="alert alert-success">
 						<f:translate key="search-text" arguments="{0:'{f:count(subject:news)}',1:search.subject}" />
 					</div>
-					<f:for each="{news}" as="newsItem">
+					<f:if condition="{settings.search.paginate.insertAbove}">
+						<f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+					</f:if>
+					<f:for each="{pagination.paginator.paginatedItems}" as="newsItem" iteration="iterator">
 						<f:render partial="List/Item" arguments="{newsItem: newsItem, settings:settings, className:className, view:'list'}" />
 					</f:for>
+					<f:if condition="{settings.search.paginate.insertBelow}">
+						<f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+					</f:if>
 				</f:then>
 				<f:else>
 					<div class="alert alert-info">

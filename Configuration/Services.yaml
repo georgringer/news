@@ -35,3 +35,10 @@ services:
 
   GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList:
     public: true
+
+  GeorgRinger\News\Command\ProxyClassRebuildCommand:
+    tags:
+      - name: 'console.command'
+        command: 'news:rebuildProxyClasses'
+        schedulable: false
+        description: 'Rebuild the proxy classes used to extend EXT:news'

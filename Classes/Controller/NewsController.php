@@ -240,16 +240,10 @@ class NewsController extends NewsBaseController
         $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
-        $currentPage = $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1;
+        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
         $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
         $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
-        if (class_exists(NumberedPagination::class) && $paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
-            $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
-        } elseif (class_exists($paginationClass)) {
-            $pagination = GeneralUtility::makeInstance($paginationClass, $paginator);
-        } else {
-            $pagination = GeneralUtility::makeInstance(SimplePagination::class, $paginator);
-        }
+        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
 
         $assignedValues = [
             'news' => $newsRecords,
@@ -285,7 +279,7 @@ class NewsController extends NewsBaseController
             }
         }
 
-        $event = $this->eventDispatcher->dispatch(new NewsListActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsListActionEvent($this, $assignedValues, $this->request));
         $this->view->assignMultiple($event->getAssignedValues());
 
         Cache::addPageCacheTagsByDemandObject($demand);
@@ -348,7 +342,7 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsListSelectedActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsListSelectedActionEvent($this, $assignedValues, $this->request));
         $this->view->assignMultiple($event->getAssignedValues());
 
         if (!empty($newsRecords) && is_a($newsRecords[0], News::class)) {
@@ -396,7 +390,7 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsDetailActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsDetailActionEvent($this, $assignedValues, $this->request));
         $assignedValues = $event->getAssignedValues();
 
         $news = $assignedValues['newsItem'];
@@ -410,6 +404,7 @@ class NewsController extends NewsBaseController
         if ($news !== null) {
             Page::setRegisterProperties($this->settings['detail']['registerProperties'] ?? false, $news);
             Cache::addCacheTagsByNewsRecords([$news]);
+            Cache::addCacheTagsByNewsRecords($news->getRelated()->toArray());
 
             if ($this->settings['detail']['pageTitle']['_typoScriptNodeValue'] ?? false) {
                 $providerConfiguration = $this->settings['detail']['pageTitle'] ?? [];
@@ -445,7 +440,7 @@ class NewsController extends NewsBaseController
             true
         );
         if (count($allowedStoragePages) > 0 && !in_array($news->getPid(), $allowedStoragePages)) {
-            $this->eventDispatcher->dispatch(new NewsCheckPidOfNewsRecordFailedInDetailActionEvent($this, $news));
+            $this->eventDispatcher->dispatch(new NewsCheckPidOfNewsRecordFailedInDetailActionEvent($this, $news, $this->request));
             $news = null;
         }
         return $news;
@@ -512,7 +507,7 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsDateMenuActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsDateMenuActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
     }
@@ -548,7 +543,7 @@ class NewsController extends NewsBaseController
             'settings' => $this->settings
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsSearchFormActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsSearchFormActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
     }
@@ -579,16 +574,31 @@ class NewsController extends NewsBaseController
         }
 
         $demand->setSearch($search);
+        $newsRecords = $this->newsRepository->findDemanded($demand);
+
+        $paginationConfiguration = $this->settings['search']['paginate'] ?? [];
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
+        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
+
+        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
+        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
+        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
+        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
 
         $assignedValues = [
-            'news' => $this->newsRepository->findDemanded($demand),
+            'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
             'search' => $search,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
+            'pagination' => [
+                'currentPage' => $currentPage,
+                'paginator' => $paginator,
+                'pagination' => $pagination,
+            ]
         ];
 
-        $event = $this->eventDispatcher->dispatch(new NewsSearchResultActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new NewsSearchResultActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
     }
@@ -699,5 +709,23 @@ class NewsController extends NewsBaseController
     public function setView(TemplateView $view): void
     {
         $this->view = $view;
+    }
+
+    /**
+     * @param $paginationClass
+     * @param int $maximumNumberOfLinks
+     * @param $paginator
+     * @return \#o#Э#A#M#C\GeorgRinger\News\Controller\NewsController.getPagination.0|NumberedPagination|mixed|\Psr\Log\LoggerAwareInterface|string|SimplePagination|\TYPO3\CMS\Core\SingletonInterface
+     */
+    protected function getPagination($paginationClass, int $maximumNumberOfLinks, $paginator)
+    {
+        if (class_exists(NumberedPagination::class) && $paginationClass === NumberedPagination::class && $maximumNumberOfLinks) {
+            $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
+        } elseif (class_exists($paginationClass)) {
+            $pagination = GeneralUtility::makeInstance($paginationClass, $paginator);
+        } else {
+            $pagination = GeneralUtility::makeInstance(SimplePagination::class, $paginator);
+        }
+        return $pagination;
     }
 }

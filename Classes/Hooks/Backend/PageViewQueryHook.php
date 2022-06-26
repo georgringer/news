@@ -72,10 +72,8 @@ class PageViewQueryHook
      * Render flash message to inform user
      * that no elements belonging to news articles
      * are rendered in the page module
-     *
-     * @return void
      */
-    private function addFlashMessage(): void
+    protected function addFlashMessage(): void
     {
         $message = GeneralUtility::makeInstance(
             FlashMessage::class,
@@ -88,9 +86,6 @@ class PageViewQueryHook
         $defaultFlashMessageQueue->enqueue($message);
     }
 
-    /**
-     * @return LanguageService
-     */
     protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];

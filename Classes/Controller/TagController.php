@@ -43,7 +43,7 @@ class TagController extends NewsController
             'demand' => $demand,
         ];
 
-        $event = $this->eventDispatcher->dispatch(new TagListActionEvent($this, $assignedValues));
+        $event = $this->eventDispatcher->dispatch(new TagListActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
     }

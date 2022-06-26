@@ -19,7 +19,7 @@ Connect to Event
 
 To connect to an event, you need to register an event listener in your custom
 extension. All what it needs is an entry in your
-:file:`Configuration\Services.yaml` file:
+:file:`Configuration/Services.yaml` file:
 
 .. code-block:: yaml
 
@@ -27,9 +27,9 @@ extension. All what it needs is an entry in your
      Vendor\Extension\EventListener\YourListener:
        tags:
          - name: event.listener
-      identifier: 'your-self-choosen-identifier'
-      method: 'methodToConnectToEvent'
-      event: GeorgRinger\News\Event\NewsListActionEvent
+           identifier: 'your-self-choosen-identifier'
+           method: 'methodToConnectToEvent'
+           event: GeorgRinger\News\Event\NewsListActionEvent
 
 Write your EventListener
 ------------------------
@@ -38,7 +38,7 @@ An example event listener can look like this:
 
 .. code-block:: php
 
-    <?php
+   <?php
 
    declare(strict_types=1);
 
@@ -56,11 +56,11 @@ An example event listener can look like this:
         */
        public function methodToConnectToEvent(NewsListActionEvent $event): void
        {
-      $values = $event->getAssignedValues();
+           $values = $event->getAssignedValues();
 
-      // Do some stuff
+           // Do some stuff
 
-      $event->setAssignedValues($values);
+           $event->setAssignedValues($values);
        }
    }
 

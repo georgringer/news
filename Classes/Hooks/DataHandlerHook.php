@@ -10,14 +10,16 @@ namespace GeorgRinger\News\Hooks;
  */
 use GeorgRinger\News\Service\AccessControlService;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Hook into tcemain which is used to show preview of news item
+ * Hook into DataHandler which is used to show preview of news item
  */
-class DataHandler implements SingletonInterface
+class DataHandlerHook implements SingletonInterface
 {
     protected $cacheTagsToFlush = [];
 
@@ -53,7 +55,7 @@ class DataHandler implements SingletonInterface
      * @param string $table table name
      * @param int $recordUid id of the record
      * @param array $fields fieldArray
-     * @param \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject parent Object
+     * @param DataHandler $parentObject parent Object
      *
      * @return void
      */
@@ -62,7 +64,7 @@ class DataHandler implements SingletonInterface
         $table,
         $recordUid,
         array $fields,
-        \TYPO3\CMS\Core\DataHandling\DataHandler $parentObject
+        DataHandler $parentObject
     ): void {
         // Clear category cache
         if ($table === 'sys_category') {
@@ -77,7 +79,7 @@ class DataHandler implements SingletonInterface
      * @param array $fieldArray
      * @param string $table
      * @param int $id
-     * @param $parentObject \TYPO3\CMS\Core\DataHandling\DataHandler
+     * @param $parentObject DataHandler
      *
      * @return void
      */
@@ -127,7 +129,7 @@ class DataHandler implements SingletonInterface
      * @param string $table
      * @param int $id
      * @param string $value
-     * @param $parentObject \TYPO3\CMS\Core\DataHandling\DataHandler
+     * @param $parentObject DataHandler
      *
      * @return void
      */
@@ -162,21 +164,16 @@ class DataHandler implements SingletonInterface
      * @param array $moveRec
      * @param int $resolvedPid
      * @param bool $recordWasMoved
-     * @param \TYPO3\CMS\Core\DataHandling\DataHandler $dataHandler
+     * @param DataHandler $dataHandler
      */
-    public function moveRecord($table, $uid, $destPid, $propArr, $moveRec, $resolvedPid, $recordWasMoved, \TYPO3\CMS\Core\DataHandling\DataHandler $dataHandler)
+    public function moveRecord($table, $uid, $destPid, $propArr, $moveRec, $resolvedPid, $recordWasMoved, DataHandler $dataHandler)
     {
         if ($table === 'tx_news_domain_model_news') {
             $this->cacheTagsToFlush[] = 'tx_news_pid_' . $moveRec['pid'];
         }
     }
 
-    /**
-     * Returns the current BE user.
-     *
-     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
-     */
-    protected function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+    protected function getBackendUser(): BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }
