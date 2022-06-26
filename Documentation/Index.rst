@@ -122,6 +122,17 @@ uses the latest technologies provided by TYPO3 CMS.
 
             There are various ways to get support for EXT:news!
 
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Addons <addons>`
+
+         .. container:: card-body
+
+            Various extensions improve EXT:news with additional features.
 .. Table of Contents
 
 .. toctree::
@@ -135,6 +146,7 @@ uses the latest technologies provided by TYPO3 CMS.
    Tutorials/Index
    Administration/Index
    Reference/Index
+   Addons/Index
 
 .. Meta Menu
 
