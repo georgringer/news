@@ -25,7 +25,7 @@
 
 	<div class="col-md-9 articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')}" itemscope="itemscope" itemtype="http://schema.org/Article">
 		<h3 itemprop="headline">
-			<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
+			<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" additionalAttributes="{itemprop:'url'}">
 				{newsItem.title}
 			</n:link>
 		</h3>
