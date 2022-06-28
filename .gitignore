@@ -7,3 +7,4 @@
 /Resources/Private/Templates/Styles/Twb/Templates/News/Month.html
 /out.txt
 /Tests/Build/.phpunit.result.cache
+.DS_Store
