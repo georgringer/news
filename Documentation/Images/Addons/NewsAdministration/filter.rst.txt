@@ -1,0 +1,5 @@
+
+.. figure:: /Images/Addons/NewsAdministration/filter.png
+   :class: with-shadow
+
+   Various filters makes it easy to find a certain article very fast
