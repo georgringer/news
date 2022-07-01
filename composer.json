@@ -32,6 +32,7 @@
     },
     "suggest": {
         "reelworx/rx-shariff": "GDPR compliant social sharing",
+        "georgringer/news-tagsuggest": "On the fly creation of tag records within a news record",
         "georgringer/numbered-pagination": "Improved pagination API"
     },
     "require-dev": {
