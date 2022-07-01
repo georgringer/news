@@ -1,6 +1,6 @@
 .. include:: /Includes.rst.txt
 
-.. _bewsAdministration:
+.. _newsAdministration:
 
 =======================
 EXT:news_administration

@@ -13,3 +13,4 @@ This sections describes extensions which extend EXT:news with additional feature
    :glob:
 
    NewsAdministration/Index
+   NewsTagsuggest/Index
