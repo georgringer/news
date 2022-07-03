@@ -1,6 +1,6 @@
 .. include:: /Includes.rst.txt
 
-.. _newsTagsuggest
+.. _newsTagsuggest:
 
 ===================
 EXT:news_tagsuggest

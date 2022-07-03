@@ -12,5 +12,8 @@ This sections describes extensions which extend EXT:news with additional feature
    :titlesonly:
    :glob:
 
+   NumberedNavigation/Index
    NewsAdministration/Index
    NewsTagsuggest/Index
+   NewsImporticsxml/Index
+   NewsFilter/Index
