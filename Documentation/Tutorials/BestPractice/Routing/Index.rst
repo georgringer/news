@@ -474,7 +474,6 @@ The following snippet is a good example how an URL can be generated propertly
 .. code-block:: php
    :caption: PHP Code
    :linenos:
-   :emphasize-lines: 6
 
    protected function generateUrl(SiteInterface $site, int $recordId, int $detailPageId): string
        {
