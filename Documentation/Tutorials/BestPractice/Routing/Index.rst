@@ -466,6 +466,32 @@ configuration of PHP function `date <http://www.php.net/date>`__.
    If you exceed this limit, you'll either have to build a custom and more
    specific mapper, or reduce the range in one of your :yaml:`StaticRangeMapper`.
 
+How to create URLs in PHP
+-------------------------
+
+The following snippet is a good example how an URL can be generated propertly
+
+.. code-block:: php
+   :caption: PHP Code
+   :linenos:
+   :emphasize-lines: 6
+
+   protected function generateUrl(SiteInterface $site, int $recordId, int $detailPageId): string
+       {
+           $additionalQueryParams = [
+               'tx_news_pi1' => [
+                   'action' => 'detail',
+                   'controller' => 'News',
+                   'news' => $recordId
+               ]
+           ];
+           return (string)$site->getRouter()->generateUri(
+               (string)$detailPageId,
+               $additionalQueryParams
+           );
+       }
+
+
 References
 ----------
 
