@@ -529,7 +529,7 @@ class News extends AbstractEntity
     /**
      * Set categories
      *
-     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories
+     * @param  ObjectStorage $categories
      *
      * @return void
      */
@@ -669,7 +669,7 @@ class News extends AbstractEntity
      *
      * @return null|ObjectStorage
      */
-    public function getFalRelatedFiles(): ObjectStorage
+    public function getFalRelatedFiles(): ?ObjectStorage
     {
         return $this->falRelatedFiles;
     }
@@ -677,9 +677,9 @@ class News extends AbstractEntity
     /**
      * Short method for getFalRelatedFiles
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return null|ObjectStorage
      */
-    public function getRelatedFiles(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getRelatedFiles(): ?ObjectStorage
     {
         return $this->getFalRelatedFiles();
     }
@@ -687,7 +687,7 @@ class News extends AbstractEntity
     /**
      * Set FAL related files
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $falRelatedFiles FAL related files
+     * @param ObjectStorage $falRelatedFiles FAL related files
      *
      * @return void
      */
