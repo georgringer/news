@@ -805,9 +805,9 @@ class News extends AbstractEntity
     /**
      * Get the Fal media items
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return null|ObjectStorage
      */
-    public function getFalMedia(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getFalMedia(): ?ObjectStorage
     {
         return $this->falMedia;
     }
@@ -815,9 +815,9 @@ class News extends AbstractEntity
     /**
      * Short method for getFalMedia()
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return null|ObjectStorage
      */
-    public function getMedia(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getMedia(): ?ObjectStorage
     {
         return $this->getFalMedia();
     }
