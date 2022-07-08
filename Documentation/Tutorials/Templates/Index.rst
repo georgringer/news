@@ -63,7 +63,7 @@ Templates
 
          .. rst-class:: card-header h3
 
-            .. rubric:: :ref:`Template Selector <tutorialExtendNews>`
+            .. rubric:: :ref:`Template Selector <templatesSelector>`
 
          .. container:: card-body
 
