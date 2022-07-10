@@ -134,7 +134,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
         $rows = $queryBuilder->orderBy($sortField, $forGoogleNews ? 'DESC' : 'ASC')
             ->execute()
-            ->fetchAll();
+            ->fetchAllAssociative();
 
         foreach ($rows as $row) {
             $this->items[] = [

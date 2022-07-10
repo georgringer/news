@@ -265,7 +265,7 @@ class ItemsProcFunc
                 ->from('sys_language')
                 ->orderBy('sorting')
                 ->execute()
-                ->fetchAll();
+                ->fetchAllAssociative();
         }
         $siteLanguages = [];
         foreach (GeneralUtility::makeInstance(SiteFinder::class)->getAllSites() as $site) {

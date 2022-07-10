@@ -203,7 +203,7 @@ class CategoryRepository extends AbstractDemandedRepository
                         $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($language, \PDO::PARAM_INT)),
                         $queryBuilder->expr()->in('l10n_parent', $queryBuilder->createNamedParameter($idList, Connection::PARAM_INT_ARRAY))
                     )
-                    ->execute()->fetchAll();
+                    ->execute()->fetchAllAssociative();
 
                 $idList = $this->replaceCategoryIds($idList, $rows);
             }
