@@ -122,7 +122,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
         // Count all items
         $queryBuilder->count('*');
-        $this->itemCount = $queryBuilder->execute()->fetchColumn(0);
+        $this->itemCount = $queryBuilder->execute()->fetchOne();
 
         // Select only the right range
         $queryBuilder->select('*');

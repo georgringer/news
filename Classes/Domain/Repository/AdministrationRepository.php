@@ -28,7 +28,7 @@ class AdministrationRepository
         $count['tx_news_domain_model_news'] = $queryBuilder
             ->count('*')
             ->from('tx_news_domain_model_news')
-            ->execute()->fetchColumn(0);
+            ->execute()->fetchOne();
 
         $queryBuilder = $this->getQueryBuilder('sys_category_record_mm');
         $count['category_relations'] = $queryBuilder
@@ -38,7 +38,7 @@ class AdministrationRepository
                 'tablenames',
                 $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)
             ))
-            ->execute()->fetchColumn(0);
+            ->execute()->fetchOne();
 
         if ($count['tx_news_domain_model_news'] > 0 && $count['category_relations']) {
             $count['_both'] = true;

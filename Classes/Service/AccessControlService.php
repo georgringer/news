@@ -108,7 +108,7 @@ class AccessControlService
                         $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR))
                     )
                     ->execute()
-                    ->fetchColumn(0);
+                    ->fetchOne();
                 if ($newsRecordCategoriesCount > 0) {
                     // take categories from localized version
                     $newsRecordUid = $newsRecord['uid'];

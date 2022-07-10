@@ -71,7 +71,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                 $queryBuilder->expr()->eq('tx_news_domain_model_tag.uid', $queryBuilder->createNamedParameter($arguments['tagUid'], \PDO::PARAM_INT))
             )
             ->execute()
-            ->fetchColumn(0);
+            ->fetchOne();
 
         return $count;
     }

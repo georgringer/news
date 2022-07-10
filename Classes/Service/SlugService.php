@@ -43,7 +43,7 @@ class SlugService
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
-            ->execute()->fetchColumn(0);
+            ->execute()->fetchOne();
 
         return $elementCount;
     }
@@ -98,12 +98,12 @@ class SlugService
     protected function getUniqueValue(int $uid, int $languageId, string $slug): string
     {
         $statement = $this->getUniqueCountStatement($uid, $languageId, $slug);
-        if ($statement->fetchColumn()) {
+        if ($statement->fetchOne()) {
             for ($counter = 1; $counter <= 100; $counter++) {
                 $newSlug = $slug . '-' . $counter;
                 $statement->bindValue(1, $newSlug);
                 $statement->execute();
-                if (!$statement->fetchColumn()) {
+                if (!$statement->fetchOne()) {
                     break;
                 }
             }
@@ -200,7 +200,7 @@ class SlugService
                         )
                     )
                 )
-                ->execute()->fetchColumn(0);
+                ->execute()->fetchOne();
         }
         return $elementCount;
     }

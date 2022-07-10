@@ -182,7 +182,7 @@ class PopulateCategorySlugs implements UpgradeWizardInterface
                 )
             )
             ->execute()
-            ->fetchColumn();
+            ->fetchOne();
         return $numberOfEntries > 0;
     }
 }
