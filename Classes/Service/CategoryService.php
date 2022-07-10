@@ -100,7 +100,7 @@ class CategoryService
             )
             ->execute();
 
-        while (($row = $res->fetch())) {
+        while (($row = $res->fetchAssociative())) {
             $counter++;
             if ($counter > 10000) {
                 GeneralUtility::makeInstance(TimeTracker::class)->setTSlogMessage('EXT:news: one or more recursive categories where found');
@@ -147,7 +147,7 @@ class CategoryService
                     $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($row['uid'], \PDO::PARAM_INT))
                 )
                 ->setMaxResults(1)
-                ->execute()->fetch();
+                ->execute()->fetchAssociative();
 
             if (is_array($overlayRecord) && !empty($overlayRecord)) {
                 $title = $overlayRecord['title'] . ' (' . $row['title'] . ')';

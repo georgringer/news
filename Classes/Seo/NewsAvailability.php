@@ -112,7 +112,7 @@ class NewsAvailability
             ->from('tx_news_domain_model_news')
             ->where(...$where)
             ->execute()
-            ->fetch();
+            ->fetchAssociative();
 
         return $row ?: null;
     }

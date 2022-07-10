@@ -401,7 +401,7 @@ class NewsRepository extends AbstractDemandedRepository
         $sql .= ' GROUP BY _Month, _Year ORDER BY _Year ' . $orderDirection . ', _Month ' . $orderDirection;
 
         $res = $connection->query($sql);
-        while ($row = $res->fetch()) {
+        while ($row = $res->fetchAssociative()) {
             $month = strlen($row['_Month']) === 1 ? ('0' . $row['_Month']) : $row['_Month'];
             $data['single'][$row['_Year']][$month] = $row['count_month'];
         }

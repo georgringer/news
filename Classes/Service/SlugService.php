@@ -69,7 +69,7 @@ class SlugService
                 )
             )
             ->execute();
-        while ($record = $statement->fetch()) {
+        while ($record = $statement->fetchAssociative()) {
             if ((string)$record['title'] !== '') {
                 $slug = $this->slugService->generate($record, $record['pid']);
                 /** @var QueryBuilder $queryBuilder */
@@ -284,7 +284,7 @@ class SlugService
                 ->execute();
 
             // Update entries
-            while ($record = $statement->fetch()) {
+            while ($record = $statement->fetchAssociative()) {
                 $slug = $this->slugService->sanitize((string)$record['value_alias']);
                 $queryBuilder = $connection->createQueryBuilder();
                 $queryBuilder->update('tx_news_domain_model_news')

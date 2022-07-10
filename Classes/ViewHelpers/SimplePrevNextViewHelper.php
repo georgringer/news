@@ -213,7 +213,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
                 ->andWhere(...$extraWhere)
                 ->setMaxResults(1)
                 ->orderBy($sortField, ($label === 'prev' ? 'desc' : 'asc'))
-                ->execute()->fetch();
+                ->execute()->fetchAssociative();
             if (is_array($row)) {
                 $data[$label] = $row;
             }
@@ -244,7 +244,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
             )
             ->setMaxResults(1)
-            ->execute()->fetch();
+            ->execute()->fetchAssociative();
         return $rawRecord;
     }
 }

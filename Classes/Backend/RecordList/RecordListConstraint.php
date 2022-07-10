@@ -250,7 +250,7 @@ class RecordListConstraint
             ->execute();
 
         $idList = [];
-        while ($row = $res->fetch()) {
+        while ($row = $res->fetchAssociative()) {
             $idList[] = $row['uid'];
         }
 

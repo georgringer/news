@@ -238,7 +238,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
             )
             ->setMaxResults(1)
-            ->execute()->fetch();
+            ->execute()->fetchAssociative();
         return (int)$categoryRecord['single_pid'];
     }
 
