@@ -673,6 +673,7 @@ class NewsController extends NewsBaseController
             $stdWrapProperties = GeneralUtility::trimExplode(',', $originalSettings['useStdWrap'], true);
             foreach ($stdWrapProperties as $key) {
                 if (is_array($typoScriptArray[$key . '.'])) {
+                    isset($typoScriptArray[$key]) ?: $typoScriptArray[$key] = '';
                     $originalSettings[$key] = $this->configurationManager->getContentObject()->stdWrap(
                         $typoScriptArray[$key],
                         $typoScriptArray[$key . '.']
