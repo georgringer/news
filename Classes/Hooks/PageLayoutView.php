@@ -157,9 +157,7 @@ class PageLayoutView
                 }
 
                 if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'] ?? []) {
-                    $params = [
-                        'action' => $actionTranslationKey
-                    ];
+                    $params['action'] = $actionTranslationKey;
                     foreach ($hooks as $reference) {
                         GeneralUtility::callUserFunction($reference, $params, $this);
                     }
