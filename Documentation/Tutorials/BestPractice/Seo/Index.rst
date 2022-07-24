@@ -70,7 +70,8 @@ The Core ships a basic sitemap configuration which can also be used for news rec
                    provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
                    config {
                        table = tx_news_domain_model_news
-                       additionalWhere =
+                       # exclude internal & external news
+                       additionalWhere = AND type NOT IN(1,2)
                        sortField = sorting
                        lastModifiedField = tstamp
                        changeFreqField = sitemap_changefreq
@@ -121,6 +122,7 @@ To enable the category detail page handling, checkout the setting :typoscript:`u
                    news {
                        provider = GeorgRinger\News\Seo\NewsXmlSitemapDataProvider
                        config {
+                           # exclude internal & external news
                            excludedTypes = 1,2
                            additionalWhere =
                            ## enable these two lines to generate a Google News sitemap
