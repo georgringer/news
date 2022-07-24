@@ -171,7 +171,8 @@ $boot = static function (): void {
                 'tx_news_pi1[overwriteDemand][year]',
                 'tx_news_pi1[overwriteDemand][month]',
                 'tx_news_pi1[overwriteDemand][day]'
-            ]);
+            ]
+        );
     }
 };
 
