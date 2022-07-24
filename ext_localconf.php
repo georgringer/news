@@ -160,6 +160,19 @@ $boot = static function (): void {
         }
     }
 '));
+
+    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('seo')) {
+        $GLOBALS['TYPO3_CONF_VARS']['FE']['additionalCanonicalizedUrlParameters'] = array_merge(
+            $GLOBALS['TYPO3_CONF_VARS']['FE']['additionalCanonicalizedUrlParameters'] ?? [],
+            [
+                'tx_news_pi1[news]',
+                'tx_news_pi1[overwriteDemand][tags]',
+                'tx_news_pi1[overwriteDemand][categories]',
+                'tx_news_pi1[overwriteDemand][year]',
+                'tx_news_pi1[overwriteDemand][month]',
+                'tx_news_pi1[overwriteDemand][day]'
+            ]);
+    }
 };
 
 $boot();
