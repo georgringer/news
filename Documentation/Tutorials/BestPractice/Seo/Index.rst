@@ -71,7 +71,7 @@ The Core ships a basic sitemap configuration which can also be used for news rec
                    config {
                        table = tx_news_domain_model_news
                        # exclude internal & external news
-                       additionalWhere = AND type NOT IN(1,2)
+                       additionalWhere = {#type} NOT IN(1,2)
                        sortField = sorting
                        lastModifiedField = tstamp
                        changeFreqField = sitemap_changefreq
