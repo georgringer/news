@@ -70,7 +70,7 @@ class ImageSizeViewHelper extends AbstractViewHelper
                     $value = $imagesOnPage[$usedImage][1];
                     break;
                 case 'size':
-                    $file = Environment::getPublicPath() . '/' . $usedImage;
+                    $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
                     if (is_file($file)) {
                         $value = @filesize($file);
                     }
