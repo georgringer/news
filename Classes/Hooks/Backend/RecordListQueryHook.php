@@ -64,7 +64,7 @@ class RecordListQueryHook
             }
         } elseif ($table === 'tx_news_domain_model_news' && $this->recordListConstraint->isInAdministrationModule()) {
             $vars = GeneralUtility::_GET('tx_news_web_newsadministration');
-            if (is_array($vars) && is_array($vars['demand'])) {
+            if (is_array($vars) && isset($vars['demand']) && is_array($vars['demand'])) {
                 $vars = $vars['demand'];
                 $this->recordListConstraint->extendQuery($parameters, $vars);
                 if (isset($parameters['orderBy'][0])) {
