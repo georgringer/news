@@ -130,10 +130,10 @@
 				<source>Include subcategories</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
-				<source>Time limit (LOW): higher than given time</source>
+				<source>Article date higher than:</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve">
-				<source>Time limit (HIGH): News less than given time</source>
+				<source>Article date lower than:</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve">
 				<source>Top News</source>
