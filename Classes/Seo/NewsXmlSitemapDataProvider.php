@@ -172,7 +172,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
     protected function defineUrl(array $data): array
     {
         $pageId = $this->config['url']['pageId'] ?? $GLOBALS['TSFE']->id;
-        if ($this->config['url']['useCategorySinglePid'] && $pageIdFromCategory = $this->getSinglePidFromCategory($data['data']['uid'])) {
+        if (isset($this->config['url']['useCategorySinglePid']) && $pageIdFromCategory = $this->getSinglePidFromCategory($data['data']['uid'])) {
             $pageId = $pageIdFromCategory;
         }
 
