@@ -130,7 +130,7 @@ class NewsAvailability
         $newsId = 0;
         /** @var PageArguments $pageArguments */
         $pageArguments = $this->getRequest()->getAttribute('routing');
-        if (isset($pageArguments->getRouteArguments()['tx_news_pi1']['news'])) {
+        if (isset($pageArguments, $pageArguments->getRouteArguments()['tx_news_pi1']['news'])) {
             $newsId = (int)$pageArguments->getRouteArguments()['tx_news_pi1']['news'];
         } elseif (isset($this->getRequest()->getQueryParams()['tx_news_pi1']['news'])) {
             $newsId = (int)$this->getRequest()->getQueryParams()['tx_news_pi1']['news'];
