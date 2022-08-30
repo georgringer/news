@@ -185,7 +185,10 @@ class NewsRepositoryTest extends FunctionalTestCase
         $demand = new NewsDemand();
         $demand->setStoragePage(9);
 
-        $GLOBALS['SIM_EXEC_TIME'] = strtotime('2014-04-03');
+        GeneralUtility::makeInstance(Context::class)->setAspect(
+            'date',
+            new DateTimeAspect(new \DateTimeImmutable('@' . strtotime('2014-04-03')))
+        );
 
         // get all news maximum 6 days old
         $demand->setTimeRestriction((6 * 86400));
