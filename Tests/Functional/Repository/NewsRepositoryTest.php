@@ -4,6 +4,9 @@ namespace GeorgRinger\News\Tests\Functional\Repository;
 
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\DateTimeAspect;
+use TYPO3\CMS\Core\Context\UserAspect;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -130,7 +133,10 @@ class NewsRepositoryTest extends FunctionalTestCase
      */
     public function findRecordsByArchiveRestriction(): void
     {
-        $GLOBALS['SIM_EXEC_TIME'] = 1396812099;
+        GeneralUtility::makeInstance(Context::class)->setAspect(
+            'date',
+            new DateTimeAspect(new \DateTimeImmutable('@1396812099'))
+        );
 
         $demand = new NewsDemand();
         $demand->setStoragePage(7);
