@@ -10,6 +10,8 @@ namespace GeorgRinger\News\Utility;
  */
 use DateTime;
 use Exception;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
 /**
@@ -28,7 +30,8 @@ class ConstraintHelper
         $timeLimit = 0;
         // integer = timestamp
         if (MathUtility::canBeInterpretedAsInteger($timeInput)) {
-            $timeLimit = $GLOBALS['SIM_EXEC_TIME'] - $timeInput;
+            $currentTimestamp = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
+            $timeLimit = (int)$currentTimestamp - $timeInput;
         } else {
             $timeByFormat = DateTime::createFromFormat('HH:mm DD-MM-YYYY', $timeInput);
             if ($timeByFormat) {
@@ -57,7 +60,8 @@ class ConstraintHelper
         $timeLimit = 0;
         // integer = timestamp
         if (MathUtility::canBeInterpretedAsInteger($timeInput)) {
-            $timeLimit = $GLOBALS['SIM_EXEC_TIME'] + $timeInput;
+            $currentTimestamp = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
+            $timeLimit = (int)$currentTimestamp + $timeInput;
             return $timeLimit;
         }
         // try to check strtotime

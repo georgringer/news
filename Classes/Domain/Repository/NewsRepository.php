@@ -14,6 +14,7 @@ use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -131,14 +132,15 @@ class NewsRepository extends AbstractDemandedRepository
         }
 
         // archived
+        $currentTimestamp = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
         if ($demand->getArchiveRestriction() === 'archived') {
             $constraints['archived'] = $query->logicalAnd(
-                $query->lessThan('archive', $GLOBALS['SIM_EXEC_TIME']),
+                $query->lessThan('archive', $currentTimestamp),
                 $query->greaterThan('archive', 0)
             );
         } elseif ($demand->getArchiveRestriction() === 'active') {
             $constraints['active'] = $query->logicalOr(
-                $query->greaterThanOrEqual('archive', $GLOBALS['SIM_EXEC_TIME']),
+                $query->greaterThanOrEqual('archive', $currentTimestamp),
                 $query->equals('archive', 0)
             );
         }

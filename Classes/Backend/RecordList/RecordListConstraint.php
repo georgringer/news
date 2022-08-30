@@ -10,6 +10,7 @@ namespace GeorgRinger\News\Backend\RecordList;
  */
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
@@ -79,7 +80,7 @@ class RecordListConstraint
         // archived (1==active, 2==archived)
         $archived = (int)$arguments['archived'];
         if ($archived > 0) {
-            $currentTime = $GLOBALS['EXEC_TIME'];
+            $currentTime = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
             if ($archived === 1) {
                 $parameters['where'][] = '(archive > ' . $currentTime . ' OR archive=0)';
                 $parameters['whereDoctrine'][] = $expressionBuilder->orX(

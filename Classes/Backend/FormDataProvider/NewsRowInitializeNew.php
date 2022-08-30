@@ -11,6 +11,7 @@ namespace GeorgRinger\News\Backend\FormDataProvider;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -53,7 +54,7 @@ class NewsRowInitializeNew implements FormDataProviderInterface
     protected function fillDateField(array $result): array
     {
         if ($this->emConfiguration->getDateTimeRequired()) {
-            $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
+            $result['databaseRow']['datetime'] = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
         }
 
         if (isset($result['pageTsConfig']['tx_news.']['predefine.'])
