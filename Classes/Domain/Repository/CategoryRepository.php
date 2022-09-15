@@ -174,6 +174,7 @@ class CategoryRepository extends AbstractDemandedRepository
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->setOrderings(['sorting' => QueryInterface::ORDER_ASCENDING]);
         return $query->matching(
             $query->logicalAnd(
                 $query->equals('parentcategory', (int)$parent)
