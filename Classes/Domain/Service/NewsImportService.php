@@ -11,6 +11,8 @@ use GeorgRinger\News\Domain\Repository\NewsRepository;
 use GeorgRinger\News\Domain\Repository\TtContentRepository;
 use GeorgRinger\News\Event\NewsImportPostHydrateEvent;
 use GeorgRinger\News\Event\NewsImportPreHydrateEvent;
+use GeorgRinger\News\Event\NewsPostImportEvent;
+use GeorgRinger\News\Event\NewsPreImportEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
@@ -300,6 +302,9 @@ class NewsImportService extends AbstractImportService
         $this->settings = $settings;
         $this->logger->info(sprintf('Starting import for %s news', count($importData)));
 
+        $preImportDataEvent = $this->eventDispatcher->dispatch(new NewsPreImportEvent($this, $importData));
+        $importData = $preImportDataEvent->getImportData();
+
         foreach ($importData as $importItem) {
             $event = $this->eventDispatcher->dispatch(new NewsImportPreHydrateEvent($this, $importItem));
             $importItem = $event->getImportItem();
@@ -326,6 +331,8 @@ class NewsImportService extends AbstractImportService
                 $this->importL10nOverlay($queueItem, $importItemOverwrite);
             }
         }
+
+        $this->eventDispatcher->dispatch(new NewsPostImportEvent($this, $importData));
 
         $this->persistenceManager->persistAll();
     }
