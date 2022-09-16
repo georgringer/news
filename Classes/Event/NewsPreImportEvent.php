@@ -14,14 +14,8 @@ use GeorgRinger\News\Domain\Service\NewsImportService;
  */
 final class NewsPreImportEvent
 {
-    /**
-     * @var NewsImportService
-     */
     private $newsImportService;
 
-    /**
-     * @var array
-     */
     private $importData;
 
     public function __construct(NewsImportService $newsImportService, array $importData)
