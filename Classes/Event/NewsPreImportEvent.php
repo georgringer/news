@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GeorgRinger\News\Event;
 
 use GeorgRinger\News\Domain\Service\NewsImportService;
@@ -28,17 +30,11 @@ final class NewsPreImportEvent
         $this->importData = $importData;
     }
 
-    /**
-     * Get the importer service
-     */
     public function getNewsImportService(): NewsImportService
     {
         return $this->newsImportService;
     }
 
-    /**
-     * Set the importer service
-     */
     public function setNewsImportService(NewsImportService $newsImportService): self
     {
         $this->newsImportService = $newsImportService;
@@ -46,17 +42,11 @@ final class NewsPreImportEvent
         return $this;
     }
 
-    /**
-     * Get the importData
-     */
     public function getImportData(): array
     {
         return $this->importData;
     }
 
-    /**
-     * Set the importData
-     */
     public function setImportData(array $importData): self
     {
         $this->importData = $importData;
