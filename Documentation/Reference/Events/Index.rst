@@ -36,4 +36,6 @@ fired. For additional items see column "Access to" in the table below.
    "TagListActionEvent", "TagController", "getAssignedValues()", "listAction (TagController::SIGNAL_TAG_LIST_ACTION)"
    "NewsImportPostHydrateEvent", "NewsImportService", "getImportItem();getNews()", "postHydrate"
    "NewsImportPreHydrateEvent", "NewsImportService", "getImportItem()", "preHydrate"
+   "NewsPostImportEvent", "NewsImportService", "getImportData()"
+   "NewsPreImportEvent", "NewsImportService", "getImportData()"
    "CategoryImportPostHydrateEvent", "CategoryImportService", "getImportItem();getCategory()", "postHydrate"
