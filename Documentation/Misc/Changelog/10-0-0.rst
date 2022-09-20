@@ -1,0 +1,131 @@
+.. include:: /Includes.rst.txt
+
+10.0.0 - 20th September 2022
+============================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+The big cleanup
+---------------
+The extension "news" is one of the most used extensions and known for its feature richness.
+However, to be able to satisfy the need for stable releases and early adoptions to upcoming LTS releases it was necessary to improve and slim the code base. More than 60 issues of the issue tracker have been handled during the development of this release.
+
+Extracting features to separate extensions makes it possible to have a smaller **main code base** with faster releases on the one hand and dedicated releases of extensions providing features on the other hand.
+
+More extensions are planned already!
+
+Extract backend module
+^^^^^^^^^^^^^^^^^^^^^^
+The backend module of EXT:news is awesome to manage lots of articles. It has been extracted into an own extension called `news_administration`.
+
+See :ref:`manual for details <newsAdministration>`
+
+Extract tag auto creation via suggest
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The possibility of creating tag records on the fly within a news record is an awesome feature. It has been extracted into an own extension called `news_tagsuggest`.
+
+See :ref:`manual for details <newsTagsuggest>`
+
+Rename classes
+^^^^^^^^^^^^^^
+
+The following classes have been renamed:
+
+- `Hooks/DataHandler` => `Hooks/DataHandlerHook`
+- `Hooks/BackendUtility` => `Hooks/FlexformHook`
+
+This avoids wrong suggestions of your IDE when checking for `DataHandler` or `BackendUtility`
+
+Features
+--------
+
+Configurable slug prefix in backend
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The slug information is prefixed by default with the current domain. By using the TsConfig `tx_news.slugPrefix` it can be overridden by the path to a page to show the correct slug.
+
+See :ref:`manual for details <tsconfigSlugPrefix>`
+
+Improved events
+^^^^^^^^^^^^^^^
+
+Couple of events have been improved and added to make it easier to extend EXT:news
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2022-09-19 [FEATURE] Pre and post import eventDispatchers (#1850) (Commit c028923c by Jacco van der Post)
+   2022-09-15 [!!!] CategoryRepository::findChildren uses the sorting field (Commit 8b09c684 by Georg Ringer)
+   2022-08-30 [BUGFIX] Use date aspect instead of $GLOBALS['SIM_EXEC_TIME'] (#1847) (Commit 7b0ae96c by Georg Ringer)
+   2022-08-23 [BUGFIX] Fix notice during stdWrap of settings #1825 (Commit be7ffe1c by Georg Ringer)
+   2022-08-05 [BUGFIX] PHP 8.1 warning in XML Sitemap DataProvider (#1834) (Commit cc3aed00 by Peter Kraume)
+   2022-08-04 [BUGFIX] Additional check if the page arguments are set (#1837) (Commit 99a348ee by Heiko B)
+   2022-07-30 Propose simplified wording for timeRestriction (#1833) (Commit c2cd50d1 by Urs Braem)
+   2022-07-28 [BUGFIX] Proper check for valid URL path (#1832) (Commit 3fcb8bb6 by Peter Kraume)
+   2022-07-28 [BUGFIX] PHP8.1 warning in Administration module (#1831) (Commit 83acbc10 by Henrik Ziegenhain)
+   2022-07-27 [FOLLOWUP][DOC] Exclude internal & external news in sitemap (#1827) (Commit 69bfab01 by Eric Chavaillaz)
+   2022-07-24 Apply fixes from StyleCI (#1826) (Commit 808c7cb8 by Georg Ringer)
+   2022-07-24 [TASK] Improve additionalCanonicalizedUrlParameters if EXT:seo is installed #1091 (Commit 7d3d71c7 by Georg Ringer)
+   2022-07-24 [DOC] Exclude internal & external news in sitemap #1769 (Commit 5f8eb935 by Georg Ringer)
+   2022-07-24 [TASK] Remove duplicated init of ConfigurationManager (Commit 9c4d6c56 by Georg Ringer)
+   2022-07-20 [BUGFIX] extensionSummary Hook Call (#1824) (Commit 8fa2bc25 by lucmuller)
+   2022-07-17 [TASK] Rename hreflang identivier (Commit 7a60ecf1 by Georg Ringer)
+   2022-07-08 [DOC] Link correction to templatesSelector (#1818) (Commit fdab3ac7 by Sven Jürgens)
+   2022-07-07 [BUGFIX] Allow null as return type (Commit 5f613b13 by Georg Ringer)
+   2022-07-05 [BUGFIX] Allow null as return type #1817 (Commit ff2fd058 by Georg Ringer)
+   2022-07-04 [DOC] Followup (Commit 25f9e8dc by Georg Ringer)
+   2022-07-04 [DOC] Example how to generate URL #1790 (Commit c4a7dcb7 by Georg Ringer)
+   2022-07-04 [DOC] Add more exts (Commit 0dbae0ef by Georg Ringer)
+   2022-07-03 [DOC] Document alternative extensions (Commit d10f4d8a by Georg Ringer)
+   2022-07-01 [DOC] Document news_tagsuggest (Commit 04eaca33 by Georg Ringer)
+   2022-07-01 [TASK] Suggest EXT:news_tagsuggest (Commit b0906df6 by Georg Ringer)
+   2022-06-28 [!!!][TASK] Move backend module to custom extension (#1814) (Commit fccece94 by Georg Ringer)
+   2022-06-26 [TASK] Add itemprop="url" to links (Commit 3f84f824 by Georg Ringer)
+   2022-06-21 [BUGFIX] Proper check for currentPage (Commit affef472 by Georg Ringer)
+   2022-06-14 [!!!][TASK] Rename 2 hooks to avoid same namings (#1811) (Commit 4bb34c25 by Georg Ringer)
+   2022-06-14 [!!!][TASK] Remove unused Utility/Url (Commit 5cfcae0f by Georg Ringer)
+   2022-06-13 [TASK] Cleanup leftovers of tx_news_categorymounts (Commit fcfb89ed by Georg Ringer)
+   2022-06-13 [BUGFIX] Fix template selector rendering with allowedColPos (Commit c9d8dd32 by Georg Ringer)
+   2022-06-13 Apply fixes from StyleCI (#1810) (Commit 50c5a724 by Georg Ringer)
+   2022-06-13 [FEATURE] Add current request to the PSR-14 events (Commit 5bad4994 by Georg Ringer)
+   2022-06-13 [TASK] Resolve #1439 and increase XML sitemap generation with many news records (#1443) (Commit a353f25f by Tim)
+   2022-06-13 [FEATURE] Transform search to GET (#1805) (Commit 314d3d2d by Georg Ringer)
+   2022-06-13 [BUGFIX] Fix notice in TargetLinkViewHelper (Commit 3565880e by Georg Ringer)
+   2022-06-09 [FEATURE] Set target=_blank for external links (Commit a9b053b5 by Georg Ringer)
+   2022-06-09 [DOC] Example how to change default showinpreview (Commit 3c76cfd4 by Georg Ringer)
+   2022-06-09 [!!!][TASK] Remove on the fly tag creation (Commit 8ae5776e by Georg Ringer)
+   2022-06-09 [TASK] a little cleanup and SVG optmi. (#1716) (Commit ec1847a0 by Marcus Förster)
+   2022-06-09 [FEATURE] Add PSR-14 event to modify cache tags based on news (#1800) (Commit f90bd5cd by Sebastian Michaelsen)
+   2022-06-09 [FEATURE] Set cache tags for related news in detail action (#1799) (Commit 747bca06 by Sebastian Michaelsen)
+   2022-06-08 [TASK] Change method visibility in PageViewQueryHook (Commit 665c06d6 by Georg Ringer)
+   2022-06-08 [TASK] Use an array key for hook registration (Commit d9f7037b by Georg Ringer)
+   2022-06-08 [FEATURE] Add PSR-14 event to modify cache tags based on demand (#1798) (Commit 8399f4d4 by Sebastian Michaelsen)
+   2022-06-03 Apply fixes from StyleCI (#1797) (Commit fd188152 by Georg Ringer)
+   2022-06-03 [FEATURE] Improve irre info for showinpreview (Commit 3aab5d2e by Georg Ringer)
+   2022-06-03 [FEATURE] Support cropVariants in RenderMediaViewHelper (Commit 5f5cad34 by Georg Ringer)
+   2022-06-03 [TASK] Provide update wizard for title field change in 8.4 (Commit e94f1dbe by Georg Ringer)
+   2022-06-03 [TASK] Provide update wizard to fix related_links change (Commit 93f5862d by Georg Ringer)
+   2022-06-03 [TASK] Improve cache clearance (Commit 59acca42 by Georg Ringer)
+   2022-06-03 [FEATURE] Provice command to rebuild proxy caches (Commit 33e97073 by Georg Ringer)
+   2022-06-03 [BUGFIX] Bring back thumbnails in record list for v10 (Commit c471ea81 by Georg Ringer)
+   2022-06-03 [DOC] Use correct example for GoogleNews Sitemap (Commit bc5359e4 by Georg Ringer)
+   2022-06-03 [BUGFIX] Typecast image size (Commit e8db776c by Georg Ringer)
+   2022-06-02 [FEATURE] Configurable slug prefix in backend (#1792) (Commit 57e9e4ab by Georg Ringer)
+   2022-06-01 [DOC] Closing tag on output preview was wrong (#1788) (Commit 380aa772 by medarob)
+   2022-05-25 [BUGFIX] Fix line indentations of YAML and PHP code snippets (#1786) (Commit 0d0e8716 by Eric Bode)
+   2022-05-25 [BUGFIX] Revert "[BUGFIX] Respect categories from demand (#1555)" (Commit 7ae3e1c0 by Georg Ringer)
+   2022-05-25 BUGFIX: Fix typo in filepath Configuration/Services.yaml (#1785) (Commit d38898e8 by Eric Bode)
+   2022-05-12 Update LinkHandlerTargetPageService.php (Commit 468210ad by Georg Ringer)
+   2022-05-11 [TASK] Remove exclude from editlock (Commit df16cdc2 by Georg Ringer)
+   2022-05-05 [BUGFIX] #1777 usort return values in PHP 8.0 (#1779) (Commit 0d152202 by Marco Kuprat)
+   2022-05-05 [DOC] Add hint for EXT:numbered_pagination in list.paginate settings (#1778) (#1780) (Commit a22cf6b1 by Luis Becker)
+   2022-05-03 [BUGFIX] Fix notice in ClassCacheManager (Commit 22bdbd4f by Georg Ringer)
+   2022-05-02 [BUGFIX] Change return type of start/endtime (Commit b7a38244 by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
