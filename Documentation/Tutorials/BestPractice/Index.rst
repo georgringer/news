@@ -168,6 +168,19 @@ Best practice
 
             Avoid the detail page in the url and reuse the list page.
 
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Infinite scroll <infiniteScroll>`
+
+         .. container:: card-body
+
+            Ajax based pagination, also known as infinite and endless scrolling
+
+
 .. toctree::
    :maxdepth: 5
    :titlesonly:
@@ -183,6 +196,7 @@ Best practice
    AvailableContentElements/Index
    IntegrationWithTypoScript/Index
    HideDetailPage/Index
+   InfiniteScroll/Index
    ClearCache/Index
    PredefineFields/Index
    ICalendar/Index
