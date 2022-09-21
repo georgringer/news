@@ -118,49 +118,49 @@ class NewsImportService extends AbstractImportService
         }
         $news->setPid($importItem['pid']);
         $news->setHidden($importItem['hidden']);
-        if ($importItem['starttime']) {
+        if ($importItem['starttime'] ?? 0) {
             $news->setStarttime($importItem['starttime']);
         }
-        if ($importItem['endtime']) {
+        if ($importItem['endtime'] ?? 0) {
             $news->setStarttime($importItem['endtime']);
         }
-        if (!empty($importItem['fe_group'])) {
+        if (!empty($importItem['fe_group'] ?? '')) {
             $news->setFeGroup((string)$importItem['fe_group']);
         }
-        $news->setTstamp($importItem['tstamp']);
-        $news->setCrdate($importItem['crdate']);
-        $news->setSysLanguageUid($importItem['sys_language_uid']);
-        $news->setSorting((int)$importItem['sorting']);
+        $news->setTstamp($importItem['tstamp'] ?? 0);
+        $news->setCrdate($importItem['crdate'] ?? 0);
+        $news->setSysLanguageUid($importItem['sys_language_uid'] ?? 0);
+        $news->setSorting((int)($importItem['sorting'] ?? 0));
 
         $news->setTitle($importItem['title']);
-        $news->setTeaser($importItem['teaser']);
-        $news->setBodytext($importItem['bodytext']);
+        $news->setTeaser($importItem['teaser'] ?? '');
+        $news->setBodytext($importItem['bodytext'] ?? '');
 
-        $news->setType((string)$importItem['type']);
-        $news->setKeywords($importItem['keywords']);
-        $news->setDescription($importItem['description']);
-        $news->setDatetime(new \DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
-        $news->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
+        $news->setType((string)($importItem['type'] ?? ''));
+        $news->setKeywords($importItem['keywords'] ?? '');
+        $news->setDescription($importItem['description'] ?? '');
+        $news->setDatetime(new \DateTime(date('Y-m-d H:i:sP', $importItem['datetime'] ?? 0)));
+        $news->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'] ?? 0)));
 
-        $contentElementUidArray = GeneralUtility::trimExplode(',', $importItem['content_elements'], true);
+        $contentElementUidArray = GeneralUtility::trimExplode(',', $importItem['content_elements'] ?? '', true);
         foreach ($contentElementUidArray as $contentElementUid) {
             if (is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))) {
                 $news->addContentElement($contentElement);
             }
         }
 
-        $news->setInternalurl($importItem['internalurl']);
-        $news->setExternalurl($importItem['externalurl']);
+        $news->setInternalurl($importItem['internalurl'] ?? '');
+        $news->setExternalurl($importItem['externalurl'] ?? '');
 
-        $news->setAuthor($importItem['author']);
-        $news->setAuthorEmail($importItem['author_email']);
+        $news->setAuthor($importItem['author'] ?? '');
+        $news->setAuthorEmail($importItem['author_email'] ?? '');
 
         $news->setImportId($importItem['import_id']);
         $news->setImportSource($importItem['import_source']);
 
-        $news->setPathSegment($importItem['path_segment']);
+        $news->setPathSegment($importItem['path_segment'] ?? '');
 
-        if (is_array($importItem['categories'])) {
+        if (is_array($importItem['categories'] ?? false)) {
             foreach ($importItem['categories'] as $categoryUid) {
                 if ($this->settings['findCategoriesByImportSource']) {
                     $category = $this->categoryRepository->findOneByImportSourceAndImportId(
@@ -180,7 +180,7 @@ class NewsImportService extends AbstractImportService
         }
 
         // media relation
-        if (is_array($importItem['media'])) {
+        if (is_array($importItem['media'] ?? false)) {
             foreach ($importItem['media'] as $mediaItem) {
                 // get fileobject by given identifier (file UID, combined identifier or path/filename)
                 try {
@@ -226,7 +226,7 @@ class NewsImportService extends AbstractImportService
         }
 
         // related files
-        if (is_array($importItem['related_files'])) {
+        if (is_array($importItem['related_files'] ?? false)) {
             foreach ($importItem['related_files'] as $fileItem) {
 
                 // get fileObject by given identifier (file UID, combined identifier or path/filename)
@@ -270,7 +270,7 @@ class NewsImportService extends AbstractImportService
             }
         }
 
-        if (is_array($importItem['related_links'])) {
+        if (is_array($importItem['related_links'] ?? false)) {
             foreach ($importItem['related_links'] as $link) {
                 /** @var $relatedLink Link */
                 if (($relatedLink = $this->getRelatedLinkIfAlreadyExists($news, $link['uri'])) === false) {
@@ -310,7 +310,7 @@ class NewsImportService extends AbstractImportService
             $importItem = $event->getImportItem();
 
             // Store language overlay in post persist queue
-            if ((int)$importItem['sys_language_uid'] > 0 && (string)$importItem['l10n_parent'] !== '0') {
+            if ((int)($importItem['sys_language_uid'] ?? 0) > 0 && (string)($importItem['l10n_parent'] ?? 0) !== '0') {
                 $this->postPersistQueue[$importItem['import_id']] = [
                     'action' => self::ACTION_IMPORT_L10N_OVERLAY,
                     'category' => null,
