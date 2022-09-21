@@ -73,7 +73,7 @@ final class RelatedLinkIntegerDefault implements UpgradeWizardInterface
             ->from(self::TABLE_NEWS)
             ->where($query->expr()->isNull(self::FIELD_RELATED_LINKS))
             ->execute()
-            ->fetchOne();
+            ->fetchColumn(0);
     }
 
     public function getPrerequisites(): array
