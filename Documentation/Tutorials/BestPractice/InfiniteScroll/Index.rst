@@ -13,7 +13,7 @@ Using ajax for the pagination can be achieved by using little bit of JavaScript
    is actually a good idea as there are also some disadvantages as well.
 
 This tutorial uses the implementation of https://infinite-scroll.com/.
-**Be aware** that this code requires buying a license!
+**Be aware** that this code might require to buy a `license <https://infinite-scroll.com/#license>`__!
 
 Templating
 ^^^^^^^^^^
