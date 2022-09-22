@@ -1,0 +1,31 @@
+.. include:: /Includes.rst.txt
+
+10.0.1 - 22nd September 2022
+============================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Important changes
+-----------------
+
+A tutorial has been added which describes how infinite scrolling can be added to the list view.
+
+Thanks to *made in nature* (Stefan Grothus), https://www.made-in-nature.de/ for sponsoring this task.
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2022-09-22 [BUGFIX] Allow null for return value of News::getTags (Commit 05961d71 by Georg Ringer)
+   2022-09-22 [DOC] Clarify license for infinite scrolling (Commit 43156784 by Georg Ringer)
+   2022-09-21 [DOC] Add tutorial for infinite scrolling (#1853) (Commit 7e8ad654 by Georg Ringer)
+   2022-09-21 [BUGFIX] Fix notices in NewsImportService (Commit d55d5b73 by Georg Ringer)
+   2022-09-21 [BUGFIX] Use fetchColumn instead of fetchOne #1852 (Commit 9dd4b9f7 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
