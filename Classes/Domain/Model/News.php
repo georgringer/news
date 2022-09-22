@@ -1084,9 +1084,9 @@ class News extends AbstractEntity
     /**
      * Get Tags
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage|null
      */
-    public function getTags(): \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+    public function getTags(): ?ObjectStorage
     {
         return $this->tags;
     }
