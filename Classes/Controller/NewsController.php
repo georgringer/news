@@ -227,16 +227,6 @@ class NewsController extends NewsBaseController
         }
         $newsRecords = $this->newsRepository->findDemanded($demand);
 
-        // pagination
-        $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
-        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
-        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
-
-        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
-        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
-        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
-        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
-
         $assignedValues = [
             'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
@@ -244,11 +234,6 @@ class NewsController extends NewsBaseController
             'categories' => null,
             'tags' => null,
             'settings' => $this->settings,
-            'pagination' => [
-                'currentPage' => $currentPage,
-                'paginator' => $paginator,
-                'pagination' => $pagination,
-            ]
         ];
 
         if ($demand->getCategories() !== '') {
@@ -273,6 +258,22 @@ class NewsController extends NewsBaseController
 
         $event = $this->eventDispatcher->dispatch(new NewsListActionEvent($this, $assignedValues, $this->request));
         $this->view->assignMultiple($event->getAssignedValues());
+
+        // pagination
+        $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 10);
+        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
+
+        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
+        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
+        $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
+        $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
+
+        $this->view->assign('pagination', [
+            'currentPage' => $currentPage,
+            'paginator' => $paginator,
+            'pagination' => $pagination,
+        ]);
 
         Cache::addPageCacheTagsByDemandObject($demand);
     }
