@@ -265,7 +265,7 @@ class NewsController extends NewsBaseController
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
 
         $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
-        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $newsRecords, $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
+        $paginator = GeneralUtility::makeInstance(QueryResultPaginator::class, $event->getAssignedValues()['news'], $currentPage, $itemsPerPage, (int)($this->settings['limit'] ?? 0), (int)($this->settings['offset'] ?? 0));
         $paginationClass = $paginationConfiguration['class'] ?? SimplePagination::class;
         $pagination = $this->getPagination($paginationClass, $maximumNumberOfLinks, $paginator);
 
