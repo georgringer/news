@@ -13,7 +13,6 @@ use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Service\ImageService;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -67,10 +66,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
      */
     private function renderImage(\TYPO3\CMS\Core\Resource\FileInterface $image): string
     {
-        if ($this->objectManager === null) {
-            $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        }
-        $imageService = $this->objectManager->get(ImageService::class);
+        $imageService = GeneralUtility::makeInstance(ImageService::class);
 
         $cropString = '';
         if ($image->hasProperty('crop')) {
