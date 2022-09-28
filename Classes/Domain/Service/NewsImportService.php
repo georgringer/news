@@ -216,10 +216,10 @@ class NewsImportService extends AbstractImportService
                 }
 
                 if ($media) {
-                    $media->setTitle($mediaItem['title']);
-                    $media->setAlternative($mediaItem['alt']);
-                    $media->setDescription($mediaItem['caption']);
-                    $media->setShowinpreview($mediaItem['showinpreview']);
+                    $media->setTitle($mediaItem['title'] ?? '');
+                    $media->setAlternative($mediaItem['alt'] ?? '');
+                    $media->setDescription($mediaItem['caption'] ?? '');
+                    $media->setShowinpreview($mediaItem['showinpreview'] ?? '');
                     $media->setPid($importItem['pid']);
                 }
             }
@@ -263,9 +263,9 @@ class NewsImportService extends AbstractImportService
                 }
 
                 if ($relatedFile) {
-                    $relatedFile->setTitle($fileItem['title']);
-                    $relatedFile->setDescription($fileItem['description']);
-                    $relatedFile->setPid($importItem['pid']);
+                    $relatedFile->setTitle($fileItem['title'] ?? '');
+                    $relatedFile->setDescription($fileItem['description'] ?? '');
+                    $relatedFile->setPid($importItem['pid'] ?? '');
                 }
             }
         }
@@ -278,8 +278,8 @@ class NewsImportService extends AbstractImportService
                     $relatedLink->setUri($link['uri']);
                     $news->addRelatedLink($relatedLink);
                 }
-                $relatedLink->setTitle($link['title']);
-                $relatedLink->setDescription($link['description']);
+                $relatedLink->setTitle($link['title'] ?? '');
+                $relatedLink->setDescription($link['description'] ?? '');
                 $relatedLink->setPid($importItem['pid']);
             }
         }
