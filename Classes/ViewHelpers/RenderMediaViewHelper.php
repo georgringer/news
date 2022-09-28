@@ -84,9 +84,9 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $processedImage = $imageService->applyProcessingInstructions($image, $processingInstructions);
         $imageUri = $imageService->getImageUri($processedImage);
 
-        $alt = trim($image->getProperty('alternative'));
-        $title = trim($image->getProperty('title'));
-        $description = trim($image->getProperty('description'));
+        $alt = trim((string)$image->getProperty('alternative'));
+        $title = trim((string)$image->getProperty('title'));
+        $description = trim((string)$image->getProperty('description'));
 
         $imageAttributes = [
             'src' => $imageUri,
