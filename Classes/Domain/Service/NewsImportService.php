@@ -122,7 +122,7 @@ class NewsImportService extends AbstractImportService
             $news->setStarttime($importItem['starttime']);
         }
         if ($importItem['endtime'] ?? 0) {
-            $news->setStarttime($importItem['endtime']);
+            $news->setEndtime($importItem['endtime']);
         }
         if (!empty($importItem['fe_group'] ?? '')) {
             $news->setFeGroup((string)$importItem['fe_group']);
