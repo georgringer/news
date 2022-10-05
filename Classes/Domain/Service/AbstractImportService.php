@@ -166,4 +166,13 @@ class AbstractImportService implements LoggerAwareInterface
         $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
         return $resourceFactory;
     }
+
+    protected function convertTimestampToDateTime(int $timestamp): ?\DateTime
+    {
+        try {
+            return new \DateTime(date('c', $timestamp));
+        } catch (\Exception $exception) {
+            return null;
+        }
+    }
 }
