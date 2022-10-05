@@ -123,10 +123,30 @@ class CategoryImportService extends AbstractImportService
 
         $category->setPid($importItem['pid']);
         $category->setHidden($importItem['hidden']);
-        $category->setStarttime($importItem['starttime']);
-        $category->setEndtime($importItem['endtime']);
-        $category->setCrdate($importItem['crdate']);
-        $category->setTstamp($importItem['tstamp']);
+        if (
+            isset($importItem['starttime'])
+            && $date = $this->convertTimestampToDateTime((int)$importItem['starttime'])
+        ) {
+            $category->setStarttime($date);
+        }
+        if (
+            isset($importItem['endtime'])
+            && $date = $this->convertTimestampToDateTime((int)$importItem['endtime'])
+        ) {
+            $category->setEndtime($date);
+        }
+        if (
+            isset($importItem['crdate'])
+            && $date = $this->convertTimestampToDateTime((int)$importItem['crdate'])
+        ) {
+            $category->setCrdate($date);
+        }
+        if (
+            isset($importItem['tstamp'])
+            && $date = $this->convertTimestampToDateTime((int)$importItem['tstamp'])
+        ) {
+            $category->setTstamp($date);
+        }
         $category->setTitle($importItem['title']);
         $category->setDescription($importItem['description']);
         if (!empty($importItem['image'])) {
