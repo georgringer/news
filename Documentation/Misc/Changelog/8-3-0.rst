@@ -1,0 +1,39 @@
+.. include:: /Includes.rst.txt
+
+8.3.0 - 12th May 2020
+=======================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+Required Core version
+^^^^^^^^^^^^^^^^^^^^^
+Due to important bugfixes in TYPO3 Core itself, the minimum version is now either TYPO3 **9.5.17** *or* **10.4.2**.
+
+Improved RSS by plugin example
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EXT:news now ships a modified version of EXT:fluid_styled_content's `List.html` to simplfiy the setup of RSS feeds.
+All you need to do is use
+
+   .. code-block:: typoscript
+
+      lib.contentElement.templateRootPaths.5 = EXT:news/Resources/Private/Examples/Rss/fluid_styled_content/Templates
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2020-05-12 [TASK] Raise requirements for TYPO3 Core (Commit 2a3bf518 by Georg Ringer)
+   2020-05-12 [FEATURE] Ship custom List.html of EXT:fluid_styled_content (Commit 9c92a3e0 by Georg Ringer)
+   2020-05-06 [DOC] Proper changelist for 8.2.0 (Commit 1401dc7c by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

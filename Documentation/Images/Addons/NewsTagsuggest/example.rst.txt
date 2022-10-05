@@ -1,0 +1,5 @@
+
+.. figure:: /Images/Addons/NewsTagsuggest/example.png
+   :class: with-shadow
+
+   Demo of backend

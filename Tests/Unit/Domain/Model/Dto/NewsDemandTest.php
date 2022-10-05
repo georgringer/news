@@ -10,26 +10,28 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model\Dto;
  */
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for NewsDemand
  */
-class NewsDemandTest extends UnitTestCase
+class NewsDemandTest extends BaseTestCase
 {
 
     /** @var  NewsDemand */
     protected $instance;
 
-    public function setup()
+    public function setup(): void
     {
         $this->instance = new NewsDemand();
     }
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function categoriesCanBeSet()
+    public function categoriesCanBeSet(): void
     {
         $value = ['Test 123'];
         $this->instance->setCategories($value);
@@ -38,8 +40,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function categoryConjunctionCanBeSet()
+    public function categoryConjunctionCanBeSet(): void
     {
         $value = 'AND';
         $this->instance->setCategoryConjunction($value);
@@ -48,8 +52,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function includeSubCategoriesCanBeSet()
+    public function includeSubCategoriesCanBeSet(): void
     {
         $value = true;
         $this->instance->setIncludeSubCategories($value);
@@ -58,8 +64,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function authorCanBeSet()
+    public function authorCanBeSet(): void
     {
         $value = '7elix';
         $this->instance->setAuthor($value);
@@ -68,8 +76,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function tagsCanBeSet()
+    public function tagsCanBeSet(): void
     {
         $value = '1,2,3';
         $this->instance->setTags($value);
@@ -78,8 +88,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function archiveRestrictionCanBeSet()
+    public function archiveRestrictionCanBeSet(): void
     {
         $value = 'archive';
         $this->instance->setArchiveRestriction($value);
@@ -88,8 +100,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function timeRestrictionCanBeSet()
+    public function timeRestrictionCanBeSet(): void
     {
         $value = '2014-04-01';
         $this->instance->setTimeRestriction($value);
@@ -98,8 +112,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function timeRestrictionHighCanBeSet()
+    public function timeRestrictionHighCanBeSet(): void
     {
         $value = '2014-05-01';
         $this->instance->setTimeRestrictionHigh($value);
@@ -108,8 +124,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function topNewsRestrictionCanBeSet()
+    public function topNewsRestrictionCanBeSet(): void
     {
         $value = 1;
         $this->instance->setTopNewsRestriction($value);
@@ -118,8 +136,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function dateFieldCanBeSet()
+    public function dateFieldCanBeSet(): void
     {
         $value = 'datetime';
         $this->instance->setDateField($value);
@@ -136,8 +156,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function monthCanBeSet()
+    public function monthCanBeSet(): void
     {
         $value = 4;
         $this->instance->setMonth($value);
@@ -146,8 +168,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function yearCanBeSet()
+    public function yearCanBeSet(): void
     {
         $value = 2014;
         $this->instance->setYear($value);
@@ -156,8 +180,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function dayCanBeSet()
+    public function dayCanBeSet(): void
     {
         $value = 1;
         $this->instance->setDay($value);
@@ -166,8 +192,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function searchFieldsCanBeSet()
+    public function searchFieldsCanBeSet(): void
     {
         $value = 'field1,field2';
         $this->instance->setSearchFields($value);
@@ -176,8 +204,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function searchCanBeSet()
+    public function searchCanBeSet(): void
     {
         $value = new Search();
         $value->setSubject('fo');
@@ -187,8 +217,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function orderCanBeSet()
+    public function orderCanBeSet(): void
     {
         $value = 'order';
         $this->instance->setOrder($value);
@@ -197,8 +229,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function orderByAllowedCanBeSet()
+    public function orderByAllowedCanBeSet(): void
     {
         $value = 'order,order2';
         $this->instance->setOrderByAllowed($value);
@@ -207,8 +241,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function topNewsFirstCanBeSet()
+    public function topNewsFirstCanBeSet(): void
     {
         $value = true;
         $this->instance->setTopNewsFirst($value);
@@ -217,8 +253,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function storagePageCanBeSet()
+    public function storagePageCanBeSet(): void
     {
         $value = 456;
         $this->instance->setStoragePage($value);
@@ -227,8 +265,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function limitCanBeSet()
+    public function limitCanBeSet(): void
     {
         $value = 10;
         $this->instance->setLimit($value);
@@ -237,8 +277,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function offsetCanBeSet()
+    public function offsetCanBeSet(): void
     {
         $value = 20;
         $this->instance->setOffset($value);
@@ -247,8 +289,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function excludeAlreadyDisplayedNewsCanBeSet()
+    public function excludeAlreadyDisplayedNewsCanBeSet(): void
     {
         $value = true;
         $this->instance->setExcludeAlreadyDisplayedNews($value);
@@ -257,8 +301,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function hideIdListCanBeSet()
+    public function hideIdListCanBeSet(): void
     {
         $value = '123,456';
         $this->instance->setHideIdList($value);
@@ -267,8 +313,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function actionCanBeSet()
+    public function actionCanBeSet(): void
     {
         $value = 'anAction';
         $this->instance->setAction($value);
@@ -277,8 +325,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function classCanBeSet()
+    public function classCanBeSet(): void
     {
         $value = 'FooBar';
         $this->instance->setClass($value);
@@ -287,8 +337,10 @@ class NewsDemandTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function typesCanBeSet()
+    public function typesCanBeSet(): void
     {
         $value = ['12', '34'];
         $this->instance->setTypes($value);

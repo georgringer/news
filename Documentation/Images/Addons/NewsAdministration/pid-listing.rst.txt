@@ -1,0 +1,5 @@
+
+.. figure:: /Images/Addons/NewsAdministration/pid-listing.png
+   :class: with-shadow
+
+   Display of records

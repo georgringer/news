@@ -50,7 +50,7 @@ abstract class AbstractImportJob implements ImportJobInterface
      *
      * @return int
      */
-    public function getNumberOfRecordsPerRun()
+    public function getNumberOfRecordsPerRun(): int
     {
         // If not explicit defined by the job we import all records at once.
         if ($this->numberOfRecordsPerRun === null) {
@@ -65,7 +65,7 @@ abstract class AbstractImportJob implements ImportJobInterface
      *
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
         return true;
     }
@@ -75,7 +75,7 @@ abstract class AbstractImportJob implements ImportJobInterface
      *
      * @return array
      */
-    public function getInfo()
+    public function getInfo(): array
     {
         $totalRecordCount = (int)$this->importDataProviderService->getTotalRecordCount();
         $info = [
@@ -90,7 +90,9 @@ abstract class AbstractImportJob implements ImportJobInterface
     /**
      * The actual run method.
      *
-     * @param  int $offset
+     * @param int $offset
+     *
+     * @return void
      */
     public function run($offset)
     {

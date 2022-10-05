@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3\TestingFramework\Core\BaseTestCase;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Test for TargetLinkViewHelper
  */
-class TargetLinkViewHelperTest extends UnitTestCase
+class TargetLinkViewHelperTest extends BaseTestCase
 {
 
     /**
@@ -30,8 +30,10 @@ class TargetLinkViewHelperTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function canCreateViewHelperClassInstance()
+    public function canCreateViewHelperClassInstance(): void
     {
         $instance = $this->getPreparedInstance();
         $this->assertInstanceOf(TargetLinkViewHelper::class, $instance);
@@ -41,9 +43,12 @@ class TargetLinkViewHelperTest extends UnitTestCase
      * Test if correct target is returned
      *
      * @test
+     *
      * @dataProvider correctTargetIsReturnedDataProvider
+     *
+     * @return void
      */
-    public function correctTargetIsReturned($link, $expectedResult)
+    public function correctTargetIsReturned($link, $expectedResult): void
     {
         $viewHelper = $this->getMockBuilder(TargetLinkViewHelper::class)->setMethods(['dummy'])->getMock();
         $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContextInterface::class)->getMock());

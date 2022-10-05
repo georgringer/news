@@ -1,0 +1,23 @@
+.. include:: /Includes.rst.txt
+
+7.2.3 - 2019/08/06
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+
+This is a bugfix release and reverts commit 095bd174cc5134296142fb3e969c88d5a3f741af
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2019-08-06 Revert "BUGFIX: Allow to overwrite TypoScript settings (#908)" (Commit 87c3b31f by Georg Ringer)
+
+
+This list has been created by using `git log 7.2.2..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

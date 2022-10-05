@@ -1,14 +1,14 @@
+.. include:: /Includes.rst.txt
+
 6.2.1- 2018/01/24
 ==================
 
 
-.. include:: ../../Includes.txt
-
 .. only:: html
 
-.. contents::
-   :local:
-        :depth: 3
+   .. contents::
+      :local:
+      :depth: 3
 
 This release makes the extension compatible with PHP 5.6 again
 

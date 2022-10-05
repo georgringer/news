@@ -1,0 +1,45 @@
+.. include:: /Includes.rst.txt
+
+8.4.0 - 18th August 2020
+========================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+Database compare required
+^^^^^^^^^^^^^^^^^^^^^^^^^
+2 changes require a database compare after an update
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2020-08-13 [DOCS] Use new TypoScript condition syntax for RSS feed (#1325) (Commit 518f290c by Chris Müller)
+   2020-07-30 [BUGFIX] Use makeInstance for ResourceFactory in ImportController (Commit d46a3d35 by Georg Ringer)
+   2020-07-30 [BUGFIX] Use makeInstance for ResourceFactory in ImportController (Commit 9336e543 by Georg Ringer)
+   2020-07-29 [BUGFIX] Determine current route correctly (#1315) (Commit e6acd640 by Markus Klein)
+   2020-07-29 [DOCS] Minor fix in TypoScript configuration (#1317) (Commit bd9f4a06 by Sybille Peters)
+   2020-07-29 [DOCS] Fix code blocks in TypoScript settings (#1318) (Commit 3ef5d601 by Sybille Peters)
+   2020-07-21 [FEATURE] Add changefreq and priority for XML sitemap (#1316) (Commit 08e0d600 by echavaillaz)
+   2020-07-20 [DOCS] Add more TypoScript / Flexform default values (#1320) (Commit 005aa681 by Sybille Peters)
+   2020-07-20 [DOCS] Fix docs rendering warnings (#1319) (Commit 94e52a4b by Sybille Peters)
+   2020-07-09 [!!!][TASK] Change title from tintytext to varchar(255) (#1310) (Commit 5661e8d5 by Stefanos Karasavvidis)
+   2020-07-06 Add Extbase persistence configuration to PHP (#1308) (Commit 8857b7cf by Toben Schmidt)
+   2020-06-18 [DOC] Overwrite Demand in FE (Commit 28dd3af2 by Georg Ringer)
+   2020-06-09 [DOC] Fix typo in admin documentation (#1295) (Commit 5157cd5f by Markus Poerschke)
+   2020-06-09 [BUGFIX] Update deprecated function call in News Import module (#1296) (Commit f60a7763 by ben mckenzie)
+   2020-05-26 [BUGFIX] Use correct page not found handler (Commit 8ea355e9 by Georg Ringer)
+   2020-05-24 [BUGFIX] Use correct module routes (#1273) (Commit 802e6a64 by Jonathan Kieling)
+   2020-05-16 [BUGFIX] Fix excludeAlreadyDisplayedNews condition (#1278) (Commit af5beda6 by Helmut Hummel)
+   2020-05-15 [BUGFIX] give priority to news-title as primary source for NewsTitleProvider (#1277) (Commit 89eb4cd9 by Ingo Fabbri)
+   2020-05-12 [BUGFIX] Improve check if news record exists (Commit 05a8d843 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

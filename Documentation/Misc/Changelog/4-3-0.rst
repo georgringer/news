@@ -1,3 +1,5 @@
+.. include:: /Includes.rst.txt
+
 4.3.0 - 2016/07/13
 ==================
 
@@ -35,7 +37,7 @@ This is a list of all changes in this release: ::
         2016-04-27 [BUGFIX] twitter not listed twice in rx_shariff example (Commit b80beda by Markus Klein)
         2016-04-19 [TASK] Add  addQueryStringMethod="GET" to paginator (Commit 5d0309a by Frank Naegler)
         2016-04-15 Revert "[BUGFIX] Set l10nmode for categories & tags to exclude" (Commit 858c6f2 by Georg Ringer)
-        2016-04-15 [TASK] Make it compatible with core < 8.3 (Commit ea2159e by Georg Ringer)
+        2016-04-15 [TASK] Make it compatible with Core < 8.3 (Commit ea2159e by Georg Ringer)
         2016-04-13 [BUGFIX][FOLLOWUP] Fix mysql strict (Commit 38842fc by Georg Ringer)
         2016-04-12 [BUGFIX] Fix strict mysql checks (Commit fee4449 by Georg Ringer)
         2016-03-17 [TASK] Remove unsupported categoryRestriction (Commit 780c111 by Nicole Cordes)

@@ -1,0 +1,33 @@
+.. include:: /Includes.rst.txt
+
+7.2.1 - 2019/08/04
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+This is a bugfix release.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2019-08-04 [TASK] Add funding button (Commit ede0e834 by Georg Ringer)
+    2019-08-04 [TASK] Add renderType inputDateTime to datetime columns (#923) (Commit f13009c2 by Jan Kiesewetter)
+    2019-08-04 [BUGFIX] Make the setRespectSysLanguage configurable in CategoryRepository (Commit 63b7a617 by Georg Ringer)
+    2019-08-02 [Bugfix] Constructor in subsequent proxyclasses (#947) (Commit 5402a228 by Markus Kugler)
+    2019-07-25 Add MySQL as service to Travis conf (#946) (Commit dda700a3 by Stefan Frömken)
+    2019-07-16 [BUGFIX] Replace undefined var $recordTitle (#941) (Commit fb5e8c6b by vaxul)
+    2019-05-20 Fix news sitemap for multiple storage pages (#910) (Commit 4582db99 by Ayke Halder)
+    2019-05-09 BUGFIX: Allow to overwrite TypoScript settings (#908) (Commit 095bd174 by Daniel Siepmann)
+    2019-05-06 [BUGFIX] Add data-namespace-typo3-fluid (#902) (Commit 3db158ec by T3 Premium)
+    2019-05-06 [TASK] Change datetime and archive fields to bigint (#903) (Commit d0c62921 by Daniel Huf)
+    2019-05-06 [TASK] Define absolute typolinks for atom feed (#904) (Commit 45dbd213 by Daniel Huf)
+
+
+
+This list has been created by using `git log 7.2.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

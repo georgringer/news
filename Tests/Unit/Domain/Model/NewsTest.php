@@ -2,24 +2,26 @@
 
 namespace GeorgRinger\News\Tests\Unit\Domain\Model;
 
+use GeorgRinger\News\Domain\Model\Category;
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Domain\Model\Category;
+
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\Domain\Model\Tag;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for domains model News
  *
  */
-class NewsTest extends UnitTestCase
+class NewsTest extends BaseTestCase
 {
 
     /**
@@ -31,7 +33,7 @@ class NewsTest extends UnitTestCase
      * Set up framework
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->newsDomainModelInstance = new News();
     }
@@ -40,8 +42,10 @@ class NewsTest extends UnitTestCase
      * Test if title can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function titleCanBeSet()
+    public function titleCanBeSet(): void
     {
         $title = 'News title';
         $this->newsDomainModelInstance->setTitle($title);
@@ -52,8 +56,10 @@ class NewsTest extends UnitTestCase
      * Test if teaser can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function teaserCanBeSet()
+    public function teaserCanBeSet(): void
     {
         $teaser = 'News teaser';
         $this->newsDomainModelInstance->setTeaser($teaser);
@@ -64,8 +70,10 @@ class NewsTest extends UnitTestCase
      * Test if bodytext can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function bodytextCanBeSet()
+    public function bodytextCanBeSet(): void
     {
         $bodytext = 'News bodytext';
         $this->newsDomainModelInstance->setBodytext($bodytext);
@@ -76,8 +84,10 @@ class NewsTest extends UnitTestCase
      * Test if datetime can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function datetimeCanBeSet()
+    public function datetimeCanBeSet(): void
     {
         $datetime = new \DateTime();
         $this->newsDomainModelInstance->setDatetime($datetime);
@@ -88,8 +98,10 @@ class NewsTest extends UnitTestCase
      * Test if archive can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function archiveCanBeSet()
+    public function archiveCanBeSet(): void
     {
         $archive = new \DateTime();
         $this->newsDomainModelInstance->setArchive($archive);
@@ -100,8 +112,10 @@ class NewsTest extends UnitTestCase
      * Test if author can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function authorCanBeSet()
+    public function authorCanBeSet(): void
     {
         $author = 'News author';
         $this->newsDomainModelInstance->setAuthor($author);
@@ -112,8 +126,10 @@ class NewsTest extends UnitTestCase
      * Test if emailadr can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function authorEmailCanBeSet()
+    public function authorEmailCanBeSet(): void
     {
         $authorEmail = 'author@news.org';
         $this->newsDomainModelInstance->setAuthorEmail($authorEmail);
@@ -124,8 +140,10 @@ class NewsTest extends UnitTestCase
      * Test if type can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function typeCanBeSet()
+    public function typeCanBeSet(): void
     {
         $type = 123;
         $this->newsDomainModelInstance->setType($type);
@@ -136,8 +154,10 @@ class NewsTest extends UnitTestCase
      * Test if keyword can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function keywordsCanBeSet()
+    public function keywordsCanBeSet(): void
     {
         $keywords = 'news1 keyword, news keyword';
         $this->newsDomainModelInstance->setKeywords($keywords);
@@ -148,8 +168,10 @@ class NewsTest extends UnitTestCase
      * Test if internalurl can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function internalurlCanBeSet()
+    public function internalurlCanBeSet(): void
     {
         $internalurl = 'http://foo.org/';
         $this->newsDomainModelInstance->setInternalurl($internalurl);
@@ -160,8 +182,10 @@ class NewsTest extends UnitTestCase
      * Test if externalurl can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function externalurlCanBeSet()
+    public function externalurlCanBeSet(): void
     {
         $externalurl = 'http://bar.org/';
         $this->newsDomainModelInstance->setExternalurl($externalurl);
@@ -172,8 +196,10 @@ class NewsTest extends UnitTestCase
      * Test if topnews can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function isttopnewsCanBeSet()
+    public function isttopnewsCanBeSet(): void
     {
         $istopnews = true;
         $this->newsDomainModelInstance->setIstopnews($istopnews);
@@ -184,8 +210,10 @@ class NewsTest extends UnitTestCase
      * Test if editlock can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function editlockCanBeSet()
+    public function editlockCanBeSet(): void
     {
         $editlock = 2;
         $this->newsDomainModelInstance->setEditlock($editlock);
@@ -196,8 +224,10 @@ class NewsTest extends UnitTestCase
      * Test if importid can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function importIdCanBeSet()
+    public function importIdCanBeSet(): void
     {
         $importId = 2;
         $this->newsDomainModelInstance->setImportId($importId);
@@ -208,8 +238,10 @@ class NewsTest extends UnitTestCase
      * Test if importSource can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function importSourceCanBeSet()
+    public function importSourceCanBeSet(): void
     {
         $importSource = 'test';
         $this->newsDomainModelInstance->setImportSource($importSource);
@@ -220,8 +252,10 @@ class NewsTest extends UnitTestCase
      * Test if sorting can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function sortingCanBeSet()
+    public function sortingCanBeSet(): void
     {
         $sorting = 2;
         $this->newsDomainModelInstance->setSorting($sorting);
@@ -232,14 +266,16 @@ class NewsTest extends UnitTestCase
      * Test if tag can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function tagsCanBeSet()
+    public function tagsCanBeSet(): void
     {
-        $tags = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $tags = new ObjectStorage();
 
         $tag = new Tag();
         $tag->setTitle('Tag');
-        $tags->attach($tags);
+        $tags->attach($tag);
         $this->newsDomainModelInstance->setTags($tags);
         $this->assertEquals($tags, $this->newsDomainModelInstance->getTags());
     }
@@ -248,10 +284,12 @@ class NewsTest extends UnitTestCase
      * Test if content elements can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function contentElementsCanBeSet()
+    public function contentElementsCanBeSet(): void
     {
-        $ce = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $ce = new ObjectStorage();
 
         $item = new \SplObjectStorage();
         $ce->attach($item);
@@ -264,12 +302,14 @@ class NewsTest extends UnitTestCase
      * Test if category can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function categoryCanBeSet()
+    public function categoryCanBeSet(): void
     {
         $category = new Category();
         $category->setTitle('fo');
-        $categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $categories = new ObjectStorage();
         $categories->attach($category);
         $this->newsDomainModelInstance->setCategories($categories);
         $this->assertEquals($categories, $this->newsDomainModelInstance->getCategories());
@@ -279,13 +319,15 @@ class NewsTest extends UnitTestCase
      * Test if related links can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function relatedLinksCanBeSet()
+    public function relatedLinksCanBeSet(): void
     {
         $link = new Link();
         $link->setTitle('fo');
 
-        $related = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $related = new ObjectStorage();
         $related->attach($link);
         $this->newsDomainModelInstance->setRelatedLinks($related);
         $this->assertEquals($related, $this->newsDomainModelInstance->getRelatedLinks());
@@ -293,8 +335,10 @@ class NewsTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function falMediaCanBeAdded()
+    public function falMediaCanBeAdded(): void
     {
         $mediaItem = new FileReference();
         $mediaItem->setTitle('Fo');
@@ -308,12 +352,14 @@ class NewsTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function falMediaPreviewsAreReturned()
+    public function falMediaPreviewsAreReturned(): void
     {
         $news = new News();
 
-        $mockedElement1 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
+        $mockedElement1 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
         $mockedElement1->_set('uid', 1);
         $mockedElement1->_set('showinpreview', 1);
         $mockedElement1->expects($this->any())->method('getProperty')->will($this->returnValue(1));
@@ -323,7 +369,7 @@ class NewsTest extends UnitTestCase
         $mediaItem1->_setProperty('uid', 1);
         $news->addFalMedia($mediaItem1);
 
-        $mockedElement2 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
+        $mockedElement2 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
         $mockedElement2->_set('uid', 2);
         $mockedElement2->_set('showinpreview', 0);
         $mockedElement2->expects($this->any())->method('getProperty')->will($this->returnValue(0));
@@ -333,7 +379,7 @@ class NewsTest extends UnitTestCase
         $mediaItem2->_setProperty('uid', 2);
         $news->addFalMedia($mediaItem2);
 
-        $mockedElement3 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
+        $mockedElement3 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
         $mockedElement3->_set('uid', 3);
         $mockedElement3->_set('showinpreview', 1);
         $mockedElement3->expects($this->any())->method('getProperty')->will($this->returnValue(1));
@@ -343,7 +389,7 @@ class NewsTest extends UnitTestCase
         $mediaItem3->_setProperty('originalResource', $mockedElement3);
         $news->addFalMedia($mediaItem3);
 
-        $mockedElement4 = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Model\\FileReference', ['getProperty']);
+        $mockedElement4 = $this->getAccessibleMock(FileReference::class, ['getProperty']);
         $mockedElement4->_set('uid', 4);
         $mockedElement4->_set('showinpreview', 2);
         $mockedElement4->expects($this->any())->method('getProperty')->will($this->returnValue(2));

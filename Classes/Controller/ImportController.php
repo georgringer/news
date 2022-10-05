@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
 
 /**
@@ -8,10 +9,10 @@ namespace GeorgRinger\News\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 use Exception;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Jobs\ImportJobInterface;
-use GeorgRinger\News\Utility\EmConfiguration;
 use GeorgRinger\News\Utility\ImportJob;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
@@ -40,7 +41,7 @@ class ImportController extends ActionController
      *
      * @return array
      */
-    protected function getAvailableJobs()
+    protected function getAvailableJobs(): array
     {
         $availableJobs = [];
         $registeredJobs = ImportJob::getRegisteredJobs();
@@ -58,16 +59,19 @@ class ImportController extends ActionController
     /**
      * Shows the import jobs selection .
      *
+     * @return void
      */
-    public function indexAction()
+    public function indexAction(): void
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/Import');
 
-        $this->view->assignMultiple([
+        $this->view->assignMultiple(
+            [
                 'error' => $this->checkCorrectConfiguration(),
                 'availableJobs' => array_merge([0 => ''], $this->getAvailableJobs()),
-                'moduleUrl' => BackendUtility::getModuleUrl($this->request->getPluginName())
+                'moduleUrl' => $uriBuilder->buildUriFromRoute($this->request->getPluginName())
             ]
         );
     }
@@ -79,10 +83,11 @@ class ImportController extends ActionController
      * @throws Exception
      * @throws \TYPO3\CMS\Core\Resource\Exception\InsufficientFolderAccessPermissionsException
      */
-    protected function checkCorrectConfiguration()
+    protected function checkCorrectConfiguration(): string
     {
         $error = '';
-        $settings = EmConfiguration::getSettings();
+
+        $settings = GeneralUtility::makeInstance(EmConfiguration::class);
 
         try {
             $storageId = (int)$settings->getStorageUidImporter();
@@ -113,7 +118,7 @@ class ImportController extends ActionController
      * @param int $offset
      * @return string
      */
-    public function runJobAction($jobClassName, $offset = 0)
+    public function runJobAction($jobClassName, $offset = 0): string
     {
         /** @var ImportJobInterface $job */
         $job = $this->objectManager->get($jobClassName);
@@ -128,7 +133,7 @@ class ImportController extends ActionController
      * @param  string $jobClassName
      * @return string
      */
-    public function jobInfoAction($jobClassName)
+    public function jobInfoAction($jobClassName): string
     {
         $response = null;
         try {
@@ -149,8 +154,8 @@ class ImportController extends ActionController
     /**
      * @return ResourceFactory
      */
-    protected function getResourceFactory()
+    protected function getResourceFactory(): ResourceFactory
     {
-        return ResourceFactory::getInstance();
+        return GeneralUtility::makeInstance(ResourceFactory::class);
     }
 }

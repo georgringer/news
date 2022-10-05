@@ -9,20 +9,22 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers\Be;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\ViewHelpers\Be\IsCheckboxActiveViewHelper;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for IsCheckboxActiveViewhelper
  *
  */
-class IsCheckboxActiveViewhelperTest extends UnitTestCase
+class IsCheckboxActiveViewhelperTest extends BaseTestCase
 {
     const OK_RESULT = 'checked="checked"';
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function activeCheckboxReturnsCorrectValue()
+    public function activeCheckboxReturnsCorrectValue(): void
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
         $viewHelper->setArguments([
@@ -36,8 +38,10 @@ class IsCheckboxActiveViewhelperTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function nonActiveCheckboxReturnsNothing()
+    public function nonActiveCheckboxReturnsNothing(): void
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
         $viewHelper->setArguments([
@@ -51,11 +55,13 @@ class IsCheckboxActiveViewhelperTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function noCategoriesReturnNothing()
+    public function noCategoriesReturnNothing(): void
     {
         $viewHelper = new IsCheckboxActiveViewHelper();
 
-        $this->assertEquals('', $actualResult);
+        $this->assertEquals('', $viewHelper->render());
     }
 }

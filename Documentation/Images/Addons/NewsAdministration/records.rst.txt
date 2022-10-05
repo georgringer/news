@@ -1,0 +1,5 @@
+
+.. figure:: /Images/Addons/NewsAdministration/records.png
+   :class: with-shadow
+
+   Display those pages which contain news records, tags and categories.

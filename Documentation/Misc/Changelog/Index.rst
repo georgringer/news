@@ -1,14 +1,13 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. include:: /Includes.rst.txt
 
-.. include:: ../../Includes.txt
+.. the changelog is displayed in the pagetree in Reference/Changelog
+.. there are external links to the github files however.
 
 .. _changelog:
 
+=========
 ChangeLog
----------
+=========
 
 Please follow this link to know which bugs have been fixed in which version.
 
@@ -20,6 +19,31 @@ List of versions
    :titlesonly:
    :glob:
 
+   10-0-1
+   10-0-0
+   9-4-0
+   9-3-1
+   9-3-0
+   9-2-0
+   9-1-1
+   9-1-0
+   9-0-0
+   8-6-0
+   8-5-2
+   8-5-1
+   8-5-0
+   8-4-1
+   8-4-0
+   8-3-0
+   8-2-0
+   8-1-1
+   8-1-0
+   8-0-0
+   7-3-1
+   7-3-0
+   7-2-3
+   7-2-2
+   7-2-1
    7-2-0
    7-1-0
    7-0-8

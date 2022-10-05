@@ -1,58 +1,157 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+﻿.. include:: /Includes.rst.txt
 
-.. include:: Includes.txt
-
-
-.. _start:
-
-=============================================================
+===========
 News system
-=============================================================
+===========
 
-.. only:: html
+:Extension key:
+   news
 
-	:Classification:
-		news
+:Package name:
+   georgringer/news
 
-	:Version:
-		|release|
+:Version:
+   |release|
 
-	:Language:
-		en
+:Language:
+   en
 
-	:Keywords:
-		news
+:Author:
+   Georg Ringer & Contributors
 
-	:Copyright:
-		2015
+:License:
+   This document is published under the
+   `Open Publication License <https://www.opencontent.org/openpub/>`__.
 
-	:Author:
-		Georg Ringer
+:Rendered:
+   |today|
 
-	:License:
-		This document is published under the Open Content License
-		available from http://www.opencontent.org/opl.shtml
+----
 
-	:Rendered:
-		|today|
+This extension implements a versatile news system based on Extbase & Fluid and
+uses the latest technologies provided by TYPO3 CMS.
 
-	The content of this document is related to TYPO3,
-	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
+----
 
+.. container:: row m-0 p-0
 
-	**Table of Contents**
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Quick start <quickStart>`
+
+         .. container:: card-body
+
+            A quick introduction in how to use this extension.
+
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Introduction <introduction>`
+
+         .. container:: card-body
+
+            Introduction to the extension news, general information.
+
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Editors manual <userManual>`
+
+         .. container:: card-body
+
+            Learn how to use the news administration module, how to configure
+            the plugin and how to create news records, tags and categories.
+
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Tutorials <tutorials>`
+
+         .. container:: card-body
+
+            Tutorials and snippets for many frequent use cases.
+
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Administration <admin-manual>`
+
+         .. container:: card-body
+
+            Install or upgrade EXT:news, learn how to migrate from EXT:tt_news
+            to news or from RealURL to Routes etc.
+
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Reference <reference>`
+
+         .. container:: card-body
+
+            In-depth reference about certain aspects of this extension:
+            TypoScript, TSconfig, ViewHelpers etc
+
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Support <support>`
+
+         .. container:: card-body
+
+            There are various ways to get support for EXT:news!
+
+   .. container:: col-12 col-md-6 pl-0 pr-3 py-3 m-0
+
+      .. container:: card px-0 h-100
+
+         .. rst-class:: card-header h3
+
+            .. rubric:: :ref:`Addons <addons>`
+
+         .. container:: card-body
+
+            Various extensions improve EXT:news with additional features.
+.. Table of Contents
 
 .. toctree::
-	:maxdepth: 3
-	:titlesonly:
-	:glob:
+   :maxdepth: 2
+   :titlesonly:
+   :hidden:
 
-	Introduction/Index
-	UsersManual/Index
-	AdministratorManual/Index
-	DeveloperManual/Index
-	Tutorials/Index
-	Misc/Index
+   Introduction/Index
+   QuickStart/Index
+   UsersManual/Index
+   Tutorials/Index
+   Administration/Index
+   Reference/Index
+   Addons/Index
+
+.. Meta Menu
+
+.. toctree::
+   :hidden:
+
+   Sitemap
+   genindex

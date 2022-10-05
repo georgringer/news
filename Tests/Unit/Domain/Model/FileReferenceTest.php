@@ -9,23 +9,25 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\FileReference;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for GeorgRinger\News\Domain\Model\FileReference
  */
-class FileReferenceTest extends UnitTestCase
+class FileReferenceTest extends BaseTestCase
 {
 
     /**
      * Test if fileUid can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function fileUidCanBeSet()
+    public function fileUidCanBeSet(): void
     {
         $domainModelInstance = new FileReference();
-        $value = 'Test 123';
+        $value = 781;
         $domainModelInstance->setFileUid($value);
         $this->assertEquals($value, $domainModelInstance->getFileUid());
     }
@@ -34,8 +36,10 @@ class FileReferenceTest extends UnitTestCase
      * Test if alternative can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function alternativeBeSet()
+    public function alternativeBeSet(): void
     {
         $domainModelInstance = new FileReference();
         $value = 'Test 123';
@@ -47,8 +51,10 @@ class FileReferenceTest extends UnitTestCase
      * Test if description can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function descriptionBeSet()
+    public function descriptionBeSet(): void
     {
         $domainModelInstance = new FileReference();
         $value = 'Test 123';
@@ -60,8 +66,10 @@ class FileReferenceTest extends UnitTestCase
      * Test if link can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function linkBeSet()
+    public function linkBeSet(): void
     {
         $domainModelInstance = new FileReference();
         $value = 'Test 123';
@@ -73,8 +81,10 @@ class FileReferenceTest extends UnitTestCase
      * Test if title can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function titleBeSet()
+    public function titleBeSet(): void
     {
         $domainModelInstance = new FileReference();
         $value = 'Test 123';
@@ -86,8 +96,10 @@ class FileReferenceTest extends UnitTestCase
      * Test if showInPreview can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function showInPreviewBeSet()
+    public function showInPreviewBeSet(): void
     {
         $domainModelInstance = new FileReference();
         $value = 2;

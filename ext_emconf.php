@@ -2,20 +2,22 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'News system',
-    'description' => 'Versatile news extension, based on extbase & fluid. Editor friendly, default integration of social sharing and many other features',
+    'description' => 'Versatile news system based on Extbase & Fluid and using the latest technologies provided by TYPO3 CMS.',
     'category' => 'fe',
     'author' => 'Georg Ringer',
     'author_email' => 'mail@ringer.it',
     'state' => 'stable',
     'clearCacheOnLoad' => true,
-    'version' => '7.2.0',
+    'version' => '10.0.1',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.13-9.5.99',
+            'typo3' => '10.4.13-11.9.99',
         ],
         'conflicts' => [],
         'suggests' => [
-            'rx_shariff' => '11.0.0-11.99.99'
+            'rx_shariff' => '12.0.0-14.99.99',
+            'news_tagsuggest' => '1.0.0-1.99.99',
+            'numbered_pagination' => '1.0.1-1.99.99'
         ],
     ],
 ];

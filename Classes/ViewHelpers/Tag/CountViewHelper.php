@@ -1,14 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\ViewHelpers\Tag;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -24,7 +25,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * {n:tag.count(tagUid:tag.uid) -> f:variable(name: 'tagUsageCount')}
  * {tagUsageCount}
  */
-class CountViewHelper extends AbstractViewHelper implements CompilableInterface
+class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
 {
     use CompileWithRenderStatic;
 
@@ -47,9 +48,7 @@ class CountViewHelper extends AbstractViewHelper implements CompilableInterface
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
-
+    ): int {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
 
@@ -76,5 +75,4 @@ class CountViewHelper extends AbstractViewHelper implements CompilableInterface
 
         return $count;
     }
-
 }

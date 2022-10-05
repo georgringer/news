@@ -1,5 +1,8 @@
 <?php
+
 namespace GeorgRinger\News\Controller;
+
+use GeorgRinger\News\Event\CategoryListActionEvent;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -7,33 +10,17 @@ namespace GeorgRinger\News\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 /**
  * Category controller
  */
 class CategoryController extends NewsController
 {
-    const SIGNAL_CATEGORY_LIST_ACTION = 'listAction';
-
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
-     */
-    protected $categoryRepository;
-
-    /**
-     * Inject a category repository to enable DI
-     *
-     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     */
-    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
     /**
      * List categories
      *
      * @param array $overwriteDemand
+     *
+     * @return void
      */
     public function listAction(array $overwriteDemand = null)
     {
@@ -57,8 +44,8 @@ class CategoryController extends NewsController
             'demand' => $demand,
         ];
 
-        $assignedValues = $this->emitActionSignal('CategoryController', self::SIGNAL_CATEGORY_LIST_ACTION,
-            $assignedValues);
-        $this->view->assignMultiple($assignedValues);
+        $event = $this->eventDispatcher->dispatch(new CategoryListActionEvent($this, $assignedValues, $this->request));
+
+        $this->view->assignMultiple($event->getAssignedValues());
     }
 }

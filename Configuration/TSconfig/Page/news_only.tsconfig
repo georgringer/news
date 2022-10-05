@@ -1,0 +1,2 @@
+
+mod.web_list.allowedNewTables := addToList(tx_news_domain_model_news,sys_note,tx_news_domain_model_tag)

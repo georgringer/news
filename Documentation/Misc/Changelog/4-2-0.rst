@@ -1,3 +1,7 @@
+.. include:: /Includes.rst.txt
+
+
+
 4.2.0 - 2016/03/02
 ==================
 
@@ -66,7 +70,7 @@ This is a list of all changes in this release: ::
         2016-02-22 [BUGFIX] Check for root page in admin module > pidlist (Commit 0f52e84 by Georg Ringer)
         2016-02-22 [BUGFIX] Fix overrideFlexformSettingsIfEmpty with 0 values (Commit df29968 by Georg Ringer)
         2016-02-22 [FEATURE] New setting "hideIdList" (Commit 1657609 by Georg Ringer)
-        2016-02-22 [BUGFIX] Use fluid_styled_content constants for lightbox (Commit 691670c by Georg Ringer)
+        2016-02-22 [BUGFIX] Use Fluid_styled_content constants for lightbox (Commit 691670c by Georg Ringer)
         2016-02-22 [BUGFIX] Add overlay in SimplePrevNextVh (Commit 5b58cfb by Georg Ringer)
         2016-02-22 [TASK] Update google+ VH to latest code (Commit ee57a20 by Georg Ringer)
         2016-02-22 [!!!][TASK] Deprecate VH n:format.fileDownload (Commit d97a7aa by Georg Ringer)

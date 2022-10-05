@@ -1,0 +1,43 @@
+.. include:: /Includes.rst.txt
+
+9.1.1 - 20th December 2021
+==========================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Christmas release
+-----------------
+
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2021-12-16 [TASK] Update module_administration.svg (#1677) (Commit a1d143ef by bucheggerOnline)
+    2021-12-16 [DOCS] Add portal-like startpages (#1679) (Commit 28555eef by Lina Wolf)
+    2021-12-12 [DOCS] Minor improvements on How to start page (#1670) (Commit 2e79c284 by Sybille Peters)
+    2021-12-12 [DOCS] Minor improvements on thanks page (#1669) (Commit df5da57f by Sybille Peters)
+    2021-12-12 [DOCS] Changes related to Extension Configuration (#1672) (Commit 0bc2d96e by Sybille Peters)
+    2021-12-12 [DOCS] Improve style (#1675) (Commit ab49e789 by Sybille Peters)
+    2021-12-12 [DOCS] Fix formatting for typoscript (#1674) (Commit 17d9d7d4 by Sybille Peters)
+    2021-12-10 [BUGFIX] Properties of type DateTimeInterface should be nullable (Commit 4fd307ee by Georg Ringer)
+    2021-12-05 [DOCS] Fix typo (#1667) (Commit 53f2e97d by Alexander Nitsche)
+    2021-12-02 [BUGFIX] Replace outdated usage of clearable (Commit 9ab99cc3 by Georg Ringer)
+    2021-11-23 [DOC] Update badges in readme (Commit 923b9649 by Georg Ringer)
+    2021-11-23 [DOCS] Add General TSconfig examples (#1649) (Commit d5bbd3ce by Lina Wolf)
+    2021-11-23 [DOCS] documents data processors (#1655) (Commit eddb7d96 by Lina Wolf)
+    2021-11-23 Fix deprecated tests (Commit 1f4024bd by Georg Ringer)
+    2021-11-23 [TASK] Remove test class without test (Commit daf71ea6 by Georg Ringer)
+    2021-11-23 [BUGFIX] Remove invalid character (Commit ef7e00f2 by Georg Ringer)
+    2021-11-23 [BUGFIX] Allow null for archive (Commit 03cf9093 by Georg Ringer)
+    2021-11-20 Fix path to news_only.tsconfig (#1650) (Commit bae5fb38 by Michael Binder)
+    2021-11-17 fix small typo (#1648) (Commit 85297d36 by Volker Burggräf)
+    2021-11-16 [TASK] Remove trailing dot from pagination overview (#1647) (Commit a24f20f2 by Benjamin Franzke)
+    2021-11-11 [BUGFIX] Remove outdated linkvalidator configuration #1644 (Commit dd9d1bda by Georg Ringer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:'%ad %s (Commit %h by %an)' --date=short`.

@@ -1,0 +1,5 @@
+
+.. figure:: /Images/Addons/NewsFegroupPreview/plugin.png
+   :class: with-shadow
+
+   Configuration

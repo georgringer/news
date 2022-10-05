@@ -1,0 +1,183 @@
+# ==============================================
+# FE-Plugin configuration for EXT:news
+# ==============================================
+plugin.tx_news {
+  mvc.callDefaultActionIfActionCantBeResolved = 1
+
+  view {
+    templateRootPaths {
+      0 = EXT:news/Resources/Private/Templates/
+    }
+
+    partialRootPaths {
+      0 = EXT:news/Resources/Private/Partials/
+    }
+
+    layoutRootPaths {
+      0 = EXT:news/Resources/Private/Layouts/
+    }
+
+    widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/
+  }
+
+  # ====================================
+  # Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
+  # ====================================
+  settings {
+    cssFile =
+
+    #Displays a dummy image if the news have no media items
+    displayDummyIfNoMedia = 1
+
+    # Output format
+    format = html
+
+    # general settings
+    overrideFlexformSettingsIfEmpty = cropMaxCharacters,dateField,timeRestriction,timeRestrictionHigh,archiveRestriction,orderBy,orderDirection,backPid,listPid,startingpoint,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
+    allowEmptyStringsForOverwriteDemand = 0
+
+    includeSubCategories = 0
+
+    analytics {
+      social {
+        facebookLike = 1
+        facebookShare = 1
+        twitter = 1
+      }
+    }
+
+    detailPidDetermination = flexform, categories, default
+
+    defaultDetailPid = 0
+    dateField = datetime
+
+    link {
+      typesOpeningInNewWindow = 2
+      hrDate = 0
+      hrDate {
+        day = j
+        month = n
+        year = Y
+      }
+    }
+
+    cropMaxCharacters = 150
+    orderBy = datetime
+    orderDirection = desc
+    topNewsFirst = 0
+    orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
+
+    facebookLocale = en_US
+    googlePlusLocale = en
+
+    demandClass =
+
+    # --------------
+    #  Search
+    # --------------
+    search {
+      fields = teaser,title,bodytext
+      splitSearchWord = 0
+    }
+
+    # --------------
+    #  Detail
+    # --------------
+    detail {
+      errorHandling = showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
+      checkPidOfNewsRecord = 0
+      registerProperties = keywords,title
+      showPrevNext = 0
+      showSocialShareButtons = 1
+      showMetaTags = 1
+
+      # media configuration
+      media {
+        image {
+          lazyLoading = 0
+          maxWidth = 282
+          maxHeight =
+
+          # Get lightbox settings from fluid_styled_content
+          lightbox {
+            enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
+            class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
+            width = {$styles.content.textmedia.linkWrap.width}
+            height = {$styles.content.textmedia.linkWrap.height}
+            rel = lightbox[myImageSet]
+          }
+        }
+
+        video {
+          width = 282
+          height = 159
+        }
+      }
+
+      pageTitle = 1
+      pageTitle {
+        provider = GeorgRinger\News\Seo\NewsTitleProvider
+        properties = title,teaser
+      }
+    }
+
+    # --------------
+    #  List
+    # --------------
+    list {
+      # media configuration
+      media {
+        image {
+          lazyLoading = 0
+          maxWidth = 100
+          maxHeight = 100
+        }
+
+        dummyImage = EXT:news/Resources/Public/Images/dummy-preview-image.png
+      }
+
+      # Paginate configuration.
+      paginate {
+        class = GeorgRinger\NumberedPagination\NumberedPagination
+        itemsPerPage = 10
+        insertAbove = 1
+        insertBelow = 1
+        maximumNumberOfLinks = 3
+      }
+    }
+  }
+}
+
+# ==============================================
+# Persistence object mapping configuration
+# ==============================================
+config.tx_extbase.persistence.classes {
+  GeorgRinger\News\Domain\Model\News {
+    subclasses {
+      0 = GeorgRinger\News\Domain\Model\NewsDefault
+      1 = GeorgRinger\News\Domain\Model\NewsInternal
+      2 = GeorgRinger\News\Domain\Model\NewsExternal
+    }
+  }
+
+  GeorgRinger\News\Domain\Model\NewsDefault {
+    mapping {
+      recordType = 0
+      tableName = tx_news_domain_model_news
+    }
+  }
+
+  GeorgRinger\News\Domain\Model\NewsInternal {
+    mapping {
+      recordType = 1
+      tableName = tx_news_domain_model_news
+    }
+  }
+
+  GeorgRinger\News\Domain\Model\NewsExternal {
+    mapping {
+      recordType = 2
+      tableName = tx_news_domain_model_news
+    }
+  }
+}

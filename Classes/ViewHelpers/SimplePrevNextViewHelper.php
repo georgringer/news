@@ -2,17 +2,23 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
+use TYPO3\CMS\Core\Context\LanguageAspect;
+use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Domain\Model\News;
-use TYPO3\CMS\Core\Database\Connection;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper for a **simple** prev/next link.
@@ -49,9 +55,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * <output>
  *  Menu with 2 li items with the link to the previous and next news item.
  * </output>
- *
  */
-class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class SimplePrevNextViewHelper extends AbstractViewHelper
 {
 
     /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
@@ -66,8 +71,10 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      * Inject the DataMapper
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
+     *
+     * @return void
      */
-    public function injectDataMapper(\TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper)
+    public function injectDataMapper(DataMapper $dataMapper): void
     {
         $this->dataMapper = $dataMapper;
     }
@@ -82,14 +89,14 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         $this->registerArgument('pidList', 'string', 'pid list', false, '');
         $this->registerArgument('sortField', 'string', 'sort field', false, 'datetime');
         $this->registerArgument('as', 'string', 'as', true);
-        $this->registerArgument('includeInternalType', 'boolean', 'Include internal news types');
-        $this->registerArgument('includeExternalType', 'bool', 'Include external news types');
+        $this->registerArgument('includeInternalType', 'boolean', 'Include internal news types', false, false);
+        $this->registerArgument('includeExternalType', 'bool', 'Include external news types', false, false);
     }
 
     /**
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         $neighbours = $this->getNeighbours($this->arguments['news'], $this->arguments['pidList'], $this->arguments['sortField']);
         $as = $this->arguments['as'];
@@ -123,6 +130,7 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      *
      * @param int $id
      * @return mixed|null
+     * @throws AspectNotFoundException
      */
     protected function getObject($id)
     {
@@ -130,12 +138,15 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
 
         $rawRecord = $this->getRawRecord($id);
 
-        if (is_object($GLOBALS['TSFE']) && $GLOBALS['TSFE']->sys_language_content > 0) {
+        /** @var LanguageAspect $languageAspect */
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+
+        if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
             $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
                 'tx_news_domain_model_news',
                 $rawRecord,
-                $GLOBALS['TSFE']->sys_language_content,
-                $GLOBALS['TSFE']->sys_language_contentOL
+                $languageAspect->getContentId(),
+                $languageAspect->getLegacyOverlayType()
             );
             if (!is_null($overlay)) {
                 $rawRecord = $overlay;
@@ -152,14 +163,14 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
 
     /**
      * @param News $news
-     * @param $pidList
-     * @param $sortField
+     * @param string $pidList
+     * @param string $sortField
      * @return array
      */
-    protected function getNeighbours(News $news, $pidList, $sortField)
+    protected function getNeighbours(News $news, string $pidList, string $sortField): array
     {
         $data = [];
-        $pidList = empty($pidList) ? $news->getPid() : $pidList;
+        $pidList = empty($pidList) ? (string)$news->getPid() : $pidList;
 
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getConnectionForTable('tx_news_domain_model_news');
@@ -167,11 +178,13 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         foreach (['prev', 'next'] as $label) {
             $queryBuilder = $connection->createQueryBuilder();
 
-            $extraWhere = [];
-            if ((bool)$this->arguments['includeInternalType'] === false) {
+            $extraWhere = [
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), \PDO::PARAM_INT))
+            ];
+            if ((bool)($this->arguments['includeInternalType'] ?? false) === false) {
                 $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));
             }
-            if ((bool)$this->arguments['includeExternalType'] === false) {
+            if ((bool)($this->arguments['includeExternalType'] ?? false) === false) {
                 $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(2, \PDO::PARAM_INT));
             }
 
@@ -211,17 +224,17 @@ class SimplePrevNextViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     /**
      * @return QueryBuilder
      */
-    protected function getQueryBuilder()
+    protected function getQueryBuilder(): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return array
      */
-    protected function getRawRecord($id)
+    protected function getRawRecord(int $id): ?array
     {
         $queryBuilder = $this->getQueryBuilder();
         $rawRecord = $queryBuilder

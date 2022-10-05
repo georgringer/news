@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Backend\FormDataProvider;
 
 /**
@@ -7,7 +8,8 @@ namespace GeorgRinger\News\Backend\FormDataProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Utility\EmConfiguration;
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -129,12 +131,9 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      */
     protected $configuration;
 
-    /**
-     * NewsFlexFormManipulation constructor.
-     */
     public function __construct()
     {
-        $this->configuration = EmConfiguration::getSettings();
+        $this->configuration = GeneralUtility::makeInstance(EmConfiguration::class);
     }
 
     /**
@@ -144,7 +143,7 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    public function addData(array $result)
+    public function addData(array $result): array
     {
         if ($result['tableName'] === 'tt_content'
             && $result['databaseRow']['CType'] === 'list'
@@ -166,7 +165,7 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      * @param array $result Full data
      * @return array Modified data
      */
-    protected function updateFlexForms(array $result)
+    protected function updateFlexForms(array $result): array
     {
         $selectedView = '';
         $row = $result['databaseRow'];
@@ -211,14 +210,12 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
                 default:
             }
 
-            if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'])) {
-                $params = [
-                    'selectedView' => $selectedView,
-                    'dataStructure' => &$dataStructure,
-                ];
-                foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] as $reference) {
-                    GeneralUtility::callUserFunction($reference, $params, $this);
-                }
+            $params = [
+                'selectedView' => $selectedView,
+                'dataStructure' => &$dataStructure,
+            ];
+            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] ?? [] as $reference) {
+                GeneralUtility::callUserFunction($reference, $params, $this);
             }
         }
 
@@ -233,7 +230,7 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      * @param array $result
      * @return array Modified result
      */
-    protected function addCategoryConstraints($result)
+    protected function addCategoryConstraints($result): array
     {
         $structure = $result['processedTca']['columns']['pi_flexform']['config']['ds'];
         $categoryRestrictionSetting = $this->configuration->getCategoryRestriction();
@@ -250,7 +247,7 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
                 break;
         }
 
-        if (!empty($categoryRestriction)) {
+        if (!empty($categoryRestriction) && isset($structure['sheets']['sDEF']['ROOT']['el']['settings.categories'])) {
             $structure['sheets']['sDEF']['ROOT']['el']['settings.categories']['config']['foreign_table_where'] = $categoryRestriction . $structure['sheets']['sDEF']['ROOT']['el']['settings.categories']['config']['foreign_table_where'];
         }
         $result['processedTca']['columns']['pi_flexform']['config']['ds'] = $structure;
@@ -264,7 +261,7 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      * @param array $fieldsToBeRemoved fields which need to be removed
      * @return array Modified structure
      */
-    protected function deleteFromStructure(array $dataStructure, array $fieldsToBeRemoved)
+    protected function deleteFromStructure(array $dataStructure, array $fieldsToBeRemoved): array
     {
         foreach ($fieldsToBeRemoved as $sheetName => $fieldsInSheet) {
             foreach ($fieldsInSheet as $fieldName) {
@@ -278,11 +275,8 @@ class NewsFlexFormManipulation implements FormDataProviderInterface
      * @param array $result Incoming array
      * @return bool
      */
-    protected function enabledInTsConfig(array $result)
+    protected function enabledInTsConfig(array $result): bool
     {
-        if (isset($result['pageTsConfig']['tx_news.']['categoryRestrictionForFlexForms'])) {
-            return (bool)$result['pageTsConfig']['tx_news.']['categoryRestrictionForFlexForms'];
-        }
-        return false;
+        return (bool)($result['pageTsConfig']['tx_news.']['categoryRestrictionForFlexForms'] ?? false);
     }
 }

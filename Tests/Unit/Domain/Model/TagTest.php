@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\Tag;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for domains model Tag
  *
  */
-class TagTest extends UnitTestCase
+class TagTest extends BaseTestCase
 {
 
     /**
@@ -27,7 +27,7 @@ class TagTest extends UnitTestCase
      * Setup
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->tagDomainModelInstance = new Tag();
     }
@@ -36,8 +36,10 @@ class TagTest extends UnitTestCase
      * Test if title can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function titleCanBeSet()
+    public function titleCanBeSet(): void
     {
         $title = 'Tag title';
         $this->tagDomainModelInstance->setTitle($title);
@@ -48,8 +50,10 @@ class TagTest extends UnitTestCase
      * Test if crdate can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function crdateCanBeSet()
+    public function crdateCanBeSet(): void
     {
         $time = new \DateTime('now');
         $this->tagDomainModelInstance->setCrdate($time);
@@ -60,8 +64,10 @@ class TagTest extends UnitTestCase
      * Test if tstamp can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function tstampCanBeSet()
+    public function tstampCanBeSet(): void
     {
         $time = new \DateTime('now');
         $this->tagDomainModelInstance->setTstamp($time);

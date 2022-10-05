@@ -8,15 +8,16 @@ namespace GeorgRinger\News\Service;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\TimeTracker\TimeTracker;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Service for category related stuff
- *
  */
 class CategoryService
 {
@@ -36,11 +37,11 @@ class CategoryService
         $counter = 0,
         $additionalWhere = '',
         $removeGivenIdListFromResult = false
-    ) {
+    ): string {
         if ($additionalWhere !== '') {
             throw new \UnexpectedValueException('The argument $additionalWhere is not supported anymore');
         }
-        $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('cache_news_category');
+        $cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('news_category');
         $cacheIdentifier = sha1('children' . $idList);
 
         $entry = $cache->get($cacheIdentifier);
@@ -63,7 +64,7 @@ class CategoryService
      * @param $toBeRemoved string comma separated list
      * @return string
      */
-    public static function removeValuesFromString($result, $toBeRemoved): string
+    public static function removeValuesFromString($result, string $toBeRemoved): string
     {
         $resultAsArray = GeneralUtility::trimExplode(',', $result, true);
         $idListAsArray = GeneralUtility::trimExplode(',', $toBeRemoved, true);
@@ -121,17 +122,21 @@ class CategoryService
      * @return string
      * @throws \UnexpectedValueException
      */
-    public static function translateCategoryRecord($default, array $row = [])
+    public static function translateCategoryRecord($default, array $row = []): string
     {
         if (TYPO3_MODE !== 'BE') {
             throw new \UnexpectedValueException('TYPO3 Mode must be BE');
         }
 
-        $overlayLanguage = (int)$GLOBALS['BE_USER']->uc['newsoverlay'];
+        $overlayLanguage = (int)($GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0);
 
         $title = '';
 
-        if ($row['uid'] > 0 && $overlayLanguage > 0 && $row['sys_language_uid'] == 0) {
+        if ($row['uid'] > 0 && $overlayLanguage > 0 && !isset($row['sys_language_uid'])) {
+            $row = BackendUtility::getRecord('sys_category', $row['uid']);
+        }
+
+        if ($row['uid'] > 0 && $overlayLanguage > 0 && $row['sys_language_uid'] === 0) {
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getQueryBuilderForTable('sys_category');
             $overlayRecord = $queryBuilder
@@ -140,7 +145,6 @@ class CategoryService
                 ->where(
                     $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($overlayLanguage, \PDO::PARAM_INT)),
                     $queryBuilder->expr()->eq('l10n_parent', $queryBuilder->createNamedParameter($row['uid'], \PDO::PARAM_INT))
-
                 )
                 ->setMaxResults(1)
                 ->execute()->fetch();
@@ -150,7 +154,7 @@ class CategoryService
             }
         }
 
-        $title = $title ?: $default;
+        $title = $title ?: $default ?: '';
 
         return $title;
     }

@@ -27,8 +27,8 @@ CREATE TABLE tx_news_domain_model_news (
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,
-	fe_group varchar(100) DEFAULT '0' NOT NULL,
-	title tinytext,
+	fe_group varchar(100) DEFAULT '' NOT NULL,
+	title varchar(255) DEFAULT '' NOT NULL,
 	teaser text,
 	bodytext mediumtext,
 	datetime bigint(20) DEFAULT '0' NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE tx_news_domain_model_news (
 	related_from int(11) DEFAULT '0' NOT NULL,
 	related_files tinytext,
 	fal_related_files int(11) unsigned DEFAULT '0',
-	related_links tinytext,
+	related_links int(11) DEFAULT '0' NOT NULL,
 	type varchar(100) NOT NULL DEFAULT '0',
 	keywords text,
 	description text,
@@ -54,6 +54,8 @@ CREATE TABLE tx_news_domain_model_news (
 	path_segment varchar(2048),
 	alternative_title tinytext,
 	notes text,
+	sitemap_changefreq varchar(10) DEFAULT '' NOT NULL,
+	sitemap_priority decimal(2,1) DEFAULT '0.5' NOT NULL,
 
 	import_id varchar(100) DEFAULT '' NOT NULL,
 	import_source varchar(100) DEFAULT '' NOT NULL,
@@ -61,6 +63,7 @@ CREATE TABLE tx_news_domain_model_news (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY sys_language_uid_l10n_parent (sys_language_uid,l10n_parent),
+	KEY path_segment (path_segment(185), uid),
 	KEY import (import_id,import_source)
 );
 
@@ -195,13 +198,6 @@ CREATE TABLE tx_news_domain_model_news_tag_mm (
 	sorting int(11) DEFAULT '0' NOT NULL,
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
-);
-
-#
-# Table structure for table 'be_users'
-#
-CREATE TABLE be_users (
-	tx_news_categorymounts varchar(255) DEFAULT '' NOT NULL,
 );
 
 #

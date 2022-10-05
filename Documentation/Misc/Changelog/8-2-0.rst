@@ -1,0 +1,35 @@
+.. include:: /Includes.rst.txt
+
+8.2.0 - 4th May 2020
+=======================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+The slug eval configuration of all 3 slug fields (news,tag and category record) is changed from `uniqueInSite` to `unique`.
+
+If you really need `uniqueInSite` you can switch to this setting in the Extension settings in the Install Tool.
+
+**Some further explanation:**
+
+- If `uniqueInSite` is used, news records in multiple sites can have the slug. The drawback is that those news can't be shared between these sites.
+- Using `unique` means that news records in multiple sites have always a different slug, no matter if the title is the same or not. Therefore news can be shared between multiple sites.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2020-05-06 Apply fixes from StyleCI (#1262) (Commit c0a7da2e by Georg Ringer)
+   2020-05-06 [!!!][BUGFIX] Change slug evaluation to unique instead of uniqueInSite (Commit b578b8f1 by Georg Ringer)
+   2020-05-06 [BUGFIX] Force integer for chunk size (Commit d41e9471 by Georg Ringer)
+   2020-05-05 [TASK] Avoid TCA migration entries for 10 LTS (Commit 9fd89417 by Georg Ringer)
+
+
+This list has been created by using `git log 8.1.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

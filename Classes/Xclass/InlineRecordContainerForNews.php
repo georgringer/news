@@ -6,6 +6,7 @@ use TYPO3\CMS\Backend\Form\Container\InlineRecordContainer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -25,7 +26,7 @@ class InlineRecordContainerForNews extends InlineRecordContainer
      * @param array $data
      * @return string
      */
-    protected function renderForeignRecordHeader(array $data)
+    protected function _renderForeignRecordHeader(array $data): string
     {
         $languageService = $this->getLanguageService();
         $inlineConfig = $data['inlineParentConfig'];
@@ -66,15 +67,26 @@ class InlineRecordContainerForNews extends InlineRecordContainer
                     $label = BackendUtility::getRecordTitlePrep($label);
                 }
             } else {
-                $label = '<em>[' . htmlspecialchars($languageService->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.no_title')) . ']</em>';
+                $label = '<em>[' . htmlspecialchars($languageService->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.no_title')) . ']</em>';
             }
         }
 
         $label = '<span id="' . $objectId . '_label">' . $label . '</span>';
-        $header = '
+
+        $typo3Information = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($typo3Information->getMajorVersion() === 9) {
+            $header = '
                 <div class="form-irre-header-cell form-irre-header-icon" id="' . $objectId . '_iconcontainer" style="vertical-align:top;padding-top:8px;">' . $iconImg . '</div>
 				<div class="form-irre-header-cell form-irre-header-body">' . $label . '</div>
 				<div class="form-irre-header-cell form-irre-header-control t3js-formengine-irre-control">' . $this->renderForeignRecordHeaderControl($data) . '</div>';
+        } else {
+            $header = '
+                <button class="form-irre-header-cell form-irre-header-button" ' . $data['ariaAttributesString'] . '>' . '
+                    <div class="form-irre-header-cell form-irre-header-icon" id="' . $objectId . '_iconcontainer" style="vertical-align:top;padding-top:8px;">' . $iconImg . '</div>
+                    <div class="form-irre-header-cell form-irre-header-body">' . $label . '</div>
+                </button>
+                <div class="form-irre-header-cell form-irre-header-control t3js-formengine-irre-control">' . $this->renderForeignRecordHeaderControl($data) . '</div>';
+        }
 
         return $header;
     }
@@ -83,10 +95,10 @@ class InlineRecordContainerForNews extends InlineRecordContainer
      * @param string $cType
      * @return string
      */
-    protected function getWarningLabel($cType)
+    protected function getWarningLabel($cType): string
     {
         $message = sprintf(
-            $this->getLanguageService()->sL('LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.noMatchingValue'),
+            $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.noMatchingValue'),
             $cType
         );
         return htmlspecialchars($message);

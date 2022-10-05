@@ -2,20 +2,25 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
+use GeorgRinger\News\Domain\Model\DemandInterface;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Domain\Model\DemandInterface;
-use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
 
 /**
  * Abstract demanded repository
- *
  */
-abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence\Repository implements \GeorgRinger\News\Domain\Repository\DemandedRepositoryInterface
+abstract class AbstractDemandedRepository extends Repository implements DemandedRepositoryInterface
 {
 
     /**
@@ -25,9 +30,12 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
+     *
+     * @return void
      */
-    public function injectStorageBackend(\TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-    ) {
+    public function injectStorageBackend(
+        BackendInterface $storageBackend
+    ): void {
         $this->storageBackend = $storageBackend;
     }
 
@@ -36,22 +44,22 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
      *
      * @param \TYPO3\CMS\Extbase\Persistence\QueryInterface $query
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      * @abstract
      */
     abstract protected function createConstraintsFromDemand(
-        \TYPO3\CMS\Extbase\Persistence\QueryInterface $query,
+        QueryInterface $query,
         DemandInterface $demand
-    );
+    ): array;
 
     /**
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      * @abstract
      */
-    abstract protected function createOrderingsFromDemand(DemandInterface $demand);
+    abstract protected function createOrderingsFromDemand(DemandInterface $demand): array;
 
     /**
      * Returns the objects of this repository matching the demand.
@@ -59,7 +67,8 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
      * @param DemandInterface $demand
      * @param bool $respectEnableFields
      * @param bool $disableLanguageOverlayMode
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
     public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
     {
@@ -76,10 +85,15 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
      * @param bool $disableLanguageOverlayMode
      * @return string
      */
-    public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
+    public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): string
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
-        $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() >= 11) {
+            $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
+        } else {
+            $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
+        }
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();
@@ -100,7 +114,7 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
      * @param bool $disableLanguageOverlayMode
      * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
      */
-    protected function generateQuery(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
+    protected function generateQuery(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): \TYPO3\CMS\Extbase\Persistence\QueryInterface
     {
         $query = $this->createQuery();
 
@@ -113,15 +127,15 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
         $constraints = $this->createConstraintsFromDemand($query, $demand);
 
         // Call hook functions for additional constraints
-        if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'])) {
+        if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] ?? []) {
             $params = [
                 'demand' => $demand,
                 'respectEnableFields' => &$respectEnableFields,
                 'query' => $query,
                 'constraints' => &$constraints,
             ];
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Domain/Repository/AbstractDemandedRepository.php']['findDemanded'] as $reference) {
-                \TYPO3\CMS\Core\Utility\GeneralUtility::callUserFunction($reference, $params, $this);
+            foreach ($hooks as $reference) {
+                GeneralUtility::callUserFunction($reference, $params, $this);
             }
         }
 
@@ -163,9 +177,9 @@ abstract class AbstractDemandedRepository extends \TYPO3\CMS\Extbase\Persistence
      * @param DemandInterface $demand
      * @return int
      */
-    public function countDemanded(DemandInterface $demand)
+    public function countDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): int
     {
-        $query = $this->createQuery();
+        $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
 
         if ($constraints = $this->createConstraintsFromDemand($query, $demand)) {
             $query->matching(

@@ -10,6 +10,8 @@ namespace GeorgRinger\News\Utility;
  */
 use DateTime;
 use Exception;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
 /**
@@ -23,12 +25,13 @@ class ConstraintHelper
      * @return int
      * @throws Exception
      */
-    public static function getTimeRestrictionLow($timeInput)
+    public static function getTimeRestrictionLow($timeInput): int
     {
         $timeLimit = 0;
         // integer = timestamp
         if (MathUtility::canBeInterpretedAsInteger($timeInput)) {
-            $timeLimit = $GLOBALS['SIM_EXEC_TIME'] - $timeInput;
+            $currentTimestamp = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
+            $timeLimit = (int)$currentTimestamp - $timeInput;
         } else {
             $timeByFormat = DateTime::createFromFormat('HH:mm DD-MM-YYYY', $timeInput);
             if ($timeByFormat) {
@@ -52,23 +55,22 @@ class ConstraintHelper
      * @return int
      * @throws Exception
      */
-    public static function getTimeRestrictionHigh($timeInput)
+    public static function getTimeRestrictionHigh($timeInput): int
     {
         $timeLimit = 0;
         // integer = timestamp
         if (MathUtility::canBeInterpretedAsInteger($timeInput)) {
-            $timeLimit = $GLOBALS['SIM_EXEC_TIME'] + $timeInput;
+            $currentTimestamp = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
+            $timeLimit = (int)$currentTimestamp + $timeInput;
             return $timeLimit;
-        } else {
-            // try to check strtotime
-            $timeFromStringHigh = strtotime($timeInput);
-
-            if ($timeFromStringHigh) {
-                $timeLimit = $timeFromStringHigh;
-                return $timeLimit;
-            } else {
-                throw new Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
-            }
         }
+        // try to check strtotime
+        $timeFromStringHigh = strtotime($timeInput);
+
+        if ($timeFromStringHigh) {
+            $timeLimit = $timeFromStringHigh;
+            return $timeLimit;
+        }
+        throw new Exception('Time limit High could not be resolved to an integer. Given was: ' . htmlspecialchars($timeLimit));
     }
 }

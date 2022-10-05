@@ -9,19 +9,21 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\ImportJob;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Test class for ImportJob
  *
  */
-class ImportJobTest extends UnitTestCase
+class ImportJobTest extends BaseTestCase
 {
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function classCanBeRegistered()
+    public function classCanBeRegistered(): void
     {
         $importJobInstance = new ImportJob();
 

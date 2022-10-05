@@ -1,0 +1,271 @@
+# ==============================================
+# FE-Plugin configuration for EXT:news
+# ==============================================
+plugin.tx_news {
+	mvc.callDefaultActionIfActionCantBeResolved = 1
+
+	view {
+		templateRootPaths {
+			0 = EXT:news/Resources/Private/Templates/
+			1 = {$plugin.tx_news.view.templateRootPath}
+		}
+
+		partialRootPaths {
+			0 = EXT:news/Resources/Private/Partials/
+			1 = {$plugin.tx_news.view.partialRootPath}
+		}
+
+		layoutRootPaths {
+			0 = EXT:news/Resources/Private/Layouts/
+			1 = {$plugin.tx_news.view.layoutRootPath}
+		}
+
+		widget.GeorgRinger\News\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:news/Resources/Private/Templates/
+	}
+
+	# Modify the translation
+	#_LOCAL_LANG {
+	#	default {
+	#		more-link = more >>
+	#	}
+	#}
+
+	# ====================================
+	# Settings available inside Controller and View by accessing $this->settings or {settings.xyz}
+	# ====================================
+	settings {
+		cssFile = {$plugin.tx_news.settings.cssFile}
+
+		#Displays a dummy image if the news have no media items
+		displayDummyIfNoMedia = 1
+
+		# Output format
+		format = html
+
+		# general settings
+		overrideFlexformSettingsIfEmpty = cropMaxCharacters,dateField,timeRestriction,timeRestrictionHigh,archiveRestriction,orderBy,orderDirection,backPid,listPid,startingpoint,recursive,list.paginate.itemsPerPage,list.paginate.templatePath
+		allowEmptyStringsForOverwriteDemand = 0
+
+		includeSubCategories = 0
+
+		analytics {
+			social {
+				facebookLike = 1
+				facebookShare = 1
+				twitter = 1
+			}
+		}
+
+		detailPidDetermination = flexform, categories, default
+
+		defaultDetailPid = 0
+		dateField = datetime
+
+		link {
+			typesOpeningInNewWindow = 2
+			hrDate = 0
+			hrDate {
+				day = j
+				month = n
+				year = Y
+			}
+		}
+
+		cropMaxCharacters = 150
+		orderBy = datetime
+		orderDirection = desc
+		topNewsFirst = 0
+		orderByAllowed = sorting,author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title
+
+		facebookLocale = en_US
+		googlePlusLocale = en
+
+		demandClass =
+
+
+		# --------------
+		#  Search
+		# --------------
+		search {
+			fields = teaser,title,bodytext
+			splitSearchWord = 0
+
+			paginate {
+				class = GeorgRinger\NumberedPagination\NumberedPagination
+				itemsPerPage = 10
+				insertAbove = 1
+				insertBelow = 1
+				maximumNumberOfLinks = 3
+			}
+		}
+
+		# --------------
+		#  Detail
+		# --------------
+		detail {
+			errorHandling = showStandaloneTemplate,EXT:news/Resources/Private/Templates/News/DetailNotFound.html,404
+			checkPidOfNewsRecord = 0
+			registerProperties = keywords,title
+			showPrevNext = 0
+			showSocialShareButtons = 1
+			showMetaTags = 1
+
+			# media configuration
+			media {
+				image {
+					lazyLoading = {$styles.content.image.lazyLoading}
+					maxWidth = 282
+					maxHeight =
+
+					# Get lightbox settings from fluid_styled_content
+					lightbox {
+						enabled = {$styles.content.textmedia.linkWrap.lightboxEnabled}
+						class = {$styles.content.textmedia.linkWrap.lightboxCssClass}
+						width = {$styles.content.textmedia.linkWrap.width}
+						height = {$styles.content.textmedia.linkWrap.height}
+						rel = lightbox[myImageSet]
+					}
+				}
+
+				video {
+					width = 282
+					height = 159
+				}
+			}
+
+			pageTitle = 1
+			pageTitle {
+				provider = GeorgRinger\News\Seo\NewsTitleProvider
+				properties = title,teaser
+			}
+		}
+
+		# --------------
+		#  List
+		# --------------
+		list {
+			# media configuration
+			media {
+				image {
+					lazyLoading = {$styles.content.image.lazyLoading}
+					maxWidth = 100
+					maxHeight = 100
+				}
+
+				dummyImage = EXT:news/Resources/Public/Images/dummy-preview-image.png
+			}
+
+			# Paginate configuration.
+			paginate {
+                class = GeorgRinger\NumberedPagination\NumberedPagination
+				itemsPerPage = 10
+				insertAbove = 1
+				insertBelow = 1
+				maximumNumberOfLinks = 3
+			}
+
+			rss {
+				channel {
+					title = {$plugin.tx_news.rss.channel.title}
+					description = {$plugin.tx_news.rss.channel.description}
+					language = {$plugin.tx_news.rss.channel.language}
+					copyright = {$plugin.tx_news.rss.channel.copyright}
+					generator = {$plugin.tx_news.rss.channel.generator}
+					link = {$plugin.tx_news.rss.channel.link}
+					typeNum = {$plugin.tx_news.rss.channel.typeNum}
+				}
+			}
+		}
+
+		# Opengraph implementation
+		opengraph {
+			site_name = {$plugin.tx_news.opengraph.site_name}
+			type = article
+			admins =
+			locale =
+
+			twitter {
+				card = {$plugin.tx_news.opengraph.twitter.card}
+				site = {$plugin.tx_news.opengraph.twitter.site}
+				creator = {$plugin.tx_news.opengraph.twitter.creator}
+			}
+		}
+	}
+}
+
+# Rendering of content elements in detail view
+lib.tx_news.contentElementRendering = RECORDS
+lib.tx_news.contentElementRendering {
+	tables = tt_content
+	source.current = 1
+	dontCheckPid = 1
+}
+
+# Rendering of news, displayed by "Insert Record" content element
+tt_content.shortcut.20.tables := addToList(tx_news_domain_model_news)
+tt_content.shortcut.20.conf.tx_news_domain_model_news = USER
+tt_content.shortcut.20.conf.tx_news_domain_model_news {
+	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+	extensionName = News
+	pluginName = Pi1
+	vendorName = GeorgRinger
+	switchableControllerActions {
+		News {
+			1 = detail
+		}
+	}
+
+	settings =< plugin.tx_news.settings
+	settings {
+		singleNews.field = uid
+		useStdWrap = singleNews
+		insertRecord = 1
+		isShortcut = 1
+	}
+}
+# For fluid_styled_content
+tt_content.shortcut.variables.shortcuts.tables := addToList(tx_news_domain_model_news)
+tt_content.shortcut.variables.shortcuts.conf.tx_news_domain_model_news < tt_content.shortcut.20.conf.tx_news_domain_model_news
+
+# ==============================================
+# BE-module configuration for EXT:news
+# ==============================================
+module.tx_news < plugin.tx_news
+module.tx_news {
+	settings.list.paginate.itemsPerPage = 25
+}
+
+# ==============================================
+# Persistence object mapping configuration
+# ==============================================
+config.tx_extbase.persistence.classes {
+	GeorgRinger\News\Domain\Model\News {
+		subclasses {
+			0 = GeorgRinger\News\Domain\Model\NewsDefault
+			1 = GeorgRinger\News\Domain\Model\NewsInternal
+			2 = GeorgRinger\News\Domain\Model\NewsExternal
+		}
+	}
+
+	GeorgRinger\News\Domain\Model\NewsDefault {
+		mapping {
+			recordType = 0
+			tableName = tx_news_domain_model_news
+		}
+	}
+
+	GeorgRinger\News\Domain\Model\NewsInternal {
+		mapping {
+			recordType = 1
+			tableName = tx_news_domain_model_news
+		}
+	}
+
+	GeorgRinger\News\Domain\Model\NewsExternal {
+		mapping {
+			recordType = 2
+			tableName = tx_news_domain_model_news
+		}
+	}
+
+}

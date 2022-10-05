@@ -1,0 +1,31 @@
+.. include:: /Includes.rst.txt
+
+8.1.1 - 4th May 2020
+=======================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+If you are using TYPO3 10.4.0, please update to 10.4.1!
+
+All Changes
+-----------
+This is a list of all changes in this release:
+
+.. code-block:: none
+
+   2020-05-04 Apply fixes from StyleCI (#1254) (Commit b0222e5d by Georg Ringer)
+   2020-05-04 [BUGFIX] Add default priority #1253 (Commit 57fcf9ad by Georg Ringer)
+   2020-05-04 [DOC] Remove outdated doc about sitemap (Commit ed6da01c by Georg Ringer)
+   2020-05-03 [BUGFIX] Check for correct pageTitle setting (#1251) (Commit 8359bbce by Andreas Fernandez)
+   2020-04-29 [BUGFIX] Create valid returnUrls in BE module (#1247) (Commit b060df67 by Markus Klein)
+
+
+This list has been created by using `git log 8.1.0..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

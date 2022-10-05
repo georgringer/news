@@ -1,20 +1,18 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. include:: /Includes.rst.txt
 
-.. include:: ../../../Includes.txt
+.. _renderContentElements:
 
-
+=======================
 Render content elements
------------------------
+=======================
 
-If news is configured to use relations to content elements, those are shown by default in the detail view.
+If news is configured to use relations to content elements, those are shown
+by default in the detail view.
 
 There are two options how to render those elements
 
 Using TypoScript
-^^^^^^^^^^^^^^^^
+================
 
 This is the default way in EXT:news. A basic TypoScript configuration is used to render those. This look like this:
 
@@ -38,18 +36,18 @@ This needs then to be referenced in the template.
 
 
 Using Fluid
-^^^^^^^^^^^
+===========
 
-You can also use fluid render the content elements. As an example:
+You can also use Fluid render the content elements. As an example:
 
 .. code-block:: html
 
-	<f:if condition="{newsItem.contentElements}">
-		<f:for each="{newsItem.contentElements}" as="element">
-			<h3>{element.title}</h3>
-			<f:if condition="{element.CType} == 'text'">
-			{element.bodytext -> f:format.html()}
-			</f:if>
-		</f:for>
-	</f:if>
+   <f:if condition="{newsItem.contentElements}">
+      <f:for each="{newsItem.contentElements}" as="element">
+         <h3>{element.title}</h3>
+         <f:if condition="{element.CType} == 'text'">
+         {element.bodytext -> f:format.html()}
+         </f:if>
+      </f:for>
+   </f:if>
 

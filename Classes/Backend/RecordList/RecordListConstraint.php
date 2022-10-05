@@ -10,12 +10,12 @@ namespace GeorgRinger\News\Backend\RecordList;
  */
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\EndTimeRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\StartTimeRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Class for the list rendering of administration module
@@ -31,16 +31,11 @@ class RecordListConstraint
      */
     public function isInAdministrationModule(): bool
     {
-        if (self::is9Up()) {
-            $vars = GeneralUtility::_GET('route');
-            return $vars === '/web/NewsTxNewsM2/';
-        }
-
-        $vars = GeneralUtility::_GET('M');
-        return $vars === 'web_NewsTxNewsM2';
+        $vars = GeneralUtility::_GET('route');
+        return strpos($vars, '/module/web/NewsAdministration') !== false;
     }
 
-    public function extendQuery(array &$parameters, array $arguments)
+    public function extendQuery(array &$parameters, array $arguments): void
     {
         $parameters['whereDoctrine'] = [];
 
@@ -85,7 +80,7 @@ class RecordListConstraint
         // archived (1==active, 2==archived)
         $archived = (int)$arguments['archived'];
         if ($archived > 0) {
-            $currentTime = $GLOBALS['EXEC_TIME'];
+            $currentTime = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
             if ($archived === 1) {
                 $parameters['where'][] = '(archive > ' . $currentTime . ' OR archive=0)';
                 $parameters['whereDoctrine'][] = $expressionBuilder->orX(
@@ -152,7 +147,7 @@ class RecordListConstraint
                 switch ($categoryMode) {
                     case 'and':
                         foreach ($arguments['selectedCategories'] as $category) {
-                            $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
+                            $idList = $this->getNewsIdsOfCategory($category);
                             if (empty($idList)) {
                                 $parameters['where'][] = '1=2';
                                 $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
@@ -165,7 +160,7 @@ class RecordListConstraint
                     case 'or':
                         $orConstraint = $orConstraintDoctrine = [];
                         foreach ($arguments['selectedCategories'] as $category) {
-                            $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
+                            $idList = $this->getNewsIdsOfCategory($category);
                             if (!empty($idList)) {
                                 $orConstraint[] = sprintf('uid IN(%s)', implode(',', $idList));
                                 $orConstraintDoctrine[] = $expressionBuilder->in('uid', $idList);
@@ -183,9 +178,9 @@ class RecordListConstraint
                     case 'notor':
                         $orConstraint = $orConstraintDoctrine = [];
                         foreach ($arguments['selectedCategories'] as $category) {
-                            $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
+                            $idList = $this->getNewsIdsOfCategory($category);
                             if (!empty($idList)) {
-                                $orConstraint[] = sprintf('uid IN(%s)', implode(',', $idList));
+                                $orConstraint[] = sprintf('(uid IN (%s))', implode(',', $idList));
                                 $orConstraintDoctrine[] = $expressionBuilder->notIn('uid', $idList);
                             } else {
                                 $orConstraint[] = '1=2';
@@ -196,13 +191,14 @@ class RecordListConstraint
                             $parameters['where'][] = '1=2';
                             $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
                         } else {
-                            $parameters['where'][] = implode(' NOT OR ', $orConstraint);
+                            $orConstraint = array_unique($orConstraint);
+                            $parameters['where'][] = ' NOT (' . implode(' OR ', $orConstraint) . ')';
                             $parameters['whereDoctrine'][] = $expressionBuilder->andX(...$orConstraintDoctrine);
                         }
                         break;
                     case 'notand':
                         foreach ($arguments['selectedCategories'] as $category) {
-                            $idList = $this->getNewsIdsOfCategory($category, $parameters['where']['pidSelect']);
+                            $idList = $this->getNewsIdsOfCategory($category);
                             if (!empty($idList)) {
                                 $parameters['where'][] = sprintf('uid NOT IN(%s)', implode(',', $idList));
                                 $parameters['whereDoctrine'][] = $expressionBuilder->notIn('uid', $idList);
@@ -222,10 +218,9 @@ class RecordListConstraint
 
     /**
      * @param int $categoryId
-     * @param string $pidConstraint
      * @return array
      */
-    protected function getNewsIdsOfCategory($categoryId, $pidConstraint = ''): array
+    protected function getNewsIdsOfCategory($categoryId): array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
@@ -253,7 +248,6 @@ class RecordListConstraint
                 $queryBuilder->expr()->isNotNull('tx_news_domain_model_news.uid'),
                 $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->createNamedParameter($categoryId, \PDO::PARAM_INT))
             )
-            ->andWhere(($pidConstraint ?: ''))
             ->execute();
 
         $idList = [];
@@ -263,10 +257,4 @@ class RecordListConstraint
 
         return $idList;
     }
-
-    private static function is9Up()
-    {
-        return VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
-    }
-
 }

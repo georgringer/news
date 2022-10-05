@@ -9,7 +9,7 @@ namespace GeorgRinger\News\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
 
 /**
  * Class ExtensionLoadedViewHelper
@@ -30,7 +30,7 @@ class ExtensionLoadedViewHelper extends AbstractConditionViewHelper
      * @param array|null $arguments
      * @return bool
      */
-    protected static function evaluateCondition($arguments = null)
+    protected static function evaluateCondition($arguments = null): bool
     {
         return ExtensionManagementUtility::isLoaded($arguments['extensionKey']);
     }

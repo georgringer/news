@@ -9,11 +9,10 @@ namespace GeorgRinger\News\ViewHelpers;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\News;
+use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\Rendering\RendererRegistry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Service\ImageService;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -57,33 +56,37 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $this->registerArgument('imgClass', 'string', 'add css class to images');
         $this->registerArgument('videoClass', 'string', 'wrap videos in a div with this class');
         $this->registerArgument('audioClass', 'string', 'wrap audio files in a div with this class');
+        $this->registerArgument('fileIndex', 'int', 'index of image to start with', false, 0);
+        $this->registerArgument('cropVariant', 'string', 'select a cropping variant, in case multiple croppings have been specified or stored in FileReference', false, 'default');
     }
 
     /**
-     * Render an img tag for image
-     * @param $image FileReference
+     * @param \TYPO3\CMS\Core\Resource\FileInterface $image
      * @return string
      */
-    private function renderImage($image)
+    private function renderImage(\TYPO3\CMS\Core\Resource\FileInterface $image): string
     {
-        if ($this->objectManager === null) {
-            $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        }
-        $imageService = $this->objectManager->get(ImageService::class);
+        $imageService = GeneralUtility::makeInstance(ImageService::class);
 
-        $crop = $image->getProperty('crop');
+        $cropString = '';
+        if ($image->hasProperty('crop')) {
+            $cropString = $image->getProperty('crop');
+        }
+        $cropVariantCollection = CropVariantCollection::create((string)$cropString);
+        $cropVariant = $this->arguments['cropVariant'] ?: 'default';
+        $cropArea = $cropVariantCollection->getCropArea($cropVariant);
         $processingInstructions = [
             'width' => null,
             'height' => null,
-            'crop' => $crop,
+            'crop' => $cropArea->isEmpty() ? null : $cropArea->makeAbsoluteBasedOnFile($image)
         ];
 
         $processedImage = $imageService->applyProcessingInstructions($image, $processingInstructions);
         $imageUri = $imageService->getImageUri($processedImage);
 
-        $alt = trim($image->getProperty('alternative'));
-        $title = trim($image->getProperty('title'));
-        $description = trim($image->getProperty('description'));
+        $alt = trim((string)$image->getProperty('alternative'));
+        $title = trim((string)$image->getProperty('title'));
+        $description = trim((string)$image->getProperty('description'));
 
         $imageAttributes = [
             'src' => $imageUri,
@@ -117,9 +120,9 @@ class RenderMediaViewHelper extends AbstractViewHelper
      * @param array $files
      * @return string
      */
-    private function renderMedia($content, array $files)
+    private function renderMedia($content, array $files): string
     {
-        $fileIndex = 0;
+        $fileIndex = $this->arguments['fileIndex'];
         preg_match_all($this->mediaTag, $content, $matches);
         foreach ($matches[0] as $_) {
             /** @var \GeorgRinger\News\Domain\Model\FileReference $file */
@@ -171,7 +174,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
     /**
      * @return string
      */
-    public function render()
+    public function render(): string
     {
         /** @var News $news */
         $news = $this->arguments['news'];

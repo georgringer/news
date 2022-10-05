@@ -8,25 +8,29 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
-use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use GeorgRinger\News\Domain\Repository\NewsRepository;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\TestingFramework\Core\BaseTestCase;
+use UnexpectedValueException;
 
 /**
  * Tests for domain repository newsRepository
  *
  *
  */
-class NewsRepositoryTest extends UnitTestCase
+class NewsRepositoryTest extends BaseTestCase
 {
-    /** @var AccessibleMockObjectInterface */
+
+    /** @var \GeorgRinger\News\Domain\Repository\NewsRepository|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $mockedNewsRepository;
 
-    public function setUp()
+    public function setup(): void
     {
-        $this->mockedNewsRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['getQueryBuilder'], [], '', false);
+        $this->mockedNewsRepository = $this->getAccessibleMock(NewsRepository::class, ['getQueryBuilder'], [], '', false);
 
         $mockedQueryBuilder = $this->getAccessibleMock(QueryBuilder::class, ['escapeStrForLike', 'createNamedParameter'], [], '', false);
         $this->mockedNewsRepository->expects($this->any())->method('getQueryBuilder')->withAnyParameters()->will($this->returnValue($mockedQueryBuilder));
@@ -34,11 +38,13 @@ class NewsRepositoryTest extends UnitTestCase
 
     /**
      * @test
-     * @expectedException \UnexpectedValueException
+     *
+     * @return void
      */
-    public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven()
+    public function getSearchConstraintsThrowsErrorIfNoSearchFieldIsGiven(): void
     {
-        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $this->expectException(UnexpectedValueException::class);
+        $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 
         $search = new Search();
         $search->setSubject('fo');
@@ -51,11 +57,13 @@ class NewsRepositoryTest extends UnitTestCase
 //
     /**
      * @test
-     * @expectedException \UnexpectedValueException
+     *
+     * @return void
      */
-    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven()
+    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMaximumDateIsGiven(): void
     {
-        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $this->expectException(UnexpectedValueException::class);
+        $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 
         $search = new Search();
         $search->setMaximumDate('2014-04-01');
@@ -68,14 +76,16 @@ class NewsRepositoryTest extends UnitTestCase
 //
     /**
      * @test
-     * @expectedException \UnexpectedValueException
+     *
+     * @return void
      */
-    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven()
+    public function getSearchConstraintsThrowsErrorIfNoDateFieldForMinimumDateIsGiven(): void
     {
-        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
+        $this->expectException(UnexpectedValueException::class);
+        $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 
         $search = new Search();
+        $search->setDateField('');
         $search->setMinimumDate('2014-04-01');
 
         $demand = new NewsDemand();
@@ -86,11 +96,12 @@ class NewsRepositoryTest extends UnitTestCase
 //
     /**
      * @test
+     *
+     * @return void
      */
-    public function emptyConstraintIsReturnedForEmptySearchDemand()
+    public function emptyConstraintIsReturnedForEmptySearchDemand(): void
     {
-        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
-        $mockedRepository = $this->getAccessibleMock('GeorgRinger\\News\\Domain\\Repository\\NewsRepository', ['dummy'], [], '', false);
+        $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 
         $demand = new NewsDemand();
         $demand->setSearch(null);
@@ -100,10 +111,12 @@ class NewsRepositoryTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function constraintsAreReturnedForSearchSubject()
+    public function constraintsAreReturnedForSearchSubject(): void
     {
-        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 
         $search = new Search();
         $search->setSubject('Lorem');
@@ -118,10 +131,12 @@ class NewsRepositoryTest extends UnitTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function constraintsAreReturnedForDateFields()
+    public function constraintsAreReturnedForDateFields(): void
     {
-        $mockedQuery = $this->getMockBuilder('TYPO3\\CMS\\Extbase\\Persistence\\QueryInterface')->getMock();
+        $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
 
         $search = new Search();
         $search->setMinimumDate('2014-01-01');

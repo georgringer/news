@@ -1,0 +1,51 @@
+.. include:: /Includes.rst.txt
+
+8.5.0 - 20th October 2020
+=========================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+Improved language menu on news detail pages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Thanks to Andrea Moroni (https://www.web-to-date.com/) for sponsoring this important feature!
+It is now possible to render a correct language menu on detail pages which respects if a news record is translated or not.
+
+.. code-block:: typoscript
+
+   10 = TYPO3\CMS\Frontend\DataProcessing\LanguageMenuProcessor
+   10 {
+      as = languageMenu
+      addQueryString = 1
+   }
+
+   11 = GeorgRinger\News\DataProcessing\DisableLanguageMenuProcessor
+   # comma separated list of language menu names
+   11.menus = languageMenu
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2020-10-20 [FEATURE] Disable language menu item if news is not translated (Commit 99caedee by Georg Ringer)
+   2020-10-16 [TASK] Remove trailing comma (Commit d1834a3d by Georg Ringer)
+   2020-10-15 [TASK] Update outdated links (#1369) (Commit 4e7cab53 by Simon Schaufelberger)
+   2020-10-15 [BUGFIX] Map translated news aliases (#1363) (Commit 9f535c3d by creifenscheid)
+   2020-10-15 Apply fixes from StyleCI (#1367) (Commit f0f20c93 by Georg Ringer)
+   2020-10-15 [BUGFIX] show correct overlay palette for video and audio filetypes (#1366) (Commit 13244e80 by Richard Vollebregt)
+   2020-10-08 [BUGFIX] BE module category search (#1359) (Commit 0fccc9a4 by Markus Klein)
+   2020-10-05 [BUGFIX] respect sys_language in FindInList (#1357) (Commit e1680790 by Henrik Ziegenhain)
+   2020-10-01 [TASK] Revert FilterMenuPagesHook (Commit 0bb7a10e by Georg Ringer)
+   2020-09-30 [BUGFIX] Check if _PAGES_OVERLAY_REQUESTEDLANGUAGE exists (Commit 87e28e62 by Georg Ringer)
+   2020-09-29 [FEATURE] Filter detail pages if news is not translated (Commit 957d2be1 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

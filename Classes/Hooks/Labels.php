@@ -13,7 +13,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Userfunc to get alternative label
- *
  */
 class Labels
 {
@@ -23,8 +22,10 @@ class Labels
      * including the title of the parent category
      *
      * @param array $params
+     *
+     * @return void
      */
-    public function getUserLabelCategory(array &$params)
+    public function getUserLabelCategory(array &$params): void
     {
         $showTranslationInformation = false;
 

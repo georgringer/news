@@ -1,7 +1,9 @@
 <?php
+
 defined('TYPO3_MODE') or die();
 
-if (\GeorgRinger\News\Utility\EmConfiguration::getSettings()->isAdvancedMediaPreview()) {
+$emConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
+if ($emConfiguration->isAdvancedMediaPreview()) {
     $fieldConfig = [
         'type' => 'select',
         'renderType' => 'selectSingle',

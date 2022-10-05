@@ -1,5 +1,7 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
 namespace GeorgRinger\News\Updates;
 
 /**
@@ -8,7 +10,6 @@ namespace GeorgRinger\News\Updates;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
@@ -88,8 +89,10 @@ class PopulateTagSlugs implements UpgradeWizardInterface
 
     /**
      * Fills the database table  with slugs based on the page title and its configuration.
+     *
+     * @return void
      */
-    protected function populateSlugs()
+    protected function populateSlugs(): void
     {
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($this->table);
         $queryBuilder = $connection->createQueryBuilder();
@@ -124,7 +127,6 @@ class PopulateTagSlugs implements UpgradeWizardInterface
             $languageId = (int)$record['sys_language_uid'];
             $recordInDefaultLanguage = $languageId > 0 ? (int)$record['l10n_parent'] : $recordId;
             $slug = $suggestedSlugs[$recordInDefaultLanguage][$languageId] ?? '';
-
 
             if (empty($slug)) {
                 if ($pid === -1) {

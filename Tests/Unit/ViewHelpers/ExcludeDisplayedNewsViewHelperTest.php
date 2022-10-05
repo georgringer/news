@@ -10,24 +10,25 @@ namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
  */
 use GeorgRinger\News\Domain\Model\News;
 use GeorgRinger\News\ViewHelpers\ExcludeDisplayedNewsViewHelper;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for ExcludeDisplayedNewsViewHelper
  *
  */
-class ExcludeDisplayedNewsViewHelperTest extends UnitTestCase
+class ExcludeDisplayedNewsViewHelperTest extends BaseTestCase
 {
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function newsIsAddedToExcludedList()
+    public function newsIsAddedToExcludedList(): void
     {
         $viewHelper = new ExcludeDisplayedNewsViewHelper();
         $viewHelper->setRenderingContext($this->getMockBuilder(RenderingContext::class)->disableOriginalConstructor()->getMock());
-        $this->assertEquals($GLOBALS['EXT']['news']['alreadyDisplayed'], null);
 
         $newsItem1 = new News();
         $newsItem1->_setProperty('uid', '123');

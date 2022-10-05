@@ -1,4 +1,5 @@
 <?php
+
 namespace GeorgRinger\News\Backend\RecordList;
 
 /**
@@ -7,7 +8,7 @@ namespace GeorgRinger\News\Backend\RecordList;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList;
 
@@ -25,7 +26,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
      * @param string $excludeList Comma separated list of fields NOT to include ("sortField" or "sortRev")
      * @return string
      */
-    public function listURL($alternativeId = '', $table = '-1', $excludeList = '')
+    public function listURL($alternativeId = '', $table = '-1', $excludeList = ''): string
     {
         $urlParameters = [];
         if ((string)$alternativeId !== '') {
@@ -33,7 +34,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         } else {
             $urlParameters['id'] = $this->id;
         }
-        if ($this->thumbs) {
+        if (isset($this->thumbs)) {
             $urlParameters['imagemode'] = $this->thumbs;
         }
         if ($this->returnUrl) {
@@ -48,16 +49,20 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         if ($this->showLimit) {
             $urlParameters['showLimit'] = $this->showLimit;
         }
-        if ($this->firstElementNumber) {
+        if (isset($this->firstElementNumber)) {
             $urlParameters['pointer'] = $this->firstElementNumber;
         }
-        if ((!$excludeList || !GeneralUtility::inList($excludeList,
-                    'sortField')) && $this->sortField
+        if ((!$excludeList || !GeneralUtility::inList(
+            $excludeList,
+            'sortField'
+        )) && $this->sortField
         ) {
             $urlParameters['sortField'] = $this->sortField;
         }
-        if ((!$excludeList || !GeneralUtility::inList($excludeList,
-                    'sortRev')) && $this->sortRev
+        if ((!$excludeList || !GeneralUtility::inList(
+            $excludeList,
+            'sortRev'
+        )) && $this->sortRev
         ) {
             $urlParameters['sortRev'] = $this->sortRev;
         }
@@ -68,11 +73,12 @@ class NewsDatabaseRecordList extends DatabaseRecordList
             $urlParameters['show'] = (int)GeneralUtility::_GP('show');
         }
 
-        $demand = GeneralUtility::_GET('tx_news_web_newstxnewsm2');
-        if (is_array($demand['demand'])) {
-            $urlParameters['tx_news_web_newstxnewsm2']['demand'] = $demand['demand'];
+        $demand = GeneralUtility::_GET('tx_newsadministration_web_newsadministrationadministration');
+        if (isset($demand['demand']) && is_array($demand['demand'])) {
+            $urlParameters['tx_newsadministration_web_newsadministrationadministration']['demand'] = $demand['demand'];
         }
 
-        return BackendUtility::getModuleUrl('web_NewsTxNewsM2', $urlParameters);
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        return $uriBuilder->buildUriFromRoute('web_NewsAdministrationAdministration', $urlParameters);
     }
 }

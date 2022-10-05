@@ -12,7 +12,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Validation
- *
  */
 class Validation
 {
@@ -24,13 +23,14 @@ class Validation
      * @param string $allowedSettings
      * @return bool
      */
-    public static function isValidOrdering($fieldToCheck, $allowedSettings)
+    public static function isValidOrdering($fieldToCheck, $allowedSettings): bool
     {
         $isValid = true;
 
         if (empty($fieldToCheck)) {
             return $isValid;
-        } elseif (empty($allowedSettings)) {
+        }
+        if (empty($allowedSettings)) {
             return false;
         }
 

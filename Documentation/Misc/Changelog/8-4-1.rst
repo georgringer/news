@@ -1,0 +1,37 @@
+.. include:: /Includes.rst.txt
+
+
+
+8.4.1 - 25th September 2020
+===========================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Bugfix release
+--------------
+
+Just a bugfix release
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2020-09-25 [TASK] Drop DataMapper workaround for QueryInterface injection (Commit e82cff29 by Georg Ringer)
+   2020-09-25 Apply fixes from StyleCI (#1348) (Commit 91f2a266 by Georg Ringer)
+   2020-09-25 [BUGFIX] Fix failing test (Commit a34348c0 by Georg Ringer)
+   2020-09-25 [BUGFIX] Show sitemap_changefreq only for version 10. (Commit 757c306e by Georg Ringer)
+   2020-09-25 Apply fixes from StyleCI (#1346) (Commit 6cf21870 by Georg Ringer)
+   2020-09-25 [TASK] Remove self_accessor from styleci.yml (Commit 78ae4f7b by Georg Ringer)
+   2020-09-25 [TASK] Remove no_alias_functions from styleci.yml (Commit e269fd27 by Georg Ringer)
+   2020-09-25 [TASK] Remove unused property in test (Commit 30dffa9a by Georg Ringer)
+   2020-09-25 [BUGFIX] Remove wrong displayCond (Commit 20e98668 by Georg Ringer)
+   2020-09-21 [TASK] Use addToList for allowedNewTables (Commit 9f21abda by Georg Ringer)
+   2020-09-16 fasted ==> fastest (#1339) (Commit 0fbfadbd by Franz Holzinger)
+   2020-08-28 Add missing page key to config section (#1329) (Commit 868701f1 by Martin Hummer)
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

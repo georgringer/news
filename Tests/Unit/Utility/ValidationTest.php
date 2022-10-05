@@ -9,13 +9,13 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\Validation;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for Validation
  *
  */
-class ValidationTest extends UnitTestCase
+class ValidationTest extends BaseTestCase
 {
     const ALLOWED_FIELDS = 'author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title';
 
@@ -23,15 +23,23 @@ class ValidationTest extends UnitTestCase
      * Test if default file format works
      *
      * @test
+     *
      * @dataProvider orderDataProvider
+     *
+     * @return void
      */
-    public function testForValidOrdering($expectedFields, $expected)
+    public function testForValidOrdering($expectedFields, $expected): void
     {
         $validation = Validation::isValidOrdering($expectedFields, self::ALLOWED_FIELDS);
         $this->assertEquals($validation, $expected);
     }
 
-    public function orderDataProvider()
+    /**
+     * @return (bool|string)[][]
+     *
+     * @psalm-return array{allowedOrdering: array{0: string, 1: true}, allowedOrderingWithSorting: array{0: string, 1: true}, allowedOrderingWithSorting2: array{0: string, 1: true}, allowedOrderingWithSorting3: array{0: string, 1: true}, allowedOrderingWithDotsAndSorting: array{0: string, 1: true}, nonAllowedField: array{0: string, 1: false}, nonAllowedSorting: array{0: string, 1: false}, nonAllowedDoubleSorting: array{0: string, 1: false}, nonAllowedDoubleFields: array{0: string, 1: false}, emptySorting: array{0: string, 1: true}, emptySorting2: array{0: string, 1: true}}
+     */
+    public function orderDataProvider(): array
     {
         return [
             'allowedOrdering' => [

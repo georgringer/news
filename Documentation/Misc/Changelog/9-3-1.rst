@@ -1,0 +1,40 @@
+.. include:: /Includes.rst.txt
+
+9.3.1 - 17th March 2022
+=======================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Important bugfixes
+------------------
+
+Support of pagination with limit & offset
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Since the transformation from the ViewHelper widgets to the pagination API the
+pagination didn't allow to set an additional limit and offset in the plugin.
+
+This works now again.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2022-03-17 [BUGFIX] Make the limit and offset in combination with pagination work (Commit bc85dff1 by Georg Ringer)
+    2022-03-16 Apply fixes from StyleCI (#1747) (Commit d18ad5bf by Georg Ringer)
+    2022-03-16 [FEATURE] List tags in admin module (Commit 0495266b by Georg Ringer)
+    2022-03-16 [TASK] Adopt class copyright (Commit 2df86068 by Georg Ringer)
+    2022-03-16 [BUGFIX] Fix notices in NewsController (Commit a043c278 by Georg Ringer)
+    2022-03-16 Apply fixes from StyleCI (#1742) (Commit 77c75b91 by Georg Ringer)
+    2022-03-16 [BUGFIX] Fix notice in PageViewQueryHook (Commit fdac4d02 by Georg Ringer)
+    2022-03-16 [BUGFIX] Fallback for category overlay in backend #1740 (Commit 12aa9135 by Georg Ringer)
+    2022-03-15 [BUGFIX] Fix notice in RecordListQueryHook (Commit 52d12735 by Georg Ringer)
+    2022-03-15 [TASK] Remove media preview in backend list (Commit 46951129 by Georg Ringer)
+    2022-03-14 [TASK] Change path to dummyImage for using EXT:news with typo3/cms-composer-installers 4.0 (#1739) (Commit d893d410 by Andreas Kessel)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

@@ -1,0 +1,172 @@
+.. include:: /Includes.rst.txt
+
+9.0.0 - 23th October 2021
+=========================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+Support for TYPO3 10 && 11
+--------------------------
+This version fully supports TYPO3 10 and 11 LTS.
+Due to a lot of changes it might be that small issues still might occur. Please report those at https://github.com/georgringer/news/issues!
+
+Breaking changes
+----------------
+The following changes should be carefully checked.
+
+Removed ViewHelpers
+^^^^^^^^^^^^^^^^^^^
+The ViewHelpers `<n:widget.paginate>` and `<n:widget.ajax.paginateAdditionalParams>` have been removed as widget ViewHelpers have been removed with TYPO3 11 (see https://docs.typo3.org/c/typo3/cms-core/master/en-us/Changelog/11.0/Breaking-92529-AllFluidWidgetFunctionalityRemoved.html).
+
+Take a look at the default templates for a migration
+
+.. code-block:: html
+
+    <f:if condition="{settings.list.paginate.insertAbove}">
+        <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+    </f:if>
+    <f:for each="{pagination.paginator.paginatedItems}" as="newsItem" iteration="iterator">
+        <f:render partial="List/Item" arguments="{newsItem: newsItem,settings:settings,iterator:iterator}" />
+    </f:for>
+    <f:if condition="{settings.list.paginate.insertBelow}">
+        <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+    </f:if>
+
+.. important::
+
+   The parameter in the URL changed as well and is now `&tx_news_pi1[currentPage]` instead of `&tx_news_pi1[@widget_0][currentPage]`. Please adopt your routing configuration!
+
+Use the extension **numbered_pagination** (https://extensions.typo3.org/extension/numbered_pagination) to get a better pagination, like showing only 10 pages at a time.
+
+
+Changed ImageSizeViewHelper
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The view-helper to retrieve image related information like width/height has been changed.
+The attribute `image` is now required. The following changes have been done in the default templates and can be duplicated to the custom templates:
+
+**Partials/Detail/Opengraph.html**
+
+.. code-block:: html
+
+   <f:variable name="ogImagePath" value="{f:uri.image(src:'{newsItem.firstPreview.uid}', treatIdAsReference:1, maxWidth:'1200')}" />
+   <n:metaTag
+      property="og:image"
+      content="{ogImagePath}"
+      forceAbsoluteUrl="1" />
+   <n:metaTag property="og:image:width" content="{n:imageSize(property:'width', image:'{ogImagePath}')}" />
+   <n:metaTag property="og:image:height" content="{n:imageSize(property:'height', image:'{ogImagePath}')}" />
+
+**Templates/News/List.xml**
+
+.. code-block:: xml
+
+   <f:if condition="{newsItem.firstPreview}">
+      <f:variable name="ogImage" value="{f:uri.image(image:newsItem.firstPreview, absolute:1, maxWidth: '1920', maxHeight: '1920')}" />
+      <enclosure url="{ogImage}" length="{n:imageSize(property:'size',image:ogImage)}" type="{newsItem.firstPreview.originalResource.mimeType}"/>
+   </f:if>
+
+Switch from signals to events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Events are now used instead of signals
+
+Drop setting skipControllerAndAction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The setting `settings.link.skipControllerAndAction` is not evalulated anymore as it should be removed by the routing configuration.
+
+Improved code quality
+^^^^^^^^^^^^^^^^^^^^^
+The code quality has been improved by adding more return types
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+    2021-10-23 [TASK] Add tests running in PHP8 & TYPO3 dev-master (Commit 9058745d by Georg Ringer)
+    2021-10-22 [TASK] Allow more pagination implementations (#1610) (Commit d009a903 by Georg Ringer)
+    2021-10-22 [TASK] Make tests work in v11 (Commit 9fe96a48 by Georg Ringer)
+    2021-10-22 [DOC] Improve changelog for 9.0 (Commit be266618 by Georg Ringer)
+    2021-10-22 [TASK] Allow rx_shariff v14 (Commit d5e3941f by Georg Ringer)
+    2021-10-17 [DOC] use english words in example (Commit a3ce7bae by Georg Ringer)
+    2021-10-17 [DOC] Fix typo in docs (Commit 52d6122e by Georg Ringer)
+    2021-10-12 [TASK] Update Index.rst to clarify usage of "previewHiddenRecords" (#1591) (Commit d3a9dd0c by Markus)
+    2021-10-11 [TASK] Add tca for tx_news_related_news (Commit ab936766 by Georg Ringer)
+    2021-10-11 [TASK] Import namespace in AdministrationController (Commit 95cc7454 by Georg Ringer)
+    2021-10-07 [BUGFIX] Leave slash at the beginning of the image path in TYPO3 11 to be in sync with the paths which get retrieved by $assetCollector->getMedia() in ImageSizeViewHelper (#1587) (Commit 3eb0c8ec by chris)
+    2021-10-07 Improve backend module for TYPO3 11.5 (#1588) (Commit 53923eab by Johannes)
+    2021-10-06 [BUGFIX] Use own check for firstpartofstr (Commit 27a191b0 by Georg Ringer)
+    2021-10-05 [TASK] Use GeneralUtility::isFirstPartOfStr in ClassLoader (Commit 94a21ec9 by Georg Ringer)
+    2021-09-28 [TASK] Replace deprecated string util methods (#1583) (Commit 9ad81c70 by Georg Ringer)
+    2021-09-28 [BUGFIX] Add timeRestrictionHigh to overrideFlexformSettingsIfEmpty (Commit feef53ef by Georg Ringer)
+    2021-09-17 [!!!][TASK] Change headline in detail from h3 to h1 (Commit d6a8bd6b by Georg Ringer)
+    2021-09-16 [ FEATURE ] In Detail view showing related news sorted by sorting foreign #1563 (#1565) (Commit 686a9e5f by Robert von Hackwitz)
+    2021-09-15 [!!!][TASK] Rework ImageSizeViewHelper (Commit 9cff6564 by Georg Ringer)
+    2021-09-15 [BUGFIX] Followup variable check (Commit 7e362528 by Georg Ringer)
+    2021-09-15 [BUGFIX] Add more type checks (Commit c1eb4645 by Georg Ringer)
+    2021-09-15 [BUGFIX] Check variables in PageLayoutView before accessing (Commit 1117f480 by Georg Ringer)
+    2021-09-15 [TASK] Remove outdated softref configuration (Commit e003bc18 by Georg Ringer)
+    2021-09-14 [TASK] Check for array key (Commit d46c41c6 by Georg Ringer)
+    2021-09-07 [TASK] Add explicit keys on subclasses registration (#1562) (Commit b899ae37 by Eric Chavaillaz)
+    2021-09-07 [!!!][FEATURE] Switch from signal to event (#1567) (Commit 96bfe0a6 by Gerrit Mohrmann)
+    2021-09-07 Apply fixes from StyleCI (#1572) (Commit fbc2b8c9 by Georg Ringer)
+    2021-09-07 [TASK] Remove extensionmanager from functional test ext loading (#1573) (Commit b04cee28 by Georg Ringer)
+    2021-09-07 [TASK] Remove dev-master from ci.yml (Commit a1b84bdb by Georg Ringer)
+    2021-09-07 [BUGFIX] Remove not available softref from tca (#1568) (Commit 7bc86a4b by Gerrit Mohrmann)
+    2021-09-07 [DOC] Fixed little typo in example (#1569) (Commit 0e7cca7e by Volker)
+    2021-09-01 [DOC] Fix subclass registration (#1560) (Commit 2e003608 by iresults-tma)
+    2021-08-15 [TASK] Switch from SignalSlot to Event in Importer classes (#1554) (Commit aa6f0db4 by Gerrit Mohrmann)
+    2021-08-12 [TASK] Remove deprecated usages (Commit 3403a4c2 by Gerrit Mohrmann)
+    2021-07-29 [TASK] EmConfiguration can't be autowired (Commit 8ad5d463 by Georg Ringer)
+    2021-07-27 [TASK] Handle access control for newer Apache versions (#1544) (Commit 06f3d908 by Sybille Peters)
+    2021-07-22 [BUGFIX] Fix namespace issue in AdministrationController (Commit bc1e759b by Georg Ringer)
+    2021-07-22 Merge branch '11' (Commit 6f207e09 by Georg Ringer)
+    2021-05-20 [TASK] Move setting modification to different call (Commit 70a58bc5 by Georg Ringer)
+    2021-05-12 [BUGFIX] Properly set permissions (Commit 6412442a by Georg Ringer)
+    2021-05-12 [BUGFIX] Reset tabledata in page layout hook (Commit b1e2e0cf by Georg Ringer)
+    2021-05-11 [BUGFIX] Use ObjectManager in Administration module (Commit d8ab1b90 by Georg Ringer)
+    2021-05-06 [BUGFIX] Proper compare in BackendUtility (Commit 2871820e by Georg Ringer)
+    2021-04-03 [TASK] Further code improvements (Commit 5bfb1bd1 by Christoph Lehmann)
+    2021-03-29 Symfony Dependency Injection (DI) (#1503) (Commit 6fbc2d02 by AKaravas)
+    2021-03-21 Apply fixes from StyleCI (#1496) (Commit 4426ffc8 by Georg Ringer)
+    2021-03-21 Merge remote-tracking branch 'origin/master' into 11 (Commit e2522f5d by Georg Ringer)
+    2021-03-21 [TASK] Rename typoscript & tsconfig files (Commit 6fcd2975 by Georg Ringer)
+    2021-03-16 [BUGFIX] Make numberedpagination optional (Commit e0d3afd0 by Georg Ringer)
+    2021-03-16 [BUGFIX] Fix return type error for related #1482 (Commit 25fffdef by Georg Ringer)
+    2021-03-16 Update composer.json (Commit fcbe1f23 by Georg Ringer)
+    2021-03-11 [BUGFIX] Replace usage of self (Commit ccb75ca1 by Georg Ringer)
+    2021-03-11 [TASK] Change github action ubuntu version (Commit 38c4a933 by Georg Ringer)
+    2021-03-11 [BUGFIX] Make the admin module work (Commit b9a7caee by Georg Ringer)
+    2021-03-09 [BUGFIX] Use correct composer dependencies (Commit 95903049 by Georg Ringer)
+    2021-03-03 [BUGFIX] Set categories only as array (Commit a0b7f58f by Georg Ringer)
+    2021-03-03 [BUGFIX] Allow nullable return value of category (Commit 559708fb by Georg Ringer)
+    2021-03-03 [DOC] Update example to extend news types #1381 (Commit d0f7f391 by Georg Ringer)
+    2021-03-03 [BUGFIX] Use correct attribute in MetaTagViewHelper (Commit e42d3705 by Georg Ringer)
+    2021-02-25 [BUGFIX] Show tag count in twb templates #1044 (Commit cdaff6bc by Georg Ringer)
+    2021-02-24 [!!!][BUGFIX] Remove setting skipControllerAndAction (Commit ab5c6d1c by Georg Ringer)
+    2021-02-22 [BUGFIX] Set proper types (Commit d87fd0a8 by Georg Ringer)
+    2021-02-22 [BUGFIX] Fix failing functional test (Commit a32280d8 by Georg Ringer)
+    2021-02-22 [TASK] Check functional tests (Commit c8bf3ac4 by Georg Ringer)
+    2021-02-22 [TASK] Remove gitlab-ci.yml (Commit 31117381 by Georg Ringer)
+    2021-02-17 [TASK] Work on better types (Commit f3020f1a by Georg Ringer)
+    2021-02-17 [TASK] Improve code by using psalm (Commit 2c424b91 by Georg Ringer)
+    2021-02-17 [TASK] Add typo3 dev-master (Commit 759534d9 by Georg Ringer)
+    2021-02-17 [TASK] Allow more versions in github actions (Commit 83dae3cd by Georg Ringer)
+    2021-02-17 [BUGFIX] Fix more type issues (Commit 8f3b8597 by Georg Ringer)
+    2021-02-17 [BUGFIX] Improve types (Commit 59d45e84 by Georg Ringer)
+    2021-02-17 [BUGFIX] Add missing return types (Commit a7436b18 by Georg Ringer)
+    2021-02-17 [TASK] Add return types (Commit b992ddf5 by Georg Ringer)
+    2021-02-17 [TASK] Switch to github actions instead of travis (Commit 0f391d5d by Georg Ringer)
+    2021-02-17 [FEATURE] Use new pagination implementation (Commit 434a43bc by Georg Ringer)
+    2021-02-16 [BUGFIX] Limit flexform fields for new records as well (Commit 98b5fa1b by Georg Ringer)
+    2021-02-16 [TASK] Improve code by php-cs-fixer (Commit 85429fa8 by Georg Ringer)
+    2021-02-16 [TASK] Improve code quality with rector (Commit 59d20395 by Georg Ringer)
+    2021-02-16 [!!!][TASK] Remove all widget ViewHelpers (Commit 82b69a9b by Georg Ringer)
+    2021-02-16 [TASK] Allow version 10-11 (Commit 760505dc by Georg Ringer)
+    2021-02-12 [TASK] Remove interfaces from TCA (Commit 3ee96b03 by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

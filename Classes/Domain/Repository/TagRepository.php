@@ -16,7 +16,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * Repository for tag objects
  */
-class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
+class TagRepository extends AbstractDemandedRepository
 {
 
     /**
@@ -25,7 +25,8 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
      * @param array $idList list of id s
      * @param array $ordering ordering
      * @param string $startingPoint starting point uid or comma separated list
-     * @return QueryInterface
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
     public function findByIdList(array $idList, array $ordering = [], $startingPoint = null)
     {
@@ -50,7 +51,8 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
         return $query->matching(
             $query->logicalAnd(
                 $conditions
-            ))->execute();
+            )
+        )->execute();
     }
 
     /**
@@ -58,14 +60,14 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
      *
      * @param QueryInterface $query
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     * @return \TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface[]
      */
-    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
 
         // Storage page
-        if ($demand->getStoragePage() != 0) {
+        if ($demand->getStoragePage()) {
             $pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), true);
             $constraints[] = $query->in('pid', $pidList);
         }
@@ -90,9 +92,12 @@ class TagRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemanded
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     *
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
      */
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
         $orderings = [];
 

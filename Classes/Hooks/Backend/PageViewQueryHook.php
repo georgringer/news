@@ -8,17 +8,15 @@ namespace GeorgRinger\News\Hooks\Backend;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Hook into PageLayoutView to hide tt_content elements in page view
- *
  */
 class PageViewQueryHook
 {
@@ -34,8 +32,6 @@ class PageViewQueryHook
      * @param array $additionalConstraints
      * @param string[] $fieldList
      * @param QueryBuilder $queryBuilder
-     *
-     * @return void
      */
     public function modifyQuery(
         $parameters,
@@ -45,16 +41,15 @@ class PageViewQueryHook
         $fieldList,
         QueryBuilder $queryBuilder
     ): void {
-
         if ($table === 'tt_content' && $pageId > 0) {
-            
+
             // Get page record base on page uid
             $pageRecord = BackendUtility::getRecord('pages', $pageId, 'uid', " AND doktype='254' AND module='news'");
 
             if (is_array($pageRecord)) {
                 $tsConfig = BackendUtility::getPagesTSconfig($pageId);
 
-                if (isset($tsConfig['tx_news.']) && is_array($tsConfig['tx_news.']) && $tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] == 1) {
+                if ((int)($tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] ?? 0)  === 1) {
                     return;
                 }
 
@@ -77,10 +72,8 @@ class PageViewQueryHook
      * Render flash message to inform user
      * that no elements belonging to news articles
      * are rendered in the page module
-     *
-     * @return void
      */
-    private function addFlashMessage()
+    protected function addFlashMessage(): void
     {
         $message = GeneralUtility::makeInstance(
             FlashMessage::class,
@@ -93,9 +86,6 @@ class PageViewQueryHook
         $defaultFlashMessageQueue->enqueue($message);
     }
 
-    /**
-     * @return LanguageService
-     */
     protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];

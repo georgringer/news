@@ -10,12 +10,13 @@
 <n:metaTag property="og:url" content="" useCurrentDomain="1" />
 <n:metaTag property="og:site_name" content="{settings.opengraph.site_name}" />
 <f:if condition="{newsItem.firstPreview}">
+    <f:variable name="ogImagePath" value="{f:uri.image(src:'{newsItem.firstPreview.uid}', treatIdAsReference:1, maxWidth:'1200')}" />
 	<n:metaTag
 		property="og:image"
-		content="{f:uri.image(src:'{newsItem.firstPreview.uid}', treatIdAsReference:1, maxWidth:'500')}"
+		content="{ogImagePath}"
 		forceAbsoluteUrl="1" />
-	<n:metaTag property="og:image:width" content="{n:imageSize(property:'width')}" />
-	<n:metaTag property="og:image:height" content="{n:imageSize(property:'height')}" />
+	<n:metaTag property="og:image:width" content="{n:imageSize(property:'width', image:'{ogImagePath}')}" />
+	<n:metaTag property="og:image:height" content="{n:imageSize(property:'height', image:'{ogImagePath}')}" />
 </f:if>
 
 <f:if condition="{newsItem.description}">
@@ -30,17 +31,7 @@
 </f:if>
 <n:metaTag name="keywords" content="{newsItem.keywords}" />
 <n:metaTag property="fb:admins" content="{settings.opengraph.admins}" />
-<n:metaTag property="og:email" content="{settings.opengraph.email}" />
-<n:metaTag property="og:phone_number" content="{settings.opengraph.phone_number}" />
-<n:metaTag property="og:fax_number" content="{settings.opengraph.fax_number}" />
-<n:metaTag property="og:latitude" content="{settings.opengraph.latitude}" />
-<n:metaTag property="og:longitude" content="{settings.opengraph.longitude}" />
-<n:metaTag property="og:street-address" content="{settings.opengraph.street-address}" />
-<n:metaTag property="og:locality" content="{settings.opengraph.locality}" />
 <n:metaTag property="og:locale" content="{settings.opengraph.locale}" />
-<n:metaTag property="og:region" content="{settings.opengraph.region}" />
-<n:metaTag property="og:postal-code" content="{settings.opengraph.postal-code}" />
-<n:metaTag property="og:country-name" content="{settings.opengraph.country-name}" />
 <f:if condition="{settings.opengraph.twitter.site}">
 	<n:metaTag name="twitter:card" content="{settings.opengraph.twitter.card}" />
 	<n:metaTag name="twitter:site" content="{settings.opengraph.twitter.site}" />

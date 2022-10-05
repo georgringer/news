@@ -1,6 +1,15 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
+namespace GeorgRinger\News\Tests\Functional\Repository;
+
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\DateTimeAspect;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -8,9 +17,6 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Functional test for the \GeorgRinger\News\Domain\Repository\NewsRepository
@@ -18,19 +24,23 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class NewsRepositoryTest extends FunctionalTestCase
 {
 
-    /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-    protected $objectManager;
-
     /** @var  \GeorgRinger\News\Domain\Repository\NewsRepository */
     protected $newsRepository;
 
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
 
-    public function setUp()
+    protected $coreExtensionsToLoad = ['fluid'];
+
+    public function setUp(): void
     {
         parent::setUp();
-        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-        $this->newsRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\NewsRepository');
+
+        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+        if ($versionInformation->getMajorVersion() === 11) {
+            $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
+        } else {
+            $this->newsRepository = GeneralUtility::makeInstance(ObjectManager::class)->get(NewsRepository::class);
+        }
 
         $this->importDataSet(__DIR__ . '/../Fixtures/tags.xml');
         $this->importDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.xml');
@@ -40,8 +50,10 @@ class NewsRepositoryTest extends FunctionalTestCase
      * Test if startingpoint is working
      *
      * @test
+     *
+     * @return void
      */
-    public function findRecordsByUid()
+    public function findRecordsByUid(): void
     {
         $news = $this->newsRepository->findByUid(1);
 
@@ -52,8 +64,10 @@ class NewsRepositoryTest extends FunctionalTestCase
      * Test if by import source is done
      *
      * @test
+     *
+     * @return void
      */
-    public function findRecordsByImportSource()
+    public function findRecordsByImportSource(): void
     {
         $news = $this->newsRepository->findOneByImportSourceAndImportId('functional_test', '2');
 
@@ -64,11 +78,12 @@ class NewsRepositoryTest extends FunctionalTestCase
      * Test if top news constraint works
      *
      * @test
+     *
+     * @return void
      */
-    public function findTopNewsRecords()
+    public function findTopNewsRecords(): void
     {
-        /** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
-        $demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\Dto\\NewsDemand');
+        $demand = new NewsDemand();
         $demand->setStoragePage(2);
 
         // no matter about top news
@@ -88,11 +103,12 @@ class NewsRepositoryTest extends FunctionalTestCase
      * Test if startingpoint is working
      *
      * @test
+     *
+     * @return void
      */
-    public function findRecordsByStartingpointRestriction()
+    public function findRecordsByStartingpointRestriction(): void
     {
-        /** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
-        $demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
+        $demand = new NewsDemand();
 
         // simple starting point
         $demand->setStoragePage(3);
@@ -111,39 +127,43 @@ class NewsRepositoryTest extends FunctionalTestCase
      * Test if record are found by archived/non archived flag
      *
      * @test
+     *
+     * @return void
      */
-    public function findRecordsByArchiveRestriction()
+    public function findRecordsByArchiveRestriction(): void
     {
-        $GLOBALS['SIM_EXEC_TIME'] = 1396812099;
-        $newsRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\NewsRepository');
+        GeneralUtility::makeInstance(Context::class)->setAspect(
+            'date',
+            new DateTimeAspect(new \DateTimeImmutable('@1396812099'))
+        );
 
-        /** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
-        $demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
+        $demand = new NewsDemand();
         $demand->setStoragePage(7);
 
         // Archived means: archive date must be lower than current time AND != 0
         $demand->setArchiveRestriction('archived');
-        $this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 3);
+        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 3);
 
         // Active means: archive date must be in future or no archive date
         $demand->setArchiveRestriction('active');
-        $this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 2);
+        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 2);
 
         // no value means: give all
         $demand->setArchiveRestriction('');
-        $this->assertEquals((int)$newsRepository->findDemanded($demand)->count(), 5);
+        $this->assertEquals((int)$this->newsRepository->findDemanded($demand)->count(), 5);
     }
 
     /**
      * Test if record by month/year constraint works
      *
      * @test
+     *
+     * @return void
      */
-    public function findRecordsByMonthAndYear()
+    public function findRecordsByMonthAndYear(): void
     {
         $this->markTestSkipped('Does not work in travis');
-        /** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
-        $demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
+        $demand = new NewsDemand();
         $demand->setStoragePage(8);
 
         $demand->setDateField('datetime');
@@ -156,14 +176,18 @@ class NewsRepositoryTest extends FunctionalTestCase
      * Test if latest limit constraint works
      *
      * @test
+     *
+     * @return void
      */
-    public function findLatestLimitRecords()
+    public function findLatestLimitRecords(): void
     {
-        /** @var $demand \GeorgRinger\News\Domain\Model\Dto\NewsDemand */
-        $demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\\Dto\\NewsDemand');
+        $demand = new NewsDemand();
         $demand->setStoragePage(9);
 
-        $GLOBALS['SIM_EXEC_TIME'] = strtotime('2014-04-03');
+        GeneralUtility::makeInstance(Context::class)->setAspect(
+            'date',
+            new DateTimeAspect(new \DateTimeImmutable('@' . strtotime('2014-04-03')))
+        );
 
         // get all news maximum 6 days old
         $demand->setTimeRestriction((6 * 86400));
@@ -178,11 +202,12 @@ class NewsRepositoryTest extends FunctionalTestCase
      * Test if by import source is done
      *
      * @test
+     *
+     * @return void
      */
-    public function findRecordsByTags()
+    public function findRecordsByTags(): void
     {
-        /** @var \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand */
-        $demand = $this->objectManager->get('GeorgRinger\\News\\Domain\\Model\Dto\\NewsDemand');
+        $demand = new NewsDemand();
         $demand->setStoragePage(10);
         $demand->setOrder('uid');
         $demand->setOrderByAllowed('uid');
@@ -205,10 +230,12 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function findRecordsForDateMenu()
+    public function findRecordsForDateMenu(): void
     {
-        $demand = $this->objectManager->get(NewsDemand::class);
+        $demand = new NewsDemand();
         $demand->setStoragePage('9');
         $demand->setDateField('datetime');
         $expected = [
@@ -228,12 +255,14 @@ class NewsRepositoryTest extends FunctionalTestCase
 
     /**
      * Test if records are found by type
+     *
      * @test
+     *
+     * @return void
      */
-    public function findRecordsByType()
+    public function findRecordsByType(): void
     {
-        /** @var \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand */
-        $demand = $this->objectManager->get(NewsDemand::class);
+        $demand = new NewsDemand();
         $demand->setStoragePage('1,2');
 
         // given is 1 tag
@@ -251,7 +280,7 @@ class NewsRepositoryTest extends FunctionalTestCase
      * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList
      * @return string
      */
-    protected function getIdListOfNews(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $newsList)
+    protected function getIdListOfNews(QueryResultInterface $newsList)
     {
         $idList = [];
         foreach ($newsList as $news) {
@@ -260,9 +289,8 @@ class NewsRepositoryTest extends FunctionalTestCase
         return implode(',', $idList);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->newsRepository);
-        unset($this->objectManager);
     }
 }

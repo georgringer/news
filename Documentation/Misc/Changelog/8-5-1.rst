@@ -1,0 +1,41 @@
+.. include:: /Includes.rst.txt
+
+8.5.1 - 8th January 2021
+========================
+
+.. only:: html
+
+.. contents::
+        :local:
+        :depth: 3
+
+
+Important changes
+-----------------
+
+Thanks to
+^^^^^^^^^
+Thanks to **Violetta Digital Craft GmbH** (https://www.violetta.ch) who sponsored this release!
+
+New TYPO3 version requirement
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The mimimum TYPO3 version is either  `9.5.17` or `10.4.12`.
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2021-01-04 [BUGFIX] Adjust the IRRE xclass to match v10.4.12 (#1412) (Commit b13d167a by Markus Klein)
+   2020-12-31 [DOC] Add documentation to limit available content element CTypes (#1411) (Commit 77d0d62c by Peter Kraume)
+   2020-12-17 [BUGFIX] Fix invalid crop usage in RenderMediaViewHelper (#1409) (Commit a8bca7c7 by Markus Klein)
+   2020-12-11 [BUGFIX] Prevent double encoding of metatag content (#1403) (Commit 2f452fdf by Markus Klein)
+   2020-12-11 [BUGFIX] Fix entry level in category menu for TYPO3 10 (#1404) (Commit c3944732 by echavaillaz)
+   2020-11-20 [DOC] Fixed locale for LocaleModifier example (#1386) (Commit a1ecb3b1 by Torben Hansen)
+   2020-11-20 [BUGFIX] Use correct time in ical (#1392) (Commit 50bd6917 by Markus Klein)
+   2020-11-15 [BUGFIX] Set correct default for fe_group field (Commit f7f989cd by Georg Ringer)
+   2020-11-02 [BUGFIX] Correctly adjust timezone in sitemap (#1380) (Commit 8f40f411 by Markus Klein)
+   2020-10-22 [TASK] Remove maxItems for selectedList (#1373) (Commit 7b1a52ca by ayacoo)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

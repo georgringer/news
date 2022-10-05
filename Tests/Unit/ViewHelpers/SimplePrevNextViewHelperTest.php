@@ -2,38 +2,36 @@
 
 namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
+use GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper;
+use TYPO3\TestingFramework\Core\BaseTestCase;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\MockObject\AccessibleMockObjectInterface;
-use Nimut\TestingFramework\TestCase\ViewHelperBaseTestcase;
 
 /**
  * Test for SimplePrevNextViewHelper
  */
-class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
+class SimplePrevNextViewHelperTest extends BaseTestCase
 {
 
-    /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|AccessibleMockObjectInterface|\GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper
-     */
+    /** @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $viewHelper;
 
-    /**
-     * Set up
-     */
-    public function setUp()
+    public function setup(): void
     {
-        $this->viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getRawRecord']);
+        $this->viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getRawRecord']);
     }
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function wrongIdWillReturnNullForObject()
+    public function wrongIdWillReturnNullForObject(): void
     {
         $this->viewHelper->expects($this->any())->method('getRawRecord')->withAnyParameters()->will($this->returnValue(null));
 
@@ -43,50 +41,55 @@ class SimplePrevNextViewHelperTest extends ViewHelperBaseTestcase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function queryResultWillReturnCorrectOutputForAllLinks()
+    public function queryResultWillReturnCorrectOutputForAllLinks(): void
     {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
+        $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
         $in = [
             'prev' => ['uid' => 123],
             'next' => ['uid' => 789],
         ];
         $exp = ['prev' => 123, 'next' => 789];
-        $viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(123));
-        $viewHelper->expects($this->at(1))->method('getObject')->will($this->returnValue(789));
+        $viewHelper->expects(self::exactly(2))->method('getObject')->willReturnOnConsecutiveCalls(123, 789);
         $out = $viewHelper->_call('mapResultToObjects', $in);
         $this->assertEquals($out, $exp);
     }
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function queryResultWillReturnCorrectOutputFor2Links()
+    public function queryResultWillReturnCorrectOutputFor2Links(): void
     {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
+        $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
         $in = [
             'prev' => ['uid' => 147],
         ];
         $exp = ['prev' => 147];
-        $viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(147));
+        $viewHelper->expects(self::exactly(1))->method('getObject')->willReturnOnConsecutiveCalls(147);
         $out = $viewHelper->_call('mapResultToObjects', $in);
         $this->assertEquals($out, $exp);
     }
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function queryResultWillReturnCorrectOutputFor1Link()
+    public function queryResultWillReturnCorrectOutputFor1Link(): void
     {
-        $viewHelper = $this->getAccessibleMock('GeorgRinger\\News\\ViewHelpers\\SimplePrevNextViewHelper', ['getObject']);
+        $viewHelper = $this->getAccessibleMock(SimplePrevNextViewHelper::class, ['getObject']);
 
         $in = [
             'next' => ['uid' => 369],
         ];
         $exp = ['next' => 369];
-        $viewHelper->expects($this->at(0))->method('getObject')->will($this->returnValue(369));
+        $viewHelper->expects(self::exactly(1))->method('getObject')->willReturnOnConsecutiveCalls(369);
         $out = $viewHelper->_call('mapResultToObjects', $in);
         $this->assertEquals($out, $exp);
     }

@@ -2,11 +2,11 @@
 
 namespace GeorgRinger\News\Service;
 
-use GeorgRinger\News\Service\Transliterator\Transliterator;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -18,13 +18,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class SlugService
 {
 
-    /**
-     * @param string $string
-     * @return string
-     */
-    public function generateSlug(string $string): string
+    /** @var NewsSlugHelper */
+    protected $slugService;
+
+    public function __construct()
     {
-        return Transliterator::urlize($string);
+        $fieldConfig = $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['path_segment']['config'];
+        $this->slugService = GeneralUtility::makeInstance(SlugHelper::class, 'tx_news_domain_model_news', 'path_segment', $fieldConfig);
     }
 
     /**
@@ -60,7 +60,7 @@ class SlugService
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = $connection->createQueryBuilder();
         $queryBuilder->getRestrictions()->removeAll();
-        $statement = $queryBuilder->select('uid', 'title')
+        $statement = $queryBuilder->select('*')
             ->from('tx_news_domain_model_news')
             ->where(
                 $queryBuilder->expr()->orX(
@@ -71,7 +71,7 @@ class SlugService
             ->execute();
         while ($record = $statement->fetch()) {
             if ((string)$record['title'] !== '') {
-                $slug = $this->generateSlug((string)$record['title']);
+                $slug = $this->slugService->generate($record, $record['pid']);
                 /** @var QueryBuilder $queryBuilder */
                 $queryBuilder = $connection->createQueryBuilder();
                 $queryBuilder->update('tx_news_domain_model_news')
@@ -81,7 +81,7 @@ class SlugService
                             $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
                         )
                     )
-                    ->set('path_segment', $this->getUniqueValue($record['uid'], $slug));
+                    ->set('path_segment', $this->getUniqueValue($record['uid'], $record['sys_language_uid'], $slug));
                 $databaseQueries[] = $queryBuilder->getSQL();
                 $queryBuilder->execute();
             }
@@ -95,9 +95,9 @@ class SlugService
      * @param string $slug
      * @return string
      */
-    protected function getUniqueValue(int $uid, string $slug): string
+    protected function getUniqueValue(int $uid, int $languageId, string $slug): string
     {
-        $statement = $this->getUniqueCountStatement($uid, $slug);
+        $statement = $this->getUniqueCountStatement($uid, $languageId, $slug);
         if ($statement->fetchColumn()) {
             for ($counter = 1; $counter <= 100; $counter++) {
                 $newSlug = $slug . '-' . $counter;
@@ -114,10 +114,11 @@ class SlugService
 
     /**
      * @param int $uid
+     * @param int $languageId
      * @param string $slug
      * @return \Doctrine\DBAL\Driver\Statement|int
      */
-    protected function getUniqueCountStatement(int $uid, string $slug)
+    protected function getUniqueCountStatement(int $uid, int $languageId, string $slug)
     {
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
@@ -129,8 +130,14 @@ class SlugService
             ->count('uid')
             ->from('tx_news_domain_model_news')
             ->where(
-                $queryBuilder->expr()->eq('path_segment',
-                    $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)),
+                $queryBuilder->expr()->eq(
+                    'path_segment',
+                    $queryBuilder->createPositionalParameter($slug, \PDO::PARAM_STR)
+                ),
+                $queryBuilder->expr()->eq(
+                    'sys_language_uid',
+                    $queryBuilder->createPositionalParameter($languageId, \PDO::PARAM_INT)
+                ),
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
             )->execute();
     }
@@ -221,16 +228,28 @@ class SlugService
             // Get entries to update
             $statement = $queryBuilder
                 ->selectLiteral(
-                    'DISTINCT tx_news_domain_model_news.uid, tx_realurl_uniqalias.value_alias, tx_news_domain_model_news.uid'
+                    'DISTINCT tx_news_domain_model_news.uid, tx_realurl_uniqalias.value_alias, tx_news_domain_model_news.uid, tx_news_domain_model_news.l10n_parent,tx_news_domain_model_news.sys_language_uid'
                 )
                 ->from('tx_news_domain_model_news')
                 ->join(
                     'tx_news_domain_model_news',
                     'tx_realurl_uniqalias',
                     'tx_realurl_uniqalias',
-                    $queryBuilder->expr()->eq(
-                        'tx_news_domain_model_news.uid',
-                        $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.value_id')
+                    $queryBuilder->expr()->orX(
+                        $queryBuilder->expr()->eq(
+                            'tx_news_domain_model_news.uid',
+                            $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.value_id')
+                        ),
+                        $queryBuilder->expr()->andX(
+                            $queryBuilder->expr()->eq(
+                                'tx_news_domain_model_news.l10n_parent',
+                                $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.value_id')
+                            ),
+                            $queryBuilder->expr()->eq(
+                                'tx_news_domain_model_news.sys_language_uid',
+                                $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.lang')
+                            )
+                        )
                     )
                 )
                 ->where(
@@ -266,7 +285,7 @@ class SlugService
 
             // Update entries
             while ($record = $statement->fetch()) {
-                $slug = $this->generateSlug((string)$record['value_alias']);
+                $slug = $this->slugService->sanitize((string)$record['value_alias']);
                 $queryBuilder = $connection->createQueryBuilder();
                 $queryBuilder->update('tx_news_domain_model_news')
                     ->where(
@@ -275,7 +294,7 @@ class SlugService
                             $queryBuilder->createNamedParameter($record['uid'], \PDO::PARAM_INT)
                         )
                     )
-                    ->set('path_segment', $this->getUniqueValue($record['uid'], $slug));
+                    ->set('path_segment', $this->getUniqueValue($record['uid'], $record['sys_language_uid'], $slug));
                 $databaseQueries[] = $queryBuilder->getSQL();
                 $queryBuilder->execute();
             }

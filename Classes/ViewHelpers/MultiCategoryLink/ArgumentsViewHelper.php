@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
@@ -11,11 +12,11 @@ namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
  */
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to get additional params including add/remove categories from list
@@ -33,9 +34,8 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
  * <output>
  *    <title>TYPO3 is awesome</title>
  * </output>
- *
  */
-class ArgumentsViewHelper extends AbstractViewHelper implements CompilableInterface
+class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterface
 {
     use CompileWithRenderStatic;
 
@@ -55,13 +55,14 @@ class ArgumentsViewHelper extends AbstractViewHelper implements CompilableInterf
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
+     *
+     * @return array
      */
     public static function renderStatic(
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    )
-    {
+    ): array {
         if ($arguments['mode'] !== 'add' && $arguments['mode'] !== 'remove') {
             throw new Exception('Mode must be either "add" or "remove', 1522293549);
         }

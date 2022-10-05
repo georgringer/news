@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
@@ -10,8 +11,8 @@ namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
  * LICENSE.txt file that was distributed with this source code.
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
 
 /**
  * ViewHelper to check if th
@@ -25,9 +26,8 @@ use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
  * <output>
  * "du stuff" will be shown if the category is currently in demand
  * </output>
- *
  */
-class IsCategoryActiveViewHelper extends AbstractConditionViewHelper implements CompilableInterface
+class IsCategoryActiveViewHelper extends AbstractConditionViewHelper implements ViewHelperInterface
 {
     /**
      * Initialize arguments

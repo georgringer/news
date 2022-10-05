@@ -2,117 +2,97 @@
 
 namespace GeorgRinger\News\Domain\Service;
 
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use GeorgRinger\News\Domain\Model\FileReference;
+use GeorgRinger\News\Domain\Model\Link;
+use GeorgRinger\News\Domain\Model\News;
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use GeorgRinger\News\Domain\Repository\TtContentRepository;
+use GeorgRinger\News\Event\NewsImportPostHydrateEvent;
+use GeorgRinger\News\Event\NewsImportPreHydrateEvent;
+use GeorgRinger\News\Event\NewsPostImportEvent;
+use GeorgRinger\News\Event\NewsPreImportEvent;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Domain\Model\FileReference;
-use GeorgRinger\News\Domain\Model\Link;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-
-/**
- * News Import Service
- *
- */
 class NewsImportService extends AbstractImportService
 {
     const ACTION_IMPORT_L10N_OVERLAY = 1;
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\NewsRepository
+     * @var NewsRepository
      */
     protected $newsRepository;
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\TtContentRepository
+     * @var TtContentRepository
      */
     protected $ttContentRepository;
-
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\CategoryRepository
-     */
-    protected $categoryRepository;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
-     */
-    protected $signalSlotDispatcher;
 
     /**
      * @var array
      */
     protected $settings = [];
 
-    public function __construct()
-    {
-        $logger = GeneralUtility::makeInstance('TYPO3\CMS\Core\Log\LogManager')->getLogger(__CLASS__);
-        $this->logger = $logger;
-
-        parent::__construct();
-    }
-
     /**
-     * Inject the news repository
-     *
-     * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
+     * NewsImportService constructor.
+     * @param PersistenceManager $persistenceManager
+     * @param EmConfiguration $emSettings
+     * @param ObjectManager $objectManager
+     * @param CategoryRepository $categoryRepository
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param NewsRepository $newsRepository
+     * @param TtContentRepository $ttContentRepository
      */
-    public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
-    {
-        $this->newsRepository = $newsRepository;
-    }
-
-    /**
-     * Inject the category repository
-     *
-     * @param \GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository
-     */
-    public function injectCategoryRepository(\GeorgRinger\News\Domain\Repository\CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
-    /**
-     * Inject the ttcontent repository
-     *
-     * @param \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
-     */
-    public function injectTtContentRepository(
-        \GeorgRinger\News\Domain\Repository\TtContentRepository $ttContentRepository
+    public function __construct(
+        PersistenceManager $persistenceManager,
+        ObjectManager $objectManager,
+        CategoryRepository $categoryRepository,
+        EventDispatcherInterface $eventDispatcher,
+        NewsRepository $newsRepository,
+        TtContentRepository $ttContentRepository
     ) {
+        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $eventDispatcher);
+        $this->newsRepository = $newsRepository;
         $this->ttContentRepository = $ttContentRepository;
     }
 
     /**
-     * Inject SignalSlotDispatcher
-     *
-     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
-     */
-    public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
-    {
-        $this->signalSlotDispatcher = $signalSlotDispatcher;
-    }
-
-    /**
      * @param array $importItem
-     * @return null|\GeorgRinger\News\Domain\Model\News
+     *
+     * @return array|object
      */
     protected function initializeNewsRecord(array $importItem)
     {
         $news = null;
 
-        $this->logger->info(sprintf('Import of news from source "%s" with id "%s"', $importItem['import_source'],
-            $importItem['import_id']));
+        $this->logger->info(sprintf(
+            'Import of news from source "%s" with id "%s"',
+            $importItem['import_source'],
+            $importItem['import_id']
+        ));
 
         if ($importItem['import_source'] && $importItem['import_id']) {
-            $news = $this->newsRepository->findOneByImportSourceAndImportId($importItem['import_source'],
-                $importItem['import_id']);
+            $news = $this->newsRepository->findOneByImportSourceAndImportId(
+                $importItem['import_source'],
+                $importItem['import_id']
+            );
         }
 
         if ($news === null) {
-            $news = $this->objectManager->get(\GeorgRinger\News\Domain\Model\News::class);
+            $news = GeneralUtility::makeInstance(News::class);
             $this->newsRepository->add($news);
         } else {
             $this->logger->info(sprintf('News exists already with id "%s".', $news->getUid()));
@@ -123,63 +103,70 @@ class NewsImportService extends AbstractImportService
     }
 
     /**
-     * @param \GeorgRinger\News\Domain\Model\News $news
+     * @param News $news
      * @param array $importItem
      * @param array $importItemOverwrite
-     * @return \GeorgRinger\News\Domain\Model\News
+     * @return News
      */
     protected function hydrateNewsRecord(
-        \GeorgRinger\News\Domain\Model\News $news,
+        News $news,
         array $importItem,
         array $importItemOverwrite
-    ) {
+    ): News {
         if (!empty($importItemOverwrite)) {
             $importItem = array_merge($importItem, $importItemOverwrite);
         }
-
         $news->setPid($importItem['pid']);
         $news->setHidden($importItem['hidden']);
-        $news->setStarttime($importItem['starttime']);
-        $news->setEndtime($importItem['endtime']);
-        if (!empty($importItem['fe_group'])) {
+        if ($importItem['starttime'] ?? 0) {
+            $news->setStarttime($importItem['starttime']);
+        }
+        if ($importItem['endtime'] ?? 0) {
+            $news->setStarttime($importItem['endtime']);
+        }
+        if (!empty($importItem['fe_group'] ?? '')) {
             $news->setFeGroup((string)$importItem['fe_group']);
         }
-        $news->setTstamp($importItem['tstamp']);
-        $news->setCrdate($importItem['crdate']);
-        $news->setSysLanguageUid($importItem['sys_language_uid']);
-        $news->setSorting((int)$importItem['sorting']);
+        $news->setTstamp($importItem['tstamp'] ?? 0);
+        $news->setCrdate($importItem['crdate'] ?? 0);
+        $news->setSysLanguageUid($importItem['sys_language_uid'] ?? 0);
+        $news->setSorting((int)($importItem['sorting'] ?? 0));
 
         $news->setTitle($importItem['title']);
-        $news->setTeaser($importItem['teaser']);
-        $news->setBodytext($importItem['bodytext']);
+        $news->setTeaser($importItem['teaser'] ?? '');
+        $news->setBodytext($importItem['bodytext'] ?? '');
 
-        $news->setType((string)$importItem['type']);
-        $news->setKeywords($importItem['keywords']);
-        $news->setDescription($importItem['description']);
-        $news->setDatetime(new \DateTime(date('Y-m-d H:i:sP', $importItem['datetime'])));
-        $news->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'])));
+        $news->setType((string)($importItem['type'] ?? ''));
+        $news->setKeywords($importItem['keywords'] ?? '');
+        $news->setDescription($importItem['description'] ?? '');
+        $news->setDatetime(new \DateTime(date('Y-m-d H:i:sP', $importItem['datetime'] ?? 0)));
+        $news->setArchive(new \DateTime(date('Y-m-d H:i:sP', $importItem['archive'] ?? 0)));
 
-        $contentElementUidArray = GeneralUtility::trimExplode(',', $importItem['content_elements'], true);
+        $contentElementUidArray = GeneralUtility::trimExplode(',', $importItem['content_elements'] ?? '', true);
         foreach ($contentElementUidArray as $contentElementUid) {
             if (is_object($contentElement = $this->ttContentRepository->findByUid($contentElementUid))) {
                 $news->addContentElement($contentElement);
             }
         }
 
-        $news->setInternalurl($importItem['internalurl']);
-        $news->setExternalurl($importItem['externalurl']);
+        $news->setInternalurl($importItem['internalurl'] ?? '');
+        $news->setExternalurl($importItem['externalurl'] ?? '');
 
-        $news->setAuthor($importItem['author']);
-        $news->setAuthorEmail($importItem['author_email']);
+        $news->setAuthor($importItem['author'] ?? '');
+        $news->setAuthorEmail($importItem['author_email'] ?? '');
 
         $news->setImportId($importItem['import_id']);
         $news->setImportSource($importItem['import_source']);
 
-        if (is_array($importItem['categories'])) {
+        $news->setPathSegment($importItem['path_segment'] ?? '');
+
+        if (is_array($importItem['categories'] ?? false)) {
             foreach ($importItem['categories'] as $categoryUid) {
                 if ($this->settings['findCategoriesByImportSource']) {
                     $category = $this->categoryRepository->findOneByImportSourceAndImportId(
-                        $this->settings['findCategoriesByImportSource'], $categoryUid);
+                        $this->settings['findCategoriesByImportSource'],
+                        $categoryUid
+                    );
                 } else {
                     $category = $this->categoryRepository->findByUid($categoryUid);
                 }
@@ -193,12 +180,12 @@ class NewsImportService extends AbstractImportService
         }
 
         // media relation
-        if (is_array($importItem['media'])) {
+        if (is_array($importItem['media'] ?? false)) {
             foreach ($importItem['media'] as $mediaItem) {
                 // get fileobject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($mediaItem['image']);
-                } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException $exception) {
                     $file = null;
                 }
 
@@ -223,29 +210,29 @@ class NewsImportService extends AbstractImportService
                         $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
                     }
 
-                    $media = $this->objectManager->get(FileReference::class);
+                    $media = GeneralUtility::makeInstance(FileReference::class);
                     $media->setFileUid($file->getUid());
                     $news->addFalMedia($media);
                 }
 
                 if ($media) {
-                    $media->setTitle($mediaItem['title']);
-                    $media->setAlternative($mediaItem['alt']);
-                    $media->setDescription($mediaItem['caption']);
-                    $media->setShowinpreview($mediaItem['showinpreview']);
+                    $media->setTitle($mediaItem['title'] ?? '');
+                    $media->setAlternative($mediaItem['alt'] ?? '');
+                    $media->setDescription($mediaItem['caption'] ?? '');
+                    $media->setShowinpreview($mediaItem['showinpreview'] ?? '');
                     $media->setPid($importItem['pid']);
                 }
             }
         }
 
         // related files
-        if (is_array($importItem['related_files'])) {
+        if (is_array($importItem['related_files'] ?? false)) {
             foreach ($importItem['related_files'] as $fileItem) {
 
                 // get fileObject by given identifier (file UID, combined identifier or path/filename)
                 try {
                     $file = $this->getResourceFactory()->retrieveFileOrFolderObject($fileItem['file']);
-                } catch (\TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException $exception) {
+                } catch (ResourceDoesNotExistException $exception) {
                     $file = null;
                 }
 
@@ -270,37 +257,35 @@ class NewsImportService extends AbstractImportService
                         $file = $this->getResourceStorage()->copyFile($file, $this->getImportFolder());
                     }
 
-                    $relatedFile = $this->objectManager->get(FileReference::class);
+                    $relatedFile = GeneralUtility::makeInstance(FileReference::class);
                     $relatedFile->setFileUid($file->getUid());
                     $news->addFalRelatedFile($relatedFile);
                 }
 
                 if ($relatedFile) {
-                    $relatedFile->setTitle($fileItem['title']);
-                    $relatedFile->setDescription($fileItem['description']);
-                    $relatedFile->setPid($importItem['pid']);
+                    $relatedFile->setTitle($fileItem['title'] ?? '');
+                    $relatedFile->setDescription($fileItem['description'] ?? '');
+                    $relatedFile->setPid($importItem['pid'] ?? '');
                 }
             }
         }
 
-        if (is_array($importItem['related_links'])) {
+        if (is_array($importItem['related_links'] ?? false)) {
             foreach ($importItem['related_links'] as $link) {
                 /** @var $relatedLink Link */
                 if (($relatedLink = $this->getRelatedLinkIfAlreadyExists($news, $link['uri'])) === false) {
-                    $relatedLink = $this->objectManager->get(\GeorgRinger\News\Domain\Model\Link::class);
+                    $relatedLink = GeneralUtility::makeInstance(Link::class);
                     $relatedLink->setUri($link['uri']);
                     $news->addRelatedLink($relatedLink);
                 }
-                $relatedLink->setTitle($link['title']);
-                $relatedLink->setDescription($link['description']);
+                $relatedLink->setTitle($link['title'] ?? '');
+                $relatedLink->setDescription($link['description'] ?? '');
                 $relatedLink->setPid($importItem['pid']);
             }
         }
+        $event = $this->eventDispatcher->dispatch(new NewsImportPostHydrateEvent($this, $importItem, $news));
 
-        $arguments = ['importItem' => $importItem, 'news' => $news];
-        $this->emitSignal('postHydrate', $arguments);
-
-        return $news;
+        return $event->getNews();
     }
 
     /**
@@ -309,19 +294,23 @@ class NewsImportService extends AbstractImportService
      * @param array $importData
      * @param array $importItemOverwrite
      * @param array $settings
+     *
+     * @return void
      */
-    public function import(array $importData, array $importItemOverwrite = [], $settings = [])
+    public function import(array $importData, array $importItemOverwrite = [], $settings = []): void
     {
         $this->settings = $settings;
         $this->logger->info(sprintf('Starting import for %s news', count($importData)));
 
+        $preImportDataEvent = $this->eventDispatcher->dispatch(new NewsPreImportEvent($this, $importData));
+        $importData = $preImportDataEvent->getImportData();
+
         foreach ($importData as $importItem) {
-            $arguments = ['importItem' => $importItem];
-            $return = $this->emitSignal('preHydrate', $arguments);
-            $importItem = $return['importItem'];
+            $event = $this->eventDispatcher->dispatch(new NewsImportPreHydrateEvent($this, $importItem));
+            $importItem = $event->getImportItem();
 
             // Store language overlay in post persist queue
-            if ((int)$importItem['sys_language_uid'] > 0 && (string)$importItem['l10n_parent'] !== '0') {
+            if ((int)($importItem['sys_language_uid'] ?? 0) > 0 && (string)($importItem['l10n_parent'] ?? 0) !== '0') {
                 $this->postPersistQueue[$importItem['import_id']] = [
                     'action' => self::ACTION_IMPORT_L10N_OVERLAY,
                     'category' => null,
@@ -343,14 +332,18 @@ class NewsImportService extends AbstractImportService
             }
         }
 
+        $this->eventDispatcher->dispatch(new NewsPostImportEvent($this, $importData));
+
         $this->persistenceManager->persistAll();
     }
 
     /**
      * @param array $queueItem
      * @param array $importItemOverwrite
+     *
+     * @return void
      */
-    protected function importL10nOverlay(array $queueItem, array $importItemOverwrite)
+    protected function importL10nOverlay(array $queueItem, array $importItemOverwrite): void
     {
         $importItem = $queueItem['importItem'];
         $parentNews = $this->newsRepository->findOneByImportSourceAndImportId(
@@ -372,13 +365,14 @@ class NewsImportService extends AbstractImportService
     /**
      * Get an existing items from the references that matches the file
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\FileReference> $items
+     * @param ObjectStorage $items
      * @param \TYPO3\CMS\Core\Resource\File $file
+     *
      * @return bool|FileReference
      */
     protected function getIfFalRelationIfAlreadyExists(
-        \TYPO3\CMS\Extbase\Persistence\ObjectStorage $items,
-        \TYPO3\CMS\Core\Resource\File $file
+        ObjectStorage $items,
+        File $file
     ) {
         $result = false;
         if ($items->count() !== 0) {
@@ -402,11 +396,11 @@ class NewsImportService extends AbstractImportService
     /**
      * Get an existing related link object
      *
-     * @param \GeorgRinger\News\Domain\Model\News $news
+     * @param News $news
      * @param string $uri
      * @return bool|Link
      */
-    protected function getRelatedLinkIfAlreadyExists(\GeorgRinger\News\Domain\Model\News $news, $uri)
+    protected function getRelatedLinkIfAlreadyExists(News $news, $uri)
     {
         $result = false;
         $links = $news->getRelatedLinks();
@@ -420,17 +414,5 @@ class NewsImportService extends AbstractImportService
             }
         }
         return $result;
-    }
-
-    /**
-     * Emits signal
-     *
-     * @param string $signalName name of the signal slot
-     * @param array $signalArguments arguments for the signal slot
-     */
-    protected function emitSignal($signalName, array $signalArguments)
-    {
-        return $this->signalSlotDispatcher->dispatch('GeorgRinger\\News\\Domain\\Service\\NewsImportService', $signalName,
-            $signalArguments);
     }
 }

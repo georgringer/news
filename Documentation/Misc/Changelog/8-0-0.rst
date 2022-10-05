@@ -1,0 +1,222 @@
+.. include:: /Includes.rst.txt
+
+8.0.0 - 2020/21/04
+==================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+
+Support for TYPO3 9 & 10
+------------------------
+This version supports TYPO3 9 and 10 LTS only. To ease the upgrade from older installations, the upgrade wizards for news are still kept.
+
+A **big thanks** to:
+
+- TYPO3 Academic Committee and especially Doris Leonhardt for organizing sponsorings by various universities: Hochschule Osnabrück, Hochschule Offenburg, Technische Universität Kaiserslautern, Universität Ulm, Universität Rostock, Bauhaus-Universität Weimar, Universität Wien, Otto-Friedrich-Universität Bamberg, Technische Universität München, Akademie der Wissenschaften und der Literatur Mainz, Hochschule Darmstadt
+- Sponsors: webconsulting, Torben Hansen, macopedia, Agenda Open Systems, sitegeist, mediatis, dörler engineering services e.U., Cyberhouse, Elementare Teilchen
+- Individual sponsors: Karavas Aristeidis, Susanne Moog, naderio.de, Damian Ickler, atnexxt, Stephan Salzmann, Rainer Karnowski, Sebastian Klein, Markus Timtner, Fritz Knauf, Marco Bresch, Marc Fell, Andreas Heller, Metin Yilmaz
+
+This release wouldn't have been possible without your support!
+
+Also thanks to Benjamin Franzke and Sebastian Fischer who helped codewise a lot.
+
+
+Breaking changes
+----------------
+The following changes should be carefully checked.
+
+Removed ViewHelpers
+^^^^^^^^^^^^^^^^^^^
+The following Social ViewHelpers have been removed:
+
+* Disqus
+* GooglePlus
+* Gravatar
+* Twitter
+* Facebook/Comment
+* Facebook/Like
+* Facebook/Share
+
+.. attention::
+
+   Check out if one of those ViewHelpers are in use and either remove the usage in the templates or copy the ViewHelper to your site package.
+
+Remove local xlf files
+^^^^^^^^^^^^^^^^^^^^^^
+The translated xlf files have been removed in favor of *Crowdin* as Language Service. In TYPO3 10 Crowdin is used by default, for 9 Crowdin must be enabled with a feature flag.
+
+Get all information about that at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Internationalization/ManagingTranslations.html.
+
+The Crowdin project can be found at https://crowdin.com/project/typo3-extension-news.
+
+Use extension configuration api
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Watch out that only the configuration `$GLOBALS[’TYPO3_CONF_VARS']['EXTENSION']['news']` is used.
+The serialized counterpart `$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']` has been deprecated with TYPO3 9 already!
+
+Remove import command
+^^^^^^^^^^^^^^^^^^^^^
+The import command controller has never really been used and has been removed.
+
+Features
+--------
+
+Improved SEO features
+^^^^^^^^^^^^^^^^^^^^^
+The :php:`TitleTagViewHelper` has been migrated to use the :php:`PageTitleProvider`.
+
+
+Hreflang on news detail pages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If using languages with the language mode `strict`, the hreflang tag must only be generated if the according news record is translated as well!
+
+.. note::
+   This feature is only supported by TYPO3 10, described at https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Hooks/Events/Frontend/ModifyHrefLangTagsEvent.html.
+
+EXT:news reduces the rendered hreflang attributes by using this event and checking the availability of the records.
+
+Check availability in Fluid templates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you are building a language menu and want to check if the news record is available, you can use the ViewHelper
+:html:`<n:check.pageAvailableInLanguage language="{languageId}">`. A full example can look like this:
+
+.. code-block:: html
+
+   <ul>
+       <f:for each="{LanguageMenu}" as="item">
+           <f:if condition="{item.available}">
+               <n:check.pageAvailableInLanguage language="{item.languageId}">
+                   <li class="language-switch {f:if(condition:item.active, then:'active')}">
+                       <a href="{item.link}">{item.navigationTitle}</a>
+                   </li>
+               </n:check.pageAvailableInLanguage>
+           </f:if>
+       </f:for>
+   </ul>
+
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2020-04-21 [BUGFIX] Proper mocking of LanguageService in Tests (Commit 8168cbf1 by Georg Ringer)
+   2020-04-21 [TASK] Force composer to use 10.4 (Commit b9bb646c by Georg Ringer)
+   2020-04-21 [DOC] Further documentation for 8.0.0 (Commit f807d5d4 by Georg Ringer)
+   2020-04-15 [BUGFIX] Adopt max key length for path_segment (Commit 9554b36e by Georg Ringer)
+   2020-04-15 [BUGFIX] Fix path_segment not set in NewsImportService (#1186) (Commit 50d1f3b7 by Markus Mächler)
+   2020-04-15 [DOC] Update TS condition for detail page (#1216) (Commit 4d8a0463 by Markus Klein)
+   2020-04-14 [TASK] Check TYPO3_branch for version info (Commit ed365443 by Georg Ringer)
+   2020-04-10 [DOC] Improve 8.0.0 rst (Commit 2252ce82 by Georg Ringer)
+   2020-04-09 [TASK] Folluwp (Commit 69cf06d8 by Georg Ringer)
+   2020-04-09 [TASK] Follwup (Commit da13a9ef by Georg Ringer)
+   2020-04-09 [TASK] Properly set up ClassCacheManager in 9 (Commit 70b5e280 by Georg Ringer)
+   2020-04-09 [TASK] Follwup php error (Commit 02ccc9cd by Georg Ringer)
+   2020-04-09 [FEATURE] Support strict mode for hreflang + language menu (Commit f4dc5de1 by Georg Ringer)
+   2020-04-08 [DOC] Update example about TCAdefaults (Commit ce109636 by Georg Ringer)
+   2020-04-07 [DOC] Start 8.0.0 changelog (Commit 94352cef by Georg Ringer)
+   2020-04-07 [TASK] Readd title tag vh (Commit fc950092 by Georg Ringer)
+   2020-04-07 [BUGFIX] leave early when no proxy class is set (#1202) (Commit 20a7c13b by Christian Eßl)
+   2020-04-01 [BUGFIX] Force cache rebuild after clear (Commit d1bab5e1 by Georg Ringer)
+   2020-04-01 [TASK] Simplify class loader logic (Commit d3c1b85c by Georg Ringer)
+   2020-03-30 [BUGFIX] Check properly for DI in ClassLoader (Commit ac0cb20c by Georg Ringer)
+   2020-03-30 [TASK] Remove exclude from l10n_parent (Commit 205cb3ef by Georg Ringer)
+   2020-03-28 Merge remote-tracking branch 'origin/8.0' (Commit 10807c7b by Georg Ringer)
+   2020-03-28 [DOC] fix spelling in doc-code for registerPlugin and flexform path (#1182) (Commit 12946e00 by MonTea)
+   2020-03-03 [BUGFIX] Flx class loading for 10 (Commit cc8f162d by Georg Ringer)
+   2020-02-26 Reduce bytes of path_segment INDEX to 225 (#1169) (Commit 93d318cb by Stefan Frömken)
+   2020-02-26 Add Index to speed up Slug Generation for UpgradeWizard (#1167) (Commit fd17fbde by Stefan Frömken)
+   2020-02-18 [BUGFIX] Fix update wizards (Commit 03e53e24 by Georg Ringer)
+   2020-02-17 [TASK] Readd slug updates (Commit 6bd900fd by Georg Ringer)
+   2020-02-16 [TASK] Fix notices (Commit 20a1827d by Georg Ringer)
+   2020-02-16 [TASK] Fix namespace of tests (Commit 05a58bf1 by Georg Ringer)
+   2020-02-16 [TASK] Remove outdated test (Commit 73be698b by Georg Ringer)
+   2020-02-15 Apply fixes from StyleCI (#1156) (Commit a56524d8 by Georg Ringer)
+   2020-02-15 [BUGFIX] Disable Treeprovider for the moment (Commit c40ea4e8 by Georg Ringer)
+   2020-02-15 [BUGFIX] Force initialize cache (Commit e28d77ef by Georg Ringer)
+   2020-02-15 [TASK] Add month.html from ext:eventnews to gitignore (Commit 6b003a1d by Georg Ringer)
+   2020-02-15 [FEATURE] Reenable page title through template (Commit eaa45b8f by Georg Ringer)
+   2020-02-13 [TASK] Replace all other usages of EmConfiguration (Commit 7320bf04 by Georg Ringer)
+   2020-02-13 [BUGFIX] Add missing ; (Commit 26608149 by Georg Ringer)
+   2020-02-13 Merge branch 'master' into 8.0 (Commit c7951ea6 by Georg Ringer)
+   2020-02-13 [!!!][TASK] Remove usage of \GeorgRinger\News\Utility\EmConfiguration (Commit c8ab6426 by Georg Ringer)
+   2020-02-13 [TASK] Use ::class everywhere (Commit bd7fb248 by Georg Ringer)
+   2020-02-13 [TASK] Add functional tests (Commit e3f52cbb by Georg Ringer)
+   2020-02-12 [DOC] Better description for "archiveRestriction = active" (#925) (Commit bb89dd28 by esokoll2)
+   2020-02-12 [TASK] add documentation how to define multiple sitemaps (#1093) (Commit b847e076 by Johannes)
+   2020-02-09 [!!!][TASK] Remove local xlf files (Commit 38beffc2 by Georg Ringer)
+   2020-02-09 [BUGFIX] Fix #1115: bulk editing of records is not possible since TYPO3 8.x (#1116) (Commit b17358ff by Dmitry Dulepov)
+   2020-02-09 [TASK] Use group type for l10n_parent (#1142) (Commit c84f2ea3 by Stefan Frömken)
+   2020-02-09 Apply fixes from StyleCI (#1144) (Commit 9c390576 by Georg Ringer)
+   2020-02-09 [TASK] Allow all 10x versions (Commit 5609ade0 by Georg Ringer)
+   2020-02-08 [TASK] Remove init of unused and outdated hook (Commit 3eb81488 by Georg Ringer)
+   2020-02-07 [TASK] Run tests for php 7.4 (Commit f0ca37be by Georg Ringer)
+   2020-02-07 [BUGFIX] Fix tests for 10 (Commit d4ba706a by Georg Ringer)
+   2020-02-06 [TASK] Followup (Commit 6bb23010 by Georg Ringer)
+   2020-02-06 [TASK] Followup (Commit 2e8cb8e0 by Georg Ringer)
+   2020-02-06 [TASK] Use void (Commit 2db8eb69 by Georg Ringer)
+   2020-02-06 [TASK] Adopt unit tests (Commit ef671873 by Georg Ringer)
+   2020-02-03 [BUGFIX] Remove not needed constructor (Commit fc366da6 by Georg Ringer)
+   2020-01-22 [TASK] Change max width for OG images (Commit 5ce3fbd7 by Georg Ringer)
+   2020-01-17 [BUGFIX] don't show path_segment when in non live workspace (#1124) (Commit 3981dfc4 by Hannes Bochmann)
+   2020-01-14 This is to add the possibility to load a footer .js file instead of an header one (#936) (Commit dcb54175 by Nalmar-x)
+   2020-01-14 [BUGFIX] prevent rendering of html tag if video is rendered (#1121) (Commit 0d77f56a by DerBasti)
+   2019-12-18 [FEATURE] Use custom page title provider (Commit 2ce0e72f by Georg Ringer)
+   2019-12-13 [BUGFIX] Skip content elements with negative colPos (Commit 8ae936d6 by Georg Ringer)
+   2019-12-13 [DOC] Changes in routeEnhancer Documentation regarding pagination to page 1 (#1104) (Commit 9e037721 by esokoll2)
+   2019-11-19 [BUGFIX] Take account of the fieldname for category relations in AccessControlService (#1057) (Commit 93d07ec2 by Thomas Scholze)
+   2019-11-19 [BUGFIX] Remove "default" richtextConfiguration from TCA (#934) (Commit ca376ac4 by Io Kon)
+   2019-10-24 [BUGFIX] Use SlugHelper::generate in order to considerate slug field TCA configuration (#1089) (Commit 964ded3b by Felix Nagel)
+   2019-10-22 Apply fixes from StyleCI (#1087) (Commit f8c3c19a by Georg Ringer)
+   2019-10-22 [!!!][TASK] Remove import command (Commit b1ae25b2 by Georg Ringer)
+   2019-10-22 [TASK] Remove call to ->showHiddenRecords (Commit 01828d2f by Georg Ringer)
+   2019-10-22 [BUGFIX] Fix composer validations (Commit e5578b9b by Georg Ringer)
+   2019-10-22 [BUGFIX] Fix composer validations (Commit 59307366 by Georg Ringer)
+   2019-10-22 [TASK] Replace usage of PATH_site (Commit 49cdc6b0 by Georg Ringer)
+   2019-10-22 [DOC] Updated "extend flexforms" documentation (#1085) (Commit a6656b58 by Naderio)
+   2019-10-19 [!!!][TASK] Use extension configuration api (Commit 28345b4a by Georg Ringer)
+   2019-10-19 [TASK] Replace usage of GeneralUtility::devLog (Commit defec1eb by Georg Ringer)
+   2019-10-19 [TASK] Use LanguageAspect in SimplePrevNextVh (Commit 8b5704cc by Georg Ringer)
+   2019-10-19 Apply fixes from StyleCI (#1081) (Commit d22f36d0 by Georg Ringer)
+   2019-10-19 [TASK] Use proper method to set meta tags (Commit c3fc5f7b by Georg Ringer)
+   2019-10-19 [BUGFIX] Fix tag assigned in unit test for news (#1073) (Commit 857aee48 by Klaus Hörmann-Engl)
+   2019-10-19 [!!!][TASK] Remove usage of removed disqus VH (Commit b08d5304 by Georg Ringer)
+   2019-10-19 [!!!][TASK] Set an action in action link of DateMenu (Commit cadc3024 by Georg Ringer)
+   2019-10-19 [TASK] Replace usage of $GLOBALS['TSFE']->tmpl->getFileName (Commit 43469c65 by Georg Ringer)
+   2019-10-17 [BUGFIX] Fix docblock issues (Commit 3237f099 by Georg Ringer)
+   2019-10-15 [TASK] Update TargetLinkViewHelper (Commit 834e1f13 by Georg Ringer)
+   2019-10-13 [BUGFIX] Use correct url (Commit 988072b7 by Georg Ringer)
+   2019-10-13 [TASK] Use proper routing in BE module (Commit 302e5bbd by Georg Ringer)
+   2019-10-13 [BUGFIX] Fix TCA of checkoxes (Commit e1fbec05 by Georg Ringer)
+   2019-10-13 [TASK] Use proper access to user tsconfig (Commit 534495ba by Georg Ringer)
+   2019-10-13 [TASK] Use EXT:core instead of EXT:lang (Commit 6ef7294a by Georg Ringer)
+   2019-10-13 [TASK] Use TYPO3\CMS\Core\Localization\LanguageService (Commit b86286da by Georg Ringer)
+   2019-10-13 [TASK] Add persistence configuration (Commit 776f6184 by Georg Ringer)
+   2019-10-10 [BUGFIX] prevent sanitizing title if title is not set in fieldArray (#1063) (Commit 7d61edce by DaRealFreak)
+   2019-09-30 Update Index.rst (#1058) (Commit 5bd43900 by bahneclaussen)
+   2019-09-25 [BUGFIX] Use correct time for hrDate in sitemaps (#1056) (Commit 84e73ed7 by Markus Klein)
+   2019-09-25 [DOC] Add demo template for google news sitemap (#1055) (Commit 13e345ad by Markus Klein)
+   2019-09-19 [BUGFIX] Remove slash in path_segement of news (TYPO3 8) (#1053) (Commit 0f0feefe by chris)
+   2019-09-18 [FEATURE] Add Google News mode to xml sitemap provider (#1052) (Commit 5412f2b1 by Markus Klein)
+   2019-09-18 [BUGFIX] Show internal or external news in shortcut render #1046 (#1047) (Commit 5d6c7320 by Guillaume Germain)
+   2019-09-17 Return must be an array (#1050) (Commit 21a11d41 by Jo Hasenau)
+   2019-09-11 [BUGFIX] Return true for executed wizard, also if no update queries necessary (#1033) (Commit 09115be8 by Jörg Kummer)
+   2019-09-10 Apply fixes from StyleCI (#1043) (Commit 42146f61 by Georg Ringer)
+   2019-09-09 [TASK] Remove version check from AddNewsToMenuProcessor (Commit 05899aa7 by Georg Ringer)
+   2019-09-09 [TASK] Add strict type to Url Utility (Commit 8306a75b by Georg Ringer)
+   2019-09-09 [TASK] Remove 9 checks in php (Commit e17c0a31 by Georg Ringer)
+   2019-09-09 [TASK] Remove check for dd_googlesitemap (Commit eb97a76e by Georg Ringer)
+   2019-09-09 [TASK] Use new annotations in models (Commit 05a24ef7 by Georg Ringer)
+   2019-09-09 [TASK] Use correct AbstractConditionViewHelper class (Commit 5e5aae0b by Georg Ringer)
+   2019-09-09 [TASK] Use correct interface in TargetLinkViewHelperTest (Commit 898409b8 by Georg Ringer)
+   2019-09-09 [!!!][TASK] Refactor ViewHelpers (Commit 3514f0a7 by Georg Ringer)
+   2019-09-09 [!!!][TASK] Start migration to 9-10 support (Commit f9e36e39 by Georg Ringer)
+   2019-09-04 [TASK] Add new translations (Commit 1da3b709 by Georg Ringer)
+   2019-09-03 [TASK] Add crowdin badge (Commit 4d2b91bd by Georg Ringer)
+   2019-08-30 [TASK] Add a .gitignore (#1029) (Commit b5cf6acb by Oliver Klee)
+
+
+This list has been created by using `git log 7.3.1..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.

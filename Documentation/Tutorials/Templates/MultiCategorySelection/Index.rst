@@ -1,13 +1,10 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. include:: /Includes.rst.txt
 
-.. include:: ../../../Includes.txt
+.. _templatesMultipleCats:
 
-
+==================================
 Filter news by multiple categories
-----------------------------------
+==================================
 
 The default category template `Category/List` allows only filtering by a single category. If you need to filter by multiple categories, you can use such template:
 
@@ -46,7 +43,7 @@ The default category template `Category/List` allows only filtering by a single 
                             </f:link.page>
 
                             (<f:link.page title="{category.item.title}" class="active" pageUid="{settings.listPid}"
-                                          additionalParams="{n:multiCategoryLink.arguments(mode:'remove',item:category.item.uid,list:overwriteDemand.categories)}">weg
+                                          additionalParams="{n:multiCategoryLink.arguments(mode:'remove',item:category.item.uid,list:overwriteDemand.categories)}">remove
                         </f:link.page>)
 
                         </f:then>
@@ -56,7 +53,7 @@ The default category template `Category/List` allows only filtering by a single 
                             </f:link.page>
 
                             (<f:link.page title="{category.item.title}" class="active" pageUid="{settings.listPid}"
-                                         additionalParams="{n:multiCategoryLink.arguments(mode:'add',item:category.item.uid,list:overwriteDemand.categories)}">dazu
+                                         additionalParams="{n:multiCategoryLink.arguments(mode:'add',item:category.item.uid,list:overwriteDemand.categories)}">add
                             </f:link.page>)
                         </f:else>
                     </n:multiCategoryLink.isCategoryActive>

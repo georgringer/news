@@ -10,14 +10,15 @@ namespace GeorgRinger\News\Utility;
  */
 use TYPO3\CMS\Backend\Tree\View\PageTreeView;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Page Utility class
- *
  */
 class Page
 {
@@ -29,19 +30,19 @@ class Page
      * @param int $recursive recursive levels
      * @return string comma separated list of ids
      */
-    public static function extendPidListByChildren($pidList = '', $recursive = 0)
+    public static function extendPidListByChildren($pidList = '', $recursive = 0): string
     {
         $recursive = (int)$recursive;
         if ($recursive <= 0) {
-            return $pidList;
+            return $pidList ?? '';
         }
 
-        $queryGenerator = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\QueryGenerator::class);
+        $queryGenerator = GeneralUtility::makeInstance(QueryGenerator::class);
         $recursiveStoragePids = $pidList;
         $storagePids = GeneralUtility::intExplode(',', $pidList);
         foreach ($storagePids as $startPid) {
             if ($startPid >= 0) {
-                $pids = $queryGenerator->getTreeList($startPid, $recursive, 0, 1);
+                $pids = $queryGenerator->getTreeList($startPid, $recursive);
                 if (strlen($pids) > 0) {
                     $recursiveStoragePids .= ',' . $pids;
                 }
@@ -57,8 +58,10 @@ class Page
      * @param string $properties comma separated list of properties
      * @param mixed $object object or array to get the properties
      * @param string $prefix optional prefix
+     *
+     * @return void
      */
-    public static function setRegisterProperties($properties, $object, $prefix = 'news')
+    public static function setRegisterProperties($properties, $object, $prefix = 'news'): void
     {
         if (!empty($properties) && $object !== null) {
             $cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
@@ -76,7 +79,8 @@ class Page
                         }
                         $register[$key] = $value;
                     } catch (\Exception $e) {
-                        GeneralUtility::devLog($e->getMessage(), 'news', GeneralUtility::SYSLOG_SEVERITY_WARNING);
+                        $logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+                        $logger->warning($e->getMessage());
                     }
                 }
                 if (is_array($object)) {
@@ -96,7 +100,7 @@ class Page
      * @return PageTreeView
      * @throws \Exception
      */
-    public static function pageTree($pageUid, $treeLevel)
+    public static function pageTree($pageUid, $treeLevel): PageTreeView
     {
         if (TYPO3_MODE !== 'BE') {
             throw new \Exception('Page::pageTree does only work in the backend!');
@@ -132,7 +136,7 @@ class Page
      *
      * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
      */
-    protected static function getBackendUser()
+    protected static function getBackendUser(): \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
     {
         return $GLOBALS['BE_USER'];
     }

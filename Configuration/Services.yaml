@@ -1,0 +1,44 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  news.cache:
+    class: TYPO3\CMS\Core\Cache\Frontend\PhpFrontend
+    # We can not use CacheManager, as it can not be
+    # injected/instantiated during ext_localconf.php loading
+    # factory: ['@TYPO3\CMS\Core\Cache\CacheManager', 'getCache']
+    # therefore we use the static Bootstrap::createCache factory instead.
+    factory: ['TYPO3\CMS\Core\Core\Bootstrap', 'createCache']
+    arguments: ['news']
+
+  GeorgRinger\News\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+
+  GeorgRinger\News\Utility\ClassCacheManager:
+    arguments: ['@news.cache']
+    public: true
+
+  GeorgRinger\News\Utility\ClassLoader:
+    arguments: ['@news.cache', '@GeorgRinger\News\Utility\ClassCacheManager']
+    public: true
+
+  GeorgRinger\News\Seo\HrefLangEvent:
+    tags:
+      - name: event.listener
+        identifier: 'ext-news/modify-hreflang'
+        after: 'typo3-seo/hreflangGenerator'
+        event: TYPO3\CMS\Frontend\Event\ModifyHrefLangTagsEvent
+
+  GeorgRinger\News\Backend\RecordList\NewsDatabaseRecordList:
+    public: true
+
+  GeorgRinger\News\Command\ProxyClassRebuildCommand:
+    tags:
+      - name: 'console.command'
+        command: 'news:rebuildProxyClasses'
+        schedulable: false
+        description: 'Rebuild the proxy classes used to extend EXT:news'

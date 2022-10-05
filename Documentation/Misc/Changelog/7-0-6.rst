@@ -1,11 +1,11 @@
+.. include:: /Includes.rst.txt
+
 7.0.6 - 2018/08/10
 ==================
 
-.. include:: ../../Includes.txt
-
 .. only:: html
 
-.. contents::
+   .. contents::
         :local:
         :depth: 3
 
@@ -19,7 +19,7 @@ This is a list of all changes in this release: ::
     2018-10-02 [TASK] Use different preview icon (Commit d472d0f4 by Georg Ringer)
     2018-10-02 [DOC] Fix example for NewsControllerSettings hook (#738) (Commit 634f864c by Johannes Klinger)
     2018-10-02 [Bugfix] correct date formatting in iCal list template (#726) (Commit 3a02ce4d by Hendrik Putzek)
-    2018-10-01 [FEATURE] Use slug handling of core (Commit 717c1a32 by Georg Ringer)
+    2018-10-01 [FEATURE] Use slug handling of Core (Commit 717c1a32 by Georg Ringer)
     2018-09-14 [BUGFIX] Remove wizard for link fields (Commit bafe6a5c by Georg Ringer)
     2018-09-14 [BUGFIX] Fix warning detection for foreign record title #727 (#728) (Commit 247a3862 by Sebastian Michaelsen)
     2018-07-25 [BUGFIX] AbstractImportService must not be a singleton (Commit cf107019 by Georg Ringer)

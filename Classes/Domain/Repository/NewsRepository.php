@@ -14,6 +14,7 @@ use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use GeorgRinger\News\Utility\Validation;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -22,7 +23,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * News repository with all the callable functionality
  */
-class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemandedRepository
+class NewsRepository extends AbstractDemandedRepository
 {
 
     /**
@@ -40,8 +41,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $categories,
         $conjunction,
         $includeSubCategories = false
-    )
-    {
+    ): ?\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface {
         $constraint = null;
         $categoryConstraints = [];
 
@@ -55,8 +55,11 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
         foreach ($categories as $category) {
             if ($includeSubCategories) {
-                $subCategories = GeneralUtility::trimExplode(',',
-                    CategoryService::getChildrenCategories($category, 0, '', true), true);
+                $subCategories = GeneralUtility::trimExplode(
+                    ',',
+                    CategoryService::getChildrenCategories($category, 0, '', true),
+                    true
+                );
                 $subCategoryConstraint = [];
                 $subCategoryConstraint[] = $query->contains('categories', $category);
                 if (count($subCategories) > 0) {
@@ -97,12 +100,16 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      *
      * @param QueryInterface $query
      * @param DemandInterface $demand
+     *
      * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      * @throws \Exception
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     *
+     * @return (\TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null)[]
+     *
+     * @psalm-return array<string, \TYPO3\CMS\Extbase\Persistence\Generic\Qom\AndInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ComparisonInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\NotInterface|\TYPO3\CMS\Extbase\Persistence\Generic\Qom\OrInterface|null>
      */
-    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand)
+    protected function createConstraintsFromDemand(QueryInterface $query, DemandInterface $demand): array
     {
         /** @var NewsDemand $demand */
         $constraints = [];
@@ -125,14 +132,15 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
 
         // archived
-        if ($demand->getArchiveRestriction() == 'archived') {
+        $currentTimestamp = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
+        if ($demand->getArchiveRestriction() === 'archived') {
             $constraints['archived'] = $query->logicalAnd(
-                $query->lessThan('archive', $GLOBALS['SIM_EXEC_TIME']),
+                $query->lessThan('archive', $currentTimestamp),
                 $query->greaterThan('archive', 0)
             );
-        } elseif ($demand->getArchiveRestriction() == 'active') {
+        } elseif ($demand->getArchiveRestriction() === 'active') {
             $constraints['active'] = $query->logicalOr(
-                $query->greaterThanOrEqual('archive', $GLOBALS['SIM_EXEC_TIME']),
+                $query->greaterThanOrEqual('archive', $currentTimestamp),
                 $query->equals('archive', 0)
             );
         }
@@ -168,7 +176,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         }
 
         // storage page
-        if ($demand->getStoragePage() != 0) {
+        if ($demand->getStoragePage()) {
             $pidList = GeneralUtility::intExplode(',', $demand->getStoragePage(), true);
             $constraints['pid'] = $query->in('pid', $pidList);
         }
@@ -190,10 +198,10 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
                 $begin = mktime(0, 0, 0, 1, 1, $demand->getYear());
                 $end = mktime(23, 59, 59, 12, 31, $demand->getYear());
             }
-            $constraints['datetime'] = $query->logicalAnd(
+            $constraints['datetime'] = $query->logicalAnd([
                 $query->greaterThanOrEqual($demand->getDateField(), $begin),
                 $query->lessThanOrEqual($demand->getDateField(), $end)
-            );
+            ]);
         }
 
         // Tags
@@ -229,7 +237,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         // Hide id list
         $hideIdList = $demand->getHideIdList();
         if ($hideIdList) {
-            $constraints['excludeAlreadyDisplayedNews'] = $query->logicalNot(
+            $constraints['hideIdInList'] = $query->logicalNot(
                 $query->in(
                     'uid',
                     GeneralUtility::intExplode(',', $hideIdList, true)
@@ -257,9 +265,12 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * Returns an array of orderings created from a given demand object.
      *
      * @param DemandInterface $demand
-     * @return array<\TYPO3\CMS\Extbase\Persistence\Generic\Qom\ConstraintInterface>
+     *
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
      */
-    protected function createOrderingsFromDemand(DemandInterface $demand)
+    protected function createOrderingsFromDemand(DemandInterface $demand): array
     {
         $orderings = [];
         if ($demand->getTopNewsFirst()) {
@@ -272,8 +283,9 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             if (!empty($orderList)) {
                 // go through every order statement
                 foreach ($orderList as $orderItem) {
-                    list($orderField, $ascDesc) = GeneralUtility::trimExplode(' ', $orderItem, true);
-                    // count == 1 means that no direction is given
+                    $orderSplit = GeneralUtility::trimExplode(' ', $orderItem, true);
+                    $orderField = $orderSplit[0];
+                    $ascDesc = $orderSplit[1] ?? '';
                     if ($ascDesc) {
                         $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
                             QueryInterface::ORDER_DESCENDING :
@@ -307,7 +319,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
             $query->logicalAnd(
                 $query->equals('importSource', $importSource),
                 $query->equals('importId', $importId)
-            ))->execute($asArray);
+            )
+        )->execute($asArray);
         if ($asArray) {
             if (isset($result[0])) {
                 return $result[0];
@@ -323,20 +336,25 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      *
      * @param int $uid id of record
      * @param bool $respectEnableFields if set to false, hidden records are shown
-     * @return \GeorgRinger\News\Domain\Model\News
+     * @return \GeorgRinger\News\Domain\Model\News|null
      */
-    public function findByUid($uid, $respectEnableFields = true)
+    public function findByUid($uid, $respectEnableFields = true): ?\GeorgRinger\News\Domain\Model\News
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->getQuerySettings()->setRespectSysLanguage(false);
-        $query->getQuerySettings()->setIgnoreEnableFields(!$respectEnableFields);
+
+        if (!$respectEnableFields) {
+            $query->getQuerySettings()->setIgnoreEnableFields(true);
+            $query->getQuerySettings()->setLanguageOverlayMode(false);
+        }
 
         return $query->matching(
             $query->logicalAnd(
                 $query->equals('uid', $uid),
                 $query->equals('deleted', 0)
-            ))->execute()->getFirst();
+            )
+        )->execute()->getFirst();
     }
 
     /**
@@ -346,7 +364,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @param DemandInterface $demand
      * @return array
      */
-    public function countByDate(DemandInterface $demand)
+    public function countByDate(DemandInterface $demand): array
     {
         $data = [];
         $sql = $this->findDemandedRaw($demand);
@@ -358,10 +376,10 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
         $field = $demand->getDateField();
         $field = empty($field) ? 'datetime' : $field;
 
-        $sql = 'SELECT FROM_UNIXTIME(' . $field . ', "%m") AS "_Month",' .
-            ' FROM_UNIXTIME(' . $field . ', "%Y") AS "_Year" ,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%m")) as count_month,' .
-            ' count(FROM_UNIXTIME(' . $field . ', "%y")) as count_year' .
+        $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_Month",' .
+            ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_Year" ,' .
+            ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
+            ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
             ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
 
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -386,7 +404,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
 
         $res = $connection->query($sql);
         while ($row = $res->fetch()) {
-            $data['single'][$row['_Year']][$row['_Month']] = $row['count_month'];
+            $month = strlen($row['_Month']) === 1 ? ('0' . $row['_Month']) : $row['_Month'];
+            $data['single'][$row['_Year']][$month] = $row['count_month'];
         }
 
         // Add totals
@@ -411,7 +430,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @return array
      * @throws \UnexpectedValueException
      */
-    protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand)
+    protected function getSearchConstraints(QueryInterface $query, DemandInterface $demand): array
     {
         $constraints = [];
         if ($demand->getSearch() === null) {
@@ -483,7 +502,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @param string $table table name
      * @return QueryBuilder
      */
-    protected function getQueryBuilder(string $table)
+    protected function getQueryBuilder(string $table): QueryBuilder
     {
         return GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
     }
@@ -494,7 +513,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\AbstractDemande
      * @param string $str
      * @return string
      */
-    private function stripOrderBy(string $str)
+    private function stripOrderBy(string $str): string
     {
         /** @noinspection NotOptimalRegularExpressionsInspection */
         return preg_replace('/(?:ORDER[[:space:]]*BY[[:space:]]*.*)+/i', '', trim($str));

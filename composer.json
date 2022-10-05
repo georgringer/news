@@ -1,66 +1,75 @@
 {
-  "name": "georgringer/news",
-  "type": "typo3-cms-extension",
-  "description": "Versatile news extension, based on extbase & fluid for TYPO3 CMS",
-  "keywords": [
-    "TYPO3",
-    "extension",
-    "article",
-    "news"
-  ],
-  "homepage": "http://montagmorgen.at",
-  "authors": [
-    {
-      "name": "Georg Ringer",
-      "role": "Developer",
-      "homepage": "http://montagmorgen.at"
-    }
-  ],
-  "license": ["GPL-2.0-or-later"],
-  "require": {
-    "typo3/cms-core": "^8.7.13|| ^9.5.0"
-  },
-  "conflict": {
-    "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
-  },
-  "suggest": {
-    "reelworx/rx-shariff": "~11.0"
-  },
-  "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.0",
-    "nimut/testing-framework": "^1.0 || ^2.0 || ^3.0 || ^4.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "GeorgRinger\\News\\": "Classes"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "GeorgRinger\\News\\Tests\\": "Tests"
-    }
-  },
-  "replace": {
-    "news": "self.version",
-    "typo3-ter/news": "self.version"
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "mkdir -p .Build/Web/typo3conf/ext/",
-      "[ -L .Build/Web/typo3conf/ext/news ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/news"
-    ]
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "6.x-dev"
+    "name": "georgringer/news",
+    "type": "typo3-cms-extension",
+    "description": "Versatile news system based on Extbase & Fluid and using the latest technologies provided by TYPO3 CMS.",
+    "keywords": [
+        "TYPO3",
+        "extension",
+        "article",
+        "news"
+    ],
+    "homepage": "https://extensions.typo3.org/extension/news",
+    "support": {
+        "source": "https://github.com/georgringer/news",
+        "issues": "https://github.com/georgringer/news/issues",
+        "docs": "https://docs.typo3.org/p/georgringer/news/main/en-us/"
     },
-    "typo3/cms": {
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/Web"
+    "authors": [
+        {
+            "name": "Georg Ringer",
+            "role": "Developer",
+            "homepage": "https://ringer.it"
+        }
+    ],
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "require": {
+        "typo3/cms-core": "^10.4 || ^11"
+    },
+    "conflict": {
+        "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
+    },
+    "suggest": {
+        "reelworx/rx-shariff": "GDPR compliant social sharing",
+        "georgringer/news-tagsuggest": "On the fly creation of tag records within a news record",
+        "georgringer/numbered-pagination": "Improved pagination API"
+    },
+    "require-dev": {
+        "php-coveralls/php-coveralls": "^2.1",
+        "typo3/cms-install": "^10.4 || ^11"
+    },
+    "autoload": {
+        "psr-4": {
+            "GeorgRinger\\News\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GeorgRinger\\News\\Tests\\": "Tests"
+        }
+    },
+    "replace": {
+        "typo3-ter/news": "self.version"
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin",
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+        ]
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "news",
+            "app-dir": ".Build",
+            "web-dir": ".Build/public"
+        }
     }
-  }
 }

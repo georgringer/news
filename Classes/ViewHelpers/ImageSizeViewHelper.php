@@ -2,10 +2,12 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-use TYPO3\CMS\Fluid\Core\ViewHelper\Facets\CompilableInterface;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Page\AssetCollector;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
@@ -18,7 +20,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 /**
  * Class ImageSizeViewHelper
  */
-class ImageSizeViewHelper extends AbstractViewHelper implements CompilableInterface
+class ImageSizeViewHelper extends AbstractViewHelper
 {
     use CompileWithRenderStatic;
 
@@ -29,6 +31,7 @@ class ImageSizeViewHelper extends AbstractViewHelper implements CompilableInterf
     {
         parent::initializeArguments();
         $this->registerArgument('property', 'string', 'either width or height', true);
+        $this->registerArgument('image', 'string', 'generated image', true);
     }
 
     /**
@@ -41,29 +44,39 @@ class ImageSizeViewHelper extends AbstractViewHelper implements CompilableInterf
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): int {
         $value = 0;
-        $tsfe = static::getTypoScriptFrontendController();
-        if (!is_null($tsfe)) {
+
+        $typo3VersionNumber = VersionNumberUtility::convertVersionNumberToInteger(
+            VersionNumberUtility::getNumericTypo3Version()
+        );
+
+        // If TYPO3 version is previous version 11
+        if ($typo3VersionNumber < 11000000) {
+            $usedImage = trim($arguments['image'], '/');
+        } else {
+            $usedImage = trim($arguments['image']);
+        }
+
+        $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
+        $imagesOnPage = $assetCollector->getMedia();
+
+        if (isset($imagesOnPage[$usedImage])) {
             switch ($arguments['property']) {
                 case 'width':
-                    $value = $tsfe->lastImageInfo[0];
+                    $value = $imagesOnPage[$usedImage][0];
                     break;
                 case 'height':
-                    $value = $tsfe->lastImageInfo[1];
+                    $value = $imagesOnPage[$usedImage][1];
                     break;
-                default:
-                    throw new \RuntimeException(sprintf('The value "%s" is not supported in ImageSizeViewHelper', $arguments['property']));
+                case 'size':
+                    $file = Environment::getPublicPath() . '/' . ltrim(parse_url($usedImage, PHP_URL_PATH), '/');
+                    if (is_file($file)) {
+                        $value = @filesize($file);
+                    }
             }
         }
-        return $value;
-    }
 
-    /**
-     * @return TypoScriptFrontendController
-     */
-    protected static function getTypoScriptFrontendController()
-    {
-        return $GLOBALS['TSFE'];
+        return (int)$value;
     }
 }

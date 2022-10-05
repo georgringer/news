@@ -1,0 +1,71 @@
+.. More information about this file:
+   https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/GeneralConventions/FileStructure.html#includes-rst-txt
+
+.. ----------
+.. text roles
+.. ----------
+
+.. role:: aspect(emphasis)
+.. role:: bash(code)
+.. role:: fluid(code)
+   :class: html
+
+.. role:: html(code)
+.. role:: js(code)
+.. role:: php(code)
+.. role:: rst(code)
+.. role:: sep(strong)
+.. role:: sql(code)
+
+.. role:: tsconfig(code)
+   :class: typoscript
+
+.. role:: typoscript(code)
+.. role:: xml(code)
+   :class: html
+
+.. role:: yaml(code)
+
+.. default-role:: code
+
+.. ---------
+.. highlight
+.. ---------
+
+.. By default, code blocks use PHP syntax highlighting
+
+.. highlight:: php
+
+.. ------
+.. images
+.. ------
+
+.. |img-content-element-relation|      image:: /Images/HistoricScreenshots/Changelog/6-0-0/news_contentelements.png
+.. :border: 0
+.. :align: left
+.. :name: Contentelement relation
+
+.. |img-admin-module-filter|      image:: /Images/HistoricScreenshots/Changelog/6-0-0/admin-module-filter.png
+.. :border: 0
+.. :align: left
+.. :name: Contentelement relation
+
+.. |img-admin-module-guide|      image:: /Images/HistoricScreenshots/Changelog/6-0-0/admin-module-guide.png
+.. :border: 0
+.. :align: left
+.. :name: Support of EXT:guide for the administration module
+
+.. |img-release700-slug-field|      image:: /Images/HistoricScreenshots/Changelog/7-0-0/slug-field.png
+.. :border: 0
+.. :align: left
+.. :name: Slug field
+
+.. |img-release700-filereference-select|      image:: /Images/HistoricScreenshots/Changelog/7-0-0/filereference-select.png
+.. :border: 0
+.. :align: left
+.. :name: Improved sysfile reference select
+
+.. |img-donation-module|      image:: /Images/HistoricScreenshots/Changelog/7-0-0/donation-module.png
+.. :border: 0
+.. :align: left
+.. :name: Donation module

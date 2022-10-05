@@ -1,11 +1,11 @@
+.. include:: /Includes.rst.txt
+
 7.1.0 - 2019/07/03
 ==================
 
-.. include:: ../../Includes.txt
-
 .. only:: html
 
-.. contents::
+   .. contents::
         :local:
         :depth: 3
 
@@ -19,7 +19,7 @@ Improved slug handling
 ^^^^^^^^^^^^^^^^^^^^^^
 The following changes might be important if you are using news and TYPO3 9:
 
-The slug configuration for `tx_news_domain_model_news` improved by using features of the core which got merged in version 9.5.4.
+The slug configuration for `tx_news_domain_model_news` improved by using features of the Core which got merged in version 9.5.4.
 The configuration looks now like: ::
 
    'generatorOptions' => [
@@ -54,7 +54,7 @@ This is a list of all changes in this release: ::
    2018-12-19 Change action name to controller name in advanced RealUrl example (#820) (Commit 996b5648 by Stefan Frömken)
    2018-12-18 [BUGFIX] Generate correct URLs in sitemap for dd_googlesitemaps (#818) (Commit 55376019 by Markus Klein)
    2018-12-18 [FEATURE] Add possibility to translate tags (#800) (Commit bdfde0bf by Matthias Bernad)
-   2018-12-11 Fix broken link to core documentation (#814) (Commit 677c96ad by jokumer)
+   2018-12-11 Fix broken link to Core documentation (#814) (Commit 677c96ad by jokumer)
    2018-12-07 [TASK] Improve slug configuration (Commit ea1f35aa by Georg Ringer)
    2018-12-06 [TASK] Add slug field to the models (Commit 13cfe929 by Georg Ringer)
    2018-12-06 [FEATURE] Slugs for category and tags (Commit 4d14925a by Georg Ringer)

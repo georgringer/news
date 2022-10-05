@@ -9,20 +9,23 @@ namespace GeorgRinger\News\Tests\Unit\Utility;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Utility\TypoScript;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Test class for TypoScript
  *
  */
-class TypoScriptTest extends UnitTestCase
+class TypoScriptTest extends BaseTestCase
 {
 
     /**
      * @test
+     *
      * @dataProvider overrideWorksDataProvider
+     *
+     * @return void
      */
-    public function overrideWorks($base, $overload, $expected)
+    public function overrideWorks($base, $overload, $expected): void
     {
         $utility = new TypoScript();
 
@@ -125,11 +128,14 @@ class TypoScriptTest extends UnitTestCase
 
     /**
      * @test
+     *
      * @dataProvider correctValueIsReturnedDataProvider
+     *
+     * @return void
      */
-    public function correctValueIsReturned($path, $expected)
+    public function correctValueIsReturned($path, $expected): void
     {
-        $mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', ['dummy']);
+        $mockedUtility = $this->getAccessibleMock(TypoScript::class, ['dummy']);
 
         $in = [
             'level_1' => [
@@ -172,11 +178,14 @@ class TypoScriptTest extends UnitTestCase
 
     /**
      * @test
+     *
      * @dataProvider correctValueIsSetDataProvider
+     *
+     * @return void
      */
-    public function correctValueIsSet($path, $newValue, $expected)
+    public function correctValueIsSet($path, $newValue, $expected): void
     {
-        $mockedUtility = $this->getAccessibleMock('GeorgRinger\\News\\Utility\\TypoScript', ['dummy'], [], '', true, false);
+        $mockedUtility = $this->getAccessibleMock(TypoScript::class, ['dummy'], [], '', true, false);
 
         $in = [
             'level_1' => [

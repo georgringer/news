@@ -1,4 +1,6 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html
+	xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="General" />
 <!--
 	=====================
@@ -7,7 +9,7 @@
 
 <f:section name="content">
 	<div class="news-search-form">
-		<f:form object="{search}" name="search" pageUid="{settings.listPid}">
+		<n:searchForm object="{search}" name="search" pageUid="{settings.listPid}" method="get">
 			<fieldset>
 				<div class="form-group">
 					<label for="news-subject"><f:translate key="search-subject" /></label>
@@ -26,7 +28,7 @@
 
 				<f:form.submit value="{f:translate(key:'search-start')}" class="btn btn-default"/>
 			</fieldset>
-		</f:form>
+		</n:searchForm>
 	</div>
 </f:section>
 </html>

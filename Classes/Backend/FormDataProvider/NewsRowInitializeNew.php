@@ -8,8 +8,11 @@ namespace GeorgRinger\News\Backend\FormDataProvider;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use GeorgRinger\News\Utility\EmConfiguration;
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Fill the news records with default values
@@ -22,14 +25,14 @@ class NewsRowInitializeNew implements FormDataProviderInterface
 
     public function __construct()
     {
-        $this->emConfiguration = EmConfiguration::getSettings();
+        $this->emConfiguration = GeneralUtility::makeInstance(EmConfiguration::class);
     }
 
     /**
      * @param array $result
      * @return array
      */
-    public function addData(array $result)
+    public function addData(array $result): array
     {
         if ($result['tableName'] !== 'tx_news_domain_model_news') {
             return $result;
@@ -48,13 +51,13 @@ class NewsRowInitializeNew implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    protected function fillDateField(array $result)
+    protected function fillDateField(array $result): array
     {
         if ($this->emConfiguration->getDateTimeRequired()) {
-            $result['databaseRow']['datetime'] = $GLOBALS['EXEC_TIME'];
+            $result['databaseRow']['datetime'] = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
         }
 
-        if (is_array($result['pageTsConfig']['tx_news.'])
+        if (isset($result['pageTsConfig']['tx_news.']['predefine.'])
             && is_array($result['pageTsConfig']['tx_news.']['predefine.'])
         ) {
             if (isset($result['pageTsConfig']['tx_news.']['predefine.']['author']) && (int)$result['pageTsConfig']['tx_news.']['predefine.']['author'] === 1) {
@@ -78,9 +81,9 @@ class NewsRowInitializeNew implements FormDataProviderInterface
      * @param array $result
      * @return array
      */
-    protected function setTagListingId(array $result)
+    protected function setTagListingId(array $result): array
     {
-        if (!is_array($result['pageTsConfig']['tx_news.']) || !isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
+        if (!isset($result['pageTsConfig']['tx_news.']['tagPid'])) {
             return $result;
         }
         $tagPid = (int)$result['pageTsConfig']['tx_news.']['tagPid'];

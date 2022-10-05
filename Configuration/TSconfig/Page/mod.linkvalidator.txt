@@ -1,5 +1,0 @@
-mod.linkvalidator.searchFields {
-	tx_news_domain_model_news = bodytext,internalurl,externalurl
-	tx_news_domain_model_link = uri
-	tx_news_domain_model_media = multimedia
-}

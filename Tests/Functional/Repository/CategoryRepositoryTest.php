@@ -1,6 +1,6 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
+namespace GeorgRinger\News\Tests\Functional\Repository;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -8,8 +8,11 @@ namespace GeorgRinger\News\Tests\Unit\Functional\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
+
+use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * Functional test for the DataHandler
@@ -17,19 +20,20 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class CategoryRepositoryTest extends FunctionalTestCase
 {
 
-    /** @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface The object manager */
-    protected $objectManager;
-
     /** @var  \GeorgRinger\News\Domain\Repository\CategoryRepository */
     protected $categoryRepository;
 
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-        $this->categoryRepository = $this->objectManager->get('GeorgRinger\\News\\Domain\\Repository\\CategoryRepository');
+        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+        if ($versionInformation->getMajorVersion() === 11) {
+            $this->categoryRepository = $this->getContainer()->get(CategoryRepository::class);
+        } else {
+            $this->categoryRepository = GeneralUtility::makeInstance(ObjectManager::class)->get(CategoryRepository::class);
+        }
 
         $this->importDataSet(__DIR__ . '/../Fixtures/sys_category.xml');
     }
@@ -38,8 +42,10 @@ class CategoryRepositoryTest extends FunctionalTestCase
      * Test if by import source is done
      *
      * @test
+     *
+     * @return void
      */
-    public function findRecordByImportSource()
+    public function findRecordByImportSource(): void
     {
         $category = $this->categoryRepository->findOneByImportSourceAndImportId('functional_test', '2');
 

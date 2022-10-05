@@ -9,12 +9,12 @@ namespace GeorgRinger\News\Tests\Unit\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 use GeorgRinger\News\Domain\Model\Link;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for domains model Link
  */
-class LinkTest extends UnitTestCase
+class LinkTest extends BaseTestCase
 {
 
     /**
@@ -26,7 +26,7 @@ class LinkTest extends UnitTestCase
      * Setup
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->linkDomainModelInstance = new Link();
     }
@@ -35,8 +35,10 @@ class LinkTest extends UnitTestCase
      * Test if title can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function titleCanBeSet()
+    public function titleCanBeSet(): void
     {
         $title = 'File title';
         $this->linkDomainModelInstance->setTitle($title);
@@ -47,10 +49,12 @@ class LinkTest extends UnitTestCase
      * Test if crdate can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function crdateCanBeSet()
+    public function crdateCanBeSet(): void
     {
-        $time = time();
+        $time = new \DateTime();
         $this->linkDomainModelInstance->setCrdate($time);
         $this->assertEquals($time, $this->linkDomainModelInstance->getCrdate());
     }
@@ -59,10 +63,12 @@ class LinkTest extends UnitTestCase
      * Test if tstamp can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function tstampCanBeSet()
+    public function tstampCanBeSet(): void
     {
-        $time = time();
+        $time = new \DateTime();
         $this->linkDomainModelInstance->setTstamp($time);
         $this->assertEquals($time, $this->linkDomainModelInstance->getTstamp());
     }
@@ -71,8 +77,10 @@ class LinkTest extends UnitTestCase
      * Test if description can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function descriptionCanBeSet()
+    public function descriptionCanBeSet(): void
     {
         $description = 'This is a description';
         $this->linkDomainModelInstance->setDescription($description);
@@ -83,8 +91,10 @@ class LinkTest extends UnitTestCase
      * Test if uri can be set
      *
      * @test
+     *
+     * @return void
      */
-    public function uriCanBeSet()
+    public function uriCanBeSet(): void
     {
         $uri = 'http://typo3.org';
         $this->linkDomainModelInstance->setUri($uri);
