@@ -101,7 +101,8 @@ class NewsImportService extends AbstractImportService
             $importItem = array_merge($importItem, $importItemOverwrite);
         }
         $news->setPid($importItem['pid']);
-        $news->setHidden($importItem['hidden']);
+        $news->setHidden((bool)($importItem['hidden'] ?? false));
+
         if (
             isset($importItem['starttime'])
             && $date = $this->convertTimestampToDateTime((int)$importItem['starttime'])
