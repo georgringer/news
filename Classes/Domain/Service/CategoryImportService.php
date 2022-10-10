@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\Category;
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use GeorgRinger\News\Event\CategoryImportPostHydrateEvent;
@@ -22,16 +23,11 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  */
 class CategoryImportService extends AbstractImportService
 {
-    const ACTION_SET_PARENT_CATEGORY = 1;
-    const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
+    public const ACTION_SET_PARENT_CATEGORY = 1;
+    public const ACTION_CREATE_L10N_CHILDREN_CATEGORY = 2;
 
     /**
      * CategoryImportService constructor.
-     * @param PersistenceManager $persistenceManager
-     * @param EmConfiguration $emSettings
-     * @param ObjectManager $objectManager
-     * @param CategoryRepository $categoryRepository
-     * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         PersistenceManager $persistenceManager,
@@ -42,11 +38,6 @@ class CategoryImportService extends AbstractImportService
         parent::__construct($persistenceManager, $objectManager, $categoryRepository, $eventDispatcher);
     }
 
-    /**
-     * @param array $importArray
-     *
-     * @return void
-     */
     public function import(array $importArray): void
     {
         $this->logger->info(sprintf('Starting import for %s categories', count($importArray)));
@@ -94,12 +85,8 @@ class CategoryImportService extends AbstractImportService
 
     /**
      * Hydrate a category record with the given array
-     *
-     * @param array $importItem
-     *
-     * @return array|object
      */
-    protected function hydrateCategory(array $importItem)
+    protected function hydrateCategory(array $importItem): Category
     {
         $category = $this->categoryRepository->findOneByImportSourceAndImportId(
             $importItem['import_source'],
@@ -112,7 +99,7 @@ class CategoryImportService extends AbstractImportService
             $importItem['import_id']
         ));
 
-        if (is_null($category)) {
+        if ($category === null) {
             $this->logger->info('Category is new');
 
             $category = GeneralUtility::makeInstance(Category::class);
@@ -123,6 +110,7 @@ class CategoryImportService extends AbstractImportService
 
         $category->setPid($importItem['pid']);
         $category->setHidden($importItem['hidden']);
+
         if (
             isset($importItem['starttime'])
             && $date = $this->convertTimestampToDateTime((int)$importItem['starttime'])
@@ -150,7 +138,7 @@ class CategoryImportService extends AbstractImportService
         $category->setTitle($importItem['title']);
         $category->setDescription($importItem['description']);
         if (!empty($importItem['image'])) {
-            $this->setFileRelationFromImage($category, $importItem['image']);
+            $this->setFileRelationFromImage($category, (string)$importItem['image']);
         }
         $category->setShortcut((int)($importItem['shortcut'] ?? 0));
         $category->setSinglePid((int)($importItem['single_pid'] ?? 0));
@@ -165,13 +153,8 @@ class CategoryImportService extends AbstractImportService
 
     /**
      * Add category image when not already present
-     *
-     * @param Category $category
-     * @param $image
-     *
-     * @return void
      */
-    protected function setFileRelationFromImage($category, $image)
+    protected function setFileRelationFromImage(Category $category, string $image): void
     {
 
         // get fileObject by given identifier (file UID, combined identifier or path/filename)
@@ -188,15 +171,16 @@ class CategoryImportService extends AbstractImportService
 
         // new image found check if this isn't already
         $existingImages = $category->getImages();
-        if (!is_null($existingImages) && $existingImages->count() !== 0) {
-            /** @var $item FileReference */
+        if ($existingImages->count() !== 0) {
             foreach ($existingImages as $item) {
                 // only check already persisted items
-                if ($item->getFileUid() === (int)$newImage->getUid()
-                    ||
-                    ($item->getUid() &&
-                        $item->getOriginalResource()->getName() === $newImage->getName() &&
-                        $item->getOriginalResource()->getSize() === (int)$newImage->getSize())
+                if (
+                    $item->getFileUid() === $newImage->getUid()
+                    || (
+                        $item->getUid()
+                        && $item->getOriginalResource()->getName() === $newImage->getName()
+                        && $item->getOriginalResource()->getSize() === (int)$newImage->getSize()
+                    )
                 ) {
                     $newImage = false;
                     break;
@@ -226,13 +210,6 @@ class CategoryImportService extends AbstractImportService
         }
     }
 
-    /**
-     * Set parent category
-     *
-     * @param array $queueItem
-     *
-     * @return void
-     */
     protected function setParentCategory(array $queueItem): void
     {
         /** @var $category Category */
@@ -254,10 +231,6 @@ class CategoryImportService extends AbstractImportService
 
     /**
      * Create l10n relation
-     *
-     * @param array $queueItem
-     *
-     * @return void
      */
     protected function createL10nChildrenCategory(array $queueItem): void
     {
@@ -269,9 +242,8 @@ class CategoryImportService extends AbstractImportService
             $sysLanguageUid = $key + 1;
 
             $importItem = $queueItem['importItem'];
-            $importItem['import_id'] = $importItem['import_id'] . '|L:' . $sysLanguageUid;
+            $importItem['import_id'] .= '|L:' . $sysLanguageUid;
 
-            /** @var $l10nChildrenCategory Category */
             $l10nChildrenCategory = $this->hydrateCategory($importItem);
             $this->categoryRepository->add($l10nChildrenCategory);
 

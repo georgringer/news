@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GeorgRinger\News\Domain\Service;
 
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Domain\Model\FileReference;
 use GeorgRinger\News\Domain\Model\Link;
 use GeorgRinger\News\Domain\Model\News;
@@ -29,7 +30,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class NewsImportService extends AbstractImportService
 {
-    const ACTION_IMPORT_L10N_OVERLAY = 1;
+    public const ACTION_IMPORT_L10N_OVERLAY = 1;
 
     /**
      * @var NewsRepository
@@ -48,13 +49,6 @@ class NewsImportService extends AbstractImportService
 
     /**
      * NewsImportService constructor.
-     * @param PersistenceManager $persistenceManager
-     * @param EmConfiguration $emSettings
-     * @param ObjectManager $objectManager
-     * @param CategoryRepository $categoryRepository
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param NewsRepository $newsRepository
-     * @param TtContentRepository $ttContentRepository
      */
     public function __construct(
         PersistenceManager $persistenceManager,
@@ -65,16 +59,12 @@ class NewsImportService extends AbstractImportService
         TtContentRepository $ttContentRepository
     ) {
         parent::__construct($persistenceManager, $objectManager, $categoryRepository, $eventDispatcher);
+
         $this->newsRepository = $newsRepository;
         $this->ttContentRepository = $ttContentRepository;
     }
 
-    /**
-     * @param array $importItem
-     *
-     * @return array|object
-     */
-    protected function initializeNewsRecord(array $importItem)
+    protected function initializeNewsRecord(array $importItem): News
     {
         $news = null;
 
@@ -102,12 +92,6 @@ class NewsImportService extends AbstractImportService
         return $news;
     }
 
-    /**
-     * @param News $news
-     * @param array $importItem
-     * @param array $importItemOverwrite
-     * @return News
-     */
     protected function hydrateNewsRecord(
         News $news,
         array $importItem,
@@ -304,16 +288,7 @@ class NewsImportService extends AbstractImportService
         return $event->getNews();
     }
 
-    /**
-     * Import
-     *
-     * @param array $importData
-     * @param array $importItemOverwrite
-     * @param array $settings
-     *
-     * @return void
-     */
-    public function import(array $importData, array $importItemOverwrite = [], $settings = []): void
+    public function import(array $importData, array $importItemOverwrite = [], array $settings = []): void
     {
         $this->settings = $settings;
         $this->logger->info(sprintf('Starting import for %s news', count($importData)));
@@ -353,12 +328,6 @@ class NewsImportService extends AbstractImportService
         $this->persistenceManager->persistAll();
     }
 
-    /**
-     * @param array $queueItem
-     * @param array $importItemOverwrite
-     *
-     * @return void
-     */
     protected function importL10nOverlay(array $queueItem, array $importItemOverwrite): void
     {
         $importItem = $queueItem['importItem'];
@@ -380,9 +349,6 @@ class NewsImportService extends AbstractImportService
 
     /**
      * Get an existing items from the references that matches the file
-     *
-     * @param ObjectStorage $items
-     * @param \TYPO3\CMS\Core\Resource\File $file
      *
      * @return bool|FileReference
      */
@@ -412,16 +378,14 @@ class NewsImportService extends AbstractImportService
     /**
      * Get an existing related link object
      *
-     * @param News $news
-     * @param string $uri
      * @return bool|Link
      */
-    protected function getRelatedLinkIfAlreadyExists(News $news, $uri)
+    protected function getRelatedLinkIfAlreadyExists(News $news, string $uri)
     {
         $result = false;
         $links = $news->getRelatedLinks();
 
-        if (!empty($links) && $links->count() !== 0) {
+        if ($links !== null && $links->count() !== 0) {
             foreach ($links as $link) {
                 if ($link->getUri() === $uri) {
                     $result = $link;
