@@ -118,17 +118,33 @@ class NewsImportService extends AbstractImportService
         }
         $news->setPid($importItem['pid']);
         $news->setHidden($importItem['hidden']);
-        if ($importItem['starttime'] ?? 0) {
-            $news->setStarttime($importItem['starttime']);
+        if (
+            isset($importItem['starttime'])
+            && $date = $this->convertTimestampToDateTime((int)$importItem['starttime'])
+        ) {
+            $news->setStarttime($date);
         }
-        if ($importItem['endtime'] ?? 0) {
-            $news->setStarttime($importItem['endtime']);
+        if (
+            isset($importItem['endtime'])
+            && $date = $this->convertTimestampToDateTime((int)$importItem['endtime'])
+        ) {
+            $news->setEndtime($date);
+        }
+        if (
+            isset($importItem['crdate'])
+            && $date = $this->convertTimestampToDateTime((int)$importItem['crdate'])
+        ) {
+            $news->setCrdate($date);
+        }
+        if (
+            isset($importItem['tstamp'])
+            && $date = $this->convertTimestampToDateTime((int)$importItem['tstamp'])
+        ) {
+            $news->setTstamp($date);
         }
         if (!empty($importItem['fe_group'] ?? '')) {
             $news->setFeGroup((string)$importItem['fe_group']);
         }
-        $news->setTstamp($importItem['tstamp'] ?? 0);
-        $news->setCrdate($importItem['crdate'] ?? 0);
         $news->setSysLanguageUid($importItem['sys_language_uid'] ?? 0);
         $news->setSorting((int)($importItem['sorting'] ?? 0));
 
