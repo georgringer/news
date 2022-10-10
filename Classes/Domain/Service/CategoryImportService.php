@@ -109,7 +109,7 @@ class CategoryImportService extends AbstractImportService
         }
 
         $category->setPid($importItem['pid']);
-        $category->setHidden($importItem['hidden']);
+        $category->setHidden((bool)($importItem['hidden'] ?? false));
 
         if (
             isset($importItem['starttime'])
