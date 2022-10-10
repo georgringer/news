@@ -152,11 +152,11 @@ class CategoryImportService extends AbstractImportService
         if (!empty($importItem['image'])) {
             $this->setFileRelationFromImage($category, $importItem['image']);
         }
-        $category->setShortcut($importItem['shortcut']);
-        $category->setSinglePid($importItem['single_pid']);
+        $category->setShortcut((int)($importItem['shortcut'] ?? 0));
+        $category->setSinglePid((int)($importItem['single_pid'] ?? 0));
 
-        $category->setImportId($importItem['import_id']);
-        $category->setImportSource($importItem['import_source']);
+        $category->setImportId((string)($importItem['import_id'] ?? ''));
+        $category->setImportSource((string)($importItem['import_source'] ?? ''));
 
         $event = $this->eventDispatcher->dispatch(new CategoryImportPostHydrateEvent($this, $importItem, $category));
 
