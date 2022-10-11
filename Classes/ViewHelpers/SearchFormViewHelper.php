@@ -9,7 +9,12 @@
 
 namespace GeorgRinger\News\ViewHelpers;
 
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
 use TYPO3\CMS\Extbase\Mvc\Controller\MvcPropertyMappingConfigurationService;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Security\Cryptography\HashService;
 use TYPO3\CMS\Extbase\Service\ExtensionService;
 use TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormViewHelper;
@@ -147,7 +152,18 @@ class SearchFormViewHelper extends AbstractFormViewHelper
             if (isset($this->arguments['addQueryStringMethod'])) {
                 trigger_error('Using the argument "addQueryStringMethod" in <f:form> ViewHelper has no effect anymore and will be removed in TYPO3 v12. Remove the argument in your fluid template, as it will result in a fatal error.', E_USER_DEPRECATED);
             }
-            $uriBuilder = $this->renderingContext->getUriBuilder();
+
+            $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+            if ($versionInformation->getMajorVersion() >= 11) {
+                $uriBuilder = $this->renderingContext->getUriBuilder();
+            } else {
+                $uriBuilder = GeneralUtility::makeInstance(ObjectManager::class)->get(UriBuilder::class);
+                /** @var ControllerContext $controllerContext */
+                $controllerContext = $this->renderingContext->getControllerContext();
+                if ($controllerContext) {
+                    $uriBuilder->setRequest($controllerContext->getRequest());
+                }
+            }
             $uriBuilder
                 ->reset()
                 ->setTargetPageType($this->arguments['pageType'] ?? 0)
@@ -320,7 +336,12 @@ class SearchFormViewHelper extends AbstractFormViewHelper
      */
     protected function getDefaultFieldNamePrefix()
     {
-        $request = $this->renderingContext->getRequest();
+        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($versionInformation->getMajorVersion() >= 11) {
+            $request = $this->renderingContext->getRequest();
+        } else {
+            $request = $this->renderingContext->getControllerContext()->getRequest();
+        }
         if ($this->hasArgument('extensionName')) {
             $extensionName = $this->arguments['extensionName'];
         } else {
