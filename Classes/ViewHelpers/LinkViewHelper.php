@@ -254,7 +254,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
                 'tx_news_domain_model_news',
                 $newsItem->getUid()
             );
-            if ($record['uid'] ?? false) {
+            if (isset($record['uid'] ?? false)) {
                 $uid = $record['uid'];
             }
         }
