@@ -15,9 +15,5 @@ call_user_func(static function () {
                 unset($GLOBALS['TCA'][$tableName]['columns'][$field]['config']['appearance']['showRemovedLocalizationRecords']);
             }
         }
-
-        // Remove setting when v10 is not supported anymore
-        // see https://github.com/georgringer/news/commit/469511293c5bbf72cb60ac7445e790411bc17931
-        unset($GLOBALS['TCA']['tx_news_domain_model_news']['ctrl']['thumbnail']);
     }
 });
