@@ -3,6 +3,7 @@
 namespace GeorgRinger\News\Controller;
 
 use GeorgRinger\News\Event\CategoryListActionEvent;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -17,12 +18,8 @@ class CategoryController extends NewsController
 {
     /**
      * List categories
-     *
-     * @param array $overwriteDemand
-     *
-     * @return void
      */
-    public function listAction(array $overwriteDemand = null)
+    public function listAction(array $overwriteDemand = null): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -47,5 +44,6 @@ class CategoryController extends NewsController
         $event = $this->eventDispatcher->dispatch(new CategoryListActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 }

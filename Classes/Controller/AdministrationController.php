@@ -3,6 +3,7 @@
 namespace GeorgRinger\News\Controller;
 
 use GeorgRinger\News\Domain\Repository\AdministrationRepository;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 
 /**
@@ -31,10 +32,11 @@ class AdministrationController extends NewsController
         $this->administrationRepository = $administrationRepository;
     }
 
-    public function indexAction(): void
+    public function indexAction(): ResponseInterface
     {
         $this->view->assignMultiple([
-            'counts' => $this->administrationRepository->getTotalCounts()
+            'counts' => $this->administrationRepository->getTotalCounts(),
         ]);
+        return $this->htmlResponse();
     }
 }

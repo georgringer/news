@@ -22,6 +22,7 @@ use GeorgRinger\News\Utility\ClassCacheManager;
 use GeorgRinger\News\Utility\Page;
 use GeorgRinger\News\Utility\TypoScript;
 use GeorgRinger\NumberedPagination\NumberedPagination;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -309,7 +310,7 @@ class NewsController extends NewsBaseController
     /**
      * Output a selected list view of news
      */
-    public function selectedListAction(): void
+    public function selectedListAction(): ResponseInterface
     {
         $newsRecords = [];
 
@@ -341,17 +342,16 @@ class NewsController extends NewsBaseController
         if (!empty($newsRecords) && is_a($newsRecords[0], News::class)) {
             Cache::addCacheTagsByNewsRecords($newsRecords);
         }
+        return $this->htmlResponse();
     }
 
     /**
      * Single view of a news record
      *
-     * @param \GeorgRinger\News\Domain\Model\News $news news item
+     * @param News $news news item
      * @param int $currentPage current page for optional pagination
-     *
-     * @return null|string
      */
-    public function detailAction(News $news = null, $currentPage = 1)
+    public function detailAction(News $news = null, $currentPage = 1): ResponseInterface
     {
         if ($news === null || ($this->settings['isShortcut'] ?? false)) {
             $previewNewsId = (int)($this->settings['singleNews'] ?? 0);
@@ -410,9 +410,10 @@ class NewsController extends NewsBaseController
         } elseif (isset($this->settings['detail']['errorHandling'])) {
             $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
             if ($errorContent) {
-                return $errorContent;
+                return $this->htmlResponse($errorContent);
             }
         }
+        return $this->htmlResponse();
     }
 
     /**
@@ -456,12 +457,8 @@ class NewsController extends NewsBaseController
 
     /**
      * Render a menu by dates, e.g. years, months or dates
-     *
-     * @param array|null $overwriteDemand
-     *
-     * @return void
      */
-    public function dateMenuAction(array $overwriteDemand = null): void
+    public function dateMenuAction(array $overwriteDemand = null): ResponseInterface
     {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -503,20 +500,16 @@ class NewsController extends NewsBaseController
         $event = $this->eventDispatcher->dispatch(new NewsDateMenuActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 
     /**
      * Display the search form
-     *
-     * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
-     * @param array $overwriteDemand
-     *
-     * @return void
      */
     public function searchFormAction(
         Search $search = null,
         array $overwriteDemand = []
-    ): void {
+    ): ResponseInterface {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -539,20 +532,16 @@ class NewsController extends NewsBaseController
         $event = $this->eventDispatcher->dispatch(new NewsSearchFormActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 
     /**
      * Displays the search result
-     *
-     * @param \GeorgRinger\News\Domain\Model\Dto\Search $search
-     * @param array $overwriteDemand
-     *
-     * @return void
      */
     public function searchResultAction(
         Search $search = null,
         array $overwriteDemand = []
-    ): void {
+    ): ResponseInterface {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -594,6 +583,7 @@ class NewsController extends NewsBaseController
         $event = $this->eventDispatcher->dispatch(new NewsSearchResultActionEvent($this, $assignedValues, $this->request));
 
         $this->view->assignMultiple($event->getAssignedValues());
+        return $this->htmlResponse();
     }
 
     /**

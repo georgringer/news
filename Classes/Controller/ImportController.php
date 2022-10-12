@@ -12,8 +12,10 @@ use Exception;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use GeorgRinger\News\Jobs\ImportJobInterface;
 use GeorgRinger\News\Utility\ImportJob;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
@@ -58,10 +60,8 @@ class ImportController extends ActionController
 
     /**
      * Shows the import jobs selection .
-     *
-     * @return void
      */
-    public function indexAction(): void
+    public function indexAction(): ResponseInterface
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
@@ -74,6 +74,7 @@ class ImportController extends ActionController
                 'moduleUrl' => $uriBuilder->buildUriFromRoute($this->request->getPluginName())
             ]
         );
+        return $this->htmlResponse();
     }
 
     /**
@@ -118,13 +119,13 @@ class ImportController extends ActionController
      * @param int $offset
      * @return string
      */
-    public function runJobAction($jobClassName, $offset = 0): string
+    public function runJobAction($jobClassName, $offset = 0): ResponseInterface
     {
         /** @var ImportJobInterface $job */
         $job = $this->objectManager->get($jobClassName);
         $job->run($offset);
 
-        return 'OK';
+        return $this->htmlResponse('OK');
     }
 
     /**
@@ -133,7 +134,7 @@ class ImportController extends ActionController
      * @param  string $jobClassName
      * @return string
      */
-    public function jobInfoAction($jobClassName): string
+    public function jobInfoAction($jobClassName): ResponseInterface
     {
         $response = null;
         try {
@@ -148,7 +149,7 @@ class ImportController extends ActionController
             HttpUtility::setResponseCode(HttpUtility::HTTP_STATUS_400);
         }
 
-        return json_encode($response);
+        return new JsonResponse($response);
     }
 
     /**
