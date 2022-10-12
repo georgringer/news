@@ -21,7 +21,6 @@ foreach ($list as $identifier => $path) {
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:news/Resources/Public/Icons/' . $path,
     ];
-
 }
 
 return $icons;
