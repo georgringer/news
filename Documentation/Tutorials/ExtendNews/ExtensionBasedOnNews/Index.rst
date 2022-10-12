@@ -130,7 +130,7 @@ Create a basic controller with the mentioned action.
        */
       protected function createDemandObject()
       {
-         $demand = $this->objectManager->get(NewsDemand::class);
+         $demand = new NewsDemand();
          $demand->setLimit(10);
 
          return $demand;
@@ -203,7 +203,7 @@ By modifying the controller with the following code, you will change the output 
      */
     protected function createDemandObject()
     {
-        $demand = $this->objectManager->get(NewsDemand::class);
+        $demand = new NewsDemand();
         $demand->setStoragePage('123');
         $demand->setAuthor('John');
         $demand->setHideIdList('12,45');
@@ -303,7 +303,7 @@ Adopt the controller to use the settings instead of the hardcoded ones.
      */
     protected function createDemandObject()
     {
-        $demand = $this->objectManager->get(NewsDemand::class);
+        $demand = new NewsDemand();
         // Because of the naming "<settings.startingpoint>", you can use $this->settings['startingpoint']
         $demand->setStoragePage($this->settings['startingpoint']);
         $demand->setLimit(10);

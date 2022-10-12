@@ -3,7 +3,6 @@
 namespace GeorgRinger\News\Domain\Repository;
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\Storage\Typo3DbQueryParser;
@@ -88,12 +87,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
     public function findDemandedRaw(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false): string
     {
         $query = $this->generateQuery($demand, $respectEnableFields, $disableLanguageOverlayMode);
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() >= 11) {
-            $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
-        } else {
-            $queryParser = $this->objectManager->get(Typo3DbQueryParser::class);
-        }
+        $queryParser = GeneralUtility::makeInstance(Typo3DbQueryParser::class);
 
         $queryBuilder = $queryParser->convertQueryToDoctrineQueryBuilder($query);
         $queryParameters = $queryBuilder->getParameters();
