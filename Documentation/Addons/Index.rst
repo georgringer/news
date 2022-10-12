@@ -18,5 +18,6 @@ This sections describes extensions which extend EXT:news with additional feature
    NewsContentElements/Index
    NewsImporticsxml/Index
    NewsCategoryPidConstraint/Index
+   NewsRedirectSlugChange/Index
    NewsFegroupPreview/Index
    NewsFilter/Index
