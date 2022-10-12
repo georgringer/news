@@ -15,6 +15,7 @@ This sections describes extensions which extend EXT:news with additional feature
    NumberedNavigation/Index
    NewsAdministration/Index
    NewsTagsuggest/Index
+   NewsContentElements/Index
    NewsImporticsxml/Index
    NewsCategoryPidConstraint/Index
    NewsFegroupPreview/Index

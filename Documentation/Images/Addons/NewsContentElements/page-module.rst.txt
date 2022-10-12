@@ -1,0 +1,5 @@
+
+.. figure:: /Images/Addons/NewsContentElements/page-module.png
+   :class: with-shadow
+
+   Reduced page module with the elements of the news record

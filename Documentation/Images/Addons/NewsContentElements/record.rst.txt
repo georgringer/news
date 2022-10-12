@@ -1,0 +1,5 @@
+
+.. figure:: /Images/Addons/NewsContentElements/record.png
+   :class: with-shadow
+
+   News record with 3 content elements and a new button below to load the page module with just those elements.
