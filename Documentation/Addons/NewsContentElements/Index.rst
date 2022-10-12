@@ -14,6 +14,11 @@ This extension gives editors the possibility to use the power of page module for
 .. include:: /Images/Addons/NewsContentElements/record.rst.txt
 .. include:: /Images/Addons/NewsContentElements/pagemodule.rst.txt
 
+.. note::
+
+   This extension is rather new but under active delopment
+
+
 Requirements:
 
 - EXT:news 9/10
