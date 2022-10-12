@@ -117,34 +117,6 @@ $boot = static function (): void {
         ]
     ];
 
-    if (TYPO3_MODE === 'BE') {
-        $icons = [
-            'apps-pagetree-folder-contains-news' => 'ext-news-folder-tree.svg',
-            'apps-pagetree-page-contains-news' => 'ext-news-page-tree.svg',
-            'ext-news-wizard-icon' => 'plugin_wizard.svg',
-            'ext-news-type-default' => 'news_domain_model_news.svg',
-            'ext-news-type-internal' => 'news_domain_model_news_internal.svg',
-            'ext-news-type-external' => 'news_domain_model_news_external.svg',
-            'ext-news-tag' => 'news_domain_model_tag.svg',
-            'ext-news-link' => 'news_domain_model_link.svg',
-            'ext-news-donation' => 'donation.svg',
-            'ext-news-paypal' => 'donation_paypal.svg',
-            'ext-news-patreon' => 'donation_patreon.svg',
-            'ext-news-amazon' => 'donation_amazon.svg',
-            'ext-news-doublecheck' => 'double_check.svg',
-        ];
-        $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-        foreach ($icons as $identifier => $path) {
-            if (!$iconRegistry->isRegistered($identifier)) {
-                $iconRegistry->registerIcon(
-                    $identifier,
-                    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-                    ['source' => 'EXT:news/Resources/Public/Icons/' . $path]
-                );
-            }
-        }
-    }
-
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['realurlAliasNewsSlug'] = \GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater::class; // Recommended before 'newsSlug'
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['newsSlug'] = \GeorgRinger\News\Updates\NewsSlugUpdater::class;
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['sysCategorySlugs'] = \GeorgRinger\News\Updates\PopulateCategorySlugs::class;
