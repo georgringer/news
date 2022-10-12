@@ -94,7 +94,7 @@ Therefore, create the file :file:`Configuration/TCA/Overrides/tx_news_domain_mod
 .. code-block:: php
 
    <?php
-   defined('TYPO3_MODE') or die();
+   defined('TYPO3') or die();
 
    $fields = array(
       'location_simple' => array(
@@ -131,7 +131,7 @@ Create the file :file:`ext_localconf.php` in the root of the extension:
 .. code-block:: php
 
    <?php
-   defined('TYPO3_MODE') or die();
+   defined('TYPO3') or die();
 
    $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['classes']['Domain/Model/News']['eventnews'] = 'eventnews';
 
