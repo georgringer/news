@@ -12,7 +12,6 @@ enabled:
     - no_blank_lines_after_phpdoc
     - short_array_syntax
     - whitespace_after_comma_in_array
-    - function_typehint_space
     - hash_to_slash_comment
     - lowercase_cast
     - no_leading_namespace_whitespace
