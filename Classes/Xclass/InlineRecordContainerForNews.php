@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class InlineRecordContainerForNews extends InlineRecordContainer
 {
-
     /**
      * @param array $data
      * @return string

@@ -15,7 +15,6 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
  */
 class Link extends AbstractValueObject
 {
-
     /**
      * @var \DateTime
      */

@@ -27,7 +27,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class AddNewsToMenuProcessor implements DataProcessorInterface
 {
-
     /**
      * @param ContentObjectRenderer $cObj
      * @param array $contentObjectConfiguration

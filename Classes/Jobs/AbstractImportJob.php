@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Jobs;
  */
 abstract class AbstractImportJob implements ImportJobInterface
 {
-
     /**
      * @var \GeorgRinger\News\Service\Import\DataProviderServiceInterface
      */

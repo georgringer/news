@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class CategoryService
 {
-
     /**
      * Get child categories by calling recursive function
      * and using the caching framework to save some queries

@@ -23,7 +23,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 class NewsRepositoryTest extends FunctionalTestCase
 {
-
     /** @var  \GeorgRinger\News\Domain\Repository\NewsRepository */
     protected $newsRepository;
 

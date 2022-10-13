@@ -16,7 +16,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class LinkTest extends BaseTestCase
 {
-
     /**
      * @var Link
      */

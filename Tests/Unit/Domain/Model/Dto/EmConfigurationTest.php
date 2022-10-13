@@ -18,7 +18,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class EmConfigurationTest extends BaseTestCase
 {
-
     /**
      * Test if the settings can be read
      *

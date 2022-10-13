@@ -25,7 +25,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class NewsRepository extends AbstractDemandedRepository
 {
-
     /**
      * Returns a category constraint created by
      * a given list of categories and a junction string

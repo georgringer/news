@@ -18,7 +18,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
  */
 class PageAvailableInLanguageViewHelper extends AbstractConditionViewHelper
 {
-
     /**
      * Initialize additional argument
      */

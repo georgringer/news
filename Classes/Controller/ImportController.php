@@ -27,7 +27,6 @@ use UnexpectedValueException;
  */
 class ImportController extends ActionController
 {
-
     /**
      * Backend Template Container
      *

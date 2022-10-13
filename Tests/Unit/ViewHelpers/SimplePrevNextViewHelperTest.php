@@ -17,7 +17,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class SimplePrevNextViewHelperTest extends BaseTestCase
 {
-
     /** @var \PHPUnit_Framework_MockObject_MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $viewHelper;
 

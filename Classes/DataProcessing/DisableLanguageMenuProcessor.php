@@ -26,7 +26,6 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 class DisableLanguageMenuProcessor implements DataProcessorInterface
 {
-
     /**
      * @param ContentObjectRenderer $cObj
      * @param array $contentObjectConfiguration

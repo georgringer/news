@@ -27,7 +27,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class NewsBaseController extends ActionController
 {
-
     /**
      * Initializes the view before invoking an action method.
      * Override this method to solve assign variables common for all actions

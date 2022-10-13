@@ -17,7 +17,6 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
  */
 class TargetLinkViewHelperTest extends BaseTestCase
 {
-
     /**
      * @return \GeorgRinger\News\ViewHelpers\TargetLinkViewHelper
      * @support

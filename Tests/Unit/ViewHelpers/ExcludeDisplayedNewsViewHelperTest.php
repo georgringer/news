@@ -19,7 +19,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class ExcludeDisplayedNewsViewHelperTest extends BaseTestCase
 {
-
     /**
      * @test
      *

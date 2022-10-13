@@ -16,7 +16,6 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class NewsDemand extends AbstractEntity implements DemandInterface
 {
-
     /**
      * @var array
      */
@@ -193,7 +192,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      */
     public function getIncludeSubCategories(): bool
     {
-        return (boolean)$this->includeSubCategories;
+        return (bool)$this->includeSubCategories;
     }
 
     /**

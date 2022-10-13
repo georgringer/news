@@ -18,7 +18,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class NothingViewHelperTest extends BaseTestCase
 {
-
     /**
      * Test of nothing viewHelper
      *

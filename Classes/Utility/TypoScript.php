@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class TypoScript
 {
-
     /**
      * @param array $base
      * @param array $overload

@@ -16,7 +16,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class FileReferenceTest extends BaseTestCase
 {
-
     /**
      * Test if fileUid can be set
      *

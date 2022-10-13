@@ -18,7 +18,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Category extends AbstractEntity
 {
-
     /**
      * @var int
      */
