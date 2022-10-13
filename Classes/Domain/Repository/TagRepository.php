@@ -18,7 +18,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class TagRepository extends AbstractDemandedRepository
 {
-
     /**
      * Find categories by a given pid
      *

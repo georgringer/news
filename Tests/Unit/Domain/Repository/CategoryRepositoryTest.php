@@ -18,7 +18,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class CategoryRepositoryTest extends BaseTestCase
 {
-
     /**
      * Test if category ids are replaced
      *

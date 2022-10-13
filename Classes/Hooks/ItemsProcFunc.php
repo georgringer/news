@@ -20,7 +20,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ItemsProcFunc
 {
-
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 

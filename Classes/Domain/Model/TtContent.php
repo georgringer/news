@@ -15,7 +15,6 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class TtContent extends AbstractEntity
 {
-
     /**
      * @var \DateTime
      */
@@ -566,7 +565,7 @@ class TtContent extends AbstractEntity
      * @param string $listType
      * @return void
      */
-    public function setListType(string $listType):   void
+    public function setListType(string $listType): void
     {
         $this->listType = $listType;
     }

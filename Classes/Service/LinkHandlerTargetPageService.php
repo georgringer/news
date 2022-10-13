@@ -16,7 +16,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class LinkHandlerTargetPageService
 {
-
     /** @var ContentObjectRenderer */
     public $cObj;
 

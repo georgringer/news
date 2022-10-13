@@ -15,7 +15,6 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
  */
 class Tag extends AbstractValueObject
 {
-
     /**
      * @var \DateTime
      */

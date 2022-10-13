@@ -16,7 +16,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
  */
 class ExtensionLoadedViewHelper extends AbstractConditionViewHelper
 {
-
     /**
      * Initialize additional argument
      */

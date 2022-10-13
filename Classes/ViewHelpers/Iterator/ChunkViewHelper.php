@@ -25,7 +25,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
  */
 class ChunkViewHelper extends AbstractViewHelper
 {
-
     /**
      * @var bool
      */

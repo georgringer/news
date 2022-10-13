@@ -17,7 +17,6 @@ use TYPO3\CMS\Backend\View\BackendTemplateView;
  */
 class AdministrationController extends NewsController
 {
-
     /** @var string */
     protected $defaultViewObjectName = BackendTemplateView::class;
 

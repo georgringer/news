@@ -14,7 +14,6 @@ namespace GeorgRinger\News\Utility;
  */
 class ImportJob
 {
-
     /**
      * @var array
      */

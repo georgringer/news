@@ -17,7 +17,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class NewsDemandTest extends BaseTestCase
 {
-
     /** @var  NewsDemand */
     protected $instance;
 

@@ -19,7 +19,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 class CategoryRepositoryTest extends FunctionalTestCase
 {
-
     /** @var  \GeorgRinger\News\Domain\Repository\CategoryRepository */
     protected $categoryRepository;
 

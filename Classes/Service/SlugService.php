@@ -17,7 +17,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class SlugService
 {
-
     /** @var NewsSlugHelper */
     protected $slugService;
 

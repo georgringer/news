@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class AccessControlService
 {
-
     /**
      * Check if a user has access to all categories of a news record
      *

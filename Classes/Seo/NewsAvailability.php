@@ -23,7 +23,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class NewsAvailability
 {
-
     /**
      * @param int $languageId
      * @param int $newsId

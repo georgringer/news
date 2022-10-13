@@ -22,7 +22,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class Page
 {
-
     /**
      * Find all ids from given ids and level
      *

@@ -22,7 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class DatabaseTreeDataProvider extends \TYPO3\CMS\Core\Tree\TableConfiguration\DatabaseTreeDataProvider
 {
-
     /**
      * Builds a complete node including children
      *

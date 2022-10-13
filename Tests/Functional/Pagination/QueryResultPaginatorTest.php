@@ -19,7 +19,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class QueryResultPaginatorTest extends FunctionalTestCase
 {
-
     /**
      * @var NewsRepository
      */

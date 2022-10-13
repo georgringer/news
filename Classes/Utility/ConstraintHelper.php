@@ -19,7 +19,6 @@ use TYPO3\CMS\Core\Utility\MathUtility;
  */
 class ConstraintHelper
 {
-
     /**
      * @param string|int $timeInput
      * @return int

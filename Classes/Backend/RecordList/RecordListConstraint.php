@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class RecordListConstraint
 {
-    const TABLE = 'tx_news_domain_model_news';
+    public const TABLE = 'tx_news_domain_model_news';
 
     /**
      * Check if current module is the news administration module

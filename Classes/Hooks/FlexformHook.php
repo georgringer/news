@@ -19,7 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class FlexformHook
 {
-
     /**
      * Fields which are removed in detail view
      *
