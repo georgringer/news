@@ -1,7 +1,6 @@
 preset: psr12
 
 enabled:
-    - no_leading_import_slash
     - no_trailing_comma_in_singleline_array
     - no_singleline_whitespace_before_semicolons
     - no_unused_imports
