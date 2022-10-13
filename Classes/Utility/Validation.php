@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class Validation
 {
-
     /**
      * Validate ordering as extbase can't handle that currently
      *

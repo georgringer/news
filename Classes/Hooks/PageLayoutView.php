@@ -24,25 +24,24 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
  */
 class PageLayoutView
 {
-
     /**
      * Extension key
      *
      * @var string
      */
-    const KEY = 'news';
+    public const KEY = 'news';
 
     /**
      * Path to the locallang file
      *
      * @var string
      */
-    const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
+    public const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
 
     /**
      * Max shown settings
      */
-    const SETTINGS_IN_PREVIEW = 7;
+    public const SETTINGS_IN_PREVIEW = 7;
 
     /**
      * Table information

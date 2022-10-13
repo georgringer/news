@@ -24,7 +24,6 @@ use UnexpectedValueException;
  */
 class NewsRepositoryTest extends BaseTestCase
 {
-
     /** @var \GeorgRinger\News\Domain\Repository\NewsRepository|\PHPUnit_Framework_MockObject_MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $mockedNewsRepository;
 

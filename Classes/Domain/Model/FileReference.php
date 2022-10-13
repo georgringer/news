@@ -14,9 +14,9 @@ namespace GeorgRinger\News\Domain\Model;
  */
 class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
 {
-    const VIEW_DETAIL_ONLY = 0;
-    const VIEW_LIST_AND_DETAIL = 1;
-    const VIEW_LIST_ONLY = 2;
+    public const VIEW_DETAIL_ONLY = 0;
+    public const VIEW_LIST_AND_DETAIL = 1;
+    public const VIEW_LIST_ONLY = 2;
 
     /**
      * Obsolete when foreign_selector is supported by ExtBase persistence layer

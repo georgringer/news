@@ -17,7 +17,6 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class Search extends AbstractEntity
 {
-
     /**
      * Basic search word
      *

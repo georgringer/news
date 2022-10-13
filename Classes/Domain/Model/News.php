@@ -17,7 +17,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class News extends AbstractEntity
 {
-
     /**
      * @var DateTime
      */

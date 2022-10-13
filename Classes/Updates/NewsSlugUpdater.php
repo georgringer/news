@@ -19,7 +19,7 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
  */
 class NewsSlugUpdater implements UpgradeWizardInterface
 {
-    const TABLE = 'tx_news_domain_model_news';
+    public const TABLE = 'tx_news_domain_model_news';
 
     /** @var SlugService */
     protected $slugService;

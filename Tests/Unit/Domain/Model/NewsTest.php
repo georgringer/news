@@ -23,7 +23,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class NewsTest extends BaseTestCase
 {
-
     /**
      * @var News
      */

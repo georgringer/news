@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class Labels
 {
-
     /**
      * Generate additional label for category records
      * including the title of the parent category

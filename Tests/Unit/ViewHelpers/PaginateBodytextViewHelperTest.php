@@ -17,7 +17,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class PaginateBodytextViewHelperTest extends BaseTestCase
 {
-
     /**
      * Test if given tag is a closing tag
      *

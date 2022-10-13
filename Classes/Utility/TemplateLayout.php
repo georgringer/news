@@ -17,7 +17,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class TemplateLayout implements SingletonInterface
 {
-
     /**
      * Get available template layouts for a certain page
      *

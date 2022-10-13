@@ -25,7 +25,6 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  */
 class SettingsService
 {
-
     /**
      * @var mixed
      */

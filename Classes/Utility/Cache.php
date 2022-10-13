@@ -21,7 +21,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class Cache
 {
-
     /**
      * Stack for processed cObjs which has added news relevant cache tags.
      * @var array

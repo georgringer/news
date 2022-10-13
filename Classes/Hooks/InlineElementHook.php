@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class InlineElementHook implements InlineElementHookInterface
 {
-
     /**
      * Initializes this hook object.
      *

@@ -17,7 +17,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class SearchTest extends BaseTestCase
 {
-
     /**
      * Test if subject can be set
      *

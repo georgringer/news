@@ -15,7 +15,6 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
 
 class NewsRowInitializeNewTest extends BaseTestCase
 {
-
     /**
      * @test
      *
