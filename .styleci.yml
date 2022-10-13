@@ -1,4 +1,4 @@
-preset: psr2
+preset: psr12
 
 enabled:
     - no_leading_import_slash
