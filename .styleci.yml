@@ -13,7 +13,6 @@ enabled:
     - short_array_syntax
     - whitespace_after_comma_in_array
     - hash_to_slash_comment
-    - lowercase_cast
     - no_leading_namespace_whitespace
     - native_function_casing
     - no_empty_statement
