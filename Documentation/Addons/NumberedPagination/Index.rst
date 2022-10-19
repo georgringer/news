@@ -1,9 +1,9 @@
 .. include:: /Includes.rst.txt
 
-.. _numberedNavigation:
+.. _numberedPagination:
 
 =======================
-EXT:numbered_navigation
+EXT:numbered_pagination
 =======================
 
 This extension includes a pagination API which ships features needed by most of the sites.
