@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="detail" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="96px" height="96px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FAFAFA;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#7D83DE;}
+	.st3{fill:#999999;}
+	.st4{fill:#E84F35;}
+	.st5{fill:#D2D3F1;}
+	.st6{fill:#AFB2E9;}
+	.st7{fill:none;stroke:#FAFAFA;stroke-miterlimit:10;}
+	.st8{fill:none;stroke:#FAFAFA;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<metadata>
+	<sfw  xmlns="&ns_sfw;">
+		<slices></slices>
+		<sliceSourceBounds  bottomLeftOrigin="true" height="46" width="176" x="0" y="-46"></sliceSourceBounds>
+	</sfw>
+</metadata>
+<rect class="st1" width="16" height="16"/>
+<path class="st2" d="M0,0v16h16V0H0z M15,15H1V1h14V15z"/>
+<path class="st2" d="M7,3.5C5.1,3.5,3.5,5.1,3.5,7s1.6,3.5,3.5,3.5s3.5-1.6,3.5-3.5S8.9,3.5,7,3.5z M7,9.5C5.6,9.5,4.5,8.4,4.5,7
+	c0-1.4,1.1-2.5,2.5-2.5S9.5,5.6,9.5,7C9.5,8.4,8.4,9.5,7,9.5z"/>
+<rect x="8.5" y="10.1" transform="matrix(0.7071 0.7071 -0.7071 0.7071 10.6176 -4.398)" class="st2" width="4.3" height="1"/>
+</svg>
