@@ -17,7 +17,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 class TagController extends NewsController
 {
-
     public function listAction(array $overwriteDemand = null): ResponseInterface
     {
         // Default value is wrong for tags
