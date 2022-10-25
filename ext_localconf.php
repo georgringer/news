@@ -7,13 +7,87 @@ $boot = static function (): void {
         'News',
         'Pi1',
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'list,detail,selectedList,dateMenu,searchForm,searchResult',
-            \GeorgRinger\News\Controller\CategoryController::class => 'list',
-            \GeorgRinger\News\Controller\TagController::class => 'list',
+            \GeorgRinger\News\Controller\NewsController::class => 'list,detail',
+        ],
+        [],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'News',
+        'NewsListSticky',
+        [
+            \GeorgRinger\News\Controller\NewsController::class => 'list',
+        ],
+        [],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'News',
+        'NewsDetail',
+        [
+            \GeorgRinger\News\Controller\NewsController::class => 'detail',
+        ],
+        [],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'News',
+        'NewsSelectedList',
+        [
+            \GeorgRinger\News\Controller\NewsController::class => 'selectedList',
+        ],
+        [],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'News',
+        'NewsDateMenu',
+        [
+            \GeorgRinger\News\Controller\NewsController::class => 'dateMenu',
+        ],
+        [],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'News',
+        'NewsSearchForm',
+        [
+            \GeorgRinger\News\Controller\NewsController::class => 'searchForm',
         ],
         [
-            \GeorgRinger\News\Controller\NewsController::class => 'searchForm,searchResult',
-        ]
+            \GeorgRinger\News\Controller\NewsController::class => 'searchForm',
+        ],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'News',
+        'NewsSearchResult',
+        [
+            \GeorgRinger\News\Controller\NewsController::class => 'searchResult',
+        ],
+        [
+            \GeorgRinger\News\Controller\NewsController::class => 'searchResult',
+        ],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'News',
+        'CategoryList',
+        [
+            \GeorgRinger\News\Controller\CategoryController::class => 'list',
+        ],
+        [],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'News',
+        'TagList',
+        [
+            \GeorgRinger\News\Controller\TagController::class => 'list',
+        ],
+        [],
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
 
     // Page module hook
@@ -35,15 +109,15 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing']['news']
         = \GeorgRinger\News\Hooks\FlexformHook::class;
 
-    // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
-        'depends' => [
-            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexPrepare::class,
-        ],
-        'before' => [
-            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexProcess::class,
-        ],
-    ];
+//    // Modify flexform fields since core 8.5 via formEngine: Inject a data provider between TcaFlexPrepare and TcaFlexProcess
+//    $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation::class] = [
+//        'depends' => [
+//            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexPrepare::class,
+//        ],
+//        'before' => [
+//            \TYPO3\CMS\Backend\Form\FormDataProvider\TcaFlexProcess::class,
+//        ],
+//    ];
 
     // Hide content elements in list module & filter in administration module
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Recordlist\RecordList\DatabaseRecordList::class]['modifyQuery']['ext:news']
@@ -102,7 +176,7 @@ $boot = static function (): void {
         ],
         'options' => [
             'defaultLifetime' => 0,
-        ]
+        ],
     ];
 
     if (class_exists(\GeorgRinger\News\Utility\ClassLoader::class)) {
@@ -114,7 +188,7 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][\GeorgRinger\News\Backend\FormDataProvider\NewsRowInitializeNew::class] = [
         'depends' => [
             \TYPO3\CMS\Backend\Form\FormDataProvider\DatabaseRowInitializeNew::class,
-        ]
+        ],
     ];
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['realurlAliasNewsSlug'] = \GeorgRinger\News\Updates\RealurlAliasNewsSlugUpdater::class; // Recommended before 'newsSlug'
@@ -142,7 +216,7 @@ $boot = static function (): void {
                 'tx_news_pi1[overwriteDemand][categories]',
                 'tx_news_pi1[overwriteDemand][year]',
                 'tx_news_pi1[overwriteDemand][month]',
-                'tx_news_pi1[overwriteDemand][day]'
+                'tx_news_pi1[overwriteDemand][day]',
             ]
         );
     }

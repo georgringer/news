@@ -1,453 +1,516 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news">
-		<header/>
-		<body>
-			<trans-unit id="pi1_title" xml:space="preserve">
+    <file source-language="en" datatype="plaintext" original="messages" date="2014-06-02T11:47:18Z" product-name="news">
+        <header/>
+        <body>
+            <trans-unit id="pi1_title" xml:space="preserve">
 				<source>News system</source>
 			</trans-unit>
-			<trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
+            <trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
 				<source>Versatile news system</source>
 			</trans-unit>
-			<trans-unit id="flexforms_tab.settings" xml:space="preserve">
-				<source>Settings</source>
+			<trans-unit id="plugin.news_list.title" xml:space="preserve">
+				<source>List + Detail</source>
 			</trans-unit>
-			<trans-unit id="flexforms_tab.additional" xml:space="preserve">
-				<source>Additional</source>
+			<trans-unit id="plugin.news_list.description" xml:space="preserve">
+				<source>pi1 descr</source>
 			</trans-unit>
-			<trans-unit id="flexforms_tab.template" xml:space="preserve">
-				<source>Template</source>
+            <trans-unit id="plugin.news_list_sticky.title" xml:space="preserve">
+				<source>Sticky news list view</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode" xml:space="preserve">
-				<source>What to display</source>
+            <trans-unit id="plugin.news_list_sticky.description" xml:space="preserve">
+				<source>The list view does always show the list and never switches to a detail view</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.news_list" xml:space="preserve">
-				<source>List view</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve">
-				<source>List view (without overloading detail view)</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve">
+
+            <trans-unit id="plugin.news_detail.title" xml:space="preserve">
 				<source>Detail view</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve">
-				<source>Search form</source>
+            <trans-unit id="plugin.news_detail.description" xml:space="preserve">
+				<source>Detail view descr</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve">
-				<source>Search result</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve">
+            <trans-unit id="plugin.news_datemenu.title" xml:space="preserve">
 				<source>Date menu</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve">
-				<source>List of selected items</source>
+            <trans-unit id="plugin.news_datemenu.description" xml:space="preserve">
+				<source>date menu description</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
-				<source>Category Menu</source>
+            <trans-unit id="plugin.news_search_form.title" xml:space="preserve">
+				<source>Search form</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve">
-				<source>No view yet configured</source>
+            <trans-unit id="plugin.news_search_form.description" xml:space="preserve">
+				<source>news_search_form descr</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve">
-				<source>Search</source>
+            <trans-unit id="plugin.news_search_result.title" xml:space="preserve">
+				<source>Search result</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
-				<source>Others</source>
+            <trans-unit id="plugin.news_search_result.description" xml:space="preserve">
+				<source>news_search_result descr</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve">
-				<source>Tag list</source>
+            <trans-unit id="plugin.news_selected_list.title" xml:space="preserve">
+				<source>Selected list of articles</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve">
-				<source>Archive</source>
+            <trans-unit id="plugin.news_selected_list.description" xml:space="preserve">
+				<source>Render a manually picked list of articles</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve">
-				<source>Only active (non archived)</source>
+            <trans-unit id="plugin.news_date_menu.title" xml:space="preserve">
+				<source>Menu of dates of articles</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve">
-				<source>Archived</source>
+            <trans-unit id="plugin.news_date_menu.description" xml:space="preserve">
+				<source>news_date_menu descr</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.orderBy" xml:space="preserve">
-				<source>Sort by</source>
+            <trans-unit id="plugin.category_list.title" xml:space="preserve">
+				<source>Categories</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
-				<source>Uid</source>
+            <trans-unit id="plugin.category_list.description" xml:space="preserve">
+				<source>category_list desctr</source>
 			</trans-unit>
-			<trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve">
-				<source>Manual sorting</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve">
-				<source>Last edited</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve">
-				<source>Created</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve">
-				<source>Given date/time</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
-				<source>Title</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
-				<source>Sort direction</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve">
-				<source>Ascending</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve">
-				<source>Descending</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.dateField" xml:space="preserve">
-				<source>Date field to use</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve">
-				<source>Given date/time</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.dateField.archive" xml:space="preserve">
-				<source>Archive date</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.categories" xml:space="preserve">
-				<source>Category selection</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve">
-				<source>Category mode</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve">
-				<source>Don't care, show all</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve">
-				<source>Show items with selected categories (OR)</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve">
-				<source>Show items with selected categories (AND)</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve">
-				<source>Do NOT show items with selected categories (AND)</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve">
-				<source>Do NOT show items with selected categories (OR)</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve">
-				<source>Include subcategories</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
-				<source>Article date higher than:</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve">
-				<source>Article date lower than:</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve">
-				<source>Top News</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.topNewsRestriction.1" xml:space="preserve">
-				<source>only Top News records</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.topNewsRestriction.2" xml:space="preserve">
-				<source>except Top News records</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.singleNews" xml:space="preserve">
-				<source>Show a single news record</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve">
-				<source>Allow preview of hidden records</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve">
-				<source>No</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve">
-				<source>Yes</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve">
-				<source>Defined in TypoScript</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve">
-				<source>Defined in TypoScript</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
-				<source>[no constraint]</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.selectedList" xml:space="preserve">
-				<source>List of articles</source>
-			</trans-unit>
-			<trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
-				<source>Max width for media elements</source>
-			</trans-unit>
-			<trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve">
-				<source>Max height for media elements</source>
-			</trans-unit>
-			<trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve">
-				<source>Length of teaser (in chars)</source>
-			</trans-unit>
-			<trans-unit id="flexforms_template.templateLayout" xml:space="preserve">
-				<source>Template Layout</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
-				<source>1</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
-				<source>2</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.detailPid" xml:space="preserve">
-				<source>PageId for single news display</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.backPid" xml:space="preserve">
-				<source>PageId to return to</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.listPid" xml:space="preserve">
-				<source>PageId for list display</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.limit" xml:space="preserve">
-				<source>Max records displayed</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.offset" xml:space="preserve">
-				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.hidePagination" xml:space="preserve">
-				<source>Hide the pagination</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve">
-				<source>Items per Page</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve">
-				<source>Sort &quot;Top news&quot; before</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve">
-				<source>Disable override demand</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve">
-				<source>Exclude already displayed news</source>
-			</trans-unit>
-			<trans-unit id="flexforms_additional.tags" xml:space="preserve">
+			<trans-unit id="plugin.tag_list.title" xml:space="preserve">
 				<source>Tags</source>
 			</trans-unit>
-			<trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
+            <trans-unit id="plugin.tag_list.description" xml:space="preserve">
+				<source>tag descr</source>
+			</trans-unit>
+
+
+            <trans-unit id="flexforms_tab.settings" xml:space="preserve">
+				<source>Settings</source>
+			</trans-unit>
+            <trans-unit id="flexforms_tab.additional" xml:space="preserve">
+				<source>Additional</source>
+			</trans-unit>
+            <trans-unit id="flexforms_tab.template" xml:space="preserve">
+				<source>Template</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode" xml:space="preserve">
+				<source>What to display</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.news_list" xml:space="preserve">
+				<source>List view</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.news_listOnly" xml:space="preserve">
+				<source>List view (without overloading detail view)</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.news_detail" xml:space="preserve">
+				<source>Detail view</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.news_searchform" xml:space="preserve">
+				<source>Search form</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.news_searchresult" xml:space="preserve">
+				<source>Search result</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.news_datemenu" xml:space="preserve">
+				<source>Date menu</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.news_selectedlist" xml:space="preserve">
+				<source>List of selected items</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.category_list" xml:space="preserve">
+				<source>Category Menu</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.not_configured" xml:space="preserve">
+				<source>No view yet configured</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.optgroup_search" xml:space="preserve">
+				<source>Search</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.optgroup_others" xml:space="preserve">
+				<source>Others</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.mode.tag_list" xml:space="preserve">
+				<source>Tag list</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.archiveRestriction" xml:space="preserve">
+				<source>Archive</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.archiveRestriction.active" xml:space="preserve">
+				<source>Only active (non archived)</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.archiveRestriction.archived" xml:space="preserve">
+				<source>Archived</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderBy" xml:space="preserve">
+				<source>Sort by</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderBy.uid" xml:space="preserve">
+				<source>Uid</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderBy.sorting" xml:space="preserve">
+				<source>Manual sorting</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderBy.tstamp" xml:space="preserve">
+				<source>Last edited</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderBy.crdate" xml:space="preserve">
+				<source>Created</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderBy.datetime" xml:space="preserve">
+				<source>Given date/time</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderBy.title" xml:space="preserve">
+				<source>Title</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderDirection" xml:space="preserve">
+				<source>Sort direction</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderDirection.asc" xml:space="preserve">
+				<source>Ascending</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.orderDirection.desc" xml:space="preserve">
+				<source>Descending</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.dateField" xml:space="preserve">
+				<source>Date field to use</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.dateField.datetime" xml:space="preserve">
+				<source>Given date/time</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.dateField.archive" xml:space="preserve">
+				<source>Archive date</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.categories" xml:space="preserve">
+				<source>Category selection</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.categoryConjunction" xml:space="preserve">
+				<source>Category mode</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.categoryConjunction.all" xml:space="preserve">
+				<source>Don't care, show all</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.categoryConjunction.or" xml:space="preserve">
+				<source>Show items with selected categories (OR)</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.categoryConjunction.and" xml:space="preserve">
+				<source>Show items with selected categories (AND)</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.categoryConjunction.notand" xml:space="preserve">
+				<source>Do NOT show items with selected categories (AND)</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.categoryConjunction.notor" xml:space="preserve">
+				<source>Do NOT show items with selected categories (OR)</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.includeSubCategories" xml:space="preserve">
+				<source>Include subcategories</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.timeRestriction" xml:space="preserve">
+				<source>Article date higher than:</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.timeRestrictionHigh" xml:space="preserve">
+				<source>Article date lower than:</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.topNewsRestriction" xml:space="preserve">
+				<source>Top News</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.topNewsRestriction.1" xml:space="preserve">
+				<source>only Top News records</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.topNewsRestriction.2" xml:space="preserve">
+				<source>except Top News records</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.singleNews" xml:space="preserve">
+				<source>Show a single news record</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.previewHiddenRecords" xml:space="preserve">
+				<source>Allow preview of hidden records</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.previewHiddenRecords.I.0" xml:space="preserve">
+				<source>No</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.previewHiddenRecords.I.1" xml:space="preserve">
+				<source>Yes</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.previewHiddenRecords.I.2" xml:space="preserve">
+				<source>Defined in TypoScript</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.recursive.I.inherit" xml:space="preserve">
+				<source>Defined in TypoScript</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.no-constraint" xml:space="preserve">
+				<source>[no constraint]</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.selectedList" xml:space="preserve">
+				<source>List of articles</source>
+			</trans-unit>
+            <trans-unit id="flexforms_template.mediaMaxWidth" xml:space="preserve">
+				<source>Max width for media elements</source>
+			</trans-unit>
+            <trans-unit id="flexforms_template.mediaMaxHeight" xml:space="preserve">
+				<source>Max height for media elements</source>
+			</trans-unit>
+            <trans-unit id="flexforms_template.cropMaxCharacters" xml:space="preserve">
+				<source>Length of teaser (in chars)</source>
+			</trans-unit>
+            <trans-unit id="flexforms_template.templateLayout" xml:space="preserve">
+				<source>Template Layout</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.templateSwitch.1" xml:space="preserve">
+				<source>1</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.templateSwitch.2" xml:space="preserve">
+				<source>2</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.detailPid" xml:space="preserve">
+				<source>PageId for single news display</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.backPid" xml:space="preserve">
+				<source>PageId to return to</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.listPid" xml:space="preserve">
+				<source>PageId for list display</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.limit" xml:space="preserve">
+				<source>Max records displayed</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.offset" xml:space="preserve">
+				<source>Starting with given news record. 0 means first record, 1 the 2nd one!</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.hidePagination" xml:space="preserve">
+				<source>Hide the pagination</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.itemsPerPage" xml:space="preserve">
+				<source>Items per Page</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.topNewsFirst" xml:space="preserve">
+				<source>Sort &quot;Top news&quot; before</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.disableOverrideDemand" xml:space="preserve">
+				<source>Disable override demand</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.excludeAlreadyDisplayedNews" xml:space="preserve">
+				<source>Exclude already displayed news</source>
+			</trans-unit>
+            <trans-unit id="flexforms_additional.tags" xml:space="preserve">
+				<source>Tags</source>
+			</trans-unit>
+            <trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
 				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
 			</trans-unit>
-			<trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
+            <trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
 				<source>Record with uid "%s" is not available anymore!</source>
 			</trans-unit>
-			<trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve">
+            <trans-unit id="pagemodule.newsNotAvailable" xml:space="preserve">
 				<source>News record with uid &quot;%s&quot; is not available anymore!</source>
 			</trans-unit>
-			<trans-unit id="pagemodule.switchToPage" xml:space="preserve">
+            <trans-unit id="pagemodule.switchToPage" xml:space="preserve">
 				<source>Switch to this page</source>
 			</trans-unit>
-			<trans-unit id="pagemodule_simple" xml:space="preserve">
+            <trans-unit id="pagemodule_simple" xml:space="preserve">
 				<source>Simple list</source>
 			</trans-unit>
-			<trans-unit id="pagemodule_advanced" xml:space="preserve">
+            <trans-unit id="pagemodule_advanced" xml:space="preserve">
 				<source>Advanced list</source>
 			</trans-unit>
-			<trans-unit id="pagemodule_complex" xml:space="preserve">
+            <trans-unit id="pagemodule_complex" xml:space="preserve">
 				<source>Full list</source>
 			</trans-unit>
-			<trans-unit id="extmng.prependAtCopy" xml:space="preserve">
+            <trans-unit id="extmng.prependAtCopy" xml:space="preserve">
 				<source>Prepend at copy: Prepend string &quot;copy X&quot;.</source>
 			</trans-unit>
-			<trans-unit id="extmng.categoryRestriction" xml:space="preserve">
+            <trans-unit id="extmng.categoryRestriction" xml:space="preserve">
 				<source>Category restriction: Restrict the available categories in news records. PageTsConfig:
 				TCEFORM.tx_news_domain_model_news.categories.PAGE_TSCONFIG_IDLIST=120. This feature is currently under development and not beeing expected to work!
 			</source>
 			</trans-unit>
-			<trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
+            <trans-unit id="extmng.categoryRestriction.current_pid" xml:space="preserve">
 				<source>Categories from current page</source>
 			</trans-unit>
-			<trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve">
+            <trans-unit id="extmng.categoryRestriction.siteroot" xml:space="preserve">
 				<source>Categories from site root</source>
 			</trans-unit>
-			<trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve">
+            <trans-unit id="extmng.categoryRestriction.pages_tsconfig" xml:space="preserve">
 				<source>Page TsConfig</source>
 			</trans-unit>
-			<trans-unit id="extmng.categoryRestriction.none" xml:space="preserve">
+            <trans-unit id="extmng.categoryRestriction.none" xml:space="preserve">
 				<source>No restriction</source>
 			</trans-unit>
-			<trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve">
+            <trans-unit id="extmng.categoryBeGroupTceFormsRestriction" xml:space="preserve">
 				<source>Editor needs to have permissions to all selected categories to save a news item</source>
 			</trans-unit>
-			<trans-unit id="extmng.manualSorting" xml:space="preserve">
+            <trans-unit id="extmng.manualSorting" xml:space="preserve">
 				<source>Enable manual sorting of news records</source>
 			</trans-unit>
-			<trans-unit id="extmng.contentElementRelation" xml:space="preserve">
+            <trans-unit id="extmng.contentElementRelation" xml:space="preserve">
 				<source>Use content element relation:If set, content elements can be added to news records.</source>
 			</trans-unit>
-			<trans-unit id="extmng.contentElementPreview" xml:space="preserve">
+            <trans-unit id="extmng.contentElementPreview" xml:space="preserve">
 				<source>Improved preview of content element relations:If set, the preview in the backend is rendered as in the page module.</source>
 			</trans-unit>
-			<trans-unit id="extmng.tagPid" xml:space="preserve">
+            <trans-unit id="extmng.tagPid" xml:space="preserve">
 				<source>Define pid of tag records:Tags are collected on one central page.</source>
 			</trans-unit>
-			<trans-unit id="extmng.archiveDate" xml:space="preserve">
+            <trans-unit id="extmng.archiveDate" xml:space="preserve">
 				<source>Archive Date: Define if the archive date is a &quot;Date&quot; or &quot;Date &amp; Time&quot;</source>
 			</trans-unit>
-			<trans-unit id="extmng.archiveDate.date" xml:space="preserve">
+            <trans-unit id="extmng.archiveDate.date" xml:space="preserve">
 				<source>Date</source>
 			</trans-unit>
-			<trans-unit id="extmng.archiveDate.datetime" xml:space="preserve">
+            <trans-unit id="extmng.archiveDate.datetime" xml:space="preserve">
 				<source>Date &amp; Time</source>
 			</trans-unit>
-			<trans-unit id="extmng.showImporter" xml:space="preserve">
+            <trans-unit id="extmng.showImporter" xml:space="preserve">
 				<source>Show importer:Backend module to import into news</source>
 			</trans-unit>
-			<trans-unit id="extmng.storageUidImporter" xml:space="preserve">
+            <trans-unit id="extmng.storageUidImporter" xml:space="preserve">
 				<source>UID of storage to use when importing files/images:Default (fileadmin) storage is 1</source>
 			</trans-unit>
-			<trans-unit id="extmng.resourceFolderImporter" xml:space="preserve">
+            <trans-unit id="extmng.resourceFolderImporter" xml:space="preserve">
 				<source>In which folder should the importer save files/images (has to exist)</source>
 			</trans-unit>
-			<trans-unit id="extmng.showAdministrationModule" xml:space="preserve">
+            <trans-unit id="extmng.showAdministrationModule" xml:space="preserve">
 				<source>Show administration module:Backend module to administrate news records</source>
 			</trans-unit>
-			<trans-unit id="extmng.rteForTeaser" xml:space="preserve">
+            <trans-unit id="extmng.rteForTeaser" xml:space="preserve">
 				<source>Enable a RTE for the teaser field.</source>
 			</trans-unit>
-			<trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve">
+            <trans-unit id="extmng.dateTimeNotRequired" xml:space="preserve">
 				<source>Disable required date field:If set, the date field is not required and not filled automatically when creating a new record.</source>
 			</trans-unit>
-			<trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
+            <trans-unit id="extmng.hidePageTreeForAdministrationModule" xml:space="preserve">
 				<source>Hide page tree for Administration module: To simplify the usability, hide the page tree for the administration module.</source>
 			</trans-unit>
-			<trans-unit id="extmng.mediaPreview" xml:space="preserve">
+            <trans-unit id="extmng.mediaPreview" xml:space="preserve">
 				<source>Show thumbnails in backend list module: If enabled, the list module will show thumbnails of the media items.</source>
 			</trans-unit>
-			<trans-unit id="extmng.advancedMediaPreview" xml:space="preserve">
+            <trans-unit id="extmng.advancedMediaPreview" xml:space="preserve">
 				<source>Advanced preview configuration for media files: If enabled, more options are available for editors defining where an media element should be displayed.</source>
 			</trans-unit>
-			<trans-unit id="extmng.slugBehaviour" xml:space="preserve">
+            <trans-unit id="extmng.slugBehaviour" xml:space="preserve">
 				<source>Slug behaviour: uniqueInSite: The same slug can be used for news in different sites. Use this setting *only* if no news records are shared between sites. "unique" means that same news title will lead to different slug names.</source>
 			</trans-unit>
-			<trans-unit id="usersettings.overlay" xml:space="preserve">
+            <trans-unit id="usersettings.overlay" xml:space="preserve">
 				<source>Use this overlay for news categories in the Backend</source>
 			</trans-unit>
-			<trans-unit id="usersettings.no-languages-available" xml:space="preserve">
+            <trans-unit id="usersettings.no-languages-available" xml:space="preserve">
 				<source>There are no languages available, so nothing to choose.</source>
 			</trans-unit>
-			<trans-unit id="start_import" xml:space="preserve">
+            <trans-unit id="start_import" xml:space="preserve">
 				<source>Start import with %s record(s).</source>
 			</trans-unit>
-			<trans-unit id="tag_suggest" xml:space="preserve">
+            <trans-unit id="tag_suggest" xml:space="preserve">
 				<source>Tag &quot;%s&quot; could not be found, wanna create it? &lt;strong&gt;Click here&lt;/strong&gt;</source>
 			</trans-unit>
-			<trans-unit id="tag_suggest2" xml:space="preserve">
+            <trans-unit id="tag_suggest2" xml:space="preserve">
 				<source>Tag could not be found, wanna create it? Click here!</source>
 			</trans-unit>
-			<trans-unit id="tag_suggest_error_no-tag" xml:space="preserve">
+            <trans-unit id="tag_suggest_error_no-tag" xml:space="preserve">
 				<source>No tag submitted!</source>
 			</trans-unit>
-			<trans-unit id="tag_suggest_error_no-newsid" xml:space="preserve">
+            <trans-unit id="tag_suggest_error_no-newsid" xml:space="preserve">
 				<source>No news id given!</source>
 			</trans-unit>
-			<trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve">
+            <trans-unit id="tag_suggest_error_no-pid-found" xml:space="preserve">
 				<source>No pid for the tag record could be found by reading settings of Extension Manager!</source>
 			</trans-unit>
-			<trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve">
+            <trans-unit id="tag_suggest_error_no-tag-created" xml:space="preserve">
 				<source>No new tag created!</source>
 			</trans-unit>
-			<trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve">
+            <trans-unit id="tag_suggest_error_no-pid-defined" xml:space="preserve">
 				<source>No page defined to save tag. Please add the id in the settings of the extension manager.</source>
 			</trans-unit>
-			<trans-unit id="module.headline" xml:space="preserve">
+            <trans-unit id="module.headline" xml:space="preserve">
 				<source>Settings</source>
 			</trans-unit>
-			<trans-unit id="module.recursive" xml:space="preserve">
+            <trans-unit id="module.recursive" xml:space="preserve">
 				<source>Recursive</source>
 			</trans-unit>
-			<trans-unit id="module.timeRange" xml:space="preserve">
+            <trans-unit id="module.timeRange" xml:space="preserve">
 				<source>Time range</source>
 			</trans-unit>
-			<trans-unit id="module.timeRestriction" xml:space="preserve">
+            <trans-unit id="module.timeRestriction" xml:space="preserve">
 				<source>Time Restriction</source>
 			</trans-unit>
-			<trans-unit id="module.timeRestrictionHigh" xml:space="preserve">
+            <trans-unit id="module.timeRestrictionHigh" xml:space="preserve">
 				<source>Time Restriction High</source>
 			</trans-unit>
-			<trans-unit id="module.createNewCategory" xml:space="preserve">
+            <trans-unit id="module.createNewCategory" xml:space="preserve">
 				<source>Create a new category</source>
 			</trans-unit>
-			<trans-unit id="module.createNewNewsRecord" xml:space="preserve">
+            <trans-unit id="module.createNewNewsRecord" xml:space="preserve">
 				<source>Create new news record</source>
 			</trans-unit>
-			<trans-unit id="module.createNewTag" xml:space="preserve">
+            <trans-unit id="module.createNewTag" xml:space="preserve">
 				<source>Create new tag record</source>
 			</trans-unit>
-			<trans-unit id="module.topNewsYes" xml:space="preserve">
+            <trans-unit id="module.topNewsYes" xml:space="preserve">
 				<source>Yes</source>
 			</trans-unit>
-			<trans-unit id="module.topNewsNo" xml:space="preserve">
+            <trans-unit id="module.topNewsNo" xml:space="preserve">
 				<source>No</source>
 			</trans-unit>
-			<trans-unit id="module.searchWord" xml:space="preserve">
+            <trans-unit id="module.searchWord" xml:space="preserve">
 				<source>Search</source>
 			</trans-unit>
-			<trans-unit id="module.newsListing" xml:space="preserve">
+            <trans-unit id="module.newsListing" xml:space="preserve">
 				<source>News Listing</source>
 			</trans-unit>
-			<trans-unit id="module.newsCount" xml:space="preserve">
+            <trans-unit id="module.newsCount" xml:space="preserve">
 				<source>%s news records</source>
 			</trans-unit>
-			<trans-unit id="module.newsPidListing" xml:space="preserve">
+            <trans-unit id="module.newsPidListing" xml:space="preserve">
 				<source>News Pid listing</source>
 			</trans-unit>
-			<trans-unit id="module.donate" xml:space="preserve">
+            <trans-unit id="module.donate" xml:space="preserve">
 				<source>Support &amp; Donate</source>
 			</trans-unit>
-			<trans-unit id="administration.title" xml:space="preserve">
+            <trans-unit id="administration.title" xml:space="preserve">
 				<source>News administration</source>
 			</trans-unit>
-			<trans-unit id="administration.nopageselected" xml:space="preserve">
+            <trans-unit id="administration.nopageselected" xml:space="preserve">
 				<source>Please click the page title in the page tree to the left to show the records on that page.</source>
 			</trans-unit>
-			<trans-unit id="administration.newsPidListing.header" xml:space="preserve">
+            <trans-unit id="administration.newsPidListing.header" xml:space="preserve">
 				<source>List pages with count of news &amp; category records</source>
 			</trans-unit>
-			<trans-unit id="administration.newsPidListing.description" xml:space="preserve">
+            <trans-unit id="administration.newsPidListing.description" xml:space="preserve">
 				<source>Choose a recursive level to display your page tree with the related entries. Click on the page title to show the news entries of the page.
 			</source>
 			</trans-unit>
-			<trans-unit id="administration.nolimit" xml:space="preserve">
+            <trans-unit id="administration.nolimit" xml:space="preserve">
 				<source>No limit defined in setting &quot;%s&quot;! Include the default TypoScript in the root page.</source>
 			</trans-unit>
-			<trans-unit id="administration.toggleForm" xml:space="preserve">
+            <trans-unit id="administration.toggleForm" xml:space="preserve">
 				<source>Show/Hide filter</source>
 			</trans-unit>
-			<trans-unit id="administration.nonewsfound" xml:space="preserve">
+            <trans-unit id="administration.nonewsfound" xml:space="preserve">
 				<source>No news found</source>
 			</trans-unit>
-			<trans-unit id="administration.nonewsfoundText" xml:space="preserve">
+            <trans-unit id="administration.nonewsfoundText" xml:space="preserve">
 				<source>The current page does not contain any news records. Either select another page in the page tree on the left or create the first news record on this page.</source>
 			</trans-unit>
-			<trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve">
+            <trans-unit id="administration.nonewsfoundSwitch" xml:space="preserve">
 				<source>See all pages containing news records</source>
 			</trans-unit>
-			<trans-unit id="administration.filter.hidden" xml:space="preserve">
+            <trans-unit id="administration.filter.hidden" xml:space="preserve">
 				<source>Hidden</source>
 			</trans-unit>
-			<trans-unit id="administration.filter.hidden.hidden" xml:space="preserve">
+            <trans-unit id="administration.filter.hidden.hidden" xml:space="preserve">
 				<source>only hidden</source>
 			</trans-unit>
-			<trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve">
+            <trans-unit id="administration.filter.hidden.nonHidden" xml:space="preserve">
 				<source>only non-hidden</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.title" xml:space="preserve">
+            <trans-unit id="administration.donation.title" xml:space="preserve">
 				<source>Support &amp; Donate</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.link" xml:space="preserve">
+            <trans-unit id="administration.donation.link" xml:space="preserve">
 				<source>Click so see all options</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.lead_intro" xml:space="preserve">
+            <trans-unit id="administration.donation.lead_intro" xml:space="preserve">
 				<source>Great that you are using this extension!</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.lead_full" xml:space="preserve">
+            <trans-unit id="administration.donation.lead_full" xml:space="preserve">
 				<source>The editors have created %d articles with %d relations to categories.</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.lead_news_only" xml:space="preserve">
+            <trans-unit id="administration.donation.lead_news_only" xml:space="preserve">
 				<source>The editors have created %d articles.</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.lead_none" xml:space="preserve">
+            <trans-unit id="administration.donation.lead_none" xml:space="preserve">
 				<source>Did you just setup the system? No articles yet created.</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.support" xml:space="preserve">
+            <trans-unit id="administration.donation.support" xml:space="preserve">
 				<source>Help supporting further development</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.why" xml:space="preserve">
+            <trans-unit id="administration.donation.why" xml:space="preserve">
 				<source>Why?</source>
 			</trans-unit>
             <trans-unit id="administration.donation.why.text" xml:space="preserve">
@@ -482,74 +545,75 @@
             <trans-unit id="administration.donation.paypal.text" xml:space="preserve">
 				<source>Support me by a donation on paypal.com. It is just one click away.</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.amazon" xml:space="preserve">
+            <trans-unit id="administration.donation.amazon" xml:space="preserve">
 				<source>Amazon wishlist</source>
 			</trans-unit>
             <trans-unit id="administration.donation.amazon.sub" xml:space="preserve">
 				<source>Satisfy a wish of my Amazon wishlist</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.amazon.text" xml:space="preserve">
+            <trans-unit id="administration.donation.amazon.text" xml:space="preserve">
 				<source>Most of the listed products are for my family and our hobby cooking. Make us happy!</source>
 			</trans-unit>
             <trans-unit id="administration.donation.sponsors" xml:space="preserve">
 				<source>Current sponsors</source>
 			</trans-unit>
-			<trans-unit id="administration.donation.sponsors.text" xml:space="preserve">
+            <trans-unit id="administration.donation.sponsors.text" xml:space="preserve">
 				<source>The following companies and people have already supported me.</source>
 			</trans-unit>
-			<trans-unit id="news-folder" xml:space="preserve">
+            <trans-unit id="news-folder" xml:space="preserve">
 				<source>News</source>
 			</trans-unit>
-			<trans-unit id="news-page" xml:space="preserve">
+            <trans-unit id="news-page" xml:space="preserve">
 				<source>Page with news plugins</source>
 			</trans-unit>
 
-			<trans-unit id="import.header" xml:space="preserve">
+            <trans-unit id="import.header" xml:space="preserve">
 				<source>News Importer</source>
 			</trans-unit>
 
-			<trans-unit id="import.choose_a_job" xml:space="preserve">
+            <trans-unit id="import.choose_a_job" xml:space="preserve">
 				<source>Choose a job</source>
 			</trans-unit>
-			<trans-unit id="import.description" xml:space="preserve">
+            <trans-unit id="import.description" xml:space="preserve">
 				<source>This is the "News importer module". </source>
 			</trans-unit>
-			<trans-unit id="import.done" xml:space="preserve">
+            <trans-unit id="import.done" xml:space="preserve">
 				<source>The import has been completed. Reload the module to start a new one.</source>
 			</trans-unit>
-			<trans-unit id="import.backupwarning" xml:space="preserve">
+            <trans-unit id="import.backupwarning" xml:space="preserve">
 				<source>It's strongly recommended to backup all news tables before running an import job.</source>
 			</trans-unit>
-			<trans-unit id="import.backupwarning.header" xml:space="preserve">
+            <trans-unit id="import.backupwarning.header" xml:space="preserve">
 				<source>Important!</source>
 			</trans-unit>
-			<trans-unit id="import.nojobs" xml:space="preserve">
+            <trans-unit id="import.nojobs" xml:space="preserve">
 				<source>No jobs available for the importer.</source>
 			</trans-unit>
-			<trans-unit id="import.error.configuration.title" xml:space="preserve">
+            <trans-unit id="import.error.configuration.title" xml:space="preserve">
 				<source>The configuration for the import is incomplete!</source>
 			</trans-unit>
-			<trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve">
+            <trans-unit id="import.error.configuration.resourceFolderImporter" xml:space="preserve">
 				<source>Please define the setting "resourceFolderImporter" in the configuration of the extension manager! The given directory will contain all imported files.</source>
 			</trans-unit>
-			<trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve">
+            <trans-unit id="import.error.configuration.resourceFolderImporter.notExist" xml:space="preserve">
 				<source>The directory defined in the setting "resourceFolderImporter" does not exist!</source>
 			</trans-unit>
-			<trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve">
+            <trans-unit id="import.error.configuration.storageUidImporter" xml:space="preserve">
 				<source>Please define the setting "storageUidImporter" in the configuration of the extension manager! The given id is the used file storage.</source>
 			</trans-unit>
-			<trans-unit id="record.savingdisabled.header">
-				<source>Saving is disabled</source>
-			</trans-unit>
-			<trans-unit id="record.savingdisabled.content">
-				<source>This record has the following categories assigned that are not defined in your permissions:</source>
-			</trans-unit>
-			<trans-unit id="hiddenContentElements.title">
-				<source>Content elements are hidden</source>
-			</trans-unit>
-			<trans-unit id="hiddenContentElements.description">
-				<source>Content elements are hidden in sys folders of type "news"!</source>
-			</trans-unit>
-		</body>
-	</file>
+            <trans-unit id="record.savingdisabled.header">
+                <source>Saving is disabled</source>
+            </trans-unit>
+            <trans-unit id="record.savingdisabled.content">
+                <source>This record has the following categories assigned that are not defined in your permissions:
+                </source>
+            </trans-unit>
+            <trans-unit id="hiddenContentElements.title">
+                <source>Content elements are hidden</source>
+            </trans-unit>
+            <trans-unit id="hiddenContentElements.description">
+                <source>Content elements are hidden in sys folders of type "news"!</source>
+            </trans-unit>
+        </body>
+    </file>
 </xliff>
