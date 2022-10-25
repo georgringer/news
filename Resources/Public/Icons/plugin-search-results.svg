@@ -10,29 +10,30 @@
 	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
 	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
 ]>
-<svg version="1.1" id="detail" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+<svg version="1.1" id="europa-icons" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="96px" height="96px"
 	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#FAFAFA;}
-	.st1{fill:#FFFFFF;}
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#999999;}
 	.st2{fill:#7D83DE;}
-	.st3{fill:#999999;}
-	.st4{fill:#E84F35;}
-	.st5{fill:#D2D3F1;}
-	.st6{fill:#AFB2E9;}
-	.st7{fill:none;stroke:#FAFAFA;stroke-miterlimit:10;}
-	.st8{fill:none;stroke:#FAFAFA;stroke-linecap:round;stroke-miterlimit:10;}
+	.st3{fill:#E84F35;}
+	.st4{fill:#FAFAFA;}
 </style>
 <metadata>
 	<sfw  xmlns="&ns_sfw;">
 		<slices></slices>
-		<sliceSourceBounds  bottomLeftOrigin="true" height="46" width="176" x="0" y="-46"></sliceSourceBounds>
+		<sliceSourceBounds  bottomLeftOrigin="true" height="16" width="176" x="0" y="-16"></sliceSourceBounds>
 	</sfw>
 </metadata>
-<rect class="st1" width="16" height="16"/>
-<path class="st2" d="M0,0v16h16V0H0z M15,15H1V1h14V15z"/>
-<path class="st2" d="M7,3.5C5.1,3.5,3.5,5.1,3.5,7s1.6,3.5,3.5,3.5s3.5-1.6,3.5-3.5S8.9,3.5,7,3.5z M7,9.5C5.6,9.5,4.5,8.4,4.5,7
-	c0-1.4,1.1-2.5,2.5-2.5S9.5,5.6,9.5,7C9.5,8.4,8.4,9.5,7,9.5z"/>
-<rect x="8.5" y="10.1" transform="matrix(0.7071 0.7071 -0.7071 0.7071 10.6176 -4.398)" class="st2" width="4.3" height="1"/>
+<g id="search-result">
+	<rect id="white_00000120559590449659841610000012954727859899179418_" class="st0" width="16" height="16"/>
+	<path id="lila_00000116195247343972504220000006491104826531938688_" class="st2" d="M0,0v16h16V0H0z M15,15H1V1h14V15z M7.5,6h-3
+		c-0.6,0-1-0.4-1-1v0c0-0.6,0.4-1,1-1h3c0.6,0,1,0.4,1,1v0C8.5,5.6,8.1,6,7.5,6z M13.2,6.8C13,7,12.7,7,12.5,6.8l-1-1
+		C11.3,5.9,11.1,6,10.9,6c-0.8,0-1.5-0.7-1.5-1.5S10.1,3,10.9,3s1.5,0.7,1.5,1.5c0,0.2-0.1,0.4-0.1,0.6l1,1
+		C13.4,6.3,13.4,6.6,13.2,6.8z M11.4,4.5c0-0.3-0.2-0.5-0.5-0.5c-0.3,0-0.5,0.2-0.5,0.5c0,0.3,0.2,0.5,0.5,0.5
+		C11.2,5,11.4,4.8,11.4,4.5z"/>
+	<path id="orange_00000005988347508771855840000017392882621966839470_" class="st3" d="M11.5,8h-8V7h8V8z M10.5,10h-7V9h7V10z
+		 M9.5,12h-6v-1h6V12z"/>
+</g>
 </svg>
