@@ -7,7 +7,6 @@ use GeorgRinger\News\Domain\Repository\NewsRepository;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\DateTimeAspect;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -24,7 +23,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 class NewsRepositoryTest extends FunctionalTestCase
 {
 
-    /** @var  \GeorgRinger\News\Domain\Repository\NewsRepository */
+    /** @var  NewsRepository */
     protected $newsRepository;
 
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
@@ -35,15 +34,10 @@ class NewsRepositoryTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-        if ($versionInformation->getMajorVersion() === 11) {
-            $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
-        } else {
-            $this->newsRepository = GeneralUtility::makeInstance(ObjectManager::class)->get(NewsRepository::class);
-        }
+        $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
 
-        $this->importDataSet(__DIR__ . '/../Fixtures/tags.xml');
-        $this->importDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.xml');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/tags.csv');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.csv');
     }
 
     /**

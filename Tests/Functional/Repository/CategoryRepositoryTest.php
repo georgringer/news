@@ -10,8 +10,6 @@ namespace GeorgRinger\News\Tests\Functional\Repository;
  */
 
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -20,7 +18,7 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 class CategoryRepositoryTest extends FunctionalTestCase
 {
 
-    /** @var  \GeorgRinger\News\Domain\Repository\CategoryRepository */
+    /** @var  CategoryRepository */
     protected $categoryRepository;
 
     protected $testExtensionsToLoad = ['typo3conf/ext/news'];
@@ -28,14 +26,9 @@ class CategoryRepositoryTest extends FunctionalTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-        if ($versionInformation->getMajorVersion() === 11) {
-            $this->categoryRepository = $this->getContainer()->get(CategoryRepository::class);
-        } else {
-            $this->categoryRepository = GeneralUtility::makeInstance(ObjectManager::class)->get(CategoryRepository::class);
-        }
+        $this->categoryRepository = $this->getContainer()->get(CategoryRepository::class);
 
-        $this->importDataSet(__DIR__ . '/../Fixtures/sys_category.xml');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/sys_category.csv');
     }
 
     /**

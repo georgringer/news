@@ -41,7 +41,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $this->news->_setProperty('uid', 123);
         $this->news->setPid(9);
 
-        $this->importDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.xml');
+        $this->importCSVDataSet(__DIR__ . '/../Fixtures/tx_news_domain_model_news.csv');
     }
 
     /**
