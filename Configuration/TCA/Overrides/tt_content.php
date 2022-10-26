@@ -14,11 +14,11 @@ foreach ($pluginConfig as $pluginName) {
     );
 
     $contentTypeName = 'news_' . str_replace('_', '', $pluginName);
+    $flexformFileName = in_array($pluginNameForLabel, ['news_search_result', 'news_list_sticky'], true) ? 'news_list' : $pluginNameForLabel;
 
-    // Add the FlexForm
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
         '*',
-        'FILE:EXT:news/Configuration/FlexForms/flexform_' . $pluginNameForLabel . '.xml',
+        'FILE:EXT:news/Configuration/FlexForms/flexform_' . $flexformFileName . '.xml',
         $contentTypeName
     );
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentTypeName] = 'ext-news-wizard-icon';

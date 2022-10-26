@@ -26,15 +26,6 @@ The sorting can be extended by adding the value to
 
 Default values are: tstamp,datetime,crdate,title
 
-Additional Actions
-^^^^^^^^^^^^^^^^^^
-If you need an additional action to select, you can extend it by using:
-
-.. code-block:: php
-
-   // Add an additional action: Key is "Controller->action", value is label
-   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems']['News->byFobar'] = 'A fobar action';
-
 Remove fields in additional actions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

@@ -17,7 +17,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_listOnly
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
             tt_content_defValues {
-                CType = news_list_sticky
+                CType = news_newsliststicky
             }
         }
 
@@ -26,7 +26,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_detail.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_detail.description
             tt_content_defValues {
-                CType = news_detail
+                CType = news_newsdetail
             }
         }
 
@@ -53,7 +53,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.category_list.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.category_list.description
             tt_content_defValues {
-                CType = news_category_list
+                CType = news_categorylist
             }
         }
 
@@ -62,7 +62,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_form.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_form.description
             tt_content_defValues {
-                CType = news_search_form
+                CType = news_newssearchform
             }
         }
 
@@ -71,7 +71,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_result.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_result.description
             tt_content_defValues {
-                CType = news_search_result
+                CType = news_newssearchresult
             }
         }
 

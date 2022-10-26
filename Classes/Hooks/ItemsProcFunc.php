@@ -166,38 +166,6 @@ class ItemsProcFunc
     }
 
     /**
-     * Modifies the selectbox of available actions
-     *
-     * @param array &$config
-     *
-     * @return void
-     */
-    public function user_switchableControllerActions(array &$config): void
-    {
-        if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'])) {
-            $configuration = (int)$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['list'];
-            switch ($configuration) {
-                case 1:
-                    $this->removeActionFromList($config, 'News->list');
-                    break;
-                case 2:
-                    $this->removeActionFromList($config, 'News->list;News->detail');
-                    break;
-                default:
-            }
-        }
-
-        // Add additional actions
-        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
-            && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'])
-        ) {
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['switchableControllerActions']['newItems'] as $key => $label) {
-                array_push($config['items'], [$this->getLanguageService()->sL($label), $key, '']);
-            }
-        }
-    }
-
-    /**
      * Remove given action from switchableControllerActions
      *
      * @param array $config available items
