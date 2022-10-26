@@ -141,7 +141,7 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
         if (!empty($constraints)) {
             $query->matching(
-                $query->logicalAnd($constraints)
+                $query->logicalAnd(...$constraints)
             );
         }
 
