@@ -21,16 +21,17 @@ class SlugPrefix
     public function getPrefix(array $parameters): string
     {
         $row = $parameters['row'];
+        $sysLanguageUid = is_array($row['sys_language_uid']) ? (int)$row['sys_language_uid'][0] : $row['sys_language_uid'];
         $pagesTsConfig = BackendUtility::getPagesTSconfig($row['pid']);
         $configuration = $pagesTsConfig['tx_news.']['slugPrefix'] ?? '';
         if ($configuration === 'none' || $configuration === '') {
             return '';
         }
         if ($configuration === 'default') {
-            return $this->getPrefixForSite($parameters['site'], $row['sys_language_uid']);
+            return $this->getPrefixForSite($parameters['site'], $sysLanguageUid);
         }
         if (MathUtility::canBeInterpretedAsInteger($configuration)) {
-            $prefix = $this->generateUrl($parameters['site'], (int)$configuration, $row['uid'], $row['sys_language_uid']);
+            $prefix = $this->generateUrl($parameters['site'], (int)$configuration, $row['uid'], $sysLanguageUid);
             return $this->stripNewsSegment($prefix, $parameters['row']['path_segment']);
         }
 
