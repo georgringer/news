@@ -79,7 +79,8 @@ class NewsController extends NewsBaseController
         NewsRepository $newsRepository,
         CategoryRepository $categoryRepository,
         TagRepository $tagRepository
-    ) {
+    )
+    {
         $this->newsRepository = $newsRepository;
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
@@ -121,7 +122,8 @@ class NewsController extends NewsBaseController
     protected function createDemandObjectFromSettings(
         array $settings,
         $class = NewsDemand::class
-    ): \GeorgRinger\News\Domain\Model\Dto\NewsDemand {
+    ): \GeorgRinger\News\Domain\Model\Dto\NewsDemand
+    {
         $class = isset($settings['demandClass']) && !empty($settings['demandClass']) ? $settings['demandClass'] : $class;
 
         /* @var $demand NewsDemand */
@@ -213,10 +215,8 @@ class NewsController extends NewsBaseController
      * Output a list view of news
      *
      * @param array|null $overwriteDemand
-     *
-     * @return void
      */
-    public function listAction(array $overwriteDemand = null)
+    public function listAction(array $overwriteDemand = null): ResponseInterface
     {
         $this->forwardToDetailActionWhenRequested();
 
@@ -277,6 +277,7 @@ class NewsController extends NewsBaseController
         ]);
 
         Cache::addPageCacheTagsByDemandObject($demand);
+        return $this->htmlResponse();
     }
 
     /**
@@ -333,7 +334,7 @@ class NewsController extends NewsBaseController
         $assignedValues = [
             'news' => $newsRecords,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsListSelectedActionEvent($this, $assignedValues, $this->request));
@@ -380,7 +381,7 @@ class NewsController extends NewsBaseController
             'newsItem' => $news,
             'currentPage' => (int)$currentPage,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsDetailActionEvent($this, $assignedValues, $this->request));
@@ -494,7 +495,7 @@ class NewsController extends NewsBaseController
             'news' => $newsRecords,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsDateMenuActionEvent($this, $assignedValues, $this->request));
@@ -509,7 +510,8 @@ class NewsController extends NewsBaseController
     public function searchFormAction(
         Search $search = null,
         array $overwriteDemand = []
-    ): ResponseInterface {
+    ): ResponseInterface
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -526,7 +528,7 @@ class NewsController extends NewsBaseController
             'search' => $search,
             'overwriteDemand' => $overwriteDemand,
             'demand' => $demand,
-            'settings' => $this->settings
+            'settings' => $this->settings,
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsSearchFormActionEvent($this, $assignedValues, $this->request));
@@ -541,7 +543,8 @@ class NewsController extends NewsBaseController
     public function searchResultAction(
         Search $search = null,
         array $overwriteDemand = []
-    ): ResponseInterface {
+    ): ResponseInterface
+    {
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
 
@@ -577,7 +580,7 @@ class NewsController extends NewsBaseController
                 'currentPage' => $currentPage,
                 'paginator' => $paginator,
                 'pagination' => $pagination,
-            ]
+            ],
         ];
 
         $event = $this->eventDispatcher->dispatch(new NewsSearchResultActionEvent($this, $assignedValues, $this->request));

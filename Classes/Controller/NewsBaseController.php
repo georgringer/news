@@ -28,23 +28,14 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 class NewsBaseController extends ActionController
 {
 
-    /**
-     * Initializes the view before invoking an action method.
-     * Override this method to solve assign variables common for all actions
-     * or prepare the view in another way before the action is called.
-     *
-     * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view The view to be initialized
-     *
-     * @return void
-     */
-    protected function initializeView(ViewInterface $view)
+
+    protected function initializeView($view)
     {
         $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
             $view->assign('pageData', $GLOBALS['TSFE']->page);
         }
-        parent::initializeView($view);
     }
 
 //    /**
