@@ -57,6 +57,7 @@
         "vendor-dir": ".Build/vendor",
         "bin-dir": ".Build/bin",
         "allow-plugins": {
+            "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": true,
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true
         }
