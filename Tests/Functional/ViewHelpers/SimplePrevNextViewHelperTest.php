@@ -29,8 +29,8 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
     /** @var News */
     protected $news;
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/news'];
-    protected $coreExtensionsToLoad = ['extbase', 'fluid'];
+    protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
+    protected array $coreExtensionsToLoad = ['extbase', 'fluid'];
 
     public function setUp(): void
     {
@@ -56,7 +56,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
 
         $exp = [
             'prev' => $this->getRow(102),
-            'next' => $this->getRow(104)
+            'next' => $this->getRow(104),
         ];
         $this->assertEquals($exp, $actual);
     }
@@ -73,7 +73,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $actual = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
 
         $exp = [
-            'next' => $this->getRow(102)
+            'next' => $this->getRow(102),
         ];
         $this->assertEquals($exp, $actual);
     }
@@ -88,7 +88,7 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $this->setDate(1396640035);
         $actual = $this->mockedViewHelper->_call('getNeighbours', $this->news, '', 'datetime');
         $exp = [
-            'prev' => $this->getRow(105)
+            'prev' => $this->getRow(105),
         ];
         $this->assertEquals($exp, $actual);
     }
@@ -119,6 +119,6 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
             )
             ->setMaxResults(1)
-            ->execute()->fetch();
+            ->executeQuery()->fetchAssociative();
     }
 }

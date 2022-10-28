@@ -18,8 +18,8 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 class ChunkViewHelperTest extends FunctionalTestCase
 {
-    protected $testExtensionsToLoad = ['typo3conf/ext/news'];
-    protected $coreExtensionsToLoad = ['extbase', 'fluid'];
+    protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
+    protected array $coreExtensionsToLoad = ['extbase', 'fluid'];
 
     /**
      * @test

@@ -111,8 +111,7 @@ class NewsAvailability
             ->select('uid', 'l10n_parent', 'sys_language_uid')
             ->from('tx_news_domain_model_news')
             ->where(...$where)
-            ->execute()
-            ->fetch();
+            ->executeQuery()->fetchAssociative();
 
         return $row ?: null;
     }

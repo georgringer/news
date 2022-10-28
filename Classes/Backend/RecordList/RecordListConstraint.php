@@ -248,10 +248,10 @@ class RecordListConstraint
                 $queryBuilder->expr()->isNotNull('tx_news_domain_model_news.uid'),
                 $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->createNamedParameter($categoryId, \PDO::PARAM_INT))
             )
-            ->execute();
+            ->executeQuery();
 
         $idList = [];
-        while ($row = $res->fetch()) {
+        while ($row = $res->fetchAssociative()) {
             $idList[] = $row['uid'];
         }
 

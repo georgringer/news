@@ -93,8 +93,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                     )
                 )
             )
-            ->execute()
-            ->fetchColumn(0);
+            ->executeQuery()->fetchOne();
 
         return $count;
     }

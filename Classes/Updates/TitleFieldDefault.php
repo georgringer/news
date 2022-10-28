@@ -61,7 +61,7 @@ final class TitleFieldDefault implements UpgradeWizardInterface
                 Connection::PARAM_INT
             )
             ->where($query->expr()->isNull(self::FIELD_RELATED_LINKS))
-            ->execute();
+            ->executeStatement();
         return true;
     }
 
@@ -72,8 +72,7 @@ final class TitleFieldDefault implements UpgradeWizardInterface
             ->count(self::FIELD_UID)
             ->from(self::TABLE_NEWS)
             ->where($query->expr()->isNull(self::FIELD_RELATED_LINKS))
-            ->execute()
-            ->fetchColumn(0);
+            ->executeQuery()->fetchOne();
     }
 
     public function getPrerequisites(): array

@@ -107,8 +107,7 @@ class AccessControlService
                         $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)),
                         $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR))
                     )
-                    ->execute()
-                    ->fetchColumn(0);
+                    ->executeQuery()->fetchOne();
                 if ($newsRecordCategoriesCount > 0) {
                     // take categories from localized version
                     $newsRecordUid = $newsRecord['uid'];
@@ -147,10 +146,10 @@ class AccessControlService
                 $queryBuilder->expr()->eq('sys_category_record_mm.fieldname', $queryBuilder->createNamedParameter('categories', \PDO::PARAM_STR)),
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsRecordUid, \PDO::PARAM_INT))
             )
-            ->execute();
+            ->executeQuery();
 
         $categories = [];
-        while ($row =$res->fetch()) {
+        while ($row =$res->fetchAssociative()) {
             $categories[] = [
                 'uid' => $row['uid_local'],
                 'title' => $row['title']

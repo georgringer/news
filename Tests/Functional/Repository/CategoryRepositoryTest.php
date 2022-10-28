@@ -21,7 +21,7 @@ class CategoryRepositoryTest extends FunctionalTestCase
     /** @var  CategoryRepository */
     protected $categoryRepository;
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/news'];
+    protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
 
     public function setUp(): void
     {

@@ -122,7 +122,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
         // Count all items
         $queryBuilder->count('*');
-        $this->itemCount = $queryBuilder->execute()->fetchColumn(0);
+        $this->itemCount = $queryBuilder->executeQuery()->fetchOne();
 
         // Select only the right range
         $queryBuilder->select('*');
@@ -133,8 +133,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             ->setMaxResults($this->numberOfItemsPerPage);
 
         $rows = $queryBuilder->orderBy($sortField, $forGoogleNews ? 'DESC' : 'ASC')
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()->fetchAllAssociative();
 
         foreach ($rows as $row) {
             $this->items[] = [
@@ -238,7 +237,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 $queryBuilder->expr()->eq('sys_category_record_mm.uid_foreign', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
             )
             ->setMaxResults(1)
-            ->execute()->fetch();
+            ->executeQuery()->fetchAssociative();
         return (int)$categoryRecord['single_pid'];
     }
 

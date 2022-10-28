@@ -6,6 +6,8 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\DateTimeAspect;
+use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
+use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -26,13 +28,15 @@ class NewsRepositoryTest extends FunctionalTestCase
     /** @var  NewsRepository */
     protected $newsRepository;
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/news'];
+    protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
 
-    protected $coreExtensionsToLoad = ['fluid'];
+    protected array $coreExtensionsToLoad = ['fluid'];
 
     public function setUp(): void
     {
         parent::setUp();
+        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())
+            ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_BE);
 
         $this->newsRepository = $this->getContainer()->get(NewsRepository::class);
 
@@ -257,7 +261,7 @@ class NewsRepositoryTest extends FunctionalTestCase
     public function findRecordsByType(): void
     {
         $demand = new NewsDemand();
-        $demand->setStoragePage('1,2');
+        $demand->setStoragePage('1,2,4561');
 
         // given is 1 tag
         $demand->setTypes(['1']);
@@ -267,7 +271,7 @@ class NewsRepositoryTest extends FunctionalTestCase
         // given are 2 tags
         $demand->setTypes(['1', 2]);
         $count = $this->newsRepository->findDemanded($demand)->count();
-        $this->assertEquals(5, $count);
+        $this->assertEquals(6, $count);
     }
 
     /**

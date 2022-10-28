@@ -22,7 +22,7 @@ class QueryResultPaginatorTest extends FunctionalTestCase
      */
     protected $newsRepository;
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/news'];
+    protected array $testExtensionsToLoad = ['typo3conf/ext/news'];
 
     protected function setUp(): void
     {

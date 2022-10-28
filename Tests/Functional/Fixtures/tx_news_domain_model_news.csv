@@ -1,12 +1,13 @@
 tx_news_domain_model_news,,,,,,,,,,
 ,uid,pid,type,title,import_source,import_id,istopnews,archive,datetime
-,1,1,0,"findRecordsByUid","","",0,0,0
-,456,1,0,"findRecordsByImportSource","functional_test","2",0,0,0
-,2,2,1,"findRecordsByImportSource","functional_test","2",0,0,0
-,2,2,1,"findTopNewsRecords 1","","",0,0,0
-,3,2,1,"findTopNewsRecords 1","","",1,0,0
-,4,2,2,"findTopNewsRecords 2","","",1,0,0
-,5,2,2,"findTopNewsRecords 3","","",0,0,0
+,1,456,0,"findRecordsByUid","","",0,0,0
+,456,4561,1,"findRecordsByImportSource","functional_test","2",0,0,0
+,2,19191,1,"findRecordsByImportSource","functional_test","2",0,0,0
+,310,2,1,"findTopNewsRecords 1","","",1,0,0
+,311,2,2,"findTopNewsRecords 2","","",1,0,0
+,312,2,2,"findTopNewsRecords 3","","",1,0,0
+,313,2,2,"findTopNewsRecords 4","","",0,0,0
+,314,2,2,"findTopNewsRecords 5","","",0,0,0
 ,6,3,0,"findRecordsByStartingpointRestriction 1","","",0,0,0
 ,7,3,0,"findRecordsByStartingpointRestriction 2","","",0,0,0
 ,8,4,0,"findRecordsByStartingpointRestriction page 4","","",0,0,0

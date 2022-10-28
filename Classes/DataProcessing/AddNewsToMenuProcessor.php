@@ -98,8 +98,7 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
                 ->where(
                     $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
                 )
-                ->execute()
-                ->fetch();
+                ->executeQuery()->fetchAssociative();
 
             if ($row) {
                 $row = $this->getTsfe()->sys_page->getRecordOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguage());

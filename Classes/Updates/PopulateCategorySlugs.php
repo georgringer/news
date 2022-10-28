@@ -110,7 +110,7 @@ class PopulateCategorySlugs implements UpgradeWizardInterface
             ->addOrderBy('t3ver_wsid', 'asc')
             ->addOrderBy('pid', 'asc')
             ->addOrderBy('sorting', 'asc')
-            ->execute();
+            ->executeQuery();
 
         // Check for existing slugs from realurl
         $suggestedSlugs = [];
@@ -121,7 +121,7 @@ class PopulateCategorySlugs implements UpgradeWizardInterface
         $hasToBeUniqueInPid = in_array('uniqueInPid', $evalInfo, true);
         $slugHelper = GeneralUtility::makeInstance(SlugHelper::class, $this->table, $this->fieldName, $fieldConfig);
 
-        while ($record = $statement->fetch()) {
+        while ($record = $statement->fetchAssociative()) {
             $recordId = (int)$record['uid'];
             $pid = (int)$record['pid'];
             $languageId = (int)$record['sys_language_uid'];
@@ -137,7 +137,7 @@ class PopulateCategorySlugs implements UpgradeWizardInterface
                         ->from($this->table)
                         ->where(
                             $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($record['t3ver_oid'], \PDO::PARAM_INT))
-                        )->execute()->fetch();
+                        )->executeQuery()->fetchAssociative();
                     $pid = (int)$liveVersion['pid'];
                 }
                 $slug = $slugHelper->generate($record, $pid);
@@ -181,8 +181,7 @@ class PopulateCategorySlugs implements UpgradeWizardInterface
                     $queryBuilder->expr()->isNull($this->fieldName)
                 )
             )
-            ->execute()
-            ->fetchColumn();
+            ->executeQuery()->fetchOne();
         return $numberOfEntries > 0;
     }
 }

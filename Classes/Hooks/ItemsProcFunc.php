@@ -10,8 +10,6 @@ namespace GeorgRinger\News\Hooks;
  */
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -225,16 +223,6 @@ class ItemsProcFunc
      */
     protected function getAllLanguages(): array
     {
-        $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($versionInformation->getMajorVersion() === 10) {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable('sys_language');
-            return $queryBuilder->select('*')
-                ->from('sys_language')
-                ->orderBy('sorting')
-                ->execute()
-                ->fetchAll();
-        }
         $siteLanguages = [];
         foreach (GeneralUtility::makeInstance(SiteFinder::class)->getAllSites() as $site) {
             foreach ($site->getAllLanguages() as $languageId => $language) {
