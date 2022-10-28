@@ -12,7 +12,7 @@ Pricing
 -------
 
 - € 150.00 (ex. VAT) for 1 site
-- € 450.00 (ex. VAT) for unlimited sites related to an agency or customer
+- € 450.00 (ex. VAT) for unlimited sites related to the agency itself or its customers
 
 **Included**: Bugfix & feature releases, composer support
 
