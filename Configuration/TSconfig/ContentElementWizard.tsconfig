@@ -4,7 +4,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
     before = special
     elements {
         news_list {
-            iconIdentifier = ext-news-wizard-icon
+            iconIdentifier = ext-news-plugin-list-with-detail
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_list
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
             tt_content_defValues {
@@ -13,7 +13,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
         }
 
         news_list_sticky {
-            iconIdentifier = ext-news-wizard-icon
+            iconIdentifier = ext-news-plugin-list
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_listOnly
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
             tt_content_defValues {
@@ -22,7 +22,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
         }
 
         news_detail {
-            iconIdentifier = ext-news-wizard-icon
+            iconIdentifier = ext-news-plugin-detail
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_detail.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_detail.description
             tt_content_defValues {
@@ -31,7 +31,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
         }
 
         news_selectedlist {
-            iconIdentifier = ext-news-wizard-icon
+            iconIdentifier = ext-news-plugin-selected-list
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_selected_list.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_selected_list.description
             tt_content_defValues {
@@ -40,7 +40,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
         }
 
         news_datemenu {
-            iconIdentifier = ext-news-wizard-icon
+            iconIdentifier = ext-news-plugin-date-menu
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_datemenu.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_datemenu.description
             tt_content_defValues {
@@ -49,7 +49,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
         }
 
         categorylist {
-            iconIdentifier = ext-news-wizard-icon
+            iconIdentifier = ext-news-plugin-category-menu
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.category_list.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.category_list.description
             tt_content_defValues {
@@ -58,7 +58,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
         }
 
         news_searchform {
-            iconIdentifier = ext-news-wizard-icon
+            iconIdentifier = ext-news-plugin-search-form
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_form.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_form.description
             tt_content_defValues {
@@ -67,7 +67,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
         }
 
         news_searchresult {
-            iconIdentifier = ext-news-wizard-icon
+            iconIdentifier = ext-news-plugin-search-results
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_result.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_search_result.description
             tt_content_defValues {
@@ -76,7 +76,7 @@ mod.wizards.newContentElement.wizardItems.ext-news {
         }
 
         taglist {
-            iconIdentifier = ext-news-wizard-icon
+            iconIdentifier = ext-news-plugin-tag-menu
             title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.tag_list.title
             description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.tag_list.description
             tt_content_defValues {
