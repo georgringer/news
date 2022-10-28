@@ -68,7 +68,7 @@ class NewsRepository extends AbstractDemandedRepository
                     }
                 }
                 if ($subCategoryConstraint) {
-                    $categoryConstraints[] = $query->logicalOr($subCategoryConstraint);
+                    $categoryConstraints[] = $query->logicalOr(...$subCategoryConstraint);
                 }
             } else {
                 $categoryConstraints[] = $query->contains('categories', $category);
@@ -78,17 +78,17 @@ class NewsRepository extends AbstractDemandedRepository
         if ($categoryConstraints) {
             switch (strtolower($conjunction)) {
                 case 'or':
-                    $constraint = $query->logicalOr($categoryConstraints);
+                    $constraint = $query->logicalOr(...$categoryConstraints);
                     break;
                 case 'notor':
-                    $constraint = $query->logicalNot($query->logicalOr($categoryConstraints));
+                    $constraint = $query->logicalNot($query->logicalOr(...$categoryConstraints));
                     break;
                 case 'notand':
-                    $constraint = $query->logicalNot($query->logicalAnd($categoryConstraints));
+                    $constraint = $query->logicalNot($query->logicalAnd(...$categoryConstraints));
                     break;
                 case 'and':
                 default:
-                    $constraint = $query->logicalAnd($categoryConstraints);
+                    $constraint = $query->logicalAnd(...$categoryConstraints);
             }
         }
 
@@ -214,14 +214,14 @@ class NewsRepository extends AbstractDemandedRepository
                 $subConstraints[] = $query->contains('tags', $singleTag);
             }
             if (count($subConstraints) > 0) {
-                $constraints['tags'] = $query->logicalOr($subConstraints);
+                $constraints['tags'] = $query->logicalOr(...$subConstraints);
             }
         }
 
         // Search
         $searchConstraints = $this->getSearchConstraints($query, $demand);
         if (!empty($searchConstraints)) {
-            $constraints['search'] = $query->logicalAnd($searchConstraints);
+            $constraints['search'] = $query->logicalAnd(...$searchConstraints);
         }
 
         // Exclude already displayed
@@ -442,8 +442,6 @@ class NewsRepository extends AbstractDemandedRepository
 
         $searchSubject = $searchObject->getSubject();
         if (!empty($searchSubject)) {
-            $queryBuilder = $this->getQueryBuilder('tx_news_domain_model_news');
-
             $searchFields = GeneralUtility::trimExplode(',', $searchObject->getFields(), true);
             $searchConstraints = [];
 
@@ -460,19 +458,17 @@ class NewsRepository extends AbstractDemandedRepository
                             $subConstraints[] = $query->like($field, '%' . $searchSubjectSplittedPart . '%');
                         }
                     }
-                    $searchConstraints[] = $query->logicalAnd($subConstraints);
+                    $searchConstraints[] = $query->logicalAnd(...$subConstraints);
                 }
                 if (count($searchConstraints)) {
-                    $constraints[] = $query->logicalOr($searchConstraints);
+                    $constraints[] = $query->logicalOr(...$searchConstraints);
                 }
             } else {
-                if (!empty($searchSubject)) {
-                    foreach ($searchFields as $field) {
-                        $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
-                    }
+                foreach ($searchFields as $field) {
+                    $searchConstraints[] = $query->like($field, '%' . $searchSubject . '%');
                 }
-                if (count($searchConstraints)) {
-                    $constraints[] = $query->logicalOr($searchConstraints);
+                if (count($searchConstraints) > 0) {
+                    $constraints[] = $query->logicalOr(...$searchConstraints);
                 }
             }
         }

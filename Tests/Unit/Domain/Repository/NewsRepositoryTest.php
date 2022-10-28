@@ -13,6 +13,11 @@ use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Domain\Model\Dto\Search;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\Comparison;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\LogicalOr;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\PropertyValue;
+use TYPO3\CMS\Extbase\Persistence\Generic\Qom\Statement;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 use UnexpectedValueException;
@@ -116,8 +121,15 @@ class NewsRepositoryTest extends BaseTestCase
      */
     public function constraintsAreReturnedForSearchSubject(): void
     {
+        $stmt1 = new Statement('');
+        $stmt2 = new Statement('');
+        $propertyValue = new PropertyValue('dummy', '');
+        $like = new Comparison($propertyValue, 1, '');
         $mockedQuery = $this->getMockBuilder(QueryInterface::class)->getMock();
+        $mockedQuery->expects($this->any())->method('like')->willReturn($like);
 
+        $or = GeneralUtility::makeInstance(LogicalOr::class, $stmt1, $stmt2);
+        $mockedQuery->expects($this->any())->method('logicalOr')->willReturn($or);
         $search = new Search();
         $search->setSubject('Lorem');
         $search->setFields('title,fo');
