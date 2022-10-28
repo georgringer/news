@@ -13,7 +13,7 @@ tx_news_domain_model_news,,,,
 ,133,10,"tag5","1"
 ,134,10,"tag4,tag5","2"
 tx_news_domain_model_news_tag_mm,,,
-,uid_local_uid_foreign,sorting
+,uid_local,uid_foreign,sorting
 ,130,1,1
 ,130,2,2
 ,130,3,3
