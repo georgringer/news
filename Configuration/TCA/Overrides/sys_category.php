@@ -5,6 +5,39 @@ defined('TYPO3') or die();
 $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\GeorgRinger\News\Domain\Model\Dto\EmConfiguration::class);
 
+$imageSettings = [
+    'behaviour' => [
+        'allowLanguageSynchronization' => true,
+    ],
+    'appearance' => [
+        'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
+        'showPossibleLocalizationRecords' => true,
+        'showAllLocalizationLink' => true,
+        'showSynchronizationLink' => true,
+    ],
+    'foreign_match_fields' => [
+        'fieldname' => 'images',
+        'tablenames' => 'sys_category',
+        'table_local' => 'sys_file',
+    ],
+];
+
+$versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+if ($versionInformation->getMajorVersion() > 11) {
+    $imageConfiguration = [
+        'type' => 'file',
+        'appearance' => $imageSettings['appearance'],
+        'behaviour' => $imageSettings['behaviour'],
+        'allowed' => 'common-image-types',
+    ];
+} else {
+    $imageConfiguration = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+        'image',
+        $imageSettings,
+        $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+    );
+}
+
 /**
  * Add extra fields to the sys_category record
  */
@@ -12,50 +45,31 @@ $newSysCategoryColumns = [
     'pid' => [
         'label' => 'pid',
         'config' => [
-            'type' => 'passthrough'
-        ]
+            'type' => 'passthrough',
+        ],
     ],
     'sorting' => [
         'label' => 'sorting',
         'config' => [
-            'type' => 'passthrough'
-        ]
+            'type' => 'passthrough',
+        ],
     ],
     'crdate' => [
         'label' => 'crdate',
         'config' => [
             'type' => 'passthrough',
-        ]
+        ],
     ],
     'tstamp' => [
         'label' => 'tstamp',
         'config' => [
             'type' => 'passthrough',
-        ]
+        ],
     ],
     'images' => [
         'exclude' => true,
         'label' => $ll . 'tx_news_domain_model_category.image',
-        'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-            'images',
-            [
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
-                'appearance' => [
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
-                    'showPossibleLocalizationRecords' => true,
-                    'showAllLocalizationLink' => true,
-                    'showSynchronizationLink' => true
-                ],
-                'foreign_match_fields' => [
-                    'fieldname' => 'images',
-                    'tablenames' => 'sys_category',
-                    'table_local' => 'sys_file',
-                ],
-            ],
-            $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-        )
+        'config' => $imageConfiguration,
     ],
     'single_pid' => [
         'exclude' => true,
@@ -70,12 +84,12 @@ $newSysCategoryColumns = [
             'suggestOptions' => [
                 'default' => [
                     'searchWholePhrase' => true,
-                ]
+                ],
             ],
             'behaviour' => [
                 'allowLanguageSynchronization' => true,
             ],
-        ]
+        ],
     ],
     'shortcut' => [
         'exclude' => true,
@@ -90,24 +104,24 @@ $newSysCategoryColumns = [
             'suggestOptions' => [
                 'default' => [
                     'searchWholePhrase' => true,
-                ]
+                ],
             ],
             'behaviour' => [
                 'allowLanguageSynchronization' => true,
             ],
-        ]
+        ],
     ],
     'import_id' => [
         'label' => $ll . 'tx_news_domain_model_news.import_id',
         'config' => [
-            'type' => 'passthrough'
-        ]
+            'type' => 'passthrough',
+        ],
     ],
     'import_source' => [
         'label' => $ll . 'tx_news_domain_model_news.import_source',
         'config' => [
-            'type' => 'passthrough'
-        ]
+            'type' => 'passthrough',
+        ],
     ],
     'seo_headline' => [
         'exclude' => true,
@@ -138,7 +152,7 @@ $newSysCategoryColumns = [
             'enableRichtext' => true,
         ],
     ],
-    'slug' =>[
+    'slug' => [
         'exclude' => true,
         'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
         'displayCond' => 'VERSION:IS:false',
@@ -148,13 +162,13 @@ $newSysCategoryColumns = [
             'generatorOptions' => [
                 'fields' => ['title'],
                 'replacements' => [
-                    '/' => '-'
+                    '/' => '-',
                 ],
             ],
             'fallbackCharacter' => '-',
             'eval' => $configuration->getSlugBehaviour(),
-            'default' => ''
-        ]
+            'default' => '',
+        ],
     ],
 ];
 
