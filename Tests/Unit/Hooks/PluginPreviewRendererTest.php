@@ -9,19 +9,18 @@ namespace GeorgRinger\News\Tests\Unit\Hooks;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use GeorgRinger\News\Hooks\PageLayoutView;
+use GeorgRinger\News\Hooks\PluginPreviewRenderer;
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
- * Tests for PageLayoutView
- *
+ * Tests for PluginPreviewRenderer
  */
-class PageLayoutViewTest extends BaseTestCase
+class PluginPreviewRendererTest extends BaseTestCase
 {
 
-    /** @var PageLayoutView|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
+    /** @var PluginPreviewRenderer|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $pageLayoutView;
 
     public function setup(): void
@@ -33,7 +32,7 @@ class PageLayoutViewTest extends BaseTestCase
 
         $GLOBALS['LANG'] = $languageService;
 
-        $this->pageLayoutView = $this->getAccessibleMock(PageLayoutView::class, ['dummy'], [], '', false);
+        $this->pageLayoutView = $this->getAccessibleMock(PluginPreviewRenderer::class, ['dummy'], [], '', false);
         $this->pageLayoutView->_set('databaseConnection', $this->getMockBuilder('TYPO3\CMS\\Core\\Utility\\GeneralUtility\\DatabaseConnection')->setMethods(['exec_SELECTquery', 'exec_SELECTgetRows'])->getMock());
     }
 
@@ -259,11 +258,11 @@ class PageLayoutViewTest extends BaseTestCase
                 $sheet => [
                     'lDEF' => [
                         $key => [
-                            'vDEF' => $value
-                        ]
-                    ]
-                ]
-            ]
+                            'vDEF' => $value,
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 }

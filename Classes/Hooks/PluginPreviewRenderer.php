@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace GeorgRinger\News\Hooks;
 
@@ -8,55 +9,39 @@ namespace GeorgRinger\News\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use GeorgRinger\News\Utility\TemplateLayout;
+use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
- * Hook to display verbose information about pi1 plugin in Web>Page module
+ * Render selected options of plugin in Web>Page module
  */
-class PageLayoutView
+class PluginPreviewRenderer extends StandardContentPreviewRenderer
 {
 
-    /**
-     * Extension key
-     *
-     * @var string
-     */
-    const KEY = 'news';
-
-    /**
-     * Path to the locallang file
-     *
-     * @var string
-     */
-    const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
-
-    /**
-     * Max shown settings
-     */
-    const SETTINGS_IN_PREVIEW = 7;
+    protected const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
+    protected const SETTINGS_IN_PREVIEW = 7;
 
     /**
      * Table information
-     *
-     * @var array
      */
-    public $tableData = [];
+    public array $tableData = [];
 
     /**
      * Flexform information
-     *
-     * @var array
      */
-    public $flexformData = [];
+    public array $flexformData = [];
 
     /**
      * @var IconFactory
@@ -66,118 +51,89 @@ class PageLayoutView
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
-    /**
-     * PageLayoutView constructor.
-     * @param TemplateLayout $templateLayout
-     * @param IconFactory $iconFactory
-     */
-    public function __construct(
-        TemplateLayout $templateLayout,
-        IconFactory $iconFactory
-    ) {
-        $this->templateLayoutsUtility = $templateLayout;
-        $this->iconFactory = $iconFactory;
+    public function __construct()
+    {
+        $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
+        $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
     }
 
-    /**
-     * Returns information about this extension's pi1 plugin
-     *
-     * @param array $params Parameters to the hook
-     * @return string Information about pi1 plugin
-     */
-    public function getExtensionSummary(array $params): string
+    public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
+        $row = $item->getRecord();
         $actionTranslationKey = $result = '';
-
         $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'pi1_title')) . '</strong>';
 
-        if ($params['row']['list_type'] == self::KEY . '_pi1') {
-            $this->tableData = [];
-            $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
+        $this->tableData = [];
+        $flexforms = GeneralUtility::xml2array($row['pi_flexform']);
+        if (is_string($flexforms)) {
+            return 'ERROR: ' . htmlspecialchars($flexforms);
+        }
+        $this->flexformData = (array)$flexforms;
 
-            // if flexform data is found
-            $actions = $this->getFieldFromFlexform('switchableControllerActions');
-            if (!empty($actions)) {
-                $actionList = GeneralUtility::trimExplode(';', $actions);
-
-                // translate the first action into its translation
-                $actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
-                $actionTranslation = $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.' . $actionTranslationKey);
-
-                $header .= '<br><strong style="text-transform: uppercase">' . htmlspecialchars($actionTranslation) . '</strong>';
-            } else {
-                $header .= $this->generateCallout($this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.mode.not_configured'));
+        if (!empty($this->flexformData)) {
+            switch ($row['CType']) {
+                case 'news_pi1':
+                case 'news_newsliststicky':
+                    $this->getStartingPoint();
+                    $this->getCategorySettings();
+                    $this->getDetailPidSetting();
+                    $this->getTimeRestrictionSetting();
+                    $this->getTemplateLayoutSettings($row['pid']);
+                    $this->getArchiveSettings();
+                    $this->getTopNewsRestrictionSetting();
+                    $this->getOrderSettings();
+                    $this->getOffsetLimitSettings();
+                    $this->getListPidSetting();
+                    $this->getTagRestrictionSetting();
+                    break;
+                case 'news_newsselectedlist':
+                    $this->getSelectedListSetting();
+                    $this->getOrderSettings();
+                    break;
+                case 'news_newsdetail':
+                    $this->getSingleNewsSettings();
+                    $this->getDetailPidSetting();
+                    $this->getTemplateLayoutSettings($row['pid']);
+                    break;
+                case 'news_newsdatemenu':
+                    $this->getStartingPoint();
+                    $this->getTimeRestrictionSetting();
+                    $this->getTopNewsRestrictionSetting();
+                    $this->getArchiveSettings();
+                    $this->getDateMenuSettings();
+                    $this->getCategorySettings();
+                    $this->getTemplateLayoutSettings($row['pid']);
+                    break;
+                case 'news_categorylist':
+                    $this->getCategorySettings(false);
+                    $this->getTemplateLayoutSettings($row['pid']);
+                    break;
+                case 'news_taglist':
+                    $this->getStartingPoint();
+                    $this->getListPidSetting();
+                    $this->getOrderSettings();
+                    $this->getTemplateLayoutSettings($row['pid']);
+                    break;
+                default:
+                    $this->getTemplateLayoutSettings($row['pid']);
             }
 
-            if (is_array($this->flexformData)) {
-                switch ($actionTranslationKey) {
-                    case 'news_list':
-                        $this->getStartingPoint();
-                        $this->getCategorySettings();
-                        $this->getDetailPidSetting();
-                        $this->getTimeRestrictionSetting();
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                        $this->getArchiveSettings();
-                        $this->getTopNewsRestrictionSetting();
-                        $this->getOrderSettings();
-                        $this->getOffsetLimitSettings();
-                        $this->getListPidSetting();
-                        $this->getTagRestrictionSetting();
-                        break;
-                    case 'news_selectedlist':
-                        $this->getSelectedListSetting();
-                        $this->getOrderSettings();
-                        break;
-                    case 'news_detail':
-                        $this->getSingleNewsSettings();
-                        $this->getDetailPidSetting();
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                        break;
-                    case 'news_datemenu':
-                        $this->getStartingPoint();
-                        $this->getTimeRestrictionSetting();
-                        $this->getTopNewsRestrictionSetting();
-                        $this->getArchiveSettings();
-                        $this->getDateMenuSettings();
-                        $this->getCategorySettings();
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                        break;
-                    case 'category_list':
-                        $this->getCategorySettings(false);
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                        break;
-                    case 'tag_list':
-                        $this->getStartingPoint();
-                        $this->getListPidSetting();
-                        $this->getOrderSettings();
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
-                        break;
-                    default:
-                        $this->getTemplateLayoutSettings($params['row']['pid']);
+            if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PluginPreviewRenderer']['extensionSummary'] ?? []) {
+                $params['action'] = $actionTranslationKey;
+                foreach ($hooks as $reference) {
+                    GeneralUtility::callUserFunction($reference, $params, $this);
                 }
-
-                if ($hooks = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['GeorgRinger\\News\\Hooks\\PageLayoutView']['extensionSummary'] ?? []) {
-                    $params['action'] = $actionTranslationKey;
-                    foreach ($hooks as $reference) {
-                        GeneralUtility::callUserFunction($reference, $params, $this);
-                    }
-                }
-
-                // for all views
-                $this->getOverrideDemandSettings();
-
-                $result = $this->renderSettingsAsTable($header, $params['row']['uid'] ?? 0);
             }
+
+            // for all views
+            $this->getOverrideDemandSettings();
+
+            $result = $this->renderSettingsAsTable($header, $row['uid'] ?? 0);
         }
 
         return $result;
     }
 
-    /**
-     * Render archive settings
-     *
-     * @return void
-     */
     public function getArchiveSettings(): void
     {
         $archive = $this->getFieldFromFlexform('settings.archiveRestriction');
@@ -185,16 +141,11 @@ class PageLayoutView
         if (!empty($archive)) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.archiveRestriction'),
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.archiveRestriction.' . $archive)
+                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.archiveRestriction.' . $archive),
             ];
         }
     }
 
-    /**
-     * Render single news settings
-     *
-     * @return void
-     */
     public function getSingleNewsSettings(): void
     {
         $singleNewsRecord = (int)$this->getFieldFromFlexform('settings.singleNews');
@@ -224,16 +175,11 @@ class PageLayoutView
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.singleNews'),
-                $content
+                $content,
             ];
         }
     }
 
-    /**
-     * Render single news settings
-     *
-     * @return void
-     */
     public function getDetailPidSetting(): void
     {
         $detailPid = (int)$this->getFieldFromFlexform('settings.detailPid', 'additional');
@@ -243,16 +189,11 @@ class PageLayoutView
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.detailPid'),
-                $content
+                $content,
             ];
         }
     }
 
-    /**
-     * Render listPid news settings
-     *
-     * @return void
-     */
     public function getListPidSetting(): void
     {
         $listPid = (int)$this->getFieldFromFlexform('settings.listPid', 'additional');
@@ -262,29 +203,12 @@ class PageLayoutView
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.listPid'),
-                $content
+                $content,
             ];
         }
     }
 
-    /**
-     * Get the rendered page title including onclick menu
-     *
-     * @param int $detailPid
-     * @return string
-     * @deprecated use getRecordData() instead
-     */
-    public function getPageRecordData($detailPid): string
-    {
-        return $this->getRecordData($detailPid, 'pages');
-    }
-
-    /**
-     * @param int $id
-     * @param string $table
-     * @return string
-     */
-    public function getRecordData($id, $table = 'pages'): string
+    public function getRecordData(int $id, string $table = 'pages'): string
     {
         $record = BackendUtilityCore::getRecord($table, $id);
 
@@ -323,11 +247,6 @@ class PageLayoutView
         return $content;
     }
 
-    /**
-     * Get order settings
-     *
-     * @return void
-     */
     public function getOrderSettings(): void
     {
         $orderField = $this->getFieldFromFlexform('settings.orderBy');
@@ -348,16 +267,11 @@ class PageLayoutView
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.orderBy'),
-                $text
+                $text,
             ];
         }
     }
 
-    /**
-     * Get order direction
-     *
-     * @return string
-     */
     public function getOrderDirectionSetting(): string
     {
         $text = '';
@@ -370,11 +284,6 @@ class PageLayoutView
         return $text;
     }
 
-    /**
-     * Get topNewsFirst setting
-     *
-     * @return string
-     */
     public function getTopNewsFirstSetting(): string
     {
         $text = '';
@@ -386,14 +295,7 @@ class PageLayoutView
         return $text;
     }
 
-    /**
-     * Render category settings
-     *
-     * @param bool $showCategoryMode show the category conjunction
-     *
-     * @return void
-     */
-    public function getCategorySettings($showCategoryMode = true): void
+    public function getCategorySettings(bool $showCategoryMode = true): void
     {
         $categories = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.categories') ?? '', true);
         if (count($categories) > 0) {
@@ -404,7 +306,7 @@ class PageLayoutView
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categories'),
-                implode(', ', $categoriesOut)
+                implode(', ', $categoriesOut),
             ];
 
             // Category mode
@@ -424,7 +326,7 @@ class PageLayoutView
 
                 $this->tableData[] = [
                     $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.categoryConjunction'),
-                    $categoryMode
+                    $categoryMode,
                 ];
             }
 
@@ -432,17 +334,12 @@ class PageLayoutView
             if ($includeSubcategories) {
                 $this->tableData[] = [
                     $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.includeSubCategories'),
-                    '<i class="fa fa-check"></i>'
+                    '<i class="fa fa-check"></i>',
                 ];
             }
         }
     }
 
-    /**
-     * Get the restriction for tags
-     *
-     * @return void
-     */
     public function getTagRestrictionSetting()
     {
         $tags = GeneralUtility::intExplode(',', $this->getFieldFromFlexform('settings.tags', 'additional') ?? '', true);
@@ -457,15 +354,10 @@ class PageLayoutView
 
         $this->tableData[] = [
             $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.tags'),
-            implode(', ', $categoryTitles)
+            implode(', ', $categoryTitles),
         ];
     }
 
-    /**
-     * Render offset & limit configuration
-     *
-     * @return void
-     */
     public function getOffsetLimitSettings(): void
     {
         $offset = $this->getFieldFromFlexform('settings.offset', 'additional');
@@ -475,43 +367,33 @@ class PageLayoutView
         if ($offset) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.offset'),
-                $offset
+                $offset,
             ];
         }
         if ($limit) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.limit'),
-                $limit
+                $limit,
             ];
         }
         if ($hidePagination) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_additional.hidePagination'),
-                '<i class="fa fa-check"></i>'
+                '<i class="fa fa-check"></i>',
             ];
         }
     }
 
-    /**
-     * Render date menu configuration
-     *
-     * @return void
-     */
     public function getDateMenuSettings(): void
     {
         $dateMenuField = $this->getFieldFromFlexform('settings.dateField');
 
         $this->tableData[] = [
             $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.dateField'),
-            $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.dateField.' . $dateMenuField)
+            $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.dateField.' . $dateMenuField),
         ];
     }
 
-    /**
-     * Render time restriction configuration
-     *
-     * @return void
-     */
     public function getTimeRestrictionSetting(): void
     {
         $timeRestriction = $this->getFieldFromFlexform('settings.timeRestriction');
@@ -519,7 +401,7 @@ class PageLayoutView
         if (!empty($timeRestriction)) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.timeRestriction'),
-                htmlspecialchars($timeRestriction)
+                htmlspecialchars($timeRestriction),
             ];
         }
 
@@ -527,35 +409,23 @@ class PageLayoutView
         if (!empty($timeRestrictionHigh)) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.timeRestrictionHigh'),
-                htmlspecialchars($timeRestrictionHigh)
+                htmlspecialchars($timeRestrictionHigh),
             ];
         }
     }
 
-    /**
-     * Render top news restriction configuration
-     *
-     * @return void
-     */
     public function getTopNewsRestrictionSetting(): void
     {
         $topNewsRestriction = (int)$this->getFieldFromFlexform('settings.topNewsRestriction');
         if ($topNewsRestriction > 0) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.topNewsRestriction'),
-                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.topNewsRestriction.' . $topNewsRestriction)
+                $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.topNewsRestriction.' . $topNewsRestriction),
             ];
         }
     }
 
-    /**
-     * Render template layout configuration
-     *
-     * @param int $pageUid
-     *
-     * @return void
-     */
-    public function getTemplateLayoutSettings($pageUid): void
+    public function getTemplateLayoutSettings(int $pageUid): void
     {
         $title = '';
         $field = $this->getFieldFromFlexform('settings.templateLayout', 'template');
@@ -573,35 +443,25 @@ class PageLayoutView
         if (!empty($title)) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_template.templateLayout'),
-                $this->getLanguageService()->sL($title)
+                $this->getLanguageService()->sL($title),
             ];
         }
     }
 
-    /**
-     * Get information if override demand setting is disabled or not
-     *
-     * @return void
-     */
     public function getOverrideDemandSettings(): void
     {
-        $field = $this->getFieldFromFlexform('settings.disableOverrideDemand', 'additional');
+        $field = (bool)$this->getFieldFromFlexform('settings.disableOverrideDemand', 'additional');
 
-        if ($field == 1) {
+        if ($field) {
             $this->tableData[] = [
                 $this->getLanguageService()->sL(
                     self::LLPATH . 'flexforms_additional.disableOverrideDemand'
                 ),
-                '<i class="fa fa-check"></i>'
+                '<i class="fa fa-check"></i>',
             ];
         }
     }
 
-    /**
-     * Get the startingpoint
-     *
-     * @return void
-     */
     public function getStartingPoint(): void
     {
         $value = $this->getFieldFromFlexform('settings.startingpoint');
@@ -630,16 +490,11 @@ class PageLayoutView
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint'),
-                implode(', ', $pagesOut) . $recursiveLevelText
+                implode(', ', $pagesOut) . $recursiveLevelText,
             ];
         }
     }
 
-    /**
-     * Get list of selected news items
-     *
-     * @return void
-     */
     protected function getSelectedListSetting(): void
     {
         $value = $this->getFieldFromFlexform('settings.selectedList');
@@ -654,33 +509,17 @@ class PageLayoutView
 
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'flexforms_general.selectedList'),
-                implode('<br>', $out)
+                implode('<br>', $out),
             ];
         }
     }
 
-    /**
-     * Render an alert box
-     *
-     * @param string $text
-     * @return string
-     */
-    protected function generateCallout($text): string
+    protected function generateCallout(string $text): string
     {
-        return '<div class="alert alert-warning">
-            ' . htmlspecialchars($text) . '
-        </div>';
+        return '<div class="alert alert-warning">' . htmlspecialchars($text) . '</div>';
     }
 
-    /**
-     * Render the settings as table for Web>Page module
-     * System settings are displayed in mono font
-     *
-     * @param string $header
-     * @param int $recordUid
-     * @return string
-     */
-    protected function renderSettingsAsTable($header = '', $recordUid = 0): string
+    protected function renderSettingsAsTable(string $header = '', int $recordUid = 0): string
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/News/PageLayout');
@@ -692,23 +531,15 @@ class PageLayoutView
             'header' => $header,
             'rows' => [
                 'above' => array_slice($this->tableData, 0, self::SETTINGS_IN_PREVIEW),
-                'below' => array_slice($this->tableData, self::SETTINGS_IN_PREVIEW)
+                'below' => array_slice($this->tableData, self::SETTINGS_IN_PREVIEW),
             ],
-            'id' => $recordUid
+            'id' => $recordUid,
         ]);
 
         return $view->render();
     }
 
-    /**
-     * Get field value from flexform configuration,
-     * including checks if flexform configuration is available
-     *
-     * @param string $key name of the key
-     * @param string $sheet name of the sheet
-     * @return string|null if nothing found, value if found
-     */
-    public function getFieldFromFlexform($key, $sheet = 'sDEF'): ?string
+    public function getFieldFromFlexform(string $key, string $sheet = 'sDEF'): ?string
     {
         $flexform = $this->flexformData;
         if (isset($flexform['data'])) {
@@ -722,15 +553,7 @@ class PageLayoutView
         return null;
     }
 
-    /**
-     * Build a backend edit link based on given record.
-     *
-     * @param array $row Current record row from database.
-     * @param int $currentPageUid current page uid
-     * @return string Link to open an edit window for record.
-     * @see \TYPO3\CMS\Backend\Utility\BackendUtilityCore::readPageAccess()
-     */
-    protected function getEditLink($row, $currentPageUid): string
+    protected function getEditLink(array $row, int $currentPageUid): string
     {
         $editLink = '';
         $localCalcPerms = $GLOBALS['BE_USER']->calcPerms(BackendUtilityCore::getRecord('pages', $row['uid']));
@@ -740,29 +563,10 @@ class PageLayoutView
             $returnUrl = $uriBuilder->buildUriFromRoute('web_layout', ['id' => $currentPageUid]);
             $editLink = $uriBuilder->buildUriFromRoute('web_layout', [
                 'id' => $row['uid'],
-                'returnUrl' => $returnUrl
+                'returnUrl' => $returnUrl,
             ]);
         }
         return $editLink;
     }
 
-    /**
-     * Return language service instance
-     *
-     * @return \TYPO3\CMS\Core\Localization\LanguageService
-     */
-    public function getLanguageService(): \TYPO3\CMS\Core\Localization\LanguageService
-    {
-        return $GLOBALS['LANG'];
-    }
-
-    /**
-     * Get the DocumentTemplate
-     *
-     * @return DocumentTemplate
-     */
-    protected function getDocumentTemplate(): DocumentTemplate
-    {
-        return $GLOBALS['TBE_TEMPLATE'];
-    }
 }
