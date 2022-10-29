@@ -566,7 +566,7 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
                 'returnUrl' => $returnUrl,
             ]);
         }
-        return $editLink;
+        return (string)$editLink;
     }
 
 }
