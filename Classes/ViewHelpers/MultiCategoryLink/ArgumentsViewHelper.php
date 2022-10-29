@@ -13,7 +13,6 @@ namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
 
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
@@ -64,8 +63,7 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ): array
-    {
+    ): array {
         if ($arguments['mode'] !== 'add' && $arguments['mode'] !== 'remove') {
             throw new Exception('Mode must be either "add" or "remove', 1522293549);
         }
@@ -96,7 +94,6 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
 
         return $allArguments;
     }
-
 
     private static function rmFromList($element, $list)
     {
