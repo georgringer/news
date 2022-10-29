@@ -18,6 +18,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Inline Element Hook
+ * @deprecated replace by event for v12
+ * @extensionScannerIgnoreFile
  */
 class InlineElementHook implements InlineElementHookInterface
 {
