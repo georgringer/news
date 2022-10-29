@@ -48,8 +48,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ): int
-    {
+    ): int {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_news_domain_model_news');
 
