@@ -15,7 +15,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 
 /**
- * Duplication of \TYPO3\CMS\Core\Database\QueryGenerator which has been deprecated
+ * Duplication of \TYPO3\CMS\Core\Database\QueryGenerator which has been deprecated/removed
+ * @extensionScannerIgnoreFile
  */
 class QueryGenerator
 {
