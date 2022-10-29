@@ -141,7 +141,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
             }
 
             $media = $file->getOriginalResource();
-            $fileRenderer = RendererRegistry::getInstance()->getRenderer($media);
+            $fileRenderer = GeneralUtility::makeInstance(RendererRegistry::class)->getRenderer($media);
 
             // if a renderer is configured for the file type use this renderer
             if ($fileRenderer !== null) {
