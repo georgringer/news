@@ -3,7 +3,6 @@
 namespace GeorgRinger\News\Controller;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
 
 /**
@@ -15,11 +14,9 @@ use TYPO3\CMS\Core\Http\ImmediateResponseException;
 
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
@@ -29,8 +26,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class NewsBaseController extends ActionController
 {
-
-
     protected function initializeView($view)
     {
         $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
@@ -130,7 +125,7 @@ class NewsBaseController extends ActionController
                 throw new ImmediateResponseException($response, 1590468229);
             case 'showStandaloneTemplate':
                 $statusCode = (int)($options[2] ?? 404);
-                
+
                 $this->getTypoScriptFrontendController()->set_no_cache('News record not found');
 
                 $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
