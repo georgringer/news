@@ -56,9 +56,6 @@ class EmConfiguration
     protected $contentElementRelation = true;
 
     /** @var bool */
-    protected $contentElementPreview = true;
-
-    /** @var bool */
     protected $manualSorting = false;
 
     /** @var string */
@@ -114,11 +111,6 @@ class EmConfiguration
     public function getContentElementRelation(): bool
     {
         return (bool)$this->contentElementRelation;
-    }
-
-    public function getContentElementPreview(): bool
-    {
-        return (bool)$this->contentElementPreview;
     }
 
     public function getManualSorting(): bool

@@ -138,19 +138,6 @@ Use content element relation `contentElementRelation`
 
    More information can be found at http://docs.typo3.org/typo3cms/TSconfigReference/PageTsconfig/TCEform/Index.html.
 
-
-.. _extensionConfigurationContentElementPreview:
-
-Improved preview of content element relations `contentElementPreview`
----------------------------------------------------------------------
-
-.. confval:: contentElementPreview
-
-   :type: bool
-   :Default: 1
-
-   If set, the preview in the backend is rendered as in the page module.
-
 .. _extensionConfigurationManualSorting:
 
 Enable manual sorting of news records `manualSorting`
