@@ -123,8 +123,8 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Backend\View\PageLayoutView::class]['modifyQuery']['ext:news'] = \GeorgRinger\News\Hooks\Backend\PageViewQueryHook::class;
 
     // Inline records hook
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] =
-        \GeorgRinger\News\Hooks\InlineElementHook::class;
+    // @extensionScannerIgnoreLine
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tceforms_inline.php']['tceformsInlineHook']['news'] = \GeorgRinger\News\Hooks\InlineElementHook::class;
 
     /* ===========================================================================
         Custom cache, done with the caching framework

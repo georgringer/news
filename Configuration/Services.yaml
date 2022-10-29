@@ -42,3 +42,10 @@ services:
         command: 'news:rebuildProxyClasses'
         schedulable: false
         description: 'Rebuild the proxy classes used to extend EXT:news'
+
+  GeorgRinger\News\Event\Listener\ModifyFileReferenceControlsEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'ext-news/modify-inline-element-control'
+        method: 'modifyControls'
+        event: TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent
