@@ -97,7 +97,7 @@ class NewsController extends NewsBaseController
         GeneralUtility::makeInstance(ClassCacheManager::class)->reBuildSimple();
         $this->buildSettings();
         if (isset($this->settings['format'])) {
-            $this->request->setFormat($this->settings['format']);
+            $this->request = $this->request->withFormat($this->settings['format']);
         }
         // Only do this in Frontend Context
         if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
