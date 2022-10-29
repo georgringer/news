@@ -101,13 +101,10 @@ class Page
      * @param int $treeLevel count of levels
      * @return PageTreeView
      * @throws \Exception
+     * @deprecated not in use
      */
     public static function pageTree($pageUid, $treeLevel): PageTreeView
     {
-        if (TYPO3_MODE !== 'BE') {
-            throw new \Exception('Page::pageTree does only work in the backend!');
-        }
-
         $pageUid = (int)$pageUid;
         if ($pageUid === 0 && !self::getBackendUser()->isAdmin()) {
             $mounts = self::getBackendUser()->returnWebmounts();
