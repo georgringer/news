@@ -21,7 +21,7 @@ foreach ($pluginConfig as $pluginName) {
         'FILE:EXT:news/Configuration/FlexForms/flexform_' . $flexformFileName . '.xml',
         $contentTypeName
     );
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentTypeName] = 'ext-news-wizard-icon';
+    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentTypeName] = 'ext-news-plugin-' . str_replace('_', '-', $pluginNameForLabel);
 
     $GLOBALS['TCA']['tt_content']['types'][$contentTypeName]['showitem'] = '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
