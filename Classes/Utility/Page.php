@@ -8,13 +8,15 @@ namespace GeorgRinger\News\Utility;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use GeorgRinger\News\Database\QueryGenerator;
 use TYPO3\CMS\Backend\Tree\View\PageTreeView;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Database\QueryGenerator;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -48,7 +50,7 @@ class Page
                 }
             }
         }
-        return GeneralUtility::uniqueList($recursiveStoragePids);
+        return StringUtility::uniqueList($recursiveStoragePids);
     }
 
     /**
