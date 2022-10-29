@@ -387,6 +387,7 @@ class NewsRepository extends AbstractDemandedRepository
             ->getConnectionForTable('tx_news_domain_model_news');
 
         if (ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isFrontend()) {
+            // @extensionScannerIgnoreLine
             $sql .= $GLOBALS['TSFE']->sys_page->enableFields('tx_news_domain_model_news');
         } else {
             $expressionBuilder = $connection

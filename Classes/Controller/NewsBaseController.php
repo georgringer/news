@@ -33,6 +33,7 @@ class NewsBaseController extends ActionController
 
     protected function initializeView($view)
     {
+        // @extensionScannerIgnoreLine
         $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
         $view->assign('emConfiguration', GeneralUtility::makeInstance(EmConfiguration::class));
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {

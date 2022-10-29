@@ -53,6 +53,7 @@ class NewsAvailability
     protected function mustBeIncluded(int $newsId, SiteLanguage $language): bool
     {
         if ($language->getFallbackType() === 'strict') {
+            // @extensionScannerIgnoreLine
             $newsRecord = $this->getNewsRecord($newsId, $language->getLanguageId());
 
             if (!is_array($newsRecord) || empty($newsRecord)) {

@@ -309,6 +309,7 @@ class NewsController extends NewsBaseController
     protected function isActionAllowed(string $action): bool
     {
         $frameworkConfiguration = $this->configurationManager->getConfiguration($this->configurationManager::CONFIGURATION_TYPE_FRAMEWORK);
+        // @extensionScannerIgnoreLine
         $allowedActions = $frameworkConfiguration['controllerConfiguration']['News']['actions'] ?? [];
 
         return \in_array($action, $allowedActions, true);

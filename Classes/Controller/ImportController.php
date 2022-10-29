@@ -123,6 +123,7 @@ class ImportController extends ActionController
     {
         /** @var ImportJobInterface $job */
         $job = $this->objectManager->get($jobClassName);
+        // @extensionScannerIgnoreLine
         $job->run($offset);
 
         return $this->htmlResponse('OK');
