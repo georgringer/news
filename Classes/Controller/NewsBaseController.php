@@ -3,7 +3,9 @@
 namespace GeorgRinger\News\Controller;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
+
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
@@ -55,9 +57,9 @@ class NewsBaseController extends ActionController
     /**
      * @param \Exception $exception
      *
+     * @return void
      * @throws \Exception
      *
-     * @return void
      */
     private function handleKnownExceptionsElseThrowAgain(\Exception $exception): void
     {
@@ -80,10 +82,10 @@ class NewsBaseController extends ActionController
      * @param string $configuration configuration what will be done
      * @throws \InvalidArgumentException
      */
-    protected function handleNoNewsFoundError($configuration): string
+    protected function handleNoNewsFoundError($configuration): ?\Psr\Http\Message\ResponseInterface
     {
         if (empty($configuration)) {
-            return '';
+            return null;
         }
         $options = GeneralUtility::trimExplode(',', $configuration, true);
 
@@ -120,30 +122,25 @@ class NewsBaseController extends ActionController
                     $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction($GLOBALS['TYPO3_REQUEST'], 'No news entry found.');
                     throw new ImmediateResponseException($response);
                 }
-                    $message = 'No news entry found!';
-                    $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
-                        $GLOBALS['TYPO3_REQUEST'],
-                        $message
-                    );
-                    throw new ImmediateResponseException($response, 1590468229);
-
-                break;
+                $message = 'No news entry found!';
+                $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
+                    $GLOBALS['TYPO3_REQUEST'],
+                    $message
+                );
+                throw new ImmediateResponseException($response, 1590468229);
             case 'showStandaloneTemplate':
-                if (isset($options[2])) {
-                    $statusCode = constant(HttpUtility::class . '::HTTP_STATUS_' . $options[2]);
-                } else {
-                    $statusCode = HttpUtility::HTTP_STATUS_404;
-                }
-                HttpUtility::setResponseCode($statusCode);
-
+                $statusCode = (int)($options[2] ?? 404);
+                
                 $this->getTypoScriptFrontendController()->set_no_cache('News record not found');
 
                 $standaloneTemplate = GeneralUtility::makeInstance(StandaloneView::class);
                 $standaloneTemplate->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName($options[1]));
-                return $standaloneTemplate->render();
-                break;
+
+                return $this->responseFactory->createResponse($statusCode)
+                    ->withHeader('Content-Type', 'text/html; charset=utf-8')
+                    ->withBody($this->streamFactory->createStream($standaloneTemplate->render()));
             default:
-                return '';
+                return null;
         }
     }
 

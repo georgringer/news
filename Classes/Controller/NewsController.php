@@ -409,9 +409,9 @@ class NewsController extends NewsBaseController
                 $provider->setTitleByNews($news, $providerConfiguration);
             }
         } elseif (isset($this->settings['detail']['errorHandling'])) {
-            $errorContent = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
-            if ($errorContent) {
-                return $this->htmlResponse($errorContent);
+            $errorResponse = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
+            if ($errorResponse) {
+                return $errorResponse;
             }
         }
         return $this->htmlResponse();
