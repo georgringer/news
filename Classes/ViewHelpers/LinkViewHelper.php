@@ -119,7 +119,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             }
         }
 
-        $this->init();
+        $this->cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
         $linkedContent = $this->renderChildren();
 
         if ($newsItem === null) {
@@ -317,13 +317,4 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
         return isset($settings['detailPid']) ? (int)$settings['detailPid'] : 0;
     }
 
-    /**
-     * Initialize properties
-     *
-     * @return void
-     */
-    protected function init(): void
-    {
-        $this->cObj = GeneralUtility::makeInstance(ContentObjectRenderer::class);
-    }
 }
