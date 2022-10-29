@@ -27,6 +27,9 @@ return [
             'default' => 'ext-news-tag'
         ],
         'searchFields' => 'uid,title',
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
     'columns' => [
         'sys_language_uid' => [

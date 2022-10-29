@@ -8,20 +8,19 @@ defined('TYPO3') or die();
 $boot = static function (): void {
 
     $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
-    // CSH - context sensitive help
-    foreach (['news', 'media', 'tag', 'link'] as $table) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_' . $table);
+    if ($versionInformation->getMajorVersion() < 12) {
+        // CSH - context sensitive help
+        foreach (['news', 'tag', 'link'] as $table) {
+            // @extensionScannerIgnoreLine
+            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_news_domain_model_' . $table);
 
-        if ($versionInformation->getMajorVersion() < 12) {
             // @extensionScannerIgnoreLine
             \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
                 'tx_news_domain_model_' . $table,
                 'EXT:news/Resources/Private/Language/locallang_csh_' . $table . '.xlf'
             );
         }
-    }
 
-    if ($versionInformation->getMajorVersion() < 12) {
         // @extensionScannerIgnoreLine
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
             'tt_content.pi_flexform.news_pi1.list',

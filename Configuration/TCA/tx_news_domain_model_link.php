@@ -30,6 +30,9 @@ return [
             'default' => 'ext-news-link'
         ],
         'hideTable' => true,
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
     ],
     'columns' => [
         'pid' => [
