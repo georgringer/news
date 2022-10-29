@@ -74,7 +74,7 @@ class CountViewHelper extends AbstractViewHelper implements ViewHelperInterface
                 $queryBuilder->expr()->eq('sys_category.uid', $queryBuilder->quoteIdentifier('sys_category_record_mm.uid_local'))
             )
             ->where(
-                $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->and(
                     $queryBuilder->expr()->eq(
                         'sys_category.uid',
                         $queryBuilder->createNamedParameter($categoryUid, \PDO::PARAM_INT)

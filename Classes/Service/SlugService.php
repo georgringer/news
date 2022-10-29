@@ -38,7 +38,7 @@ class SlugService
         $elementCount = $queryBuilder->count('uid')
             ->from('tx_news_domain_model_news')
             ->where(
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
@@ -63,7 +63,7 @@ class SlugService
         $statement = $queryBuilder->select('*')
             ->from('tx_news_domain_model_news')
             ->where(
-                $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->or(
                     $queryBuilder->expr()->eq('path_segment', $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)),
                     $queryBuilder->expr()->isNull('path_segment')
                 )
@@ -172,8 +172,8 @@ class SlugService
                     )
                 )
                 ->where(
-                    $queryBuilder->expr()->andX(
-                        $queryBuilder->expr()->orX(
+                    $queryBuilder->expr()->and(
+                        $queryBuilder->expr()->or(
                             $queryBuilder->expr()->eq(
                                 'tx_news_domain_model_news.path_segment',
                                 $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)
@@ -188,7 +188,7 @@ class SlugService
                             'tx_realurl_uniqalias.tablename',
                             $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)
                         ),
-                        $queryBuilder->expr()->orX(
+                        $queryBuilder->expr()->or(
                             $queryBuilder->expr()->eq(
                                 'tx_realurl_uniqalias.expire',
                                 $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
@@ -235,12 +235,12 @@ class SlugService
                     'tx_news_domain_model_news',
                     'tx_realurl_uniqalias',
                     'tx_realurl_uniqalias',
-                    $queryBuilder->expr()->orX(
+                    $queryBuilder->expr()->or(
                         $queryBuilder->expr()->eq(
                             'tx_news_domain_model_news.uid',
                             $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.value_id')
                         ),
-                        $queryBuilder->expr()->andX(
+                        $queryBuilder->expr()->and(
                             $queryBuilder->expr()->eq(
                                 'tx_news_domain_model_news.l10n_parent',
                                 $queryBuilder->quoteIdentifier('tx_realurl_uniqalias.value_id')
@@ -253,8 +253,8 @@ class SlugService
                     )
                 )
                 ->where(
-                    $queryBuilder->expr()->andX(
-                        $queryBuilder->expr()->orX(
+                    $queryBuilder->expr()->and(
+                        $queryBuilder->expr()->or(
                             $queryBuilder->expr()->eq(
                                 'tx_news_domain_model_news.path_segment',
                                 $queryBuilder->createNamedParameter('', \PDO::PARAM_STR)
@@ -269,7 +269,7 @@ class SlugService
                             'tx_realurl_uniqalias.tablename',
                             $queryBuilder->createNamedParameter('tx_news_domain_model_news', \PDO::PARAM_STR)
                         ),
-                        $queryBuilder->expr()->orX(
+                        $queryBuilder->expr()->or(
                             $queryBuilder->expr()->eq(
                                 'tx_realurl_uniqalias.expire',
                                 $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)

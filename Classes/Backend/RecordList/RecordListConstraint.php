@@ -59,11 +59,11 @@ class RecordListConstraint
                     }
                 }
                 if (!empty($likeParts)) {
-                    $fieldParts[] = $expressionBuilder->orX(...$likeParts);
+                    $fieldParts[] = $expressionBuilder->or(...$likeParts);
                 }
             }
-            $parameters['whereDoctrine'][] = $expressionBuilder->orX(...$fieldParts);
-            $parameters['where'][] = $expressionBuilder->orX(...$fieldParts);
+            $parameters['whereDoctrine'][] = $expressionBuilder->or(...$fieldParts);
+            $parameters['where'][] = $expressionBuilder->or(...$fieldParts);
         }
         // top news
         $topNewsSetting = (int)$arguments['topNewsRestriction'];
@@ -83,13 +83,13 @@ class RecordListConstraint
             $currentTime = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp');
             if ($archived === 1) {
                 $parameters['where'][] = '(archive > ' . $currentTime . ' OR archive=0)';
-                $parameters['whereDoctrine'][] = $expressionBuilder->orX(
+                $parameters['whereDoctrine'][] = $expressionBuilder->or(
                     $expressionBuilder->gt('archive', $currentTime),
                     $expressionBuilder->eq('archive', 0)
                 );
             } elseif ($archived === 2) {
                 $parameters['where'][] = 'archive > 0 AND archive <' . $currentTime;
-                $parameters['whereDoctrine'][] = $expressionBuilder->andX(
+                $parameters['whereDoctrine'][] = $expressionBuilder->and(
                     $expressionBuilder->gt('archive', 0),
                     $expressionBuilder->lt('archive', $currentTime)
                 );
@@ -171,7 +171,7 @@ class RecordListConstraint
                             $parameters['whereDoctrine'][] = $expressionBuilder->eq('uid', 0);
                         } else {
                             $parameters['where'][] = implode(' OR ', $orConstraint);
-                            $parameters['whereDoctrine'][] = $expressionBuilder->orX(...$orConstraintDoctrine);
+                            $parameters['whereDoctrine'][] = $expressionBuilder->or(...$orConstraintDoctrine);
                         }
                         break;
                     // @todo test that
@@ -193,7 +193,7 @@ class RecordListConstraint
                         } else {
                             $orConstraint = array_unique($orConstraint);
                             $parameters['where'][] = ' NOT (' . implode(' OR ', $orConstraint) . ')';
-                            $parameters['whereDoctrine'][] = $expressionBuilder->andX(...$orConstraintDoctrine);
+                            $parameters['whereDoctrine'][] = $expressionBuilder->and(...$orConstraintDoctrine);
                         }
                         break;
                     case 'notand':
