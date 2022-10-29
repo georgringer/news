@@ -27,6 +27,7 @@ use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
@@ -218,7 +219,10 @@ class NewsController extends NewsBaseController
      */
     public function listAction(array $overwriteDemand = null): ResponseInterface
     {
-        $this->forwardToDetailActionWhenRequested();
+        $possibleRedirect = $this->forwardToDetailActionWhenRequested();
+        if ($possibleRedirect) {
+            return $possibleRedirect;
+        }
 
         $demand = $this->createDemandObjectFromSettings($this->settings);
         $demand->setActionAndClass(__METHOD__, __CLASS__);
@@ -283,15 +287,17 @@ class NewsController extends NewsBaseController
     /**
      * When list action is called along with a news argument, we forward to detail action.
      */
-    protected function forwardToDetailActionWhenRequested()
+    protected function forwardToDetailActionWhenRequested(): ?ForwardResponse
     {
         if (!$this->isActionAllowed('detail')
             || !$this->request->hasArgument('news')
         ) {
-            return;
+            return null;
         }
 
-        $this->forward('detail', null, null, ['news' => $this->request->getArgument('news')]);
+        $forwardResponse = new ForwardResponse('detail');
+        return $forwardResponse->withArguments(['news' => $this->request->getArgument('news')]);
+
     }
 
     /**
