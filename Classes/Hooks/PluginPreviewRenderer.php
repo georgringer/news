@@ -13,12 +13,10 @@ namespace GeorgRinger\News\Hooks;
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
-use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
-use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Type\Bitmask\Permission;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -29,7 +27,6 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
  */
 class PluginPreviewRenderer extends StandardContentPreviewRenderer
 {
-
     protected const LLPATH = 'LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:';
     protected const SETTINGS_IN_PREVIEW = 7;
 
@@ -568,5 +565,4 @@ class PluginPreviewRenderer extends StandardContentPreviewRenderer
         }
         return $editLink;
     }
-
 }

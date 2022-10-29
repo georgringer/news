@@ -3,15 +3,8 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Event\Listener;
 
-use GeorgRinger\News\Domain\Model\Category;
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use GeorgRinger\News\Domain\Service\CategoryImportService;
-use TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent;
-use TYPO3\CMS\Backend\Form\Event\ModifyInlineElementControlsEvent;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForContentEvent;
-use TYPO3\CMS\Core\Imaging\Icon;
-use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Messaging\FlashMessageService;
@@ -29,7 +22,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class ModifyDatabaseQueryForContentEventListener
 {
-
     protected static int $count = 0;
 
     public function modify(ModifyDatabaseQueryForContentEvent $event): void
