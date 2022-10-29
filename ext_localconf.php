@@ -120,6 +120,7 @@ $boot = static function (): void {
         = \GeorgRinger\News\Hooks\Backend\RecordListQueryHook::class;
 
     // Hide content elements in page module
+    // @extensionScannerIgnoreLine
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Backend\View\PageLayoutView::class]['modifyQuery']['ext:news'] = \GeorgRinger\News\Hooks\Backend\PageViewQueryHook::class;
 
     // Inline records hook

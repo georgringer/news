@@ -1,6 +1,21 @@
 <?php
+declare(strict_types=1);
 
-namespace GeorgRinger\News\Hooks\Backend;
+namespace GeorgRinger\News\Event\Listener;
+
+use GeorgRinger\News\Domain\Model\Category;
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use GeorgRinger\News\Domain\Service\CategoryImportService;
+use TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent;
+use TYPO3\CMS\Backend\Form\Event\ModifyInlineElementControlsEvent;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\View\Event\ModifyDatabaseQueryForContentEvent;
+use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -8,47 +23,24 @@ namespace GeorgRinger\News\Hooks\Backend;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Core\Localization\LanguageService;
-use TYPO3\CMS\Core\Messaging\FlashMessage;
-use TYPO3\CMS\Core\Messaging\FlashMessageService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Hook into PageLayoutView to hide tt_content elements in page view
- * v11 only, v12: \GeorgRinger\News\Event\Listener\ModifyDatabaseQueryForContentEventListener
+ * Event for PageLayoutView to hide tt_content elements in page view
  */
-class PageViewQueryHook
+final class ModifyDatabaseQueryForContentEventListener
 {
-    protected static $count = 0;
 
-    /**
-     * Prevent inline tt_content elements in news articles from
-     * showing in the page module.
-     *
-     * @param array $parameters
-     * @param string $table
-     * @param int $pageId
-     * @param array $additionalConstraints
-     * @param string[] $fieldList
-     * @param QueryBuilder $queryBuilder
-     */
-    public function modifyQuery(
-        $parameters,
-        $table,
-        $pageId,
-        $additionalConstraints,
-        $fieldList,
-        QueryBuilder $queryBuilder
-    ): void {
-        if ($table === 'tt_content' && $pageId > 0) {
+    protected static int $count = 0;
+
+    public function modify(ModifyDatabaseQueryForContentEvent $event): void
+    {
+        if ($event->getTable() === 'tt_content' && $event->getPageId() > 0) {
 
             // Get page record base on page uid
-            $pageRecord = BackendUtility::getRecord('pages', $pageId, 'uid', " AND doktype='254' AND module='news'");
+            $pageRecord = BackendUtility::getRecord('pages', $event->getPageId(), 'uid', " AND doktype='254' AND module='news'");
 
             if (is_array($pageRecord)) {
-                $tsConfig = BackendUtility::getPagesTSconfig($pageId);
+                $tsConfig = BackendUtility::getPagesTSconfig($event->getPageId());
 
                 if ((int)($tsConfig['tx_news.']['showContentElementsInNewsSysFolder'] ?? 0)  === 1) {
                     return;
@@ -56,8 +48,8 @@ class PageViewQueryHook
 
                 // Only hide elements which are inline, allowing for standard
                 // elements to show
-                $queryBuilder->andWhere(
-                    $queryBuilder->expr()->eq('tx_news_related_news', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT))
+                $event->getQueryBuilder()->andWhere(
+                    $event->getQueryBuilder()->expr()->eq('tx_news_related_news', $event->getQueryBuilder()->createNamedParameter(0, \PDO::PARAM_INT))
                 );
 
                 if (self::$count === 0) {
