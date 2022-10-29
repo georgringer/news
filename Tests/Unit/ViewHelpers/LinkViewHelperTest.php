@@ -37,7 +37,7 @@ class LinkViewHelperTest extends BaseTestCase
     {
         $this->newsItem = new News();
 
-        $this->mockedViewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['init', 'renderChildren']);
+        $this->mockedViewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['initializeContentObjectRenderer', 'renderChildren']);
         $this->mockedContentObjectRenderer = $this->getAccessibleMock(ContentObjectRenderer::class, ['typoLink_URL', 'typoLink']);
         $pluginSettings = $this->getAccessibleMock(SettingsService::class, ['getSettings']);
         $tag = $this->getAccessibleMock(TagBuilder::class, ['addAttribute', 'setContent', 'render']);
