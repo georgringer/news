@@ -97,7 +97,6 @@ class FlexformHook
         }
 
         if (!empty($selectedView)) {
-
             if ($GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms'] ?? []) {
                 $params = [
                     'selectedView' => $selectedView,
