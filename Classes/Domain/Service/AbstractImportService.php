@@ -100,7 +100,6 @@ class AbstractImportService implements LoggerAwareInterface
      * Find a existing file by its hash
      *
      * @param string $hash
-     *
      * @return File|ProcessedFile|null
      */
     protected function findFileByHash($hash)
@@ -137,29 +136,16 @@ class AbstractImportService implements LoggerAwareInterface
         return $this->importFolder;
     }
 
-    /**
-     * Returns an instance of the FileIndexRepository
-     *
-     * @return FileIndexRepository
-     */
     protected function getFileIndexRepository(): FileIndexRepository
     {
-        return FileIndexRepository::getInstance();
+        return GeneralUtility::makeInstance(FileIndexRepository::class);
     }
 
-    /**
-     * Get resource storage
-     *
-     * @return ResourceStorage
-     */
     protected function getResourceStorage(): ResourceStorage
     {
         return $this->getResourceFactory()->getStorageObject($this->emSettings->getStorageUidImporter());
     }
 
-    /**
-     * @return ResourceFactory
-     */
     protected function getResourceFactory(): ResourceFactory
     {
         /** @var ResourceFactory $resourceFactory */
