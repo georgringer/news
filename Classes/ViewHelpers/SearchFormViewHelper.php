@@ -157,6 +157,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
             if ($versionInformation->getMajorVersion() >= 11) {
                 $uriBuilder = $this->renderingContext->getUriBuilder();
             } else {
+                // @extensionScannerIgnoreLine
                 $uriBuilder = GeneralUtility::makeInstance(ObjectManager::class)->get(UriBuilder::class);
                 /** @var ControllerContext $controllerContext */
                 $controllerContext = $this->renderingContext->getControllerContext();
@@ -340,6 +341,7 @@ class SearchFormViewHelper extends AbstractFormViewHelper
         if ($versionInformation->getMajorVersion() >= 11) {
             $request = $this->renderingContext->getRequest();
         } else {
+            // @extensionScannerIgnoreLine
             $request = $this->renderingContext->getControllerContext()->getRequest();
         }
         if ($this->hasArgument('extensionName')) {
