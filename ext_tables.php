@@ -52,24 +52,6 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['livesearch']['newstag'] = 'tx_news_domain_model_tag';
 
     /* ===========================================================================
-        Register BE-Modules
-    =========================================================================== */
-    if ($configuration->getShowImporter()) {
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-            'News',
-            'system',
-            'tx_news_m1',
-            '',
-            [\GeorgRinger\News\Controller\ImportController::class => 'index, runJob, jobInfo'],
-            [
-                'access' => 'user,group',
-                'icon' => 'EXT:news/Resources/Public/Icons/module_import.svg',
-                'labels' => 'LLL:EXT:news/Resources/Private/Language/locallang_mod.xlf',
-            ]
-        );
-    }
-
-    /* ===========================================================================
         Register BE-Module for Administration
     =========================================================================== */
     if ($configuration->getShowAdministrationModule()) {

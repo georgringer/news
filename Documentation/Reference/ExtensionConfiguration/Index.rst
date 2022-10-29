@@ -232,8 +232,6 @@ Show administration module `showAdministrationModule`
    If set, the backend module "News" is shown. This view might be easier for
    editors who use a very limited set of features in the backend.
 
-.. _extensionConfigurationShowImporter:
-
 .. _extensionConfigurationHidePageTreeForAdministrationModule:
 
 Hide page tree for Administration module `hidePageTreeForAdministrationModule`
@@ -248,22 +246,6 @@ Hide page tree for Administration module `hidePageTreeForAdministrationModule`
    combination with the TsConfig :confval:`redirectToPageOnStart` you can
    achieve a very simple workflow for editors if those need only to create
    news records.
-
-Import Module
-=============
-
-Show importer `showImporter`
-----------------------------
-
-.. confval:: showImporter
-
-   :type: bool
-   :Default: 0
-
-   If set, the backend module "News import" is shown. This is used to
-   import news articles from sources like t3blog, tt_news or custom providers.
-
-.. _extensionConfigurationStorageUidImporter:
 
 UID of storage to use when importing files/images `storageUidImporter`
 ----------------------------------------------------------------------
@@ -298,18 +280,20 @@ you want to include the setting in version control.
 .. code-block:: php
    :caption: AdditionalConfiguration.php
 
-   $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['news'] = serialize([
-       'archiveDate' => 'date',
-       'rteForTeaser' => 0,
-       'tagPid' => 1,
-       'prependAtCopy' => 0,
-       'categoryRestriction' => 'none',
-       'categoryBeGroupTceFormsRestriction' => 0,
-       'contentElementRelation' => 1,
-       'manualSorting' => 0,
-       'dateTimeNotRequired' => 0,
-       'showAdministrationModule' => 1,
-       'showImporter' => 0,
-       'storageUidImporter' => '1',
-       'resourceFolderImporter' => '/news_import',
-   ]),
+   $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['news'] = [
+      'advancedMediaPreview' => '1',
+      'archiveDate' => 'date',
+      'categoryBeGroupTceFormsRestriction' => '0',
+      'categoryRestriction' => 'none',
+      'contentElementRelation' => '1',
+      'dateTimeNotRequired' => '0',
+      'hidePageTreeForAdministrationModule' => '0',
+      'manualSorting' => '0',
+      'prependAtCopy' => '1',
+      'resourceFolderImporter' => '/news_import',
+      'rteForTeaser' => '0',
+      'showAdministrationModule' => '1',
+      'slugBehaviour' => 'unique',
+      'storageUidImporter' => '1',
+      'tagPid' => '1',
+  ];

@@ -65,9 +65,6 @@ class EmConfiguration
     protected $dateTimeNotRequired = false;
 
     /** @var bool */
-    protected $showImporter = false;
-
-    /** @var bool */
     protected $rteForTeaser = false;
 
     /** @var bool */
@@ -121,11 +118,6 @@ class EmConfiguration
     public function getArchiveDate(): string
     {
         return $this->archiveDate;
-    }
-
-    public function getShowImporter(): bool
-    {
-        return (bool)$this->showImporter;
     }
 
     public function setShowAdministrationModule($showAdministrationModule): void
