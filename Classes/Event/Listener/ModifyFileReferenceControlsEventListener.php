@@ -3,11 +3,8 @@ declare(strict_types=1);
 
 namespace GeorgRinger\News\Event\Listener;
 
-use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use GeorgRinger\News\Domain\Service\CategoryImportService;
 use TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent;
-use TYPO3\CMS\Backend\Form\Event\ModifyInlineElementControlsEvent;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -20,11 +17,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class ModifyFileReferenceControlsEventListener
 {
-
     public function modifyControls(
         ModifyFileReferenceControlsEvent $event
-    ): void
-    {
+    ): void {
         $childRecord = $event->getRecord();
         $previewSetting = (int)(is_array($childRecord['showinpreview'] ?? false) ? $childRecord['showinpreview'][0] : ($childRecord['showinpreview'] ?? 0));
         if ($event->getForeignTable() === 'sys_file_reference' && $previewSetting > 0) {

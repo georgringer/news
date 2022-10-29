@@ -316,5 +316,4 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     {
         return isset($settings['detailPid']) ? (int)$settings['detailPid'] : 0;
     }
-
 }
