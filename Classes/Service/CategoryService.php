@@ -120,14 +120,9 @@ class CategoryService
      * @param string $default default label
      * @param array $row category record
      * @return string
-     * @throws \UnexpectedValueException
      */
     public static function translateCategoryRecord($default, array $row = []): string
     {
-        if (TYPO3_MODE !== 'BE') {
-            throw new \UnexpectedValueException('TYPO3 Mode must be BE');
-        }
-
         $overlayLanguage = (int)($GLOBALS['BE_USER']->uc['newsoverlay'] ?? 0);
 
         $title = '';
