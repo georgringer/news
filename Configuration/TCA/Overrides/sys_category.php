@@ -31,6 +31,8 @@ if ($versionInformation->getMajorVersion() > 11) {
         'allowed' => 'common-image-types',
     ];
 } else {
+    /** @noinspection PhpDeprecationInspection */
+    // @extensionScannerIgnoreLine
     $imageConfiguration = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
         'image',
         $imageSettings,

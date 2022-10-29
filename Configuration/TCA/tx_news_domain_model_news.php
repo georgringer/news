@@ -101,11 +101,15 @@ if ($versionInformation->getMajorVersion() > 11) {
         'inline' => $imageSettingsFalRelatedFiles['inline'],
     ];
 } else {
+    /** @noinspection PhpDeprecationInspection */
+    // @extensionScannerIgnoreLine
     $imageConfigurationFalMedia = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
         'fal_media',
         $imageSettingsFalMedia,
         $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
     );
+    /** @noinspection PhpDeprecationInspection */
+    // @extensionScannerIgnoreLine
     $imageConfigurationFalRelatedFiles = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
         'fal_related_files',
         $imageSettingsFalRelatedFiles,
