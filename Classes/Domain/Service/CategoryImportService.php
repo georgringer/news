@@ -12,7 +12,6 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
@@ -31,11 +30,10 @@ class CategoryImportService extends AbstractImportService
      */
     public function __construct(
         PersistenceManager $persistenceManager,
-        ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
         EventDispatcherInterface $eventDispatcher
     ) {
-        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $eventDispatcher);
+        parent::__construct($persistenceManager, $categoryRepository, $eventDispatcher);
     }
 
     public function import(array $importArray): void

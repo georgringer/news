@@ -14,7 +14,6 @@ use TYPO3\CMS\Core\Resource\ProcessedFile;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
@@ -28,11 +27,6 @@ class AbstractImportService implements LoggerAwareInterface
     use LoggerAwareTrait;
 
     const UPLOAD_PATH = 'uploads/tx_news/';
-
-    /**
-     * @var ObjectManager
-     */
-    protected $objectManager;
 
     /**
      * @var PersistenceManager
@@ -67,19 +61,16 @@ class AbstractImportService implements LoggerAwareInterface
      * AbstractImportService constructor.
      * @param PersistenceManager $persistenceManager
      * @param EmConfiguration $emSettings
-     * @param ObjectManager $objectManager
      * @param CategoryRepository $categoryRepository
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         PersistenceManager $persistenceManager,
-        ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
         EventDispatcherInterface $eventDispatcher
     ) {
         $this->emSettings = GeneralUtility::makeInstance(EmConfiguration::class);
         $this->persistenceManager = $persistenceManager;
-        $this->objectManager = $objectManager;
         $this->categoryRepository = $categoryRepository;
         $this->eventDispatcher = $eventDispatcher;
     }

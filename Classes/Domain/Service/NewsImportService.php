@@ -18,7 +18,6 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Resource\Exception\ResourceDoesNotExistException;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -52,13 +51,12 @@ class NewsImportService extends AbstractImportService
      */
     public function __construct(
         PersistenceManager $persistenceManager,
-        ObjectManager $objectManager,
         CategoryRepository $categoryRepository,
         EventDispatcherInterface $eventDispatcher,
         NewsRepository $newsRepository,
         TtContentRepository $ttContentRepository
     ) {
-        parent::__construct($persistenceManager, $objectManager, $categoryRepository, $eventDispatcher);
+        parent::__construct($persistenceManager, $categoryRepository, $eventDispatcher);
 
         $this->newsRepository = $newsRepository;
         $this->ttContentRepository = $ttContentRepository;
