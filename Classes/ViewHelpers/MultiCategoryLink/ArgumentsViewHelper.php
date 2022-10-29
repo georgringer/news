@@ -10,8 +10,10 @@ namespace GeorgRinger\News\ViewHelpers\MultiCategoryLink;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
@@ -62,7 +64,8 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ): array {
+    ): array
+    {
         if ($arguments['mode'] !== 'add' && $arguments['mode'] !== 'remove') {
             throw new Exception('Mode must be either "add" or "remove', 1522293549);
         }
@@ -76,7 +79,7 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
                 $categoryList .= ',' . $categoryId;
             }
         } else {
-            $categoryList = GeneralUtility::rmFromList($categoryId, $categoryList);
+            $categoryList = self::rmFromList($categoryId, $categoryList);
         }
 
         if (!empty($categoryList)) {
@@ -84,13 +87,25 @@ class ArgumentsViewHelper extends AbstractViewHelper implements ViewHelperInterf
             $categoryArray = [
                 'tx_news_pi1' => [
                     'overwriteDemand' => [
-                        'categories' => $categoryList
-                    ]
-                ]
+                        'categories' => $categoryList,
+                    ],
+                ],
             ];
             ArrayUtility::mergeRecursiveWithOverrule($allArguments, $categoryArray);
         }
 
         return $allArguments;
+    }
+
+
+    private static function rmFromList($element, $list)
+    {
+        $items = explode(',', $list);
+        foreach ($items as $k => $v) {
+            if ($v == $element) {
+                unset($items[$k]);
+            }
+        }
+        return implode(',', $items);
     }
 }
