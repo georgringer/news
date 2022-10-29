@@ -6,7 +6,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 defined('TYPO3') or die();
 
 $boot = static function (): void {
-
     $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
     // CSH - context sensitive help
     foreach (['news', 'media', 'tag', 'link'] as $table) {
