@@ -8,6 +8,8 @@ namespace GeorgRinger\News\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use Doctrine\DBAL\FetchMode;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Service\CategoryService;
@@ -405,7 +407,7 @@ class NewsRepository extends AbstractDemandedRepository
         $sql .= ' GROUP BY _Month, _Year ORDER BY _Year ' . $orderDirection . ', _Month ' . $orderDirection;
 
         $res = $connection->query($sql);
-        while ($row = $res->fetch()) {
+        while ($row = $res->fetch(FetchMode::ASSOCIATIVE)) {
             $month = strlen($row['_Month']) === 1 ? ('0' . $row['_Month']) : $row['_Month'];
             $data['single'][$row['_Year']][$month] = $row['count_month'];
         }
