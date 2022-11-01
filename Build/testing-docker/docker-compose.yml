@@ -1,0 +1,427 @@
+version: '2.3'
+services:
+  #---------------------------------------------------------------------------------------------------------------------
+  # additional services needed for functional tests to be linked, e.g. databases
+  #---------------------------------------------------------------------------------------------------------------------
+  mysql:
+    image: mysql:${MYSQL_VERSION}
+    environment:
+      MYSQL_ROOT_PASSWORD: funcp
+    tmpfs:
+      - /var/lib/mysql/:rw,noexec,nosuid
+
+  mariadb:
+    image: mariadb:${MARIADB_VERSION}
+    environment:
+      MYSQL_ROOT_PASSWORD: funcp
+    tmpfs:
+      - /var/lib/mysql/:rw,noexec,nosuid
+
+  postgres:
+    image: postgres:${POSTGRES_VERSION}-alpine
+    environment:
+      POSTGRES_PASSWORD: funcp
+      POSTGRES_USER: funcu
+    tmpfs:
+      - /var/lib/postgresql/data:rw,noexec,nosuid
+
+  #---------------------------------------------------------------------------------------------------------------------
+  # composer related services
+  #---------------------------------------------------------------------------------------------------------------------
+  composer:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    environment:
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        php -v | grep '^PHP';
+        composer ${EXTRA_TEST_OPTIONS};
+      "
+
+  composer_install:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    environment:
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        php -v | grep '^PHP';
+        if [ ${TYPO3_VERSION} -eq 11 ]; then
+          composer require --no-ansi --no-interaction --no-progress --no-install \
+            typo3/cms-core:^11.5.4
+        fi
+        if [ ${TYPO3_VERSION} -eq 12 ]; then
+          composer require --no-ansi --no-interaction --no-progress --no-install \
+            typo3/cms-core:^12.0
+        fi
+        composer install --no-progress;
+      "
+
+  composer_install_lowest:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    environment:
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        php -v | grep '^PHP';
+        if [ ${TYPO3_VERSION} -eq 11 ]; then
+          composer require --no-ansi --no-interaction --no-progress --no-install \
+            typo3/cms-core:^11.5.4
+        fi
+        if [ ${TYPO3_VERSION} -eq 12 ]; then
+          composer require --no-ansi --no-interaction --no-progress --no-install \
+            typo3/cms-core:^12.0
+        fi
+        composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest;
+        composer show;
+      "
+
+  composer_install_highest:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    environment:
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        if [ ${TYPO3_VERSION} -eq 11 ]; then
+          composer require --no-ansi --no-interaction --no-progress --no-install \
+            typo3/cms-core:^11.5.4
+        fi
+        if [ ${TYPO3_VERSION} -eq 12 ]; then
+          composer require --no-ansi --no-interaction --no-progress --no-install \
+            typo3/cms-core:^12.0
+        fi
+        composer update --no-progress --no-interaction;
+        composer show;
+      "
+
+  #---------------------------------------------------------------------------------------------------------------------
+  # unit tests
+  #---------------------------------------------------------------------------------------------------------------------
+  unit:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        php -v | grep '^PHP';
+        if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
+          XDEBUG_MODE=\"off\" \
+          .Build/bin/phpunit -c Build/phpunit/UnitTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+        else
+          XDEBUG_MODE=\"${USED_XDEBUG_MODES}\" \
+          XDEBUG_TRIGGER=\"foo\" \
+          XDEBUG_CONFIG=\"client_host=host.docker.internal\" \
+          .Build/bin/phpunit -c Build/phpunit/UnitTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+        fi
+      "
+
+  lint:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        php -v | grep '^PHP';
+        find . -name \\*.php ! -path "./.Build/\\*" -print0 | xargs -0 -n1 -P4 php -dxdebug.mode=off -l >/dev/null
+      "
+
+  #---------------------------------------------------------------------------------------------------------------------
+  # functional tests against different dbms
+  #---------------------------------------------------------------------------------------------------------------------
+  functional_sqlite:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    tmpfs:
+      - ${ROOT_DIR}/public/typo3temp/var/tests/functional-sqlite-dbs/:rw,noexec,nosuid,uid=${HOST_UID}
+    environment:
+      typo3DatabaseDriver: pdo_sqlite
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    working_dir: ${ROOT_DIR}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        php -v | grep '^PHP';
+        if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
+          XDEBUG_MODE=\"off\" \
+          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-sqlite ${TEST_FILE};
+        else
+          XDEBUG_MODE=\"${USED_XDEBUG_MODES}\" \
+          XDEBUG_TRIGGER=\"foo\" \
+          XDEBUG_CONFIG=\"client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal\" \
+          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-sqlite ${TEST_FILE};
+        fi
+      "
+
+  functional_postgres:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    links:
+      - postgres
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    environment:
+      typo3DatabaseDriver: pdo_pgsql
+      typo3DatabaseName: bamboo
+      typo3DatabaseUsername: funcu
+      typo3DatabaseHost: postgres
+      typo3DatabasePassword: funcp
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    working_dir: ${ROOT_DIR}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        echo Waiting for database start...;
+        while ! nc -z postgres 5432; do
+          sleep 1;
+        done;
+        echo Database is up;
+        php -v | grep '^PHP';
+        if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
+          XDEBUG_MODE=\"off\" \
+          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-postgres ${TEST_FILE};
+        else
+          XDEBUG_MODE=\"${USED_XDEBUG_MODES}\" \
+          XDEBUG_TRIGGER=\"foo\" \
+          XDEBUG_CONFIG=\"client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal\" \
+          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} --exclude-group not-postgres ${TEST_FILE};
+        fi
+      "
+
+  functional_mysql:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    links:
+      - mysql
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    environment:
+      typo3DatabaseDriver: "${DATABASE_DRIVER}"
+      typo3DatabaseName: func_test
+      typo3DatabaseUsername: root
+      typo3DatabasePassword: funcp
+      typo3DatabaseHost: mysql
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    working_dir: ${ROOT_DIR}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        echo Waiting for database start...;
+        while ! nc -z mysql 3306; do
+          sleep 1;
+        done;
+        echo Database is up;
+        php -v | grep '^PHP';
+        if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
+          XDEBUG_MODE=\"off\" \
+          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+        else
+          XDEBUG_MODE=\"${USED_XDEBUG_MODES}\" \
+          XDEBUG_TRIGGER=\"foo\" \
+          XDEBUG_CONFIG=\"client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal\" \
+          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+        fi
+      "
+
+  functional_mariadb:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    links:
+      - mariadb
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    environment:
+      typo3DatabaseDriver: "${DATABASE_DRIVER}"
+      typo3DatabaseName: func_test
+      typo3DatabaseUsername: root
+      typo3DatabasePassword: funcp
+      typo3DatabaseHost: mariadb
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    working_dir: ${ROOT_DIR}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        echo Waiting for database start...;
+        while ! nc -z mariadb 3306; do
+          sleep 1;
+        done;
+        echo Database is up;
+        php -v | grep '^PHP';
+        if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
+          XDEBUG_MODE=\"off\" \
+          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+        else
+          XDEBUG_MODE=\"${USED_XDEBUG_MODES}\" \
+          XDEBUG_TRIGGER=\"foo\" \
+          XDEBUG_CONFIG=\"client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal\" \
+          .Build/bin/phpunit -c .Build/public/typo3conf/ext/news/Build/phpunit/FunctionalTests.xml ${EXTRA_TEST_OPTIONS} ${TEST_FILE};
+        fi
+      "
+
+  #---------------------------------------------------------------------------------------------------------------------
+  # code quality tools
+  #---------------------------------------------------------------------------------------------------------------------
+  cgl:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        php -v | grep '^PHP';
+        if [ ${PHP_XDEBUG_ON} -eq 0 ]; then
+          php -dxdebug.mode=off \
+            .Build/bin/php-cs-fixer fix \
+              -v \
+              ${CGLCHECK_DRY_RUN} \
+              --config=Build/php-cs-fixer/php-cs-fixer.php \
+              --using-cache=no .
+        else
+          XDEBUG_MODE=\"debug,develop\" \
+          XDEBUG_TRIGGER=\"foo\" \
+          XDEBUG_CONFIG=\"client_port=${PHP_XDEBUG_PORT} client_host=host.docker.internal\" \
+          PHP_CS_FIXER_ALLOW_XDEBUG=1 \
+          .Build/bin/php-cs-fixer fix \
+            -v \
+            ${CGLCHECK_DRY_RUN} \
+            --config=Build/php-cs-fixer/php-cs-fixer.php \
+            --using-cache=no .
+        fi
+      "
+
+  coveralls:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        php -v | grep '^PHP';
+        XDEBUG_MODE=\"coverage\" \
+        php -dxdebug.mode=off ./.Build/bin/php-coveralls --coverage_clover=./.Build/logs/clover.xml --json_path=./.Build/logs/coveralls-upload.json -v
+      "
+
+  phpstan:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        mkdir -p .cache
+        php -dxdebug.mode=off .Build/bin/phpstan analyze -c ./phpstan.neon --no-progress
+      "
+
+  phpstan_generate_baseline:
+    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    user: "${HOST_UID}"
+    volumes:
+      - ${ROOT_DIR}:${ROOT_DIR}
+    working_dir: ${ROOT_DIR}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      COMPOSER_HOME: ".cache/composer-home"
+      COMPOSER_CACHE_DIR: ".cache/composer"
+    command: >
+      /bin/sh -c "
+        if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
+          set -x
+        fi
+        mkdir -p .cache
+        php -dxdebug.mode=off .Build/bin/phpstan analyze -c ./phpstan.neon --generate-baseline=./phpstan-baseline.neon --allow-empty-baseline
+      "

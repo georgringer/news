@@ -1,6 +1,8 @@
 /.Build
-/Build/Local/.phpunit.result.cache
+/Build/testing-docker/.env
+.cache
 /composer.lock
+/composer.json.testing
 /.php_cs.cache
 /Documentation-GENERATED-temp
 /Resources/Private/Templates/News/Month.html
@@ -10,3 +12,4 @@
 .DS_Store
 .idea/
 .fleet/
+/var/
