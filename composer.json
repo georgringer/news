@@ -37,7 +37,6 @@
     },
     "require-dev": {
         "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.0.1",
-        "php-coveralls/php-coveralls": "^2.1",
         "typo3/cms-core": "^11 || ^12"
     },
     "autoload": {
