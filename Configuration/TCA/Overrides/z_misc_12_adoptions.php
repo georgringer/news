@@ -16,12 +16,6 @@ call_user_func(static function () {
                     'type' => 'datetime',
                 ];
             }
-            // type language
-            if (isset($GLOBALS['TCA']['tx_news_domain_model_' . $tableSuffix]['columns']['sys_language_uid'])) {
-                $GLOBALS['TCA']['tx_news_domain_model_' . $tableSuffix]['columns']['sys_language_uid']['config'] = [
-                    'type' => 'language',
-                ];
-            }
         }
         // set datetime for various date fields
         foreach (['starttime', 'endtime', 'archive', 'datetime'] as $dateField) {
