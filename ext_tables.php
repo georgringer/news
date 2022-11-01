@@ -6,7 +6,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 defined('TYPO3') or die();
 
 $boot = static function (): void {
-
     $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
     if ($versionInformation->getMajorVersion() < 12) {
         // CSH - context sensitive help
