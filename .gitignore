@@ -8,3 +8,5 @@
 /out.txt
 /Tests/Build/.phpunit.result.cache
 .DS_Store
+.idea/
+.fleet/
