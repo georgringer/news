@@ -37,7 +37,6 @@
     },
     "require-dev": {
         "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.0.1",
-        "typo3/cms-core": "^11 || ^12",
         "typo3/testing-framework": "~7.0@dev"
     },
     "autoload": {
