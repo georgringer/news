@@ -23,7 +23,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class ModifyDatabaseQueryForContentEventListener
 {
-
     protected static int $count = 0;
 
     public function modify(ModifyDatabaseQueryForContentEvent $event): void
