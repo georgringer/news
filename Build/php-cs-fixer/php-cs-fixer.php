@@ -31,10 +31,13 @@
 if (PHP_SAPI !== 'cli') {
     die('This script supports command line usage only. Please check your command.');
 }
-// Define in which folders to search and which folders to exclude
-// Exclude some directories that are excluded by Git anyways to speed up the sniffing
+// Define in which folders to search and which folders to exclude.
+// Exclude some directories that are excluded by Git anyway to speed up the sniffing.
 $finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__ . '/../');
+    ->in(__DIR__ . '/../../')
+    ->ignoreVCSIgnored(true)
+    ->notPath('/^Build\/php-cs-fixer\/php-cs-fixer.php/')
+    ->notPath('/^Build\/phpunit\/(UnitTestsBootstrap|FunctionalTestsBootstrap).php/');
 // Return a Code Sniffing configuration using
 // all sniffers needed for PSR-2
 // and additionally:
