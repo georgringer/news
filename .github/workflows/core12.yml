@@ -23,9 +23,8 @@ jobs:
       - name: Lint PHP
         run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s lint
 
-# @todo disabled - php-cs-fixer direct inclusion or migration to typo3/coding-standards ?
-#        - name: Validate code against CGL
-#          run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s cgl -n
+      - name: Validate code against CGL
+        run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -s cgl -n
 
       - name: Functional Tests with mariadb and mysqli
         run: Build/Scripts/runTests.sh -t 12 -p ${{ matrix.php }} -d mariadb -a mysqli -s functional
