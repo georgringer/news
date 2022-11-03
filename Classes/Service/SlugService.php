@@ -2,6 +2,7 @@
 
 namespace GeorgRinger\News\Service;
 
+use Doctrine\DBAL\Result;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -18,7 +19,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class SlugService
 {
 
-    /** @var NewsSlugHelper */
+    /** @var SlugHelper */
     protected $slugService;
 
     public function __construct()
@@ -27,15 +28,12 @@ class SlugService
         $this->slugService = GeneralUtility::makeInstance(SlugHelper::class, 'tx_news_domain_model_news', 'path_segment', $fieldConfig);
     }
 
-    /**
-     * @return int
-     */
     public function countOfSlugUpdates(): int
     {
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
         $queryBuilder->getRestrictions()->removeAll();
-        $elementCount = $queryBuilder->count('uid')
+        return (int)$queryBuilder->count('uid')
             ->from('tx_news_domain_model_news')
             ->where(
                 $queryBuilder->expr()->or(
@@ -43,21 +41,14 @@ class SlugService
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
-            ->execute()->fetchColumn(0);
-
-        return $elementCount;
+            ->executeQuery()->fetchOne();
     }
 
-    /**
-     * @return array
-     */
     public function performUpdates(): array
     {
         $databaseQueries = [];
 
-        /** @var Connection $connection */
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_news_domain_model_news');
-        /** @var QueryBuilder $queryBuilder */
         $queryBuilder = $connection->createQueryBuilder();
         $queryBuilder->getRestrictions()->removeAll();
         $statement = $queryBuilder->select('*')
@@ -68,8 +59,8 @@ class SlugService
                     $queryBuilder->expr()->isNull('path_segment')
                 )
             )
-            ->execute();
-        while ($record = $statement->fetch()) {
+            ->executeQuery();
+        while ($record = $statement->fetchAssociative()) {
             if ((string)$record['title'] !== '') {
                 $slug = $this->slugService->generate($record, $record['pid']);
                 /** @var QueryBuilder $queryBuilder */
@@ -83,30 +74,30 @@ class SlugService
                     )
                     ->set('path_segment', $this->getUniqueValue($record['uid'], $record['sys_language_uid'], $slug));
                 $databaseQueries[] = $queryBuilder->getSQL();
-                $queryBuilder->execute();
+                $queryBuilder->executeStatement();
             }
         }
 
         return $databaseQueries;
     }
 
-    /**
-     * @param int $uid
-     * @param string $slug
-     * @return string
-     */
     protected function getUniqueValue(int $uid, int $languageId, string $slug): string
     {
-        $statement = $this->getUniqueCountStatement($uid, $languageId, $slug);
-        if ($statement->fetchColumn()) {
-            for ($counter = 1; $counter <= 100; $counter++) {
+        $queryBuilder = $this->getUniqueCountStatement($uid, $languageId, $slug);
+        // For as long as records with the test-value existing, try again (with incremented numbers appended)
+        $statement = $queryBuilder->prepare();
+        $result = $statement->executeQuery();
+        if ($result->fetchOne()) {
+            for ($counter = 0; $counter <= 100; $counter++) {
+                $result->free();
                 $newSlug = $slug . '-' . $counter;
                 $statement->bindValue(1, $newSlug);
-                $statement->execute();
-                if (!$statement->fetchColumn()) {
+                $result = $statement->executeQuery();
+                if (!$result->fetchOne()) {
                     break;
                 }
             }
+            $result->free();
         }
 
         return $newSlug ?? $slug;
@@ -116,13 +107,10 @@ class SlugService
      * @param int $uid
      * @param int $languageId
      * @param string $slug
-     * @return \Doctrine\DBAL\Driver\Statement|int
      */
     protected function getUniqueCountStatement(int $uid, int $languageId, string $slug)
     {
-        /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
-        /** @var DeletedRestriction $deleteRestriction */
         $deleteRestriction = GeneralUtility::makeInstance(DeletedRestriction::class);
         $queryBuilder->getRestrictions()->removeAll()->add($deleteRestriction);
 
@@ -139,25 +127,22 @@ class SlugService
                     $queryBuilder->createPositionalParameter($languageId, \PDO::PARAM_INT)
                 ),
                 $queryBuilder->expr()->neq('uid', $queryBuilder->createPositionalParameter($uid, \PDO::PARAM_INT))
-            )->execute();
+            );
     }
 
     /**
      * Count valid entries from EXT:realurl table tx_realurl_uniqalias which can be migrated
      * Checks also for existance of third party extension table 'tx_realurl_uniqalias'
      * EXT:realurl requires not to be installed
-     *
-     * @return int
      */
     public function countOfRealurlAliasMigrations(): int
     {
         $elementCount = 0;
         // Check if table 'tx_realurl_uniqalias' exists
-        /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_realurl_uniqalias');
         $schemaManager = $queryBuilder->getConnection()->getSchemaManager();
-        if ($schemaManager->tablesExist(['tx_realurl_uniqalias']) === true) {
+        if ($schemaManager && $schemaManager->tablesExist(['tx_realurl_uniqalias']) === true) {
             // Count valid aliases for news
             $queryBuilder->getRestrictions()->removeAll();
             $elementCount = $queryBuilder->selectLiteral('COUNT(DISTINCT tx_news_domain_model_news.uid)')
@@ -200,26 +185,23 @@ class SlugService
                         )
                     )
                 )
-                ->execute()->fetchColumn(0);
+                ->executeQuery()->fetchOne();;
         }
         return $elementCount;
     }
 
     /**
      * Perform migration of EXT:realurl unique alias into empty news slugs
-     *
-     * @return array
      */
     public function performRealurlAliasMigration(): array
     {
         $databaseQueries = [];
 
         // Check if table 'tx_realurl_uniqalias' exists
-        /** @var QueryBuilder $queryBuilderForRealurl */
         $queryBuilderForRealurl = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_realurl_uniqalias');
         $schemaManager = $queryBuilderForRealurl->getConnection()->getSchemaManager();
-        if ($schemaManager->tablesExist(['tx_realurl_uniqalias']) === true) {
+        if ($schemaManager && $schemaManager->tablesExist(['tx_realurl_uniqalias']) === true) {
             /** @var Connection $connection */
             $connection = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getConnectionForTable('tx_news_domain_model_news');
@@ -281,10 +263,10 @@ class SlugService
                         )
                     )
                 )
-                ->execute();
+                ->executeQuery();
 
             // Update entries
-            while ($record = $statement->fetch()) {
+            while ($record = $statement->fetchAssociative()) {
                 $slug = $this->slugService->sanitize((string)$record['value_alias']);
                 $queryBuilder = $connection->createQueryBuilder();
                 $queryBuilder->update('tx_news_domain_model_news')
@@ -296,7 +278,7 @@ class SlugService
                     )
                     ->set('path_segment', $this->getUniqueValue($record['uid'], $record['sys_language_uid'], $slug));
                 $databaseQueries[] = $queryBuilder->getSQL();
-                $queryBuilder->execute();
+                $queryBuilder->executeStatement();
             }
         }
 
