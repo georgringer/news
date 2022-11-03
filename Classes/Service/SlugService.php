@@ -2,7 +2,6 @@
 
 namespace GeorgRinger\News\Service;
 
-use Doctrine\DBAL\Result;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -185,7 +184,7 @@ class SlugService
                         )
                     )
                 )
-                ->executeQuery()->fetchOne();;
+                ->executeQuery()->fetchOne();
         }
         return $elementCount;
     }
