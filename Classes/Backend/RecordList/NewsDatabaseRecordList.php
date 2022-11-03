@@ -32,6 +32,7 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         if ((string)$alternativeId !== '') {
             $urlParameters['id'] = $alternativeId;
         } else {
+            // @extensionScannerIgnoreLine
             $urlParameters['id'] = $this->id;
         }
         if (isset($this->thumbs)) {

@@ -101,6 +101,7 @@ class AddNewsToMenuProcessor implements DataProcessorInterface
                 ->executeQuery()->fetchAssociative();
 
             if ($row) {
+                // @extensionScannerIgnoreLine
                 $row = $this->getTsfe()->sys_page->getRecordOverlay('tx_news_domain_model_news', $row, $this->getCurrentLanguage());
             }
 

@@ -68,6 +68,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 $GLOBALS['TCA'][$table]['ctrl']['languageField'],
                 [
                     -1, // All languages
+                    // @extensionScannerIgnoreLine
                     $this->getLanguageId()  // Current language
                 ]
             );
@@ -170,6 +171,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      */
     protected function defineUrl(array $data): array
     {
+        // @extensionScannerIgnoreLine
         $pageId = $this->config['url']['pageId'] ?? $GLOBALS['TSFE']->id;
         if (($this->config['url']['useCategorySinglePid'] ?? false) && $pageIdFromCategory = $this->getSinglePidFromCategory($data['data']['uid'])) {
             $pageId = $pageIdFromCategory;

@@ -142,6 +142,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
 
         if (isset($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE']) && $languageAspect->getContentId() > 0) {
+            // @extensionScannerIgnoreLine
             $overlay = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
                 'tx_news_domain_model_news',
                 $rawRecord,

@@ -214,6 +214,7 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
             }
 
             if (!$detailPid && isset($GLOBALS['TSFE'])) {
+                // @extensionScannerIgnoreLine
                 $detailPid = $GLOBALS['TSFE']->id;
             }
             $configuration['parameter'] = $detailPid;
