@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
 use GeorgRinger\News\ViewHelpers\PaginateBodytextViewHelper;
 use TYPO3\TestingFramework\Core\BaseTestCase;
@@ -17,21 +17,18 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class PaginateBodytextViewHelperTest extends BaseTestCase
 {
-
     /**
      * Test if given tag is a closing tag
      *
      * @test
      *
      * @dataProvider givenTagIsAClosingTagDataProvider
-     *
-     * @return void
      */
     public function givenTagIsAClosingTag($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('isClosingTag', $tag);
-        $this->assertEquals($expectedResult, $result);
+        self::assertEquals($expectedResult, $result);
     }
 
     /**
@@ -43,10 +40,10 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
     {
         return [
             'working example 1' => [
-                '</div>', true
+                '</div>', true,
             ],
             'working example 2' => [
-                '<div>', false
+                '<div>', false,
             ],
         ];
     }
@@ -57,14 +54,12 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      * @test
      *
      * @dataProvider givenTagIsSelfClosingTagDataProvider
-     *
-     * @return void
      */
     public function givenTagIsSelfClosingTag($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('isSelfClosingTag', $tag);
-        $this->assertEquals($expectedResult, $result);
+        self::assertEquals($expectedResult, $result);
     }
 
     /**
@@ -76,10 +71,10 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
     {
         return [
             'working example 1' => [
-                '<hr />', true
+                '<hr />', true,
             ],
             'working example 2' => [
-                '<div>', false
+                '<div>', false,
             ],
         ];
     }
@@ -90,14 +85,12 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      * @test
      *
      * @dataProvider givenTagIsAnOpeningTagDataProvider
-     *
-     * @return void
      */
     public function givenTagIsAnOpeningTag($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('isOpeningTag', $tag);
-        $this->assertEquals($expectedResult, $result);
+        self::assertEquals($expectedResult, $result);
     }
 
     /**
@@ -111,7 +104,7 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
             ['<div>', true],
             ['</div>', false],
             ['<div/>', false],
-            ['<div />', false]
+            ['<div />', false],
         ];
     }
 
@@ -121,14 +114,12 @@ class PaginateBodytextViewHelperTest extends BaseTestCase
      * @test
      *
      * @dataProvider extractTagReturnsCorrectOneDataProvider
-     *
-     * @return void
      */
     public function extractTagReturnsCorrectOne($tag, $expectedResult): void
     {
         $mockTemplateParser = $this->getAccessibleMock(PaginateBodytextViewHelper::class, ['dummy']);
         $result = $mockTemplateParser->_call('extractTag', $tag);
-        $this->assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)));
+        self::assertEquals($expectedResult, $result, sprintf('"%s" (%s) : "%s" (%s)', $tag, strlen($tag), $expectedResult, strlen($expectedResult)));
     }
 
     /**

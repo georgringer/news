@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\ViewHelpers;
 
 use GeorgRinger\News\Domain\Model\News;
@@ -12,13 +19,6 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 
 /**
  * ViewHelper for a **simple** prev/next link.
@@ -58,7 +58,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class SimplePrevNextViewHelper extends AbstractViewHelper
 {
-
     /* @var $dataMapper \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper */
     protected $dataMapper;
 
@@ -71,8 +70,6 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
      * Inject the DataMapper
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper $dataMapper
-     *
-     * @return void
      */
     public function injectDataMapper(DataMapper $dataMapper): void
     {
@@ -180,7 +177,7 @@ class SimplePrevNextViewHelper extends AbstractViewHelper
             $queryBuilder = $connection->createQueryBuilder();
 
             $extraWhere = [
-                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), \PDO::PARAM_INT))
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($news->getUid(), \PDO::PARAM_INT)),
             ];
             if ((bool)($this->arguments['includeInternalType'] ?? false) === false) {
                 $extraWhere[] = $queryBuilder->expr()->neq('type', $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT));

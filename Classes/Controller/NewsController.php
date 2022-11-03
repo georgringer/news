@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Controller;
 
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
@@ -33,15 +40,7 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
 
 /**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
-
-/**
  * Controller of news records
- *
  */
 class NewsController extends NewsBaseController
 {
@@ -88,8 +87,6 @@ class NewsController extends NewsBaseController
 
     /**
      * Initializes the current action
-     *
-     * @return void
      */
     public function initializeAction()
     {
@@ -593,8 +590,6 @@ class NewsController extends NewsBaseController
 
     /**
      * initialize search result action
-     *
-     * @return void
      */
     public function initializeSearchResultAction(): void
     {
@@ -603,8 +598,6 @@ class NewsController extends NewsBaseController
 
     /**
      * Initialize search form action
-     *
-     * @return void
      */
     public function initializeSearchFormAction(): void
     {
@@ -613,8 +606,6 @@ class NewsController extends NewsBaseController
 
     /**
      * Initialize searchForm and searchResult actions
-     *
-     * @return void
      */
     protected function initializeSearchActions(): void
     {
@@ -684,8 +675,6 @@ class NewsController extends NewsBaseController
      * This function is for testing purposes only.
      *
      * @param \TYPO3\CMS\Fluid\View\TemplateView $view the view to inject
-     *
-     * @return void
      */
     public function setView(TemplateView $view): void
     {

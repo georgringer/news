@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Backend\RecordList;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Backend\RecordList;
+
 use GeorgRinger\News\Service\CategoryService;
 use GeorgRinger\News\Utility\ConstraintHelper;
 use TYPO3\CMS\Core\Context\Context;
@@ -174,7 +175,7 @@ class RecordListConstraint
                             $parameters['whereDoctrine'][] = $expressionBuilder->or(...$orConstraintDoctrine);
                         }
                         break;
-                    // @todo test that
+                        // @todo test that
                     case 'notor':
                         $orConstraint = $orConstraintDoctrine = [];
                         foreach ($arguments['selectedCategories'] as $category) {

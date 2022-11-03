@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Domain\Model;
 
 use DateTime;
@@ -7,17 +14,10 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
-/**
  * News model
  */
 class News extends AbstractEntity
 {
-
     /**
      * @var DateTime
      */
@@ -205,7 +205,7 @@ class News extends AbstractEntity
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\TtContent>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $contentElements = null;
+    protected $contentElements;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GeorgRinger\News\Domain\Model\Tag>
@@ -270,8 +270,6 @@ class News extends AbstractEntity
      * Set title
      *
      * @param string $title title
-     *
-     * @return void
      */
     public function setTitle($title): void
     {
@@ -292,8 +290,6 @@ class News extends AbstractEntity
      * Set alternative title
      *
      * @param string $alternativeTitle
-     *
-     * @return void
      */
     public function setAlternativeTitle($alternativeTitle): void
     {
@@ -314,8 +310,6 @@ class News extends AbstractEntity
      * Set Teaser text
      *
      * @param string $teaser teaser text
-     *
-     * @return void
      */
     public function setTeaser($teaser): void
     {
@@ -336,8 +330,6 @@ class News extends AbstractEntity
      * Set bodytext
      *
      * @param string $bodytext main content
-     *
-     * @return void
      */
     public function setBodytext($bodytext): void
     {
@@ -347,7 +339,7 @@ class News extends AbstractEntity
     /**
      * Get datetime
      *
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getDatetime(): ?DateTime
     {
@@ -358,8 +350,6 @@ class News extends AbstractEntity
      * Set date time
      *
      * @param DateTime $datetime datetime
-     *
-     * @return void
      */
     public function setDatetime($datetime): void
     {
@@ -399,7 +389,7 @@ class News extends AbstractEntity
     /**
      * Get archive date
      *
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getArchive(): ?DateTime
     {
@@ -410,8 +400,6 @@ class News extends AbstractEntity
      * Set archive date
      *
      * @param DateTime $archive archive date
-     *
-     * @return void
      */
     public function setArchive($archive): void
     {
@@ -471,8 +459,6 @@ class News extends AbstractEntity
      * Set author
      *
      * @param string $author author
-     *
-     * @return void
      */
     public function setAuthor($author): void
     {
@@ -493,8 +479,6 @@ class News extends AbstractEntity
      * Set author's email
      *
      * @param string $authorEmail author's email
-     *
-     * @return void
      */
     public function setAuthorEmail($authorEmail): void
     {
@@ -504,7 +488,7 @@ class News extends AbstractEntity
     /**
      * Get categories
      *
-     * @return null|ObjectStorage
+     * @return ObjectStorage|null
      */
     public function getCategories(): ?ObjectStorage
     {
@@ -514,7 +498,7 @@ class News extends AbstractEntity
     /**
      * Get first category
      *
-     * @return null|Category
+     * @return Category|null
      */
     public function getFirstCategory(): ?Category
     {
@@ -530,8 +514,6 @@ class News extends AbstractEntity
      * Set categories
      *
      * @param  ObjectStorage $categories
-     *
-     * @return void
      */
     public function setCategories($categories): void
     {
@@ -542,8 +524,6 @@ class News extends AbstractEntity
      * Adds a category to this categories.
      *
      * @param Category $category
-     *
-     * @return void
      */
     public function addCategory(Category $category): void
     {
@@ -564,7 +544,6 @@ class News extends AbstractEntity
      * Set related from
      *
      * @param ObjectStorage $relatedFrom
-     * @return void
      */
     public function setRelatedFrom($relatedFrom): void
     {
@@ -646,8 +625,6 @@ class News extends AbstractEntity
      * Set related news
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $related related news
-     *
-     * @return void
      */
     public function setRelated($related): void
     {
@@ -657,7 +634,7 @@ class News extends AbstractEntity
     /**
      * Get related links
      *
-     * @return null|ObjectStorage
+     * @return ObjectStorage|null
      */
     public function getRelatedLinks(): ?ObjectStorage
     {
@@ -667,7 +644,7 @@ class News extends AbstractEntity
     /**
      * Get FAL related files
      *
-     * @return null|ObjectStorage
+     * @return ObjectStorage|null
      */
     public function getFalRelatedFiles(): ?ObjectStorage
     {
@@ -677,7 +654,7 @@ class News extends AbstractEntity
     /**
      * Short method for getFalRelatedFiles
      *
-     * @return null|ObjectStorage
+     * @return ObjectStorage|null
      */
     public function getRelatedFiles(): ?ObjectStorage
     {
@@ -688,8 +665,6 @@ class News extends AbstractEntity
      * Set FAL related files
      *
      * @param ObjectStorage $falRelatedFiles FAL related files
-     *
-     * @return void
      */
     public function setFalRelatedFiles($falRelatedFiles): void
     {
@@ -700,8 +675,6 @@ class News extends AbstractEntity
      * Adds a file to this files.
      *
      * @param FileReference $file
-     *
-     * @return void
      */
     public function addFalRelatedFile(FileReference $file): void
     {
@@ -715,7 +688,6 @@ class News extends AbstractEntity
      * Set related links
      *
      * @param ObjectStorage $relatedLinks related links relation
-     * @return void
      */
     public function setRelatedLinks($relatedLinks): void
     {
@@ -736,7 +708,6 @@ class News extends AbstractEntity
      * Set type of news
      *
      * @param string $type type
-     * @return void
      */
     public function setType(string $type): void
     {
@@ -757,8 +728,6 @@ class News extends AbstractEntity
      * Set keywords
      *
      * @param string $keywords keywords
-     *
-     * @return void
      */
     public function setKeywords($keywords): void
     {
@@ -779,8 +748,6 @@ class News extends AbstractEntity
      * Set description
      *
      * @param string $description description
-     *
-     * @return void
      */
     public function setDescription($description): void
     {
@@ -791,8 +758,6 @@ class News extends AbstractEntity
      * Adds a related link.
      *
      * @param Link $relatedLink
-     *
-     * @return void
      */
     public function addRelatedLink(Link $relatedLink): void
     {
@@ -805,7 +770,7 @@ class News extends AbstractEntity
     /**
      * Get the Fal media items
      *
-     * @return null|ObjectStorage
+     * @return ObjectStorage|null
      */
     public function getFalMedia(): ?ObjectStorage
     {
@@ -815,7 +780,7 @@ class News extends AbstractEntity
     /**
      * Short method for getFalMedia()
      *
-     * @return null|ObjectStorage
+     * @return ObjectStorage|null
      */
     public function getMedia(): ?ObjectStorage
     {
@@ -826,8 +791,6 @@ class News extends AbstractEntity
      * Set Fal media relation
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $falMedia
-     *
-     * @return void
      */
     public function setFalMedia(ObjectStorage $falMedia): void
     {
@@ -838,8 +801,6 @@ class News extends AbstractEntity
      * Add a Fal media file reference
      *
      * @param FileReference $falMedia
-     *
-     * @return void
      */
     public function addFalMedia(FileReference $falMedia): void
     {
@@ -952,8 +913,6 @@ class News extends AbstractEntity
      * Set internal url
      *
      * @param string $internalUrl internal url
-     *
-     * @return void
      */
     public function setInternalurl($internalUrl): void
     {
@@ -974,8 +933,6 @@ class News extends AbstractEntity
      * Set external url
      *
      * @param string $externalUrl external url
-     *
-     * @return void
      */
     public function setExternalurl($externalUrl): void
     {
@@ -996,8 +953,6 @@ class News extends AbstractEntity
      * Set top news flag
      *
      * @param bool $istopnews top news flag
-     *
-     * @return void
      */
     public function setIstopnews($istopnews): void
     {
@@ -1018,8 +973,6 @@ class News extends AbstractEntity
      * Set content element list
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $contentElements content elements
-     *
-     * @return void
      */
     public function setContentElements($contentElements): void
     {
@@ -1030,8 +983,6 @@ class News extends AbstractEntity
      * Adds a content element to the record
      *
      * @param \GeorgRinger\News\Domain\Model\TtContent $contentElement
-     *
-     * @return void
      */
     public function addContentElement(TtContent $contentElement): void
     {
@@ -1095,8 +1046,6 @@ class News extends AbstractEntity
      * Set Tags
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $tags tags
-     *
-     * @return void
      */
     public function setTags($tags): void
     {
@@ -1107,8 +1056,6 @@ class News extends AbstractEntity
      * Adds a tag
      *
      * @param \GeorgRinger\News\Domain\Model\Tag $tag
-     *
-     * @return void
      */
     public function addTag(Tag $tag): void
     {
@@ -1119,8 +1066,6 @@ class News extends AbstractEntity
      * Removes a tag
      *
      * @param \GeorgRinger\News\Domain\Model\Tag $tag
-     *
-     * @return void
      */
     public function removeTag(Tag $tag): void
     {
@@ -1141,8 +1086,6 @@ class News extends AbstractEntity
      * Set path segment
      *
      * @param string $pathSegment
-     *
-     * @return void
      */
     public function setPathSegment($pathSegment): void
     {
@@ -1163,8 +1106,6 @@ class News extends AbstractEntity
      * Set creation date
      *
      * @param DateTime $crdate
-     *
-     * @return void
      */
     public function setCrdate($crdate): void
     {
@@ -1215,8 +1156,6 @@ class News extends AbstractEntity
      * Set time stamp
      *
      * @param DateTime $tstamp time stamp
-     *
-     * @return void
      */
     public function setTstamp($tstamp): void
     {
@@ -1227,8 +1166,6 @@ class News extends AbstractEntity
      * Set sys language
      *
      * @param int $sysLanguageUid
-     *
-     * @return void
      */
     public function setSysLanguageUid($sysLanguageUid): void
     {
@@ -1249,8 +1186,6 @@ class News extends AbstractEntity
      * Set l10n parent
      *
      * @param int $l10nParent
-     *
-     * @return void
      */
     public function setL10nParent($l10nParent): void
     {
@@ -1311,8 +1246,6 @@ class News extends AbstractEntity
      * Set cruser id
      *
      * @param int $cruserId id of creator user
-     *
-     * @return void
      */
     public function setCruserId($cruserId): void
     {
@@ -1333,8 +1266,6 @@ class News extends AbstractEntity
      * Set edit lock flag
      *
      * @param int $editlock editlock flag
-     *
-     * @return void
      */
     public function setEditlock($editlock): void
     {
@@ -1355,7 +1286,6 @@ class News extends AbstractEntity
      * Set hidden flag
      *
      * @param bool $hidden hidden flag
-     * @return void
      */
     public function setHidden(bool $hidden): void
     {
@@ -1376,8 +1306,6 @@ class News extends AbstractEntity
      * Set deleted flag
      *
      * @param bool $deleted deleted flag
-     *
-     * @return void
      */
     public function setDeleted(bool $deleted): void
     {
@@ -1387,7 +1315,7 @@ class News extends AbstractEntity
     /**
      * Get start time
      *
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getStarttime(): ?DateTime
     {
@@ -1398,8 +1326,6 @@ class News extends AbstractEntity
      * Set start time
      *
      * @param DateTime $starttime start time
-     *
-     * @return void
      */
     public function setStarttime($starttime): void
     {
@@ -1448,7 +1374,7 @@ class News extends AbstractEntity
     /**
      * Get endtime
      *
-     * @return null|DateTime
+     * @return DateTime|null
      */
     public function getEndtime(): ?DateTime
     {
@@ -1459,8 +1385,6 @@ class News extends AbstractEntity
      * Set end time
      *
      * @param DateTime $endtime end time
-     *
-     * @return void
      */
     public function setEndtime(DateTime $endtime): void
     {
@@ -1520,8 +1444,6 @@ class News extends AbstractEntity
      * Set fe group
      *
      * @param string $feGroup comma separated list
-     *
-     * @return void
      */
     public function setFeGroup($feGroup): void
     {
@@ -1542,8 +1464,6 @@ class News extends AbstractEntity
      * Set import id
      *
      * @param string $importId import id
-     *
-     * @return void
      */
     public function setImportId($importId): void
     {
@@ -1564,8 +1484,6 @@ class News extends AbstractEntity
      * Set sorting
      *
      * @param int $sorting sorting
-     *
-     * @return void
      */
     public function setSorting($sorting): void
     {
@@ -1576,8 +1494,6 @@ class News extends AbstractEntity
      * Set importSource
      *
      * @param string $importSource
-     *
-     * @return void
      */
     public function setImportSource($importSource): void
     {
@@ -1604,8 +1520,6 @@ class News extends AbstractEntity
 
     /**
      * @param string $notes
-     *
-     * @return void
      */
     public function setNotes(string $notes): void
     {
