@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
+
 use GeorgRinger\News\ViewHelpers\TargetLinkViewHelper;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -17,7 +18,6 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
  */
 class TargetLinkViewHelperTest extends BaseTestCase
 {
-
     /**
      * @return \GeorgRinger\News\ViewHelpers\TargetLinkViewHelper
      * @support
@@ -30,13 +30,11 @@ class TargetLinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
-     *
-     * @return void
      */
     public function canCreateViewHelperClassInstance(): void
     {
         $instance = $this->getPreparedInstance();
-        $this->assertInstanceOf(TargetLinkViewHelper::class, $instance);
+        self::assertInstanceOf(TargetLinkViewHelper::class, $instance);
     }
 
     /**
@@ -45,8 +43,6 @@ class TargetLinkViewHelperTest extends BaseTestCase
      * @test
      *
      * @dataProvider correctTargetIsReturnedDataProvider
-     *
-     * @return void
      */
     public function correctTargetIsReturned($link, $expectedResult): void
     {
@@ -56,7 +52,7 @@ class TargetLinkViewHelperTest extends BaseTestCase
             'link' => $link,
         ]);
 
-        $this->assertEquals($viewHelper->render(), $expectedResult);
+        self::assertEquals($viewHelper->render(), $expectedResult);
     }
 
     /**
@@ -68,19 +64,19 @@ class TargetLinkViewHelperTest extends BaseTestCase
     {
         return [
             'noTargetSetAndUrlDefined' => [
-                'www.typo3.org', ''
+                'www.typo3.org', '',
             ],
             'noTargetSetAndIdDefined' => [
-                '123', ''
+                '123', '',
             ],
             'IdAndTargetDefined' => [
-                '123 _blank', '_blank'
+                '123 _blank', '_blank',
             ],
             'UrlAndPopupDefined' => [
-                'www.typo3.org 300x400', ''
+                'www.typo3.org 300x400', '',
             ],
             'ComplexExample' => [
-                'www.typo3.org _fo my-class', '_fo'
+                'www.typo3.org _fo my-class', '_fo',
             ],
 
         ];

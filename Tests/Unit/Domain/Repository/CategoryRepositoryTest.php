@@ -1,24 +1,22 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace GeorgRinger\News\Tests\Unit\Domain\Repository;
+
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use TYPO3\TestingFramework\Core\BaseTestCase;
 
 /**
  * Tests for domain repository categoryRepository
- *
  */
 class CategoryRepositoryTest extends BaseTestCase
 {
-
     /**
      * Test if category ids are replaced
      *
@@ -28,8 +26,6 @@ class CategoryRepositoryTest extends BaseTestCase
      * @test
      *
      * @dataProvider categoryIdsAreCorrectlyReplacedDataProvider
-     *
-     * @return void
      */
     public function categoryIdsAreCorrectlyReplaced($expectedResult, $given): void
     {
@@ -37,7 +33,7 @@ class CategoryRepositoryTest extends BaseTestCase
 
         $result = $mockTemplateParser->_call('replaceCategoryIds', $given['idList'], $given['toBeChanged']);
 
-        $this->assertEquals($expectedResult, $result);
+        self::assertEquals($expectedResult, $result);
     }
 
     /**
@@ -52,8 +48,8 @@ class CategoryRepositoryTest extends BaseTestCase
                 [1, 2, 3],
                 [
                     'idList' => [1, 2, 3],
-                    'toBeChanged' => []
-                ]
+                    'toBeChanged' => [],
+                ],
             ],
             'oneIdReplaced' => [
                 [1, 5, 3],
@@ -63,9 +59,9 @@ class CategoryRepositoryTest extends BaseTestCase
                         0 => [
                             'l10n_parent' => 2,
                             'uid' => 5,
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ],
             'noIdReplaced' => [
                 [1, 2, 3],
@@ -79,9 +75,9 @@ class CategoryRepositoryTest extends BaseTestCase
                         1 => [
                             'l10n_parent' => 8,
                             'uid' => 10,
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ],
             'allIdsReplaced' => [
                 [4, 5, 6],
@@ -103,9 +99,9 @@ class CategoryRepositoryTest extends BaseTestCase
                         [
                             'l10n_parent' => 8,
                             'uid' => 10,
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ],
         ];
     }

@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Service;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Service;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class AccessControlService
 {
-
     /**
      * Check if a user has access to all categories of a news record
      *
@@ -152,7 +151,7 @@ class AccessControlService
         while ($row =$res->fetchAssociative()) {
             $categories[] = [
                 'uid' => $row['uid_local'],
-                'title' => $row['title']
+                'title' => $row['title'],
             ];
         }
         return $categories;

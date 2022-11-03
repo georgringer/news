@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Model\Dto;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Domain\Model\Dto;
+
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
@@ -16,7 +17,6 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class NewsDemand extends AbstractEntity implements DemandInterface
 {
-
     /**
      * @var array
      */
@@ -567,7 +567,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Get search object
      *
-     * @return null|Search
+     * @return Search|null
      */
     public function getSearch(): ?Search
     {
@@ -577,7 +577,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
     /**
      * Set search object
      *
-     * @param null|Search $search search object
+     * @param Search|null $search search object
      * @return NewsDemand
      */
     public function setSearch(Search $search = null): NewsDemand
@@ -706,8 +706,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      * Set allowed types
      *
      * @param array $types
-     *
-     * @return void
      */
     public function setTypes(array $types): void
     {
@@ -724,8 +722,6 @@ class NewsDemand extends AbstractEntity implements DemandInterface
 
     /**
      * @param array $customSettings
-     *
-     * @return void
      */
     public function setCustomSettings(array $customSettings): void
     {

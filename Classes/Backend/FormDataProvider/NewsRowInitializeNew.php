@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Backend\FormDataProvider;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Backend\FormDataProvider;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
@@ -19,7 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class NewsRowInitializeNew implements FormDataProviderInterface
 {
-
     /** @var  EmConfiguration */
     protected $emConfiguration;
 

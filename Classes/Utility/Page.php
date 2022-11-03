@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Utility;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Utility;
 
 use GeorgRinger\News\Database\QueryGenerator;
 use TYPO3\CMS\Backend\Tree\View\PageTreeView;
@@ -24,7 +24,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class Page
 {
-
     /**
      * Find all ids from given ids and level
      *
@@ -61,8 +60,6 @@ class Page
      * @param string $properties comma separated list of properties
      * @param mixed $object object or array to get the properties
      * @param string $prefix optional prefix
-     *
-     * @return void
      */
     public static function setRegisterProperties($properties, $object, $prefix = 'news'): void
     {
@@ -124,7 +121,7 @@ class Page
         // Creating top icon; the current page
         $tree->tree[] = [
             'row' => $treeStartingRecord,
-            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, Icon::SIZE_SMALL)->render() : ''
+            'HTML' => is_array($treeStartingRecord) ? $iconFactory->getIconForRecord('pages', $treeStartingRecord, Icon::SIZE_SMALL)->render() : '',
         ];
 
         $tree->getTree($pageUid, $treeLevel, '');

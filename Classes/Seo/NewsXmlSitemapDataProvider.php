@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace GeorgRinger\News\Seo;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Seo;
+
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
@@ -69,7 +70,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
                 [
                     -1, // All languages
                     // @extensionScannerIgnoreLine
-                    $this->getLanguageId()  // Current language
+                    $this->getLanguageId(),  // Current language
                 ]
             );
         }
@@ -127,7 +128,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
 
         // Select only the right range
         $queryBuilder->select('*');
-        $pageNumber = (int) ($this->request->getQueryParams()['page'] ?? 0);
+        $pageNumber = (int)($this->request->getQueryParams()['page'] ?? 0);
         $page = $pageNumber > 0 ? $pageNumber : 0;
         $queryBuilder
             ->setFirstResult($page * $this->numberOfItemsPerPage)
@@ -140,7 +141,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
             $this->items[] = [
                 'data' => $row,
                 'lastMod' => (int)$row[$lastModifiedField],
-                'priority' => 0.5
+                'priority' => 0.5,
             ];
         }
     }
@@ -162,7 +163,7 @@ class NewsXmlSitemapDataProvider extends AbstractXmlSitemapDataProvider
      */
     public function getNumberOfPages(): int
     {
-        return (int) ceil($this->itemCount / $this->numberOfItemsPerPage);
+        return (int)ceil($this->itemCount / $this->numberOfItemsPerPage);
     }
 
     /**

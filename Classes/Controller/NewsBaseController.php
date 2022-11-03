@@ -1,17 +1,16 @@
 <?php
 
-namespace GeorgRinger\News\Controller;
-
-use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
-use TYPO3\CMS\Core\Http\ImmediateResponseException;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace GeorgRinger\News\Controller;
+
+use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -53,9 +52,7 @@ class NewsBaseController extends ActionController
     /**
      * @param \Exception $exception
      *
-     * @return void
      * @throws \Exception
-     *
      */
     private function handleKnownExceptionsElseThrowAgain(\Exception $exception): void
     {

@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Utility;
 
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
@@ -8,12 +15,7 @@ use GeorgRinger\News\Event\ModifyCacheTagsFromDemandEvent;
 use GeorgRinger\News\Event\ModifyCacheTagsFromNewsEvent;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
+
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
@@ -21,7 +23,6 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
  */
 class Cache
 {
-
     /**
      * Stack for processed cObjs which has added news relevant cache tags.
      * @var array
@@ -32,8 +33,6 @@ class Cache
      * Marks as cObj as processed.
      *
      * @param \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
-     *
-     * @return void
      */
     public function markContentRecordAsProcessed(ContentObjectRenderer $cObj): void
     {
@@ -60,8 +59,6 @@ class Cache
      * "tx_news_uid_[news:uid]"
      *
      * @param News[]|\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $newsRecords with news records
-     *
-     * @return void
      */
     public static function addCacheTagsByNewsRecords($newsRecords): void
     {
@@ -88,8 +85,6 @@ class Cache
      * This adds tags with the scheme tx_news_pid_[news:pid]
      *
      * @param \GeorgRinger\News\Domain\Model\Dto\NewsDemand $demand
-     *
-     * @return void
      */
     public static function addPageCacheTagsByDemandObject(NewsDemand $demand): void
     {

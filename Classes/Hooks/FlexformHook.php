@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Hooks;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Hooks;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
@@ -19,7 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class FlexformHook
 {
-
     /** @var EmConfiguration */
     protected $configuration;
 
@@ -48,7 +47,7 @@ class FlexformHook
 
                 if (($getVars['tt_content'][$recordId] ?? '') === 'new') {
                     $fakeRow = [
-                        'uid' => 'NEW123'
+                        'uid' => 'NEW123',
                     ];
                     $this->updateFlexforms($dataStructure, $fakeRow);
                 } else {
@@ -68,8 +67,6 @@ class FlexformHook
      * @param array|string &$dataStructure flexform structure
      * @param array $row row of current record
      * @param array $dataStructure
-     *
-     * @return void
      */
     protected function updateFlexforms(array &$dataStructure, array $row): void
     {
@@ -90,7 +87,7 @@ class FlexformHook
                 $selectedView = $actionParts[0];
             }
 
-            // new plugin element
+        // new plugin element
         } elseif (str_starts_with((string)$row['uid'], 'NEW')) {
             // use List as starting view
             $selectedView = 'News->list';

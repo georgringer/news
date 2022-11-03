@@ -1,21 +1,21 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Model;
-
-use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Domain\Model;
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
+
 /**
  * Link model
  */
 class Link extends AbstractValueObject
 {
-
     /**
      * @var \DateTime
      */
@@ -49,7 +49,7 @@ class Link extends AbstractValueObject
     /**
      * Get creation date
      *
-     * @return null|\DateTime
+     * @return \DateTime|null
      */
     public function getCrdate(): ?\DateTime
     {
@@ -60,8 +60,6 @@ class Link extends AbstractValueObject
      * Set creation date
      *
      * @param \DateTime $crdate creation date
-     *
-     * @return void
      */
     public function setCrdate($crdate): void
     {
@@ -71,7 +69,7 @@ class Link extends AbstractValueObject
     /**
      * Get timestamp
      *
-     * @return null|\DateTime
+     * @return \DateTime|null
      */
     public function getTstamp(): ?\DateTime
     {
@@ -82,8 +80,6 @@ class Link extends AbstractValueObject
      * Set timestamp
      *
      * @param \DateTime $tstamp timestamp
-     *
-     * @return void
      */
     public function setTstamp($tstamp): void
     {
@@ -104,8 +100,6 @@ class Link extends AbstractValueObject
      * Set title
      *
      * @param string $title title
-     *
-     * @return void
      */
     public function setTitle($title): void
     {
@@ -126,8 +120,6 @@ class Link extends AbstractValueObject
      * Set description
      *
      * @param string $description description
-     *
-     * @return void
      */
     public function setDescription($description): void
     {
@@ -148,8 +140,6 @@ class Link extends AbstractValueObject
      * Set uri
      *
      * @param string $uri uri
-     *
-     * @return void
      */
     public function setUri($uri): void
     {
@@ -160,8 +150,6 @@ class Link extends AbstractValueObject
      * Set sys language
      *
      * @param int $sysLanguageUid
-     *
-     * @return void
      */
     public function setSysLanguageUid($sysLanguageUid): void
     {
@@ -182,8 +170,6 @@ class Link extends AbstractValueObject
      * Set l10n parent
      *
      * @param int $l10nParent
-     *
-     * @return void
      */
     public function setL10nParent($l10nParent): void
     {

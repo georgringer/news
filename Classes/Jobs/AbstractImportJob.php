@@ -1,20 +1,19 @@
 <?php
 
-namespace GeorgRinger\News\Jobs;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace GeorgRinger\News\Jobs;
+
 /**
  * Abstract Import job
  */
 abstract class AbstractImportJob implements ImportJobInterface
 {
-
     /**
      * @var \GeorgRinger\News\Service\Import\DataProviderServiceInterface
      */
@@ -91,8 +90,6 @@ abstract class AbstractImportJob implements ImportJobInterface
      * The actual run method.
      *
      * @param int $offset
-     *
-     * @return void
      */
     public function run($offset)
     {

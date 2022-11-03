@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Functional\Repository;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Tests\Functional\Repository;
 
 use GeorgRinger\News\Domain\Repository\CategoryRepository;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -17,7 +17,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 class CategoryRepositoryTest extends FunctionalTestCase
 {
-
     /** @var  CategoryRepository */
     protected $categoryRepository;
 
@@ -35,13 +34,11 @@ class CategoryRepositoryTest extends FunctionalTestCase
      * Test if by import source is done
      *
      * @test
-     *
-     * @return void
      */
     public function findRecordByImportSource(): void
     {
         $category = $this->categoryRepository->findOneByImportSourceAndImportId('functional_test', '2');
 
-        $this->assertEquals($category->getTitle(), 'findRecordByImportSource');
+        self::assertEquals($category->getTitle(), 'findRecordByImportSource');
     }
 }
