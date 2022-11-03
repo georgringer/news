@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use GeorgRinger\News\Backend\FormDataProvider\NewsFlexFormManipulation;
 use GeorgRinger\News\Hooks\Backend\RecordListQueryHook;
 use GeorgRinger\News\Hooks\FlexformHook;
 use GeorgRinger\News\Hooks\ItemsProcFunc;
@@ -14,7 +13,6 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use TYPO3\CMS\Core\DependencyInjection;
 
 return function (ContainerConfigurator $container, ContainerBuilder $containerBuilder) {
-    $containerBuilder->registerForAutoconfiguration(NewsFlexFormManipulation::class)->addTag('news.NewsFlexFormManipulation');
     $containerBuilder->registerForAutoconfiguration(RecordListQueryHook::class)->addTag('news.RecordListQueryHook');
     $containerBuilder->registerForAutoconfiguration(FlexformHook::class)->addTag('news.BackendUtility');
     $containerBuilder->registerForAutoconfiguration(ItemsProcFunc::class)->addTag('news.ItemsProcFunc');
