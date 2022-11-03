@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Tests\Unit\ViewHelpers;
 
 use GeorgRinger\News\Domain\Model\Category;
 use GeorgRinger\News\Domain\Model\News;
@@ -49,15 +49,13 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
-     *
-     * @return void
      */
     public function internalPageIsUsed(): void
     {
         $url = '123';
         $result = ['parameter' => $url];
 
-        $this->mockedContentObjectRenderer->expects($this->once())->method('typoLink_URL')->with($result);
+        $this->mockedContentObjectRenderer->expects(self::once())->method('typoLink_URL')->with($result);
 
         $this->newsItem->setType(1);
         $this->newsItem->setInternalurl($url);
@@ -67,15 +65,13 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
-     *
-     * @return void
      */
     public function externalUrlIsUsed(): void
     {
         $url = 'http://www.typo3.org';
         $result = ['parameter' => $url];
 
-        $this->mockedContentObjectRenderer->expects($this->once())->method('typoLink_URL')->with($result);
+        $this->mockedContentObjectRenderer->expects(self::once())->method('typoLink_URL')->with($result);
 
         $this->newsItem->setType(2);
         $this->newsItem->setExternalurl($url);
@@ -85,8 +81,6 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
-     *
-     * @return void
      */
     public function humanReadAbleDateIsAddedToConfiguration(): void
     {
@@ -102,20 +96,18 @@ class LinkViewHelperTest extends BaseTestCase
                     'day' => 'j',
                     'month' => 'n',
                     'year' => 'Y',
-                ]
-            ]
+                ],
+            ],
         ];
         $configuration = [];
         $expected = '&tx_news_pi1[news]=123&tx_news_pi1[controller]=News&tx_news_pi1[action]=detail&tx_news_pi1[day]=16&tx_news_pi1[month]=5&tx_news_pi1[year]=2014';
 
         $result = $this->mockedViewHelper->_call('getLinkToNewsItem', $newsItem, $tsSettings, $configuration);
-        $this->assertEquals($expected, $result['additionalParams']);
+        self::assertEquals($expected, $result['additionalParams']);
     }
 
     /**
      * @test
-     *
-     * @return void
      */
     public function getDetailPidFromCategoriesReturnsCorrectValue(): void
     {
@@ -138,22 +130,20 @@ class LinkViewHelperTest extends BaseTestCase
         $newsItem->setCategories($categories);
 
         $result = $viewHelper->_call('getDetailPidFromCategories', [], $newsItem);
-        $this->assertEquals(123, $result);
+        self::assertEquals(123, $result);
     }
 
     /**
      * @test
      *
      * @dataProvider getDetailPidFromDefaultDetailPidReturnsCorrectValueDataProvider
-     *
-     * @return void
      */
     public function getDetailPidFromDefaultDetailPidReturnsCorrectValue($settings, $expected): void
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
 
         $result = $viewHelper->_call('getDetailPidFromDefaultDetailPid', $settings, null);
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
     /**
@@ -175,15 +165,13 @@ class LinkViewHelperTest extends BaseTestCase
      * @test
      *
      * @dataProvider getDetailPidFromFlexformReturnsCorrectValueDataProvider
-     *
-     * @return void
      */
     public function getDetailPidFromFlexformReturnsCorrectValue($settings, $expected): void
     {
         $viewHelper = $this->getAccessibleMock(LinkViewHelper::class, ['dummy']);
 
         $result = $viewHelper->_call('getDetailPidFromFlexform', $settings, null);
-        $this->assertEquals($expected, $result);
+        self::assertEquals($expected, $result);
     }
 
     public function getDetailPidFromFlexformReturnsCorrectValueDataProvider(): array
@@ -198,8 +186,6 @@ class LinkViewHelperTest extends BaseTestCase
 
     /**
      * @test
-     *
-     * @return void
      */
     public function noNewsReturnsChildren(): void
     {
@@ -209,13 +195,13 @@ class LinkViewHelperTest extends BaseTestCase
         $viewHelper->setArguments([
             'newsItem' => null,
             'settings' => [
-                'useStdWrap' => false
+                'useStdWrap' => false,
             ],
             'configuration' => [],
             'uriOnly' => false,
-            'content' => ''
+            'content' => '',
         ]);
         $result = $viewHelper->_call('render');
-        $this->assertEquals('', $result);
+        self::assertEquals('', $result);
     }
 }

@@ -1,14 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
-namespace GeorgRinger\News\Hooks;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Hooks;
 
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;

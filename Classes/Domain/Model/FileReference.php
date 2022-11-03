@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Model;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Domain\Model;
 
 /**
  * File Reference
@@ -54,8 +54,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set File uid
      *
      * @param int $fileUid
-     *
-     * @return void
      */
     public function setFileUid($fileUid): void
     {
@@ -76,8 +74,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set alternative
      *
      * @param string $alternative
-     *
-     * @return void
      */
     public function setAlternative($alternative): void
     {
@@ -98,8 +94,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set description
      *
      * @param string $description
-     *
-     * @return void
      */
     public function setDescription($description): void
     {
@@ -120,8 +114,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set link
      *
      * @param string $link
-     *
-     * @return void
      */
     public function setLink($link): void
     {
@@ -142,8 +134,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set title
      *
      * @param string $title
-     *
-     * @return void
      */
     public function setTitle($title): void
     {
@@ -164,8 +154,6 @@ class FileReference extends \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * Set showinpreview
      *
      * @param int $showinpreview
-     *
-     * @return void
      */
     public function setShowinpreview($showinpreview): void
     {

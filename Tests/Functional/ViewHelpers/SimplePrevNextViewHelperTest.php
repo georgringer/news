@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Tests\Functional\ViewHelpers;
 
 use DateTime;
 use GeorgRinger\News\Domain\Model\News;
@@ -18,11 +18,9 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * Class SimplePrevNextViewHelperTest
- *
  */
 class SimplePrevNextViewHelperTest extends FunctionalTestCase
 {
-
     /** @var \GeorgRinger\News\ViewHelpers\SimplePrevNextViewHelper|\PHPUnit\Framework\MockObject\MockObject|\TYPO3\TestingFramework\Core\AccessibleObjectInterface */
     protected $mockedViewHelper;
 
@@ -46,8 +44,6 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
 
     /**
      * @test
-     *
-     * @return void
      */
     public function allNeighboursCanBeFound(): void
     {
@@ -58,13 +54,11 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
             'prev' => $this->getRow(102),
             'next' => $this->getRow(104),
         ];
-        $this->assertEquals($exp, $actual);
+        self::assertEquals($exp, $actual);
     }
 
     /**
      * @test
-     *
-     * @return void
      */
     public function nextNeighbourCanBeFound(): void
     {
@@ -75,13 +69,11 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $exp = [
             'next' => $this->getRow(102),
         ];
-        $this->assertEquals($exp, $actual);
+        self::assertEquals($exp, $actual);
     }
 
     /**
      * @test
-     *
-     * @return void
      */
     public function previousNeighbourCanBeFound(): void
     {
@@ -90,13 +82,11 @@ class SimplePrevNextViewHelperTest extends FunctionalTestCase
         $exp = [
             'prev' => $this->getRow(105),
         ];
-        $this->assertEquals($exp, $actual);
+        self::assertEquals($exp, $actual);
     }
 
     /**
      * @param int $timestamp
-     *
-     * @return void
      */
     protected function setDate($timestamp): void
     {

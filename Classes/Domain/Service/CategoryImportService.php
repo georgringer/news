@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Domain\Service;
 
 use GeorgRinger\News\Domain\Model\Category;
@@ -14,12 +21,6 @@ use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
-/**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
 class CategoryImportService extends AbstractImportService
 {
     public const ACTION_SET_PARENT_CATEGORY = 1;
@@ -49,7 +50,7 @@ class CategoryImportService extends AbstractImportService
                     'category' => $category,
                     'importItem' => $importItem,
                     'action' => self::ACTION_CREATE_L10N_CHILDREN_CATEGORY,
-                    'titleLanguageOverlay' => $importItem['title_lang_ol']
+                    'titleLanguageOverlay' => $importItem['title_lang_ol'],
                 ];
             }
 
@@ -57,7 +58,7 @@ class CategoryImportService extends AbstractImportService
                 $this->postPersistQueue[$importItem['import_id']] = [
                     'category' => $category,
                     'action' => self::ACTION_SET_PARENT_CATEGORY,
-                    'parentCategoryOriginUid' => $importItem['parentcategory']
+                    'parentCategoryOriginUid' => $importItem['parentcategory'],
                 ];
             }
         }
@@ -154,7 +155,6 @@ class CategoryImportService extends AbstractImportService
      */
     protected function setFileRelationFromImage(Category $category, string $image): void
     {
-
         // get fileObject by given identifier (file UID, combined identifier or path/filename)
         try {
             $newImage = $this->getResourceFactory()->retrieveFileOrFolderObject($image);
@@ -189,7 +189,6 @@ class CategoryImportService extends AbstractImportService
         if ($newImage) {
             // file not inside a storage then search for existing file or copy the one form storage 0 to the import folder
             if ($newImage->getStorage()->getUid() === 0) {
-
                 // search DB for same file based on hash (to prevent duplicates)
                 $existingFile = $this->findFileByHash($newImage->getSha1());
 

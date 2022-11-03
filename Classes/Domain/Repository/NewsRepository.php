@@ -1,13 +1,13 @@
 <?php
 
-namespace GeorgRinger\News\Domain\Repository;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Domain\Repository;
 
 use Doctrine\DBAL\FetchMode;
 use GeorgRinger\News\Domain\Model\DemandInterface;
@@ -28,7 +28,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class NewsRepository extends AbstractDemandedRepository
 {
-
     /**
      * Returns a category constraint created by
      * a given list of categories and a junction string
@@ -186,7 +185,7 @@ class NewsRepository extends AbstractDemandedRepository
 
         // month & year OR year only
         if ($demand->getYear() > 0) {
-            if (null === $demand->getDateField()) {
+            if ($demand->getDateField() === null) {
                 throw new \InvalidArgumentException('No Datefield is set, therefore no Datemenu is possible!');
             }
             if ($demand->getMonth() > 0) {
@@ -203,7 +202,7 @@ class NewsRepository extends AbstractDemandedRepository
             }
             $constraints['datetime'] = $query->logicalAnd([
                 $query->greaterThanOrEqual($demand->getDateField(), $begin),
-                $query->lessThanOrEqual($demand->getDateField(), $end)
+                $query->lessThanOrEqual($demand->getDateField(), $end),
             ]);
         }
 
@@ -256,7 +255,7 @@ class NewsRepository extends AbstractDemandedRepository
 
         // Clean not used constraints
         foreach ($constraints as $key => $value) {
-            if (null === $value) {
+            if ($value === null) {
                 unset($constraints[$key]);
             }
         }

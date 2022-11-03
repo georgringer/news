@@ -1,5 +1,13 @@
 <?php
+
 declare(strict_types=1);
+
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
 
 namespace GeorgRinger\News\Database;
 
@@ -8,19 +16,11 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
-
-/**
  * Duplication of \TYPO3\CMS\Core\Database\QueryGenerator which has been deprecated/removed
  * @extensionScannerIgnoreFile
  */
 class QueryGenerator
 {
-
     /**
      * Recursively fetch all descendants of a given page
      *

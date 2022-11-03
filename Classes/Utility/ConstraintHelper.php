@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Utility;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Utility;
+
 use DateTime;
 use Exception;
 use TYPO3\CMS\Core\Context\Context;
@@ -19,7 +20,6 @@ use TYPO3\CMS\Core\Utility\MathUtility;
  */
 class ConstraintHelper
 {
-
     /**
      * @param string|int $timeInput
      * @return int

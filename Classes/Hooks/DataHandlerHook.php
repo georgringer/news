@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Hooks;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Hooks;
+
 use GeorgRinger\News\Service\AccessControlService;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
@@ -28,8 +29,6 @@ class DataHandlerHook implements SingletonInterface
      * This happens on two levels: by UID and by PID.
      *
      * @param array $params
-     *
-     * @return void
      */
     public function clearCachePostProc(array $params): void
     {
@@ -56,8 +55,6 @@ class DataHandlerHook implements SingletonInterface
      * @param int $recordUid id of the record
      * @param array $fields fieldArray
      * @param DataHandler $parentObject parent Object
-     *
-     * @return void
      */
     public function processDatamap_afterDatabaseOperations(
         $status,
@@ -80,8 +77,6 @@ class DataHandlerHook implements SingletonInterface
      * @param string $table
      * @param int $id
      * @param $parentObject DataHandler
-     *
-     * @return void
      */
     public function processDatamap_preProcessFieldArray(&$fieldArray, $table, $id, $parentObject): void
     {
@@ -103,7 +98,6 @@ class DataHandlerHook implements SingletonInterface
                     // unset fieldArray to prevent saving of the record
                     $fieldArray = [];
                 } else {
-
                     // If the category relation has been modified, no | is found anymore
                     if (isset($fieldArray['categories']) && strpos($fieldArray['categories'], '|') === false) {
                         $deniedCategories = AccessControlService::getAccessDeniedCategories($newsRecord);
@@ -130,8 +124,6 @@ class DataHandlerHook implements SingletonInterface
      * @param int $id
      * @param string $value
      * @param $parentObject DataHandler
-     *
-     * @return void
      */
     public function processCmdmap_preProcess($command, &$table, $id, $value, $parentObject): void
     {

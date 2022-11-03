@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * This file is part of the "news" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ */
+
 namespace GeorgRinger\News\Domain\Repository;
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
@@ -10,18 +17,10 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * This file is part of the "news" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- */
-
-/**
  * Abstract demanded repository
  */
 abstract class AbstractDemandedRepository extends Repository implements DemandedRepositoryInterface
 {
-
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface
      */
@@ -29,8 +28,6 @@ abstract class AbstractDemandedRepository extends Repository implements Demanded
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\Generic\Storage\BackendInterface $storageBackend
-     *
-     * @return void
      */
     public function injectStorageBackend(
         BackendInterface $storageBackend

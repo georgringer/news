@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\Hooks;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\Hooks;
+
 use GeorgRinger\News\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Site\SiteFinder;
@@ -18,7 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ItemsProcFunc
 {
-
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
@@ -36,8 +36,6 @@ class ItemsProcFunc
      * Itemsproc function to extend the selection of templateLayouts in the plugin
      *
      * @param array &$config configuration array
-     *
-     * @return void
      */
     public function user_templateLayout(array &$config): void
     {
@@ -53,7 +51,7 @@ class ItemsProcFunc
             foreach ($templateLayouts as $layout) {
                 $additionalLayout = [
                     htmlspecialchars($this->getLanguageService()->sL($layout[0])),
-                    $layout[1]
+                    $layout[1],
                 ];
                 array_push($config['items'], $additionalLayout);
             }
@@ -98,8 +96,6 @@ class ItemsProcFunc
      * needs different ones then a news action
      *
      * @param array &$config configuration array
-     *
-     * @return void
      */
     public function user_orderBy(array &$config): void
     {
@@ -149,8 +145,6 @@ class ItemsProcFunc
      *
      * @param array $config tca items
      * @param string $tableName table name
-     *
-     * @return void
      */
     protected function removeNonValidOrderFields(array &$config, $tableName): void
     {
@@ -168,8 +162,6 @@ class ItemsProcFunc
      *
      * @param array $config available items
      * @param string $action action to be removed
-     *
-     * @return void
      */
     private function removeActionFromList(array &$config, $action): void
     {

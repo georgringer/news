@@ -1,13 +1,14 @@
 <?php
 
-namespace GeorgRinger\News\ViewHelpers;
-
-/**
+/*
  * This file is part of the "news" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace GeorgRinger\News\ViewHelpers;
+
 use GeorgRinger\News\Domain\Model\News;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
 use TYPO3\CMS\Core\Resource\File;
@@ -78,7 +79,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $processingInstructions = [
             'width' => null,
             'height' => null,
-            'crop' => $cropArea->isEmpty() ? null : $cropArea->makeAbsoluteBasedOnFile($image)
+            'crop' => $cropArea->isEmpty() ? null : $cropArea->makeAbsoluteBasedOnFile($image),
         ];
 
         $processedImage = $imageService->applyProcessingInstructions($image, $processingInstructions);
@@ -91,7 +92,7 @@ class RenderMediaViewHelper extends AbstractViewHelper
         $imageAttributes = [
             'src' => $imageUri,
             'alt' => $alt ?: ($title ?: ''),
-            'title' => $title
+            'title' => $title,
         ];
 
         if (!empty($this->imgClass)) {
