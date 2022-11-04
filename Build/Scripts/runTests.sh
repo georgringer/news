@@ -12,7 +12,7 @@ setUpDockerComposeDotEnv() {
     [ -e .env ] && rm .env
     # Set up a new .env file for docker-compose
     {
-        echo "COMPOSE_PROJECT_NAME=local"
+        echo "COMPOSE_PROJECT_NAME=${PROJECT_NAME}"
         # To prevent access rights of files created by the testing, the docker image later
         # runs with the same user that is currently executing the script. docker-compose can't
         # use $UID directly itself since it is a shell variable and not an env variable, so
@@ -221,6 +221,11 @@ MARIADB_VERSION="10.2"
 MYSQL_VERSION="5.5"
 POSTGRES_VERSION="10"
 USED_XDEBUG_MODES="debug,develop"
+#@todo the $$ would add the current process id to the name, keeping as plan b
+#PROJECT_NAME="runTests-$(basename $(dirname $ROOT_DIR))-$(basename $ROOT_DIR)-$$"
+PROJECT_NAME="runTests-$(basename $(dirname $ROOT_DIR))-$(basename $ROOT_DIR)"
+PROJECT_NAME="${PROJECT_NAME//[[:blank:]]/}"
+echo $PROJECT_NAME
 
 # Option parsing
 # Reset in case getopts has been used previously in the shell
