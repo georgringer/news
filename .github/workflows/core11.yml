@@ -31,6 +31,9 @@ jobs:
       - name: Validate code against CGL
         run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s cgl -n
 
+      - name: Unit Tests
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s unit
+
       - name: Functional Tests with mariadb and mysqli
         run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d mariadb -a mysqli -s functional
 
