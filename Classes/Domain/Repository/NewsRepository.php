@@ -9,7 +9,6 @@
 
 namespace GeorgRinger\News\Domain\Repository;
 
-use Doctrine\DBAL\FetchMode;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
@@ -23,7 +22,6 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * News repository with all the callable functionality
