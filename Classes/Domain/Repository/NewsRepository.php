@@ -10,6 +10,7 @@
 namespace GeorgRinger\News\Domain\Repository;
 
 use Doctrine\DBAL\FetchMode;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 use GeorgRinger\News\Service\CategoryService;
@@ -22,6 +23,7 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * News repository with all the callable functionality
@@ -378,14 +380,19 @@ class NewsRepository extends AbstractDemandedRepository
         $field = $demand->getDateField();
         $field = empty($field) ? 'datetime' : $field;
 
-        $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_Month",' .
-            ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_Year" ,' .
-            ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
-            ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
-            ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
-
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getConnectionForTable('tx_news_domain_model_news');
+        $isPostgres = $connection->getDatabasePlatform() instanceof PostgreSQLPlatform;
+        if ($isPostgres) {
+            $sql = 'SELECT count(*), date_trunc(\'year\', to_timestamp(' . $field . '/1)::date) as _year, date_trunc(\'month\', to_timestamp(' . $field . '/1)::date)  as _MONTH 
+from tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
+        } else {
+            $sql = 'SELECT MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND ) AS "_month",' .
+                ' YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND) AS "_year" ,' .
+                ' count(MONTH(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND )) as count_month,' .
+                ' count(YEAR(FROM_UNIXTIME(0) + INTERVAL ' . $field . ' SECOND)) as count_year' .
+                ' FROM tx_news_domain_model_news ' . substr($sql, strpos($sql, 'WHERE '));
+        }
 
         if (ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isFrontend()) {
             // @extensionScannerIgnoreLine
@@ -403,14 +410,19 @@ class NewsRepository extends AbstractDemandedRepository
         if ($orderDirection !== 'desc' && $orderDirection !== 'asc') {
             $orderDirection = 'asc';
         }
-        $sql .= ' GROUP BY _Month, _Year ORDER BY _Year ' . $orderDirection . ', _Month ' . $orderDirection;
+        $sql .= ' GROUP BY _month, _year ORDER BY _year ' . $orderDirection . ', _month ' . $orderDirection;
 
-        $res = $connection->query($sql);
-        while ($row = $res->fetch(FetchMode::ASSOCIATIVE)) {
-            $month = strlen($row['_Month']) === 1 ? ('0' . $row['_Month']) : $row['_Month'];
-            $data['single'][$row['_Year']][$month] = $row['count_month'];
+        $res = $connection->executeQuery($sql);
+
+        while ($row = $res->fetchAssociative()) {
+            if ($isPostgres) {
+                $splitMonth = explode('-', $row['_month']);
+                $data['single'][$splitMonth[0]][$splitMonth[1]] = $row['count'];
+            } else {
+                $month = strlen($row['_month']) === 1 ? ('0' . $row['_month']) : $row['_month'];
+                $data['single'][$row['_year']][$month] = $row['count_month'];
+            }
         }
-
         // Add totals
         if (is_array($data['single'])) {
             foreach ($data['single'] as $year => $months) {
