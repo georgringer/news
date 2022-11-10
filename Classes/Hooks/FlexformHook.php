@@ -87,7 +87,7 @@ class FlexformHook
                 $selectedView = $actionParts[0];
             }
 
-        // new plugin element
+            // new plugin element
         } elseif (str_starts_with((string)$row['uid'], 'NEW')) {
             // use List as starting view
             $selectedView = 'News->list';
