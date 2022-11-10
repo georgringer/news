@@ -27,7 +27,7 @@ return [
             'disabled' => 'hidden',
         ],
         'typeicon_classes' => [
-            'default' => 'ext-news-link'
+            'default' => 'ext-news-link',
         ],
         'hideTable' => true,
         'security' => [
@@ -38,8 +38,8 @@ return [
         'pid' => [
             'label' => 'pid',
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'crdate' => [
             'label' => 'crdate',
@@ -47,7 +47,7 @@ return [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
-            ]
+            ],
         ],
         'tstamp' => [
             'label' => 'tstamp',
@@ -55,14 +55,14 @@ return [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
-            ]
+            ],
         ],
         'sys_language_uid' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'language',
-            ]
+            ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -76,26 +76,26 @@ return [
                 'foreign_table' => 'tx_news_domain_model_link',
                 'foreign_table_where' => 'AND tx_news_domain_model_link.pid=###CURRENT_PID### AND tx_news_domain_model_link.sys_language_uid IN (-1,0)',
                 'default' => 0,
-            ]
+            ],
         ],
         'l10n_source' => [
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'l10n_diffsource' => [
             'config' => [
                 'type' => 'passthrough',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'hidden' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.hidden',
             'config' => [
                 'type' => 'check',
-                'default' => 0
-            ]
+                'default' => 0,
+            ],
         ],
         'title' => [
             'exclude' => false,
@@ -106,7 +106,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'description' => [
             'exclude' => true,
@@ -118,7 +118,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'uri' => [
             'exclude' => false,
@@ -133,13 +133,13 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
     ],
     'types' => [
         0 => [
-            'showitem' => 'uri, --palette--;;paletteCore,title, --palette--;;paletteDescription'
-        ]
+            'showitem' => 'uri, --palette--;;paletteCore,title, --palette--;;paletteDescription',
+        ],
     ],
     'palettes' => [
         'paletteCore' => [
@@ -147,6 +147,6 @@ return [
         ],
         'paletteDescription' => [
             'showitem' => 'description',
-        ]
-    ]
+        ],
+    ],
 ];

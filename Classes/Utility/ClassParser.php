@@ -15,8 +15,8 @@ class ClassParser
     private $extends = [];
     private $implements = [];
 
-    const STATE_CLASS_HEAD = 100001;
-    const STATE_FUNCTION_HEAD = 100002;
+    public const STATE_CLASS_HEAD = 100001;
+    public const STATE_FUNCTION_HEAD = 100002;
 
     public function getClasses()
     {
