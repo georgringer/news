@@ -27,7 +27,7 @@ class AbstractImportService implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    const UPLOAD_PATH = 'uploads/tx_news/';
+    public const UPLOAD_PATH = 'uploads/tx_news/';
 
     /**
      * @var PersistenceManager

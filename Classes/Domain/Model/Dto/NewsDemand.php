@@ -193,7 +193,7 @@ class NewsDemand extends AbstractEntity implements DemandInterface
      */
     public function getIncludeSubCategories(): bool
     {
-        return (boolean)$this->includeSubCategories;
+        return (bool)$this->includeSubCategories;
     }
 
     /**

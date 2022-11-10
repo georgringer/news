@@ -17,7 +17,7 @@ use TYPO3\TestingFramework\Core\BaseTestCase;
  */
 class ValidationTest extends BaseTestCase
 {
-    const ALLOWED_FIELDS = 'author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title';
+    public const ALLOWED_FIELDS = 'author,uid,title,teaser,author,tstamp,crdate,datetime,categories.title';
 
     /**
      * Test if default file format works

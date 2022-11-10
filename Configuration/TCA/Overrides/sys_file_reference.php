@@ -17,7 +17,7 @@ if ($emConfiguration->isAdvancedMediaPreview()) {
 } else {
     $fieldConfig = [
         'type' => 'check',
-        'default' => 0
+        'default' => 0,
     ];
 }
 
@@ -25,7 +25,7 @@ $newSysFileReferenceColumns = [
     'showinpreview' => [
         'exclude' => true,
         'label' => 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:tx_news_domain_model_media.showinviews',
-        'config' => $fieldConfig
+        'config' => $fieldConfig,
     ],
 ];
 
