@@ -4,6 +4,7 @@
 /composer.lock
 /composer.json.testing
 /.php_cs.cache
+/.php-cs-fixer.cache
 /Documentation-GENERATED-temp
 /Resources/Private/Templates/News/Month.html
 /Resources/Private/Templates/Styles/Twb/Templates/News/Month.html
