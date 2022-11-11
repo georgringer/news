@@ -26,16 +26,6 @@ The sorting can be extended by adding the value to
 
 Default values are: tstamp,datetime,crdate,title
 
-Remove fields in additional actions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If you define an additional action, you won't need all available fields which are available inside the FlexForms. If you want to hide some fields,
-take a look at the hook inside the class Hooks/BackendUtility.php:
-
-.. code-block:: php
-
-   $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Hooks/BackendUtility.php']['updateFlexforms']
-
 Additional Template Selector
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you need a kind of template selector inside a plugin, you can add
