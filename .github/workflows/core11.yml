@@ -46,13 +46,12 @@ jobs:
       - name: Functional Tests with mysql and pdo_mysql
         run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d mysql -a pdo_mysql -s functional
 
-# @todo disabled, due cross dbmns issues in code. Should be fixed first
-#        - name: Functional Tests with postgres
-#            # v11 postgres functional disabled with PHP 8.2 since https://github.com/doctrine/dbal/commit/73eec6d882b99e1e2d2d937accca89c1bd91b2d7
-#            # is not fixed in doctrine core v11 doctrine 2.13.9
-#          if: ${{ matrix.php <= '8.1' }}
-#          run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d postgres -s functional
+      - name: Functional Tests with postgres
+        # v11 postgres functional disabled with PHP 8.2 since https://github.com/doctrine/dbal/commit/73eec6d882b99e1e2d2d937accca89c1bd91b2d7
+        # is not fixed in doctrine core v11 doctrine 2.13.9
+        if: ${{ matrix.php <= '8.1' }}
+        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d postgres -s functional
 
-# @todo disabled, due cross dbmns issues in code. Should be fixed first
-#        - name: Functional Tests with sqlite
-#          run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d sqlite -s functional
+      # @todo disabled, due cross dbmns issues in code. Should be fixed first
+      # - name: Functional Tests with sqlite
+      #  run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -d sqlite -s functional
