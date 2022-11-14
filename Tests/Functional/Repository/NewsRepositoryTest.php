@@ -161,7 +161,6 @@ class NewsRepositoryTest extends FunctionalTestCase
      */
     public function findRecordsByMonthAndYear(): void
     {
-        $this->markTestSkipped('Does not work in travis');
         $demand = new NewsDemand();
         $demand->setStoragePage(8);
 
@@ -176,7 +175,7 @@ class NewsRepositoryTest extends FunctionalTestCase
      *
      * @test
      *
-     * @return void
+     * []
      */
     public function findLatestLimitRecords(): void
     {
