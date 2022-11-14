@@ -147,7 +147,6 @@ class NewsRepositoryTest extends FunctionalTestCase
      */
     public function findRecordsByMonthAndYear(): void
     {
-        self::markTestSkipped('Does not work in travis');
         $demand = new NewsDemand();
         $demand->setStoragePage(8);
 
