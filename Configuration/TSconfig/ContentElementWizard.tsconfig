@@ -5,8 +5,8 @@ mod.wizards.newContentElement.wizardItems.ext-news {
     elements {
         news_list {
             iconIdentifier = ext-news-plugin-news-list
-            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_list
-            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_list.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_list.description
             tt_content_defValues {
                 CType = news_pi1
             }
@@ -14,8 +14,8 @@ mod.wizards.newContentElement.wizardItems.ext-news {
 
         news_list_sticky {
             iconIdentifier = ext-news-plugin-news-list-sticky
-            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.news_listOnly
-            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:pi1_plus_wiz_description
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_list_sticky.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_list_sticky.description
             tt_content_defValues {
                 CType = news_newsliststicky
             }
