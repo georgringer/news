@@ -25,7 +25,7 @@
         "GPL-2.0-or-later"
     ],
     "require": {
-        "typo3/cms-core": "^11.5.18 || ^12"
+        "typo3/cms-core": "^11.5.19 || ^12"
     },
     "conflict": {
         "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
