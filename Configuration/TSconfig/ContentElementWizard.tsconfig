@@ -41,8 +41,8 @@ mod.wizards.newContentElement.wizardItems.ext-news {
 
         news_datemenu {
             iconIdentifier = ext-news-plugin-news-date-menu
-            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_datemenu.title
-            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_datemenu.description
+            title = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_date_menu.title
+            description = LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:plugin.news_date_menu.description
             tt_content_defValues {
                 CType = news_newsdatemenu
             }

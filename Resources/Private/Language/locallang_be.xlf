@@ -28,10 +28,10 @@
             <trans-unit id="plugin.news_detail.description" xml:space="preserve">
 				<source>Display the detail view of an article</source>
 			</trans-unit>
-            <trans-unit id="plugin.news_datemenu.title" xml:space="preserve">
+            <trans-unit id="plugin.news_date_menu.title" xml:space="preserve">
 				<source>Date menu of articles</source>
 			</trans-unit>
-            <trans-unit id="plugin.news_datemenu.description" xml:space="preserve">
+            <trans-unit id="plugin.news_date_menu.description" xml:space="preserve">
 				<source>Display a menu of months &amp; years of articles. The menu can be used to filter a list view dynamically.</source>
 			</trans-unit>
             <trans-unit id="plugin.news_search_form.title" xml:space="preserve">
