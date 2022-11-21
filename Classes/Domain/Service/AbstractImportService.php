@@ -119,6 +119,12 @@ class AbstractImportService implements LoggerAwareInterface
                 }
             }
         }
+        if ($file === null) {
+            return null;
+        }
+        if (!$file->exists()) {
+            return null;
+        }
         return $file;
     }
 
