@@ -1,0 +1,27 @@
+.. include:: /Includes.rst.txt
+
+10.0.3 - 21st November 2022
+===========================
+
+.. only:: html
+
+   .. contents::
+        :local:
+        :depth: 3
+
+Bugfix release
+--------------
+
+Remove some bugfixes
+
+All Changes
+-----------
+This is a list of all changes in this release: ::
+
+   2022-11-21 [BUGFIX] Check if file exists before using in import services (Commit 248ef9e6 by Georg Ringer)
+   2022-11-21 [TASK] Update .gitattributes (Commit 51aad1e5 by Stefan Frömken)
+   2022-11-08 [BUGFIX] fix type casting, these values are strings (Commit eabd5dd1 by Tobias Bräutigam)
+   2022-10-28 [DOC] Update pricing (Commit da7e5c2b by Georg Ringer)
+
+
+This list has been created by using `git log $(git describe --tags --abbrev=0)..HEAD --abbrev-commit --pretty='%ad %s (Commit %h by %an)' --date=short`.
