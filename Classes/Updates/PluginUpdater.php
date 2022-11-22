@@ -82,7 +82,7 @@ class PluginUpdater implements UpgradeWizardInterface
     {
         $description = 'The old plugin using switchableControllerActions has been split into separate plugins. ';
         $description .= 'This update wizard migrates all existing plugin settings and changes the plugin';
-        $description .= 'to use the new plugins available.';
+        $description .= 'to use the new plugins available. Count of plugins: ' . count($this->getMigrationRecords());
         return $description;
     }
 
