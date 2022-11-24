@@ -106,12 +106,12 @@ class ItemsProcFunc
             $flexformConfig = GeneralUtility::xml2array($row['pi_flexform']);
 
             // check if there is a flexform configuration
-            if (isset($flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'])) {
-                $selectedActionList = $flexformConfig['data']['sDEF']['lDEF']['switchableControllerActions']['vDEF'] ?? '';
-                // check for selected action
-                if (str_starts_with($selectedActionList, 'Category')) {
+            if (isset($flexformConfig['data']['sDEF']['lDEF'])) {
+                $selectedPlugin = strtolower($row['CType']) ?? '';
+                // check for selected plugin
+                if (str_contains($selectedPlugin, 'category')) {
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
-                } elseif (str_starts_with($selectedActionList, 'Tag')) {
+                } elseif (str_contains($selectedPlugin, 'tag')) {
                     $this->removeNonValidOrderFields($config, 'tx_news_domain_model_tag');
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'];
                 } else {
