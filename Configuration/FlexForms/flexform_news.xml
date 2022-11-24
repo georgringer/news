@@ -407,7 +407,7 @@
 								<type>group</type>
 								<internal_type>db</internal_type>
 								<allowed>tx_news_domain_model_news</allowed>
-								<size>3</size>
+								<size>5</size>
 							</config>
 						</TCEforms>
 					</settings.selectedList>
