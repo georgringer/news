@@ -12,7 +12,7 @@ This sections describes extensions which extend EXT:news with additional feature
    :titlesonly:
    :glob:
 
-   NumberedNavigation/Index
+   NumberedPagination/Index
    NewsAdministration/Index
    NewsTagsuggest/Index
    NewsContentElements/Index

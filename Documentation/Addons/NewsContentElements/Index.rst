@@ -1,4 +1,4 @@
-    .. include:: /Includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _newsContentElements:
 
@@ -12,7 +12,7 @@ The only drawback is that the management of those is kind of limited because of 
 This extension gives editors the possibility to use the power of page module for editing the content elements of a specific record.
 
 .. include:: /Images/Addons/NewsContentElements/record.rst.txt
-.. include:: /Images/Addons/NewsContentElements/pagemodule.rst.txt
+.. include:: /Images/Addons/NewsContentElements/page-module.rst.txt
 
 .. note::
 
@@ -28,6 +28,7 @@ Pricing
 -------
 
 - € 100.00 (ex. VAT) for 1 site
+- € 300.00 (ex. VAT) for unlimited sites related to the agency itself or its customers
 
 **Included**: Bugfix & feature releases, composer support
 
