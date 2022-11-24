@@ -163,9 +163,7 @@ The following example will only provide routing for the detail view:
              news-title: news
        aspects:
          news-title:
-           type: PersistedAliasMapper
-           tableName: tx_news_domain_model_news
-           routeFieldName: path_segment
+           type: NewsTitle
 
 Please note the placeholder :code:`{news-title}`:
 
@@ -233,21 +231,15 @@ filter news records, their titles (slugs) are used.
          page: '0'
        aspects:
          news-title:
-           type: PersistedAliasMapper
-           tableName: tx_news_domain_model_news
-           routeFieldName: path_segment
+           type: NewsTitle
          page:
            type: StaticRangeMapper
            start: '1'
            end: '100'
          category-name:
-           type: PersistedAliasMapper
-           tableName: sys_category
-           routeFieldName: slug
+           type: NewsCategory
          tag-name:
-           type: PersistedAliasMapper
-           tableName: tx_news_domain_model_tag
-           routeFieldName: slug
+           type: NewsTag
      PageTypeSuffix:
        type: PageType
        map:
@@ -390,9 +382,7 @@ by date. Also includes configuration for the pagination.
          date-year: ''
        aspects:
          news-title:
-           type: PersistedAliasMapper
-           tableName: tx_news_domain_model_news
-           routeFieldName: path_segment
+           type: NewsTitle
          page:
            type: StaticRangeMapper
            start: '1'
