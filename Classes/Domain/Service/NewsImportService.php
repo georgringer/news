@@ -155,8 +155,8 @@ class NewsImportService extends AbstractImportService
         $news->setAuthor($importItem['author'] ?? '');
         $news->setAuthorEmail($importItem['author_email'] ?? '');
 
-        $news->setImportId((int)($importItem['import_id'] ?? ''));
-        $news->setImportSource((int)($importItem['import_source'] ?? ''));
+        $news->setImportId((string)($importItem['import_id'] ?? ''));
+        $news->setImportSource((string)($importItem['import_source'] ?? ''));
 
         $news->setPathSegment($importItem['path_segment'] ?? '');
 

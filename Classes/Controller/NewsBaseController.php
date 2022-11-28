@@ -135,6 +135,7 @@ class NewsBaseController extends ActionController
             default:
                 return null;
         }
+        return null;
     }
 
     /**
