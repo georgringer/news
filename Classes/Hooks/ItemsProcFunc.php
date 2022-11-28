@@ -109,9 +109,9 @@ class ItemsProcFunc
             if (isset($flexformConfig['data']['sDEF']['lDEF'])) {
                 $selectedPlugin = strtolower($row['CType']) ?? '';
                 // check for selected plugin
-                if ('news_categorylist' === $selectedPlugin) {
+                if ($selectedPlugin === 'news_categorylist') {
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByCategory'];
-                } elseif ('news_taglist' === $selectedPlugin) {
+                } elseif ($selectedPlugin === 'news_taglist') {
                     $this->removeNonValidOrderFields($config, 'tx_news_domain_model_tag');
                     $newItems = $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByTag'];
                 } else {
