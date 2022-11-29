@@ -13,7 +13,6 @@ jobs:
       matrix:
         env:
           - { php: 7.4, TYPO3_VERSION: ^10.4, TESTING_FRAMEWORK: ^6.5.0 }
-          - { php: 7.3, TYPO3_VERSION: ^10.4, TESTING_FRAMEWORK: ^6.5.0 }
           - { php: 7.4, TYPO3_VERSION: ^11.0, TESTING_FRAMEWORK: ^6.6 }
           - { php: 8.0, TYPO3_VERSION: ^11.0, TESTING_FRAMEWORK: ^6.6 }
 
