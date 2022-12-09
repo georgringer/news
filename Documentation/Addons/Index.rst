@@ -14,6 +14,7 @@ This sections describes extensions which extend EXT:news with additional feature
 
    NumberedPagination/Index
    NewsAdministration/Index
+   NewsSeo/Index
    NewsTagsuggest/Index
    NewsContentElements/Index
    NewsImporticsxml/Index
