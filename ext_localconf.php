@@ -188,6 +188,16 @@ $boot = static function (): void {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txNewsPluginUpdater'] = \GeorgRinger\News\Updates\PluginUpdater::class;
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
+    plugin {
+        tx_news_newsliststicky.view.pluginNamespace = tx_news_pi1
+        tx_news_newsdetail.view.pluginNamespace = tx_news_pi1
+        tx_news_newsselectedlist.view.pluginNamespace = tx_news_pi1
+        tx_news_newsdatemenu.view.pluginNamespace = tx_news_pi1
+        tx_news_categorylist.view.pluginNamespace = tx_news_pi1
+        tx_news_newssearchform.view.pluginNamespace = tx_news_pi1
+        tx_news_newssearchresult.view.pluginNamespace = tx_news_pi1
+        tx_news_taglist.view.pluginNamespace = tx_news_pi1
+    }
     config.pageTitleProviders {
         news {
             provider = GeorgRinger\News\Seo\NewsTitleProvider
