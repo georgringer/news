@@ -192,13 +192,28 @@ plugin.tx_news {
 	}
 }
 
-# Rendering of content elements in detail view
+# Rendering of content elements in detail view (default)
 lib.tx_news.contentElementRendering = RECORDS
 lib.tx_news.contentElementRendering {
 	tables = tt_content
 	source.current = 1
 	dontCheckPid = 1
 }
+
+# Rendering of content elements in detail view when b13/container is used.
+# In this case child content in b13/container columns has to be excluded to prevent double rendered content
+# lib.tx_news.contentElementRendering >
+# lib.tx_news.contentElementRendering = CONTENT
+# lib.tx_news.contentElementRendering {
+# 	table = tt_content
+# 	select {
+# 		pidInList = 0
+# 		uidInList.current = 1
+# 		where = {#tx_container_parent}<1
+# 		orderBy = sorting
+# 		languageField = sys_language_uid
+# 	}
+# }
 
 # Rendering of news, displayed by "Insert Record" content element
 tt_content.shortcut.20.tables := addToList(tx_news_domain_model_news)
