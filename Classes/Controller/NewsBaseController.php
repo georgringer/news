@@ -10,19 +10,14 @@
 namespace GeorgRinger\News\Controller;
 
 use GeorgRinger\News\Domain\Model\Dto\EmConfiguration;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\RequestInterface;
-use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
-/**
- * Base controller
- */
 class NewsBaseController extends ActionController
 {
     protected function initializeView($view)
@@ -35,47 +30,13 @@ class NewsBaseController extends ActionController
         }
     }
 
-//    /**
-//     * @param RequestInterface $request
-//     * @param ResponseInterface $response
-//     * @throws \Exception
-//     */
-//    public function processRequest(RequestInterface $request, ResponseInterface $response)
-//    {
-//        try {
-//            parent::processRequest($request, $response);
-//        } catch (\Exception $exception) {
-//            $this->handleKnownExceptionsElseThrowAgain($exception);
-//        }
-//    }
-
-    /**
-     * @param \Exception $exception
-     *
-     * @throws \Exception
-     */
-    private function handleKnownExceptionsElseThrowAgain(\Exception $exception): void
-    {
-        $previousException = $exception->getPrevious();
-
-        if (
-            $this->actionMethodName === 'detailAction'
-            && $previousException instanceof \TYPO3\CMS\Extbase\Property\Exception
-            && isset($this->settings['detail']['errorHandling'])
-        ) {
-            $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
-        } else {
-            throw $exception;
-        }
-    }
-
     /**
      * Error handling if no news entry is found
      *
      * @param string $configuration configuration what will be done
      * @throws \InvalidArgumentException
      */
-    protected function handleNoNewsFoundError($configuration): ?\Psr\Http\Message\ResponseInterface
+    protected function handleNoNewsFoundError(string $configuration): ?ResponseInterface
     {
         if (empty($configuration)) {
             return null;
@@ -110,11 +71,6 @@ class NewsBaseController extends ActionController
 
                 break;
             case 'pageNotFoundHandler':
-                $typo3Information = GeneralUtility::makeInstance(Typo3Version::class);
-                if ($typo3Information->getMajorVersion() === 9) {
-                    $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction($GLOBALS['TYPO3_REQUEST'], 'No news entry found.');
-                    throw new ImmediateResponseException($response);
-                }
                 $message = 'No news entry found!';
                 $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
                     $GLOBALS['TYPO3_REQUEST'],
@@ -132,15 +88,10 @@ class NewsBaseController extends ActionController
                 return $this->responseFactory->createResponse($statusCode)
                     ->withHeader('Content-Type', 'text/html; charset=utf-8')
                     ->withBody($this->streamFactory->createStream($standaloneTemplate->render()));
-            default:
-                return null;
         }
         return null;
     }
 
-    /**
-     * @return TypoScriptFrontendController
-     */
     protected function getTypoScriptFrontendController(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];

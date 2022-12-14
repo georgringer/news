@@ -410,7 +410,7 @@ class NewsController extends NewsBaseController
                 $provider->setTitleByNews($news, $providerConfiguration);
             }
         } elseif (isset($this->settings['detail']['errorHandling'])) {
-            $errorResponse = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling']);
+            $errorResponse = $this->handleNoNewsFoundError($this->settings['detail']['errorHandling'] ?? '');
             if ($errorResponse) {
                 return $errorResponse;
             }
