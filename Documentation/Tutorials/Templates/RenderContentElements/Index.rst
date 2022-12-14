@@ -11,6 +11,8 @@ by default in the detail view.
 
 There are two options how to render those elements
 
+.. _using_typoscript:
+
 Using TypoScript
 ================
 
@@ -34,6 +36,33 @@ This needs then to be referenced in the template.
            <f:cObject typoscriptObjectPath="lib.yourownTypoScript">{newsItem.contentElements}</f:cObject>
    </f:if>
 
+Using TypoScript with nested content from b13/container
+=======================================================
+
+If nested content should be rendered as news content elements with
+`b13/container <https://extensions.typo3.org/extension/container>`_ the lib.tx_news.contentElementRendering
+should be adapted.
+
+With the default lib.tx_news.contentElementRendering using the RECORDS CObject (see :ref:`Using TypoScript <using_typoscript>`)
+all content elements are fetched from the database and nested child content in containers is rendered twice.
+One time as standalone element and a second time in the container column.
+
+To fix this the following lib can be used to fetch the content which will exclude all child content
+in containers:
+
+.. code-block:: typoscript
+
+   lib.tx_news.contentElementRendering = CONTENT
+   lib.tx_news.contentElementRendering {
+       table = tt_content
+       select {
+           pidInList = 0
+           uidInList.current = 1
+           where = {#tx_container_parent}<1
+           orderBy = sorting
+           languageField = sys_language_uid
+       }
+   }
 
 Using Fluid
 ===========
