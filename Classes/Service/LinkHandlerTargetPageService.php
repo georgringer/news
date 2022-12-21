@@ -59,6 +59,6 @@ class LinkHandlerTargetPageService
             ->orderBy('sys_category_record_mm.sorting')
             ->setMaxResults(1)
             ->execute()->fetch();
-        return (int)$categoryRecord['single_pid'];
+        return (int)($categoryRecord['single_pid'] ?? 0);
     }
 }
