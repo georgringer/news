@@ -21,7 +21,6 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 class PluginPermissionUpdater implements UpgradeWizardInterface
 {
-
     public function getIdentifier(): string
     {
         return 'txNewsPluginPermissionUpdater';
@@ -122,5 +121,4 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
             )
             ->executeStatement();
     }
-
 }
