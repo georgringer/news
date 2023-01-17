@@ -11,6 +11,10 @@ call_user_func(static function () {
             ];
         }
 
+        $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['categories']['config'] = [
+            'type' => 'category'
+        ];
+
         $showRemovedLocalizationRecordsFields = [
             'sys_category' => ['images'],
             'tx_news_domain_model_news' => ['related_links', 'content_elements', 'fal_media', 'fal_related_files']
