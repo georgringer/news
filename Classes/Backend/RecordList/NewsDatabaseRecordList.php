@@ -79,6 +79,6 @@ class NewsDatabaseRecordList extends DatabaseRecordList
         }
 
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-        return $uriBuilder->buildUriFromRoute('web_NewsAdministrationAdministration', $urlParameters);
+        return (string)$uriBuilder->buildUriFromRoute('web_NewsAdministrationAdministration', $urlParameters);
     }
 }
