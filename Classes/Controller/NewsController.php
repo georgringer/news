@@ -11,6 +11,7 @@ use GeorgRinger\News\Domain\Repository\TagRepository;
 use GeorgRinger\News\Event\NewsCheckPidOfNewsRecordFailedInDetailActionEvent;
 use GeorgRinger\News\Event\NewsDateMenuActionEvent;
 use GeorgRinger\News\Event\NewsDetailActionEvent;
+use GeorgRinger\News\Event\NewsInitializeActionEvent;
 use GeorgRinger\News\Event\NewsListActionEvent;
 use GeorgRinger\News\Event\NewsListSelectedActionEvent;
 use GeorgRinger\News\Event\NewsSearchFormActionEvent;
@@ -26,6 +27,7 @@ use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Extbase\Property\TypeConverter\PersistentObjectConverter;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Fluid\View\TemplateView;
@@ -108,6 +110,15 @@ class NewsController extends NewsBaseController
                 $cacheTagsSet = true;
             }
         }
+        /** @var  NewsInitializeActionEvent $event */
+        $event = $this->eventDispatcher->dispatch(
+            new NewsInitializeActionEvent(
+                $this,
+                $this->defaultViewObjectName,
+                $this->request->getControllerActionName()
+            )
+        );
+        $this->defaultViewObjectName = $event->getDefaultViewObjectName();
     }
 
     /**
@@ -695,6 +706,14 @@ class NewsController extends NewsBaseController
     public function setView(TemplateView $view): void
     {
         $this->view = $view;
+    }
+
+    /**
+     * Set for the NewsInitializeActionEvent
+     */
+    public function getView(): ViewInterface
+    {
+        return $this->view;
     }
 
     /**
