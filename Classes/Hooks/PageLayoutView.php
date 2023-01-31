@@ -295,9 +295,7 @@ class PageLayoutView
                 $data,
                 $table,
                 $record['uid'],
-                true,
-                '',
-                '+info,edit,history'
+                true
             );
 
             $linkTitle = htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record));
