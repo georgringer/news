@@ -25,8 +25,6 @@ class ImportJob
      * @param string $className class name
      * @param string $title title
      * @param string $description description
-     *
-     * @static
      */
     public static function register($className, $title, $description): void
     {
@@ -40,7 +38,6 @@ class ImportJob
     /**
      * Get all registered import jobs
      *
-     * @static
      * @return array
      */
     public static function getRegisteredJobs(): array
