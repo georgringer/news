@@ -63,11 +63,11 @@ services:
         php -v | grep '^PHP';
         if [ ${TYPO3_VERSION} -eq 11 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^11.5.4
+            typo3/cms-core:^11.5.19
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^12.0
+            typo3/cms-core:^12.2
         fi
         composer install --no-progress;
       "
