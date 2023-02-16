@@ -69,9 +69,6 @@ services:
           composer require --no-ansi --no-interaction --no-progress --no-install \
             typo3/cms-core:^12.2
         fi
-        composer require --no-ansi --no-interaction --no-progress --no-install phpunit/phpunit:^9.6.3
-        composer require --no-ansi --no-interaction --no-progress --no-install phpdocumentor/reflection-docblock:^5.3
-        composer require --no-ansi --no-interaction --no-progress --no-install webmozart/assert:^1.11
         composer install --no-progress;
       "
 
@@ -98,9 +95,6 @@ services:
           composer require --no-ansi --no-interaction --no-progress --no-install \
             typo3/cms-core:^12.2
         fi
-        composer require --no-ansi --no-interaction --no-progress --no-install phpunit/phpunit:^9.6.3
-        composer require --no-ansi --no-interaction --no-progress --no-install phpdocumentor/reflection-docblock:^5.3
-        composer require --no-ansi --no-interaction --no-progress --no-install webmozart/assert:^1.11
         composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest;
         composer show;
       "
