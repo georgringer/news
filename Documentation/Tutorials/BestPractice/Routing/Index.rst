@@ -7,7 +7,7 @@ Use Routing to rewrite URLs
 ===========================
 
 This section will show you how you can rewrite the URLs for news using
-**Routing Enhancers and Aspects**. TYPO3 Explained has an capter
+**Routing Enhancers and Aspects**. TYPO3 Explained has a chapter
 :ref:`Introduction to routing <t3coreapi:routing-introduction>` that you can read
 if you are not familiar with the concept yet. You will no
 longer need third party extensions like RealURL or CoolUri to rewrite and
