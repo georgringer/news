@@ -220,6 +220,10 @@ $boot = static function (): void {
             ]
         );
     }
+
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Extbase\Service\ExtensionService::class] = [
+        'className' => \GeorgRinger\News\Xclass\ExtensionServiceXclassed::class,
+    ];
 };
 
 $boot();
