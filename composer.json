@@ -25,7 +25,7 @@
         "GPL-2.0-or-later"
     ],
     "require": {
-        "typo3/cms-core": "^11.5.19 || ^12"
+        "typo3/cms-core": "^11.5.24 || ^12"
     },
     "conflict": {
         "symfony/finder": "2.7.44 || 2.8.37 || 3.4.7 || 4.0.7"
@@ -40,7 +40,8 @@
         "sbuerk/typo3-cmscomposerinstallers-testingframework-bridge": "^0.0.1",
         "typo3/testing-framework": "~7.0@dev",
         "typo3/coding-standards": "^0.5.3",
-        "friendsofphp/php-cs-fixer": "^3.13.0"
+        "friendsofphp/php-cs-fixer": "^3.13.0",
+        "webmozart/assert": "^1.11.0"
     },
     "autoload": {
         "psr-4": {

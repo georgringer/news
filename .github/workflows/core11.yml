@@ -8,12 +8,10 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       # This prevents cancellation of matrix job runs, if one/two already failed and let the
-      # rest matrix jobs be be executed anyway.
+      # rest matrix jobs be executed anyway.
       fail-fast: false
       matrix:
-        # @todo Before enabling PHP8.2 testing, core needs to provide doctrine/dbal fixes for postgres. Additionally,
-        #       min version of core v11 has to be raised, to have some PHP8.2 related fixes included.
-        php: [ '7.4', '8.0', '8.1' ]
+        php: [ '7.4', '8.0', '8.1', '8.2' ]
         composerInstall: [ 'composerInstallLowest', 'composerInstallHighest' ]
     steps:
       - name: Checkout
@@ -29,7 +27,7 @@ jobs:
         run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s lint
 
       - name: Validate code against CGL
-        run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s cgl -n
+        run: PHP_CS_FIXER_IGNORE_ENV=1 Build/Scripts/runTests.sh -t 11 -p 8.1 -s cgl -n
 
       - name: Unit Tests
         run: Build/Scripts/runTests.sh -t 11 -p ${{ matrix.php }} -s unit

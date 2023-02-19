@@ -63,11 +63,11 @@ services:
         php -v | grep '^PHP';
         if [ ${TYPO3_VERSION} -eq 11 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^11.5.4
+            typo3/cms-core:^11.5.24
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^12.0
+            typo3/cms-core:^12.2
         fi
         composer install --no-progress;
       "
@@ -89,7 +89,7 @@ services:
         php -v | grep '^PHP';
         if [ ${TYPO3_VERSION} -eq 11 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^11.5.4
+            typo3/cms-core:^11.5.24
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
@@ -115,11 +115,11 @@ services:
         fi
         if [ ${TYPO3_VERSION} -eq 11 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^11.5.4
+            typo3/cms-core:^11.5.24
         fi
         if [ ${TYPO3_VERSION} -eq 12 ]; then
           composer require --no-ansi --no-interaction --no-progress --no-install \
-            typo3/cms-core:^12.0
+            typo3/cms-core:^12.2
         fi
         composer update --no-progress --no-interaction;
         composer show;
