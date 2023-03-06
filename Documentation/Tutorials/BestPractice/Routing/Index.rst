@@ -343,17 +343,12 @@ by date. Also includes configuration for the pagination.
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-           requirements:
-             date-year: '\d+'
          # Date year + pagination:
          - routePath: '/{date-year}/page-{page}'
            _controller: 'News::list'
            _arguments:
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-           requirements:
-             date-year: '\d+'
-             page: '\d+'
          # Date year/month:
          - routePath: '/{date-year}/{date-month}'
            _controller: 'News::list'
@@ -361,9 +356,6 @@ by date. Also includes configuration for the pagination.
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-           requirements:
-             date-month: '\d+'
-             date-year: '\d+'
           # Date year/month + pagination:
          - routePath: '/{date-year}/{date-month}/page-{page}'
            _controller: 'News::list'
@@ -371,15 +363,15 @@ by date. Also includes configuration for the pagination.
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-           requirements:
-             date-month: '\d+'
-             date-year: '\d+'
-             page: '\d+'
        defaultController: 'News::list'
        defaults:
          page: '0'
          date-month: ''
          date-year: ''
+       requirements:
+         date-month: '\d+'
+         date-year: '\d+'
+         page: '\d+'
        aspects:
          news-title:
            type: NewsTitle
