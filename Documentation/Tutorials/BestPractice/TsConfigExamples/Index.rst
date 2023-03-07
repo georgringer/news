@@ -72,6 +72,7 @@ By default, a news entry in TYPO3 allows you to add any available content elemen
 To do this, add the following code to your TsConfig:
 
 .. code-block:: typoscript
+
    TCEFORM.tt_content {
       CType {
          # Remove all CTypes from allowed additional news content field 'content_elements'
@@ -86,6 +87,7 @@ To do this, add the following code to your TsConfig:
 By default, when you add a new content element inside a news record, TYPO3 sets the CType to the first found content element text. However, since we have restricted the allowed content types, this CType is not allowed here. To set the default CType to mask_news_text, which is one of the allowed content types, you can use the following code:
 
 .. code-block:: typoscript
+
    TCAdefaults {
       tt_content {
          CType = mask_news_text
