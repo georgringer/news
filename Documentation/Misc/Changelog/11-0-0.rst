@@ -28,9 +28,7 @@ Permission configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^
 Due to the plugin splitting, the access permissions must be adopted as not only the plugin `news_pi1` must be allowed but all various plugins an editor is allowed to use.
 
-.. important::
-
-   There is **no** migration wizard available for this change (yet).
+An updated wizard in the Install Tool is available to migrate the permissions to the new plugins.
 
 Changed plugin registration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -84,6 +82,14 @@ All Changes
 -----------
 This is a list of all changes in this release: ::
 
+   2023-02-19 Support for php 8.2 (Commit 80145a6d by Georg Ringer)
+   2023-02-19 [BUGFIX] Avoid dependency conflict with core requirements (Commit 62455558 by Stefan Bürk)
+   2023-02-17 [TASK] Xclass ExtensionService of extbase (Commit 259631ff by Georg Ringer)
+   2023-02-16 [TASK] Require typo3/cms-composer-installers 3.1.3 for PHP 8.2 compatibility (Commit 97c530cf by Markus Klein)
+   2023-02-16 [TASK] Make php-csfixer happy (Commit 599ef39a by Georg Ringer)
+   2023-01-12 [FEATURE] Support EXT:sys_reaction (Commit 34309fea by Georg Ringer)
+   2023-01-11 [FEATURE] Migrate plugin permissions (Commit 6238d17b by Georg Ringer)
+   2022-12-28 [DOC] Start release notes (Commit b4dbee4f by Georg Ringer)
    2022-12-14 [TASK] Simplify error handling (Commit 1651e7e5 by Georg Ringer)
    2022-12-13 [TASK] Use same namespace for all plugins (Commit ff9983f1 by Georg Ringer)
    2022-12-13 [BUGFIX] Fix call in CategoryRepository (Commit 70900efd by Georg Ringer)
