@@ -30,7 +30,8 @@ class SlugPrefix
         if ($configuration === 'default') {
             return $this->getPrefixForSite($parameters['site'], $sysLanguageUid);
         }
-        if (MathUtility::canBeInterpretedAsInteger($configuration)) {
+        // New, not already saved records get a uid like "NEW56fe740dd5a455"; those records can not have a URL yet
+        if (MathUtility::canBeInterpretedAsInteger($configuration) && MathUtility::canBeInterpretedAsInteger($row['uid'])) {
             $prefix = $this->generateUrl($parameters['site'], (int)$configuration, $row['uid'], $sysLanguageUid);
             return $this->stripNewsSegment($prefix, $parameters['row']['path_segment']);
         }

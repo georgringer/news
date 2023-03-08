@@ -430,8 +430,8 @@ class NewsController extends NewsBaseController
         $allowedStoragePages = GeneralUtility::trimExplode(
             ',',
             Page::extendPidListByChildren(
-                $this->settings['startingpoint'],
-                $this->settings['recursive']
+                (string)($this->settings['startingpoint'] ?? ''),
+                (int)($this->settings['recursive'] ?? 0)
             ),
             true
         );

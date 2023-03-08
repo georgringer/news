@@ -35,25 +35,29 @@ The default category template `Category/List` allows only filtering by a single 
     <f:section name="categoryTree">
         <ul>
             <f:for each="{categories}" as="category">
+                <f:variable name="categoryUid">{category.item.uid}</f:variable>
+                <f:if condition="{category.item.sysLanguageUid} > 0">
+                    <f:variable name="categoryUid"{category.item.l10nParent}</f:variable>
+                </f:if>
                 <li>
-                    <n:multiCategoryLink.isCategoryActive list="{overwriteDemand.categories}" item="{category.item.uid}">
+                    <n:multiCategoryLink.isCategoryActive list="{overwriteDemand.categories}" item="{categoryUid}">
                         <f:then>
                             <f:link.page title="{category.item.title}" class="active" pageUid="{settings.listPid}"
-                                additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">{category.item.title}
+                                additionalParams="{tx_news_pi1:{overwriteDemand:{categories: categoryUid}}}">{category.item.title}
                             </f:link.page>
 
                             (<f:link.page title="{category.item.title}" class="active" pageUid="{settings.listPid}"
-                                          additionalParams="{n:multiCategoryLink.arguments(mode:'remove',item:category.item.uid,list:overwriteDemand.categories)}">remove
+                                          additionalParams="{n:multiCategoryLink.arguments(mode:'remove',item:categoryUid,list:overwriteDemand.categories)}">remove
                         </f:link.page>)
 
                         </f:then>
                         <f:else>
                             <f:link.page title="{category.item.title}" pageUid="{settings.listPid}"
-                                additionalParams="{tx_news_pi1:{overwriteDemand:{categories: category.item.uid}}}">{category.item.title}
+                                additionalParams="{tx_news_pi1:{overwriteDemand:{categories: categoryUid}}}">{category.item.title}
                             </f:link.page>
 
                             (<f:link.page title="{category.item.title}" class="active" pageUid="{settings.listPid}"
-                                         additionalParams="{n:multiCategoryLink.arguments(mode:'add',item:category.item.uid,list:overwriteDemand.categories)}">add
+                                         additionalParams="{n:multiCategoryLink.arguments(mode:'add',item:categoryUid,list:overwriteDemand.categories)}">add
                             </f:link.page>)
                         </f:else>
                     </n:multiCategoryLink.isCategoryActive>

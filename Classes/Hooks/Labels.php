@@ -25,6 +25,10 @@ class Labels
      */
     public function getUserLabelCategory(array &$params): void
     {
+        if (!isset($params['row'])) {
+            return;
+        }
+
         $showTranslationInformation = false;
 
         $getVars = GeneralUtility::_GET();

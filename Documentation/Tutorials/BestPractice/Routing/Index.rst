@@ -7,7 +7,7 @@ Use Routing to rewrite URLs
 ===========================
 
 This section will show you how you can rewrite the URLs for news using
-**Routing Enhancers and Aspects**. TYPO3 Explained has an capter
+**Routing Enhancers and Aspects**. TYPO3 Explained has a chapter
 :ref:`Introduction to routing <t3coreapi:routing-introduction>` that you can read
 if you are not familiar with the concept yet. You will no
 longer need third party extensions like RealURL or CoolUri to rewrite and
@@ -163,9 +163,7 @@ The following example will only provide routing for the detail view:
              news-title: news
        aspects:
          news-title:
-           type: PersistedAliasMapper
-           tableName: tx_news_domain_model_news
-           routeFieldName: path_segment
+           type: NewsTitle
 
 Please note the placeholder :code:`{news-title}`:
 
@@ -233,21 +231,15 @@ filter news records, their titles (slugs) are used.
          page: '0'
        aspects:
          news-title:
-           type: PersistedAliasMapper
-           tableName: tx_news_domain_model_news
-           routeFieldName: path_segment
+           type: NewsTitle
          page:
            type: StaticRangeMapper
            start: '1'
            end: '100'
          category-name:
-           type: PersistedAliasMapper
-           tableName: sys_category
-           routeFieldName: slug
+           type: NewsCategory
          tag-name:
-           type: PersistedAliasMapper
-           tableName: tx_news_domain_model_tag
-           routeFieldName: slug
+           type: NewsTag
      PageTypeSuffix:
        type: PageType
        map:
@@ -351,17 +343,12 @@ by date. Also includes configuration for the pagination.
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-           requirements:
-             date-year: '\d+'
          # Date year + pagination:
          - routePath: '/{date-year}/page-{page}'
            _controller: 'News::list'
            _arguments:
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-           requirements:
-             date-year: '\d+'
-             page: '\d+'
          # Date year/month:
          - routePath: '/{date-year}/{date-month}'
            _controller: 'News::list'
@@ -369,9 +356,6 @@ by date. Also includes configuration for the pagination.
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-           requirements:
-             date-month: '\d+'
-             date-year: '\d+'
           # Date year/month + pagination:
          - routePath: '/{date-year}/{date-month}/page-{page}'
            _controller: 'News::list'
@@ -379,20 +363,18 @@ by date. Also includes configuration for the pagination.
              date-month: 'overwriteDemand/month'
              date-year: 'overwriteDemand/year'
              page: 'currentPage'
-           requirements:
-             date-month: '\d+'
-             date-year: '\d+'
-             page: '\d+'
        defaultController: 'News::list'
        defaults:
          page: '0'
          date-month: ''
          date-year: ''
+       requirements:
+         date-month: '\d+'
+         date-year: '\d+'
+         page: '\d+'
        aspects:
          news-title:
-           type: PersistedAliasMapper
-           tableName: tx_news_domain_model_news
-           routeFieldName: path_segment
+           type: NewsTitle
          page:
            type: StaticRangeMapper
            start: '1'
